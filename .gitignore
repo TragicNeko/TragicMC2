@@ -38,6 +38,14 @@ Icon
 *.properties
 *.bin
 *.log
-eclipse\.metadata\*
+eclipse/.metadata/*
 *.index
 *.location
+*.prefs
+gradlew
+gradlew.bat
+gradle/wrapper/gradle-wrapper.jar
+*.lock
+build.gradle
+bin/*
+*.db
