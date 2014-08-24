@@ -27,6 +27,7 @@ public class TragicNewConfig {
 	private static String catPotion = "Potions";
 	private static String catVanilla = "Vanilla Changes";
 	private static String catWorldGen = "WorldGen";
+	private static String catMisc = "Miscellaneous";
 
 	private static boolean[] blanketConfigs = new boolean[9];
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
@@ -109,6 +110,9 @@ public class TragicNewConfig {
 	private static int[] worldGenInts = new int[12];
 	public static int voidPitRarity, largeSpikeRarity, starCrystalRarity, structureOverallRarity, apisTempleRarity, desertTowerRarity, deathCircleRarity, obsidianCavernRarity;
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
+	
+	private static boolean[] miscConfigs = new boolean[8];
+	public static boolean allowRandomWeaponLore;
 
 	/**
 	 * Initializes the start of the configuration file, should only be called once when the mod is loading
@@ -503,18 +507,21 @@ public class TragicNewConfig {
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "voidPitRarity", 5).getInt(5), 1, 100);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "largeSpikeRarity", 95).getInt(5), 1, 100);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "starCrystalRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 60).getInt(60), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "apisTempleRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "desertTowerRarity", 25).getInt(25), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "deathCircleRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "obsidianCavernRarity", 30).getInt(30), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "kitsuneDenRarity", 20).getInt(20), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "celestialTempleRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "yetiRavineRarity", 10).getInt(10), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 5).getInt(5), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "apisTempleRarity", 5).getInt(5), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "desertTowerRarity", 15).getInt(15), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "deathCircleRarity", 5).getInt(5), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "obsidianCavernRarity", 10).getInt(10), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "kitsuneDenRarity", 5).getInt(5), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "celestialTempleRarity", 3).getInt(3), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 5).getInt(5), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "yetiRavineRarity", 5).getInt(5), 1, 100);
 		
-		config.addCustomCategoryComment(catWorldGen, "These toggle specific WorldGen features, meant to help with lag reduction if your CPU cannot handle it during WorldGen, also toggle rarities");
+		config.addCustomCategoryComment(catWorldGen, "These toggle specific WorldGen features, meant to help with lag reduction if your CPU cannot handle it during WorldGen, also toggle rarities of structures");
 
+		mapping = 0;
+		miscConfigs[mapping++] = (config.get(catMisc, "allowRandomWeaponLore", true).getBoolean(true));
+		
 		if (config.hasChanged())
 		{
 			config.save();
@@ -1032,6 +1039,9 @@ public class TragicNewConfig {
 		celestialTempleRarity = worldGenInts[mapping++];
 		timeAltarRarity = worldGenInts[mapping++];
 		yetiRavineRarity = worldGenInts[mapping++];
+		
+		mapping = 0;
+		allowRandomWeaponLore = miscConfigs[mapping++];
 	}
 	
 	public static void disablePotions()
