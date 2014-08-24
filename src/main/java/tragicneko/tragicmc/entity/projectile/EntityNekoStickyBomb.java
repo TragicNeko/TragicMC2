@@ -1,0 +1,139 @@
+package tragicneko.tragicmc.entity.projectile;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicPotions;
+
+public class EntityNekoStickyBomb extends EntityThrowable {
+
+	private int groundTicks;
+	private int airTicks;
+
+	public EntityNekoStickyBomb(World world) {
+		super(world);
+	}
+
+	public EntityNekoStickyBomb(World world, EntityLivingBase entity) {
+		super(world, entity);
+	}
+
+	public EntityNekoStickyBomb(World world, double par2, double par4, double par6) {
+		super(world, par2, par4, par6);
+	}
+
+	@Override
+	protected float getGravityVelocity() {
+		return inGround ? 0.0F : 0.03F;
+	}
+
+	@Override
+	protected void onImpact(MovingObjectPosition mop)
+	{
+		if (mop.entityHit != null && !inGround) 
+		{			
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
+
+			if (mop.entityHit.riddenByEntity == null)
+			{
+				this.motionX = 0;
+				this.motionY = 0;
+				this.motionZ = 0;
+				this.mountEntity(mop.entityHit);
+			}
+			
+			if (mop.entityHit instanceof EntityLivingBase && TragicNewConfig.allowStun)
+			{
+				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 10, 0));
+			}
+		}
+
+		this.inGround = true;
+	}
+
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		if (this.isInWater())
+		{
+			for (int l = 0; l < 5; ++l) {
+				worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+			}
+			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
+			this.setDead();
+		}
+
+		if (this.inGround)
+		{
+			groundTicks++;
+		}
+		else
+		{
+			airTicks++;
+		}
+
+		if (this.airTicks >= 20)
+		{
+			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+
+			for (int l = 0; l < 11; l++)
+			{
+				double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX; 
+				double d1 = rand.nextInt(3) + this.posY - 1;
+				double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ; 
+
+				if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
+				{
+					Block block = Blocks.web;
+					this.worldObj.setBlock((int)d0, (int)d1, (int)d2, block);
+				}
+			}
+
+			this.setDead();
+		}
+
+		if (this.airTicks > 20 && !this.worldObj.isRemote)
+		{
+			this.setDead();
+		}
+
+		if (this.inGround && groundTicks >= 20)
+		{			
+			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+
+			for (int l = 0; l < 11; l++)
+			{
+				double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX; 
+				double d1 = rand.nextInt(3) + this.posY - 1;
+				double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ; 
+
+				if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
+				{
+					Block block = Blocks.web;
+					this.worldObj.setBlock((int)d0, (int)d1, (int)d2, block);
+				}
+			}
+
+			this.setDead();
+		}
+
+		if (this.groundTicks > 20 && !this.worldObj.isRemote)
+		{
+			this.setDead();
+		}
+
+	}
+
+	@Override
+	public void onCollideWithPlayer(EntityPlayer player) {
+	}
+}

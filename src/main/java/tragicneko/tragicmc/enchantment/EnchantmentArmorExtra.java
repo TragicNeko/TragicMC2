@@ -1,0 +1,133 @@
+package tragicneko.tragicmc.enchantment;
+
+import java.util.Random;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentThorns;
+import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicPotions;
+
+public class EnchantmentArmorExtra extends Enchantment {
+
+	private String[] enchantNames = {"ignition", "paralysis", "toxicity", "elasticity", "deathTouch"};
+	private static String enchantName;
+	private int damageType;
+	private final Random rand = TragicMC.rand;
+
+	public EnchantmentArmorExtra(int par1, int par2, int par3) {
+		super(par1, par2, EnumEnchantmentType.armor);
+		this.setName("armorExtra." + enchantNames[par3]);
+		this.damageType = par3;
+	}
+
+	public int getMinEnchantability(int par1)
+	{
+		return 24 + (par1 * 2);
+	}
+
+	public int getMaxEnchantability(int par1)
+	{
+		return super.getMinEnchantability(par1) + 50;
+	}
+
+	public int getMaxLevel()
+	{
+		return 3;
+	}
+
+	public boolean canApplyTogether(Enchantment par1Enchantment)
+	{
+		Boolean flag = true;
+
+		if (par1Enchantment instanceof EnchantmentArmorExtra || par1Enchantment instanceof EnchantmentThorns)
+		{
+			flag = false;
+		}
+
+		return flag;
+	}
+
+	public int calcModifierDamage(int par1, DamageSource par2DamageSource)
+	{
+		if (!par2DamageSource.canHarmInCreative())
+		{
+			if (par2DamageSource.getEntity() != null && par2DamageSource.getEntity() instanceof EntityLivingBase)
+			{
+				EntityLivingBase entity = (EntityLivingBase) par2DamageSource.getEntity();
+				if (rand.nextInt(10 - (par1 * 2)) == 0 && !par2DamageSource.isProjectile() &&
+						!par2DamageSource.isMagicDamage() && !par2DamageSource.isExplosion()) //12.5% chance with level 1, 18% chance with level 2, 25% chance with level 3
+				{
+					switch(this.damageType)
+					{
+					case 0:
+						if (rand.nextInt(2) == 0) //12.5% chance with level 3, 6.25% with level 1
+						{
+							entity.setFire(8 * par1);
+						}
+						break;
+					case 1:
+						if (rand.nextInt(4) == 0 && TragicNewConfig.allowStun) //6.25% chance with level 3, 3.125% with level 1
+						{
+							entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60 * par1));
+						}
+						break;
+					case 2:
+						if (rand.nextInt(3) == 0) //8.33% chance with level 3, 4.16% with level 1
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120 * par1, par1));
+						}
+						break;
+					case 3:
+						if (rand.nextInt(2) == 0) //12.5% chance with level 3, 6.25% with level 1
+						{
+							EntityPlayer player = entity.worldObj.getClosestPlayerToEntity(entity, 5.0);
+
+							if (player != null)
+							{
+								entity.applyEntityCollision(player);
+
+								switch (par1)
+								{
+								case 1:
+									entity.motionX *= 1.5;
+									entity.motionY *= 1.5;
+									entity.motionZ *= 1.5;
+									break;
+								case 2:
+									entity.motionX *= 2;
+									entity.motionY *= 2;
+									entity.motionZ *= 2;
+									break;
+								case 3:
+									entity.motionX *= 2.5;
+									entity.motionY *= 2.5;
+									entity.motionZ *= 2.5;
+									break;
+								default:
+									break;
+								}
+							}
+						}
+						break;
+					case 4:
+						if (rand.nextInt(3) == 0) //8.33% chance with level 3, 4.16% with level 1
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120 * par1, par1));
+						}
+						break;
+					}
+				}
+			}
+		}
+		return 0;
+	}
+
+
+}

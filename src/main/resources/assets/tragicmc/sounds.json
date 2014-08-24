@@ -1,0 +1,11 @@
+{
+"test":
+    {
+        "category": "master",
+        "sounds":
+        [
+            "random/test1",
+			"random/test2"
+        ]
+    }
+}

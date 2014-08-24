@@ -1,0 +1,41 @@
+package tragicneko.tragicmc.client.render.boss;
+
+import org.lwjgl.opengl.GL11;
+
+import tragicneko.tragicmc.entity.boss.TragicBoss;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.BossStatus;
+
+public abstract class RenderBoss extends RenderLiving {
+	
+	private float scale;
+
+	public RenderBoss(ModelBase model, float shadowSize, float scale) {
+		super(model, shadowSize);
+		this.scale = scale;
+	}
+	
+	public RenderBoss(ModelBase model, float shadowSize) {
+		this(model, shadowSize, 1.0F);
+	}
+	
+	protected void preRenderCallback(EntityLivingBase entity, float par2)
+	{
+		GL11.glScalef(1.0F, 1.0F, 1.0F);
+	}
+	
+	public void doRender(TragicBoss boss, double par2, double par4, double par6, float par8, float par9)
+	{
+		BossStatus.setBossStatus(boss, true);
+		super.doRender((EntityLiving)boss, par2, par4, par6, par8, par9);
+	}
+	
+	public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9)
+	{
+		this.doRender((TragicBoss)entity, par2, par4, par6, par8, par9);
+	}
+
+}

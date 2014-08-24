@@ -1,0 +1,591 @@
+﻿
+itemGroup.tragicMCMain=Tragic MC - Survival
+itemGroup.tragicMCMobs=Tragic MC - Creative
+
+death.attack.suffocation=Player had the air removed from their lungs
+death.attack.modMagic=Player was murdered through the wonders of magic
+
+command.tragicmc.doom.usage=Usage: /doom <player> <int to apply>
+command.tragicmc.doomsday.usage=Usage: /doomsday <player> <doomsday id>
+
+item.tragicmc.mobEgg.name=Spawn
+
+tile.tragicmc.mercuryOre.name=Red Mercury Ore
+tile.tragicmc.tungstenOre.name=Tungsten Ore
+tile.tragicmc.rubyOre.name=Ruby Ore
+tile.tragicmc.sapphireOre.name=Sapphire Ore
+
+tile.tragicmc.storageBlock.ruby.name=Block of Ruby
+tile.tragicmc.storageBlock.sapphire.name=Block of Sapphire
+tile.tragicmc.storageBlock.tungsten.name=Block of Tungsten
+tile.tragicmc.storageBlock.mercury.name=Block of Red Mercury
+tile.tragicmc.storageBlock.quicksilver.name=Block of Quicksilver
+
+tile.tragicmc.wax.name=Wax
+tile.tragicmc.light.name=Light Orb
+tile.tragicmc.candle.name=Candle
+
+tile.tragicmc.potatoBlock.name=Giant Potato
+tile.tragicmc.carrotBlock.name=Giant Carrot
+
+tile.tragicmc.summonBlock.apis.name=Summon Apis
+tile.tragicmc.summonBlock.wither.name=Summon Wither
+tile.tragicmc.summonBlock.enderDragon.name=Summon Ender Dragon
+tile.tragicmc.summonBlock.deathReaper.name=Summon Death Reaper
+tile.tragicmc.summonBlock.kitsune.name=Summon Kitsune
+tile.tragicmc.summonBlock.yeti.name=Summon Yeti
+tile.tragicmc.summonBlock.polaris.name=Summon Polaris
+tile.tragicmc.summonBlock.timeController.name=Summon Time Controller
+
+tile.tragicmc.sandstonePressurePlate.name=Sandstone Pressure Plate
+tile.tragicmc.netherBrickPressurePlate.name=Nether Brick Pressure Plate
+
+tile.tragicmc.disappearingBlock.name=Disappearing Block
+tile.tragicmc.disappearingBlockInvis.name=Disappearing Block (Invisible)
+
+tile.tragicmc.quicksand.quicksand.name=Quicksand
+tile.tragicmc.quicksand.mud.name=Mud
+tile.tragicmc.quicksand.netherDrudge.name=Drudge
+
+tile.tragicmc.darkStone.smooth.name=Dark Stone
+tile.tragicmc.darkStone.red.name=Red Corroded Dark Stone
+tile.tragicmc.darkStone.green.name=Green Corroded Dark Stone
+tile.tragicmc.darkStone.blue.name=Teal Corroded Dark Stone
+tile.tragicmc.darkStone.yellow.name=Brown Corroded Dark Stone
+tile.tragicmc.darkStone.purple.name=Violet Corroded Dark Stone
+tile.tragicmc.darkStone.navy.name=Navy Corroded Dark Stone
+tile.tragicmc.darkStone.beveled.name=Beveled Dark Stone
+tile.tragicmc.darkStone.beveledRed.name=Red Beveled Dark Stone
+tile.tragicmc.darkStone.beveledGreen.name=Green Beveled Dark Stone
+tile.tragicmc.darkStone.beveledTeal.name=Teal Beveled Dark Stone
+tile.tragicmc.darkStone.beveledYellow.name=Brown Beveled Dark Stone
+tile.tragicmc.darkStone.beveledPurple.name=Violet Beveled Dark Stone
+tile.tragicmc.darkStone.beveledNavy.name=Navy Beveled Dark Stone
+tile.tragicmc.darkStone.spike.name=Spike Dark Stone
+
+tile.tragicmc.darkCobblestone.normal.name=Dark Cobblestone
+tile.tragicmc.darkCobblestone.hot.name=Hot Dark Cobblestone
+tile.tragicmc.darkCobblestone.toxic.name=Toxic Dark Cobblestone
+tile.tragicmc.darkCobblestone.ashen.name=Ashen Dark Cobblestone
+
+tile.tragicmc.lightCobblestone.normal.name=Light Cobblestone
+tile.tragicmc.lightCobblestone.frozen.name=Frozen Light Cobblestone
+tile.tragicmc.lightCobblestone.glowing.name=Glowing Light Cobblestone
+
+tile.tragicmc.tragicObsidian.crying.name=Crying Obsidian
+tile.tragicmc.tragicObsidian.dying.name=Dying Obsidian
+tile.tragicmc.tragicObsidian.bleeding.name=Bleeding Obsidian
+
+tile.tragicmc.pulsar.name=Pulsar
+tile.tragicmc.magnetar.name=Magnetar
+tile.tragicmc.timeDisruptor.name=Time Disruption Cube
+
+tile.tragicmc.structureSeed.apisTemple.name=Apis Temple Seed
+tile.tragicmc.structureSeed.desertTower.name=Desert Tower Seed
+tile.tragicmc.structureSeed.netherTower.name=Nether Tower Seed
+tile.tragicmc.structureSeed.forestTower.name=Forest Tower Seed
+tile.tragicmc.structureSeed.mesaTower.name=Clay Tower Seed
+tile.tragicmc.structureSeed.desertRuin.name=Desert Ruin Seed
+tile.tragicmc.structureSeed.deathCircle.name=Death Circle Seed
+tile.tragicmc.structureSeed.iceTower.name=Ice Tower Seed
+tile.tragicmc.structureSeed.obsidianCavern.random.name=Random Obsidian Cavern Seed
+tile.tragicmc.structureSeed.obsidianCavern.mobSpawners.name=Mob Challenge Obsidian Cavern Seed
+tile.tragicmc.structureSeed.obsidianCavern.bossChallenge.name=Boss Challenge Obsidian Cavern Seed
+tile.tragicmc.structureSeed.obsidianCavern.deathTrap.name=Death Trap Obsidian Cavern Seed
+tile.tragicmc.structureSeed.obsidianCavern.lootStash.name=Loot Stash Obsidian Cavern Seed
+tile.tragicmc.structureSeed.kitsuneDen.name=Kitsune Den Seed
+tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple Seed
+tile.tragicmc.structureSeed.timeAltar.name=Time Altar Seed
+
+tile.tragicmc.deadDirt.normal.name=Dead Dirt
+tile.tragicmc.deadDirt.rugged.name=Rugged Dirt
+tile.tragicmc.deadDirt.mixed.name=Mixed Dirt
+
+tile.tragicmc.darkSand.name=Dark Sand
+tile.tragicmc.decayingSand.name=Decaying Sand
+
+tile.tragicmc.tragicOres.xp.name=XP Ore
+tile.tragicmc.tragicOres.mercury.name=Mercury Ore
+tile.tragicmc.tragicOres.tungsten.name=Tungsten Ore
+tile.tragicmc.tragicOres.ruby.name=Ruby Ore
+tile.tragicmc.tragicOres.sapphire.name=Sapphire Ore
+tile.tragicmc.tragicOres.lapis.name=Lapis Lazuli Ore
+tile.tragicmc.tragicOres.diamond.name=Diamond Ore
+tile.tragicmc.tragicOres.emerald.name=Emerald Ore
+tile.tragicmc.tragicOres.gold.name=Gold Ore
+tile.tragicmc.tragicOres.iron.name=Iron Ore
+tile.tragicmc.tragicOres.coal.name=Coal Ore
+
+tile.tragicmc.boneBlock.normal.name=Block of Bones
+tile.tragicmc.boneBlock.rotten.name=Rotten Block of Bones
+
+tile.tragicmc.fox.normal.name=Smooth Netherrack
+tile.tragicmc.fox.beveled.name=Beveled Netherrack
+tile.tragicmc.fox.chiseled.name=Chiseled Netherrack
+tile.tragicmc.fox.sculpted.name=Sculpted Netherrack
+tile.tragicmc.fox.foxtail.name=Foxtail Rock
+tile.tragicmc.fox.molten.name=Molten Netherrack
+
+tile.tragicmc.darkenedQuartz.smooth.name=Darkened Quartz
+tile.tragicmc.darkenedQuartz.chiseled.name=Chiseled Darkened Quartz
+tile.tragicmc.darkenedQuartz.pillared.name=Darkened Quartz Pillar
+
+tile.tragicmc.brushedGrass.name=Brushed Grass
+tile.tragicmc.paintedWood.name=Painted Wood
+tile.tragicmc.paintedPlanks.name=Painted Planks
+tile.tragicmc.paintedLeaves.name=Painted Leaves
+tile.tragicmc.glowvine.name=Glowvine
+tile.tragicmc.paintedTallGrass.name=Painted Tall Grass
+
+tile.tragicmc.ashenGrass.name=Ashen Grass
+tile.tragicmc.ashenWood.name=Ashen Wood
+tile.tragicmc.ashenPlanks.name=Ashen Planks
+tile.tragicmc.ashenLeaves.name=Ashen Leaves
+
+tile.tragicmc.bleachedWood.name=Bleached Wood
+tile.tragicmc.bleachedPlanks.name=Bleached Planks
+tile.tragicmc.bleachedLeaves.name=Bleached Leaves
+
+tile.tragicmc.sapling.painted.name=Painted Tree Sapling
+tile.tragicmc.sapling.bleached.name=Bleached Tree Sapling
+tile.tragicmc.sapling.ancient.name=Ancient Tree Sapling
+tile.tragicmc.sapling.lackered.name=Lackered Tree Sapling
+tile.tragicmc.sapling.ashen.name=Ashen Tree Sapling
+tile.tragicmc.sapling.cherryBlossom.name=Cherry Blossom Sapling
+tile.tragicmc.sapling.toxic.name=Toxic Tree Sapling
+tile.tragicmc.sapling.dead.name=Dead Tree Sapling
+tile.tragicmc.sapling.corroded.name=Corroded Tree Sapling
+
+tile.tragicmc.flower.blueSpiranthes.name=Blue Spiranthes
+tile.tragicmc.flower.pinkSpiranthes.name=Pink Spiranthes
+tile.tragicmc.flower.redSpiranthes.name=Red Spiranthes
+tile.tragicmc.flower.whiteSpiranthes.name=White Spiranthes
+tile.tragicmc.flower.blueCoral.name=Blue Coral
+tile.tragicmc.flower.redCoral.name=Red Coral
+tile.tragicmc.flower.pinkGinger.name=Pink Ginger
+tile.tragicmc.flower.redGinger.name=Red Ginger
+tile.tragicmc.flower.bluebonnet.name=Bluebonnet
+tile.tragicmc.flower.violetSage.name=Violet Sage
+tile.tragicmc.flower.pinkSage.name=Pink Sage
+tile.tragicmc.flower.whiteSage.name=White Sage
+tile.tragicmc.flower.birdOfParadise.name=Bird of Paradise
+tile.tragicmc.flower.juniperBush.name=Juniper Bush
+tile.tragicmc.flower.stapelia.name=Stapelia
+tile.tragicmc.flower.thistle.name=Thistle
+
+tile.tragicmc.ashenTallGrass.name=Ashen Tall Grass
+tile.tragicmc.driedTallGrass.name=Dried Tall Grass
+
+tile.tragicmc.starlitGrass.name=Starlit Grass
+tile.tragicmc.starlitTallGrass.name=Starlit Tall Grass
+
+tile.tragicmc.starCrystal.pink.name=Pink Star Crystal
+tile.tragicmc.starCrystal.purple.name=Purple Star Crystal
+tile.tragicmc.starCrystal.yellow.name=Yellow Star Crystal
+tile.tragicmc.starCrystal.green.name=Green Star Crystal
+tile.tragicmc.starCrystal.red.name=Red Star Crystal
+tile.tragicmc.starCrystal.blue.name=Blue Star Crystal
+tile.tragicmc.starCrystal.white.name=White Star Crystal
+tile.tragicmc.starCrystal.black.name=Black Star Crystal
+tile.tragicmc.starCrystal.lightGray.name=Light Gray Star Crystal
+tile.tragicmc.starCrystal.darkGray.name=Dark Gray Star Crystal
+tile.tragicmc.starCrystal.lightBlue.name=Light Blue Star Crystal
+tile.tragicmc.starCrystal.cyan.name=Cyan Star Crystal
+tile.tragicmc.starCrystal.brown.name=Brown Star Crystal
+tile.tragicmc.starCrystal.orange.name=Orange Star Crystal
+tile.tragicmc.starCrystal.magenta.name=Magenta Star Crystal
+tile.tragicmc.starCrystal.limeGreen.name=Lime Star Crystal
+
+tile.tragicmc.erodedStone.smooth.name=Eroded Stone
+tile.tragicmc.erodedStone.carved.name=Carved Eroded Stone
+
+item.tragicmc.redMercury.name=Red Mercury
+item.tragicmc.mercuryHelm.name=Red Mercury Helmet
+item.tragicmc.mercuryPlate.name=Red Mercury Chestplate
+item.tragicmc.mercuryLegs.name=Red Mercury Legs
+item.tragicmc.mercuryBoots.name=Red Mercury Boots
+item.tragicmc.mercuryDagger.name=Red Mercury Dagger
+
+item.tragicmc.tungstenHelm.name=Tungsten Helmet
+item.tragicmc.tungstenPlate.name=Tungsten Chestplate
+item.tragicmc.tungstenLegs.name=Tungsten Legs
+item.tragicmc.tungstenBoots.name=Tungsten Boots
+
+item.tragicmc.quicksilver.name=Quicksilver
+item.tragicmc.quicksilverIngot.name=Solidified Quicksilver
+
+item.tragicmc.tungsten.name=Tungsten
+item.tragicmc.jack.name=Tungsten Jack
+
+item.tragicmc.lightIngot.name=Light Ingot
+item.tragicmc.darkIngot.name=Dark Ingot
+
+item.tragicmc.ruby.name=Ruby
+item.tragicmc.sapphire.name=Sapphire
+
+item.tragicmc.skullHelmet.name=Skull Helmet
+item.tragicmc.skullPlate.name=Skull Chestplate
+item.tragicmc.skullLegs.name=Skull Legs
+item.tragicmc.skullBoots.name=Skull Boots
+item.tragicmc.scythe.name=Scythe
+
+item.tragicmc.huntersCap.name=Hunter's Cap
+item.tragicmc.huntersTunic.name=Hunter's Tunic
+item.tragicmc.huntersLegs.name=Hunter's Leggings
+item.tragicmc.huntersBoots.name=Hunter's Boots
+item.tragicmc.huntersBow.name=Hunter's Bow
+
+item.tragicmc.darkHelm.name=Dark Helm
+item.tragicmc.darkPlate.name=Dark Plate
+item.tragicmc.darkLegs.name=Dark Legs
+item.tragicmc.darkBoots.name=Dark Boots
+item.tragicmc.pitchBlack.name=Pitch Black
+
+item.tragicmc.lightHelm.name=Light Helmet
+item.tragicmc.lightPlate.name=Light Chestplate
+item.tragicmc.lightLegs.name=Light Legs
+item.tragicmc.lightBoots.name=Light Boots
+item.tragicmc.blindingLight.name=Blinding Light
+item.tragicmc.everlastingLight.name=Everlasting Light
+
+item.tragicmc.gravitySpike.name=Gravity Spike
+item.tragicmc.mourningStar.name=Mourning Star
+item.tragicmc.harmonyBell.name=Harmony Bell
+item.tragicmc.guiltyThorn.name=Guilty Thorn
+item.tragicmc.beastlyClaws.name=Beastly Claws
+item.tragicmc.nekoLauncher.name=Neko Rocket Launcher
+item.tragicmc.reaperScythe.name=Reaper Scythe
+item.tragicmc.enigmaShield.name=Enigma Shield
+item.tragicmc.witheringAxe.name=Withering Axe
+
+item.tragicmc.diamondCharm.name=Diamond Charm
+item.tragicmc.emeraldCharm.name=Emerald Charm
+item.tragicmc.rubyCharm.name=Ruby Charm
+item.tragicmc.sapphireCharm.name=Sapphire Charm
+item.tragicmc.awakeningStone.name=Awakening Stone
+item.tragicmc.obsidianOrb.name=Obsidian Orb
+item.tragicmc.cryingObsidianOrb.name=Crying Obsidian Orb
+item.tragicmc.bleedingObsidianOrb.name=Bleeding Obsidian Orb
+item.tragicmc.dyingObsidianOrb.name=Dying Obsidian Orb
+
+item.tragicmc.doomUpgrade.name=Doom Consume
+item.tragicmc.amuletRelease.name=Amulet Release
+item.tragicmc.cooldownDefuse.name=Cooldown Defuse
+
+item.amuletKitsune.name=Kitsune Amulet
+kitsune4.special=Hellspawn
+item.amuletPeace.name=Peace Amulet
+peace1.special=Keeping Harmony
+peace2.special=Blinded by Love
+peace3.special=Peacekeeper
+item.amuletYeti.name=Yeti Amulet
+yeti1.special=Fits and a Tantrum
+yeti2.special=Stomp Like a Plumber
+yeti3.special=Going Nuclear
+item.amuletClaymation.name=Claymation Amulet
+claymation1.special=Unsightly Rejection
+claymation2.special=Probable Deflection
+claymation3.special=Effective Reflection
+item.amuletChicken.name=Chicken Amulet
+chicken1.special=Bawk Bawk
+chicken2.special=I Don't Wanna be a Chicken
+chicken3.special=Nobody Calls Me Chicken...
+item.amuletHornet.name=Hornet Amulet
+hornet4.special=Float Like a Butterfly
+item.amuletMartyr.name=Martyr Amulet
+martyr4.special=Suffer With Me
+item.amuletBlacksmith.name=Blacksmith Amulet
+blacksmith1.special=I Think I Got the Black Lung
+blacksmith2.special=Just Hammerin' Away
+blacksmith3.special=The Minecraft Forger
+item.amuletApis.name=Apis Amulet
+apis4.special=Demolitions Expert
+item.amuletCreeper.name=Creeper Amulet
+creeper1.special=Dig Dig Dig
+creeper2.special=A Mining We Will Go
+creeper3.special=A True Miner
+item.amuletSkeleton.name=Skeleton Amulet
+skeleton1.special=Robin Hood-like
+skeleton2.special=Legolas-esque
+skeleton3.special=Akin to Green Arrow
+item.amuletZombie.name=Zombie Amulet
+zombie1.special=Braaaaaaaaaains
+zombie2.special=Zombie... Hungry...
+zombie3.special=Thriller
+item.amuletSunken.name=Sunken Amulet
+sunken4.special=Just Keep Swimmin'
+item.amuletTime.name=Time Amulet
+time4.special=Time Keeps on Slippin'
+
+item.tragicmc.ectoplasm.name=Ectoplasm
+item.tragicmc.ash.name=Ash
+item.tragicmc.lifeWater.name=Life Water
+item.tragicmc.toughLeather.name=Tough Leather
+item.tragicmc.wovenSilk.name=Woven Silk
+item.tragicmc.crushedIce.name=Crushed Ice
+item.tragicmc.iceOrb.name=Ice Orb
+item.tragicmc.lightningOrb.name=Lightning Orb
+item.tragicmc.fireOrb.name=Fire Orb
+item.tragicmc.gravityOrb.name=Gravity Orb
+item.tragicmc.aquaOrb.name=Aqua Orb
+item.tragicmc.sap.name=Sap
+item.tragicmc.honey.name=Honey
+item.tragicmc.thorns.name=Thorns
+item.tragicmc.spore.name=Spore
+item.tragicmc.lightParticles.name=Light Particles
+item.tragicmc.darkParticles.name=Dark Particles
+item.tragicmc.horn.name=Horn
+item.tragicmc.glue.name=Super Glue
+item.tragicmc.superGlue.name=Enchanted Glue
+item.tragicmc.kitsuneTail.name=Kitsune Tail
+item.tragicmc.reaperSkull.name=Reaper Skull
+item.tragicmc.yetiClaw.name=Yeti Claw
+item.tragicmc.starPieces.name=Star Pieces
+item.tragicmc.celestialDiamond.name=Celestial Diamond
+item.tragicmc.lunarPowder.name=Lunar Powder
+item.tragicmc.timeEssence.name=Time Essence
+item.tragicmc.wispParticles.name=Wisp Particles
+item.tragicmc.icyFur.name=Icy Fur
+item.tragicmc.stinHorn.name=Stin Horn
+item.tragicmc.livingClay.name=Living Clay
+item.tragicmc.pureDarkness.name=Pure Darkness
+
+item.tragicmc.dimensionalKey.name=Dimensional Key
+
+item.tragicmc.mobStatue.apis.name=Apis Statue
+item.tragicmc.mobStatue.kitsune.name=Kitsune Statue
+item.tragicmc.mobStatue.deathReaper.name=Death Reaper Statue
+item.tragicmc.mobStatue.timeController.name=Time Controller Statue
+item.tragicmc.mobStatue.yeti.name=Yeti Statue
+item.tragicmc.mobStatue.polaris.name=Polaris Statue
+item.tragicmc.mobStatue.jarra.name=Jarra Statue
+item.tragicmc.mobStatue.kragul.name=Kragul Statue
+item.tragicmc.mobStatue.magmox.name=Magmox Statue
+item.tragicmc.mobStatue.megaCryse.name=Mega Cryse Statue
+item.tragicmc.mobStatue.stinKing.name=Stin King Statue
+item.tragicmc.mobStatue.stinQueen.name=Stin Queen Statue
+item.tragicmc.mobStatue.greaterStin.name=Greater Stin Statue
+
+tragicmc.mobTexture.iron=(Iron)
+tragicmc.mobTexture.gold=(Gold)
+tragicmc.mobTexture.diamond=(Diamond)
+tragicmc.mobTexture.stone=(Stone)
+tragicmc.mobTexture.wood=(Wood)
+tragicmc.mobTexture.emerald=(Emerald)
+tragicmc.mobTexture.redMercury=(Red Mercury)
+tragicmc.mobTexture.tungsten=(Tungsten)
+tragicmc.mobTexture.ruby=(Ruby)
+tragicmc.mobTexture.sapphire=(Sapphire)
+tragicmc.mobTexture.redstone=(Redstone)
+tragicmc.mobTexture.coal=(Coal)
+tragicmc.mobTexture.lapis=(Lapis)
+tragicmc.mobTexture.obsidian=(Obsidian)
+tragicmc.mobTexture.checkered=(Checkered)
+
+item.tragicmc.bowOfJustice.name=Bow of Justice
+item.tragicmc.swordOfJustice.name=Sword of Justice
+
+item.tragicmc.voidPitGenerator.name=Void Pit Generator
+item.tragicmc.sphereGenerator.name=Sphere Generator
+item.tragicmc.sphereEraser.name=Sphere Eraser
+item.tragicmc.liquidRemover.name=Liquid Remover
+item.tragicmc.treeGenerator.name=Tree Generator
+item.tragicmc.starCrystalGenerator.name=Star Crystal Generator
+item.tragicmc.spikeGenerator.name=Spike Generator
+item.tragicmc.lightningSummoner.name=Lightning Summoner
+item.tragicmc.explosionGenerator.name=Explosion Generator
+item.tragicmc.nekoNekoWand.name=Neko Neko Wand (WIP)
+
+item.tragicmc.gooeyFruit.name=Gooey Fruit
+item.tragicmc.exoticFruit.name=Exotic Fruit
+item.tragicmc.nastyFruit.name=Nasty Fruit
+item.tragicmc.iceCream.name=Ice Cream
+item.tragicmc.rice.name=Rice
+item.tragicmc.sushi.name=Sushi
+item.tragicmc.boneMarrow.name=Bone Marrow
+item.tragicmc.banana.name=Banana
+item.tragicmc.bananaSplit.name=Banana Split
+item.tragicmc.goldenSushi.name=Golden Sushi
+
+item.tragicmc.rock.rock.name=Rock
+item.tragicmc.rock.lavaRock.name=Lava Rock
+item.tragicmc.pumpkinbomb.small.name=Small Pumpkinbomb
+item.tragicmc.pumpkinbomb.large.name=Large Pumpkinbomb
+item.tragicmc.poisonBarb.name=Poison Barb
+item.tragicmc.nekoClusterBomb.name=Neko Cluster Bomb
+item.tragicmc.nekoRocket.name=Neko Rocket
+item.tragicmc.nekoMiniBomb.name=Neko Mini Bomb
+item.tragicmc.nekoStickyBomb.name=Neko Sticky Bomb
+item.tragicmc.solarBomb.name=Solar Bomb
+item.tragicmc.spiritCast.name=Spirit Cast
+
+entity.TragicMC.Plague.name=Plague
+entity.TragicMC.Jabba.name=Jabba
+entity.TragicMC.Jarra.name=Jarra
+entity.TragicMC.Gragul.name=Gragul
+entity.TragicMC.Kragul.name=Kragul
+entity.TragicMC.Minotaur.name=Minotaur
+entity.TragicMC.Apis.name=Apis
+entity.TragicMC.Ragr.name=Ragr
+entity.TragicMC.Inkling.name=Inkling
+entity.TragicMC.Pumpkinhead.name=Pumpkinhead
+entity.TragicMC.TragicNeko.name=Tragic Neko
+entity.TragicMC.Tox.name=Tox
+entity.TragicMC.Magmox.name=Magmox
+entity.TragicMC.Cryse.name=Cryse
+entity.TragicMC.MegaCryse.name=Mega Cryse
+entity.TragicMC.DeathReaper.name=Death Reaper
+entity.TragicMC.DeathReaperClone.name=Death Reaper
+entity.TragicMC.Pirah.name=Pirah
+entity.TragicMC.NorVox.name=Nor-Vox
+entity.TragicMC.Kitsune.name=Kitsune
+entity.TragicMC.Bangatang.name=Bangatang
+entity.TragicMC.IronGolem.name=Iron Golem
+entity.TragicMC.Wither.name=Wither
+entity.TragicMC.EnderDragon.name=Ender Dragon
+entity.TragicMC.Bangatang.name=Bangatang (WIP)
+entity.TragicMC.Panda.name=Po (WIP)
+entity.TragicMC.Sly.name=Sly (WIP)
+entity.TragicMC.Erkel.name=Erkel
+entity.TragicMC.Sirv.name=Sirv
+entity.TragicMC.Unpause.name=Unpause
+entity.TragicMC.Psygote.name=Psygote
+entity.TragicMC.Stin.name=Stin
+entity.TragicMC.StinBaby.name=Stin Baby
+entity.TragicMC.GreaterStin.name=Greater Stin
+entity.TragicMC.StinQueen.name=Stin Queen
+entity.TragicMC.StinKing.name=Stin King
+entity.TragicMC.Polaris.name=Polaris
+entity.TragicMC.Yeti.name=Yeti
+entity.TragicMC.TimeController.name=Time Controller
+entity.TragicMC.Wisp.name=Wisp
+entity.TragicMC.Abomination.name=Abomination
+entity.TragicMC.Janna.name=Janna
+entity.TragicMC.StarCryse.name=Star Cryse
+entity.TragicMC.StarVox.name=Star Vox
+entity.TragicMC.VoxStellarum.name=Vox Stellarum
+entity.TragicMC.LavaPirah.name=Lava Pirah
+entity.TragicMC.Pox.name=Pox
+
+enchantment.combustion=Combustion
+enchantment.multiply=Multiply
+enchantment.agility=Agility
+enchantment.damageBoost.decay=Decay
+enchantment.damageBoost.absolve=Absolve
+enchantment.damageBoost.slay=Slay
+enchantment.damageBoost.runeBreak=Rune Break
+enchantment.runeWalker=Rune Walker
+enchantment.armorExtra.toxicity=Toxicity
+enchantment.armorExtra.paralysis=Paralysis
+enchantment.armorExtra.deathTouch=Death Touch
+enchantment.armorExtra.elasticity=Elasticity
+enchantment.armorExtra.ignition=Ignition
+enchantment.weaponExtra.vampirism=Vampirism
+enchantment.weaponExtra.leech=Leech
+enchantment.weaponExtra.consume=Consume
+enchantment.weaponExtra.distract=Distract
+
+potion.corruption=Corruption
+potion.flight=Flight
+potion.disorientation=Disorientation
+potion.aquaSuperiority=Aqua Superiority
+potion.stun=Stun
+potion.immunity=Immunity
+potion.fear=Fear
+potion.resurrection=Resurrection
+potion.harmony=Harmony
+potion.cripple=Cripple
+potion.malnourish=Malnourish
+potion.submission=Submission
+potion.invulnerability=Invulnerability
+potion.inhibit=Inhibit
+potion.clarity=Clarity
+
+doomsday.influence.type=Influence
+doomsday.overflow.type=Overflow
+doomsday.worldShaper.type=World Shaper
+doomsday.crisis.type=Crisis
+doomsday.ultimate.type=Ultimate
+
+doomsday.decay.name=Decay
+doomsday.huntersInstinct.name=Hunter's Instinct
+doomsday.toxicity.name=Toxicity
+doomsday.berserker.name=Berserker
+doomsday.piercingLight.name=Piercing Light
+doomsday.natureDrain.name=Nature Drain
+doomsday.poisonBreak.name=Poison Break
+doomsday.snipe.name=Snipe
+doomsday.rapidFire.name=Rapid Fire
+doomsday.pulse.name=Pulse
+doomsday.lightShove.name=Light Shove
+doomsday.fear.name=Fear
+doomsday.harmonizer.name=Harmonizer
+doomsday.ravage.name=Ravage
+doomsday.torment.name=Torment
+doomsday.beastlyImpulses.name=Beastly Impulses
+doomsday.suicidalTendencies.name=Suicidal Tendencies
+doomsday.reaperLaugh.name=Reaper Laugh
+doomsday.realityAlter.name=Reality Alter
+doomsday.skullCrusher.name=Skull Crusher
+doomsday.minerSkills.name=Miner Skills
+doomsday.titanfall.name=Titanfall
+doomsday.bloodlust.name=Bloodlust
+doomsday.permafrost.name=Permafrost
+doomsday.mindCrush.name=Mind Crush
+doomsday.asphyxiate.name=Asphyxiate
+doomsday.fireRain.name=Fire Rain
+doomsday.dragonRoar.name=Dragon Roar
+doomsday.moonlightSonata.name=Moonlight Sonata
+doomsday.isolation.name=Isolation
+doomsday.judgmentDay.name=Judgment Day
+doomsday.paradigmShift.name=Paradigm Shift
+
+achievement.thankYou=Thank You
+achievement.thankYou.desc=Thanks for testing out this mod! ;3
+achievement.doomsday=The Doomsday Machine
+achievement.doomsday.desc=Use your first Doomsday.
+achievement.fullDoom=Doom Doom Doom Doom
+achievement.fullDoom.desc=Reach max Doom for the first time.
+achievement.witch=A Mage Tank?
+achievement.witch.desc=Kill a Witch.
+achievement.influence=That's it?
+achievement.influence.desc=Use an Influence type Doomsday.
+achievement.wtf=WTF! Too Many Potion Effects!
+achievement.wtf.desc=Have multiple negative effects from this mod.
+achievement.mobKill=Killing in the Name
+achievement.mobKill.desc=Kill a mob from this mod.
+achievement.yourWay=Config King
+achievement.yourWay.desc=Have it your way. :D
+achievement.overflow=Be the Overflow!
+achievement.overflow.desc=Use an Overflow type Doomsday.
+achievement.crisis=Sharp Dressed Man
+achievement.crisis.desc=Use a Crisis type Doomsday.
+achievement.worldShaper=I've Got the Power!
+achievement.worldShaper.desc=Use a World Shaper type Doomsday.
+achievement.plague=Like Catching Butteflies
+achievement.plague.desc=Kill a Plague.
+
+tragicmc.paintedForest=Painted Forest
+tragicmc.paintedPlains=Painted Plains
+tragicmc.paintedClearing=Painted Clearing
+tragicmc.paintedHills=Painted Hills
+
+tragicmc.ashenHills=Ashen Hills
+tragicmc.ashenMountains=Ashen Mountains
+tragicmc.ashenBadlands=Ashen Badlands
+
+tragicmc.decayingHills=Decaying Hills
+tragicmc.decayingWasteland=Decaying Wasteland
+tragicmc.decayingValley=Decaying Valley
+tragicmc.decayingMountains=Decaying Mountains
+
+tragicmc.starlitPrarie=Starlit Prarie
+tragicmc.starlitCliffs=Starlit Cliffs
+tragicmc.starlitLowlands=Starlit Lowlands
+tragicmc.starlitPlateaus=Starlit Plateaus
+
+tragicmc.taintedSpikes=Tainted Spikes
+tragicmc.taintedArchipelago=Tainted Archipelago
+tragicmc.taintedIsles=Tainted Isles
+tragicmc.taintedRises=Tainted Rises
+tragicmc.taintedScarlands=Tainted Scarlands
