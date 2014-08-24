@@ -38,7 +38,7 @@ Icon
 *.properties
 *.bin
 *.log
-eclipse/.metadata/*
+eclipse/*
 *.index
 *.location
 *.prefs
