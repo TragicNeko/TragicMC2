@@ -42,6 +42,7 @@ import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.network.MessageFlight;
+import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -165,17 +166,21 @@ public class PotionEvents {
 				}
 			}
 
-			if (entity instanceof EntityPlayer && entity.ticksExisted % 40 == 0 && rand.nextBoolean())
-			{
-				if (!((EntityPlayer)entity).capabilities.isCreativeMode)
-				{
-					entity.attackEntityFrom(DamageSource.outOfWorld, 1.0F);
-				}
-			}
 
-			if (entity instanceof EntityAnimal && entity.ticksExisted % 20 == 0 && rand.nextInt(8) == 0)
+			if (TragicNewConfig.allowCorruptionDamage)
 			{
-				entity.attackEntityFrom(DamageSource.outOfWorld, 1.0F);
+				if (entity instanceof EntityPlayer && entity.ticksExisted % 40 == 0 && rand.nextBoolean())
+				{
+					if (!((EntityPlayer)entity).capabilities.isCreativeMode)
+					{
+						entity.attackEntityFrom(DamageSource.magic, 1.0F);
+					}
+				}
+
+				if (entity instanceof EntityAnimal && entity.ticksExisted % 20 == 0 && rand.nextInt(8) == 0)
+				{
+					entity.attackEntityFrom(DamageSource.magic, 1.0F);
+				}
 			}
 		}
 
@@ -430,7 +435,7 @@ public class PotionEvents {
 				((EntityPlayer)event.entityLiving).cameraPitch = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -1, 1) * 2.0F;
 			}
 		}
-		
+
 		if (TragicNewConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotions.Cripple))
 		{
 			if (event.entityLiving.getHealth() > event.entityLiving.getMaxHealth())
