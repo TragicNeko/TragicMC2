@@ -1,7 +1,9 @@
 package tragicneko.tragicmc.items.weapons;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -9,13 +11,26 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
+import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponMourningStar extends TragicWeapon {
 
+	private final Lore[] uniqueLores = new Lore[] {new Lore("I mourn for no man.", EnumRarity.rare), new Lore("Sleep is for the weak", EnumRarity.uncommon), new Lore("Boom!"),
+		new Lore("Just die already!", EnumRarity.rare), new Lore("For Spartaaaaaaa!", EnumRarity.uncommon), new Lore("I have an explosive temper.", EnumRarity.rare), 
+		new Lore("Kaboom!"), new Lore("I'm TNT, I'm dynamite!", EnumRarity.uncommon), new Lore("Dy-no-mite!")};
+	
 	public WeaponMourningStar(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
+		this.lores = uniqueLores;
+		this.uncommonEnchants = new Enchantment[] {Enchantment.smite};
+		this.uncommonLevels = new int[] {3};
+		this.rareEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume};
+		this.rareLevels = new int[] {5, 1};
+		this.epicEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume, Enchantment.looting, Enchantment.unbreaking};
+		this.epicLevels = new int[] {10, 3, 3, 5};
 	}
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)

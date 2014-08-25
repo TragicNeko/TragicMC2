@@ -36,6 +36,7 @@ public class ItemShield extends Item {
 		this.setMaxDamage(material.getMaxUses());
 		this.setCreativeTab(TragicTabs.Survival);
 		this.damageVsEntity = 1.0F;
+		this.setMaxStackSize(1);
 	}
 	
 	public Doomsday getDoomsday()

@@ -2,14 +2,18 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.UUID;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.main.TragicEnchantments;
+import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponBeastlyClaws extends TragicWeapon {
@@ -17,8 +21,19 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 	private double damage;
 	private int combo;
 
+	private final Lore[] uniqueLores = new Lore[] {new Lore("C-c-c-combo Breaker!", EnumRarity.epic), new Lore("Epic.", EnumRarity.uncommon), new Lore("Going Beastmode!", EnumRarity.rare),
+		new Lore("Slice 'n' Dice!", EnumRarity.uncommon), new Lore("One-Two Punch", EnumRarity.uncommon), new Lore("Sucker Punch"), new Lore("Falcon Punch!", EnumRarity.rare),
+		new Lore("Just sharpening my claws!", EnumRarity.rare), new Lore("Knockout!"), new Lore("TKO!", EnumRarity.rare), new Lore("Punchout!", EnumRarity.uncommon)};
+	
 	public WeaponBeastlyClaws(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
+		this.lores = uniqueLores;
+		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
+		this.uncommonLevels = new int[] {1};
+		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Slay};
+		this.rareLevels = new int[] {2, 1};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Slay, TragicEnchantments.Consume};
+		this.epicLevels = new int[] {3, 2, 2};
 	}
 
 	public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player)

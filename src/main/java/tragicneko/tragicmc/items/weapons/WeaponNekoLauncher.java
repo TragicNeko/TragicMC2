@@ -1,7 +1,9 @@
 package tragicneko.tragicmc.items.weapons;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -10,14 +12,25 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
+import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponNekoLauncher extends TragicWeapon {
-
+	
+	private final Lore[] uniqueLores = new Lore[] {new Lore("Some days you just can't get rid of a bomb!", EnumRarity.epic), new Lore("I meant to do that!", EnumRarity.uncommon),
+		new Lore("That was supposed to happen!"), new Lore("Oops."), new Lore("This is why I can't have nice things!", EnumRarity.rare),
+		new Lore("It's just a flesh wound.", EnumRarity.rare), new Lore("Meow~", EnumRarity.epic)};
 
 	public WeaponNekoLauncher(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
+		this.lores = uniqueLores;
 		this.setMaxDamage(250);
+		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
+		this.uncommonLevels = new int[] {1};
+		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback};
+		this.rareLevels = new int[] {5, 3};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback, TragicEnchantments.Distract};
+		this.epicLevels = new int[] {10, 5, 3};
 	}
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
