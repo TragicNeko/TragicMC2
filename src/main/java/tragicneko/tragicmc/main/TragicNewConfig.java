@@ -842,8 +842,6 @@ public class TragicNewConfig {
 		allowSlay = weaponEnchantConfigs[mapping++];
 		idAbsolve= weaponEnchantIDs[mapping];
 		allowAbsolve = weaponEnchantConfigs[mapping++];
-		idSlay = weaponEnchantIDs[mapping];
-		allowSlay = weaponEnchantConfigs[mapping++];
 		idVampirism = weaponEnchantIDs[mapping];
 		allowVampirism = weaponEnchantConfigs[mapping++];
 		idLeech = weaponEnchantIDs[mapping];
