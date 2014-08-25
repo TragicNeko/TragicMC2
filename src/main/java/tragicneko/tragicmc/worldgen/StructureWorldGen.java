@@ -30,7 +30,7 @@ public class StructureWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if (world.isRemote || !world.getWorldInfo().isMapFeaturesEnabled() || random.nextInt(100) <= TragicNewConfig.structureOverallRarity) return;
+		if (world.isRemote || !world.getWorldInfo().isMapFeaturesEnabled() || random.nextInt(200) >= TragicNewConfig.structureOverallRarity) return;
 
 		int Xcoord;
 		int Ycoord;
@@ -51,17 +51,17 @@ public class StructureWorldGen implements IWorldGenerator {
 				break;
 			}
 
-			if (flag && random.nextInt(100) <= TragicNewConfig.desertTowerRarity)
+			if (flag && random.nextInt(200) <= TragicNewConfig.desertTowerRarity)
 			{
 				new Structure(1).generate(world, random, Xcoord, Ycoord, Zcoord);
 				break;
 			}
-			else if (flag2 && random.nextInt(100) <= TragicNewConfig.apisTempleRarity)
+			else if (flag2 && random.nextInt(200) <= TragicNewConfig.apisTempleRarity)
 			{
 				new Structure(0).generate(world, random, Xcoord, Ycoord, Zcoord);
 				break;
 			}
-			else if (flag2 && random.nextInt(100) <= TragicNewConfig.celestialTempleRarity)
+			else if (flag2 && random.nextInt(200) <= TragicNewConfig.celestialTempleRarity)
 			{
 				Ycoord = random.nextInt(64) + 90;
 
@@ -84,17 +84,17 @@ public class StructureWorldGen implements IWorldGenerator {
 				break;
 			}
 
-			if (flag && random.nextInt(100) <= TragicNewConfig.desertTowerRarity)
+			if (flag && random.nextInt(200) <= TragicNewConfig.desertTowerRarity)
 			{
 				new Structure(1).generate(world, random, Xcoord, Ycoord, Zcoord);
 				break;
 			}
-			else if (flag2 && random.nextInt(100) <= TragicNewConfig.kitsuneDenRarity)
+			else if (flag2 && random.nextInt(200) <= TragicNewConfig.kitsuneDenRarity)
 			{
 				new Structure(4).generate(world, random, Xcoord, Ycoord, Zcoord);
 				break;
 			}
-			else if (flag2 && random.nextInt(100) <= TragicNewConfig.deathCircleRarity)
+			else if (flag2 && random.nextInt(200) <= TragicNewConfig.deathCircleRarity)
 			{
 				new Structure(2).generate(world, random, Xcoord, Ycoord, Zcoord);
 				break;
@@ -112,17 +112,17 @@ public class StructureWorldGen implements IWorldGenerator {
 					break;
 				}
 
-				if (flag2 && random.nextInt(100) <= TragicNewConfig.deathCircleRarity * 2)
+				if (flag2 && random.nextInt(400) <= TragicNewConfig.deathCircleRarity * 2)
 				{
 					new Structure(2).generate(world, random, Xcoord, Ycoord, Zcoord);
 					break;
 				}
-				else if (flag && random.nextInt(100) <= TragicNewConfig.obsidianCavernRarity * 1.5)
+				else if (flag && random.nextInt(300) <= TragicNewConfig.obsidianCavernRarity * 1.5)
 				{
 					new Structure(3).generate(world, random, Xcoord, Ycoord, Zcoord);
 					break;
 				}
-				else if (flag2 && random.nextInt(100) <= TragicNewConfig.kitsuneDenRarity * 1.5)
+				else if (flag2 && random.nextInt(300) <= TragicNewConfig.kitsuneDenRarity * 1.5)
 				{
 					Ycoord = random.nextInt(60) + 5;
 
@@ -134,7 +134,7 @@ public class StructureWorldGen implements IWorldGenerator {
 					new Structure(4).generate(world, random, Xcoord, Ycoord, Zcoord);
 					break;
 				}
-				else if(flag2 && random.nextInt(100) <= TragicNewConfig.celestialTempleRarity * 2)
+				else if(flag2 && random.nextInt(400) <= TragicNewConfig.celestialTempleRarity * 2)
 				{
 					Ycoord = random.nextInt(64) + 90;
 
@@ -146,7 +146,7 @@ public class StructureWorldGen implements IWorldGenerator {
 					new Structure(5).generate(world, random, Xcoord, Ycoord, Zcoord);
 					break;
 				}
-				else if (flag2 && random.nextInt(100) <= TragicNewConfig.timeAltarRarity * 2)
+				else if (flag2 && random.nextInt(400) <= TragicNewConfig.timeAltarRarity * 2)
 				{
 					new Structure(6).generate(world, random, Xcoord, Ycoord, Zcoord);
 					break;
