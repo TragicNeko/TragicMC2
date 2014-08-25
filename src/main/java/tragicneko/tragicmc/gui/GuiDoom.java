@@ -142,7 +142,7 @@ public class GuiDoom extends Gui
 				}
 				else if (stack.getItem() instanceof ItemJack)
 				{
-					if (((ItemJack)stack.getItem()).doomsday != null && ((ItemScythe)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
+					if (((ItemJack)stack.getItem()).doomsday != null && ((ItemJack)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
 					{
 						flag = true;
 					}
