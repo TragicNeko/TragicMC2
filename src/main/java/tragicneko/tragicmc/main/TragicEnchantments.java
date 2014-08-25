@@ -16,7 +16,7 @@ public class TragicEnchantments {
 	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, Agility;
 	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch;
 
-	public static void load() 
+	public static void load()
 	{
 		if (TragicNewConfig.allowDecay) Decay = (new EnchantmentDamageBoost(TragicNewConfig.idDecay, 8, 0));
 		if (TragicNewConfig.allowAbsolve) Absolve = (new EnchantmentDamageBoost(TragicNewConfig.idAbsolve, 1, 1));

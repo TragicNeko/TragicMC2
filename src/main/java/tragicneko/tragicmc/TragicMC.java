@@ -134,11 +134,15 @@ public class TragicMC
 				TragicNewConfig.disablePotions();
 			}
 		}
+		
+		if (TragicNewConfig.allowEnchantments) TragicEnchantments.load();
+		if (TragicNewConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
 
 		TragicTabs.load();
 		TragicBlocks.load();
 		TragicItems.load();
-
+		
+		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
 		
 		if (TragicNewConfig.allowDoom)
@@ -146,10 +150,6 @@ public class TragicMC
 			MinecraftForge.EVENT_BUS.register(new DoomEvents());
 			FMLCommonHandler.instance().bus().register(new RespawnDoomEvents());
 		}
-
-		if (TragicNewConfig.allowEnchantments) TragicEnchantments.load();
-		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
-		if (TragicNewConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
 		
 		if (TragicNewConfig.allowMobs)
 		{
