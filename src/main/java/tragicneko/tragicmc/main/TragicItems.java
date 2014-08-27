@@ -106,7 +106,7 @@ public class TragicItems {
 	public static Item RedMercury, Quicksilver, QuicksilverIngot;
 	public static Item MercuryDagger, MercuryHelm, MercuryPlate, MercuryLegs, MercuryBoots;
 	public static Item Tungsten, Jack, TungstenHelm, TungstenPlate, TungstenLegs, TungstenBoots;
-	
+
 	public static Item Scythe, SkullHelmet, SkullPlate, SkullLegs, SkullBoots;
 	public static Item HuntersBow, HuntersCap, HuntersTunic, HuntersLegs, HuntersBoots;
 
@@ -193,7 +193,7 @@ public class TragicItems {
 	public static Item CelestialDiamond;
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
-	
+
 	public static Item WispParticles;
 	public static Item StinHorn;
 	public static Item IcyFur;
@@ -234,7 +234,7 @@ public class TragicItems {
 	public static Item StarCrystalGenerator;
 	public static Item LightningSummoner;
 	public static Item ExplosionGenerator;
-	
+
 	public static Item NekoNekoWand; //allows you to set a mob to target another one, for creative mode fun only
 
 	public static Item SpawnEgg;
@@ -486,19 +486,19 @@ public class TragicItems {
 
 		CelestialDiamond = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialDiamond").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:CelestialDiamond" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(CelestialDiamond, "celestialDiamond");
-		
+
 		StinHorn = (new ItemGeneric().setUnlocalizedName("tragicmc.stinHorn").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:StinHorn" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(StinHorn, "stinHorn");
-		
+
 		WispParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.wispParticles").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:WispParticles" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(WispParticles, "wispParticles");
-		
+
 		IcyFur = (new ItemGeneric().setUnlocalizedName("tragicmc.icyFur").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:IcyFur" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(IcyFur, "icyFur");
-		
+
 		PureDarkness = (new ItemGeneric().setUnlocalizedName("tragicmc.pureDarkness").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:NoTexture"));
 		GameRegistry.registerItem(PureDarkness, "pureDarkness");
-		
+
 		LivingClay = (new ItemGeneric().setUnlocalizedName("tragicmc.livingClay").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:NoTexture"));
 		GameRegistry.registerItem(LivingClay, "livingClay");
 
@@ -588,13 +588,10 @@ public class TragicItems {
 
 		SpiritCast = (new ItemProjectile().setUnlocalizedName("tragicmc.spiritCast").setTextureName("tragicmc:SpiritCast" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(SpiritCast, "spiritCast");
-		
+
 		//Special item registrations
 		MobStatue = (new ItemStatue());
 		GameRegistry.registerItem(MobStatue, "mobStatue");
-		
-		ChallengeScroll = (new ItemChallenge().setTextureName("tragicmc:ChallengeInProgress_lowRes"));
-		GameRegistry.registerItem(ChallengeScroll, "challengeScroll");
 
 		DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DoomConsume" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DoomConsume, "doomConsume");
@@ -734,36 +731,42 @@ public class TragicItems {
 
 		SwordOfJustice = (new WeaponSwordOfJustice(toolJustice).setUnlocalizedName("tragicmc.swordOfJustice").setTextureName("gold_sword").setCreativeTab(TragicTabs.Creative));
 		GameRegistry.registerItem(SwordOfJustice, "swordOfJustice");
-		
+
 		VoidPitGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.voidPitGenerator").setTextureName("tragicmc:VoidPitGenerator_lowRes"));
 		GameRegistry.registerItem(VoidPitGenerator, "voidPitGenerator");
-		
+
 		SpikeGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.spikeGenerator").setTextureName("tragicmc:SpikeGenerator_lowRes"));
 		GameRegistry.registerItem(SpikeGenerator, "spikeGenerator");
-		
+
 		StarCrystalGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.starCrystalGenerator").setTextureName("tragicmc:StarCrystalGenerator_lowRes"));
 		GameRegistry.registerItem(StarCrystalGenerator, "starCrystalGenerator");
-		
+
 		SphereGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.sphereGenerator").setTextureName("tragicmc:SphereGenerator_lowRes"));
 		GameRegistry.registerItem(SphereGenerator, "sphereGenerator");
-		
+
 		SphereEraser = (new ItemGenerator().setUnlocalizedName("tragicmc.sphereEraser").setTextureName("tragicmc:SphereEraser_lowRes"));
 		GameRegistry.registerItem(SphereEraser, "sphereEraser");
-		
+
 		LiquidRemover = (new ItemGenerator().setUnlocalizedName("tragicmc.liquidRemover").setTextureName("tragicmc:LiquidRemover_lowRes"));
 		GameRegistry.registerItem(LiquidRemover, "liquidRemover");
-		
+
 		TreeGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.treeGenerator").setTextureName("tragicmc:TreeGenerator_lowRes"));
 		GameRegistry.registerItem(TreeGenerator, "treeGenerator");
-		
+
 		LightningSummoner = (new ItemGenerator().setUnlocalizedName("tragicmc.lightningSummoner").setTextureName("tragicmc:LightningSummoner_lowRes"));
 		GameRegistry.registerItem(LightningSummoner, "lightningSummoner");
-		
+
 		ExplosionGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.explosionGenerator").setTextureName("tragicmc:ExplosionGenerator_lowRes"));
 		GameRegistry.registerItem(ExplosionGenerator, "explosionGenerator");
-		
+
 		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand_lowRes").setCreativeTab(TragicTabs.Creative));
 		GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
+
+		if (TragicNewConfig.allowMobs)
+		{
+			SpawnEgg = (new ItemMobEgg());
+			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
+		}
 
 		//Chest Gens
 		//WeightedRandomChestContent(ItemStack, min gen chance, max gen chance, item weight);
@@ -912,12 +915,6 @@ public class TragicItems {
 			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
 		}
 
-		if (TragicNewConfig.allowMobs)
-		{
-			SpawnEgg = (new ItemMobEgg());
-			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
-		}
-
 		OreDictionary.registerOre("itemRock", Rock);
 		OreDictionary.registerOre("itemLavaRock", new ItemStack(Rock, 1, 1));
 		OreDictionary.registerOre("gemRuby", Ruby);
@@ -940,6 +937,13 @@ public class TragicItems {
 		OreDictionary.registerOre("oreCharms", SapphireCharm);
 		OreDictionary.registerOre("oreCharms", DiamondCharm);
 		OreDictionary.registerOre("oreCharms", EmeraldCharm);
+	}
+
+	public static void initializeChallengeItem()
+	{
+		//Challenge item registration
+		ChallengeScroll = (new ItemChallenge().setTextureName("tragicmc:ChallengeInProgress_lowRes"));
+		GameRegistry.registerItem(ChallengeScroll, "challengeScroll");
 	}
 
 }

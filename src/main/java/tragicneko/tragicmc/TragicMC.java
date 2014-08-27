@@ -156,6 +156,7 @@ public class TragicMC
 		if (TragicNewConfig.allowMobs)
 		{
 			TragicEntities.load();
+			TragicItems.initializeChallengeItem(); //this is due to the fact that the challenge item arrays use spawn eggs, so the mappings need to be there before I can have them drop
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
 		}
 

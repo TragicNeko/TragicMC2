@@ -132,7 +132,7 @@ public class ItemChallenge extends Item {
 		{
 			player.addChatMessage(new ChatComponentText("Challenge completed, have a reward!"));
 			Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
-			int extra = itemRand.nextInt((challenge.difficulty + 1) * 2) + 3;
+			int extra = itemRand.nextInt((challenge.difficulty + 1) * 2) + 1;
 			ItemStack reward = null;
 			TragicMC.logger.info("Difficulty is " + challenge.difficulty);
 			
