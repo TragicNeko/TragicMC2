@@ -38,6 +38,7 @@ import tragicneko.tragicmc.commands.DoomCommand;
 import tragicneko.tragicmc.commands.DoomsdayCoomand;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.events.BlockDropsEvent;
+import tragicneko.tragicmc.events.ChallengeItemEvents;
 import tragicneko.tragicmc.events.DenyVanillaGenEvent;
 import tragicneko.tragicmc.events.DoomEvents;
 import tragicneko.tragicmc.events.DynamicHealthScaling;
@@ -144,6 +145,7 @@ public class TragicMC
 		
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
+		MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
 		
 		if (TragicNewConfig.allowDoom)
 		{

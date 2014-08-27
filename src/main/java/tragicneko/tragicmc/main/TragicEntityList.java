@@ -81,23 +81,23 @@ public class TragicEntityList
     /**
      * Provides a mapping between entity classes and a string
      */
-    public static Map stringToClassMapping = new HashMap();
+    public static Map<String, Class> stringToClassMapping = new HashMap();
     /**
      * Provides a mapping between a string and an entity classes
      */
-    public static Map classToStringMapping = new HashMap();
+    public static Map<Class, String> classToStringMapping = new HashMap();
     /**
      * provides a mapping between an entityID and an Entity Class
      */
-    public static Map IDtoClassMapping = new HashMap();
+    public static Map<Integer, Class> IDtoClassMapping = new HashMap();
     /**
      * provides a mapping between an Entity Class and an entity ID
      */
-    private static Map classToIDMapping = new HashMap();
+    private static Map<Class, Integer> classToIDMapping = new HashMap();
     /**
      * Maps entity names to their numeric identifiers
      */
-    private static Map stringToIDMapping = new HashMap();
+    public static Map<String, Integer> stringToIDMapping = new HashMap();
     /**
      * This is a HashMap of the Creative Entity Eggs/Spawners.
      */

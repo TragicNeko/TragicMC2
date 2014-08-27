@@ -37,6 +37,7 @@ import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.special.ItemAmulet;
 import tragicneko.tragicmc.items.special.ItemAmuletRelease;
 import tragicneko.tragicmc.items.special.ItemBleedingObsidianOrb;
+import tragicneko.tragicmc.items.special.ItemChallenge;
 import tragicneko.tragicmc.items.special.ItemCooldownDefuse;
 import tragicneko.tragicmc.items.special.ItemCryingObsidianOrb;
 import tragicneko.tragicmc.items.special.ItemDimensionalKey;
@@ -113,10 +114,7 @@ public class TragicItems {
 	public static Item LightIngot, LightHelm, LightPlate, LightLegs, LightBoots, BlindingLight, EverlastingLight;
 
 	//Can be found in random boss structures
-	public static Item DraconicHelm;
-	public static Item DraconicPlate;
-	public static Item DraconicLegs;
-	public static Item DraconicBoots;
+	//public static Item DraconicHelm, DraconicPlate, DraconicLegs, DraconicBoots, DragonFang;
 
 	//Uncraftable weapon/armor set, found only in the Tragic Dimension
 	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser, TragicSentinel;
@@ -126,7 +124,7 @@ public class TragicItems {
 	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, EnigmaShield, WitheringAxe;
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
-	public static Item TheSplinter, TheTitan, TheButcher, Thardus, Paranoia;
+	public static Item Splinter, Titan, Butcher, Thardus, Paranoia;
 	//The Splinter will shared traits from the Ender sword and jack
 	//The Titan will utilize electrical attacks
 	//The Butcher will have aoe like armor piercing damage
@@ -241,6 +239,8 @@ public class TragicItems {
 
 	public static Item SpawnEgg;
 	public static Item MobStatue;
+	public static Item ChallengeScroll; //when activated turns into a random challenge, like getting a certain amount of items in your inventory, or wearing specific items or
+	//obtaining one rare item, or killing specific mobs
 
 	public static ChestGenHooks BossStructureHook; //Boss hook that has a lot of good and rare items
 	public static ChestGenHooks NetherStructureHook; //Boss hook that has a lot of good and rare items, slightly improved chance of rare items over the normal boss hook
@@ -558,7 +558,7 @@ public class TragicItems {
 		DyingObsidianOrb = (new ItemDyingObsidianOrb().setUnlocalizedName("tragicmc.dyingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DyingObsidianOrb" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DyingObsidianOrb, "dyingObsidianOrb");
 
-		DimensionalKey = (new ItemDimensionalKey().setUnlocalizedName("tragicmc.dimensionalKey").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DimensionalKe" + TragicNewConfig.textureRes));
+		DimensionalKey = (new ItemDimensionalKey().setUnlocalizedName("tragicmc.dimensionalKey").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DimensionalKey" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 
 		//Projectile Item Registrations (For Testing)
@@ -589,10 +589,13 @@ public class TragicItems {
 		SpiritCast = (new ItemProjectile().setUnlocalizedName("tragicmc.spiritCast").setTextureName("tragicmc:SpiritCast" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(SpiritCast, "spiritCast");
 		
+		//Special item registrations
 		MobStatue = (new ItemStatue());
 		GameRegistry.registerItem(MobStatue, "mobStatue");
+		
+		ChallengeScroll = (new ItemChallenge().setTextureName("tragicmc:ChallengeInProgress_lowRes"));
+		GameRegistry.registerItem(ChallengeScroll, "challengeScroll");
 
-		//Doom/Amulet Item Registrations
 		DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DoomConsume" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DoomConsume, "doomConsume");
 

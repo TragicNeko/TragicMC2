@@ -103,9 +103,9 @@ public abstract class Doomsday {
 	{
 		this.doomsdayType = doomType;
 		this.doomID = (byte)id;
-		doomsdayList[id] = this;
 		this.cooldown = (short) cd;
 		this.requiredDoom = (short) reqDoom;
+		doomsdayList[id] = this;
 	}
 
 	public EnumDoomType getDoomsdayType()

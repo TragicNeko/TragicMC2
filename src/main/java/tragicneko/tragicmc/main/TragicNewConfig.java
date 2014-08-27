@@ -113,6 +113,8 @@ public class TragicNewConfig {
 	
 	private static boolean[] miscConfigs = new boolean[8];
 	public static boolean allowRandomWeaponLore;
+	private static int[] miscInts = new int[8];
+	public static int challengeScrollDropChance;
 
 	/**
 	 * Initializes the start of the configuration file, should only be called once when the mod is loading
@@ -521,6 +523,16 @@ public class TragicNewConfig {
 
 		mapping = 0;
 		miscConfigs[mapping++] = (config.get(catMisc, "allowRandomWeaponLore", true).getBoolean(true));
+		
+		for (i = 0; i + mapping < miscConfigs.length; i++)
+		{
+			miscConfigs[mapping + i] = false;
+		}
+		
+		mapping = 0;
+		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "challengeScrollDropChance", 5).getInt(5), 1, 100);
+		
+		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
 		
 		if (config.hasChanged())
 		{
@@ -1040,6 +1052,9 @@ public class TragicNewConfig {
 		
 		mapping = 0;
 		allowRandomWeaponLore = miscConfigs[mapping++];
+		
+		mapping = 0;
+		challengeScrollDropChance = miscInts[mapping++];
 	}
 	
 	public static void disablePotions()
