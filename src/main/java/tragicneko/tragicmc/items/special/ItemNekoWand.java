@@ -5,16 +5,18 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public class ItemNekoWand extends Item {
+
+	private EntityCreature targettingEntity;
+	private EntityCreature[] targettingGroup;
 
 	private int cooldown = 0;
 
@@ -23,33 +25,29 @@ public class ItemNekoWand extends Item {
 		par2List.add(EnumChatFormatting.DARK_RED + "Use your neko mind control to make mobs fight!");
 		par2List.add("Left click to select a mob or group to fight");
 		par2List.add("Left click again to set the selected mobs target");
-		par2List.add("Sneaking allows you to select and use a group");
+		par2List.add("Sneaking allows you to select a group of mobs");
 		par2List.add("Right click to reset all selected mobs");
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (this.cooldown > 0) return true;
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
-		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
 
 		if (player.isSneaking())
 		{
-			if (stack.stackTagCompound.getIntArray("entityIDs").length == 0)
+			if (this.targettingGroup == null)
 			{
 				double d0 = 12.0D;
-				List<EntityMob> list = player.worldObj.getEntitiesWithinAABB(EntityMob.class, player.boundingBox.expand(d0, d0, d0));
-				int[] ids = new int[list.size()];
+				List<EntityCreature> list = player.worldObj.getEntitiesWithinAABB(EntityCreature.class, player.boundingBox.expand(d0, d0, d0));
+				this.targettingGroup = new EntityCreature[list.size()];
 
 				for (int i = 0; i < list.size(); i++)
 				{
-					ids[i] = list.get(i).getEntityId();
+					this.targettingGroup[i] = list.get(i);
 				}
 
-				player.addChatMessage(new ChatComponentText("A group of targetted entities within " + d0 + " has been selected."));
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD + "A group of targetted entities has been selected."));
 				cooldown = 10;
-				stack.stackTagCompound.setIntArray("entityIDs", ids);
 				return true;
 
 			}
@@ -57,50 +55,53 @@ public class ItemNekoWand extends Item {
 			{
 				if (entity instanceof EntityLivingBase)
 				{
-					EntityMob ent;
+					EntityCreature ent;
 
-					for (int i = 0; i < stack.stackTagCompound.getIntArray("entityIDs").length; i++)
+					for (int i = 0; i < this.targettingGroup.length; i++)
 					{
-						ent = (EntityMob) entity.worldObj.getEntityByID(stack.stackTagCompound.getIntArray("entityIDs")[i]);
+						ent = this.targettingGroup[i];
 
 						if (!ent.equals(entity)) //makes sure that an entity doesn't target itself
 						{
-							ent.getNavigator().clearPathEntity();
+							ent.setTarget(null);
 							ent.setAttackTarget(null);
+							ent.setTarget(entity);
 							ent.setAttackTarget((EntityLivingBase) entity);
 						}
 					}
 
-					player.addChatMessage(new ChatComponentText("The group of targetted entities has been set to attack " + entity +"!"));
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD + "The group of targetted entities has been set to attack " + entity.getCommandSenderName() +"!"));
 					cooldown = 10;
-					stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
+					this.targettingGroup = null;
+					this.targettingEntity = null;
 					return true;
 				}
 			}
 		}
 		else
 		{
-			if (stack.stackTagCompound.getInteger("entityID") == 0)
+			if (this.targettingEntity == null)
 			{
-				if (entity instanceof EntityMob)
+				if (entity instanceof EntityCreature)
 				{
-					stack.stackTagCompound.setInteger("entityID", entity.getEntityId());
-					player.addChatMessage(new ChatComponentText("Please choose a target for " + entity + "."));
+					this.targettingEntity = (EntityCreature) entity;
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD + "Please choose a target for " + this.targettingEntity.getCommandSenderName() + "."));
 					cooldown = 10;
 					return true;
 				}
 			}
 			else
 			{
-				EntityMob ent = (EntityMob) entity.worldObj.getEntityByID(stack.stackTagCompound.getInteger("entityID"));
-				if (entity instanceof EntityLivingBase && !ent.equals(entity)) //makes sure that an entity doesn't target itself
+				if (entity instanceof EntityLivingBase && !this.targettingEntity.equals(entity)) //makes sure that an entity doesn't target itself
 				{
-					ent.getNavigator().clearPathEntity();
-					ent.setAttackTarget(null);
-					ent.setAttackTarget((EntityLivingBase) entity);
-					player.addChatMessage(new ChatComponentText(ent + " has been set to attack " + entity +"!"));
+					this.targettingEntity.setTarget(null);
+					this.targettingEntity.setAttackTarget(null);
+					this.targettingEntity.setTarget(entity);
+					this.targettingEntity.setAttackTarget((EntityLivingBase) entity);
+					player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD + "" + this.targettingEntity.getCommandSenderName() + " has been set to attack " + entity.getCommandSenderName() +"!"));
 					cooldown = 10;
-					stack.stackTagCompound.setInteger("entityID", 0);
+					this.targettingEntity = null;
+					this.targettingGroup = null;
 					return true;
 				}
 			}
@@ -108,25 +109,20 @@ public class ItemNekoWand extends Item {
 		return true;
 	}
 
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer par3EntityPlayer)
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
-		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
-		
-		if (stack.stackTagCompound.getIntArray("entityIDs").length > 0)
+		if (this.targettingGroup != null)
 		{
-			stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
-			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the group of targetting entities."));
+			this.targettingGroup = null;
+			if (par2World.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD + "You have reset the group of targetting entities."));
 		}
 
-		if (stack.stackTagCompound.getInteger("entityID") != 0)
+		if (this.targettingEntity != null)
 		{
-			stack.stackTagCompound.setInteger("entityID", 0);
-			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the single targetting entity."));
+			this.targettingEntity = null;
+			if (par2World.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD + "You have reset the targetting entity."));
 		}
-		
-		return stack;
+		return par1ItemStack;
 	}
 
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
