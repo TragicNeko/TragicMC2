@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelGragul;
@@ -95,7 +96,6 @@ import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityTimeDisruption;
-import tragicneko.tragicmc.gui.GuiDoom;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.client.registry.ClientRegistry;

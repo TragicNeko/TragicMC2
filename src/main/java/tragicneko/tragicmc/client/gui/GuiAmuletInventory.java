@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.gui;
+package tragicneko.tragicmc.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.gui;
+package tragicneko.tragicmc.client.gui;
 
 import java.awt.Color;
 

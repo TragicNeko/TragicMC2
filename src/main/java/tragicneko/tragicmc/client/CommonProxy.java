@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.gui.GuiAmuletInventory;
+import tragicneko.tragicmc.client.gui.GuiAmuletInventory;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.common.network.IGuiHandler;
