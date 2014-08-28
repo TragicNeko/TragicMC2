@@ -87,7 +87,7 @@ public class NewAmuletEvents {
 	@SubscribeEvent
 	public void onAmuletTick(LivingUpdateEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayerMP)
+		if (event.entityLiving instanceof EntityPlayerMP && event.entityLiving.ticksExisted % 2 == 0)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(mp);

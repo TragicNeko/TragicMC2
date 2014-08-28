@@ -76,7 +76,7 @@ public class ChallengeItemEvents {
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) return;
+		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer) || event.entityLiving.ticksExisted % 10 != 0) return;
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 		ItemStack[] inv = player.inventory.mainInventory;
 		ItemStack stack;

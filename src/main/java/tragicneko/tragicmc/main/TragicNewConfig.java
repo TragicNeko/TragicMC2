@@ -112,7 +112,7 @@ public class TragicNewConfig {
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
 	
 	private static boolean[] miscConfigs = new boolean[8];
-	public static boolean allowRandomWeaponLore;
+	public static boolean allowRandomWeaponLore, allowChallengeScrolls;
 	private static int[] miscInts = new int[8];
 	public static int challengeScrollDropChance;
 
@@ -523,6 +523,7 @@ public class TragicNewConfig {
 
 		mapping = 0;
 		miscConfigs[mapping++] = (config.get(catMisc, "allowRandomWeaponLore", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowChallengeScrolls", true).getBoolean(true));
 		
 		for (i = 0; i + mapping < miscConfigs.length; i++)
 		{
@@ -1052,6 +1053,7 @@ public class TragicNewConfig {
 		
 		mapping = 0;
 		allowRandomWeaponLore = miscConfigs[mapping++];
+		allowChallengeScrolls = miscConfigs[mapping++];
 		
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
