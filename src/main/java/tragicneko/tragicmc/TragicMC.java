@@ -196,13 +196,8 @@ public class TragicMC
 			TragicBiomes.load();
 			MinecraftForge.ORE_GEN_BUS.register(new DenyVanillaGenEvent());
 		}
-
+		
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-
-		if (event.getSide() == Side.CLIENT)
-		{
-			FMLCommonHandler.instance().bus().register(new KeyInputEvents());
-		}
 	}
 
 	@EventHandler

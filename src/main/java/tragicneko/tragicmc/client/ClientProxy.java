@@ -38,6 +38,7 @@ import tragicneko.tragicmc.client.render.boss.RenderKitsune;
 import tragicneko.tragicmc.client.render.boss.RenderMegaCryse;
 import tragicneko.tragicmc.client.render.boss.RenderPolaris;
 import tragicneko.tragicmc.client.render.boss.RenderTimeController;
+import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
@@ -57,6 +58,7 @@ import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityStinKing;
 import tragicneko.tragicmc.entity.boss.EntityStinQueen;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
@@ -96,10 +98,12 @@ import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityTimeDisruption;
+import tragicneko.tragicmc.events.KeyInputEvents;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
@@ -122,6 +126,8 @@ public class ClientProxy extends CommonProxy {
 
 		openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_P, TragicMC.MODNAME);
 		ClientRegistry.registerKeyBinding(openAmuletGui);
+		
+		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));
@@ -173,6 +179,7 @@ public class ClientProxy extends CommonProxy {
 
 		if (TragicNewConfig.allowNorVox) RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderMob(new ModelNorVox(), 0.625F, "NorVox_lowRes", 1.455F));
 		if (TragicNewConfig.allowStarVox) RenderingRegistry.registerEntityRenderingHandler(EntityStarVox.class, new RenderStarVox());
+		if (TragicNewConfig.allowVoxStellarum) RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
 
 		if (TragicNewConfig.allowPirah) RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderMob(new ModelPirah(), 0.225F, "Pirah_lowRes"));
 		if (TragicNewConfig.allowLavaPirah) RenderingRegistry.registerEntityRenderingHandler(EntityLavaPirah.class, new RenderMob(new ModelPirah(), 0.225F, "LavaPirah_lowRes", 1.225F));

@@ -2390,7 +2390,9 @@ I will be implementing the "damaged" weapon textures though as this is just 1 te
 Reduced polling of some of the events that used the on update method, to reduce overall lag
 
 1.35.1341++ <158> (August 28, 2014)
-
+Move Gui into the client package, move KeyInputEvent registration into the ClientProxy
+Augment message confirmation for flight potion effect to be more clear
+Start work on Vox Stellarum
 
 --Reminders--
 Add the Vox Stellarum, Nyx and Erebus, Claymation and the Erkel (1 mini-boss, 2 bosses (technically 3), and a passive mob)
