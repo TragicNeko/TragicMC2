@@ -151,7 +151,7 @@ public class TragicItems {
 	public static Item LivingClay; //Claymation
 	public static Item StarPieces; //Polaris
 	public static Item PhoenixFeather; //Phoenix
-	public static Item DragonScale; //Lava Dragon
+	public static Item LavaDragonScale; //Lava Dragon
 
 	//Doom items
 	public static Item DoomConsume, CooldownDefuse, AmuletRelease;
@@ -269,81 +269,81 @@ public class TragicItems {
 		GameRegistry.registerItem(Sapphire, "sapphire");
 
 		//Armor Registrations
-		SkullHelmet = (new ArmorSkull(armorSkull, 0, Doomsday.Decay).setUnlocalizedName("tragicmc.skullHelmet"));
+		SkullHelmet = (new ArmorSkull(armorSkull, 0, Doomsday.Decay).setUnlocalizedName("tragicmc.skullHelmet").setTextureName("tragicmc:SkullHelmet" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(SkullHelmet, "skullHelmet");
 
-		SkullPlate = (new ArmorSkull(armorSkull, 1, Doomsday.Decay).setUnlocalizedName("tragicmc.skullPlate"));
+		SkullPlate = (new ArmorSkull(armorSkull, 1, Doomsday.Decay).setUnlocalizedName("tragicmc.skullPlate").setTextureName("tragicmc:SkullPlate" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(SkullPlate, "skullPlate");
 
-		SkullLegs = (new ArmorSkull(armorSkull, 2, Doomsday.Decay).setUnlocalizedName("tragicmc.skullLegs"));
+		SkullLegs = (new ArmorSkull(armorSkull, 2, Doomsday.Decay).setUnlocalizedName("tragicmc.skullLegs").setTextureName("tragicmc:SkullLegs" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(SkullLegs, "skullLegs");
 
-		SkullBoots = (new ArmorSkull(armorSkull, 3, Doomsday.Decay).setUnlocalizedName("tragicmc.skullBoots"));
+		SkullBoots = (new ArmorSkull(armorSkull, 3, Doomsday.Decay).setUnlocalizedName("tragicmc.skullBoots").setTextureName("tragicmc:SkullBoots" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(SkullBoots, "skullBoots");
 
 
-		HuntersCap = (new ArmorHunter(armorHunter, 0, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersCap"));
+		HuntersCap = (new ArmorHunter(armorHunter, 0, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersCap").setTextureName("tragicmc:HuntersCap" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(HuntersCap, "huntersCap");
 
-		HuntersTunic = (new ArmorHunter(armorHunter, 1, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersTunic"));
+		HuntersTunic = (new ArmorHunter(armorHunter, 1, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersTunic").setTextureName("tragicmc:HuntersTunic" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(HuntersTunic, "huntersTunic");
 
-		HuntersLegs = (new ArmorHunter(armorHunter, 2, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersLegs"));
+		HuntersLegs = (new ArmorHunter(armorHunter, 2, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersLegs").setTextureName("tragicmc:HuntersLegs" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(HuntersLegs, "huntersLegs");
 
-		HuntersBoots = (new ArmorHunter(armorHunter, 3, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersBoots"));
+		HuntersBoots = (new ArmorHunter(armorHunter, 3, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersBoots").setTextureName("tragicmc:HuntersBoots" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(HuntersBoots, "huntersBoots");
 
 
-		MercuryHelm = (new ArmorMercury(armorMercury, 0, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryHelm"));
+		MercuryHelm = (new ArmorMercury(armorMercury, 0, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryHelm").setTextureName("tragicmc:MercuryHelm" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(MercuryHelm, "mercuryHelm");
 
-		MercuryPlate = (new ArmorMercury(armorMercury, 1, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryPlate"));
+		MercuryPlate = (new ArmorMercury(armorMercury, 1, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryPlate").setTextureName("tragicmc:MercuryPlate" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(MercuryPlate, "mercuryPlate");
 
-		MercuryLegs = (new ArmorMercury(armorMercury, 2, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryLegs"));
+		MercuryLegs = (new ArmorMercury(armorMercury, 2, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryLegs").setTextureName("tragicmc:MercuryLegs" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(MercuryLegs, "mercuryLegs");
 
-		MercuryBoots = (new ArmorMercury(armorMercury, 3, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryBoots"));
+		MercuryBoots = (new ArmorMercury(armorMercury, 3, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryBoots").setTextureName("tragicmc:MercuryBoots" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(MercuryBoots, "mercuryBoots");
 
 
-		TungstenHelm = (new ArmorTungsten(armorTungsten, 0, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenHelm"));
+		TungstenHelm = (new ArmorTungsten(armorTungsten, 0, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenHelm").setTextureName("tragicmc:TungstenHelm" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(TungstenHelm, "tungstenHelm");
 
-		TungstenPlate = (new ArmorTungsten(armorTungsten, 1, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenPlate"));
+		TungstenPlate = (new ArmorTungsten(armorTungsten, 1, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenPlate").setTextureName("tragicmc:TungstenPlate" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(TungstenPlate, "tungstenPlate");
 
-		TungstenLegs = (new ArmorTungsten(armorTungsten, 2, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenLegs"));
+		TungstenLegs = (new ArmorTungsten(armorTungsten, 2, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenLegs").setTextureName("tragicmc:TungstenLegs" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(TungstenLegs, "tungstenLegs");
 
-		TungstenBoots = (new ArmorTungsten(armorTungsten, 3, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenBoots"));
+		TungstenBoots = (new ArmorTungsten(armorTungsten, 3, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenBoots").setTextureName("tragicmc:TungstenBoots" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(TungstenBoots, "tungstenBoots");
 
 
-		LightHelm = (new ArmorLight(armorLight, 0, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightHelm"));
+		LightHelm = (new ArmorLight(armorLight, 0, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightHelm").setTextureName("tragicmc:LightHelm" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(LightHelm, "lightHelm");
 
-		LightPlate = (new ArmorLight(armorLight, 1, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightPlate"));
+		LightPlate = (new ArmorLight(armorLight, 1, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightPlate").setTextureName("tragicmc:LightPlate" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(LightPlate, "lightPlate");
 
-		LightLegs = (new ArmorLight(armorLight, 2, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightLegs"));
+		LightLegs = (new ArmorLight(armorLight, 2, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightLegs").setTextureName("tragicmc:LightLegs" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(LightLegs, "lightLegs");
 
-		LightBoots = (new ArmorLight(armorLight, 3, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightBoots"));
+		LightBoots = (new ArmorLight(armorLight, 3, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightBoots").setTextureName("tragicmc:LightBoots" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(LightBoots, "lightBoots");
 
 
-		DarkHelm = (new ArmorDark(armorDark, 0, Doomsday.Fear).setUnlocalizedName("tragicmc.darkHelm"));
+		DarkHelm = (new ArmorDark(armorDark, 0, Doomsday.Fear).setUnlocalizedName("tragicmc.darkHelm").setTextureName("tragicmc:DarkHelm" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DarkHelm, "darkHelm");
 
-		DarkPlate = (new ArmorDark(armorDark, 1, Doomsday.Fear).setUnlocalizedName("tragicmc.darkPlate"));
+		DarkPlate = (new ArmorDark(armorDark, 1, Doomsday.Fear).setUnlocalizedName("tragicmc.darkPlate").setTextureName("tragicmc:DarkPlate" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DarkPlate, "darkPlate");
 
-		DarkLegs = (new ArmorDark(armorDark, 2, Doomsday.Fear).setUnlocalizedName("tragicmc.darkLegs"));
+		DarkLegs = (new ArmorDark(armorDark, 2, Doomsday.Fear).setUnlocalizedName("tragicmc.darkLegs").setTextureName("tragicmc:DarkLegs" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DarkLegs, "darkLegs");
 
-		DarkBoots = (new ArmorDark(armorDark, 3, Doomsday.Fear).setUnlocalizedName("tragicmc.darkBoots"));
+		DarkBoots = (new ArmorDark(armorDark, 3, Doomsday.Fear).setUnlocalizedName("tragicmc.darkBoots").setTextureName("tragicmc:DarkBoots" + TragicNewConfig.textureRes));
 		GameRegistry.registerItem(DarkBoots, "darkBoots");
 
 		//Weapon Registrations

@@ -19,26 +19,6 @@ public class ArmorHunter extends TragicArmor {
 		super(material, armorType, dday);
 	}
 
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		switch (armorType)
-		{
-		case 0:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:HuntersCap_lowRes");
-			break;
-		case 1:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:HuntersTunic_lowRes");
-			break;
-		case 2:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:HuntersLegs_lowRes");
-			break;
-		case 3:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:HuntersBoots_lowRes");
-			break;
-		}
-	}
-
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == TragicItems.HuntersLegs)
@@ -46,25 +26,5 @@ public class ArmorHunter extends TragicArmor {
 			return "tragicmc:textures/items/Hunter2_lowRes.png";
 		}
 		return "tragicmc:textures/items/Hunter1_lowRes.png";
-	}
-
-	public void onCreated(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) 
-	{
-		Item item = par1ItemStack.getItem();
-
-		if (item == TragicItems.HuntersCap)
-		{
-			par1ItemStack.addEnchantment(Enchantment.projectileProtection, 1);
-		}
-
-		if (item == TragicItems.HuntersTunic || item == TragicItems.HuntersLegs)
-		{
-			par1ItemStack.addEnchantment(TragicEnchantments.Agility, 1);
-		}
-
-		if (item == TragicItems.HuntersBoots)
-		{
-			par1ItemStack.addEnchantment(Enchantment.featherFalling, 1);
-		}
 	}
 }
