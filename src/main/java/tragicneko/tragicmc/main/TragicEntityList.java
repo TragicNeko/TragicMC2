@@ -332,6 +332,7 @@ public class TragicEntityList
     {
     	NORMAL,
     	PET,
+    	MINIBOSS,
     	BOSS
     }
 }
