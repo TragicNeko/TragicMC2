@@ -2335,7 +2335,7 @@ Fix up the two doomsdays that used the poison barbs, fix derp up in Toxicity's c
 Clean up Kragul's ai some, add a wait time between shots so that it is not as deadly
 Clean up Magmox's ai, clean up Tox and Pox's ai
 
-1.34.1280++ [Finish rewrite of Config, update all references to old config, start work on Gui for config] <156> (August 22, 2014)
+1.34.1303 [Finish rewrite of Config, update all references to old config, start work on Gui for config] <156> (August 22, 2014)
 Moved all of the Techne files for my models into their own package
 Finishing up the new config currently, already have done all of the mobs, enchantments, potions, dimension, biomes, amulets, doom, working on Vanilla Changes and WorldGen right now
 Some things such as Dynamic Health scaling were changed to always happen, and things like Creepers always exploding on death and random Player exhaustion were removed
@@ -2361,9 +2361,40 @@ Troubleshooting why bosses don't drop all that they are supposed to when they di
 Actually updated to Forge 10.13.0.1208, there was an issue where the workspace wouldn't update to the new Forge version, I had to delete the entire workspace
 and update it manually
 This caused the Git repository to unsync, as a result I'll either create a new branch and merge it with the main one to override it or I'll delete the
-repository and recreate it
+repository and recreate it as I had a lot of unsynced changes
+
+1.35.1341 [Added random Lore to weapons and armor and added Challenge items] <157> (August 24, 2014)
+Decrease chance of structures to generate, default values were all set too high but that should fix the problem with them not generating at all due to the chances being too low
+Add corruption damage config to actual event
+Created random lore for each of the custom weapons, these were meant to add a bit of variety and a bit of a need to collect them, but I also decided to tie-in the lore rarities with
+the Enchantments that the weapons come with, the enchantments are based explicity on lore rarities, not specific lores
+Fixed bug with applying my enchantments to the items, this was due to the enchantments being initialized after the items, so when they were called in the arrays they were null
+Made it so that the item's rarity depends on the lore rarity now
+Fix derp up in Structure WorldGen regarding rarity
+Started setup for Celestial Longbow, added Lore to other weapons/items that don't extend TragicWeapon
+Fix derp in Gui regarding ItemJacks
+Added lore to armor, each armor set will share Lore, but armor types have different enchantments
+Added new Challenge items, these work almost entirely off of nbt tags, but there is a nice variation of challenge types and challenge goals
+Fixed multiple initial bugs with Challenges, this necessitated me moving them into their own class and setting them up similarly to Doomsdays, however, now they work correctly
+Created alternative reward arrays for if the difficulty wasn't that high, added boss spawn eggs to the higher difficulty rewards, added amulets to the highest difficulty reward
+array tier
+Added all of the localizations of the Challenges to the lang file (took FOREVER)
+Added the lore and enchantment tiers to each of the armor sets
+Added ability of Light Armor to extinguish the player if they are on fire
+Optimized a bit of armor tick code
+Adding a variable item icon for damaged armor, it'll be the same icon but the texture will be made to look a bit scruffy, broken or faded
+If this looks good and isn't too difficult to implement, then I'll do the same for the weapons
+Messed with the option of adding variable tetures for items (aesthetic variation), but it seems like a lot of extra work creating multiple textures for each item that uses it
+so I'll maybe scrap it until later on when I have not as much stuff to do on the mod
+I will be implementing the "damaged" weapon textures though as this is just 1 texture and will only be for weapons and armor
+Reduced polling of some of the events that used the on update method, to reduce overall lag
+
+1.35.1341++ <158> (August 28, 2014)
+
 
 --Reminders--
-Add the Vox Stellarum, Nyx and Erebus, Claymation and the Erkel
+Add the Vox Stellarum, Nyx and Erebus, Claymation and the Erkel (1 mini-boss, 2 bosses (technically 3), and a passive mob)
 Start adding the "Epic" weapons and armor along with their Doomsdays, add more of the amulets
 Add the overall amulet rarities to the chest gen hooks
+Work more on mob aesthetics as I get closer to a "finished" 1.0 release
+Add another dynamic item of some sort, maybe a treasure hunt type of thing (I like the idea of having treasure hunts) or the Challenge items I previously thought of
