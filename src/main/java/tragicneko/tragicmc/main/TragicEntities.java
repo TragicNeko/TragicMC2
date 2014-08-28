@@ -25,6 +25,7 @@ import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityStinKing;
 import tragicneko.tragicmc.entity.boss.EntityStinQueen;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
@@ -462,6 +463,14 @@ public class TragicEntities {
 			color1 = new Color(0xAB, 0xAB, 0xAB);
 			color2 = new Color(0xDD, 0xDD, 0xDD);
 			TragicEntityList.addMapping(EntityStarVox.class, "TragicMC.StarVox", id++, color1.getRGB(), color2.getRGB());
+		}
+		
+		if (TragicNewConfig.allowVoxStellarum)
+		{
+			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0xAB, 0xAB, 0xAB);
+			color2 = new Color(0xDD, 0xDD, 0xDD);
+			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, color1.getRGB(), color2.getRGB());
 		}
 
 		if (TragicNewConfig.allowPirah)
