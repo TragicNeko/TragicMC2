@@ -3,7 +3,9 @@ package tragicneko.tragicmc.entity.mob;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -42,25 +44,19 @@ public class EntityStarVox extends EntityNorVox {
 	@Override
 	protected void shootProjectiles()
 	{
-		return;
-		/*
 		double d0 = this.getAttackTarget().posX - this.posX;
 		double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
 		double d2 = this.getAttackTarget().posZ - this.posZ;
 
-		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.925F;
 		float f2 = this.rotationYaw;
 
 		for (int i = 0; i < 2; i++)
 		{
-			EntityWitherSkull fireball = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+			EntityStarShard fireball = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
 			fireball.posY = this.posY + (this.height * 2 / 3);
-			if (rand.nextBoolean())
-			{
-				fireball.setInvulnerable(true);
-			}
 			this.worldObj.spawnEntityInWorld(fireball);
-		} */
+		} 
 	}
 	
 	@Override

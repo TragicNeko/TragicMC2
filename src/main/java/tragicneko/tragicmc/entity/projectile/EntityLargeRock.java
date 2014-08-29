@@ -32,7 +32,7 @@ public class EntityLargeRock extends EntityProjectile {
 		{			
 			if (mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination) return;
 			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 18.0F);
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 12.0F);
 
 			if (this.rand.nextInt(4) == 0 && mop.entityHit instanceof EntityLivingBase && TragicNewConfig.allowStun)
 			{

@@ -1,12 +1,12 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.boss.EntityApis;
 
 public class EntitySolarBomb extends EntityProjectile {
 
@@ -28,8 +28,8 @@ public class EntitySolarBomb extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround) 
-		{			
+		if (mop.entityHit != null && !inGround && !(mop.entityHit instanceof EntityApis))
+		{	
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 			mop.entityHit.setFire(8 + rand.nextInt(16));
 		}

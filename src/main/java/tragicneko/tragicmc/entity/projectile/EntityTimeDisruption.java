@@ -63,7 +63,7 @@ public class EntityTimeDisruption extends Entity {
 			this.setDead();
 		}
 
-		if (this.worldObj.isRemote && rand.nextBoolean())
+		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 3; ++l)
 			{
@@ -91,7 +91,7 @@ public class EntityTimeDisruption extends Entity {
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.135D), 0.0F, 0.115F * this.rand.nextFloat(), 0.0F);
 			}
 			
-			if (rand.nextInt(128) == 0)
+			if (rand.nextInt(64) == 0)
 			{
 				for (int l = 0; l < 10; ++l)
 				{

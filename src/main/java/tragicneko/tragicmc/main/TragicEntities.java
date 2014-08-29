@@ -50,6 +50,7 @@ import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
+import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
@@ -62,6 +63,7 @@ import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
+import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityTimeDisruption;
@@ -705,7 +707,10 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityLargeRock.class, "LargeRock", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityIcicle.class, "Icicle", listid++, TragicMC.instance, 80, 3, true);
 
-		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 3, false);
+		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 1, false);
+		
+		EntityRegistry.registerModEntity(EntityStarShard.class, "StarShard", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, false);
 
 	}
 }
