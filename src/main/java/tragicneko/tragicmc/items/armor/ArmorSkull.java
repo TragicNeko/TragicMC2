@@ -39,8 +39,8 @@ public class ArmorSkull extends TragicArmor {
 	{
 		if (stack.getItem() == TragicItems.SkullLegs)
 		{
-			return "tragicmc:textures/items/Skull2" + TragicNewConfig.textureRes + ".png";
+			return "tragicmc:textures/items/Skull2" + TragicItems.textureRes + ".png";
 		}
-		return "tragicmc:textures/items/Skull1" + TragicNewConfig.textureRes + ".png";
+		return "tragicmc:textures/items/Skull1" + TragicItems.textureRes + ".png";
 	}
 }

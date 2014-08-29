@@ -13,7 +13,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class TragicNewConfig {
 
 	public static boolean mobsOnly;
-	public static String textureRes;
 	private static int resolution;
 
 	private static String catMaster = "Master Configs";
@@ -549,7 +548,7 @@ public class TragicNewConfig {
 	 */
 	public static void postProcessConfigs()
 	{
-		textureRes = "_lowRes";
+		TragicItems.textureRes = "_lowRes";
 		//if (resolution < 32) textureRes = "_lowRes";
 		//if (resolution >=32 && resolution < 64) textureRes = "_midRes";
 		//if (resolution >= 64 && resolution < 128) textureRes = "_highRes"; 
@@ -757,6 +756,7 @@ public class TragicNewConfig {
 		allowAchievements = blanketConfigs[mapping++];
 		allowAmulets = blanketConfigs[mapping++];
 		allowDimension = blanketConfigs[mapping++];
+		allowDoom = blanketConfigs[mapping++];
 		allowEnchantments = blanketConfigs[mapping++];
 		allowMobs = blanketConfigs[mapping++];
 		allowPotions = blanketConfigs[mapping++];

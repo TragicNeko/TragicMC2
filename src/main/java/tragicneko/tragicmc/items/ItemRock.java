@@ -11,7 +11,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -86,7 +86,7 @@ public class ItemRock extends Item {
 
         for (int i = 0; i < unlocalizedNames.length; ++i)
         {
-            this.icons[i] = par1IconRegister.registerIcon("tragicmc:" + textureNames[i] + TragicNewConfig.textureRes);
+            this.icons[i] = par1IconRegister.registerIcon("tragicmc:" + textureNames[i] + TragicItems.textureRes);
         }
     }
 }

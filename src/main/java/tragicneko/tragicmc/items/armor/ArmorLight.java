@@ -27,7 +27,7 @@ public class ArmorLight extends TragicArmor {
 			new Lore("Brighten your day!"), new Lore("Don't Stop Believin'", EnumRarity.rare), new Lore("Shinedown", EnumRarity.epic), new Lore("I'm Mr. Brightside", EnumRarity.epic),
 			new Lore("Everything Zen", EnumRarity.rare), new Lore("Pure and innocent.", EnumRarity.epic), new Lore("Rise Against", EnumRarity.uncommon),
 			new Lore("Light 'em up!"), new Lore("The Dawn", EnumRarity.uncommon), new Lore("Get Up, Stand Up", EnumRarity.rare),
-			new Lore("Dig me out from under what is covering!", EnumRarity.epic), new Lore("Live to Rise", EnumRarity.rare), new Lore("", EnumRarity.uncommon),
+			new Lore("Dig me out from under what is covering!", EnumRarity.epic), new Lore("Live to Rise", EnumRarity.rare), new Lore("Never Too Late", EnumRarity.uncommon),
 			new Lore("Beacon of Hope",EnumRarity.epic), new Lore("Stand up!", EnumRarity.uncommon), new Lore("Everything in its right place", EnumRarity.epic),
 			new Lore("Let your light shine down.", EnumRarity.epic), new Lore("Keep faith."), new Lore("Turn around, bright eyes!", EnumRarity.epic), new Lore("Have hope."),
 			new Lore("Everything will be alright.", EnumRarity.uncommon), new Lore("It gets better.", EnumRarity.rare), new Lore("Don't ever give up!"),

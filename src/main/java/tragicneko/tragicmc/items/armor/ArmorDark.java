@@ -44,7 +44,7 @@ public class ArmorDark extends TragicArmor {
 		this.rareLevels = new int[][] {{5, 3}, {5, 3, 3}, {5, 3}};
 		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, TragicEnchantments.DeathTouch, Enchantment.respiration}, {Enchantment.unbreaking, Enchantment.protection,
 			TragicEnchantments.DeathTouch, TragicEnchantments.Toxicity}, {Enchantment.unbreaking, TragicEnchantments.DeathTouch, Enchantment.featherFalling}};
-		this.epicLevels = new int[][] {{10, 5}, {10, 5, 3}, {10, 5, 1}};
+		this.epicLevels = new int[][] {{10, 5}, {10, 5, 3, 3}, {10, 5, 1}};
 	}
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
