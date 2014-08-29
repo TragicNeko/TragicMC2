@@ -61,7 +61,8 @@ public class EnchantmentArmorExtra extends Enchantment {
 			if (par2DamageSource.getEntity() != null && par2DamageSource.getEntity() instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) par2DamageSource.getEntity();
-				if (rand.nextInt(10 - (par1 * 2)) == 0 && !par2DamageSource.isProjectile() &&
+				if (par1 > 5) par1 = 5;
+				if (rand.nextInt(12 - (par1 * 2)) == 0 && !par2DamageSource.isProjectile() &&
 						!par2DamageSource.isMagicDamage() && !par2DamageSource.isExplosion()) //12.5% chance with level 1, 18% chance with level 2, 25% chance with level 3
 				{
 					switch(this.damageType)
