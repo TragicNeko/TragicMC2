@@ -926,6 +926,27 @@ public class TragicRecipes {
 			'y', Items.lava_bucket
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkenedQuartz, 4, 0), new Object[] {
+			"xyx",
+			"yxy",
+			"xyx",
+			'x', Items.quartz,
+			'y', TragicItems.DarkParticles
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkenedQuartz, 4, 1), new Object[] {
+			"xx",
+			"xx",
+			'x', TragicBlocks.DarkenedQuartz
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkenedQuartz, 2, 2), new Object[] {
+			"x",
+			"x",
+			"x",
+			'x', new ItemStack(TragicBlocks.DarkenedQuartz, 1, 1)
+		});
+		
 		for (int i = 0; i < 8; i++)
 		{
 			GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkStone, 4, i + 7), new Object[]{
