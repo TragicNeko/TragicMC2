@@ -35,7 +35,7 @@ public class TragicBiome extends BiomeGenBase {
 		if (TragicNewConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicNewConfig.tragicNekoSC, 0, 1));
 		if (TragicNewConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.stinSC, 0, 1));
 		if (TragicNewConfig.allowGreaterStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.greaterStinSC, 0, 1));
-		if (TragicNewConfig.allowBossNaturalSpawns && TragicNewConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 0));
+		if (TragicNewConfig.allowBossNaturalSpawns && TragicNewConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1));
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, 50, 2, 4));
 	}
 	
