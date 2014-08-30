@@ -2,13 +2,9 @@ package tragicneko.tragicmc.entity.boss;
 
 import java.util.UUID;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.boss.IBossDisplayData;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -24,7 +20,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.util.EntityDropHelper;
+import tragicneko.tragicmc.main.TragicPotions;
 
 public class TragicBoss extends EntityMob implements IBossDisplayData
 {
@@ -86,6 +82,12 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	}
 
 	public void despawnEntity(){}
+	
+	public boolean attackEntityAsMob(Entity par1Entity)
+	{
+		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false;
+		return super.attackEntityAsMob(par1Entity);
+	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{

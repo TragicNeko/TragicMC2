@@ -275,6 +275,8 @@ public abstract class TragicMob extends EntityMob
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		Boolean result = super.attackEntityAsMob(par1Entity);
+		
+		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false; 
 
 		if (result && TragicNewConfig.allowCorruption)
 		{

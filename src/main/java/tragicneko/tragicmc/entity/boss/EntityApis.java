@@ -260,7 +260,9 @@ public class EntityApis extends TragicBoss {
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
+		boolean flag = super.attackEntityAsMob(par1Entity);
+		
+		if (flag)
 		{
 			if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0)
 			{
@@ -288,14 +290,14 @@ public class EntityApis extends TragicBoss {
 
 			if (this.rand.nextInt(3) == 0 && this.getDistanceToEntity(par1Entity) <= 4.0F)
 			{
-				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				boolean flag2 = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 				int meow = 3;
 
 				if (!(par1Entity instanceof EntityPlayer))
 				{
 					meow = 7;
 				}
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)rand.nextInt(meow) + 3.0F, flag);
+				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)rand.nextInt(meow) + 3.0F, flag2);
 			}	
 
 			par1Entity.motionX *= 2.2000000059604645D;
@@ -303,7 +305,7 @@ public class EntityApis extends TragicBoss {
 			par1Entity.motionY += 0.6D;
 
 		}
-		return super.attackEntityAsMob(par1Entity);
+		return flag;
 	}
 
 	public int getTotalArmorValue()
