@@ -81,9 +81,9 @@ public class TragicNewConfig {
 	private static int[] miniBossSC = new int[16];
 	public static int jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, stinKingSC, stinQueenSC;
 	private static boolean[] bossConfigs = new boolean[12];
-	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris;
+	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil;
 	private static int[] bossSC = new int[12];
-	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC;
+	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC;
 	private static int[] mobInts = new int[3];
 	public static int commonDropRate, rareDropRate, mobTransformationChance;
 
@@ -314,8 +314,8 @@ public class TragicNewConfig {
 		blanketMob[6] = (config.get(catMobs, "allowCorruptionDamage", true).getBoolean(true));
 		blanketMob[7] = (config.get(catMobs, "allowMobTransformation", true).getBoolean(true));
 
-		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "mobCommonDropRate", 24).getInt(24), 1, 200);
-		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "mobRareDropRate", 5).getInt(5), 1, 100);
+		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
+		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
 		mobInts[2] = MathHelper.clamp_int(config.get(catMobs, "mobTransformationChance", 3).getInt(3), 1, 100);
 
 		mapping = 0;
@@ -403,6 +403,8 @@ public class TragicNewConfig {
 		bossConfigs[mapping++] = (config.get(catMobs, "yetiAllow", true).getBoolean(true));
 		bossSC[mapping] = (config.get(catMobs, "timeControllerSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "timeControllerAllow", true).getBoolean(true));
+		bossSC[mapping] = (config.get(catMobs, "enyvilSpawnChance", 5).getInt(5));
+		bossConfigs[mapping++] = (config.get(catMobs, "enyvilAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < bossConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -968,6 +970,8 @@ public class TragicNewConfig {
 		allowYeti = bossConfigs[mapping++];
 		timeControllerSC = bossSC[mapping];
 		allowTimeController = bossConfigs[mapping++];
+		enyvilSC = bossSC[mapping];
+		allowEnyvil = bossConfigs[mapping++];
 
 		allowPositivePotions = blanketPotion[0];
 		allowNegativePotions = blanketPotion[1];
