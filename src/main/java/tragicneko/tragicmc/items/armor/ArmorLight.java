@@ -59,18 +59,11 @@ public class ArmorLight extends TragicArmor {
 	{
 		super.onArmorTick(world, player, itemStack);
 
-		if (player.isPotionActive(Potion.blindness.id))
-		{
-			player.removePotionEffect(Potion.blindness.id);
-		}
-		
+		if (player.isPotionActive(Potion.blindness.id)) player.removePotionEffect(Potion.blindness.id);		
 		if (player.isBurning()) player.extinguish();
 
 		if (!world.isRemote && tick % 120 == 0)
 		{
-			PropertyDoom doom = PropertyDoom.get(player);
-
-			Boolean flag0 = false;
 			Boolean flag1 = false;
 			Boolean flag2 = false;
 			Boolean flag3 = false;
