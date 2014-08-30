@@ -20,9 +20,15 @@ public class EntityStatue extends Entity {
 
 	public EntityStatue(World world) {
 		super(world);
+		this.preventEntitySpawning = true;
 		this.setSize(0.425F, 0.865F);
 		this.isImmuneToFire = true;
 	}
+	
+	protected boolean canTriggerWalking()
+    {
+        return false;
+    }
 
 	@Override
 	public boolean canBeCollidedWith()
