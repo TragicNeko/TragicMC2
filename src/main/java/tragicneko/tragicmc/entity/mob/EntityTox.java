@@ -164,7 +164,6 @@ public class EntityTox extends TragicMob {
 		world.spawnEntityInWorld(boss);
 		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
 		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
-
 	}
 
 }

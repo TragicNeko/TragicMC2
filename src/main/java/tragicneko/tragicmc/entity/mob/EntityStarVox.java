@@ -3,9 +3,14 @@ package tragicneko.tragicmc.entity.mob;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
+import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,7 +22,7 @@ public class EntityStarVox extends EntityNorVox {
 		this.canCorrupt = true;
 		this.isCorruptible = true;
 		this.isChangeable = true;
-		//this.superiorForm = new EntityVoxStellarum(this.worldObj);
+		this.superiorForm = new EntityVoxStellarum(this.worldObj);
 	}
 	
 	protected void applyEntityAttributes()
@@ -99,5 +104,19 @@ public class EntityStarVox extends EntityNorVox {
 	public int getTotalArmorValue()
 	{
 		return 12;
+	}
+	
+	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {
+
+		if (!TragicNewConfig.allowVoxStellarum) return;
+		
+		boss.copyLocationAndAnglesFrom(this);
+		boss.onSpawnWithEgg((IEntityLivingData)null);
+		world.removeEntity(this);
+		world.spawnEntityInWorld(boss);
+		boss.getDataWatcher().updateObject(16, this.getTextureID()); //ensures the Star-Vox transforms into a Vox Stellarum with the same texture
+		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
+		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
+
 	}
 }
