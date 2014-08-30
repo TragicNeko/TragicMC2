@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelNorVox;
 import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderVoxStellarum extends RenderLiving {
 
@@ -113,7 +114,6 @@ public class RenderVoxStellarum extends RenderLiving {
 		rgbR *= 2.55F;
 		rgbG *= 2.55F;
 		rgbB *= 2.55F;
-
 	}
 
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
@@ -125,5 +125,62 @@ public class RenderVoxStellarum extends RenderLiving {
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
 		return texture;
 	}
+	
+	protected int shouldRenderPass(EntityVoxStellarum boss, int par2, float par3)
+	{
+		if (boss.isHealing())
+		{
+			if (boss.isInvisible())
+			{
+				GL11.glDepthMask(false);
+			}
+			else
+			{
+				GL11.glDepthMask(true);
+			}
 
+			if (par2 == 1)
+			{
+				float f1 = (float)boss.ticksExisted + par3;
+				this.bindTexture(texture);
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glLoadIdentity();
+				float f2 = MathHelper.cos(f1 * 0.02F) * 3.0F;
+				float f3 = f1 * 0.01F;
+				GL11.glTranslatef(f2, f3, 0.0F);
+				this.setRenderPassModel(this.mainModel);
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_BLEND);
+				float f4 = 0.5F;
+				GL11.glColor4f(f4, f4, f4, 1.0F);
+				GL11.glDisable(GL11.GL_LIGHTING);
+				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+				GL11.glTranslatef(0.0F, 0.05F, 0.0F);
+				GL11.glScalef(1.1F, 1.1F, 1.1F);
+				return 1;
+			}
+
+			if (par2 == 2)
+			{
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glLoadIdentity();
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_LIGHTING);
+				GL11.glDisable(GL11.GL_BLEND);
+			}
+		}
+
+		return -1;
+	}
+
+	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
+	{
+		return this.shouldRenderPass((EntityVoxStellarum)par1EntityLivingBase, par2, par3);
+	}
+
+	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
+	{
+		return -1;
+	}
+	
 }
