@@ -176,7 +176,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			}
 		}
 		
-		if (this.isSpinning() && this.getAttackTarget() != null)
+		if (this.isSpinning() && this.getAttackTarget() != null && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = this.getAttackTarget();
 			
@@ -185,7 +185,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			double d2 = entity.posZ - this.posZ;
 			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
 			double d3 = 0.5D;
-			double d4 = this.getSpinTicks() > 100 && this.getSpinTicks() <= 700 ? 0.22786D : 0.1433467D;
+			double d4 = this.getSpinTicks() > 100 && this.getSpinTicks() <= 500 ? 0.22786D : 0.1433467D;
 
 			this.motionX = d1 / (double)f2 * d3 * 0.100000011920929D + entity.motionX * d4;
 			this.motionZ = d2 / (double)f2 * d3 * 0.100000011920929D + entity.motionZ * d4;
@@ -250,7 +250,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			par2 /= 4;
 		}
 
-		if (this.isSpinning())
+		if (this.isSpinning() && this.getSpinTicks() > 100 && this.getSpinTicks() <= 500)
 		{
 			par2 /= 4;
 			if (par1DamageSource.isProjectile()) par2 = 0;
