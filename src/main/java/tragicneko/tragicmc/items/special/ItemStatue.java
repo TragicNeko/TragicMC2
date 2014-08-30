@@ -31,6 +31,7 @@ public class ItemStatue extends Item {
 		this.setHasSubtypes(true);
 		this.setCreativeTab(TragicTabs.Survival);
 		this.setUnlocalizedName("tragicmc.mobStatue");
+		this.setMaxStackSize(1);
 	}
 
 	@Override
