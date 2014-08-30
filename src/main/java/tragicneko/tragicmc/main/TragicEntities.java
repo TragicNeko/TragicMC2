@@ -466,7 +466,7 @@ public class TragicEntities {
 			color2 = new Color(0xDD, 0xDD, 0xDD);
 			TragicEntityList.addMapping(EntityStarVox.class, "TragicMC.StarVox", id++, color1.getRGB(), color2.getRGB());
 		}
-		
+
 		if (TragicNewConfig.allowVoxStellarum)
 		{
 			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
@@ -572,6 +572,7 @@ public class TragicEntities {
 				BiomeGenBase.coldTaiga,
 				BiomeGenBase.coldTaigaHills
 				);
+		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, color1.getRGB(), color2.getRGB());
 
 		//Wither
 		color1 = new Color(0x1C, 0x1C, 0x1C);
@@ -583,108 +584,106 @@ public class TragicEntities {
 		color2 = new Color(0xCC, 0x00, 0xFA);
 		TragicEntityList.addMapping(EntityDragon.class, "TragicMC.EnderDragon", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
 
-		if (TragicNewConfig.allowBosses)
+		if (TragicNewConfig.allowApis)
 		{
-			if (TragicNewConfig.allowApis)
+			EntityRegistry.registerModEntity(EntityApis.class, "Apis", listid++, TragicMC.instance, 80, 1, true);
+
+			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
-				EntityRegistry.registerModEntity(EntityApis.class, "Apis", listid++, TragicMC.instance, 80, 1, true);
-
-				if (TragicNewConfig.allowBossNaturalSpawns)
-				{
-					EntityRegistry.addSpawn(EntityApis.class, TragicNewConfig.apisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.plains,
-							BiomeGenBase.savanna,
-							BiomeGenBase.savannaPlateau,
-							BiomeGenBase.forest,
-							BiomeGenBase.forestHills,
-							BiomeGenBase.birchForest,
-							BiomeGenBase.birchForestHills,
-							BiomeGenBase.mesa,
-							BiomeGenBase.mesaPlateau,
-							BiomeGenBase.mesaPlateau_F,
-							BiomeGenBase.extremeHills,
-							BiomeGenBase.extremeHillsEdge,
-							BiomeGenBase.extremeHillsPlus
-							);
-				}
-				color1 = new Color(0xED, 0xAC, 0x4F);
-				color2 = new Color(0xED, 0x85, 0x4F);
-				TragicEntityList.addMapping(EntityApis.class, "TragicMC.Apis", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
-			} 
-
-			if (TragicNewConfig.allowDeathReaper)
-			{
-				EntityRegistry.registerModEntity(EntityDeathReaper.class, "DeathReaper", listid++, TragicMC.instance, 80, 1, true);
-
-				if (TragicNewConfig.allowBossNaturalSpawns)
-				{
-					EntityRegistry.addSpawn(EntityDeathReaper.class, TragicNewConfig.deathReaperSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.forest,
-							BiomeGenBase.forestHills,
-							BiomeGenBase.birchForest,
-							BiomeGenBase.birchForestHills
-							);
-				}
-				color1 = new Color(0xCF, 0xCC, 0xB4);
-				color2 = new Color(0x55, 0x31, 0x31);
-				TragicEntityList.addMapping(EntityDeathReaper.class, "TragicMC.DeathReaper", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
-
-				//Death Reaper Clone
-				EntityRegistry.registerModEntity(EntityDeathReaperClone.class, "DeathReaperClone", listid++, TragicMC.instance, 80, 1, true);
+				EntityRegistry.addSpawn(EntityApis.class, TragicNewConfig.apisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.plains,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus
+						);
 			}
+			color1 = new Color(0xED, 0xAC, 0x4F);
+			color2 = new Color(0xED, 0x85, 0x4F);
+			TragicEntityList.addMapping(EntityApis.class, "TragicMC.Apis", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		} 
 
-			if (TragicNewConfig.allowKitsune)
+		if (TragicNewConfig.allowDeathReaper)
+		{
+			EntityRegistry.registerModEntity(EntityDeathReaper.class, "DeathReaper", listid++, TragicMC.instance, 80, 1, true);
+
+			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
-				EntityRegistry.registerModEntity(EntityKitsune.class, "Kitsune", listid++, TragicMC.instance, 80, 1, true);
-				if (TragicNewConfig.allowBossNaturalSpawns)
-				{
-					EntityRegistry.addSpawn(EntityKitsune.class, TragicNewConfig.kitsuneSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.hell);
-				}
-
-				color1 = new Color(0xFF, 0x00, 0x00);
-				color2 = new Color(0xFF, 0xD0, 0x87);
-				TragicEntityList.addMapping(EntityKitsune.class, "TragicMC.Kitsune", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+				EntityRegistry.addSpawn(EntityDeathReaper.class, TragicNewConfig.deathReaperSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills
+						);
 			}
+			color1 = new Color(0xCF, 0xCC, 0xB4);
+			color2 = new Color(0x55, 0x31, 0x31);
+			TragicEntityList.addMapping(EntityDeathReaper.class, "TragicMC.DeathReaper", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
 
-			if (TragicNewConfig.allowPolaris)
-			{
-				EntityRegistry.registerModEntity(EntityPolaris.class, "Polaris", listid++, TragicMC.instance, 80, 1, true);
-
-				if (TragicNewConfig.allowBossNaturalSpawns)
-				{
-					EntityRegistry.addSpawn(EntityPolaris.class, TragicNewConfig.polarisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
-							BiomeGenBase.desertHills
-							);
-				}
-
-				color1 = new Color(0x4A, 0x00, 0xBA);
-				color2 = new Color(0x00, 0x00, 0x00);
-				TragicEntityList.addMapping(EntityPolaris.class, "TragicMC.Polaris", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
-			}
-
-			if (TragicNewConfig.allowYeti)
-			{
-				EntityRegistry.registerModEntity(EntityYeti.class, "Yeti", listid++, TragicMC.instance, 80, 1, true);
-
-				if (TragicNewConfig.allowBossNaturalSpawns)
-				{
-					EntityRegistry.addSpawn(EntityYeti.class, TragicNewConfig.yetiSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
-							BiomeGenBase.iceMountains
-							);
-				}
-
-				color1 = new Color(0xDA, 0xDA, 0xDA);
-				color2 = new Color(0xB9, 0xBF, 0xC7);
-				TragicEntityList.addMapping(EntityYeti.class, "TragicMC.Yeti", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
-			}
-
-			if (TragicNewConfig.allowTimeController)
-			{
-				EntityRegistry.registerModEntity(EntityTimeController.class, "TimeController", listid++, TragicMC.instance, 80, 1, true);
-
-				color1 = new Color(0x94, 0xFF, 0xA3);
-				color2 = new Color(0xEA, 0x92, 0xE9);
-				TragicEntityList.addMapping(EntityTimeController.class, "TragicMC.TimeController", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
-			}
+			//Death Reaper Clone
+			EntityRegistry.registerModEntity(EntityDeathReaperClone.class, "DeathReaperClone", listid++, TragicMC.instance, 80, 1, true);
 		}
+
+		if (TragicNewConfig.allowKitsune)
+		{
+			EntityRegistry.registerModEntity(EntityKitsune.class, "Kitsune", listid++, TragicMC.instance, 80, 1, true);
+			if (TragicNewConfig.allowBossNaturalSpawns)
+			{
+				EntityRegistry.addSpawn(EntityKitsune.class, TragicNewConfig.kitsuneSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.hell);
+			}
+
+			color1 = new Color(0xFF, 0x00, 0x00);
+			color2 = new Color(0xFF, 0xD0, 0x87);
+			TragicEntityList.addMapping(EntityKitsune.class, "TragicMC.Kitsune", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		}
+
+		if (TragicNewConfig.allowPolaris)
+		{
+			EntityRegistry.registerModEntity(EntityPolaris.class, "Polaris", listid++, TragicMC.instance, 80, 1, true);
+
+			if (TragicNewConfig.allowBossNaturalSpawns)
+			{
+				EntityRegistry.addSpawn(EntityPolaris.class, TragicNewConfig.polarisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
+						BiomeGenBase.desertHills
+						);
+			}
+
+			color1 = new Color(0x4A, 0x00, 0xBA);
+			color2 = new Color(0x00, 0x00, 0x00);
+			TragicEntityList.addMapping(EntityPolaris.class, "TragicMC.Polaris", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		}
+
+		if (TragicNewConfig.allowYeti)
+		{
+			EntityRegistry.registerModEntity(EntityYeti.class, "Yeti", listid++, TragicMC.instance, 80, 1, true);
+
+			if (TragicNewConfig.allowBossNaturalSpawns)
+			{
+				EntityRegistry.addSpawn(EntityYeti.class, TragicNewConfig.yetiSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
+						BiomeGenBase.iceMountains
+						);
+			}
+
+			color1 = new Color(0xDA, 0xDA, 0xDA);
+			color2 = new Color(0xB9, 0xBF, 0xC7);
+			TragicEntityList.addMapping(EntityYeti.class, "TragicMC.Yeti", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		}
+
+		if (TragicNewConfig.allowTimeController)
+		{
+			EntityRegistry.registerModEntity(EntityTimeController.class, "TimeController", listid++, TragicMC.instance, 80, 1, true);
+
+			color1 = new Color(0x94, 0xFF, 0xA3);
+			color2 = new Color(0xEA, 0x92, 0xE9);
+			TragicEntityList.addMapping(EntityTimeController.class, "TragicMC.TimeController", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		}
+
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
@@ -708,7 +707,7 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityIcicle.class, "Icicle", listid++, TragicMC.instance, 80, 3, true);
 
 		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 1, false);
-		
+
 		EntityRegistry.registerModEntity(EntityStarShard.class, "StarShard", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, false);
 
