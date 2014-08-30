@@ -44,7 +44,7 @@ public class ArmorDark extends TragicArmor {
 		this.rareLevels = new int[][] {{5, 3}, {5, 3, 3}, {5, 3}};
 		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, TragicEnchantments.DeathTouch, Enchantment.respiration}, {Enchantment.unbreaking, Enchantment.protection,
 			TragicEnchantments.DeathTouch, TragicEnchantments.Toxicity}, {Enchantment.unbreaking, TragicEnchantments.DeathTouch, Enchantment.featherFalling}};
-		this.epicLevels = new int[][] {{10, 5}, {10, 5, 3, 3}, {10, 5, 1}};
+		this.epicLevels = new int[][] {{10, 5, 1}, {10, 5, 3, 3}, {10, 5, 1}};
 	}
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
@@ -61,11 +61,10 @@ public class ArmorDark extends TragicArmor {
 	{
 		super.onArmorTick(world, player, itemStack);
 		
+		if (TragicNewConfig.allowFear && player.isPotionActive(TragicPotions.Fear)) player.removePotionEffect(TragicPotions.Fear.id); 
+		
 		if (!world.isRemote && tick % 120 == 0)
 		{
-			PropertyDoom doom = PropertyDoom.get(player);
-
-			Boolean flag0 = false;
 			Boolean flag1 = false;
 			Boolean flag2 = false;
 			Boolean flag3 = false;
