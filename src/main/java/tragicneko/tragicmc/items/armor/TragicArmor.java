@@ -126,7 +126,7 @@ public class TragicArmor extends ItemArmor {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{	
-		if (world.isRemote || !TragicNewConfig.allowRandomWeaponLore) return; 
+		if (world.isRemote || !TragicNewConfig.allowRandomWeaponLore || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
 		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
