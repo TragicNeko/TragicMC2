@@ -39,7 +39,7 @@ public class ItemAmulet extends Item {
 		this.amuletLevel = level;
 		this.amuletName = name;
 		this.amuletSpecial = name.toLowerCase() + amuletLevel + ".special";
-		this.setUnlocalizedName("amulet" + name);
+		this.setUnlocalizedName("tragicmc.amulet" + name);
 		this.setCreativeTab(TragicTabs.Survival);
 		this.setMaxStackSize(1);
 		this.setTextureName("tragicmc:Amulet" + amuletLevel + "_lowRes");
