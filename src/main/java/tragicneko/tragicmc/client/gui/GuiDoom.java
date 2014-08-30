@@ -43,12 +43,7 @@ public class GuiDoom extends Gui
 	@SubscribeEvent(priority=EventPriority.NORMAL)
 	public void onRenderOverlay(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != ElementType.EXPERIENCE)
-		{
-			return; 
-		}
-		
-		if (Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
+		if (event.isCancelable() || event.type != ElementType.EXPERIENCE || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
 		if (props == null || props.getMaxDoom() == 0) {
@@ -59,7 +54,6 @@ public class GuiDoom extends Gui
 		int yPos = 2;
 		this.mc.getTextureManager().bindTexture(texturepath);
 
-		// Add this block of code before you draw the section of your texture containing transparency
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
@@ -67,7 +61,6 @@ public class GuiDoom extends Gui
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
-		// Here we draw the background bar which contains a transparent section; note the new size
 		drawTexturedModalRect(xPos, yPos, 0, 0, 56, 9);
 		
 		width++;
