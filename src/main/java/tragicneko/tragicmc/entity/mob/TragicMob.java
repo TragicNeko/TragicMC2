@@ -18,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -50,11 +51,6 @@ public abstract class TragicMob extends EntityMob
 	 * This mob's form that it will change into if it is changeable
 	 */
 	protected TragicMiniBoss superiorForm;
-
-	/**
-	 * Allows you to see what the mini-boss transformed from, used to prevent it from targetting other mobs in the same lineage
-	 */
-	public TragicMob lesserForm;
 
 	/**
 	 * If the mob can corrupt others
@@ -170,14 +166,6 @@ public abstract class TragicMob extends EntityMob
 										result = entity;
 										break;
 									}
-									else
-									{
-										if (this.lesserForm != null && entity != this.lesserForm)
-										{
-											result = entity;
-											break;
-										}
-									}
 								}
 							}
 							else if (entity instanceof EntityCreature)
@@ -274,10 +262,10 @@ public abstract class TragicMob extends EntityMob
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
+		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false; 
+		
 		Boolean result = super.attackEntityAsMob(par1Entity);
 		
-		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false; 
-
 		if (result && TragicNewConfig.allowCorruption)
 		{
 			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).isCorruptible && !((TragicMob)par1Entity).isCorrupted && this.rand.nextInt(4) == 0 && this.canCorrupt)
@@ -332,7 +320,7 @@ public abstract class TragicMob extends EntityMob
 
 	public void onDeath(DamageSource par1DamageSource)
 	{		
-		if (this.recentlyHit > 0 && !this.worldObj.isRemote)
+		if (!this.worldObj.isRemote)
 		{
 			int x = 1;
 
@@ -349,19 +337,28 @@ public abstract class TragicMob extends EntityMob
 
 			int y = TragicNewConfig.commonDropRate;
 			int z = TragicNewConfig.rareDropRate;
+			int drops = 0;
 
 			for (int i = 0; i < x; i++)
 			{
-				if (rand.nextInt(600) <= y + x)
+				if (rand.nextInt(100) <= y + (x * 4))
 				{
-					if (rand.nextBoolean()) this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), rand.nextFloat());
+					TragicMC.logger.info("Entity should've dropped one common item.");
+					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), rand.nextFloat());
+					drops++;
 				}
 
-				if (rand.nextInt(600) < z + x)
+				if (this.recentlyHit > 0 && rand.nextInt(100) <= z + x)
 				{
-					if (rand.nextBoolean()) this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), rand.nextFloat());
+					TragicMC.logger.info("Entity should've dropped one rare item.");
+					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), rand.nextFloat());
+					drops++;
 				}
+				
+				if (drops > x * 2) break;
 			}
+			
+			TragicMC.logger.info("Total drops should've been " + drops);
 		}
 		
 		super.onDeath(par1DamageSource);

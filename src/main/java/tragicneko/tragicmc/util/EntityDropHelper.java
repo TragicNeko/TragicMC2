@@ -8,6 +8,7 @@ import java.util.Map;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
@@ -20,18 +21,23 @@ import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityStinKing;
 import tragicneko.tragicmc.entity.boss.EntityStinQueen;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityJanna;
+import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -44,110 +50,108 @@ public class EntityDropHelper {
 	/**
 	 * Hashmap that links an entity class to an itemstack array
 	 */
-	public static Map<Class, ItemStack[]> entityLootDrops = new HashMap();
-
-	/**
-	 * Hashmap that links an entity class to an itemstack array, these are the less common drops or in the case of bosses, it's their important drop
-	 */
-	public static Map<Class, ItemStack[]> entityRareDrops = new HashMap();
+	public static Map<Class, ItemStack[][]> entityLootDrops = new HashMap();
 
 	static
 	{
 		//Normal Mob Drops
-		entityLootDrops.put(EntityJabba.class, new ItemStack[] {new ItemStack(Items.magma_cream), new ItemStack(TragicItems.Ash)});
-		entityRareDrops.put(EntityJabba.class, new ItemStack[] {new ItemStack(TragicItems.FireOrb), new ItemStack(TragicItems.RedMercury)});
+		entityLootDrops.put(EntityJabba.class, new ItemStack[][] {{new ItemStack(Items.magma_cream), new ItemStack(TragicItems.Ash)},
+			{new ItemStack(TragicItems.FireOrb), new ItemStack(TragicItems.RedMercury)}});
+		entityLootDrops.put(EntityJanna.class, new ItemStack[][] {{new ItemStack(Items.slime_ball), new ItemStack(TragicItems.Spore)}, {new ItemStack(TragicItems.Quicksilver)}});
 		
-		entityLootDrops.put(EntityPlague.class, new ItemStack[] {new ItemStack(TragicItems.Ash)});
-		entityRareDrops.put(EntityPlague.class, new ItemStack[] {new ItemStack(TragicItems.DarkParticles)});
+		entityLootDrops.put(EntityPlague.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles)}});
 		
-		entityLootDrops.put(EntityGragul.class, new ItemStack[] {new ItemStack(TragicItems.Ash), new ItemStack(Items.clay_ball), new ItemStack(Items.coal)});
+		entityLootDrops.put(EntityGragul.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash), new ItemStack(Items.clay_ball), new ItemStack(Items.coal)}, {}});
 		
-		entityLootDrops.put(EntityMinotaur.class, new ItemStack[] {new ItemStack(Items.leather), new ItemStack(Items.beef), new ItemStack(TragicItems.Horn)});
-		entityRareDrops.put(EntityMinotaur.class, new ItemStack[] {new ItemStack(TragicItems.Horn), new ItemStack(TragicItems.ToughLeather)});
+		entityLootDrops.put(EntityMinotaur.class, new ItemStack[][] {{new ItemStack(Items.leather), new ItemStack(Items.beef), new ItemStack(TragicItems.Horn)},
+			{new ItemStack(TragicItems.Horn), new ItemStack(TragicItems.ToughLeather)}});
 		
-		entityLootDrops.put(EntityInkling.class,  new ItemStack[] {new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.Ash)});
-		entityRareDrops.put(EntityInkling.class, new ItemStack[] {new ItemStack(TragicItems.DarkParticles)});
+		entityLootDrops.put(EntityInkling.class,  new ItemStack[][] {{new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles)}});
 		
-		entityLootDrops.put(EntityRagr.class, new ItemStack[] {new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball), new ItemStack(Items.fish, 1, rand.nextInt(4))});
-		entityRareDrops.put(EntityRagr.class, new ItemStack[] {new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.Sushi)});
+		entityLootDrops.put(EntityRagr.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball), new ItemStack(Items.fish, 1, rand.nextInt(4))},
+				{new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.Sushi)}});
 		
-		entityLootDrops.put(EntityPumpkinhead.class, new ItemStack[] {new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.pumpkin_pie), new ItemStack(Blocks.pumpkin)});
-		entityRareDrops.put(EntityPumpkinhead.class, new ItemStack[] {new ItemStack(Blocks.lit_pumpkin), new ItemStack(TragicBlocks.Candle)});
+		entityLootDrops.put(EntityPumpkinhead.class, new ItemStack[][] {{new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.pumpkin_pie), new ItemStack(Blocks.pumpkin)},
+				{new ItemStack(Blocks.lit_pumpkin), new ItemStack(TragicBlocks.Candle)}});
 		
-		entityLootDrops.put(EntityTragicNeko.class, new ItemStack[] {new ItemStack(Items.iron_ingot), new ItemStack(Items.gunpowder)});
-		entityRareDrops.put(EntityTragicNeko.class, new ItemStack[] {new ItemStack(Items.golden_apple, 1, 1), new ItemStack(TragicItems.NekoLauncher), new ItemStack(Items.diamond)});
+		entityLootDrops.put(EntityTragicNeko.class, new ItemStack[][] {{new ItemStack(Items.iron_ingot), new ItemStack(Items.gunpowder)}, 
+				{new ItemStack(Items.golden_apple, 1, 1), new ItemStack(TragicItems.NekoLauncher), new ItemStack(Items.diamond)}});
 		
-		entityLootDrops.put(EntityTox.class, new ItemStack[] {new ItemStack(TragicItems.Spore), new ItemStack(TragicItems.Sap), new ItemStack(Items.wheat_seeds),
-			new ItemStack(Blocks.vine), new ItemStack(TragicItems.Thorns)});
-		entityRareDrops.put(EntityTox.class, new ItemStack[] {new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit), new ItemStack(Items.slime_ball)});
+		entityLootDrops.put(EntityTox.class, new ItemStack[][] {{new ItemStack(TragicItems.Spore), new ItemStack(TragicItems.Sap), new ItemStack(Items.wheat_seeds),
+			new ItemStack(Blocks.vine), new ItemStack(TragicItems.Thorns)}, {new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit), new ItemStack(Items.slime_ball)}});
 		
-		entityLootDrops.put(EntityCryse.class, new ItemStack[] {new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball)});
-		entityRareDrops.put(EntityCryse.class, new ItemStack[] {new ItemStack(TragicItems.IceOrb)});
+		entityLootDrops.put(EntityPox.class, new ItemStack[][] {{new ItemStack(TragicItems.Spore), new ItemStack(TragicItems.Sap), new ItemStack(TragicItems.ExoticFruit),
+			new ItemStack(TragicBlocks.GlowVine), new ItemStack(TragicItems.Thorns)}, {new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.GooeyFruit)}});
 		
-		entityLootDrops.put(EntityPirah.class, new ItemStack[] {new ItemStack(Items.fish, 1, rand.nextInt(3))});
-		entityRareDrops.put(EntityPirah.class, new ItemStack[] {new ItemStack(TragicItems.LifeWater)});
+		entityLootDrops.put(EntityCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball)}, {new ItemStack(TragicItems.IceOrb)}});
 		
-		entityLootDrops.put(EntityNorVox.class, new ItemStack[] {new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.stone), new ItemStack(TragicItems.Ectoplasm)});
-		entityRareDrops.put(EntityNorVox.class, new ItemStack[] {new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond),
-			new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)});
+		entityLootDrops.put(EntityPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
 		
-		entityRareDrops.put(EntityStin.class, new ItemStack[] {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)});
+		entityLootDrops.put(EntityLavaPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
 		
-		entityRareDrops.put(EntityStinBaby.class, new ItemStack[] {new ItemStack(TragicItems.DarkParticles)});
+		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.stone), new ItemStack(TragicItems.Ectoplasm)},
+				{new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
 		
-		entityRareDrops.put(EntityWisp.class, new ItemStack[] {new ItemStack(TragicItems.WispParticles)});
+		entityLootDrops.put(EntityStarVox.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(TragicItems.Ectoplasm)},
+			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby)}});
 		
-		entityLootDrops.put(EntityAbomination.class, new ItemStack[] {new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.fish), new ItemStack(Items.snowball)});
-		entityRareDrops.put(EntityAbomination.class, new ItemStack[] {new ItemStack(TragicItems.IcyFur), new ItemStack(TragicItems.IceOrb)});
+		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
+		
+		entityLootDrops.put(EntityStinBaby.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.DarkParticles)}});
+		
+		entityLootDrops.put(EntityWisp.class, new ItemStack[][] {{new ItemStack(Items.glowstone_dust)}, {new ItemStack(TragicItems.WispParticles)}});
+		
+		entityLootDrops.put(EntityAbomination.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.fish), new ItemStack(Items.snowball)},
+			{new ItemStack(TragicItems.IcyFur), new ItemStack(TragicItems.IceOrb)}});
 		
 		//Mini-Boss drops
-		entityLootDrops.put(EntityJarra.class, new ItemStack[] {new ItemStack(TragicItems.Thorns), new ItemStack(TragicItems.Spore)});
-		entityRareDrops.put(EntityJarra.class, new ItemStack[] {new ItemStack(TragicItems.Spore), new ItemStack(TragicItems.Ectoplasm)});
+		entityLootDrops.put(EntityJarra.class, new ItemStack[][] {{new ItemStack(TragicItems.Thorns), new ItemStack(Items.magma_cream)}, {new ItemStack(TragicItems.Spore),
+			new ItemStack(TragicItems.Ectoplasm)}});
 		
-		entityLootDrops.put(EntityKragul.class, new ItemStack[] {new ItemStack(TragicItems.Ash), new ItemStack(Items.redstone), new ItemStack(Blocks.redstone_block)});
-		entityRareDrops.put(EntityKragul.class, new ItemStack[] {new ItemStack(TragicItems.GravityOrb)});
+		entityLootDrops.put(EntityKragul.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash), new ItemStack(Items.redstone), new ItemStack(Blocks.redstone_block)},
+			{new ItemStack(TragicItems.GravityOrb)}});
 		
-		entityLootDrops.put(EntityMagmox.class, new ItemStack[] {new ItemStack(Items.magma_cream), new ItemStack(TragicItems.Spore), new ItemStack(Items.nether_wart),
-			new ItemStack(TragicItems.Thorns), new ItemStack(Blocks.vine)});
-		entityRareDrops.put(EntityMagmox.class, new ItemStack[] {new ItemStack(Items.blaze_powder), new ItemStack(TragicItems.GooeyFruit)});
+		entityLootDrops.put(EntityMagmox.class, new ItemStack[][] {{new ItemStack(Items.magma_cream), new ItemStack(TragicItems.Spore), new ItemStack(Items.nether_wart),
+			new ItemStack(TragicItems.Thorns), new ItemStack(Blocks.vine)}, {new ItemStack(Items.blaze_powder), new ItemStack(TragicItems.GooeyFruit)}});
 		
-		entityLootDrops.put(EntityMegaCryse.class, new ItemStack[] {new ItemStack(TragicItems.CrushedIce), new ItemStack(TragicItems.IceOrb)});
-		entityRareDrops.put(EntityMegaCryse.class, new ItemStack[] {new ItemStack(TragicItems.IceOrb)});
+		entityLootDrops.put(EntityMegaCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(TragicItems.IceOrb)},
+			{new ItemStack(TragicItems.IceOrb)}});
 		
-		entityRareDrops.put(EntityGreaterStin.class, new ItemStack[] {new ItemStack(TragicItems.ObsidianOrb), new ItemStack(TragicItems.DarkIngot),
-			new ItemStack(TragicItems.StinHorn)});
+		entityLootDrops.put(EntityGreaterStin.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.ObsidianOrb), new ItemStack(TragicItems.DarkIngot),
+			new ItemStack(TragicItems.StinHorn)}});
 		
-		entityLootDrops.put(EntityStinKing.class, new ItemStack[] {new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
-			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)});
-		entityRareDrops.put(EntityStinKing.class, new ItemStack[] {new ItemStack(TragicItems.StinHorn)});
+		entityLootDrops.put(EntityStinKing.class, new ItemStack[][] {{new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
+			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)}, {new ItemStack(TragicItems.StinHorn)}});
 		
-		entityLootDrops.put(EntityStinQueen.class, new ItemStack[] {new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
-			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)});
-		entityRareDrops.put(EntityStinQueen.class, new ItemStack[] {new ItemStack(TragicItems.StinHorn)});
+		entityLootDrops.put(EntityStinQueen.class, new ItemStack[][] {{new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
+			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)}, {new ItemStack(TragicItems.StinHorn)}});
 		
-		//Boss drops, the common drop is treated as the random drops and the rare is treated as the main drop in these cases
-		entityLootDrops.put(EntityApis.class, new ItemStack[] {new ItemStack(TragicItems.LightParticles), new ItemStack(TragicItems.Horn), new ItemStack(TragicItems.LightIngot),
-			new ItemStack(TragicItems.LightHelm), new ItemStack(TragicItems.LightPlate), new ItemStack(TragicItems.LightLegs), new ItemStack(TragicItems.LightBoots)});
-		entityRareDrops.put(EntityApis.class, new ItemStack[] {new ItemStack(TragicItems.LightParticles)});
+		entityLootDrops.put(EntityVoxStellarum.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(TragicItems.Ectoplasm), new ItemStack(TragicItems.GravityOrb)},
+			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby), new ItemStack(Items.quartz)}});
 		
-		entityLootDrops.put(EntityDeathReaper.class, new ItemStack[] {new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.Ash), new ItemStack(Items.bone),
-			new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_rod)});
-		entityRareDrops.put(EntityDeathReaper.class, new ItemStack[] {new ItemStack(TragicItems.ReaperSkull)});
+		//Boss drops
+		entityLootDrops.put(EntityApis.class, new ItemStack[][] {{new ItemStack(TragicItems.LightParticles), new ItemStack(TragicItems.Horn), new ItemStack(TragicItems.LightIngot),
+			new ItemStack(TragicItems.LightHelm), new ItemStack(TragicItems.LightPlate), new ItemStack(TragicItems.LightLegs), new ItemStack(TragicItems.LightBoots)},
+			{new ItemStack(TragicItems.LightParticles)}});
 		
-		entityLootDrops.put(EntityKitsune.class, new ItemStack[] {new ItemStack(TragicItems.KitsuneTail), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_powder), 
-			new ItemStack(Items.fire_charge)});
-		entityRareDrops.put(EntityKitsune.class, new ItemStack[] {new ItemStack(TragicItems.KitsuneTail)});
+		entityLootDrops.put(EntityDeathReaper.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.Ash), new ItemStack(Items.bone),
+			new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_rod)}, {new ItemStack(TragicItems.ReaperSkull)}});
 		
-		entityLootDrops.put(EntityPolaris.class, new ItemStack[] {new ItemStack(TragicBlocks.Quicksand, 1), new ItemStack(TragicItems.StarPieces), new ItemStack(Items.glowstone_dust)});
-		entityRareDrops.put(EntityPolaris.class, new ItemStack[] {new ItemStack(TragicItems.StarPieces)});
+		entityLootDrops.put(EntityKitsune.class, new ItemStack[][] {{new ItemStack(TragicItems.KitsuneTail), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_powder), 
+			new ItemStack(Items.fire_charge)}, {new ItemStack(TragicItems.KitsuneTail)}});
 		
-		entityLootDrops.put(EntityTimeController.class, new ItemStack[] {new ItemStack(TragicItems.TimeEssence), new ItemStack(Items.clock),
-			new ItemStack(Items.diamond), new ItemStack(Items.emerald)});
-		entityRareDrops.put(EntityTimeController.class, new ItemStack[] {new ItemStack(TragicItems.TimeEssence)});
+		entityLootDrops.put(EntityPolaris.class, new ItemStack[][] {{new ItemStack(TragicBlocks.Quicksand, 1), new ItemStack(TragicItems.StarPieces),
+			new ItemStack(Items.glowstone_dust)}, {new ItemStack(TragicItems.StarPieces)}});
 		
-		entityLootDrops.put(EntityYeti.class, new ItemStack[] {new ItemStack(TragicItems.YetiClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
-			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)});
-		entityRareDrops.put(EntityYeti.class, new ItemStack[] {new ItemStack(TragicItems.YetiClaw)});
+		entityLootDrops.put(EntityTimeController.class, new ItemStack[][] {{new ItemStack(TragicItems.TimeEssence), new ItemStack(Items.clock), new ItemStack(Items.diamond),
+			new ItemStack(Items.emerald)}, {new ItemStack(TragicItems.TimeEssence)}});
+		
+		entityLootDrops.put(EntityYeti.class, new ItemStack[][] {{new ItemStack(TragicItems.YetiClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
+			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)}, {new ItemStack(TragicItems.YetiClaw)}});
+		/*
+		entityLootDrops.put(EntityEnyvil.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkPlate),
+			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles)},
+			{new ItemStack(TragicItems.PureDarkness)}}); */
 	}
 
 	/**
@@ -183,7 +187,7 @@ public class EntityDropHelper {
 	 */
 	public static ItemStack getRareDropFromEntity(Class clazz)
 	{
-		return getLootArrayFromEntity(clazz)[rand.nextInt(getLootArrayFromEntity(clazz).length)];
+		return getRareLootArrayFromEntity(clazz)[rand.nextInt(getRareLootArrayFromEntity(clazz).length)].copy();
 	}
 
 	/**
@@ -193,7 +197,7 @@ public class EntityDropHelper {
 	 */
 	public static ItemStack getCommonDropFromEntity(Class clazz)
 	{
-		return getRareLootArrayFromEntity(clazz)[rand.nextInt(getRareLootArrayFromEntity(clazz).length)];
+		return getLootArrayFromEntity(clazz)[rand.nextInt(getLootArrayFromEntity(clazz).length)].copy();
 	}
 
 	/**
@@ -205,13 +209,12 @@ public class EntityDropHelper {
 	{
 		ItemStack[] array = null;
 		try {
-			array = (ItemStack[]) entityLootDrops.get(clazz);
+			array = (ItemStack[]) entityLootDrops.get(clazz)[0];
 			return array;
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
-			System.err.println("[ERROR]No mapping for common loot drop from entity with class of " + clazz);
+			TragicMC.logger.info("No mapping for common loot drop from entity with class of " + clazz);
 			return array;
 		}
 	}
@@ -241,13 +244,13 @@ public class EntityDropHelper {
 	{
 		ItemStack[] array;
 		try {
-			array = (ItemStack[]) entityRareDrops.get(clazz);
+			array = (ItemStack[]) entityLootDrops.get(clazz)[1];
 			return array;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			System.err.println("[ERROR]No mapping for rare loot drop from entity with class of " + clazz);
+			TragicMC.logger.info("No mapping for rare loot drop from entity with class of " + clazz);
 			return null;
 		}
 	}

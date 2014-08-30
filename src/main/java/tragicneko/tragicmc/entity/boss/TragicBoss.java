@@ -2,6 +2,8 @@ package tragicneko.tragicmc.entity.boss;
 
 import java.util.UUID;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.boss.IBossDisplayData;
@@ -21,6 +23,7 @@ import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.util.EntityDropHelper;
 
 public class TragicBoss extends EntityMob implements IBossDisplayData
 {
@@ -42,7 +45,6 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		new ItemStack(TragicItems.DoomConsume, 1)};
 
 	public boolean isCorruptible = false;
-	public static Entity currentTarget;
 
 	public TragicBoss(World par1World) {
 		super(par1World);
@@ -60,14 +62,63 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (TragicNewConfig.allowExtraBossLoot)
 		{
-			int amount = rand.nextInt(20);
+			int amount = rand.nextInt(20) + 10;
 
-			if (amount < 10) amount = 10;
+			int amt = 0;
 
 			for (int i = 0; i < amount; i++)
 			{
-				if (rand.nextBoolean()) this.entityDropItem(luxuryDrops[rand.nextInt(luxuryDrops.length)], 0.4F);
+				if (rand.nextBoolean())
+				{
+					this.entityDropItem(luxuryDrops[rand.nextInt(luxuryDrops.length)].copy(), 0.4F);
+					amt++;
+				}
+				
+				if (amt > 10) break;
 			}
+			
+			TragicMC.logger.info("Amount of luxury drops should've been " + amt);
+		}
+
+		if (!this.worldObj.isRemote)
+		{
+			int x = 1;
+
+			if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer) par1.getEntity();
+
+				if (player.getCurrentEquippedItem() != null)
+				{
+					ItemStack weapon = player.inventory.getCurrentItem();
+					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
+				}
+			}
+
+			int y = TragicNewConfig.commonDropRate;
+			int z = TragicNewConfig.rareDropRate;
+			int drops = 0;
+
+			for (int i = 0; i < x; i++)
+			{
+				if (rand.nextInt(100) <= y + (x * 4))
+				{
+					TragicMC.logger.info("Entity should've dropped one common item.");
+					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), rand.nextFloat());
+					drops++;
+				}
+
+				if (this.recentlyHit > 0 && rand.nextInt(50) <= z + x)
+				{
+					TragicMC.logger.info("Entity should've dropped one rare item.");
+					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), rand.nextFloat());
+					drops++;
+				}
+
+				if (drops > x * 2) break;
+			}
+
+			TragicMC.logger.info("Total drops should've been " + drops);
 		}
 
 		super.onDeath(par1);
@@ -82,7 +133,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	}
 
 	public void despawnEntity(){}
-	
+
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false;

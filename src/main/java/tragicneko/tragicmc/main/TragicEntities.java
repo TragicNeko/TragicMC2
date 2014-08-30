@@ -684,7 +684,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityTimeController.class, "TragicMC.TimeController", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
 		}
 
-
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityLargePumpkinbomb.class, "LargePumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
@@ -710,6 +709,5 @@ public class TragicEntities {
 
 		EntityRegistry.registerModEntity(EntityStarShard.class, "StarShard", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, false);
-
 	}
 }
