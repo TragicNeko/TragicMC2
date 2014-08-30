@@ -20,9 +20,9 @@ import tragicneko.tragicmc.main.TragicTabs;
 public class ItemStatue extends Item {
 
 	private String[] subNames = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul", "magmox", "megaCryse", "stinKing",
-			"stinQueen", "greaterStin"};
+			"stinQueen", "greaterStin", "voxStellarum"};
 	private String[] textureNames = new String[] {"Apis", "Kitsune", "DeathReaper", "TimeController", "Yeti", "Polaris", "Jarra", "Kragul", "Magmox", "MegaCryse", "StinKing",
-			"StinQueen", "GreaterStin"};
+			"StinQueen", "GreaterStin", "VoxStellarum"};
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemStatue()

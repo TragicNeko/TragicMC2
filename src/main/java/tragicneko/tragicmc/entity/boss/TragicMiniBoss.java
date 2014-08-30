@@ -50,6 +50,10 @@ public abstract class TragicMiniBoss extends TragicMob
 		{
 			id = 12;
 		}
+		else if (this instanceof EntityVoxStellarum)
+		{
+			id = 13;
+		}
 
 		if (!this.worldObj.isRemote && id != 0) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), (0.25F * rand.nextFloat()) - (rand.nextFloat() * 0.25F));
 	}

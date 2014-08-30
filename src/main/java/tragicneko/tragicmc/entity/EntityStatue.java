@@ -46,7 +46,7 @@ public class EntityStatue extends Entity {
 		
 		for (int i = 0; i < this.textureID; i++)
 		{
-			id += 13;
+			id += 14;
 		}
 
 		this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), (0.25F * rand.nextFloat()) - (0.25F * rand.nextFloat()));

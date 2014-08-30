@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.client.render;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +16,7 @@ import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKitsune;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
+import tragicneko.tragicmc.client.model.ModelNorVox;
 import tragicneko.tragicmc.client.model.ModelPolaris;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
@@ -79,6 +79,9 @@ public class RenderStatue extends Render {
 		case 12:
 			model = new ModelGreaterStin();
 			break;
+		case 13:
+			model = new ModelNorVox(); //TODO change to Vox Stellarum's model when it's done
+			break;
 		}
 
 		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen;
@@ -109,34 +112,37 @@ public class RenderStatue extends Render {
 		switch (entity.getIDForTexture())
 		{
 		case 0:
+			String s = "tragicmc:textures/mobs/";
 			switch (entity.getIDForRender())
 			{
 			case 0:
-				return new ResourceLocation("tragicmc:textures/mobs/ApisCombat2_lowRes.png");
+				return new ResourceLocation(s + "ApisCombat2_lowRes.png");
 			case 1:
-				return new ResourceLocation("tragicmc:textures/mobs/Kitsune_lowRes.png");
+				return new ResourceLocation(s + "Kitsune_lowRes.png");
 			case 2:
-				return new ResourceLocation("tragicmc:textures/mobs/DeathReaper_lowRes.png");
+				return new ResourceLocation(s + "DeathReaper_lowRes.png");
 			case 3:
-				return new ResourceLocation("tragicmc:textures/mobs/TimeController_lowRes.png");
+				return new ResourceLocation(s + "TimeController_lowRes.png");
 			case 4:
-				return new ResourceLocation("tragicmc:textures/mobs/Yeti_lowRes.png");
+				return new ResourceLocation(s + "Yeti_lowRes.png");
 			case 5:
-				return new ResourceLocation("tragicmc:textures/mobs/Polaris_lowRes.png");
+				return new ResourceLocation(s + "Polaris_lowRes.png");
 			case 6:
-				return new ResourceLocation("tragicmc:textures/mobs/Jarra_lowRes.png");
+				return new ResourceLocation(s + "Jarra_lowRes.png");
 			case 7:
-				return new ResourceLocation("tragicmc:textures/mobs/Kragul_lowRes.png");
+				return new ResourceLocation(s + "Kragul_lowRes.png");
 			case 8:
-				return new ResourceLocation("tragicmc:textures/mobs/Magmox_lowRes.png");
+				return new ResourceLocation(s + "Magmox_lowRes.png");
 			case 9:
-				return new ResourceLocation("tragicmc:textures/mobs/Cryse_lowRes.png");
+				return new ResourceLocation(s + "Cryse_lowRes.png");
 			case 10:
-				return new ResourceLocation("tragicmc:textures/mobs/StinKing_lowRes.png");
+				return new ResourceLocation(s + "StinKing_lowRes.png");
 			case 11:
-				return new ResourceLocation("tragicmc:textures/mobs/StinQueen_lowRes.png");
+				return new ResourceLocation(s + "StinQueen_lowRes.png");
 			case 12:
-				return new ResourceLocation("tragicmc:textures/mobs/GreaterStin_lowRes.png");
+				return new ResourceLocation(s + "GreaterStin_lowRes.png");
+			case 13:
+				return new ResourceLocation(s + "StarVox_lowRes.png");
 			}
 		case 1:
 			return new ResourceLocation("textures/blocks/iron_block.png");
