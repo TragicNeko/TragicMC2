@@ -38,7 +38,6 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		super(par1World);
 		this.setSize(1.435F, 2.675F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 10;
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
@@ -89,13 +88,13 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		if (this.shouldSpin())
 		{
 			this.incrementSpinTicks();			
-			if (this.getSpinTicks() > 600) this.setSpinTicks(0);
+			if (this.getSpinTicks() > 800) this.setSpinTicks(0);
 		}
 
 		if (!this.worldObj.isRemote && TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun.id)) this.firingTicks = 0;
 
 		UUID modUUID2 = UUID.fromString("e20a064f-7022-4c64-99A2-181d3ac9eb17");
-		double modifier = getSpinTicks() / 300.0D;
+		double modifier = getSpinTicks() / 200.0D;
 		MathHelper.clamp_double(modifier, 0.455D, 0.91D);
 		modifier -= 1.365D;
 		AttributeModifier mod2 = new AttributeModifier(modUUID2, "voxStellarumSpinning", modifier, 0);
@@ -105,6 +104,11 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		if (this.isSpinning())
 		{
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod2);
+			this.setSprinting(true);
+		}
+		else
+		{
+			this.setSprinting(false);
 		}
 
 		if (!this.worldObj.isRemote && this.firingTicks > 0)
@@ -264,13 +268,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 
 	public float getSpinRotation()
 	{
-		float f0 = 360.0F;
-		if (this.getSpinTicks() > 200) f0 = 270.0F;
-		if (this.getSpinTicks() > 300) f0 = 180.0F;
-		if (this.getSpinTicks() > 400) f0 = 135.0F;
-		if (this.getSpinTicks() > 500) f0 = 180.0F;
-		if (this.getSpinTicks() > 550) f0 = 270.0F;
-		return MathHelper.wrapAngleTo180_float(this.getSpinTicks() % 360.0F);
+		return MathHelper.wrapAngleTo180_float(this.getSpinTicks() % 36.0F);
 	}
 
 	public boolean isSpinning()
