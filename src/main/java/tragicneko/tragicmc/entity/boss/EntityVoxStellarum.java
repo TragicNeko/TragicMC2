@@ -67,7 +67,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 
 	public boolean canRenderOnFire()
 	{
-		return !this.isHealing();
+		return !this.isHealing() && this.isBurning();
 	}
 	
 	@SideOnly(Side.CLIENT)
