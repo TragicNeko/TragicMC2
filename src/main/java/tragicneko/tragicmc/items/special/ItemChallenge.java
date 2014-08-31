@@ -140,7 +140,7 @@ public class ItemChallenge extends Item {
 			{
 				EntityItem item = new EntityItem(world);
 				reward = challenge.difficulty > 2 ? rewards[itemRand.nextInt(rewards.length)] : (challenge.difficulty > 0 ? cheapRewards[itemRand.nextInt(cheapRewards.length)] : badRewards[itemRand.nextInt(badRewards.length)]);
-				item.setEntityItemStack(reward);
+				item.setEntityItemStack(reward.copy());
 				item.setPosition(player.posX + itemRand.nextDouble() - itemRand.nextDouble(), player.posY + 0.6D, player.posZ  + itemRand.nextDouble() - itemRand.nextDouble());
 				world.spawnEntityInWorld(item);
 			}
