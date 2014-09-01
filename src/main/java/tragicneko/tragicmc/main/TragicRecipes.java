@@ -404,11 +404,12 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NastyFruit, 1), new Object[] {
-			"xxx",
-			"xyx",
-			"xxx",
+			"xzx",
+			"zyz",
+			"xzx",
 			'x', TragicItems.BoneMarrow,
-			'y', TragicItems.ExoticFruit
+			'y', TragicItems.ExoticFruit,
+			'z', TragicItems.Ectoplasm
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceCream, 1), new Object[] {
@@ -492,11 +493,11 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Glue, 3), new Object[] {
-			TragicItems.Sap, TragicItems.Honey, Items.milk_bucket, Items.sugar
+			TragicItems.Sap, Items.magma_cream, Items.milk_bucket, Items.sugar
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.SuperGlue, 1), new Object[] {
-			TragicItems.Glue, TragicItems.Sap, Items.glowstone_dust, Items.nether_wart
+			TragicItems.Glue, TragicItems.Sap, Items.clay_ball, Items.nether_wart
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StorageBlock, 1, 3), new Object[] {
@@ -636,6 +637,15 @@ public class TragicRecipes {
 			'y', Blocks.vine,
 			'z', TragicItems.Spore
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.FrozenLightning, 1), new Object[] {
+			"xyx",
+			"zyz",
+			" x ",
+			'x', TragicItems.IceOrb,
+			'y', TragicItems.LightningOrb,
+			'z', TragicItems.IcyFur
+		});
 
 		//Amulets
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ChickenAmulet, 1), new Object[] {
@@ -708,7 +718,16 @@ public class TragicRecipes {
 			'x', TragicItems.Tungsten,
 			'y', TragicItems.AquaOrb,
 			'z', TragicItems.AwakeningStone
-		}); 
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PiercingAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', TragicItems.Thorns,
+			'z', TragicItems.AwakeningStone
+		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BlacksmithAmulet, 1), new Object[] {
 			"xyx",
