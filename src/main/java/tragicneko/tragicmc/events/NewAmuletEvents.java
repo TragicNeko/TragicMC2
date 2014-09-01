@@ -22,6 +22,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -35,6 +36,7 @@ import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.AmuletHelper;
+import tragicneko.tragicmc.util.DamageHelper;
 
 import com.google.common.collect.Sets;
 
@@ -478,6 +480,40 @@ public class NewAmuletEvents {
 				if (amulets[i] != null && amulets[i].getAmuletName().equals("Sunken") && TragicNewConfig.amuSunken)
 				{
 					if (mp.isInWater()) event.ammount *= 1.535F;
+					break;
+				}
+			}
+			
+			for (i = 0; i < 3; i++)
+			{
+				if (amulets[i] != null && amulets[i].getAmuletName().equals("Piercing") && TragicNewConfig.amuPiercing && event.source.isMagicDamage())
+				{
+					event.ammount *= 2.135F;
+					break;
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onAmuletAttack(LivingAttackEvent event)
+	{
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
+			PropertyAmulets amu = PropertyAmulets.get(mp);
+
+			if (amu == null) return;
+
+			int[] levels = new int[3];
+			ItemAmulet[] amulets = new ItemAmulet[3];
+			int i;
+			
+			for (i = 0; i < 3; i++)
+			{
+				if (amulets[i] != null && amulets[i].getAmuletName().equals("Piercing") && TragicNewConfig.amuPiercing)
+				{
+					event.entityLiving.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(mp), event.ammount * 0.135F + 1.0F);
 					break;
 				}
 			}
