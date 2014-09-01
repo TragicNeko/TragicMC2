@@ -172,10 +172,8 @@ public class MobDropEvents {
 				switch(rand.nextInt(6))
 				{
 				case 0:
-					event.entityLiving.entityDropItem(new ItemStack(TragicItems.Sap, rand.nextInt(3)), rand.nextFloat());
-					break;
 				case 1:
-					event.entityLiving.entityDropItem(new ItemStack(TragicItems.Honey, rand.nextInt(3)), rand.nextFloat());
+					event.entityLiving.entityDropItem(new ItemStack(TragicItems.Sap, rand.nextInt(3)), rand.nextFloat());
 					break;
 				case 2:
 					event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ash, rand.nextInt(3)), rand.nextFloat());
