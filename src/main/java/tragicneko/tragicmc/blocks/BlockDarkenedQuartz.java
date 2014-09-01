@@ -56,11 +56,11 @@ private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
 	@Override
     protected IIcon getTopIcon(int i)
     {
-        return this.topIconArray[i];
+        return this.topIconArray[i >= 2 ? 2 : i];
     }
 
 	@Override
 	protected IIcon getSideIcon(int i) {
-		return this.sideIconArray[i];
+		return this.sideIconArray[i >= 2 ? 2: i];
 	}
 }
