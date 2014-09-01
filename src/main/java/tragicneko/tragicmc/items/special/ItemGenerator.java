@@ -9,6 +9,7 @@ import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -171,7 +172,7 @@ public class ItemGenerator extends Item {
 
 			if (!ablock.isOpaqueCube() || ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
 			{
-				ablock = TragicBlocks.PotatoBlock;
+				ablock = Blocks.tnt;
 			}
 
 			for (int i = 0; i < map.size(); i++)
@@ -182,7 +183,7 @@ public class ItemGenerator extends Item {
 
 			if (!map.isEmpty())
 			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Sphere generated with size of " + size + " made of " + StatCollector.translateToLocal(ablock.getUnlocalizedName() + ".name")));
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Sphere generated with size of " + size + " made of " + StatCollector.translateToLocal(new ItemStack(ablock).getUnlocalizedName() + ".name")));
 			}
 		}
 		else if (this == TragicItems.SphereEraser)
