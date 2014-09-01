@@ -43,7 +43,6 @@ import tragicneko.tragicmc.events.DenyVanillaGenEvent;
 import tragicneko.tragicmc.events.DoomEvents;
 import tragicneko.tragicmc.events.DynamicHealthScaling;
 import tragicneko.tragicmc.events.EnchantmentEvents;
-import tragicneko.tragicmc.events.KeyInputEvents;
 import tragicneko.tragicmc.events.MobDropEvents;
 import tragicneko.tragicmc.events.NewAmuletEvents;
 import tragicneko.tragicmc.events.PotionEvents;
@@ -284,8 +283,28 @@ public class TragicMC
 			}
 			catch (ReportedException e)
 			{
-				TragicMC.logger.error("Silently caught an error finding the potionTypes array to determine reflection, this may be due to obfuscation and may have unintended side effects.", e);
+				logError("Silently caught an error finding the potionTypes array to determine reflection, this may be due to obfuscation and may have unintended side effects.", e);
 			}
 		}
+	}
+	
+	public static void logError(String s)
+	{
+		logger.error(s);
+	}
+	
+	public static void logError(String s, Exception e)
+	{
+		logger.error(s, e);
+	}
+	
+	public static void logInfo(String s)
+	{
+		logger.info(s);
+	}
+	
+	public static void logWarning(String s)
+	{
+		logger.warn(s);
 	}
 }
