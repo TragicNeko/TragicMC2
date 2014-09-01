@@ -21,6 +21,7 @@ import tragicneko.tragicmc.blocks.BlockStructureSeed;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.main.TragicBiomes;
 import tragicneko.tragicmc.worldgen.schematic.SchematicApisTemple;
+import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDeathCircle;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDesertTower;
 import tragicneko.tragicmc.worldgen.schematic.SchematicKitsuneDen;
@@ -268,7 +269,7 @@ public class Structure extends WorldGenerator {
 			{
 				if (world.provider instanceof TragicWorldProvider)
 				{
-					new SchematicTimeAltar(variant, world, rand, x, y, z);
+					new SchematicCelestialTemple(variant, world, rand, x, y, z);
 					TragicMC.logger.info("Celestial Temple would've successfully generated at coords: " + x + ", " + y + ", " + z + ", but it is not currently set up.");
 					return true;
 				}
@@ -279,7 +280,7 @@ public class Structure extends WorldGenerator {
 			}
 			else
 			{
-				new SchematicTimeAltar(variant, world, rand, x, y, z);
+				new SchematicCelestialTemple(variant, world, rand, x, y, z);
 				return true;
 			}
 		case 6: //Time Altar
