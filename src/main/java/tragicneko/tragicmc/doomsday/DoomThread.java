@@ -35,11 +35,11 @@ public class DoomThread extends Thread {
 	{
 		int timesRan = 0;
 
-		for (int i = 0; i < 500; i++)
+		for (int i = 0; i < 5000; i++)
 		{
 			long tick = MinecraftServer.getSystemTimeMillis();
 
-			if (tick % 20L == 0)
+			if (tick % 50L == 0)
 			{
 				this.shouldRun = false;
 			}
@@ -149,7 +149,7 @@ public class DoomThread extends Thread {
 			{
 				try 
 				{
-					this.sleep(3L);
+					this.sleep(1L);
 				}
 				catch (InterruptedException e) 
 				{
