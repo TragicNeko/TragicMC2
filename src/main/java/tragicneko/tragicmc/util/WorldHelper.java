@@ -175,22 +175,20 @@ public class WorldHelper {
 
 		if (y <= 0 || y >= 256 || radius <= 0) return map;
 
-		double distance = radius * 1.1342345D;
+		double distance = radius + 1.5D;
 		
 		int[] coords;
 		int mapping = 0;
 
-		for (double y1 = -distance - 0.55D; y1 < distance + 0.55D; y1 += 0.5D)
+		for (double y1 = -distance; y1 < distance; y1 += 0.25D)
 		{
-			for (double x1 = -distance - 0.55D; x1 < distance + 0.55D; x1 += 0.5D)
+			for (double x1 = -distance; x1 < distance; x1 += 0.25D)
 			{
-				for (double z1 = -distance - 0.55D; z1 < distance + 0.55D; z1 += 0.5D)
+				for (double z1 = -distance; z1 < distance; z1 += 0.25D)
 				{					
 					if (y + y1 < 0 || y + y1 >= 256) break;
 
-					double max = MathHelper.abs_max(x1, z1);
-
-					if (MathHelper.sqrt_double(max * max + y1 * y1) <= radius)
+					if (MathHelper.sqrt_double(x1 * x1 + z1 * z1 + y1 * y1) < radius)
 					{
 						coords = new int[] {(int) Math.round(x + x1), (int) Math.round(y + y1), (int) Math.round(z + z1)};
 
