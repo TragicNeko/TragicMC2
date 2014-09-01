@@ -180,11 +180,11 @@ public class WorldHelper {
 		int[] coords;
 		int mapping = 0;
 
-		for (double y1 = -distance; y1 < distance; y1 += 0.25D)
+		for (double y1 = -distance; y1 < distance; y1 += 0.5D)
 		{
-			for (double x1 = -distance; x1 < distance; x1 += 0.25D)
+			for (double x1 = -distance; x1 < distance; x1 += 0.5D)
 			{
-				for (double z1 = -distance; z1 < distance; z1 += 0.25D)
+				for (double z1 = -distance; z1 < distance; z1 += 0.5D)
 				{					
 					if (y + y1 < 0 || y + y1 >= 256) break;
 
