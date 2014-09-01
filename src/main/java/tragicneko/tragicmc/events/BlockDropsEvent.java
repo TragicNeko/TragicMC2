@@ -100,13 +100,13 @@ public class BlockDropsEvent {
 		else if (event.block instanceof BlockCactus && rand.nextInt(16) == 0)
 		{
 			event.drops.clear();
-			event.drops.add(new ItemStack(TragicItems.Thorns));
+			event.drops.add(new ItemStack(TragicItems.Thorns, 1, rand.nextInt(2) + 1));
 		}
 		else if (event.block instanceof BlockFlower || event.block instanceof BlockMushroom || event.block instanceof BlockTallGrass)
 		{
-			event.drops.add(new ItemStack(TragicItems.Spore));
+			if (rand.nextInt(16) == 0) event.drops.add(new ItemStack(TragicItems.Spore));
 		}
-		else if (event.block == Blocks.double_plant)
+		else if (event.block == Blocks.double_plant && rand.nextInt(4) == 0)
 		{
 			if (event.blockMetadata != 4)
 			{
