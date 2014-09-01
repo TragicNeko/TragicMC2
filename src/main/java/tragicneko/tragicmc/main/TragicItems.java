@@ -103,7 +103,7 @@ public class TragicItems {
 	private static final ArmorMaterial armorCelestial = EnumHelper.addArmorMaterial("CELESTIAL", 29, new int[] {5, 7, 7, 4}, 24); //23
 	private static final ArmorMaterial armorDraconic = EnumHelper.addArmorMaterial("DRACONIC", 25, new int[] {5, 7, 7, 4}, 16); //23
 	private static final ArmorMaterial armorTragic = EnumHelper.addArmorMaterial("TRAGIC", 35, new int[] {5, 8, 7, 4}, 26); //24
-	
+
 	//Texture resolution String
 	public static String textureRes = "_lowRes";
 
@@ -206,7 +206,7 @@ public class TragicItems {
 	public static Item WispParticles;
 	public static Item StinHorn;
 	public static Item IcyFur;
-	
+
 	public static Item FrozenLightning;
 
 	//Projectile items
@@ -396,7 +396,7 @@ public class TragicItems {
 
 		WitheringAxe = (new WeaponWitheringAxe(toolWithering, Doomsday.SkullCrusher).setUnlocalizedName("tragicmc.witheringAxe").setTextureName("tragicmc:WitheringAxe" + textureRes));
 		GameRegistry.registerItem(WitheringAxe, "witheringAxe");
-		
+
 		FrozenLightning = (new WeaponFrozenLightning(toolFrozen, Doomsday.Freeze).setUnlocalizedName("tragicmc.frozenLightning").setTextureName("tragicmc:FrozenLightning" + textureRes));
 		GameRegistry.registerItem(FrozenLightning, "frozenLightning");
 
@@ -719,7 +719,7 @@ public class TragicItems {
 		color2 = new Color(0x00, 0x00, 0x00);
 		TimeAmulet = (new ItemAmulet(id++, 4, "Time", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
-		
+
 		color1 = new Color(0xA0, 0xA0, 0xA0);
 		color2 = new Color(0xC1, 0xC1, 0xC1);
 		IceAmulet = (new ItemAmulet(id, 1, "Ice", color1.getRGB(), color2.getRGB()));
@@ -728,7 +728,7 @@ public class TragicItems {
 		GameRegistry.registerItem(IceAmulet2, "iceAmulet2");
 		IceAmulet3 = (new ItemAmulet(id++, 3, "Ice", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(IceAmulet3, "iceAmulet3");
-		
+
 		color1 = new Color(0xA0, 0xA0, 0xA0);
 		color2 = new Color(0xC1, 0xC1, 0xC1);
 		SnowGolemAmulet = (new ItemAmulet(id, 1, "SnowGolem", color1.getRGB(), color2.getRGB()));
@@ -737,7 +737,7 @@ public class TragicItems {
 		GameRegistry.registerItem(SnowGolemAmulet2, "snowGolemAmulet2");
 		SnowGolemAmulet3 = (new ItemAmulet(id++, 3, "SnowGolem", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(SnowGolemAmulet3, "snowGolemAmulet3");
-		
+
 		color1 = new Color(0xA0, 0xA0, 0xA0);
 		color2 = new Color(0xC1, 0xC1, 0xC1);
 		IronGolemAmulet = (new ItemAmulet(id, 1, "IronGolem", color1.getRGB(), color2.getRGB()));
@@ -746,12 +746,12 @@ public class TragicItems {
 		GameRegistry.registerItem(IronGolemAmulet2, "ironGolemAmulet2");
 		IronGolemAmulet3 = (new ItemAmulet(id++, 3, "IronGolem", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(IronGolemAmulet3, "ironGolemAmulet3");
-		
+
 		color1 = new Color(0x00, 0x00, 0x00);
 		color2 = new Color(0x00, 0x00, 0x00);
 		EndermanAmulet = (new ItemAmulet(id++, 4, "Enderman", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
-		
+
 		color1 = new Color(0x00, 0x00, 0x00);
 		color2 = new Color(0x00, 0x00, 0x00);
 		WitherAmulet = (new ItemAmulet(id++, 4, "Wither", color1.getRGB(), color2.getRGB()));
@@ -820,6 +820,10 @@ public class TragicItems {
 		//WeightedRandomChestContent(ItemStack, min gen chance, max gen chance, item weight);
 
 		WeightedRandomChestContent[] bossStructureContent = new WeightedRandomChestContent[] {
+				new WeightedRandomChestContent(new ItemStack(RubyCharm), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(SapphireCharm), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(EmeraldCharm), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(DoomConsume), 0, 1, TragicNewConfig.doomConsumeRarity),
 				new WeightedRandomChestContent(new ItemStack(CooldownDefuse), 1, 3, TragicNewConfig.cooldownDefuseRarity),
 				new WeightedRandomChestContent(new ItemStack(Items.diamond, 1), 0, 2, 20),
@@ -835,7 +839,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.StorageBlock, 1, 2), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.StorageBlock, 1, 3), 0, 1, 35),
 				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
-				//new WeightedRandomChestContent(new ItemStack(HornetAmulet, 1), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(ObsidianOrb, 1), 0, 2, 3),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 0, 1, 1),
 				new WeightedRandomChestContent(new ItemStack(HuntersBow, 1), 0, 1, 15),
@@ -870,10 +874,22 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity),
 				new WeightedRandomChestContent(new ItemStack(Items.lead, 1 + TragicMC.rand.nextInt(2)), 0, 1, 5),
-				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 5)
+				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 5),
+				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(GuiltyThorn, 1), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(GravitySpike, 1), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(FrozenLightning, 1), 0, 1, 15)
+				
 		};
 
 		WeightedRandomChestContent[] netherStructureContent = new WeightedRandomChestContent[] {
+				new WeightedRandomChestContent(new ItemStack(RubyCharm), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(SapphireCharm), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(EmeraldCharm), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(DoomConsume), 0, 1, TragicNewConfig.doomConsumeRarity),
 				new WeightedRandomChestContent(new ItemStack(CooldownDefuse), 1, 3, TragicNewConfig.cooldownDefuseRarity),
 				new WeightedRandomChestContent(new ItemStack(Items.diamond, 1), 0, 2, 25),
@@ -887,7 +903,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.StorageBlock, 1, 2), 0, 1, 30),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.StorageBlock, 1, 3), 0, 1, 50),
 				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
-				//new WeightedRandomChestContent(new ItemStack(HornetAmulet, 1), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(ObsidianOrb, 1), 0, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1), 0, 1, 35),
@@ -902,25 +918,30 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity),
 				new WeightedRandomChestContent(new ItemStack(Items.lead, 1 + TragicMC.rand.nextInt(2)), 0, 1, 15),
-				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 15)
+				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 15),
+				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity)
 		};
 
 		WeightedRandomChestContent[] lameChestContent = new WeightedRandomChestContent[] {
 				new WeightedRandomChestContent(new ItemStack(Blocks.cobblestone), 3, 5, 50),
 				new WeightedRandomChestContent(new ItemStack(Blocks.gravel), 2, 4, 50),
 				new WeightedRandomChestContent(new ItemStack(Items.apple), 0, 3, 25),
-				new WeightedRandomChestContent(new ItemStack(TragicItems.Ash), 0, 3, 25),
+				new WeightedRandomChestContent(new ItemStack(Ash), 0, 3, 25),
 				new WeightedRandomChestContent(new ItemStack(Items.wheat_seeds), 2, 4, 50),
 				new WeightedRandomChestContent(new ItemStack(Items.coal), 0, 3, 25),
 				new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 2, 5, 100),
 				new WeightedRandomChestContent(new ItemStack(Items.string), 2, 4, 75),
-				new WeightedRandomChestContent(new ItemStack(Items.bone), 0, 2, 25)
+				new WeightedRandomChestContent(new ItemStack(Items.bone), 0, 2, 25),
+				new WeightedRandomChestContent(new ItemStack(Spore), 0, 3, 10)
 		};
 
 		WeightedRandomChestContent[] awesomeChestContent = new WeightedRandomChestContent[] { //TODO add the uncraftable weapons to this generation with around 20 in weight, then add to the other two boss hooks with very low weight, around 3 maybe
-				new WeightedRandomChestContent(new ItemStack(TragicItems.DoomConsume), 0, 1, 45),
-				new WeightedRandomChestContent(new ItemStack(TragicItems.CooldownDefuse), 1, 3, 60),
-				new WeightedRandomChestContent(new ItemStack(TragicItems.AmuletRelease, 1), 0, 1, 45),
+				new WeightedRandomChestContent(new ItemStack(TragicItems.DoomConsume), 0, 1, TragicNewConfig.doomConsumeRarity),
+				new WeightedRandomChestContent(new ItemStack(TragicItems.CooldownDefuse), 1, 3, TragicNewConfig.cooldownDefuseRarity),
+				new WeightedRandomChestContent(new ItemStack(TragicItems.AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 0, 2, 35),
 				new WeightedRandomChestContent(new ItemStack(GoldenSushi, 1), 0, 3, 45),
 				new WeightedRandomChestContent(new ItemStack(Items.diamond, 1 + TragicMC.rand.nextInt(3)), 0, 3, 50),
@@ -929,14 +950,17 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Sapphire, 1 + TragicMC.rand.nextInt(3)), 0, 3, 50),
 				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1, 1), 0, 1, 35),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 0, 1, 45),
-				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 25)
+				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 25),
+				new WeightedRandomChestContent(new ItemStack(RubyCharm), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(SapphireCharm), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(EmeraldCharm), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 0, 1, 15)
 		};
 
 		BossStructureHook = (new ChestGenHooks("TragicMC.BossStructure", bossStructureContent, 3, 7));
 		NetherStructureHook = (new ChestGenHooks("TragicMC.NetherBossStructure", netherStructureContent, 5, 8));
 		LameChestHook = (new ChestGenHooks("TragicMC.LameChest", lameChestContent, 3, 6));
 		AwesomeChestHook = (new ChestGenHooks("TragicMC.AwesomeChest", awesomeChestContent, 6, 10));
-
 
 		if (TragicNewConfig.allowCooldownDefuse)
 		{
@@ -992,6 +1016,10 @@ public class TragicItems {
 		//Challenge item registration
 		ChallengeScroll = (new ItemChallenge().setTextureName("tragicmc:ChallengeInProgress_lowRes"));
 		GameRegistry.registerItem(ChallengeScroll, "challengeScroll");
+
+		BossStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 5));
+		NetherStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 15));
+		AwesomeChestHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 25));
 	}
 
 }
