@@ -38,11 +38,11 @@ public class ArmorLight extends TragicArmor {
 		this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
 		this.uncommonLevels = new int[][] {{3}, {3, 3}, {3}};
-		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity}, {Enchantment.unbreaking, TragicEnchantments.Ignition, Enchantment.fireProtection},
+		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity}, {Enchantment.unbreaking, TragicEnchantments.Ignition, TragicEnchantments.RuneWalker},
 				{Enchantment.unbreaking, Enchantment.fireProtection}};
 		this.rareLevels = new int[][] {{5, 3}, {5, 5, 3}, {5, 3}};
 		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity, Enchantment.respiration}, {Enchantment.unbreaking, TragicEnchantments.Ignition,
-			Enchantment.fireProtection, TragicEnchantments.Agility}, {Enchantment.unbreaking, Enchantment.fireProtection, Enchantment.featherFalling}};
+			TragicEnchantments.RuneWalker, TragicEnchantments.Agility}, {Enchantment.unbreaking, TragicEnchantments.RuneWalker, Enchantment.featherFalling}};
 		this.epicLevels = new int[][] {{10, 5, 3}, {10, 5, 5, 3}, {5, 5, 1}};
 	}
 	

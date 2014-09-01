@@ -21,9 +21,9 @@ public class WeaponPitchBlack extends TragicWeapon {
 		this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay};
 		this.uncommonLevels = new int[] {1, 1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay, TragicEnchantments.Vampirism};
+		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay, TragicEnchantments.RuneBreak};
 		this.rareLevels = new int[] {3, 3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay, TragicEnchantments.Vampirism, Enchantment.looting};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay, TragicEnchantments.RuneBreak, Enchantment.looting};
 		this.epicLevels = new int[] {10, 5, 3, 3};
 	}
 }

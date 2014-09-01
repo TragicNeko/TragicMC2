@@ -106,8 +106,6 @@ public class WeaponMourningStar extends TragicWeapon {
 				}
 			}
 		}
-
-
 		return par1ItemStack;
 	}
 
