@@ -13,8 +13,8 @@ import tragicneko.tragicmc.enchantment.EnchantmentWeaponExtra;
 
 public class TragicEnchantments {
 	
-	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, Agility;
-	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch;
+	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, Agility, RuneBreak;
+	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch, RuneWalker;
 
 	public static void load()
 	{
@@ -28,12 +28,14 @@ public class TragicEnchantments {
 		if (TragicNewConfig.allowCombustion) Combustion = (new EnchantmentCombustion(TragicNewConfig.idCombustion, 1, EnumEnchantmentType.digger));
 		if (TragicNewConfig.allowAgility) Agility = (new EnchantmentAgility(TragicNewConfig.idAgility, 2, EnumEnchantmentType.armor));
 		if (TragicNewConfig.allowMultiply) Multiply = (new EnchantmentMultiply(TragicNewConfig.idMultiply, 1, EnumEnchantmentType.bow));
+		if (TragicNewConfig.allowRuneBreak) RuneBreak = (new EnchantmentDamageBoost(TragicNewConfig.idRuneBreak, 4, 3));
 
 		if (TragicNewConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicNewConfig.idIgnition, 6, 0));
 		if (TragicNewConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicNewConfig.idParalysis, 1, 1));
 		if (TragicNewConfig.allowToxicity)Toxicity = (new EnchantmentArmorExtra(TragicNewConfig.idToxicity, 4, 2));
 		if (TragicNewConfig.allowElasticity)Elasticity = (new EnchantmentArmorExtra(TragicNewConfig.idElasticity, 10, 3));
 		if (TragicNewConfig.allowDeathTouch)DeathTouch = (new EnchantmentArmorExtra(TragicNewConfig.idDeathTouch, 1, 4));
+		if (TragicNewConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicNewConfig.idRuneWalker, 2, EnumEnchantmentType.armor));
 
 		
 	}

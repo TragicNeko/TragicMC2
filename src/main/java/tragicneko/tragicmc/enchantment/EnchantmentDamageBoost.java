@@ -66,28 +66,14 @@ public class EnchantmentDamageBoost extends Enchantment {
 			}
 			break;
 		case 1:
-			if (par2EntityLivingBase instanceof TragicMob)
+			if (TragicNewConfig.allowCorruption && par2EntityLivingBase.isPotionActive(TragicPotions.Corruption))
 			{
-				if (((TragicMob)par2EntityLivingBase).isCorrupted || par2EntityLivingBase instanceof TragicMiniBoss)
+				if (par2EntityLivingBase.worldObj.rand.nextInt((16 / par1) + 1) == 0)
 				{
-					if (par2EntityLivingBase.worldObj.rand.nextInt(16 / par1) == 0)
-					{
-						par2EntityLivingBase.removePotionEffect(TragicPotions.Corruption.id);
-					}
-					
-					return (float) (par1 * 1.25);
+					par2EntityLivingBase.removePotionEffect(TragicPotions.Corruption.id);
 				}
-			}
-			else
-			{
-				if (TragicNewConfig.allowCorruption && par2EntityLivingBase.isPotionActive(TragicPotions.Corruption))
-				{
-					if (par2EntityLivingBase.worldObj.rand.nextInt(16 / par1) == 0)
-					{
-						par2EntityLivingBase.removePotionEffect(TragicPotions.Corruption.id);
-					}
-					return (float) (par1 * 0.625);
-				}
+
+				return (float) (par1 * 1.25);
 			}
 			break;
 		case 2:

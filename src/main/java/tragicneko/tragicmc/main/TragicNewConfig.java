@@ -38,7 +38,7 @@ public class TragicNewConfig {
 	private static boolean[] normalAmuletConfigs = new boolean[16];
 	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton;
 	private static boolean[] cursedAmuletConfigs = new boolean[8];
-	public static boolean amuKitsune, amuMartyr, amuHornet, amuApis, amuSunken;
+	public static boolean amuKitsune, amuMartyr, amuPiercing, amuApis, amuSunken;
 	private static boolean[] epicAmuletConfigs = new boolean[4];
 	public static boolean amuTime;
 
@@ -60,13 +60,13 @@ public class TragicNewConfig {
 	private static boolean[] blanketEnchant = new boolean[2];
 	public static boolean allowWeaponEnchants, allowArmorEnchants;
 	private static boolean[] weaponEnchantConfigs = new boolean[12];
-	public static boolean allowDecay, allowSlay, allowAbsolve, allowVampirism, allowLeech, allowConsume, allowDistract, allowMultiply, allowCombustion;
+	public static boolean allowDecay, allowSlay, allowAbsolve, allowVampirism, allowLeech, allowConsume, allowDistract, allowMultiply, allowCombustion, allowRuneBreak;
 	private static boolean[] armorEnchantConfigs = new boolean[12];
-	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility;
+	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility, allowRuneWalker;
 	private static int[] weaponEnchantIDs = new int[12];
-	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion;
+	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak;
 	private static int[] armorEnchantIDs = new int[12];
-	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility;
+	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker;
 
 	private static boolean[] blanketMob = new boolean[8];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossNaturalSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
@@ -276,6 +276,8 @@ public class TragicNewConfig {
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "multiplyAllow", true).getBoolean(true));
 		weaponEnchantIDs[mapping] = (config.get(catEnchant, "combustionID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "combustionAllow", true).getBoolean(true));
+		weaponEnchantIDs[mapping] = (config.get(catEnchant, "runeBreakID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
+		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "runeBreakAllow", true).getBoolean(true));
 
 		int temp = mapping - 1;
 
@@ -297,6 +299,8 @@ public class TragicNewConfig {
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "elasticityAllow", true).getBoolean(true));
 		armorEnchantIDs[mapping] = (config.get(catEnchant, "agilityID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "agilityAllow", true).getBoolean(true));
+		armorEnchantIDs[mapping] = (config.get(catEnchant, "runeWalkerID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
+		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "runeWalkerAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < armorEnchantConfigs.length; i++)
 		{
@@ -791,7 +795,7 @@ public class TragicNewConfig {
 		mapping = 0;
 		amuKitsune = cursedAmuletConfigs[mapping++];
 		amuMartyr = cursedAmuletConfigs[mapping++];
-		amuHornet = cursedAmuletConfigs[mapping++];
+		amuPiercing = cursedAmuletConfigs[mapping++];
 		amuApis = cursedAmuletConfigs[mapping++];
 		amuSunken = cursedAmuletConfigs[mapping++];
 
@@ -869,6 +873,8 @@ public class TragicNewConfig {
 		allowMultiply = weaponEnchantConfigs[mapping++];
 		idCombustion = weaponEnchantIDs[mapping];
 		allowCombustion = weaponEnchantConfigs[mapping++];
+		idRuneBreak = weaponEnchantIDs[mapping];
+		allowRuneBreak = weaponEnchantConfigs[mapping++];
 
 		mapping = 0;
 		idDeathTouch = armorEnchantIDs[mapping];
@@ -883,6 +889,8 @@ public class TragicNewConfig {
 		allowElasticity = armorEnchantConfigs[mapping++];
 		idAgility = armorEnchantIDs[mapping];
 		allowAgility = armorEnchantConfigs[mapping++];
+		idRuneWalker = armorEnchantIDs[mapping];
+		allowRuneWalker = armorEnchantConfigs[mapping++];
 
 		allowNormalMobs = blanketMob[0];
 		allowMiniBosses = blanketMob[1];

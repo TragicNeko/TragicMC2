@@ -3,6 +3,8 @@ package tragicneko.tragicmc.enchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 
 public class EnchantmentRuneWalker extends Enchantment {
 
@@ -25,6 +27,11 @@ public class EnchantmentRuneWalker extends Enchantment {
     public int getMaxLevel()
     {
         return 5;
+    }
+    
+    public int calcModifierDamage(int par1, DamageSource source)
+    {
+    	return source.isMagicDamage() && !(source.canHarmInCreative()) ? MathHelper.floor_float(par1 * 1.5F) : 0;
     }
     
     public boolean canApplyTogether(Enchantment par1Enchantment)
