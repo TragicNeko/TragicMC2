@@ -765,6 +765,51 @@ public class TragicRecipes {
 			'z', TragicItems.AwakeningStone
 		});
 		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', TragicItems.IceOrb,
+			'z', TragicItems.AwakeningStone
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SnowGolemAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', Items.snowball,
+			'z', TragicItems.AwakeningStone
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IronGolemAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', Blocks.iron_block,
+			'z', TragicItems.AwakeningStone
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EndermanAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', Items.ender_pearl,
+			'z', TragicItems.AwakeningStone
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WitherAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', Items.nether_star,
+			'z', TragicItems.AwakeningStone
+		});
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 1, 0), new Object[] {
 			Blocks.sand, TragicItems.LifeWater
 		});
@@ -1198,6 +1243,54 @@ public class TragicRecipes {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ZombieAmulet3, 1), new Object[] {
 			TragicItems.ZombieAmulet2, TragicItems.AmuletRelease
+		});
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.IceAmulet2, 1), new Object[]{
+			TragicItems.IceAmulet, TragicItems.IceAmulet, "oreCharms"
+		}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.IceAmulet2, 1), new Object[] {
+			TragicItems.IceAmulet, TragicItems.AmuletRelease
+		});
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.IceAmulet3, 1), new Object[]{
+			TragicItems.IceAmulet2, TragicItems.ZombieAmulet2, "oreCharms"
+		}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.IceAmulet3, 1), new Object[] {
+			TragicItems.IceAmulet2, TragicItems.AmuletRelease
+		});
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.SnowGolemAmulet2, 1), new Object[]{
+			TragicItems.SnowGolemAmulet, TragicItems.SnowGolemAmulet, "oreCharms"
+		}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.SnowGolemAmulet2, 1), new Object[] {
+			TragicItems.SnowGolemAmulet, TragicItems.AmuletRelease
+		});
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.SnowGolemAmulet3, 1), new Object[]{
+			TragicItems.SnowGolemAmulet2, TragicItems.SnowGolemAmulet2, "oreCharms"
+		}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.SnowGolemAmulet3, 1), new Object[] {
+			TragicItems.SnowGolemAmulet3, TragicItems.AmuletRelease
+		});
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.IronGolemAmulet2, 1), new Object[]{
+			TragicItems.IronGolemAmulet, TragicItems.IronGolemAmulet, "oreCharms"
+		}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.IronGolemAmulet2, 1), new Object[] {
+			TragicItems.IronGolemAmulet, TragicItems.AmuletRelease
+		});
+		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.IronGolemAmulet3, 1), new Object[]{
+			TragicItems.IronGolemAmulet2, TragicItems.IronGolemAmulet2, "oreCharms"
+		}));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.IronGolemAmulet3, 1), new Object[] {
+			TragicItems.IronGolemAmulet2, TragicItems.AmuletRelease
 		});
 	}
 }

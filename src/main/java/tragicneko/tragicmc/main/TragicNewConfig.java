@@ -35,12 +35,12 @@ public class TragicNewConfig {
 	public static boolean allowNormalAmulets, allowCursedAmulets, allowEpicAmulets, allowAmuletLeveling, allowAmuletCrafting, shouldUnlockAmuletSlots, allowAmuletKillRecharge;
 	private static int[] amuletInts = new int[3];
 	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity;
-	private static boolean[] normalAmuletConfigs = new boolean[16];
-	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton;
-	private static boolean[] cursedAmuletConfigs = new boolean[8];
-	public static boolean amuKitsune, amuMartyr, amuPiercing, amuApis, amuSunken;
-	private static boolean[] epicAmuletConfigs = new boolean[4];
-	public static boolean amuTime;
+	private static boolean[] normalAmuletConfigs = new boolean[24];
+	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton, amuIce, amuSnowGolem, amuIronGolem;
+	private static boolean[] cursedAmuletConfigs = new boolean[12];
+	public static boolean amuKitsune, amuMartyr, amuPiercing, amuApis, amuSunken, amuEnderman;
+	private static boolean[] epicAmuletConfigs = new boolean[6];
+	public static boolean amuTime, amuWither;
 
 	public static boolean keepDimensionLoaded;
 	private static int[] dimensionIDs = new int[2];
@@ -167,6 +167,9 @@ public class TragicNewConfig {
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectCreeper", true).getBoolean(true));
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectZombie", true).getBoolean(true));
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSkeleton", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectIce", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSnowGolem", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectIronGolem", true).getBoolean(true));
 
 		for (i = 0; i + mapping < normalAmuletConfigs.length; i++)
 		{
@@ -179,6 +182,7 @@ public class TragicNewConfig {
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectHornet", true).getBoolean(true));
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectApis", true).getBoolean(true));
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSunken", true).getBoolean(true));
+		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectEnderman", true).getBoolean(true));
 
 		for (i = 0; i + mapping < cursedAmuletConfigs.length; i++)
 		{
@@ -187,6 +191,7 @@ public class TragicNewConfig {
 
 		mapping = 0;
 		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectTime", true).getBoolean(true));
+		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectWither", true).getBoolean(true));
 
 		for (i = 0; i + mapping < epicAmuletConfigs.length; i++)
 		{
@@ -791,6 +796,9 @@ public class TragicNewConfig {
 		amuCreeper = normalAmuletConfigs[mapping++];
 		amuZombie = normalAmuletConfigs[mapping++];
 		amuSkeleton = normalAmuletConfigs[mapping++];
+		amuIce = normalAmuletConfigs[mapping++];
+		amuSnowGolem = normalAmuletConfigs[mapping++];
+		amuIronGolem = normalAmuletConfigs[mapping++];
 
 		mapping = 0;
 		amuKitsune = cursedAmuletConfigs[mapping++];
@@ -798,8 +806,10 @@ public class TragicNewConfig {
 		amuPiercing = cursedAmuletConfigs[mapping++];
 		amuApis = cursedAmuletConfigs[mapping++];
 		amuSunken = cursedAmuletConfigs[mapping++];
+		amuEnderman = cursedAmuletConfigs[mapping++];
 
 		amuTime = epicAmuletConfigs[0];
+		amuWither = epicAmuletConfigs[1];
 
 		mapping = 0;
 		idDecayingHills = biomeIDs[mapping++];

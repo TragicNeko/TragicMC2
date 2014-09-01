@@ -56,6 +56,7 @@ import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
 import tragicneko.tragicmc.items.weapons.WeaponBlindingLight;
 import tragicneko.tragicmc.items.weapons.WeaponBowOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponEnigmaShield;
+import tragicneko.tragicmc.items.weapons.WeaponFrozenLightning;
 import tragicneko.tragicmc.items.weapons.WeaponGravitySpike;
 import tragicneko.tragicmc.items.weapons.WeaponGuiltyThorn;
 import tragicneko.tragicmc.items.weapons.WeaponHarmonyBell;
@@ -79,6 +80,7 @@ public class TragicItems {
 	private static final ToolMaterial toolTungsten = EnumHelper.addToolMaterial("TUNGSTEN", 3, 770, 2.5F, 2.5F, 8);
 	private static final ToolMaterial toolClaws = EnumHelper.addToolMaterial("CLAWS", 2, 350, 4.0F, 4.0F, 2);
 	private static final ToolMaterial toolThorn = EnumHelper.addToolMaterial("THORN", 1, 330, 6.0F, 6.0F, 4);
+	private static final ToolMaterial toolFrozen = EnumHelper.addToolMaterial("FROZEN", 2, 400, 6.0F, 6.0F, 3);
 	private static final ToolMaterial toolWithering = EnumHelper.addToolMaterial("WITHERING", 3, 550, 12.0F, 6.0F, 16);
 	private static final ToolMaterial toolDarkness = EnumHelper.addToolMaterial("DARKNESS", 3, 350, 8.0F, 8.0F, 26);
 	private static final ToolMaterial toolLight = EnumHelper.addToolMaterial("LIGHT", 3, 333, 8.0F, 8.0F, 14);
@@ -166,7 +168,7 @@ public class TragicItems {
 	public static Item ClaymationAmulet, ClaymationAmulet2, ClaymationAmulet3;
 	public static Item ChickenAmulet, ChickenAmulet2, ChickenAmulet3;
 	public static Item MartyrAmulet;
-	public static Item HornetAmulet;
+	public static Item PiercingAmulet;
 	public static Item BlacksmithAmulet, BlacksmithAmulet2, BlacksmithAmulet3;
 	public static Item ApisAmulet;
 	public static Item CreeperAmulet, CreeperAmulet2, CreeperAmulet3;
@@ -174,6 +176,11 @@ public class TragicItems {
 	public static Item SkeletonAmulet, SkeletonAmulet2, SkeletonAmulet3;
 	public static Item SunkenAmulet;
 	public static Item TimeAmulet;
+	public static Item IceAmulet, IceAmulet2, IceAmulet3;
+	public static Item SnowGolemAmulet, SnowGolemAmulet2, SnowGolemAmulet3;
+	public static Item IronGolemAmulet, IronGolemAmulet2, IronGolemAmulet3;
+	public static Item EndermanAmulet;
+	public static Item WitherAmulet;
 
 	//Normal items
 	public static Item Ectoplasm;
@@ -184,7 +191,6 @@ public class TragicItems {
 	public static Item CrushedIce;
 	public static Item DarkParticles;
 	public static Item Spore;
-	public static Item Honey;
 	public static Item Sap;
 	public static Item Rock;
 	public static Item Thorns;
@@ -200,6 +206,8 @@ public class TragicItems {
 	public static Item WispParticles;
 	public static Item StinHorn;
 	public static Item IcyFur;
+	
+	public static Item FrozenLightning;
 
 	//Projectile items
 	public static Item Pumpkinbomb;
@@ -388,6 +396,9 @@ public class TragicItems {
 
 		WitheringAxe = (new WeaponWitheringAxe(toolWithering, Doomsday.SkullCrusher).setUnlocalizedName("tragicmc.witheringAxe").setTextureName("tragicmc:WitheringAxe" + textureRes));
 		GameRegistry.registerItem(WitheringAxe, "witheringAxe");
+		
+		FrozenLightning = (new WeaponFrozenLightning(toolFrozen, Doomsday.Freeze).setUnlocalizedName("tragicmc.frozenLightning").setTextureName("tragicmc:FrozenLightning" + textureRes));
+		GameRegistry.registerItem(FrozenLightning, "frozenLightning");
 
 		//Tool Registrations
 		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" + textureRes));
@@ -441,9 +452,6 @@ public class TragicItems {
 
 		Spore = (new ItemGeneric().setUnlocalizedName("tragicmc.spore").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Spore" + textureRes));
 		GameRegistry.registerItem(Spore, "spore");
-
-		Honey = (new ItemGeneric().setUnlocalizedName("tragicmc.honey").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Honey" + textureRes));
-		GameRegistry.registerItem(Honey, "honey");
 
 		Thorns = (new ItemGeneric().setUnlocalizedName("tragicmc.thorns").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Thorns" + textureRes));
 		GameRegistry.registerItem(Thorns, "thorns");
@@ -657,8 +665,8 @@ public class TragicItems {
 
 		color1 = new Color(0x00, 0x00, 0x00);
 		color2 = new Color(0xFF, 0xFA, 0x5E);
-		HornetAmulet = (new ItemAmulet(id++, 4, "Hornet", color1.getRGB(), color2.getRGB()));
-		GameRegistry.registerItem(HornetAmulet, "hornetAmulet");
+		PiercingAmulet = (new ItemAmulet(id++, 4, "Piercing", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
 
 		color1 = new Color(0x94, 0x94, 0x94);
 		color2 = new Color(0x69, 0x69, 0x69);
@@ -711,6 +719,43 @@ public class TragicItems {
 		color2 = new Color(0x00, 0x00, 0x00);
 		TimeAmulet = (new ItemAmulet(id++, 4, "Time", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
+		
+		color1 = new Color(0xA0, 0xA0, 0xA0);
+		color2 = new Color(0xC1, 0xC1, 0xC1);
+		IceAmulet = (new ItemAmulet(id, 1, "Ice", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(IceAmulet, "iceAmulet");
+		IceAmulet2 = (new ItemAmulet(id, 2, "Ice", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(IceAmulet2, "iceAmulet2");
+		IceAmulet3 = (new ItemAmulet(id++, 3, "Ice", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(IceAmulet3, "iceAmulet3");
+		
+		color1 = new Color(0xA0, 0xA0, 0xA0);
+		color2 = new Color(0xC1, 0xC1, 0xC1);
+		SnowGolemAmulet = (new ItemAmulet(id, 1, "SnowGolem", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
+		SnowGolemAmulet2 = (new ItemAmulet(id, 2, "SnowGolem", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(SnowGolemAmulet2, "snowGolemAmulet2");
+		SnowGolemAmulet3 = (new ItemAmulet(id++, 3, "SnowGolem", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(SnowGolemAmulet3, "snowGolemAmulet3");
+		
+		color1 = new Color(0xA0, 0xA0, 0xA0);
+		color2 = new Color(0xC1, 0xC1, 0xC1);
+		IronGolemAmulet = (new ItemAmulet(id, 1, "IronGolem", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
+		IronGolemAmulet2 = (new ItemAmulet(id, 2, "IronGolem", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(IronGolemAmulet2, "ironGolemAmulet2");
+		IronGolemAmulet3 = (new ItemAmulet(id++, 3, "IronGolem", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(IronGolemAmulet3, "ironGolemAmulet3");
+		
+		color1 = new Color(0x00, 0x00, 0x00);
+		color2 = new Color(0x00, 0x00, 0x00);
+		EndermanAmulet = (new ItemAmulet(id++, 4, "Enderman", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
+		
+		color1 = new Color(0x00, 0x00, 0x00);
+		color2 = new Color(0x00, 0x00, 0x00);
+		WitherAmulet = (new ItemAmulet(id++, 4, "Wither", color1.getRGB(), color2.getRGB()));
+		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 
 		//Armor and Tool materials
 		toolScythe.customCraftingMaterial = Items.bone;
