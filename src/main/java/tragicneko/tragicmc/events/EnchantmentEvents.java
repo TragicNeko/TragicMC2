@@ -321,7 +321,6 @@ public class EnchantmentEvents {
 					}
 				}
 
-
 				if (TragicNewConfig.allowLeech)
 				{
 					int leech = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Leech.effectId, player.getCurrentEquippedItem());
@@ -370,6 +369,19 @@ public class EnchantmentEvents {
 							{
 								player.attackEntityFrom(DamageSource.generic, consume);
 							}
+						}
+					}
+				}
+
+				if (TragicNewConfig.allowRuneBreak)
+				{
+					int runeBreak = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.RuneBreak.effectId, player.getCurrentEquippedItem());
+
+					if (runeBreak > 0 && event.source.isMagicDamage())
+					{
+						for (int i = 0; i < runeBreak; i++)
+						{
+							event.ammount *= 1.125F;
 						}
 					}
 				}
