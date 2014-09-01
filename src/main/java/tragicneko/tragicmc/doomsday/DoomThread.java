@@ -27,7 +27,6 @@ public class DoomThread extends Thread {
 		this.crucMoment = crucial;
 		this.griefCheck = grief;
 		this.commandActivated = command;
-		this.setPriority(MAX_PRIORITY);
 	}
 
 	@Override
