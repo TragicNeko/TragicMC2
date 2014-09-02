@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.input.Keyboard;
 
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
@@ -118,6 +119,7 @@ public class ClientProxy extends CommonProxy {
 	{
 		//Gui event registration
 		if (TragicNewConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(Minecraft.getMinecraft()));
+		if (TragicNewConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(Minecraft.getMinecraft()));
 
 		//Keybinding registrations
 		useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
