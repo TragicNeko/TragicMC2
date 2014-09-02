@@ -76,8 +76,6 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 				
 				if (amt > 10) break;
 			}
-			
-			TragicMC.logger.info("Amount of luxury drops should've been " + amt);
 		}
 
 		if (!this.worldObj.isRemote)
@@ -103,22 +101,18 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 			{
 				if (rand.nextInt(100) <= y + (x * 4))
 				{
-					TragicMC.logger.info("Entity should've dropped one common item.");
 					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), rand.nextFloat());
 					drops++;
 				}
 
 				if (this.recentlyHit > 0 && rand.nextInt(50) <= z + x)
 				{
-					TragicMC.logger.info("Entity should've dropped one rare item.");
 					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), rand.nextFloat());
 					drops++;
 				}
 
 				if (drops > x * 2) break;
 			}
-
-			TragicMC.logger.info("Total drops should've been " + drops);
 		}
 
 		super.onDeath(par1);

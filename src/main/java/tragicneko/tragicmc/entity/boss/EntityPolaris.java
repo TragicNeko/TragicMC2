@@ -79,7 +79,7 @@ public class EntityPolaris extends TragicBoss {
 	{
 		super.onDeath(par1DamageSource);
 
-		if (!this.worldObj.isRemote) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 5), rand.nextFloat() - rand.nextFloat());
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 5), 0.4F);
 	}
 
 	public void onLivingUpdate()

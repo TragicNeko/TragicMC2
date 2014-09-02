@@ -5,6 +5,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicItems;
+import tragicneko.tragicmc.main.TragicNewConfig;
 
 public abstract class TragicMiniBoss extends TragicMob
 {
@@ -19,6 +20,8 @@ public abstract class TragicMiniBoss extends TragicMob
 	public void onDeath(DamageSource par1)
 	{
 		super.onDeath(par1);
+		
+		if (!TragicNewConfig.allowMobStatueDrops) return;
 
 		int id = 0;
 
@@ -55,7 +58,7 @@ public abstract class TragicMiniBoss extends TragicMob
 			id = 13;
 		}
 
-		if (!this.worldObj.isRemote && id != 0) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), (0.25F * rand.nextFloat()) - (rand.nextFloat() * 0.25F));
+		if (!this.worldObj.isRemote && id != 0 && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 	}
 
 	@Override
