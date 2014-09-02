@@ -451,6 +451,14 @@ public class TragicRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Ectoplasm, 1), new Object[] {
 			TragicItems.WispParticles, TragicItems.LifeWater
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.ender_chest, 1), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', Blocks.obsidian,
+			'y', TragicItems.PureDarkness
+		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LifeWater, 3), new Object[] {
 			" x ",
@@ -663,6 +671,14 @@ public class TragicRecipes {
 			"xyx",
 			'x', TragicItems.Tungsten,
 			'y', TragicItems.Sushi,
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ClaymationAmulet, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.Tungsten,
+			'y', TragicItems.LivingClay,
 			'z', TragicItems.AwakeningStone
 		});
 
@@ -810,12 +826,16 @@ public class TragicRecipes {
 			'z', TragicItems.AwakeningStone
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 1, 0), new Object[] {
-			Blocks.sand, TragicItems.LifeWater
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 0), new Object[] {
+			Blocks.sand, TragicItems.LifeWater, TragicItems.LivingClay
 		});
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 1, 1), new Object[] {
-			Blocks.dirt, TragicItems.LifeWater
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 1), new Object[] {
+			Blocks.dirt, TragicItems.LifeWater, TragicItems.LivingClay
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 2), new Object[] {
+			Blocks.netherrack, TragicItems.LifeWater, TragicItems.LivingClay
 		});
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(TragicBlocks.Pulsar, new Object[] {
@@ -898,7 +918,7 @@ public class TragicRecipes {
 			TragicItems.StarPieces, TragicItems.StarPieces, TragicItems.StarPieces, TragicItems.WispParticles
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 3), new Object[] {
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 32), new Object[] {
 			TragicItems.StarPieces, TragicItems.WispParticles
 		});
 		
@@ -1029,14 +1049,27 @@ public class TragicRecipes {
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HarmonyBell, 1), new Object[] {
-			" x ",
+			" y ",
 			"xxx",
 			"xxx",
-			'x', TragicItems.LightParticles
+			'x', TragicItems.LightParticles,
+			'y', TragicItems.KitsuneTail
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_eye, 1), new Object[] {
+			TragicItems.PureDarkness, TragicItems.ObsidianOrb
 		});
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.PaintedPlanks, 4), new Object[] {
 			TragicBlocks.PaintedWood
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BleachedPlanks, 4), new Object[] {
+			TragicBlocks.BleachedWood
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.AshenPlanks, 4), new Object[] {
+			TragicBlocks.AshenWood
 		});
 		
 		//Flower-to-Dye recipes
