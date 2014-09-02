@@ -57,7 +57,7 @@ public class RenderTimeController extends RenderBoss {
 				}
 			}
 			
-			GL11.glColor4f(f, f2, f3, 0.65F);
+			GL11.glColor4f(f, f2, f3, 0.35F);
 			GL11.glDepthMask(false);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -65,8 +65,8 @@ public class RenderTimeController extends RenderBoss {
 			this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-			GL11.glPopMatrix();
 			GL11.glDepthMask(true);
+			GL11.glPopMatrix();
 		}
 		else
 		{
@@ -89,10 +89,20 @@ public class RenderTimeController extends RenderBoss {
 		if (boss.isInvisible())
 		{
 			GL11.glDepthMask(false);
+			return 0;
 		}
 		else
 		{
 			GL11.glDepthMask(true);
+		}
+		
+		if (par2 == 0)
+		{
+			this.setRenderPassModel(this.mainModel);
+            GL11.glEnable(GL11.GL_NORMALIZE);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            return 1;
 		}
 
 		EntityTimeController ctrl = (EntityTimeController) boss;
@@ -116,7 +126,7 @@ public class RenderTimeController extends RenderBoss {
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 				GL11.glTranslatef(0.0F, 0.0F, 0.0F);
 				GL11.glScalef(1.0F, 1.0F, 1.0F);
-				return 1;
+				return 2;
 			}
 
 			if (par2 == 2)
@@ -136,7 +146,7 @@ public class RenderTimeController extends RenderBoss {
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 				GL11.glTranslatef(0.0F, 0.0F, 0.0F);
 				GL11.glScalef(1.0F, 1.0F, 1.0F);
-				return 2;
+				return 3;
 			}
 
 			if (par2 == 3)

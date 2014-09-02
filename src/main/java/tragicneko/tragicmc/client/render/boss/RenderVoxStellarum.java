@@ -9,13 +9,14 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.client.model.ModelNorVox;
+import tragicneko.tragicmc.client.model.ModelVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicPotions;
 
 public class RenderVoxStellarum extends RenderLiving {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/StarVox_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/VoxStellarum_lowRes.png");
 	private static final float scale = 2.25F;
 
 	private static float rgbR = 1.0F;
@@ -23,7 +24,7 @@ public class RenderVoxStellarum extends RenderLiving {
 	private static float rgbB = 1.0F;
 
 	public RenderVoxStellarum() {
-		super(new ModelNorVox(), 0.75F * scale);
+		super(new ModelVoxStellarum(), 0.75F * scale);
 	}
 
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
@@ -51,11 +52,27 @@ public class RenderVoxStellarum extends RenderLiving {
 				float f0 = par1EntityLivingBase.getSpinRotation();
 				GL11.glRotatef(f0, 0.0F, 1.0F, 0.0F);
 			}
+			else
+			{
+				if (par1EntityLivingBase.isHealing())
+				{
+					GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
+				}
+				else if (par1EntityLivingBase.isFiring())
+				{
+					GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+				}
+				else if (TragicNewConfig.allowStun && par1EntityLivingBase.isPotionActive(TragicPotions.Stun))
+				{
+					GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+				}
+			}
 			this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
-			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.2F);
-			GL11.glPopMatrix();
+			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glDepthMask(true);
+			GL11.glPopMatrix();
+			
 
 		}
 		else
@@ -128,17 +145,27 @@ public class RenderVoxStellarum extends RenderLiving {
 	
 	protected int shouldRenderPass(EntityVoxStellarum boss, int par2, float par3)
 	{
+		if (boss.isInvisible())
+		{
+			GL11.glDepthMask(false);
+			return 0;
+		}
+		else
+		{
+			GL11.glDepthMask(true);
+		}
+		
+		if (par2 == 0)
+		{
+			this.setRenderPassModel(this.mainModel);
+            GL11.glEnable(GL11.GL_NORMALIZE);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            return 1;
+		}
+		
 		if (boss.isHealing())
 		{
-			if (boss.isInvisible())
-			{
-				GL11.glDepthMask(false);
-			}
-			else
-			{
-				GL11.glDepthMask(true);
-			}
-
 			if (par2 == 1)
 			{
 				float f1 = (float)boss.ticksExisted + par3;
@@ -157,16 +184,16 @@ public class RenderVoxStellarum extends RenderLiving {
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 				GL11.glTranslatef(0.0F, 0.05F, 0.0F);
 				GL11.glScalef(1.1F, 1.1F, 1.1F);
-				return 1;
+				return 2;
 			}
-
-			if (par2 == 2)
+			else if (par2 == 2)
 			{
 				GL11.glMatrixMode(GL11.GL_TEXTURE);
 				GL11.glLoadIdentity();
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
 				GL11.glEnable(GL11.GL_LIGHTING);
 				GL11.glDisable(GL11.GL_BLEND);
+				return -1;
 			}
 		}
 

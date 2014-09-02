@@ -26,10 +26,20 @@ public class RenderPolaris extends RenderBoss {
 		if (boss.isInvisible())
 		{
 			GL11.glDepthMask(false);
+			return 0;
 		}
 		else
 		{
 			GL11.glDepthMask(true);
+		}
+		
+		if (par2 == 0)
+		{
+			this.setRenderPassModel(this.mainModel);
+            GL11.glEnable(GL11.GL_NORMALIZE);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            return 1;
 		}
 		
 		if (boss.worldObj.getWorldInfo().getWorldTime() >= 13500 && !boss.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
@@ -46,15 +56,14 @@ public class RenderPolaris extends RenderBoss {
 				this.setRenderPassModel(this.mainModel);
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
 				GL11.glEnable(GL11.GL_BLEND);
-				GL11.glColor4f(0.1F, 0.65F, 0.1F, 0.35F);
+				GL11.glColor4f(0.65F, 0.15F, 0.65F, 0.35F);
 				GL11.glDisable(GL11.GL_LIGHTING);
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 				GL11.glTranslatef(0.0F, -0.001F, 0.0F);
 				GL11.glScalef(1.1F, 1.1F, 1.1F);
 				return 1;
 			}
-
-			if (par2 == 2)
+			else if (par2 == 2)
 			{
 				float f1 = (float)boss.ticksExisted + 72 + par3;
 				this.bindTexture(texture);
@@ -71,7 +80,7 @@ public class RenderPolaris extends RenderBoss {
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 				GL11.glTranslatef(0.0F, 0.0F, 0.0F);
 				GL11.glScalef(1.0F, 1.0F, 1.0F);
-				return 2;
+				return -1;
 			}
 		}
 

@@ -31,12 +31,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityVoxStellarum extends TragicMiniBoss {
 
-	private boolean isFiring;
-	private int firingTicks;
-
 	public EntityVoxStellarum(World par1World) {
 		super(par1World);
-		this.setSize(1.435F, 2.675F);
+		this.setSize(1.775F, 2.725F);
 		this.stepHeight = 2.0F;
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -96,7 +93,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			if (this.getSpinTicks() > 600) this.setSpinTicks(0);
 		}
 
-		if (!this.worldObj.isRemote && TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun.id)) this.firingTicks = 0;
+		if (!this.worldObj.isRemote && TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun.id)) this.setFiringTicks(0);
 
 		UUID modUUID2 = UUID.fromString("e20a064f-7022-4c64-99A2-181d3ac9eb17");
 		double modifier = getSpinTicks() / 200.0D;
@@ -116,9 +113,9 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			this.setSprinting(false);
 		}
 
-		if (!this.worldObj.isRemote && this.firingTicks > 0)
+		if (!this.worldObj.isRemote && this.getFiringTicks() > 0)
 		{
-			this.firingTicks--;
+			this.decrementFiringTicks();
 		}
 
 		UUID modUUID = UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17");
@@ -126,36 +123,24 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 
-		if (this.firingTicks > 0)
+		if (this.isFiring() && !this.worldObj.isRemote)
 		{
-			this.isFiring = true;
 			if (!this.isSpinning()) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 		}
-		else
+
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(128) == 0 && !this.isFiring() && !this.worldObj.isRemote && !this.isSpinning() && !this.isHealing())
 		{
-			this.isFiring = false;
+			if (!(TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun))) this.setFiringTicks(120);
 		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(128) == 0 && !this.isFiring && !this.worldObj.isRemote && !this.isSpinning() && !this.isHealing())
-		{
-			if (!(TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun))) this.firingTicks = 120;
-		}
+		if (this.isSpinning() && this.getHealth() <= this.getMaxHealth() / 4 && this.rand.nextInt(128) == 0 && !this.isFiring() && !this.isHealing()) this.setFiringTicks(180);
 
-		if (this.isSpinning() && this.getHealth() <= this.getMaxHealth() / 4 && this.rand.nextInt(128) == 0 && !this.isFiring && !this.isHealing()) this.firingTicks = 360;
-
-		if (!this.worldObj.isRemote && this.firingTicks > 0 && this.firingTicks % 10 == 0 && this.getAttackTarget() != null && !this.isHealing())
+		if (!this.worldObj.isRemote && this.isFiring() && this.getFiringTicks() % 10 == 0 && this.getAttackTarget() != null && !this.isHealing())
 		{
 			this.shootProjectiles();
 		}
-
-		if (this.ticksExisted % 20 == 0 && !this.worldObj.isRemote)
-		{
-			TragicMC.logger.info("Spinning ticks: " + this.getSpinTicks());
-			TragicMC.logger.info("Healing ticks: " + this.getHealTicks());
-			TragicMC.logger.info("Firing ticks: " + this.firingTicks);
-		}
 		
-		if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring && !this.isSpinning() && rand.nextInt(128) == 0 && this.getAttackTarget() != null && !this.worldObj.isRemote && !this.isHealing())
+		if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring() && !this.isSpinning() && rand.nextInt(128) == 0 && this.getAttackTarget() != null && !this.worldObj.isRemote && !this.isHealing())
 		{
 			this.incrementHealTicks();
 		}
@@ -202,7 +187,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		if (this.worldObj.isRemote) return false;
 		if (this.isSpinning()) return true;
 		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun.id) || this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 16.0F) return false;
-		if (!this.isFiring && !this.isHealing() && rand.nextInt(128) == 0 && this.getAttackTarget() != null && this.getHealth() <= this.getMaxHealth() / 2) return true;
+		if (!this.isFiring() && !this.isHealing() && rand.nextInt(128) == 0 && this.getAttackTarget() != null && this.getHealth() <= this.getMaxHealth() / 2) return true;
 		return false;
 	}
 
@@ -238,9 +223,9 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			return false;
 		}
 
-		if (this.isFiring && par1DamageSource.getEntity() != null)
+		if (this.isFiring() && par1DamageSource.getEntity() != null)
 		{
-			this.firingTicks = 0;
+			this.setFiringTicks(0);
 
 			if (TragicNewConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 20 + rand.nextInt(40)));
 		}
@@ -295,6 +280,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		this.dataWatcher.addObject(16, Integer.valueOf((int) 0));
 		this.dataWatcher.addObject(17, Integer.valueOf((int) 0));
 		this.dataWatcher.addObject(18, Integer.valueOf((int) 0));
+		this.dataWatcher.addObject(19, Integer.valueOf((int) 0));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -352,6 +338,27 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 	{
 		return this.getSpinTicks() > 0;
 	}
+	
+	public int getFiringTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+	
+	private void setFiringTicks(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+	
+	public boolean isFiring()
+	{
+		return this.getFiringTicks() > 0;
+	}
+	
+	public void decrementFiringTicks()
+	{
+		int pow = this.getFiringTicks();
+		this.dataWatcher.updateObject(19, ++pow);
+	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
@@ -359,6 +366,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		if (tag.hasKey("texture")) this.setTextureID(tag.getInteger("texture"));
 		if (tag.hasKey("spinTicks")) this.setSpinTicks(tag.getInteger("spinTicks"));
 		if (tag.hasKey("healingTicks")) this.setHealTicks(tag.getInteger("healingTicks"));
+		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
 	}
 
 	@Override
@@ -368,6 +376,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		tag.setInteger("texture", this.dataWatcher.getWatchableObjectInt(16));
 		tag.setInteger("spinTicks", this.dataWatcher.getWatchableObjectInt(17));
 		tag.setInteger("healingTicks", this.dataWatcher.getWatchableObjectInt(18));
+		tag.setInteger("firingTicks", this.dataWatcher.getWatchableObjectInt(19));
 	}
 
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)

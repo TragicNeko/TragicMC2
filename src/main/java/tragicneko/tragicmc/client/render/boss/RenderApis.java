@@ -25,20 +25,31 @@ public class RenderApis extends RenderBoss
 	public RenderApis() {
 		super(new ModelApis(), 0.556F);
 	}
-	
+
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
+
+		if (boss.isInvisible())
+		{
+			GL11.glDepthMask(false);
+			return 0;
+		}
+		else
+		{
+			GL11.glDepthMask(true);
+		}
+		
+		if (par2 == 0)
+		{
+			this.setRenderPassModel(this.mainModel);
+            GL11.glEnable(GL11.GL_NORMALIZE);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            return 1;
+		}
+
 		if (boss.getHealth() <= boss.getMaxHealth() / 2)
 		{
-			if (boss.isInvisible())
-			{
-				GL11.glDepthMask(false);
-			}
-			else
-			{
-				GL11.glDepthMask(true);
-			}
-
 			if (par2 == 1)
 			{
 				float f1 = (float)boss.ticksExisted + par3;
@@ -67,6 +78,8 @@ public class RenderApis extends RenderBoss
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
 				GL11.glEnable(GL11.GL_LIGHTING);
 				GL11.glDisable(GL11.GL_BLEND);
+
+				return -1;
 			}
 		}
 
