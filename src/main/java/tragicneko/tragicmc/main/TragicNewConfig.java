@@ -1,14 +1,13 @@
 package tragicneko.tragicmc.main;
 
 import static tragicneko.tragicmc.TragicMC.config;
-import tragicneko.tragicmc.TragicMC;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import tragicneko.tragicmc.TragicMC;
 
 public class TragicNewConfig {
 
@@ -31,8 +30,9 @@ public class TragicNewConfig {
 	private static boolean[] blanketConfigs = new boolean[9];
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
 
-	private static boolean[] blanketAmulet = new boolean[7];
+	private static boolean[] blanketAmulet = new boolean[8];
 	public static boolean allowNormalAmulets, allowCursedAmulets, allowEpicAmulets, allowAmuletLeveling, allowAmuletCrafting, shouldUnlockAmuletSlots, allowAmuletKillRecharge;
+	public static boolean showAmuletStatus;
 	private static int[] amuletInts = new int[3];
 	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity;
 	private static boolean[] normalAmuletConfigs = new boolean[24];
@@ -111,9 +111,9 @@ public class TragicNewConfig {
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
 	
 	private static boolean[] miscConfigs = new boolean[8];
-	public static boolean allowRandomWeaponLore, allowChallengeScrolls;
+	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui;
 	private static int[] miscInts = new int[8];
-	public static int challengeScrollDropChance;
+	public static int challengeScrollDropChance, mobStatueDropChance;
 
 	/**
 	 * Initializes the start of the configuration file, should only be called once when the mod is loading
@@ -153,6 +153,7 @@ public class TragicNewConfig {
 		blanketAmulet[mapping++] = (config.get(catAmulet, "allowCraftingWithRawMaterials", true).getBoolean(true));
 		blanketAmulet[mapping++] = (config.get(catAmulet, "requireUnlockAmuletSlots", true).getBoolean(true));
 		blanketAmulet[mapping++] = (config.get(catAmulet, "allowToughKillRecharge", true).getBoolean(true));
+		blanketAmulet[mapping++] = (config.get(catAmulet, "showAmuletStatusGui", true).getBoolean(true));
 
 		amuletInts[0] = MathHelper.clamp_int((config.get(catAmulet, "maxAmuletSlots", 3).getInt(3)), 1, 3);
 		amuletInts[1] = MathHelper.clamp_int(config.get(catAmulet, "overallAmuletRarity", 5).getInt(5), 3, 250);
@@ -534,6 +535,8 @@ public class TragicNewConfig {
 		mapping = 0;
 		miscConfigs[mapping++] = (config.get(catMisc, "allowRandomWeaponLore", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowChallengeScrolls", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowMobStatues", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowAnimatedGui", true).getBoolean(true));
 		
 		for (i = 0; i + mapping < miscConfigs.length; i++)
 		{
@@ -542,6 +545,7 @@ public class TragicNewConfig {
 		
 		mapping = 0;
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "challengeScrollDropChance", 5).getInt(5), 1, 100);
+		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "mobStatueDropChance", 100).getInt(100), 1, 100);
 		
 		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
 		
@@ -782,6 +786,7 @@ public class TragicNewConfig {
 		allowAmuletCrafting = blanketAmulet[mapping++];
 		shouldUnlockAmuletSlots = blanketAmulet[mapping++];
 		allowAmuletKillRecharge = blanketAmulet[mapping++];
+		showAmuletStatus = blanketAmulet[mapping++];
 
 		maxAmuletSlots = amuletInts[0];
 		overallAmuletRarity = amuletInts[1];
@@ -1076,9 +1081,12 @@ public class TragicNewConfig {
 		mapping = 0;
 		allowRandomWeaponLore = miscConfigs[mapping++];
 		allowChallengeScrolls = miscConfigs[mapping++];
+		allowMobStatueDrops = miscConfigs[mapping++];
+		allowAnimatedGui = miscConfigs[mapping++];
 		
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
+		mobStatueDropChance = miscInts[mapping++];
 	}
 	
 	public static void disablePotions()
