@@ -165,7 +165,7 @@ public class ItemChallenge extends Item {
 		else if (stack.getItemDamage() == 0)
 		{
 			par2List.add(EnumChatFormatting.WHITE + "An inactive Challenge Scroll.");
-			par2List.add(EnumChatFormatting.WHITE + "Right-Click to start a Challenge!");
+			par2List.add(EnumChatFormatting.RESET + "Right-Click to start a Challenge!");
 		}
 		else if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("challengeID"))
 		{

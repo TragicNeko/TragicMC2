@@ -157,6 +157,8 @@ public class TragicItems {
 	public static Item StarPieces; //Polaris
 	public static Item PhoenixFeather; //Phoenix
 	public static Item LavaDragonScale; //Lava Dragon
+	
+	public static Item LavaDragonScroll; //making a comeback, there will be an End-like dimension created for the Lava Dragon (or whatever it becomes)
 
 	//Doom items
 	public static Item DoomConsume, CooldownDefuse, AmuletRelease;

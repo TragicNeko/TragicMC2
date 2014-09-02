@@ -30,7 +30,9 @@ public class ItemDoomUpgrade extends Item {
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.shouldDoomLimitIncrease)
+		if (par2World.isRemote) return par1ItemStack;
+		
+		if (TragicNewConfig.shouldDoomLimitIncrease)
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 
