@@ -20,6 +20,7 @@ import tragicneko.tragicmc.items.weapons.ItemShield;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
+import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -70,6 +71,8 @@ public class GuiDoom extends Gui
 			width = 0;
 		}
 		
+		if (!TragicNewConfig.allowAnimatedGui) width = 0;
+		
 		if (props.getCurrentCooldown() > 0)
 		{
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 12, 49, 3);
@@ -86,6 +89,7 @@ public class GuiDoom extends Gui
 		else
 		{
 			buffer++;
+			if (!TragicNewConfig.allowAnimatedGui) buffer = 0;
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
 
@@ -196,7 +200,7 @@ public class GuiDoom extends Gui
 				if (flag2 && doomsday != null && doomsday.doesCurrentDoomMeetRequirement(props)) flag = true;
 				
 				if (flag)
-				{
+				{					
 					if (buffer >= 10 && buffer <= 20)
 					{
 						color = new Color(0xff, 0xf3, 0x68);
