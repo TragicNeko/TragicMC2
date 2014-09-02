@@ -161,7 +161,7 @@ public class TragicMC
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsEvent());
-		if (TragicNewConfig.allowChallengeScrolls) MinecraftForge.EVENT_BUS.register(new StatueEvents());
+		MinecraftForge.EVENT_BUS.register(new StatueEvents());
 
 		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
 
