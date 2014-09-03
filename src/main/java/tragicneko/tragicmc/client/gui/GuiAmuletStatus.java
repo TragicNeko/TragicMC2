@@ -76,7 +76,7 @@ public class GuiAmuletStatus extends Gui
 				itemRender.renderItemOverlayIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, xPos + 2 + (20 * i), yPos + 4);
 				GL11.glDisable(GL11.GL_LIGHTING);
 			}
-			else if (amu.getSlotsOpen() < i + 1 && TragicNewConfig.maxAmuletSlots <= i + 1)
+			else if (amu.getSlotsOpen() < i + 1 && TragicNewConfig.maxAmuletSlots >= i + 1)
 			{
 				String s = "X";
 				Color color = new Color(0x23, 0x23, 0x23);
