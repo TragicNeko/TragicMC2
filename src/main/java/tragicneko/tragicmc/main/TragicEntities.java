@@ -97,21 +97,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityJabba.class, "TragicMC.Jabba", id++, color1.getRGB(), color2.getRGB());
 		}
 
-		if (TragicNewConfig.allowJarra)
-		{
-			EntityRegistry.registerModEntity(EntityJarra.class, "Jarra", listid++, TragicMC.instance, 80, 1, true);
-			EntityRegistry.addSpawn(EntityJarra.class, TragicNewConfig.jarraSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F
-					);
-			color1 = new Color(0x77, 0x32, 0x9B);
-			color2 = new Color(0xC4, 0x57, 0xFD);
-			TragicEntityList.addMapping(EntityJarra.class, "TragicMC.Jarra", id++, color1.getRGB(), color2.getRGB());
-		}
-
 		if (TragicNewConfig.allowJanna)
 		{
 			EntityRegistry.registerModEntity(EntityJanna.class, "Janna", listid++, TragicMC.instance, 80, 1, true);
@@ -187,26 +172,6 @@ public class TragicEntities {
 			color1 = new Color(0x77, 0x77, 0x77);
 			color2 = new Color(0xaa, 0xaa, 0xaa);
 			TragicEntityList.addMapping(EntityGragul.class, "TragicMC.Gragul", id++, color1.getRGB(), color2.getRGB());
-		}
-
-		if (TragicNewConfig.allowKragul)
-		{
-			EntityRegistry.registerModEntity(EntityKragul.class, "Kragul", listid++, TragicMC.instance, 80, 1, true);
-			EntityRegistry.addSpawn(EntityKragul.class, TragicNewConfig.kragulSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.desertHills,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsPlus,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.swampland,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore
-					);
-			color1 = new Color(0xDE, 0x3C, 0x31);
-			color2 = new Color(0x74, 0x74, 0x74);
-			TragicEntityList.addMapping(EntityKragul.class, "TragicMC.Kragul", id++, color1.getRGB(), color2.getRGB());
 		}
 
 		if (TragicNewConfig.allowMinotaur)
@@ -371,15 +336,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityTox.class, "TragicMC.Tox", id++, color1.getRGB(), color2.getRGB());
 		}
 
-		if (TragicNewConfig.allowMagmox)
-		{
-			EntityRegistry.registerModEntity(EntityMagmox.class, "Magmox", listid++, TragicMC.instance, 80, 1, true);
-			EntityRegistry.addSpawn(EntityMagmox.class, TragicNewConfig.magmoxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell);
-			color1 = new Color(0xC2, 0x00, 0x00);
-			color2 = new Color(0x55, 0x00, 0x00);
-			TragicEntityList.addMapping(EntityMagmox.class, "TragicMC.Magmox", id++, color1.getRGB(), color2.getRGB());
-		}
-
 		if (TragicNewConfig.allowPox)
 		{
 			EntityRegistry.registerModEntity(EntityPox.class, "Pox", listid++, TragicMC.instance, 80, 1, true);
@@ -399,19 +355,6 @@ public class TragicEntities {
 			color1 = new Color(0xCE, 0xE3, 0xE3);
 			color2 = new Color(0xFF, 0xFF, 0xFF);
 			TragicEntityList.addMapping(EntityCryse.class, "TragicMC.Cryse", id++, color1.getRGB(), color2.getRGB());
-		}
-
-		if (TragicNewConfig.allowMegaCryse)
-		{
-			EntityRegistry.registerModEntity(EntityMegaCryse.class, "MegaCryse", listid++, TragicMC.instance, 80, 1, true);
-			EntityRegistry.addSpawn(EntityMegaCryse.class, TragicNewConfig.megaCryseSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.icePlains,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills
-					);
-			color1 = new Color(0xCE, 0xCE, 0xE3);
-			color2 = new Color(0xBD, 0xBA, 0xC8);
-			TragicEntityList.addMapping(EntityMegaCryse.class, "TragicMC.MegaCryse", id++, color1.getRGB(), color2.getRGB());
 		}
 
 		if (TragicNewConfig.allowStarCryse)
@@ -467,14 +410,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityStarVox.class, "TragicMC.StarVox", id++, color1.getRGB(), color2.getRGB());
 		}
 
-		if (TragicNewConfig.allowVoxStellarum)
-		{
-			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
-			color1 = new Color(0xAB, 0xAB, 0xAB);
-			color2 = new Color(0xDD, 0xDD, 0xDD);
-			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, color1.getRGB(), color2.getRGB());
-		}
-
 		if (TragicNewConfig.allowPirah)
 		{
 			EntityRegistry.registerModEntity(EntityPirah.class, "Pirah", listid++, TragicMC.instance, 80, 1, true);
@@ -509,30 +444,6 @@ public class TragicEntities {
 			color1 = new Color(0x33, 0x33, 0x33);
 			color2 = new Color(0x12, 0x12, 0x12);
 			TragicEntityList.addMapping(EntityStinBaby.class, "TragicMC.StinBaby", id++, color1.getRGB(), color2.getRGB());
-		}
-
-		if (TragicNewConfig.allowGreaterStin)
-		{
-			EntityRegistry.registerModEntity(EntityGreaterStin.class, "GreaterStin", listid++, TragicMC.instance, 80, 1, true);
-			color1 = new Color(0x45, 0x45, 0x45);
-			color2 = new Color(0x38, 0x38, 0x38);
-			TragicEntityList.addMapping(EntityGreaterStin.class, "TragicMC.GreaterStin", id++, color1.getRGB(), color2.getRGB());
-		} 
-
-		if (TragicNewConfig.allowStinKing)
-		{
-			EntityRegistry.registerModEntity(EntityStinKing.class, "StinKing", listid++, TragicMC.instance, 80, 1, true);
-			color1 = new Color(0x75, 0x45, 0x45);
-			color2 = new Color(0x48, 0x38, 0x38);
-			TragicEntityList.addMapping(EntityStinKing.class, "TragicMC.StinKing", id++, color1.getRGB(), color2.getRGB());
-		}
-
-		if (TragicNewConfig.allowStinQueen)
-		{
-			EntityRegistry.registerModEntity(EntityStinQueen.class, "StinQueen", listid++, TragicMC.instance, 80, 1, true);
-			color1 = new Color(0x23, 0x23, 0x23);
-			color2 = new Color(0x76, 0x76, 0x76);
-			TragicEntityList.addMapping(EntityStinQueen.class, "TragicMC.StinQueen", id++, color1.getRGB(), color2.getRGB());
 		}
 
 		if (TragicNewConfig.allowWisp)
@@ -573,6 +484,98 @@ public class TragicEntities {
 				BiomeGenBase.coldTaigaHills
 				);
 		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, color1.getRGB(), color2.getRGB());
+		
+		//Mini-Bosses
+		if (TragicNewConfig.allowJarra)
+		{
+			EntityRegistry.registerModEntity(EntityJarra.class, "Jarra", listid++, TragicMC.instance, 80, 1, true);
+			EntityRegistry.addSpawn(EntityJarra.class, TragicNewConfig.jarraSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell,
+					BiomeGenBase.desert,
+					BiomeGenBase.desertHills,
+					BiomeGenBase.mesa,
+					BiomeGenBase.mesaPlateau,
+					BiomeGenBase.mesaPlateau_F
+					);
+			color1 = new Color(0x77, 0x32, 0x9B);
+			color2 = new Color(0xC4, 0x57, 0xFD);
+			TragicEntityList.addMapping(EntityJarra.class, "TragicMC.Jarra", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicNewConfig.allowKragul)
+		{
+			EntityRegistry.registerModEntity(EntityKragul.class, "Kragul", listid++, TragicMC.instance, 80, 1, true);
+			EntityRegistry.addSpawn(EntityKragul.class, TragicNewConfig.kragulSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.desertHills,
+					BiomeGenBase.mesaPlateau,
+					BiomeGenBase.mesaPlateau_F,
+					BiomeGenBase.extremeHills,
+					BiomeGenBase.extremeHillsPlus,
+					BiomeGenBase.megaTaiga,
+					BiomeGenBase.megaTaigaHills,
+					BiomeGenBase.roofedForest,
+					BiomeGenBase.swampland,
+					BiomeGenBase.mushroomIsland,
+					BiomeGenBase.mushroomIslandShore
+					);
+			color1 = new Color(0xDE, 0x3C, 0x31);
+			color2 = new Color(0x74, 0x74, 0x74);
+			TragicEntityList.addMapping(EntityKragul.class, "TragicMC.Kragul", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicNewConfig.allowMagmox)
+		{
+			EntityRegistry.registerModEntity(EntityMagmox.class, "Magmox", listid++, TragicMC.instance, 80, 1, true);
+			EntityRegistry.addSpawn(EntityMagmox.class, TragicNewConfig.magmoxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell);
+			color1 = new Color(0xC2, 0x00, 0x00);
+			color2 = new Color(0x55, 0x00, 0x00);
+			TragicEntityList.addMapping(EntityMagmox.class, "TragicMC.Magmox", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicNewConfig.allowMegaCryse)
+		{
+			EntityRegistry.registerModEntity(EntityMegaCryse.class, "MegaCryse", listid++, TragicMC.instance, 80, 1, true);
+			EntityRegistry.addSpawn(EntityMegaCryse.class, TragicNewConfig.megaCryseSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.icePlains,
+					BiomeGenBase.iceMountains,
+					BiomeGenBase.coldTaiga,
+					BiomeGenBase.coldTaigaHills
+					);
+			color1 = new Color(0xCE, 0xCE, 0xE3);
+			color2 = new Color(0xBD, 0xBA, 0xC8);
+			TragicEntityList.addMapping(EntityMegaCryse.class, "TragicMC.MegaCryse", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicNewConfig.allowGreaterStin)
+		{
+			EntityRegistry.registerModEntity(EntityGreaterStin.class, "GreaterStin", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0x45, 0x45, 0x45);
+			color2 = new Color(0x38, 0x38, 0x38);
+			TragicEntityList.addMapping(EntityGreaterStin.class, "TragicMC.GreaterStin", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		} 
+
+		if (TragicNewConfig.allowStinKing)
+		{
+			EntityRegistry.registerModEntity(EntityStinKing.class, "StinKing", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0x75, 0x45, 0x45);
+			color2 = new Color(0x48, 0x38, 0x38);
+			TragicEntityList.addMapping(EntityStinKing.class, "TragicMC.StinKing", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+
+		if (TragicNewConfig.allowStinQueen)
+		{
+			EntityRegistry.registerModEntity(EntityStinQueen.class, "StinQueen", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0x23, 0x23, 0x23);
+			color2 = new Color(0x76, 0x76, 0x76);
+			TragicEntityList.addMapping(EntityStinQueen.class, "TragicMC.StinQueen", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicNewConfig.allowVoxStellarum)
+		{
+			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0xAB, 0xAB, 0xAB);
+			color2 = new Color(0xDD, 0xDD, 0xDD);
+			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, color1.getRGB(), color2.getRGB(), EnumEggType.MINIBOSS);
+		}
+		
+		//Bosses
 
 		//Wither
 		color1 = new Color(0x1C, 0x1C, 0x1C);

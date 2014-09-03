@@ -36,6 +36,9 @@ public class ItemMobEgg extends Item
 	
 	private IIcon petMobIcon;
 	private IIcon petMobIconOverlay;
+	
+	private IIcon miniBossIcon;
+	private IIcon miniBossIconOverlay;
 
 	public ItemMobEgg()
 	{
@@ -224,6 +227,11 @@ public class ItemMobEgg extends Item
 			return par2 > 0 ? this.petMobIcon : this.petMobIconOverlay;
 		}
 		
+		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.MINIBOSS)
+		{
+			return par2 > 0 ? this.miniBossIcon : this.miniBossIconOverlay;
+		}
+		
 		return par2 > 0 ? this.normalMobIconOverlay : this.normalMobIcon;
 	}
 
@@ -253,5 +261,7 @@ public class ItemMobEgg extends Item
 		this.normalMobIconOverlay = par1IconRegister.registerIcon(this.getIconString() + "2_overlay");
 		this.petMobIcon = par1IconRegister.registerIcon(this.getIconString() + "3");
 		this.petMobIconOverlay = par1IconRegister.registerIcon(this.getIconString() + "3_overlay");
+		this.miniBossIcon = par1IconRegister.registerIcon(this.getIconString() + "4");
+		this.miniBossIconOverlay = par1IconRegister.registerIcon(this.getIconString() + "4_overlay");
 	}
 }
