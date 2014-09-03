@@ -1,15 +1,20 @@
 package tragicneko.tragicmc.items.weapons;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponWitheringAxe extends TragicWeapon {
@@ -30,6 +35,25 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		this.epicLevels = new int[] {5, 3, 1};
 		this.setHarvestLevel("axe", 3);
 	}
+	
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
+	{
+		PropertyDoom doom = PropertyDoom.get(player);
+		
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && cooldown == 0 && doom != null && doom.getCurrentDoom() >= 5
+				&& TragicNewConfig.allowNonDoomsdayAbilities)
+		{
+			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.wither.id, 60, itemRand.nextInt(4)));
+			
+			if (player.capabilities.isCreativeMode)
+			{
+				doom.increaseDoom(-5);
+			}
+			
+			cooldown = 100;
+		}
+		return super.onLeftClickEntity(stack, player, entity);
+	} 
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
