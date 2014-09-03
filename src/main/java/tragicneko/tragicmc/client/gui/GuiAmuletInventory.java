@@ -1,22 +1,17 @@
 package tragicneko.tragicmc.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
+import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,6 +25,8 @@ public class GuiAmuletInventory extends GuiContainer
 	private float ySize_lo;
 
 	private static final ResourceLocation iconLocation = new ResourceLocation("tragicmc:textures/gui/amulet_tentacles.png");
+	private static final ResourceLocation iconLocation2 = new ResourceLocation("tragicmc:textures/gui/amulet_pinkstars.png");
+	private static final ResourceLocation iconLocation3 = new ResourceLocation("tragicmc:textures/gui/amulet_tragicneko.png");
 	private final InventoryAmulet inventory;
 
 	private final PropertyAmulets amulets;
@@ -63,7 +60,7 @@ public class GuiAmuletInventory extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 
 		String s = inventory.hasCustomInventoryName() ? inventory.getInventoryName() : I18n.format(inventory.getInventoryName());
-		
+
 		//fontRendererObj.drawString(s, xSize - fontRendererObj.getStringWidth(s) - 40, 46, 4210752);
 	}
 
@@ -71,9 +68,22 @@ public class GuiAmuletInventory extends GuiContainer
 	 * Draw the background layer for the GuiContainer (everything behind the items)
 	 */
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
-		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.getTextureManager().bindTexture(iconLocation);
+		mc.getTextureManager().bindTexture(getTextureFromConfig());
 		drawTexturedModalRect(guiLeft + 16, guiTop - 2, 0, 0, xSize, ySize + 24);
+	}
+
+	public static ResourceLocation getTextureFromConfig()
+	{
+		switch(TragicNewConfig.amuletGuiTexture)
+		{
+		case 0:
+		default:
+			return iconLocation;
+		case 1:
+			return iconLocation2;
+		case 2:
+			return iconLocation3;
+		}
 	}
 
 }

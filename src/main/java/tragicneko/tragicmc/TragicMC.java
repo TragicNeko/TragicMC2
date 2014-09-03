@@ -298,6 +298,11 @@ public class TragicMC
 		logger.error(s, e);
 	}
 	
+	public static void logError(String s, Throwable t)
+	{
+		logger.error(s, t);
+	}
+	
 	public static void logInfo(String s)
 	{
 		logger.info(s);

@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.gui;
 import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,6 +34,8 @@ public class GuiDoom extends Gui
 	private Minecraft mc;
 	private int buffer;
 	private int width;
+	
+	private FontRenderer fontRenderer;
 
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/doom_bar.png");
 
@@ -59,7 +62,8 @@ public class GuiDoom extends Gui
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		float trans = TragicNewConfig.guiTransparency / 100.0F;
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
 		drawTexturedModalRect(xPos, yPos, 0, 0, 56, 9);
@@ -80,6 +84,7 @@ public class GuiDoom extends Gui
 			String s = "Cooling Down... " + props.getCurrentCooldown() ;
 			yPos += 10;
 			Color color = new Color(0x27, 0xb8, 0xdc);
+			
 			this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
 			this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
 			this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
@@ -91,6 +96,7 @@ public class GuiDoom extends Gui
 			buffer++;
 			if (!TragicNewConfig.allowAnimatedGui) buffer = 0;
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
+			
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
 
 			String s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();

@@ -28,6 +28,8 @@ public class GuiAmuletStatus extends Gui
 	private static final RenderItem itemRender = new RenderItem();
 
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/amulet_status_minimal.png");
+	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/amulet_status_pink.png");
+	private static final ResourceLocation texturepath3 = new ResourceLocation("tragicmc:textures/gui/amulet_status_tentacle.png");
 
 	public GuiAmuletStatus(Minecraft mc) {
 		super();
@@ -46,7 +48,7 @@ public class GuiAmuletStatus extends Gui
 
 		int xPos = 2;
 		int yPos = 22;
-		this.mc.getTextureManager().bindTexture(texturepath);
+		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 		int length = 0;
 		if (amu.getSlotsOpen() == 1) length = 20;
 		if (amu.getSlotsOpen() == 2) length = 40;
@@ -56,19 +58,11 @@ public class GuiAmuletStatus extends Gui
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		float trans = TragicNewConfig.guiTransparency / 100.0F;
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
 		drawTexturedModalRect(xPos, yPos, 0, 0, length, 20);
-
-		width++;
-
-		if (width > 30)
-		{
-			width = 0;
-		}
-
-		if (!TragicNewConfig.allowAnimatedGui) width = 0;
 
 		ItemStack stack;
 
@@ -77,27 +71,35 @@ public class GuiAmuletStatus extends Gui
 			if (amu.inventory.getStackInSlot(i) != null)
 			{
 				stack = amu.inventory.getStackInSlot(i);
-				
+
 				itemRender.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, xPos + 3 + (20 * i), yPos + 2);
 				itemRender.renderItemOverlayIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, xPos + 2 + (20 * i), yPos + 4);
 				GL11.glDisable(GL11.GL_LIGHTING);
-				String s = "" + (i + 1);
-				Color color = new Color(0xAA, 0x57, 0x57);
-				//this.mc.fontRenderer.drawString(s.trim(), xPos + 14 + (20 * i), yPos + 2, color.getRGB());
-				
 			}
-		}
-
-
-		buffer++;
-
-		if (buffer > 20)
-		{
-			buffer = 0;
+			else if (amu.getSlotsOpen() < i + 1 && TragicNewConfig.maxAmuletSlots <= i + 1)
+			{
+				String s = "X";
+				Color color = new Color(0x23, 0x23, 0x23);
+				this.mc.fontRenderer.drawString(s.trim(), xPos + 8 + (20 * i), yPos + 6, color.getRGB());
+			}
 		}
 
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);
+	}
+
+	public static ResourceLocation getTextureFromConfig()
+	{
+		switch(TragicNewConfig.amuletGuiTexture)
+		{
+		case 0:
+		default:
+			return texturepath3;
+		case 1:
+			return texturepath2;
+		case 2:
+			return texturepath;
+		}
 	}
 }

@@ -117,9 +117,11 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenders()
 	{
+		Minecraft mc = Minecraft.getMinecraft();
+
 		//Gui event registration
-		if (TragicNewConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(Minecraft.getMinecraft()));
-		if (TragicNewConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(Minecraft.getMinecraft()));
+		if (TragicNewConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(mc));
+		if (TragicNewConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(mc));
 
 		//Keybinding registrations
 		useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
@@ -127,7 +129,7 @@ public class ClientProxy extends CommonProxy {
 
 		openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_P, TragicMC.MODNAME);
 		ClientRegistry.registerKeyBinding(openAmuletGui);
-		
+
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 
 		//Projectile and non-mob entity renders
@@ -153,7 +155,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeBomb.class, new RenderProjectile(Items.clock));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
-		
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityStarShard.class, new RenderProjectile(TragicItems.StarPieces));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderProjectile(TragicItems.PureDarkness));
 
