@@ -13,11 +13,13 @@ public class WeaponSwordOfJustice extends ItemSword {
 
 	public WeaponSwordOfJustice(ToolMaterial p_i45356_1_) {
 		super(p_i45356_1_);
+		this.setMaxDamage(1);
 	}
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
     {
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote) entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entity2), Float.MAX_VALUE);
+		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote && !((EntityPlayer) entity2).capabilities.isCreativeMode) stack.stackSize--;
 		return super.hitEntity(stack, entity, entity2);
     }
 	
