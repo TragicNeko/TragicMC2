@@ -288,7 +288,7 @@ public class EntityJabba extends TragicMob {
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-				if (player.getCurrentEquippedItem() != null)
+				if (player.getCurrentEquippedItem() != null && !player.capabilities.isCreativeMode)
 				{
 					player.dropOneItem(true);
 				}
@@ -347,7 +347,7 @@ public class EntityJabba extends TragicMob {
 			{
 				EntityPlayer player = (EntityPlayer) par1Entity;
 
-				if (player.getCurrentEquippedItem() != null)
+				if (player.getCurrentEquippedItem() != null && !player.capabilities.isCreativeMode)
 				{
 					player.dropOneItem(true);
 				}
