@@ -144,13 +144,15 @@ public class EntityDropHelper {
 			new ItemStack(Items.glowstone_dust)}, {new ItemStack(TragicItems.StarPieces)}});
 		
 		entityLootDrops.put(EntityTimeController.class, new ItemStack[][] {{new ItemStack(TragicItems.TimeEssence), new ItemStack(Items.clock), new ItemStack(Items.diamond),
-			new ItemStack(Items.emerald)}, {new ItemStack(TragicItems.TimeEssence)}});
+			new ItemStack(Items.emerald), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialSteel)}, 
+			{new ItemStack(TragicItems.TimeEssence)}});
 		
 		entityLootDrops.put(EntityYeti.class, new ItemStack[][] {{new ItemStack(TragicItems.YetiClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
 			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)}, {new ItemStack(TragicItems.YetiClaw)}});
 		/*
 		entityLootDrops.put(EntityEnyvil.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkPlate),
-			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles)},
+			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles),
+			new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialSteel)},
 			{new ItemStack(TragicItems.PureDarkness)}}); */
 	}
 
