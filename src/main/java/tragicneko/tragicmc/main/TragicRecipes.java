@@ -103,6 +103,26 @@ public class TragicRecipes {
 			'x', Blocks.obsidian,
 			'y', TragicItems.QuicksilverIngot
 		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16), new Object[] {
+			TragicItems.ReaperSkull
+		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16, 1), new Object[] {
+			TragicItems.ReaperSkull, Items.rotten_flesh
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StarCrystal, 15), new Object[] {
+			"xx",
+			"xx",
+			'x', TragicItems.StarPieces
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TimeDisruptionCube, 1), new Object[] {
+			"xx",
+			"xx",
+			'x', TragicItems.TimeEssence
+		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.AwakeningStone, 1), new Object[] {
 			TragicItems.EmeraldCharm, TragicItems.DiamondCharm, TragicItems.ObsidianOrb,  TragicItems.RubyCharm, TragicItems.SapphireCharm
