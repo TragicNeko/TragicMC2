@@ -14,6 +14,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -40,7 +41,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] iconArray;
-	
+
 	public final Doomsday doomsday = Doomsday.Snipe;
 
 	private int cooldown;
@@ -53,11 +54,11 @@ public class WeaponCelestialLongbow extends ItemBow {
 	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power};
 	private int[] uncommonLevels = new int[] {3, 1};
 
-	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.flame};
-	private int[] rareLevels = new int[] {5, 3, 1};
+	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting};
+	private int[] rareLevels = new int[] {5, 3, 3};
 
-	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.flame, TragicEnchantments.Multiply, Enchantment.infinity};
-	private int[] epicLevels = new int[] {10, 5, 3, 1, 1};
+	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting, TragicEnchantments.Multiply, Enchantment.infinity};
+	private int[] epicLevels = new int[] {10, 5, 5, 1, 1};
 
 	public WeaponCelestialLongbow()
 	{
@@ -65,7 +66,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 		this.setFull3D();
 		this.setCreativeTab(TragicTabs.Survival);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) 
 	{
@@ -93,7 +94,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 			return itemIcon;
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
@@ -111,22 +112,22 @@ public class WeaponCelestialLongbow extends ItemBow {
 	{
 		return this.iconArray[par1];
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
 	}
-	
+
 	protected EnumRarity getRarityFromInt(int i) {
 		return i == 1 ? EnumRarity.uncommon : (i == 2 ? EnumRarity.rare : (i == 3 ? EnumRarity.epic : EnumRarity.common));
 	}
-	
+
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
 	}
-	
+
 	protected int getRarityFromEnum(Lore lore)
 	{
 		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
@@ -150,7 +151,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 				par2List.add(loreFormat + lore);
 			}
 		}
-		
+
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
 			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
@@ -238,22 +239,42 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 				if (mop == null)
 				{
+					if (!par2World.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("Out of range to teleport to!"));
 					return par1ItemStack;
 				}
-				
-				if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+
+				if (mop.typeOfHit == MovingObjectType.BLOCK && par3EntityPlayer instanceof EntityPlayerMP && ((EntityPlayerMP) par3EntityPlayer).playerNetServerHandler.func_147362_b().isChannelOpen())
 				{
+					if (par3EntityPlayer.isRiding()) par3EntityPlayer.mountEntity((Entity)null);
+					
 					double d4 = mop.hitVec.xCoord;
 					double d5 = mop.hitVec.yCoord;
 					double d6 = mop.hitVec.zCoord;
-
-					par3EntityPlayer.setPositionAndUpdate(d4, d5, d6);
-
-					if (!par3EntityPlayer.capabilities.isCreativeMode)
+					
+					switch(mop.sideHit)
 					{
-						doom.increaseDoom(-5);
+					case 0:
+						d5 -= 2.2D;
+						break;
+					case 1:
+						break;
+					case 2:
+						d6 -= 1.0D;
+						break;
+					case 3:
+						d6 += 1.0D;
+						break;
+					case 4:
+						d4 -= 1.0D;
+						break;
+					case 5:
+						d4 += 1.0D;
+						break;
 					}
 
+					par3EntityPlayer.setPositionAndUpdate(d4, d5, d6);
+					par3EntityPlayer.fallDistance = 0.0F;
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
 					this.cooldown = 5;
 				}
 			}
@@ -319,7 +340,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 			par2World.spawnEntityInWorld(entityarrow);
 		}
 	}
-	
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
@@ -327,13 +348,13 @@ public class WeaponCelestialLongbow extends ItemBow {
 		{
 			this.cooldown--;
 		}
-		
+
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
 		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
 		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)getRarityFromEnum(lore)));
-		
+
 		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
 		{
 			int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");

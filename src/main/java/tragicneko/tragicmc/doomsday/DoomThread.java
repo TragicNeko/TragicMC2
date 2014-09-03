@@ -60,7 +60,7 @@ public class DoomThread extends Thread {
 					break;
 				}
 
-				if (timesRan > 21)
+				if (timesRan > 21 && !(this.doomsday instanceof DoomsdayFlightOfTheValkyries))
 				{
 					if (this.isAlive())
 					{
@@ -68,8 +68,14 @@ public class DoomThread extends Thread {
 					}
 					break;
 				}
+				
+				if (timesRan > 600)
+				{
+					if (this.isAlive()) this.interrupt();
+					break;
+				}
 
-				if (!doomsday.doesCurrentDoomMeetRequirement(playerDoom) && !this.commandActivated)
+				if (!doomsday.doesCurrentDoomMeetRequirement(playerDoom) && !this.commandActivated && !(doomsday instanceof DoomsdayFlightOfTheValkyries))
 				{
 					if (this.isAlive())
 					{
@@ -111,6 +117,11 @@ public class DoomThread extends Thread {
 				if (doomsday instanceof DoomsdayReaperLaugh)
 				{
 					time = 500L;
+				}
+				
+				if (doomsday instanceof DoomsdayFlightOfTheValkyries)
+				{
+					time = 50L;
 				}
 
 				try 

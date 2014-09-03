@@ -248,6 +248,10 @@ item.tragicmc.lightBoots.name=Light Boots
 item.tragicmc.blindingLight.name=Blinding Light
 item.tragicmc.everlastingLight.name=Everlasting Light
 
+item.tragicmc.celestialSteel.name=Celestial Steel
+item.tragicmc.celestialAegis.name=Celestial Aegis
+item.tragicmc.celestialLongbow.name=Celestial Longbow
+
 item.tragicmc.gravitySpike.name=Gravity Spike
 item.tragicmc.mourningStar.name=Mourning Star
 item.tragicmc.harmonyBell.name=Harmony Bell
@@ -269,7 +273,7 @@ item.tragicmc.cryingObsidianOrb.name=Crying Obsidian Orb
 item.tragicmc.bleedingObsidianOrb.name=Bleeding Obsidian Orb
 item.tragicmc.dyingObsidianOrb.name=Dying Obsidian Orb
 
-item.tragicmc.doomUpgrade.name=Doom Consume
+item.tragicmc.doomConsume.name=Doom Consume
 item.tragicmc.amuletRelease.name=Amulet Release
 item.tragicmc.cooldownDefuse.name=Cooldown Defuse
 
@@ -762,13 +766,13 @@ doomsday.realityAlter.name=Reality Alter
 doomsday.skullCrusher.name=Skull Crusher
 doomsday.minerSkills.name=Miner Skills
 doomsday.freeze.name=Freeze
+doomsday.flightOfTheValkyries.name=Flight of the Valkyries
 doomsday.titanfall.name=Titanfall
 doomsday.bloodlust.name=Bloodlust
 doomsday.permafrost.name=Permafrost
 doomsday.mindCrush.name=Mind Crush
 doomsday.asphyxiate.name=Asphyxiate
-doomsday.fireRain.name=Fire Rain
-doomsday.dragonRoar.name=Dragon Roar
+doomsday.fireStorm.name=Fire Storm
 doomsday.moonlightSonata.name=Moonlight Sonata
 doomsday.isolation.name=Isolation
 doomsday.judgmentDay.name=Judgment Day

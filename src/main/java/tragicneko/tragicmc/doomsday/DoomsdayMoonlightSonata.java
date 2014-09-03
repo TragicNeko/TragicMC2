@@ -15,27 +15,42 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) {
 		
 		long time = player.worldObj.getWorldTime();
-		if (time >= 1500 && time <= 1700 && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY - 1, (int) player.posZ))
+		if (time >= 15000 && time <= 17000 && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
 		{
 			doom.fillDoom();
-			if (!player.capabilities.isCreativeMode) this.applyDoomAndCooldown(doom);
+			if (!player.capabilities.isCreativeMode || crucMoment) this.applyDoomAndCooldown(doom);
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_BLUE + "You have used Moonlight Sonata!"));
+			
+			if (crucMoment)
+			{
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+			}
 		}
 		else
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Not the proper time to use that..."));
 		}
 		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_BLUE + "You have used Moonlight Sonata!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
 	}
 
 	@Override
 	public void useDoomsdayThroughCommand(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) {
-		
+		long time = player.worldObj.getWorldTime();
+		if (time >= 15000 && time <= 17000 && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY - 1, (int) player.posZ))
+		{
+			doom.fillDoom();
+			if (!player.capabilities.isCreativeMode) this.applyDoomAndCooldown(doom);
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_BLUE + "You have used Moonlight Sonata!"));
+			
+			if (crucMoment)
+			{
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+			}
+		}
+		else
+		{
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Not the proper time to use that..."));
+		}
 	}
 
 	@Override
