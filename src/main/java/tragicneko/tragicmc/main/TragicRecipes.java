@@ -104,6 +104,28 @@ public class TragicRecipes {
 			'y', TragicItems.QuicksilverIngot
 		});
 		
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1), new Object[] {
+			"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", Items.iron_ingot
+		}));
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CelestialAegis, 1), new Object[] {
+			" x ",
+			" x ",
+			"yxy",
+			'x', TragicItems.CelestialSteel,
+			'y', TragicItems.CelestialDiamond
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CelestialLongbow, 1), new Object[] {
+			"wyx",
+			"yxz",
+			"wyx",
+			'w', TragicItems.YetiClaw,
+			'x', TragicItems.CelestialSteel,
+			'y', TragicItems.CelestialDiamond,
+			'z', TragicItems.WovenSilk
+		});
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16), new Object[] {
 			TragicItems.ReaperSkull
 		});
