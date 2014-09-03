@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.events;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
@@ -9,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicBlocks;
@@ -23,7 +22,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class WeaponEvents {
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void whileHoldingSpecialWeapon(LivingAttackEvent event)
+	public void whileHoldingSpecialWeapon(LivingHurtEvent event)
 	{
 		if (!TragicNewConfig.allowNonDoomsdayAbilities) return;
 		
@@ -40,44 +39,28 @@ public class WeaponEvents {
 				{
 					if (event.isCancelable() && doom.getCurrentDoom() >= 5)
 					{
-						doom.increaseDoom(-5);
+						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-5);
 						event.setCanceled(true);
 					}
 				}
 				
 				if (weapon == TragicItems.EnigmaShield)
 				{
-					if (event.source.isUnblockable() && !event.source.isMagicDamage() && event.isCancelable() && doom.getCurrentDoom() >= 10)
+					if (event.source.isUnblockable() && !event.source.isMagicDamage() && !event.source.canHarmInCreative() && event.isCancelable() && doom.getCurrentDoom() >= 8)
 					{
-						doom.increaseDoom(-10);
+						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-8);
 						event.setCanceled(true);
 					}
 				}
 				
-				if (weapon == TragicItems.TragicSentinel)
+				if (weapon == TragicItems.TragicSentinel && doom.getCurrentDoom() > 0)
 				{
-					if (event.source.isMagicDamage() && event.isCancelable() && doom.getCurrentDoom() >= 8)
-					{
-						doom.increaseDoom(-8);
-						event.setCanceled(true);
-					}
+					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
 				}
 				
-				if (weapon == TragicItems.CelestialAegis && event.source.isExplosion() && doom.getCurrentDoom() >= 5)
+				if (weapon == TragicItems.CelestialAegis && doom.getCurrentDoom() > 0)
 				{
-					if (event.isCancelable())
-					{
-						doom.increaseDoom(-5);
-						event.setCanceled(true);
-					}
-				}
-			}
-			
-			if (player.worldObj.isRemote)
-			{
-				if (player instanceof EntityPlayerMP)
-				{
-					;
+					event.ammount *= 0.825F;
 				}
 			}
 		}
