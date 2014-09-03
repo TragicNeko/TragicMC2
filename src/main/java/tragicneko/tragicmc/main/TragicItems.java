@@ -571,9 +571,6 @@ public class TragicItems {
 		DyingObsidianOrb = (new ItemDyingObsidianOrb().setUnlocalizedName("tragicmc.dyingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DyingObsidianOrb" + textureRes));
 		GameRegistry.registerItem(DyingObsidianOrb, "dyingObsidianOrb");
 
-		DimensionalKey = (new ItemDimensionalKey().setUnlocalizedName("tragicmc.dimensionalKey").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DimensionalKey" + textureRes));
-		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
-
 		//Projectile Item Registrations (For Testing)
 		Rock = (new ItemRock().setUnlocalizedName("tragicmc.rock"));
 		GameRegistry.registerItem(Rock, "rock");
@@ -614,6 +611,9 @@ public class TragicItems {
 
 		AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:AmuletRelease" + textureRes));
 		GameRegistry.registerItem(AmuletRelease, "amuletRelease");
+		
+		DimensionalKey = (new ItemDimensionalKey().setUnlocalizedName("tragicmc.dimensionalKey").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 
 		//Amulet Registrations		
 		Color color1 = new Color(0x00, 0x00, 0x00);
