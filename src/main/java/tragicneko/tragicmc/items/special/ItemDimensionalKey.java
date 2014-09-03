@@ -98,6 +98,8 @@ public class ItemDimensionalKey extends Item {
 						manager.transferPlayerToDimension((EntityPlayerMP) par3EntityPlayer, 0, new TragicTeleporter(MinecraftServer.getServer().worldServerForDimension(0)));
 					}
 				}
+				
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.damageItem(1, par3EntityPlayer); 
 			}
 		}
 		else
