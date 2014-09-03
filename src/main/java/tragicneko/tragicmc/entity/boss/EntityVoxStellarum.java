@@ -66,7 +66,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 	{
 		return !this.isHealing() && this.isBurning();
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
@@ -105,6 +105,12 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 
 		if (this.isSpinning())
 		{
+			if (this.worldObj.isRemote)
+			{
+				this.rotationYaw = 0.0F;
+				this.rotationPitch = 0.0F;
+			}
+
 			if (modifier <= 0.5D) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod2);
 			this.setSprinting(true);
 		}
@@ -139,32 +145,32 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		{
 			this.shootProjectiles();
 		}
-		
+
 		if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring() && !this.isSpinning() && rand.nextInt(128) == 0 && this.getAttackTarget() != null && !this.worldObj.isRemote && !this.isHealing())
 		{
 			this.incrementHealTicks();
 		}
-		
+
 		if (this.isHealing() && !this.worldObj.isRemote)
 		{
 			this.incrementHealTicks();
-			
+
 			this.motionY = this.onGround ? 0.0D : -0.05D;
 			this.motionX = 0.0D;
 			this.motionZ = 0.0D;
-			
+
 			if (this.ticksExisted % 4 == 0) this.heal(1.0F);
-			
+
 			if (this.getHealth() >= this.getMaxHealth() || this.getHealTicks() >= 400)
 			{
 				this.setHealTicks(0);
 			}
 		}
-		
+
 		if (this.isSpinning() && this.getAttackTarget() != null && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = this.getAttackTarget();
-			
+
 			double d0 = this.getDistanceToEntity(entity);
 			double d1 = entity.posX - this.posX;
 			double d2 = entity.posZ - this.posZ;
@@ -177,7 +183,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 			this.moveEntity(entity.motionX, 0.4D, entity.motionZ);
 		}
 	}
-	
+
 	public boolean isHealing()
 	{
 		return this.dataWatcher.getWatchableObjectInt(18) > 0;
@@ -209,7 +215,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 				d1 = rand.nextInt(3) - rand.nextInt(3);
 				d2 = rand.nextInt(16) - rand.nextInt(16);
 			}
-			
+
 			EntityStarShard fireball = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
 			fireball.posY = this.posY + (this.height * 2 / 3);
 			this.worldObj.spawnEntityInWorld(fireball);
@@ -247,7 +253,7 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.isHealing()) return false;
-		
+
 		boolean flag = super.attackEntityAsMob(par1Entity);
 
 		if (flag)
@@ -309,18 +315,18 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		int pow = this.getSpinTicks();
 		this.dataWatcher.updateObject(17, ++pow);
 	}
-	
+
 	private void incrementHealTicks()
 	{
 		int pow = this.getHealTicks();
 		this.dataWatcher.updateObject(18, ++pow);
 	}
-	
+
 	public int getHealTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(18);
 	}
-	
+
 	private void setHealTicks(int i)
 	{
 		this.dataWatcher.updateObject(18, i);
@@ -338,22 +344,22 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 	{
 		return this.getSpinTicks() > 0;
 	}
-	
+
 	public int getFiringTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(19);
 	}
-	
+
 	private void setFiringTicks(int i)
 	{
 		this.dataWatcher.updateObject(19, i);
 	}
-	
+
 	public boolean isFiring()
 	{
 		return this.getFiringTicks() > 0;
 	}
-	
+
 	public void decrementFiringTicks()
 	{
 		int pow = this.getFiringTicks();
