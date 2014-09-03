@@ -2,8 +2,6 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -31,7 +29,10 @@ import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicTabs;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponCelestialLongbow extends ItemBow {
 
@@ -62,6 +63,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 	{
 		this.setMaxDamage(1348);
 		this.setFull3D();
+		this.setCreativeTab(TragicTabs.Survival);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -238,6 +240,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 				{
 					return par1ItemStack;
 				}
+				
 				if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
 				{
 					double d4 = mop.hitVec.xCoord;
@@ -251,7 +254,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 						doom.increaseDoom(-5);
 					}
 
-					this.cooldown = 10;
+					this.cooldown = 5;
 				}
 			}
 
@@ -274,19 +277,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
 
 		float f = (float)j / 20.0F;
-		f = (f * f + f * 2.0F) / 3.0F;
-
-		f *= 1.5F;
-
-		if ((double)f < 0.1D)
-		{
-			return;
-		}
-
-		if (f > 1.0F)
-		{
-			f = 1.0F;
-		}
+		f = 1.0F;
 
 		EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
 
