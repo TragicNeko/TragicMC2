@@ -39,7 +39,7 @@ public class StatueEvents {
 		{
 			ItemStack item = event.entityPlayer.getCurrentEquippedItem();
 
-			if (item.getItem() == TragicItems.LifeWater)
+			if (item.getItem() == TragicItems.LivingClay)
 			{
 				int id = statue.getMobID();
 				EntityLivingBase entity = null;
