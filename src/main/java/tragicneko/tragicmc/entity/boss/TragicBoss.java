@@ -140,31 +140,37 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (par1DamageSource.getEntity() != null)
 		{
-			if (par1DamageSource.getEntity() instanceof EntityPlayer)
+			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= 30)
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-				if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemSword)
+				if (player.getCurrentEquippedItem() != null && !player.capabilities.isCreativeMode)
 				{
-					ItemSword weapon = (ItemSword) player.getCurrentEquippedItem().getItem();
-					ToolMaterial material = Item.ToolMaterial.valueOf(weapon.getToolMaterialName());
-					float prevDamage = par2;
-					float damage = material.getDamageVsEntity() + 4.0F;
-
-					if (damage > 25 && !this.worldObj.isRemote && weapon != TragicItems.SwordOfJustice)
+					if (par2 >= 35)
 					{
 						par2 /= 10.0F;
 
-						if (damage > 250)
+						if (par2 >= 30)
 						{
 							par2 /= 10.0F;
 
-							if (damage > 2500)
+							if (par2 >= 25)
 							{
 								par2 /= 10.0F;
+								
+								if (par2 >= 20)
+								{
+									par2 /= 10.0F;
+								}
 							}
 						}					
 					}
+				}
+				else if (player.getCurrentEquippedItem() != null)
+				{
+					boolean flag = player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice;
+					
+					if (flag) return false;
 				}
 			}
 		}
