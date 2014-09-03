@@ -16,12 +16,12 @@ import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKitsune;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
-import tragicneko.tragicmc.client.model.ModelNorVox;
 import tragicneko.tragicmc.client.model.ModelPolaris;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTimeController;
 import tragicneko.tragicmc.client.model.ModelTox;
+import tragicneko.tragicmc.client.model.ModelVoxStellarum;
 import tragicneko.tragicmc.client.model.ModelYeti;
 import tragicneko.tragicmc.entity.EntityStatue;
 
@@ -80,7 +80,7 @@ public class RenderStatue extends Render {
 			model = new ModelGreaterStin();
 			break;
 		case 13:
-			model = new ModelNorVox(); //TODO change to Vox Stellarum's model when it's done
+			model = new ModelVoxStellarum();
 			break;
 		}
 
