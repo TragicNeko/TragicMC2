@@ -39,7 +39,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IThreadedD
 		if (crucMoment)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 100, 0));
+			if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 200, 0));
 		}
 	}
 
@@ -57,7 +57,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IThreadedD
 		if (crucMoment)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 100, 0));
+			if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 200, 0));
 		}
 	}
 
