@@ -55,6 +55,8 @@ import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
 import tragicneko.tragicmc.items.weapons.WeaponBlindingLight;
 import tragicneko.tragicmc.items.weapons.WeaponBowOfJustice;
+import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
+import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponEnigmaShield;
 import tragicneko.tragicmc.items.weapons.WeaponFrozenLightning;
 import tragicneko.tragicmc.items.weapons.WeaponGravitySpike;
@@ -401,6 +403,12 @@ public class TragicItems {
 
 		FrozenLightning = (new WeaponFrozenLightning(toolFrozen, Doomsday.Freeze).setUnlocalizedName("tragicmc.frozenLightning").setTextureName("tragicmc:FrozenLightning" + textureRes));
 		GameRegistry.registerItem(FrozenLightning, "frozenLightning");
+		
+		CelestialAegis = (new WeaponCelestialAegis(toolCelestial, Doomsday.MoonlightSonata).setUnlocalizedName("tragicmc.celestialAegis").setTextureName("tragicmc:CelestialAegis" + textureRes));
+		GameRegistry.registerItem(CelestialAegis, "celestialAegis");
+		
+		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
+		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
 
 		//Tool Registrations
 		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" + textureRes));
