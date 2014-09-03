@@ -1090,7 +1090,7 @@ public class TragicNewConfig {
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
 		mobStatueDropChance = miscInts[mapping++];
-		guiTransparency = 60; //miscInts[mapping++];
+		guiTransparency = miscInts[mapping++];
 	}
 	
 	public static void disablePotions()
