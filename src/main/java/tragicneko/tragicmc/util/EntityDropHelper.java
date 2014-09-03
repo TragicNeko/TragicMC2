@@ -89,10 +89,10 @@ public class EntityDropHelper {
 		
 		entityLootDrops.put(EntityLavaPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
 		
-		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.stone), new ItemStack(TragicItems.Ectoplasm)},
+		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.stone), new ItemStack(TragicItems.Rock)},
 				{new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
 		
-		entityLootDrops.put(EntityStarVox.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(TragicItems.Ectoplasm)},
+		entityLootDrops.put(EntityStarVox.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(Items.glowstone_dust)},
 			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby)}});
 		
 		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
@@ -126,7 +126,7 @@ public class EntityDropHelper {
 		entityLootDrops.put(EntityStinQueen.class, new ItemStack[][] {{new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
 			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)}, {new ItemStack(TragicItems.StinHorn)}});
 		
-		entityLootDrops.put(EntityVoxStellarum.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(TragicItems.Ectoplasm), new ItemStack(TragicItems.GravityOrb)},
+		entityLootDrops.put(EntityVoxStellarum.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(Items.glowstone_dust), new ItemStack(TragicItems.GravityOrb)},
 			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby), new ItemStack(Items.quartz)}});
 		
 		//Boss drops
