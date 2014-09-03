@@ -101,18 +101,20 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 			{
 				if (rand.nextInt(100) <= y + (x * 4))
 				{
-					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), rand.nextFloat());
+					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), 0.4F);
 					drops++;
 				}
 
 				if (this.recentlyHit > 0 && rand.nextInt(50) <= z + x)
 				{
-					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), rand.nextFloat());
+					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
 					drops++;
 				}
 
 				if (drops > x * 2) break;
 			}
+			
+			if (this.recentlyHit > 0) this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
 		}
 
 		super.onDeath(par1);
@@ -125,8 +127,6 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();
 		if (this.playerHitTicks > 0 && !this.worldObj.isRemote) this.playerHitTicks--;
 	}
-
-	public void despawnEntity(){}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
