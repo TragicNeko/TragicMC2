@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -159,7 +160,7 @@ public class ItemGenerator extends Item {
 			ablock = Block.getBlockById(random.nextInt(4096));
 			int attempts = 0;
 
-			while (!ablock.isOpaqueCube() || ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
+			while (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable) || ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
 			{
 				ablock = Block.getBlockById(random.nextInt(4096));
 				attempts++;
@@ -170,7 +171,7 @@ public class ItemGenerator extends Item {
 				}
 			} 
 
-			if (!ablock.isOpaqueCube() || ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
+			if (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable)|| ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
 			{
 				ablock = Blocks.tnt;
 			}
