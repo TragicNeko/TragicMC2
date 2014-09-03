@@ -20,6 +20,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDimensionalKey extends Item {
+	
+	public ItemDimensionalKey()
+	{
+		super();
+		this.setMaxDamage(30);
+	}
 
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
