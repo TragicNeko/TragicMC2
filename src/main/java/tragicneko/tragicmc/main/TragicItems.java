@@ -89,8 +89,8 @@ public class TragicItems {
 	private static final ToolMaterial toolMourning = EnumHelper.addToolMaterial("MOURNING", 3, 440, 9.0F, 9.0F, 14);
 	private static final ToolMaterial toolReaper = EnumHelper.addToolMaterial("REAPER", 3, 800, 30.0F, 12.0F, 10);
 	private static final ToolMaterial toolEnigma = EnumHelper.addToolMaterial("ENIGMA", 3, 444, 4.0F, 4.0F, 4);
-	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 860, 12.0F, 12.0F, 24);
-	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 1000, 14.0F, 14.0F, 18);
+	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24);
+	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
 	private static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 2100, 21.0F, 21.0F, 28);
 	private static final ToolMaterial toolJustice = EnumHelper.addToolMaterial("JUSTICE", 100, 1000, Float.MAX_VALUE, 999999996.0F, 100);
@@ -127,7 +127,7 @@ public class TragicItems {
 	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser, TragicSentinel;
 
 	//Can be found in random boss structures, can also be crafted from drops from the Time Controller
-	public static Item CelestialAegis, CelestialLongbow;
+	public static Item CelestialAegis, CelestialLongbow, CelestialSteel;
 	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, EnigmaShield, WitheringAxe;
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
@@ -160,7 +160,7 @@ public class TragicItems {
 	public static Item PhoenixFeather; //Phoenix
 	public static Item LavaDragonScale; //Lava Dragon
 	
-	public static Item LavaDragonScroll; //making a comeback, there will be an End-like dimension created for the Lava Dragon (or whatever it becomes)
+	public static Item DragonScroll; //making a comeback, there will be an End-like dimension created for the Lava Dragon (or whatever it becomes)
 
 	//Doom items
 	public static Item DoomConsume, CooldownDefuse, AmuletRelease;
@@ -522,6 +522,9 @@ public class TragicItems {
 
 		LivingClay = (new ItemGeneric().setUnlocalizedName("tragicmc.livingClay").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:LivingClay" + textureRes));
 		GameRegistry.registerItem(LivingClay, "livingClay");
+		
+		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:CelestialSteel" + textureRes));
+		GameRegistry.registerItem(CelestialSteel, "celestialSteel");
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:IceCream" + textureRes));
@@ -1019,6 +1022,15 @@ public class TragicItems {
 		OreDictionary.registerOre("oreCharms", SapphireCharm);
 		OreDictionary.registerOre("oreCharms", DiamondCharm);
 		OreDictionary.registerOre("oreCharms", EmeraldCharm);
+		
+		OreDictionary.registerOre("celestialSteelDrops", TimeEssence);
+		OreDictionary.registerOre("celestialSteelDrops", LivingClay);
+		OreDictionary.registerOre("celestialSteelDrops", LightParticles);
+		OreDictionary.registerOre("celestialSteelDrops", StarPieces);
+		OreDictionary.registerOre("celestialSteelDrops", PureDarkness);
+		OreDictionary.registerOre("celestialSteelDrops", YetiClaw);
+		OreDictionary.registerOre("celestialSteelDrops", KitsuneTail);
+		OreDictionary.registerOre("celestialSteelDrops", ReaperSkull);
 	}
 
 	public static void initializeChallengeItem()
