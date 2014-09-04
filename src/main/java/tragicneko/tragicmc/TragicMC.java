@@ -141,6 +141,7 @@ public class TragicMC
 		TragicTabs.load();
 		TragicBlocks.load();
 		TragicItems.load();
+		if (TragicNewConfig.allowPotions) TragicPotions.setPotionIcons(); 
 		
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
