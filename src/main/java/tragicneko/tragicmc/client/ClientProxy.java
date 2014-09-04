@@ -131,6 +131,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerKeyBinding(openAmuletGui);
 
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
+		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));

@@ -208,7 +208,7 @@ public class PotionEvents {
 
 				if (!player.capabilities.isCreativeMode)
 				{
-					if (a > 20)
+					if (a >= 40)
 					{
 						if (rand.nextInt(128) == 0 && player.motionY > 0.0)
 						{
@@ -231,12 +231,6 @@ public class PotionEvents {
 							if (rand.nextBoolean()) player.motionY *= 0.998647D;
 						}
 
-						if (player.motionY == 0.0D)
-						{
-							if (rand.nextInt(8) == 0) player.motionY += 0.25D;
-							player.moveEntity(0.0D, player.motionY, 0.0D);
-						}
-
 						if (Math.abs(player.motionX) <= 0.4115) player.motionX *= 1.075D;
 						if (Math.abs(player.motionZ) <= 0.4115) player.motionZ *= 1.075D;
 					}
@@ -244,6 +238,8 @@ public class PotionEvents {
 					{
 						player.motionY -= 0.2;
 					}
+					
+					player.fallDistance = 0.0F;
 				}
 			}
 
