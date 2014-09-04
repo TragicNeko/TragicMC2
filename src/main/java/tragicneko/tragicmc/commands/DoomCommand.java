@@ -44,59 +44,67 @@ public class DoomCommand extends CommandBase {
 	public void processCommand(ICommandSender var1, String[] var2) {
 		if (var2.length != 2)
 		{
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + this.getCommandUsage(var1)));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + this.getCommandUsage(var1)));
 			return;
 		}
 
 		EntityPlayerMP mp = getPlayer(var1, var2[0]);
-
 		PropertyDoom doom = PropertyDoom.get(mp);
 		
 		if (mp.isDead)
 		{
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You are dead and cannot use this command right now."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "You are dead and cannot use this command right now."));
 			return;
 		}
-
-		int amount = Integer.valueOf(var2[1]);
+		int amount;
+		
+		try
+		{
+			amount = Integer.parseInt(var2[1]);
+		}
+		catch (NumberFormatException e)
+		{
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "That is not a proper value, must be an integer value!"));
+			return;
+		}
 		
 		if (amount == 0)
 		{
 			doom.setCooldown(0);
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Player cooldown was removed."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.BLUE + mp.getCommandSenderName() + "'s cooldown was removed."));
 			return;
 		}
 		
 		if (doom.getCurrentDoom() == doom.getMaxDoom() && amount > 0)
 		{
 			doom.setCooldown(0);
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Player cooldown was removed."));
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Player Doom is already at max."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.BLUE + mp.getCommandSenderName() + "'s cooldown was removed."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Doom of " + mp.getCommandSenderName() + " is already at max."));
 			return;
 		}
 		
 		if (doom.getCurrentDoom() == 0 && amount < 0)
 		{
 			doom.setCooldown(0);
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Player cooldown was removed."));
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Player Doom is already at 0."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.BLUE + mp.getCommandSenderName() + "'s cooldown was removed."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Doom of " + mp.getCommandSenderName() + " is already at 0."));
 			return;
+		}		
+
+		if (amount + doom.getCurrentDoom() >= doom.getMaxDoom())
+		{
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.WHITE + "Doom of " + mp.getCommandSenderName() + " is full now."));
+		}
+		else if (amount + doom.getCurrentDoom() <= 0)
+		{
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.WHITE + "Doom of " + mp.getCommandSenderName() + " is empty now."));
 		}
 		
 		if (doom != null)
 		{
 			doom.increaseDoom(amount);
 			doom.setCooldown(0);
-		}
-
-		if (amount + doom.getCurrentDoom() >= doom.getMaxDoom())
-		{
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Player Doom is full now."));
-		}
-		
-		if (amount + doom.getCurrentDoom() <= 0)
-		{
-			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Player Doom is empty now."));
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Doom of " + mp.getCommandSenderName() + " was set to " + doom.getCurrentDoom()));
 		}
 	}
 
