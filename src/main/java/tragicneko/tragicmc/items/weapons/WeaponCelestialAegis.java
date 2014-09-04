@@ -17,7 +17,7 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponCelestialAegis extends TragicWeapon {
 	
-	private Doomsday doomsday2 = Doomsday.FlightOfTheValkyries;
+	public final Doomsday doomsday2 = Doomsday.FlightOfTheValkyries;
 	
 	private final Lore[] uniqueLores = new Lore[] {new Lore("Such a Beautiful Night Sky.", EnumRarity.epic), new Lore("Nice tune.", EnumRarity.uncommon),
 			new Lore("A lovely melody.", EnumRarity.rare), new Lore("Death in 6/4 time.", EnumRarity.rare), new Lore("What a lovely screaming voice you have!", EnumRarity.epic),

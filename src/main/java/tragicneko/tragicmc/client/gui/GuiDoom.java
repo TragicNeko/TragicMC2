@@ -19,6 +19,7 @@ import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.items.weapons.ItemShield;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
+import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -40,7 +41,7 @@ public class GuiDoom extends Gui
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/doom_neko.png");
 	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/doom_pink.png");
 	private static final ResourceLocation texturepath3 = new ResourceLocation("tragicmc:textures/gui/doom_tentacle.png");
-	private static final ResourceLocation texturepath4 = new ResourceLocation("tragicmc:textures/gui/doom_bar.png");
+	private static final ResourceLocation texturepath4 = new ResourceLocation("tragicmc:textures/gui/doom_pokemon.png");
 
 	public GuiDoom(Minecraft mc) {
 		super();
@@ -57,8 +58,8 @@ public class GuiDoom extends Gui
 			return; 
 		}
 
-		int xPos = 2;
-		int yPos = 2;
+		int xPos = 1;
+		int yPos = 1;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 
 		GL11.glEnable(GL11.GL_BLEND);
@@ -85,7 +86,7 @@ public class GuiDoom extends Gui
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 12, 49, 3);
 
 			String s = "Cooling Down... " + props.getCurrentCooldown() ;
-			yPos += 10;
+			yPos += 6;
 			Color color = new Color(0x27, 0xb8, 0xdc);
 
 			this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
@@ -103,7 +104,7 @@ public class GuiDoom extends Gui
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
 
 			String s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();
-			yPos += 10;
+			yPos += 6;
 			Color color = new Color(0x96, 0x30, 0x30);
 			boolean flag = false;
 
@@ -127,7 +128,22 @@ public class GuiDoom extends Gui
 				}
 				else if (stack.getItem() instanceof TragicWeapon)
 				{
-					if (((TragicWeapon)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
+					if (stack.getItem() instanceof WeaponCelestialAegis)
+					{
+						if (((WeaponCelestialAegis)stack.getItem()).doomsday2.doesCurrentDoomMeetRequirement(props))
+						{
+							flag = true;
+						}
+						else if (((WeaponCelestialAegis)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props));
+						{
+							long time = mc.theWorld.getWorldTime();
+							if (mc.theWorld.canBlockSeeTheSky((int) mc.thePlayer.posX, (int) mc.thePlayer.posY, (int) mc.thePlayer.posZ) && time >= 16000 && time <= 18000)
+							{
+								flag = true;
+							}
+						}
+					}
+					else if (((TragicWeapon)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
 					{
 						flag = true;
 					}

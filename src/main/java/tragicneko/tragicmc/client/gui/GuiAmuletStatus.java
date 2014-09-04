@@ -30,6 +30,7 @@ public class GuiAmuletStatus extends Gui
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/amulet_status_minimal.png");
 	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/amulet_status_pink.png");
 	private static final ResourceLocation texturepath3 = new ResourceLocation("tragicmc:textures/gui/amulet_status_tentacle.png");
+	private static final ResourceLocation texturepath4 = new ResourceLocation("tragicmc:textures/gui/amulet_status_pokemon.png");
 
 	public GuiAmuletStatus(Minecraft mc) {
 		super();
@@ -47,7 +48,7 @@ public class GuiAmuletStatus extends Gui
 		}
 
 		int xPos = 2;
-		int yPos = 22;
+		int yPos = 12;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 		int length = 0;
 		if (amu.getSlotsOpen() == 1) length = 20;
@@ -94,12 +95,13 @@ public class GuiAmuletStatus extends Gui
 		switch(TragicNewConfig.guiTexture)
 		{
 		case 0:
-		default:
 			return texturepath3;
 		case 1:
 			return texturepath2;
 		case 2:
 			return texturepath;
-		}
+		default:
+			return texturepath4;
+		} 
 	}
 }
