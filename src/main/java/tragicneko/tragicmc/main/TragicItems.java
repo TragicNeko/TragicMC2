@@ -68,6 +68,7 @@ import tragicneko.tragicmc.items.weapons.WeaponNekoLauncher;
 import tragicneko.tragicmc.items.weapons.WeaponPitchBlack;
 import tragicneko.tragicmc.items.weapons.WeaponReaperScythe;
 import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
+import tragicneko.tragicmc.items.weapons.WeaponTitan;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -91,7 +92,7 @@ public class TragicItems {
 	private static final ToolMaterial toolEnigma = EnumHelper.addToolMaterial("ENIGMA", 3, 444, 4.0F, 4.0F, 4);
 	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24);
 	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
-	private static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
+	public static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 2100, 21.0F, 21.0F, 28);
 	private static final ToolMaterial toolJustice = EnumHelper.addToolMaterial("JUSTICE", 100, 1000, Float.MAX_VALUE, 999999996.0F, 100);
 
@@ -120,9 +121,6 @@ public class TragicItems {
 	public static Item DarkIngot, DarkHelm, DarkPlate, DarkLegs, DarkBoots, PitchBlack;
 	public static Item LightIngot, LightHelm, LightPlate, LightLegs, LightBoots, BlindingLight, EverlastingLight;
 
-	//Can be found in random boss structures
-	//public static Item DraconicHelm, DraconicPlate, DraconicLegs, DraconicBoots, DragonFang;
-
 	//Uncraftable weapon/armor set, found only in the Tragic Dimension
 	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser, TragicSentinel;
 
@@ -131,7 +129,7 @@ public class TragicItems {
 	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, EnigmaShield, WitheringAxe;
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
-	public static Item Splinter, Titan, Butcher, Thardus, Paranoia;
+	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
 	//The Splinter will shared traits from the Ender sword and jack
 	//The Titan will utilize electrical attacks
 	//The Butcher will have aoe like armor piercing damage
@@ -409,6 +407,10 @@ public class TragicItems {
 		
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
+		
+		//Epic weapon registrations
+		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" + textureRes));
+		GameRegistry.registerItem(Titan, "titan");
 
 		//Tool Registrations
 		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" + textureRes));

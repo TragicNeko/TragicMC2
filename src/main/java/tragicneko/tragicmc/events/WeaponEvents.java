@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.events;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
@@ -8,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
@@ -61,6 +63,26 @@ public class WeaponEvents {
 				if (weapon == TragicItems.CelestialAegis && doom.getCurrentDoom() > 0)
 				{
 					event.ammount *= 0.825F;
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void onLightningHurt(EntityStruckByLightningEvent event)
+	{
+		if (event.entity instanceof EntityPlayerMP && TragicNewConfig.allowNonDoomsdayAbilities)
+		{
+			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
+			PropertyDoom doom = PropertyDoom.get(mp);
+			
+			if (mp.getCurrentEquippedItem() != null)
+			{
+				if (mp.getCurrentEquippedItem().getItem() == TragicItems.Titan && doom.getCurrentDoom() >= 25)
+				{
+					if (event.isCancelable()) event.setCanceled(true);
+					if (mp.getHealth() <= mp.getMaxHealth()) mp.heal(mp.getMaxHealth());
+					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-25);
 				}
 			}
 		}

@@ -2,6 +2,7 @@ package tragicneko.tragicmc.doomsday;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomThread extends Thread {
@@ -34,18 +35,9 @@ public class DoomThread extends Thread {
 	{
 		int timesRan = 0;
 
-		for (int i = 0; i < 5000; i++)
+		for (int i = 0; i < 100000; i++)
 		{
-			long tick = MinecraftServer.getSystemTimeMillis();
-
-			if (tick % 50L == 0)
-			{
-				this.shouldRun = false;
-			}
-			else
-			{
-				this.shouldRun = true;
-			}
+			this.shouldRun = TragicMC.isSafe && MinecraftServer.getSystemTimeMillis() % 50L != 0;
 
 			if (this.shouldRun)
 			{
@@ -60,7 +52,7 @@ public class DoomThread extends Thread {
 					break;
 				}
 
-				if (timesRan > 21 && !(this.doomsday instanceof DoomsdayFlightOfTheValkyries))
+				if (timesRan > 21 && !this.doomsday.updatesEveryTick())
 				{
 					if (this.isAlive())
 					{
@@ -75,7 +67,7 @@ public class DoomThread extends Thread {
 					break;
 				}
 
-				if (!doomsday.doesCurrentDoomMeetRequirement(playerDoom) && !this.commandActivated && !(doomsday instanceof DoomsdayFlightOfTheValkyries))
+				if (!doomsday.doesCurrentDoomMeetRequirement(playerDoom) && !this.commandActivated && !this.doomsday.updatesEveryTick())
 				{
 					if (this.isAlive())
 					{
@@ -119,7 +111,12 @@ public class DoomThread extends Thread {
 					time = 500L;
 				}
 				
-				if (doomsday instanceof DoomsdayFlightOfTheValkyries)
+				if (doomsday instanceof DoomsdayTitanfall)
+				{
+					time = 200L;
+				}
+				
+				if (this.doomsday.updatesEveryTick())
 				{
 					time = 50L;
 				}
