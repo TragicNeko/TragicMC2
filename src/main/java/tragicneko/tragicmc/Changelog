@@ -2389,14 +2389,127 @@ so I'll maybe scrap it until later on when I have not as much stuff to do on the
 I will be implementing the "damaged" weapon textures though as this is just 1 texture and will only be for weapons and armor
 Reduced polling of some of the events that used the on update method, to reduce overall lag
 
-1.35.1341++ <158> (August 28, 2014)
+1.35.1363 <158> (August 28, 2014)
 Move Gui into the client package, move KeyInputEvent registration into the ClientProxy
 Augment message confirmation for flight potion effect to be more clear
-Start work on Vox Stellarum
+Started work on Vox Stellarum, it'll seek out mobs to kill like the Wither
+For now it'll use the Star-Vox's texture and the Nor-Vox's model, I'm also going to add a spin attack and a recovery "shield" type thing
+Fix NPE with Armor enchantments (same one that previously affected Weapon Enchantments)
+Moved textureRes String into TragicItems class, it is still set by the config
+Working on the spinning attack that the Vox Stellarum should have, currently having a problem with making it spin faster the longer it is spinning
+Added "damaged" armor textures
+Fix derp up with Doom config option
+Fix derps with DarkArmors enchantments
+Apply overall amulet rarity to each amulet
+Made it so that Dark Armor now prevents you from having the Fear potion effect
+Added SkullArmor's damaged textures (derp)
+Make it so that if a mob is wearing one of the armors or weapons, it doesn't give it a lore until the player picks it up
+Added heal spam ability to the Vox Stellarum, it doesn't move while this occurs and has a render effect applied to it as well, it also does not attack
+This should be the last of the work I do on the Vox Stellarum's ai, but I still need a model for it
+The model will be like 4 Star-Vox's combined into one (like a 4 faced head), each "face" will have a different expression, if it is firing it'll use the "angry" face, if
+it is being hurt it'll use the "sad" face, if it is healing it'll use the "happy" face, otherwise it'll use the normal one
+Added Vox Stellarum to Starlit Biomes, with the same spawn chance as other mini-bosses
+Added Enyvil to the config and the dark altar's rarity
+Added Darkened Quartz recipes, it uses raw nether quartz and dark particles for the base darkened quartz, the others use different amounts of darkened quartz
+Fix inverted methods on EntityDropHelper, updated arrays in Helper to use nested arrays
+Fix mob/boss drops from not occurring after the initial drop
+Change statues to have a max stack size of 1
+Remember to make the statues animated in the future and make it that if you click them with an awakening stone it animates them regardless of their current texture
+
+1.35.1389 <159> (August 30, 2014)
+Enabled transformation of the Star-Vox into the Vox Stellarum, it should maintain it's texture color when it transforms
+Fix problem with Challenges not giving a reward every time they are completed, same problem that the mob drops faced
+Updated Nor-Vox and Star-Vox's texture to be more... "textured" this gives them a rougher apperance
+Updated Yeti and Abomination's texture, to make them seem less "polka-dot"-y
+Updated Kitsune texture to give it make it have less contrast and be more "textured"
+Updated Minotaur's texture to also give it a more "textured" look
+Added Vox Stellarum mob statue texture
+Update Spherical helper method, it now makes more accurate spheres (at the cost of more cpu again)
+Remove honey and utilize other items in the recipes that used it, magma cream and thorns
+Reduce drop chance of Spore
+Reimplemented the Hornet Amulet, changed it to the Piercing Amulet and made it require Thorns to craft, it inflicts ap damage to whatever you attack, but it makes you take
+over twice as much damage from magic
+Add Frozen Lightning, a new craftable weapon that uses ice orbs and lightning orbs, it has a simple influence doomsday, Freeze, that inflicts slowness and stops all motion of
+nearby entities, it also may inflict stun if crucial moment is applied, on right-click it can shoot icicles, on sneak-right-click it can summon multiple lightning strikes and
+a small explosion
+Update the sphere generator to print out the right block unlocalized name when a sphere is created 
+Add the Frozen Lightning recipe, uses Ice Orbs and Lightning Orbs, as well as Icy Fur
+Reimplemented Rune Break and Rune Walker, rune break now increases magic damage that you inflict, and rune walker now decreases magic damage that you take
+Pitch Black and Frozen Lightning now have Rune Break as part of their enchantment tiers, Light Armor now has Rune Walker as part of it's enchantment tiers
+For now, revert addition of the persistant Doomsday thread
+Added Ice Amulet, reduces damage you take in cold biomes and inflicts slowness on anything that hits you (higher amulet levels)
+Added Snow Golem Amulet, makes mob track you from further away
+Added Iron Golem Amulet, gives you resistance and prevents you from taking fall damage
+Added Enderman Amulet, allows you to silk touch blocks with your bare hand, but you don't mine any faster and you can only silk touch blocks that could normally be silk touched
+Added Wither Amulet, you heal from wither instead of taking damage
+Update Apis Temple's schematic to use more loops to optimize the code
+Created Celestial Temple using the Apis Temple's schematic and switching out the blocks, the Celestial Temple should also generate a sort of "island" underneath it
+Fix NPE with Darkened Quartz, with particular metadata values
+Added the new set of Amulets to the chest hooks
+Added Challenge scrolls to chest hooks, these will only be added if the item is enabled
+
+1.35.1416 <160> (September 1, 2014 [Happy birthday to me...])
+Add config option to disable mob statues, add configurable drop chance, default is 100(%)
+Added an actual image for the Amulet Gui, the tentacle one
+Made it so that you can configure whether the Doom gui is animated or not (some ppl might be finicky about this)
+Added an Amulet Status gui that goes under the Doom gui, it basically just displays the Amulets that the player currently has active, it also shows how many slots they have
+unlocked, it is a very minimalistic gui, it also displays how much durability the amulets have left
+Remove console spam from mob drops
+Added Vox Stellarum model
+Fixed some renders that used transparency and other effects
+Increase the Kitsune's hitbox a bit, change the Vox Stellarum's hitbox to match it's model better
+Updated Darkened Quartz texture to be darker and unsaturated
+The Celestial Temple now also generates a bunch of smaller islands around it to give the island a different shape every time it is generated
+Added wood recipes to convert raw wood into planks (dimension wood types)
+Changed Harmony Bell recipe to use Kitsune Tails, updated texture to reflect this
+Added a bunch of recipes using the boss drops as components, these are to give them more use (though they won't be used like that very much, I'd assume)
+Changed Statue rebirth item to Living Clay instead of Life Water
+Added 2 more amulet gui skins, a pink ender styled one and a tragic neko styled one
+Added matching amulet status skins, these are all set by the same config option, added small gui change to show that a slot is locked that can be unlocked
+I'll add skins for the doom gui as well, which will be updated to match it, though this would mean the option would move to the misc category due to it being for the amulet
+gui and the doom gui
+Make it so that the Vox Stellarum doesn't attempt to turn and face things while it is spinning (this messes up the rotation)
+Fix inverted parameters in amulet status gui
+Make it so that every use of the Dimensional Key damages it
+Make it so that any non-creative mode use of the Sword/Bow of Justice immediately breaks it after use (I may slip these into chests and boss drops as super high damage one hit
+weapons, but they won't be effective against bosses)
+Add the Celestial Aegis and Celestial Longbow, the Celestial Aegis will reduce all incoming damage by a flat percentage while it's in the player's hand
+Changed all weapon non doomsday abilities that deter damage to make sure the player isn't in creative mode, also reduced doom cost of some of them
+Added ability for the Withering Axe to inflict Wither on whatever you attack with it (I thought it already had it, woops)
+Added Celestial Aegis's doomsday, Moonlight Sonata, it can only be used on or around midnight in a normal minecraft day and only when the player is on the surface, it'll
+completely refill the player's doom with high cooldown
+Added textures for the Celestial Longbow (all phases of it) and added the Celestial Steel item to make crafting of the Celestial weapons more difficult, due to this their
+proposed enchantments were buffed and their durability was increased
+Changed Celestial longbow's teleportation to utilize the same thing that the ender pearl does to ensure of secure player transport
+Looking at the amount of items and armors, I will not reimplement the Draconic Armor and the Dragon Fang's Doomsday will be a combined doomsday of the proposed one for the
+Armor with it's own proposed one
+In accordance with making the Celestial weapons stronger due to the difficulty of crafting them, the Celestial Aegis will have 2 doomsdays, the first and probably only weapon
+to, the 2nd Doomsday is the Flight of the Valkyries, it tosses mobs up into the air and inflicts random damage to them over the duration of the doomsday, healing you as well
+and striking the ground with lightning randomly for a cool effect
+
+1.35.1416++ <161> (September 4, 2014)
+Rewrote the Flight Potion Effect again, now it takes effect as long as you hold down the space-bar, and you can ascend faster if you get a sprinting head-start
+I also expanded the time the safeguard has, it attempts to move you closer to the ground quickly so that you don't take as much damage when it wears off
+Added potion icons now for when you look in your inventory, this helps to easily identify the effects you have on you
+Added new field for threaded doomsdays if they update every tick (only some will use this, mostly the Ultimate ones)
+Working on the "Epic" weapons doomsdays, then I'll work on their non-Doomsday abilities
+Added Titanfall Doomsday, for the Titan, it's a bit finicky on whether it crashes the server or not
+Added the non-Doomsday ability for the Pitch Black, which throws it, and if it hits a living entity it teleports back to your hand, but if you miss, it drops where it hit
+Added the non-Doomsday ability of the Titan, it creates an explosion and strikes whatever you attack with it with lightning strikes, another ability creates a long line of
+lightning strikes in the direction that you're looking, further distance increases the amount of strikes
+The Titan can also fully heal you if you get struck by lightning, but only if you have enough Doom (requires 30)
+It will not have Lore or enchantment tiers set up until I finish all of the epic weapon's abilities and doomsdays
+
+Started planning for Nyx and Erebus, the previous plan will be scrapped and they'll be converted into a single strong boss, which can be summoned with Darkened Quartz and
+a Time Disruption Cube (similarly to the Time Controller), it'll work like a hybrid between the Ender Dragon and the 1.8 mob, the Guardian. It'll float and have super high
+attack damage, it'll spawn dark energy crystals around itself which heal it and give it extra abilities (only spawn a few once per minute or so), it'll use a tracker beam of
+sorts that pulls it's target towards it for a very high damage, high knockback hit, it can also shoot a dark energy projectile which hits the ground below it with lightning
+It'll be named the Enyvil (the previous mob plan will be scrapped and it's appearance will be adapted to look more "epic boss"-like)
 
 --Reminders--
-Add the Vox Stellarum, Nyx and Erebus, Claymation and the Erkel (1 mini-boss, 2 bosses (technically 3), and a passive mob)
+Add the Enyvil, Claymation and the Erkel (2 bosses, and a passive mob)
 Start adding the "Epic" weapons and armor along with their Doomsdays, add more of the amulets
-Add the overall amulet rarities to the chest gen hooks
-Work more on mob aesthetics as I get closer to a "finished" 1.0 release
-Add another dynamic item of some sort, maybe a treasure hunt type of thing (I like the idea of having treasure hunts) or the Challenge items I previously thought of
+Work more on overall aesthetics as I get closer to a "finished" 1.0 release, this includes rewriting most of the mob ai to use datawatchers in order to render certain things when
+the mob is doing something (like the Ghast firing a fireball and having it's texture update to show that), this also includes starting to add custom mob sounds (some of which
+I already recorded, just haven't added yet)
+Add the Phoenix and the Lava Dragon (or whatever the final boss may be, Lava Dragon is not final)
