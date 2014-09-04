@@ -10,7 +10,7 @@ import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityPoisonBarb extends EntityProjectile {
-	
+
 	public EntityPoisonBarb(World world) {
 		super(world);
 	}
@@ -24,27 +24,32 @@ public class EntityPoisonBarb extends EntityProjectile {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		for (int l = 0; l < 4; ++l) 
+		if (this.worldObj.isRemote)
 		{
-			worldObj.spawnParticle("witchMagic", posX + (rand.nextDouble() - rand.nextDouble() * 0.25D), posY + (rand.nextDouble() - rand.nextDouble() * 0.25D),
-					posZ + (rand.nextDouble() - rand.nextDouble() * 0.25D), 0.0D, 0.0D, 0.0D);
-		}
-
-		if (mop.entityHit != null && !inGround) 
-		{			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
-
-			if (mop.entityHit instanceof EntityLivingBase)
+			for (int l = 0; l < 4; ++l) 
 			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 200 + rand.nextInt(200), rand.nextInt(3)));
+				worldObj.spawnParticle("witchMagic", posX + (rand.nextDouble() - rand.nextDouble() * 0.25D), posY + (rand.nextDouble() - rand.nextDouble() * 0.25D),
+						posZ + (rand.nextDouble() - rand.nextDouble() * 0.25D), 0.0D, 0.0D, 0.0D);
+			}
+		}
+		else
+		{
+			if (mop.entityHit != null && !inGround) 
+			{			
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
 
-				if (rand.nextInt(16) == 0 && TragicNewConfig.allowStun)
+				if (mop.entityHit instanceof EntityLivingBase)
 				{
-					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 20 + rand.nextInt(40), rand.nextInt(2)));
+					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 200 + rand.nextInt(200), rand.nextInt(3)));
+
+					if (rand.nextInt(16) == 0 && TragicNewConfig.allowStun)
+					{
+						((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 20 + rand.nextInt(40), rand.nextInt(2)));
+					}
 				}
 			}
 		}
-		
+
 		this.setDead();
 	}
 
