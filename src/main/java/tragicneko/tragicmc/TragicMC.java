@@ -88,6 +88,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -114,6 +117,8 @@ public class TragicMC
 
 	public static final Random rand = new Random();
 	public static Configuration config;
+	
+	public static boolean isSafe;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -198,6 +203,7 @@ public class TragicMC
 		}
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
+		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(this);
 	}
 
 	@EventHandler
@@ -286,6 +292,24 @@ public class TragicMC
 			{
 				logError("Silently caught an error finding the potionTypes array to determine reflection, this may be due to obfuscation and may have unintended side effects.", e);
 			}
+		}
+	}
+	
+	public static boolean getIsSafe()
+	{
+		return isSafe;
+	}
+	
+	@SubscribeEvent
+	public void onTick(ServerTickEvent event)
+	{
+		if (event.phase == Phase.START)
+		{
+			this.isSafe = false;
+		}
+		else if (event.phase == Phase.END)
+		{
+			this.isSafe = true;
 		}
 	}
 	
