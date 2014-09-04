@@ -27,6 +27,7 @@ public class GuiAmuletInventory extends GuiContainer
 	private static final ResourceLocation iconLocation = new ResourceLocation("tragicmc:textures/gui/amulet_tentacles.png");
 	private static final ResourceLocation iconLocation2 = new ResourceLocation("tragicmc:textures/gui/amulet_pinkstars.png");
 	private static final ResourceLocation iconLocation3 = new ResourceLocation("tragicmc:textures/gui/amulet_tragicneko.png");
+	private static final ResourceLocation iconLocation4 = new ResourceLocation("tragicmc:textures/gui/amulet.png");
 	private final InventoryAmulet inventory;
 
 	private final PropertyAmulets amulets;
@@ -74,15 +75,16 @@ public class GuiAmuletInventory extends GuiContainer
 
 	public static ResourceLocation getTextureFromConfig()
 	{
-		switch(TragicNewConfig.amuletGuiTexture)
+		switch(TragicNewConfig.guiTexture)
 		{
 		case 0:
-		default:
 			return iconLocation;
 		case 1:
 			return iconLocation2;
 		case 2:
 			return iconLocation3;
+		default:
+			return iconLocation4;
 		}
 	}
 

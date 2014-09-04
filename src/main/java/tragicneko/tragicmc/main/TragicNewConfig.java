@@ -33,8 +33,8 @@ public class TragicNewConfig {
 	private static boolean[] blanketAmulet = new boolean[8];
 	public static boolean allowNormalAmulets, allowCursedAmulets, allowEpicAmulets, allowAmuletLeveling, allowAmuletCrafting, shouldUnlockAmuletSlots, allowAmuletKillRecharge;
 	public static boolean showAmuletStatus;
-	private static int[] amuletInts = new int[4];
-	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity, amuletGuiTexture;
+	private static int[] amuletInts = new int[3];
+	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity;
 	private static boolean[] normalAmuletConfigs = new boolean[24];
 	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton, amuIce, amuSnowGolem, amuIronGolem;
 	private static boolean[] cursedAmuletConfigs = new boolean[12];
@@ -113,7 +113,7 @@ public class TragicNewConfig {
 	private static boolean[] miscConfigs = new boolean[8];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui;
 	private static int[] miscInts = new int[8];
-	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency;
+	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture;
 
 	/**
 	 * Initializes the start of the configuration file, should only be called once when the mod is loading
@@ -158,7 +158,6 @@ public class TragicNewConfig {
 		amuletInts[0] = MathHelper.clamp_int((config.get(catAmulet, "maxAmuletSlots", 3).getInt(3)), 1, 3);
 		amuletInts[1] = MathHelper.clamp_int(config.get(catAmulet, "overallAmuletRarity", 5).getInt(5), 3, 250);
 		amuletInts[2] = MathHelper.clamp_int(config.get(catAmulet, "amuletReleaseRarity", 5).getInt(5), 3, 250);
-		amuletInts[3] = (config.get(catAmulet, "amuletGuiTexture", 0).getInt(0));
 
 		mapping = 0;
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectPeace", true).getBoolean(true));
@@ -548,6 +547,7 @@ public class TragicNewConfig {
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "challengeScrollDropChance", 5).getInt(5), 1, 100);
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "mobStatueDropChance", 100).getInt(100), 1, 100);
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "guiTransparency", 100).getInt(100), 1, 100);
+		miscInts[mapping++] = config.get(catMisc, "guiTextureSkins", 0).getInt(0);
 		
 		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
 		
@@ -793,7 +793,6 @@ public class TragicNewConfig {
 		maxAmuletSlots = amuletInts[0];
 		overallAmuletRarity = amuletInts[1];
 		amuletReleaseRarity = amuletInts[2];
-		amuletGuiTexture = amuletInts[3];
 
 		mapping = 0;
 		amuPeace = normalAmuletConfigs[mapping++];
@@ -1091,6 +1090,7 @@ public class TragicNewConfig {
 		challengeScrollDropChance = miscInts[mapping++];
 		mobStatueDropChance = miscInts[mapping++];
 		guiTransparency = miscInts[mapping++];
+		guiTexture = miscInts[mapping++];
 	}
 	
 	public static void disablePotions()

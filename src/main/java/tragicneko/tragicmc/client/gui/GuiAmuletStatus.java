@@ -91,7 +91,7 @@ public class GuiAmuletStatus extends Gui
 
 	public static ResourceLocation getTextureFromConfig()
 	{
-		switch(TragicNewConfig.amuletGuiTexture)
+		switch(TragicNewConfig.guiTexture)
 		{
 		case 0:
 		default:

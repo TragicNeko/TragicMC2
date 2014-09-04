@@ -34,10 +34,13 @@ public class GuiDoom extends Gui
 	private Minecraft mc;
 	private int buffer;
 	private int width;
-	
+
 	private FontRenderer fontRenderer;
 
-	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/doom_bar.png");
+	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/doom_neko.png");
+	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/doom_pink.png");
+	private static final ResourceLocation texturepath3 = new ResourceLocation("tragicmc:textures/gui/doom_tentacle.png");
+	private static final ResourceLocation texturepath4 = new ResourceLocation("tragicmc:textures/gui/doom_bar.png");
 
 	public GuiDoom(Minecraft mc) {
 		super();
@@ -56,7 +59,7 @@ public class GuiDoom extends Gui
 
 		int xPos = 2;
 		int yPos = 2;
-		this.mc.getTextureManager().bindTexture(texturepath);
+		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -67,16 +70,16 @@ public class GuiDoom extends Gui
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
 		drawTexturedModalRect(xPos, yPos, 0, 0, 56, 9);
-		
+
 		width++;
-		
+
 		if (width > 30)
 		{
 			width = 0;
 		}
-		
+
 		if (!TragicNewConfig.allowAnimatedGui) width = 0;
-		
+
 		if (props.getCurrentCooldown() > 0)
 		{
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 12, 49, 3);
@@ -84,7 +87,7 @@ public class GuiDoom extends Gui
 			String s = "Cooling Down... " + props.getCurrentCooldown() ;
 			yPos += 10;
 			Color color = new Color(0x27, 0xb8, 0xdc);
-			
+
 			this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
 			this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
 			this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
@@ -96,7 +99,7 @@ public class GuiDoom extends Gui
 			buffer++;
 			if (!TragicNewConfig.allowAnimatedGui) buffer = 0;
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
-			
+
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
 
 			String s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();
@@ -202,9 +205,9 @@ public class GuiDoom extends Gui
 						flag2 = false;
 					}
 				}
-				
+
 				if (flag2 && doomsday != null && doomsday.doesCurrentDoomMeetRequirement(props)) flag = true;
-				
+
 				if (flag)
 				{					
 					if (buffer >= 10 && buffer <= 20)
@@ -217,12 +220,12 @@ public class GuiDoom extends Gui
 					}
 				}
 			}
-			
+
 			if (buffer > 20)
 			{
 				buffer = 0;
 			}
-			
+
 			this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
 			this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
 			this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
@@ -233,5 +236,20 @@ public class GuiDoom extends Gui
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);
+	}
+
+	public static ResourceLocation getTextureFromConfig()
+	{
+		switch(TragicNewConfig.guiTexture)
+		{
+		case 0:
+			return texturepath3;
+		case 1:
+			return texturepath2;
+		case 2:
+			return texturepath;
+		default:
+			return texturepath4;
+		}
 	}
 }
