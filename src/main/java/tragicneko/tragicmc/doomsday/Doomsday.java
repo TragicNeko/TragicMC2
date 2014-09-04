@@ -51,16 +51,19 @@ public abstract class Doomsday {
 	public static final Doomsday MinerSkills = (new DoomsdayMinerSkills(21, 20, 30));
 	public static final Doomsday Freeze = (new DoomsdayFreeze(22, 30, 30));
 	public static final Doomsday MoonlightSonata = (new DoomsdayMoonlightSonata(23, 40, 1));
-	public static final Doomsday FlightOfTheValkyries = (new DoomsdayFlightOfTheValkyries(24, 65, 115));
+	public static final Doomsday FlightOfTheValkyries = (new DoomsdayFlightOfTheValkyries(24, 65, 115)).setUpdateEveryTick();
+	public static final Doomsday Titanfall = (new DoomsdayTitanfall(25, 10, 15));
+	//public static final Doomsday Bloodlust = (new DoomsdayBloodlust(26, 45, 90)); //Influence or Crisis
+	//public static final Doomsday Permafrost = (new DoomsdayPermafrost(27, 25, 100)); //WorldShaper
+	//public static final Doomsday MindTorture = (new DoomsdayMindTorture(28, 55, 130)).setUpdateEveryTick(); //Influence
+	//public static final Doomsday Asphyxiate = (new DoomsdayAsphyxiate(29, 5, 5)); //Overflow
 	
 	/*
-	public static final Doomsday Titanfall = (new Doomsday(25, 20, 80, EnumDoomType.OVERFLOW)); //Creates waves of lightning, The Titan
 	public static final Doomsday Bloodlust = (new Doomsday(26, 45, 90, EnumDoomType.OVERFLOW)); //Gives you an insane amount of buffs/debuffs, The Butcher
 	public static final Doomsday Permafrost = (new Doomsday(27, 25, 100, EnumDoomType.WORLDSHAPER)); //Freezes any liquid nearby and creates snow, also kills crops/grass
 	//damages any entities nearby that are immune to fire, The Thardus
 	public static final Doomsday MindTorture = (new Doomsday(28, 55, 130, EnumDoomType.CRISIS)); //Completely stops the motion of all nearby entities (sets their motion in all directions to 0 for
-	//the entirety of it's effect and prevents them from being able to attack, they also take way more damage (submission), they then get attacked from random sides by a projectile
-	//every few seconds, The Paranoia
+	//the entirety of it's effect and prevents them from being able to attack, they also take way more damage (submission), the Paranoia
 	public static final Doomsday Asphyxiate = (new Doomsday(29, 65, 110, EnumDoomType.OVERFLOW)); //Allows you control over the closest entity to you (like the Gravity Gun), I'll try to do this
 	// by getting a ray trace from the player every couple ticks and setting the entity's position to that spot, The Splinter
 	public static final Doomsday FireStorm = (new Doomsday(30, 40, 95, EnumDoomType.CRISIS)); //Spawns waves of fireballs above the player that rain down around them,
@@ -68,7 +71,7 @@ public abstract class Doomsday {
 	public static final Doomsday Isolation = (new Doomsday(31, 25, 125, EnumDoomType.WORLDSHAPER)); //knocks away all enemies near you and inflicts a huge amount of damage
 	//to them, also throws a bunch of blocks near you up into the air and out away from you, causes major terrain damage, Tragic Armor
 	public static final Doomsday JudgmentDay = (new Doomsday(32, 160, 200, EnumDoomType.ULTIMATE)); //teleports all nearby entities into the air above you and damages them
-	//multiple times with magic damage, for every hit you heal yourself, they also get struck by lightning randomly and will take huge amounts of damage the more health 
+	//multiple times with magic damage, for every hit you heal yourself, they also get hurt by spirit bursts fired from the ground and will take huge amounts of damage the more health 
 	//that they have, potentionally doing hundreds of points of damage to boss mobs, Tragic Hellraiser
 	public static final Doomsday ParadigmShift = (new Doomsday(33, 55, 100, EnumDoomType.ULTIMATE)); //Activates a random doomsday effect to it's highest ability (maximum
 	//crisis/overflow amounts as well as maximum amount of bursts/waves if it has them)
@@ -78,8 +81,8 @@ public abstract class Doomsday {
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
-		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries" //, "titanfall", "bloodlust", "permafrost", "mindCrush", "asphyxiate", "fireStorm", "isolation",
-		//"judgmentDay", "paradigmShift", "harden", "diamondCut"
+		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "mindCrush", "asphyxiate" //,"fireStorm",
+		//"isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut"
 		};
 	
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
@@ -88,6 +91,8 @@ public abstract class Doomsday {
 	public final EnumDoomType doomsdayType;
 	public final short requiredDoom;
 	public final short cooldown;
+	
+	private boolean updatesEveryTick = false;
 
 	public Doomsday(int id, int cd, int reqDoom)
 	{
@@ -106,6 +111,17 @@ public abstract class Doomsday {
 	public EnumDoomType getDoomsdayType()
 	{
 		return this.doomsdayType;
+	}
+	
+	public Doomsday setUpdateEveryTick()
+	{
+		this.updatesEveryTick = true;
+		return this;
+	}
+	
+	public boolean updatesEveryTick()
+	{
+		return this.updatesEveryTick;
 	}
 
 	/**

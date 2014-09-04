@@ -58,6 +58,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
+import tragicneko.tragicmc.entity.projectile.EntityPitchBlack;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
@@ -711,6 +712,8 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 1, false);
 
 		EntityRegistry.registerModEntity(EntityStarShard.class, "StarShard", listid++, TragicMC.instance, 80, 3, true);
-		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, false);
+		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, true);
+		
+		EntityRegistry.registerModEntity(EntityPitchBlack.class, "PitchBlack", listid++, TragicMC.instance, 80, 3, true);
 	}
 }
