@@ -160,61 +160,59 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityStarShard.class, new RenderProjectile(TragicItems.StarPieces));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderProjectile(TragicItems.PureDarkness));
-		
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(TragicItems.PitchBlack));
 
 		//Mob renders
-		if (TragicNewConfig.allowJabba) RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderMob(new ModelJabba(), 0.355F, "Jabba_lowRes"));
-		if (TragicNewConfig.allowJarra) RenderingRegistry.registerEntityRenderingHandler(EntityJarra.class, new RenderMob(new ModelJarra(), 0.355F, "Jarra_lowRes", 1.585F));
-		if (TragicNewConfig.allowJanna) RenderingRegistry.registerEntityRenderingHandler(EntityJanna.class, new RenderMob(new ModelJarra(), 0.355F, "Janna_lowRes", 0.825F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderMob(new ModelJabba(), 0.355F, "Jabba_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJarra.class, new RenderMob(new ModelJarra(), 0.355F, "Jarra_lowRes", 1.585F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJanna.class, new RenderMob(new ModelJarra(), 0.355F, "Janna_lowRes", 0.825F));
 
-		if (TragicNewConfig.allowPlague) RenderingRegistry.registerEntityRenderingHandler(EntityPlague.class, new RenderMob(new ModelPlague(), 0.115F, "Plague_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPlague.class, new RenderMob(new ModelPlague(), 0.115F, "Plague_lowRes"));
 
-		if (TragicNewConfig.allowGragul) RenderingRegistry.registerEntityRenderingHandler(EntityGragul.class, new RenderMob(new ModelGragul(), 0.115F, "Gragul_lowRes"));
-		if (TragicNewConfig.allowKragul) RenderingRegistry.registerEntityRenderingHandler(EntityKragul.class, new RenderMob(new ModelKragul(), 0.115F, "Kragul_lowRes", 2.115F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityGragul.class, new RenderMob(new ModelGragul(), 0.115F, "Gragul_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityKragul.class, new RenderMob(new ModelKragul(), 0.115F, "Kragul_lowRes", 2.115F));
 
-		if (TragicNewConfig.allowMinotaur) RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, new RenderMob(new ModelMinotaur(), 0.337F, "Minotaur_lowRes"));
-		if (TragicNewConfig.allowRagr)	RenderingRegistry.registerEntityRenderingHandler(EntityRagr.class, new RenderMob(new ModelRagr(), 0.435F, "Ragr_lowRes"));
-		if (TragicNewConfig.allowInkling) RenderingRegistry.registerEntityRenderingHandler(EntityInkling.class, new RenderMob(new ModelInkling(), 0.175F, "Inkling_lowRes"));
-		if (TragicNewConfig.allowPumpkinhead) RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinhead.class, new RenderMob(new ModelPumpkinhead(), 0.375F, "Pumpkinhead_lowRes"));
-		if (TragicNewConfig.allowTragicNeko) RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, new RenderMob(new ModelMinotaur(), 0.337F, "Minotaur_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityRagr.class, new RenderMob(new ModelRagr(), 0.435F, "Ragr_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityInkling.class, new RenderMob(new ModelInkling(), 0.175F, "Inkling_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinhead.class, new RenderMob(new ModelPumpkinhead(), 0.375F, "Pumpkinhead_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko_lowRes"));
 
-		if (TragicNewConfig.allowTox) RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderMob(new ModelTox(), 0.565F, "Tox_lowRes"));
-		if (TragicNewConfig.allowMagmox) RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox_lowRes", 1.625F));
-		if (TragicNewConfig.allowPox) RenderingRegistry.registerEntityRenderingHandler(EntityPox.class, new RenderMob(new ModelTox(), 0.565F, "Pox_lowRes", 0.635F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderMob(new ModelTox(), 0.565F, "Tox_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox_lowRes", 1.625F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPox.class, new RenderMob(new ModelTox(), 0.565F, "Pox_lowRes", 0.635F));
 
-		if (TragicNewConfig.allowCryse) RenderingRegistry.registerEntityRenderingHandler(EntityCryse.class, new RenderCryse());
-		if (TragicNewConfig.allowMegaCryse) RenderingRegistry.registerEntityRenderingHandler(EntityMegaCryse.class, new RenderMegaCryse());
-		if (TragicNewConfig.allowStarCryse) RenderingRegistry.registerEntityRenderingHandler(EntityStarCryse.class, new RenderStarCryse());
+		RenderingRegistry.registerEntityRenderingHandler(EntityCryse.class, new RenderCryse());
+		RenderingRegistry.registerEntityRenderingHandler(EntityMegaCryse.class, new RenderMegaCryse());
+		RenderingRegistry.registerEntityRenderingHandler(EntityStarCryse.class, new RenderStarCryse());
 
-		if (TragicNewConfig.allowNorVox) RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderMob(new ModelNorVox(), 0.625F, "NorVox_lowRes", 1.455F));
-		if (TragicNewConfig.allowStarVox) RenderingRegistry.registerEntityRenderingHandler(EntityStarVox.class, new RenderStarVox());
-		if (TragicNewConfig.allowVoxStellarum) RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
+		RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderMob(new ModelNorVox(), 0.625F, "NorVox_lowRes", 1.455F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStarVox.class, new RenderStarVox());
+		RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
 
-		if (TragicNewConfig.allowPirah) RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderMob(new ModelPirah(), 0.225F, "Pirah_lowRes"));
-		if (TragicNewConfig.allowLavaPirah) RenderingRegistry.registerEntityRenderingHandler(EntityLavaPirah.class, new RenderMob(new ModelPirah(), 0.225F, "LavaPirah_lowRes", 1.225F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderMob(new ModelPirah(), 0.225F, "Pirah_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLavaPirah.class, new RenderMob(new ModelPirah(), 0.225F, "LavaPirah_lowRes", 1.225F));
 
-		if (TragicNewConfig.allowStin) RenderingRegistry.registerEntityRenderingHandler(EntityStin.class, new RenderMob(new ModelStin(), 0.665F, "Stin_lowRes"));
-		if (TragicNewConfig.allowStinBaby) RenderingRegistry.registerEntityRenderingHandler(EntityStinBaby.class, new RenderMob(new ModelStinBaby(), 0.255F, "Stin_lowRes"));
-		if (TragicNewConfig.allowGreaterStin) RenderingRegistry.registerEntityRenderingHandler(EntityGreaterStin.class, new RenderMob(new ModelGreaterStin(), 0.675F, "GreaterStin_lowRes"));
-		if (TragicNewConfig.allowStinKing) RenderingRegistry.registerEntityRenderingHandler(EntityStinKing.class, new RenderMob(new ModelStinKing(), 0.675F, "StinKing_lowRes", 1.625F));
-		if (TragicNewConfig.allowStinQueen) RenderingRegistry.registerEntityRenderingHandler(EntityStinQueen.class, new RenderMob(new ModelStinQueen(), 0.675F, "StinQueen_lowRes", 1.225F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStin.class, new RenderMob(new ModelStin(), 0.665F, "Stin_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStinBaby.class, new RenderMob(new ModelStinBaby(), 0.255F, "Stin_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityGreaterStin.class, new RenderMob(new ModelGreaterStin(), 0.675F, "GreaterStin_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStinKing.class, new RenderMob(new ModelStinKing(), 0.675F, "StinKing_lowRes", 1.625F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStinQueen.class, new RenderMob(new ModelStinQueen(), 0.675F, "StinQueen_lowRes", 1.225F));
 
-		if (TragicNewConfig.allowWisp) RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, new RenderWisp());
-		if (TragicNewConfig.allowAbomination) RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.35F, "Abomination_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, new RenderWisp());
+		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.35F, "Abomination_lowRes"));
 
 		//Boss renders
-		if (TragicNewConfig.allowApis) RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
-		if (TragicNewConfig.allowDeathReaper)
-		{
-			RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaper.class, new RenderDeathReaper());
-			RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaperClone.class, new RenderMob(new ModelDeathReaper(), 0.375F, "DeathReaper_lowRes", 0.875F));
-		}
-		if (TragicNewConfig.allowKitsune) RenderingRegistry.registerEntityRenderingHandler(EntityKitsune.class, new RenderKitsune());
-		if (TragicNewConfig.allowPolaris) RenderingRegistry.registerEntityRenderingHandler(EntityPolaris.class, new RenderPolaris());
-		if (TragicNewConfig.allowYeti) RenderingRegistry.registerEntityRenderingHandler(EntityYeti.class, new RenderYeti());
-		if (TragicNewConfig.allowTimeController) RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
+		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
 
+		RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaper.class, new RenderDeathReaper());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaperClone.class, new RenderMob(new ModelDeathReaper(), 0.375F, "DeathReaper_lowRes", 0.875F));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityKitsune.class, new RenderKitsune());
+		RenderingRegistry.registerEntityRenderingHandler(EntityPolaris.class, new RenderPolaris());
+		RenderingRegistry.registerEntityRenderingHandler(EntityYeti.class, new RenderYeti());
+		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 	}
 
 	@Override
