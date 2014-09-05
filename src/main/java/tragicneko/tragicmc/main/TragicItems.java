@@ -48,6 +48,7 @@ import tragicneko.tragicmc.items.special.ItemLifeWater;
 import tragicneko.tragicmc.items.special.ItemMobEgg;
 import tragicneko.tragicmc.items.special.ItemNekoWand;
 import tragicneko.tragicmc.items.special.ItemStatue;
+import tragicneko.tragicmc.items.weapons.EpicWeapon;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
 import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
@@ -68,6 +69,7 @@ import tragicneko.tragicmc.items.weapons.WeaponNekoLauncher;
 import tragicneko.tragicmc.items.weapons.WeaponPitchBlack;
 import tragicneko.tragicmc.items.weapons.WeaponReaperScythe;
 import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
+import tragicneko.tragicmc.items.weapons.WeaponThardus;
 import tragicneko.tragicmc.items.weapons.WeaponTitan;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -408,9 +410,24 @@ public class TragicItems {
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
 		
-		//Epic weapon registrations
+		//Epic weapon registrations TODO change these to the proper doomsdays and item classes
 		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" + textureRes));
 		GameRegistry.registerItem(Titan, "titan");
+		
+		Splinter = (new EpicWeapon(Doomsday.BeastlyImpulses).setUnlocalizedName("tragicmc.splinter").setTextureName("tragicmc:Splinter" + textureRes));
+		GameRegistry.registerItem(Splinter, "splinter");
+		
+		Butcher = (new EpicWeapon(Doomsday.Bloodlust).setUnlocalizedName("tragicmc.butcher").setTextureName("tragicmc:Butcher" + textureRes));
+		GameRegistry.registerItem(Butcher, "butcher");
+		
+		Thardus = (new WeaponThardus(Doomsday.Permafrost).setUnlocalizedName("tragicmc.thardus").setTextureName("tragicmc:Thardus" + textureRes));
+		GameRegistry.registerItem(Thardus, "thardus");
+		
+		Paranoia = (new EpicWeapon(Doomsday.Fear).setUnlocalizedName("tragicmc.paranoia").setTextureName("tragicmc:Paranoia" + textureRes));
+		GameRegistry.registerItem(Paranoia, "paranoia");
+		
+		DragonFang = (new EpicWeapon(Doomsday.ReaperLaugh).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
+		GameRegistry.registerItem(DragonFang, "dragonFang");
 
 		//Tool Registrations
 		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" + textureRes));
@@ -583,6 +600,25 @@ public class TragicItems {
 
 		DyingObsidianOrb = (new ItemDyingObsidianOrb().setUnlocalizedName("tragicmc.dyingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DyingObsidianOrb" + textureRes));
 		GameRegistry.registerItem(DyingObsidianOrb, "dyingObsidianOrb");
+		
+		//Weather/Time items TODO change all of these to proper item classes
+		RainDance = (new ItemGeneric().setUnlocalizedName("tragicmc.rainDance").setMaxStackSize(1).setTextureName("tragicmc:RainDance" + textureRes));
+		GameRegistry.registerItem(RainDance, "rainDance");
+		
+		SunnyDay = (new ItemGeneric().setUnlocalizedName("tragicmc.sunnyDay").setMaxStackSize(1).setTextureName("tragicmc:SunnyDay" + textureRes));
+		GameRegistry.registerItem(SunnyDay, "sunnyDay");
+		
+		Thunderstorm = (new ItemGeneric().setUnlocalizedName("tragicmc.thunderstorm").setMaxStackSize(1).setTextureName("tragicmc:Thunderstorm" + textureRes));
+		GameRegistry.registerItem(Thunderstorm, "thunderstorm");
+		
+		TimeManipulator = (new ItemGeneric().setUnlocalizedName("tragicmc.timeManipulator").setMaxStackSize(1).setTextureName("tragicmc:TimeManipulator" + textureRes));
+		GameRegistry.registerItem(TimeManipulator, "timeManipulator");
+		
+		Moonlight = (new ItemGeneric().setUnlocalizedName("tragicmc.moonlight").setMaxStackSize(1).setTextureName("tragicmc:Moonlight" + textureRes));
+		GameRegistry.registerItem(Moonlight, "moonlight");
+		
+		Synthesis = (new ItemGeneric().setUnlocalizedName("tragicmc.synthesis").setMaxStackSize(1).setTextureName("tragicmc:Synthesis" + textureRes));
+		GameRegistry.registerItem(Synthesis, "synthesis");
 
 		//Projectile Item Registrations (For Testing)
 		Rock = (new ItemRock().setUnlocalizedName("tragicmc.rock"));

@@ -114,7 +114,6 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			return null;
 		}
 
-
 		doomsday.activateDoomsday(doom);
 
 		return null;
