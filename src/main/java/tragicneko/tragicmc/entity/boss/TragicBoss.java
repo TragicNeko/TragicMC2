@@ -19,6 +19,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -126,6 +127,32 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();
 		if (this.playerHitTicks > 0 && !this.worldObj.isRemote) this.playerHitTicks--;
+	}
+	
+	public boolean getCanSpawnHere()
+	{		
+		if (this.posY <= 63)
+		{
+			switch (this.worldObj.provider.dimensionId)
+			{
+			case 0:
+				return false;
+			case 1:
+				return rand.nextInt(4) == 0 ? false : super.getCanSpawnHere();
+			case -1:
+				return false;
+			default:
+				if (this.worldObj.provider instanceof TragicWorldProvider)
+				{
+					return super.getCanSpawnHere();
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+		return super.getCanSpawnHere();
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
