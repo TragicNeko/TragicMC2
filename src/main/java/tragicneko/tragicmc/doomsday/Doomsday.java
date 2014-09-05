@@ -53,15 +53,12 @@ public abstract class Doomsday {
 	public static final Doomsday MoonlightSonata = (new DoomsdayMoonlightSonata(23, 40, 1));
 	public static final Doomsday FlightOfTheValkyries = (new DoomsdayFlightOfTheValkyries(24, 65, 115)).setUpdateEveryTick();
 	public static final Doomsday Titanfall = (new DoomsdayTitanfall(25, 10, 15));
-	//public static final Doomsday Bloodlust = (new DoomsdayBloodlust(26, 45, 90)); //Influence or Crisis
-	//public static final Doomsday Permafrost = (new DoomsdayPermafrost(27, 25, 100)); //WorldShaper
+	public static final Doomsday Bloodlust = (new DoomsdayBloodlust(26, 30, 80));
+	public static final Doomsday Permafrost = (new DoomsdayPermafrost(27, 25, 100));
 	//public static final Doomsday MindTorture = (new DoomsdayMindTorture(28, 55, 130)).setUpdateEveryTick(); //Influence
 	//public static final Doomsday Asphyxiate = (new DoomsdayAsphyxiate(29, 5, 5)); //Overflow
 	
 	/*
-	public static final Doomsday Bloodlust = (new Doomsday(26, 45, 90, EnumDoomType.OVERFLOW)); //Gives you an insane amount of buffs/debuffs, The Butcher
-	public static final Doomsday Permafrost = (new Doomsday(27, 25, 100, EnumDoomType.WORLDSHAPER)); //Freezes any liquid nearby and creates snow, also kills crops/grass
-	//damages any entities nearby that are immune to fire, The Thardus
 	public static final Doomsday MindTorture = (new Doomsday(28, 55, 130, EnumDoomType.CRISIS)); //Completely stops the motion of all nearby entities (sets their motion in all directions to 0 for
 	//the entirety of it's effect and prevents them from being able to attack, they also take way more damage (submission), the Paranoia
 	public static final Doomsday Asphyxiate = (new Doomsday(29, 65, 110, EnumDoomType.OVERFLOW)); //Allows you control over the closest entity to you (like the Gravity Gun), I'll try to do this
