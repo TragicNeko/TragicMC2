@@ -151,7 +151,6 @@ public class ItemStatue extends Item {
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add(EnumChatFormatting.GOLD + "A trophy for your triumphs!");
-		par2List.add(EnumChatFormatting.DARK_RED + "These are WIP and may cause problems");
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 

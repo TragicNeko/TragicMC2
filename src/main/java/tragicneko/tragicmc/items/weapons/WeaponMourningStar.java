@@ -58,34 +58,13 @@ public class WeaponMourningStar extends TragicWeapon {
 			{
 				if (doom.getCurrentDoom() >= 30)
 				{
-					float f = 1.0F;
-					float f1 = par3EntityPlayer.prevRotationPitch + (par3EntityPlayer.rotationPitch - par3EntityPlayer.prevRotationPitch) * f;
-					float f2 = par3EntityPlayer.prevRotationYaw + (par3EntityPlayer.rotationYaw - par3EntityPlayer.prevRotationYaw) * f;
-					double d0 = par3EntityPlayer.prevPosX + (par3EntityPlayer.posX - par3EntityPlayer.prevPosX) * (double)f;
-					double d1 = par3EntityPlayer.prevPosY + (par3EntityPlayer.posY - par3EntityPlayer.prevPosY) * (double)f + (double)(par3EntityPlayer.worldObj.isRemote ? par3EntityPlayer.getEyeHeight() - par3EntityPlayer.getDefaultEyeHeight() : par3EntityPlayer.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
-					double d2 = par3EntityPlayer.prevPosZ + (par3EntityPlayer.posZ - par3EntityPlayer.prevPosZ) * (double)f;
-					Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
-					float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
-					float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
-					float f5 = -MathHelper.cos(-f1 * 0.017453292F);
-					float f6 = MathHelper.sin(-f1 * 0.017453292F);
-					float f7 = f4 * f5;
-					float f8 = f3 * f5;
-					double d3 = 50.0D;
-
-					if (par3EntityPlayer instanceof EntityPlayerMP)
-					{
-						d3 = ((EntityPlayerMP)par3EntityPlayer).theItemInWorldManager.getBlockReachDistance() + 46.0;
-					}
-
-					Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
-
-					MovingObjectPosition mop = par3EntityPlayer.worldObj.func_147447_a(vec3, vec31, true, false, true);
+					MovingObjectPosition mop = getMOPFromPlayer(par3EntityPlayer);
 
 					if (mop == null)
 					{
 						return par1ItemStack;
 					}
+					
 					if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
 					{
 						double d4 = mop.hitVec.xCoord;
