@@ -50,9 +50,12 @@ import tragicneko.tragicmc.items.special.ItemLightningRod;
 import tragicneko.tragicmc.items.special.ItemMobEgg;
 import tragicneko.tragicmc.items.special.ItemMoonlight;
 import tragicneko.tragicmc.items.special.ItemNekoWand;
+import tragicneko.tragicmc.items.special.ItemRainDance;
 import tragicneko.tragicmc.items.special.ItemStatue;
+import tragicneko.tragicmc.items.special.ItemSunnyDay;
 import tragicneko.tragicmc.items.special.ItemSynthesis;
-import tragicneko.tragicmc.items.special.ItemTalisman;
+import tragicneko.tragicmc.items.special.ItemThunderstorm;
+import tragicneko.tragicmc.items.special.ItemTimeManipulator;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
 import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
@@ -138,11 +141,6 @@ public class TragicItems {
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
-	//The Splinter will shared traits from the Ender sword and jack
-	//The Titan will utilize electrical attacks
-	//The Butcher will have aoe like armor piercing damage
-	//The Thardus will have ice and wind style attacks
-	//The Paranoia will have "dark" and weird abilities
 
 	//Weather/Time items
 	public static Item RainDanceTalisman, SunnyDayTalisman, ThunderstormTalisman, TimeManipulatorTalisman;
@@ -419,7 +417,7 @@ public class TragicItems {
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
 		
-		//Epic weapon registrations TODO change these to the proper doomsdays and item classes
+		//Epic weapons
 		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" + textureRes));
 		GameRegistry.registerItem(Titan, "titan");
 		
@@ -614,16 +612,16 @@ public class TragicItems {
 		Talisman = (new ItemGeneric().setUnlocalizedName("tragicmc.talisman").setMaxStackSize(16).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Talisman" + textureRes));
 		GameRegistry.registerItem(Talisman, "talisman");
 		
-		RainDanceTalisman = (new ItemTalisman().setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman" + textureRes));
+		RainDanceTalisman = (new ItemRainDance().setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman" + textureRes));
 		GameRegistry.registerItem(RainDanceTalisman, "rainDanceTalisman");
 		
-		SunnyDayTalisman = (new ItemTalisman().setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman" + textureRes));
+		SunnyDayTalisman = (new ItemSunnyDay().setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman" + textureRes));
 		GameRegistry.registerItem(SunnyDayTalisman, "sunnyDayTalisman");
 		
-		ThunderstormTalisman = (new ItemTalisman().setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman" + textureRes));
+		ThunderstormTalisman = (new ItemThunderstorm().setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman" + textureRes));
 		GameRegistry.registerItem(ThunderstormTalisman, "thunderstormTalisman");
 		
-		TimeManipulatorTalisman = (new ItemTalisman().setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman" + textureRes));
+		TimeManipulatorTalisman = (new ItemTimeManipulator().setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman" + textureRes));
 		GameRegistry.registerItem(TimeManipulatorTalisman, "timeManipulatorTalisman");
 		
 		MoonlightTalisman = (new ItemMoonlight().setUnlocalizedName("tragicmc.moonlightTalisman").setTextureName("tragicmc:MoonlightTalisman" + textureRes));
@@ -638,7 +636,7 @@ public class TragicItems {
 		LightningRodTalisman = (new ItemLightningRod().setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman" + textureRes));
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
 
-		//Projectile Item Registrations (For Testing)
+		//Projectile Items
 		Rock = (new ItemRock().setUnlocalizedName("tragicmc.rock"));
 		GameRegistry.registerItem(Rock, "rock");
 
@@ -950,7 +948,14 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(GuiltyThorn, 1), 0, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(GravitySpike, 1), 0, 1, 15),
-				new WeightedRandomChestContent(new ItemStack(FrozenLightning, 1), 0, 1, 15)
+				new WeightedRandomChestContent(new ItemStack(FrozenLightning, 1), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(Titan), 0, 1, 2),
+				new WeightedRandomChestContent(new ItemStack(Splinter), 0, 1, 2),
+				new WeightedRandomChestContent(new ItemStack(Thardus), 0, 1, 2),
+				new WeightedRandomChestContent(new ItemStack(Paranoia), 0, 1, 2),
+				new WeightedRandomChestContent(new ItemStack(Butcher), 0, 1, 2),
+				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 2),
+				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 5)
 				
 		};
 
@@ -991,7 +996,14 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
 				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity)
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicNewConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(Titan), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(Splinter), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(Thardus), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(Paranoia), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(Butcher), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 10)
 		};
 
 		WeightedRandomChestContent[] lameChestContent = new WeightedRandomChestContent[] {
@@ -1007,7 +1019,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Spore), 0, 3, 10)
 		};
 
-		WeightedRandomChestContent[] awesomeChestContent = new WeightedRandomChestContent[] { //TODO add the uncraftable weapons to this generation with around 20 in weight, then add to the other two boss hooks with very low weight, around 3 maybe
+		WeightedRandomChestContent[] awesomeChestContent = new WeightedRandomChestContent[] {
 				new WeightedRandomChestContent(new ItemStack(TragicItems.DoomConsume), 0, 1, TragicNewConfig.doomConsumeRarity),
 				new WeightedRandomChestContent(new ItemStack(TragicItems.CooldownDefuse), 1, 3, TragicNewConfig.cooldownDefuseRarity),
 				new WeightedRandomChestContent(new ItemStack(TragicItems.AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity),
@@ -1023,7 +1035,14 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(RubyCharm), 0, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(SapphireCharm), 0, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(EmeraldCharm), 0, 1, 15),
-				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 0, 1, 15)
+				new WeightedRandomChestContent(new ItemStack(DiamondCharm), 0, 1, 15),
+				new WeightedRandomChestContent(new ItemStack(Titan), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(Splinter), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(Thardus), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(Paranoia), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(Butcher), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 20)
 		};
 
 		BossStructureHook = (new ChestGenHooks("TragicMC.BossStructure", bossStructureContent, 3, 7));

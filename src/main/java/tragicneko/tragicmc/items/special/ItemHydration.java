@@ -17,14 +17,14 @@ public class ItemHydration extends ItemTalisman {
 		if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 		
 		UUID uuidForMod = UUID.fromString("a0de9d5c-2fa2-4042-8261-f68bec735e56");
-		AttributeModifier mod = new AttributeModifier(uuidForMod, "hydrationModifier", 10.0, 0);
+		AttributeModifier mod = new AttributeModifier(uuidForMod, "hydrationModifier", 1.0, 0);
 		EntityPlayer player = (EntityPlayer) entity;
 		
-		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(mod);
+		player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).removeModifier(mod);
 		
 		if (world.isRaining())
 		{
-			player.getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(mod);
+			player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(mod);
 			if (player.ticksExisted % 20 == 0) stack.damageItem(1, player);
 		}
 	}

@@ -43,7 +43,8 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		new ItemStack(TragicBlocks.StorageBlock, TragicMC.rand.nextInt(2) + 1, TragicMC.rand.nextInt(5)), new ItemStack(Blocks.gold_block, TragicMC.rand.nextInt(2) + 1),
 		new ItemStack(Blocks.diamond_block, TragicMC.rand.nextInt(2) + 1), new ItemStack(Blocks.iron_block, TragicMC.rand.nextInt(2) + 1),
 		new ItemStack(TragicItems.AmuletRelease, 1), new ItemStack(TragicItems.AwakeningStone, 1), new ItemStack(TragicItems.CooldownDefuse, 1 + TragicMC.rand.nextInt(4)),
-		new ItemStack(TragicItems.DoomConsume, 1)};
+		new ItemStack(TragicItems.DoomConsume, 1), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new  ItemStack(TragicItems.Splinter),
+		new ItemStack(TragicItems.Butcher), new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Talisman)};
 
 	public boolean isCorruptible = false;
 
@@ -59,11 +60,13 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 	public void onDeath(DamageSource par1)
 	{
+		super.onDeath(par1);
+		
 		if (this.worldObj.isRemote || !this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return;
 
 		if (TragicNewConfig.allowExtraBossLoot)
 		{
-			int amount = rand.nextInt(20) + 10;
+			int amount = rand.nextInt(10) + 6;
 
 			int amt = 0;
 
@@ -75,7 +78,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 					amt++;
 				}
 				
-				if (amt > 10) break;
+				if (amt > 8) break;
 			}
 		}
 
@@ -117,8 +120,6 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 			
 			if (this.recentlyHit > 0) this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
 		}
-
-		super.onDeath(par1);
 	}
 
 	public void onLivingUpdate()

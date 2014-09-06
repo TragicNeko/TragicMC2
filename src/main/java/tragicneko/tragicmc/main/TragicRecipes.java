@@ -63,6 +63,93 @@ public class TragicRecipes {
 			'x', Items.bone,
 			'y', Items.stick
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Talisman, 1), new Object[] {
+			" x ",
+			"xxx",
+			" x ",
+			'x', TragicItems.LivingClay
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SunnyDayTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.redstone_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.FireOrb
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.RainDanceTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.lapis_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.AquaOrb
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ThunderstormTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.gold_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.LightningOrb
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.TimeManipulatorTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', TragicItems.CelestialDiamond,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.GravityOrb
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SynthesisTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.emerald_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.Spore
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HydrationTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.diamond_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.LifeWater
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LightningRodTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.coal_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.Horn
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MoonlightTalisman, 1), new Object[] {
+			"xyx",
+			"zwz",
+			"yzy",
+			'w', TragicItems.Talisman,
+			'x', Blocks.iron_block,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.WispParticles
+		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.DiamondCharm, 1), new Object[] {
 			"xyx",

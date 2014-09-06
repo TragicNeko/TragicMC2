@@ -56,7 +56,8 @@ public class ItemChallenge extends Item {
 		new ItemStack(TragicItems.ApisAmulet), new ItemStack(TragicItems.CreeperAmulet), new ItemStack(TragicItems.BlacksmithAmulet), new ItemStack(TragicItems.KitsuneAmulet),
 		new ItemStack(TragicItems.ZombieAmulet), new ItemStack(TragicItems.SkeletonAmulet), new ItemStack(TragicItems.SunkenAmulet), new ItemStack(TragicItems.PeaceAmulet),
 		new ItemStack(TragicItems.ChickenAmulet), new ItemStack(TragicItems.ClaymationAmulet), new ItemStack(TragicItems.YetiAmulet), new ItemStack(TragicItems.MartyrAmulet),
-		new ItemStack(TragicItems.GoldenSushi, 1 + itemRand.nextInt(3))
+		new ItemStack(TragicItems.GoldenSushi, 1 + itemRand.nextInt(3)), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Butcher),
+		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman)
 	};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};
