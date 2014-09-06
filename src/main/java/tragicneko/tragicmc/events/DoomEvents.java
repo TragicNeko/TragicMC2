@@ -28,7 +28,7 @@ public class DoomEvents {
 		if (event.entity instanceof EntityPlayer) 
 		{
 			PropertyDoom doom = PropertyDoom.get((EntityPlayer) event.entity);
-			
+
 			if (doom == null)
 			{
 				PropertyDoom.register((EntityPlayer) event.entity);
@@ -37,7 +37,7 @@ public class DoomEvents {
 			{
 				doom.loadNBTData(new NBTTagCompound());
 			}
-			
+
 			if (event.entity instanceof EntityPlayerMP && doom != null)
 			{
 				TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
@@ -105,45 +105,10 @@ public class DoomEvents {
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void onDeath(Clone event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && event.wasDeath)
-		{
-			if (!event.entityLiving.worldObj.isRemote)
-			{
-				PropertyDoom properties = PropertyDoom.get((EntityPlayer)event.entityLiving);
-
-				if (properties == null)
-				{
-					return;
-				}
-
-				if (TragicNewConfig.allowResurrection && !event.entityLiving.isPotionActive(TragicPotions.Resurrection) && !((EntityPlayer)event.entityLiving).capabilities.isCreativeMode)
-				{
-					if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD)
-					{
-						properties.emptyDoom();
-					}
-
-					if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.NORMAL)
-					{
-						properties.increaseDoom(-(properties.getCurrentDoom() / 2)); 
-					}
-
-					if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.EASY)
-					{
-						properties.increaseDoom(-(properties.getCurrentDoom() / 4)); 
-					}
-					properties.setCooldown(0);
-				}
-			}
-		}
-		else if (event.entityLiving instanceof EntityPlayerMP && !event.wasDeath)
+		if (event.entityLiving instanceof EntityPlayerMP && !event.wasDeath)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
-
-			if (player != null)
-			{
-				TragicMC.net.sendTo(new MessageDoom(player), (EntityPlayerMP) player);
-			}
+			TragicMC.net.sendTo(new MessageDoom(player), (EntityPlayerMP) player);
 		}
 	}
 }

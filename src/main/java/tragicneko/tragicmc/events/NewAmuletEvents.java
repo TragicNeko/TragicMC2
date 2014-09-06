@@ -403,7 +403,7 @@ public class NewAmuletEvents {
 					item.motionY += d2 / d4 * d5 * 0.05D;
 					item.motionZ += d3 / d4 * d5 * 0.05D;
 
-					if (rand.nextBoolean() && item.onGround) item.motionY += rand.nextDouble() * 0.28D;
+					if (rand.nextInt(16) == 0) item.motionY += rand.nextDouble() * 0.28D;
 
 					item.moveEntity(item.motionX, item.motionY, item.motionZ);
 				}

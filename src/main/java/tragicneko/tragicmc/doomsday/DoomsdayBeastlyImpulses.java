@@ -14,48 +14,10 @@ public class DoomsdayBeastlyImpulses extends Doomsday {
 	public DoomsdayBeastlyImpulses(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.CRISIS);
 	}
-
+	
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) 
-	{
-		int d0 = 12;
+	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
-		d0 /= this.getCrisis(player);
-
-		if (crucMoment)
-		{
-			d0 *= 2;
-		}
-
-		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, d0, 0));
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, d0, 4));
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Beastly Impulses!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-
-		if (!player.capabilities.isCreativeMode)
-		{
-			this.applyDoomAndCooldown(doom);
-		}
-	}
-
-	@Override
-	public void useDoomsdayThroughCommand(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) 
-	{
-		int d0 = 12;
-		
-		d0 /= this.getCrisis(player);
-
-		if (crucMoment)
-		{
-			d0 *= 2;
-		}
-
-		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, d0, 0));
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, d0, 4));
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Beastly Impulses!"));
 
 		if (crucMoment)
@@ -65,9 +27,18 @@ public class DoomsdayBeastlyImpulses extends Doomsday {
 	}
 
 	@Override
-	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player,
-			boolean griefCheck) {
-		
+	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
+	{
+		int d0 = 12;
+		d0 /= this.getCrisis(player);
+		if (crucMoment) d0 *= 2;
+
+		player.addPotionEffect(new PotionEffect(Potion.resistance.id, d0, 1));
+		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, d0, 2));
 	}
 
+	@Override
+	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
+		player.addPotionEffect(new PotionEffect(Potion.hunger.id, 120, 1));
+	}
 }

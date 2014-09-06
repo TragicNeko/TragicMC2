@@ -14,32 +14,18 @@ public class DoomsdayHuntersInstinct extends Doomsday {
 	}
 	
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck)
-	{
-		player.addPotionEffect(new PotionEffect(Potion.jump.id, 400, 1));
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 400, 2));
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 400, 0));
-
-		if (crucMoment)
-		{
-			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 1));
-		}
-
+	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Hunter's Instinct!"));
 
 		if (crucMoment)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-
-		if (!player.capabilities.isCreativeMode)
-		{
-			this.applyDoomAndCooldown(doom);
 		}
 	}
 	
 	@Override
-	public void useDoomsdayThroughCommand(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck)
+	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		player.addPotionEffect(new PotionEffect(Potion.jump.id, 400, 1));
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 400, 2));
@@ -49,19 +35,9 @@ public class DoomsdayHuntersInstinct extends Doomsday {
 		{
 			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 1));
 		}
-
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Hunter's Instinct!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
 	}
 
 	@Override
-	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player,
-			boolean griefCheck) {
-		
+	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 	}
-
 }

@@ -743,6 +743,7 @@ doomsday.overflow.type=Overflow
 doomsday.worldShaper.type=World Shaper
 doomsday.crisis.type=Crisis
 doomsday.ultimate.type=Ultimate
+doomsday.combination.type=Combination
 
 doomsday.decay.name=Decay
 doomsday.huntersInstinct.name=Hunter's Instinct
@@ -777,6 +778,8 @@ doomsday.moonlightSonata.name=Moonlight Sonata
 doomsday.isolation.name=Isolation
 doomsday.judgmentDay.name=Judgment Day
 doomsday.paradigmShift.name=Paradigm Shift
+doomsday.purge.name=Purge
+doomsday.touchOfDeath.name=Touch of Death
 
 tragicmc.paintedForest=Painted Forest
 tragicmc.paintedPlains=Painted Plains

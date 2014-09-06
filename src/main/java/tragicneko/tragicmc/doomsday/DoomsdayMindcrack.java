@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -14,22 +14,23 @@ import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
-public class DoomsdayHarmonizer extends Doomsday {
-
+public class DoomsdayMindcrack extends Doomsday {
+	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayHarmonizer(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdayMindcrack(int id, int cd, int reqDoom) {
+		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
 	}
 
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		
 		double d0 = 12.0;
 		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
 		if (list.size() > 0)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Harmonizer!"));
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.LIGHT_PURPLE + "You have used Mindcrack!"));
 
 			if (crucMoment)
 			{
@@ -44,47 +45,26 @@ public class DoomsdayHarmonizer extends Doomsday {
 
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-
-		float crisis = this.getCrisis(player);
-		crisis /= 1.0F / 20.0F;
-
 		for (int i = 0; i < list.size(); i ++)
 		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (list.get(i) instanceof EntityCreature)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
-
-				int dur = crucMoment ? 600 : 300;
-
-				if (TragicNewConfig.allowHarmony)
-				{
-					entity.addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, dur));
-				}
-				else
-				{
-					entity.addPotionEffect(new PotionEffect(Potion.blindness.id, dur));
-				}
-
-				if (player.getHealth() < player.getMaxHealth())
-				{
-					float potato = crucMoment ? crisis * 2 : crisis;
-					player.heal(potato);
-				}
+				EntityCreature entity = (EntityCreature) list.get(i);
+				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 2400, 4));
+				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));
+				if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 240));
+				entity.tasks.taskEntries.clear();
+				entity.targetTasks.taskEntries.clear();
+				entity.motionX = 0.0;
+				entity.motionY = 0.0;
+				entity.motionZ = 0.0;
 			}
 		}
 	}
 
-
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (TragicNewConfig.allowHarmony)
-		{
-			player.addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, 240)); 
-		}
-		else
-		{
-			player.addPotionEffect(new PotionEffect(Potion.blindness.id, 240)); 
-		}
+		
 	}
 
 }

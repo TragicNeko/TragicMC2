@@ -37,6 +37,7 @@ import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.commands.DoomCommand;
 import tragicneko.tragicmc.commands.DoomsdayCoomand;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.BlockDropsEvent;
 import tragicneko.tragicmc.events.ChallengeItemEvents;
 import tragicneko.tragicmc.events.DenyVanillaGenEvent;
@@ -117,8 +118,6 @@ public class TragicMC
 
 	public static final Random rand = new Random();
 	public static Configuration config;
-	
-	public static boolean isSafe;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -203,7 +202,8 @@ public class TragicMC
 		}
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(this);
+		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
+		DoomsdayManager.clearRegistry();
 	}
 
 	@EventHandler
@@ -292,24 +292,6 @@ public class TragicMC
 			{
 				logError("Silently caught an error finding the potionTypes array to determine reflection, this may be due to obfuscation and may have unintended side effects.", e);
 			}
-		}
-	}
-	
-	public static boolean getIsSafe()
-	{
-		return isSafe;
-	}
-	
-	@SubscribeEvent
-	public void onTick(ServerTickEvent event)
-	{
-		if (event.phase == Phase.START)
-		{
-			this.isSafe = false;
-		}
-		else if (event.phase == Phase.END)
-		{
-			this.isSafe = true;
 		}
 	}
 	

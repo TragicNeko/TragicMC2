@@ -17,7 +17,7 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponCelestialAegis extends TragicWeapon {
 	
-	public final Doomsday doomsday2 = Doomsday.FlightOfTheValkyries;
+	public final Doomsday doomsday2 = Doomsday.Purge;
 	
 	private final Lore[] uniqueLores = new Lore[] {new Lore("Such a Beautiful Night Sky.", EnumRarity.epic), new Lore("Nice tune.", EnumRarity.uncommon),
 			new Lore("A lovely melody.", EnumRarity.rare), new Lore("Death in 6/4 time.", EnumRarity.rare), new Lore("What a lovely screaming voice you have!", EnumRarity.epic),
@@ -47,7 +47,7 @@ public class WeaponCelestialAegis extends TragicWeapon {
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
 			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-			EnumChatFormatting format = EnumChatFormatting.DARK_BLUE;
+			EnumChatFormatting format = EnumChatFormatting.GREEN;
 			par2List.add(format + doomsday2.getLocalizedType() + ": " + doomsday2.getLocalizedName());
 
 			if (doom != null)
@@ -59,7 +59,7 @@ public class WeaponCelestialAegis extends TragicWeapon {
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.allowUltimateDoomsday)
+		if (!par2World.isRemote && TragicNewConfig.allowOverflowDoomsday)
 		{
 			PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 			if (doom != null) doomsday2.activateDoomsday(doom);

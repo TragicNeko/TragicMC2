@@ -66,6 +66,31 @@ public class WeaponEvents {
 				}
 			}
 		}
+		else if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			PropertyDoom doom = PropertyDoom.get(player);
+
+			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof TragicWeapon && doom != null)
+			{
+				Item weapon = player.getCurrentEquippedItem().getItem();
+				
+				if (weapon == TragicItems.Butcher && doom.getCurrentDoom() > 0)
+				{
+					event.entity.motionX = event.entity.posX - player.posX;
+					event.entity.motionY = event.entity.posY - player.posY;
+					event.entity.motionZ = event.entity.posZ - player.posZ;
+					
+					if (player.isSprinting())
+					{
+						event.entity.motionX *= 4.8D;
+						event.entity.motionY *= 1.15D;
+						event.entity.motionZ *= 4.8D;
+					}
+				}
+			}
+			
+		}
 	}
 	
 	@SubscribeEvent(priority = EventPriority.HIGHEST)

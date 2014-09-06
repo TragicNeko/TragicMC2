@@ -10,6 +10,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.doomsday.DoomsdayEffect;
+import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -19,9 +21,6 @@ public class DoomsdayCoomand extends CommandBase {
 
 	public DoomsdayCoomand()
 	{
-		this.aliases = new ArrayList();
-		this.aliases.add("doomsday");
-		this.aliases.add("Doomsday");
 	}
 
 	@Override
@@ -32,11 +31,6 @@ public class DoomsdayCoomand extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender var1) {
 		return "Usage: /doomsday <player> <doomsday id>";
-	}
-
-	@Override
-	public List getCommandAliases() {
-		return this.aliases;
 	}
 
 	public void processCommand(ICommandSender var1, String[] var2) {
@@ -106,8 +100,9 @@ public class DoomsdayCoomand extends CommandBase {
 		}
 
 		boolean crucMoment = false;
-		if (TragicNewConfig.allowCrucialMoments && doom.getPlayer().worldObj.rand.nextInt(100) <= TragicNewConfig.crucialMomentChance) crucMoment = true;
-		doomsday.useDoomsdayThroughCommand(doom, doom.getPlayer(), crucMoment, doomsday.getMobGriefing(doom.getPlayer().worldObj));
+		if (TragicNewConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicNewConfig.crucialMomentChance) crucMoment = true;
+		DoomsdayEffect effect = new DoomsdayEffect(doomsday.getDoomId(), doom, true);
+		DoomsdayManager.registerDoomsdayEffect(mp.getCommandSenderName(), effect);
 	}
 
 	public int getRequiredPermissionLevel()

@@ -1,8 +1,12 @@
 package tragicneko.tragicmc.doomsday;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockLeaves;
@@ -17,16 +21,23 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
-public class DoomsdayPermafrost extends Doomsday {
+public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
+
+	private Map<Integer, int[]> map = new HashMap();
+	private List<Entity> list = new ArrayList();
 
 	public DoomsdayPermafrost(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+		this.waitTime = 3;
+		this.maxIterations = 60;
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) {
+	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Permafrost!"));
 
 		if (crucMoment)
@@ -34,157 +45,97 @@ public class DoomsdayPermafrost extends Doomsday {
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
 		}
 
-		if (player.worldObj.isRemote)
-		{
-			return;
-		}
-		int x = MathHelper.floor_double(player.posX);
-		int y = MathHelper.floor_double(player.posY) - 5;
-		int z = MathHelper.floor_double(player.posZ);
+		double radius = crucMoment ? 6.0D : 4.0D;
+		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		
 		Block block;
-
-		int range = 11;
-		int half = 5;
-
-		if (crucMoment)
-		{
-			range = 23;
-			half = 11;
-		}
-
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(range, range, range));
+		int[] coords;
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list.get(i) instanceof EntityMob) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, half));
+			if (list.get(i) instanceof EntityMob) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 		}
 
-		if (!player.capabilities.isCreativeMode)
+		for (int i = 0; i < map.size(); i++)
 		{
-			this.applyDoomAndCooldown(doom);
-		}
+			coords = map.get(i);
+			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
-		if (!griefCheck)
-		{
-			player.addChatMessage(new ChatComponentText("You have griefing off, this doomsday is disabled automatically."));
-			return;
-		}
-
-		for (int y1 = 0; y1 < range; y1++)
-		{
-			for (int x1 = 0; x1 < range; x1++)
+			if (block == Blocks.lava)
 			{
-				for (int z1 = 0; z1 < range; z1++)
-				{
-					block = player.worldObj.getBlock(x + x1 - half, y + y1, z + z1 - half);
-
-					if (rand.nextInt(8) != 0)
-					{
-						if (block == Blocks.lava)
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.obsidian);
-						}
-						else if (block == Blocks.water)
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.ice);
-						}
-						else if (block == Blocks.ice)
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.packed_ice);
-						}
-						else if (block instanceof BlockBush || block instanceof BlockDoublePlant || block instanceof BlockLeaves)
-						{
-							player.worldObj.setBlockToAir(x + x1 - half, y + y1, z + z1 - half);
-						}
-						else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, x + x1 - half, y + y1 - 1, z + z1 - half))
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.snow_layer, rand.nextInt(8), 2);
-						}
-					}
-				}
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.obsidian);
+			}
+			else if (block == Blocks.water)
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.ice);
+			}
+			else if (block == Blocks.ice)
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.packed_ice);
+			}
+			else if (block instanceof BlockBush || block instanceof BlockLeaves)
+			{
+				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+			}
+			else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, coords[0], coords[1] - 1, coords[2]) && rand.nextBoolean())
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.snow_layer, rand.nextInt(8), 2);
 			}
 		}
 	}
 
 	@Override
-	public void useDoomsdayThroughCommand(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Permafrost!"));
+	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
+		double radius = crucMoment ? 6.0D : 4.0D;
+		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		
+		Block block;
+		int[] coords;
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i) instanceof EntityMob) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
+		}
+
+		for (int i = 0; i < map.size(); i++)
+		{
+			coords = map.get(i);
+			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+
+			if (block == Blocks.lava)
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.obsidian);
+			}
+			else if (block == Blocks.water)
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.ice);
+			}
+			else if (block == Blocks.ice)
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.packed_ice);
+			}
+			else if (block instanceof BlockBush || block instanceof BlockLeaves)
+			{
+				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+			}
+			else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, coords[0], coords[1] - 1, coords[2]) && rand.nextBoolean())
+			{
+				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.snow_layer, rand.nextInt(8), 2);
+			}
+		}
+		
 		if (crucMoment)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
 		}
-
-		if (player.worldObj.isRemote)
-		{
-			return;
-		}
-		int x = MathHelper.floor_double(player.posX);
-		int y = MathHelper.floor_double(player.posY) - 5;
-		int z = MathHelper.floor_double(player.posZ);
-		Block block;
-
-		int range = 11;
-		int half = 5;
-
-		if (crucMoment)
-		{
-			range = 23;
-			half = 11;
-		}
-
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(range, range, range));
-
-		for (int i = 0; i < list.size(); i++)
-		{
-			if (list.get(i) instanceof EntityMob) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, half));
-		}
-		
-		if (!griefCheck)
-		{
-			player.addChatMessage(new ChatComponentText("You have griefing off, this doomsday is disabled automatically."));
-			return;
-		}
-
-		for (int y1 = 0; y1 < range; y1++)
-		{
-			for (int x1 = 0; x1 < range; x1++)
-			{
-				for (int z1 = 0; z1 < range; z1++)
-				{
-					block = player.worldObj.getBlock(x + x1 - half, y + y1, z + z1 - half);
-
-					if (rand.nextInt(8) != 0)
-					{
-						if (block == Blocks.lava)
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.obsidian);
-						}
-						else if (block == Blocks.water)
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.ice);
-						}
-						else if (block == Blocks.ice)
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.packed_ice);
-						}
-						else if (block instanceof BlockBush || block instanceof BlockDoublePlant)
-						{
-							player.worldObj.setBlockToAir(x + x1 - half, y + y1, z + z1 - half);
-						}
-						else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, x + x1 - half, y + y1 - 1, z + z1 - half))
-						{
-							player.worldObj.setBlock(x + x1 - half, y + y1, z + z1 - half, Blocks.snow_layer, rand.nextInt(8), 2);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	@Override
-	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player, boolean griefCheck) {
-		
+	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
+		player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 	}
 
 }

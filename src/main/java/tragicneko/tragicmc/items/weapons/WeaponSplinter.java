@@ -1,28 +1,24 @@
 package tragicneko.tragicmc.items.weapons;
 
+import java.util.List;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
-public class WeaponThardus extends EpicWeapon {
+public class WeaponSplinter extends EpicWeapon {
 
-	public WeaponThardus(Doomsday dday) {
+	public WeaponSplinter(Doomsday dday) {
 		super(dday);
-		this.lores = new Lore[] {new Lore("ThardusLore1"), new Lore("ThardusLore2"), new Lore("ThardusLore3")};
+		this.lores = new Lore[] {new Lore("SplinterLore1"), new Lore("SplinterLore2"), new Lore("SplinterLore3")};
 		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
 		this.uncommonLevels = new int[] {1};
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
@@ -30,27 +26,29 @@ public class WeaponThardus extends EpicWeapon {
 		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
 		this.epicLevels = new int[] {5, 3};
 	}
-
+	
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0 || !TragicNewConfig.allowNonDoomsdayAbilities) return super.onLeftClickEntity(stack, player, entity);
+		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0 || TragicNewConfig.allowNonDoomsdayAbilities) return super.onLeftClickEntity(stack, player, entity);
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (doom != null && doom.getCurrentDoom() >= 5 && entity instanceof EntityLivingBase)
+		if (doom != null && doom.getCurrentDoom() >= 3 && entity instanceof EntityLivingBase)
 		{
-			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1200, 6));
+			entity.motionX = itemRand.nextDouble() - itemRand.nextDouble();
+			entity.motionY = 0.45D;
+			entity.motionZ = itemRand.nextDouble() - itemRand.nextDouble();
 
 			if (!player.capabilities.isCreativeMode)
 			{
-				doom.increaseDoom(-5);
+				doom.increaseDoom(-3);
 			}
 
-			this.cooldown = 40;
+			this.cooldown = 20;
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	}
-
+	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
@@ -61,26 +59,29 @@ public class WeaponThardus extends EpicWeapon {
 
 		if (mop == null) return par1ItemStack;
 
-		if (!par2World.isRemote && doom.getCurrentDoom() >= 3)
+		if (!par2World.isRemote && doom.getCurrentDoom() >= 10)
 		{
-			double d4 = mop.hitVec.xCoord - par3EntityPlayer.posX;
-			double d5 = mop.hitVec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-			double d6 = mop.hitVec.zCoord - par3EntityPlayer.posZ;
+			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D));
+			EntityLivingBase entity;
 			
-			for (int i = 0; i < 7; i++)
+			for (int i = 0; i < list.size(); i++)
 			{
-				EntityIcicle rocket = new EntityIcicle(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
-						d6 + itemRand.nextDouble() - itemRand.nextDouble());
-				rocket.posX += d4 * 0.115D;
-				rocket.posY = par3EntityPlayer.posY + 0.6D;
-				rocket.posZ += d6 * 0.115D;
-				par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+				if (list.get(i) instanceof EntityLivingBase)
+				{
+					entity = (EntityLivingBase) list.get(i);
+					
+					entity.motionX = itemRand.nextDouble() - itemRand.nextDouble();
+					entity.motionY = 0.45D;
+					entity.motionZ = itemRand.nextDouble() - itemRand.nextDouble();
+				}
 			}
 			
 			if (!par3EntityPlayer.capabilities.isCreativeMode)
 			{
-				doom.increaseDoom(-3);
+				doom.increaseDoom(-10);
 			}
+			
+			cooldown = 40;
 		}
 		
 		return par1ItemStack;

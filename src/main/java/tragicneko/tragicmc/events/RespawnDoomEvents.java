@@ -18,17 +18,18 @@ public class RespawnDoomEvents {
 	@SubscribeEvent
 	public void onRespawn(PlayerRespawnEvent event)
 	{
+		if (!(event.player instanceof EntityPlayerMP)) return;
+
 		PropertyDoom property = PropertyDoom.get(event.player);
 
-		if (property != null && event.player instanceof EntityPlayerMP)
-		{
-			TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.player), (EntityPlayerMP)event.player);
-		}
-		
+		if (property == null) return;
+		property.loadProxyData(event.player);
+
 		if (TragicNewConfig.allowRespawnPunishment && !event.player.capabilities.isCreativeMode)
 		{
 			if (event.player.worldObj.difficultySetting == EnumDifficulty.HARD)
 			{
+				property.emptyDoom();
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1800, 1));
 
 				if (TragicNewConfig.allowCripple)
@@ -40,6 +41,7 @@ public class RespawnDoomEvents {
 
 			if (event.player.worldObj.difficultySetting == EnumDifficulty.NORMAL)
 			{
+				property.increaseDoom(-(property.getCurrentDoom() / 2)); 
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1200));
 
 				if (TragicNewConfig.allowCripple)
@@ -51,6 +53,8 @@ public class RespawnDoomEvents {
 
 			if (event.player.worldObj.difficultySetting == EnumDifficulty.EASY)
 			{
+				property.increaseDoom(-(property.getCurrentDoom() / 4)); 
+
 				if (TragicNewConfig.allowCripple)
 				{
 					event.player.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, 600, 1));
@@ -58,6 +62,9 @@ public class RespawnDoomEvents {
 				}
 			}
 		}
+		
+		property.setCooldown(0);
+		TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.player), (EntityPlayerMP)event.player);
 	}
 
 }

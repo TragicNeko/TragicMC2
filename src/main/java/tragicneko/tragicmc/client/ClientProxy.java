@@ -84,6 +84,7 @@ import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
+import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
@@ -162,6 +163,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderProjectile(TragicItems.PureDarkness));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(TragicItems.PitchBlack));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkEnergy.class, new RenderProjectile(TragicItems.DarkParticles));
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderMob(new ModelJabba(), 0.355F, "Jabba_lowRes"));

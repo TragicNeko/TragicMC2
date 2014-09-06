@@ -18,7 +18,17 @@ public class DoomsdayBloodlust extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) {
+	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Bloodlust!"));
+
+		if (crucMoment)
+		{
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+		}
+	}
+
+	@Override
+	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		int a = 2;
 
@@ -39,55 +49,20 @@ public class DoomsdayBloodlust extends Doomsday {
 			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 160 * a, 0));
 			if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 160 * a, a));
 		}
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Bloodlust!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-
-		if (!player.capabilities.isCreativeMode)
-		{
-			this.applyDoomAndCooldown(doom);
-		}
 	}
 
 	@Override
-	public void useDoomsdayThroughCommand(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck) {
-		int a = 2;
-
-		if (crucMoment)
-		{
-			a *= 2;
-		}
-
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 240 * a, a * 2));
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 240 * a, a * 2));
-		player.addPotionEffect(new PotionEffect(Potion.jump.id, 240 * a, a * 2));
-		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 240 * a, a * 2));
-		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 240 * a, a * 2));
-
-		if (!crucMoment)
-		{
-			a = 1;
-			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 160 * a, 0));
-			if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 160 * a, a));
-		}
+	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		
+		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 60, 0));
+		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 60, 0));
+		player.addPotionEffect(new PotionEffect(Potion.jump.id, 60, 0));
+		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 60, 0));
+		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 0));
 		
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Bloodlust!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
+		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 640, 0));
+		if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 640, 1));
 	}
 
-	@Override
-	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player, boolean griefCheck) {
-
-	}
 
 }

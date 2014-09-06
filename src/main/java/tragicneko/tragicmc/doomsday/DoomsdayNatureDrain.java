@@ -1,5 +1,8 @@
 package tragicneko.tragicmc.doomsday;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockDoublePlant;
@@ -19,61 +22,65 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
-public class DoomsdayNatureDrain extends Doomsday {
+public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
+
+	private Map<Integer, int[]> map = new HashMap();
 
 	public DoomsdayNatureDrain(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+		this.waitTime = 10;
+		this.maxIterations = 50;
 	}
-	
+
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck)
-	{
-		int x = MathHelper.floor_double(player.posX) - 3;
-		int y = MathHelper.floor_double(player.posY) - 3;
-		int z = MathHelper.floor_double(player.posZ) - 3;
-
-		World world = player.worldObj;
-
+	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		double radius = crucMoment ? 12.0D : 7.0D;
+		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		
+		boolean griefCheck = this.getMobGriefing(player);
 		double plantCount = 0.0D;
-		
-		for (int y1 = 0; y1 < 7; y1++)
+		int[] coords;
+
+		for (int i = 0; i < map.size(); i++)
 		{
-			for (int z1 = 0; z1 < 7; z1++)
+			coords = map.get(i);
+			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+
+			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
+					|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
+					|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
 			{
-				for (int x1 = 0; x1 < 7; x1++)
+				if (griefCheck)
 				{
-					Block block = world.getBlock(x + x1, y + y1, z + z1);
-					
-					if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
-							|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
-							|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
+					if (block instanceof BlockLeaves)
 					{
-						if (griefCheck)
-						{
-							world.setBlockToAir(x + x1, y + y1, z + z1);
-						}
-						plantCount += 0.2;
+						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.gravel);
 					}
-
-					if (block instanceof BlockGrass)
+					else
 					{
-						if (griefCheck)
-						{
-							world.setBlock(x + x1, y + y1, z + z1, Blocks.dirt);
-						}
-						plantCount += 0.1;
-					}
-
-					if (block instanceof BlockFarmland)
-					{
-						if (griefCheck)
-						{
-							world.setBlock(x + x1, y + y1, z + z1, Blocks.dirt);
-						}
-						plantCount += 0.15;
+						player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
 					}
 				}
+				plantCount += 0.2;
+			}
+			else if (block instanceof BlockGrass)
+			{
+				if (griefCheck)
+				{
+					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+				}
+				plantCount += 0.1;
+			}
+
+			if (block instanceof BlockFarmland)
+			{
+				if (griefCheck)
+				{
+					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+				}
+				plantCount += 0.15;
 			}
 		}
 
@@ -84,86 +91,77 @@ public class DoomsdayNatureDrain extends Doomsday {
 			f *= 1.5;
 		}
 
-		if (f > 40F)
+		if (f > 40.0F)
 		{
-			f = 40F;
+			f = 40.0F;
 		}
 
-		if (f > 0F)
+		if (f > 0.0F)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Nature Drain!"));
-
+			
 			if (crucMoment)
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
 			}
-
-			for (int j = 0; j < 10; j++)
-			{
-				if (rand.nextInt(3) == 0)
-				{
-					player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
-				}
-				player.heal(f / 10);
-			}
-
-			if (!player.capabilities.isCreativeMode)
-			{
-				this.applyDoomAndCooldown(doom);
-			}
+			
+			player.heal(f);
+			player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
 		}
 		else
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No plantlife in range..."));
 		}
 	}
-	
+
 	@Override
-	public void useDoomsdayThroughCommand(PropertyDoom doom, EntityPlayer player, boolean crucMoment, boolean griefCheck)
+	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		int x = MathHelper.floor_double(player.posX) - 3;
-		int y = MathHelper.floor_double(player.posY) - 3;
-		int z = MathHelper.floor_double(player.posZ) - 3;
+		double radius = crucMoment ? 12.0D : 7.0D;
+		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		
+		boolean griefCheck = this.getMobGriefing(player);
+		double plantCount = 0.0D;
+		int[] coords;
 
-		World world = player.worldObj;
-
-		double plantCount = 0;
-		for (int y1 = 0; y1 < 7; y1++)
+		for (int i = 0; i < map.size(); i++)
 		{
-			for (int z1 = 0; z1 < 7; z1++)
+			coords = map.get(i);
+			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+
+			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
+					|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
+					|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
 			{
-				for (int x1 = 0; x1 < 7; x1++)
+				if (griefCheck)
 				{
-					Block block = world.getBlock(x + x1, y + y1, z + z1);
-					if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
-							|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
-							|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
+					if (block instanceof BlockLeaves)
 					{
-						if (griefCheck)
-						{
-							world.setBlockToAir(x + x1, y + y1, z + z1);
-						}
-						plantCount += 0.2;
+						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.gravel);
 					}
-
-					if (block instanceof BlockGrass)
+					else
 					{
-						if (griefCheck)
-						{
-							world.setBlock(x + x1, y + y1, z + z1, Blocks.dirt);
-						}
-						plantCount += 0.1;
-					}
-
-					if (block instanceof BlockFarmland)
-					{
-						if (griefCheck)
-						{
-							world.setBlock(x + x1, y + y1, z + z1, Blocks.dirt);
-						}
-						plantCount += 0.15;
+						player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
 					}
 				}
+				plantCount += 0.2;
+			}
+			else if (block instanceof BlockGrass)
+			{
+				if (griefCheck)
+				{
+					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+				}
+				plantCount += 0.1;
+			}
+
+			if (block instanceof BlockFarmland)
+			{
+				if (griefCheck)
+				{
+					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+				}
+				plantCount += 0.15;
 			}
 		}
 
@@ -174,28 +172,20 @@ public class DoomsdayNatureDrain extends Doomsday {
 			f *= 1.5;
 		}
 
-		if (f > 40F)
+		if (f > 40.0F)
 		{
-			f = 40F;
+			f = 40.0F;
 		}
 
-		if (f > 0F)
+		if (f > 0.0F)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Nature Drain!"));
-
 			if (crucMoment)
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
 			}
-
-			for (int j = 0; j < 10; j++)
-			{
-				if (rand.nextInt(3) == 0)
-				{
-					player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
-				}
-				player.heal(f / 10);
-			}
+			
+			player.heal(f);
+			player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
 		}
 		else
 		{
@@ -204,9 +194,9 @@ public class DoomsdayNatureDrain extends Doomsday {
 	}
 
 	@Override
-	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player,
-			boolean griefCheck) {
-		
+	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
+		float f = map.size() / 10.0F;
+		player.addExhaustion(f);
 	}
 
 }

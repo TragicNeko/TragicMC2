@@ -20,9 +20,6 @@ public class DoomCommand extends CommandBase {
 
 	public DoomCommand()
 	{
-		this.aliases = new ArrayList();
-		this.aliases.add("doom");
-		this.aliases.add("Doom");
 	}
 	
 	@Override
@@ -34,12 +31,7 @@ public class DoomCommand extends CommandBase {
 	public String getCommandUsage(ICommandSender var1) {
 		return "Usage: /doom <player> <int to apply>";
 	}
-
-	@Override
-	public List getCommandAliases() {
-		return this.aliases;
-	}
-
+	
 	@Override
 	public void processCommand(ICommandSender var1, String[] var2) {
 		if (var2.length != 2)
