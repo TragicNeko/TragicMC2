@@ -78,7 +78,7 @@ public abstract class Doomsday {
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar"//, "firestorm"
 		//"mindCrush", "asphyxiate", "fireStorm", "isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut"
 	};
 
