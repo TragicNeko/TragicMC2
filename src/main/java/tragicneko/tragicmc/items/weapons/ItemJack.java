@@ -101,24 +101,23 @@ public class ItemJack extends ItemTool {
 			
 			EnumChatFormatting format = EnumChatFormatting.DARK_AQUA;
 			
-			if (doomsday.getDoomsdayType() == EnumDoomType.CRISIS)
+			switch(doomsday.getDoomsdayType())
 			{
-				format = EnumChatFormatting.DARK_RED;
-			}
-			
-			if (doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW)
-			{
+			case COMBINATION:
+				format = EnumChatFormatting.YELLOW;
+				break;
+			case CRISIS:
+				format = EnumChatFormatting.RED;
+				break;
+			case OVERFLOW:
 				format = EnumChatFormatting.GREEN;
-			}
-			
-			if (doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER)
-			{
+				break;
+			case WORLDSHAPER:
 				format = EnumChatFormatting.DARK_PURPLE;
-			}
-			
-			if (doomsday.getDoomsdayType() == EnumDoomType.ULTIMATE)
-			{
-				format = EnumChatFormatting.DARK_BLUE;
+				break;
+			case INFLUENCE:
+			default:
+				break;
 			}
 
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());

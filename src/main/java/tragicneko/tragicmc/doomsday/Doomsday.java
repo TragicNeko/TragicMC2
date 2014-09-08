@@ -47,7 +47,7 @@ public abstract class Doomsday {
 	public static final Doomsday SkullCrusher = (new DoomsdaySkullCrusher(20, 15, 50));
 	public static final Doomsday MinerSkills = (new DoomsdayMinerSkills(21, 20, 30));
 	public static final Doomsday Freeze = (new DoomsdayFreeze(22, 30, 30));
-	public static final Doomsday MoonlightSonata = (new DoomsdayMoonlightSonata(23, 40, 1));
+	public static final Doomsday MoonlightSonata = (new DoomsdayMoonlightSonata(23, 60, 1));
 	public static final Doomsday FlightOfTheValkyries = (new DoomsdayFlightOfTheValkyries(24, 10, 10));
 	public static final Doomsday Titanfall = (new DoomsdayTitanfall(25, 10, 5));
 	public static final Doomsday Bloodlust = (new DoomsdayBloodlust(26, 30, 80));
@@ -62,6 +62,7 @@ public abstract class Doomsday {
 	public static final Doomsday FireRain = (new DoomsdayFireRain(35, 5, 8));
 	public static final Doomsday DragonsRoar = (new DoomsdayDragonsRoar(36, 15, 25));
 	//public static final Doomsday Firestorm = (new DoomsdayFirestorm(37, 18, 30));
+	//public static final Doomsday Shotgun = (new DoomsdayShotgun(38, 5, 10));
 
 	/*
 	public static final Doomsday Isolation = (new Doomsday(31, 25, 125, EnumDoomType.WORLDSHAPER)); //knocks away all enemies near you and inflicts a huge amount of damage
@@ -69,17 +70,16 @@ public abstract class Doomsday {
 	public static final Doomsday JudgmentDay = (new Doomsday(32, 160, 200, EnumDoomType.ULTIMATE)); //teleports all nearby entities into the air above you and damages them
 	//multiple times with magic damage, for every hit you heal yourself, they also get hurt by spirit bursts fired from the ground and will take huge amounts of damage the more health 
 	//that they have, potentionally doing hundreds of points of damage to boss mobs, Tragic Hellraiser
-	public static final Doomsday ParadigmShift = (new Doomsday(33, 55, 100, EnumDoomType.ULTIMATE)); //Activates a random doomsday effect to it's highest ability (maximum
-	//crisis/overflow amounts as well as maximum amount of bursts/waves if it has them)
-	public static final Doomsday Harden = (new Doomsday(34, 35, 30)); //gives you resistance 10 for a short amount of time or until hit, along with slowness 1, Diamond Armor
-	public static final Doomsday DiamondCut = (new Doomsday(35, 35, 30)); //gives you an attack buff that lasts for one hit or a few seconds, whichever occurs first, Diamond Sword
+	public static final Doomsday ParadigmShift = (new Doomsday(33, 55, 100, EnumDoomType.ULTIMATE)); //Activates a random doomsday
+	public static final Doomsday Harden = (new Doomsday(34, 35, 30)); //gives you resistance 10 for a very short amount of time
+	public static final Doomsday DiamondCut = (new Doomsday(35, 35, 30)); //gives you strength 10 for a very short amount of time
+	public static final Doomsday DeathMark = (new Doomsday(44, 6, 4)); //inflicts a mob nearby with submission 10, damage that mob with magic bursts over the duration of it
 	 */
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar"//, "firestorm"
-		//"mindCrush", "asphyxiate", "fireStorm", "isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar"//, "firestorm", "isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
@@ -276,10 +276,6 @@ public abstract class Doomsday {
 		case CRISIS:
 			x = 3;
 			break;
-
-		case ULTIMATE:
-			x = 4;
-			break;
 		case COMBINATION:
 			x = -1;
 			break;
@@ -355,9 +351,6 @@ public abstract class Doomsday {
 			break;
 		case WORLDSHAPER:
 			s = "worldShaper";
-			break;
-		case ULTIMATE:
-			s = "ultimate";
 			break;
 		case COMBINATION:
 			s = "combination";
@@ -532,7 +525,6 @@ public abstract class Doomsday {
 		OVERFLOW,
 		CRISIS,
 		WORLDSHAPER,
-		ULTIMATE,
 		COMBINATION
 	}
 

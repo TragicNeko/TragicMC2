@@ -51,9 +51,9 @@ public class TragicNewConfig {
 	public static int idTaintedArchipelago, idTaintedRises, idTaintedScarlands, idTaintedIsles;
 
 	private static boolean[] blanketDoom = new boolean[17];
-	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowUltimateDoomsday, allowNonDoomsdayAbilities;
+	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
 	public static boolean shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash, allowCooldown;
-	public static boolean allowCooldownDefuse, showDoomGui, allowCombinationDoomsday;
+	public static boolean allowCooldownDefuse, showDoomGui;
 	private static int[] doomInts = new int[8];
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
 
@@ -236,7 +236,7 @@ public class TragicNewConfig {
 		blanketDoom[mapping++] = (config.get(catDoom, "allowCrisisDoomsdays", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "allowOverflowDoomsdays", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "allowWorldShaperDoomsdays", true).getBoolean(true));
-		blanketDoom[mapping++] = (config.get(catDoom, "allowUltimateDoomsdays", true).getBoolean(true));
+		blanketDoom[mapping++] = (config.get(catDoom, "allowCombinationDoomsdays", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "allowNonDoomsdayAbilities", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "requireDoomConsumeUse", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "allowDoomConsumeRefill", true).getBoolean(true));
@@ -247,7 +247,6 @@ public class TragicNewConfig {
 		blanketDoom[mapping++] = (config.get(catDoom, "allowCooldown", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "allowCooldownDefuse", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "showDoomGui", true).getBoolean(true));
-		blanketDoom[mapping++] = (config.get(catDoom, "allowCombinationDoomsdays", true).getBoolean(true));
 
 		mapping = 0;
 		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "maxDoomAmount", 500).getInt(500), 100, 1000);
@@ -847,7 +846,7 @@ public class TragicNewConfig {
 		allowCrisisDoomsday = blanketDoom[mapping++];
 		allowOverflowDoomsday = blanketDoom[mapping++];
 		allowWorldShaperDoomsday = blanketDoom[mapping++];
-		allowUltimateDoomsday = blanketDoom[mapping++];
+		allowCombinationDoomsday = blanketDoom[mapping++];
 		allowNonDoomsdayAbilities = blanketDoom[mapping++];
 		shouldDoomLimitIncrease = blanketDoom[mapping++];
 		allowConsumeRefill = blanketDoom[mapping++];
@@ -858,7 +857,6 @@ public class TragicNewConfig {
 		allowCooldown = blanketDoom[mapping++];
 		allowCooldownDefuse = blanketDoom[mapping++];
 		showDoomGui = blanketDoom[mapping++];
-		allowCombinationDoomsday = blanketDoom[mapping++];
 
 		mapping = 0;
 		maxDoomAmount = doomInts[mapping++];

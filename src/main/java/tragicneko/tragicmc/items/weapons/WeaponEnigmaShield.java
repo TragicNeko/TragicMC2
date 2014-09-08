@@ -95,12 +95,7 @@ public class WeaponEnigmaShield extends ItemShield {
 			{
 				format = EnumChatFormatting.DARK_PURPLE;
 			}
-
-			if (doomsday.getDoomsdayType() == EnumDoomType.ULTIMATE)
-			{
-				format = EnumChatFormatting.DARK_BLUE;
-			}
-
+			
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 
 			if (doom != null)
