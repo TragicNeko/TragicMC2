@@ -33,6 +33,9 @@ public class ItemDoomsdayScroll extends Item {
 	{
 		Doomsday dday = Doomsday.getDoomsdayFromId(par1ItemStack.getItemDamage() + 1);
 		
+		par2List.add(EnumChatFormatting.WHITE + "This is a one-time use, regardless of if");
+		par2List.add(EnumChatFormatting.WHITE + "the effect is successful or not.");
+		
 		if (dday != null)
 		{
 			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
