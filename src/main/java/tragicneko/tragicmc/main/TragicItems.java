@@ -33,15 +33,18 @@ import tragicneko.tragicmc.items.food.ItemGooeyFruit;
 import tragicneko.tragicmc.items.food.ItemIceCream;
 import tragicneko.tragicmc.items.food.ItemNastyFruit;
 import tragicneko.tragicmc.items.food.ItemRice;
+import tragicneko.tragicmc.items.food.ItemSkyFruit;
 import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.special.ItemAmulet;
 import tragicneko.tragicmc.items.special.ItemAmuletRelease;
 import tragicneko.tragicmc.items.special.ItemBleedingObsidianOrb;
+import tragicneko.tragicmc.items.special.ItemBloodSacrifice;
 import tragicneko.tragicmc.items.special.ItemChallenge;
 import tragicneko.tragicmc.items.special.ItemCooldownDefuse;
 import tragicneko.tragicmc.items.special.ItemCryingObsidianOrb;
 import tragicneko.tragicmc.items.special.ItemDimensionalKey;
 import tragicneko.tragicmc.items.special.ItemDoomUpgrade;
+import tragicneko.tragicmc.items.special.ItemDoomsdayScroll;
 import tragicneko.tragicmc.items.special.ItemDyingObsidianOrb;
 import tragicneko.tragicmc.items.special.ItemGenerator;
 import tragicneko.tragicmc.items.special.ItemHydration;
@@ -50,6 +53,7 @@ import tragicneko.tragicmc.items.special.ItemLightningRod;
 import tragicneko.tragicmc.items.special.ItemMobEgg;
 import tragicneko.tragicmc.items.special.ItemMoonlight;
 import tragicneko.tragicmc.items.special.ItemNekoWand;
+import tragicneko.tragicmc.items.special.ItemNourishmentSacrifice;
 import tragicneko.tragicmc.items.special.ItemRainDance;
 import tragicneko.tragicmc.items.special.ItemStatue;
 import tragicneko.tragicmc.items.special.ItemSunnyDay;
@@ -213,12 +217,8 @@ public class TragicItems {
 
 	public static Item FrozenLightning;
 	
-	public static Item BloodSacrifice; //sacrifice all of your health (up to 1 heart left) to replenish your Doom based on amount sacrificed, maybe 10% per heart sacrificed
-	//this would also apply Inhibit to you for a short time to prevent you from spam using it with a high regeneration effect
-	public static Item NourishmentSacrifice; //sacrifice all of your current hunger (up to 1 meat left) to replenish part of your Doom
-	//this would also apply Malnourish for a short time to prevent you from refilling your hunger completely immediately after
-	//Maybe add a sacrificial altar of some sort to sacrifice items to increase your doom, this would necessitate me creating a huge map of each item and giving them a value
-	//per item in a stack
+	public static Item BloodSacrifice;
+	public static Item NourishmentSacrifice;
 
 	//Projectile items
 	public static Item Pumpkinbomb;
@@ -241,6 +241,7 @@ public class TragicItems {
 	public static Item Banana;
 	public static Item BananaSplit;
 	public static Item GoldenSushi;
+	public static Item SkyFruit;
 
 	public static Item DimensionalKey;
 
@@ -257,17 +258,18 @@ public class TragicItems {
 	public static Item LightningSummoner;
 	public static Item ExplosionGenerator;
 
-	public static Item NekoNekoWand; //allows you to set a mob to target another one, for creative mode fun only
+	public static Item NekoNekoWand;
 
 	public static Item SpawnEgg;
 	public static Item MobStatue;
-	public static Item ChallengeScroll; //when activated turns into a random challenge, like getting a certain amount of items in your inventory, or wearing specific items or
-	//obtaining one rare item, or killing specific mobs
+	public static Item ChallengeScroll;
+	public static Item DoomsdayScroll;
+	
 
-	public static ChestGenHooks BossStructureHook; //Boss hook that has a lot of good and rare items
-	public static ChestGenHooks NetherStructureHook; //Boss hook that has a lot of good and rare items, slightly improved chance of rare items over the normal boss hook
-	public static ChestGenHooks LameChestHook; //Hook for having a lot of common, boring items
-	public static ChestGenHooks AwesomeChestHook; //Hook for having a lot of high rarity items, only should be used for the very difficult boss chests
+	public static ChestGenHooks BossStructureHook;
+	public static ChestGenHooks NetherStructureHook;
+	public static ChestGenHooks LameChestHook;
+	public static ChestGenHooks AwesomeChestHook;
 
 	public static void load()
 	{
@@ -579,6 +581,9 @@ public class TragicItems {
 
 		BananaSplit = (new ItemBananaSplit(8, false).setUnlocalizedName("tragicmc.bananaSplit").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BananaSplit" + textureRes));
 		GameRegistry.registerItem(BananaSplit, "bananaSplit");
+		
+		SkyFruit = (new ItemSkyFruit(4, false).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:SkyFruit" + textureRes));
+		GameRegistry.registerItem(SkyFruit, "skyFruit");
 
 		//Special Item Registrations
 		RubyCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.rubyCharm").setMaxStackSize(16).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:RubyCharm" + textureRes));
@@ -677,8 +682,17 @@ public class TragicItems {
 		AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:AmuletRelease" + textureRes));
 		GameRegistry.registerItem(AmuletRelease, "amuletRelease");
 		
+		BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BloodSacrifice" + textureRes));
+		GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
+		
+		NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:NourishmentSacrifice" + textureRes));
+		GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
+		
 		DimensionalKey = (new ItemDimensionalKey().setUnlocalizedName("tragicmc.dimensionalKey").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DimensionalKey" + textureRes));
 		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
+		
+		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
+		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
 
 		//Amulet Registrations		
 		Color color1 = new Color(0x00, 0x00, 0x00);
@@ -955,8 +969,10 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Paranoia), 0, 1, 2),
 				new WeightedRandomChestContent(new ItemStack(Butcher), 0, 1, 2),
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 2),
-				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 5)
-				
+				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, TragicMC.rand.nextInt(Doomsday.doomsdayNames.length - 1)), 0, 1, 3)
 		};
 
 		WeightedRandomChestContent[] netherStructureContent = new WeightedRandomChestContent[] {
@@ -1003,7 +1019,10 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Paranoia), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Butcher), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 5),
-				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 10)
+				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, TragicMC.rand.nextInt(Doomsday.doomsdayNames.length - 1)), 0, 1, 5)
 		};
 
 		WeightedRandomChestContent[] lameChestContent = new WeightedRandomChestContent[] {
@@ -1042,7 +1061,10 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Paranoia), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(Butcher), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 10),
-				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 20)
+				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 20),
+				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 20),
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 20),
+				new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, TragicMC.rand.nextInt(Doomsday.doomsdayNames.length - 1)), 0, 1, 10)
 		};
 
 		BossStructureHook = (new ChestGenHooks("TragicMC.BossStructure", bossStructureContent, 3, 7));

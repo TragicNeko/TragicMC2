@@ -540,6 +540,14 @@ public class TragicRecipes {
 			'y', TragicItems.ExoticFruit,
 			'z', TragicItems.Ectoplasm
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SkyFruit, 1), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicItems.WispParticles,
+			'y', TragicItems.ExoticFruit
+		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceCream, 1), new Object[] {
 			" x ",

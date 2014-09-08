@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+
 import java.util.Random;
 
 import net.minecraft.block.BlockCactus;
@@ -17,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.main.TragicItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -76,15 +78,19 @@ public class BlockDropsEvent {
 					{
 						event.drops.add(new ItemStack(TragicItems.NastyFruit));
 					}
-
-					if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.roofedForest)
+					else if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.roofedForest)
 					{
 						event.drops.add(new ItemStack(TragicItems.GooeyFruit));
+					}
+					else
+					{
+						event.drops.add(new ItemStack(TragicItems.ExoticFruit));
 					}
 					break;
 				case 1: //Spruce
 					break;
 				case 2: //Birch
+					event.drops.add(new ItemStack(TragicItems.SkyFruit));
 					break;
 				case 3: //Jungle
 					if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungle || event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungleHills)
@@ -121,6 +127,10 @@ public class BlockDropsEvent {
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.WovenSilk));
+		}
+		else if (event.block instanceof BlockGenericLeaves && rand.nextInt(16) == 0)
+		{
+			event.drops.add(new ItemStack(TragicItems.ExoticFruit));
 		}
 	}
 
