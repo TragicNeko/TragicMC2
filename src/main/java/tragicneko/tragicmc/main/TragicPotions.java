@@ -38,8 +38,8 @@ public class TragicPotions {
 		if (Disorientation != null) ((TragicPotion) Disorientation).setIcon(new ItemStack(Items.dye));
 		if (Stun != null) ((TragicPotion) Stun).setIcon(new ItemStack(TragicItems.LightParticles));
 		if (Fear != null) ((TragicPotion) Fear).setIcon(new ItemStack(Blocks.pumpkin, 1));
-		if (Cripple != null) ((TragicPotion) Cripple).setIcon(new ItemStack(Items.bone));
-		if (Malnourish != null) ((TragicPotion) Malnourish).setIcon(new ItemStack(Items.rotten_flesh));
+		if (Cripple != null) ((TragicPotion) Cripple).setIcon(new ItemStack(TragicItems.BloodSacrifice));
+		if (Malnourish != null) ((TragicPotion) Malnourish).setIcon(new ItemStack(TragicItems.NourishmentSacrifice));
 		if (Submission != null) ((TragicPotion) Submission).setIcon(new ItemStack(TragicItems.Thorns));
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
 		
