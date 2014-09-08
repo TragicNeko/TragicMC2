@@ -25,7 +25,7 @@ public class ItemLightningRod extends ItemTalisman {
 		if (world.isThundering())
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
-			if (player.ticksExisted % 20 == 0) stack.damageItem(1, player);
+			if (player.ticksExisted % 400 == 0) stack.damageItem(1, player);
 		}
 	}
 }

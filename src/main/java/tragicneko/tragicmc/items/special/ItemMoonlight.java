@@ -25,7 +25,7 @@ public class ItemMoonlight extends ItemTalisman {
 		if (!world.isDaytime() && !world.isRaining() && !world.isThundering())
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(mod);
-			if (player.ticksExisted % 20 == 0) stack.damageItem(1, player);
+			if (player.ticksExisted % 400 == 0) stack.damageItem(1, player);
 		}
 	}
 }

@@ -25,7 +25,7 @@ public class ItemHydration extends ItemTalisman {
 		if (world.isRaining())
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(mod);
-			if (player.ticksExisted % 20 == 0) stack.damageItem(1, player);
+			if (player.ticksExisted % 400 == 0) stack.damageItem(1, player);
 		}
 	}
 }
