@@ -2541,15 +2541,19 @@ Added the epic weapons to chest hooks, challenge item rewards (highest tier), an
 Reduced limit of luxury boss drops, they should drop less of them now on death
 Fix possible bug with bosses dying when mob looting is disabled
 
-1.36.1440++ <163> (September 6, 2014)
+1.36.1440++ <163> (September 7, 2014)
+Added Doomsday Scrolls, these will allow you to use any of the doomsdays in the mod, including combination doomsdays and ones that don't even have a weapon assigned to them
+like Paradigm Shift, Lateralus and Death Mark, these can only be found in chests and off of bosses
+Added Blood/Nourishment Sacrifice, these allow an alternative method to regain doom (if you can't find any Doom Consumes)
+Added the Sacrifices to the chest hooks, added Doomsday Scrolls to the chest hooks as well
+Added a Sky Fruit that gives you Flight when eaten, recovers a decent amount of hunger as well
+Made it so that my leaf blocks now change based on whether fancy graphics are enabled or not (they don't change light opacity or which sides get rendered but it should be fine)
 
 --
-The Dragon Fang will have two Doomsdays now, one to give flight, the other to do the fire rain (fireballs from the sky), when combined it will toss mobs up in the air and the
-fireballs will be targetted towards the mobs (combination doomsday will be the Firestorm)
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will allow the player to damage anything that it comes into contact with, whereas the Tragic Hellraiser one will inflict major damage quickly to all nearby mobs
 depending on how much health they have (will pretty much kill anything in range)
-The Tragic Sentinel's Doomsday will make the player invincible as well as give them flight, it'll also accelerate the player's doom regeneration while it's active and allow
+The Tragic Sentinel's Doomsday will give the player a bunch of good buffs, it'll also accelerate the player's doom regeneration while it's active and allow
 them to absorb more Doom from enemies (Attunement)
 
 Started planning for Nyx and Erebus, the previous plan will be scrapped and they'll be converted into a single strong boss, which can be summoned with Darkened Quartz and
