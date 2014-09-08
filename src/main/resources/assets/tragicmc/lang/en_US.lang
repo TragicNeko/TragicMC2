@@ -439,6 +439,16 @@ item.tragicmc.boneMarrow.name=Bone Marrow
 item.tragicmc.banana.name=Banana
 item.tragicmc.bananaSplit.name=Banana Split
 item.tragicmc.goldenSushi.name=Golden Sushi
+item.tragicmc.skyFruit.name=Sky Fruit
+
+item.tragicmc.synthesisTalisman.name=Synthesis Talisman
+item.tragicmc.moonlightTalisman.name=Moonlight Talisman
+item.tragicmc.lightningRodTalisman.name=Lightning Rod Talisman
+item.tragicmc.hydrationTalisman.name=Hydration Talisman
+item.tragicmc.sunnyDayTalisman.name=Sunny Day Talisman
+item.tragicmc.rainDanceTalisman.name=Rain Dance Talisman
+item.tragicmc.thunderstormTalisman.name=Thunderstorm Talisman
+item.tragicmc.timeManipulatorTalisman.name=Time Manipulator Talisman
 
 item.tragicmc.rock.rock.name=Rock
 item.tragicmc.rock.lavaRock.name=Lava Rock
