@@ -11,7 +11,12 @@ import net.minecraft.item.ItemTool;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.items.weapons.EpicWeapon;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
@@ -27,7 +32,7 @@ public class WeaponEvents {
 	public void whileHoldingSpecialWeapon(LivingHurtEvent event)
 	{
 		if (!TragicNewConfig.allowNonDoomsdayAbilities) return;
-		
+
 		if (event.entityLiving instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
@@ -45,7 +50,7 @@ public class WeaponEvents {
 						event.setCanceled(true);
 					}
 				}
-				
+
 				if (weapon == TragicItems.EnigmaShield)
 				{
 					if (event.source.isUnblockable() && !event.source.isMagicDamage() && !event.source.canHarmInCreative() && event.isCancelable() && doom.getCurrentDoom() >= 8)
@@ -54,12 +59,12 @@ public class WeaponEvents {
 						event.setCanceled(true);
 					}
 				}
-				
+
 				if (weapon == TragicItems.TragicSentinel && doom.getCurrentDoom() > 0)
 				{
 					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
 				}
-				
+
 				if (weapon == TragicItems.CelestialAegis && doom.getCurrentDoom() > 0)
 				{
 					event.ammount *= 0.825F;
@@ -74,13 +79,13 @@ public class WeaponEvents {
 			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof TragicWeapon && doom != null)
 			{
 				Item weapon = player.getCurrentEquippedItem().getItem();
-				
+
 				if (weapon == TragicItems.Butcher && doom.getCurrentDoom() > 0)
 				{
 					event.entity.motionX = event.entity.posX - player.posX;
 					event.entity.motionY = event.entity.posY - player.posY;
 					event.entity.motionZ = event.entity.posZ - player.posZ;
-					
+
 					if (player.isSprinting())
 					{
 						event.entity.motionX *= 4.8D;
@@ -89,10 +94,10 @@ public class WeaponEvents {
 					}
 				}
 			}
-			
+
 		}
 	}
-	
+
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onLightningHurt(EntityStruckByLightningEvent event)
 	{
@@ -100,7 +105,7 @@ public class WeaponEvents {
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
 			PropertyDoom doom = PropertyDoom.get(mp);
-			
+
 			if (mp.getCurrentEquippedItem() != null)
 			{
 				if (mp.getCurrentEquippedItem().getItem() == TragicItems.Titan && doom.getCurrentDoom() >= 25)

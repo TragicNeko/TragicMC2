@@ -35,47 +35,44 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		if (!this.inGround)
+		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 6; ++l) {
 				worldObj.spawnParticle("flame", posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.2D, (rand.nextGaussian() - 0.4D) * 0.2D,
 						(rand.nextGaussian() - 0.4D) * 0.2D);
 			}
-		}
 
-		if (mop.entityHit != null && !inGround) 
-		{			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 5.0F);
-			if (mop.entityHit instanceof EntityLivingBase)
-			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 200 + rand.nextInt(320)));
+			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+		}
+		else
+		{
+			if (mop.entityHit != null && !inGround) 
+			{			
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 5.0F);
+				if (mop.entityHit instanceof EntityLivingBase)
+				{
+					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 200 + rand.nextInt(320)));
+				}
 			}
 		}
 
-		this.inGround = true;
+		int random = rand.nextInt(8) + 6;
 
-		int random = rand.nextInt(8) + 4;
 
-		this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
-		
-		for (int l = 0; l < random; l++)
+		if (this.getThrower() != null && !this.worldObj.isRemote)
 		{
-			if (this.getThrower() != null && !this.worldObj.isRemote)
+			for (int l = 0; l < random; l++)
 			{
 				EntityPumpkinbomb bomb = new EntityPumpkinbomb(this.worldObj, this.getThrower());
 
 				bomb.setPosition(this.posX + MathHelper.getRandomIntegerInRange(rand, -4, 4), this.posY + 1, this.posZ + MathHelper.getRandomIntegerInRange(rand, -4, 4));
 				this.worldObj.spawnEntityInWorld(bomb);
 			}
-		}
 
-		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-
-		if (flag && !this.worldObj.isRemote)
-		{
+			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 		}
-
+		
 		this.setDead();
 	}
 
@@ -108,7 +105,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 			int random = rand.nextInt(8) + 4;
 			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 			this.worldObj.playSoundAtEntity(this, "mob.blaze.breathe", 0.4F, 0.4F);
-			
+
 			for (int l = 0; l < random; l++)
 			{
 				double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX; 

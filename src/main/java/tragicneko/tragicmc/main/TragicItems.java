@@ -694,7 +694,7 @@ public class TragicItems {
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
 
-		//Amulet Registrations		
+		//Amulet Registrations
 		Color color1 = new Color(0x00, 0x00, 0x00);
 		Color color2 = new Color(0xff, 0xff, 0xff);
 		int id = 0;

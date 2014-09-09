@@ -2554,6 +2554,7 @@ one attack
 Converted Mindcrack into an extended Doomsday in order to persist removing surrounding entities's motion
 Added Shotgun and Firestorm combination Doomsdays
 Fixed initial bug with Shotgun Doomsday
+Fix some potion effect bugs with projectiles, rewrote Pumpkinbomb projectile's physics
 
 --
 The Tragic Armor and Tragic Sentinal Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one

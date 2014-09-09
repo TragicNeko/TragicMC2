@@ -35,7 +35,7 @@ public class EntityIcicle extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround) 
+		if (mop.entityHit != null && !inGround && !this.worldObj.isRemote) 
 		{			
 			if (!(mop.entityHit instanceof EntityLivingBase)) return;
 			if (mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse) return;
