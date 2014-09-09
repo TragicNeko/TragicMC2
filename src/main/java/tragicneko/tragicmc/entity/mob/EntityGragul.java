@@ -176,8 +176,6 @@ public class EntityGragul extends TragicMob {
 
 		if (result)
 		{
-			par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), ((EntityLivingBase) par1Entity).getMaxHealth() / 10);
-
 			if (par1Entity.worldObj.difficultySetting == EnumDifficulty.HARD)
 			{
 				if (rand.nextInt(4) == 0)

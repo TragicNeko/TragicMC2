@@ -63,7 +63,7 @@ public class EntityKragul extends TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.38);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
@@ -182,8 +182,6 @@ public class EntityKragul extends TragicMiniBoss {
 
 		if (result)
 		{
-			par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), ((EntityLivingBase) par1Entity).getMaxHealth() / 5);
-
 			if (par1Entity.worldObj.difficultySetting == EnumDifficulty.HARD)
 			{
 				if (rand.nextInt(2) == 0)
