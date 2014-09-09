@@ -31,7 +31,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 
 		if (list.size() > 0)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.LIGHT_PURPLE + "You have used Flight of the Valkyries!"));	
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Flight of the Valkyries!"));	
 			if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 200, 0));
 			doom.fillDoom();
 		}

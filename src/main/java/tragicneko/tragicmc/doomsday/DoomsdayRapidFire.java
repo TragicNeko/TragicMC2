@@ -23,13 +23,14 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayRapidFire(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
-		this.waitTime = 4;
-		this.maxIterations = 20;
+		this.waitTime = 2;
+		this.maxIterations = 30;
 	}
 
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Rapid Fire!"));
+			
 	}
 
 	@Override

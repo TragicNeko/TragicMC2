@@ -49,6 +49,14 @@ public class DoomsdayManager {
 		this.combinations.put(Doomsday.Permafrost, Doomsday.Freeze);
 		this.combinationMap.put(Doomsday.Permafrost, Doomsday.Blizzard);
 		this.combinationMap.put(Doomsday.Freeze, Doomsday.Blizzard);
+		
+		this.combinations.put(Doomsday.FireRain, Doomsday.DragonsRoar);
+		this.combinationMap.put(Doomsday.FireRain, Doomsday.Firestorm);
+		this.combinationMap.put(Doomsday.DragonsRoar, Doomsday.Firestorm);
+		
+		this.combinations.put(Doomsday.RapidFire, Doomsday.Snipe);
+		this.combinationMap.put(Doomsday.RapidFire, Doomsday.Shotgun);
+		this.combinationMap.put(Doomsday.Snipe, Doomsday.Shotgun);
 	}
 
 	public static void registerDoomsdayEffect(String playerName, DoomsdayEffect effect)

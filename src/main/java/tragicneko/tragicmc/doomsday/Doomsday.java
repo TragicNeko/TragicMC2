@@ -61,8 +61,8 @@ public abstract class Doomsday {
 	public static final Doomsday Asphyxiate = (new DoomsdayAsphyxiate(34, 3, 3));
 	public static final Doomsday FireRain = (new DoomsdayFireRain(35, 5, 8));
 	public static final Doomsday DragonsRoar = (new DoomsdayDragonsRoar(36, 15, 25));
-	//public static final Doomsday Firestorm = (new DoomsdayFirestorm(37, 18, 30));
-	//public static final Doomsday Shotgun = (new DoomsdayShotgun(38, 5, 10));
+	public static final Doomsday Firestorm = (new DoomsdayFirestorm(37, 8, 10));
+	public static final Doomsday Shotgun = (new DoomsdayShotgun(38, 5, 10));
 
 	/*
 	public static final Doomsday Isolation = (new Doomsday(31, 25, 125, EnumDoomType.WORLDSHAPER)); //knocks away all enemies near you and inflicts a huge amount of damage
@@ -79,7 +79,8 @@ public abstract class Doomsday {
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar"//, "firestorm", "isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", //"isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut",
+		//"deathMark", "lateralus"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

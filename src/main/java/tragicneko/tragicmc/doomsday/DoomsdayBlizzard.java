@@ -17,7 +17,7 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.LIGHT_PURPLE + "You have used Blizzard!"));
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Blizzard!"));
 
 		if (crucMoment)
 		{

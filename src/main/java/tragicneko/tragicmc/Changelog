@@ -2549,14 +2549,18 @@ Added the Sacrifices to the chest hooks, added Doomsday Scrolls to the chest hoo
 Added a Sky Fruit that gives you Flight when eaten, recovers a decent amount of hunger as well
 Made it so that my leaf blocks now change based on whether fancy graphics are enabled or not (they don't change light opacity or which sides get rendered but it should be fine)
 Add knockback resistance buff to the player when they have the Butcher in their hand, as long as they have at least 1 Doom
-Reduced health of Kragul to 8, in Hard, this means 2 less hits to kill, in Normal/Easy it is 1 less hit to kill, also fixed a bug with it's attack where it would attack twice
+Reduced health of Kragul to 8, in Hard, this means 2 less hits to kill, in Normal/Easy it is 1 less hit to kill, also fixed a bug with it's attack where it would hit twice in
+one attack
+Converted Mindcrack into an extended Doomsday in order to persist removing surrounding entities's motion
+Added Shotgun and Firestorm combination Doomsdays
+Fixed initial bug with Shotgun Doomsday
 
 --
-The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
-will allow the player to damage anything that it comes into contact with, whereas the Tragic Hellraiser one will inflict major damage quickly to all nearby mobs
-depending on how much health they have (will pretty much kill anything in range)
-The Tragic Sentinel's Doomsday will give the player a bunch of good buffs, it'll also accelerate the player's doom regeneration while it's active and allow
-them to absorb more Doom from enemies (Attunement)
+The Tragic Armor and Tragic Sentinal Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
+will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Sentinel Doomsday will inflict damage on all mobs near the player
+at a constant rate but will not knock them away, it'll also leech Doom off of them
+The Tragic Hellraiser's Doomsday will be Judgment day, which will stall all mobs into the air and inflict judgment damage onto them (they take damage equal to one-tenth of
+their max health, this caps at around 15 though so that bosses don't get killed by this)
 
 Started planning for Nyx and Erebus, the previous plan will be scrapped and they'll be converted into a single strong boss, which can be summoned with Darkened Quartz and
 a Time Disruption Cube (similarly to the Time Controller), it'll work like a hybrid between the Ender Dragon and the 1.8 mob, the Guardian. It'll float and have super high

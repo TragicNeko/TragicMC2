@@ -37,7 +37,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 		}
 		else
 		{
-			player.addPotionEffect(new PotionEffect(Potion.jump.id, 400, 3));
+			player.addPotionEffect(new PotionEffect(Potion.jump.id, 600, 3));
 		}
 
 		if (crucMoment)
@@ -50,7 +50,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					entity = (EntityLivingBase) list.get(i);
-					if (TragicNewConfig.allowStun)
+					if (TragicNewConfig.allowStun && crucMoment)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 120, 1));
 					}

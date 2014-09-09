@@ -14,12 +14,14 @@ import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
-public class DoomsdayMindcrack extends Doomsday {
+public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 	
 	private List<Entity> list = new ArrayList();
 
 	public DoomsdayMindcrack(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+		this.waitTime = 3;
+		this.maxIterations = 300;
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class DoomsdayMindcrack extends Doomsday {
 
 		if (list.size() > 0)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.LIGHT_PURPLE + "You have used Mindcrack!"));
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Mindcrack!"));
 
 			if (crucMoment)
 			{
@@ -45,6 +47,9 @@ public class DoomsdayMindcrack extends Doomsday {
 
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		double d0 = 12.0;
+		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		
 		for (int i = 0; i < list.size(); i ++)
 		{
 			if (list.get(i) instanceof EntityCreature)

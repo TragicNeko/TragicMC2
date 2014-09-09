@@ -105,7 +105,7 @@ public class DoomsdayGrowthSpurt extends Doomsday {
 
 		if (f > 0.0F)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.LIGHT_PURPLE + "You have used Growth Spurt!"));
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Growth Spurt!"));
 
 			if (crucMoment)
 			{

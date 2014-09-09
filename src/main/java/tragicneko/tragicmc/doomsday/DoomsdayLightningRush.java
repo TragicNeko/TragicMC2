@@ -27,7 +27,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1200, 2));
 		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 1200, 0));
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.LIGHT_PURPLE+ "You have used Lightning Rush!"));
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Lightning Rush!"));
 	}
 
 	@Override
