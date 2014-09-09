@@ -2548,6 +2548,8 @@ Added Blood/Nourishment Sacrifice, these allow an alternative method to regain d
 Added the Sacrifices to the chest hooks, added Doomsday Scrolls to the chest hooks as well
 Added a Sky Fruit that gives you Flight when eaten, recovers a decent amount of hunger as well
 Made it so that my leaf blocks now change based on whether fancy graphics are enabled or not (they don't change light opacity or which sides get rendered but it should be fine)
+Add knockback resistance buff to the player when they have the Butcher in their hand, as long as they have at least 1 Doom
+Reduced health of Kragul to 8, in Hard, this means 2 less hits to kill, in Normal/Easy it is 1 less hit to kill, also fixed a bug with it's attack where it would attack twice
 
 --
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
