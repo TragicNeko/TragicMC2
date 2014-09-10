@@ -2555,8 +2555,12 @@ Converted Mindcrack into an extended Doomsday in order to persist removing surro
 Added Shotgun and Firestorm combination Doomsdays
 Fixed initial bug with Shotgun Doomsday
 Fix some potion effect bugs with projectiles, rewrote Pumpkinbomb projectile's physics
+Deny a Doomsday effect if the player already has an effect of the same Doomsday registered, also remove extraneous array method as any effect registrations are going to
+be singular
 
 --
+Add the enchantment tiers and lores to the epic weapons
+Set up the Epic weapons to have greater reach (as soon as I figure out the best way to)
 The Tragic Armor and Tragic Sentinal Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Sentinel Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
