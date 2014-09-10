@@ -790,7 +790,6 @@ public class TragicItems {
 		SkeletonAmulet3 = (new ItemAmulet(id++, 3, "Skeleton", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(SkeletonAmulet3, "skeletonAmulet3");
 
-
 		color1 = new Color(0x00, 0x00, 0x00);
 		color2 = new Color(0x46, 0x6D, 0xB3);
 		SunkenAmulet = (new ItemAmulet(id++, 4, "Sunken", color1.getRGB(), color2.getRGB()));
