@@ -66,6 +66,16 @@ public class DoomsdayManager {
 			try
 			{
 				ArrayList<DoomsdayEffect> list = playerMap.get(playerName);
+				
+				for (int i = 0; i < list.size(); i++)
+				{
+					DoomsdayEffect effect2 = list.get(i);
+					if (effect2.dday == effect.dday) 
+					{
+						logger.warn(playerName + " attempted to register a new Doomsday effect for a Doomsday they already have active, ignoring registration.");
+						return;
+					}
+				}
 				list.add(effect);
 				logger.info("" + playerName + " was previously registered, adding an additional Doomsday effect: " + effect.dday.getLocalizedName());
 			}
@@ -87,14 +97,6 @@ public class DoomsdayManager {
 			{
 				logger.error("Error caught while attempting to register a new Doomsday effect.", e);
 			}
-		}
-	}
-
-	public static void registerDoomsdayEffect(String playerName, DoomsdayEffect... effect)
-	{
-		for (int i = 0; i < effect.length; i++)
-		{
-			registerDoomsdayEffect(playerName, effect[i]);
 		}
 	}
 
