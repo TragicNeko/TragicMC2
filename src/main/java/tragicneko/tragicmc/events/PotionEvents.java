@@ -238,7 +238,7 @@ public class PotionEvents {
 					{
 						player.motionY -= 0.2;
 					}
-					
+
 					player.fallDistance = 0.0F;
 				}
 			}
@@ -542,7 +542,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun))
+		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear))
 		{
 			if (event.isCancelable())
 			{
@@ -554,7 +554,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void whileUsingItem(Tick event)
 	{
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun))
+		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear))
 		{
 			if (event.isCancelable())
 			{
@@ -566,7 +566,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onDig(BreakEvent event)
 	{
-		if (event.getPlayer() != null && TragicNewConfig.allowStun && event.getPlayer().isPotionActive(TragicPotions.Stun))
+		if (event.getPlayer() != null && TragicNewConfig.allowStun && event.getPlayer().isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotions.Fear))
 		{
 			if (event.isCancelable())
 			{
@@ -578,7 +578,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onBreaking(BreakSpeed event)
 	{
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun))
+		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear))
 		{
 			if (event.isCancelable())
 			{
@@ -655,11 +655,7 @@ public class PotionEvents {
 				event.setCanceled(true);
 			}
 
-			if (event.source.getEntity() != null)
-			{
-				event.entityLiving.applyEntityCollision(event.source.getEntity());
-			}
-
+			if (event.source.getSourceOfDamage() != null) event.entityLiving.applyEntityCollision(event.source.getSourceOfDamage());
 		}
 	}
 
