@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.boss.EntityJarra;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
@@ -149,11 +150,11 @@ public class EntityDropHelper {
 		
 		entityLootDrops.put(EntityYeti.class, new ItemStack[][] {{new ItemStack(TragicItems.YetiClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
 			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)}, {new ItemStack(TragicItems.YetiClaw)}});
-		/*
+		
 		entityLootDrops.put(EntityEnyvil.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkPlate),
 			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles),
 			new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialSteel)},
-			{new ItemStack(TragicItems.PureDarkness)}}); */
+			{new ItemStack(TragicItems.PureDarkness)}});
 	}
 
 	/**

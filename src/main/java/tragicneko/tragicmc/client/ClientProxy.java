@@ -31,10 +31,12 @@ import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
+import tragicneko.tragicmc.client.render.RenderDarkCrystal;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
 import tragicneko.tragicmc.client.render.boss.RenderDeathReaper;
+import tragicneko.tragicmc.client.render.boss.RenderEnyvil;
 import tragicneko.tragicmc.client.render.boss.RenderKitsune;
 import tragicneko.tragicmc.client.render.boss.RenderMegaCryse;
 import tragicneko.tragicmc.client.render.boss.RenderPolaris;
@@ -46,9 +48,11 @@ import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderStarCryse;
 import tragicneko.tragicmc.client.render.mob.RenderStarVox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
+import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.boss.EntityJarra;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
@@ -164,6 +168,8 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(TragicItems.PitchBlack));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkEnergy.class, new RenderProjectile(TragicItems.DarkParticles));
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderProjectile(TragicItems.Talisman));
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderMob(new ModelJabba(), 0.355F, "Jabba_lowRes"));
@@ -215,6 +221,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityPolaris.class, new RenderPolaris());
 		RenderingRegistry.registerEntityRenderingHandler(EntityYeti.class, new RenderYeti());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 	}
 
 	@Override

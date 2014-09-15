@@ -12,9 +12,11 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.boss.EntityJarra;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
@@ -688,6 +690,15 @@ public class TragicEntities {
 			color2 = new Color(0xEA, 0x92, 0xE9);
 			TragicEntityList.addMapping(EntityTimeController.class, "TragicMC.TimeController", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
 		}
+		
+		if (TragicNewConfig.allowEnyvil)
+		{
+			EntityRegistry.registerModEntity(EntityEnyvil.class, "Enyvil", listid++, TragicMC.instance, 80, 1, true);
+
+			color1 = new Color(0x00, 0x00, 0x00);
+			color2 = new Color(0x46, 0x46, 0x46);
+			TragicEntityList.addMapping(EntityEnyvil.class, "TragicMC.Enyvil", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		}
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
@@ -699,10 +710,10 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityNekoClusterBomb.class, "NekoClusterBomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityNekoMiniBomb.class, "NekoMiniBomb", listid++, TragicMC.instance, 80, 5, true);
 
-		EntityRegistry.registerModEntity(EntitySolarBomb.class, "SolarBomb", listid++, TragicMC.instance, 80, 5, true);
+		EntityRegistry.registerModEntity(EntitySolarBomb.class, "SolarBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntitySpiritCast.class, "SpiritCast", listid++, TragicMC.instance, 80, 3, true);
-		EntityRegistry.registerModEntity(EntitySpore.class, "Spore", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityBanana.class, "Banana", listid++, TragicMC.instance, 80, 10, true);
+		EntityRegistry.registerModEntity(EntitySpore.class, "Spore", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityBanana.class, "Banana", listid++, TragicMC.instance, 80, 5, true);
 
 		EntityRegistry.registerModEntity(EntityTimeBomb.class, "TimeBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityTimeDisruption.class, "TimeDisruption", listid++, TragicMC.instance, 80, 3, true);
@@ -710,12 +721,14 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityLargeRock.class, "LargeRock", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityIcicle.class, "Icicle", listid++, TragicMC.instance, 80, 3, true);
 
-		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 1, false);
+		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 3, false);
 
 		EntityRegistry.registerModEntity(EntityStarShard.class, "StarShard", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, true);
 		
 		EntityRegistry.registerModEntity(EntityPitchBlack.class, "PitchBlack", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkEnergy.class, "DarkEnergy", listid++, TragicMC.instance, 80, 3, true);
+		
+		EntityRegistry.registerModEntity(EntityDarkCrystal.class, "DarkCrystal", listid++, TragicMC.instance, 80, 1, true);
 	}
 }

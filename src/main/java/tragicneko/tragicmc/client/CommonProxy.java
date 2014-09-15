@@ -37,7 +37,6 @@ public class CommonProxy implements IGuiHandler {
 			return new GuiAmuletInventory(player, player.inventory, PropertyAmulets.get(player).inventory);
 		}
 		return null;
-
 	}
 
 	/**
