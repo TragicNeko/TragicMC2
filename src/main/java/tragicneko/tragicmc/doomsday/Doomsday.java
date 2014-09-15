@@ -67,12 +67,12 @@ public abstract class Doomsday {
 	/*
 	public static final Doomsday Isolation = (new Doomsday(31, 25, 125, EnumDoomType.WORLDSHAPER)); //knocks away all enemies near you and inflicts a huge amount of damage
 	//to them, also throws a bunch of blocks near you up into the air and out away from you, causes major terrain damage, Tragic Armor
-	public static final Doomsday JudgmentDay = (new Doomsday(32, 160, 200, EnumDoomType.ULTIMATE)); //teleports all nearby entities into the air above you and damages them
+	public static final Doomsday JudgmentDay = (new Doomsday(32, 160, 200, EnumDoomType.COMBINATION)); //teleports all nearby entities into the air above you and damages them
 	//multiple times with magic damage, for every hit you heal yourself, they also get hurt by spirit bursts fired from the ground and will take huge amounts of damage the more health 
 	//that they have, potentionally doing hundreds of points of damage to boss mobs, Tragic Hellraiser
 	public static final Doomsday ParadigmShift = (new Doomsday(33, 55, 100, EnumDoomType.ULTIMATE)); //Activates a random doomsday
 	public static final Doomsday Harden = (new Doomsday(34, 35, 30)); //gives you resistance 10 for a very short amount of time
-	public static final Doomsday DiamondCut = (new Doomsday(35, 35, 30)); //gives you strength 10 for a very short amount of time
+	public static final Doomsday Sharpen = (new Doomsday(35, 35, 30)); //gives you strength 10 for a very short amount of time
 	public static final Doomsday DeathMark = (new Doomsday(44, 6, 4)); //inflicts a mob nearby with submission 10, damage that mob with magic bursts over the duration of it
 	 */
 
@@ -184,7 +184,7 @@ public abstract class Doomsday {
 			return;
 		}
 		else if (TragicNewConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowHarmony &&
-				doom.getPlayer().isPotionActive(TragicPotions.Harmony))
+				doom.getPlayer().isPotionActive(TragicPotions.Harmony) || TragicNewConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotions.Fear))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You can't use a Doomsday with that effect active..."));
 			return;

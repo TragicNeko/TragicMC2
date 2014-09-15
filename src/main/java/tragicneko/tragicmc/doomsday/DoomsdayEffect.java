@@ -59,7 +59,7 @@ public class DoomsdayEffect {
 
 		if (this.timeBetweenUpdates == 0)
 		{
-			if (TragicNewConfig.allowCrucialMoments) crucMoment = rand.nextInt(100) <= TragicNewConfig.crucialMomentChance; //chance for crucial moment per iteration rather than overall
+			if (TragicNewConfig.allowCrucialMoments) crucMoment = rand.nextInt(100) <= TragicNewConfig.crucialMomentChance;
 			if (this.iterations == 0) dday.doInitialEffects(doom, doom.getPlayer(), crucMoment);
 			
 			if (this.isCommandActivated)

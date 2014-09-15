@@ -8,11 +8,13 @@ import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicNewConfig;
 
 import com.google.common.collect.Sets;
@@ -20,10 +22,11 @@ import com.google.common.collect.Sets;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
+import cpw.mods.fml.common.network.FMLNetworkEvent.ServerDisconnectionFromClientEvent;
 
 public class DoomsdayManager {
 
-	public static Logger logger = LogManager.getLogger("TragicMC/ Doomsday Manager");
+	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/ Doomsday Manager");
 	private static Map<String, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
 	private Map<Doomsday, Doomsday> combinations = new HashMap();
 	private Map<Doomsday, Doomsday> combinationMap = new HashMap();
@@ -45,15 +48,15 @@ public class DoomsdayManager {
 		this.combinations.put(Doomsday.NatureDrain, Doomsday.RealityAlter);
 		this.combinationMap.put(Doomsday.RealityAlter, Doomsday.GrowthSpurt);
 		this.combinationMap.put(Doomsday.NatureDrain, Doomsday.GrowthSpurt);
-		
+
 		this.combinations.put(Doomsday.Permafrost, Doomsday.Freeze);
 		this.combinationMap.put(Doomsday.Permafrost, Doomsday.Blizzard);
 		this.combinationMap.put(Doomsday.Freeze, Doomsday.Blizzard);
-		
+
 		this.combinations.put(Doomsday.FireRain, Doomsday.DragonsRoar);
 		this.combinationMap.put(Doomsday.FireRain, Doomsday.Firestorm);
 		this.combinationMap.put(Doomsday.DragonsRoar, Doomsday.Firestorm);
-		
+
 		this.combinations.put(Doomsday.RapidFire, Doomsday.Snipe);
 		this.combinationMap.put(Doomsday.RapidFire, Doomsday.Shotgun);
 		this.combinationMap.put(Doomsday.Snipe, Doomsday.Shotgun);
@@ -66,7 +69,7 @@ public class DoomsdayManager {
 			try
 			{
 				ArrayList<DoomsdayEffect> list = playerMap.get(playerName);
-				
+
 				for (int i = 0; i < list.size(); i++)
 				{
 					DoomsdayEffect effect2 = list.get(i);
@@ -102,8 +105,35 @@ public class DoomsdayManager {
 
 	public static void clearRegistry()
 	{
-		playerMap.clear();
-		logger.info("Registry was cleared.");
+		try
+		{
+			playerMap.clear();
+			logger.info("Doomsday registry was cleared.");
+		}
+		catch (Exception e)
+		{
+			logger.error("Error caught while clearing the playerMap", e);
+		}
+	}
+
+	public static void clearPlayerFromRegistry(String playerName, String reason)
+	{
+		try
+		{
+			if (playerMap.containsKey(playerName))
+			{
+				playerMap.remove(playerName);
+				logger.info("Registry removed registration for " + playerName + ", the reason was: " + reason);
+			}
+			else
+			{
+				logger.error("Attempted to remove a player that was not registered in the map, there is a problem.");
+			}
+		}
+		catch (Exception e)
+		{
+			logger.error("Error caught while attempting to remove a player from the playerMap", e);
+		}
 	}
 
 	@SubscribeEvent
@@ -115,6 +145,7 @@ public class DoomsdayManager {
 		{
 			Set set = playerMap.keySet();
 			Iterator<String> ite = set.iterator();
+			String reason = "";
 
 			while (ite.hasNext())
 			{
@@ -122,6 +153,12 @@ public class DoomsdayManager {
 				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getCommandSenderName());
 				DoomsdayEffect effect;
 				boolean flag = false;
+				reason = "";
+				
+				if (list.size() == 0)
+				{
+					reason = "No Doomsday effects registered.";
+				}
 
 				for (int i = 0; i < list.size(); i++)
 				{
@@ -129,7 +166,9 @@ public class DoomsdayManager {
 
 					if (effect == null)
 					{
-						logger.error("Player had a null registration somehow! Error caught and hopefully avoided!");
+						logger.error("Player had a null registration somehow! To prevent any problems, the player's registrations were cleared!");
+						reason = "Null Doomsday registration.";
+						list.clear();
 						break;
 					}
 
@@ -140,14 +179,12 @@ public class DoomsdayManager {
 							if (effect.isActive && !effect.isInstant)
 							{
 								if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomAndCooldown(effect.doom, effect.iterations);
-								logger.info("Combination Doomsday activated, registry applyied Doom cost from extended Doomsday.");
 							}
 							list.clear();
 							list.add(new DoomsdayEffect(combinationMap.get(effect.dday).getDoomId(), effect.doom, effect.isCommandActivated));
-							logger.info("Added Combination Doomsday to current effect registrations and cleared all others.");
 							break;
 						}
-						
+
 						if (combinations.containsKey(effect.dday))
 						{
 							flag = true;
@@ -158,8 +195,6 @@ public class DoomsdayManager {
 
 					if (!effect.isActive)
 					{
-						logger.info("Registry cleared a " + effect.dday.getLocalizedName() + " Doomsday effect from " + mp.getCommandSenderName());
-
 						if (effect.isInstant)
 						{
 							if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomAndCooldown(effect.doom);
@@ -170,17 +205,26 @@ public class DoomsdayManager {
 						}
 
 						list.remove(effect);
+						reason = "Doomsday effects completed.";
 					}
 				}
 
-				if (list.isEmpty()) 
-				{
-					playerMap.remove(mp.getCommandSenderName());
-					logger.info("Removed registration for " + mp.getCommandSenderName() + " as they had no more effects registered.");
-				}
+				if (list.isEmpty()) clearPlayerFromRegistry(mp.getCommandSenderName(), reason);
 			}
+		}
+	}
 
-
+	@SubscribeEvent
+	public void onPlayerDisconnect(ServerDisconnectionFromClientEvent event)
+	{
+		if (event.handler instanceof NetHandlerPlayServer)
+		{
+			NetHandlerPlayServer net = (NetHandlerPlayServer) event.handler;
+			
+			if (net.playerEntity != null && playerMap.containsKey(net.playerEntity.getCommandSenderName()))
+			{
+				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");
+			}
 		}
 	}
 }
