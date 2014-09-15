@@ -154,17 +154,17 @@ public class TragicItems {
 
 	//Boss drops
 	public static Item LightParticles; //Apis
-	public static Item YetiClaw; //Yeti
-	public static Item ReaperSkull; //Death Reaper
+	public static Item EmpariahClaw; //Empariah
+	public static Item ReaperSkull; //Skultar
 	public static Item TimeEssence; //Time Controller
 	public static Item PureDarkness; //Enyvil
-	public static Item KitsuneTail; //Kitsune
+	public static Item KitsuneTail; //Kitsunakuma
 	public static Item LivingClay; //Claymation
 	public static Item StarPieces; //Polaris
 	public static Item PhoenixFeather; //Phoenix
-	public static Item LavaDragonScale; //Lava Dragon
+	public static Item OverlordEye; //The Overlord
 	
-	public static Item DragonScroll; //making a comeback, there will be an End-like dimension created for the Lava Dragon (or whatever it becomes)
+	public static Item OverlordSeed; //there will be an End-like dimension created
 
 	//Doom items
 	public static Item DoomConsume, CooldownDefuse, AmuletRelease;
@@ -521,8 +521,8 @@ public class TragicItems {
 		ReaperSkull = (new ItemGeneric().setUnlocalizedName("tragicmc.reaperSkull").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:ReaperSkull" + textureRes));
 		GameRegistry.registerItem(ReaperSkull, "reaperSkull");
 
-		YetiClaw = (new ItemGeneric().setUnlocalizedName("tragicmc.yetiClaw").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:YetiClaw" + textureRes));
-		GameRegistry.registerItem(YetiClaw, "yetiClaw");
+		EmpariahClaw = (new ItemGeneric().setUnlocalizedName("tragicmc.yetiClaw").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:YetiClaw" + textureRes));
+		GameRegistry.registerItem(EmpariahClaw, "yetiClaw");
 
 		StarPieces = (new ItemGeneric().setUnlocalizedName("tragicmc.starPieces").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:StarPieces" + textureRes));
 		GameRegistry.registerItem(StarPieces, "starPieces");
@@ -1124,7 +1124,7 @@ public class TragicItems {
 		OreDictionary.registerOre("celestialSteelDrops", LightParticles);
 		OreDictionary.registerOre("celestialSteelDrops", StarPieces);
 		OreDictionary.registerOre("celestialSteelDrops", PureDarkness);
-		OreDictionary.registerOre("celestialSteelDrops", YetiClaw);
+		OreDictionary.registerOre("celestialSteelDrops", EmpariahClaw);
 		OreDictionary.registerOre("celestialSteelDrops", KitsuneTail);
 		OreDictionary.registerOre("celestialSteelDrops", ReaperSkull);
 	}

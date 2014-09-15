@@ -207,7 +207,7 @@ public class TragicRecipes {
 			"wyx",
 			"yxz",
 			"wyx",
-			'w', TragicItems.YetiClaw,
+			'w', TragicItems.EmpariahClaw,
 			'x', TragicItems.CelestialSteel,
 			'y', TragicItems.CelestialDiamond,
 			'z', TragicItems.WovenSilk
@@ -905,7 +905,7 @@ public class TragicRecipes {
 			"yzy",
 			"xyx",
 			'x', TragicItems.Tungsten,
-			'y', TragicItems.YetiClaw,
+			'y', TragicItems.EmpariahClaw,
 			'z', TragicItems.AwakeningStone
 		});
 
@@ -1038,7 +1038,7 @@ public class TragicRecipes {
 			"xxx",
 			"xyx",
 			"zyz",
-			'x', TragicItems.YetiClaw,
+			'x', TragicItems.EmpariahClaw,
 			'y', TragicItems.Tungsten,
 			'z', TragicItems.IcyFur
 		});

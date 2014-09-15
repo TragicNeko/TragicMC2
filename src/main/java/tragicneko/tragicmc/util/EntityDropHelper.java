@@ -148,8 +148,8 @@ public class EntityDropHelper {
 			new ItemStack(Items.emerald), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialSteel)}, 
 			{new ItemStack(TragicItems.TimeEssence)}});
 		
-		entityLootDrops.put(EntityYeti.class, new ItemStack[][] {{new ItemStack(TragicItems.YetiClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
-			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)}, {new ItemStack(TragicItems.YetiClaw)}});
+		entityLootDrops.put(EntityYeti.class, new ItemStack[][] {{new ItemStack(TragicItems.EmpariahClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
+			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)}, {new ItemStack(TragicItems.EmpariahClaw)}});
 		
 		entityLootDrops.put(EntityEnyvil.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkPlate),
 			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles),
