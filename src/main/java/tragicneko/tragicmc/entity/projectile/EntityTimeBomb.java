@@ -25,6 +25,13 @@ public class EntityTimeBomb extends EntityProjectile {
 	}
 
 	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		if (!this.worldObj.isRemote) this.motionY *= 0.98;
+	}
+	
+	@Override
 	protected void onImpact(MovingObjectPosition var1) {
 		if(var1 != null)
 		{

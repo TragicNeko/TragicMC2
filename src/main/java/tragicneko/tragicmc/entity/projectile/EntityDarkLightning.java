@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import tragicneko.tragicmc.entity.boss.EntityApis;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.potion.Potion;
@@ -8,6 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 
 public class EntityDarkLightning extends EntityProjectile {
 
@@ -33,7 +33,7 @@ public class EntityDarkLightning extends EntityProjectile {
 		}
 		else
 		{
-			if (var1.entityHit != null && !inGround) // && !(mop.entityHit instanceof EntityEnyvil)) 
+			if (var1.entityHit != null && !inGround && !(var1.entityHit instanceof EntityEnyvil)) 
 			{			
 				var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 				this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, var1.entityHit.posX, var1.entityHit.posY, var1.entityHit.posZ));
@@ -47,10 +47,12 @@ public class EntityDarkLightning extends EntityProjectile {
 	{
 		super.onUpdate();
 		
-		if (this.ticksInAir % 10 == 0 && this.ticksInAir > 10 && !this.inGround && !this.isDead)
+		if (this.ticksInAir % 20 == 0 && this.ticksInAir > 10 && this.ticksInAir <= 120 && !this.inGround && !this.isDead)
 		{
 			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.posX, this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ), this.posZ));
 		}
+		
+		if (this.ticksInAir >= 120) this.setDead();
 	}
 	
 	@Override
