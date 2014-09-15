@@ -24,7 +24,7 @@ public abstract class RenderBoss extends RenderLiving {
 	
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
-		GL11.glScalef(1.0F, 1.0F, 1.0F);
+		GL11.glScalef(scale, scale, scale);
 	}
 	
 	public void doRender(TragicBoss boss, double par2, double par4, double par6, float par8, float par9)

@@ -28,7 +28,6 @@ public class RenderApis extends RenderBoss
 
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
-
 		if (boss.isInvisible())
 		{
 			GL11.glDepthMask(false);
