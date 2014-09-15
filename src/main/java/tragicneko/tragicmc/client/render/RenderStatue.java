@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL12;
 import tragicneko.tragicmc.client.model.ModelApis;
 import tragicneko.tragicmc.client.model.ModelBlock;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
+import tragicneko.tragicmc.client.model.ModelEnyvil;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKitsune;
@@ -82,9 +83,12 @@ public class RenderStatue extends Render {
 		case 13:
 			model = new ModelVoxStellarum();
 			break;
+		case 14:
+			model = new ModelEnyvil();
+			break;
 		}
 
-		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen;
+		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen || model instanceof ModelEnyvil;
 		boolean flag2 = model instanceof ModelKragul;
 		
 		float f = flag ? 0.505F : (flag2 ? 0.865F : 0.625F);		
@@ -143,6 +147,8 @@ public class RenderStatue extends Render {
 				return new ResourceLocation(s + "GreaterStin_lowRes.png");
 			case 13:
 				return new ResourceLocation(s + "StarVox_lowRes.png");
+			case 14:
+				return new ResourceLocation(s + "Enyvil.png");
 			}
 		case 1:
 			return new ResourceLocation("textures/blocks/iron_block.png");
