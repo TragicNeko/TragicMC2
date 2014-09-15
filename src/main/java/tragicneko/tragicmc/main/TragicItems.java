@@ -435,7 +435,7 @@ public class TragicItems {
 		Paranoia = (new WeaponParanoia(Doomsday.Asphyxiate).setUnlocalizedName("tragicmc.paranoia").setTextureName("tragicmc:Paranoia" + textureRes));
 		GameRegistry.registerItem(Paranoia, "paranoia");
 		
-		DragonFang = (new WeaponDragonFang(Doomsday.ReaperLaugh).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
+		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
 		GameRegistry.registerItem(DragonFang, "dragonFang");
 
 		//Tool Registrations
