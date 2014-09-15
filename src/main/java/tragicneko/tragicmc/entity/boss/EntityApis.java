@@ -80,47 +80,9 @@ public class EntityApis extends TragicBoss {
 
 	public void onDeath(DamageSource par1)
 	{
-		if (this.worldObj.isRemote || !this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return;
-
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 0), 0.4F);
-
-		int x = 2;
-
-		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) par1.getEntity();
-
-			if (player.getCurrentEquippedItem() != null)
-			{
-				ItemStack weapon = player.inventory.getCurrentItem();
-				x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
-			}
-		}
-
-		int y = TragicNewConfig.commonDropRate;
-		int z = TragicNewConfig.rareDropRate;
-		EntityItem item;
-		TragicMC.logger.info("Common drop rate: " + y + ", Rare drop rate: " + z);
-
-		for (int i = 0; i < x * 2 + z; i++)
-		{
-			if (this.rand.nextBoolean())
-			{
-				item = new EntityItem(this.worldObj, this.posX, this.posY + 0.35F, this.posZ, EntityDropHelper.getRareDropFromEntity(this.getClass()));
-				this.worldObj.spawnEntityInWorld(item);
-			}
-		}
-
-		for (int i = 0; i < x + y; i++)
-		{
-			if (this.rand.nextBoolean())
-			{
-				item = new EntityItem(this.worldObj, this.posX, this.posY + 0.35F, this.posZ, EntityDropHelper.getCommonDropFromEntity(this.getClass()));
-				this.worldObj.spawnEntityInWorld(item);
-			}
-		}
-
 		super.onDeath(par1);
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 0), 0.4F);
+		
 	}
 
 	public void onLivingUpdate()

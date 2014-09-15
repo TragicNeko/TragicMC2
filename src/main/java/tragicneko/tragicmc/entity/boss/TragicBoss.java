@@ -28,11 +28,6 @@ import tragicneko.tragicmc.util.EntityDropHelper;
 
 public class TragicBoss extends EntityMob implements IBossDisplayData
 {
-	/**
-	 * Time since being hit last by a player or a mob owned by a player
-	 */
-	protected int playerHitTicks;
-
 	private static UUID victoryHealthUUID = UUID.fromString("7752a001-bd03-4e39-b24f-47f87f3738f7");
 	private static AttributeModifier victoryHealthBuff = new AttributeModifier(victoryHealthUUID, "bossVictoryHealthBuff", 10.0, 0);
 
@@ -61,14 +56,14 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	public void onDeath(DamageSource par1)
 	{
 		super.onDeath(par1);
-		
+
 		if (this.worldObj.isRemote || !this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return;
+		
+		int amt = 0;
 
 		if (TragicNewConfig.allowExtraBossLoot)
 		{
-			int amount = rand.nextInt(10) + 6;
-
-			int amt = 0;
+			int amount = rand.nextInt(6) + 4;
 
 			for (int i = 0; i < amount; i++)
 			{
@@ -77,8 +72,8 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 					this.entityDropItem(luxuryDrops[rand.nextInt(luxuryDrops.length)].copy(), 0.4F);
 					amt++;
 				}
-				
-				if (amt > 8) break;
+
+				if (amt >= 6) break;
 			}
 		}
 
@@ -92,33 +87,39 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 				if (player.getCurrentEquippedItem() != null)
 				{
-					ItemStack weapon = player.inventory.getCurrentItem();
+					ItemStack weapon = player.getCurrentEquippedItem();
 					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
 				}
 			}
 
 			int y = TragicNewConfig.commonDropRate;
 			int z = TragicNewConfig.rareDropRate;
-			int drops = 0;
+			int total = 0;
 
 			for (int i = 0; i < x; i++)
 			{
 				if (rand.nextInt(100) <= y + (x * 4))
 				{
 					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), 0.4F);
-					drops++;
+					total += 1;
 				}
 
-				if (this.recentlyHit > 0 && rand.nextInt(50) <= z + x)
+				if (this.recentlyHit > 0 && rand.nextInt(25) <= z + x)
 				{
 					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
-					drops++;
+					total += 1;
 				}
 
-				if (drops > x * 2) break;
+				if (total >= x * 2) break;
+			}
+
+			if (this.recentlyHit > 0)
+			{
+				this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
+				total++;
 			}
 			
-			if (this.recentlyHit > 0) this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
+			TragicMC.logInfo("Enchant level plus one was: " + x + ", common drop rate is " + y + ", rare drop rate is " + z + ", total drops were " + (total + amt));
 		}
 	}
 
@@ -127,9 +128,8 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();
-		if (this.playerHitTicks > 0 && !this.worldObj.isRemote) this.playerHitTicks--;
 	}
-	
+
 	public boolean getCanSpawnHere()
 	{		
 		if (this.posY <= 63)
@@ -172,7 +172,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-				if (player.getCurrentEquippedItem() != null && !player.capabilities.isCreativeMode)
+				if (!player.capabilities.isCreativeMode)
 				{
 					if (par2 >= 35)
 					{
@@ -185,7 +185,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 							if (par2 >= 25)
 							{
 								par2 /= 10.0F;
-								
+
 								if (par2 >= 20)
 								{
 									par2 /= 10.0F;
@@ -197,8 +197,8 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 				else if (player.getCurrentEquippedItem() != null)
 				{
 					boolean flag = player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice;
-					
-					if (flag) return false;
+
+					if (!flag) return false;
 				}
 			}
 		}
