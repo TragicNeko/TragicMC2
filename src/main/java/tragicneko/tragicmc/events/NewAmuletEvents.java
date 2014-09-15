@@ -48,7 +48,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class NewAmuletEvents {
 
-	private static Set badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
+	public static Set badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
 			Potion.poison, Potion.weakness, Potion.wither, TragicPotions.Corruption, TragicPotions.Cripple, TragicPotions.Disorientation, TragicPotions.Fear,
 			TragicPotions.Inhibit, TragicPotions.Malnourish, TragicPotions.Stun, TragicPotions.Submission});
 
