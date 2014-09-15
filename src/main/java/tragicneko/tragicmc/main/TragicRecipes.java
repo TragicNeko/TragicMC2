@@ -518,7 +518,7 @@ public class TragicRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PitchBlack, 1), new Object[] {
 			"zxz",
 			"xyx",
-			" x ",
+			"zxz",
 			'x', TragicItems.DarkIngot,
 			'y', TragicItems.ObsidianOrb,
 			'z', TragicItems.PureDarkness
