@@ -2541,7 +2541,7 @@ Added the epic weapons to chest hooks, challenge item rewards (highest tier), an
 Reduced limit of luxury boss drops, they should drop less of them now on death
 Fix possible bug with bosses dying when mob looting is disabled
 
-1.36.1440++ <163> (September 7, 2014)
+1.36.1454 <163> (September 7, 2014)
 Added Doomsday Scrolls, these will allow you to use any of the doomsdays in the mod, including combination doomsdays and ones that don't even have a weapon assigned to them
 like Paradigm Shift, Lateralus and Death Mark, these can only be found in chests and off of bosses
 Added Blood/Nourishment Sacrifice, these allow an alternative method to regain doom (if you can't find any Doom Consumes)
@@ -2557,25 +2557,46 @@ Fixed initial bug with Shotgun Doomsday
 Fix some potion effect bugs with projectiles, rewrote Pumpkinbomb projectile's physics
 Deny a Doomsday effect if the player already has an effect of the same Doomsday registered, also remove extraneous array method as any effect registrations are going to
 be singular
+Add a method to remove a player from the registrations, this will be used if the player disconnects or leaves a server in the middle of an effect
+Added a reason why the player was removed from registrations, this is just for clarification
+
+1.36.1454 <164> (September 10, 2014)
+Started working on the Enyvil, set it up using parts similar to the Ender Dragon, it currently attacks with it's claws to do a huge amount of damage, it takes full damage when
+it gets hit in the eye, but otherwise takes 1/6th of the damage, it is also immune to fall damage and all potion effects
+While setting it up, I set up the ability to make multipart entities, due to this some other bosses may be reworked a bit to utilize this
+Renamed the Kitsune to Kitsunakuma (minor name change but it makes it feel more unique, plus ppl could still call it Kitsune anyway), renamed the Death Reaper to Skultar as it
+is a more unique sounding name and it invokes the image of a skull, which is it's defining feature (in my opinion), renamed the Yeti to Empariah, Pariah is a social outcast of
+sorts which goes with it's underlings being named Abominations, Emperor Pariah, so it'll be given a crown and I'll also add sharp claws and a few other features to it to make
+it feel more unique
+The Enyvil has multiple attacks currently, it'll smash enemies with it's claws for major damage, it can shoot a dark lightning burst out of it's eye, it can create random
+explosive lightning around it, it can suck enemies into it to get hit by it's claw, it can use a dark energy wave attack and it can fire a laser from a dark crystal to hurt
+it's target
+Ensure that the player cannot attack or use items while they are Feared, they also cannot use Doomsdays
+Made it so that the Dark Crystal now follows the Enyvil around, as well as making it sorta "hover" in the air, it uses a placeholder render currently but it'll be changed when
+the Enyvil's AI is finished up and it's texture is added
 
 --
 Add the enchantment tiers and lores to the epic weapons
-Set up the Epic weapons to have greater reach (as soon as I figure out the best way to)
-The Tragic Armor and Tragic Sentinal Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
-will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Sentinel Doomsday will inflict damage on all mobs near the player
+Set up the Epic weapons to have greater reach (as soon as I figure out the best way to), will most likely perform a ray trace each time the mouse is left clicked when the player
+has an Epic weapon in their hand, then check if it intersects with any entity bounding boxes (as is the vanilla way of doing it), this addition would however come with the
+new weapon models (actual models for the weapons when they are in your hand) similar to Orespawn and a few other mods
+The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
+will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
-The Tragic Hellraiser's Doomsday will be Judgment day, which will stall all mobs into the air and inflict judgment damage onto them (they take damage equal to one-tenth of
-their max health, this caps at around 15 though so that bosses don't get killed by this)
+The Sentinel's Doomsday will be Judgment day, which will stall all mobs in the air and inflict judgment damage onto them (they take damage equal to one-tenth of
+their max health, this caps at around 15 though so that bosses don't get killed easily by this), this will be crafted with one Overlord Eye along with Celestial Diamonds
+The final boss will be the Overlord, it'll have a ton of health and actually have a similar appearance to Orespawn's Kraken, however, it isn't a squid/octopus thing, it's a large
+"metroid"-like creature, probably most similar to metroid prime in it's final boss stage, but with a few differences of course, it'll most likely utilize the multipart entity
+thing as well as have a helper creature/underling
 
-Started planning for Nyx and Erebus, the previous plan will be scrapped and they'll be converted into a single strong boss, which can be summoned with Darkened Quartz and
-a Time Disruption Cube (similarly to the Time Controller), it'll work like a hybrid between the Ender Dragon and the 1.8 mob, the Guardian. It'll float and have super high
-attack damage, it'll spawn dark energy crystals around itself which heal it and give it extra abilities (only spawn a few once per minute or so), it'll use a tracker beam of
-sorts that pulls it's target towards it for a very high damage, high knockback hit, it can also shoot a dark energy projectile which hits the ground below it with lightning
-It'll be named the Enyvil (the previous mob plan will be scrapped and it's appearance will be adapted to look more "epic boss"-like)
+Changed the Yeti to be named the Empariah, add a crown and claws to it's model, this is due to me feeling like the name Yeti was a bit too generic
+The fox pet will be named the Kitsuneko instead of Sly, the panda pet will be named the Panda Cub, the Bangatang will keep it's name, these are to give the pets general and
+non-specific names so that players are more inclined to give them their own names
 
 --Reminders--
-Add the Enyvil, Claymation and the Erkel (2 bosses, and a passive mob)
+Add the Claymation and the Erkel (boss and a passive mob)
 Work more on overall aesthetics as I get closer to a "finished" 1.0 release, this includes rewriting most of the mob ai to use datawatchers in order to render certain things when
 the mob is doing something (like the Ghast firing a fireball and having it's texture update to show that), this also includes starting to add custom mob sounds (some of which
 I've already recorded, just haven't added yet)
-Add the Phoenix and the Lava Dragon (or whatever the final boss may be, Lava Dragon is not final)
+Also reminder, make the actual statue textures instead of using the vanilla block textures
+Add the Phoenix and the Overlord
