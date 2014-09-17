@@ -2560,7 +2560,7 @@ be singular
 Add a method to remove a player from the registrations, this will be used if the player disconnects or leaves a server in the middle of an effect
 Added a reason why the player was removed from registrations, this is just for clarification
 
-1.36.1454 <164> (September 10, 2014)
+1.36.1471 <164> (September 10, 2014)
 Started working on the Enyvil, set it up using parts similar to the Ender Dragon, it currently attacks with it's claws to do a huge amount of damage, it takes full damage when
 it gets hit in the eye, but otherwise takes 1/6th of the damage, it is also immune to fall damage and all potion effects
 While setting it up, I set up the ability to make multipart entities, due to this some other bosses may be reworked a bit to utilize this
@@ -2589,11 +2589,17 @@ Removed logger spam from Enyvil, made it so that it will not spawn anymore Dark 
 Updated the last batch of Amulet's texture colors
 Fix localization of Piercing Amulet
 
+1.36.1471++ <165> (September 17, 2014)
+Added new network message and handler to deal with extended weapon range, this is due to the fact that vanilla always does a hardcoded check for distance to entity before the
+entity is actually attacked, so I have to get entities within the player's look vectors and attack them manually (it always hits the closest entity within the vector)
+Fixed potentional issue where the weapon range would hit entities within the normal vanilla range was well as an entity behind it, this could be good for piercing weapons but
+for just extended reach it isn't exactly what I want
+Added Reach and Unbreakable enchantments, fixed some initial bugs with both
+The Epic weapons will have Reach III on all enchantment tiers, but a couple like the Butcher will have Reach V on the highest tier
+Added Reach to the epic enchantment tier of the Celestial Aegis
+Updated enchantment tiers for the epic weapons, going to work on lore next
+
 --
-Add the enchantment tiers and lores to the epic weapons
-Set up the Epic weapons to have greater reach (as soon as I figure out the best way to), will most likely perform a ray trace each time the mouse is left clicked when the player
-has an Epic weapon in their hand, then check if it intersects with any entity bounding boxes (as is the vanilla way of doing it), this addition would however come with the
-new weapon models (actual models for the weapons when they are in your hand) similar to Orespawn and a few other mods
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
@@ -2609,7 +2615,8 @@ The fox pet will be named the Kitsuneko instead of Sly, the panda pet will be na
 non-specific names so that players are more inclined to give them their own names
 
 --Reminders--
-Add the Claymation and the Erkel (boss and a passive mob)
+Add the Claymation (boss)
+Change all of the color codes to use hex codes instead, this is just to clean up the code some
 Work more on overall aesthetics as I get closer to a "finished" 1.0 release, this includes rewriting most of the mob ai to use datawatchers in order to render certain things when
 the mob is doing something (like the Ghast firing a fireball and having it's texture update to show that), this also includes starting to add custom mob sounds (some of which
 I've already recorded, just haven't added yet)
