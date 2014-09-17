@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import tragicneko.tragicmc.blocks.BlockGenericLog;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -152,7 +153,7 @@ public class StatueEvents {
 				{
 					b0 = 13;
 				}
-				else if (item.getItem() == Item.getItemFromBlock(Blocks.obsidian))
+				else if (item.getItem() == Item.getItemFromBlock(Blocks.netherrack))
 				{
 					b0 = 14;
 				}

@@ -129,7 +129,7 @@ public class ItemStatue extends Item {
 		case 13:
 			return "tragicmc.mobTexture.lapis";
 		case 14:
-			return "tragicmc.mobTexture.obsidian";
+			return "tragicmc.mobTexture.netherrack";
 		case 15:
 			return "tragicmc.mobTexture.checkered";
 		default:

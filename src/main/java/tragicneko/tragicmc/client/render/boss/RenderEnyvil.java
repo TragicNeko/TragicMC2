@@ -12,7 +12,7 @@ public class RenderEnyvil extends RenderBoss {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation("tragicmc:textures/mobs/Enyvil.png");
+		return new ResourceLocation("tragicmc:textures/mobs/Enyvil_lowRes.png");
 	}
 
 }

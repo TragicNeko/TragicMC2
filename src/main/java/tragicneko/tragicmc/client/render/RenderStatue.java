@@ -113,6 +113,7 @@ public class RenderStatue extends Render {
 
 	private ResourceLocation getEntityTexture(EntityStatue entity)
 	{
+		String s0 = "tragicmc:textures/statue/";
 		switch (entity.getIDForTexture())
 		{
 		case 0:
@@ -148,38 +149,38 @@ public class RenderStatue extends Render {
 			case 13:
 				return new ResourceLocation(s + "StarVox_lowRes.png");
 			case 14:
-				return new ResourceLocation(s + "Enyvil.png");
+				return new ResourceLocation(s + "Enyvil_lowRes.png");
 			}
 		case 1:
-			return new ResourceLocation("textures/blocks/iron_block.png");
+			return new ResourceLocation(s0 + "IronStatue.png");
 		case 2:
-			return new ResourceLocation("textures/blocks/gold_block.png");
+			return new ResourceLocation(s0 + "GoldStatue.png");
 		case 3:
-			return new ResourceLocation("textures/blocks/diamond_block.png");
+			return new ResourceLocation(s0 + "DiamondStatue.png");
 		case 4:
-			return new ResourceLocation("trextures/blocks/stone.png");
+			return new ResourceLocation(s0 + "StoneStatue.png");
 		case 5:
-			return new ResourceLocation("textures/blocks/log_oak.png");
+			return new ResourceLocation(s0 + "WoodStatue.png");
 		case 6:
-			return new ResourceLocation("textures/blocks/emerald_block.png");
+			return new ResourceLocation(s0 + "EmeraldStatue.png");
 		case 7:
-			return new ResourceLocation("tragicmc:textures/blocks/MercuryBlock_lowRes.png");
+			return new ResourceLocation(s0 + "MercuryStatue.png");
 		case 8:
-			return new ResourceLocation("tragicmc:textures/blocks/TungstenBlock_lowRes.png");
+			return new ResourceLocation(s0 + "TungstenStatue.png");
 		case 9:
-			return new ResourceLocation("tragicmc:textures/blocks/RubyBlock_lowRes.png");
+			return new ResourceLocation(s0 + "RubyStatue.png");
 		case 10:
-			return new ResourceLocation("tragicmc:textures/blocks/SapphireBlock_lowRes.png");
+			return new ResourceLocation(s0 + "SapphireStatue.png");
 		case 11:
-			return new ResourceLocation("textures/blocks/redstone_block.png");
+			return new ResourceLocation(s0 + "RedstoneStatue.png");
 		case 12:
-			return new ResourceLocation("textures/blocks/coal_block.png");
+			return new ResourceLocation(s0 + "CoalStatue.png");
 		case 13:
-			return new ResourceLocation("textures/blocks/lapis_block.png");
+			return new ResourceLocation(s0 + "LapisStatue.png");
 		case 14:
-			return new ResourceLocation("textures/blocks/obsidian.png");
+			return new ResourceLocation(s0 + "NetherrackStatue.png");
 		case 15:
-			return new ResourceLocation("tragicmc:textures/blocks/DisappearingBlock_lowRes.png");
+			return new ResourceLocation(s0 + "CheckeredStatue.png");
 		}
 		return null;
 	}
