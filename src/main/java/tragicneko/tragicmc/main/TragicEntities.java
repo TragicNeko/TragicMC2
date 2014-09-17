@@ -32,6 +32,7 @@ import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityDeathReaperClone;
+import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
@@ -81,8 +82,8 @@ public class TragicEntities {
 
 	public static void load()
 	{
-		int id = 1;
-		int listid = 1;
+		int id = 0;
+		int listid = 0;
 		Color color1 = new Color(0x00, 0x00, 0x00);
 		Color color2 = new Color(0x00, 0x00, 0x00);
 
@@ -453,8 +454,8 @@ public class TragicEntities {
 		if (TragicNewConfig.allowWisp)
 		{
 			EntityRegistry.registerModEntity(EntityWisp.class, "Wisp", listid++, TragicMC.instance, 80, 1, true);
-			color1 = new Color(0x98, 0x98, 0x98);
-			color2 = new Color(0xAB, 0xAB, 0xAB);
+			color1 = new Color(0xFF, 0x23, 0x23);
+			color2 = new Color(0xCB, 0x6B, 0x4B);
 			TragicEntityList.addMapping(EntityWisp.class, "TragicMC.Wisp", id++, color1.getRGB(), color2.getRGB());
 		}
 
@@ -473,6 +474,14 @@ public class TragicEntities {
 			color2 = new Color(0xA9, 0xAF, 0xB7);
 			TragicEntityList.addMapping(EntityAbomination.class, "TragicMC.Abomination", id++, color1.getRGB(), color2.getRGB());
 		}
+		
+		if (TragicNewConfig.allowErkel)
+		{
+			EntityRegistry.registerModEntity(EntityErkel.class, "Erkel", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0x4D, 0x93, 0x5D);
+			color2 = new Color(0x30, 0x66, 0x3D);
+			TragicEntityList.addMapping(EntityErkel.class, "TragicMC.Erkel", id++, color1.getRGB(), color2.getRGB());
+		}
 
 		//Iron Golem
 		color1 = new Color(0xDB, 0xCD, 0xC1);
@@ -487,6 +496,8 @@ public class TragicEntities {
 				BiomeGenBase.coldTaiga,
 				BiomeGenBase.coldTaigaHills
 				);
+		color1 = new Color(0xFF, 0xFD, 0xF1);
+		color2 = new Color(0xAB, 0xA2, 0x90);
 		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, color1.getRGB(), color2.getRGB());
 		
 		//Mini-Bosses
@@ -695,8 +706,8 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityEnyvil.class, "Enyvil", listid++, TragicMC.instance, 80, 1, true);
 
-			color1 = new Color(0x00, 0x00, 0x00);
-			color2 = new Color(0x46, 0x46, 0x46);
+			color1 = new Color(0x5D, 0x15, 0x43);
+			color2 = new Color(0xFF, 0x6F, 0xFF);
 			TragicEntityList.addMapping(EntityEnyvil.class, "TragicMC.Enyvil", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
 		}
 

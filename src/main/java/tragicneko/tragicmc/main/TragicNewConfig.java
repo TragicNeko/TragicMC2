@@ -72,10 +72,10 @@ public class TragicNewConfig {
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossNaturalSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
-	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination;
+	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
 	private static int[] mobsSC = new int[32];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC;
+	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen;
 	private static int[] miniBossSC = new int[16];
@@ -115,10 +115,6 @@ public class TragicNewConfig {
 	private static int[] miscInts = new int[8];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture;
 
-	/**
-	 * Initializes the start of the configuration file, should only be called once when the mod is loading
-	 * @param event
-	 */
 	public static void initialize()
 	{
 		config.load();
@@ -369,10 +365,12 @@ public class TragicNewConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "stinBabyAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "greaterStinSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "greaterStinAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "wispSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = (config.get(catMobs, "wispSpawnChance", 15).getInt(15));
 		mobConfigs[mapping++] = (config.get(catMobs, "wispAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "abominationSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "abominationAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "erkelSpawnChance", 25).getInt(25));
+		mobConfigs[mapping++] = (config.get(catMobs, "erkelAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < mobConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -559,10 +557,6 @@ public class TragicNewConfig {
 		postProcessConfigs();
 	}
 
-	/**
-	 * This ensures that blanket configs toggle whatever is below them properly, this then calls initializeAllVariables() to ensure that all of the variables are initialized/changed
-	 * @param config
-	 */
 	public static void postProcessConfigs()
 	{
 		TragicItems.textureRes = "_lowRes";
@@ -763,10 +757,6 @@ public class TragicNewConfig {
 		initializeAllVariables(config);
 	}
 
-	/**
-	 * This sets all variables after the configurations are processed for blanket configuration handling
-	 * @param config
-	 */
 	public static void initializeAllVariables(Configuration config)
 	{
 		int mapping = 0;
@@ -965,6 +955,8 @@ public class TragicNewConfig {
 		allowWisp = mobConfigs[mapping++];
 		abominationSC = mobsSC[mapping];
 		allowAbomination = mobConfigs[mapping++];
+		erkelSC = mobsSC[mapping];
+		allowErkel = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
