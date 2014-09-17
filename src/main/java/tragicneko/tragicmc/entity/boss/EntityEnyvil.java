@@ -7,6 +7,7 @@ import java.util.UUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -119,6 +120,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	{
 		this.getDataWatcher().updateObject(17, i);
 	}
+	
+	private void incrementStateTicks()
+	{
+		int pow = this.getStateTicks();
+		this.setStateTicks(++pow);
+	}
 
 	public int getLaserTicks()
 	{
@@ -159,6 +166,25 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	{
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
+		
+		if (!this.worldObj.isRemote)
+		{
+			List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(128.0D, 128.0D, 128.0D));
+			Iterator ite = list.iterator();
+			EntityDarkCrystal crystal;
+			
+			while (ite.hasNext())
+			{
+				crystal = (EntityDarkCrystal) ite.next();
+				crystal.setDead();
+			}
+		}
+	}
+	
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		this.createNewCrystals();
+		return super.onSpawnWithEgg(data);
 	}
 
 	public void onLivingUpdate()
@@ -197,16 +223,26 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.updateEnyvilAI();
 		this.updateDarkCrystal();
 
-		this.useAbilitiesBasedOnState();								
+		this.useAbilitiesBasedOnState();						
 
 		if (this.getLaserTicks() > 0) this.setLaserTicks(this.getLaserTicks() - 1);
+		
+		if (this.getAttackTarget() != null && this.getEntityState() == 1)
+		{
+			double d0 = this.posX - this.getAttackTarget().posX;
+			double d1 = this.posZ - this.getAttackTarget().posZ;
+			double d2 = this.posY - this.getAttackTarget().posY;
+			
+			float f4 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2) * (float) Math.PI / 180.0F;
+			this.rotationYaw = f4;
+		}
 
 	}
 
 	private void updateEnyvilAI() {
 
-		if (this.getStateTicks() >= 250 + rand.nextInt(100)) this.setEntityState(0);
-		this.setStateTicks(this.getStateTicks() + 1);
+		if (this.getStateTicks() >= 250 && rand.nextInt(256) == 0) this.setEntityState(0);
+		this.incrementStateTicks();
 
 		AttributeModifier mod = new AttributeModifier(UUID.fromString("6824bb10-3472-4b58-8c9d-18bf73dc709c"), "enyvilSpeedDebuff", -0.5D, 0);
 		AttributeModifier mod2 = new AttributeModifier(UUID.fromString("59b1124e-a0fa-47dd-ae99-2ceeeccc4b62"), "enyvilRangeBuff", 32.0D, 0);
@@ -214,15 +250,15 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mod2);
 
-		TragicMC.logInfo("Enyvil state is " + this.getEntityState() + ", ticks in state is " + this.getStateTicks());
+		//TragicMC.logInfo("Enyvil state is " + this.getEntityState() + ", ticks in state is " + this.getStateTicks());
 
 		if (this.getEntityState() == 0)
 		{
-			if (this.getAttackTarget() != null && rand.nextInt(48) == 0)
+			if (this.getAttackTarget() != null && rand.nextInt(24) == 0)
 			{
-				if (this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F)
+				if (this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
 				{
-					if (this.canEntityBeSeen(this.getAttackTarget()) && rand.nextInt(32) == 0)
+					if (this.canEntityBeSeen(this.getAttackTarget()) && rand.nextInt(4) == 0)
 					{
 						this.setEntityState(1);
 					}
@@ -244,10 +280,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		else
 		{
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-			if (this.currentCrystal != null)
-			{
-				this.setEntityState(0);
-			}
 		}
 	}
 
@@ -296,7 +328,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			case 3:
 				if (this.ticksExisted % 20 == 0 && rand.nextBoolean())
 				{
-					for (int meow = 0; meow < 4 + rand.nextInt(3); meow++)
+					for (int meow = 0; meow < 6 + rand.nextInt(6); meow++)
 					{
 						double d0 = this.posX + getInteger(16, 4);
 						double d1 = this.posZ + getInteger(16, 4);
@@ -317,16 +349,20 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 				}
 			}
 		}
+		else
+		{
+			this.setEntityState(0);
+		}
 	}
 
 	private void useDarkEnergySpray() {
-		for (int i = 0; i < rand.nextInt(6) + 7; i++)
+		for (int i = 0; i < rand.nextInt(8) + 10; i++)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
-			float f = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.9575F;
+			float f = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.9875F;
 
 			EntityDarkEnergy fireball = new EntityDarkEnergy(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f, d1, d2 + this.rand.nextGaussian() * (double)f);
 			fireball.posX = this.posX + (d0 * 0.115D);
@@ -337,10 +373,13 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	}
 
 	public void createNewCrystals() {
-		for (int i = 0; i < rand.nextInt(3) + 1; i++)
+		List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(64.0D, 64.0D, 64.0D));
+		if (list.size() >= 5) return;
+		
+		for (int i = 0; i < rand.nextInt(3) + 2; i++)
 		{
 			EntityDarkCrystal crystal = new EntityDarkCrystal(this.worldObj, this);
-			crystal.setPosition(this.posX + getInteger(16, 4), this.posY + Math.abs(getInteger(8, 4)), this.posZ + getInteger(16, 4));
+			crystal.setPosition(this.posX + getInteger(12, 4), this.posY + Math.abs(getInteger(8, 4)), this.posZ + getInteger(12, 4));
 			this.worldObj.spawnEntityInWorld(crystal);
 		}
 	}
@@ -363,43 +402,23 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		return i * l;
 	}
 
-	public void suckEntitiesTowards()
-	{
-		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(24.0D, 24.0D, 24.0D));
-		Iterator<Entity> ite = list.iterator();
-		Entity entity;
-
-		while(ite.hasNext())
-		{
-			entity = ite.next();
-
-			if (entity instanceof EntityLivingBase && this.canEntityBeSeen(entity))
-			{
-				double d0 = entity.posX - this.posX;
-				double d1 = entity.posY - this.posY + 2.0D;
-				double d2 = entity.posZ - this.posZ;
-				float f = MathHelper.sqrt_double((d0 * d0 + d1* d1 + d2 * d2));
-
-				entity.motionX = -d0 / (double)f * d0 * 0.100000011920929D + entity.motionX * 0.20000000298023224D;
-				entity.motionY = 0.115D;
-				entity.motionZ = -d2 / (double)f * d2 * 0.100000011920929D + entity.motionZ * 0.20000000298023224D;
-			}
-		}
-	}
-
 	public void tractorBeamEntity()
 	{
 		if (this.getAttackTarget() != null)
 		{
 			EntityLivingBase entity = this.getAttackTarget();
+			
+			if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode) return;
+			
 			double d0 = entity.posX - this.posX;
 			double d1 = entity.posY - this.posY + 2.0D;
 			double d2 = entity.posZ - this.posZ;
-			float f = MathHelper.sqrt_double((d0 * d0 + d1* d1 + d2 * d2));
+			float f = MathHelper.sqrt_double(d0 * d0 + d1* d1 + d2 * d2);
 
-			entity.motionX = -d0 / (double)f * d0 * 0.100000011920929D + entity.motionX * 0.30000000298023224D;
-			entity.motionY = 0.115D;
-			entity.motionZ = -d2 / (double)f * d2 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
+			entity.motionX = -d0 / (double)f * d0 * 0.100000011920929D + entity.motionX * 0.20000000298023224D;
+			entity.motionY = -d1 / (double)f * d1 * 0.0500000000019408D + entity.motionY * 0.2242009940220809D;
+			entity.motionZ = -d2 / (double)f * d2 * 0.100000011920929D + entity.motionZ * 0.20000000298023224D;
+			entity.moveEntity(entity.motionX, 0.115D, entity.motionZ);
 		}
 		else
 		{
@@ -432,19 +451,20 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (source.isExplosion() || source == DamageSource.drown) return false;
 
-		TragicMC.logInfo("Part of Enyvil hit was " + entity.partName);
+		//TragicMC.logInfo("Part of Enyvil hit was " + entity.partName);
 		
 		if (this.currentCrystal != null) damage /= 2;
 
 		if (entity == this.enyvilEye)
 		{
-			if (this.getEntityState() != 0 && this.getEntityState() != 4 && rand.nextInt(4) == 0) this.setEntityState(0);
-			if (this.getEntityState() == 4 && rand.nextInt(4) == 0)
+			if (super.attackEntityFrom(source, damage))
 			{
-				damage *= 1.25D;
-				this.createNewCrystals();
+				if (this.getEntityState() == 1 && rand.nextInt(8) == 0) this.setEntityState(0);
+				if (this.getEntityState() == 4 && rand.nextBoolean())
+				{
+					this.createNewCrystals();
+				}
 			}
-			super.attackEntityFrom(source, damage);
 		}
 		else
 		{
@@ -497,7 +517,9 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		par1Entity.motionX *= 1.225D;
 		par1Entity.motionZ *= 1.225D;
 		par1Entity.motionY += 0.225D;
-		return super.attackEntityAsMob(par1Entity);
+		boolean result = super.attackEntityAsMob(par1Entity);
+		if (result && this.getEntityState() == 1) this.setEntityState(0);
+		return result;
 	}
 
 	private void updateDarkCrystal()
@@ -511,14 +533,15 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			}
 			else
 			{
+				if (this.getEntityState() == 4) this.setEntityState(0);
 				if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(1.0F);
 				this.currentCrystal.motionX = this.motionX;
 				this.currentCrystal.motionZ = this.motionZ;
 
 				if (this.getDistanceToEntity(this.currentCrystal) >= 18.0F)
 				{
-					this.currentCrystal.setPosition(this.posX + getInteger(10, 4), this.posY + Math.abs(getInteger(8, 4)), this.posZ + getInteger(10, 4));
-					this.playSound("mob.enderman.portal", 0.4F, 0.4F);
+					this.currentCrystal.setPosition(this.posX + getInteger(8, 4), this.posY + Math.abs(getInteger(8, 4)), this.posZ + getInteger(8, 4));
+					this.playSound("mob.endermen.portal", 0.4F, 0.4F);
 				}
 			}
 		}
@@ -545,11 +568,13 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 					d0 = d1;
 					entityendercrystal = entityendercrystal1;
 				}
+				entityendercrystal1.motionX = this.motionX;
+				entityendercrystal1.motionZ = this.motionZ;
 			}
 
 			this.currentCrystal = entityendercrystal;
 
-			if (list.isEmpty() && rand.nextInt(48) == 0 && this.getEntityState() == 4)
+			if (list.isEmpty() && rand.nextInt(24) == 0 && this.getEntityState() == 4)
 			{
 				this.createNewCrystals();
 			}			
