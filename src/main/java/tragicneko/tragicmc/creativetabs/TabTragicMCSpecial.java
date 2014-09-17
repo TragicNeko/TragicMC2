@@ -12,7 +12,7 @@ public class TabTragicMCSpecial extends CreativeTabs {
 
 	@Override
 	public Item getTabIconItem() {
-		return TragicItems.SpawnEgg;
+		return TragicItems.NekoNekoWand;
 	}
 
 }

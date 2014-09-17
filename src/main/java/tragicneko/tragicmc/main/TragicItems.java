@@ -111,6 +111,7 @@ public class TragicItems {
 	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
 	public static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 2100, 21.0F, 21.0F, 28);
+	private static final ToolMaterial toolSentinel = EnumHelper.addToolMaterial("SENTINEL", 4, 9001, 26.0F, 26.0F, 32);
 	private static final ToolMaterial toolJustice = EnumHelper.addToolMaterial("JUSTICE", 100, 1000, Float.MAX_VALUE, 999999996.0F, 100);
 
 	//Armor Materials
@@ -137,7 +138,7 @@ public class TragicItems {
 	public static Item LightIngot, LightHelm, LightPlate, LightLegs, LightBoots, BlindingLight, EverlastingLight;
 
 	//Uncraftable weapon/armor set, found only in the Tragic Dimension
-	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser, TragicSentinel;
+	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser;
 
 	//Can be found in random boss structures, can also be crafted from drops from the Time Controller
 	public static Item CelestialAegis, CelestialLongbow, CelestialSteel;
@@ -145,6 +146,8 @@ public class TragicItems {
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
+	
+	public static Item Sentinel;
 
 	//Weather/Time items
 	public static Item RainDanceTalisman, SunnyDayTalisman, ThunderstormTalisman, TimeManipulatorTalisman;
@@ -795,13 +798,13 @@ public class TragicItems {
 		SunkenAmulet = (new ItemAmulet(id++, 4, "Sunken", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0x00, 0x00, 0x00);
+		color1 = new Color(0x94, 0xFF, 0xA3);
+		color2 = new Color(0xEA, 0x92, 0xE9);
 		TimeAmulet = (new ItemAmulet(id++, 4, "Time", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
 
-		color1 = new Color(0xA0, 0xA0, 0xA0);
-		color2 = new Color(0xC1, 0xC1, 0xC1);
+		color1 = new Color(0xC4, 0xEF, 0xFF);
+		color2 = new Color(0xA5, 0xD0, 0xE0);
 		IceAmulet = (new ItemAmulet(id, 1, "Ice", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(IceAmulet, "iceAmulet");
 		IceAmulet2 = (new ItemAmulet(id, 2, "Ice", color1.getRGB(), color2.getRGB()));
@@ -809,8 +812,8 @@ public class TragicItems {
 		IceAmulet3 = (new ItemAmulet(id++, 3, "Ice", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(IceAmulet3, "iceAmulet3");
 
-		color1 = new Color(0xA0, 0xA0, 0xA0);
-		color2 = new Color(0xC1, 0xC1, 0xC1);
+		color1 = new Color(0xFF, 0xFD, 0xF1);
+		color2 = new Color(0xAB, 0xA2, 0x90);
 		SnowGolemAmulet = (new ItemAmulet(id, 1, "SnowGolem", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
 		SnowGolemAmulet2 = (new ItemAmulet(id, 2, "SnowGolem", color1.getRGB(), color2.getRGB()));
@@ -818,8 +821,8 @@ public class TragicItems {
 		SnowGolemAmulet3 = (new ItemAmulet(id++, 3, "SnowGolem", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(SnowGolemAmulet3, "snowGolemAmulet3");
 
-		color1 = new Color(0xA0, 0xA0, 0xA0);
-		color2 = new Color(0xC1, 0xC1, 0xC1);
+		color1 = new Color(0xDB, 0xCD, 0xC1);
+		color2 = new Color(0x8B, 0x72, 0x60);
 		IronGolemAmulet = (new ItemAmulet(id, 1, "IronGolem", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
 		IronGolemAmulet2 = (new ItemAmulet(id, 2, "IronGolem", color1.getRGB(), color2.getRGB()));
@@ -828,12 +831,12 @@ public class TragicItems {
 		GameRegistry.registerItem(IronGolemAmulet3, "ironGolemAmulet3");
 
 		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0x00, 0x00, 0x00);
+		color2 = new Color(0xB5, 0x47, 0xDE);
 		EndermanAmulet = (new ItemAmulet(id++, 4, "Enderman", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0x00, 0x00, 0x00);
+		color1 = new Color(0x1C, 0x1C, 0x1C);
+		color2 = new Color(0x25, 0x25, 0x25);
 		WitherAmulet = (new ItemAmulet(id++, 4, "Wither", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 

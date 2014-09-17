@@ -205,7 +205,7 @@ public class DoomsdayManager {
 						}
 
 						list.remove(effect);
-						reason = "Doomsday effects completed.";
+						reason = "No more Doomsday effects.";
 					}
 				}
 

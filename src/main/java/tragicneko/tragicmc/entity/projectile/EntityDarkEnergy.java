@@ -12,7 +12,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityDarkEnergy extends EntityProjectile {
-	
+
 	public EntityDarkEnergy(World par1World)
 	{
 		super(par1World);
@@ -29,21 +29,20 @@ public class EntityDarkEnergy extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround && !this.worldObj.isRemote) 
+		if (mop.entityHit != null && !inGround) 
 		{			
 			if (!(mop.entityHit instanceof EntityLivingBase)) return;
-			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 3.0F);
 
-			if (this.rand.nextBoolean())
+			if (!this.worldObj.isRemote)
 			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 0 + rand.nextInt(2)));
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 3.0F);
+				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0 + rand.nextInt(2)));
 			}
 			
 			this.setDead();
 		}
 	}
-	
+
 	@Override
 	protected String getParticleString()
 	{

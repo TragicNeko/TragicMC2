@@ -60,7 +60,7 @@ public class WeaponEvents {
 					}
 				}
 
-				if (weapon == TragicItems.TragicSentinel && doom.getCurrentDoom() > 0)
+				if (weapon == TragicItems.Sentinel && doom.getCurrentDoom() > 0)
 				{
 					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
 				}
