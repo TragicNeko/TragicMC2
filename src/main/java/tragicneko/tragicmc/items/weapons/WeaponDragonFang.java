@@ -24,12 +24,10 @@ public class WeaponDragonFang extends EpicWeapon {
 	public WeaponDragonFang(Doomsday dday) {
 		super(dday);
 		this.lores = new Lore[] {new Lore("DragonFangLore1"), new Lore("DragonFangLore2"), new Lore("DragonFangLore3")};
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
-		this.rareLevels = new int[] {3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
-		this.epicLevels = new int[] {5, 3};
+		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
+		this.rareLevels = new int[] {5, 3, 3};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.fireAspect, Enchantment.knockback};
+		this.epicLevels = new int[] {10, 3, 5, 3, 3};
 	}
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)

@@ -23,12 +23,10 @@ public class WeaponThardus extends EpicWeapon {
 	public WeaponThardus(Doomsday dday) {
 		super(dday);
 		this.lores = new Lore[] {new Lore("ThardusLore1"), new Lore("ThardusLore2"), new Lore("ThardusLore3")};
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
-		this.rareLevels = new int[] {3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
-		this.epicLevels = new int[] {5, 3};
+		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness};
+		this.rareLevels = new int[] {5, 3, 3};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness, TragicEnchantments.Consume};
+		this.epicLevels = new int[] {10, 3, 5, 3};
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)

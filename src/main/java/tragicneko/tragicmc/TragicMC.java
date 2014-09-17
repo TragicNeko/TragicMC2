@@ -61,10 +61,12 @@ import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.main.TragicRecipes;
 import tragicneko.tragicmc.main.TragicTabs;
 import tragicneko.tragicmc.network.MessageAmulet;
+import tragicneko.tragicmc.network.MessageAttack;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.network.MessageFlight;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageHandlerAmulet;
+import tragicneko.tragicmc.network.MessageHandlerAttack;
 import tragicneko.tragicmc.network.MessageHandlerDoom;
 import tragicneko.tragicmc.network.MessageHandlerFlight;
 import tragicneko.tragicmc.network.MessageHandlerGui;
@@ -89,9 +91,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -178,6 +177,7 @@ public class TragicMC
 		net.registerMessage(MessageHandlerGui.class, MessageGui.class, 2, Side.SERVER);
 		net.registerMessage(MessageHandlerUseDoomsday.class, MessageUseDoomsday.class, 3, Side.SERVER);
 		net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
+		net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
 
 		if (TragicNewConfig.allowDimension)
 		{

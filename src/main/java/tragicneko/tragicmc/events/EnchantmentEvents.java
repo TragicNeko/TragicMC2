@@ -14,8 +14,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicItems;
@@ -384,6 +386,24 @@ public class EnchantmentEvents {
 							event.ammount *= 1.125F;
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onUnbreakableUse(LivingAttackEvent event)
+	{
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			if (player.getCurrentEquippedItem() != null)
+			{
+				ItemStack stack = player.getCurrentEquippedItem();
+				
+				if (stack.getItemDamage() >= stack.getMaxDamage() - 1 && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, stack) > 0)
+				{
+					if (event.isCancelable()) event.setCanceled(true);
 				}
 			}
 		}

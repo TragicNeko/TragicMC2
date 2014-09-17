@@ -741,6 +741,8 @@ enchantment.weaponExtra.vampirism=Vampirism
 enchantment.weaponExtra.leech=Leech
 enchantment.weaponExtra.consume=Consume
 enchantment.weaponExtra.distract=Distract
+enchantment.reach=Reach
+enchantment.unbreakable=Unbreakable
 
 potion.corruption=Corruption
 potion.flight=Flight

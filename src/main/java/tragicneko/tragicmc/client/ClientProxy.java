@@ -109,6 +109,7 @@ import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityTimeDisruption;
 import tragicneko.tragicmc.events.KeyInputEvents;
+import tragicneko.tragicmc.events.MouseEvents;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -139,6 +140,7 @@ public class ClientProxy extends CommonProxy {
 
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
+		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));

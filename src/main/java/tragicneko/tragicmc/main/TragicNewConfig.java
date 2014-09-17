@@ -59,12 +59,13 @@ public class TragicNewConfig {
 
 	private static boolean[] blanketEnchant = new boolean[2];
 	public static boolean allowWeaponEnchants, allowArmorEnchants;
-	private static boolean[] weaponEnchantConfigs = new boolean[12];
+	private static boolean[] weaponEnchantConfigs = new boolean[14];
 	public static boolean allowDecay, allowSlay, allowAbsolve, allowVampirism, allowLeech, allowConsume, allowDistract, allowMultiply, allowCombustion, allowRuneBreak;
+	public static boolean allowReach, allowUnbreakable;
 	private static boolean[] armorEnchantConfigs = new boolean[12];
 	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility, allowRuneWalker;
-	private static int[] weaponEnchantIDs = new int[12];
-	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak;
+	private static int[] weaponEnchantIDs = new int[14];
+	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable;
 	private static int[] armorEnchantIDs = new int[12];
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker;
 
@@ -280,6 +281,10 @@ public class TragicNewConfig {
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "combustionAllow", true).getBoolean(true));
 		weaponEnchantIDs[mapping] = (config.get(catEnchant, "runeBreakID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "runeBreakAllow", true).getBoolean(true));
+		weaponEnchantIDs[mapping] = (config.get(catEnchant, "reachID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
+		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "reachAllow", true).getBoolean(true));
+		weaponEnchantIDs[mapping] = (config.get(catEnchant, "unbreakableID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
+		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "unbreakableAllow", true).getBoolean(true));
 
 		int temp = mapping - 1;
 
@@ -882,6 +887,10 @@ public class TragicNewConfig {
 		allowCombustion = weaponEnchantConfigs[mapping++];
 		idRuneBreak = weaponEnchantIDs[mapping];
 		allowRuneBreak = weaponEnchantConfigs[mapping++];
+		idReach = weaponEnchantIDs[mapping];
+		allowReach = weaponEnchantConfigs[mapping++];
+		idUnbreakable = weaponEnchantIDs[mapping];
+		allowUnbreakable = weaponEnchantConfigs[mapping++];
 
 		mapping = 0;
 		idDeathTouch = armorEnchantIDs[mapping];
