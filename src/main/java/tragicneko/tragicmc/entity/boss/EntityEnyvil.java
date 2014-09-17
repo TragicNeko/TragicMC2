@@ -183,7 +183,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
-		this.createNewCrystals();
+		if (!this.worldObj.isRemote) this.createNewCrystals();
 		return super.onSpawnWithEgg(data);
 	}
 
