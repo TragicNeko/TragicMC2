@@ -2574,6 +2574,20 @@ it's target
 Ensure that the player cannot attack or use items while they are Feared, they also cannot use Doomsdays
 Made it so that the Dark Crystal now follows the Enyvil around, as well as making it sorta "hover" in the air, it uses a placeholder render currently but it'll be changed when
 the Enyvil's AI is finished up and it's texture is added
+Set up ToolMaterial for the Sentinel, it'll be the strongest survival weapon in the mod (for now)
+Slightly changed Enyvil so that if it gets hit in the eye while using it's tractor beam, it'll stop (25% chance), and it also stops if it hurts the player in that phase, otherwise
+it continues it's current phase unabated
+Added Enyvil's texture, looks pretty cool in my opinion
+Added tiled textures for the Statue, some of these look good and others look a bit noisy but they should be fine
+Fixed a bug with Enyvil's ai, made it's common ai more common, made it so that on spawn it creates dark crystals so that it doesn't start out in state 4 (unable to attack and
+sitting still like it has no ai)
+Fixed another bug that never reset it's state even if it had crystals nearby, fixed it's tractor beam attack, will make it move all of the dark crystals along with it in the
+nearby area
+Added the next passive mob, the Erkel, a small mushroom-like fungus that mostly keeps to itself, it's texture will change based on where it spawns, it poisons whatever hurts it
+Changed creative tab icon to be the Neko Neko Wand (even though it doesn't work correctly), updated a couple of the spawn egg colors
+Removed logger spam from Enyvil, made it so that it will not spawn anymore Dark Crystals if there is at least 5 around it
+Updated the last batch of Amulet's texture colors
+Fix localization of Piercing Amulet
 
 --
 Add the enchantment tiers and lores to the epic weapons
@@ -2584,7 +2598,8 @@ The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation,
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
 The Sentinel's Doomsday will be Judgment day, which will stall all mobs in the air and inflict judgment damage onto them (they take damage equal to one-tenth of
-their max health, this caps at around 15 though so that bosses don't get killed easily by this), this will be crafted with one Overlord Eye along with Celestial Diamonds
+their max health, this caps at around 15 though so that bosses don't get killed easily by this), this will be crafted with one Overlord Eye along with Celestial Diamonds,
+it'll extend ItemJack so that it can be used to mine stuff as well
 The final boss will be the Overlord, it'll have a ton of health and actually have a similar appearance to Orespawn's Kraken, however, it isn't a squid/octopus thing, it's a large
 "metroid"-like creature, probably most similar to metroid prime in it's final boss stage, but with a few differences of course, it'll most likely utilize the multipart entity
 thing as well as have a helper creature/underling
@@ -2598,5 +2613,4 @@ Add the Claymation and the Erkel (boss and a passive mob)
 Work more on overall aesthetics as I get closer to a "finished" 1.0 release, this includes rewriting most of the mob ai to use datawatchers in order to render certain things when
 the mob is doing something (like the Ghast firing a fireball and having it's texture update to show that), this also includes starting to add custom mob sounds (some of which
 I've already recorded, just haven't added yet)
-Also reminder, make the actual statue textures instead of using the vanilla block textures
 Add the Phoenix and the Overlord
