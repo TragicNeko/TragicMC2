@@ -223,10 +223,10 @@ item.tragicmc.darkIngot.name=Dark Ingot
 item.tragicmc.ruby.name=Ruby
 item.tragicmc.sapphire.name=Sapphire
 
-item.tragicmc.skullHelmet.name=Skull Helmet
-item.tragicmc.skullPlate.name=Skull Chestplate
-item.tragicmc.skullLegs.name=Skull Legs
-item.tragicmc.skullBoots.name=Skull Boots
+item.tragicmc.skullHelmet.name=Bone Helmet
+item.tragicmc.skullPlate.name=Bone Chestplate
+item.tragicmc.skullLegs.name=Bone Legs
+item.tragicmc.skullBoots.name=Bone Boots
 item.tragicmc.scythe.name=Scythe
 
 item.tragicmc.huntersCap.name=Hunter's Cap
@@ -741,6 +741,7 @@ enchantment.weaponExtra.vampirism=Vampirism
 enchantment.weaponExtra.leech=Leech
 enchantment.weaponExtra.consume=Consume
 enchantment.weaponExtra.distract=Distract
+enchantment.weaponExtra.rust=Rust
 enchantment.reach=Reach
 enchantment.unbreakable=Unbreakable
 

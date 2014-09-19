@@ -9,13 +9,15 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
 public class EnchantmentWeaponExtra extends Enchantment {
 
-	private String[] enchantNames = {"vampirism", "leech", "consume", "distract"};
+	private String[] enchantNames = {"vampirism", "leech", "consume", "distract", "rust"};
 	private static String enchantName;
 	private int damageType;
 
@@ -29,7 +31,7 @@ public class EnchantmentWeaponExtra extends Enchantment {
 
 	public int getMinEnchantability(int par1)
 	{
-		return 25 + (par1 * 5);
+		return 15 + (par1 * 5);
 	}
 
 	public int getMaxEnchantability(int par1)
@@ -44,28 +46,18 @@ public class EnchantmentWeaponExtra extends Enchantment {
 
 	public boolean canApplyTogether(Enchantment par1Enchantment)
 	{
-		Boolean flag = true;
-
-		if (par1Enchantment instanceof EnchantmentWeaponExtra)
-		{
-			flag = false;
-		}
-
-		return flag;
+		return !(par1Enchantment instanceof EnchantmentWeaponExtra) && super.canApplyTogether(par1Enchantment);
 	}
 
 	public boolean canApply(ItemStack par1ItemStack)
 	{
-		return par1ItemStack.getItem() instanceof ItemAxe ? true : super.canApply(par1ItemStack);
+		return par1ItemStack.getItem() instanceof ItemAxe || par1ItemStack.getItem() instanceof ItemScythe ? true : super.canApply(par1ItemStack);
 	}
 
 	public float calcModifierLiving(int par1, EntityLivingBase par2EntityLivingBase)
 	{
-		if (par1 > 5)
-		{
-			par1 = 5;
-		}
-		
+		MathHelper.clamp_int(par1, 1, 5);
+
 		if (rand.nextInt(12 - (par1 * 2)) == 0 && this.damageType == 3)
 		{
 			if (rand.nextInt(3) == 0)
@@ -112,7 +104,17 @@ public class EnchantmentWeaponExtra extends Enchantment {
 					break;
 				}
 			}
+		}
 
+		if (rand.nextInt(12 - (par1 * 2)) == 0 && this.damageType == 4)
+		{
+			for (int i = 1; i < 5; i++)
+			{
+				if (par2EntityLivingBase.getEquipmentInSlot(i) != null)
+				{
+					par2EntityLivingBase.getEquipmentInSlot(i).attemptDamageItem(rand.nextInt(par1) + 1, rand);
+				}
+			}
 		}
 		return 0F;
 	}

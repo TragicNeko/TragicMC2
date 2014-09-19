@@ -15,7 +15,7 @@ import tragicneko.tragicmc.enchantment.EnchantmentWeaponExtra;
 
 public class TragicEnchantments {
 	
-	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, Agility, RuneBreak, Reach, Unbreakable;
+	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, Agility, RuneBreak, Reach, Unbreakable, Rust;
 	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch, RuneWalker;
 
 	public static void load()
@@ -26,13 +26,14 @@ public class TragicEnchantments {
 		if (TragicNewConfig.allowVampirism) Vampirism = (new EnchantmentWeaponExtra(TragicNewConfig.idVampirism, 1, 0));
 		if (TragicNewConfig.allowLeech) Leech = (new EnchantmentWeaponExtra(TragicNewConfig.idLeech, 1, 1));
 		if (TragicNewConfig.allowConsume) Consume = (new EnchantmentWeaponExtra(TragicNewConfig.idConsume, 1, 2));
-		if (TragicNewConfig.allowDistract) Distract = (new EnchantmentWeaponExtra(TragicNewConfig.idDistract, 10, 3));
+		if (TragicNewConfig.allowDistract) Distract = (new EnchantmentWeaponExtra(TragicNewConfig.idDistract, 8, 3));
 		if (TragicNewConfig.allowCombustion) Combustion = (new EnchantmentCombustion(TragicNewConfig.idCombustion, 1, EnumEnchantmentType.digger));
 		if (TragicNewConfig.allowAgility) Agility = (new EnchantmentAgility(TragicNewConfig.idAgility, 2, EnumEnchantmentType.armor));
 		if (TragicNewConfig.allowMultiply) Multiply = (new EnchantmentMultiply(TragicNewConfig.idMultiply, 1, EnumEnchantmentType.bow));
 		if (TragicNewConfig.allowRuneBreak) RuneBreak = (new EnchantmentDamageBoost(TragicNewConfig.idRuneBreak, 4, 3));
 		if (TragicNewConfig.allowReach) Reach = (new EnchantmentRange(TragicNewConfig.idReach, 6, EnumEnchantmentType.weapon));
 		if (TragicNewConfig.allowUnbreakable) Unbreakable = (new EnchantmentUnbreakable(TragicNewConfig.idUnbreakable, 1, EnumEnchantmentType.breakable));
+		if (TragicNewConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicNewConfig.idRust, 6, 4)); 
 
 		if (TragicNewConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicNewConfig.idIgnition, 6, 0));
 		if (TragicNewConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicNewConfig.idParalysis, 1, 1));

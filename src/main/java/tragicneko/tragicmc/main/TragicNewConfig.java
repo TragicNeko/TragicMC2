@@ -61,11 +61,11 @@ public class TragicNewConfig {
 	public static boolean allowWeaponEnchants, allowArmorEnchants;
 	private static boolean[] weaponEnchantConfigs = new boolean[14];
 	public static boolean allowDecay, allowSlay, allowAbsolve, allowVampirism, allowLeech, allowConsume, allowDistract, allowMultiply, allowCombustion, allowRuneBreak;
-	public static boolean allowReach, allowUnbreakable;
+	public static boolean allowReach, allowUnbreakable, allowRust;
 	private static boolean[] armorEnchantConfigs = new boolean[12];
 	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility, allowRuneWalker;
 	private static int[] weaponEnchantIDs = new int[14];
-	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable;
+	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable, idRust;
 	private static int[] armorEnchantIDs = new int[12];
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker;
 
@@ -285,6 +285,8 @@ public class TragicNewConfig {
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "reachAllow", true).getBoolean(true));
 		weaponEnchantIDs[mapping] = (config.get(catEnchant, "unbreakableID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "unbreakableAllow", true).getBoolean(true));
+		weaponEnchantIDs[mapping] = (config.get(catEnchant, "rustID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
+		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "rustAllow", true).getBoolean(true));
 
 		int temp = mapping - 1;
 
@@ -891,6 +893,8 @@ public class TragicNewConfig {
 		allowReach = weaponEnchantConfigs[mapping++];
 		idUnbreakable = weaponEnchantIDs[mapping];
 		allowUnbreakable = weaponEnchantConfigs[mapping++];
+		idRust = weaponEnchantIDs[mapping];
+		allowRust = weaponEnchantConfigs[mapping++];
 
 		mapping = 0;
 		idDeathTouch = armorEnchantIDs[mapping];
