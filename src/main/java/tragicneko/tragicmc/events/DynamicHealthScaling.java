@@ -2,15 +2,17 @@ package tragicneko.tragicmc.events;
 
 import java.util.UUID;
 
-import tragicneko.tragicmc.entity.boss.TragicBoss;
-import tragicneko.tragicmc.entity.mob.TragicMob;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.entity.mob.TragicMob;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DynamicHealthScaling {
 
@@ -73,6 +75,16 @@ public class DynamicHealthScaling {
 					((EntityLivingBase) event.entity).heal(((EntityLivingBase) event.entity).getMaxHealth());
 				}
 			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onEntitySpawn(LivingPackSizeEvent event)
+	{
+		if (event.entityLiving instanceof TragicBoss)
+		{
+			event.maxPackSize = 1;
+			event.setResult(Result.ALLOW);
 		}
 	}
 }
