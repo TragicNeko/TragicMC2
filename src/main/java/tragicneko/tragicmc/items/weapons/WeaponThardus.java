@@ -25,7 +25,7 @@ public class WeaponThardus extends EpicWeapon {
 		this.lores = new Lore[] {new Lore("ThardusLore1"), new Lore("ThardusLore2"), new Lore("ThardusLore3")};
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness};
 		this.rareLevels = new int[] {5, 3, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness, TragicEnchantments.Consume};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness, TragicEnchantments.Rust};
 		this.epicLevels = new int[] {10, 3, 5, 3};
 	}
 
