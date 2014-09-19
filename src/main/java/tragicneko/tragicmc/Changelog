@@ -2598,8 +2598,20 @@ Added Reach and Unbreakable enchantments, fixed some initial bugs with both
 The Epic weapons will have Reach III on all enchantment tiers, but a couple like the Butcher will have Reach V on the highest tier
 Added Reach to the epic enchantment tier of the Celestial Aegis
 Updated enchantment tiers for the epic weapons, going to work on lore next
+Updated all references to the main class's logger to use the static methods instead of directly invoking the logger
+Added null checks to entity drops, this is to prevent a crash if something was messed up, instead it logs an error
+Set up a Forge event to ensure bosses only spawn alone (maximum pack size of 1 so that it doesn't spawn multiple naturally), also added in a default 10% chance for bosses to spawn
+Added Rust Enchantment, does extra durability damage to an enemy's armor when attacking them
+Started work on the Claymation, it's ai will be quite complex as it actually changes between multiple other mob ai and also takes their stats
 
---
+
+--Before next release--
+Add the Sirv, finish the Erkel's hitbox and textures
+Finish the Epic weapon lores
+Change the Dark Crystal's render to be an actual model
+Update the Empariah's model, add a cool crown and give it sharp claws
+
+--Planned for next release--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
@@ -2609,15 +2621,12 @@ it'll extend ItemJack so that it can be used to mine stuff as well
 The final boss will be the Overlord, it'll have a ton of health and actually have a similar appearance to Orespawn's Kraken, however, it isn't a squid/octopus thing, it's a large
 "metroid"-like creature, probably most similar to metroid prime in it's final boss stage, but with a few differences of course, it'll most likely utilize the multipart entity
 thing as well as have a helper creature/underling
+Add the "giant" weapon models for the epic weapons
 
-Changed the Yeti to be named the Empariah, add a crown and claws to it's model, this is due to me feeling like the name Yeti was a bit too generic
-The fox pet will be named the Kitsuneko instead of Sly, the panda pet will be named the Panda Cub, the Bangatang will keep it's name, these are to give the pets general and
-non-specific names so that players are more inclined to give them their own names
-
---Reminders--
-Add the Claymation (boss)
+--Reminders for later--
 Change all of the color codes to use hex codes instead, this is just to clean up the code some
 Work more on overall aesthetics as I get closer to a "finished" 1.0 release, this includes rewriting most of the mob ai to use datawatchers in order to render certain things when
 the mob is doing something (like the Ghast firing a fireball and having it's texture update to show that), this also includes starting to add custom mob sounds (some of which
 I've already recorded, just haven't added yet)
 Add the Phoenix and the Overlord
+Add the pets, Kitsuneko, Panda Cub, the Bangatang
