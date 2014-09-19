@@ -61,6 +61,7 @@ public class EntityMinotaur extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.45);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
 	}
 
 	public void onLivingUpdate()
