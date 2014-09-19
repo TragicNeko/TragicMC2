@@ -100,13 +100,15 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 			{
 				if (rand.nextInt(100) <= y + (x * 4))
 				{
-					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), 0.4F);
+					ItemStack drop = EntityDropHelper.getCommonDropFromEntity(this.getClass());
+					if (drop != null) this.entityDropItem(drop, 0.4F);
 					total += 1;
 				}
 
 				if (this.recentlyHit > 0 && rand.nextInt(25) <= z + x)
 				{
-					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
+					ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
+					if (drop != null) this.entityDropItem(drop, 0.4F);
 					total += 1;
 				}
 
@@ -115,11 +117,10 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 			if (this.recentlyHit > 0)
 			{
-				this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), 0.4F);
+				ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
+				if (drop != null) this.entityDropItem(drop, 0.4F);
 				total++;
 			}
-			
-			TragicMC.logInfo("Enchant level plus one was: " + x + ", common drop rate is " + y + ", rare drop rate is " + z + ", total drops were " + (total + amt));
 		}
 	}
 
@@ -132,6 +133,8 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 	public boolean getCanSpawnHere()
 	{		
+		if (rand.nextInt(10) != 0) return false;
+		
 		if (this.posY <= 63)
 		{
 			switch (this.worldObj.provider.dimensionId)

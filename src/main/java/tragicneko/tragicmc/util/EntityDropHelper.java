@@ -190,7 +190,8 @@ public class EntityDropHelper {
 	 */
 	public static ItemStack getRareDropFromEntity(Class clazz)
 	{
-		return getRareLootArrayFromEntity(clazz)[rand.nextInt(getRareLootArrayFromEntity(clazz).length)].copy();
+		ItemStack stack = getRareLootArrayFromEntity(clazz)[rand.nextInt(getRareLootArrayFromEntity(clazz).length)];
+		return stack != null ? stack.copy() : null;
 	}
 
 	/**
@@ -200,7 +201,8 @@ public class EntityDropHelper {
 	 */
 	public static ItemStack getCommonDropFromEntity(Class clazz)
 	{
-		return getLootArrayFromEntity(clazz)[rand.nextInt(getLootArrayFromEntity(clazz).length)].copy();
+		ItemStack stack = getLootArrayFromEntity(clazz)[rand.nextInt(getLootArrayFromEntity(clazz).length)];
+		return stack != null ? stack.copy() : null;
 	}
 
 	/**
@@ -217,7 +219,7 @@ public class EntityDropHelper {
 		}
 		catch(Exception e)
 		{
-			TragicMC.logger.info("No mapping for common loot drop from entity with class of " + clazz);
+			TragicMC.logError("No mapping for common loot drop from entity with class of " + clazz);
 			return array;
 		}
 	}
@@ -253,7 +255,7 @@ public class EntityDropHelper {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			TragicMC.logger.info("No mapping for rare loot drop from entity with class of " + clazz);
+			TragicMC.logError("No mapping for rare loot drop from entity with class of " + clazz);
 			return null;
 		}
 	}

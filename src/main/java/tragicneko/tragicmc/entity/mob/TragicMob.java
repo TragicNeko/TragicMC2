@@ -263,9 +263,9 @@ public abstract class TragicMob extends EntityMob
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false; 
-		
+
 		Boolean result = super.attackEntityAsMob(par1Entity);
-		
+
 		if (result && TragicNewConfig.allowCorruption)
 		{
 			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).isCorruptible && !((TragicMob)par1Entity).isCorrupted && this.rand.nextInt(4) == 0 && this.canCorrupt)
@@ -343,20 +343,22 @@ public abstract class TragicMob extends EntityMob
 			{
 				if (rand.nextInt(100) <= y + (x * 4))
 				{
-					this.entityDropItem(EntityDropHelper.getCommonDropFromEntity(this.getClass()), rand.nextFloat());
+					ItemStack drop = EntityDropHelper.getCommonDropFromEntity(this.getClass());
+					if (drop != null) this.entityDropItem(drop, 0.4F);
 					drops++;
 				}
 
 				if (this.recentlyHit > 0 && rand.nextInt(100) <= z + x)
 				{
-					this.entityDropItem(EntityDropHelper.getRareDropFromEntity(this.getClass()), rand.nextFloat());
+					ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
+					if (drop != null) this.entityDropItem(drop, 0.4F);
 					drops++;
 				}
-				
+
 				if (drops > x * 2) break;
 			}
 		}
-		
+
 		super.onDeath(par1DamageSource);
 	}
 }
