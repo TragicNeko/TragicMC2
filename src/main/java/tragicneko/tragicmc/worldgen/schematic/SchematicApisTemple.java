@@ -2,14 +2,14 @@ package tragicneko.tragicmc.worldgen.schematic;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.main.TragicItems;
 
 public class SchematicApisTemple extends Schematic {
 
@@ -42,7 +42,7 @@ public class SchematicApisTemple extends Schematic {
 			generateWithoutVariation(world, rand, x, y, z);
 			break;
 		default:
-			TragicMC.logger.info("There was a problem generating an Apis Temple");
+			TragicMC.logError("There was a problem generating an Apis Temple");
 			break;
 		}
 	}
@@ -1029,7 +1029,7 @@ public class SchematicApisTemple extends Schematic {
 		}
 		else
 		{
-			TragicMC.logger.warn("Chest generation failed for some reason.");
+			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
 	}
 

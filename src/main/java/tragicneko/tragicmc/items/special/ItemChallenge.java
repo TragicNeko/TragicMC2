@@ -135,7 +135,6 @@ public class ItemChallenge extends Item {
 			Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 			int extra = itemRand.nextInt((challenge.difficulty + 1) * 2) + 1;
 			ItemStack reward = null;
-			TragicMC.logger.info("Difficulty is " + challenge.difficulty);
 			
 			for (int i = 0; i < extra; i++)
 			{

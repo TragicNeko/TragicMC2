@@ -33,7 +33,7 @@ public class SchematicTimeAltar extends Schematic {
 			generateWithoutVariation(world, rand, x, y, z);
 			break;
 		default:
-			TragicMC.logger.info("There was a problem generating a Time Altar");
+			TragicMC.logError("There was a problem generating a Time Altar");
 			break;
 		}
 	}
@@ -136,7 +136,7 @@ public class SchematicTimeAltar extends Schematic {
 		}
 		else
 		{
-			TragicMC.logger.warn("Chest generation failed for some reason.");
+			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
 
 	}

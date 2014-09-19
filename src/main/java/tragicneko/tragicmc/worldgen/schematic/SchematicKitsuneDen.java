@@ -34,7 +34,7 @@ public class SchematicKitsuneDen extends Schematic {
 			generateWithoutVariation(world, rand, x, y, z);
 			break;
 		default:
-			TragicMC.logger.info("There was a problem generating a Kitsune Den.");
+			TragicMC.logError("There was a problem generating a Kitsune Den.");
 			break;
 		}
 

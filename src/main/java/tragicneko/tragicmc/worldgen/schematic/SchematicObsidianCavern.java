@@ -318,8 +318,6 @@ public class SchematicObsidianCavern extends Schematic {
 			world.setBlock(x, y + 4, z, luxury, meta, 2);
 			world.setBlock(x, y + 5, z, obs);
 			world.setBlock(x, y + 6, z, obs);
-
-			TragicMC.logger.info("Cave opening should've generated as an obsidian well-like thing");
 			break;
 		case 1:
 			for (int y1 = 0; y1 < 8; y1++) //Creates first block of obsidian for the middle of the head
@@ -407,8 +405,6 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 				}
 			}
-
-			TragicMC.logger.info("Cave opening should've generated as a Death Reaper skull");
 			break;
 		case 2:
 			for (int y1 = 0; y1 < 6; y1++)
@@ -448,8 +444,6 @@ public class SchematicObsidianCavern extends Schematic {
 
 			world.setBlock(x + 1, y + 1, z - 1, obs); //sets the two obsidian blocks near the tube opening (duh)
 			world.setBlock(x + 1, y + 1, z + 1, obs);
-
-			TragicMC.logger.info("Cave opening should've generated as a Polaris helmet");
 			break;
 		case 3:
 			for (int z1 = -1; z1 < 2; z1++)
@@ -527,8 +521,6 @@ public class SchematicObsidianCavern extends Schematic {
 					world.setBlock(x + x1, y , z, obs);
 				}
 			}
-
-			TragicMC.logger.info("Cave opening would've generated as a Dragon creature");
 			break;
 		case 4:
 			for (int y1 = 1; y1 < 6; y1++)
@@ -622,8 +614,6 @@ public class SchematicObsidianCavern extends Schematic {
 			world.setBlock(x - 2, y + 8, z - 4, obs);
 			world.setBlock(x - 3, y + 8, z + 4, obs);
 			world.setBlock(x - 3, y + 8, z - 4, obs);
-
-			TragicMC.logger.info("Cave opening would've generated as an Apis head");
 			break;
 		default:
 			for (int y1 = 0; y1 < 3; y1++)
@@ -677,8 +667,6 @@ public class SchematicObsidianCavern extends Schematic {
 				world.setBlock(x, y + y1, z - 1, obs);
 				world.setBlock(x, y + y1, z, ladder, 3, 2);
 			}
-
-			TragicMC.logger.info("Cave opening should've generated as a pyramid");
 			break;
 		}
 
@@ -695,7 +683,6 @@ public class SchematicObsidianCavern extends Schematic {
 				coords = map.get(i);
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
-			TragicMC.logger.info("Obsidian Cavern generated with void fall at bottom");
 			break;
 		case 1:
 			world.setBlock(x, 1, z, bedrock);
@@ -707,7 +694,6 @@ public class SchematicObsidianCavern extends Schematic {
 			this.generateChestGoodies(world, rand, x - 1, 1, z, 0);
 			this.generateChestGoodies(world, rand, x, 1, z + 1, 0);
 			this.generateChestGoodies(world, rand, x, 1, z - 1, 0);
-			TragicMC.logger.info("Obsidian Cavern generated with chest stash at bottom, no summon blocks");
 			break;
 		case 2:
 			world.setBlock(x, 1, z, bedrock);
@@ -785,8 +771,6 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 				}
 			}
-
-			TragicMC.logger.info("Obsidian Cavern generated with chest stash at bottom, with " + wubwub + " randomized summon blocks");
 			break;
 		case 3:
 			int mow = rand.nextInt(10);
@@ -802,7 +786,6 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 
 			world.setBlock(x, 1, z, summon, mow, 2);
-			TragicMC.logger.info("Obsidian Cavern generated with one summon block in the middle.");
 			break;
 		case 4:
 			world.setBlock(x, 1, z, spawner, 0, 2);
@@ -813,7 +796,6 @@ public class SchematicObsidianCavern extends Schematic {
 				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile;
 				spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			}
-			TragicMC.logger.info("Obsidian Cavern generated with one normal mob spawner in the middle");
 			break;
 		case 5:
 			world.setBlock(x, 1, z, bedrock);
@@ -878,8 +860,6 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 				}
 			}
-
-			TragicMC.logger.info("Obsidian Cavern generated with chest stash at bottom, with " + zera + " randomized mob spawners");
 			break;
 		case 6:
 			world.setBlock(x, 1, z, chest);
@@ -892,7 +872,6 @@ public class SchematicObsidianCavern extends Schematic {
 				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
 				spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			}
-			TragicMC.logger.info("Obsidian Cavern generated with a single chest and a single random mob spawner");
 			break;
 		case 7:
 			int mrow = rand.nextInt(10);
@@ -963,7 +942,6 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 				}
 			}
-			TragicMC.logger.info("Obsidian Cavern generated with one chest, one summon block and " + zera + " random mob spawners");
 			break;
 		case 8:
 			mrow = rand.nextInt(10);
@@ -1044,12 +1022,10 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 				}
 			}
-			TragicMC.logger.info("Obsidian Cavern generated with a luxury block, a chest and " + zera + " Apis mob spawners.");
 			break;
 		default:
 			world.setBlock(x, 1, z, chest);
 			this.generateChestGoodies(world, rand, x, 1, z, 1);
-			TragicMC.logger.info("Obsidian Cavern generated with a single chest.");
 			break;
 		}
 	}
@@ -1071,7 +1047,7 @@ public class SchematicObsidianCavern extends Schematic {
 
 		if (chest == null)
 		{
-			TragicMC.logger.warn("There was an error setting chest contents");
+			TragicMC.logWarning("There was an error setting chest contents");
 			return;
 		}
 

@@ -36,7 +36,7 @@ public class SchematicCelestialTemple extends Schematic {
 			generateWithoutVariation(world, rand, x, y, z);
 			break;
 		default:
-			TragicMC.logger.info("There was a problem generating a Celestial Temple");
+			TragicMC.logError("There was a problem generating a Celestial Temple");
 			break;
 		}
 	}
@@ -1062,7 +1062,7 @@ public class SchematicCelestialTemple extends Schematic {
 		}
 		else
 		{
-			TragicMC.logger.warn("Chest generation failed for some reason.");
+			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
 	}
 

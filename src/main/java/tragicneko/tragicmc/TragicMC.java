@@ -111,7 +111,7 @@ public class TragicMC
 	public static CommonProxy proxy;
 
 	public static SimpleNetworkWrapper net;
-	public static final Logger logger = LogManager.getLogger(TragicMC.MODID);
+	private static final Logger logger = LogManager.getLogger(TragicMC.MODID);
 
 	public static final int idAmuletGui = 1;
 

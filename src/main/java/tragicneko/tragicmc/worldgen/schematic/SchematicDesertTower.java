@@ -77,7 +77,7 @@ public class SchematicDesertTower extends Schematic {
 			generateVariant4(world, rand, x, y, z);
 			break;
 		default:
-			TragicMC.logger.info("There was a problem generating a Tower");
+			TragicMC.logError("There was a problem generating a Tower");
 			break;
 		}
 		this.applyChestContents(world, rand, x, y + 17, z);
@@ -4871,7 +4871,7 @@ public class SchematicDesertTower extends Schematic {
 		}
 		else
 		{
-			TragicMC.logger.warn("Chest generation failed for some reason.");
+			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
 	}
 

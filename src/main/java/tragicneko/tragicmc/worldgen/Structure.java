@@ -149,7 +149,7 @@ public class Structure extends WorldGenerator {
 				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenPlains || world.getBiomeGenForCoords(x, z) instanceof BiomeGenSavanna)
 				{
 					new SchematicApisTemple(variant, world, rand, x, y, z);
-					TragicMC.logger.info("Apis Temple successfully generated at coords: " + x + ", " + y + ", " + z);
+					TragicMC.logInfo("Apis Temple successfully generated at coords: " + x + ", " + y + ", " + z);
 					return true;
 				}
 				else
@@ -196,7 +196,7 @@ public class Structure extends WorldGenerator {
 				if (variant >= 0)
 				{
 					new SchematicDesertTower(variant, world, rand, x, y, z);
-					TragicMC.logger.info("Tower Structure successfully generated at coords: " + x + ", " + y + ", " + z);
+					TragicMC.logInfo("Tower Structure successfully generated at coords: " + x + ", " + y + ", " + z);
 					return true;
 				}
 				else
@@ -215,7 +215,7 @@ public class Structure extends WorldGenerator {
 				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenHell || TragicBiomes.decayingBiomes.contains(world.getBiomeGenForCoords(x, z)))
 				{
 					new SchematicDeathCircle(variant, world, rand, x, y, z);
-					TragicMC.logger.info("Death Circle successfully generated at coords: " + x + ", " + y + ", " + z);
+					TragicMC.logInfo("Death Circle successfully generated at coords: " + x + ", " + y + ", " + z);
 					return true;
 				}
 				else
@@ -237,7 +237,7 @@ public class Structure extends WorldGenerator {
 				}
 				
 				new SchematicObsidianCavern(variant, world, rand, x, y, z);
-				TragicMC.logger.info("Obsidian Cavern successfully generated at coords: " + x + ", " + y + ", " + z);
+				TragicMC.logInfo("Obsidian Cavern successfully generated at coords: " + x + ", " + y + ", " + z);
 				return true;
 			}
 			else
@@ -251,7 +251,7 @@ public class Structure extends WorldGenerator {
 				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenHell || world.provider instanceof TragicWorldProvider)
 				{
 					new SchematicKitsuneDen(variant, world, rand, x, y, z);
-					TragicMC.logger.info("Kitsune Den successfully generated at coords: " + x + ", " + y + ", " + z);
+					TragicMC.logInfo("Kitsune Den successfully generated at coords: " + x + ", " + y + ", " + z);
 					return true;
 				}
 				else
@@ -270,7 +270,7 @@ public class Structure extends WorldGenerator {
 				if (world.provider instanceof TragicWorldProvider)
 				{
 					new SchematicCelestialTemple(variant, world, rand, x, y, z);
-					TragicMC.logger.info("Celestial Temple would've successfully generated at coords: " + x + ", " + y + ", " + z + ", but it is not currently set up.");
+					TragicMC.logInfo("Celestial Temple would've successfully generated at coords: " + x + ", " + y + ", " + z + ", but it is not currently set up.");
 					return true;
 				}
 				else
@@ -289,7 +289,7 @@ public class Structure extends WorldGenerator {
 				if (world.provider instanceof TragicWorldProvider)
 				{
 					new SchematicTimeAltar(variant, world, rand, x, y, z);
-					TragicMC.logger.info("Time Altar successfully generated at coords: " + x + ", " + y + ", " + z);
+					TragicMC.logInfo("Time Altar successfully generated at coords: " + x + ", " + y + ", " + z);
 					return true;
 				}
 				else

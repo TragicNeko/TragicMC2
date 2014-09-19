@@ -11,7 +11,7 @@ public class MessageHandlerFlight implements IMessageHandler<MessageFlight, IMes
 	@Override
 	public IMessage onMessage(MessageFlight message, MessageContext ctx) {
 		TragicNewConfig.allowFlight = message.flightEnabled == 1 ? true : false;
-		TragicMC.logger.info("Flight potion effect is " + (TragicNewConfig.allowFlight ? "enabled" : "disabled"));
+		TragicMC.logInfo("Flight potion effect is " + (TragicNewConfig.allowFlight ? "enabled" : "disabled"));
 		return null;
 	}
 

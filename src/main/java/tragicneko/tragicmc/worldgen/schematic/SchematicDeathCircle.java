@@ -33,7 +33,7 @@ public class SchematicDeathCircle extends Schematic {
 			generateWithoutVariation(world, rand, x, y, z);
 			break;
 		default:
-			TragicMC.logger.info("There was a problem generating a Death Circle");
+			TragicMC.logError("There was a problem generating a Death Circle");
 			break;
 		}
 		
@@ -452,7 +452,7 @@ public class SchematicDeathCircle extends Schematic {
 		}
 		else
 		{
-			TragicMC.logger.warn("Chest generation failed for some reason.");
+			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
 	}
 
