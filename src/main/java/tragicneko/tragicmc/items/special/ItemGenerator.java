@@ -72,56 +72,27 @@ public class ItemGenerator extends Item {
 
 		if (this == TragicItems.VoidPitGenerator)
 		{
-			size = 17.0D * random.nextDouble() + 3.0D;
+			size = 15.0D * random.nextDouble() + 10.0D;
 
 			for (int pow = 0; pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 			{
-				map = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
-
-				for (int mapping = 0; mapping < map.size(); mapping++)
+				if (size >= 5.5D)
 				{
-					coords = map.get(mapping);
+					map = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
 
-					if (coords[1] <= 16)
+					for (int mapping = 0; mapping < map.size(); mapping++)
 					{
-						if (random.nextInt(32) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else if (coords[1] <= 32)
-					{
-						if (random.nextInt(40) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else if (coords[1] <= 48)
-					{
-						if (random.nextInt(48) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else
-					{
-						if (random.nextInt(64) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-				} 
+						coords = map.get(mapping);
+						if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
+					} 
+				}
 
 				map = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
 
 				for (int mapping = 0; mapping < map.size(); mapping++)
 				{
 					coords = map.get(mapping);
-
-					if (coords[1] <= 16)
-					{
-						if (random.nextInt(12) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else if (coords[1] <= 32)
-					{
-						if (random.nextInt(16) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else if (coords[1] <= 48)
-					{
-						if (random.nextInt(24) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else
-					{
-						if (random.nextInt(48) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
+					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 				} 
 
 				map = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
@@ -129,23 +100,7 @@ public class ItemGenerator extends Item {
 				for (int mapping = 0; mapping < map.size(); mapping++)
 				{
 					coords = map.get(mapping);
-
-					if (coords[1] <= 16)
-					{
-						if (random.nextInt(2) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else if (coords[1] <= 32)
-					{
-						if (random.nextInt(4) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else if (coords[1] <= 48)
-					{
-						if (random.nextInt(6) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-					else
-					{
-						if (random.nextInt(16) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
+					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 				}
 			}
 
@@ -296,7 +251,7 @@ public class ItemGenerator extends Item {
 			int spikeType = random.nextInt(6);
 			boolean flag = false;
 			boolean flag2 = false;
-			
+
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike of type " + spikeType + " and size of " + size + " generated."));
 
 			for (int y1 = 0; y1 < 256; y1++)
@@ -304,7 +259,7 @@ public class ItemGenerator extends Item {
 				if (random.nextBoolean())
 				{
 					size *= 0.96977745D; //reduce the radius of the spike randomly, give at least 2 levels at max radius
-					
+
 					if (random.nextInt(3) == 0 && size >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
 					{
 						Xcoord += random.nextInt(2) - random.nextInt(2);
