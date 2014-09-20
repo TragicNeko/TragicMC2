@@ -2603,10 +2603,28 @@ Added null checks to entity drops, this is to prevent a crash if something was m
 Set up a Forge event to ensure bosses only spawn alone (maximum pack size of 1 so that it doesn't spawn multiple naturally), also added in a default 10% chance for bosses to spawn
 Added Rust Enchantment, does extra durability damage to an enemy's armor when attacking them
 Started work on the Claymation, it's ai will be quite complex as it actually changes between multiple other mob ai and also takes their stats
-
+Made it so that Claymation is immune to all projectile damage (while in it's original form) except for snowballs and icicles
+Decided to make the Claymation also do the entity that it's replicating's response to being attacked and to attacking (if they normally inflict effects then it does those)
+It also does the Ragr's fall explosion thing as well as the Iron golem's animation when it attacks (which can be set up for other forms as well)
+I just have to finish up the Claymation's actual model and set it's hit box, then do a lot of testing to ensure the ai works correctly
+Made it so that it doesn't revert back to it's normal form immediately when it's attack target dies, and also doesn't heal immediately when that occurs as well, set up the nbt
+tags for it so that it doesn't return to full health every time
+Working on making it's boundingbox adjust for each entity that it turns into but this doesn't seem possible as it's a final field, so I'll probably need to use reflection in
+order to set it specifically for the Claymation
+Attempts to use reflection haven't done anything in terms of changing the Claymation's bounding box, so I'll just ignore it for now
+Made it so that Erkel now spawn mushrooms wherever they go, started work on the Sirv's AI which will be very basic, it'll use a hive mind type of AI
+Added some more null checks to the entity drop helper
+Added drops for the Erkel and Claymation
+Added statue recipes utilizing Living Clay
+Added the Sirv and it's drops, along with it's model and set up it's hitbox
+Added the Sirv and Erkel to the Dimension's spawn lists
+Optimized Dimensional layer world gen by removing a lot of for loops
+Fix NPE with Stin and Baby Stin's drops
+Greatly improved WorldGen for the Dimension, mostly with the layers and void pit generation
+Increased Inkling's resistance to light so that it burns in less areas
 
 --Before next release--
-Add the Sirv, finish the Erkel's hitbox and textures
+Finish the Erkel's hitbox and textures, along with the Claymation's original form model and hitbox
 Finish the Epic weapon lores
 Change the Dark Crystal's render to be an actual model
 Update the Empariah's model, add a cool crown and give it sharp claws
@@ -2615,6 +2633,7 @@ Update the Empariah's model, add a cool crown and give it sharp claws
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
+Tragic Armor (with the full set) will also bring you back to life randomly if you die (like a 10% chance with random health)
 The Sentinel's Doomsday will be Judgment day, which will stall all mobs in the air and inflict judgment damage onto them (they take damage equal to one-tenth of
 their max health, this caps at around 15 though so that bosses don't get killed easily by this), this will be crafted with one Overlord Eye along with Celestial Diamonds,
 it'll extend ItemJack so that it can be used to mine stuff as well
