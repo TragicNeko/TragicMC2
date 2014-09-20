@@ -106,14 +106,14 @@ public class EntityInkling extends TragicMob {
 
 		if (!this.worldObj.isRemote)
 		{
-			if (this.isBurning() && rand.nextInt(16) == 0 && this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) > 6)
+			if (this.isBurning() && rand.nextInt(16) == 0 && this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
 			{
 				this.teleportRandomly();
 			}
 
-			if (this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) > 6)
+			if (this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
 			{
-				if (!this.isBurning() && rand.nextInt(16) == 0)
+				if (!this.isBurning() && this.ticksExisted % 10 == 0)
 				{
 					this.setFire(4);
 				}
@@ -175,7 +175,7 @@ public class EntityInkling extends TragicMob {
 		
 
 		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null 
-				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY, (int)this.getAttackTarget().posZ) <= 6 &&
+				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY, (int)this.getAttackTarget().posZ) <= 8 &&
 				this.getDistanceToEntity(this.getAttackTarget()) > 10.0F)
 		{
 			this.teleportToEntity(this.getAttackTarget());
@@ -279,7 +279,7 @@ public class EntityInkling extends TragicMob {
 			{
 				for (int x1 = 0; x1 < 7; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, x + x1, y - 1, z) && this.worldObj.getBlockLightValue(x + x1, y, z) <= 6)
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, x + x1, y - 1, z) && this.worldObj.getBlockLightValue(x + x1, y, z) <= 8)
 					{
 						inkling.setPosition((double)x + x1, (double)y, (double)z);
 
@@ -339,7 +339,7 @@ public class EntityInkling extends TragicMob {
 
 		boolean flag2 = false;
 
-		if (this.worldObj.getBlockLightValue(i, j, k) <= 4)
+		if (this.worldObj.getBlockLightValue(i, j, k) <= 8)
 		{
 			flag2 = true;
 		}
