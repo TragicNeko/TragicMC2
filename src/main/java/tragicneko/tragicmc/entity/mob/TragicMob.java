@@ -320,7 +320,9 @@ public abstract class TragicMob extends EntityMob
 
 	public void onDeath(DamageSource par1DamageSource)
 	{		
-		if (!this.worldObj.isRemote)
+		super.onDeath(par1DamageSource);
+		
+		if (!this.worldObj.isRemote && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
 		{
 			int x = 1;
 
@@ -359,6 +361,6 @@ public abstract class TragicMob extends EntityMob
 			}
 		}
 
-		super.onDeath(par1DamageSource);
+		
 	}
 }
