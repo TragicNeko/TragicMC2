@@ -26,6 +26,7 @@ import tragicneko.tragicmc.client.model.ModelPirah;
 import tragicneko.tragicmc.client.model.ModelPlague;
 import tragicneko.tragicmc.client.model.ModelPumpkinhead;
 import tragicneko.tragicmc.client.model.ModelRagr;
+import tragicneko.tragicmc.client.model.ModelSirv;
 import tragicneko.tragicmc.client.model.ModelStin;
 import tragicneko.tragicmc.client.model.ModelStinBaby;
 import tragicneko.tragicmc.client.model.ModelStinKing;
@@ -83,6 +84,7 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStarCryse;
 import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
@@ -217,6 +219,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.35F, "Abomination_lowRes"));
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityErkel.class, new RenderMob(new ModelBlock(), 0.35F, "Pirah_lowRes")); //placeholder render
+		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(new ModelSirv(), 0.245F, "Sirv_lowRes"));
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());

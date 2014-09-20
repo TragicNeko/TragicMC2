@@ -46,6 +46,7 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStarCryse;
 import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
@@ -482,6 +483,14 @@ public class TragicEntities {
 			color1 = new Color(0x4D, 0x93, 0x5D);
 			color2 = new Color(0x30, 0x66, 0x3D);
 			TragicEntityList.addMapping(EntityErkel.class, "TragicMC.Erkel", id++, color1.getRGB(), color2.getRGB());
+		}
+		
+		if (TragicNewConfig.allowSirv)
+		{
+			EntityRegistry.registerModEntity(EntitySirv.class, "Sirv", listid++, TragicMC.instance, 80, 1, true);
+			color1 = new Color(0xAD, 0xAD, 0xAD);
+			color2 = new Color(0xBD, 0xBD, 0xBD);
+			TragicEntityList.addMapping(EntitySirv.class, "TragicMC.Sirv", id++, color1.getRGB(), color2.getRGB());
 		}
 
 		//Iron Golem
