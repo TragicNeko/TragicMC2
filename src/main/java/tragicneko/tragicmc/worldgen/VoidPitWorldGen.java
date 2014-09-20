@@ -18,7 +18,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		if (world.provider instanceof TragicWorldProvider)
 		{
-			if (random.nextInt(100) >= TragicNewConfig.voidPitRarity) return;
+			if (random.nextInt(100) >= TragicNewConfig.voidPitRarity || random.nextInt(4) == 0) return;
 
 			int Xcoord = (chunkX * 16) + random.nextInt(16);
 			int Ycoord = random.nextInt(35) + 60;
@@ -30,7 +30,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 			int[] coords;
 			Map<Integer, int[]> map;
 
-			size = 6.0D * random.nextDouble() + 4.0D;
+			size = 4.0D * random.nextDouble() + 4.0D;
 
 			for (int pow = 0; pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 			{

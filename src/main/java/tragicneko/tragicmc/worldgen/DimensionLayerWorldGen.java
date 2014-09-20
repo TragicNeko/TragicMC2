@@ -17,7 +17,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class DimensionLayerWorldGen implements IWorldGenerator {
 
-	int[] modifiers = new int[] {-61, -47, 0, 37, 75, -30, -20, 20, 95, -88};
+	private int[] modifiers = new int[] {-61, -47, 0, 37, 75, -30, -20, 20, 95, -88};
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -46,12 +46,12 @@ public class DimensionLayerWorldGen implements IWorldGenerator {
 			}
 		}
 
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 2; i++)
 		{
 			Xcoord = (chunkX * 16) + random.nextInt(16);
 			int Ycoord = random.nextInt(256);
 			Zcoord = (chunkZ * 16) + random.nextInt(16);
-			new WorldGenMinable(TragicBlocks.DeadDirt, 2, 6, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
+			new WorldGenMinable(TragicBlocks.DeadDirt, 2, 8, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
 	}
 }
