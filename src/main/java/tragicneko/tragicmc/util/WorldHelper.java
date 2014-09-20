@@ -115,13 +115,7 @@ public class WorldHelper {
 	public static int getWorldDependency(World world)
 	{
 		int i = (MathHelper.ceiling_double_int((((world.getSeed() % 121L) + (world.getSeed() / 1452749627L) )/ 256)) % 256);
-
-		if (i < 0)
-		{
-			i *= -1;
-		}
-
-		return i;
+		return (Math.abs(i) % 128) + 32;
 	}
 
 	/**
