@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -8,6 +9,7 @@ import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -90,6 +92,20 @@ public class EntityErkel extends TragicMob {
 			{
 				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
+			}
+		}
+		else
+		{
+			if (this.rand.nextInt(64) == 0 && this.onGround && this.getMobGriefing())
+			{
+				int x = (int) (this.posX + rand.nextInt(4) - rand.nextInt(4));
+				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+				int z = (int) (this.posZ + rand.nextInt(4) - rand.nextInt(4));
+				
+				if (this.worldObj.isAirBlock(x, y, z) || this.worldObj.getBlock(x, y, z) instanceof BlockTallGrass)
+				{
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, x, y - 1, z)) this.worldObj.setBlock(x, y, z, rand.nextBoolean() ? Blocks.brown_mushroom : Blocks.red_mushroom);
+				}
 			}
 		}
 	}
