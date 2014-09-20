@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
@@ -26,6 +27,7 @@ import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
+import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
@@ -38,6 +40,7 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
@@ -96,14 +99,20 @@ public class EntityDropHelper {
 		entityLootDrops.put(EntityStarVox.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(Items.glowstone_dust)},
 			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby)}});
 		
-		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
+		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
 		
-		entityLootDrops.put(EntityStinBaby.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.DarkParticles)}});
+		entityLootDrops.put(EntityStinBaby.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles)}});
 		
 		entityLootDrops.put(EntityWisp.class, new ItemStack[][] {{new ItemStack(Items.glowstone_dust)}, {new ItemStack(TragicItems.WispParticles)}});
 		
 		entityLootDrops.put(EntityAbomination.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.fish), new ItemStack(Items.snowball)},
 			{new ItemStack(TragicItems.IcyFur), new ItemStack(TragicItems.IceOrb)}});
+		
+		entityLootDrops.put(EntityErkel.class, new ItemStack[][] {{new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom_block)}, {new ItemStack(Items.slime_ball),
+			new ItemStack(TragicItems.Ectoplasm), new ItemStack(TragicItems.Spore)}
+		});
+		
+		entityLootDrops.put(EntitySirv.class, new ItemStack[][] {{new ItemStack(Items.clay_ball)}, {new ItemStack(Blocks.clay)}});
 		
 		//Mini-Boss drops
 		entityLootDrops.put(EntityJarra.class, new ItemStack[][] {{new ItemStack(TragicItems.Thorns), new ItemStack(Items.magma_cream)}, {new ItemStack(TragicItems.Spore),
@@ -155,6 +164,9 @@ public class EntityDropHelper {
 			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles),
 			new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialSteel)},
 			{new ItemStack(TragicItems.PureDarkness)}});
+		
+		entityLootDrops.put(EntityClaymation.class, new ItemStack[][] {{new ItemStack(TragicItems.LivingClay), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.Quicksilver),
+			new ItemStack(TragicBlocks.Wax), new ItemStack(Blocks.sand), new ItemStack(TragicBlocks.Quicksand), new ItemStack(Items.clay_ball)}, {new ItemStack(TragicItems.LivingClay)}});
 	}
 
 	/**
@@ -190,6 +202,7 @@ public class EntityDropHelper {
 	 */
 	public static ItemStack getRareDropFromEntity(Class clazz)
 	{
+		if (!entityLootDrops.containsKey(clazz)) return null;
 		ItemStack stack = getRareLootArrayFromEntity(clazz)[rand.nextInt(getRareLootArrayFromEntity(clazz).length)];
 		return stack != null ? stack.copy() : null;
 	}
@@ -201,6 +214,7 @@ public class EntityDropHelper {
 	 */
 	public static ItemStack getCommonDropFromEntity(Class clazz)
 	{
+		if (!entityLootDrops.containsKey(clazz)) return null;
 		ItemStack stack = getLootArrayFromEntity(clazz)[rand.nextInt(getLootArrayFromEntity(clazz).length)];
 		return stack != null ? stack.copy() : null;
 	}
