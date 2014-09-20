@@ -58,10 +58,153 @@ public class TragicRecipes {
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Scythe, 1), new Object[] {
 			"xxx",
-			" y ",
-			"y  ",
-			'x', Items.bone,
-			'y', Items.stick
+			" x ",
+			"x  ",
+			'x', Items.bone
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 0), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.LightParticles,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.KitsuneTail,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 2), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.ReaperSkull,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 3), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.TimeEssence,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 4), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.EmpariahClaw,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 5), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.StarPieces,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 6), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.Spore,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 7), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', Blocks.hardened_clay,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 8), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', Items.magma_cream,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 9), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.CrushedIce,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 10), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.StinHorn,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 11), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.DarkParticles,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 12), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.Ash,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 13), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicBlocks.StarCrystal,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 14), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', TragicItems.PureDarkness,
+			'z', Blocks.redstone_block
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 15), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.LivingClay,
+			'y', Items.blaze_powder,
+			'z', Blocks.redstone_block
 		});
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Talisman, 1), new Object[] {
