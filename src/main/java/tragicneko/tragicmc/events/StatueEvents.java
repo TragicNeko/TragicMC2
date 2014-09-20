@@ -7,10 +7,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import tragicneko.tragicmc.blocks.BlockGenericLog;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.boss.EntityJarra;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
@@ -21,6 +22,7 @@ import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityStinKing;
 import tragicneko.tragicmc.entity.boss.EntityStinQueen;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
@@ -85,6 +87,15 @@ public class StatueEvents {
 					break;
 				case 12:
 					if (TragicNewConfig.allowGreaterStin) entity = new EntityGreaterStin(statue.worldObj);
+					break;
+				case 13:
+					if (TragicNewConfig.allowVoxStellarum) entity = new EntityVoxStellarum(statue.worldObj);
+					break;
+				case 14:
+					if (TragicNewConfig.allowEnyvil) entity = new EntityEnyvil(statue.worldObj);
+					break;
+				case 15:
+					if (TragicNewConfig.allowClaymation) entity = new EntityClaymation(statue.worldObj);
 					break;
 				}
 
@@ -157,7 +168,7 @@ public class StatueEvents {
 				{
 					b0 = 14;
 				}
-				else if (item.getItem() == Item.getItemFromBlock(TragicBlocks.DisappearingBlock)) //Creative mode only option, this will be utilized to "animate" the statue later
+				else if (item.getItem() == Item.getItemFromBlock(TragicBlocks.DisappearingBlock)) //Creative mode only option for now
 				{
 					b0 = 15;
 				}
