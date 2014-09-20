@@ -2589,7 +2589,7 @@ Removed logger spam from Enyvil, made it so that it will not spawn anymore Dark 
 Updated the last batch of Amulet's texture colors
 Fix localization of Piercing Amulet
 
-1.36.1471++ <165> (September 17, 2014)
+1.36.1499 <165> (September 17, 2014)
 Added new network message and handler to deal with extended weapon range, this is due to the fact that vanilla always does a hardcoded check for distance to entity before the
 entity is actually attacked, so I have to get entities within the player's look vectors and attack them manually (it always hits the closest entity within the vector)
 Fixed potentional issue where the weapon range would hit entities within the normal vanilla range was well as an entity behind it, this could be good for piercing weapons but
@@ -2622,6 +2622,10 @@ Optimized Dimensional layer world gen by removing a lot of for loops
 Fix NPE with Stin and Baby Stin's drops
 Greatly improved WorldGen for the Dimension, mostly with the layers and void pit generation
 Increased Inkling's resistance to light so that it burns in less areas
+
+1.36.1499++ <166> (September 20, 2014)
+Decreased overall chance for void pits to generate, reduced their average and max size
+Fixed issue with LayerGen, where it would stall the world load because the paloma was set too high
 
 --Before next release--
 Finish the Erkel's hitbox and textures, along with the Claymation's original form model and hitbox
