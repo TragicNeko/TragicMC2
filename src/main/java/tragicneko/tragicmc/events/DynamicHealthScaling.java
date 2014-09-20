@@ -10,6 +10,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -81,7 +82,7 @@ public class DynamicHealthScaling {
 	@SubscribeEvent
 	public void onEntitySpawn(LivingPackSizeEvent event)
 	{
-		if (event.entityLiving instanceof TragicBoss)
+		if (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof TragicMiniBoss)
 		{
 			event.maxPackSize = 1;
 			event.setResult(Result.ALLOW);
