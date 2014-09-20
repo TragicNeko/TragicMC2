@@ -3,8 +3,11 @@ package tragicneko.tragicmc.entity.boss;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
 import static tragicneko.tragicmc.events.NewAmuletEvents.badPotions;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.UUID;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
@@ -20,7 +23,6 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -29,6 +31,7 @@ import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBow;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
@@ -50,12 +53,12 @@ public class EntityClaymation extends TragicBoss {
 	private double[][] formValues = new double[][] {{150.0D, 0.22D, 12.0D, 32.0D, 1.0D}, {42.0D, 0.45D, 8.0D, 32.0D, 0.5D}, {160.0D, 0.42D, 8.0D, 48.0D, 1.0D},
 			{100.0D, 0.22D, 20.0D, 24.0D, 1.0D}, {150.0D, 0.46D, 4.0D, 64.0D, 0.2D}, {50.0D, 0.32D, 5.5D, 32.0D, 0.0D}, {65.0D, 0.38D, 7.0D, 32.0D, 1.0D},
 			{220.0D, 0.35D, 16.0D, 32.0D, 1.0D}, {50.0D, 0.42D, 8.0D, 64.0D, 1.0D}, {100.0D, 0.25D, 12.0D, 16.0D, 0.0D}};
-	private float[][] formSizes = new float[][] {{0.625F, 2.375F}, {0.7F, 2.5F}, {1.385F, 3.3F}, {1.7835F, 5.15F}, {1.775F, 2.725F}, {0.4F, 0.5F}, {0.935F, 2.87F}, {0.7F, 2.1F},
+	private float[][] formSizes = new float[][] {{1.375F, 2.575F}, {0.7F, 2.5F}, {1.385F, 3.3F}, {1.7835F, 5.15F}, {1.775F, 2.725F}, {0.4F, 0.5F}, {0.935F, 2.87F}, {0.7F, 2.1F},
 			{0.615F, 1.695F}, {1.4F, 2.9F}};
 
 	public EntityClaymation(World par1World) {
 		super(par1World);
-		this.setSize(0.625F, 2.375F);
+		this.setSize(1.375F, 2.575F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -65,6 +68,7 @@ public class EntityClaymation extends TragicBoss {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.isImmuneToFire = true;
 		this.stepHeight = 1.5F;
+		
 	}
 
 	public boolean canRenderOnFire()
@@ -90,9 +94,10 @@ public class EntityClaymation extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Float.valueOf(0.0F)); //Claymation's actual health
+		float f = this.worldObj.difficultySetting == EnumDifficulty.HARD ? 200.0F : 150.0F;
+		this.dataWatcher.addObject(16, Float.valueOf(f)); //Claymation's actual health
 		this.dataWatcher.addObject(17, Integer.valueOf((int) 0)); //Current Entity form
-		this.dataWatcher.addObject(18, Integer.valueOf((int) 0)); //Current time in form
+		this.dataWatcher.addObject(18, Integer.valueOf((int) 0)); //Current time spent in form
 		this.dataWatcher.addObject(19, Integer.valueOf((int) 0)); //Utility integer for use by forms
 		this.dataWatcher.addObject(20, Integer.valueOf((int) 0)); //Another utility integer for use by forms
 	}
@@ -155,24 +160,36 @@ public class EntityClaymation extends TragicBoss {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.getAttackTarget() != null)
-		{
-			this.incrementFormTicks();
-		}
-		else
-		{
-			this.setEntityForm(0);
-			this.setHealth(this.getMaxHealth());
-		}
+		this.incrementFormTicks();
 
-		if (this.getFormTicks() >= 250 && this.getEntityForm() == 0)
+		if (this.getFormTicks() >= 150 && this.getEntityForm() == 0)
 		{
 			this.updateHealth(this.getHealth());
-			this.setEntityForm(rand.nextInt(10) + 1);
+			if (this.getAttackTarget() != null)
+			{
+				this.setEntityForm(rand.nextInt(9) + 1);
+			}
+			else
+			{
+				this.dataWatcher.updateObject(18, 50);
+				if (this.getHealth() < this.getMaxHealth())
+				{
+					this.heal(12.0F);
+					this.updateHealth(this.getHealth());
+				}
+			}
+
 		}
-		else if (this.getFormTicks() >= 1200 && this.getEntityForm() != 0)
+		else if (this.getFormTicks() >= 600 && this.getEntityForm() != 0)
 		{
-			this.setEntityForm(rand.nextInt(10) + 1);
+			if (this.getAttackTarget() != null)
+			{
+				this.setEntityForm(rand.nextInt(9) + 1);
+			}
+			else
+			{
+				this.setEntityForm(0);
+			}
 		}
 
 		if (this.getAttackTarget() != null) this.updateAsForm();
@@ -180,11 +197,6 @@ public class EntityClaymation extends TragicBoss {
 
 	private void updateAsForm()
 	{
-		TragicMC.logInfo("Claymation current form is " + this.getEntityForm());
-		TragicMC.logInfo("Current form ticks is " + this.getFormTicks());
-		TragicMC.logInfo("Claymation actual health is " + this.getActualHealth());
-		TragicMC.logInfo("Claymation form health is " + this.getHealth());
-
 		switch(this.getEntityForm())
 		{
 		default:
@@ -235,6 +247,7 @@ public class EntityClaymation extends TragicBoss {
 		}
 
 		this.reflectPotionEffects();
+		this.updateHealth(this.getHealth());
 	}
 
 	private void reflectPotionEffects() {
@@ -267,7 +280,6 @@ public class EntityClaymation extends TragicBoss {
 				entity.addPotionEffect(effects[z]);
 			}
 		}
-
 	}
 
 	private void updateAsMinotaur()
@@ -888,6 +900,7 @@ public class EntityClaymation extends TragicBoss {
 		if (i == 0)
 		{
 			this.setHealth(this.getActualHealth());
+			this.updateHealth(this.getHealth());
 		}
 		else
 		{
@@ -897,12 +910,35 @@ public class EntityClaymation extends TragicBoss {
 
 	private void setFormSize(int i)
 	{
-		this.setSize(formSizes[i][0], formSizes[i][1]);
+		this.changeBoundingBox(i);
+	}
+
+	private void changeBoundingBox(int i)
+	{
+		try
+		{
+			final AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(boundingBox.minX, boundingBox.minY, boundingBox.minZ,
+					boundingBox.minX + formSizes[i][0], boundingBox.minY + formSizes[i][1],
+					boundingBox.minZ + formSizes[i][0]);
+	
+			Field field = this.getClass().getField("boundingBox");
+
+			Field modField = Field.class.getDeclaredField("modifiers");
+			modField.setAccessible(true);
+			modField.set(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(this, (AxisAlignedBB) bb);
+		}
+		catch (Exception e)
+		{
+			TragicMC.logError("There was a problem reflecting the Claymation's bounding box", e);
+		}
 	}
 
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
 		if (this.worldObj.isRemote) return false;
+
+		if (this.getActualHealth() <= 0.0F) this.setEntityForm(0);
 
 		if (this.getEntityForm() == 0 && source.isProjectile() && source.getSourceOfDamage() != null &&
 				!(source.getSourceOfDamage() instanceof EntitySnowball) && !(source.getSourceOfDamage() instanceof EntityIcicle))
@@ -1822,5 +1858,27 @@ public class EntityClaymation extends TragicBoss {
 		{
 			this.decrementDemeanor();
 		}
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("clayForm")) this.dataWatcher.updateObject(17, tag.getInteger("clayForm"));
+		if (tag.hasKey("formTicks")) this.dataWatcher.updateObject(18, tag.getInteger("formTicks"));
+		if (tag.hasKey("actualHealth"))
+		{
+			float f = tag.getFloat("actualHealth");
+			if (this.getEntityForm() == 0) this.setHealth(f);
+			this.updateHealth(f);
+		}
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setFloat("actualHealth", this.dataWatcher.getWatchableObjectFloat(16));
+		tag.setInteger("clayForm", this.dataWatcher.getWatchableObjectInt(17));
+		tag.setInteger("formTicks", this.dataWatcher.getWatchableObjectInt(18));
 	}
 }
