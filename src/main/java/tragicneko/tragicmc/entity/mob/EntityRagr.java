@@ -42,7 +42,7 @@ public class EntityRagr extends TragicMob {
 
 	private int angerTicks;
 
-	private Set crushableBlocks = Sets.newHashSet(new Block[] {Blocks.yellow_flower, Blocks.red_flower, Blocks.red_mushroom, Blocks.brown_mushroom, Blocks.tallgrass,
+	public static Set crushableBlocks = Sets.newHashSet(new Block[] {Blocks.yellow_flower, Blocks.red_flower, Blocks.red_mushroom, Blocks.brown_mushroom, Blocks.tallgrass,
 			Blocks.leaves});
 
 	public EntityRagr(World par1World) {
@@ -431,9 +431,7 @@ public class EntityRagr extends TragicMob {
 			par2 /= 2;
 		}
 
-		Boolean result = super.attackEntityFrom(par1DamageSource, par2);
-
-		return result;
+		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)

@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
@@ -40,7 +41,8 @@ public class EntityIcicle extends EntityProjectile {
 			if (!(mop.entityHit instanceof EntityLivingBase)) return;
 			if (mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse) return;
 			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 2.0F);
+			float f = mop.entityHit instanceof EntityBlaze ? 6.0F : 2.0F;
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), f);
 
 			if (this.rand.nextBoolean())
 			{

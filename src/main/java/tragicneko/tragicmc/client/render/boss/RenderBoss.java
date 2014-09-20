@@ -11,7 +11,7 @@ import net.minecraft.entity.boss.BossStatus;
 
 public abstract class RenderBoss extends RenderLiving {
 	
-	private float scale;
+	protected float scale;
 
 	public RenderBoss(ModelBase model, float shadowSize, float scale) {
 		super(model, shadowSize);

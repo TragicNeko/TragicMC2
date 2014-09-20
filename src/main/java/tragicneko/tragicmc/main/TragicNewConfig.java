@@ -74,17 +74,18 @@ public class TragicNewConfig {
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
+	public static boolean allowSirv;
 	private static int[] mobsSC = new int[32];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC;
+	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen;
 	private static int[] miniBossSC = new int[16];
 	public static int jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, stinKingSC, stinQueenSC;
 	private static boolean[] bossConfigs = new boolean[12];
-	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil;
+	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation;
 	private static int[] bossSC = new int[12];
-	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC;
+	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC;
 	private static int[] mobInts = new int[3];
 	public static int commonDropRate, rareDropRate, mobTransformationChance;
 
@@ -378,6 +379,8 @@ public class TragicNewConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "abominationAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "erkelSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "erkelAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "sirvSpawnChance", 50).getInt(50));
+		mobConfigs[mapping++] = (config.get(catMobs, "sirvAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < mobConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -420,6 +423,8 @@ public class TragicNewConfig {
 		bossConfigs[mapping++] = (config.get(catMobs, "timeControllerAllow", true).getBoolean(true));
 		bossSC[mapping] = (config.get(catMobs, "enyvilSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "enyvilAllow", true).getBoolean(true));
+		bossSC[mapping] = (config.get(catMobs, "claymationSpawnChance", 5).getInt(5));
+		bossConfigs[mapping++] = (config.get(catMobs, "claymationAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < bossConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -970,6 +975,8 @@ public class TragicNewConfig {
 		allowAbomination = mobConfigs[mapping++];
 		erkelSC = mobsSC[mapping];
 		allowErkel = mobConfigs[mapping++];
+		sirvSC = mobsSC[mapping];
+		allowSirv = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1002,6 +1009,8 @@ public class TragicNewConfig {
 		allowTimeController = bossConfigs[mapping++];
 		enyvilSC = bossSC[mapping];
 		allowEnyvil = bossConfigs[mapping++];
+		claymationSC = bossSC[mapping];
+		allowClaymation = bossConfigs[mapping++];
 
 		allowPositivePotions = blanketPotion[0];
 		allowNegativePotions = blanketPotion[1];

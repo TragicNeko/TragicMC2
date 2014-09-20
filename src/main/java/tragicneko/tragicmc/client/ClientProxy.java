@@ -35,6 +35,7 @@ import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
+import tragicneko.tragicmc.client.render.boss.RenderClaymation;
 import tragicneko.tragicmc.client.render.boss.RenderDeathReaper;
 import tragicneko.tragicmc.client.render.boss.RenderEnyvil;
 import tragicneko.tragicmc.client.render.boss.RenderKitsune;
@@ -51,6 +52,7 @@ import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
@@ -228,6 +230,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
+		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 	}
 
 	@Override

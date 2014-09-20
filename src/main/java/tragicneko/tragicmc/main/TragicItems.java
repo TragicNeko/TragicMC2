@@ -724,8 +724,8 @@ public class TragicItems {
 		YetiAmulet3 = (new ItemAmulet(id++, 3, "Yeti", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(YetiAmulet3, "yetiAmulet3");
 
-		color1 = new Color(0xE5, 0xBA, 0x77);
-		color2 = new Color(0xE7, 0xD2, 0x6F);
+		color1 = new Color(0xFF, 0x95, 0x00);
+		color2 = new Color(0xFF, 0xCA, 0x02);
 		ClaymationAmulet = (new ItemAmulet(id, 1, "Claymation", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
 		ClaymationAmulet2 = (new ItemAmulet(id, 2, "Claymation", color1.getRGB(), color2.getRGB()));

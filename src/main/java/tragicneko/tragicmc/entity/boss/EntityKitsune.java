@@ -146,7 +146,7 @@ public class EntityKitsune extends TragicBoss {
 			}
 		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) < 5.0F && this.onGround && rand.nextInt(32) == 0 && !this.isFiring)
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) < 4.0F && this.onGround && rand.nextInt(32) == 0 && !this.isFiring)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().posZ - this.posZ;

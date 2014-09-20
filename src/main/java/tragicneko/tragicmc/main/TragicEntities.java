@@ -15,6 +15,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
@@ -709,6 +710,15 @@ public class TragicEntities {
 			color1 = new Color(0x5D, 0x15, 0x43);
 			color2 = new Color(0xFF, 0x6F, 0xFF);
 			TragicEntityList.addMapping(EntityEnyvil.class, "TragicMC.Enyvil", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
+		}
+		
+		if (TragicNewConfig.allowClaymation)
+		{
+			EntityRegistry.registerModEntity(EntityClaymation.class, "Claymation", listid++, TragicMC.instance, 80, 1, true);
+
+			color1 = new Color(0xFF, 0x95, 0x00);
+			color2 = new Color(0xFF, 0xCA, 0x02);
+			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, color1.getRGB(), color2.getRGB(), EnumEggType.BOSS);
 		}
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);

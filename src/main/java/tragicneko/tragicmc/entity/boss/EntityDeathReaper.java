@@ -169,7 +169,7 @@ public class EntityDeathReaper extends TragicBoss {
 						entity.addPotionEffect(new PotionEffect(Potion.wither.id, 300 + rand.nextInt(320), 0));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicNewConfig.allowInhibit)
+					if (rand.nextInt(128) == 0 && TragicNewConfig.allowInhibit)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotions.Inhibit.id, 300 + rand.nextInt(320), 0));
 					}
