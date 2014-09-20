@@ -2626,6 +2626,9 @@ Increased Inkling's resistance to light so that it burns in less areas
 1.36.1499++ <166> (September 20, 2014)
 Decreased overall chance for void pits to generate, reduced their average and max size
 Fixed issue with LayerGen, where it would stall the world load because the paloma was set too high
+Added LICENSE, this was here before but when I had to redo the Github it didn't transfer over, it is now a part of the mod
+Moved the README and changed the Changelog, README and LICENSE file formats to .txt
+
 
 --Before next release--
 Finish the Erkel's hitbox and textures, along with the Claymation's original form model and hitbox
@@ -2653,3 +2656,10 @@ the mob is doing something (like the Ghast firing a fireball and having it's tex
 I've already recorded, just haven't added yet)
 Add the Phoenix and the Overlord
 Add the pets, Kitsuneko, Panda Cub, the Bangatang
+Pyris, Veneera, Luex could be the names of the Phoenix, each one could be a slight variant of each other, with different textures and slightly different attack patterns
+Pyris could be the normal fire phoenix, shooting fireballs and launching waves of fireballs at it's attackers, lighting any enemies nearby on fire
+Veneera could be the ice phoenix, shooting icicles and leaving snow anywhere it goes, inflicting slowness on anything near it, rusting any nearby enemy's armor
+Luex could be the lightning phoenix, able to shoot dark lightning and normal lightning energy at it's attackers, it could also stun any enemies nearby
+If all 3 get near each other, they could form Lazarus Ultim, a larger, stronger version that actively seeks out hostile mobs and destroys them with the combined powers of all
+3 lesser versions
+

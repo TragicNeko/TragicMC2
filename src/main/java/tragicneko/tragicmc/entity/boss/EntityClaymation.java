@@ -7,7 +7,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.UUID;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
@@ -475,7 +474,7 @@ public class EntityClaymation extends TragicBoss {
 			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(lowHealthDamageBoost);
 		}
 
-		if (this.getFiringTicks() >= 600)
+		if (this.getFiringTicks() >= 400)
 		{
 			if (this.ticksExisted % 100 == 0)
 			{
