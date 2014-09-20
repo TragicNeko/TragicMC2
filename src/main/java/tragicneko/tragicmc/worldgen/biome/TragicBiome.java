@@ -9,8 +9,10 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
@@ -33,10 +35,12 @@ public class TragicBiome extends BiomeGenBase {
 		if (TragicNewConfig.allowLavaPirah) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLavaPirah.class, TragicNewConfig.lavaPirahSC, 0, 3));
 		if (TragicNewConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicNewConfig.plagueSC, 1, 4));
 		if (TragicNewConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicNewConfig.tragicNekoSC, 0, 1));
-		if (TragicNewConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.stinSC, 0, 1));
+		if (TragicNewConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.stinSC, 0, 2));
 		if (TragicNewConfig.allowGreaterStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.greaterStinSC, 0, 1));
 		if (TragicNewConfig.allowBossNaturalSpawns && TragicNewConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1));
-		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, 50, 2, 4));
+		if (TragicNewConfig.allowErkel) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicNewConfig.erkelSC, 0, 3));
+		if (TragicNewConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicNewConfig.sirvSC, 3, 5));
+		if (TragicNewConfig.allowWisp) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicNewConfig.wispSC, 2, 4));
 	}
 	
 	@Override
