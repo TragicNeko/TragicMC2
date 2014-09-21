@@ -12,7 +12,6 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
-import tragicneko.tragicmc.client.model.ModelBlock;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelGragul;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
@@ -33,6 +32,7 @@ import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
+import tragicneko.tragicmc.client.render.RenderDarkCrystal;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
@@ -46,6 +46,7 @@ import tragicneko.tragicmc.client.render.boss.RenderTimeController;
 import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
+import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderStarCryse;
 import tragicneko.tragicmc.client.render.mob.RenderStarVox;
@@ -176,7 +177,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(TragicItems.PitchBlack));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkEnergy.class, new RenderProjectile(TragicItems.DarkParticles));
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderProjectile(TragicItems.Talisman)); //placeholder
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderMob(new ModelJabba(), 0.355F, "Jabba_lowRes"));
@@ -218,7 +219,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, new RenderWisp());
 		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.35F, "Abomination_lowRes"));
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityErkel.class, new RenderMob(new ModelBlock(), 0.35F, "Pirah_lowRes")); //placeholder render
+		RenderingRegistry.registerEntityRenderingHandler(EntityErkel.class, new RenderErkel());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(new ModelSirv(), 0.245F, "Sirv_lowRes"));
 
 		//Boss renders

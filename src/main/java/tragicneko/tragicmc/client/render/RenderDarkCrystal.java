@@ -9,17 +9,18 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import tragicneko.tragicmc.client.model.ModelBlock;
+import tragicneko.tragicmc.client.model.ModelDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 
 public class RenderDarkCrystal extends Render {
 	
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/DarkCrystal_lowRes.png");
 	public ModelBase model;
 	
 	public RenderDarkCrystal()
 	{
 		super();
-		this.model = new ModelBlock();
+		this.model = new ModelDarkCrystal();
 	}
 
 	@Override
@@ -28,14 +29,17 @@ public class RenderDarkCrystal extends Render {
 	}
 
 	public void doRender(EntityDarkCrystal entity, double par2, double par3, double par4, float par5, float par6) {
-		float f = 0.625F;		
+		float f = 1.425F;		
 		float f1 = 0.025F;
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
-		float f0 = MathHelper.wrapAngleTo180_float(entity.rotationTicks);
+		float f2 = (float) Math.sin(entity.getRotationTicks());
+		float f3 = (float) Math.cos(entity.getRotationTicks());
+		GL11.glRotatef(180.0F, f2, 0.0F, f3);
+		GL11.glScalef(2.25F, 2.25F, 2.25F);
+		float f0 = entity.getRotationTicks();
 		GL11.glRotatef(f0, 0.0F, 1.0F, 0.0F);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		this.bindTexture(this.getEntityTexture(entity));
@@ -45,7 +49,7 @@ public class RenderDarkCrystal extends Render {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
-		return null;
+		return texture;
 	}
 
 }

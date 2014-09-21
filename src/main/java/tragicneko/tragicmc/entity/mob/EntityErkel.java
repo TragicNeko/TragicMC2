@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -23,7 +24,7 @@ public class EntityErkel extends TragicMob {
 
 	public EntityErkel(World par1World) {
 		super(par1World);
-		this.setSize(0.36F, 1.36F);
+		this.setSize(0.56F, 1.06F);
 		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
@@ -131,6 +132,10 @@ public class EntityErkel extends TragicMob {
 		{
 			i = 3;
 		}
+		else if (TragicBiomes.decayingBiomes.contains(biome))
+		{
+			i = 4;
+		}
 		
 		this.setTextureId(i);
 		return super.onSpawnWithEgg(data);
@@ -144,5 +149,18 @@ public class EntityErkel extends TragicMob {
 	public int getTextureId()
 	{
 		return this.getDataWatcher().getWatchableObjectInt(16);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("texture")) this.setTextureId(tag.getInteger("texture"));
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("texture", this.dataWatcher.getWatchableObjectInt(16));
 	}
 }
