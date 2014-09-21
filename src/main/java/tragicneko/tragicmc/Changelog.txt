@@ -2639,9 +2639,11 @@ Fix up Large Rock entity a bit, fix removal of Icicle after a certain amount of 
 Made it that my Bosses can now change targets if they get hit by a living entity, previously they would remain attached to their initial target regardless of what was hitting
 them
 Did a bit of experimentation with rendering weapon models, this will be done next update
+Added Lore for the Epic weapons
 
 --Before next release--
-Finish the Epic weapon lores
+Do last testing before release
+Do testing on a Server to ensure everything is working correctly
 
 --Planned for next release--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one

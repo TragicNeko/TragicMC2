@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -16,15 +17,22 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
+import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponButcher extends EpicWeapon {
+	
+	private final Lore[] uniqueLores = new Lore[] {new Lore("Time to Eat!", EnumRarity.epic), new Lore("Can we eat now?", EnumRarity.uncommon), new Lore("Dinner Time!", EnumRarity.rare),
+			new Lore("I'm hungry...", EnumRarity.uncommon), new Lore("That looks delicious!", EnumRarity.uncommon), new Lore("I need food..."), new Lore("My stomach won't stop growling!", EnumRarity.rare),
+			new Lore("MMMmmm... donuts...", EnumRarity.rare), new Lore("OMNOMNOMNOM", EnumRarity.epic), new Lore("Anything here is edible, even I am, but that would be cannibalism.", EnumRarity.rare),
+			new Lore("Tasty.", EnumRarity.uncommon), new Lore("That was delicious!"), new Lore("I'm having an old friend for dinner!", EnumRarity.rare), new Lore("Bon apetite!", EnumRarity.uncommon),
+			new Lore("Just add salt!", EnumRarity.rare), new Lore("Just a pinch of sage!", EnumRarity.uncommon)};
 
 	public WeaponButcher(Doomsday dday) {
 		super(dday);
-		this.lores = new Lore[] {new Lore("ButcherLore1"), new Lore("ButcherLore2"), new Lore("ButcherLore3")};
+		this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness};
 		this.rareLevels = new int[] {5, 3, 1};
 		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness, TragicEnchantments.Slay};

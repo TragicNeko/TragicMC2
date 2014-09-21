@@ -49,7 +49,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 	private final Lore[] lores = new Lore[] {new Lore("Shooting stars!", EnumRarity.epic), new Lore("Like Meteor showers~"), new Lore("Beautiful Starlights", EnumRarity.rare),
 			new Lore("So Beautiful.", EnumRarity.rare), new Lore("Meteor Smash!", EnumRarity.epic), new Lore("Make a wish!", EnumRarity.uncommon),
 			new Lore("Time for Armageddon", EnumRarity.epic), new Lore("Guardian of the Galaxy", EnumRarity.rare), new Lore("Time for the Star Festival!", EnumRarity.epic),
-			new Lore("Ooh a free Starman!", EnumRarity.uncommon), new Lore("The Final Starman!?", EnumRarity.epic), new Lore("There's a Starman waiting in the sky!", EnumRarity.rare)};
+			new Lore("Ooh a free Starman!", EnumRarity.uncommon), new Lore("The Final Starman!?", EnumRarity.epic), new Lore("Good morning Starshine, the Earth says, Hello!", EnumRarity.rare)};
 
 	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power};
 	private int[] uncommonLevels = new int[] {3, 1};

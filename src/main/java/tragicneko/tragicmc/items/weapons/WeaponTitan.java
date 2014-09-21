@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -12,16 +13,23 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponTitan extends EpicWeapon {
+	
+	private final Lore[] uniqueLores = new Lore[] {new Lore("You are an ant to me, mortal!", EnumRarity.epic), new Lore("Thank the Gods!", EnumRarity.uncommon), new Lore("Puny God.", EnumRarity.epic),
+			new Lore("God-like.", EnumRarity.uncommon), new Lore("A God-like aura.", EnumRarity.uncommon), new Lore("Such a Mortal."), new Lore("God-like abilities!", EnumRarity.rare),
+			new Lore("Poseidon has nothing on me.", EnumRarity.rare), new Lore("I am a God!", EnumRarity.epic), new Lore("Almost God-like!", EnumRarity.rare),
+			new Lore("Mortal tendencies", EnumRarity.uncommon), new Lore("Filthy Mortal"), new Lore("I'm having an old friend for dinner!", EnumRarity.rare),
+			new Lore("So epic!", EnumRarity.uncommon), new Lore("As spectacular as Aphrodite!", EnumRarity.epic), new Lore("Faster than Hermes!", EnumRarity.rare)};
 
 	public WeaponTitan(Doomsday dday) {
 		super(dday);
-		this.lores = new Lore[] {new Lore("TitanLore1"), new Lore("TitanLore2"), new Lore("TitanLore3")};
+		this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach};
 		this.rareLevels = new int[] {5, 3};
 		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.knockback};

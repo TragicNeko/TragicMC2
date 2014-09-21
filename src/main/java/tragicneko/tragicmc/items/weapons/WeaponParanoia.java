@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
@@ -12,16 +13,23 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
+import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponParanoia extends EpicWeapon {
+	
+	private final Lore[] uniqueLores = new Lore[] {new Lore("They're all out to get me.", EnumRarity.epic), new Lore("Alone.", EnumRarity.uncommon), new Lore("Feeling paranoid...", EnumRarity.rare),
+			new Lore("Isolation.", EnumRarity.uncommon), new Lore("Fear of everything", EnumRarity.uncommon), new Lore("So scary."), new Lore("Paranoid Android", EnumRarity.rare),
+			new Lore("Fear and Loathing...", EnumRarity.rare), new Lore("Darkness consumes me...", EnumRarity.epic), new Lore("Lost in the Darkness of my mind...", EnumRarity.rare),
+			new Lore("I'm afraid.", EnumRarity.uncommon), new Lore("So lonely."), new Lore("Just 'cause you're paranoid, doesn't mean they're not after you.", EnumRarity.rare),
+			new Lore("Fragile and alone...", EnumRarity.uncommon), new Lore("I'm so alone...", EnumRarity.rare), new Lore("It's calm", EnumRarity.uncommon)};
 
 	public WeaponParanoia(Doomsday dday) {
 		super(dday);
-		this.lores = new Lore[] {new Lore("ParanoiaLore1"), new Lore("ParanoiaLore2"), new Lore("ParanoiaLore3")};
+		this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
 		this.rareLevels = new int[] {5, 3, 3};
 		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Leech};
