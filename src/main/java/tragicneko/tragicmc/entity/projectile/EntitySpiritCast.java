@@ -26,7 +26,7 @@ public class EntitySpiritCast extends EntityProjectile {
 
 	protected float getMotionFactor()
 	{
-		return 0.90F;
+		return 0.812F;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class EntitySpiritCast extends EntityProjectile {
 	{
 		super.onUpdate();
 
-		if (this.ticksInAir >= 60)
+		if (this.ticksExisted >= 60)
 		{
 			this.setDead();
 		}

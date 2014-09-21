@@ -58,5 +58,15 @@ public class EntityIcicle extends EntityProjectile {
 	{
 		return "snowshovel";
 	}
+	
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		if (this.ticksExisted >= 60)
+		{
+			this.setDead();
+		}
+	}
 
 }

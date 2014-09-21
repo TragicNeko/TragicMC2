@@ -33,6 +33,7 @@ import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
+import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
@@ -163,7 +164,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, new RenderProjectile(TragicItems.Spore));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanana.class, new RenderProjectile(TragicItems.Banana));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityLargeRock.class, new RenderProjectile(TragicItems.IceOrb));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLargeRock.class, new RenderLargeRock());
 		RenderingRegistry.registerEntityRenderingHandler(EntityIcicle.class, new RenderProjectile(TragicItems.CrushedIce));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderProjectile(Items.clock));

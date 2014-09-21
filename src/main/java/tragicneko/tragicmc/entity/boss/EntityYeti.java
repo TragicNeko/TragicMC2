@@ -46,7 +46,7 @@ public class EntityYeti extends TragicBoss {
 
 	public EntityYeti(World par1World) {
 		super(par1World);
-		this.setSize(0.885F, 2.435F);
+		this.setSize(1.185F, 2.475F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 240;
 		this.tasks.addTask(0, new EntityAISwimming(this));
