@@ -1,17 +1,14 @@
 package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelApis;
-import tragicneko.tragicmc.client.model.ModelBlock;
+import tragicneko.tragicmc.client.model.ModelClaymation;
 import tragicneko.tragicmc.client.model.ModelCustomGolem;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelJabba;
@@ -21,14 +18,13 @@ import tragicneko.tragicmc.client.model.ModelNorVox;
 import tragicneko.tragicmc.client.model.ModelRagr;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderClaymation extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Claymation_lowRes.png");
 
 	public RenderClaymation() {
-		super(new ModelBlock(), 0.556F);
+		super(new ModelClaymation(), 0.556F);
 	}
 
 	@Override
@@ -44,6 +40,7 @@ public class RenderClaymation extends RenderBoss {
 		{
 		case 3:
 			return 1.625F;
+		case 0:
 		case 4:
 			return 1.445F;
 		default:
@@ -73,7 +70,7 @@ public class RenderClaymation extends RenderBoss {
 		case 9:
 			return new ModelCustomGolem();
 		default:
-			return new ModelBlock();
+			return new ModelClaymation();
 		}
 	}
 

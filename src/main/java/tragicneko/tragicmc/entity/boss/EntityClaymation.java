@@ -3,8 +3,6 @@ package tragicneko.tragicmc.entity.boss;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
 import static tragicneko.tragicmc.events.NewAmuletEvents.badPotions;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -39,7 +37,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -52,8 +49,6 @@ public class EntityClaymation extends TragicBoss {
 	private double[][] formValues = new double[][] {{150.0D, 0.22D, 12.0D, 32.0D, 1.0D}, {42.0D, 0.45D, 8.0D, 32.0D, 0.5D}, {160.0D, 0.42D, 8.0D, 48.0D, 1.0D},
 			{100.0D, 0.22D, 20.0D, 24.0D, 1.0D}, {150.0D, 0.46D, 4.0D, 64.0D, 0.2D}, {50.0D, 0.32D, 5.5D, 32.0D, 0.0D}, {65.0D, 0.38D, 7.0D, 32.0D, 1.0D},
 			{220.0D, 0.35D, 16.0D, 32.0D, 1.0D}, {50.0D, 0.42D, 8.0D, 64.0D, 1.0D}, {100.0D, 0.25D, 12.0D, 16.0D, 0.0D}};
-	private float[][] formSizes = new float[][] {{1.375F, 2.575F}, {0.7F, 2.5F}, {1.385F, 3.3F}, {1.7835F, 5.15F}, {1.775F, 2.725F}, {0.4F, 0.5F}, {0.935F, 2.87F}, {0.7F, 2.1F},
-			{0.615F, 1.695F}, {1.4F, 2.9F}};
 
 	public EntityClaymation(World par1World) {
 		super(par1World);
@@ -117,7 +112,6 @@ public class EntityClaymation extends TragicBoss {
 		this.dataWatcher.updateObject(18, 0); //resets the ticks in a form to 0
 
 		this.setFormAttributes(i);
-		this.setFormSize(i);
 		this.resetUtilityIntegers();
 	}
 
@@ -900,7 +894,7 @@ public class EntityClaymation extends TragicBoss {
 			this.setHealth(this.getMaxHealth());
 		}
 	}
-
+/*
 	private void setFormSize(int i)
 	{
 		this.changeBoundingBox(i);
@@ -925,7 +919,7 @@ public class EntityClaymation extends TragicBoss {
 		{
 			TragicMC.logError("There was a problem reflecting the Claymation's bounding box", e);
 		}
-	}
+	} */
 
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{

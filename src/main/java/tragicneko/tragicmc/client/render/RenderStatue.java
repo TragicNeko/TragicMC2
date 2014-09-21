@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL12;
 
 import tragicneko.tragicmc.client.model.ModelApis;
 import tragicneko.tragicmc.client.model.ModelBlock;
+import tragicneko.tragicmc.client.model.ModelClaymation;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelEnyvil;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
@@ -86,6 +87,9 @@ public class RenderStatue extends Render {
 		case 14:
 			model = new ModelEnyvil();
 			break;
+		case 15:
+			model = new ModelClaymation();
+			break;
 		}
 
 		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen || model instanceof ModelEnyvil;
@@ -150,6 +154,8 @@ public class RenderStatue extends Render {
 				return new ResourceLocation(s + "StarVox_lowRes.png");
 			case 14:
 				return new ResourceLocation(s + "Enyvil_lowRes.png");
+			case 15:
+				return new ResourceLocation(s + "Claymation_lowRes.png");
 			}
 		case 1:
 			return new ResourceLocation(s0 + "IronStatue.png");

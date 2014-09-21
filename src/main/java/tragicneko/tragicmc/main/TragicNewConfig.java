@@ -435,7 +435,7 @@ public class TragicNewConfig {
 		{
 			mobsSC[i] = MathHelper.clamp_int(mobsSC[i], 5, 250);
 			if (i < miniBossSC.length) miniBossSC[i] = MathHelper.clamp_int(miniBossSC[i], 5, 250);
-			if (i < bossSC.length) bossSC[i] = MathHelper.clamp_int(bossSC[i], 5, 250);
+			if (i < bossSC.length) bossSC[i] = MathHelper.clamp_int(bossSC[i], 0, 250);
 		}
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed, or disable certain groups like Mini-Bosses or Bosses, also set their Spawn Chances");
