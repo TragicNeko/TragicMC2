@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
@@ -46,6 +47,7 @@ import tragicneko.tragicmc.client.render.boss.RenderPolaris;
 import tragicneko.tragicmc.client.render.boss.RenderTimeController;
 import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
+import tragicneko.tragicmc.client.render.item.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
@@ -147,6 +149,9 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
+		
+		//Weapon models
+		//MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(0, mc));
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));

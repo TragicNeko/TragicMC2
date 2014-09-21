@@ -2638,6 +2638,7 @@ Added Large Rock model for the Empariah's Large Rock
 Fix up Large Rock entity a bit, fix removal of Icicle after a certain amount of ticks
 Made it that my Bosses can now change targets if they get hit by a living entity, previously they would remain attached to their initial target regardless of what was hitting
 them
+Did a bit of experimentation with rendering weapon models, this will be done next update
 
 --Before next release--
 Finish the Epic weapon lores
