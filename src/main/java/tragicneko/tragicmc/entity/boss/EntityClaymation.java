@@ -116,12 +116,6 @@ public class EntityClaymation extends TragicBoss {
 		this.dataWatcher.updateObject(17, i);
 		this.dataWatcher.updateObject(18, 0); //resets the ticks in a form to 0
 
-		if (i > formValues.length)
-		{
-			TragicMC.logError("Claymation AI set to an invalid amount, this is not a good thing."); 
-			return;
-		}
-
 		this.setFormAttributes(i);
 		this.setFormSize(i);
 		this.resetUtilityIntegers();

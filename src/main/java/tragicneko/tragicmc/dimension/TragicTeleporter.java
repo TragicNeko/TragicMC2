@@ -64,7 +64,6 @@ public class TragicTeleporter extends Teleporter {
 
 				if (lavaFlag)
 				{
-					TragicMC.logInfo("Top block for spawn was lava, generating dead dirt walls around the player");
 					for (int x = -1; x < 2; x++)
 					{
 						this.worldServerInstance.setBlock(i + x, j, k - 3, TragicBlocks.DeadDirt);

@@ -123,7 +123,14 @@ public class DoomsdayManager {
 			if (playerMap.containsKey(playerName))
 			{
 				playerMap.remove(playerName);
-				logger.info("Registry removed registration for " + playerName + ", the reason was: " + reason);
+				if (reason != null)
+				{
+					logger.info("Registry removed registration for " + playerName + ", the reason was: " + reason);
+				}
+				else
+				{
+					logger.info("Registry removed registration for " + playerName);
+				}
 			}
 			else
 			{
@@ -145,7 +152,7 @@ public class DoomsdayManager {
 		{
 			Set set = playerMap.keySet();
 			Iterator<String> ite = set.iterator();
-			String reason = "";
+			String reason = null;
 
 			while (ite.hasNext())
 			{
@@ -153,8 +160,8 @@ public class DoomsdayManager {
 				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getCommandSenderName());
 				DoomsdayEffect effect;
 				boolean flag = false;
-				reason = "";
-				
+				reason = null;
+
 				if (list.size() == 0)
 				{
 					reason = "No Doomsday effects registered.";
@@ -220,7 +227,7 @@ public class DoomsdayManager {
 		if (event.handler instanceof NetHandlerPlayServer)
 		{
 			NetHandlerPlayServer net = (NetHandlerPlayServer) event.handler;
-			
+
 			if (net.playerEntity != null && playerMap.containsKey(net.playerEntity.getCommandSenderName()))
 			{
 				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");

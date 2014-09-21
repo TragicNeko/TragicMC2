@@ -133,7 +133,7 @@ public class TragicMC
 			}
 			else
 			{
-				TragicMC.logger.error("The potionType array was not set to an adequate amount, this is likely due to an error somewhere, but as a result potion effects are disabled now");
+				TragicMC.logError("The potionType array was not set to an adequate amount, this is likely due to an error somewhere, but as a result potion effects are disabled now");
 				TragicNewConfig.disablePotions();
 			}
 		}
@@ -185,7 +185,6 @@ public class TragicMC
 			{
 				DimensionManager.registerProviderType(TragicNewConfig.providerID, TragicWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
 				DimensionManager.registerDimension(TragicNewConfig.dimensionID, TragicNewConfig.providerID);
-				logger.info("Tragic Dimension was successfully registered, the dimension id is " + TragicNewConfig.dimensionID);
 			}
 			else
 			{
@@ -194,7 +193,6 @@ public class TragicMC
 				TragicNewConfig.providerID = id;
 				DimensionManager.registerProviderType(TragicNewConfig.providerID, TragicWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
 				DimensionManager.registerDimension(TragicNewConfig.dimensionID, TragicNewConfig.providerID);
-				logger.warn("Tragic Dimension was registered with id of " + id + ", if this is different then what was set in the config it is due to an id conflict with another dimension");
 			}
 
 			TragicBiomes.load();
@@ -241,11 +239,7 @@ public class TragicMC
 		if (!event.getServer().isFlightAllowed())
 		{
 			TragicNewConfig.allowFlight = false;
-			logger.warn("Flight potion effect functionality is disabled due to the Server not allowing it. Please change the option in your server.properties file if you wish to have it enabled.");
-		}
-		else
-		{
-			if (!TragicNewConfig.allowFlight) TragicNewConfig.allowFlight = true; 
+			logWarning("Flight potion effect functionality is disabled due to the Server not allowing it. Please change the option in your server.properties file if you wish to have it enabled.");
 		}
 	}
 
@@ -268,11 +262,11 @@ public class TragicMC
 				final Potion[] newPotionTypes = new Potion[256];
 				System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
 				f.set(null, newPotionTypes);
-				logger.info("potionTypes[] reflection was done, set to 256");
+				logInfo("potionTypes[] reflection was done, set to 256");
 			}
 			else
 			{
-				logger.warn("potionTypes[]'s array length was " + Potion.potionTypes.length + ", so it is assumed that it was previously reflected to an adequate amount.");
+				logWarning("potionTypes[]'s array length was " + Potion.potionTypes.length + ", so it is assumed that it was previously reflected to an adequate amount.");
 			}
 		}
 		catch (Throwable throwable)

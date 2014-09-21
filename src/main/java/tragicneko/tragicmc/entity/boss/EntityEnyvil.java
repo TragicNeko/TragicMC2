@@ -250,8 +250,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mod2);
 
-		//TragicMC.logInfo("Enyvil state is " + this.getEntityState() + ", ticks in state is " + this.getStateTicks());
-
 		if (this.getEntityState() == 0)
 		{
 			if (this.getAttackTarget() != null && rand.nextInt(24) == 0)
@@ -450,8 +448,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public boolean attackEntityFromPart(EntityPart entity, DamageSource source, float damage) {
 
 		if (source.isExplosion() || source == DamageSource.drown) return false;
-
-		//TragicMC.logInfo("Part of Enyvil hit was " + entity.partName);
 		
 		if (this.currentCrystal != null) damage /= 2;
 
