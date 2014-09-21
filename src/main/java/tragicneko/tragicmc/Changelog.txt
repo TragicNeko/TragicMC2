@@ -3,7 +3,7 @@ Full Complete Changelog:
 This is updated for EVERY little thing I do/change to this mod
 This also keeps track of my ideas so if you read this and steal some, make sure to at least credit me for it, thanks
 
-Alpha: [This will be a very long Alpha, with a probably very short Beta]
+Alpha:
 v0.1:
 Started creating basic items, blocks aren't registering properly though
 Created all of the Tool Materials, Armor Materials and Creature Attributes I'm planning on using currently
@@ -2630,11 +2630,17 @@ Added LICENSE, this was here before but when I had to redo the Github it didn't 
 Moved the README and changed the Changelog, README and LICENSE file formats to .txt
 Added Erkel model and texture, set it's hitbox
 Added the Dark Crystal's model and render, added a particle effect to it
+Removed some logger spam from the initialization events
+Removed change of Flight Potion effect boolean if the server has flight allowed but you don't, this would set your flight effect always active regardless of your config option
+Added Claymation original form model, it's hitbox will stay the same throughout all of it's forms, as such I'll remove the size change attempt when it changes forms
+Updated Empariah's model, slightly modified it's hitbox and texture to adjust for it
+Added Large Rock model for the Empariah's Large Rock
+Fix up Large Rock entity a bit, fix removal of Icicle after a certain amount of ticks
+Made it that my Bosses can now change targets if they get hit by a living entity, previously they would remain attached to their initial target regardless of what was hitting
+them
 
 --Before next release--
-Finish the Claymation's original form model and hitbox
 Finish the Epic weapon lores
-Update the Empariah's model, add a cool crown and give it sharp claws
 
 --Planned for next release--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
