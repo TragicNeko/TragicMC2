@@ -56,6 +56,7 @@ public class WeaponButcher extends EpicWeapon {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
+		super.onUpdate(stack, world, entity, numb, flag);
 		if (world.isRemote || !(entity instanceof EntityPlayer) || !(TragicNewConfig.allowNonDoomsdayAbilities)) return;
 		
 		UUID uuidForMod = UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e");
