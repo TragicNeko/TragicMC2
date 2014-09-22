@@ -46,7 +46,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityClaymation extends TragicBoss {
 
-	private double[][] formValues = new double[][] {{150.0D, 0.22D, 12.0D, 32.0D, 1.0D}, {42.0D, 0.45D, 8.0D, 32.0D, 0.5D}, {160.0D, 0.42D, 8.0D, 48.0D, 1.0D},
+	private double[][] formValues = new double[][] {{150.0D, 0.22D, 12.0D, 32.0D, 1.0D}, {42.0D, 0.35D, 8.0D, 32.0D, 0.5D}, {160.0D, 0.42D, 8.0D, 48.0D, 1.0D},
 			{100.0D, 0.22D, 20.0D, 24.0D, 1.0D}, {150.0D, 0.46D, 4.0D, 64.0D, 0.2D}, {50.0D, 0.32D, 5.5D, 32.0D, 0.0D}, {65.0D, 0.38D, 7.0D, 32.0D, 1.0D},
 			{220.0D, 0.35D, 16.0D, 32.0D, 1.0D}, {50.0D, 0.42D, 8.0D, 64.0D, 1.0D}, {100.0D, 0.25D, 12.0D, 16.0D, 0.0D}};
 

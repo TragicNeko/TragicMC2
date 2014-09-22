@@ -36,7 +36,7 @@ public class EntityMinotaur extends TragicMob {
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 0.65D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.canCorrupt = false;
@@ -58,7 +58,7 @@ public class EntityMinotaur extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(42.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.45);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
