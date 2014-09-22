@@ -2645,11 +2645,13 @@ Fix Butcher's Lore
 Fix Combustion, it wasn't working on all the blocks it should've
 Set baby animal spawns default to false
 Reduce Minotaur and Inkling's speed when moving towards their attack target
-Fix up joining a server, it was a client-side crashed by me fixing a server-side issue with loading the Clarity potion effect
+Fix up joining a server, it was a client-side crashe caused by me fixing a server-side issue with loading the Clarity potion effect
 Update version numbers
 
 
---Planned for next release--
+--Before Next Release--
+Add the "giant" weapon models for the epic weapons
+Change all of the color codes to use hex codes instead, this is just to clean up the code some
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
@@ -2666,8 +2668,6 @@ Veneera could be the ice phoenix, shooting icicles and leaving snow anywhere it 
 Luex could be the lightning phoenix, able to shoot dark lightning and normal lightning energy at it's attackers, it could also stun any enemies nearby
 If all 3 get near each other, they could form Lazarus Ultim, a larger, stronger version that actively seeks out hostile mobs and destroys them with the combined powers of all
 3 lesser versions
-Add the "giant" weapon models for the epic weapons
-Change all of the color codes to use hex codes instead, this is just to clean up the code some
 Add the pets, Kitsuneko, Panda Cub, the Bangatang
 
 --Reminders for later--
