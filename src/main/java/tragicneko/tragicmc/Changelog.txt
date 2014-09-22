@@ -2623,7 +2623,7 @@ Fix NPE with Stin and Baby Stin's drops
 Greatly improved WorldGen for the Dimension, mostly with the layers and void pit generation
 Increased Inkling's resistance to light so that it burns in less areas
 
-1.36.1499++ <166> (September 20, 2014)
+1.36.1520 <166> (September 20, 2014)
 Decreased overall chance for void pits to generate, reduced their average and max size
 Fixed issue with LayerGen, where it would stall the world load because the paloma was set too high
 Added LICENSE, this was here before but when I had to redo the Github it didn't transfer over, it is now a part of the mod
@@ -2640,10 +2640,14 @@ Made it that my Bosses can now change targets if they get hit by a living entity
 them
 Did a bit of experimentation with rendering weapon models, this will be done next update
 Added Lore for the Epic weapons
+Final tests before releases, another split release as the two versions seem to be getting nearly the same amount of downloads
+Fix Butcher's Lore
+Fix Combustion, it wasn't working on all the blocks it should've
+Set baby animal spawns default to false
+Reduce Minotaur and Inkling's speed when moving towards their attack target
+Fix up joining a server, it was a client-side crashed by me fixing a server-side issue with loading the Clarity potion effect
+Update version numbers
 
---Before next release--
-Do last testing before release
-Do testing on a Server to ensure everything is working correctly
 
 --Planned for next release--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
