@@ -69,6 +69,7 @@ public class NewAmuletEvents {
 
 			if (event.entity instanceof EntityPlayerMP && amu != null)
 			{
+				amu.saveProxyData((EntityPlayer) event.entity);
 				TragicMC.net.sendTo(new MessageAmulet((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
@@ -78,7 +79,7 @@ public class NewAmuletEvents {
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) 
 		{
-			PropertyAmulets.loadProxyData((EntityPlayer) event.entity);
+			if (PropertyAmulets.get((EntityPlayer) event.entity) != null) PropertyAmulets.loadProxyData((EntityPlayer) event.entity);
 		}
 	}
 

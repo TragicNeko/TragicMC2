@@ -8,7 +8,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -19,6 +21,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
+import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -31,7 +34,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
 	{
-		if (event.harvester != null && !event.isSilkTouching && TragicNewConfig.allowCombustion)
+		if (event.harvester != null && !event.isSilkTouching && TragicNewConfig.allowCombustion && !event.harvester.worldObj.isRemote)
 		{			
 			if (event.harvester.getCurrentEquippedItem() != null)
 			{
@@ -39,68 +42,55 @@ public class EnchantmentEvents {
 
 				if (EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
 				{
-					ArrayList<ItemStack> list = event.drops;
-
-					for (int i = 0; i < list.size(); i++)
+					if (event.block == TragicBlocks.MercuryOre)
 					{
-						ItemStack itemstack = (ItemStack) list.get(i);
-
-						if (itemstack.toString().contains("tile.mercuryOreBlock"))
+						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+						event.drops.clear();
+						event.drops.add(new ItemStack(TragicItems.RedMercury, rand.nextInt(z + 1) + 1));
+					}
+					else if (event.block == TragicBlocks.TungstenOre)
+					{
+						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+						event.drops.clear();
+						event.drops.add(new ItemStack(TragicItems.Tungsten, rand.nextInt(z + 1) + 1));
+					}
+					else if (event.block == Blocks.iron_ore)
+					{
+						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+						event.drops.clear();
+						event.drops.add(new ItemStack(Items.iron_ingot, rand.nextInt(z + 1) + 1));
+					}
+					else if (event.block == Blocks.gold_ore)
+					{
+						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+						event.drops.clear();
+						event.drops.add(new ItemStack(Items.gold_ingot, rand.nextInt(z + 1) + 1));
+					}
+					else if (event.block == TragicBlocks.TragicOres)
+					{
+						ItemStack stack = null;
+						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+						
+						switch(event.blockMetadata)
 						{
-							event.drops.remove(i);
-
-							int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-							event.drops.add(new ItemStack(TragicItems.RedMercury, rand.nextInt(z + 1) + 1));
-
-							for (int j = 0; j < 30; j++)
-							{
-								event.harvester.worldObj.spawnParticle("flame", event.harvester.posX + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										event.harvester.eyeHeight / 2, event.harvester.posZ + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
-							}
+						case 0:
+							stack = new ItemStack(TragicItems.RedMercury, rand.nextInt(z + 1) + 1);
+							break;
+						case 1:
+							stack = new ItemStack(TragicItems.Tungsten, rand.nextInt(z + 1) + 1);
+							break;
+						case 7:
+							stack = new ItemStack(Items.gold_ingot, rand.nextInt(z + 1) + 1);
+							break;
+						case 8:
+							stack = new ItemStack(Items.iron_ingot, rand.nextInt(z + 1) + 1);
+							break;
 						}
-						if (itemstack.toString().contains("tile.tungstenOreBlock"))
-						{
-							event.drops.remove(i);
-
-							int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-							event.drops.add(new ItemStack(TragicItems.Tungsten, rand.nextInt(z + 1) + 1));
-
-							for (int j = 0; j < 30; j++)
-							{
-								event.harvester.worldObj.spawnParticle("flame", event.harvester.posX + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										event.harvester.eyeHeight / 2, event.harvester.posZ + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
-							}
-						}
-						if (itemstack.toString().contains("tile.oreIron"))
-						{
-							event.drops.remove(i);
-
-							int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-							event.drops.add(new ItemStack(Items.iron_ingot, rand.nextInt(z + 1) + 1));
-
-							for (int j = 0; j < 30; j++)
-							{
-								event.harvester.worldObj.spawnParticle("flame", event.harvester.posX + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										event.harvester.eyeHeight / 2, event.harvester.posZ + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
-							}
-						}
-						if (itemstack.toString().contains("tile.oreGold"))
-						{
-							event.drops.remove(i);
-
-							int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-							event.drops.add(new ItemStack(Items.gold_ingot, rand.nextInt(z + 1) + 1));
-
-							for (int j = 0; j < 30; j++)
-							{
-								event.harvester.worldObj.spawnParticle("flame", event.harvester.posX + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										event.harvester.eyeHeight / 2, event.harvester.posZ + rand.nextInt(4) * MathHelper.getRandomIntegerInRange(rand, -1, 1),
-										rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
-							}
-						}
+						
+						if (stack == null) return;
+						
+						event.drops.clear();
+						event.drops.add(stack);
 					}
 				}
 			}
@@ -390,7 +380,7 @@ public class EnchantmentEvents {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onUnbreakableUse(LivingAttackEvent event)
 	{
@@ -400,7 +390,7 @@ public class EnchantmentEvents {
 			if (player.getCurrentEquippedItem() != null)
 			{
 				ItemStack stack = player.getCurrentEquippedItem();
-				
+
 				if (stack.getItemDamage() >= stack.getMaxDamage() - 1 && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, stack) > 0)
 				{
 					if (event.isCancelable()) event.setCanceled(true);

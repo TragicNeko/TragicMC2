@@ -5,7 +5,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -13,7 +12,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -40,6 +38,7 @@ public class DoomEvents {
 
 			if (event.entity instanceof EntityPlayerMP && doom != null)
 			{
+				doom.saveProxyData((EntityPlayer) event.entity);
 				TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
@@ -73,7 +72,7 @@ public class DoomEvents {
 	public void onLivingDeathEvent(LivingDeathEvent event) 
 	{
 		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
-			PropertyDoom.saveProxyData((EntityPlayer) event.entity);
+			if (PropertyDoom.get((EntityPlayer) event.entity) != null) PropertyDoom.saveProxyData((EntityPlayer) event.entity);
 		}
 	}
 

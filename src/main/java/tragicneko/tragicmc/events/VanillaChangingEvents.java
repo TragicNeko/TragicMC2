@@ -244,29 +244,26 @@ public class VanillaChangingEvents {
 					((EntityGhast)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(ghastHealthBuff);
 					((EntityGhast)event.entity).heal(((EntityGhast)event.entity).getMaxHealth());
 				}
-
-				if (event.entity instanceof EntityZombie || event.entity instanceof EntitySkeleton || event.entity instanceof EntityCreeper)
+				else if (event.entity instanceof EntityZombie || event.entity instanceof EntitySkeleton || event.entity instanceof EntityCreeper)
 				{
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(normalHealthBuff);
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(normalHealthBuff);
 					((EntityMob)event.entity).heal(((EntityMob)event.entity).getMaxHealth());
 				}
-
-				if (event.entity instanceof EntityEnderman)
+				else if (event.entity instanceof EntityEnderman)
 				{
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(endermanHealthBuff);
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(endermanHealthBuff);
 					((EntityMob)event.entity).heal(((EntityMob)event.entity).getMaxHealth());
 				}
 
-				if (event.entity instanceof EntitySpider)
+				else if (event.entity instanceof EntitySpider)
 				{
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(spiderHealthBuff);
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(spiderHealthBuff);
 					((EntityMob)event.entity).heal(((EntityMob)event.entity).getMaxHealth());
 				}
-
-				if (event.entity instanceof EntityPigZombie)
+				else if (event.entity instanceof EntityPigZombie)
 				{
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(normalHealthBuff);
 					((EntityMob)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(normalHealthBuff);

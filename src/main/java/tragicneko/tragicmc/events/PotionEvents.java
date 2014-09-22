@@ -42,7 +42,6 @@ import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.network.MessageFlight;
-import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -80,23 +79,6 @@ public class PotionEvents {
 			if (event.entityLiving.isPotionActive(Potion.blindness))
 			{
 				event.entityLiving.removePotionEffect(Potion.blindness.id);
-			}
-
-			if (world.isRemote)
-			{
-				double d0 = 8.0D + (8.0D * entity.getActivePotionEffect(TragicPotions.Clarity).getAmplifier());
-
-				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(d0, d0, d0));
-				EntityLivingBase target;
-
-				for (int i = 0; i < list.size(); i++)
-				{
-					if (list.get(i) instanceof EntityLivingBase)
-					{
-						target = (EntityLivingBase) list.get(i);
-						if (target.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) target.setInvisible(false);
-					}
-				}
 			}
 		}
 
@@ -439,6 +421,31 @@ public class PotionEvents {
 				event.entityLiving.setHealth(event.entityLiving.getMaxHealth());
 			}
 		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void clarifyInvisibleEnemies(LivingUpdateEvent event)
+	{
+		EntityLivingBase entity = event.entityLiving;
+		World world = event.entityLiving.worldObj;
+		
+		if (world.isRemote && TragicNewConfig.allowClarity && entity.isPotionActive(TragicPotions.Clarity))
+		{
+			double d0 = 8.0D + (8.0D * entity.getActivePotionEffect(TragicPotions.Clarity).getAmplifier());
+
+			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(d0, d0, d0));
+			EntityLivingBase target;
+
+			for (int i = 0; i < list.size(); i++)
+			{
+				if (list.get(i) instanceof EntityLivingBase)
+				{
+					target = (EntityLivingBase) list.get(i);
+					if (target.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) target.setInvisible(false);
+				}
+			}
+		} 
 	}
 
 	@SubscribeEvent

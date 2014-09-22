@@ -44,8 +44,7 @@ public class DynamicHealthScaling {
 					att.applyModifier(normalHealthDebuff);
 				}
 			}
-			
-			if (event.entity instanceof TragicBoss)
+			else if (event.entity instanceof TragicBoss)
 			{
 				event.entity.setDead();
 			}
@@ -64,8 +63,7 @@ public class DynamicHealthScaling {
 					((EntityLivingBase) event.entity).heal(((EntityLivingBase) event.entity).getMaxHealth());
 				}
 			}
-			
-			if (event.entity instanceof TragicBoss)
+			else if (event.entity instanceof TragicBoss)
 			{
 				IAttributeInstance att = ((EntityLivingBase) event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth);
 
