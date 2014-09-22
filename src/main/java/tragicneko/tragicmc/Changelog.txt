@@ -2645,7 +2645,7 @@ Fix Butcher's Lore
 Fix Combustion, it wasn't working on all the blocks it should've
 Set baby animal spawns default to false
 Reduce Minotaur and Inkling's speed when moving towards their attack target
-Fix up joining a server, it was a client-side crashe caused by me fixing a server-side issue with loading the Clarity potion effect
+Fix up joining a server, it was a client-side crash caused by me fixing a server-side issue with loading the Clarity potion effect
 Update version numbers
 
 
