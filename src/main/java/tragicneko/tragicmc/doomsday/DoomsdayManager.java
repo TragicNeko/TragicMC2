@@ -125,7 +125,7 @@ public class DoomsdayManager {
 				playerMap.remove(playerName);
 				if (reason != null)
 				{
-					logger.info("Registry removed registration for " + playerName + ", the reason was: " + reason);
+					logger.info("Registry removed registration for " + playerName + ", reason: " + reason);
 				}
 				else
 				{
@@ -224,7 +224,7 @@ public class DoomsdayManager {
 	@SubscribeEvent
 	public void onPlayerDisconnect(ServerDisconnectionFromClientEvent event)
 	{
-		if (event.handler instanceof NetHandlerPlayServer)
+		if (event.handler instanceof NetHandlerPlayServer && !playerMap.isEmpty())
 		{
 			NetHandlerPlayServer net = (NetHandlerPlayServer) event.handler;
 
@@ -232,6 +232,6 @@ public class DoomsdayManager {
 			{
 				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");
 			}
-		}
+		} 
 	}
 }
