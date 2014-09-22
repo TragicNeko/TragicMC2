@@ -18,12 +18,12 @@ public class MessageFlight implements IMessage {
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		this.flightEnabled = ByteBufUtils.readVarInt(buf, 2);
+		this.flightEnabled = buf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeVarInt(buf, this.flightEnabled, 2);
+		buf.writeInt(this.flightEnabled);
 	}
 
 }
