@@ -500,7 +500,7 @@ public class TragicNewConfig {
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowMobModdedArmorAndEnchantments", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowRespawnPunishment", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowExtraExplosiveEffects", true).getBoolean(true));
-		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowBabySpawns", true).getBoolean(true));
+		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowBabySpawns", false).getBoolean(false));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowModdedOverworldFlowerGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowOverworldSilverfishOregen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowNetherOreGen", true).getBoolean(true));
