@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.client.render.item;
+package tragicneko.tragicmc.client.render;
 
 import org.lwjgl.opengl.GL11;
 
