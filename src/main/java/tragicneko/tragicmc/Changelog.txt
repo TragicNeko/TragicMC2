@@ -2648,10 +2648,15 @@ Reduce Minotaur and Inkling's speed when moving towards their attack target
 Fix up joining a server, it was a client-side crash caused by me fixing a server-side issue with loading the Clarity potion effect
 Update version numbers
 
+1.36.1520++ <167> (September 22, 2014)
+Moved giant weapon render to the normal render package alongside the Statue and various projectile renders, it didn't need it's own package
+Adjust internal ordering of Enchantments to keep consistant with the Config
+Fix localization of Apis Amulet
 
 --Before Next Release--
 Add the "giant" weapon models for the epic weapons
 Change all of the color codes to use hex codes instead, this is just to clean up the code some
+Update all of the mob ai to utilize datawatchers, along with this add some aesthetic changes
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
@@ -2662,6 +2667,15 @@ it'll extend ItemJack so that it can be used to mine stuff as well
 The final boss will be the Overlord, it'll have a ton of health and actually have a similar appearance to Orespawn's Kraken, however, it isn't a squid/octopus thing, it's a large
 "metroid"-like creature, probably most similar to metroid prime in it's final boss stage, but with a few differences of course, it'll most likely utilize the multipart entity
 thing as well as have a helper creature/underling
+Regardless, it'll have a "cocoon" form in which it doesn't move, but shoots projectiles and can only be hurt with pickaxes/jacks, it'll spawn in Baby Underlings which will 
+latch onto the player, doing damage per few ticks, only unlatching when killed
+Afterwards, it'll evolve into a "Combat" form which will charge around and attack like the Apis/Yeti shooting projectiles, spawning normal Underlings which will attach to the
+player with more health and do more damage per few ticks, it'll also have very high armor
+Each of these forms will have 500 health
+After the "Combat" form is defeated, it'll turn into a "Core" form, which will be the aforementioned giant squid/metroid prime looking creature, it'll shoot slow moving projectiles
+that do massive damage and create a massive explosion, as well as faster moving ones that do less damage, it'll be able to latch onto targets with it's tentacles and pull them
+towards it, in order to do a massive hit, it'll also spawn in Adult Underlings (in addition to the other variants) which will fire projectiles at their target and can spawn in
+other smaller ones, this is the final form and has 1000 health, it will be a very, very tough fight
 Pyris, Veneera, Luex could be the names of the Phoenix, each one could be a slight variant of each other, with different textures and slightly different attack patterns
 Pyris could be the normal fire phoenix, shooting fireballs and launching waves of fireballs at it's attackers, lighting any enemies nearby on fire
 Veneera could be the ice phoenix, shooting icicles and leaving snow anywhere it goes, inflicting slowness on anything near it, rusting any nearby enemy's armor
