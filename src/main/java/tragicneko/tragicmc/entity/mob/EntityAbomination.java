@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.main.TragicEntities;
@@ -30,15 +31,45 @@ public class EntityAbomination extends TragicMob {
 		this.experienceValue = 12;
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(3, new EntityAILookIdle(this));
+		this.tasks.addTask(4, new EntityAIWander(this, 0.55D));
+		this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.canCorrupt = false;
 		this.isCorruptible = false;
 		this.isChangeable = false;
+	}
+
+	@Override
+	public void onKillEntity(EntityLivingBase entity)
+	{
+		super.onKillEntity(entity);
+		
+		int ticks = (int) entity.getMaxHealth();
+		this.setCelebrationTicks(ticks + rand.nextInt(10));
+		
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
+		EntityAbomination mob;
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i) instanceof EntityAbomination)
+			{
+				mob = (EntityAbomination) list.get(i);
+				if (mob.getAttackTarget() == entity) mob.setCelebrationTicks(ticks + rand.nextInt(10) - rand.nextInt(10));
+				
+			}
+		}
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -57,42 +88,105 @@ public class EntityAbomination extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.276);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.53);
+	}
+
+	public void onLivingUpdate()
+	{
+		super.onLivingUpdate();
+		if (this.worldObj.isRemote) return;
+
+		if (this.getAttackTime() > 0) this.decrementAttackTime();
+		if (this.isCelebrating())
+		{
+			this.decrementCelebrationTicks();
+			if (this.getAttackTime() == 0 && this.getCelebrationTicks() >= 10) this.setAttackTime(10);
+		}
+		if (this.isCelebrating() && this.getCelebrationTicks() % 20 == 0) this.jump();
+	}
+
+	public void moveEntity(double d0, double d1, double d2)
+	{
+		if (this.isCelebrating())
+		{
+			super.moveEntity(0, d1, 0);
+		}
+		else
+		{
+			super.moveEntity(d0, d1, d2);
+		}
+	}
+
+	public boolean isCelebrating()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17) > 0;
+	}
+
+	public int getCelebrationTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	private void setCelebrationTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void decrementCelebrationTicks()
+	{
+		int pow = this.dataWatcher.getWatchableObjectInt(17);
+		this.dataWatcher.updateObject(17, --pow);
+	}
+
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.dataWatcher.getWatchableObjectInt(16);
+		this.dataWatcher.updateObject(16, --pow);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
+		if (this.worldObj.isRemote) return false;
+
+		if (this.isCelebrating()) this.setCelebrationTicks(0);
+
 		if (par1DamageSource.isFireDamage())
 		{
-			par2 *= 4;
+			par2 = (par2 * 2.275F) - 1.0F;
 		}
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemSword)
+			if (player.getCurrentEquippedItem() == null || player.getCurrentEquippedItem() != null && !(player.getCurrentEquippedItem().getItem() instanceof ItemSword))
 			{
-				par2 *= 1.125;
+				par2 *= 0.725F;
 			}
 		}
-		
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
+
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean())
 		{
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
-			TragicMob mob;
+			EntityAbomination mob;
 
 			for (int i = 0; i < list.size(); i++)
 			{
-				if (list.get(i) instanceof TragicMob)
+				if (list.get(i) instanceof EntityAbomination)
 				{
-					mob = (TragicMob) list.get(i);
-
-					if (mob instanceof EntityAbomination)
-					{
-						if (mob.getAttackTarget() != this.getAttackTarget()) mob.setTarget(this.getAttackTarget());
-					}
+					mob = (EntityAbomination) list.get(i);
+					if (mob.getAttackTarget() == null) mob.setTarget(this.getAttackTarget());
 				}
 			}
 		}
@@ -102,13 +196,16 @@ public class EntityAbomination extends TragicMob {
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
+		if (this.worldObj.isRemote || this.isCelebrating()) return false;
+
 		boolean result = super.attackEntityAsMob(par1Entity);
-		
+
 		if (result)
 		{
-			par1Entity.motionY += 0.845D;
+			par1Entity.motionY += 0.445D;
 			par1Entity.motionX *= 1.114D;
 			par1Entity.motionZ *= 1.114D;
+			this.setAttackTime(10);
 		}
 
 		return result;
@@ -116,7 +213,7 @@ public class EntityAbomination extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		return 2;
+		return 4;
 	}
 
 }
