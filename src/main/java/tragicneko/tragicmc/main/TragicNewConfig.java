@@ -111,7 +111,7 @@ public class TragicNewConfig {
 	private static int[] worldGenInts = new int[12];
 	public static int voidPitRarity, largeSpikeRarity, starCrystalRarity, structureOverallRarity, apisTempleRarity, desertTowerRarity, deathCircleRarity, obsidianCavernRarity;
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
-	
+
 	private static boolean[] miscConfigs = new boolean[8];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui;
 	private static int[] miscInts = new int[8];
@@ -262,7 +262,7 @@ public class TragicNewConfig {
 		blanketEnchant[1] = (config.get(catEnchant, "allowArmorEnchantments", true).getBoolean(true));
 
 		mapping = 0;
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "decayID", getOpenIDForEnchant(120)).getInt(getOpenIDForEnchant(120)));
+		weaponEnchantIDs[mapping] = (config.get(catEnchant, "decayID", getOpenIDForEnchant(64)).getInt(getOpenIDForEnchant(64)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "decayAllow", true).getBoolean(true));
 		weaponEnchantIDs[mapping] = (config.get(catEnchant, "slayID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "slayAllow", true).getBoolean(true));
@@ -539,7 +539,7 @@ public class TragicNewConfig {
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "celestialTempleRarity", 3).getInt(3), 1, 100);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 5).getInt(5), 1, 100);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "yetiRavineRarity", 5).getInt(5), 1, 100);
-		
+
 		config.addCustomCategoryComment(catWorldGen, "These toggle specific WorldGen features, meant to help with lag reduction if your CPU cannot handle it during WorldGen, also toggle rarities of structures");
 
 		mapping = 0;
@@ -547,20 +547,20 @@ public class TragicNewConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowChallengeScrolls", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowMobStatues", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowAnimatedGui", true).getBoolean(true));
-		
+
 		for (i = 0; i + mapping < miscConfigs.length; i++)
 		{
 			miscConfigs[mapping + i] = false;
 		}
-		
+
 		mapping = 0;
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "challengeScrollDropChance", 5).getInt(5), 1, 100);
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "mobStatueDropChance", 100).getInt(100), 1, 100);
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "guiTransparency", 100).getInt(100), 1, 100);
 		miscInts[mapping++] = config.get(catMisc, "guiTextureSkins", 0).getInt(0);
-		
+
 		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
-		
+
 		if (config.hasChanged())
 		{
 			config.save();
@@ -641,7 +641,7 @@ public class TragicNewConfig {
 					blanketDoom[i] = false;
 				}
 			}
-			
+
 			if (!blanketDoom[13])
 			{
 				blanketDoom[14] = false;
@@ -1048,7 +1048,7 @@ public class TragicNewConfig {
 		allowSubmission = negativePotionConfigs[mapping++];
 		idInhibit = negativePotionIDs[mapping];
 		allowInhibit = negativePotionConfigs[mapping++];
-		
+
 		mapping = 0;
 		allowVanillaMobBuffs = blanketVanillaChanges[mapping++];
 		allowExtraMobEffects = blanketVanillaChanges[mapping++];
@@ -1062,7 +1062,7 @@ public class TragicNewConfig {
 		allowNetherOreGen = blanketVanillaChanges[mapping++];
 		allowOverworldOreGen = blanketVanillaChanges[mapping++];
 		allowQuicksandGen = blanketVanillaChanges[mapping++];
-		
+
 		mapping = 0;
 		rubyOreRarity = vanillaInts[mapping++];
 		sapphireOreRarity = vanillaInts[mapping++];
@@ -1071,7 +1071,7 @@ public class TragicNewConfig {
 		quicksandGenRarity = vanillaInts[mapping++];
 		drudgeGenRarity = vanillaInts[mapping++];
 		silverfishGenRarity = vanillaInts[mapping++];
-		
+
 		mapping = 0;
 		allowVoidPitGen = blanketWorldGen[mapping++];
 		allowLargeSpikeGen = blanketWorldGen[mapping++];
@@ -1079,7 +1079,7 @@ public class TragicNewConfig {
 		allowStructureGen = blanketWorldGen[mapping++];
 		allowNonBossStructureGen = blanketWorldGen[mapping++];
 		allowBossStructureGen = blanketWorldGen[mapping++];
-		
+
 		mapping = 0;
 		voidPitRarity = worldGenInts[mapping++];
 		largeSpikeRarity = worldGenInts[mapping++];
@@ -1093,20 +1093,20 @@ public class TragicNewConfig {
 		celestialTempleRarity = worldGenInts[mapping++];
 		timeAltarRarity = worldGenInts[mapping++];
 		yetiRavineRarity = worldGenInts[mapping++];
-		
+
 		mapping = 0;
 		allowRandomWeaponLore = miscConfigs[mapping++];
 		allowChallengeScrolls = miscConfigs[mapping++];
 		allowMobStatueDrops = miscConfigs[mapping++];
 		allowAnimatedGui = miscConfigs[mapping++];
-		
+
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
 		mobStatueDropChance = miscInts[mapping++];
 		guiTransparency = miscInts[mapping++];
 		guiTexture = miscInts[mapping++];
 	}
-	
+
 	public static void disablePotions()
 	{
 		blanketConfigs[6] = false;
@@ -1115,39 +1115,92 @@ public class TragicNewConfig {
 
 	private static int getOpenIDForEnchant(int configId)
 	{
-		if (configId <= Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[configId] != null)
+		if (configId < Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[configId] != null)
 		{
 			while (Enchantment.enchantmentsList[configId] != null)
 			{
 				configId++;
 
-				if (configId > Enchantment.enchantmentsList.length) break;
+				if (configId >= Enchantment.enchantmentsList.length)
+				{
+					configId -= Enchantment.enchantmentsList.length;
+				}
 			}
 		}
+		else if (configId >= Enchantment.enchantmentsList.length)
+		{
+			configId -= Enchantment.enchantmentsList.length;
+			
+			while (Enchantment.enchantmentsList[configId] != null)
+			{
+				configId++;
+
+				if (configId >= Enchantment.enchantmentsList.length)
+				{
+					configId -= Enchantment.enchantmentsList.length;
+				}
+			}
+		}
+
 		return configId;
 	}
 
 	private static int getOpenIDForPotion(int configId)
 	{		
-		if (configId <= Potion.potionTypes.length && Potion.potionTypes[configId] != null)
+		if (configId < Potion.potionTypes.length && Potion.potionTypes[configId] != null)
 		{
 			while (Potion.potionTypes[configId] != null)
 			{
 				configId++;
-				if (configId > Potion.potionTypes.length) break;
+				if (configId >= Potion.potionTypes.length)
+				{
+					configId -= Potion.potionTypes.length;
+				}
 			}
 		}
+		else if (configId >= Potion.potionTypes.length)
+		{
+			configId -= Potion.potionTypes.length;
+			
+			while (Potion.potionTypes[configId] != null)
+			{
+				configId++;
+
+				if (configId >= Potion.potionTypes.length)
+				{
+					configId -= Potion.potionTypes.length;
+				}
+			}
+		}
+		
 		return configId;
 	}
 
 	private static int getOpenIDForBiome(int configId)
 	{
-		if (configId <= BiomeGenBase.getBiomeGenArray().length && BiomeGenBase.getBiomeGenArray()[configId] != null)
+		if (configId < BiomeGenBase.getBiomeGenArray().length && BiomeGenBase.getBiomeGenArray()[configId] != null)
 		{
 			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
 			{
 				configId++;
-				if (configId > BiomeGenBase.getBiomeGenArray().length) break; 
+				if (configId >= BiomeGenBase.getBiomeGenArray().length)
+				{
+					configId -= BiomeGenBase.getBiomeGenArray().length;
+				}
+			}
+		}
+		else if (configId >= BiomeGenBase.getBiomeGenArray().length)
+		{
+			configId -= BiomeGenBase.getBiomeGenArray().length;
+			
+			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
+			{
+				configId++;
+
+				if (configId >= BiomeGenBase.getBiomeGenArray().length)
+				{
+					configId -= BiomeGenBase.getBiomeGenArray().length;
+				}
 			}
 		}
 		return configId;
