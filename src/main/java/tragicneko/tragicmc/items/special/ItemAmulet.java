@@ -42,7 +42,7 @@ public class ItemAmulet extends Item {
 		this.setUnlocalizedName("tragicmc.amulet" + name);
 		this.setCreativeTab(TragicTabs.Survival);
 		this.setMaxStackSize(1);
-		this.setTextureName("tragicmc:Amulet" + amuletLevel + "_lowRes");
+		this.setTextureName("tragicmc:Amulet" + (amuletLevel == 5 ? 4 : amuletLevel) + "_lowRes");
 		this.chainColor = necklaceColor;
 		this.gemColor = gemstoneColor;
 	}
@@ -75,8 +75,8 @@ public class ItemAmulet extends Item {
 		case 2:
 			return EnumRarity.rare;
 		case 3:
-			return EnumRarity.epic;
 		case 4:
+		case 5:
 			return EnumRarity.epic;
 		}
 		return EnumRarity.common;
@@ -103,6 +103,9 @@ public class ItemAmulet extends Item {
 		case 4:
 			s1 = EnumChatFormatting.DARK_RED + s + "Cursed";
 			break;
+		case 5:
+			s1 = EnumChatFormatting.GOLD + s + "Epic";
+			break;
 		}
 
 		par2List.add(s1);
@@ -127,6 +130,17 @@ public class ItemAmulet extends Item {
 				return this.gemColor;
 			}
 		}
+		else if (this.amuletLevel == 5)
+		{
+			if (par2 == 0)
+			{
+				return 0xFFFFFF;
+			}
+			else
+			{
+				return this.gemColor;
+			}
+		}
 		else
 		{
 			if (par2 == 0)
@@ -145,7 +159,7 @@ public class ItemAmulet extends Item {
 	{
 		super.registerIcons(par1IconRegister);
 
-		this.theIcon = par1IconRegister.registerIcon("tragicmc:Amulet" + amuletLevel + "_lowRes_overlay");
+		this.theIcon = par1IconRegister.registerIcon("tragicmc:Amulet" + (amuletLevel == 5 ? 4 : amuletLevel) + "_lowRes_overlay");
 	}
 
 	public boolean getIsCursed()

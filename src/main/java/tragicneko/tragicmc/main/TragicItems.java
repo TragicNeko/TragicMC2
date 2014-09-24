@@ -800,7 +800,7 @@ public class TragicItems {
 
 		color1 = new Color(0x94, 0xFF, 0xA3);
 		color2 = new Color(0xEA, 0x92, 0xE9);
-		TimeAmulet = (new ItemAmulet(id++, 4, "Time", color1.getRGB(), color2.getRGB()));
+		TimeAmulet = (new ItemAmulet(id++, 5, "Time", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
 
 		color1 = new Color(0xC4, 0xEF, 0xFF);
@@ -837,7 +837,7 @@ public class TragicItems {
 
 		color1 = new Color(0x1C, 0x1C, 0x1C);
 		color2 = new Color(0x25, 0x25, 0x25);
-		WitherAmulet = (new ItemAmulet(id++, 4, "Wither", color1.getRGB(), color2.getRGB()));
+		WitherAmulet = (new ItemAmulet(id++, 5, "Wither", color1.getRGB(), color2.getRGB()));
 		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 
 		//Armor and Tool materials

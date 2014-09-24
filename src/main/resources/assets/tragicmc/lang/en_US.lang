@@ -330,7 +330,7 @@ zombie3.special=Thriller
 item.tragicmc.amuletSunken.name=Sunken Amulet
 sunken4.special=Just Keep Swimmin'
 item.tragicmc.amuletTime.name=Time Amulet
-time4.special=Time Keeps on Slippin'
+time5.special=Time Keeps on Slippin'
 item.tragicmc.amuletIce.name=Ice Amulet
 ice1.special=Cool
 ice2.special=Chill out!
@@ -346,7 +346,7 @@ irongolem3.special=I am Iron Man.
 item.tragicmc.amuletEnderman.name=Enderman Amulet
 enderman4.special=The Silky Touch
 item.tragicmc.amuletWither.name=Wither Amulet
-wither4.special=I Feed Off of Despair.
+wither5.special=I Feed Off of Despair.
 
 item.tragicmc.ectoplasm.name=Ectoplasm
 item.tragicmc.ash.name=Ash
