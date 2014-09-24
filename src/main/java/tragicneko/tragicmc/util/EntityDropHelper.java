@@ -108,7 +108,7 @@ public class EntityDropHelper {
 		entityLootDrops.put(EntityAbomination.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.fish), new ItemStack(Items.snowball)},
 			{new ItemStack(TragicItems.IcyFur), new ItemStack(TragicItems.IceOrb)}});
 		
-		entityLootDrops.put(EntityErkel.class, new ItemStack[][] {{new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom_block)}, {new ItemStack(Items.slime_ball),
+		entityLootDrops.put(EntityErkel.class, new ItemStack[][] {{new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom)}, {new ItemStack(Items.slime_ball),
 			new ItemStack(TragicItems.Ectoplasm), new ItemStack(TragicItems.Spore)}
 		});
 		
