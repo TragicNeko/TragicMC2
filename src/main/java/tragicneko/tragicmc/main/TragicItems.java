@@ -698,146 +698,131 @@ public class TragicItems {
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
 
 		//Amulet Registrations
-		Color color1 = new Color(0x00, 0x00, 0x00);
-		Color color2 = new Color(0xff, 0xff, 0xff);
+		int color = 0x000000;
+		int color2 = 0xFFFFFF;
 		int id = 0;
 
-		color2 = new Color(0xB5, 0x19, 0x19);
-		KitsuneAmulet = (new ItemAmulet(id++, 4, "Kitsune", color1.getRGB(), color2.getRGB()));
+		KitsuneAmulet = (new ItemAmulet(id++, 4, "Kitsune", 0x000000, 0xB51919));
 		GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
 
-		color1 = new Color(0x9F, 0x5B, 0x86);
-		color2 = new Color(0xFF, 0x9A, 0xCA);
-		PeaceAmulet = (new ItemAmulet(id, 1, "Peace", color1.getRGB(), color2.getRGB()));
+		color = 0x9F5B86;
+		color2 = 0xFF9ACA;
+		PeaceAmulet = (new ItemAmulet(id, 1, "Peace", color, color2));
 		GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
-		PeaceAmulet2 = (new ItemAmulet(id, 2, "Peace", color1.getRGB(), color2.getRGB()));
+		PeaceAmulet2 = (new ItemAmulet(id, 2, "Peace", color, color2));
 		GameRegistry.registerItem(PeaceAmulet2, "peaceAmulet2");
-		PeaceAmulet3 = (new ItemAmulet(id++, 3, "Peace", color1.getRGB(), color2.getRGB()));
+		PeaceAmulet3 = (new ItemAmulet(id++, 3, "Peace", color, color2));
 		GameRegistry.registerItem(PeaceAmulet3, "peaceAmulet3");
 
-		color1 = new Color(0xFF, 0xFF, 0xFF);
-		color2 = new Color(0x98, 0xB4, 0xC1);
-		YetiAmulet = (new ItemAmulet(id, 1, "Yeti", color1.getRGB(), color2.getRGB()));
+		color = 0xFAFAFA;
+		color2 = 0x98B4C1;
+		YetiAmulet = (new ItemAmulet(id, 1, "Yeti", color, color2));
 		GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
-		YetiAmulet2 = (new ItemAmulet(id, 2, "Yeti", color1.getRGB(), color2.getRGB()));
+		YetiAmulet2 = (new ItemAmulet(id, 2, "Yeti", color, color2));
 		GameRegistry.registerItem(YetiAmulet2, "yetiAmulet2");
-		YetiAmulet3 = (new ItemAmulet(id++, 3, "Yeti", color1.getRGB(), color2.getRGB()));
+		YetiAmulet3 = (new ItemAmulet(id++, 3, "Yeti", color, color2));
 		GameRegistry.registerItem(YetiAmulet3, "yetiAmulet3");
 
-		color1 = new Color(0xFF, 0x95, 0x00);
-		color2 = new Color(0xFF, 0xCA, 0x02);
-		ClaymationAmulet = (new ItemAmulet(id, 1, "Claymation", color1.getRGB(), color2.getRGB()));
+		color = 0xFF9500;
+		color2 = 0xFFCA02;
+		ClaymationAmulet = (new ItemAmulet(id, 1, "Claymation", color, color2));
 		GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
-		ClaymationAmulet2 = (new ItemAmulet(id, 2, "Claymation", color1.getRGB(), color2.getRGB()));
+		ClaymationAmulet2 = (new ItemAmulet(id, 2, "Claymation", color, color2));
 		GameRegistry.registerItem(ClaymationAmulet2, "claymationAmulet2");
-		ClaymationAmulet3 = (new ItemAmulet(id++, 3, "Claymation", color1.getRGB(), color2.getRGB()));
+		ClaymationAmulet3 = (new ItemAmulet(id++, 3, "Claymation", color, color2));
 		GameRegistry.registerItem(ClaymationAmulet3, "claymationAmulet3");
 
-		color1 = new Color(0xDE, 0xDE, 0xDE);
-		color2 = new Color(0xFF, 0xEA, 0xA1);
-		ChickenAmulet = (new ItemAmulet(id, 1, "Chicken", color1.getRGB(), color2.getRGB()));
+		color = 0xDEDEDE;
+		color2 = 0xFFEAA1;
+		ChickenAmulet = (new ItemAmulet(id, 1, "Chicken", color, color2));
 		GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
-		ChickenAmulet2 = (new ItemAmulet(id, 2, "Chicken", color1.getRGB(), color2.getRGB()));
+		ChickenAmulet2 = (new ItemAmulet(id, 2, "Chicken", color, color2));
 		GameRegistry.registerItem(ChickenAmulet2, "chickenAmulet2");
-		ChickenAmulet3 = (new ItemAmulet(id++, 3, "Chicken", color1.getRGB(), color2.getRGB()));
+		ChickenAmulet3 = (new ItemAmulet(id++, 3, "Chicken", color, color2));
 		GameRegistry.registerItem(ChickenAmulet3, "chickenAmulet3");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0x45, 0x45, 0x45);
-		MartyrAmulet = (new ItemAmulet(id++, 4, "Martyr", color1.getRGB(), color2.getRGB()));
+		MartyrAmulet = (new ItemAmulet(id++, 4, "Martyr", 000000, 454545));
 		GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0xFF, 0xFA, 0x5E);
-		PiercingAmulet = (new ItemAmulet(id++, 4, "Piercing", color1.getRGB(), color2.getRGB()));
+		PiercingAmulet = (new ItemAmulet(id++, 4, "Piercing", 0x000000, 0xFFFA5E));
 		GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
 
-		color1 = new Color(0x94, 0x94, 0x94);
-		color2 = new Color(0x69, 0x69, 0x69);
-		BlacksmithAmulet = (new ItemAmulet(id, 1, "Blacksmith", color1.getRGB(), color2.getRGB()));
+		color = 0x949494;
+		color2 = 0x696969;
+		BlacksmithAmulet = (new ItemAmulet(id, 1, "Blacksmith", color, color2));
 		GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
-		BlacksmithAmulet2 = (new ItemAmulet(id, 2, "Blacksmith", color1.getRGB(), color2.getRGB()));
+		BlacksmithAmulet2 = (new ItemAmulet(id, 2, "Blacksmith", color, color2));
 		GameRegistry.registerItem(BlacksmithAmulet2, "blacksmithAmulet2");
-		BlacksmithAmulet3 = (new ItemAmulet(id++, 3, "Blacksmith", color1.getRGB(), color2.getRGB()));
+		BlacksmithAmulet3 = (new ItemAmulet(id++, 3, "Blacksmith", color, color2));
 		GameRegistry.registerItem(BlacksmithAmulet3, "blacksmithAmulet3");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0xEF, 0xE2, 0x97);
-		ApisAmulet = (new ItemAmulet(id++, 4, "Apis", color1.getRGB(), color2.getRGB()));
+		ApisAmulet = (new ItemAmulet(id++, 4, "Apis", 0x000000, 0xEFE297));
 		GameRegistry.registerItem(ApisAmulet, "apisAmulet");
 
-		color1 = new Color(0x27, 0xC1, 0x23);
-		color2 = new Color(0x43, 0xE1, 0x40);
-		CreeperAmulet = (new ItemAmulet(id, 1, "Creeper", color1.getRGB(), color2.getRGB()));
+		color = 0x27C123;
+		color2 = 0x43E140;
+		CreeperAmulet = (new ItemAmulet(id, 1, "Creeper", color, color2));
 		GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
-		CreeperAmulet2 = (new ItemAmulet(id, 2, "Creeper", color1.getRGB(), color2.getRGB()));
+		CreeperAmulet2 = (new ItemAmulet(id, 2, "Creeper", color, color2));
 		GameRegistry.registerItem(CreeperAmulet2, "creeperAmulet2");
-		CreeperAmulet3 = (new ItemAmulet(id++, 3, "Creeper", color1.getRGB(), color2.getRGB()));
+		CreeperAmulet3 = (new ItemAmulet(id++, 3, "Creeper", color, color2));
 		GameRegistry.registerItem(CreeperAmulet3, "creeperAmulet3");
 
-		color1 = new Color(0x3A, 0x8F, 0x4A);
-		color2 = new Color(0x27, 0xC1, 0xC9);
-		ZombieAmulet = (new ItemAmulet(id, 1, "Zombie", color1.getRGB(), color2.getRGB()));
+		color = 0x3A8F4A;
+		color2 = 0x27C1C9;
+		ZombieAmulet = (new ItemAmulet(id, 1, "Zombie", color, color2));
 		GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
-		ZombieAmulet2 = (new ItemAmulet(id, 2, "Zombie", color1.getRGB(), color2.getRGB()));
+		ZombieAmulet2 = (new ItemAmulet(id, 2, "Zombie", color, color2));
 		GameRegistry.registerItem(ZombieAmulet2, "zombieAmulet2");
-		ZombieAmulet3 = (new ItemAmulet(id++, 3, "Zombie", color1.getRGB(), color2.getRGB()));
+		ZombieAmulet3 = (new ItemAmulet(id++, 3, "Zombie", color, color2));
 		GameRegistry.registerItem(ZombieAmulet3, "zombieAmulet3");
 
-		color1 = new Color(0xA0, 0xA0, 0xA0);
-		color2 = new Color(0xC1, 0xC1, 0xC1);
-		SkeletonAmulet = (new ItemAmulet(id, 1, "Skeleton", color1.getRGB(), color2.getRGB()));
+		color = 0xA0A0A0;
+		color2 = 0xC1C1C1;
+		SkeletonAmulet = (new ItemAmulet(id, 1, "Skeleton", color, color2));
 		GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
-		SkeletonAmulet2 = (new ItemAmulet(id, 2, "Skeleton", color1.getRGB(), color2.getRGB()));
+		SkeletonAmulet2 = (new ItemAmulet(id, 2, "Skeleton", color, color2));
 		GameRegistry.registerItem(SkeletonAmulet2, "skeletonAmulet2");
-		SkeletonAmulet3 = (new ItemAmulet(id++, 3, "Skeleton", color1.getRGB(), color2.getRGB()));
+		SkeletonAmulet3 = (new ItemAmulet(id++, 3, "Skeleton", color, color2));
 		GameRegistry.registerItem(SkeletonAmulet3, "skeletonAmulet3");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0x46, 0x6D, 0xB3);
-		SunkenAmulet = (new ItemAmulet(id++, 4, "Sunken", color1.getRGB(), color2.getRGB()));
+		SunkenAmulet = (new ItemAmulet(id++, 4, "Sunken", 0x000000, 0x466DB3));
 		GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
 
-		color1 = new Color(0x94, 0xFF, 0xA3);
-		color2 = new Color(0xEA, 0x92, 0xE9);
-		TimeAmulet = (new ItemAmulet(id++, 5, "Time", color1.getRGB(), color2.getRGB()));
+		TimeAmulet = (new ItemAmulet(id++, 5, "Time", 0x94FFA3, 0xEA92E9));
 		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
 
-		color1 = new Color(0xC4, 0xEF, 0xFF);
-		color2 = new Color(0xA5, 0xD0, 0xE0);
-		IceAmulet = (new ItemAmulet(id, 1, "Ice", color1.getRGB(), color2.getRGB()));
+		color = 0xC4EFFF;
+		color2 = 0xA5D0E0;
+		IceAmulet = (new ItemAmulet(id, 1, "Ice", color, color2));
 		GameRegistry.registerItem(IceAmulet, "iceAmulet");
-		IceAmulet2 = (new ItemAmulet(id, 2, "Ice", color1.getRGB(), color2.getRGB()));
+		IceAmulet2 = (new ItemAmulet(id, 2, "Ice", color, color2));
 		GameRegistry.registerItem(IceAmulet2, "iceAmulet2");
-		IceAmulet3 = (new ItemAmulet(id++, 3, "Ice", color1.getRGB(), color2.getRGB()));
+		IceAmulet3 = (new ItemAmulet(id++, 3, "Ice", color, color2));
 		GameRegistry.registerItem(IceAmulet3, "iceAmulet3");
 
-		color1 = new Color(0xFF, 0xFD, 0xF1);
-		color2 = new Color(0xAB, 0xA2, 0x90);
-		SnowGolemAmulet = (new ItemAmulet(id, 1, "SnowGolem", color1.getRGB(), color2.getRGB()));
+		color = 0xFFFDF1;
+		color2 = 0xABA290;
+		SnowGolemAmulet = (new ItemAmulet(id, 1, "SnowGolem", color, color2));
 		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
-		SnowGolemAmulet2 = (new ItemAmulet(id, 2, "SnowGolem", color1.getRGB(), color2.getRGB()));
+		SnowGolemAmulet2 = (new ItemAmulet(id, 2, "SnowGolem", color, color2));
 		GameRegistry.registerItem(SnowGolemAmulet2, "snowGolemAmulet2");
-		SnowGolemAmulet3 = (new ItemAmulet(id++, 3, "SnowGolem", color1.getRGB(), color2.getRGB()));
+		SnowGolemAmulet3 = (new ItemAmulet(id++, 3, "SnowGolem", color, color2));
 		GameRegistry.registerItem(SnowGolemAmulet3, "snowGolemAmulet3");
 
-		color1 = new Color(0xDB, 0xCD, 0xC1);
-		color2 = new Color(0x8B, 0x72, 0x60);
-		IronGolemAmulet = (new ItemAmulet(id, 1, "IronGolem", color1.getRGB(), color2.getRGB()));
+		color = 0xDBCDC1;
+		color2 = 0x8B7260;
+		IronGolemAmulet = (new ItemAmulet(id, 1, "IronGolem", color, color2));
 		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
-		IronGolemAmulet2 = (new ItemAmulet(id, 2, "IronGolem", color1.getRGB(), color2.getRGB()));
+		IronGolemAmulet2 = (new ItemAmulet(id, 2, "IronGolem", color, color2));
 		GameRegistry.registerItem(IronGolemAmulet2, "ironGolemAmulet2");
-		IronGolemAmulet3 = (new ItemAmulet(id++, 3, "IronGolem", color1.getRGB(), color2.getRGB()));
+		IronGolemAmulet3 = (new ItemAmulet(id++, 3, "IronGolem", color, color2));
 		GameRegistry.registerItem(IronGolemAmulet3, "ironGolemAmulet3");
 
-		color1 = new Color(0x00, 0x00, 0x00);
-		color2 = new Color(0xB5, 0x47, 0xDE);
-		EndermanAmulet = (new ItemAmulet(id++, 4, "Enderman", color1.getRGB(), color2.getRGB()));
+		EndermanAmulet = (new ItemAmulet(id++, 4, "Enderman", 0x000000, 0xB547DE));
 		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
 
-		color1 = new Color(0x1C, 0x1C, 0x1C);
-		color2 = new Color(0x25, 0x25, 0x25);
-		WitherAmulet = (new ItemAmulet(id++, 5, "Wither", color1.getRGB(), color2.getRGB()));
+		WitherAmulet = (new ItemAmulet(id++, 5, "Wither", 0x1C1C1C, 0x252525));
 		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 
 		//Armor and Tool materials
