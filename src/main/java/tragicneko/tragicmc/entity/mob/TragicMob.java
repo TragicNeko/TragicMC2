@@ -15,6 +15,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -262,7 +263,7 @@ public abstract class TragicMob extends EntityMob
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false; 
+		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun) || this.worldObj.isRemote) return false; 
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
@@ -359,8 +360,13 @@ public abstract class TragicMob extends EntityMob
 
 				if (drops > x * 2) break;
 			}
-		}
-
-		
+		}		
+	}
+	
+	@Override
+	public void onKillEntity(EntityLivingBase entity)
+	{
+		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, (int) (entity.getMaxHealth() * 10), 2));
+		this.addPotionEffect(new PotionEffect(Potion.resistance.id, (int) (entity.getMaxHealth() * 10), 2));
 	}
 }
