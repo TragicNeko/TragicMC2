@@ -2686,7 +2686,12 @@ Clean up Inkling's AI, completely remove it's ability to summon help, make it's 
 Increased range at which Inkling can teleport, made it handle being on fire better, it can now break torches at farther range and now also spawns in the EntityItem so that it's
 not gone forever once it's broken
 Added basic animations for it, you won't even get to see them due to the Inkling being invisible most of the time, but added regardless
-
+Fixed some problems with the Ragr (target acquisition, miscalculations on fall height to explosion size, etc.), improve it's block crushing ability, reduce the lag it creates
+on update, now I can have around 10 of them and only lose about 10 frames (compared to around 30 previously)
+Add some cool animations for it when it jumps around and when it's on the ground, it looks really good I was thinking of creating a Ragr pit structure just because of this
+Rewrote most of the Pumpkinhead's AI, it now sets it's home pumpkin faster and applies effects faster while it has one, it now has an animation when it gets angry and has a
+home pumpkin, it is a lot more dangerous to attack now, reduced it's health to balance this
+Added NBT Tags for most of the mobs that have been rewritten to this point
 
 --Reminders-
 I'm going to rewrite how Corruption works, it'll affect entities near other corrupted ones, and it'll be a continuous effect, but can be randomly healed if the entity that has
