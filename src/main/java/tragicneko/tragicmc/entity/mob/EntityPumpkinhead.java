@@ -1,18 +1,11 @@
 package tragicneko.tragicmc.entity.mob;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockPumpkin;
-import net.minecraft.block.BlockSnow;
-import net.minecraft.block.BlockTallGrass;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -22,46 +15,105 @@ import net.minecraft.entity.ai.EntityAIFleeSun;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import net.minecraft.entity.ai.EntityAIRestrictSun;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.main.TragicEntities;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityPumpkinhead extends TragicMob {
 
-	private int angerTicks;
-	private BlockPumpkin homePumpkin;
-	private double hasteValue = 2.0D;
-
 	public EntityPumpkinhead(World par1World) {
 		super(par1World);
-		this.setSize(0.6F, 2.2F);
+		this.setSize(0.675F, 2.215F);
 		this.experienceValue = 6;
 		this.getNavigator().setAvoidSun(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIFleeSun(this, 1.2D));
+		this.tasks.addTask(2, new EntityAIFleeSun(this, 1.2D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityCreature.class, 32.0F));
-		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIWander(this, 0.55D));
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true)); /*
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false; */
+		this.tasks.addTask(6, new EntityAIWander(this, 0.65D));
+		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+	}
+
+	@Override
+	public boolean canCorrupt()
+	{
+		return false;
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Float.valueOf(2.0F));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(20, Integer.valueOf(0));
+	}
+
+	public float getModValue()
+	{
+		return (float) this.dataWatcher.getWatchableObjectFloat(16);
+	}
+
+	private void setModValue(float f)
+	{
+		this.dataWatcher.updateObject(16, f);
+	}
+
+	private void resetModValue()
+	{
+		this.dataWatcher.updateObject(16, 2.0F);
+	}
+
+	public int[] getHomeCoordinates()
+	{
+		return new int [] {this.dataWatcher.getWatchableObjectInt(17), this.dataWatcher.getWatchableObjectInt(18), this.dataWatcher.getWatchableObjectInt(19)};
+	}
+
+	private void setHomeCoordinates(int[] coords)
+	{
+		this.dataWatcher.updateObject(17, coords[0]);
+		this.dataWatcher.updateObject(18, coords[1]);
+		this.dataWatcher.updateObject(19, coords[2]);
+		this.setHomeArea(coords[0], coords[1], coords[2], 32);
+	}
+
+	public boolean hasHomePumpkin()
+	{
+		int[] coords = this.getHomeCoordinates();
+		return this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin;
+	}
+
+	public int getAngerTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
+
+	private void setAngerTicks(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+	}
+
+	private void incrementAngerTicks()
+	{
+		int pow = this.getAngerTicks();
+		this.setAngerTicks(++pow);
+	}
+
+	public boolean isAngry()
+	{
+		return this.getAngerTicks() > 0;
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -77,149 +129,168 @@ public class EntityPumpkinhead extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(75.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.24);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.275);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 	}
-	
+
 	public void onLivingUpdate()
 	{
-		AttributeModifier mod = new AttributeModifier(UUID.fromString("2042ddcd-b29a-474f-acda-00ec1a2b4a2e"), "pumpkinheadHaste", this.hasteValue, 0);
-		
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
-		
+		super.onLivingUpdate();
+		if (this.worldObj.isRemote)
+		{
+			if (this.hasHomePumpkin() && rand.nextBoolean())
+			{
+				if (rand.nextBoolean())
+				{
+					double d0 = this.getHomeCoordinates()[0] - this.posX + 0.5D;
+					double d1 = this.getHomeCoordinates()[1] - this.posY - 0.5D;
+					double d2 = this.getHomeCoordinates()[2] - this.posZ + 0.5D;
+
+					for (int i = 0; i < 4; i++)
+					{
+						double d3 = 0.23D * i + (rand.nextDouble() * 0.25D);
+						this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 1.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					}
+				}
+				
+				for (int i = 0; i < 2; i++)
+				{
+					double d3 = 0.23D * i;
+					this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY, this.posZ + rand.nextDouble() - rand.nextDouble(),
+							0.0, rand.nextDouble() * 0.175D, 0.0);
+				}
+			}
+		}
+
+		if (this.worldObj.isRemote) return;	
+
+		if (!this.hasHomePumpkin() && this.isPumpkinNearby() && this.ticksExisted % 60 == 0)
+		{
+			this.setHomeCoordinates(getNearbyPumpkin());
+		}
+
 		if (this.isBurning())
 		{
-			this.attackEntityFrom(DamageSource.onFire, 3.0F);
+			this.attackEntityFrom(DamageSource.onFire, 1.0F);
 		}
-		else if (this.ticksExisted % 120 == 0 && this.getHealth() < this.getMaxHealth())
+		else if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth())
 		{
-			this.heal(1.0F);
+			this.heal(3.0F);
 		}
 
 		if (this.getAttackTarget() != null)
 		{
-			this.angerTicks++;
+			this.incrementAngerTicks();
 		}
 		else
 		{
-			this.angerTicks = 0;
+			this.setAngerTicks(0);
+			this.resetModValue();
+		}
+		
+		if (!this.hasHomePumpkin())
+		{
+			this.detachHome();
+			this.setAngerTicks(0);
+			this.resetModValue();
 		}
 
-		if (angerTicks % 300 == 0 && this.getAttackTarget() != null && this.isHomePumpkinStillThere())
+		AttributeModifier mod = new AttributeModifier(UUID.fromString("2042ddcd-b29a-474f-acda-00ec1a2b4a2e"), "pumpkinheadHaste", this.getModValue(), 0);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
+
+		if (this.getAngerTicks() % 100 == 0 && this.isAngry() && this.hasHomePumpkin())
 		{
 			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
-			this.hasteValue += 2.0D;
+			this.setModValue(this.getModValue() + 2.0F);
 		}
 
-		if (!(this.worldObj.getBlock(this.getHomePosition().posX, this.getHomePosition().posY, this.getHomePosition().posZ) instanceof BlockPumpkin) &&
-				this.homePumpkin != null)
+		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0 && this.isBurning())
 		{
-			this.homeDestroyed();
-		}
-
-		if (this.homePumpkin != null)
-		{
-			double d0 = this.getHomePosition().posX - this.posX;
-			double d1 = this.height * 2 / 3;
-			double d2 = this.getHomePosition().posX - this.posX;
-
-			for (int i = 0; i < 4; i++)
-			{
-				this.worldObj.spawnParticle("townaura", this.posX, d1, this.posZ, d0, 0.0, d2);
-			}
-		}
-
-		if (this.worldObj.isDaytime() && !this.worldObj.isRemote)
-		{
-			float f = this.getBrightness(1.0F);
-
-			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), 
-					MathHelper.floor_double(this.posY),
-					MathHelper.floor_double(this.posZ)))
-			{
-				this.setFire(8);
-			}
-		}
-
-		if (this.getHealth() <= this.getMaxHealth() / 4 && this.isHomePumpkinStillThere() && rand.nextInt(32) == 0 && !this.worldObj.isRemote && !this.isBurning())
-		{
-			for (int x = 0; x < 10; x++)
+			for (int x = 0; x < 6; x++)
 			{
 				EntityPumpkinbomb bomb = new EntityPumpkinbomb(this.worldObj, this);
-
-				bomb.setPosition(this.posX + MathHelper.getRandomIntegerInRange(rand, -4, 4), this.posY + 2.5, this.posZ + MathHelper.getRandomIntegerInRange(rand, -4, 4));
+				bomb.motionX = bomb.motionZ = rand.nextDouble() - rand.nextDouble();
+				bomb.motionY = rand.nextDouble() * 1.15D;
+				bomb.setPosition(this.posX + bomb.motionX * 0.115D, this.posY + 1.5 + bomb.motionY * 0.115D, this.posZ + bomb.motionZ * 0.115D);
 				this.worldObj.spawnEntityInWorld(bomb);
 			}
 		}
-
-		super.onLivingUpdate();
 	}
 
 	public int getTotalArmorValue()
 	{
-		if (this.isHomePumpkinStillThere())
-		{
-			return 15;
-		}
+		if (this.hasHomePumpkin()) return 15;
 		return 5;
 	}
 
-	/**
-	 * Returns if there is a pumpkin nearby to set as a home, also sets it as it's home so this can be called without the intention of returning a boolean value
-	 * @return
-	 */
 	public boolean isPumpkinNearby()
 	{
-		int x = MathHelper.floor_double(posX) - 5;
-		int y = MathHelper.floor_double(posY) - 5;
-		int z = MathHelper.floor_double(posZ) - 5;
+		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		int[] coords;
 
-		for (int y1 = 0; y1 < 11; y1++)
+		for (int i = 0; i < map.size(); i++)
 		{
-			for (int z1 = 0; z1 < 11; z1++)
-			{
-				for (int x1 = 0; x1 < 11; x1++)
-				{
-					Block block = worldObj.getBlock(x + x1, y, z);
-					if (block instanceof BlockPumpkin)
-					{
-						this.setHomeArea(x + x1, y, z, 10);
-						this.setHomePumpkin(x + x1, y, z);
-						return true;
-					}
-				}
-				z++;
-			}
-			z = MathHelper.floor_double(this.posZ) - 5;
-			y++;
+			coords = map.get(i);
+			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin) return true;
 		}
 		return false;
 	}
 
-	public void setHomePumpkin(int par1, int par2, int par3)
+	public int[] getNearbyPumpkin()
 	{
-		if (this.worldObj.getBlock(par1, par2, par3) instanceof BlockPumpkin)
+		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		int[] coords;
+
+		for (int i = 0; i < map.size(); i++)
 		{
-			this.homePumpkin = (BlockPumpkin) this.worldObj.getBlock(par1, par2, par3);
+			coords = map.get(i);
+			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin) return coords;
+		}
+
+		return null;
+	}
+
+	public void createHomePumpkin()
+	{
+		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		int[] coords;
+		Block block;
+
+		for (int i = 0; i < map.size(); i++)
+		{
+			coords = map.get(i);
+			block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+			if (block.canBeReplacedByLeaves(worldObj, coords[0], coords[1], coords[2]) && World.doesBlockHaveSolidTopSurface(worldObj, coords[0], coords[1] - 1, coords[2]))
+			{
+				this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.lit_pumpkin);
+				this.setHomeCoordinates(coords);
+				break;
+			}
 		}
 	}
+	
+	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+	{ 
+		if (this.worldObj.isRemote) return false;
 
-	public BlockPumpkin getHomePumpkin()
-	{
-		return this.homePumpkin;
-	}
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && this.getAttackTarget() != null)
+		{
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
+			EntityPumpkinhead mob;
 
-	public boolean isHomePumpkinStillThere()
-	{
-		return getHomePumpkin() != null;
-	}
+			for (int i = 0; i < list.size(); i++)
+			{
+				if (list.get(i) instanceof EntityPumpkinhead)
+				{
+					mob = (EntityPumpkinhead) list.get(i);
+					if (mob.getAttackTarget() == null) mob.setTarget(this.getAttackTarget());
+				}
+			}
+		}
 
-	public void homeDestroyed()
-	{
-		this.detachHome();
-		this.homePumpkin = null;
+		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	public boolean getCanSpawnHere()
@@ -227,76 +298,35 @@ public class EntityPumpkinhead extends TragicMob {
 		return super.getCanSpawnHere() && this.isPumpkinNearby();
 	}
 
-	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
-		{
-			double d0 = 4.0;
-			d0 *= par2;
-
-			if (d0 > 32.0)
-			{
-				d0 = 32.0;
-			}
-
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
-
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (list.get(i) instanceof EntityPumpkinhead)
-				{
-					((EntityPumpkinhead)list.get(i)).setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
-				}
-			}
-		}
-		return super.attackEntityFrom(par1DamageSource, par2);
-	}
-
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		if (!this.isPumpkinNearby())
 		{
-			int x = MathHelper.floor_double(posX) - 3;
-			int y = MathHelper.floor_double(posY) - 3;
-			int z = MathHelper.floor_double(posZ) - 3;
-
-			for (int y1 = 0; y1 < 7; y1++)
-			{
-				
-				for (int z1 = 0; z1 < 7; z1++)
-				{
-					
-					for (int x1 = 0; x1 < 7; x1++)
-					{
-						Block block = worldObj.getBlock(x + x1, y, z);
-						
-						if (!(block instanceof BlockPumpkin) && rand.nextInt(10) == 0 && 
-								this.worldObj.isSideSolid(x + x1, y - 1, z, ForgeDirection.UP))
-						{
-							if (this.worldObj.isAirBlock(x + x1, y, z) || block instanceof BlockTallGrass ||
-									block instanceof BlockFlower || block instanceof BlockSnow || block instanceof BlockLeaves)
-							{
-								this.worldObj.setBlock(x + x1, y, z, Blocks.pumpkin);
-								this.setHomeArea(x + x1, y, z, 10);
-								this.setHomePumpkin(x + x1, y, z);
-								return super.onSpawnWithEgg(data);
-							}
-						}
-						else if (block instanceof BlockPumpkin)
-						{
-							this.setHomeArea(x + x1, y, z, 10);
-							this.setHomePumpkin(x + x1, y, z);
-							return super.onSpawnWithEgg(data);
-						}
-					}
-					z++;
-				}
-				z = MathHelper.floor_double(this.posZ) - 3;
-				y++;
-			}
+			this.createHomePumpkin();
 		}
-		
+		else
+		{
+			this.setHomeCoordinates(getNearbyPumpkin());
+		}
+
 		return super.onSpawnWithEgg(data);
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("homeCoords")) this.setHomeCoordinates(tag.getIntArray("homeCoords"));;
+		if (tag.hasKey("angerTicks")) this.setAngerTicks(this.getAngerTicks());
+		if (tag.hasKey("modValue")) this.setModValue(tag.getFloat("modValue"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setIntArray("homeCoords", this.getHomeCoordinates());
+		tag.setInteger("angerTicks", this.getAngerTicks());
+		tag.setFloat("modValue", this.getModValue());
 	}
 
 	@Override
