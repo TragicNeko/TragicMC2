@@ -2648,7 +2648,7 @@ Reduce Minotaur and Inkling's speed when moving towards their attack target
 Fix up joining a server, it was a client-side crash caused by me fixing a server-side issue with loading the Clarity potion effect
 Update version numbers
 
-1.36.1520++ <167> (September 22, 2014)
+1.37.1542 [Mob superclass rewrites, rewriting every mob's AI to fix things and make them better, set up their animations, fix up their models] <167> (September 22, 2014)
 Moved giant weapon render to the normal render package alongside the Statue and various projectile renders, it didn't need it's own package
 Adjust internal ordering of Enchantments to keep consistant with the Config
 Fix localization of Apis Amulet
@@ -2673,6 +2673,20 @@ damage
 Jarra extends EntityJabba now, it modifies behaviors of this to use the poison effects of the Janna with the anger abilities of the Jabba, the spikes on it now "wiggle" when it's
 angry, it also gains a particle effect
 Simplified Plague AI, change it's motion to be more "twitchy" rather than just erratic and random, reduced the amount of particles it does
+Reduced Plague health and cut life span in half
+Removed particle effects from Gragul/Kragul, made Kragul extend EntityGragul, lowered their y-offset with their model, added small animations (literally small animations to the
+tiny feet and arms on them) and increased amount of Spirit Bursts that the Kragul fires, but add a buffer period during which it can fire them
+The Gragul is now more difficult to see and way more deadlier, however, the damage resistant time for both was reduced making them easier to kill as well
+Reduced hitbox of Spirit Burst to better fit it's render
+Cleaned up Minotaur's AI some, made it charge more efficiently and it can now attempt to charge at entities above it (it doesn't shoot up into the air though), it now takes less
+damage while it's charging and has sprint particles underneath it, it also has a stance for when it's charging now
+
+1.37.1542++ <168> (September 26, 2014)
+Clean up Inkling's AI, completely remove it's ability to summon help, make it's range checks more efficient, make it more difficult to see while invisible but reduce it's health
+Increased range at which Inkling can teleport, made it handle being on fire better, it can now break torches at farther range and now also spawns in the EntityItem so that it's
+not gone forever once it's broken
+Added basic animations for it, you won't even get to see them due to the Inkling being invisible most of the time, but added regardless
+
 
 --Reminders-
 I'm going to rewrite how Corruption works, it'll affect entities near other corrupted ones, and it'll be a continuous effect, but can be randomly healed if the entity that has
