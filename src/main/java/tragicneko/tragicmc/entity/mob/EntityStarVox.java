@@ -18,10 +18,10 @@ public class EntityStarVox extends EntityNorVox {
 
 	public EntityStarVox(World par1World) {
 		super(par1World);
-		this.setSize(1.135F / 1.5F, 1.875F / 1.5F);
+		this.setSize(1.135F / 1.5F, 1.875F / 1.5F); /*
 		this.canCorrupt = true;
 		this.isCorruptible = true;
-		this.isChangeable = true;
+		this.isChangeable = true; */
 		this.superiorForm = new EntityVoxStellarum(this.worldObj);
 	}
 	
@@ -106,17 +106,9 @@ public class EntityStarVox extends EntityNorVox {
 		return 12;
 	}
 	
-	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {
-
-		if (!TragicNewConfig.allowVoxStellarum) return;
-		
-		boss.copyLocationAndAnglesFrom(this);
-		boss.onSpawnWithEgg((IEntityLivingData)null);
-		world.removeEntity(this);
-		world.spawnEntityInWorld(boss);
-		boss.getDataWatcher().updateObject(16, this.getTextureID()); //ensures the Star-Vox transforms into a Vox Stellarum with the same texture
-		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
-		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
-
+	@Override
+	protected boolean isChangeAllowed()
+	{
+		return TragicNewConfig.allowVoxStellarum;
 	}
 }

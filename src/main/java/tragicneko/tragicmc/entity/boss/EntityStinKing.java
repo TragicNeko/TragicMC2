@@ -33,7 +33,7 @@ import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.EntityDropHelper;
 
-public class EntityStinKing extends TragicMiniBoss {
+public class EntityStinKing extends TragicMob implements TragicMiniBoss {
 
 	public EntityStinKing(World par1World) {
 		super(par1World);
@@ -48,7 +48,6 @@ public class EntityStinKing extends TragicMiniBoss {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
-		this.isCorruptible = true;
 		this.stepHeight = 1.5F;
 	}
 
@@ -310,6 +309,16 @@ public class EntityStinKing extends TragicMiniBoss {
 		}
 
 		return flag;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
+	}
+	
+	@Override
+	public Class getLesserForm() {
+		return EntityStin.class;
 	}
 
 }

@@ -11,10 +11,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityStarCryse extends EntityCryse {
 
 	public EntityStarCryse(World par1World) {
-		super(par1World);
+		super(par1World);/*
 		this.canCorrupt = false;
 		this.isCorruptible = false;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 		this.superiorForm = null;
 	}
 	

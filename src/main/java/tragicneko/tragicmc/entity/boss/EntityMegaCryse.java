@@ -23,11 +23,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicEntities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityMegaCryse extends TragicMiniBoss {
+public class EntityMegaCryse extends TragicMob implements TragicMiniBoss {
 
 	private int shieldsLeft;
 	private int ticksSinceBreak;
@@ -49,11 +50,7 @@ public class EntityMegaCryse extends TragicMiniBoss {
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.canCorrupt = true;
-		this.isCorruptible = true;
-		this.isChangeable = true;
 		this.shieldsLeft = 4;
-		//this.lesserForm = new EntityCryse(par1World);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -222,4 +219,13 @@ public class EntityMegaCryse extends TragicMiniBoss {
 		}
 	}
 
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
+	}
+	
+	@Override
+	public Class getLesserForm() {
+		return EntityCryse.class;
+	}
 }

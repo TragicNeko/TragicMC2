@@ -11,7 +11,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -22,14 +21,15 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.mob.EntityNorVox;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityVoxStellarum extends TragicMiniBoss {
+public class EntityVoxStellarum extends TragicMob implements TragicMiniBoss {
 
 	public EntityVoxStellarum(World par1World) {
 		super(par1World);
@@ -42,9 +42,6 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.canCorrupt = false;
-		this.isCorruptible = true;
-		this.isChangeable = false;
 	}
 
 	public boolean isAIEnabled()
@@ -389,5 +386,15 @@ public class EntityVoxStellarum extends TragicMiniBoss {
 	{
 		this.setTextureID(rand.nextInt(8));
 		return super.onSpawnWithEgg(data);
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
+	}
+	
+	@Override
+	public Class getLesserForm() {
+		return EntityNorVox.class;
 	}
 }

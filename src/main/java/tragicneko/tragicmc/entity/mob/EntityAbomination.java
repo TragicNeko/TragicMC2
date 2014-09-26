@@ -37,9 +37,12 @@ public class EntityAbomination extends TragicMob {
 		this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false;
+	}
+	
+	@Override
+	public boolean canCorrupt()
+	{
+		return false;
 	}
 
 	@Override
@@ -214,6 +217,11 @@ public class EntityAbomination extends TragicMob {
 	public int getTotalArmorValue()
 	{
 		return 4;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 
 }

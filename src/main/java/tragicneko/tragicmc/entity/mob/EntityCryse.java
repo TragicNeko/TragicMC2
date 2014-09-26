@@ -44,9 +44,6 @@ public class EntityCryse extends TragicMob {
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.canCorrupt = true;
-		this.isCorruptible = true;
-		this.isChangeable = true;
 		this.superiorForm = new EntityMegaCryse(par1World);
 	}
 
@@ -70,6 +67,12 @@ public class EntityCryse extends TragicMob {
 	{
 		return true;
 	}
+	
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+	}
 
 	protected void applyEntityAttributes()
 	{
@@ -83,13 +86,37 @@ public class EntityCryse extends TragicMob {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
+		if (this.worldObj.isRemote) return;
+		
+		if (rand.nextInt(1048) == 0 && this.ticksExisted % 6 == 0)
+		{
+			this.setSpinTicks(100);
+		}
+		
+		if (this.getSpinTicks() > 0) this.decrementSpinTicks();
+	}
+	
+	public int getSpinTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+	
+	private void decrementSpinTicks()
+	{
+		int pow = this.dataWatcher.getWatchableObjectInt(16);
+		this.dataWatcher.updateObject(16, --pow);
+	}
+	
+	private void setSpinTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (par1DamageSource.isFireDamage())
 		{
-			par2 *= 4;
+			par2 = (par2 * 4.175F) - 1.0F;
 		}
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
@@ -98,16 +125,20 @@ public class EntityCryse extends TragicMob {
 
 			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)
 			{
-				par2 *= 1.5;
+				par2 *= 1.275;
 			}
 		}	
 		
-		if (super.attackEntityFrom(par1DamageSource, par2) && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0)
+		boolean result = super.attackEntityFrom(par1DamageSource, par2);
+		
+		if (result) this.setSpinTicks(0);
+		
+		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0)
 		{
 			par1DamageSource.getEntity().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), par2 / 4);
 		}
 
-		return super.attackEntityFrom(par1DamageSource, par2);
+		return result;
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
@@ -115,22 +146,18 @@ public class EntityCryse extends TragicMob {
 		boolean result = super.attackEntityAsMob(par1Entity);
 
 		EnumDifficulty dif = this.worldObj.difficultySetting;
-		int x = 1;
-
-		if (dif == EnumDifficulty.EASY)
-		{
-			x = 2;
-		}
+		int x = 2;
 
 		if (dif == EnumDifficulty.NORMAL)
 		{
 			x = 3;
 		}
-
-		if (dif == EnumDifficulty.HARD)
+		else if (dif == EnumDifficulty.HARD)
 		{
 			x = 4;
 		}
+		
+		if (result) this.setSpinTicks(0);
 
 		if (result && par1Entity instanceof EntityLivingBase && rand.nextInt(16 / x) == 0)
 		{
@@ -150,20 +177,9 @@ public class EntityCryse extends TragicMob {
 		return 4;
 	}
 
-	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {
-
-		if (!TragicNewConfig.allowMegaCryse)
-		{
-			return;
-		}
-		
-		boss.copyLocationAndAnglesFrom(this);
-		boss.onSpawnWithEgg((IEntityLivingData)null);
-		world.removeEntity(this);
-		world.spawnEntityInWorld(boss);
-		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
-		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
-
+	@Override
+	protected boolean isChangeAllowed() {
+		return TragicNewConfig.allowMegaCryse;
 	}
 
 }

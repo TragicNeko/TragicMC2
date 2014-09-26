@@ -140,15 +140,6 @@ public class PotionEvents {
 
 		if (TragicNewConfig.allowCorruption && entity.isPotionActive(TragicPotions.Corruption) && !world.isRemote)
 		{
-			if (entity instanceof TragicMob)
-			{
-				if (!((TragicMob)entity).isCorruptible)
-				{
-					entity.removePotionEffect(TragicPotions.Corruption.id);
-				}
-			}
-
-
 			if (TragicNewConfig.allowCorruptionDamage)
 			{
 				if (entity instanceof EntityPlayer && entity.ticksExisted % 40 == 0 && rand.nextBoolean())
@@ -422,14 +413,14 @@ public class PotionEvents {
 			}
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void clarifyInvisibleEnemies(LivingUpdateEvent event)
 	{
 		EntityLivingBase entity = event.entityLiving;
 		World world = event.entityLiving.worldObj;
-		
+
 		if (world.isRemote && TragicNewConfig.allowClarity && entity.isPotionActive(TragicPotions.Clarity))
 		{
 			double d0 = 8.0D + (8.0D * entity.getActivePotionEffect(TragicPotions.Clarity).getAmplifier());
@@ -710,13 +701,12 @@ public class PotionEvents {
 			if (event.source.getEntity() instanceof EntityLivingBase)
 			{
 				EntityLivingBase source = (EntityLivingBase)event.source.getEntity();
-				if (mob.isCorruptible)
+				
+				if (source.isPotionActive(TragicPotions.Corruption.id))
 				{
-					if (source.isPotionActive(TragicPotions.Corruption.id))
-					{
-						mob.addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 240));
-					}
+					mob.addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 240));
 				}
+
 			}
 		}
 		else if (event.entityLiving instanceof EntityMob)

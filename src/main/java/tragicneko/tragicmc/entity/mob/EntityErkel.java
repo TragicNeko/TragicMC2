@@ -32,9 +32,6 @@ public class EntityErkel extends TragicMob {
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, TragicBoss.class, 12.0F, 0.4D, 0.6D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false;
 	}
 	
 	protected void entityInit()
@@ -162,5 +159,10 @@ public class EntityErkel extends TragicMob {
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("texture", this.dataWatcher.getWatchableObjectInt(16));
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 }

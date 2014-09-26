@@ -48,9 +48,6 @@ public class EntityDeathReaperClone extends TragicMob {
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false;
 		this.isImmuneToFire = true;
 	}
 	
@@ -190,5 +187,10 @@ public class EntityDeathReaperClone extends TragicMob {
 	{
 		super.writeEntityToNBT(tag);
 		tag.setBoolean("isBomb", this.isBomb);
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 }

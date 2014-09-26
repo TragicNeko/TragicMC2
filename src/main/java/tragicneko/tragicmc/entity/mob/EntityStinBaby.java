@@ -39,10 +39,10 @@ public class EntityStinBaby extends TragicMob {
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 16.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));/*
 		this.canCorrupt = false;
 		this.isCorruptible = true;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 		this.stepHeight = 0.5F;
 	}
 
@@ -70,7 +70,7 @@ public class EntityStinBaby extends TragicMob {
 	{
 		super.onLivingUpdate();
 		
-		if (this.isCorrupted) this.entityAge++;
+		if (this.isCorrupted()) this.entityAge++;
 		
 		if (this.entityAge >= 1200 && rand.nextInt(128) == 0 && !this.worldObj.isRemote)
 		{
@@ -80,13 +80,13 @@ public class EntityStinBaby extends TragicMob {
 	
 	public void growUp()
 	{
-		EntityStin boss = new EntityStin(this.worldObj);
-		boss.copyLocationAndAnglesFrom(this);
-		boss.onSpawnWithEgg((IEntityLivingData)null);
+		EntityStin stin = new EntityStin(this.worldObj);
+		stin.copyLocationAndAnglesFrom(this);
+		stin.onSpawnWithEgg((IEntityLivingData)null);
 		this.worldObj.removeEntity(this);
-		this.worldObj.spawnEntityInWorld(boss);
-		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
-		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
+		this.worldObj.spawnEntityInWorld(stin);
+		stin.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
+		stin.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
 	}
 
 	public int getTotalArmorValue()
@@ -118,5 +118,10 @@ public class EntityStinBaby extends TragicMob {
 		}
 		
 		return flag;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 }

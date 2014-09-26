@@ -50,10 +50,10 @@ public class EntityPirah extends TragicMob {
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, attackEntitySelector));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, attackEntitySelector)); /*
 		this.canCorrupt = false;
 		this.isCorruptible = false;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 	}
 	
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -205,6 +205,11 @@ public class EntityPirah extends TragicMob {
 	public boolean getCanSpawnHere()
 	{
 		return this.posY > 35.0D && this.posY < 65.0D && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty();
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 
 }

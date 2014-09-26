@@ -38,10 +38,10 @@ public class EntityMinotaur extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 0.65D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true)); /*
 		this.canCorrupt = false;
 		this.isCorruptible = false;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -147,6 +147,11 @@ public class EntityMinotaur extends TragicMob {
 	public int getTotalArmorValue()
 	{
 		return 6;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 
 }

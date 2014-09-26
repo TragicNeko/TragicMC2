@@ -28,7 +28,7 @@ import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
-public class EntityGreaterStin extends TragicMiniBoss {
+public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	public EntityGreaterStin(World par1World) {
 		super(par1World);
@@ -43,9 +43,6 @@ public class EntityGreaterStin extends TragicMiniBoss {
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
-		this.canCorrupt = false;
-		this.isCorruptible = true;
-		this.isChangeable = true;
 		this.superiorForm = this.rand.nextBoolean() && TragicNewConfig.allowStinKing ? new EntityStinKing(this.worldObj) : (TragicNewConfig.allowStinQueen ? new EntityStinQueen(this.worldObj) : null);
 		this.stepHeight = 1.5F;
 	}
@@ -68,16 +65,6 @@ public class EntityGreaterStin extends TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(14.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
-	}
-	
-	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {
-
-		boss.copyLocationAndAnglesFrom(this);
-		boss.onSpawnWithEgg((IEntityLivingData)null);
-		world.removeEntity(this);
-		world.spawnEntityInWorld(boss);
-		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
-		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
 	}
 
 	public int getTotalArmorValue()
@@ -218,6 +205,16 @@ public class EntityGreaterStin extends TragicMiniBoss {
 		}
 		
 		return flag;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return this.superiorForm instanceof EntityStinKing ? TragicNewConfig.allowStinKing : TragicNewConfig.allowStinQueen;
+	}
+
+	@Override
+	public Class getLesserForm() {
+		return EntityStin.class;
 	}
 
 }

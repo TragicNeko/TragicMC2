@@ -58,10 +58,10 @@ public class EntityPumpkinhead extends TragicMob {
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.55D));
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true)); /*
 		this.canCorrupt = false;
 		this.isCorruptible = false;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -297,6 +297,11 @@ public class EntityPumpkinhead extends TragicMob {
 		}
 		
 		return super.onSpawnWithEgg(data);
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 
 }

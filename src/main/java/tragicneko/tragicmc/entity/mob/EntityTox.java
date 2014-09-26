@@ -42,10 +42,10 @@ public class EntityTox extends TragicMob {
 		this.tasks.addTask(5, new EntityAIWander(this, 0.7D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));/*
 		this.canCorrupt = true;
 		this.isCorruptible = true;
-		this.isChangeable = true;
+		this.isChangeable = true; */
 		this.superiorForm = new EntityMagmox(par1World);
 	}
 	
@@ -150,20 +150,10 @@ public class EntityTox extends TragicMob {
 		return this.isFiring ? 0 : 10;
 		
 	}
-	
-	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {
 
-		if (!TragicNewConfig.allowMagmox)
-		{
-			return;
-		}
-		
-		boss.copyLocationAndAnglesFrom(this);
-		boss.onSpawnWithEgg((IEntityLivingData)null);
-		world.removeEntity(this);
-		world.spawnEntityInWorld(boss);
-		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
-		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
+	@Override
+	protected boolean isChangeAllowed() {
+		return TragicNewConfig.allowMagmox;
 	}
 
 }

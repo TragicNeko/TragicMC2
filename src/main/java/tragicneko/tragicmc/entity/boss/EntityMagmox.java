@@ -17,12 +17,14 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.mob.EntityTox;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.main.TragicEntities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityMagmox extends TragicMiniBoss {
+public class EntityMagmox extends TragicMob implements TragicMiniBoss {
 	
 	private int firingTicks;
 	private boolean isFiring;
@@ -40,11 +42,7 @@ public class EntityMagmox extends TragicMiniBoss {
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.canCorrupt = true;
-		this.isCorruptible = true;
-		this.isChangeable = true;
 		this.isImmuneToFire = true;
-		//this.lesserForm = new EntityTox(par1World);
 	}
 
 	public boolean isAIEnabled()
@@ -144,5 +142,15 @@ public class EntityMagmox extends TragicMiniBoss {
 	public int getTotalArmorValue()
 	{
 		return this.isFiring ? 5 : 20;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
+	}
+	
+	@Override
+	public Class getLesserForm() {
+		return EntityTox.class;
 	}
 }

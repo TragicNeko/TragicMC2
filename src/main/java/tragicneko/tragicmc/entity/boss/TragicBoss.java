@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
@@ -175,30 +176,11 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 				if (!player.capabilities.isCreativeMode)
 				{
-					if (par2 >= 35)
-					{
-						par2 /= 10.0F;
-
-						if (par2 >= 30)
-						{
-							par2 /= 10.0F;
-
-							if (par2 >= 25)
-							{
-								par2 /= 10.0F;
-
-								if (par2 >= 20)
-								{
-									par2 /= 10.0F;
-								}
-							}
-						}					
-					}
+					par2 = MathHelper.clamp_float(par2, 0.0F, 30.0F);
 				}
 				else if (player.getCurrentEquippedItem() != null)
 				{
 					boolean flag = player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice;
-
 					if (!flag) return false;
 				}
 			}

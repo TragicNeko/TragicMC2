@@ -1,17 +1,17 @@
 package tragicneko.tragicmc.entity.mob;
 
 import java.util.List;
-import java.util.UUID;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,122 +19,70 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
+import tragicneko.tragicmc.entity.boss.EntityJarra;
+import tragicneko.tragicmc.entity.boss.EntityKragul;
+import tragicneko.tragicmc.entity.boss.EntityMagmox;
+import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
+import tragicneko.tragicmc.entity.boss.EntityStinKing;
+import tragicneko.tragicmc.entity.boss.EntityStinQueen;
+import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
+import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.EntityDropHelper;
 
 public abstract class TragicMob extends EntityMob
 {
-	/**
-	 * If this entity can be corrupted
-	 */
-	public boolean isCorruptible;
-
-	/**
-	 * If this entity can be changed into a superior form
-	 */
-	protected boolean isChangeable;
-
-	/**
-	 * If this entity is currently corrupted (inflicted with corruption effect)
-	 */
-	public boolean isCorrupted;
-
-	/**
-	 * Amount of ticks this entity has been corrupted
-	 */
-	protected int corruptionTicks;
-
-	/**
-	 * This mob's form that it will change into if it is changeable
-	 */
 	protected TragicMiniBoss superiorForm;
-
-	/**
-	 * If the mob can corrupt others
-	 */
-	public boolean canCorrupt;
-
-	private static UUID victoryHealthUUID = UUID.fromString("971e53b4-421c-4095-bada-ea663c5668bf");
-	private static AttributeModifier victoryHealthBuff = new AttributeModifier(victoryHealthUUID, "victoryHealthBuff", 10.0, 0);
-
-	private static UUID victoryAttackUUID = UUID.fromString("289f9662-7c88-40e7-8584-efeede32b3db");
-	private static AttributeModifier victoryAttackDamageBuff = new AttributeModifier(victoryAttackUUID, "victoryAttackDamageBuff", 3.0, 0);
 
 	public TragicMob(World par1World) {
 		super(par1World);
-		this.isCorruptible = true;
-		this.canCorrupt = true;
-		this.isChangeable = false;
 	}
 
-	/**
-	 * Returns if the mob is able to be corrupted
-	 * @return isCorruptible
-	 */
-	protected boolean getCorruptible()
+	protected boolean canCorrupt()
 	{
-		return this.isCorruptible;
+		return true;
 	}
 
-	/**
-	 * Sets the mob to be corruptible, currently is set in the onLivingUpdate() method automatically
-	 * @param flag
-	 */
-	private void setCorruptible(Boolean flag)
+	protected boolean canChange()
 	{
-		this.isCorruptible = flag;
+		return this.superiorForm != null && TragicNewConfig.allowMobTransformation;
 	}
 
-	/**
-	 * Returns if the current mob is able to be converted into a Mini-Boss
-	 * @return isChangeable
-	 */
-	protected boolean getChangeable()
+	protected void entityInit()
 	{
-		return this.isChangeable;
+		super.entityInit();
+		this.dataWatcher.addObject(15, Integer.valueOf(0));
 	}
 
-	/**
-	 * Sets the mob to be changeable, currently is set in the onLivingUpdate() method automatically.
-	 * @param flag
-	 */
-	protected void setChangeable(Boolean flag)
+	public int getCorruptionTicks()
 	{
-		this.isChangeable = flag;
+		return this.dataWatcher.getWatchableObjectInt(15);
 	}
 
-	/**
-	 * Used when a mob is currently inflicted with the Corruption effect, called each tick while corrupted.
-	 */
-	public void onCorruption() {}
+	protected void setCorruptionTicks(int i)
+	{
+		this.dataWatcher.updateObject(15, i);
+	}
 
-	/**
-	 * Called when a corrupted mob is to be changed into a Mini-Boss. Must be overidden by each changeable mob to actually do the change
-	 * @param world
-	 * @param entity
-	 * @param boss
-	 * @param par1
-	 * @param par2
-	 * @param par3
-	 */
-	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {}
-
-	/**
-	 * Called when a mob's corruption gets removed, must be called by an outside class to instigate changes to the entity
-	 */
-	public void onPurify() {}
+	protected void incrementCorruptionTicks()
+	{
+		int pow = this.getCorruptionTicks();
+		this.setCorruptionTicks(++pow);
+	}
 
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
 
+		if (this.worldObj.isRemote) return;
+		
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null); 
 
-		if (this.getAttackTarget() == null && this.isCorrupted && this.canCorrupt && TragicNewConfig.allowCorruption)
+		if (this.getAttackTarget() == null && this.canCorrupt() && TragicNewConfig.allowCorruption)
 		{
 			EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
 
@@ -193,72 +141,55 @@ public abstract class TragicMob extends EntityMob
 			}
 		}
 
-		if (this.corruptionTicks < 0)
-		{
-			this.corruptionTicks = 0;
-		}
-
-		if (this.isCorruptible && TragicNewConfig.allowCorruption)
+		if (TragicNewConfig.allowCorruption)
 		{
 			if (this.isPotionActive(TragicPotions.Corruption))
 			{
-				this.isCorrupted = true;
-				this.onCorruption();
-				this.corruptionTicks++;
+				this.incrementCorruptionTicks();
 			}
 			else
 			{
-				this.isCorrupted = false;
-
-				if (this.corruptionTicks > 0)
-				{
-					this.corruptionTicks--;
-				}
+				this.setCorruptionTicks(0);
 			}
 
-			if (this.corruptionTicks >= 100)
+			if (this.canChange() && this.getCorruptionTicks() >= 600 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance && this.ticksExisted % 20 == 0)
 			{
-				this.setChangeable(true);
-			}
-			else
-			{
-				this.setChangeable(false);
-			}
-
-			if (this.isChangeable && corruptionTicks >= 600 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && !this.worldObj.isRemote)
-			{
-				if (this.superiorForm != null)
-				{
-					this.change();
-				}
+				this.change();
 			}
 		}
-		else
+		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance)
 		{
-			if (this.isChangeable && this.ticksExisted >= 6000 && this.rand.nextInt(128) == 0 && TragicNewConfig.allowMobTransformation && !this.worldObj.isRemote)
-			{
-				if (this.superiorForm != null)
-				{
-					this.change();
-				}
-			}
+			this.change();
 		}
 	}
 
-	/**
-	 * Actually calls the onChange() method from the onLivingUpdate() method
-	 */
 	protected void change() 
 	{
-		this.onChange(this.worldObj, this, this.getSuperiorForm(), this.posX, this.boundingBox.minY, this.posZ);
+		if (this.isChangeAllowed())
+		{
+			TragicMob boss = (TragicMob) this.getSuperiorForm();
+			boss.copyLocationAndAnglesFrom(this);
+			boss.onSpawnWithEgg((IEntityLivingData)null);
+			this.worldObj.removeEntity(this);
+			this.worldObj.spawnEntityInWorld(boss);
+			boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
+			boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
+		}
+	}
+
+	protected TragicMiniBoss getSuperiorForm() {
+		return this.superiorForm;
 	}
 
 	/**
-	 * Returns the Mini-Boss this mob should change in to, or null if it doesn't change
+	 * This needs to be overriden by each class to specify whether their superior form is allowed via the config, else it isn't even used
 	 * @return
 	 */
-	protected TragicMiniBoss getSuperiorForm() {
-		return this.superiorForm;
+	protected abstract boolean isChangeAllowed();
+
+	public boolean isCorrupted()
+	{
+		return this.getCorruptionTicks() > 0;
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
@@ -267,63 +198,48 @@ public abstract class TragicMob extends EntityMob
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
-		if (result && TragicNewConfig.allowCorruption)
+		if (result && TragicNewConfig.allowCorruption && this.canCorrupt())
 		{
-			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).isCorruptible && !((TragicMob)par1Entity).isCorrupted && this.rand.nextInt(4) == 0 && this.canCorrupt)
+			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).canCorrupt() && this.rand.nextInt(4) == 0)
 			{
 				((TragicMob) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 60, 1));
 			}
-			else if (par1Entity instanceof EntityCreature)
+			else if (par1Entity instanceof EntityAnimal)
 			{
-				((EntityCreature)par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 120, 1));
+				((EntityAnimal)par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 120, 1));
 			}
 		} 
 
 		return result;
 	}
 
-	public boolean canAttackClass(Class par1Class)
+	public void readEntityFromNBT(NBTTagCompound tag)
 	{
-		return TragicBoss.class != par1Class;
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("corruptionTicks")) this.setCorruptionTicks(tag.getInteger("corruptionTicks"));
 	}
 
-	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void writeEntityToNBT(NBTTagCompound tag)
 	{
-		super.readEntityFromNBT(par1NBTTagCompound);
-
-		if (par1NBTTagCompound.hasKey("CorruptionTicks", 99))
-		{
-			byte b0 = par1NBTTagCompound.getByte("CorruptionTicks");
-			this.corruptionTicks = b0;
-		}
-		if (par1NBTTagCompound.hasKey("IsCorrupted"))
-		{
-			Boolean flag = par1NBTTagCompound.getBoolean("IsCorrupted");
-			this.isCorrupted = flag;
-		}
+		super.writeEntityToNBT(tag);
+		tag.setInteger("corruptionTicks", this.getCorruptionTicks());
 	}
 
-	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		par1NBTTagCompound.setByte("CorruptionTicks", (byte)this.corruptionTicks);
-		par1NBTTagCompound.setBoolean("IsCorrupted", this.isCorrupted);
-		super.writeEntityToNBT(par1NBTTagCompound);
-	}
-
-	/**
-	 * Faster way to get if mobGriefing is enabled
-	 * @return
-	 */
 	public boolean getMobGriefing()
 	{
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 	}
 
+	public boolean getAllowLoot()
+	{
+		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
+	}
+
 	public void onDeath(DamageSource par1DamageSource)
 	{		
 		super.onDeath(par1DamageSource);
-		
-		if (!this.worldObj.isRemote && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+
+		if (!this.worldObj.isRemote && this.getAllowLoot())
 		{
 			int x = 1;
 
@@ -360,13 +276,63 @@ public abstract class TragicMob extends EntityMob
 
 				if (drops > x * 2) break;
 			}
+
+			if (!TragicNewConfig.allowMobStatueDrops) return;
+
+			int id = 0;
+
+			if (this instanceof EntityJarra)
+			{
+				id = 6;
+			}
+			else if (this instanceof EntityKragul)
+			{
+				id = 7;
+			}
+			else if (this instanceof EntityMagmox)
+			{
+				id = 8;
+			}
+			else if (this instanceof EntityMegaCryse)
+			{
+				id = 9;
+			}
+			else if (this instanceof EntityStinKing)
+			{
+				id = 10;
+			}
+			else if (this instanceof EntityStinQueen)
+			{
+				id = 11;
+			}
+			else if (this instanceof EntityGreaterStin)
+			{
+				id = 12;
+			}
+			else if (this instanceof EntityVoxStellarum)
+			{
+				id = 13;
+			}
+
+			if (id != 0 && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 		}		
 	}
-	
+
 	@Override
 	public void onKillEntity(EntityLivingBase entity)
 	{
 		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, (int) (entity.getMaxHealth() * 10), 2));
 		this.addPotionEffect(new PotionEffect(Potion.resistance.id, (int) (entity.getMaxHealth() * 10), 2));
+	}
+
+	public Class getLesserForm()
+	{
+		return null;
+	}
+
+	@Override
+	public boolean canAttackClass(Class par1Class)
+	{
+		return super.canAttackClass(par1Class) && this instanceof TragicMiniBoss ? par1Class != this.getLesserForm() : true;
 	}
 }

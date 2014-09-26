@@ -58,10 +58,10 @@ public class EntityRagr extends TragicMob {
 		this.tasks.addTask(4, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true)); /*
 		this.canCorrupt = true;
 		this.isCorruptible = true;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -90,7 +90,7 @@ public class EntityRagr extends TragicMob {
 		{
 			this.angerTicks++;
 
-			if (this.corruptionTicks > 0)
+			if (this.getCorruptionTicks() > 0)
 			{
 				this.angerTicks++;
 			}
@@ -463,6 +463,11 @@ public class EntityRagr extends TragicMob {
 
 		}
 		return super.attackEntityAsMob(par1Entity);
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 
 }

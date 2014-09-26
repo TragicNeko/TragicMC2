@@ -40,10 +40,10 @@ public class EntityNorVox extends TragicMob {
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true)); /*
 		this.canCorrupt = false;
 		this.isCorruptible = false;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 	}
 
 	public boolean isAIEnabled()
@@ -204,5 +204,10 @@ public class EntityNorVox extends TragicMob {
 
 			return l > this.rand.nextInt(b0) ? false : super.getCanSpawnHere();
 		}
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
 	}
 }

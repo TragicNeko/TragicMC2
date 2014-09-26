@@ -18,12 +18,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.mob.EntityGragul;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.DamageHelper;
 
-public class EntityKragul extends TragicMiniBoss {
+public class EntityKragul extends TragicMob implements TragicMiniBoss {
 	
 	private int waitTime;
 
@@ -42,7 +44,6 @@ public class EntityKragul extends TragicMiniBoss {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.isImmuneToFire = true;
 		this.waitTime = 60;
-		//this.lesserForm = new EntityGragul(par1World);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -201,6 +202,16 @@ public class EntityKragul extends TragicMiniBoss {
 		}
 
 		return result;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return false;
+	}
+	
+	@Override
+	public Class getLesserForm() {
+		return EntityGragul.class;
 	}
 
 }

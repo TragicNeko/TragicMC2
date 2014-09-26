@@ -14,10 +14,10 @@ public class EntityPox extends EntityTox {
 
 	public EntityPox(World par1World) {
 		super(par1World);
-		this.setSize(0.5F * 0.75F, 1.9F * 0.75F);
+		this.setSize(0.5F * 0.75F, 1.9F * 0.75F); /*
 		this.canCorrupt = false;
 		this.isCorruptible = false;
-		this.isChangeable = false;
+		this.isChangeable = false; */
 		this.superiorForm = null;
 	}
 	

@@ -38,10 +38,10 @@ public class EntityGragul extends TragicMob {
 		this.tasks.addTask(5, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));/*
 		this.canCorrupt = false;
 		this.isCorruptible = true;
-		this.isChangeable = true;
+		this.isChangeable = true; */
 		this.isImmuneToFire = true;
 		this.superiorForm = new EntityKragul(par1World);
 	}
@@ -103,21 +103,6 @@ public class EntityGragul extends TragicMob {
 					this.rand.nextDouble() * 0.1D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D);
 		}
-	}
-
-	public void onChange(World world, TragicMob entity, TragicMiniBoss boss, double par1, double par2, double par3) {
-
-		if (!TragicNewConfig.allowKragul)
-		{
-			return;
-		}
-
-		boss.copyLocationAndAnglesFrom(this);
-		boss.onSpawnWithEgg((IEntityLivingData)null);
-		world.removeEntity(this);
-		world.spawnEntityInWorld(boss);
-		boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
-		boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
@@ -192,5 +177,10 @@ public class EntityGragul extends TragicMob {
 		}
 
 		return result;
+	}
+
+	@Override
+	protected boolean isChangeAllowed() {
+		return TragicNewConfig.allowKragul;
 	}
 }
