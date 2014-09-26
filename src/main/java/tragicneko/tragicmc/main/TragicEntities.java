@@ -462,7 +462,7 @@ public class TragicEntities {
 					BiomeGenBase.mesaPlateau,
 					BiomeGenBase.mesaPlateau_F
 					);
-			TragicEntityList.addMapping(EntityJarra.class, "TragicMC.Jarra", id++, 0x77329B, 0xC4F7FD, EnumEggType.MINIBOSS);
+			TragicEntityList.addMapping(EntityJarra.class, "TragicMC.Jarra", id++, 0x77329B, 0xC457FD, EnumEggType.MINIBOSS);
 		}
 		
 		if (TragicNewConfig.allowKragul)

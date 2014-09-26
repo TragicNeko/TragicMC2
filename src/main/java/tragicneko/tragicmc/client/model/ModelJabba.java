@@ -86,6 +86,7 @@ public class ModelJabba extends ModelBase
 
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
+		if (!(entity instanceof EntityJabba)) return; //Claymation protection, temporary
 		EntityJabba jab = (EntityJabba) entity;
 		int i = jab.getAttackTicks();
 
