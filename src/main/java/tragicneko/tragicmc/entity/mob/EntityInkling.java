@@ -1,13 +1,10 @@
 package tragicneko.tragicmc.entity.mob;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIFleeSun;
@@ -18,8 +15,9 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.DamageSource;
@@ -27,12 +25,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicItems;
 
 public class EntityInkling extends TragicMob {
-
-	private int summonTicks;
-	private int visibleTicks;
 
 	public EntityInkling(World par1World) {
 		super(par1World);
@@ -41,17 +35,37 @@ public class EntityInkling extends TragicMob {
 		this.getNavigator().setBreakDoors(true);
 		this.getNavigator().setAvoidSun(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIFleeSun(this, 1.2D));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(2, new EntityAIFleeSun(this, 1.2D));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 0.8D, 32.0F));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.8D, 32.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));/*
-		this.canCorrupt = true;
-		this.isCorruptible = true;
-		this.isChangeable = false; */
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+	}
+
+	public int getVisibleTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setVisibleTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementVisibleTicks()
+	{
+		int pow = this.getVisibleTicks();
+		this.setVisibleTicks(--pow);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -67,242 +81,140 @@ public class EntityInkling extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(24.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.23);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 	}
 
 	public void onLivingUpdate()
 	{
-		if (!this.worldObj.isRemote)
+		super.onLivingUpdate();
+		
+		if (this.worldObj.isRemote && this.getVisibleTicks() == 0 && rand.nextBoolean())
 		{
-			if (this.visibleTicks > 0)
-			{
-				this.visibleTicks--;
-			}
-			else
-			{
-				if (this.getAttackTarget() != null && this.visibleTicks == 0)
-				{
-					this.setInvisible(true);
-				}
-			}
+			this.worldObj.spawnParticle("smoke",
+					this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+					this.posY + this.rand.nextDouble() * (double)this.height - 0.5D,
+					this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+					(this.rand.nextDouble() - 0.6D) * 0.1D,
+					this.rand.nextDouble() * 0.1D,
+					(this.rand.nextDouble() - 0.6D) * 0.1D);
 		}
 
-		if (this.visibleTicks > 0)
+		if (this.worldObj.isRemote) return;
+		
+		if (this.isBurning()) this.setVisibleTicks(20);
+
+		if (this.getVisibleTicks() > 0) 
 		{
+			this.decrementVisibleTicks();
 			this.setInvisible(false);
-		}
-
-		if (this.isInvisible())
-		{
-			this.setSprinting(true);
 		}
 		else
 		{
-			this.setSprinting(false);
+			this.setInvisible(true);
 		}
 
-		if (!this.worldObj.isRemote)
-		{
-			if (this.isBurning() && rand.nextInt(16) == 0 && this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
-			{
-				this.teleportRandomly();
-			}
-
-			if (this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
-			{
-				if (!this.isBurning() && this.ticksExisted % 10 == 0)
-				{
-					this.setFire(4);
-				}
-				this.setInvisible(false);
-
-				if (this.ticksExisted % 20 == 0)
-				{
-					int x = MathHelper.floor_double(posX) - 3;
-					int y = MathHelper.floor_double(posY) - 3;
-					int z = MathHelper.floor_double(posZ) - 3;
-
-					PathEntity path = null;
-
-					for (int y1 = 0; y1 < 6; y1++)
-					{
-						for (int z1 = 0; z1 < 6; z1++)
-						{
-							for (int x1 = 0; x1 < 6; x1++)
-							{
-								if (this.worldObj.getBlockLightValue(x + x1, y, z) <= 6)
-								{
-									path = this.getNavigator().getPathToXYZ(x + x1, y, z);
-									break;
-								}
-							}
-							z++;
-						}
-						z = MathHelper.floor_double(this.posZ) - 3;
-						y++;
-					}
-
-					if (path != null)
-					{
-						this.getNavigator().setPath(path, .6);
-						this.setAttackTarget(null);
-					}
-				}
-			}
-		}
-
-		if (this.getAttackTarget() != null && this.ticksExisted % 60 == 0)
-		{
-			if (!this.worldObj.isRemote)
-			{
-				this.summonTicks++;
-				
-				if (this.summonTicks >= 5 && this.visibleTicks == 0)
-				{
-					this.summonTicks = 0;
-
-					if (rand.nextInt(10) == 0)
-					{
-						//this.attemptToSummonHelp();
-					}
-				}
-			}
-		}
-
-		
-
-		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null 
-				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY, (int)this.getAttackTarget().posZ) <= 8 &&
-				this.getDistanceToEntity(this.getAttackTarget()) > 10.0F)
-		{
-			this.teleportToEntity(this.getAttackTarget());
-		}
-
-		if (this.ticksExisted % 60 == 0 && this.getMobGriefing())
-		{
-			int x = MathHelper.floor_double(posX) - 3;
-			int y = MathHelper.floor_double(posY) - 3;
-			int z = MathHelper.floor_double(posZ) - 3;
-
-			for (int y1 = 0; y1 < 7; y1++)
-			{
-				for (int z1 = 0; z1 < 7; z1++)
-				{
-					for (int x1 = 0; x1 < 7; x1++)
-					{
-						Block block = worldObj.getBlock(x + x1, y, z);
-						if (block instanceof BlockTorch && this.rand.nextInt(3) == 0)
-						{
-							worldObj.setBlockToAir(x + x1, y, z);
-						}
-					}
-					z++;
-				}
-				z = MathHelper.floor_double(this.posZ) - 5;
-				y++;
-			}
-		}
-
-		super.onLivingUpdate();
-	}
-
-	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase &&
-				this.rand.nextInt(4) == 0 && super.attackEntityFrom(par1DamageSource, par2))
-		{
-			if (!par1DamageSource.isFireDamage() && rand.nextInt(4) == 0 && this.getAttackTarget() != null)
-			{
-				//this.attemptToSummonHelp();
-			}
-		}
-
-		if (par1DamageSource.isFireDamage() && rand.nextInt(3) == 0)
+		if (this.isBurning() && rand.nextInt(8) == 0 || this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
 		{
 			this.teleportRandomly();
 		}
 
-		if (this.visibleTicks == 0 && !this.worldObj.isRemote)
+		if (this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
 		{
-			this.visibleTicks = 10 + rand.nextInt(10);
+			if (!this.isBurning() && this.ticksExisted % 10 == 0)
+			{
+				this.setFire(4);
+			}
+
+			this.setVisibleTicks(20);
+
+			if (this.ticksExisted % 20 == 0)
+			{
+				int x = (int) this.posX;
+				int y = (int) this.posY;
+				int z = (int) this.posZ;
+
+				PathEntity path = null;
+
+				for (int y1 = -3; y1 < 4; y1++)
+				{
+					for (int z1 = -3; z1 < 4; z1++)
+					{
+						for (int x1 = -3; x1 < 4; x1++)
+						{
+							if (this.worldObj.getBlockLightValue(x + x1, y + y1, z + z1) <= 6)
+							{
+								path = this.getNavigator().getPathToXYZ(x + x1, y + y1, z + z1);
+								break;
+							}
+						}
+					}
+				}
+
+				if (path != null)
+				{
+					this.getNavigator().setPath(path, 0.825D);
+					this.setAttackTarget(null);
+				}
+			}
 		}
+
+		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null 
+				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ) <= 8 &&
+				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()))
+		{
+			this.teleportToEntity(this.getAttackTarget());
+		}
+
+		if (this.ticksExisted % 60 == 0 && this.getMobGriefing() && rand.nextBoolean())
+		{
+			int x = (int) this.posX;
+			int y = (int) this.posY;
+			int z = (int) this.posZ;
+
+			for (int y1 = -4; y1 < 5; y1++)
+			{
+				for (int z1 = -4; z1 < 5; z1++)
+				{
+					for (int x1 = -4; x1 < 5; x1++)
+					{
+						Block block = worldObj.getBlock(x + x1, y + y1, z + z1);
+						if (block instanceof BlockTorch)
+						{
+							worldObj.setBlockToAir(x + x1, y + y1, z + z1);
+							this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, x + x1, y + y1, z + z1, new ItemStack(Blocks.torch)));
+							return;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+	{
+		if (this.worldObj.isRemote) return false;
+
+		if (par1DamageSource.isFireDamage() && rand.nextInt(4) == 0) this.teleportRandomly();
+		this.setVisibleTicks(10 + rand.nextInt(10));
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
-	
+
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity) && this.visibleTicks == 0)
-		{
-			this.visibleTicks = 10;
-		}
-		return super.attackEntityAsMob(par1Entity);
+		boolean result = super.attackEntityAsMob(par1Entity);
+		if (result) this.setVisibleTicks(10 + rand.nextInt(10));
+		
+		return result;
 	}
 
 	public int getTotalArmorValue()
 	{
-		if (this.isBurning())
-		{
-			return 0;
-		}
-
+		if (this.isBurning()) return 0; 
 		return 4;
-	}
-
-	private void attemptToSummonHelp() 
-	{
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityInkling.class, boundingBox.expand(32.0, 32.0, 32.0));		
-
-		if (list.size() >= 3)
-		{
-			return;
-		}
-		EntityInkling inkling = new EntityInkling(this.worldObj);
-
-		EntityLivingBase entitylivingbase = this.getAttackTarget();
-
-		if (entitylivingbase == null)
-		{
-			return;
-		}
-
-		int x = MathHelper.floor_double(posX) - 3;
-		int y = MathHelper.floor_double(posY) - 3;
-		int z = MathHelper.floor_double(posZ) - 3;
-
-		for (int y1 = 0; y1 < 7; y1++)
-		{
-			for (int z1 = 0; z1 < 7; z1++)
-			{
-				for (int x1 = 0; x1 < 7; x1++)
-				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, x + x1, y - 1, z) && this.worldObj.getBlockLightValue(x + x1, y, z) <= 8)
-					{
-						inkling.setPosition((double)x + x1, (double)y, (double)z);
-
-						if (this.worldObj.checkNoEntityCollision(inkling.boundingBox) &&
-								this.worldObj.getCollidingBoundingBoxes(inkling, inkling.boundingBox).isEmpty() &&
-								!this.worldObj.isAnyLiquid(inkling.boundingBox))
-						{
-							this.worldObj.spawnEntityInWorld(inkling);
-
-							if (entitylivingbase != null) 
-							{
-								inkling.setAttackTarget(entitylivingbase);
-							}
-							break;
-						}
-					}
-				}
-				z++;
-			}
-			z = MathHelper.floor_double(this.posZ) - 3;
-			y++;
-		}
-
 	}
 
 	protected boolean teleportRandomly()
@@ -381,21 +293,20 @@ public class EntityInkling extends TragicMob {
 		}
 		else
 		{
-			/*
-            short short1 = 128;
+			short short1 = 128;
 
-            for (int l = 0; l < short1; ++l)
-            {
-                double d6 = (double)l / ((double)short1 - 1.0D);
-                float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-                float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-                float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-                double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-                double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
-                double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-                this.worldObj.spawnParticle("smoke", d7, d8, d9, (double)f, (double)f1, (double)f2);
-            }
-			 */
+			for (int l = 0; l < short1; ++l)
+			{
+				double d6 = (double)l / ((double)short1 - 1.0D);
+				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
+				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
+				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
+				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
+				this.worldObj.spawnParticle("smoke", d7, d8, d9, (double)f, (double)f1, (double)f2);
+			}
+
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound("mob.endermen.portal", 1.0F, 1.0F);
 			return true;
