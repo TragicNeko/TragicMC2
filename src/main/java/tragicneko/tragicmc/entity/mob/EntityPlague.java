@@ -47,7 +47,7 @@ public class EntityPlague extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(6.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.235);
 	}
@@ -159,7 +159,7 @@ public class EntityPlague extends TragicMob {
 				}
 			}
 
-			if (this.ticksExisted >= 1200 && !this.hasCustomNameTag())
+			if (this.ticksExisted >= 600 && !this.hasCustomNameTag())
 			{
 				this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
 			}
