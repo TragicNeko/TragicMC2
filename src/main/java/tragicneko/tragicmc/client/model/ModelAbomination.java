@@ -17,7 +17,6 @@ public class ModelAbomination extends ModelBase
 
 	public ModelAbomination()
 	{
-		super();
 		this.textureWidth = 64;
 		this.textureHeight = 64;
 
