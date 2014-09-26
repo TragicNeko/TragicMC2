@@ -17,6 +17,7 @@ public class EntitySpiritCast extends EntityProjectile {
 
 	public EntitySpiritCast(World par1World) {
 		super(par1World);
+		this.setSize(0.465F, 0.465F);
 	}
 
 	public EntitySpiritCast(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
