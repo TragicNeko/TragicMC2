@@ -1,154 +1,107 @@
 package tragicneko.tragicmc.client.model;
 
+import java.util.Random;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
 
 public class ModelPlague extends ModelBase
 {
-	//fields
-	ModelRenderer Shape1;
-	ModelRenderer Shape2;
-	ModelRenderer Shape3;
-	ModelRenderer Shape4;
-	ModelRenderer Shape5;
-	ModelRenderer Shape6;
-	ModelRenderer Shape7;
-	ModelRenderer Shape8;
-	ModelRenderer Shape9;
-	ModelRenderer Shape10;
+	private ModelRenderer shape;
+	private ModelRenderer shape2;
+	private ModelRenderer shape3;
+	private ModelRenderer shape4;
+	private ModelRenderer shape5;
+	private ModelRenderer shape6;
+	private ModelRenderer shape7;
+	private ModelRenderer shape8;
+	private ModelRenderer shape9;
+	private ModelRenderer shape10;
+	
+	private ModelRenderer[] shapeArray = new ModelRenderer[10];
 
 	public ModelPlague()
 	{
 		textureWidth = 64;
 		textureHeight = 32;
+		
+		shape = new ModelRenderer(this, 0, 0);
+		shape.addBox(0F, 0F, 0F, 1, 1, 1);
+		shape.setRotationPoint(0F, 10F, 0F);
+		
+		shape2 = new ModelRenderer(this, 0, 0);
+		shape2.addBox(0F, 5F, 5F, 1, 1, 1);
+		shape2.setRotationPoint(0F, 10F, 0F);
 
-		Shape1 = new ModelRenderer(this, 0, 0);
-		Shape1.addBox(0F, 0F, 0F, 1, 1, 1);
-		Shape1.setRotationPoint(0F, 10F, 0F);
-		Shape1.setTextureSize(64, 32);
-		Shape1.mirror = true;
-		setRotation(Shape1, 0F, 0F, 0F);
-		Shape2 = new ModelRenderer(this, 0, 0);
-		Shape2.addBox(0F, 5F, 5F, 1, 1, 1);
-		Shape2.setRotationPoint(0F, 10F, 0F);
-		Shape2.setTextureSize(64, 32);
-		Shape2.mirror = true;
-		setRotation(Shape2, 0F, 0F, 0F);
-		Shape3 = new ModelRenderer(this, 0, 0);
-		Shape3.addBox(-1F, 0F, -4F, 1, 1, 1);
-		Shape3.setRotationPoint(0F, 10F, 0F);
-		Shape3.setTextureSize(64, 32);
-		Shape3.mirror = true;
-		setRotation(Shape3, 0F, 0F, 0F);
-		Shape4 = new ModelRenderer(this, 0, 0);
-		Shape4.addBox(3F, -2F, 1F, 1, 1, 1);
-		Shape4.setRotationPoint(0F, 10F, 0F);
-		Shape4.setTextureSize(64, 32);
-		Shape4.mirror = true;
-		setRotation(Shape4, 0F, 0F, 0F);
-		Shape5 = new ModelRenderer(this, 0, 0);
-		Shape5.addBox(-5F, 5F, -6F, 1, 1, 1);
-		Shape5.setRotationPoint(0F, 10F, 0F);
-		Shape5.setTextureSize(64, 32);
-		Shape5.mirror = true;
-		setRotation(Shape5, 0F, 0F, 0F);
-		Shape6 = new ModelRenderer(this, 0, 0);
-		Shape6.addBox(2F, 7F, 0F, 1, 1, 1);
-		Shape6.setRotationPoint(0F, 10F, 0F);
-		Shape6.setTextureSize(64, 32);
-		Shape6.mirror = true;
-		setRotation(Shape6, 0F, 0F, 0F);
-		Shape7 = new ModelRenderer(this, 0, 0);
-		Shape7.addBox(-3F, 0F, 3F, 1, 1, 1);
-		Shape7.setRotationPoint(0F, 10F, 0F);
-		Shape7.setTextureSize(64, 32);
-		Shape7.mirror = true;
-		setRotation(Shape7, 0F, 0F, 0F);
-		Shape8 = new ModelRenderer(this, 0, 0);
-		Shape8.addBox(0F, -4F, 6F, 1, 1, 1);
-		Shape8.setRotationPoint(0F, 10F, 0F);
-		Shape8.setTextureSize(64, 32);
-		Shape8.mirror = true;
-		setRotation(Shape8, 0F, 0F, 0F);
-		Shape9 = new ModelRenderer(this, 0, 0);
-		Shape9.addBox(3F, 2F, -7F, 1, 1, 1);
-		Shape9.setRotationPoint(0F, 10F, 0F);
-		Shape9.setTextureSize(64, 32);
-		Shape9.mirror = true;
-		setRotation(Shape9, 0F, 0F, 0F);
-		Shape10 = new ModelRenderer(this, 0, 0);
-		Shape10.addBox(-6F, -2F, 0F, 1, 1, 1);
-		Shape10.setRotationPoint(0F, 10F, 0F);
-		Shape10.setTextureSize(64, 32);
-		Shape10.mirror = true;
-		setRotation(Shape10, 0F, 0F, 0F);
+		shape3 = new ModelRenderer(this, 0, 0);
+		shape3.addBox(-1F, 0F, -4F, 1, 1, 1);
+		shape3.setRotationPoint(0F, 10F, 0F);
+
+		shape4 = new ModelRenderer(this, 0, 0);
+		shape4.addBox(3F, -2F, 1F, 1, 1, 1);
+		shape4.setRotationPoint(0F, 10F, 0F);
+
+		shape5 = new ModelRenderer(this, 0, 0);
+		shape5.addBox(-5F, 5F, -6F, 1, 1, 1);
+		shape5.setRotationPoint(0F, 10F, 0F);
+
+		shape6 = new ModelRenderer(this, 0, 0);
+		shape6.addBox(2F, 7F, 0F, 1, 1, 1);
+		shape6.setRotationPoint(0F, 10F, 0F);
+
+		shape7 = new ModelRenderer(this, 0, 0);
+		shape7.addBox(-3F, 0F, 3F, 1, 1, 1);
+		shape7.setRotationPoint(0F, 10F, 0F);
+
+		shape8 = new ModelRenderer(this, 0, 0);
+		shape8.addBox(0F, -4F, 6F, 1, 1, 1);
+		shape8.setRotationPoint(0F, 10F, 0F);
+
+		shape9 = new ModelRenderer(this, 0, 0);
+		shape9.addBox(3F, 2F, -7F, 1, 1, 1);
+		shape9.setRotationPoint(0F, 10F, 0F);
+
+		shape10 = new ModelRenderer(this, 0, 0);
+		shape10.addBox(-6F, -2F, 0F, 1, 1, 1);
+		shape10.setRotationPoint(0F, 10F, 0F);
+		
+		this.shapeArray = new ModelRenderer[] {shape, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10};
 	}
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		Shape1.render(f5);
-		Shape2.render(f5);
-		Shape3.render(f5);
-		Shape4.render(f5);
-		Shape5.render(f5);
-		Shape6.render(f5);
-		Shape7.render(f5);
-		Shape8.render(f5);
-		Shape9.render(f5);
-		Shape10.render(f5);
-	}
-
-	private void setRotation(ModelRenderer model, float x, float y, float z)
-	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
+		shape.render(f5);
+		shape2.render(f5);
+		shape3.render(f5);
+		shape4.render(f5);
+		shape5.render(f5);
+		shape6.render(f5);
+		shape7.render(f5);
+		shape8.render(f5);
+		shape9.render(f5);
+		shape10.render(f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		Random rand = entity.worldObj.rand;
+		int j = entity.ticksExisted;
+		
+		for (int i = 0; i < this.boxList.size(); i++)
+		{
+			shapeArray[i].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle((float)j - f2, 10.0F);
+			shapeArray[i].rotateAngleY = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle((float)j - f2, 10.0F);
+			shapeArray[i].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle((float)j - f2, 10.0F);
+		}
 	}
-
-	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
+	
+	private float simplifyAngle(float par1, float par2)
 	{
-		Shape1.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		Shape1.rotateAngleX = (MathHelper.cos(0.3F) + (float)Math.PI) * par2;
-		
-		Shape2.rotateAngleZ = MathHelper.cos(0.5F + (float)Math.PI) * par2 + 4;
-		Shape2.rotateAngleY = (MathHelper.cos(0.35F) + (float)Math.PI) * par2;
-		
-		Shape3.rotateAngleZ = MathHelper.cos(0.35F) * par2;
-		Shape3.rotateAngleX = MathHelper.cos(0.3F) * par2;
-		
-		Shape4.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		Shape4.rotateAngleZ = MathHelper.cos(0.3F + 0.1F) * par2;
-		
-		Shape5.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		Shape5.rotateAngleZ = MathHelper.cos(0.3F + 0.1F) * par2;
-		Shape5.rotateAngleX = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		
-		Shape6.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI * 1.4F) * par2;
-		Shape6.rotateAngleX = MathHelper.cos(0.3F + 0.4F) * par2;
-		
-		Shape7.rotateAngleX = MathHelper.cos(0.3F) * par2;
-		Shape7.rotateAngleZ = MathHelper.cos(0.3F + 0.1F) * par2;
-		Shape7.rotateAngleY = MathHelper.cos(0.3F) * par2;
-		
-		Shape8.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		Shape8.rotateAngleZ = MathHelper.cos(0.3F + 0.1F) * par2;
-		
-		Shape9.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		Shape9.rotateAngleX = (MathHelper.cos(0.3F) + (float)Math.PI) * par2;
-		
-		Shape10.rotateAngleY = MathHelper.cos(0.3F + (float)Math.PI) * par2;
-		Shape10.rotateAngleZ = MathHelper.cos(0.3F + 0.1F) * par2;
-		Shape10.rotateAngleX = MathHelper.cos(0.3F + (float)Math.PI) * par2;
+		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
 	}
 
 }
