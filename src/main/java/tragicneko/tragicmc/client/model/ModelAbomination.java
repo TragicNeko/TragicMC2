@@ -91,8 +91,6 @@ public class ModelAbomination extends ModelBase
 		this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
 		this.leftLeg.rotateAngleX = -1.5F * this.simplifyAngle(par1, 13.0F) * par2;
 		this.rightLeg.rotateAngleX = 1.5F * this.simplifyAngle(par1, 13.0F) * par2;
-		this.leftLeg.rotateAngleY = 0.0F;
-		this.rightLeg.rotateAngleY = 0.0F;
 	}
 
 	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
