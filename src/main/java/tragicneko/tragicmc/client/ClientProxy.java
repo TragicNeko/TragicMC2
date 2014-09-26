@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
@@ -34,7 +33,6 @@ import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
-import tragicneko.tragicmc.client.render.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
@@ -50,6 +48,7 @@ import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
+import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderStarCryse;
 import tragicneko.tragicmc.client.render.mob.RenderStarVox;
@@ -79,7 +78,6 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityJanna;
 import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -186,9 +184,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
 
 		//Mob renders
-		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderMob(new ModelJabba(), 0.355F, "Jabba_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityJarra.class, new RenderMob(new ModelJarra(), 0.355F, "Jarra_lowRes", 1.585F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityJanna.class, new RenderMob(new ModelJarra(), 0.355F, "Janna_lowRes", 0.825F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderJabba());
+		RenderingRegistry.registerEntityRenderingHandler(EntityJarra.class, new RenderMob(new ModelJarra(), 0.655F, "Jarra_lowRes", 1.585F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPlague.class, new RenderMob(new ModelPlague(), 0.115F, "Plague_lowRes"));
 

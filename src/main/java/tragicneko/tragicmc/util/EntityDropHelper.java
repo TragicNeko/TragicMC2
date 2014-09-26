@@ -31,7 +31,6 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityJanna;
 import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -61,7 +60,6 @@ public class EntityDropHelper {
 		//Normal Mob Drops
 		entityLootDrops.put(EntityJabba.class, new ItemStack[][] {{new ItemStack(Items.magma_cream), new ItemStack(TragicItems.Ash)},
 			{new ItemStack(TragicItems.FireOrb), new ItemStack(TragicItems.RedMercury)}});
-		entityLootDrops.put(EntityJanna.class, new ItemStack[][] {{new ItemStack(Items.slime_ball), new ItemStack(TragicItems.Spore)}, {new ItemStack(TragicItems.Quicksilver)}});
 		
 		entityLootDrops.put(EntityPlague.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles)}});
 		

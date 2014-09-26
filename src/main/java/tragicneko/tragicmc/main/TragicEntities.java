@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.main;
 
-import java.awt.Color;
-
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.boss.EntityDragon;
@@ -37,7 +35,6 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityJanna;
 import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -100,12 +97,6 @@ public class TragicEntities {
 					BiomeGenBase.mesaPlateau_F
 					);
 			TragicEntityList.addMapping(EntityJabba.class, "TragicMC.Jabba", id++, 0xDA3600, 0xFF961D);
-		}
-
-		if (TragicNewConfig.allowJanna)
-		{
-			EntityRegistry.registerModEntity(EntityJanna.class, "Janna", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityJanna.class, "TragicMC.Janna", id++, 0x7FF4FF, 0x21C9A7);
 		}
 
 		if (TragicNewConfig.allowPlague)

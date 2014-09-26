@@ -2,6 +2,7 @@ package tragicneko.tragicmc.client.model;
 
 import java.util.Random;
 
+import tragicneko.tragicmc.entity.mob.EntityJabba;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -10,134 +11,103 @@ import net.minecraft.util.MathHelper;
 
 public class ModelJabba extends ModelBase
 {
-	//fields
-	ModelRenderer Head;
-	ModelRenderer HeadMiddle;
-	ModelRenderer Middle;
-	ModelRenderer TailMiddle;
-	ModelRenderer LeftPincer;
-	ModelRenderer RightPincer;
-	ModelRenderer TailHead;
-	ModelRenderer LeftTailPincer;
-	ModelRenderer RightTailPincer;
+	protected ModelRenderer head;
+	protected ModelRenderer body;
+	protected ModelRenderer body2;
+	protected ModelRenderer body3;
+	protected ModelRenderer head2;
+
+	private ModelRenderer leftPincer;
+	private ModelRenderer rightPincer;
+	private ModelRenderer leftTailPincer;
+	private ModelRenderer rightTailPincer;
 
 	public ModelJabba()
 	{
 		textureWidth = 64;
 		textureHeight = 64;
 
-		Head = new ModelRenderer(this, 32, 4);
-		Head.addBox(-4F, -4F, -8F, 8, 8, 8);
-		Head.setRotationPoint(0F, 18F, -3F);
-		Head.setTextureSize(64, 64);
-		Head.mirror = true;
-		setRotation(Head, 0F, 0F, 0F);
-		HeadMiddle = new ModelRenderer(this, 0, 0);
-		HeadMiddle.addBox(-3F, -3F, -3F, 6, 6, 6);
-		HeadMiddle.setRotationPoint(0F, 18F, 0F);
-		HeadMiddle.setTextureSize(64, 64);
-		HeadMiddle.mirror = true;
-		setRotation(HeadMiddle, 0F, 0F, 0F);
-		Middle = new ModelRenderer(this, 0, 14);
-		Middle.addBox(-4F, -4F, -6F, 8, 8, 8);
-		Middle.setRotationPoint(0F, 18F, 9F);
-		Middle.setTextureSize(64, 64);
-		Middle.mirror = true;
-		setRotation(Middle, 0F, 0F, 0F);
-		TailMiddle = new ModelRenderer(this, 0, 0);
-		TailMiddle.addBox(-3F, -3F, -3F, 6, 6, 6);
-		TailMiddle.setRotationPoint(0F, 18F, 14F);
-		TailMiddle.setTextureSize(64, 64);
-		TailMiddle.mirror = true;
-		setRotation(TailMiddle, 0F, 0F, 0F);
-		LeftPincer = new ModelRenderer(this, 0, 32);
-		LeftPincer.addBox(1F, -2F, -3F, 4, 4, 4);
-		LeftPincer.setRotationPoint(0F, 19F, -11F);
-		LeftPincer.setTextureSize(64, 64);
-		LeftPincer.mirror = true;
-		setRotation(LeftPincer, 0F, 0F, 0F);
-		RightPincer = new ModelRenderer(this, 0, 32);
-		RightPincer.addBox(-5F, -2F, -3F, 4, 4, 4);
-		RightPincer.setRotationPoint(0F, 19F, -11F);
-		RightPincer.setTextureSize(64, 64);
-		RightPincer.mirror = true;
-		setRotation(RightPincer, 0F, 0F, 0F);
-		TailHead = new ModelRenderer(this, 32, 4);
-		TailHead.addBox(-4F, -4F, 0F, 8, 8, 8);
-		TailHead.setRotationPoint(0F, 18F, 17F);
-		TailHead.setTextureSize(64, 64);
-		TailHead.mirror = true;
-		setRotation(TailHead, 0F, 0F, 0F);
-		LeftTailPincer = new ModelRenderer(this, 0, 32);
-		LeftTailPincer.addBox(1F, -2F, 0F, 4, 4, 4);
-		LeftTailPincer.setRotationPoint(0F, 19F, 24F);
-		LeftTailPincer.setTextureSize(64, 64);
-		LeftTailPincer.mirror = true;
-		setRotation(LeftTailPincer, 0F, 0F, 0F);
-		RightTailPincer = new ModelRenderer(this, 0, 32);
-		RightTailPincer.addBox(-5F, -2F, 0F, 4, 4, 4);
-		RightTailPincer.setRotationPoint(0F, 19F, 24F);
-		RightTailPincer.setTextureSize(64, 64);
-		RightTailPincer.mirror = true;
-		setRotation(RightTailPincer, 0F, 0F, 0F);
+		//Actual head and pincers
+		head = new ModelRenderer(this, 32, 4);
+		head.addBox(-4F, -4F, -8F, 8, 8, 8);
+		head.setRotationPoint(0F, 18F, -3F);
+		leftPincer = new ModelRenderer(this, 0, 32);
+		leftPincer.addBox(1F, -1F, -12F, 4, 4, 4);
+		head.addChild(leftPincer);
+		rightPincer = new ModelRenderer(this, 0, 32);
+		rightPincer.addBox(-5F, -1F, -12F, 4, 4, 4);
+		head.addChild(rightPincer);
+
+		//First body part
+		body = new ModelRenderer(this, 0, 0);
+		body.addBox(-3F, -3F, -3F, 6, 6, 6);
+		body.setRotationPoint(0F, 18F, 0F);
+
+		//Second body part
+		body2 = new ModelRenderer(this, 0, 14);
+		body2.addBox(-4F, -4F, -6F, 8, 8, 8);
+		body2.setRotationPoint(0F, 18F, 9F);
+
+		//Third body part
+		body3 = new ModelRenderer(this, 0, 0);
+		body3.addBox(-3F, -3F, -3F, 6, 6, 6);
+		body3.setRotationPoint(0F, 18F, 14F);
+
+		//Tail head and pincers
+		head2 = new ModelRenderer(this, 32, 4);
+		head2.addBox(-4F, -4F, 0F, 8, 8, 8);
+		head2.setRotationPoint(0F, 18F, 17F);
+		leftTailPincer = new ModelRenderer(this, 0, 32);
+		leftTailPincer.addBox(1F, -1F, 8F, 4, 4, 4);
+		head2.addChild(leftTailPincer);
+		rightTailPincer = new ModelRenderer(this, 0, 32);
+		rightTailPincer.addBox(-5F, -1F, 8F, 4, 4, 4);
+		head2.addChild(rightTailPincer);
 	}
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		Head.render(f5);
-		HeadMiddle.render(f5);
-		Middle.render(f5);
-		TailMiddle.render(f5);
-		LeftPincer.render(f5);
-		RightPincer.render(f5);
-		TailHead.render(f5);
-		LeftTailPincer.render(f5);
-		RightTailPincer.render(f5);
+		super.render(entity, f, f1, f2, f3, f4, f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		head.render(f5);
+		body.render(f5);
+		body2.render(f5);
+		body3.render(f5);
+		head2.render(f5);
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z)
+	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
-
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-	{
-		
+		this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
+		this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
+		this.head2.rotateAngleY = par4 / (180F / (float)Math.PI);
+		this.head2.rotateAngleX = par5 / (180F / (float)Math.PI);
 	}
 
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
-	{		
-		if (entity.isWet())
+	{				
+		EntityJabba jab = (EntityJabba) entity;
+		int i = jab.getAttackTicks();
+
+		if (i > 0)
 		{
-			par2 *= 2;
+			leftPincer.rotateAngleY = -0.15F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F);
+			rightPincer.rotateAngleY = -(-0.15F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F));
+			leftTailPincer.rotateAngleY = 0.1F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F);
+			rightTailPincer.rotateAngleY = -(0.1F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F));
 		}
-		
-		this.LeftPincer.rotateAngleY = MathHelper.cos(par1 * 0.3F) * par2;
-		this.LeftPincer.rotateAngleZ = MathHelper.cos(par1 * 0.3F - 0.1F) * par2;
-		
-		this.RightPincer.rotateAngleY = MathHelper.cos(par1 * 0.3F + (float)Math.PI) * par2;
-		this.RightPincer.rotateAngleZ = MathHelper.cos(par1 * 0.3F - 0.1F) * par2;
+		else
+		{
+			leftPincer.rotateAngleY = 0.0F;
+			rightPincer.rotateAngleY = 0.0F;
+			leftTailPincer.rotateAngleY = 0.0F;
+			rightTailPincer.rotateAngleY = 0.0F;
+		}
+	}
 
-		this.LeftTailPincer.rotateAngleY = MathHelper.cos(par1 * 0.3F) * par2;
-		this.LeftTailPincer.rotateAngleZ = MathHelper.cos(par1 * 0.3F + 0.1F) * par2;
-		
-		this.RightTailPincer.rotateAngleY = MathHelper.cos(par1 * 0.3F + (float)Math.PI) * par2;
-		this.RightTailPincer.rotateAngleZ = MathHelper.cos(par1 * 0.3F + 0.1F) * par2;
-
-		this.Middle.rotateAngleZ = MathHelper.cos(par1 * 0.3F) * par2;
-		this.Middle.rotateAngleY = MathHelper.cos(par1 * 0.2F) + par2;
-		
-		this.HeadMiddle.rotateAngleZ = MathHelper.cos(par1 * 0.3F + (float)Math.PI + 0.5F) * par2;
-		this.HeadMiddle.rotateAngleY = MathHelper.cos(par1 * 0.2F + (float)Math.PI) + par2;
-		
-		this.TailMiddle.rotateAngleZ = MathHelper.cos(par1 * 0.3F - (float)Math.PI - 0.5F) * par2;
-		this.TailMiddle.rotateAngleY = MathHelper.cos(par1 * 0.2F - (float)Math.PI) + par2;
-		
-		this.Head.rotateAngleZ = MathHelper.cos(par1 * 0.3F - 0.1F) * par2;
-		this.TailHead.rotateAngleZ = MathHelper.cos(par1 * 0.3F + 0.1F) * par2;
+	private float simplifyAngle(float par1, float par2)
+	{
+		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
 	}
 
 }

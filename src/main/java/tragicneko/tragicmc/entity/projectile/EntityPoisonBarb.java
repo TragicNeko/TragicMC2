@@ -13,6 +13,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 
 	public EntityPoisonBarb(World world) {
 		super(world);
+		this.setSize(0.125F, 0.125F);
 	}
 
 	public EntityPoisonBarb(World par1World,
