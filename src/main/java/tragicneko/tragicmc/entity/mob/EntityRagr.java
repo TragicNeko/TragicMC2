@@ -2,11 +2,11 @@ package tragicneko.tragicmc.entity.mob;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,6 +20,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -31,37 +32,58 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
-import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;
 
 public class EntityRagr extends TragicMob {
-
-	private int angerTicks;
 
 	public static Set crushableBlocks = Sets.newHashSet(new Block[] {Blocks.yellow_flower, Blocks.red_flower, Blocks.red_mushroom, Blocks.brown_mushroom, Blocks.tallgrass,
 			Blocks.leaves});
 
 	public EntityRagr(World par1World) {
 		super(par1World);
-		this.setSize(0.935F, 2.87F);
+		this.setSize(1.335F, 2.675F);
 		this.stepHeight = 1.5F;
 		this.experienceValue = 12;
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(8, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(4, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true)); /*
-		this.canCorrupt = true;
-		this.isCorruptible = true;
-		this.isChangeable = false; */
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true));
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+	}
+
+	public int getAngerTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setAngerTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void incrementAngerTicks()
+	{
+		int pow = this.getAngerTicks();
+		this.setAngerTicks(++pow);
+	}
+
+	private void decrementAngerTicks()
+	{
+		int pow = this.getAngerTicks();
+		this.setAngerTicks(--pow);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -79,65 +101,66 @@ public class EntityRagr extends TragicMob {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(65.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.38);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
 	}
 
 	public void onLivingUpdate()
 	{
-		if (this.entityToAttack != null)
-		{
-			this.angerTicks++;
+		super.onLivingUpdate();
+		if (this.worldObj.isRemote) return;
 
-			if (this.getCorruptionTicks() > 0)
+		if (this.getAttackTarget() != null)
+		{
+			this.incrementAngerTicks();
+			if (this.isCorrupted()) this.incrementAngerTicks();
+
+			if (this.onGround && this.ticksExisted % 10 == 0 && this.rand.nextInt(32) == 0)
 			{
-				this.angerTicks++;
+				double d0 = this.getAttackTarget().posX - this.posX;
+				double d1 = this.getAttackTarget().posZ - this.posZ;
+				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+				this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionY = 0.745D;
+			}
+			else if (this.getAngerTicks() >= 600)
+			{
+				if (this.getAngerTicks() % 50 == 0 && this.onGround)
+				{
+					double d0 = this.getAttackTarget().posX - this.posX;
+					double d1 = this.getAttackTarget().posZ - this.posZ;
+					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+					this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+					this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+					this.motionY = (rand.nextDouble() * 1.055) + 0.445;
+				}
+
+				if (this.getAngerTicks() >= 800) this.setAngerTicks(400);
+			}
+			else if (this.onGround && rand.nextBoolean())
+			{
+				double d0 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
+				double d1 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
+				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+				this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionY = 0.545D;
 			}
 		}
 		else
 		{
-			if (angerTicks > 0)
-			{
-				this.angerTicks--;
-			}
-		}
+			if (this.getAngerTicks() > 0) this.decrementAngerTicks();
 
-		if (this.onGround && this.rand.nextInt(40) == 0 && this.getAttackTarget() != null)
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().posZ - this.posZ;
-			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-			this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-			this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-			this.motionY = 0.7;
-		}
-
-		if (this.angerTicks >= 600)
-		{
-			if (this.angerTicks % 50 == 0 && this.onGround && this.entityToAttack != null)
+			if (this.onGround && rand.nextBoolean())
 			{
-				double d0 = entityToAttack.posX - this.posX;
-				double d1 = entityToAttack.posZ - this.posZ;
+				double d0 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
+				double d1 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
 				this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
 				this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-				this.motionY = rand.nextDouble() + 0.4 + rand.nextDouble();
-			}
-
-			if (this.angerTicks % 20 == 0)
-			{
-				Entity entity = this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0);
-
-				if (entity == null)
-				{
-					angerTicks = 0;
-				}
-			}
-
-			if (angerTicks >= 800)
-			{
-				angerTicks = 0;
+				this.motionY = 0.545D;
 			}
 		}
 
@@ -151,8 +174,7 @@ public class EntityRagr extends TragicMob {
 			{
 				result = entityplayer;
 			}
-
-			if (result == null)
+			else
 			{
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
 
@@ -160,172 +182,63 @@ public class EntityRagr extends TragicMob {
 				{
 					Entity entity = list.get(i);
 
-					if (this.canEntityBeSeen(entity) && entity != this)
+					if (this.canEntityBeSeen(entity) && !(entity instanceof EntityWither) && !(entity instanceof EntityDragon) &&
+							!(entity instanceof TragicBoss))
 					{
-
-						if (!(entity instanceof EntityWither) && !(entity instanceof EntityDragon) && !(entity instanceof TragicBoss))
+						if (entity instanceof TragicMob)
 						{
-							if (entity instanceof TragicMob && entity != this)
-							{
-								if (entity instanceof TragicMiniBoss && this.superiorForm != null && entity == this.superiorForm)
-								{
-
-								}
-								else
-								{
-									result = entity;
-									break;
-								}
-							}
-							else if (entity instanceof EntityCreature)
-							{
-								result = entity;
-								break;
-							}
-							else if (entity instanceof EntityPlayer)
-							{
-								break;
-							}
+							result = entity;
+							break;
+						}
+						else if (entity instanceof EntityAnimal)
+						{
+							result = entity;
+							break;
 						}
 					}
 				}
 
-				if (result != null)
-				{
-					this.setAttackTarget((EntityLivingBase) result);
-				}
-			}
-			else
-			{
 				this.setAttackTarget((EntityLivingBase) result);
 			}
 		}
-
-		super.onLivingUpdate();
 	}
 
 	protected void fall(float par1) 
 	{
+		if (this.worldObj.isRemote) return;
+
 		boolean flag = this.getMobGriefing();
 
-		if (par1 >= 2.0F)
+		if (par1 >= 8.0F)
 		{
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F, false);
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
 		}
 		else if (par1 >= 4.0F)
 		{
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.0F, flag);
 		}
-		else if (par1 >= 8.0F)
-		{
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
-		}
-		
-		if (!flag)
-		{
-			return;
-		}
-
-		int x = (int) this.posX - 1;
-		int y = (int) (this.posY - 1);
-		int z = (int) this.posZ - 1;
-
-		if (par1 >= 4.0F)
-		{
-			x--;
-			z--;
-
-			for (int x1 = 0; x1 < 5; x1++)
-			{
-				for (int z1 = 0; z1 < 5; z1++)
-				{
-					Block block = this.worldObj.getBlock(x + x1, y, z + z1);
-					boolean flag2 = false;
-					
-					if (x1 != 0 && z1 != 0)
-					{
-						flag2 = true;
-					}
-					
-					if (x1 != 4 && z1 != 4)
-					{
-						flag2 = true;
-					}
-					
-					if (flag2)
-					{
-						if (this.crushableBlocks.contains(block))
-						{
-							this.worldObj.setBlockToAir(x + x1, y, z + z1);
-						}
-						else if (block == Blocks.grass)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.dirt);
-						}
-						else if (block == Blocks.stone)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.cobblestone);
-						}
-						else if (block == Blocks.stonebrick)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.stonebrick, 2, 2);
-						}
-						else if (block == Blocks.cobblestone)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.gravel);
-						}
-					}
-				}
-			}
-		}
-		else if (par1 >= 3.0F)
-		{
-			for (int x1 = 0; x1 < 3; x1++)
-			{
-				for (int z1 = 0; z1 < 3; z1++)
-				{
-					Block block = this.worldObj.getBlock(x + x1, y, z + z1);
-					boolean flag2 = false;
-					
-					if (x1 != 0 && z1 != 0)
-					{
-						flag2 = true;
-					}
-					
-					if (x1 != 2 && z1 != 2)
-					{
-						flag2 = true;
-					}
-					
-					if (flag2)
-					{
-						if (this.crushableBlocks.contains(block))
-						{
-							this.worldObj.setBlockToAir(x + x1, y, z + z1);
-						}
-						else if (block == Blocks.grass)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.dirt);
-						}
-						else if (block == Blocks.stone)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.cobblestone);
-						}
-						else if (block == Blocks.stonebrick)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.stonebrick, 2, 2);
-						}
-						else if (block == Blocks.cobblestone)
-						{
-							this.worldObj.setBlock(x + x1, y, z + z1, Blocks.gravel);
-						}
-					}
-				}
-			}
-		}
 		else if (par1 >= 2.0F)
 		{
-			Block block = this.worldObj.getBlock(x, y, z);
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F, flag);
+		}
+
+		if (!flag) return;
+
+		int x = (int) this.posX;
+		int y = (int) this.posY;
+		int z = (int) this.posZ;		
+		par1 = MathHelper.clamp_float(par1 / 2.0F, 1.0F, 4.0F);
+		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
+		int[] coords;
+		Block block;
+
+		for (int i = 0; i < map.size(); i++)
+		{
+			coords = map.get(i);
+			x = coords[0];
+			y = coords[1];
+			z = coords[2];
+			block = this.worldObj.getBlock(x, y, z);
 
 			if (this.crushableBlocks.contains(block))
 			{
@@ -359,15 +272,8 @@ public class EntityRagr extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		if (this.isBurning())
-		{
-			return 0;
-		}
-
-		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption))
-		{
-			return 20;
-		}
+		if (this.isBurning()) return 0;
+		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption)) return 16;
 		return 10;
 	}
 
@@ -422,21 +328,21 @@ public class EntityRagr extends TragicMob {
 			}
 			else
 			{
-				player.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
+				player.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
 			}
 		}
 
-		if (par1DamageSource.isProjectile())
-		{
-			par2 /= 2;
-		}
+		if (par1DamageSource.isProjectile()) par2 /= 2;
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
+		if (this.worldObj.isRemote) return false;
+
+		boolean result = super.attackEntityAsMob(par1Entity);
+		if (result)
 		{
 			if (par1Entity instanceof EntityLivingBase && rand.nextInt(4) == 0)
 			{
@@ -457,12 +363,15 @@ public class EntityRagr extends TragicMob {
 				}
 			}
 
-			par1Entity.motionX *= 1.8000000059604645D;
-			par1Entity.motionZ *= 1.8D;
-			par1Entity.motionY += 0.6D;
+			if (!this.onGround)
+			{
+				par1Entity.motionX *= 1.8000000059604645D;
+				par1Entity.motionZ *= 1.8D;
+				par1Entity.motionY += 0.6D;
+			}
 
 		}
-		return super.attackEntityAsMob(par1Entity);
+		return result;
 	}
 
 	@Override
