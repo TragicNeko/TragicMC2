@@ -116,7 +116,7 @@ public class ModelRagr extends ModelBase
 
 	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
 	{
-		if (entity.onGround)
+		if (entity.onGround || entity.isRiding() || entity.isSneaking())
 		{		
 			this.rightShoulder.rotateAngleX = 0.8000468F;
 			this.leftShoulder.rotateAngleX = -0.5000468F;
