@@ -19,19 +19,24 @@ public class ItemNekoWand extends Item {
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		par2List.add(EnumChatFormatting.DARK_RED + "Use your neko mind control to make mobs fight!");
+		par2List.add(EnumChatFormatting.DARK_RED + "Use your neko mind control to make mobs fight!"); /*
 		par2List.add("Left click to select a mob or group to fight");
 		par2List.add("Left click again to set the selected mobs target");
 		par2List.add("Sneaking allows you to select and use a group");
-		par2List.add("Right click to reset all selected mobs");
+		par2List.add("Right click to reset all selected mobs"); */
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
+		if (player.worldObj.isRemote) return false; 
 		if (this.cooldown > 0) return true;
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
+		
+		if (entity != null) player.addChatMessage(new ChatComponentText("" + entity.getClass().getCanonicalName()));
+		
+		/*
 
 		if (player.isSneaking())
 		{
@@ -103,12 +108,13 @@ public class ItemNekoWand extends Item {
 					return true;
 				}
 			}
-		}
+		} */
 		return true;
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer par3EntityPlayer)
 	{
+		/*
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
@@ -124,7 +130,7 @@ public class ItemNekoWand extends Item {
 			stack.stackTagCompound.setInteger("entityID", 0);
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the single targetting entity."));
 		}
-		
+		 */
 		return stack;
 	}
 
