@@ -2692,6 +2692,11 @@ Add some cool animations for it when it jumps around and when it's on the ground
 Rewrote most of the Pumpkinhead's AI, it now sets it's home pumpkin faster and applies effects faster while it has one, it now has an animation when it gets angry and has a
 home pumpkin, it is a lot more dangerous to attack now, reduced it's health to balance this
 Added NBT Tags for most of the mobs that have been rewritten to this point
+Rewrote most of the Tragic Neko's AI, it now goes through it's firing pattern more efficiently, and has animations for each aspect of it's attacks, it will fire a missle once
+in a while and throw bombs at other times, it can also run up and smack it's target with it's weapon, this was given an increased damage to compensate for it firing less missles
+Updating the Tox's AI, combining the Pox's class with it (like the Jabba) and increasing the amount of projectiles it fires but reducing it's normal hit damage when something is
+near it
+
 
 --Reminders-
 I'm going to rewrite how Corruption works, it'll affect entities near other corrupted ones, and it'll be a continuous effect, but can be randomly healed if the entity that has
