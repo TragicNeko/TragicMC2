@@ -11,8 +11,9 @@ public class EntitySpore extends EntityProjectile {
 
 	public EntitySpore(World par1World) {
 		super(par1World);
+		this.setSize(0.325F, 0.325F);
 	}
-	
+
 	public EntitySpore(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
@@ -20,19 +21,16 @@ public class EntitySpore extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround) 
+		if (mop.entityHit != null && !this.worldObj.isRemote) 
 		{			
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
-			
+
 			if (mop.entityHit instanceof EntityLivingBase)
 			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 600, 1));
+				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 2));
 			}
 		}
 
 		this.setDead();
-		}
-	
-	
-
+	}
 }

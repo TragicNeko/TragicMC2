@@ -16,7 +16,6 @@ import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelGragul;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
 import tragicneko.tragicmc.client.model.ModelInkling;
-import tragicneko.tragicmc.client.model.ModelJabba;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
@@ -52,6 +51,7 @@ import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderStarCryse;
 import tragicneko.tragicmc.client.render.mob.RenderStarVox;
+import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
@@ -83,7 +83,6 @@ import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
-import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
@@ -202,9 +201,8 @@ public class ClientProxy extends CommonProxy {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko_lowRes"));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderMob(new ModelTox(), 0.565F, "Tox_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderTox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox_lowRes", 1.625F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPox.class, new RenderMob(new ModelTox(), 0.565F, "Pox_lowRes", 0.635F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityCryse.class, new RenderCryse());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaCryse.class, new RenderMegaCryse());

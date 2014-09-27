@@ -8,7 +8,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityPox;
+import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.main.TragicBiomes;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -21,7 +21,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 
 	public BiomeGenPaintedForest(int par1) {
 		super(par1);
-		if (TragicNewConfig.allowPox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPox.class, TragicNewConfig.poxSC, 0, 1));
+		if (TragicNewConfig.allowPox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicNewConfig.poxSC, 0, 1));
 		if (TragicNewConfig.allowJanna) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicNewConfig.jannaSC, 0, 2));
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.BrushedGrass;

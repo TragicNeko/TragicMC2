@@ -36,7 +36,6 @@ import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
-import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
@@ -80,10 +79,8 @@ public class EntityDropHelper {
 				{new ItemStack(Items.golden_apple, 1, 1), new ItemStack(TragicItems.NekoLauncher), new ItemStack(Items.diamond)}});
 		
 		entityLootDrops.put(EntityTox.class, new ItemStack[][] {{new ItemStack(TragicItems.Spore), new ItemStack(TragicItems.Sap), new ItemStack(Items.wheat_seeds),
-			new ItemStack(Blocks.vine), new ItemStack(TragicItems.Thorns)}, {new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit), new ItemStack(Items.slime_ball)}});
-		
-		entityLootDrops.put(EntityPox.class, new ItemStack[][] {{new ItemStack(TragicItems.Spore), new ItemStack(TragicItems.Sap), new ItemStack(TragicItems.ExoticFruit),
-			new ItemStack(TragicBlocks.GlowVine), new ItemStack(TragicItems.Thorns)}, {new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.GooeyFruit)}});
+			new ItemStack(Blocks.vine), new ItemStack(TragicItems.Thorns)}, {new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit),
+				new ItemStack(Items.slime_ball)}});
 		
 		entityLootDrops.put(EntityCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball)}, {new ItemStack(TragicItems.IceOrb)}});
 		

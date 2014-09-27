@@ -40,7 +40,6 @@ import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
-import tragicneko.tragicmc.entity.mob.EntityPox;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
@@ -312,12 +311,6 @@ public class TragicEntities {
 					BiomeGenBase.jungleHills
 					);
 			TragicEntityList.addMapping(EntityTox.class, "TragicMC.Tox", id++, 0xDACF18, 0x15A915);
-		}
-
-		if (TragicNewConfig.allowPox)
-		{
-			EntityRegistry.registerModEntity(EntityPox.class, "Pox", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityPox.class, "TragicMC.Pox", id++, 0x18DAA1, 0x15A4A9);
 		}
 
 		if (TragicNewConfig.allowCryse)

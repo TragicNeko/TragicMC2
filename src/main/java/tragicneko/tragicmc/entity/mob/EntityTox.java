@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -10,45 +12,116 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemAxe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityMagmox;
-import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
 public class EntityTox extends TragicMob {
-	
-	private int firingTicks;
-	protected boolean isFiring;
 
 	public EntityTox(World par1World) {
 		super(par1World);
-		this.setSize(0.5F, 1.9F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 12;
+		this.experienceValue = 6;
 		this.getNavigator().setAvoidsWater(true);
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 0.05D, true));
+		this.getNavigator().setCanSwim(false);
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 0.05D, true));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 0.05D, 16.0F));
-		this.tasks.addTask(5, new EntityAIWander(this, 0.7D));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));/*
-		this.canCorrupt = true;
-		this.isCorruptible = true;
-		this.isChangeable = true; */
-		this.superiorForm = new EntityMagmox(par1World);
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+	}
+
+	public int getToxType()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	protected void setToxType(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+		
+		if (i == 0)
+		{
+			this.setSize(0.625F, 1.965F);
+		}
+		else
+		{
+			this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
+		}
+	}
+
+	public int getFiringTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	protected void setFiringTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	protected void decrementFiringTicks()
+	{
+		int pow = this.getFiringTicks();
+		this.setFiringTicks(--pow);
+	}
+
+	public boolean isFiring()
+	{
+		return this.getFiringTicks() > 0;
 	}
 	
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	protected void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	protected void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public int getBrightnessForRender(float par1)
+	{
+		return this.getToxType() == 1 ? 15728880 : super.getBrightnessForRender(par1);
+	}
+
+	public float getBrightness(float par1)
+	{
+		return this.getToxType() == 1 ? 1.0F : super.getBrightness(par1);
+	}
+
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
@@ -62,93 +135,150 @@ public class EntityTox extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0);
+		boolean flag = this.getToxType() == 0;
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 50.0 : 30.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.05);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10.0);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 8.0 : 4.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? 1.0 : 0.7);
 	}
-	
+
 	public void onLivingUpdate()
 	{
-		if (this.isPotionActive(Potion.poison.id))
+		if (!this.worldObj.isRemote && this.isPotionActive(Potion.poison.id))
 		{
 			this.removePotionEffect(Potion.poison.id);
 		}
-		
+
 		super.onLivingUpdate();
 		
+		if (this.worldObj.isRemote)
+		{
+			if (this.getToxType() == 0)
+			{
+				this.setSize(0.625F, 1.965F);
+			}
+			else
+			{
+				this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
+				
+				if (rand.nextBoolean())
+				{
+					this.worldObj.spawnParticle("slime",
+							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+							this.posY + this.rand.nextDouble() * (double)this.height,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+							(this.rand.nextDouble() - 0.6D) * 0.1D,
+							this.rand.nextDouble() * 0.1D,
+							(this.rand.nextDouble() - 0.6D) * 0.1D);
+				}
+			}
+		}
+
 		if (this.worldObj.isRemote) return;
-		
-		if (this.firingTicks > 0)
-		{
-			this.firingTicks--;
-		}
-		
-		if (this.firingTicks > 0)
-		{
-			this.isFiring = true;
-		}
-		else
-		{
-			this.isFiring = false;
-		}
-		
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(48) == 0 && this.firingTicks == 0)
-		{
-			this.firingTicks = 40;
-		}
-		
-		if (this.firingTicks > 0 && this.firingTicks % 10 == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()))
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-			double d2 = this.getAttackTarget().posZ - this.posZ;
 
-			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+		if (this.superiorForm == null && this.getToxType() == 0) this.superiorForm = new EntityMagmox(this.worldObj);
+		if (this.isFiring()) this.decrementFiringTicks();
+		if (this.getAttackTime() > 0) this.decrementAttackTime();
 
-			EntitySpore fireball = new EntitySpore(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-			fireball.posY = this.posY + (this.height * 2 / 3);
-			this.worldObj.spawnEntityInWorld(fireball);
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0 && !this.isFiring())
+		{
+			this.setFiringTicks(120);
+		}
+
+		int rate = this.getToxType() == 0 ? 10 : 5;
+		if (this.getFiringTicks() >= 20 && this.ticksExisted % rate == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
+				this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
+		{
+			this.shootProjectiles();
+		}
+		
+		TragicMC.logInfo("Firing Ticks: " + this.getFiringTicks());
+	}
+	
+	protected void shootProjectiles()
+	{
+		double d0 = this.getAttackTarget().posX - this.posX;
+		double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d2 = this.getAttackTarget().posZ - this.posZ;
+
+		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
+
+		for (int i = 0; i < 3; i++)
+		{
+			EntitySpore spore = new EntitySpore(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+			spore.posX = this.posX + d0 * 0.115D;
+			spore.posY = this.posY + (this.height * 2 / 3);
+			spore.posZ = this.posZ + d2 * 0.115D;
+			this.worldObj.spawnEntityInWorld(spore);
 		}
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
+		if (this.worldObj.isRemote) return false;
+		
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 
-			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemScythe)
+			if (player.getCurrentEquippedItem() != null &&
+					(player.getCurrentEquippedItem().getItem() instanceof ItemScythe || player.getCurrentEquippedItem().getItem() instanceof ItemAxe))
 			{
-				par2 *= 1.5;
+				par2 *= 1.425;
 			}
 		}
-		
-		if (par1DamageSource.isFireDamage())
-		{
-			par2 *= 2;
-		}
 
-		return super.attackEntityFrom(par1DamageSource, par2);
+		if (par1DamageSource.isFireDamage()) par2 *= 1.625;
+		
+		boolean result = super.attackEntityFrom(par1DamageSource, par2);
+		if (result) this.setAttackTime(10);
+
+		return result;
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
+		if (this.worldObj.isRemote) return false;
+		
 		boolean result = super.attackEntityAsMob(par1Entity);
 
-		if (result && par1Entity instanceof EntityLivingBase && rand.nextInt(16) == 0)
+		if (result && par1Entity instanceof EntityLivingBase && rand.nextInt(16) == 0 && !this.isImmuneToFire())
 		{
 			((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, 600, 1));
 		}
 
 		return result;
 	}
-	
+
 	public int getTotalArmorValue()
 	{
-		return this.isFiring ? 0 : 10;
-		
+		return this.isFiring() ? 2 : (this.getToxType() == 0 ? 16 : 10);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("toxType")) this.setToxType(tag.getInteger("toxType"));
+		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("toxType", this.getToxType());
+		tag.setInteger("firingTicks", this.getFiringTicks());
+		tag.setInteger("attackTime", this.getAttackTime());
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+		this.setToxType(biome instanceof BiomeGenPaintedForest ? 1 : 0);
+		return super.onSpawnWithEgg(data);
 	}
 
 	@Override
