@@ -22,7 +22,6 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	public EntityMagmox(World par1World) {
 		super(par1World);
 		this.setSize(0.625F * 1.625F, 1.965F * 1.625F);
-		this.stepHeight = 1.0F;
 		this.experienceValue = 12;
 		this.isImmuneToFire = true;
 	}

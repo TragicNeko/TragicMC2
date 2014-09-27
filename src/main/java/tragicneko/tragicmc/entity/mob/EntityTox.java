@@ -34,7 +34,6 @@ public class EntityTox extends TragicMob {
 
 	public EntityTox(World par1World) {
 		super(par1World);
-		this.stepHeight = 1.0F;
 		this.experienceValue = 6;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
@@ -192,8 +191,6 @@ public class EntityTox extends TragicMob {
 		{
 			this.shootProjectiles();
 		}
-		
-		TragicMC.logInfo("Firing Ticks: " + this.getFiringTicks());
 	}
 	
 	protected void shootProjectiles()
