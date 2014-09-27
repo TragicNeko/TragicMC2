@@ -366,7 +366,7 @@ public class EntityJabba extends TragicMob {
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("jabbaType")) this.setJabbaType(tag.getInteger("jabbaType"));
-		if (tag.hasKey("angerTicks")) this.setAngerTicks(this.getAngerTicks());
+		if (tag.hasKey("angerTicks")) this.setAngerTicks(tag.getInteger("angerTicks"));
 	}
 
 	@Override

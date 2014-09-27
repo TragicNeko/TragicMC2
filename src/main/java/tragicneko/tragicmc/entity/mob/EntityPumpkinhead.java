@@ -274,8 +274,10 @@ public class EntityPumpkinhead extends TragicMob {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
+		
+		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && this.getAttackTarget() != null)
+		if (result && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && !par1DamageSource.isMagicDamage())
 		{
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
 			EntityPumpkinhead mob;
@@ -285,12 +287,13 @@ public class EntityPumpkinhead extends TragicMob {
 				if (list.get(i) instanceof EntityPumpkinhead)
 				{
 					mob = (EntityPumpkinhead) list.get(i);
-					if (mob.getAttackTarget() == null) mob.setTarget(this.getAttackTarget());
+					if (mob.getAttackTarget() == null && this.getAttackTarget() != null) mob.setTarget(this.getAttackTarget());
+					if (mob.getHomeCoordinates() == this.getHomeCoordinates() && mob.hasHomePumpkin() && this.hasHomePumpkin()) mob.attackEntityFrom(DamageSource.magic, 1.0F);
 				}
 			}
 		}
 
-		return super.attackEntityFrom(par1DamageSource, par2);
+		return result;
 	}
 
 	public boolean getCanSpawnHere()
@@ -316,7 +319,7 @@ public class EntityPumpkinhead extends TragicMob {
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("homeCoords")) this.setHomeCoordinates(tag.getIntArray("homeCoords"));;
-		if (tag.hasKey("angerTicks")) this.setAngerTicks(this.getAngerTicks());
+		if (tag.hasKey("angerTicks")) this.setAngerTicks(tag.getInteger("angerTicks"));
 		if (tag.hasKey("modValue")) this.setModValue(tag.getFloat("modValue"));
 	}
 

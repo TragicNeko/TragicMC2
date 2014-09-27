@@ -44,11 +44,6 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	{
 		return this.isBurning();
 	}
-
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
 	
 	@Override
 	protected void setJabbaType(int i)
@@ -56,6 +51,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		this.dataWatcher.updateObject(17, 1);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();

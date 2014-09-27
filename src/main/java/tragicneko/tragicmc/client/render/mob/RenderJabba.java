@@ -34,5 +34,4 @@ public class RenderJabba extends RenderLiving{
 	{
 		return entity.getJabbaType() == 0 ? texture : texture2;
 	}
-
 }
