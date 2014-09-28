@@ -17,61 +17,110 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicEntities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityMegaCryse extends TragicMob implements TragicMiniBoss {
+public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
-	private int shieldsLeft;
-	private int ticksSinceBreak;
-	
-	private int playerCollisionTicks;
-	private int timeSinceCollision;
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9"), "megaCryseNoShieldBuff", 2.0, 0);
+	private int timeSinceFirstBreak;
 
 	public EntityMegaCryse(World par1World) {
 		super(par1World);
-		this.setSize(0.7F, 3.45F);
-		this.stepHeight = 1.0F;
 		this.experienceValue = 12;
-		this.getNavigator().setAvoidsWater(true);
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.shieldsLeft = 4;
 	}
 
-	public EnumCreatureAttribute getCreatureAttribute()
+	@Override
+	protected void entityInit()
 	{
-		return TragicEntities.Natural;
+		super.entityInit();
+		this.dataWatcher.addObject(21, Integer.valueOf(0));
+		this.dataWatcher.addObject(22, Integer.valueOf(0));
+		this.dataWatcher.addObject(23, Integer.valueOf(0));
 	}
 
-	@SideOnly(Side.CLIENT)
-	public int getBrightnessForRender(float par1)
+	@Override
+	protected void setCryseType(int i)
 	{
-		return 15728880;
+		this.dataWatcher.updateObject(17, i);
+		this.setSize(1.435F, 3.075F);
 	}
 
-	public float getBrightness(float par1)
+	public int getShields()
 	{
-		return 1.0F;
+		return this.dataWatcher.getWatchableObjectInt(21);
 	}
 
-	public boolean isAIEnabled()
+	public void setShields(int i)
 	{
-		return true;
+		this.dataWatcher.updateObject(21, i);
+	}
+
+	public int getSpinTicks2()
+	{
+		return this.dataWatcher.getWatchableObjectInt(22);
+	}
+
+	public void setSpinTicks2(int i)
+	{
+		this.dataWatcher.updateObject(22, i);
+	}
+
+	public int getSpinTicks3()
+	{
+		return this.dataWatcher.getWatchableObjectInt(23);
+	}
+
+	public void setSpinTicks3(int i)
+	{
+		this.dataWatcher.updateObject(23, i);
+	}
+
+	@Override
+	protected void decrementSpinTicks()
+	{
+		int pow = this.getSpinTicks();
+		if (pow > 0) this.dataWatcher.updateObject(16, --pow);
+		pow = this.getSpinTicks2();
+		if (pow > 0) this.setSpinTicks2(--pow);
+		pow = this.getSpinTicks3();
+		if (pow > 0) this.setSpinTicks3(--pow);
+	}
+
+	@Override
+	public boolean isSpinning()
+	{
+		return this.getSpinTicks() > 0 || this.getSpinTicks2() > 0 || this.getSpinTicks3() > 0;
+	}
+
+	@Override
+	protected void setSpinTicks(int i)
+	{
+		if (rand.nextBoolean())
+		{
+			this.dataWatcher.updateObject(16, i);
+		}
+		else
+		{
+			if (rand.nextBoolean())
+			{
+				this.setSpinTicks2(i);
+			}
+			else
+			{
+				this.setSpinTicks3(i);
+			}
+		}
 	}
 
 	protected void applyEntityAttributes()
@@ -88,142 +137,81 @@ public class EntityMegaCryse extends TragicMob implements TragicMiniBoss {
 	{
 		super.onLivingUpdate();
 
-		if (!this.worldObj.isRemote && this.ticksSinceBreak > 0)
+		if (this.worldObj.isRemote)
 		{
-			this.ticksSinceBreak--;
+			this.setSize(1.435F, 3.075F);
 		}
-
-		if (!this.worldObj.isRemote && this.shieldsLeft < 4 && this.ticksSinceBreak == 0)
+		else
 		{
-			this.shieldsLeft = 4;
+			if (this.timeSinceFirstBreak > 0) --this.timeSinceFirstBreak;
+			if (this.getShields() < 4 && this.timeSinceFirstBreak == 0) this.setShields(4);
+
+			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
+			if (this.getShields() == 0) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
 		}
-
-		if (!this.worldObj.isRemote)
-		{
-			timeSinceCollision++;
-
-			if (timeSinceCollision > 80)
-			{
-				playerCollisionTicks = 20;
-			}
-		}
-
-		UUID modUUID = UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9");
-		AttributeModifier mod = new AttributeModifier(modUUID, "megaCryseNoShieldBuff", 0.25, 0);
-		
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-
-		if (this.shieldsLeft == 0)
-		{
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-		}
-
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
-		if (this.shieldsLeft > 0 && !this.worldObj.isRemote)
+		if (this.worldObj.isRemote) return false;
+
+		if (this.getShields() > 0 && par2 >= 1.0F)
 		{
-			if (this.shieldsLeft == 4)
+			if (this.getShields() == 4)
 			{
-				this.ticksSinceBreak = 100;
+				this.timeSinceFirstBreak = 80;
 			}
-			this.shieldsLeft--;
+			int pow = this.getShields();
+			this.setShields(--pow);
+
+			if (!par1DamageSource.isMagicDamage()) par2 = 0;
 		}
 
-		if (par1DamageSource.isFireDamage())
+		boolean result = super.attackEntityFrom(par1DamageSource, par2);
+
+		if (result)
 		{
-			par2 *= 2;
+			this.dataWatcher.updateObject(16, 0);
+			this.setSpinTicks2(0);
+			this.setSpinTicks3(0);
 		}
-
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
-
-			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemPickaxe)
-			{
-				par2 *= 1.5;
-			}			
-		}	
-
-		if (super.attackEntityFrom(par1DamageSource, par2) && par1DamageSource.getEntity() != null && this.shieldsLeft > 0)
-		{
-			par1DamageSource.getEntity().attackEntityFrom(DamageSource.causeMobDamage(this), par2 / 4 * this.shieldsLeft);
-		}
-
-		if (this.shieldsLeft > 0 && !par1DamageSource.isMagicDamage())
-		{
-			par2 = 0;
-		}
-
 		return super.attackEntityFrom(par1DamageSource, par2);
-	}
-
-	public boolean attackEntityAsMob(Entity par1Entity)
-	{
-		boolean result = super.attackEntityAsMob(par1Entity);
-
-		EnumDifficulty dif = this.worldObj.difficultySetting;
-		int x = 1;
-
-		if (dif == EnumDifficulty.EASY)
-		{
-			x = 2;
-		}
-
-		if (dif == EnumDifficulty.NORMAL)
-		{
-			x = 3;
-		}
-
-		if (dif == EnumDifficulty.HARD)
-		{
-			x = 4;
-		}
-
-		if (result && par1Entity instanceof EntityLivingBase && rand.nextInt(8 / x) == 0)
-		{
-			((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200 + rand.nextInt(320), 1 + rand.nextInt(4)));
-		}
-
-		if (result && par1Entity instanceof EntityLivingBase && rand.nextInt(16 / x) == 0)
-		{
-			((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 200 + rand.nextInt(320), 1 + rand.nextInt(4)));
-		}
-
-		return result;
 	}
 
 	public int getTotalArmorValue()
 	{
 		return 10;
 	}
-	
-	public void onCollideWithPlayer(EntityPlayer player)
-	{
-		timeSinceCollision = 0;
 
-		if (player.ticksExisted % 20 == 0)
-		{
-			if (playerCollisionTicks <= 20 && playerCollisionTicks > 0)
-			{
-				this.playerCollisionTicks--;
-			}
-		}
-		if (playerCollisionTicks > 0  && !player.capabilities.isCreativeMode)
-		{
-			if (player.ticksExisted % playerCollisionTicks == 0)
-			{
-				player.attackEntityFrom(DamageSource.outOfWorld, 0.5F);
-			}
-		}
+	public void collideWithEntity(Entity entity)
+	{
+		super.collideWithEntity(entity);
+
+		if (this.worldObj.isRemote) return;
+		if (this.ticksExisted % 20 == 0 && entity instanceof EntityLivingBase && this.getShields() > 0) entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("spinTicks")) this.dataWatcher.updateObject(16, tag.getInteger("spinTicks"));
+		if (tag.hasKey("spinTicks2")) this.setSpinTicks2(tag.getInteger("spinTicks2"));
+		if (tag.hasKey("spinTicks3")) this.setSpinTicks3(tag.getInteger("spinTicks3"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("spinTicks2", this.getSpinTicks2());
+		tag.setInteger("spinTicks3", this.getSpinTicks3());
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public Class getLesserForm() {
 		return EntityCryse.class;

@@ -43,7 +43,6 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.entity.mob.EntityStarCryse;
 import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
@@ -324,12 +323,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityCryse.class, "TragicMC.Cryse", id++, 0xCEE3E3, 0xFFFFFF);
 		}
 
-		if (TragicNewConfig.allowStarCryse)
-		{
-			EntityRegistry.registerModEntity(EntityStarCryse.class, "StarCryse", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityStarCryse.class, "TragicMC.StarCryse", id++, 0x9A9A9A, 0xBBBBBB);
-		}
-
 		if (TragicNewConfig.allowNorVox)
 		{
 			EntityRegistry.registerModEntity(EntityNorVox.class, "NorVox", listid++, TragicMC.instance, 80, 1, true);
@@ -515,7 +508,7 @@ public class TragicEntities {
 		if (TragicNewConfig.allowVoxStellarum)
 		{
 			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, 0xABABAB, 0xDDDDDD, EnumEggType.MINIBOSS);
+			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, 0xFDC169, 0xFD3C69, EnumEggType.MINIBOSS);
 		}
 		
 		//Bosses
