@@ -228,7 +228,7 @@ public class EntityJabba extends TragicMob {
 			
 			if (this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(32) == 0)
 			{
-				this.setAttackTicks(120);
+				this.setAttackTicks(60);
 			}
 
 			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(lowHealthDamageBoost);

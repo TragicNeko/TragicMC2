@@ -22,6 +22,13 @@ public class ModelJabba extends ModelBase
 	private ModelRenderer leftTailPincer;
 	private ModelRenderer rightTailPincer;
 
+	protected float[][] movementOffsets = new float[][] {{0.055F, 0.135F, 0.055F, 0.0F, -0.055F, -0.135F, -0.055F, 0.0F},
+			{-0.055F, 0.0F, 0.055F, 0.135F, 0.055F, 0.0F, -0.055F, -0.135F},
+			{-0.055F, -0.135F, -0.055F, 0.0F, 0.055F, 0.135F, 0.055F, 0.0F},
+			{0.055F, 0.0F, -0.055F, -0.135F, -0.055F, 0.0F, 0.055F, 0.135F},
+			{0.055F, 0.135F, 0.055F, 0.0F, -0.055F, -0.135F, -0.055F, 0.0F},
+			{-0.055F, 0.0F, 0.055F, 0.135F, 0.055F, 0.0F, -0.055F, -0.135F}};
+
 	public ModelJabba()
 	{
 		textureWidth = 64;
@@ -86,9 +93,17 @@ public class ModelJabba extends ModelBase
 
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
-		if (!(entity instanceof EntityJabba)) return; //Claymation protection, temporary
+		if (!(entity instanceof EntityJabba)) return; //Claymation and Statue protection, temporary
 		EntityJabba jab = (EntityJabba) entity;
 		int i = jab.getAttackTicks();
+		int k = (int)par1 % 8;
+		float f0 = 0.345F;
+		
+		this.head.offsetX = movementOffsets[0][k] * f0;
+		this.body.offsetX = movementOffsets[1][k] * f0;
+		this.body2.offsetX = movementOffsets[2][k] * f0;
+		this.body3.offsetX = movementOffsets[3][k] * f0;
+		this.head2.offsetX = movementOffsets[4][k] * f0;
 
 		if (i > 0)
 		{
