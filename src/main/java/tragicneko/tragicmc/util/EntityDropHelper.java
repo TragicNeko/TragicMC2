@@ -39,7 +39,6 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -82,17 +81,15 @@ public class EntityDropHelper {
 			new ItemStack(Blocks.vine), new ItemStack(TragicItems.Thorns)}, {new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit),
 				new ItemStack(Items.slime_ball)}});
 		
-		entityLootDrops.put(EntityCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball)}, {new ItemStack(TragicItems.IceOrb)}});
+		entityLootDrops.put(EntityCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball)}, {new ItemStack(TragicItems.IceOrb),
+			new ItemStack(TragicBlocks.StarCrystal)}});
 		
 		entityLootDrops.put(EntityPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
 		
 		entityLootDrops.put(EntityLavaPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
 		
-		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(Blocks.mossy_cobblestone), new ItemStack(Blocks.stone), new ItemStack(TragicItems.Rock)},
-				{new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
-		
-		entityLootDrops.put(EntityStarVox.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(Items.glowstone_dust)},
-			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby)}});
+		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(TragicItems.Rock)},{new ItemStack(TragicBlocks.StarCrystal), new ItemStack(Items.glowstone_dust),
+			new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
 		
 		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
 		

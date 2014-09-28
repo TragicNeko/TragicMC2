@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,44 +8,47 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import tragicneko.tragicmc.client.model.ModelCryse;
 import tragicneko.tragicmc.client.model.ModelNorVox;
-import tragicneko.tragicmc.entity.mob.EntityStarVox;
+import tragicneko.tragicmc.entity.mob.EntityCryse;
+import tragicneko.tragicmc.entity.mob.EntityNorVox;
 
-public class RenderStarVox extends RenderLiving {
+public class RenderNorVox extends RenderLiving {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/StarVox_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/NorVox_lowRes.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarVox_lowRes.png");
+
+	public RenderNorVox() {
+		super(new ModelNorVox(), 0.835F);
+	}
 	
-	private static float rgbR = 1.0F;
-    private static float rgbG = 1.0F;
-    private static float rgbB = 1.0F;
-
-	public RenderStarVox() {
-		super(new ModelNorVox(), 0.65F);
+	protected void preRenderCallback(EntityLivingBase entity, float par2)
+	{
+		EntityNorVox vox = (EntityNorVox) entity;
+		float scale = vox.getNorVoxType() == 0 ? 1.455F : 1.0F;
+		GL11.glScalef(scale, scale, scale);
 	}
 
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
     {
-		this.renderModel((EntityStarVox) par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
-    }
-
-	private void renderModel(EntityStarVox par1EntityLivingBase, float par2, 	float par3, float par4, float par5, float par6, float par7) 
-	{
 		this.bindEntityTexture(par1EntityLivingBase);
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
         {       
+			EntityNorVox vox = (EntityNorVox) par1EntityLivingBase;
+			float[] rgb = new float[] {1.0F, 1.0F, 1.0F};
+			if (vox.getNorVoxType() == 1) rgb = getRGBThroughTextureID(vox.getTextureID());
+			float trans = vox.getNorVoxType() == 0 ? 1.0F : 0.35F;
+			
             GL11.glPushMatrix();
-            
-            this.setRGBThroughTextureID(par1EntityLivingBase.getTextureID());
-            
-            GL11.glColor4f(rgbR, rgbG, rgbB, 0.35F);
+            GL11.glColor4f(rgb[0], rgb[1], rgb[2], trans);
             GL11.glDepthMask(false);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
             this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
             GL11.glDisable(GL11.GL_BLEND);
-            GL11.glAlphaFunc(GL11.GL_GREATER, 0.2F);
+            GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
             GL11.glDepthMask(true);
             GL11.glPopMatrix();
         }
@@ -54,59 +56,7 @@ public class RenderStarVox extends RenderLiving {
         {
             this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, par1EntityLivingBase);
         }
-		
-	}
-
-	private void setRGBThroughTextureID(int textureID) {
-		switch(textureID)
-		{
-		default:
-		case 0:
-			rgbR = 0.75F;
-			rgbG = 0.75F;
-			rgbB = 0.75F;
-			break;
-		case 1:
-			rgbR = 0.75F;
-			rgbG = 0.25F;
-			rgbB = 0.25F;
-			break;
-		case 2:
-			rgbR = 0.25F;
-			rgbG = 0.75F;
-			rgbB = 0.25F;
-			break;
-		case 3:
-			rgbR = 0.25F;
-			rgbG = 0.25F;
-			rgbB = 0.75F;
-			break;
-		case 4:
-			rgbR = 0.25F;
-			rgbG = 0.75F;
-			rgbB = 0.75F;
-			break;
-		case 5:
-			rgbR = 0.75F;
-			rgbG = 0.75F;
-			rgbB = 0.25F;
-			break;
-		case 6:
-			rgbR = 0.75F;
-			rgbG = 0.25F;
-			rgbB = 0.75F;
-			break;
-		case 7:
-			rgbR = 0.25F;
-			rgbG = 0.25F;
-			rgbB = 0.25F;
-			break;
-		}
-		
-		rgbR *= 2.55F;
-		rgbG *= 2.55F;
-		rgbB *= 2.55F;
-	}
+    }
 	
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
     {
@@ -133,10 +83,37 @@ public class RenderStarVox extends RenderLiving {
             return -1;
         }
     }
+	
+	private float[] getRGBThroughTextureID(int textureID) {
+		switch(textureID)
+		{
+		default:
+			return new float[] {0.75F, 0.75F, 0.75F};
+		case 1:
+			return new float[] {0.75F, 0.25F, 0.25F};
+		case 2:
+			return new float[] {0.25F, 0.75F, 0.25F};
+		case 3:
+			return new float[] {0.25F, 0.25F, 0.75F};
+		case 4:
+			return new float[] {0.25F, 0.75F, 0.75F};
+		case 5:
+			return new float[] {0.75F, 0.75F, 0.25F};
+		case 6:
+			return new float[] {0.75F, 0.25F, 0.75F};
+		case 7:
+			return new float[] {0.25F, 0.25F, 0.25F};
+		}
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
-		return texture;
+		return getEntityTexture((EntityNorVox) var1);
+	}
+	
+	private ResourceLocation getEntityTexture(EntityNorVox vox)
+	{
+		return vox.getNorVoxType() == 0 ? texture : texture2;
 	}
 
 }

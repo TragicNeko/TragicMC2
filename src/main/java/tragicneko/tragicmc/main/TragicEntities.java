@@ -43,7 +43,6 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -356,12 +355,6 @@ public class TragicEntities {
 					BiomeGenBase.taigaHills
 					);
 			TragicEntityList.addMapping(EntityNorVox.class, "TragicMC.NorVox", id++, 0x000000, 0x565656);
-		}
-
-		if (TragicNewConfig.allowStarVox)
-		{
-			EntityRegistry.registerModEntity(EntityStarVox.class, "StarVox", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityStarVox.class, "TragicMC.StarVox", id++, 0xABABAB, 0xDDDDDD);
 		}
 
 		if (TragicNewConfig.allowPirah)

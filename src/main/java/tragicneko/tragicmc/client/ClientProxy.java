@@ -19,7 +19,6 @@ import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
-import tragicneko.tragicmc.client.model.ModelNorVox;
 import tragicneko.tragicmc.client.model.ModelPirah;
 import tragicneko.tragicmc.client.model.ModelPlague;
 import tragicneko.tragicmc.client.model.ModelPumpkinhead;
@@ -49,7 +48,7 @@ import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
-import tragicneko.tragicmc.client.render.mob.RenderStarVox;
+import tragicneko.tragicmc.client.render.mob.RenderNorVox;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
@@ -85,7 +84,6 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -205,8 +203,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCryse.class, new RenderCryse());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaCryse.class, new RenderMegaCryse());
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderMob(new ModelNorVox(), 0.625F, "NorVox_lowRes", 1.455F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStarVox.class, new RenderStarVox());
+		RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderNorVox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderMob(new ModelPirah(), 0.225F, "Pirah_lowRes"));
