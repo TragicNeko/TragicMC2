@@ -49,7 +49,6 @@ import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
-import tragicneko.tragicmc.client.render.mob.RenderStarCryse;
 import tragicneko.tragicmc.client.render.mob.RenderStarVox;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
@@ -86,7 +85,6 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.entity.mob.EntityStarCryse;
 import tragicneko.tragicmc.entity.mob.EntityStarVox;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityStinBaby;
@@ -202,11 +200,10 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko_lowRes"));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderTox());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox_lowRes", 1.625F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox2_lowRes", 1.625F));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityCryse.class, new RenderCryse());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaCryse.class, new RenderMegaCryse());
-		RenderingRegistry.registerEntityRenderingHandler(EntityStarCryse.class, new RenderStarCryse());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderMob(new ModelNorVox(), 0.625F, "NorVox_lowRes", 1.455F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityStarVox.class, new RenderStarVox());
