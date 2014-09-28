@@ -111,14 +111,6 @@ public class EntityMinotaur extends TragicMob {
 			this.setSprinting(false);
 		}
 
-		if (this.worldObj.isDaytime())
-		{
-			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth())
-			{
-				this.heal(1.0F);
-			}
-		}
-
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F 
 				&& this.onGround && rand.nextInt(16) == 0 && this.onGround && !this.isCharging() && this.canEntityBeSeen(this.getAttackTarget()))
 		{
