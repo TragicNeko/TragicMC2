@@ -61,7 +61,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 		{
 			this.setSize(0.625F * 1.625F, 1.965F * 1.625F);
 			
-			if (!this.isFiring() && rand.nextBoolean())
+			if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 			{
 				this.worldObj.spawnParticle("flame",
 						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
