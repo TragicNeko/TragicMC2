@@ -192,6 +192,11 @@ public class EntityInkling extends TragicMob {
 				}
 			}
 		}
+		
+		if (this.getAttackTarget() == null)
+		{
+			if (this.getVisibleTicks() == 0) this.setVisibleTicks(10);
+		}
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
