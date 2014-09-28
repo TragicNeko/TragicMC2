@@ -5,9 +5,7 @@ import java.util.List;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
@@ -79,7 +77,7 @@ public abstract class TragicMob extends EntityMob
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) return;
-		
+
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null); 
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicNewConfig.allowCorruption)
@@ -92,8 +90,7 @@ public abstract class TragicMob extends EntityMob
 			{
 				result = entityplayer;
 			}
-
-			if (result == null)
+			else
 			{
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
 
@@ -103,40 +100,30 @@ public abstract class TragicMob extends EntityMob
 
 					if (this.canEntityBeSeen(entity) && entity != this)
 					{
-						if (!(entity instanceof EntityWither) && !(entity instanceof EntityDragon) && !(entity instanceof TragicBoss) && !(entity instanceof TragicMiniBoss) &&
-								entity.getClass() != this.getClass())
+						if (!(entity instanceof EntityWither) && !(entity instanceof EntityDragon) && !(entity instanceof TragicBoss) && entity.getClass() != this.getClass())
 						{
-							if (entity instanceof TragicMob && entity != this && !(entity instanceof EntityPlague))
+							if (entity instanceof TragicMob)
 							{
-								if (this.superiorForm != null && entity != this.superiorForm)
+								if (this.superiorForm != null && entity != this.superiorForm && entity.getClass() != this.getLesserForm())
 								{
-									if (!(this instanceof TragicMiniBoss))
-									{
-										result = entity;
-										break;
-									}
+									result = entity;
+									break;
+								}
+								else if (entity.getClass() != this.getLesserForm() && this.superiorForm == null)
+								{
+									result = entity;
+									break;
 								}
 							}
-							else if (entity instanceof EntityCreature)
+							else if (entity instanceof EntityAnimal)
 							{
 								result = entity;
-								break;
-							}
-							else if (entity instanceof EntityPlayer)
-							{
 								break;
 							}
 						}
 					}
 				}
 
-				if (result != null)
-				{
-					this.setAttackTarget((EntityLivingBase) result);
-				}
-			}
-			else
-			{
 				this.setAttackTarget((EntityLivingBase) result);
 			}
 		}
@@ -152,7 +139,7 @@ public abstract class TragicMob extends EntityMob
 				this.setCorruptionTicks(0);
 			}
 
-			if (this.canChange() && this.getCorruptionTicks() >= 600 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance && this.ticksExisted % 20 == 0)
+			if (this.canChange() && this.getCorruptionTicks() >= 600 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
 			{
 				this.change();
 			}
@@ -168,8 +155,8 @@ public abstract class TragicMob extends EntityMob
 		if (this.isChangeAllowed())
 		{
 			TragicMob boss = (TragicMob) this.getSuperiorForm();
+			boss.copyDataFrom(this, true);
 			boss.copyLocationAndAnglesFrom(this);
-			boss.onSpawnWithEgg((IEntityLivingData)null);
 			this.worldObj.removeEntity(this);
 			this.worldObj.spawnEntityInWorld(boss);
 			boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
