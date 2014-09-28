@@ -2696,10 +2696,17 @@ Rewrote most of the Tragic Neko's AI, it now goes through it's firing pattern mo
 in a while and throw bombs at other times, it can also run up and smack it's target with it's weapon, this was given an increased damage to compensate for it firing less missles
 Updating the Tox's AI, combining the Pox's class with it (like the Jabba) and increasing the amount of projectiles it fires but reducing it's normal hit damage when something is
 near it
-
+Fixed up other things with the Tox, added a lot of animation stuff to it, it fluffs off particles when it wiggles it's head or when it gets hit, or while it's attacking
+Updated the Cryse's AI, it has a very basic AI so I just added a few animations to it while it's idle
+Updated the Mega Cryse's AI and model, it now actually renders shields to match how many it has
+Fixed some NPEs with the mob statues and Claymation while trying to render the models that now have animations, fixed offsets with Mega Cryse for the statue
+Updated the Jabba/Jarra model animations to add a normal movement one (it wiggles it's body like a snake now)
+Combined the Star-Vox and Nor-Vox classes (as per previous mobs), updated the Nor-Vox AI to be more efficient, lowered the health of the Star-Vox but increased it's armor amount
+Added Star Crystal as drops for the Cryse and Nor-Vox, these are for the variants, but it isn't that big of a deal (I can override the onDeath method later to do this)
+The animations for these will be very simplified, the rendering for the Vox Stellarum will be as well
 
 --Reminders-
-I'm going to rewrite how Corruption works, it'll affect entities near other corrupted ones, and it'll be a continuous effect, but can be randomly healed if the entity that has
+I'm going to rewrite how Corruption works, it'll affect entities near other corrupted ones, but can be randomly healed if the entity that has
 it is "quarantined", this will be handled in Potion Events class so that all entities afflicted with it can spread it or recover from it, going to add an item that can instantly
 heal corruption, as well as give the entity healed immunity for a really long time (like 24000 seconds or something)
 They will be able to corrupt nearby ones only if they canCorrupt() others, otherwise they will default to being able to if they're not one of my mobs
