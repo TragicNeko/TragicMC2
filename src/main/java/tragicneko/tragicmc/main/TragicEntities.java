@@ -484,7 +484,7 @@ public class TragicEntities {
 					BiomeGenBase.coldTaiga,
 					BiomeGenBase.coldTaigaHills
 					);
-			TragicEntityList.addMapping(EntityMegaCryse.class, "TragicMC.MegaCryse", id++, 0xCECEE3, 0xBDBAC8, EnumEggType.MINIBOSS);
+			TragicEntityList.addMapping(EntityMegaCryse.class, "TragicMC.MegaCryse", id++, 0xDADADA, 0xB9BFC7, EnumEggType.MINIBOSS);
 		}
 		
 		if (TragicNewConfig.allowGreaterStin)
