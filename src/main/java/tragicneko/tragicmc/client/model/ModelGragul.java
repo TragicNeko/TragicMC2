@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.mob.EntityGragul;
 
 public class ModelGragul extends ModelBase
 {
@@ -57,6 +58,8 @@ public class ModelGragul extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		
+		if (!(entity instanceof EntityGragul)) return;
 		int i = entity.ticksExisted;
 		
 		this.leftLeg.rotateAngleZ = -0.075F * this.simplifyAngle(i, 15.0F) * f1;

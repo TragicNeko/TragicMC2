@@ -179,6 +179,8 @@ public class ModelTox extends ModelBase
 
 	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
 	{
+		if (!(entity instanceof EntityTox)) return;
+		
 		EntityTox tox = (EntityTox) entity;
 		Random rand = tox.worldObj.rand;
 

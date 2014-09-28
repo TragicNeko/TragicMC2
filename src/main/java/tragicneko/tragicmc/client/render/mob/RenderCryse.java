@@ -9,13 +9,22 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelCryse;
+import tragicneko.tragicmc.entity.mob.EntityCryse;
 
 public class RenderCryse extends RenderLiving {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Cryse_lowRes.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarCryse_lowRes.png");
 
 	public RenderCryse() {
 		super(new ModelCryse(), 0.335F);
+	}
+	
+	protected void preRenderCallback(EntityLivingBase entity, float par2)
+	{
+		EntityCryse cryse = (EntityCryse) entity;
+		float scale = cryse.getCryseType() == 0 ? 1.0F : 0.625F;
+		GL11.glScalef(scale, scale, scale);
 	}
 
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
@@ -24,8 +33,12 @@ public class RenderCryse extends RenderLiving {
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
         {       
+			EntityCryse cryse = (EntityCryse) par1EntityLivingBase;
+			float[] rgb = new float[] {1.0F, 1.0F, 1.0F};
+			if (cryse.getCryseType() == 1) rgb = getRGBThroughTextureID(cryse.getTextureID());
+			
             GL11.glPushMatrix();
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.35F);
+            GL11.glColor4f(rgb[0], rgb[1], rgb[2], 0.35F);
             GL11.glDepthMask(false);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -67,10 +80,37 @@ public class RenderCryse extends RenderLiving {
             return -1;
         }
     }
+	
+	private float[] getRGBThroughTextureID(int textureID) {
+		switch(textureID)
+		{
+		default:
+			return new float[] {0.75F, 0.75F, 0.75F};
+		case 1:
+			return new float[] {0.75F, 0.25F, 0.25F};
+		case 2:
+			return new float[] {0.25F, 0.75F, 0.25F};
+		case 3:
+			return new float[] {0.25F, 0.25F, 0.75F};
+		case 4:
+			return new float[] {0.25F, 0.75F, 0.75F};
+		case 5:
+			return new float[] {0.75F, 0.75F, 0.25F};
+		case 6:
+			return new float[] {0.75F, 0.25F, 0.75F};
+		case 7:
+			return new float[] {0.25F, 0.25F, 0.25F};
+		}
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
-		return texture;
+		return getEntityTexture((EntityCryse) var1);
+	}
+	
+	private ResourceLocation getEntityTexture(EntityCryse cryse)
+	{
+		return cryse.getCryseType() == 0 ? texture : texture2;
 	}
 
 }

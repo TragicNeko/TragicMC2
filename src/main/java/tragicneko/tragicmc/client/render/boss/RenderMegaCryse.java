@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,7 +33,7 @@ public class RenderMegaCryse extends RenderLiving {
 		this.bindEntityTexture(par1EntityLivingBase);
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
-        {       
+        {
             GL11.glPushMatrix();
             GL11.glColor4f(0.8F, 0.8F, 1.0F, 0.35F);
             GL11.glDepthMask(false);

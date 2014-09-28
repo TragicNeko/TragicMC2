@@ -2,13 +2,10 @@ package tragicneko.tragicmc.client.model;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.entity.boss.EntityJarra;
-import tragicneko.tragicmc.entity.mob.EntityJabba;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.entity.boss.EntityJarra;
 
 public class ModelJarra extends ModelJabba
 {   
@@ -74,6 +71,9 @@ public class ModelJarra extends ModelJabba
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
 		super.setLivingAnimations(entity, par1, par2, par3);
+		
+		if (!(entity instanceof EntityJarra)) return; //For the mob statues
+		
 		EntityJarra jar = (EntityJarra) entity;
 		int i = jar.getAttackTicks();
 		Random rand = jar.worldObj.rand;

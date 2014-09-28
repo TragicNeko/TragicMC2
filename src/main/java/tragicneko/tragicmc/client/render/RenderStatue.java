@@ -95,8 +95,8 @@ public class RenderStatue extends Render {
 		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen || model instanceof ModelEnyvil;
 		boolean flag2 = model instanceof ModelKragul;
 		
-		float f = flag ? 0.505F : (flag2 ? 0.865F : 0.625F);		
-		float f1 = flag ? 0.01725F : (flag2 ? 0.0525F : 0.025F);
+		float f = flag ? 0.505F : (flag2 ? 1.825F : 0.725F);		
+		float f1 = flag ? 0.01725F : (flag2 ? 0.0825F : 0.03F);
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);
@@ -141,7 +141,7 @@ public class RenderStatue extends Render {
 			case 7:
 				return new ResourceLocation(s + "Kragul_lowRes.png");
 			case 8:
-				return new ResourceLocation(s + "Magmox_lowRes.png");
+				return new ResourceLocation(s + "Magmox2_lowRes.png");
 			case 9:
 				return new ResourceLocation(s + "Cryse_lowRes.png");
 			case 10:

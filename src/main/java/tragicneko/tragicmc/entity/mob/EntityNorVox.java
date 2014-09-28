@@ -16,6 +16,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -63,6 +64,7 @@ public class EntityNorVox extends TragicMob {
 
 	public void onLivingUpdate()
 	{
+		if (!this.worldObj.isRemote && this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
 		super.onLivingUpdate();
 
 		if (this.ticksExisted % 240 == 0 && !this.worldObj.isRemote && this.getHealth() < this.getMaxHealth())
@@ -122,10 +124,7 @@ public class EntityNorVox extends TragicMob {
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
-		if (par1DamageSource.isExplosion())
-		{
-			return false;
-		}
+		if (par1DamageSource.isExplosion() || par1DamageSource == DamageSource.wither) return false;
 
 		if (this.isFiring && par1DamageSource.getEntity() != null)
 		{
