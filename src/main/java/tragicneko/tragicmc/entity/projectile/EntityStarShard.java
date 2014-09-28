@@ -1,21 +1,20 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
-import tragicneko.tragicmc.entity.mob.EntityStarVox;
+import tragicneko.tragicmc.entity.mob.EntityNorVox;
 
 public class EntityStarShard extends EntityProjectile {
 	
 	public EntityStarShard(World par1World)
 	{
 		super(par1World);
+		this.setSize(0.325F, 0.325F);
 	}
 
 	public EntityStarShard(World par1World, EntityLivingBase entity, double par2, double par4, double par6) {
@@ -32,7 +31,7 @@ public class EntityStarShard extends EntityProjectile {
 		if (mop.entityHit != null && !inGround) 
 		{			
 			if (!(mop.entityHit instanceof EntityLivingBase)) return;
-			if (mop.entityHit instanceof EntityVoxStellarum || mop.entityHit instanceof EntityStarVox || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse) return;
+			if (mop.entityHit instanceof EntityVoxStellarum || mop.entityHit instanceof EntityNorVox || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse) return;
 			
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 2.0F);			
 			this.setDead();

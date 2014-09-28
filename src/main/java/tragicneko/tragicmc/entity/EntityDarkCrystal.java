@@ -11,7 +11,7 @@ import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 
 public class EntityDarkCrystal extends Entity {
 
-	public final EntityEnyvil owner;
+	public EntityEnyvil owner;
 
 	public EntityDarkCrystal(World world)
 	{
@@ -111,10 +111,14 @@ public class EntityDarkCrystal extends Entity {
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
+		if (tag.hasKey("position")) this.setPosition(tag.getIntArray("position")[0], tag.getIntArray("position")[1], tag.getIntArray("position")[2]);
+		if (tag.hasKey("ownerID")) this.owner = (EntityEnyvil) this.worldObj.getEntityByID(tag.getInteger("ownerID"));
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tag) {
+		tag.setIntArray("position", new int[] {(int) this.posX, (int) this.posY, (int) this.posZ});
+		if (this.owner != null) tag.setInteger("ownerID", this.owner.getEntityId());
 	}
 
 	@Override

@@ -112,5 +112,4 @@ public class RenderCryse extends RenderLiving {
 	{
 		return cryse.getCryseType() == 0 ? texture : texture2;
 	}
-
 }

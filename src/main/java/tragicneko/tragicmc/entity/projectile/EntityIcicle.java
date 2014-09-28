@@ -22,6 +22,7 @@ public class EntityIcicle extends EntityProjectile {
 
 	public EntityIcicle(World world) {
 		super(world);
+		this.setSize(0.325F, 0.325F);
 	}
 
 	public EntityIcicle(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
