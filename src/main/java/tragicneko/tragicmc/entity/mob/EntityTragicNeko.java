@@ -34,6 +34,8 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 import tragicneko.tragicmc.main.TragicItems;
 
 public class EntityTragicNeko extends TragicMob {
+	
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", -0.50, 0);
 
 	public EntityTragicNeko(World par1World) {
 		super(par1World);
@@ -209,13 +211,9 @@ public class EntityTragicNeko extends TragicMob {
 			this.setFiringTicks(65);
 		}
 		
-		AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", -0.50, 0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-
-		if (this.isAboutToFire() || this.getThrowingTicks() > 0)
-		{
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-		}
+		if (this.isAboutToFire() || this.getThrowingTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+		
 	}
 	
 	public void onDeath(DamageSource par1DamageSource)
