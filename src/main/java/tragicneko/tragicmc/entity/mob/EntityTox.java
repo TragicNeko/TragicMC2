@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.entity.mob;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -22,13 +20,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityMagmox;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTox extends TragicMob {
 
@@ -52,6 +51,7 @@ public class EntityTox extends TragicMob {
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
 	}
 
 	public int getToxType()
@@ -62,7 +62,7 @@ public class EntityTox extends TragicMob {
 	protected void setToxType(int i)
 	{
 		this.dataWatcher.updateObject(16, i);
-		
+
 		if (i == 0)
 		{
 			this.setSize(0.625F, 1.965F);
@@ -93,7 +93,7 @@ public class EntityTox extends TragicMob {
 	{
 		return this.getFiringTicks() > 0;
 	}
-	
+
 	public int getAttackTime()
 	{
 		return this.dataWatcher.getWatchableObjectInt(18);
@@ -109,7 +109,23 @@ public class EntityTox extends TragicMob {
 		int pow = this.getAttackTime();
 		this.setAttackTime(--pow);
 	}
-	
+
+	public int getWiggleTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+
+	protected void setWiggleTime(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+
+	protected void decrementWiggleTime()
+	{
+		int pow = this.getWiggleTime();
+		this.setWiggleTime(--pow);
+	}
+
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
@@ -144,24 +160,38 @@ public class EntityTox extends TragicMob {
 
 	public void onLivingUpdate()
 	{
-		if (!this.worldObj.isRemote && this.isPotionActive(Potion.poison.id))
+		if (!this.worldObj.isRemote)
 		{
-			this.removePotionEffect(Potion.poison.id);
+			if (this.motionY > 0.0D) this.motionY = -0.1D;
+			if (Math.abs(this.motionX) > 0.25D) this.motionX *= 0.225D;
+			if (Math.abs(this.motionZ) > 0.25D) this.motionZ *= 0.225D;
+			if (this.isPotionActive(Potion.poison)) this.removePotionEffect(Potion.poison.id);
 		}
 
 		super.onLivingUpdate();
-		
+
 		if (this.worldObj.isRemote)
 		{
 			if (this.getToxType() == 0)
 			{
 				this.setSize(0.625F, 1.965F);
+				
+				if ((this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0) && !this.isImmuneToFire())
+				{
+					this.worldObj.spawnParticle("mobSpellAmbient",
+							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+							this.posY + this.rand.nextDouble() * (double)this.height,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+							(this.rand.nextDouble() - 0.6D) * 0.1D,
+							this.rand.nextDouble() * 0.1D,
+							(this.rand.nextDouble() - 0.6D) * 0.1D);
+				}
 			}
 			else
 			{
 				this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
-				
-				if (rand.nextBoolean())
+
+				if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 				{
 					this.worldObj.spawnParticle("slime",
 							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
@@ -173,26 +203,36 @@ public class EntityTox extends TragicMob {
 				}
 			}
 		}
-
-		if (this.worldObj.isRemote) return;
-
-		if (this.superiorForm == null && this.getToxType() == 0) this.superiorForm = new EntityMagmox(this.worldObj);
-		if (this.isFiring()) this.decrementFiringTicks();
-		if (this.getAttackTime() > 0) this.decrementAttackTime();
-
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0 && !this.isFiring())
+		else
 		{
-			this.setFiringTicks(120);
-		}
+			if (this.getWiggleTime() > 0)
+			{
+				this.decrementWiggleTime();
+				if (this.getAttackTarget() != null) this.setWiggleTime(0);
+			}
+			
+			if (this.superiorForm == null && this.getToxType() == 0) this.superiorForm = new EntityMagmox(this.worldObj);
+			if (this.isFiring()) this.decrementFiringTicks();
+			if (this.getAttackTime() > 0) this.decrementAttackTime();
 
-		int rate = this.getToxType() == 0 ? 10 : 5;
-		if (this.getFiringTicks() >= 20 && this.ticksExisted % rate == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
-				this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
-		{
-			this.shootProjectiles();
+			if (this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0 && this.getAttackTarget() == null) this.setWiggleTime(20);
+
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0 && !this.isFiring())
+			{
+				this.setFiringTicks(120);
+			}
+
+			int rate = this.getToxType() == 0 ? 10 : 5;
+			if (this.getFiringTicks() >= 20 && this.ticksExisted % rate == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
+					this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
+			{
+				this.shootProjectiles();
+			}
+			
+			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(3.0F);
 		}
 	}
-	
+
 	protected void shootProjectiles()
 	{
 		double d0 = this.getAttackTarget().posX - this.posX;
@@ -214,7 +254,10 @@ public class EntityTox extends TragicMob {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
-		
+
+		if (this.isFiring()) this.setFiringTicks(19);
+		if (this.getWiggleTime() > 0) this.setWiggleTime(0);
+
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
@@ -227,9 +270,9 @@ public class EntityTox extends TragicMob {
 		}
 
 		if (par1DamageSource.isFireDamage()) par2 *= 1.625;
-		
+
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
-		if (result) this.setAttackTime(10);
+		if (result) this.setAttackTime(5);
 
 		return result;
 	}
@@ -237,7 +280,7 @@ public class EntityTox extends TragicMob {
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		boolean result = super.attackEntityAsMob(par1Entity);
 
 		if (result && par1Entity instanceof EntityLivingBase && rand.nextInt(16) == 0 && !this.isImmuneToFire())
@@ -252,13 +295,14 @@ public class EntityTox extends TragicMob {
 	{
 		return this.isFiring() ? 2 : (this.getToxType() == 0 ? 16 : 10);
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("toxType")) this.setToxType(tag.getInteger("toxType"));
 		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
 		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+		if (tag.hasKey("wiggleTime")) this.setWiggleTime(tag.getInteger("wiggleTime"));
 	}
 
 	@Override
@@ -268,6 +312,7 @@ public class EntityTox extends TragicMob {
 		tag.setInteger("toxType", this.getToxType());
 		tag.setInteger("firingTicks", this.getFiringTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
+		tag.setInteger("wiggleTime", this.getWiggleTime());
 	}
 
 	@Override
