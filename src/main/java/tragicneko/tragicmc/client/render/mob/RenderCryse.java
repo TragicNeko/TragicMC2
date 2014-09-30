@@ -34,11 +34,11 @@ public class RenderCryse extends RenderLiving {
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
         {       
 			EntityCryse cryse = (EntityCryse) par1EntityLivingBase;
-			float[] rgb = new float[] {1.0F, 1.0F, 1.0F};
-			if (cryse.getCryseType() == 1) rgb = getRGBThroughTextureID(cryse.getTextureID());
+			float[] rgb = cryse.getCryseType() == 0 ? new float[] {1.0F, 1.0F, 1.0F} : getRGBThroughTextureID(cryse.getTextureID());
+			float trans = cryse.getCryseType() == 0 ? 0.35F : 0.75F;
 			
             GL11.glPushMatrix();
-            GL11.glColor4f(rgb[0], rgb[1], rgb[2], 0.35F);
+            GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, trans);
             GL11.glDepthMask(false);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
