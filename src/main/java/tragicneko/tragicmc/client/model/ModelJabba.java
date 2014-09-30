@@ -37,7 +37,7 @@ public class ModelJabba extends ModelBase
 		//Actual head and pincers
 		head = new ModelRenderer(this, 32, 4);
 		head.addBox(-4F, -4F, -8F, 8, 8, 8);
-		head.setRotationPoint(0F, 18F, -3F);
+		head.setRotationPoint(0F, 18F, -1F);
 		leftPincer = new ModelRenderer(this, 0, 32);
 		leftPincer.addBox(1F, -1F, -12F, 4, 4, 4);
 		head.addChild(leftPincer);
@@ -47,22 +47,22 @@ public class ModelJabba extends ModelBase
 
 		//First body part
 		body = new ModelRenderer(this, 0, 0);
-		body.addBox(-3F, -3F, -3F, 6, 6, 6);
+		body.addBox(-3F, -3F, -1F, 6, 6, 6);
 		body.setRotationPoint(0F, 18F, 0F);
 
 		//Second body part
 		body2 = new ModelRenderer(this, 0, 14);
-		body2.addBox(-4F, -4F, -6F, 8, 8, 8);
+		body2.addBox(-4F, -4F, -4F, 8, 8, 8);
 		body2.setRotationPoint(0F, 18F, 9F);
 
 		//Third body part
 		body3 = new ModelRenderer(this, 0, 0);
-		body3.addBox(-3F, -3F, -3F, 6, 6, 6);
+		body3.addBox(-3F, -3F, -1F, 6, 6, 6);
 		body3.setRotationPoint(0F, 18F, 14F);
 
 		//Tail head and pincers
 		head2 = new ModelRenderer(this, 32, 4);
-		head2.addBox(-4F, -4F, 0F, 8, 8, 8);
+		head2.addBox(-4F, -4F, 2F, 8, 8, 8);
 		head2.setRotationPoint(0F, 18F, 17F);
 		leftTailPincer = new ModelRenderer(this, 0, 32);
 		leftTailPincer.addBox(1F, -1F, 8F, 4, 4, 4);

@@ -18,7 +18,6 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 
 	public EntityJarra(World par1World) {
 		super(par1World);
-		this.setSize(0.475F * 1.585F, 0.625F * 1.585F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 20;
 		this.isImmuneToFire = false;
@@ -49,6 +48,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	protected void setJabbaType(int i)
 	{
 		this.dataWatcher.updateObject(17, 1);
+		this.setSize(0.725F * 1.585F, 0.825F * 1.585F);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		
 		if (this.worldObj.isRemote)
 		{
-			this.setSize(0.475F * 1.585F, 0.625F * 1.585F);
+			this.setSize(0.725F * 1.585F, 0.825F * 1.585F);
 		}
 	}
 

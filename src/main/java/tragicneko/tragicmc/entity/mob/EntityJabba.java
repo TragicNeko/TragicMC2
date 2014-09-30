@@ -104,11 +104,11 @@ public class EntityJabba extends TragicMob {
 
 		if (i == 0)
 		{
-			this.setSize(0.475F, 0.625F);
+			this.setSize(0.825F, 0.725F);
 		}
 		else
 		{
-			this.setSize(0.475F * 0.825F, 0.625F * 0.825F);
+			this.setSize(0.825F * 0.825F, 0.725F * 0.825F);
 		}
 	}
 
@@ -174,11 +174,11 @@ public class EntityJabba extends TragicMob {
 
 			if (this.getJabbaType() == 0)
 			{
-				this.setSize(0.475F, 0.625F);
+				this.setSize(0.825F, 0.725F);
 			}
 			else
 			{
-				this.setSize(0.475F * 0.825F, 0.625F * 0.825F);
+				this.setSize(0.825F * 0.825F, 0.725F * 0.825F);
 			}
 		}
 		else
