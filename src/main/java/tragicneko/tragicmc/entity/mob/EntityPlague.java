@@ -112,7 +112,6 @@ public class EntityPlague extends TragicMob {
 
 			if (TragicNewConfig.allowCorruption && this.ticksExisted % 60 == 0)
 			{
-
 				int dif = this.worldObj.difficultySetting.getDifficultyId();
 				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 16.0 : 10.0);
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
