@@ -115,7 +115,7 @@ public class EntityCryse extends TragicMob {
 		}
 		else
 		{
-			this.setSize(0.425F * 0.625F, 1.475F * 0.625F);
+			this.setSize(0.525F * 0.625F, 1.475F * 0.625F);
 		}
 	}
 
@@ -160,7 +160,7 @@ public class EntityCryse extends TragicMob {
 		int pow = this.getFlutterTicks();
 		this.setFlutterTicks(--pow);
 	}
-	
+
 	public boolean isFluttering()
 	{
 		return this.getFlutterTicks() > 0;
@@ -188,7 +188,7 @@ public class EntityCryse extends TragicMob {
 			}
 			else
 			{
-				this.setSize(0.425F * 0.625F, 1.475F * 0.625F);
+				this.setSize(0.525F * 0.625F, 1.475F * 0.625F);
 			}
 		}
 		else
@@ -308,9 +308,12 @@ public class EntityCryse extends TragicMob {
 
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		this.setCryseType(biome instanceof BiomeGenStarlitPrarie ? 1 : 0);
-		this.setTextureID(rand.nextInt(8));
+		if (!this.worldObj.isRemote)
+		{
+			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+			this.setCryseType(biome instanceof BiomeGenStarlitPrarie ? 1 : 0);
+			this.setTextureID(rand.nextInt(8));
+		}
 		return super.onSpawnWithEgg(data);
 	}
 
