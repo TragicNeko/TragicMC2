@@ -33,4 +33,14 @@ public class EntitySpore extends EntityProjectile {
 
 		this.setDead();
 	}
+	
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		if (this.ticksExisted >= 300)
+		{
+			this.setDead();
+		}
+	}
 }

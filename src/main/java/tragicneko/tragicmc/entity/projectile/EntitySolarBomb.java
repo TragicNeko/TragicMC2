@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -12,13 +13,17 @@ public class EntitySolarBomb extends EntityProjectile {
 
 	public EntitySolarBomb(World par1World) {
 		super(par1World);
-		this.setSize(1.0F, 1.0F);
-		this.isImmuneToFire = true;
+		this.setSize(0.325F, 0.325F);
 	}
 
 	public EntitySolarBomb(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
+	}
+	
+	public boolean canRenderOnFire()
+	{
+		return true;
 	}
 
 	protected float getMotionFactor()
@@ -27,8 +32,8 @@ public class EntitySolarBomb extends EntityProjectile {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround && !(mop.entityHit instanceof EntityApis))
+	protected void onImpact(MovingObjectPosition mop) {		
+		if (mop.entityHit != null && !inGround && !(mop.entityHit instanceof EntityApis) && !this.worldObj.isRemote)
 		{	
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 			mop.entityHit.setFire(8 + rand.nextInt(16));
@@ -41,7 +46,7 @@ public class EntitySolarBomb extends EntityProjectile {
 	{
 		super.onUpdate();
 		
-		if (this.ticksInAir % 10 == 0 && !this.inGround && !this.isDead)
+		if (this.ticksExisted > 0 && this.ticksExisted % 10 == 0  && !this.worldObj.isRemote)
 		{
 			for (int i = 0; i < 4; i++)
 			{
@@ -57,6 +62,11 @@ public class EntitySolarBomb extends EntityProjectile {
 					this.worldObj.spawnEntityInWorld(fireball);
 				}
 			}
+		}
+		
+		if (this.ticksExisted >= 600)
+		{
+			this.setDead();
 		}
 	}
 }
