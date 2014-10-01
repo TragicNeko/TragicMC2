@@ -52,7 +52,7 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	protected boolean canCorrupt()
 	{
-		return false;
+		return this.getNorVoxType() == 1;
 	}
 
 	@SideOnly(Side.CLIENT)
