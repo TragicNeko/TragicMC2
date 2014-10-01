@@ -2,7 +2,9 @@ package tragicneko.tragicmc.entity.mob;
 
 import java.util.UUID;
 
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicEntities;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.enchantment.Enchantment;
@@ -10,6 +12,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -25,37 +28,41 @@ import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class EntityPirah extends TragicMob {
 
-	protected int airTicks;
-
-	private static final IEntitySelector attackEntitySelector = new IEntitySelector()
-	{
-		public boolean isEntityApplicable(Entity par1Entity)
-		{
-			return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPirah);
-		}
-	};
-
 	public EntityPirah(World par1World) {
 		super(par1World);
-		this.setSize(0.35F, 0.65F);
 		this.tasks.addTask(4, new EntityAIWander(this, 0.7D));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, attackEntitySelector)); /*
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false; */
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, new IEntitySelector() {
+			public boolean isEntityApplicable(Entity par1Entity)
+			{
+				return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPirah);
+			}
+		}));
+	}
+
+	@Override
+	public boolean canCorrupt()
+	{
+		return false;
 	}
 	
+	public boolean canRenderOnFire()
+	{
+		return this.getPirahType() == 1 ? false : super.canRenderOnFire();
+	}
+
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
@@ -66,52 +73,90 @@ public class EntityPirah extends TragicMob {
 		return true;
 	}
 
+	public boolean handleWaterMovement()
+	{
+		return false;
+	}
+
 	public void setAir(int i){}
 
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
+		boolean flag = this.getTextureID() == 7;
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 25.0 : 10.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.45);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 7.5 : 3.0);
 	}
 
-	public void moveEntityWithHeading(float par1, float par2)
+	@Override
+	protected void entityInit()
 	{
-		this.moveEntity(this.motionX, this.motionY, this.motionZ);
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
 	}
 
-	public void onDeath(DamageSource par1DamageSource)
+	protected void setAirTicks(int i)
 	{
-		super.onDeath(par1DamageSource);
+		this.dataWatcher.updateObject(16, i);
+	}
 
-		if (this.recentlyHit > 0)
+	public int getAirTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	protected void incrementAirTicks()
+	{
+		int pow = this.getAirTicks();
+		this.setAirTicks(++pow);
+	}
+
+	protected void decrementAirTicks()
+	{
+		int pow = this.getAirTicks();
+		this.setAirTicks(--pow);
+	}
+	
+	protected void setPirahType(int i)
+	{
+		if (i == 1) this.isImmuneToFire = true;
+		this.dataWatcher.updateObject(17, i);
+		
+		float height = 0.515F;
+		float width = 0.325F;
+		
+		if (this.getTextureID() == 7)
 		{
-			int x  = 1;
-
-			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
-			{
-				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
-
-				if (player.getCurrentEquippedItem() != null)
-				{
-					ItemStack weapon = player.getCurrentEquippedItem();
-					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
-				}
-			}
-
-			if (rand.nextInt(8) + x >= 4)
-			{
-				if (!this.isBurning())
-				{
-					this.entityDropItem(new ItemStack(Items.fish, rand.nextInt(x) + 1, rand.nextInt(3)), rand.nextFloat());
-				}
-				else
-				{
-					this.entityDropItem(new ItemStack(Items.cooked_fished, rand.nextInt(x) + 1, rand.nextInt(3)), rand.nextFloat());
-				}
-			}
+			height *= 1.5F;
+			width *= 1.5F;
 		}
+		
+		if (i == 0)
+		{
+			this.setSize(width, height);
+		}
+		else
+		{
+			this.setSize(width * 1.225F, height * 1.225F);
+		}
+	}
+
+	public int getPirahType()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+	
+	protected void setTextureID(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	public int getTextureID()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
 	}
 
 	protected boolean canTriggerWalking()
@@ -122,89 +167,157 @@ public class EntityPirah extends TragicMob {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-
-		if (!this.isInsideOfMaterial(this.getMaterial()))
+		if (this.worldObj.isRemote)
 		{
-			this.airTicks++;
-
-			if (this.airTicks < 0)
+			if (this.isInsideOfMaterial(getMaterial()))
 			{
-				this.airTicks = 0;
-			}
-
-			if (this.airTicks >= 120 && airTicks % 20 == 0)
-			{
-				this.attackEntityFrom(DamageSource.drown, 2.0F);
-			}
-
-			this.motionX *= 0.10000000298023224D;
-			this.motionZ *= 0.10000000298023224D;
-			this.motionY = -0.05;
-		}
-		else
-		{
-			this.airTicks = 0;
-
-			if (this.ticksExisted % 20 == 0 && !this.worldObj.isRemote)
-			{
-				this.motionY = 0.01D;
-			}
-
-			UUID modUUID = UUID.fromString("4d80f8e8-8601-4c5a-b17a-96239e9e9cbf");
-			AttributeModifier mod = new AttributeModifier(modUUID, "pirahSpeedBuff", 0.2, 0);
-
-			if (this.getAttackTarget() != null)
-			{
-				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+				//spawn bubble particles
 			}
 			else
 			{
-				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-
-				if (this.getAttackTarget() instanceof EntityPirah)
+				//spawn splash particles
+			}
+			
+			float w = 0.325F;
+			float h = 0.515F;
+			
+			if (this.getTextureID() == 7)
+			{
+				w *= 1.5F;
+				h *= 1.5F;
+				
+				//spawn special particles
+			}
+			
+			if (this.getPirahType() == 0)
+			{
+				this.setSize(w, h);
+			}
+			else
+			{
+				this.setSize(w * 1.225F, h * 1.225F);
+			}
+		}
+		else
+		{
+			if (this.isInsideOfMaterial(getMaterial()))
+			{
+				if (this.getAttackTarget() != null && !this.getAttackTarget().isInsideOfMaterial(getMaterial())) this.setAttackTarget(null);
+				this.fallDistance = 0.0F;
+				
+				if (this.ticksExisted % 5 == 0)
 				{
-					this.setTarget(null);
+					this.motionY += ((rand.nextDouble() - rand.nextDouble()) + 0.525D) * 0.725D;
+					this.motionX += ((rand.nextDouble() - rand.nextDouble())) * 0.425D;
+					this.motionZ += ((rand.nextDouble() - rand.nextDouble())) * 0.425D;
+					
+					if (this.getAttackTarget() == null)
+					{
+						if (this.ticksExisted % 10 == 0)
+						{
+							this.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.325D;
+							this.motionY = (rand.nextDouble() - rand.nextDouble()) * 0.335D;
+							this.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.325D;
+						}
+					}
+					else
+					{
+						double d0 = this.getAttackTarget().posX - this.posX;
+						double d1 = this.getAttackTarget().posY - this.posY;
+						double d2 = this.getAttackTarget().posZ - this.posZ;
+						float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+						this.motionX = d0 / (double)f2 * 0.75D * 0.150000011920929D + this.motionX * 0.20000000298023224D;
+						this.motionY = d1 * 0.10000000298023224D;
+						this.motionZ = d2 / (double)f2 * 0.75D * 0.150000011920929D + this.motionZ * 0.20000000298023224D;
+
+						if (this.getAttackTarget().isDead) this.setAttackTarget(null);
+					}
 				}
-			}
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) < 10.0F 
-					&& rand.nextInt(48) == 0)
-			{
-				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().posZ - this.posZ;
-				double d2 = this.getAttackTarget().posY - this.posY;
-				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX = d0 / (double)f2 * 1.5D * 0.200000011920929D + this.motionX * 0.20000000298023224D;
-				this.motionZ = d1 / (double)f2 * 1.5D * 0.200000011920929D + this.motionZ * 0.20000000298023224D;
-				this.motionY = d2 * 0.10000000298023224D;
+				if (this.getAirTicks() < 100) this.incrementAirTicks();
 			}
-
-			if (this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0 && !this.worldObj.isRemote)
+			else
 			{
-				this.motionY = 0.01;
-				this.motionX = rand.nextDouble() * 0.001;
-				this.motionZ = rand.nextDouble() * 0.001;
-			}
+				this.setAttackTarget(null);
+				if (this.getAirTicks() > 0) this.decrementAirTicks();
 
-			if (this.ticksExisted % 40 == 0 && rand.nextInt(8) == 0 && !this.worldObj.isRemote)
-			{
-				this.motionY = -0.03;
-				this.motionX = -rand.nextDouble() * 0.001;
-				this.motionZ = -rand.nextDouble() * 0.001;
+				if (this.ticksExisted % 20 == 0 && this.getAirTicks() == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
+				if (this.ticksExisted % 4 == 0 && this.motionY <= 0.0D &&  
+						World.doesBlockHaveSolidTopSurface(this.worldObj, (int) this.posX, MathHelper.ceiling_double_int(this.posY) - 1, (int) this.posZ)) this.motionY = 0.35D + rand.nextDouble() * 0.25D;
+				this.motionX = (rand.nextDouble() - rand.nextDouble());
+				this.motionZ = (rand.nextDouble() - rand.nextDouble());
+				
+				if (this.getPirahType() == 1 && this.isInsideOfMaterial(Material.water) && this.ticksExisted % 5 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
 			}
 		}
 	}
+
+	public void moveEntity(double d0, double d1, double d2)
+	{
+		if (this.isInsideOfMaterial(getMaterial())) 
+		{
+			super.moveEntity(d0, d1, d2);
+		}
+		else
+		{
+			super.moveEntity(d0 * 0.315D, d1, d2 * 0.315D);
+		}
+	}
 	
-	protected Material getMaterial() {
-		return Material.water;
+	public int getTotalArmorValue()
+	{
+		return this.getTextureID() == 7 ? 10 : 0;
 	}
 
-	public void fall(float par1){}
+	protected Material getMaterial() {
+		return this.getPirahType() == 0 ? Material.water : Material.lava;
+	}
 
 	public boolean getCanSpawnHere()
 	{
-		return this.posY > 35.0D && this.posY < 65.0D && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty();
+		return this.posY > 35.0D && this.posY < 65.0D && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && this.isInsideOfMaterial(this.getMaterial());
+	}
+
+	protected void fall(float f) {
+		if (this.worldObj.isRemote) return;
+		if (!this.isInsideOfMaterial(getMaterial()))
+		{
+			this.motionX = rand.nextDouble() - rand.nextDouble();
+			this.motionZ = rand.nextDouble() - rand.nextDouble();
+			this.motionY = rand.nextDouble();
+		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("pirahType")) this.setPirahType(tag.getInteger("pirahType"));
+		if (tag.hasKey("airTicks")) this.setAirTicks(tag.getInteger("airTicks"));
+		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("pirahType", this.getPirahType());
+		tag.setInteger("airTicks", this.getAirTicks());
+		tag.setInteger("textureID", this.getTextureID());
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		if (!this.worldObj.isRemote)
+		{
+			boolean flag = this.isInsideOfMaterial(Material.water);
+			boolean flag2 = this.isInsideOfMaterial(Material.lava);
+			this.setPirahType(flag ? 0 : (flag2 ? 1 : 0));
+			int i = rand.nextInt(8);
+			if (i == 7) i = rand.nextInt(8); //make the 7 id less common
+			this.setTextureID(i);
+		}
+		return super.onSpawnWithEgg(data);
 	}
 
 	@Override

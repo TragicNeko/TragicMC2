@@ -35,7 +35,6 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
@@ -364,15 +363,9 @@ public class TragicEntities {
 					BiomeGenBase.ocean,
 					BiomeGenBase.river
 					);
-			TragicEntityList.addMapping(EntityPirah.class, "TragicMC.Pirah", id++, 0x99F2FF, 0xFF9999);
+			TragicEntityList.addMapping(EntityPirah.class, "TragicMC.Pirah", id++, 0x69A2FF, 0xFF6666);
 		}
-
-		if (TragicNewConfig.allowLavaPirah)
-		{
-			EntityRegistry.registerModEntity(EntityLavaPirah.class, "LavaPirah", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityLavaPirah.class, "TragicMC.LavaPirah", id++, 0xF7775D, 0xDD473F);
-		}
-
+		
 		if (TragicNewConfig.allowStin)
 		{
 			EntityRegistry.registerModEntity(EntityStin.class, "Stin", listid++, TragicMC.instance, 80, 1, true);

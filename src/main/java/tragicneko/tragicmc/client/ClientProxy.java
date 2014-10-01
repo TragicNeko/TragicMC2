@@ -19,7 +19,6 @@ import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
-import tragicneko.tragicmc.client.model.ModelPirah;
 import tragicneko.tragicmc.client.model.ModelPlague;
 import tragicneko.tragicmc.client.model.ModelPumpkinhead;
 import tragicneko.tragicmc.client.model.ModelRagr;
@@ -49,6 +48,7 @@ import tragicneko.tragicmc.client.render.mob.RenderErkel;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderNorVox;
+import tragicneko.tragicmc.client.render.mob.RenderPirah;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
@@ -76,7 +76,6 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
@@ -206,8 +205,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderNorVox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderMob(new ModelPirah(), 0.225F, "Pirah_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLavaPirah.class, new RenderMob(new ModelPirah(), 0.225F, "LavaPirah_lowRes", 1.225F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderPirah());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityStin.class, new RenderMob(new ModelStin(), 0.665F, "Stin_lowRes"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityStinBaby.class, new RenderMob(new ModelStinBaby(), 0.255F, "Stin_lowRes"));

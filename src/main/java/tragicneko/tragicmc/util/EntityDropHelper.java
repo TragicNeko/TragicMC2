@@ -31,7 +31,6 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
-import tragicneko.tragicmc.entity.mob.EntityLavaPirah;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
@@ -85,8 +84,6 @@ public class EntityDropHelper {
 			new ItemStack(TragicBlocks.StarCrystal)}});
 		
 		entityLootDrops.put(EntityPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
-		
-		entityLootDrops.put(EntityLavaPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
 		
 		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(TragicItems.Rock)},{new ItemStack(TragicBlocks.StarCrystal), new ItemStack(Items.glowstone_dust),
 			new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
