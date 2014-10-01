@@ -36,12 +36,11 @@ public class RenderNorVox extends RenderLiving {
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
         {       
 			EntityNorVox vox = (EntityNorVox) par1EntityLivingBase;
-			float[] rgb = new float[] {1.0F, 1.0F, 1.0F};
-			if (vox.getNorVoxType() == 1) rgb = getRGBThroughTextureID(vox.getTextureID());
-			float trans = vox.getNorVoxType() == 0 ? 1.0F : 0.35F;
+			float[] rgb = vox.getNorVoxType() == 0 ? new float[] {1.0F, 1.0F, 1.0F} : getRGBThroughTextureID(vox.getTextureID());
+			float trans = vox.getNorVoxType() == 0 ? 1.0F : 0.85F;
 			
             GL11.glPushMatrix();
-            GL11.glColor4f(rgb[0], rgb[1], rgb[2], trans);
+            GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, trans);
             GL11.glDepthMask(false);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

@@ -25,6 +25,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
@@ -34,7 +35,7 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
 public class EntityNorVox extends TragicMob {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", -0.50, 0);
+	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", -0.50, 0);
 
 	public EntityNorVox(World par1World) {
 		super(par1World);
@@ -73,6 +74,7 @@ public class EntityNorVox extends TragicMob {
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(20, Integer.valueOf(0));
 	}
 
 	@Override
@@ -123,11 +125,11 @@ public class EntityNorVox extends TragicMob {
 
 		if (i == 0)
 		{
-			this.setSize(1.135F, 1.875F);
+			this.setSize(1.135F, 1.575F);
 		}
 		else
 		{
-			this.setSize(1.135F / 1.455F, 1.875F / 1.455F);
+			this.setSize(1.135F / 1.455F, 1.575F / 1.455F);
 		}
 	}
 
@@ -152,6 +154,22 @@ public class EntityNorVox extends TragicMob {
 		this.setAttackTime(--pow);
 	}
 
+	public int getNodTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
+
+	protected void setNodTicks(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+	}
+
+	protected void decrementNodTicks()
+	{
+		int pow = this.getNodTicks();
+		this.setNodTicks(--pow);
+	}
+
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -172,11 +190,11 @@ public class EntityNorVox extends TragicMob {
 		{
 			if (this.getNorVoxType() == 0)
 			{
-				this.setSize(1.135F, 1.875F);
+				this.setSize(1.135F, 1.575F);
 			}
 			else
 			{
-				this.setSize(1.135F / 1.455F, 1.875F / 1.455F);
+				this.setSize(1.135F / 1.455F, 1.575F / 1.455F);
 			}
 		}
 		else
@@ -184,12 +202,16 @@ public class EntityNorVox extends TragicMob {
 			if (this.superiorForm == null && this.getNorVoxType() == 1) this.superiorForm = new EntityVoxStellarum(this.worldObj);
 			if (this.isFiring()) this.decrementFiringTicks();
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
-			if (this.getAttackTarget() == null) this.setFiringTicks(59);
-			if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun) && this.isFiring()) this.setFiringTicks(59);
+			if (this.getNodTicks() > 0) this.decrementNodTicks();
+			if (this.getAttackTarget() == null) this.setFiringTicks(0);
+			if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun))
+			{
+				if (this.isFiring()) this.setFiringTicks(0);
+				if (this.getAttackTime() == 0) this.setAttackTime(10);
+			}
 
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 			if (this.getFiringTicks() >= 60) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-
 
 			if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(8) == 0 && !this.isFiring())
 			{
@@ -200,7 +222,11 @@ public class EntityNorVox extends TragicMob {
 			if (this.getFiringTicks() >= 60 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null) this.shootProjectiles();
 
 			if (this.ticksExisted % 120 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(6.0F);
+
+			if (!this.isFiring() && this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0) this.setNodTicks(20);
 		}
+
+		if (!this.onGround && this.motionY < 0.0D) this.motionY *= 0.68D;
 	}
 
 	protected void shootProjectiles()
@@ -254,7 +280,8 @@ public class EntityNorVox extends TragicMob {
 		if (result)
 		{
 			this.setAttackTime(10);
-			if (this.isFiring() && par1DamageSource.getEntity() != null)
+			if (this.getNodTicks() > 0) this.setNodTicks(0);
+			if (this.isFiring() && par1DamageSource.getEntity() != null && rand.nextInt(8) == 0 && this.getFiringTicks() >= 40)
 			{
 				this.setFiringTicks(0);
 				if (TragicNewConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60 + rand.nextInt(40)));
@@ -331,6 +358,7 @@ public class EntityNorVox extends TragicMob {
 		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
 		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
 		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
+		if (tag.hasKey("nodTicks")) this.setNodTicks(tag.getInteger("nodTicks"));
 	}
 
 	@Override
@@ -341,14 +369,18 @@ public class EntityNorVox extends TragicMob {
 		tag.setInteger("firingTicks", this.getFiringTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setInteger("textureID", this.getTextureID());
+		tag.setInteger("nodTicks", this.getNodTicks());
 	}
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		this.setNorVoxType(biome instanceof BiomeGenStarlitPrarie ? 1 : 0);
-		this.setTextureID(rand.nextInt(8));
+		if (!this.worldObj.isRemote)
+		{
+			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+			this.setNorVoxType(biome instanceof BiomeGenStarlitPrarie ? 1 : 0);
+			this.setTextureID(rand.nextInt(8));
+		}
 		return super.onSpawnWithEgg(data);
 	}
 

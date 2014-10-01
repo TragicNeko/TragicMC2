@@ -19,10 +19,6 @@ public class RenderVoxStellarum extends RenderLiving {
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/VoxStellarum_lowRes.png");
 	private static final float scale = 2.25F;
 
-	private static float rgbR = 1.0F;
-	private static float rgbG = 1.0F;
-	private static float rgbB = 1.0F;
-
 	public RenderVoxStellarum() {
 		super(new ModelVoxStellarum(), 0.75F * scale);
 	}
@@ -40,39 +36,19 @@ public class RenderVoxStellarum extends RenderLiving {
 		{       
 			GL11.glPushMatrix();
 
-			this.setRGBThroughTextureID(par1EntityLivingBase.getTextureID());
+			float[] rgb = this.getRGBThroughTextureID(par1EntityLivingBase.getTextureID());
 
-			GL11.glColor4f(rgbR, rgbG, rgbB, 0.75F);
+			GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, 0.85F);
 			GL11.glDepthMask(false);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-			if (par1EntityLivingBase.isSpinning())
-			{
-				float f0 = par1EntityLivingBase.getSpinRotation();
-				GL11.glRotatef(f0, 0.0F, 1.0F, 0.0F);
-			}
-			else
-			{
-				if (par1EntityLivingBase.isHealing())
-				{
-					GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
-				}
-				else if (par1EntityLivingBase.isFiring())
-				{
-					GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-				}
-				else if (TragicNewConfig.allowStun && par1EntityLivingBase.isPotionActive(TragicPotions.Stun))
-				{
-					GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
-				}
-			}
 			this.mainModel.render(par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.2F);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glDepthMask(true);
 			GL11.glPopMatrix();
-			
+
 
 		}
 		else
@@ -82,55 +58,26 @@ public class RenderVoxStellarum extends RenderLiving {
 
 	}
 
-	private void setRGBThroughTextureID(int textureID) {
+	private float[] getRGBThroughTextureID(int textureID) {
 		switch(textureID)
 		{
 		default:
-		case 0:
-			rgbR = 0.75F;
-			rgbG = 0.75F;
-			rgbB = 0.75F;
-			break;
+			return new float[] {0.75F, 0.75F, 0.75F};
 		case 1:
-			rgbR = 0.75F;
-			rgbG = 0.25F;
-			rgbB = 0.25F;
-			break;
+			return new float[] {0.75F, 0.25F, 0.25F};
 		case 2:
-			rgbR = 0.25F;
-			rgbG = 0.75F;
-			rgbB = 0.25F;
-			break;
+			return new float[] {0.25F, 0.75F, 0.25F};
 		case 3:
-			rgbR = 0.25F;
-			rgbG = 0.25F;
-			rgbB = 0.75F;
-			break;
+			return new float[] {0.25F, 0.25F, 0.75F};
 		case 4:
-			rgbR = 0.25F;
-			rgbG = 0.75F;
-			rgbB = 0.75F;
-			break;
+			return new float[] {0.25F, 0.75F, 0.75F};
 		case 5:
-			rgbR = 0.75F;
-			rgbG = 0.75F;
-			rgbB = 0.25F;
-			break;
+			return new float[] {0.75F, 0.75F, 0.25F};
 		case 6:
-			rgbR = 0.75F;
-			rgbG = 0.25F;
-			rgbB = 0.75F;
-			break;
+			return new float[] {0.75F, 0.25F, 0.75F};
 		case 7:
-			rgbR = 0.25F;
-			rgbG = 0.25F;
-			rgbB = 0.25F;
-			break;
+			return new float[] {0.25F, 0.25F, 0.25F};
 		}
-
-		rgbR *= 2.55F;
-		rgbG *= 2.55F;
-		rgbB *= 2.55F;
 	}
 
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
@@ -142,7 +89,7 @@ public class RenderVoxStellarum extends RenderLiving {
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
 		return texture;
 	}
-	
+
 	protected int shouldRenderPass(EntityVoxStellarum boss, int par2, float par3)
 	{
 		if (boss.isInvisible())
@@ -154,17 +101,17 @@ public class RenderVoxStellarum extends RenderLiving {
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		if (par2 == 0)
 		{
 			this.setRenderPassModel(this.mainModel);
-            GL11.glEnable(GL11.GL_NORMALIZE);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            return 1;
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			return 1;
 		}
-		
-		if (boss.isHealing())
+
+		if (boss.isHealing() && boss.getHealTicks() >= 100)
 		{
 			if (par2 == 1)
 			{
@@ -178,11 +125,11 @@ public class RenderVoxStellarum extends RenderLiving {
 				this.setRenderPassModel(this.mainModel);
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
 				GL11.glEnable(GL11.GL_BLEND);
-				float f4 = 0.5F;
+				float f4 = 0.275F;
 				GL11.glColor4f(f4, f4, f4, 1.0F);
 				GL11.glDisable(GL11.GL_LIGHTING);
 				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
-				GL11.glTranslatef(0.0F, 0.05F, 0.0F);
+				GL11.glTranslatef(0.0F, -0.125F, 0.0F);
 				GL11.glScalef(1.1F, 1.1F, 1.1F);
 				return 2;
 			}
@@ -209,5 +156,5 @@ public class RenderVoxStellarum extends RenderLiving {
 	{
 		return -1;
 	}
-	
+
 }
