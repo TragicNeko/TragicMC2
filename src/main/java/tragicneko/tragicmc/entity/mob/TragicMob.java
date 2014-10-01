@@ -313,8 +313,12 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public void onKillEntity(EntityLivingBase entity)
 	{
-		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, (int) (entity.getMaxHealth() * 10), 2));
-		this.addPotionEffect(new PotionEffect(Potion.resistance.id, (int) (entity.getMaxHealth() * 10), 2));
+		super.onKillEntity(entity);
+		if (this.worldObj.isRemote) return;
+		int i = (int) (entity.getMaxHealth() * 10);
+		if (entity instanceof EntityPlayer) i *= 20;
+		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, i, 2));
+		this.addPotionEffect(new PotionEffect(Potion.resistance.id, i, 2));
 	}
 
 	public Class getLesserForm()

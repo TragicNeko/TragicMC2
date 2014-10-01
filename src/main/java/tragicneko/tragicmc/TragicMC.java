@@ -144,7 +144,7 @@ public class TragicMC
 		TragicTabs.load();
 		TragicBlocks.load();
 		TragicItems.load();
-		if (TragicNewConfig.allowPotions) TragicPotions.setPotionIcons(); 
+		if (TragicNewConfig.allowPotions) TragicPotions.setPotionIcons();
 		
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
@@ -208,7 +208,6 @@ public class TragicMC
 	public void init(FMLInitializationEvent event)
 	{
 		if (TragicNewConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
-
 		if (TragicNewConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
 		if (TragicNewConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
 		GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
