@@ -923,6 +923,8 @@ public class TragicNewConfig {
 		allowBossNaturalSpawns = blanketMob[3];
 		allowExtraBossLoot = blanketMob[4];
 		allowVictoryBuffs = blanketMob[5];
+		allowCorruptionDamage = blanketMob[6];
+		allowMobTransformation = blanketMob[7];
 
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
