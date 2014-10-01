@@ -386,7 +386,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 * This part of the code is copied directly from CoolAlias's packet handler/extended properties tutorial
 	 */
 
-	private static final String getSaveKey(EntityPlayer player) {
+	public static final String getSaveKey(EntityPlayer player) {
 		return player.getCommandSenderName() + ":" + PropertyDoom.propertyName;
 	}
 

@@ -15,7 +15,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.properties.PropertyAmulets;
+import tragicneko.tragicmc.properties.PropertyDoom;
 
 import com.google.common.collect.Sets;
 
@@ -227,10 +230,21 @@ public class DoomsdayManager {
 		if (event.handler instanceof NetHandlerPlayServer && !playerMap.isEmpty())
 		{
 			NetHandlerPlayServer net = (NetHandlerPlayServer) event.handler;
-
-			if (net.playerEntity != null && playerMap.containsKey(net.playerEntity.getCommandSenderName()))
+			if (net.playerEntity == null) return;
+			
+			if (playerMap.containsKey(net.playerEntity.getCommandSenderName()))
 			{
 				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");
+			}
+			
+			if (CommonProxy.extendedEntityData.containsKey(PropertyDoom.getSaveKey(net.playerEntity)))
+			{
+				CommonProxy.extendedEntityData.remove(PropertyDoom.getSaveKey(net.playerEntity));
+			}
+			
+			if (CommonProxy.extendedEntityData.containsKey(PropertyAmulets.getSaveKey(net.playerEntity)))
+			{
+				CommonProxy.extendedEntityData.remove(PropertyAmulets.getSaveKey(net.playerEntity));
 			}
 		} 
 	}

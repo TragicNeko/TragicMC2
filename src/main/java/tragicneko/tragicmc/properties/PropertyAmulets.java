@@ -129,7 +129,7 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 		}
 	}
 
-	private static final String getSaveKey(EntityPlayer player) 
+	public static final String getSaveKey(EntityPlayer player) 
 	{
 		return player.getCommandSenderName() + ":" + propertyName;
 	}
