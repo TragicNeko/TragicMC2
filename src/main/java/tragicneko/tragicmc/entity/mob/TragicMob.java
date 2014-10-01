@@ -186,19 +186,27 @@ public abstract class TragicMob extends EntityMob
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun) || this.worldObj.isRemote) return false; 
+		if (this.worldObj.isRemote || TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false; 
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
-		if (result && TragicNewConfig.allowCorruption && this.canCorrupt())
+		if (result && TragicNewConfig.allowCorruption && this.canCorrupt() && rand.nextInt(4) == 0)
 		{
-			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).canCorrupt() && this.rand.nextInt(4) == 0)
+			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).canCorrupt())
 			{
-				((TragicMob) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 60, 1));
+				((TragicMob) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 600, 1));
+			}
+			else if (par1Entity instanceof EntityMob && !(par1Entity instanceof TragicMob))
+			{
+				((EntityMob)par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 600, 1));
 			}
 			else if (par1Entity instanceof EntityAnimal)
 			{
-				((EntityAnimal)par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 120, 1));
+				((EntityAnimal)par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 400, 1));
+			}
+			else if (par1Entity instanceof EntityPlayer && !((EntityPlayer) par1Entity).capabilities.isCreativeMode)
+			{
+				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 200,1));
 			}
 		} 
 

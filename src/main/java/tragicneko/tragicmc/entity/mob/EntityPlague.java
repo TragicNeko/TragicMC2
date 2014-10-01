@@ -4,22 +4,22 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
@@ -122,13 +122,13 @@ public class EntityPlague extends TragicMob {
 
 					if (this.canEntityBeSeen(entity))
 					{
-						if (entity instanceof TragicMob && ((TragicMob) entity).canCorrupt())
+						if (entity instanceof TragicMob && ((TragicMob) entity).canCorrupt() || entity instanceof EntityGolem)
 						{
-							((TragicMob) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 800));
+							((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 800));
 						}
 						else if (entity instanceof EntityAnimal)
 						{
-							((EntityCreature) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 200));
+							((EntityCreature) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 400));
 						}
 						else if (entity instanceof EntityPlayer && !((EntityPlayer)entity).capabilities.isCreativeMode)
 						{
