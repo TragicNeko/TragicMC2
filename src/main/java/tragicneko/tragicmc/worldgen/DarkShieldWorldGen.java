@@ -19,56 +19,53 @@ public class DarkShieldWorldGen implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (world.isRemote) return;
+		if (world.isRemote || !(world.provider instanceof TragicWorldProvider)) return;
 
-		if (world.provider instanceof TragicWorldProvider)
+		int x = (chunkX * 16) + random.nextInt(16);
+		int z = (chunkZ * 16) + random.nextInt(16);
+		int y = world.getTopSolidOrLiquidBlock(x, z);
+		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+		double radius;
+		Map<Integer, int[]> map;
+		int[] coords;
+		Block block;
+
+		if (biome == TragicBiomes.AshenBadlands)
 		{
-			int x = (chunkX * 16) + random.nextInt(16);
-			int z = (chunkZ * 16) + random.nextInt(16);
-			int y = world.getTopSolidOrLiquidBlock(x, z);
-			BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
-			double radius;
-			Map<Integer, int[]> map;
-			int[] coords;
-			Block block;
+			radius = (4.0D * random.nextDouble()) + 3.0D;
 
-			if (biome == TragicBiomes.AshenBadlands)
+			for (int y1 = -1; y1 < 2; y1++)
 			{
-				radius = (4.0D * random.nextDouble()) + 3.0D;
+				map = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
 
-				for (int y1 = -1; y1 < 2; y1++)
+				for (int i = 0; i < map.size(); i++)
 				{
-					map = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
+					coords = map.get(i);
+					block = world.getBlock(coords[0], coords[1], coords[2]);
 
-					for (int i = 0; i < map.size(); i++)
+					if (block == TragicBlocks.AshenGrass || block == TragicBlocks.DarkStone || block == TragicBlocks.DeadDirt)
 					{
-						coords = map.get(i);
-						block = world.getBlock(coords[0], coords[1], coords[2]);
-
-						if (block == TragicBlocks.AshenGrass || block == TragicBlocks.DarkStone || block == TragicBlocks.DeadDirt)
-						{
-							world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 1, 2);
-						}
+						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 1, 2);
 					}
 				}
 			}
-			else if (biome instanceof BiomeGenDecayingWasteland && random.nextBoolean())
+		}
+		else if (biome instanceof BiomeGenDecayingWasteland && random.nextBoolean())
+		{
+			radius = (2.0D * random.nextDouble()) + 2.0D;
+
+			for (int y1 = -2; y1 < 5; y1++)
 			{
-				radius = (2.0D * random.nextDouble()) + 2.0D;
+				map = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
 
-				for (int y1 = -2; y1 < 5; y1++)
+				for (int i = 0; i < map.size(); i++)
 				{
-					map = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
+					coords = map.get(i);
+					block = world.getBlock(coords[0], coords[1], coords[2]);
 
-					for (int i = 0; i < map.size(); i++)
+					if (block == TragicBlocks.DarkStone || block == TragicBlocks.DeadDirt)
 					{
-						coords = map.get(i);
-						block = world.getBlock(coords[0], coords[1], coords[2]);
-
-						if (block == TragicBlocks.DarkStone || block == TragicBlocks.DeadDirt)
-						{
-							world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 2, 2);
-						}
+						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 2, 2);
 					}
 				}
 			}

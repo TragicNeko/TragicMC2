@@ -15,6 +15,7 @@ import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.main.TragicBiomes;
@@ -69,7 +70,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
 		{
 			if (world.getWorldInfo().getTerrainType() == WorldType.FLAT) return;
-			
+
 			boolean[] discrim = new boolean[16];
 
 			for (int meow = 0; meow < discrim.length; meow++)
@@ -181,7 +182,14 @@ public class FlowerWorldGen implements IWorldGenerator {
 				cat2.addCrashSection("seed", world.getWorldInfo().getSeed());
 				cat2.addCrashSection("dimensionID", world.provider.dimensionId);
 
-				throw new ReportedException(report);
+				try
+				{
+					throw new ReportedException(report);
+				}
+				catch (ReportedException e)
+				{
+					TragicMC.logInfo("There was an error attempting to regenerate the Dimension after an update. This should be silently caught now.");
+				}
 			}
 		}
 	}

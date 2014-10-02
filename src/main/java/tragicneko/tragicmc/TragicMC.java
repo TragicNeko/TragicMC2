@@ -99,7 +99,7 @@ import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = "[1.7.10]")
 public class TragicMC
-{	
+{
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
 	public static final String VERSION = "1.36.1520 Beta";
