@@ -14,24 +14,24 @@ public class EntityLargeRock extends EntityProjectile {
 
 	public EntityLargeRock(World world) {
 		super(world);
+		this.motionY += 0.45D;
 	}
 
 	public EntityLargeRock(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
+		this.motionY += 0.45D;
 	}
 
 	protected float getMotionFactor()
 	{
-		return 0.843F;
+		return 0.869F;
 	}
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround) 
+		if (mop.entityHit != null) 
 		{			
-			if (mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination) return;
-
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 12.0F);
 
 			if (this.rand.nextInt(4) == 0 && mop.entityHit instanceof EntityLivingBase && TragicNewConfig.allowStun)
@@ -39,15 +39,15 @@ public class EntityLargeRock extends EntityProjectile {
 				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60, 0));
 			}
 		}
-		
+
 		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 
 		if (!this.worldObj.isRemote)
 		{
 			this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 		}
-
-		this.setDead();
+		
+		if (mop != null) this.setDead();
 	}
 
 	@Override
@@ -58,13 +58,9 @@ public class EntityLargeRock extends EntityProjectile {
 
 	public void onUpdate()
 	{
-		
-		if (!this.worldObj.isRemote)
-		{
-			this.motionY *= 0.267D;
-		}
-		
 		super.onUpdate();
+		
+		this.motionY -= 0.0205D;
 	}
 
 }

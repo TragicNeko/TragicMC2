@@ -31,7 +31,7 @@ public class EntityThrowingRock extends EntityThrowable {
 
 	@Override
 	protected float getGravityVelocity() {
-		return inGround ? 0.0F : 0.05F;
+		return 0.65F;
 	}
 
 	@Override

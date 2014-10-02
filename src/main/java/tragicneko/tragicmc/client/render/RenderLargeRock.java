@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client.render;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -34,17 +35,29 @@ public class RenderLargeRock extends Render {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		float f2 = (float) Math.sin(entity.ticksExisted);
-		float f3 = (float) Math.cos(entity.ticksExisted);
-		GL11.glRotatef(f2, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(f3, 0.0F, 0.0F, 1.0F);
 		GL11.glScalef(2.25F, 2.25F, 2.25F);
-		float f0 = entity.ticksExisted;
-		GL11.glRotatef(f0, 0.0F, 1.0F, 0.0F);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		this.bindTexture(this.getEntityTexture(entity));
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f1);
-		GL11.glPopMatrix();
+		GL11.glDepthMask(true);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glDepthFunc(GL11.GL_EQUAL);
+        GL11.glDepthFunc(GL11.GL_LEQUAL);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glPopMatrix();
 	}
 
 	@Override

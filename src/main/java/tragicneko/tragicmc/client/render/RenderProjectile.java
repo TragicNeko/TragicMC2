@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderProjectile extends Render
 {
-	private Item theItem;
+	private final Item theItem;
 
 	public RenderProjectile(Item par1Item)
 	{
@@ -54,24 +54,20 @@ public class RenderProjectile extends Render
 				itemDamage = 0;
 			}
 		}
-
-		if (par1Entity instanceof EntityPumpkinbomb)
+		else if (par1Entity instanceof EntityPumpkinbomb)
 		{
 			itemDamage = 0;
 		}
-
-		if (par1Entity instanceof EntityLargePumpkinbomb)
+		else if (par1Entity instanceof EntityLargePumpkinbomb)
 		{    		
 			itemDamage = 1;
 			scale = 1.0F;
 		}
-		
-		if (par1Entity instanceof EntityNekoRocket)
+		else if (par1Entity instanceof EntityNekoRocket)
 		{
 			scale = 1.0F;
 		}
-		
-		if (par1Entity instanceof EntityNekoMiniBomb)
+		else if (par1Entity instanceof EntityNekoMiniBomb)
 		{
 			itemDamage = 1;
 		}
@@ -86,20 +82,6 @@ public class RenderProjectile extends Render
 			GL11.glScalef(scale, scale, scale);
 			this.bindEntityTexture(par1Entity);
 			Tessellator tessellator = Tessellator.instance;
-
-			if (iicon == ItemPotion.func_94589_d("bottle_splash"))
-			{
-				int i = PotionHelper.func_77915_a(((EntityPotion)par1Entity).getPotionDamage(), false);
-				float f2 = (float)(i >> 16 & 255) / 255.0F;
-				float f3 = (float)(i >> 8 & 255) / 255.0F;
-				float f4 = (float)(i & 255) / 255.0F;
-				GL11.glColor3f(f2, f3, f4);
-				GL11.glPushMatrix();
-				this.func_77026_a(tessellator, ItemPotion.func_94589_d("overlay"));
-				GL11.glPopMatrix();
-				GL11.glColor3f(1.0F, 1.0F, 1.0F);
-			}
-
 			this.func_77026_a(tessellator, iicon);
 			GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 			GL11.glPopMatrix();
