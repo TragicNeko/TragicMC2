@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import java.util.Set;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -9,14 +11,21 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.main.TragicBiomes;
+import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicNewConfig;
+
+import com.google.common.collect.Sets;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityWisp extends TragicMob {
+	
+	private Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 
 	public EntityWisp(World par1World) {
 		super(par1World);
@@ -86,23 +95,33 @@ public class EntityWisp extends TragicMob {
 		if (this.worldObj.isRemote)
 		{
 			String s = "flame";
-			
+
 			if (TragicNewConfig.allowDimension && TragicBiomes.starlitBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "witchMagic";
 			if (TragicNewConfig.allowDimension && TragicBiomes.ashenBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "smoke";
 			if (TragicNewConfig.allowDimension && TragicBiomes.paintedBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "magicCrit";
-			
+
 			for (int i = 0; i < 2; i++)
 			{
 				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
 		}
+		else
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
+			{
+				this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
+			}
+		}
 	}
-	
+
 	protected boolean isValidLightLevel()
-    {
-        return true;
-    }
+	{
+		return true;
+	}
 
 	@Override
 	protected boolean isChangeAllowed() {

@@ -11,6 +11,7 @@ import tragicneko.tragicmc.blocks.BlockCandle;
 import tragicneko.tragicmc.blocks.BlockDarkCobble;
 import tragicneko.tragicmc.blocks.BlockDarkSand;
 import tragicneko.tragicmc.blocks.BlockDarkStone;
+import tragicneko.tragicmc.blocks.BlockDarkenedQuartz;
 import tragicneko.tragicmc.blocks.BlockDeadDirt;
 import tragicneko.tragicmc.blocks.BlockDisappearing;
 import tragicneko.tragicmc.blocks.BlockErodedStone;
@@ -27,11 +28,11 @@ import tragicneko.tragicmc.blocks.BlockGiantCrop;
 import tragicneko.tragicmc.blocks.BlockGlowvine;
 import tragicneko.tragicmc.blocks.BlockLight;
 import tragicneko.tragicmc.blocks.BlockLightCobble;
+import tragicneko.tragicmc.blocks.BlockLuminescence;
 import tragicneko.tragicmc.blocks.BlockMagnetar;
 import tragicneko.tragicmc.blocks.BlockNetherBrickPressurePlate;
 import tragicneko.tragicmc.blocks.BlockObsidianVariant;
 import tragicneko.tragicmc.blocks.BlockPulsar;
-import tragicneko.tragicmc.blocks.BlockDarkenedQuartz;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.blocks.BlockSandstonePressurePlate;
 import tragicneko.tragicmc.blocks.BlockStarCrystal;
@@ -45,13 +46,13 @@ import tragicneko.tragicmc.blocks.BlockTragicSapling;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockBone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkCobble;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkenedQuartz;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDeadDirt;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockErodedStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockFox;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockLightCobble;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockObsidianVariants;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkenedQuartz;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockQuicksandBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStarCrystal;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStorageBlocks;
@@ -148,6 +149,8 @@ public class TragicBlocks {
 	
 	public static Block ErodedStone;
 	public static Block DarkenedQuartz;
+	
+	public static Block Luminescence;
 
 	public static void load()
 	{		
@@ -318,6 +321,9 @@ public class TragicBlocks {
 		
 		DarkenedQuartz = (new BlockDarkenedQuartz());
 		GameRegistry.registerBlock(DarkenedQuartz, ItemBlockDarkenedQuartz.class, "darkenedQuartz");
+		
+		Luminescence = (new BlockLuminescence().setBlockName("tragicmc.luminescence"));
+		GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
 		
 		for (int i = 0; i < 3; i++)
 		{
