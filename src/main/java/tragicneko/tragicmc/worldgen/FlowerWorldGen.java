@@ -126,71 +126,49 @@ public class FlowerWorldGen implements IWorldGenerator {
 		}
 		else
 		{
-			try
+
+			if (!(biome instanceof TragicBiome)) return;
+			TragicBiome trBiome = (TragicBiome) biome;
+
+			if (flag5) meta = 4;
+
+			for (int i = 0; i < trBiome.getFlowersFromBiomeType(); i++)
 			{
-				TragicBiome trBiome = (TragicBiome) biome;
+				Xcoord += random.nextInt(8) - random.nextInt(8);
+				Zcoord += random.nextInt(8) - random.nextInt(8);
+				Ycoord += random.nextInt(2) - random.nextInt(2);
 
-				if (flag5) meta = 4;
+				if (world.isAirBlock(Xcoord, Ycoord, Zcoord) && (!world.provider.hasNoSky || Ycoord < 255) && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
+				{
+					world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
+				}
+			}
 
-				for (int i = 0; i < trBiome.getFlowersFromBiomeType(); i++)
+			Block bush = bushType ? TragicBlocks.AshenBush : TragicBlocks.DeadBush;
+
+			if (trBiome instanceof BiomeGenAshenHills)
+			{
+				for (int i = 0; i < trBiome.getBushesFromBiomeType(); i++)
 				{
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);
 					Ycoord += random.nextInt(2) - random.nextInt(2);
 
-					if (world.isAirBlock(Xcoord, Ycoord, Zcoord) && (!world.provider.hasNoSky || Ycoord < 255) && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
-					{
-						world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
-					}
-				}
-
-				Block bush = bushType ? TragicBlocks.AshenBush : TragicBlocks.DeadBush;
-
-				if (trBiome instanceof BiomeGenAshenHills)
-				{
-					for (int i = 0; i < trBiome.getBushesFromBiomeType(); i++)
-					{
-						Xcoord += random.nextInt(8) - random.nextInt(8);
-						Zcoord += random.nextInt(8) - random.nextInt(8);
-						Ycoord += random.nextInt(2) - random.nextInt(2);
-
-						new WorldGenDeadBush(bush).generate(world, random, Xcoord, Ycoord, Zcoord);
-					}
-				}
-				else if (trBiome instanceof BiomeGenDecayingWasteland)
-				{
-					for (int i = 0; i < trBiome.getBushesFromBiomeType(); i++)
-					{
-						Xcoord += random.nextInt(8) - random.nextInt(8);
-						Zcoord += random.nextInt(8) - random.nextInt(8);
-						Ycoord += random.nextInt(2) - random.nextInt(2);
-
-						new WorldGenDeadBush(TragicBlocks.DeadBush).generate(world, random, Xcoord, Ycoord, Zcoord);
-					}
+					new WorldGenDeadBush(bush).generate(world, random, Xcoord, Ycoord, Zcoord);
 				}
 			}
-			catch (Throwable throwable)
+			else if (trBiome instanceof BiomeGenDecayingWasteland)
 			{
-				CrashReport report = CrashReport.makeCrashReport(throwable, "Invalid biome for Dimension!");
-				CrashReportCategory cat = report.makeCategory("Offending Biome");
-				cat.addCrashSection("Biome", biome.biomeName);
-				cat.addCrashSection("Biome Id", biome.biomeID);
-				CrashReportCategory cat2 = report.makeCategory("World Info");
-				cat2.addCrashSection("x", Xcoord);
-				cat2.addCrashSection("y", Ycoord);
-				cat2.addCrashSection("z", Zcoord);
-				cat2.addCrashSection("seed", world.getWorldInfo().getSeed());
-				cat2.addCrashSection("dimensionID", world.provider.dimensionId);
+				for (int i = 0; i < trBiome.getBushesFromBiomeType(); i++)
+				{
+					Xcoord += random.nextInt(8) - random.nextInt(8);
+					Zcoord += random.nextInt(8) - random.nextInt(8);
+					Ycoord += random.nextInt(2) - random.nextInt(2);
 
-				try
-				{
-					throw new ReportedException(report);
-				}
-				catch (ReportedException e)
-				{
-					TragicMC.logInfo("There was an error attempting to regenerate the Dimension after an update. This should be silently caught now.");
+					new WorldGenDeadBush(TragicBlocks.DeadBush).generate(world, random, Xcoord, Ycoord, Zcoord);
 				}
 			}
+
 		}
 	}
 
