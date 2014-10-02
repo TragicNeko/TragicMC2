@@ -168,7 +168,7 @@ public class StatueEvents {
 				{
 					b0 = 14;
 				}
-				else if (item.getItem() == Item.getItemFromBlock(TragicBlocks.DisappearingBlock)) //Creative mode only option for now
+				else if (item.getItem() == TragicItems.CelestialDiamond) //allows the statue to rotate by itself
 				{
 					b0 = 15;
 				}

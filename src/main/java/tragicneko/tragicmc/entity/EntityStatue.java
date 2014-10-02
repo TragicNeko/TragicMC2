@@ -14,10 +14,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityStatue extends Entity {
 
-	private int mobID = 0;
-	private int rotationAngle = 0;
-	private byte textureID = 0;
-
 	public EntityStatue(World world) {
 		super(world);
 		this.preventEntitySpawning = true;
@@ -37,83 +33,69 @@ public class EntityStatue extends Entity {
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	public boolean attackEntityFrom(DamageSource source, float par2)
 	{
-		if (this.worldObj.isRemote || this.isEntityInvulnerable()) return false;
+		if (this.worldObj.isRemote || this.isEntityInvulnerable() || source.isExplosion()) return false;
+		
 		this.setDead();
 		this.setBeenAttacked();
-		int id = this.mobID;
+		int id = this.getMobID();
 		
-		for (int i = 0; i < this.textureID; i++)
+		for (int i = 0; i < this.getTextureID(); i++)
 		{
 			id += 16;
 		}
 
-		this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), (0.25F * rand.nextFloat()) - (0.25F * rand.nextFloat()));
+		this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 		return true;
 	}
-
-	@Override
-	public void onUpdate()
-	{
-		super.onUpdate();
-
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
-
-		if (!this.worldObj.isRemote) this.dataWatcher.updateObject(2, this.mobID);
-		if (!this.worldObj.isRemote) this.dataWatcher.updateObject(3, this.textureID);
-		if (!this.worldObj.isRemote) this.dataWatcher.updateObject(4, this.rotationAngle); 
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getIDForRender()
+	
+	public int getMobID()
 	{
 		return this.dataWatcher.getWatchableObjectInt(2);
 	}
-
-	@SideOnly(Side.CLIENT)
-	public int getIDForTexture()
-	{
-		return this.dataWatcher.getWatchableObjectByte(3);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getRotationAngleForRender()
-	{
-		return this.dataWatcher.getWatchableObjectInt(4);
-	}
-
-	public int getMobID()
-	{
-		return this.mobID;
-	}
-
-	public byte getTextureID()
-	{
-		return this.textureID;
-	}
-
+	
 	public void setMobID(int i)
 	{
-		this.mobID = i;
+		this.dataWatcher.updateObject(2, i);
 	}
-
-	public void setTextureID(byte b0)
+	
+	public int getTextureID()
 	{
-		this.textureID = b0;
+		return this.dataWatcher.getWatchableObjectInt(3);
+	}
+	
+	public void setTextureID(int i)
+	{
+		this.dataWatcher.updateObject(3, i);
 	}
 
 	public void incrementRotationAngle()
 	{
-		this.rotationAngle += 45;
-		if (this.rotationAngle >= 360) this.rotationAngle = 0;
+		float pow = this.dataWatcher.getWatchableObjectFloat(4) + 45.0F;
+		this.setRotation(pow);
 	}
 	
-	public void setRotation(int i)
+	public void setRotation(float f)
 	{
-		this.rotationAngle = i % 360;
+		this.dataWatcher.updateObject(4, f % 360.0F);
+	}
+	
+	public float getRotation()
+	{
+		return this.dataWatcher.getWatchableObjectFloat(4);
+	}
+	
+	@Override
+	public void onEntityUpdate()
+	{
+		super.onEntityUpdate();
+		
+		this.prevPosX = this.posX;
+		this.prevPosY = this.posY;
+		this.prevPosZ = this.posZ;
+		
+		if (!this.worldObj.isRemote && this.getRotation() > 360.0F) this.setRotation(this.getRotation() - 360.0F);
 	}
 
 	@Override
@@ -125,22 +107,22 @@ public class EntityStatue extends Entity {
 	@Override
 	protected void entityInit() {
 		this.dataWatcher.addObject(2, Integer.valueOf((int) 0));
-		this.dataWatcher.addObject(3, Byte.valueOf((byte)0));
-		this.dataWatcher.addObject(4, Integer.valueOf((int) 0));
+		this.dataWatcher.addObject(3, Integer.valueOf((int)0));
+		this.dataWatcher.addObject(4, Float.valueOf((float) 0));
 	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
-		if (tag.hasKey("mobID")) this.mobID = tag.getInteger("mobID");
-		if (tag.hasKey("rotation")) this.rotationAngle = tag.getInteger("rotation");
-		if (tag.hasKey("texture")) this.textureID = tag.getByte("texture");
+		if (tag.hasKey("mobID")) this.setMobID(tag.getInteger("mobID"));
+		if (tag.hasKey("rotation")) this.setRotation(tag.getFloat("rotation"));
+		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tag) {
-		tag.setInteger("mobID", this.mobID);
-		tag.setInteger("rotation", this.rotationAngle);
-		tag.setByte("texture",  this.textureID);
+		tag.setInteger("mobID", this.getMobID());
+		tag.setFloat("rotation", this.getRotation());
+		tag.setInteger("textureID",  this.getTextureID());
 	}
 
 }
