@@ -146,6 +146,9 @@ tile.tragicmc.bleachedWood.name=Bleached Wood
 tile.tragicmc.bleachedPlanks.name=Bleached Planks
 tile.tragicmc.bleachedLeaves.name=Bleached Leaves
 
+tile.tragicmc.ashenBush.name=Ashen Bush
+tile.tragicmc.deadBush.name=Dead Bush
+
 tile.tragicmc.sapling.painted.name=Painted Tree Sapling
 tile.tragicmc.sapling.bleached.name=Bleached Tree Sapling
 tile.tragicmc.sapling.ancient.name=Ancient Tree Sapling
@@ -198,6 +201,8 @@ tile.tragicmc.starCrystal.limeGreen.name=Lime Star Crystal
 
 tile.tragicmc.erodedStone.smooth.name=Eroded Stone
 tile.tragicmc.erodedStone.carved.name=Carved Eroded Stone
+
+tile.tragicmc.luminescence.name=Luminescence
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
