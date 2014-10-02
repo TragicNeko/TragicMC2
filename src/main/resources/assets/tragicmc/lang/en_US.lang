@@ -419,7 +419,7 @@ tragicmc.mobTexture.redstone=(Redstone)
 tragicmc.mobTexture.coal=(Coal)
 tragicmc.mobTexture.lapis=(Lapis)
 tragicmc.mobTexture.netherrack=(Netherrack)
-tragicmc.mobTexture.checkered=(Checkered)
+tragicmc.mobTexture.checkered=(Animated)
 
 item.tragicmc.bowOfJustice.name=Bow of Justice
 item.tragicmc.swordOfJustice.name=Sword of Justice
