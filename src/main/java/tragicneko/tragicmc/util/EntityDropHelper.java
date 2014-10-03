@@ -39,7 +39,6 @@ import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
@@ -89,8 +88,6 @@ public class EntityDropHelper {
 			new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
 		
 		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
-		
-		entityLootDrops.put(EntityStinBaby.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles)}});
 		
 		entityLootDrops.put(EntityWisp.class, new ItemStack[][] {{new ItemStack(Items.glowstone_dust)}, {new ItemStack(TragicItems.WispParticles)}});
 		

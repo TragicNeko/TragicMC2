@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -23,12 +22,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
-public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
+public class EntityGreaterStin extends TragicMob implements TragicMiniBoss {
 
 	public EntityGreaterStin(World par1World) {
 		super(par1World);
@@ -87,7 +85,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 				{
 					mob = (TragicMob) list.get(i);
 
-					if (mob instanceof EntityStin || mob instanceof EntityStinBaby || mob instanceof EntityStinKing || mob instanceof EntityStinQueen)
+					if (mob instanceof EntityStin)
 					{
 						if (mob.getAttackTarget() != this.getAttackTarget()) mob.setTarget(this.getAttackTarget());
 					}

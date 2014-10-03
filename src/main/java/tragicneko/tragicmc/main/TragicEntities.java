@@ -43,7 +43,6 @@ import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
@@ -370,12 +369,6 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityStin.class, "Stin", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityStin.class, "TragicMC.Stin", id++, 0x676767, 0x454545);
-		}
-
-		if (TragicNewConfig.allowStinBaby)
-		{
-			EntityRegistry.registerModEntity(EntityStinBaby.class, "StinBaby", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityStinBaby.class, "TragicMC.StinBaby", id++, 0x333333, 0x121212);
 		}
 
 		if (TragicNewConfig.allowWisp)
