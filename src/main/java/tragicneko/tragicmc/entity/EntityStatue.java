@@ -39,12 +39,14 @@ public class EntityStatue extends Entity {
 		
 		this.setDead();
 		this.setBeenAttacked();
+		if (source.getEntity() != null && source.getEntity() instanceof EntityPlayer && ((EntityPlayer)source.getEntity()).capabilities.isCreativeMode) return true;
+		
 		int id = this.getMobID();
 		
 		for (int i = 0; i < this.getTextureID(); i++)
 		{
 			id += 16;
-		}
+		}		
 
 		this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 		return true;

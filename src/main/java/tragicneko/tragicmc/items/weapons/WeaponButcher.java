@@ -50,8 +50,7 @@ public class WeaponButcher extends EpicWeapon {
 			cooldown = 10;
 		}
 		return super.onLeftClickEntity(stack, player, entity);
-	} 
-	
+	} 	
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

@@ -27,9 +27,6 @@ import tragicneko.tragicmc.util.EntityDropHelper;
 
 public class TragicBoss extends EntityMob implements IBossDisplayData
 {
-	private static UUID victoryHealthUUID = UUID.fromString("7752a001-bd03-4e39-b24f-47f87f3738f7");
-	private static AttributeModifier victoryHealthBuff = new AttributeModifier(victoryHealthUUID, "bossVictoryHealthBuff", 10.0, 0);
-
 	private static ItemStack[] luxuryDrops = new ItemStack[] {new ItemStack(Items.diamond, TragicMC.rand.nextInt(4) + 1), new ItemStack(Items.emerald, TragicMC.rand.nextInt(4) + 1),
 		new ItemStack(Items.iron_ingot, TragicMC.rand.nextInt(4) + 1), new ItemStack(Items.gold_ingot, TragicMC.rand.nextInt(4) + 1), new ItemStack(Items.diamond, TragicMC.rand.nextInt(4) + 1, TragicMC.rand.nextInt(2)),
 		new ItemStack(TragicItems.Ruby, TragicMC.rand.nextInt(4) + 1), new ItemStack(TragicItems.Sapphire, TragicMC.rand.nextInt(4) + 1),
@@ -40,16 +37,9 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		new ItemStack(TragicItems.DoomConsume, 1), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new  ItemStack(TragicItems.Splinter),
 		new ItemStack(TragicItems.Butcher), new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Talisman)};
 
-	public boolean isCorruptible = false;
-
 	public TragicBoss(World par1World) {
 		super(par1World);
 		this.experienceValue = 100;
-	}
-
-	protected boolean getCorruptible()
-	{
-		return this.isCorruptible;
 	}
 
 	public void onDeath(DamageSource par1)
@@ -125,6 +115,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 	public void onLivingUpdate()
 	{
+		if (!this.worldObj.isRemote && TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption)) this.removePotionEffect(TragicPotions.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();

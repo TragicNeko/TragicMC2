@@ -58,7 +58,7 @@ public class RenderStatue extends Render {
 
 	public void doRender(EntityStatue statue, double par2, double par3, double par4, float par5, float par6)
 	{
-		model = models[statue.getMobID()];
+		if (model != models[statue.getMobID()]) model = models[statue.getMobID()];
 
 		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen || model instanceof ModelEnyvil;
 		boolean flag2 = model instanceof ModelKragul;
