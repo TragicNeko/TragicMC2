@@ -49,3 +49,4 @@ gradle/wrapper/gradle-wrapper.jar
 build.gradle
 bin/*
 *.db
+*.classpath
