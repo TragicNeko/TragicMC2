@@ -1,11 +1,15 @@
 package tragicneko.tragicmc.items.weapons;
 
+import tragicneko.tragicmc.main.TragicEnchantments;
+import tragicneko.tragicmc.main.TragicNewConfig;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -33,5 +37,16 @@ public class WeaponSwordOfJustice extends ItemSword {
 	public boolean hasEffect(ItemStack par1ItemStack, int passes)
 	{
 		return true;
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
+	{
+		if (world.isRemote) return;
+		
+		if (!stack.isItemEnchanted() && TragicNewConfig.allowReach)
+		{
+			stack.addEnchantment(TragicEnchantments.Reach, 5);
+		}
 	}
 }
