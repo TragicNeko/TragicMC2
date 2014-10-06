@@ -8,20 +8,16 @@ import tragicneko.tragicmc.entity.mob.EntityStin;
 
 public class ModelStin extends ModelBase
 {
-	protected ModelRenderer body;
+	private ModelRenderer body;
 	private ModelRenderer head;
+	
 	private ModelRenderer legFR;
 	private ModelRenderer legFL;
 	private ModelRenderer legML;
 	private ModelRenderer legMR;
 	private ModelRenderer legBR;
 	private ModelRenderer legBL;
-	private ModelRenderer legTipFR;
-	private ModelRenderer legTipFL;
-	private ModelRenderer legTipMR;
-	private ModelRenderer legTipML;
-	private ModelRenderer legTipBR;
-	private ModelRenderer legTipBL;
+	
 	private ModelRenderer tail;
 
 	private float[] legValues = new float[] {-0.2230717F, -0.2230717F, -0.0371786F, -0.0371786F, 0.0743572F, 0.0743572F};
@@ -53,7 +49,7 @@ public class ModelStin extends ModelBase
 		legFR.rotateAngleX = -0.2230717F;
 		legFR.rotateAngleZ = 0.0371786F;
 		body.addChild(legFR);
-		legTipFR = new ModelRenderer(this, 0, 0);
+		ModelRenderer legTipFR = new ModelRenderer(this, 0, 0);
 		legTipFR.addBox(-4.5F, 17F, 1F, 1, 12, 2);
 		legTipFR.rotateAngleX = -0.0371786F;
 		legFR.addChild(legTipFR);
@@ -64,7 +60,7 @@ public class ModelStin extends ModelBase
 		legFL.rotateAngleX = -0.2230717F;
 		legFL.rotateAngleZ = -0.0371786F;
 		body.addChild(legFL);
-		legTipFL = new ModelRenderer(this, 10, 0);
+		ModelRenderer legTipFL = new ModelRenderer(this, 10, 0);
 		legTipFL.addBox(4.5F, 17F, 1F, 1, 12, 2);
 		legTipFL.rotateAngleX = -0.0371786F;
 		legFL.addChild(legTipFL);
@@ -75,7 +71,7 @@ public class ModelStin extends ModelBase
 		legML.rotateAngleX = -0.0371786F;
 		legML.rotateAngleZ = -0.1487144F;
 		body.addChild(legML);
-		legTipML = new ModelRenderer(this, 10, 0);
+		ModelRenderer legTipML = new ModelRenderer(this, 10, 0);
 		legTipML.addBox(3.5F, 17F, 3.5F, 1, 12, 2);
 		legTipML.rotateAngleX = 0.0743572F;
 		legML.addChild(legTipML);
@@ -86,7 +82,7 @@ public class ModelStin extends ModelBase
 		legMR.rotateAngleX = -0.0371786F;
 		legMR.rotateAngleZ = 0.1487144F;
 		body.addChild(legMR);
-		legTipMR = new ModelRenderer(this, 0, 0);
+		ModelRenderer legTipMR = new ModelRenderer(this, 0, 0);
 		legTipMR.addBox(-4F, 17F, 3.5F, 1, 12, 2);
 		legTipMR.rotateAngleX = 0.0743572F;
 		legMR.addChild(legTipMR);
@@ -97,7 +93,7 @@ public class ModelStin extends ModelBase
 		legBR.rotateAngleX = 0.0743572F;
 		legBR.rotateAngleZ = 0.1115358F;
 		body.addChild(legBR);
-		legTipBR = new ModelRenderer(this, 0, 0);
+		ModelRenderer legTipBR = new ModelRenderer(this, 0, 0);
 		legTipBR.addBox(-5F, 17F, 8.5F, 1, 12, 2);
 		legBR.addChild(legTipBR);
 
@@ -107,7 +103,7 @@ public class ModelStin extends ModelBase
 		legBL.rotateAngleX = 0.0743572F;
 		legBL.rotateAngleZ = -0.1115358F;
 		body.addChild(legBL);
-		legTipBL = new ModelRenderer(this, 10, 0);
+		ModelRenderer legTipBL = new ModelRenderer(this, 10, 0);
 		legTipBL.addBox(4F, 17F, 8.5F, 1, 12, 2);
 		legBL.addChild(legTipBL);
 
@@ -163,7 +159,7 @@ public class ModelStin extends ModelBase
 				legFL.rotateAngleX = legValues[1];
 			}
 
-			legBR.rotateAngleX = -legValues[0] + 0.215F + this.simplifyAngle(wow, rate) * -0.235F;
+			legBR.rotateAngleX = -legValues[4] + 0.215F + this.simplifyAngle(wow, rate) * -0.235F;
 			legBR.offsetY = this.simplifyAngle(wow, rate) * -0.115F + 0.1F;
 
 			legMR.rotateAngleX = -legValues[3] + 0.215F + this.simplifyAngle(wow, rate) * -0.265F;
@@ -196,7 +192,7 @@ public class ModelStin extends ModelBase
 		} 
 	}
 
-	protected float simplifyAngle(float par1, float par2)
+	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
 	}

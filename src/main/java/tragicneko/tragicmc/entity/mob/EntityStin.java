@@ -1,10 +1,9 @@
 package tragicneko.tragicmc.entity.mob;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -16,7 +15,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
@@ -29,10 +27,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
-import tragicneko.tragicmc.entity.boss.EntityStinKing;
-import tragicneko.tragicmc.entity.boss.EntityStinQueen;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -53,9 +48,8 @@ public class EntityStin extends TragicMob {
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 16.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.targetTasks.addTask(3, targetPlayer);
-		this.superiorForm = new EntityGreaterStin(par1World);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -147,7 +141,7 @@ public class EntityStin extends TragicMob {
 	{
 		this.dataWatcher.updateObject(18, i);
 	}
-	
+
 	public int getGallopTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(19);
@@ -157,12 +151,12 @@ public class EntityStin extends TragicMob {
 	{
 		this.dataWatcher.updateObject(19, i);
 	}
-	
+
 	public boolean isGalloping()
 	{
 		return this.getGallopTicks() > 0;
 	}
-	
+
 	protected void decrementGallopTicks()
 	{
 		int pow = this.getGallopTicks();
@@ -190,6 +184,9 @@ public class EntityStin extends TragicMob {
 
 	public void onLivingUpdate()
 	{
+		if (this.isGalloping() && this.onGround) this.motionX = this.motionZ = 0.0D;
+		if (this.isGalloping()) this.motionY = -0.1D;
+
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -205,83 +202,78 @@ public class EntityStin extends TragicMob {
 				this.stepHeight = 0.5F;
 			}
 		}
-		else
+		
+		if (this.worldObj.isRemote) return;
+
+		if (this.getAgeTicks() <= 700) this.incrementAgeTicks();
+		if (this.getGallopTicks() > 0) this.decrementGallopTicks();
+		if (this.isAdult() && this.canClimb()) this.setCanClimb(false);
+		if (this.targetTasks.taskEntries.contains(targetPlayer) && this.isAdult() && this.isChangeAllowed()) this.targetTasks.removeTask(targetPlayer);
+		if (this.superiorForm == null && this.isAdult() && this.isChangeAllowed()) this.superiorForm = new EntityGreaterStin(this.worldObj);
+
+		if (!this.isAdult())
 		{
-			if (this.getAgeTicks() <= 700) this.incrementAgeTicks();
-			if (this.getGallopTicks() > 0) this.decrementGallopTicks();
-			if (this.isAdult() && this.canClimb()) this.setCanClimb(false);
-			if (this.targetTasks.taskEntries.contains(targetPlayer) && this.isAdult()) this.targetTasks.removeTask(targetPlayer);
-
-			if (!this.isAdult())
+			this.setCanClimb(this.isCollidedHorizontally);
+			ArrayList<int[]> list;
+			int[] coords;
+			Block block;
+			if (this.isOnLadder())
 			{
-				this.setCanClimb(this.isCollidedHorizontally);
-				Map<Integer, int[]> map;
-				int[] coords;
-				Block block;
-				if (this.isOnLadder())
+				list = WorldHelper.getBlocksInCircularRange(this.worldObj, this.width, this.posX, this.posY, this.posZ);
+				for (int i = 0; i < list.size(); i++)
 				{
-					map = WorldHelper.getBlocksInCircularRange(this.worldObj, this.width, this.posX, this.posY, this.posZ);
-					for (int i = 0; i < map.size(); i++)
+					coords = list.get(i);
+					block = worldObj.getBlock(coords[0], coords[1], coords[2]);
+					if (block.isOpaqueCube())
 					{
-						coords = map.get(i);
-						block = worldObj.getBlock(coords[0], coords[1], coords[2]);
-						if (block.isOpaqueCube())
-						{
-							double d0 = Math.abs(this.posX) - Math.abs(coords[0]);
-							double d2 = Math.abs(this.posZ) - Math.abs(coords[2]);
+						double d0 = Math.abs(this.posX) - Math.abs(coords[0]);
+						double d2 = Math.abs(this.posZ) - Math.abs(coords[2]);
 
-							if (d0 >= 0 && d2 >= 0)
-							{
-								this.setClimbDirection(2);
-							}
-							else if (d0 < 0 && d2 < 0)
-							{
-								this.setClimbDirection(3);
-							}
-							else if (d0 >= 0 && d2 < 0)
-							{
-								this.setClimbDirection(4);
-							}
-							else
-							{
-								this.setClimbDirection(5);
-							}
+						if (d0 >= 0 && d2 >= 0)
+						{
+							this.setClimbDirection(2);
+						}
+						else if (d0 < 0 && d2 < 0)
+						{
+							this.setClimbDirection(3);
+						}
+						else if (d0 >= 0 && d2 < 0)
+						{
+							this.setClimbDirection(4);
+						}
+						else
+						{
+							this.setClimbDirection(5);
 						}
 					}
 				}
-				else
-				{
-					this.setClimbDirection(0);
-				}
 			}
-
-			
-			if (this.getAgeTicks() >= 2000) this.setAgeTicks(1000);
-
-			if (this.isWet() && this.ticksExisted % 5 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
-			
-			if (this.getAttackTarget() != null && !this.isAdult() && this.getAttackTarget().posY + this.stepHeight > this.posY && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
+			else
 			{
-				double d0 = this.getAttackTarget().posX - this.posX;
-                double d1 = this.getAttackTarget().posZ - this.posZ;
-                float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-                this.motionX = d0 / (double)f2 * 0.23D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
-                this.motionZ = d1 / (double)f2 * 0.23D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
-                if (this.isCollidedHorizontally) this.motionY = 0.15D;
+				this.setClimbDirection(0);
 			}
-			
-			if (this.getAttackTarget() == null && this.ticksExisted % 20 == 0 && rand.nextInt(16) == 0 && !this.isGalloping() && this.isAdult() && this.onGround) this.setGallopTicks(30);
 		}
-		
-		if (this.isGalloping() && this.onGround) this.motionX = this.motionZ = 0.0D;
-		if (this.isGalloping()) this.motionY = -0.1D;
+
+		if (this.isWet() && this.ticksExisted % 5 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
+
+		if (this.getAttackTarget() != null && !this.isAdult() && this.getAttackTarget().posY + this.stepHeight > this.posY && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
+		{
+			double d0 = this.getAttackTarget().posX - this.posX;
+			double d1 = this.getAttackTarget().posZ - this.posZ;
+			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+			this.motionX = d0 / (double)f2 * 0.23D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
+			this.motionZ = d1 / (double)f2 * 0.23D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
+			if (this.isCollidedHorizontally) this.motionY = 0.15D;
+		}
+
+		if (this.getAttackTarget() == null && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && !this.isGalloping() && this.isAdult() && this.onGround) this.setGallopTicks(30);
 	}
 
 	public int getTotalArmorValue()
 	{
 		return this.isAdult() ? 6 : 0;
 	}
-	
+
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.isGalloping() && this.getAttackTarget() == null || this.worldObj.isRemote) return false;
@@ -312,14 +304,14 @@ public class EntityStin extends TragicMob {
 					}
 				}
 			}
-			
+
 			if (this.isAdult() && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase &&
 					!par1DamageSource.isProjectile() && rand.nextInt(16) == 0)
 			{
 				return this.teleportEnemyAway((EntityLivingBase) par1DamageSource.getEntity(), flag);
 			}
 		}
-		
+
 		return flag;
 	}
 
@@ -411,12 +403,15 @@ public class EntityStin extends TragicMob {
 
 		return flag;
 	}
-	
+
 	protected void fall(float f)
 	{
 		super.fall(f);
 		if (!this.isGalloping()) this.setGallopTicks(15);
 	}
+	
+	@Override
+	public void setInWeb() {}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
@@ -424,6 +419,7 @@ public class EntityStin extends TragicMob {
 		if (tag.hasKey("ageTicks")) this.setAgeTicks(tag.getInteger("ageTicks"));
 		if (tag.hasKey("canClimb")) this.setCanClimb(tag.getBoolean("canClimb"));
 		if (tag.hasKey("climbDirection")) this.setClimbDirection(tag.getInteger("climbDirection"));
+		if (tag.hasKey("gallopTicks")) this.setGallopTicks(tag.getInteger("gallopTicks"));
 	}
 
 	@Override
@@ -433,6 +429,7 @@ public class EntityStin extends TragicMob {
 		tag.setInteger("ageTicks", this.getAgeTicks());
 		tag.setBoolean("canClimb", this.canClimb());
 		tag.setInteger("textureID", this.getClimbDirection());
+		tag.setInteger("gallopTicks", this.getGallopTicks());
 	}
 
 	@Override

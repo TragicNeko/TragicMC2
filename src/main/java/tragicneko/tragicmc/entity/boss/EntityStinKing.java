@@ -3,8 +3,6 @@ package tragicneko.tragicmc.entity.boss;
 
 import java.util.List;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -20,67 +18,119 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.EntityStinBaby;
 import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
+import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
-import tragicneko.tragicmc.util.EntityDropHelper;
 
-public class EntityStinKing extends TragicMob implements TragicMiniBoss {
+public class EntityStinKing extends EntityGreaterStin implements TragicMiniBoss {
 
 	public EntityStinKing(World par1World) {
 		super(par1World);
 		this.setSize(1.7835F, 5.15F);
-		this.getNavigator().setCanSwim(true);
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(6, new EntityAILookIdle(this));
-		this.tasks.addTask(5, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 16.0F));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
-		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.stepHeight = 1.5F;
-	}
-
-	public EnumCreatureAttribute getCreatureAttribute()
-	{
-		return EnumCreatureAttribute.ARTHROPOD;
-	}
-
-	public boolean isAIEnabled()
-	{
-		return true;
+		this.superiorForm = null;
 	}
 
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.216);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.226);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(20.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(2.0);
 	}
 
-	public void onLivingUpdate()
+	@Override
+	protected void entityInit()
 	{
+		super.entityInit();
+		this.dataWatcher.addObject(21, Integer.valueOf(0));
+	}
+
+	public int getFiringTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(21);
+	}
+
+	protected void setFiringTicks(int i)
+	{
+		this.dataWatcher.updateObject(21, i);
+	}
+
+	protected void decrementFiringTicks()
+	{
+		int pow = this.getFiringTicks();
+		this.setFiringTicks(--pow);
+	}
+
+	public boolean isFiring()
+	{
+		return this.getFiringTicks() > 0;
+	}
+
+	public void onLivingUpdate()
+	{		
 		super.onLivingUpdate();
 
-		if (this.getAttackTarget() != null && rand.nextInt(256) == 0 && TragicNewConfig.allowFear)
+		if (this.worldObj.isRemote)
 		{
-			this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 120 + rand.nextInt(320), rand.nextInt(4)));
+			this.setSize(1.7835F, 5.15F);
+		}
+		else
+		{
+			if (this.isFiring())
+			{
+				this.decrementFiringTicks();
+				if (this.isCharging()) this.setChargeTicks(0);
+				if (this.isGalloping()) this.setGallopTicks(0);
+				if (this.getAttackTarget() == null) this.setFiringTicks(0);
+			}
+
+			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicNewConfig.allowFear)
+			{
+				this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
+			}
+
+			if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0F &&
+					rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0)
+			{
+				this.setFiringTicks(80);
+			}
+
+			if (this.isFiring() && this.getFiringTicks() % 10 == 0 && this.getAttackTarget() != null)
+			{
+				this.doMortorFire();
+			}
 		}
 	}
 
+	private void doMortorFire() {
+
+		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
+		double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
+		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
+
+		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		mortor.posY = this.posY + this.height + 0.5D;
+		mortor.posX += d0 * 0.04335D;
+		mortor.posZ += d2 * 0.04335D;
+		mortor.motionY += 1.46D;
+		this.worldObj.spawnEntityInWorld(mortor);
+	}
+
+	@Override
 	public int getTotalArmorValue()
 	{
 		return 20;
@@ -88,237 +138,17 @@ public class EntityStinKing extends TragicMob implements TragicMiniBoss {
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
-		if (rand.nextInt(32) == 0) return false;
-
-		boolean flag = super.attackEntityFrom(par1DamageSource, par2);
-
-		if (flag)
-		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
-			TragicMob mob;
-
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (list.get(i) instanceof TragicMob)
-				{
-					mob = (TragicMob) list.get(i);
-
-					if (mob instanceof EntityStin || mob instanceof EntityStinBaby || mob instanceof EntityStinKing || mob instanceof EntityStinQueen || mob instanceof EntityStinBaby)
-					{
-						if (mob.getAttackTarget() != this.getAttackTarget()) mob.setTarget(this.getAttackTarget());
-					}
-				}
-			}
-		}
-
-		if (flag && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote && !par1DamageSource.isProjectile() &&
-				rand.nextInt(8) == 0)
-		{
-			EntityLivingBase entity = (EntityLivingBase) par1DamageSource.getEntity();
-			double x = entity.posX;
-			double y = entity.posY;
-			double z = entity.posZ;
-
-			for (int y1 = 0; y1 < 24; y1++)
-			{
-				for (int z1 = -8; z1 < 9; z1++)
-				{
-					for (int x1 = -8; x1 < 9; x1++)
-					{
-						if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
-						{
-							if (entity instanceof EntityPlayerMP)
-							{
-								EntityPlayerMP mp = (EntityPlayerMP) entity;
-
-								if (mp.capabilities.isCreativeMode) return flag;
-
-								if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && this.worldObj == mp.worldObj)
-								{
-									if (mp.isRiding()) mp.mountEntity(null);
-									AxisAlignedBB bb = mp.boundingBox.copy();
-									bb.offset(x + x1, y + y1, z + z1);
-
-									if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
-											!this.worldObj.isAnyLiquid(bb))
-									{
-										mp.playerNetServerHandler.setPlayerLocation(x + x1, y + y1, z + z1, mp.rotationYaw, mp.rotationPitch);
-										short short1 = 128;
-
-										for (int l = 0; l < short1; ++l)
-										{
-											double d6 = (double)l / ((double)short1 - 1.0D);
-											float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-											float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-											float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-											double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-											double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-											double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-											this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
-										}
-										mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-										mp.fallDistance = 0.0F;
-										this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
-										return flag;
-									}
-								}
-							}
-							else
-							{
-								entity.setPosition(x + x1, y + y1, z + z1);
-
-								if (this.worldObj.checkNoEntityCollision(entity.boundingBox) &&
-										this.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() &&
-										!this.worldObj.isAnyLiquid(entity.boundingBox))
-								{
-									short short1 = 128;
-
-									for (int l = 0; l < short1; ++l)
-									{
-										double d6 = (double)l / ((double)short1 - 1.0D);
-										float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
-									}
-
-									this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
-									entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-									return flag;
-								}
-								else
-								{
-									entity.setPosition(x, y, z);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return flag;
-	}
-
-	public boolean attackEntityAsMob(Entity par1Entity)
-	{
-		boolean flag = super.attackEntityAsMob(par1Entity);
-
-		if (flag && rand.nextInt(8) == 0 && par1Entity instanceof EntityLivingBase)
-		{
-			if (TragicNewConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 300, 0));
-			if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 300, 2 + rand.nextInt(3)));
-		}
-
-		if (flag && !this.worldObj.isRemote && par1Entity instanceof EntityLivingBase && rand.nextInt(128) == 0)
-		{
-			EntityLivingBase entity = (EntityLivingBase) par1Entity;
-			double x = entity.posX;
-			double y = entity.posY;
-			double z = entity.posZ;
-
-			for (int y1 = 0; y1 < 24; y1++)
-			{
-				for (int z1 = -8; z1 < 9; z1++)
-				{
-					for (int x1 = -8; x1 < 9; x1++)
-					{
-						if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
-						{
-							if (entity instanceof EntityPlayerMP)
-							{
-								EntityPlayerMP mp = (EntityPlayerMP) entity;
-
-								if (mp.capabilities.isCreativeMode) return flag;
-
-								if (mp.playerNetServerHandler.func_147362_b().isChannelOpen() && this.worldObj == mp.worldObj)
-								{
-									if (mp.isRiding()) mp.mountEntity(null);
-									AxisAlignedBB bb = mp.boundingBox.copy();
-									bb.offset(x + x1, y + y1, z + z1);
-
-									if (this.worldObj.checkNoEntityCollision(bb) && this.worldObj.getCollidingBoundingBoxes(mp, bb).isEmpty() &&
-											!this.worldObj.isAnyLiquid(bb))
-									{
-										mp.playerNetServerHandler.setPlayerLocation(x + x1, y + y1, z + z1, mp.rotationYaw, mp.rotationPitch);
-										short short1 = 128;
-
-										for (int l = 0; l < short1; ++l)
-										{
-											double d6 = (double)l / ((double)short1 - 1.0D);
-											float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-											float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-											float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-											double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-											double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-											double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-											this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
-										}
-										mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-										mp.fallDistance = 0.0F;
-										this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
-										return flag;
-									}
-								}
-							}
-							else
-							{
-								entity.setPosition(x + x1, y + y1, z + z1);
-
-								if (this.worldObj.checkNoEntityCollision(entity.boundingBox) &&
-										this.worldObj.getCollidingBoundingBoxes(entity, entity.boundingBox).isEmpty() &&
-										!this.worldObj.isAnyLiquid(entity.boundingBox))
-								{
-									short short1 = 128;
-
-									for (int l = 0; l < short1; ++l)
-									{
-										double d6 = (double)l / ((double)short1 - 1.0D);
-										float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
-									}
-
-									this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
-									entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
-									return flag;
-								}
-								else
-								{
-									entity.setPosition(x, y, z);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		if (flag)
-		{
-			par1Entity.motionY += 2.122543D;
-			par1Entity.motionX *= 1.75D;
-			par1Entity.motionZ *= 1.75D;
-		}
-
-		return flag;
+		if (this.worldObj.isRemote || rand.nextInt(32) == 0) return false;
+		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public Class getLesserForm() {
-		return EntityStin.class;
+		return EntityGreaterStin.class;
 	}
-
 }
