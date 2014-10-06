@@ -16,14 +16,9 @@ public class TragicGenLayer {
 	
 	private static final int biomeSize = 6;
 
-	public GenLayer getBiomeGenLayer(long seed, WorldType worldType)
-	{
-		return new TragicBiomeGenLayer(seed);
-	}
-
 	public GenLayer[] createWorld(long seed, WorldType worldType)
 	{
-		GenLayer biomes = this.getBiomeGenLayer(seed, worldType);
+		GenLayer biomes = new TragicBiomeGenLayer(seed);
 		biomes = GenLayerZoom.magnify(seed, biomes, this.biomeSize);
 		GenLayerVoronoiZoom voronoiZoom = new GenLayerVoronoiZoom(seed, biomes);
 		
