@@ -2681,7 +2681,7 @@ Reduced hitbox of Spirit Burst to better fit it's render
 Cleaned up Minotaur's AI some, made it charge more efficiently and it can now attempt to charge at entities above it (it doesn't shoot up into the air though), it now takes less
 damage while it's charging and has sprint particles underneath it, it also has a stance for when it's charging now
 
-1.37.1542++ <168> (September 26, 2014)
+1.37.1562 <168> (September 26, 2014)
 Clean up Inkling's AI, completely remove it's ability to summon help, make it's range checks more efficient, make it more difficult to see while invisible but reduce it's health
 Increased range at which Inkling can teleport, made it handle being on fire better, it can now break torches at farther range and now also spawns in the EntityItem so that it's
 not gone forever once it's broken
@@ -2703,17 +2703,84 @@ Fixed some NPEs with the mob statues and Claymation while trying to render the m
 Updated the Jabba/Jarra model animations to add a normal movement one (it wiggles it's body like a snake now)
 Combined the Star-Vox and Nor-Vox classes (as per previous mobs), updated the Nor-Vox AI to be more efficient, lowered the health of the Star-Vox but increased it's armor amount
 Added Star Crystal as drops for the Cryse and Nor-Vox, these are for the variants, but it isn't that big of a deal (I can override the onDeath method later to do this)
-The animations for these will be very simplified, the rendering for the Vox Stellarum will be as well
+Added an idle "nod" animation to the Nor-Vox, also added a "teeth chatter" animation for all of it's animations, these will be copied for the Vox Stellarum which has it's
+spinning attack animation done in it's model rather than render now
+Modified the change method for boss trasformations to copy the nbt data for mobs that have a textureID value
+Simplified the "find entity while corrupted" thing for my mobs, it should now work more effectively
+Fixed the Mob Transformation and the Corruption damage booleans in the config, I apparently never set these, derp
+
+1.37.1573 <169> (October 1, 2014)
+Setting up corruption currently, it checks for entities within 16 blocks and if there are no entities, then it increments the healing ticks, else it resets them to 0
+It'll corrupt any mobs within 4 blocks that it can see
+Allow Doomsday manager to also remove any mappings for Doom and Amulet properties in the CommonProxy storage
+On entity death, do a check to ensure that the entity was not in the mappings, otherwise clear it from it
+Made it that entities can now be healed with Nasty Fruit and/or Golden Sushi, they will remove the Corruption effect as well as give them all the buffs they would've gotten if they
+had eaten them like a player, this allows players to save corrupted pets and animals
+Fix Pirah's drops, it was doing the drop chance twice meaning it could drop twice as much as intended
+Fix up Pirah's AI and movements, it's always been a bit buggy and unnatural so I thought I'd fix it up some and add some animations to liven it up
+It moves a bit more naturally (though a bit more erratic than I would like), but otherwise it moves well, got the Lava Pirah to move about the same in lava, made a golden pirah
+variant based on it's texture id, it'll be slightly larger than the normal variants and be gold, it'll have twice the health and attack damage
+Added a Luminescence block, a transparent block that emits light, it disappears after a few seconds from being placed, it'll be used to give some of my entities luminescence and
+will also be used for a tool enchantment to light up where the player is at while mining with the tool in their hand
+After some experimentation, it'll be placed randomly per tick around the entity, and will only replace air and itself to avoid any sort of mob griefing, this will be added on
+to further entities but for now I'll finish updating the mob AIs and models
+Stop the game from crashing when the dimension was previously loaded with an older version of the mod, this was meant to crash if something went wrong with the biomes while I
+was setting the Dimension up, but now it's causing crashes when updating worlds to a newer version
+Remove logger spam from this change, the world will now load up fine if the Dimension was loaded previously, however, the blocks may be misplaced and may require a Dimension
+restart (deleting the Dimension folder in the world save) to regenerate it normally, this is better than it not allowing ppl to update though
+
+1.37.1573++ <170> 
+Fix up the statue rendering and entity datawatchers, this increases the efficiency of their entity updating, it now updates immediately instead of showing the Apis model then
+changing to the proper one, it also now has a variant when a Celestial Diamond is used on it that gives it constant rotation
+Fix the OpenGL memory leaks that the statues suffered from, there's probably a lot of extraneous OpenGL functions in it's render, but since it's fixed I won't mess with it since
+I have such little experience with it
+Applied the same fixes to the other renders that utilized similar methods, the Large Rock and the Dark Crystal, that would explain why the Enyvil was so laggy
+Did some testing to see what was causing entity tracking errors, it was due to me calling the onSpawnWithEgg() method before actually spawning the entity in
+Updated the Stin AI, combining the Baby Stin with it, the Baby Stin will be able to climb up walls and such and will eventually grow up into the Stin, it'll then be able to
+transform into a Greater Stin, which can then transform into a Stin King or Stin Queen, the Stin King and Queen will get some new attacks and such as they are pretty plain as
+they currently are
+The Stin has one idle animation that doubles as it's hurt animation, a galloping animation that looks pretty nice, all of the Stin variants (other than the baby) will use it
+Updated to Forge 10.13.1.1219
+Reduce changes done per render tick for statue rendering, don't change model unless it needs to, make it that if you "kill" the statue in creative mode, it won't drop the statue
+Added the basic animations and gallop animation to the Greater Stin
+Fix NPE with Greater Stin's common drops
+Make the Sword of Justice have Reach V by default
+Added a "Charge" attack to the Greater Stin, if it collides with a wall while charging it'll create an explosion
+Added the "Dark Mortor" attack to the Stin King, it also retains the charge attack from the Greater Stin
+The Stin Queen gains a "Web shot" attack that shoots a cobweb at it's target, attempting to trap it, it'll also spawn webs when it gets attacked and when it teleports it's
+target away
+Fixed NPE with the Reach enchantment, when used on an entity that is dead/dying, so that by the time the message is received by the server, the entity is no longer alive and
+as such has no id
+Modified the Dimension's WorldGen some, this just changes vanilla features such as lava lakes and mob dungeons in the Dimension, removed some extraneous Forge events that were
+in the ChunkProvider, these aren't really necessary for my custom dimension
+Modified the WorldHelper sphere and circle methods to use an ArrayList instead of a HashMap, this should optimize all WorldGen that utilizes it, Dimension loading times again
+improved due to this, but still quite laggy for some reason
+
+Still need to update models/animations for the Stin King and Queen, after that finish up the idle animations for the other mobs
+After that, start on the Bosses, they will get fewer idle animations than the normal mobs
+After that, fix minor things, like mobs teleporting to the Nether's roof when you use asphyxiate (or similar Doomsdays) in the Nether, I'll probably have to get their starting
+y position and set it to a few blocks higher initially, then after that just keep them at their current position, that should prevent me from having to call every tick to keep
+them floating above a block at a certain position, instead I can just have them keep their current motion to 0 and their position remaining constant
 
 --Reminders-
-I'm going to rewrite how Corruption works, it'll affect entities near other corrupted ones, but can be randomly healed if the entity that has
-it is "quarantined", this will be handled in Potion Events class so that all entities afflicted with it can spread it or recover from it, going to add an item that can instantly
-heal corruption, as well as give the entity healed immunity for a really long time (like 24000 seconds or something)
-They will be able to corrupt nearby ones only if they canCorrupt() others, otherwise they will default to being able to if they're not one of my mobs
+Add a "cough/hiccup" to the Wisp, it'll just be a particle effect
+Add a "shudder" animation to the Erkel, idle animation
+Add a "the worm" and a "shake" animation to the Jabba, idle animations
+Add a "detach head" and "stretching" animation to the Pumpkinhead, idle animations
+Add a "headshake" and "footscrape" animation to the Minotaur, idle animations
+Add a "flapping" animation to the Inkling, idle animations
+Add a "spin"  animation to the Gragul, idle animation
+Start making particles for my entities
+Finish making the actual rendered armor textures, only need the lowRes ones at this point
+The Apis's render effect will be changed to be a sort of "mirror coat" move that reflects all damage inflicted on it back to it's attacker (1.125x) and it deflects other damage,
+this includes magic damage as well, however, void damage should still affect it, it'll also burn anything it comes into contact with at this point
+Could add a Mirror Coat Doomsday that parallels this ability as well, it'd be a scroll-only Doomsday
 Allow Skultar and Enyvil to hover, in other words, they try to match their target's y-value (up to around 120 y-level, so they don't get too high up)
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Add the "Epic" weapon models, maybe animate them too
 I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
+Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'm need to set up
+a keybinding and gui screen in order to do this
 
 --Before Next Release--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
@@ -2741,10 +2808,12 @@ Veneera could be the ice phoenix, shooting icicles and leaving snow anywhere it 
 Luex could be the lightning phoenix, able to shoot dark lightning and normal lightning energy at it's attackers, it could also stun any enemies nearby
 If all 3 get near each other, they could form Lazarus Ultim, a larger, stronger version that actively seeks out hostile mobs and destroys them with the combined powers of all
 3 lesser versions
-Add the pets, Kitsuneko, Panda Cub, the Bangatang
+The Phoenix will not be one of the required kills for the endboss, it'll be a free roaming side boss, it'll still be pretty strong though
+The Overlord will give the player a permanent health buff (maybe of 10 hearts per kill on it)
 
 --Reminders for later--
-Work more on overall aesthetics as I get closer to a "finished" 1.0 release, this includes rewriting most of the mob ai to use datawatchers in order to render certain things when
-the mob is doing something (like the Ghast firing a fireball and having it's texture update to show that), this also includes starting to add custom mob sounds (some of which
-I've already recorded, just haven't added yet), this comes hand-in-hand with optimizing all of the mob ai code
+Add the custom mob sounds
+Add new particle effects
+Add animated textures for some of the items
+Add the pets, Kitsuneko, Panda Cub, the Bangatang
 Add the achievements
