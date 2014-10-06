@@ -20,12 +20,10 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
 import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
 import tragicneko.tragicmc.main.TragicEntities;
@@ -88,11 +86,9 @@ public class EntityPolaris extends TragicBoss {
 
 		if (!this.worldObj.isRemote)
 		{
-			WorldServer server = MinecraftServer.getServer().worldServers[this.worldObj.provider.dimensionId];
-
-			if (server != null && this.getAttackTarget() != null)
+			if (this.getAttackTarget() != null)
 			{
-				WorldInfo info = server.getWorldInfo();
+				WorldInfo info = this.worldObj.getWorldInfo();
 
 				if (info.isRaining())
 				{

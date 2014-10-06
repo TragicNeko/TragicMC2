@@ -12,7 +12,7 @@ public class TileEntityTimeDisruptor extends TileEntity {
 	{
 		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord))
 		{
-			WorldInfo info = MinecraftServer.getServer().worldServers[0].getWorldInfo();
+			WorldInfo info = this.worldObj.getWorldInfo();
 			Random rand = this.worldObj.rand;
 			info.setWorldTime(rand.nextInt(6000) + rand.nextInt(6000) + rand.nextInt(6000) + rand.nextInt(6000));
 		}
