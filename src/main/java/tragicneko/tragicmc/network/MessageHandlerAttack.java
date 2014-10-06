@@ -17,7 +17,7 @@ public class MessageHandlerAttack implements IMessageHandler<MessageAttack, IMes
 		if (player instanceof EntityPlayerMP)
 		{
 			Entity entity = MinecraftServer.getServer().getEntityWorld().getEntityByID(message.entityID);
-			((EntityPlayerMP) player).attackTargetEntityWithCurrentItem(entity);
+			if (entity != null && !entity.isDead) ((EntityPlayerMP) player).attackTargetEntityWithCurrentItem(entity);
 		}
 		return null;
 	}
