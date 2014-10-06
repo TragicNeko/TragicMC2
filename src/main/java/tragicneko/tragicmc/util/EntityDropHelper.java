@@ -113,7 +113,7 @@ public class EntityDropHelper {
 		entityLootDrops.put(EntityMegaCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(TragicItems.IceOrb)},
 			{new ItemStack(TragicItems.IceOrb)}});
 		
-		entityLootDrops.put(EntityGreaterStin.class, new ItemStack[][] {{}, {new ItemStack(TragicItems.ObsidianOrb), new ItemStack(TragicItems.DarkIngot),
+		entityLootDrops.put(EntityGreaterStin.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.ObsidianOrb), new ItemStack(TragicItems.DarkIngot),
 			new ItemStack(TragicItems.StinHorn)}});
 		
 		entityLootDrops.put(EntityStinKing.class, new ItemStack[][] {{new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
