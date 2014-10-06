@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -43,12 +43,12 @@ public class SchematicCelestialTemple extends Schematic {
 
 	public void generateWithoutVariation(World world, Random rand, int x, int y, int z)
 	{
-		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(world, 12.0D, x + 4, y + 3, z + 4);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 12.0D, x + 4, y + 3, z + 4);
 		int[] coords;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			if (coords[1] < y - 1.5D)
 			{
 				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
@@ -66,11 +66,11 @@ public class SchematicCelestialTemple extends Schematic {
 		for (int potato = 0; potato < rand.nextInt(8) + 8; potato++)
 		{
 			int yDif = -2 - rand.nextInt(4);
-			map = WorldHelper.getBlocksInSphericalRange(world, 5.0D, x + rand.nextInt(20) - rand.nextInt(16), y + yDif, z + rand.nextInt(20) - rand.nextInt(16));
+			list = WorldHelper.getBlocksInSphericalRange(world, 5.0D, x + rand.nextInt(20) - rand.nextInt(16), y + yDif, z + rand.nextInt(20) - rand.nextInt(16));
 
-			for (int i = 0; i < map.size(); i++)
+			for (int i = 0; i < list.size(); i++)
 			{
-				coords = map.get(i);
+				coords = list.get(i);
 				if (coords[1] < y + yDif)
 				{
 					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);

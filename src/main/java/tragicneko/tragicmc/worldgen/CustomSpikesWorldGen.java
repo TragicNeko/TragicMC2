@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.worldgen;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
@@ -9,8 +10,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import scala.collection.mutable.Set;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.main.TragicBiomes;
 import tragicneko.tragicmc.main.TragicBlocks;
@@ -48,7 +47,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		int relays = biome instanceof BiomeGenDecayingWasteland ? 4 : 8;
 		Block spike = biome instanceof BiomeGenDecayingWasteland ? TragicBlocks.BoneBlock : TragicBlocks.DarkStone;
 		int meta = biome instanceof BiomeGenDecayingWasteland ? random.nextInt(2) : 14;
-		Map<Integer, int[]> map;
+		ArrayList<int[]> list;
 		int[] coords;
 		Block block;		
 		double regression = 0.95977745D;
@@ -130,11 +129,11 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 					if (size < cutoff || Ycoord + y1 > 256) break;
 
-					map = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
+					list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-					for (int j = 0; j < map.size(); j++)
+					for (int j = 0; j < list.size(); j++)
 					{
-						coords = map.get(j);
+						coords = list.get(j);
 						block = world.getBlock(coords[0], coords[1], coords[2]);
 
 						if (StructureWorldGen.validBlocks.contains(block))
@@ -150,7 +149,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 	public static void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord, Block spike, int meta)
 	{
-		Map<Integer, int[]> map;
+		ArrayList<int[]> list;
 		int[] coords;
 		Block block;
 
@@ -169,11 +168,11 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 			if (size < 0.36443755D || Ycoord + y1 > 256) break;
 
-			map = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
+			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-			for (int j = 0; j < map.size(); j++)
+			for (int j = 0; j < list.size(); j++)
 			{
-				coords = map.get(j);
+				coords = list.get(j);
 				block = world.getBlock(coords[0], coords[1], coords[2]);
 
 				if (StructureWorldGen.validBlocks.contains(block))

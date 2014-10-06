@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.worldgen;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -24,7 +24,7 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 		if (!TragicBiomes.starlitBiomes.contains(world.getBiomeGenForCoords(Xcoord, Zcoord))) return;
 
-		Map<Integer, int[]> map;
+		ArrayList<int[]> list;
 		double size;
 		int[] coords;
 		Block block;
@@ -49,11 +49,11 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 						if (size < 0.444443755D || Ycoord + y1 > 256) break;
 
-						map = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1 + (size * 0.5D), Zcoord);
+						list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1 + (size * 0.5D), Zcoord);
 
-						for (int j = 0; j < map.size(); j++)
+						for (int j = 0; j < list.size(); j++)
 						{
-							coords = map.get(j);
+							coords = list.get(j);
 
 							if (StructureWorldGen.validBlocks.contains(world.getBlock(coords[0], coords[1], coords[2])))
 							{

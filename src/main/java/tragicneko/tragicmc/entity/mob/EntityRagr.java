@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -12,11 +12,8 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -228,13 +225,13 @@ public class EntityRagr extends TragicMob {
 		int y = (int) this.posY;
 		int z = (int) this.posZ;		
 		par1 = MathHelper.clamp_float(par1 / 2.0F, 1.0F, 4.0F);
-		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
 		int[] coords;
 		Block block;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			x = coords[0];
 			y = coords[1];
 			z = coords[2];

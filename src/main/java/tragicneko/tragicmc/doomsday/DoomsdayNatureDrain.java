@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -20,13 +19,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
-	private Map<Integer, int[]> map = new HashMap();
+	private ArrayList<int[]> list = new ArrayList();
 
 	public DoomsdayNatureDrain(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
@@ -37,15 +35,15 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double radius = crucMoment ? 12.0D : 7.0D;
-		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
 		boolean griefCheck = this.getMobGriefing(player);
 		double plantCount = 0.0D;
 		int[] coords;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
@@ -118,15 +116,15 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double radius = crucMoment ? 12.0D : 7.0D;
-		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
 		boolean griefCheck = this.getMobGriefing(player);
 		double plantCount = 0.0D;
 		int[] coords;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
@@ -195,7 +193,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		float f = map.size() / 10.0F;
+		float f = list.size() / 10.0F;
 		player.addExhaustion(f);
 	}
 

@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -227,12 +227,12 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public boolean isPumpkinNearby()
 	{
-		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
 		int[] coords;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin) return true;
 		}
 		return false;
@@ -240,12 +240,12 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public int[] getNearbyPumpkin()
 	{
-		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
 		int[] coords;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.pumpkin || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.lit_pumpkin) return coords;
 		}
 
@@ -254,13 +254,13 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public void createHomePumpkin()
 	{
-		Map<Integer, int[]> map = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
 		int[] coords;
 		Block block;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
 			if (block.canBeReplacedByLeaves(worldObj, coords[0], coords[1], coords[2]) && World.doesBlockHaveSolidTopSurface(worldObj, coords[0], coords[1] - 1, coords[2]))
 			{

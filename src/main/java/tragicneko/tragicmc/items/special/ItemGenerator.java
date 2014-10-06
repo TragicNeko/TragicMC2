@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.items.special;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -10,13 +10,16 @@ import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenCanopyTree;
@@ -60,9 +63,31 @@ public class ItemGenerator extends Item {
 		double size;
 
 		int[] coords;
-		Map<Integer, int[]> map;
+		ArrayList<int[]> list;
+		
+		double distance = 50.0D;
+		float f = 1.0F;
+		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
+		float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
+		double d0 = player.prevPosX + (player.posX - player.prevPosX) * (double)f;
+		double d1 = player.prevPosY + (player.posY - player.prevPosY) * (double)f + (double)(player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
+		double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * (double)f;
+		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
+		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
+		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
+		float f6 = MathHelper.sin(-f1 * 0.017453292F);
+		float f7 = f4 * f5;
+		float f8 = f3 * f5;
+		double d3 = distance;
 
-		MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, false);
+		if (player instanceof EntityPlayerMP)
+		{
+			d3 = ((EntityPlayerMP)player).theItemInWorldManager.getBlockReachDistance() + (d3 - 4.0D);
+		}
+		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
+
+		MovingObjectPosition mop = player.worldObj.func_147447_a(vec3, vec31, true, false, true);
 
 		if (mop == null) return stack;
 
@@ -78,28 +103,28 @@ public class ItemGenerator extends Item {
 			{
 				if (size >= 5.5D)
 				{
-					map = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
+					list = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
 
-					for (int mapping = 0; mapping < map.size(); mapping++)
+					for (int mapping = 0; mapping < list.size(); mapping++)
 					{
-						coords = map.get(mapping);
+						coords = list.get(mapping);
 						if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 					} 
 				}
 
-				map = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
+				list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
 
-				for (int mapping = 0; mapping < map.size(); mapping++)
+				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
-					coords = map.get(mapping);
+					coords = list.get(mapping);
 					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 				} 
 
-				map = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
+				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
-				for (int mapping = 0; mapping < map.size(); mapping++)
+				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
-					coords = map.get(mapping);
+					coords = list.get(mapping);
 					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 				}
 			}
@@ -110,7 +135,7 @@ public class ItemGenerator extends Item {
 		{
 			size = 5.0D * random.nextDouble() + 2.5D;
 			Block ablock;
-			map = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord, Zcoord);
+			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord, Zcoord);
 
 			ablock = Block.getBlockById(random.nextInt(4096));
 			int attempts = 0;
@@ -131,39 +156,40 @@ public class ItemGenerator extends Item {
 				ablock = Blocks.tnt;
 			}
 
-			for (int i = 0; i < map.size(); i++)
+			for (int i = 0; i < list.size(); i++)
 			{
-				coords = map.get(i);
+				coords = list.get(i);
 				world.setBlock(coords[0], coords[1], coords[2], ablock);
 			}
 
-			if (!map.isEmpty())
+			if (!list.isEmpty() && ablock != null)
 			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Sphere generated with size of " + size + " made of " + StatCollector.translateToLocal(new ItemStack(ablock).getUnlocalizedName() + ".name")));
+				String s = ablock.getUnlocalizedName();
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Sphere generated with size of " + size + " made of " + StatCollector.translateToLocal(s + ".name")));
 			}
 		}
 		else if (this == TragicItems.SphereEraser)
 		{
-			map = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
+			list = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
 
-			for (int i = 0; i < map.size(); i++)
+			for (int i = 0; i < list.size(); i++)
 			{
-				coords = map.get(i);
+				coords = list.get(i);
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 
-			if (!map.isEmpty())
+			if (!list.isEmpty())
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area erased."));
 			}
 		}
 		else if (this == TragicItems.LiquidRemover)
 		{
-			map = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
+			list = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
 
-			for (int i = 0; i < map.size(); i++)
+			for (int i = 0; i < list.size(); i++)
 			{
-				coords = map.get(i);
+				coords = list.get(i);
 
 				if (world.getBlock(coords[0], coords[1], coords[2]) instanceof BlockLiquid)
 				{
@@ -171,7 +197,7 @@ public class ItemGenerator extends Item {
 				}
 			}
 
-			if (!map.isEmpty())
+			if (!list.isEmpty())
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area of liquid removed."));
 			}
@@ -304,11 +330,11 @@ public class ItemGenerator extends Item {
 
 				if (size < 0.36943755D || Ycoord + y1 > 256) break;
 
-				map = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
+				list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-				for (int j = 0; j < map.size(); j++)
+				for (int j = 0; j < list.size(); j++)
 				{
-					coords = map.get(j);
+					coords = list.get(j);
 					world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
 				}
 			}
@@ -327,11 +353,11 @@ public class ItemGenerator extends Item {
 
 				if (size < 0.444443755D || Ycoord + y1 > 256) break;
 
-				map = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1 + (size * 0.5D), Zcoord);
+				list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1 + (size * 0.5D), Zcoord);
 
-				for (int j = 0; j < map.size(); j++)
+				for (int j = 0; j < list.size(); j++)
 				{
-					coords = map.get(j);
+					coords = list.get(j);
 					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.StarCrystal, meta, 2);
 				}
 			}

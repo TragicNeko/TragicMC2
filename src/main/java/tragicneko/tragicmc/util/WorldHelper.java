@@ -1,8 +1,11 @@
 package tragicneko.tragicmc.util;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -127,13 +130,12 @@ public class WorldHelper {
 	 * @param z
 	 * @return
 	 */
-	public static Map<Integer, int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z) 
+	public static ArrayList<int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z) 
 	{		
-		Map<Integer, int[]> map = new HashMap();
-		if (y < 0 || y > 256 || radius <= 0) return map;
+		ArrayList<int[]> list = new ArrayList();
+		if (y < 0 || y > 256 || radius <= 0) return list;
 
 		int[] coords;
-		int mapping = 0;
 
 		for (double x2 = -radius - 0.55D; x2 < radius + 0.55D; x2 += 0.5D)
 		{
@@ -143,15 +145,15 @@ public class WorldHelper {
 
 				if (MathHelper.sqrt_double(x2 * x2 + z2 * z2) <= radius)
 				{
-					if (!map.containsValue(coords))
+					if (!list.contains(coords))
 					{
-						map.put(mapping++, coords);
+						list.add(coords);
 					}
 				}
 			}
 		}
 
-		return map;
+		return list;
 	}
 
 	/**
@@ -163,16 +165,15 @@ public class WorldHelper {
 	 * @param z
 	 * @return
 	 */
-	public static Map<Integer, int[]> getBlocksInSphericalRange(World world, double radius, double x, double y, double z)
+	public static ArrayList<int[]> getBlocksInSphericalRange(World world, double radius, double x, double y, double z)
 	{		
-		Map<Integer, int[]> map = new HashMap();
+		ArrayList<int[]> list = new ArrayList();
 
-		if (y <= 0 || y >= 256 || radius <= 0) return map;
+		if (y <= 0 || y >= 256 || radius <= 0) return list;
 
 		double distance = radius + 1.5D;
 		
 		int[] coords;
-		int mapping = 0;
 
 		for (double y1 = -distance; y1 < distance; y1 += 0.5D)
 		{
@@ -186,9 +187,9 @@ public class WorldHelper {
 					{
 						coords = new int[] {(int) Math.round(x + x1), (int) Math.round(y + y1), (int) Math.round(z + z1)};
 
-						if (!map.containsValue(coords))
+						if (!list.contains(coords))
 						{
-							map.put(mapping++, coords);
+							list.add(coords);
 						}
 					}
 
@@ -196,6 +197,6 @@ public class WorldHelper {
 			}
 		}
 
-		return map;
+		return list;
 	}
 }

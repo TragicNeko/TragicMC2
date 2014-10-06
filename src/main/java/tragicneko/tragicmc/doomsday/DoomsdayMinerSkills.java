@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -22,10 +21,10 @@ public class DoomsdayMinerSkills extends Doomsday {
 	private static final Set minableBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.dirt, Blocks.cobblestone, Blocks.stone, Blocks.mycelium, Blocks.gravel, Blocks.sand,
 			Blocks.sandstone, Blocks.clay, TragicBlocks.DarkStone, TragicBlocks.DeadDirt});
 	
-	private Map<Integer, int[]> map = new HashMap();
-	private Map<Integer, int[]> map2 = new HashMap();
-	private Map<Integer, int[]> map3 = new HashMap();
-	private Map<Integer, int[]> map4 = new HashMap();
+	private ArrayList<int[]> list = new ArrayList();
+	private ArrayList<int[]> list2 = new ArrayList();
+	private ArrayList<int[]> list3 = new ArrayList();
+	private ArrayList<int[]> list4 = new ArrayList();
 
 	public DoomsdayMinerSkills(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
@@ -33,12 +32,10 @@ public class DoomsdayMinerSkills extends Doomsday {
 	
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-		
-		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, 6.0D, player.posX, player.posY, player.posZ);
-		map2.clear();
-		map3.clear();
-		map4.clear();
+		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, 6.0D, player.posX, player.posY, player.posZ);
+		list2.clear();
+		list3.clear();
+		list4.clear();
 		
 		double d0 = crucMoment ? 1.5D : 1.0D;
 		
@@ -61,35 +58,35 @@ public class DoomsdayMinerSkills extends Doomsday {
 		int[] coords;
 		double range = crucMoment ? 6.0D : 4.0D;
 		
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
 			if (rand.nextInt(48) != 0) continue;
 			
-			coords = map.get(i);
+			coords = list.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 			
-			if (map2.isEmpty() && minableBlocks.contains(block))
+			if (list2.isEmpty() && minableBlocks.contains(block))
 			{
-				map2 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
+				list2 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
 			}
-			else if (map3.isEmpty() && minableBlocks.contains(block))
+			else if (list3.isEmpty() && minableBlocks.contains(block))
 			{
-				map3 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
+				list3 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
 			}
-			else if (map4.isEmpty() && minableBlocks.contains(block))
+			else if (list4.isEmpty() && minableBlocks.contains(block))
 			{
-				map4 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
+				list4 = WorldHelper.getBlocksInSphericalRange(player.worldObj, range, coords[0], coords[1], coords[2]);
 			}
 			else
 			{
-				if (!map2.isEmpty() && !map3.isEmpty() && !map4.isEmpty()) break;
+				if (!list2.isEmpty() && !list3.isEmpty() && !list4.isEmpty()) break;
 			}
 		}
 		
-		for (int i = 0; i < map2.size(); i++)
+		for (int i = 0; i < list2.size(); i++)
 		{
 			if (rand.nextInt(8) != 0) continue;
-			coords = map2.get(i);
+			coords = list2.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 			
 			if (minableBlocks.contains(block))
@@ -98,10 +95,10 @@ public class DoomsdayMinerSkills extends Doomsday {
 			}
 		}
 		
-		for (int i = 0; i < map3.size(); i++)
+		for (int i = 0; i < list3.size(); i++)
 		{
 			if (rand.nextInt(8) != 0) continue;
-			coords = map3.get(i);
+			coords = list3.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 			
 			if (minableBlocks.contains(block))
@@ -110,10 +107,10 @@ public class DoomsdayMinerSkills extends Doomsday {
 			}
 		}
 		
-		for (int i = 0; i < map4.size(); i++)
+		for (int i = 0; i < list4.size(); i++)
 		{
 			if (rand.nextInt(8) != 0) continue;
-			coords = map4.get(i);
+			coords = list4.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 			
 			if (minableBlocks.contains(block))

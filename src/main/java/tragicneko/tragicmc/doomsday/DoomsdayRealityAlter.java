@@ -1,9 +1,7 @@
 package tragicneko.tragicmc.doomsday;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
@@ -17,7 +15,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
@@ -26,8 +23,8 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayRealityAlter extends Doomsday {
 
-	private Map<Integer, int[]> map = new HashMap();
-	private List<Entity> list = new ArrayList();
+	private ArrayList<int[]> list = new ArrayList();
+	private List<Entity> list2 = new ArrayList();
 
 	private Block[] randomBlocks = new Block[] {Blocks.wheat, Blocks.glowstone, Blocks.cactus, Blocks.deadbush, Blocks.carrots, TragicBlocks.CarrotBlock, TragicBlocks.PotatoBlock,
 			TragicBlocks.Light, Blocks.red_flower, Blocks.yellow_flower, Blocks.double_plant, Blocks.wooden_slab, Blocks.cake, Blocks.bed, Blocks.hay_block, Blocks.hardened_clay,
@@ -47,38 +44,38 @@ public class DoomsdayRealityAlter extends Doomsday {
 		}
 
 		double radius = crucMoment ? 24.0D : 12.0D;
-		map = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
 	}
 
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player,	boolean crucMoment)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (int i = 0; i < list2.size(); i++)
 		{
-			if (list.get(i) instanceof EntityAnimal && rand.nextInt(8) == 0)
+			if (list2.get(i) instanceof EntityAnimal && rand.nextInt(8) == 0)
 			{
-				if (!((EntityLiving) list.get(i)).hasCustomNameTag())
+				if (!((EntityLiving) list2.get(i)).hasCustomNameTag())
 				{
 					if (rand.nextFloat() > 0.35F)
 					{
-						list.get(i).getDataWatcher().updateObject(10, "Dinnerbone");
+						list2.get(i).getDataWatcher().updateObject(10, "Dinnerbone");
 					}
 					else
 					{
-						list.get(i).getDataWatcher().updateObject(10, "Grumm");
+						list2.get(i).getDataWatcher().updateObject(10, "Grumm");
 					}
 				}
 			}
-			if (list.get(i) instanceof EntityMob && TragicNewConfig.allowStun) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60));
+			if (list2.get(i) instanceof EntityMob && TragicNewConfig.allowStun) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60));
 		}
 
 		Block block;
 		int[] coords;
 
-		for (int i = 0; i < map.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (!(block instanceof BlockAir) && rand.nextInt(48) == 0)

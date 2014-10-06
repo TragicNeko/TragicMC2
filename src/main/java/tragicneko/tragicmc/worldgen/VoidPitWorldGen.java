@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.worldgen;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
@@ -28,7 +28,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 
 			double size;
 			int[] coords;
-			Map<Integer, int[]> map;
+			ArrayList<int[]> list;
 
 			size = 4.0D * random.nextDouble() + 4.0D;
 
@@ -36,28 +36,28 @@ public class VoidPitWorldGen implements IWorldGenerator {
 			{
 				if (size >= 5.5D)
 				{
-					map = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
+					list = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
 
-					for (int mapping = 0; mapping < map.size(); mapping++)
+					for (int mapping = 0; mapping < list.size(); mapping++)
 					{
-						coords = map.get(mapping);
+						coords = list.get(mapping);
 						if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 					} 
 				}
 
-				map = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
+				list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
 
-				for (int mapping = 0; mapping < map.size(); mapping++)
+				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
-					coords = map.get(mapping);
+					coords = list.get(mapping);
 					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 				} 
 
-				map = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
+				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
-				for (int mapping = 0; mapping < map.size(); mapping++)
+				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
-					coords = map.get(mapping);
+					coords = list.get(mapping);
 					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
 				}
 			}

@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -52,16 +52,16 @@ public class SchematicTimeAltar extends Schematic {
 			}
 		}
 
-		Map<Integer, int[]> map;
+		ArrayList<int[]> list;
 		int[] coords;
 		Block block;
 		boolean flag;
 
-		map = WorldHelper.getBlocksInSphericalRange(world, 8.0D, x, y, z);
+		list = WorldHelper.getBlocksInSphericalRange(world, 8.0D, x, y, z);
 
-		for (int i = 0; i < map.size(); i++) //creates a giant hemisphere of quartz with star crystal inside of it sparingly
+		for (int i = 0; i < list.size(); i++) //creates a giant hemisphere of quartz with star crystal inside of it sparingly
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 
 			if (coords[1] < y + 1)
 			{
@@ -82,11 +82,11 @@ public class SchematicTimeAltar extends Schematic {
 			}
 		}
 
-		map = WorldHelper.getBlocksInCircularRange(world, 4.446D, x, y, z);
+		list = WorldHelper.getBlocksInCircularRange(world, 4.446D, x, y, z);
 
-		for (int i = 0; i < map.size(); i++) //creates a smaller hemisphere of star crystal to provide lighting
+		for (int i = 0; i < list.size(); i++) //creates a smaller hemisphere of star crystal to provide lighting
 		{
-			coords = map.get(i);
+			coords = list.get(i);
 
 			if (coords[1] < y + 1)
 			{

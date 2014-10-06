@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
@@ -676,11 +676,11 @@ public class SchematicObsidianCavern extends Schematic {
 		switch(variant)
 		{
 		case 0:
-			Map<Integer, int[]> map = WorldHelper.getBlocksInCircularRange(world, 2.5D, x, y, z);
+			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(world, 2.5D, x, y, z);
 			int[] coords;
-			for (int i = 0; i < map.size(); i++)
+			for (int i = 0; i < list.size(); i++)
 			{
-				coords = map.get(i);
+				coords = list.get(i);
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 			break;
