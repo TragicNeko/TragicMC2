@@ -25,21 +25,20 @@ public class EntitySirv extends TragicMob {
 
 	public EntitySirv(World par1World) {
 		super(par1World);
-		this.setSize(0.4F, 2.0F);
+		this.setSize(0.45F, 1.85F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 2;
-		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true)); /*
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false; */
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+	}
+	
+	@Override
+	public boolean canCorrupt()
+	{
+		return false;
 	}
 
 	public boolean isAIEnabled()
@@ -51,9 +50,9 @@ public class EntitySirv extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.45);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.375);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(14.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
 	}
 
