@@ -81,6 +81,9 @@ public class EntityStinKing extends EntityGreaterStin implements TragicMiniBoss 
 
 	public void onLivingUpdate()
 	{		
+		//this.motionX = this.motionY = this.motionZ = 0.0D;
+		//this.rotationYaw = this.rotationPitch = this.rotationYawHead = 0.0F;
+		
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -126,7 +129,7 @@ public class EntityStinKing extends EntityGreaterStin implements TragicMiniBoss 
 		mortor.posY = this.posY + this.height + 0.5D;
 		mortor.posX += d0 * 0.04335D;
 		mortor.posZ += d2 * 0.04335D;
-		mortor.motionY += 1.46D;
+		mortor.motionY += 0.66D * f1;
 		this.worldObj.spawnEntityInWorld(mortor);
 	}
 

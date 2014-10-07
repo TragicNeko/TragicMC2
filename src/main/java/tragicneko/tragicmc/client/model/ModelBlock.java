@@ -14,7 +14,7 @@ public class ModelBlock extends ModelBase
 		textureHeight = 16;
 
 		Body = new ModelRenderer(this, 0, 0);
-		Body.addBox(-1F, 0F, -1F, 0, 0, 0);
+		Body.addBox(0F, 0F, 0F, 0, 0, 0);
 		Body.setRotationPoint(0F, 0F, 0F);
 		Body.setTextureSize(0, 0);
 		setRotation(Body, 0F, 0F, 0F);

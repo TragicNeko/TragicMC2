@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -200,14 +201,11 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
 		RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderPirah());
 		RenderingRegistry.registerEntityRenderingHandler(EntityStin.class, new RenderStin());
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityGreaterStin.class, new RenderMob(new ModelGreaterStin(), 0.675F, "GreaterStin_lowRes"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityStinKing.class, new RenderMob(new ModelStinKing(), 0.675F, "StinKing_lowRes", 1.625F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityStinQueen.class, new RenderMob(new ModelStinQueen(), 0.675F, "StinQueen_lowRes", 1.225F));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, new RenderWisp());
 		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.35F, "Abomination_lowRes"));
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityErkel.class, new RenderErkel());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(new ModelSirv(), 0.245F, "Sirv_lowRes"));
 

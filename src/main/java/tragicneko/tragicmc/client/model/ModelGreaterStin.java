@@ -16,12 +16,6 @@ public class ModelGreaterStin extends ModelBase
 	private ModelRenderer legMR;
 	private ModelRenderer legBL;
 	private ModelRenderer legBR;
-	private ModelRenderer legTipFR;
-	private ModelRenderer legTipFL;
-	private ModelRenderer legTipMR;
-	private ModelRenderer legTipML;
-	private ModelRenderer legTipBR;
-	private ModelRenderer legTipBL;
 
 	private ModelRenderer tail;
 	private ModelRenderer tailThickness;
@@ -40,6 +34,7 @@ public class ModelGreaterStin extends ModelBase
 		ModelRenderer bodyThickness = new ModelRenderer(this, 0, 30);
 		bodyThickness.addBox(-4F, 2F, 0F, 8, 8, 13);
 		body.addChild(bodyThickness);
+		
 		ModelRenderer backSpike = new ModelRenderer(this, 0, 18);
 		backSpike.addBox(0F, -6F, 5F, 2, 8, 2);
 		backSpike.rotateAngleX = 0.2230717F;
@@ -65,6 +60,7 @@ public class ModelGreaterStin extends ModelBase
 		ModelRenderer neckThickness2 = new ModelRenderer(this, 32, 80);
 		neckThickness2.addBox(-1F, -18F, -5F, 2, 17, 6);
 		head.addChild(neckThickness2);
+		
 		ModelRenderer neckSpike = new ModelRenderer(this, 0, 18);
 		neckSpike.addBox(-1F, -11F, -5F, 2, 12, 2);
 		neckSpike.rotateAngleX = 0.5205006F;
@@ -76,24 +72,24 @@ public class ModelGreaterStin extends ModelBase
 
 		//Front Right leg
 		legFR = new ModelRenderer(this, 64, 0);
-		legFR.addBox(-5F, 4F, 0F, 2, 15, 3);
+		legFR.addBox(-5F, -4F, 0F, 2, 15, 3);
 		legFR.rotateAngleX = -0.2230717F;
 		legFR.rotateAngleZ = 0.0371786F;
 		body.addChild(legFR);
-		legTipFR = new ModelRenderer(this, 0, 0);
-		legTipFR.addBox(-3F, 19F, -1.0F, 1, 15, 2);
+		ModelRenderer legTipFR = new ModelRenderer(this, 0, 0);
+		legTipFR.addBox(-3F, 19F, -1F, 1, 15, 2);
 		legTipFR.rotateAngleX = 0.1115358F;
 		legTipFR.rotateAngleZ = 0.0743572F;
 		legFR.addChild(legTipFR);
 
 		//Front Left leg
 		legFL = new ModelRenderer(this, 64, 20);
-		legFL.addBox(4F, 4F, 0F, 2, 15, 3);
+		legFL.addBox(-1F, -5F, -1F, 2, 15, 3);
 		legFL.rotateAngleX = -0.2230717F;
 		legFL.rotateAngleZ = -0.0371786F;
 		body.addChild(legFL);
-		legTipFL = new ModelRenderer(this, 10, 0);
-		legTipFL.addBox(3F, 19F, -1.0F, 1, 15, 2);
+		ModelRenderer legTipFL = new ModelRenderer(this, 10, 0);
+		legTipFL.addBox(-1F, 0F, -1F, 1, 15, 2);
 		legTipFL.rotateAngleX = 0.1115358F;
 		legTipFL.rotateAngleZ = -0.0743572F;
 		legFL.addChild(legTipFL);
@@ -104,7 +100,7 @@ public class ModelGreaterStin extends ModelBase
 		legML.rotateAngleX = -0.0371786F;
 		legML.rotateAngleZ = -0.1487144F;
 		body.addChild(legML);
-		legTipML = new ModelRenderer(this, 10, 0);
+		ModelRenderer legTipML = new ModelRenderer(this, 10, 0);
 		legTipML.addBox(3.5F, 19F, 3.5F, 1, 15, 2);
 		legTipML.rotateAngleX = 0.0743572F;
 		legTipML.rotateAngleZ = -0.0371786F;
@@ -116,7 +112,7 @@ public class ModelGreaterStin extends ModelBase
 		legMR.rotateAngleX = -0.0371786F;
 		legMR.rotateAngleZ = 0.1487144F;
 		body.addChild(legMR);
-		legTipMR = new ModelRenderer(this, 0, 0);
+		ModelRenderer legTipMR = new ModelRenderer(this, 0, 0);
 		legTipMR.addBox(-4F, 19F, 3.5F, 1, 15, 2);
 		legTipMR.rotateAngleX = 0.0743572F;
 		legTipMR.rotateAngleZ = 0.0371786F;
@@ -128,7 +124,7 @@ public class ModelGreaterStin extends ModelBase
 		legBR.rotateAngleX = 0.0743572F;
 		legBR.rotateAngleZ = 0.1115358F;
 		body.addChild(legBR);
-		legTipBR = new ModelRenderer(this, 0, 0);
+		ModelRenderer legTipBR = new ModelRenderer(this, 0, 0);
 		legTipBR.addBox(-5F, 19F, 6F, 1, 15, 2);
 		legTipBR.rotateAngleX = 0.1487144F;
 		legBR.addChild(legTipBR);
@@ -139,7 +135,7 @@ public class ModelGreaterStin extends ModelBase
 		legBL.rotateAngleX = 0.0743572F;
 		legBL.rotateAngleZ = -0.1115358F;
 		body.addChild(legBL);
-		legTipBL = new ModelRenderer(this, 10, 0);
+		ModelRenderer legTipBL = new ModelRenderer(this, 10, 0);
 		legTipBL.addBox(4F, 19F, 6F, 1, 15, 2);
 		legTipBL.rotateAngleX = 0.1487144F;
 		legBL.addChild(legTipBL);
