@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -33,10 +34,6 @@ public class ItemNekoWand extends Item {
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
-		
-		if (entity != null) player.addChatMessage(new ChatComponentText("" + entity.getClass().getCanonicalName()));
-		
-		/*
 
 		if (player.isSneaking())
 		{
@@ -55,7 +52,6 @@ public class ItemNekoWand extends Item {
 				cooldown = 10;
 				stack.stackTagCompound.setIntArray("entityIDs", ids);
 				return true;
-
 			}
 			else
 			{
@@ -71,6 +67,7 @@ public class ItemNekoWand extends Item {
 						{
 							ent.getNavigator().clearPathEntity();
 							ent.setAttackTarget(null);
+							ent.targetTasks.addTask(3, new EntityAINearestAttackableTarget(ent, entity.getClass(), 0, true));
 							ent.setAttackTarget((EntityLivingBase) entity);
 						}
 					}
@@ -101,6 +98,7 @@ public class ItemNekoWand extends Item {
 				{
 					ent.getNavigator().clearPathEntity();
 					ent.setAttackTarget(null);
+					ent.targetTasks.addTask(0, new EntityAINearestAttackableTarget(ent, entity.getClass(), 0, true));
 					ent.setAttackTarget((EntityLivingBase) entity);
 					player.addChatMessage(new ChatComponentText(ent + " has been set to attack " + entity +"!"));
 					cooldown = 10;
@@ -108,13 +106,12 @@ public class ItemNekoWand extends Item {
 					return true;
 				}
 			}
-		} */
+		} 
 		return true;
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer par3EntityPlayer)
 	{
-		/*
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
@@ -124,13 +121,12 @@ public class ItemNekoWand extends Item {
 			stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the group of targetting entities."));
 		}
-
-		if (stack.stackTagCompound.getInteger("entityID") != 0)
+		else if (stack.stackTagCompound.getInteger("entityID") != 0)
 		{
 			stack.stackTagCompound.setInteger("entityID", 0);
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the single targetting entity."));
 		}
-		 */
+		 
 		return stack;
 	}
 
