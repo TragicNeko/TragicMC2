@@ -37,12 +37,15 @@ public class EntityWisp extends TragicMob {
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, 6.0F, 1.0D, 1.6D));
 		this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGolem.class, 6.0F, 1.0D, 1.6D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
-		this.tasks.addTask(5, new EntityAIWander(this, 0.45D)); /*
-		this.canCorrupt = false;
-		this.isCorruptible = false;
-		this.isChangeable = false; */
+		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
 		this.stepHeight = 1.0F;
 		this.isImmuneToFire = true;
+	}
+	
+	@Override
+	public boolean canCorrupt()
+	{
+		return false;
 	}
 
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
