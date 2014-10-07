@@ -294,7 +294,7 @@ public abstract class EntityProjectile extends Entity
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.isEntityInvulnerable())
+        if (this.isEntityInvulnerable() || this.worldObj.isRemote)
         {
             return false;
         }
@@ -304,22 +304,7 @@ public abstract class EntityProjectile extends Entity
 
             if (par1DamageSource.getEntity() != null)
             {
-                Vec3 vec3 = par1DamageSource.getEntity().getLookVec();
-
-                if (vec3 != null)
-                {
-                    this.motionX = vec3.xCoord;
-                    this.motionY = vec3.yCoord;
-                    this.motionZ = vec3.zCoord;
-                    this.accelerationX = this.motionX * 0.1D;
-                    this.accelerationY = this.motionY * 0.1D;
-                    this.accelerationZ = this.motionZ * 0.1D;
-                }
-
-                if (par1DamageSource.getEntity() instanceof EntityLivingBase)
-                {
-                    this.shootingEntity = (EntityLivingBase)par1DamageSource.getEntity();
-                }
+               this.setDead();
 
                 return true;
             }

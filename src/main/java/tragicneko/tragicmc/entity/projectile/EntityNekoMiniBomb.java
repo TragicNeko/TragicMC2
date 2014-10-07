@@ -41,7 +41,7 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 	}
 
 	public void onUpdate()
-	{
+	{		
 		super.onUpdate();
 
 		if (this.isInWater())
