@@ -35,7 +35,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 		}
 		else
 		{
-			if (mop.entityHit != null && !inGround) 
+			if (mop.entityHit != null) 
 			{			
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
 
@@ -49,9 +49,8 @@ public class EntityPoisonBarb extends EntityProjectile {
 					}
 				}
 			}
-		}
-
-		this.setDead();
+			
+			if (mop != null) this.setDead();
+		}		
 	}
-
 }

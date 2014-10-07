@@ -64,9 +64,9 @@ public class EntityWebBomb extends EntityProjectile {
 					coords = list2.get(i);
 					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web); 
 				}
+				
+				this.setDead();
 			}
-
-			if (!this.worldObj.isRemote) this.setDead();
 		}
 	}
 

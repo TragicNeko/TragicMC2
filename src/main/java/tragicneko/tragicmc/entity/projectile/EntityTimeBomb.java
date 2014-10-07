@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 
 public class EntityTimeBomb extends EntityProjectile {
-	
+
 	public EntityTimeBomb(World par1World)
 	{
 		super(par1World);
@@ -28,40 +28,32 @@ public class EntityTimeBomb extends EntityProjectile {
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (!this.worldObj.isRemote) this.motionY *= 0.98;
+		this.motionY *= 0.98;
 	}
-	
+
 	@Override
 	protected void onImpact(MovingObjectPosition var1) {
-		if(var1 != null)
+		if(var1 != null && !this.worldObj.isRemote)
 		{
 			if (var1.typeOfHit == MovingObjectType.BLOCK)
 			{
-				int x = var1.blockX;
-				int y = var1.blockY;
-				int z = var1.blockZ;
 				this.setDead();
 
 				EntityTimeDisruption ent = new EntityTimeDisruption(this.worldObj);
-				ent.posX = x;
-				ent.posY = y;
-				ent.posZ = z;
+				ent.copyLocationAndAnglesFrom(this);
 				this.worldObj.spawnEntityInWorld(ent);
 			}
 			else
 			{
-				if (var1.entityHit instanceof EntityTimeController || !(var1.entityHit instanceof EntityLivingBase)) return;
+				if (!(var1.entityHit instanceof EntityTimeController || !(var1.entityHit instanceof EntityLivingBase)))
+				{
+					var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
+				}
 				
-				var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
-				double x = var1.entityHit.posX;
-				double y = var1.entityHit.posY;
-				double z = var1.entityHit.posZ;
 				this.setDead();
 
 				EntityTimeDisruption ent = new EntityTimeDisruption(this.worldObj);
-				ent.posX = x;
-				ent.posY = y;
-				ent.posZ = z;
+				ent.copyLocationAndAnglesFrom(this);
 				this.worldObj.spawnEntityInWorld(ent);
 			}
 		}

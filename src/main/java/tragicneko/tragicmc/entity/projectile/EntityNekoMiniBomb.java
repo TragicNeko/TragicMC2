@@ -4,14 +4,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityNekoMiniBomb extends EntityThrowable {
-
-	private int groundTicks;
-	private int airTicks;
-
+	
 	public EntityNekoMiniBomb(World world) {
 		super(world);
 	}
@@ -32,12 +30,14 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		if (mop.entityHit != null && !inGround) 
+		if (mop.entityHit != null) 
 		{			
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 		}
-		
-		this.inGround = true;
+		else
+		{
+			this.inGround = true;
+		}
 	}
 
 	public void onUpdate()
@@ -46,60 +46,33 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 
 		if (this.isInWater())
 		{
-			for (int l = 0; l < 5; ++l) {
-				worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-			}
-			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
-			this.setDead();
-		}
-
-		if (this.inGround)
-		{
-			groundTicks++;
-		}
-		else
-		{
-			airTicks++;
-		}
-
-		if (this.airTicks >= 20)
-		{
-			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
-
-			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-
-			if (flag && !this.worldObj.isRemote)
+			if (this.worldObj.isRemote)
 			{
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+				for (int l = 0; l < 5; ++l) {
+					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+				}
+				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
 			}
-
-			this.setDead();
-		}
-
-		if (this.airTicks > 20 && !this.worldObj.isRemote)
-		{
-			this.setDead();
-		}
-
-		if (this.inGround && groundTicks >= 20)
-		{			
-			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
-
-			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-
-			if (flag && !this.worldObj.isRemote)
+			else
 			{
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+				this.setDead();
 			}
-
-			this.setDead();
 		}
 
-		if (this.groundTicks > 20 && !this.worldObj.isRemote)
+		if (this.ticksExisted >= 40)
 		{
-			this.setDead();
-		}
+			if (this.worldObj.isRemote)
+			{
+				this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+			}
+			else
+			{
+				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 
+				this.setDead();
+			}
+		}
 	}
 
 	@Override

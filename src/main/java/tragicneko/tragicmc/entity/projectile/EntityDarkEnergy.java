@@ -29,18 +29,18 @@ public class EntityDarkEnergy extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround) 
-		{			
-			if (!(mop.entityHit instanceof EntityLivingBase)) return;
+		if (this.worldObj.isRemote) return;
 
-			if (!this.worldObj.isRemote)
+		if (mop.entityHit != null) 
+		{			
+			if (mop.entityHit instanceof EntityLivingBase)
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 3.0F);
 				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0 + rand.nextInt(2)));
 			}
-			
-			this.setDead();
 		}
+
+		if (mop != null) this.setDead();
 	}
 
 	@Override

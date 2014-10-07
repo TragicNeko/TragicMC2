@@ -46,34 +46,33 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 		}
 		else
 		{
-			if (mop.entityHit != null && !inGround) 
+			if (mop.entityHit != null) 
 			{			
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 5.0F);
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
-					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 200 + rand.nextInt(320)));
+					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 200 + rand.nextInt(160)));
 				}
 			}
-		}
+			
+			int random = rand.nextInt(8) + 6;
 
-		int random = rand.nextInt(8) + 6;
-
-
-		if (this.getThrower() != null && !this.worldObj.isRemote)
-		{
-			for (int l = 0; l < random; l++)
+			if (this.getThrower() != null)
 			{
-				EntityPumpkinbomb bomb = new EntityPumpkinbomb(this.worldObj, this.getThrower());
+				for (int l = 0; l < random; l++)
+				{
+					EntityPumpkinbomb bomb = new EntityPumpkinbomb(this.worldObj, this.getThrower());
 
-				bomb.setPosition(this.posX + MathHelper.getRandomIntegerInRange(rand, -4, 4), this.posY + 1, this.posZ + MathHelper.getRandomIntegerInRange(rand, -4, 4));
-				this.worldObj.spawnEntityInWorld(bomb);
+					bomb.setPosition(this.posX + MathHelper.getRandomIntegerInRange(rand, -4, 4), this.posY + 1, this.posZ + MathHelper.getRandomIntegerInRange(rand, -4, 4));
+					this.worldObj.spawnEntityInWorld(bomb);
+				}
+
+				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 			}
-
-			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+			
+			if (mop != null) this.setDead();
 		}
-		
-		this.setDead();
 	}
 
 	public void onUpdate()
@@ -121,7 +120,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 				}
 			}
 
-			this.setDead();
+			if (!this.worldObj.isRemote) this.setDead();
 		}
 
 		if (this.airTicks > 60 && !this.worldObj.isRemote)

@@ -44,7 +44,7 @@ public class EntityPitchBlack extends EntityProjectile {
 		}
 		else 
 		{
-			if (mop.entityHit != null && !inGround && !mop.entityHit.equals(this.shootingEntity)) 
+			if (mop.entityHit != null && !mop.entityHit.equals(this.shootingEntity)) 
 			{						
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 10.0F);
 
@@ -59,8 +59,9 @@ public class EntityPitchBlack extends EntityProjectile {
 				if (mop.entityHit != null) this.setPosition(this.shootingEntity.posX + rand.nextDouble() - rand.nextDouble(), this.shootingEntity.posY + 0.4D, this.shootingEntity.posZ + rand.nextDouble() - rand.nextDouble());
 				this.entityDropItem(stack, 0.4F);
 			}
+			
+			if (mop != null) this.setDead();
 		}
-		this.setDead();
 	}
 
 }

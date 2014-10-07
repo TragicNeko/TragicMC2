@@ -39,7 +39,7 @@ public class EntityDarkLightning extends EntityProjectile {
 				this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, var1.entityHit.posX, var1.entityHit.posY, var1.entityHit.posZ));
 				if (var1.entityHit instanceof EntityLivingBase) ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
 			}
-			this.setDead();
+			if (var1 != null) this.setDead();
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class EntityDarkLightning extends EntityProjectile {
 	{
 		super.onUpdate();
 		
-		if (this.ticksInAir % 20 == 0 && this.ticksInAir > 10 && this.ticksInAir <= 120 && !this.inGround && !this.isDead)
+		if (this.ticksInAir % 20 == 0 && this.ticksInAir > 10 && this.ticksInAir <= 120 && !this.isDead && !this.worldObj.isRemote)
 		{
 			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.posX, this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ), this.posZ));
 		}

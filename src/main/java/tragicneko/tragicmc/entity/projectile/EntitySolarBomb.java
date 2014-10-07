@@ -33,13 +33,13 @@ public class EntitySolarBomb extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {		
-		if (mop.entityHit != null && !inGround && !(mop.entityHit instanceof EntityApis) && !this.worldObj.isRemote)
+		if (mop.entityHit != null && !(mop.entityHit instanceof EntityApis) && !this.worldObj.isRemote)
 		{	
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 			mop.entityHit.setFire(8 + rand.nextInt(16));
 		}
 
-		this.setDead();
+		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
 	
 	public void onUpdate()
@@ -54,7 +54,7 @@ public class EntitySolarBomb extends EntityProjectile {
 				double d1 = (MathHelper.getRandomIntegerInRange(rand, - 4, 4) + this.posY) - this.posY;
 				double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ; 
 
-				if (this.shootingEntity != null && !this.worldObj.isRemote)
+				if (this.shootingEntity != null)
 				{
 					EntitySmallFireball fireball = new EntitySmallFireball(this.worldObj, this.shootingEntity, d0, d1, d2);
 
@@ -64,9 +64,6 @@ public class EntitySolarBomb extends EntityProjectile {
 			}
 		}
 		
-		if (this.ticksExisted >= 600)
-		{
-			this.setDead();
-		}
+		if (this.ticksExisted >= 600) this.setDead();
 	}
 }

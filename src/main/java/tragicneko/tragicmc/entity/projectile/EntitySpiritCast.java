@@ -45,10 +45,7 @@ public class EntitySpiritCast extends EntityProjectile {
 	{
 		super.onUpdate();
 
-		if (this.ticksExisted >= 60)
-		{
-			this.setDead();
-		}
+		if (this.ticksExisted >= 60) this.setDead();
 	}
 	
 	@Override

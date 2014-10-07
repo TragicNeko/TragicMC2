@@ -15,9 +15,6 @@ import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityNekoStickyBomb extends EntityThrowable {
 
-	private int groundTicks;
-	private int airTicks;
-
 	public EntityNekoStickyBomb(World world) {
 		super(world);
 	}
@@ -38,7 +35,9 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		if (mop.entityHit != null && !inGround) 
+		if (mop == null || this.worldObj.isRemote) return;
+		
+		if (mop.entityHit != null) 
 		{			
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 
@@ -65,72 +64,43 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 
 		if (this.isInWater())
 		{
-			for (int l = 0; l < 5; ++l) {
-				worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-			}
-			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
-			this.setDead();
-		}
-
-		if (this.inGround)
-		{
-			groundTicks++;
-		}
-		else
-		{
-			airTicks++;
-		}
-
-		if (this.airTicks >= 20)
-		{
-			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
-
-			for (int l = 0; l < 11; l++)
+			if (this.worldObj.isRemote)
 			{
-				double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX; 
-				double d1 = rand.nextInt(3) + this.posY - 1;
-				double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ; 
-
-				if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
-				{
-					Block block = Blocks.web;
-					this.worldObj.setBlock((int)d0, (int)d1, (int)d2, block);
+				for (int l = 0; l < 5; ++l) {
+					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
+				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
 			}
-
-			this.setDead();
-		}
-
-		if (this.airTicks > 20 && !this.worldObj.isRemote)
-		{
-			this.setDead();
-		}
-
-		if (this.inGround && groundTicks >= 20)
-		{			
-			this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
-
-			for (int l = 0; l < 11; l++)
+			else
 			{
-				double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX; 
-				double d1 = rand.nextInt(3) + this.posY - 1;
-				double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ; 
-
-				if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
-				{
-					Block block = Blocks.web;
-					this.worldObj.setBlock((int)d0, (int)d1, (int)d2, block);
-				}
+				this.setDead();
 			}
-
-			this.setDead();
 		}
 
-		if (this.groundTicks > 20 && !this.worldObj.isRemote)
+		if (this.ticksExisted >= 40)
 		{
-			this.setDead();
-		}
+			if (this.worldObj.isRemote)
+			{
+				this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
+			}
+			else
+			{				
+				for (int l = 0; l < 11; l++)
+				{
+					double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX; 
+					double d1 = rand.nextInt(3) + this.posY - 1;
+					double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ; 
 
+					if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
+					{
+						Block block = Blocks.web;
+						this.worldObj.setBlock((int)d0, (int)d1, (int)d2, block);
+					}
+				}
+
+				this.setDead();
+			}
+		}
 	}
 
 	@Override

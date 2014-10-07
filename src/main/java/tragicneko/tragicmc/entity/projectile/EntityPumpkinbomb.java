@@ -117,9 +117,6 @@ public class EntityPumpkinbomb extends EntityThrowable {
 			worldObj.spawnParticle("flame", posX, posY, posZ, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D, (rand.nextGaussian() - 0.4D) * 0.05D);
 		}
 
-		if (!this.worldObj.isRemote)
-		{
-			this.motionY *= 0.98D;
-		}
+		this.motionY *= 0.98D;
 	}
 }

@@ -41,9 +41,9 @@ public class EntityBanana extends EntityThrowable {
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 			}
+			
+			if (mop != null) this.setDead();
 		}
-
-		this.setDead();
 	}
 
 }

@@ -11,7 +11,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityThrowingRock extends EntityThrowable {
-	
+
 	public boolean isLavaRock;
 
 	public EntityThrowingRock(World world) {
@@ -37,30 +37,33 @@ public class EntityThrowingRock extends EntityThrowable {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		if (!inGround) {
+		if (this.worldObj.isRemote) 
+		{
 			for (int l = 0; l < 4; ++l) {
 				worldObj.spawnParticle("crit", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 			}
 		}
-
-		if (mop.entityHit != null && !inGround) 
+		else
 		{
-			float f = 1.0F;
-			
-			if (this.isLavaRock)
+			if (mop.entityHit != null) 
 			{
-				f = 3.0F;
-				mop.entityHit.setFire(rand.nextInt(6) + 2);
+				float f = 1.0F;
+
+				if (this.isLavaRock)
+				{
+					f = 3.0F;
+					mop.entityHit.setFire(rand.nextInt(6) + 2);
+				}
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), f);
 			}
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), f);
+
+			if (mop != null) this.setDead();
 		}
-		
-		this.setDead();
 	}
 
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player) {
-		
+
 	}
 }
 

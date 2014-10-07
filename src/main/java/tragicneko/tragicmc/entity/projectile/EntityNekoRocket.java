@@ -33,34 +33,31 @@ public class EntityNekoRocket extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround) 
+		if (mop == null || this.worldObj.isRemote) return;
+
+		if (mop.entityHit != null) 
 		{			
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 		}
 
 		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-
-		if (!this.worldObj.isRemote)
-		{
-			this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
-		}
+		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 
 		this.setDead();
-
 	}
 
 	public void onUpdate()
 	{
-		if (this.target != null && this.target instanceof EntityLivingBase && ((EntityLivingBase) this.target).getHealth() == 0)
+		if (this.target != null && (this.target.getHealth() == 0 || this.target.isDead))
 		{
 			this.target = null;
 		}
-		
-		if (this.target != null && this.ticksInAir > 5 && !this.inGround)
+
+		if (this.target != null && this.ticksInAir > 5)
 		{
 			this.ticksWithTarget++;
 		}
-		
+
 		if (this.ticksWithTarget > 60)
 		{
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
@@ -68,9 +65,8 @@ public class EntityNekoRocket extends EntityProjectile {
 			if (!this.worldObj.isRemote)
 			{
 				this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
-			}
-
-			this.setDead();
+				this.setDead();
+			}			
 		}
 
 		super.onUpdate();
@@ -99,6 +95,21 @@ public class EntityNekoRocket extends EntityProjectile {
 			this.posX -= this.motionX / (double) f2 * 0.0000000074505806D;
 			this.posY -= this.motionY / (double) f2 * 0.00000000074505806D;
 			this.posZ -= this.motionZ / (double) f2 * 0.0000000074505806D; 
+		}
+		
+		if (this.isInWater())
+		{
+			if (this.worldObj.isRemote)
+			{
+				for (int l = 0; l < 5; ++l) {
+					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+				}
+				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
+			}
+			else
+			{
+				this.setDead();
+			}
 		}
 	}
 

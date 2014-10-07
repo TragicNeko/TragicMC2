@@ -29,7 +29,7 @@ public class EntityIcicle extends EntityProjectile {
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
-	
+
 	protected float getMotionFactor()
 	{
 		return 0.865F;
@@ -37,29 +37,28 @@ public class EntityIcicle extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !inGround && !this.worldObj.isRemote) 
-		{			
-			if (!(mop.entityHit instanceof EntityLivingBase)) return;
-			if (mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse) return;
-			
-			float f = mop.entityHit instanceof EntityBlaze ? 6.0F : 2.0F;
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), f);
+		if (this.worldObj.isRemote) return;
 
-			if (this.rand.nextBoolean())
+		if (mop.entityHit != null) 
+		{			
+			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse))
 			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60, 0 + rand.nextInt(2)));
+				float f = mop.entityHit instanceof EntityBlaze ? 6.0F : 2.0F;
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), f);
+
+				if (rand.nextBoolean()) ((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60, 0 + rand.nextInt(2)));
 			}
-			
-			this.setDead();
 		}
+
+		if (mop != null) this.setDead();
 	}
-	
+
 	@Override
 	protected String getParticleString()
 	{
 		return "snowshovel";
 	}
-	
+
 	public void onUpdate()
 	{
 		super.onUpdate();

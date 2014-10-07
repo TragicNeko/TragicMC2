@@ -31,16 +31,13 @@ public class EntitySpore extends EntityProjectile {
 			}
 		}
 
-		this.setDead();
+		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
 	
 	public void onUpdate()
 	{
 		super.onUpdate();
 
-		if (this.ticksExisted >= 300)
-		{
-			this.setDead();
-		}
+		if (this.ticksExisted >= 300) this.setDead();
 	}
 }
