@@ -2760,13 +2760,19 @@ improved due to this, but still quite laggy for some reason
 Updated the model for the Stin King, still need to adjust the offsets and add the animations, then do the same for the Stin Queen
 Got the NekoNekoWand working, it now adds an entity target task to attack nearby mobs of the selected entity's class, which won't really work for entities of the same class or
 entities that use the old ai system but yeah, I believe this is how the chocolate quest mob eggs worked anyway
+Finished updating the models and animations for the Stin King and Queen, updated the model for the Erkel
+Updated the Sirv model, added basic movement animations, updated it's AI to be pretty much empty, reduced it's move speed
+Updated all of the entities, going to update all of the creative items for them as well
 
-Still need to update models/animations for the Stin King and Queen, after that finish up the idle animations for the other mobs
+Finish up the idle animations for the other mobs
 After that, start on the Bosses, they will get fewer idle animations than the normal mobs
 Adjust all of the projectiles to ensure they are working correctly, update the creative mode projectiles for these
 After that, fix minor things, like mobs teleporting to the Nether's roof when you use asphyxiate (or similar Doomsdays) in the Nether, I'll probably have to get their starting
 y position and set it to a few blocks higher initially, then after that just keep them at their current position, that should prevent me from having to call every tick to keep
 them floating above a block at a certain position, instead I can just have them keep their current motion to 0 and their position remaining constant
+
+Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
+mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
 
 --Reminders-
 Add a "cough/hiccup/flare" to the Wisp, it'll just be a particle effect
