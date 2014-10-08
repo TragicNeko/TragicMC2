@@ -556,6 +556,11 @@ public class VanillaChangingEvents {
 	{		
 		if (event.entityLiving.worldObj.isRemote) return;
 		
+		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
+		{
+			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
+		}
+		
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && !event.source.isMagicDamage()
 				&& event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0 && TragicNewConfig.allowExtraExplosiveEffects)
 		{
@@ -720,15 +725,8 @@ public class VanillaChangingEvents {
 				event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(mobBlindnessDebuff);
 			}
 		}
-	}
-
-	@SubscribeEvent
-	public void onHurt(LivingHurtEvent event)
-	{		
-		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
-		{
-			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
-		}
+		
+		
 	}
 	
 	@SubscribeEvent
