@@ -13,6 +13,7 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicBiomes;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicEntities;
@@ -24,7 +25,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityWisp extends TragicMob {
-	
+
 	private Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 
 	public EntityWisp(World par1World) {
@@ -41,7 +42,41 @@ public class EntityWisp extends TragicMob {
 		this.stepHeight = 1.0F;
 		this.isImmuneToFire = true;
 	}
-	
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0)); //modifier
+		this.dataWatcher.addObject(17, Integer.valueOf(0)); //ticks
+	}
+
+	public int getIdleTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	public int getIdleState()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setIdleTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void setIdleState(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementIdleTicks()
+	{
+		int pow = this.getIdleTicks();
+		this.setIdleTicks(--pow);
+	}
+
 	@Override
 	public boolean canCorrupt()
 	{
@@ -103,20 +138,74 @@ public class EntityWisp extends TragicMob {
 			if (TragicNewConfig.allowDimension && TragicBiomes.ashenBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "smoke";
 			if (TragicNewConfig.allowDimension && TragicBiomes.paintedBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "magicCrit";
 
-			for (int i = 0; i < 2; i++)
+			for (int i = 0; i < 2 && this.getIdleTicks() == 0; i++)
 			{
 				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
+
+			if (this.getIdleTicks() > 0)
+			{
+				switch(this.getIdleState())
+				{
+				default:
+					if (this.ticksExisted % 10 == 0)
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 0.115D + rand.nextDouble(),
+									this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F,
+									0.155F * this.rand.nextFloat(), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F);
+						}
+						
+						this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+								this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
+					}
+					break;
+				case 1:
+					for (int i = 0; i < 3; i++)
+					{
+						this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.655D), this.posY + 0.115D + rand.nextDouble(),
+								this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.655D), rand.nextFloat() * 0.07F - rand.nextFloat() * 0.07F, 0.255F * this.rand.nextFloat(),
+								rand.nextFloat() * 0.07F - rand.nextFloat() * 0.07F);
+					}
+					break;
+				case 2:
+					if (this.ticksExisted % 40 == 0)
+					{
+						for (int i = 0; i < 2; i++)
+						{
+							this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.455D), this.posY + 0.115D + rand.nextDouble(),
+									this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.455D), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F, 0.155F * this.rand.nextFloat(),
+									rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F);
+						}
+					}
+					else
+					{
+						this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+								this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
+					}
+					break;
+				}
+			}
 		}
 		else
 		{
+			if (this.getIdleTicks() > 0) this.decrementIdleTicks();
+
 			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 			if (replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
 			{
 				this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
+			}
+
+			if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() == null && this.getIdleTicks() == 0)
+			{
+				int i = rand.nextInt(4);
+				this.setIdleTicks(i != 1 ? 40 : 60);
+				this.setIdleState(i);
 			}
 		}
 	}
