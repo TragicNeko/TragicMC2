@@ -46,7 +46,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		super.onDeath(par1);
 
-		if (this.worldObj.isRemote || !this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return;
+		if (this.worldObj.isRemote || !this.getAllowLoot()) return;
 		
 		int amt = 0;
 
@@ -185,5 +185,14 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		return 1;
 	}
+	
+	public boolean getMobGriefing()
+	{
+		return this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+	}
 
+	public boolean getAllowLoot()
+	{
+		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
+	}
 }
