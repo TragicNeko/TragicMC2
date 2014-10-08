@@ -19,8 +19,7 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
-		long time = player.worldObj.getWorldTime();
-		if (time >= 14000 && time <= 18000 && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
+		if (!player.worldObj.isDaytime() && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
 		{
 			doom.fillDoom();
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_BLUE + "You have used Moonlight Sonata!"));
