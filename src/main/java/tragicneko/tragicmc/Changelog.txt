@@ -2756,7 +2756,7 @@ in the ChunkProvider, these aren't really necessary for my custom dimension
 Modified the WorldHelper sphere and circle methods to use an ArrayList instead of a HashMap, this should optimize all WorldGen that utilizes it, Dimension loading times again
 improved due to this, but still quite laggy for some reason
 
-1.37.1590++ <171> (October 6, 2014)
+1.37.1603 <171> (October 6, 2014)
 Updated the model for the Stin King, still need to adjust the offsets and add the animations, then do the same for the Stin Queen
 Got the NekoNekoWand working, it now adds an entity target task to attack nearby mobs of the selected entity's class, which won't really work for entities of the same class or
 entities that use the old ai system but yeah, I believe this is how the chocolate quest mob eggs worked anyway
@@ -2765,19 +2765,30 @@ Updated the Sirv model, added basic movement animations, updated it's AI to be p
 Updated all of the projectile entities, going to update all of the creative items for them as well
 Fix ConcurrentModification due to removal of poison potion effects on Enderman and Witches, in large groups this would occur, as a fix, I'm going to make them immune to all normal
 magic damage instead
+Added idle particle effects to the Wisp, including a "flare" effect and a "cough" effect
+Reduce some logger spam from the mod, only log errors and warnings now, structures still have some logger spam as I plan to rewrite them
+Change Splinter's random directional knockback ability to the weapon events like the butcher as onleftclickentity is called before the entity's motion is altered for the attack
+so it overrides any changes done in that method in regards to entity motion
+Change weird requirement of Moonlight Sonata to be used near midnight (in game time), it wasn't very reliable and was difficult to tell when it could be used, so it'll be able
+to be used at nighttime and if the player is on the surface
+Fix NPE with NekoNekoWand, when you register an entity that is dead and don't reset the entity for the wand, add color coding to the targetted and targetting entities as well
+as cleaned up the chat message to just display the entity type rather than it's full name (no position and such)
+Fix up Asphyxiate, it now teleports the mobs on initial use and otherwise freezes their motion
+Fixed up Flight of the Valkyries it now moves enemies in random directions while making them hover higher and higher
+
+1.37.1603++ <172> (October 8, 2014)
+Updating Apis AI, utilizing the charge ticks from the Minotaur, and applying it's render effect to a new reflection ability, it also will now stomp the ground in order to do it's
+close range explosive attack, which means it'll have a bit of a delay for when it actually does it, giving the player enough time to move away from it somewhat to reduce the
+damage from it
 
 Finish up the idle animations for the other mobs
 After that, start on the Bosses, they will get fewer idle animations than the normal mobs
-Adjust all of the projectiles to ensure they are working correctly, update the creative mode projectiles for these
-After that, fix minor things, like mobs teleporting to the Nether's roof when you use asphyxiate (or similar Doomsdays) in the Nether, I'll probably have to get their starting
-y position and set it to a few blocks higher initially, then after that just keep them at their current position, that should prevent me from having to call every tick to keep
-them floating above a block at a certain position, instead I can just have them keep their current motion to 0 and their position remaining constant
+Update the creative mode projectile items
 
 Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
 mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
 
 --Reminders-
-Add a "cough/hiccup/flare" to the Wisp, it'll just be a particle effect
 Add a "shudder" animation to the Erkel, idle animation
 Add a "the worm" and a "shake" animation to the Jabba, idle animations
 Add a "detach head" and "stretching" animation to the Pumpkinhead, idle animations
@@ -2786,8 +2797,6 @@ Add a "flapping" animation to the Inkling, idle animations
 Add a "spin"  animation to the Gragul, idle animation
 Start making particles for my entities
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
-The Apis's render effect will be changed to be a sort of "mirror coat" move that reflects all damage inflicted on it back to it's attacker (1.125x) and it deflects other damage,
-this includes magic damage as well, however, void damage should still affect it, it'll also burn anything it comes into contact with at this point
 Could add a Mirror Coat Doomsday that parallels this ability as well, it'd be a scroll-only Doomsday
 Allow Skultar and Enyvil to hover, in other words, they try to match their target's y-value (up to around 120 y-level, so they don't get too high up)
 Make it so that corrupted mob's textures darken the longer they are corrupted
