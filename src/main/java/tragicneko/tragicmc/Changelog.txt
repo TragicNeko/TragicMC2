@@ -2762,7 +2762,9 @@ Got the NekoNekoWand working, it now adds an entity target task to attack nearby
 entities that use the old ai system but yeah, I believe this is how the chocolate quest mob eggs worked anyway
 Finished updating the models and animations for the Stin King and Queen, updated the model for the Erkel
 Updated the Sirv model, added basic movement animations, updated it's AI to be pretty much empty, reduced it's move speed
-Updated all of the entities, going to update all of the creative items for them as well
+Updated all of the projectile entities, going to update all of the creative items for them as well
+Fix ConcurrentModification due to removal of poison potion effects on Enderman and Witches, in large groups this would occur, as a fix, I'm going to make them immune to all normal
+magic damage instead
 
 Finish up the idle animations for the other mobs
 After that, start on the Bosses, they will get fewer idle animations than the normal mobs

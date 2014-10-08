@@ -39,6 +39,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -46,6 +47,8 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicEnchantments;
@@ -88,7 +91,7 @@ public class VanillaChangingEvents {
 
 		if (event.entityLiving instanceof EntityEnderman && TragicNewConfig.allowVanillaMobBuffs)
 		{
-			if (event.entityLiving.ticksExisted % 120 == 0)
+			if (event.entityLiving.ticksExisted % 120 == 0 && event.entityLiving.getHealth() < event.entityLiving.getMaxHealth())
 			{
 				event.entityLiving.heal(3.0F);
 			}
@@ -551,6 +554,8 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityAttack(LivingAttackEvent event)
 	{		
+		if (event.entityLiving.worldObj.isRemote) return;
+		
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && !event.source.isMagicDamage()
 				&& event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0 && TragicNewConfig.allowExtraExplosiveEffects)
 		{
@@ -558,11 +563,11 @@ public class VanillaChangingEvents {
 			{
 				if (rand.nextBoolean())
 				{
-					event.entityLiving.addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(320) + 60));
+					event.entityLiving.addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(80) + 60));
 				}
 				else
 				{
-					if (TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(320) + 60));
+					if (TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(80) + 60));
 				}
 			}
 		}
@@ -705,11 +710,6 @@ public class VanillaChangingEvents {
 			if (event.entityLiving.isBurning()) event.entityLiving.extinguish();
 		}
 
-		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
-		{
-			if (event.entityLiving.isPotionActive(Potion.poison)) event.entityLiving.removePotionEffect(Potion.poison.id);
-		}
-
 		if (!(event.entityLiving instanceof EntityPlayer) && event.entityLiving instanceof EntityCreature)
 		{
 			event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mobBlindnessDebuff);
@@ -722,6 +722,15 @@ public class VanillaChangingEvents {
 		}
 	}
 
+	@SubscribeEvent
+	public void onHurt(LivingHurtEvent event)
+	{		
+		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
+		{
+			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
+		}
+	}
+	
 	@SubscribeEvent
 	public void denyFallEvent(LivingFallEvent event)
 	{
