@@ -116,13 +116,16 @@ public class TragicMC
 	public static final int idAmuletGui = 1;
 
 	public static final Random rand = new Random();
-	public static Configuration config;
+	private static Configuration config;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		TragicNewConfig.initialize();
+		config = null;
+		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
+		TragicNewConfig.instance.initialize();
+		
+		MinecraftForge.EVENT_BUS.register(TragicNewConfig.instance);
 
 		if (TragicNewConfig.allowPotions)
 		{
@@ -261,7 +264,6 @@ public class TragicMC
 				final Potion[] newPotionTypes = new Potion[256];
 				System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
 				f.set(null, newPotionTypes);
-				logInfo("potionTypes[] reflection was done, set to 256");
 			}
 			else
 			{
@@ -283,7 +285,7 @@ public class TragicMC
 			}
 			catch (ReportedException e)
 			{
-				logError("Silently caught an error finding the potionTypes array to determine reflection, this may be due to obfuscation and may have unintended side effects.", e);
+				logError("There was an error during Potion array reflection, this may be due to obfuscation and could have unintended side effects.", e);
 			}
 		}
 	}
@@ -311,5 +313,10 @@ public class TragicMC
 	public static void logWarning(String s)
 	{
 		logger.warn(s);
+	}
+	
+	public static Configuration getConfig()
+	{
+		return config;
 	}
 }

@@ -305,7 +305,6 @@ public class EntityTragicNeko extends TragicMob {
 			break;
 		}
 		
-		TragicMC.logInfo("Should've thrown a projectile");
 		theProjectile.motionX = (this.getAttackTarget().posX - this.posX) * 0.335D;
 		theProjectile.motionZ = (this.getAttackTarget().posZ - this.posZ) * 0.335D;
 		this.worldObj.spawnEntityInWorld(theProjectile);

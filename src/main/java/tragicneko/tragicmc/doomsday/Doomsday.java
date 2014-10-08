@@ -160,7 +160,7 @@ public abstract class Doomsday {
 	{
 		if (doom == null)
 		{
-			TragicMC.logError("A doomsday was activated with null doom? This error should definitely be reported.");
+			TragicMC.logError("A doomsday was activated with null doom? This error shouldn't be possible and should be reported.");
 			return;
 		}
 		else if (doom.getCurrentCooldown() != 0)

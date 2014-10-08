@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.main;
 
-import static tragicneko.tragicmc.TragicMC.config;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
@@ -8,8 +7,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TragicNewConfig {
+	
+	public static TragicNewConfig instance = new TragicNewConfig();
 
 	public static boolean mobsOnly;
 	private static int resolution;
@@ -119,6 +122,7 @@ public class TragicNewConfig {
 
 	public static void initialize()
 	{
+		Configuration config = TragicMC.getConfig();
 		config.load();
 
 		mobsOnly = config.get(catMaster, "isMobsOnly", false).getBoolean(false);
@@ -766,10 +770,10 @@ public class TragicNewConfig {
 			}
 		}
 
-		initializeAllVariables(config);
+		initializeAllVariables();
 	}
 
-	public static void initializeAllVariables(Configuration config)
+	public static void initializeAllVariables()
 	{
 		int mapping = 0;
 		allowAchievements = blanketConfigs[mapping++];
@@ -1206,5 +1210,14 @@ public class TragicNewConfig {
 			}
 		}
 		return configId;
+	}
+	
+	@SubscribeEvent
+	public void onConfigChange(OnConfigChangedEvent event)
+	{
+		if (TragicMC.MODID.equals(event.modID))
+		{
+			TragicMC.logInfo("Config changed, configID was " + event.configID + ", this isn't implemented yet and should be ignored.");
+		}
 	}
 }

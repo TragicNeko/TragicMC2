@@ -83,11 +83,11 @@ public class DoomsdayManager {
 					}
 				}
 				list.add(effect);
-				logger.info("" + playerName + " was previously registered, adding an additional Doomsday effect: " + effect.dday.getLocalizedName());
 			}
 			catch (ConcurrentModificationException e)
 			{
 				logger.error("Error caught while attempting to register a new Doomsday effect.", e);
+				return;
 			}
 		}
 		else
@@ -97,11 +97,11 @@ public class DoomsdayManager {
 				ArrayList<DoomsdayEffect> list = new ArrayList();
 				list.add(effect);
 				playerMap.put(playerName, list);
-				logger.info("" + playerName + " registered with a Doomsday effect: " + effect.dday.getLocalizedName());
 			}
 			catch (ConcurrentModificationException e)
 			{
 				logger.error("Error caught while attempting to register a new Doomsday effect.", e);
+				return;
 			}
 		}
 	}
@@ -111,7 +111,6 @@ public class DoomsdayManager {
 		try
 		{
 			playerMap.clear();
-			logger.info("Doomsday registry was cleared.");
 		}
 		catch (Exception e)
 		{
@@ -130,14 +129,10 @@ public class DoomsdayManager {
 				{
 					logger.info("Registry removed registration for " + playerName + ", reason: " + reason);
 				}
-				else
-				{
-					logger.info("Registry removed registration for " + playerName);
-				}
 			}
 			else
 			{
-				logger.error("Attempted to remove a player that was not registered in the map, there is a problem.");
+				logger.error("Attempted to remove a player that was not registered in the map, there is a problem somewhere.");
 			}
 		}
 		catch (Exception e)
