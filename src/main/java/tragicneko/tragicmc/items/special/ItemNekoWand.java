@@ -21,11 +21,12 @@ public class ItemNekoWand extends Item {
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		par2List.add(EnumChatFormatting.DARK_RED + "Use your neko mind control to make mobs fight!"); /*
-		par2List.add("Left click to select a mob or group to fight");
-		par2List.add("Left click again to set the selected mobs target");
-		par2List.add("Sneaking allows you to select and use a group");
-		par2List.add("Right click to reset all selected mobs"); */
+		par2List.add(EnumChatFormatting.DARK_RED + "Make mobs fight with neko mind control!");
+		par2List.add("L-Click to select a mob to fight");
+		par2List.add("L-Click again to set the mob's target");
+		par2List.add("Sneak-L-Click allows you to select a group");
+		par2List.add("Sneak-L-Click to set a group's target");
+		par2List.add("R-Click to reset all selections"); 
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
@@ -121,15 +122,18 @@ public class ItemNekoWand extends Item {
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
 		
+		EnumChatFormatting green = EnumChatFormatting.GREEN;
+		
 		if (stack.stackTagCompound.getIntArray("entityIDs").length > 0)
 		{
 			stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
-			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the group of targetting entities."));
+			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(green + "You have reset the selected group of entities!"));
 		}
-		else if (stack.stackTagCompound.getInteger("entityID") != 0)
+		
+		if (stack.stackTagCompound.getInteger("entityID") != 0)
 		{
 			stack.stackTagCompound.setInteger("entityID", 0);
-			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText("You have reset the single targetting entity."));
+			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(green + "You have reset the selected single entity!"));
 		}
 		 
 		return stack;

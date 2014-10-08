@@ -60,9 +60,9 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 			{
 				entity = (EntityLivingBase) list.get(i);
 				
-				entity.motionX = 0.45 - rand.nextDouble() + rand.nextDouble();
-				entity.motionY = 0.55 - rand.nextDouble();
-				entity.motionZ = 0.45 - rand.nextDouble() + rand.nextDouble();
+				entity.motionX = rand.nextDouble() - rand.nextDouble();
+				entity.motionY = 0.75 - rand.nextDouble();
+				entity.motionZ = rand.nextDouble() - rand.nextDouble();
 				
 				if (rand.nextBoolean())
 				{
