@@ -3,6 +3,7 @@ package tragicneko.tragicmc.items.special;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntityMob;
@@ -34,13 +35,17 @@ public class ItemNekoWand extends Item {
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
+		
+		EnumChatFormatting reset = EnumChatFormatting.RESET;
+		EnumChatFormatting aqua = EnumChatFormatting.AQUA;
+		EnumChatFormatting red = EnumChatFormatting.RED;
 
 		if (player.isSneaking())
 		{
 			if (stack.stackTagCompound.getIntArray("entityIDs").length == 0)
 			{
 				double d0 = 12.0D;
-				List<EntityMob> list = player.worldObj.getEntitiesWithinAABB(EntityMob.class, player.boundingBox.expand(d0, d0, d0));
+				List<EntityCreature> list = player.worldObj.getEntitiesWithinAABB(EntityCreature.class, player.boundingBox.expand(d0, d0, d0));
 				int[] ids = new int[list.size()];
 
 				for (int i = 0; i < list.size(); i++)
@@ -48,22 +53,22 @@ public class ItemNekoWand extends Item {
 					ids[i] = list.get(i).getEntityId();
 				}
 
-				player.addChatMessage(new ChatComponentText("A group of targetted entities within " + d0 + " has been selected."));
+				player.addChatMessage(new ChatComponentText("A Group of Entities within " + aqua + d0 + reset + " blocks has been selected."));
 				cooldown = 10;
 				stack.stackTagCompound.setIntArray("entityIDs", ids);
 				return true;
 			}
 			else
 			{
-				if (entity instanceof EntityLivingBase)
+				if (entity instanceof EntityCreature)
 				{
-					EntityMob ent;
+					EntityCreature ent;
 
 					for (int i = 0; i < stack.stackTagCompound.getIntArray("entityIDs").length; i++)
 					{
-						ent = (EntityMob) entity.worldObj.getEntityByID(stack.stackTagCompound.getIntArray("entityIDs")[i]);
+						ent = (EntityCreature) entity.worldObj.getEntityByID(stack.stackTagCompound.getIntArray("entityIDs")[i]);
 
-						if (!ent.equals(entity)) //makes sure that an entity doesn't target itself
+						if (ent != null && !ent.equals(entity))
 						{
 							ent.getNavigator().clearPathEntity();
 							ent.setAttackTarget(null);
@@ -72,7 +77,7 @@ public class ItemNekoWand extends Item {
 						}
 					}
 
-					player.addChatMessage(new ChatComponentText("The group of targetted entities has been set to attack " + entity +"!"));
+					player.addChatMessage(new ChatComponentText("The " + aqua + "Group of Entities" + reset + " has been set to attack " + red + entity.getCommandSenderName() + reset + "!"));
 					cooldown = 10;
 					stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 					return true;
@@ -83,24 +88,24 @@ public class ItemNekoWand extends Item {
 		{
 			if (stack.stackTagCompound.getInteger("entityID") == 0)
 			{
-				if (entity instanceof EntityMob)
+				if (entity instanceof EntityCreature)
 				{
 					stack.stackTagCompound.setInteger("entityID", entity.getEntityId());
-					player.addChatMessage(new ChatComponentText("Please choose a target for " + entity + "."));
+					player.addChatMessage(new ChatComponentText("Please choose a target for " + aqua + entity.getCommandSenderName() + reset + "."));
 					cooldown = 10;
 					return true;
 				}
 			}
 			else
 			{
-				EntityMob ent = (EntityMob) entity.worldObj.getEntityByID(stack.stackTagCompound.getInteger("entityID"));
-				if (entity instanceof EntityLivingBase && !ent.equals(entity)) //makes sure that an entity doesn't target itself
+				EntityCreature ent = (EntityCreature) entity.worldObj.getEntityByID(stack.stackTagCompound.getInteger("entityID"));
+				if (entity instanceof EntityCreature && ent != null && !ent.equals(entity))
 				{
 					ent.getNavigator().clearPathEntity();
 					ent.setAttackTarget(null);
 					ent.targetTasks.addTask(0, new EntityAINearestAttackableTarget(ent, entity.getClass(), 0, true));
 					ent.setAttackTarget((EntityLivingBase) entity);
-					player.addChatMessage(new ChatComponentText(ent + " has been set to attack " + entity +"!"));
+					player.addChatMessage(new ChatComponentText(aqua + "" +  ent.getCommandSenderName() + reset + " has been set to attack " + red + entity.getCommandSenderName() + reset + "!"));
 					cooldown = 10;
 					stack.stackTagCompound.setInteger("entityID", 0);
 					return true;
