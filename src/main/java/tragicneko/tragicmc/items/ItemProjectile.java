@@ -34,15 +34,15 @@ public class ItemProjectile extends Item {
 		super();
 		this.setCreativeTab(TragicTabs.Creative);
 		this.setMaxDamage(0);
+		this.setHasSubtypes(true);
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
-		if (cooldown != 0)
-		{
-			return stack;
-		}
+		if (cooldown != 0 || world.isRemote) return stack;
 		
+		int i = stack.getItemDamage();
+
 		float f = 1.0F;
 		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
 		float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
@@ -66,117 +66,103 @@ public class ItemProjectile extends Item {
 
 		MovingObjectPosition mop = world.func_147447_a(vec3, vec31, true, false, true);
 
-		if (!world.isRemote && cooldown == 0) 
+		if (this == TragicItems.PoisonBarb)
 		{
-			if (this == TragicItems.PoisonBarb)
+			if (mop == null)
 			{
-				if (mop == null)
-				{
-					return stack;
-				}
-
-				if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
-				{
-					double d4 = mop.hitVec.xCoord - player.posX;
-					double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
-					double d6 = mop.hitVec.zCoord - player.posZ;
-
-					EntityPoisonBarb rocket = new EntityPoisonBarb(world, player, d4, d5, d6);
-					rocket.posY = player.posY + player.getEyeHeight();
-					world.spawnEntityInWorld(rocket);
-					cooldown = 10;
-				}
+				return stack;
 			}
 
-			if (this == TragicItems.NekoStickyBomb)
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
 			{
-				world.spawnEntityInWorld(new EntityNekoStickyBomb(world, player));
+				double d4 = mop.hitVec.xCoord - player.posX;
+				double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
+				double d6 = mop.hitVec.zCoord - player.posZ;
+
+				EntityPoisonBarb rocket = new EntityPoisonBarb(world, player, d4, d5, d6);
+				rocket.posY = player.posY + player.getEyeHeight();
+				world.spawnEntityInWorld(rocket);
 				cooldown = 10;
 			}
-
-			if (this == TragicItems.NekoClusterBomb)
+		}
+		else if (this == TragicItems.NekoStickyBomb)
+		{
+			world.spawnEntityInWorld(new EntityNekoStickyBomb(world, player));
+			cooldown = 10;
+		}
+		else if (this == TragicItems.NekoClusterBomb)
+		{
+			world.spawnEntityInWorld(new EntityNekoClusterBomb(world, player));
+			cooldown = 10;
+		}
+		else if (this == TragicItems.NekoMiniBomb)
+		{
+			world.spawnEntityInWorld(new EntityNekoMiniBomb(world, player));
+			cooldown = 10;
+		}
+		else if (this == TragicItems.NekoRocket)
+		{
+			if (mop == null)
 			{
-				world.spawnEntityInWorld(new EntityNekoClusterBomb(world, player));
+				return stack;
+			}
+
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+			{
+				double d4 = mop.hitVec.xCoord - player.posX;
+				double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
+				double d6 = mop.hitVec.zCoord - player.posZ;
+
+				EntityNekoRocket rocket = new EntityNekoRocket(world, player, d4, d5, d6);
+				rocket.posY = player.posY + player.getEyeHeight();
+				world.spawnEntityInWorld(rocket);
 				cooldown = 10;
 			}
-
-			if (this == TragicItems.NekoMiniBomb)
+		}
+		else if (this == TragicItems.SolarBomb)
+		{
+			if (mop == null)
 			{
-				world.spawnEntityInWorld(new EntityNekoMiniBomb(world, player));
+				return stack;
+			}
+
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+			{
+				double d4 = mop.hitVec.xCoord - player.posX;
+				double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
+				double d6 = mop.hitVec.zCoord - player.posZ;
+
+				EntitySolarBomb rocket = new EntitySolarBomb(world, player, d4, d5, d6);
+				rocket.posY = player.posY + player.getEyeHeight();
+				world.spawnEntityInWorld(rocket);
 				cooldown = 10;
 			}
-
-			if (this == TragicItems.NekoRocket)
-			{
-				if (mop == null)
-				{
-					return stack;
-				}
-
-				if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
-				{
-					double d4 = mop.hitVec.xCoord - player.posX;
-					double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
-					double d6 = mop.hitVec.zCoord - player.posZ;
-
-					EntityNekoRocket rocket = new EntityNekoRocket(world, player, d4, d5, d6);
-					rocket.posY = player.posY + player.getEyeHeight();
-					world.spawnEntityInWorld(rocket);
-					cooldown = 10;
-				}
-			}
-			
-			if (this == TragicItems.SolarBomb)
-			{
-				if (mop == null)
-				{
-					return stack;
-				}
-
-				if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
-				{
-					double d4 = mop.hitVec.xCoord - player.posX;
-					double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
-					double d6 = mop.hitVec.zCoord - player.posZ;
-
-					EntitySolarBomb rocket = new EntitySolarBomb(world, player, d4, d5, d6);
-					rocket.posY = player.posY + player.getEyeHeight();
-					world.spawnEntityInWorld(rocket);
-					cooldown = 10;
-				}
-			}
-			
-			if (this == TragicItems.SpiritCast)
-			{
-				if (mop == null)
-				{
-					return stack;
-				}
-
-				if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
-				{
-					double d4 = mop.hitVec.xCoord - player.posX;
-					double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
-					double d6 = mop.hitVec.zCoord - player.posZ;
-
-					EntitySpiritCast rocket = new EntitySpiritCast(world, player, d4, d5, d6);
-					rocket.posY = player.posY + player.getEyeHeight();
-					world.spawnEntityInWorld(rocket);
-					cooldown = 10;
-				}
-			}
-
 		}
-
-		if (!player.capabilities.isCreativeMode) 
+		else if (this == TragicItems.SpiritCast)
 		{
-			--stack.stackSize;
+			if (mop == null)
+			{
+				return stack;
+			}
+
+			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK)
+			{
+				double d4 = mop.hitVec.xCoord - player.posX;
+				double d5 = mop.hitVec.yCoord - (player.posY + (double)(player.height / 2.0F));
+				double d6 = mop.hitVec.zCoord - player.posZ;
+
+				EntitySpiritCast rocket = new EntitySpiritCast(world, player, d4, d5, d6);
+				rocket.posY = player.posY + player.getEyeHeight();
+				world.spawnEntityInWorld(rocket);
+				cooldown = 10;
+			}
+		}
+		else
+		{
+			return stack;
 		}
 
-		if (cooldown == 0)
-		{
-			world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-		}
+		if (!player.capabilities.isCreativeMode)  --stack.stackSize;
 
 		return stack;
 	}
