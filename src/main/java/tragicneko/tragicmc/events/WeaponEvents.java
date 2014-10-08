@@ -86,12 +86,20 @@ public class WeaponEvents {
 					event.entity.motionY = event.entity.posY - player.posY;
 					event.entity.motionZ = event.entity.posZ - player.posZ;
 
-					if (player.isSprinting())
+					if (player.isSprinting() || player.motionY < 0.0)
 					{
-						event.entity.motionX *= 4.8D;
+						event.entity.motionX *= 1.2D;
 						event.entity.motionY *= 1.15D;
-						event.entity.motionZ *= 4.8D;
+						event.entity.motionZ *= 1.2D;
 					}
+				}
+				else if (weapon == TragicItems.Splinter && doom.getCurrentDoom() > 3 && player.worldObj.rand.nextInt(4) == 0)
+				{
+					event.entity.motionX = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
+					event.entity.motionY = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
+					event.entity.motionZ = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
+
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-3);
 				}
 			}
 

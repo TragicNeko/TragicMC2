@@ -34,28 +34,6 @@ public class WeaponSplinter extends EpicWeapon {
 		this.epicLevels = new int[] {10, 5, 5, 3};
 	}
 	
-	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
-	{
-		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0 || TragicNewConfig.allowNonDoomsdayAbilities) return super.onLeftClickEntity(stack, player, entity);
-
-		PropertyDoom doom = PropertyDoom.get(player);
-
-		if (doom != null && doom.getCurrentDoom() >= 3 && entity instanceof EntityLivingBase)
-		{
-			entity.motionX = itemRand.nextDouble() - itemRand.nextDouble();
-			entity.motionY = 0.45D;
-			entity.motionZ = itemRand.nextDouble() - itemRand.nextDouble();
-
-			if (!player.capabilities.isCreativeMode)
-			{
-				doom.increaseDoom(-3);
-			}
-
-			this.cooldown = 20;
-		}
-		return super.onLeftClickEntity(stack, player, entity);
-	}
-	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
