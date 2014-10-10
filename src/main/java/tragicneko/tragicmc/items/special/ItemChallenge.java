@@ -170,6 +170,7 @@ public class ItemChallenge extends Item {
 		else if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("challengeID"))
 		{
 			Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
+			if (challenge == null) return;
 			EnumChatFormatting format = challenge.difficulty == 1 ? EnumChatFormatting.AQUA : (challenge.difficulty == 2 ? EnumChatFormatting.BLUE : (challenge.difficulty == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
 			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
 			String s = challenge.getDesc(challenge.challengeID);
@@ -246,7 +247,7 @@ public class ItemChallenge extends Item {
 		
 		Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 
-		if (entity instanceof EntityPlayer)
+		if (entity instanceof EntityPlayer && challenge != null)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 			ItemStack[] inv = player.inventory.mainInventory;
@@ -288,7 +289,7 @@ public class ItemChallenge extends Item {
 			}			
 		}
 
-		if (stack.stackTagCompound.hasKey("challengeProgress") && stack.stackTagCompound.getInteger("challengeProgress") == 0 && challenge.isLocationBased &&
+		if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && stack.stackTagCompound.getInteger("challengeProgress") == 0 && challenge.isLocationBased &&
 				stack.stackTagCompound.hasKey("challengeLocation") && stack.stackTagCompound.getBoolean("challengeLocation"))
 		{
 			if (!challenge.isBlockChallenge && !challenge.isItemChallenge && !challenge.isMobRush && !challenge.isTimed)
@@ -297,7 +298,7 @@ public class ItemChallenge extends Item {
 			}
 		}
 
-		if (stack.stackTagCompound.hasKey("challengeProgress") && stack.stackTagCompound.getInteger("challengeProgress") >= challenge.requirement)
+		if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && stack.stackTagCompound.getInteger("challengeProgress") >= challenge.requirement)
 		{
 			if (challenge.isLocationBased)
 			{
