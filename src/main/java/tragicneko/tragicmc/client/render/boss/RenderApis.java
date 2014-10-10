@@ -1,19 +1,15 @@
 package tragicneko.tragicmc.client.render.boss;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelApis;
+import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelWither;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 
 public class RenderApis extends RenderBoss
 {
@@ -28,6 +24,8 @@ public class RenderApis extends RenderBoss
 
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
+		EntityApis apis = (EntityApis) boss;
+		
 		if (boss.isInvisible())
 		{
 			GL11.glDepthMask(false);
@@ -47,7 +45,7 @@ public class RenderApis extends RenderBoss
             return 1;
 		}
 
-		if (boss.getHealth() <= boss.getMaxHealth() / 2)
+		if (apis.isReflecting())
 		{
 			if (par2 == 1)
 			{

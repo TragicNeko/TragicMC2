@@ -521,7 +521,7 @@ public class TragicEntities {
 						BiomeGenBase.extremeHillsPlus
 						);
 			}
-			TragicEntityList.addMapping(EntityApis.class, "TragicMC.Apis", id++, 0xEDAC4F, 0xED854F, EnumEggType.BOSS);
+			TragicEntityList.addMapping(EntityApis.class, "TragicMC.Apis", id++, 0xFFFF82, 0xFFCD82, EnumEggType.BOSS);
 		} 
 
 		if (TragicNewConfig.allowDeathReaper)
@@ -591,7 +591,7 @@ public class TragicEntities {
 		if (TragicNewConfig.allowClaymation)
 		{
 			EntityRegistry.registerModEntity(EntityClaymation.class, "Claymation", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF9500, 0xFFCA02, EnumEggType.BOSS);
+			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);

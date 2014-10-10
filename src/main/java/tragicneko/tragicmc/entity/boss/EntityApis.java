@@ -1,8 +1,9 @@
 package tragicneko.tragicmc.entity.boss;
 
-import net.minecraft.block.BlockTallGrass;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -15,13 +16,13 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -33,13 +34,13 @@ import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
-import tragicneko.tragicmc.util.EntityDropHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityApis extends TragicBoss {
 
 	public EntityApis(World par1World) {
 		super(par1World);
-		this.setSize(1.385F, 3.3F);
+		this.setSize(1.385F, 3.325F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 240;
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -47,7 +48,7 @@ public class EntityApis extends TragicBoss {
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 48.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
+		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.isImmuneToFire = true;
@@ -72,117 +73,308 @@ public class EntityApis extends TragicBoss {
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(160.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.42);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.325);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
 	}
 
 	public void onDeath(DamageSource par1)
 	{
 		super.onDeath(par1);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 0), 0.4F);
-		
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 0), 0.4F);
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
+	}
+
+	public int getChargeTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setChargeTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementChargeTicks()
+	{
+		int pow = this.getChargeTicks();
+		this.setChargeTicks(--pow);
+	}
+
+	public boolean isCharging()
+	{
+		return this.getChargeTicks() > 0;
+	}
+
+	public int getReflectionTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	private void setReflectionTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void decrementReflectionTicks()
+	{
+		int pow = this.getReflectionTicks();
+		this.setReflectionTicks(--pow);
+	}
+
+	public boolean isReflecting()
+	{
+		return this.getReflectionTicks() > 0;
+	}
+
+	public int getStompTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	private void setStompTicks(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	private void decrementStompTicks()
+	{
+		int pow = this.getStompTicks();
+		this.setStompTicks(--pow);
+	}
+
+	public boolean isStomping()
+	{
+		return this.getStompTicks() > 0;
+	}
+
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
 	}
 
 	public void onLivingUpdate()
 	{
+		if (this.isStomping()) 
+		{
+			this.motionX = this.motionZ = 0.0D;
+			this.motionY = -0.2D;
+			this.fallDistance = 0.0F;
+		}
+
 		super.onLivingUpdate();
 
-		if (this.worldObj.isDaytime() && this.worldObj.getLightBrightness((int)this.posX, (int)this.posY, (int)this.posZ) > 0.4F)
+		if (this.worldObj.isRemote)
 		{
-			if (this.ticksExisted % 60 == 0 && !this.worldObj.isRemote && this.getHealth() < this.getMaxHealth())
+			if (this.isStomping())
 			{
-				this.heal(3.0F);
-			}
-		}
-
-		if (this.getHealth() <= this.getMaxHealth() / 2 && this.rand.nextInt(64) == 0 && this.onGround && this.recentlyHit <= 0 && !this.worldObj.isRemote)
-		{
-			if (this.worldObj.isAirBlock((int)this.posX, (int)this.posY, (int)this.posZ) || this.worldObj.getBlock((int)this.posX, (int)this.posY, (int)this.posZ) instanceof BlockTallGrass)
-			{
-				this.worldObj.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, Blocks.fire);
-			}
-		}
-
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.getDistanceToEntity(this.getAttackTarget()) < 7.0F 
-				&& this.onGround && rand.nextInt(32) == 0 && this.getHealth() <= this.getMaxHealth() / 2)
-		{
-			if (rand.nextInt(3) == 0)
-			{
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)rand.nextDouble() + 0.5F, false);
-			}
-
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().posZ - this.posZ;
-			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-			this.motionX = d0 / (double)f2 * 3.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-			this.motionZ = d1 / (double)f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-			this.motionY = 0.1;
-		}
-
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 7.0F && this.onGround && rand.nextInt(40) == 0)
-		{
-			if (rand.nextInt(3) == 0)
-			{
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)rand.nextDouble() + 1.0F, false);
-			}
-
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().posZ - this.posZ;
-			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-			this.motionX = d0 / (double)f2 * 3.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-			this.motionZ = d1 / (double)f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-			this.motionY = 0.45;
-		}
-
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && rand.nextInt(36) == 0)
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-			double d2 = this.getAttackTarget().posZ - this.posZ;
-
-			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
-
-			switch(rand.nextInt(4))
-			{
-			case 0:
-
-				EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-				fireball.posY = this.posY + this.height;
-				this.worldObj.spawnEntityInWorld(fireball);
-
-				break;
-			case 1:
-				EntitySolarBomb solarBomb = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-				solarBomb.posY = this.posY + this.height;
-				this.worldObj.spawnEntityInWorld(solarBomb);
-				break;
-			case 2:
-				EntitySolarBomb solarBomb2 = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-				solarBomb2.posY = this.posY + this.height;
-				this.worldObj.spawnEntityInWorld(solarBomb2);
-				break;
-			case 3:
-				if (this.getHealth() <= this.getMaxHealth() / 2)
+				for (int i = 0; i < 2; i++)
 				{
+					this.worldObj.spawnParticle("flame",
+							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							this.posY + (rand.nextDouble() * 0.15D),
+							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							0.0, rand.nextDouble() * 1.2556, 0.0);
+				}
+
+				if (this.getStompTicks() <= 2)
+				{
+					for (int i = 0; i < 36; i++)
+					{
+						this.worldObj.spawnParticle("flame",
+								this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								this.posY + (rand.nextDouble() * 0.15D),
+								this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								rand.nextDouble() - rand.nextDouble(), rand.nextDouble() * 0.2556, rand.nextDouble() - rand.nextDouble());
+					}
+				}
+			}
+			else if (this.isCharging())
+			{
+				this.worldObj.spawnParticle("crit",
+						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						this.posY + (rand.nextDouble() * 0.75D) + 0.45D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						0.0, 0.0, 0.0);
+			}
+		}
+		else
+		{
+			if (this.isStomping())
+			{
+				this.decrementStompTicks();
+				if (this.isCharging()) this.setChargeTicks(0);
+				if (this.getAttackTime() > 0) this.setAttackTime(0);
+				this.setSprinting(true);
+			}
+			else
+			{
+				this.setSprinting(false);
+			}
+
+			if (this.isCharging()) this.decrementChargeTicks();
+			if (this.isReflecting())
+			{
+				this.decrementReflectionTicks();
+
+				if (this.rand.nextInt(4) == 0 && this.onGround && this.ticksExisted % 2 == 0 && this.worldObj.isDaytime() && this.getHealth() > this.getMaxHealth() / 4)
+				{
+					ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(worldObj, 0.75, this.posX, this.posY, this.posZ);
+					Block block;
+					int[] coords;
+
+					for (int i = 0; i < list.size(); i++)
+					{
+						coords = list.get(i);
+						block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+
+						if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.fire);
+					}
+				}
+			}
+
+			if (this.getAttackTime() > 0) this.decrementAttackTime();
+
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F 
+					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()))
+			{
+				if (rand.nextInt(3) == 0)
+				{
+					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F, false);
+				}
+
+				double d0 = this.getAttackTarget().posX - this.posX;
+				double d1 = this.getAttackTarget().posZ - this.posZ;
+				double d2 = this.getAttackTarget().posY - this.posY;
+				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+				this.motionX = d0 / (double)f2 * 2.5D * 0.700000011920929D + this.motionX * 0.40000000298023224D;
+				this.motionZ = d1 / (double)f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
+				this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+				this.setChargeTicks(10);
+			}
+			else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.getDistanceToEntity(this.getAttackTarget()) < 12.0F 
+					&& this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
+			{
+				if (rand.nextInt(3) == 0)
+				{
+					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat(), false);
+				}
+
+				double d0 = this.getAttackTarget().posX - this.posX;
+				double d1 = this.getAttackTarget().posZ - this.posZ;
+				double d2 = this.getAttackTarget().posY - this.posY;
+				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+				this.motionX = d0 / (double)f2 * 2.5D * 0.700000011920929D + this.motionX * 0.40000000298023224D;
+				this.motionZ = d1 / (double)f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
+				this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+				this.setChargeTicks(10);
+			}
+			else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
+			{
+				if (rand.nextInt(3) == 0)
+				{
+					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 0.5F, false);
+				}
+
+				double d0 = this.getAttackTarget().posX - this.posX;
+				double d1 = this.getAttackTarget().posZ - this.posZ;
+				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+				this.motionX = d0 / (double)f2 * 3.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / (double)f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionY = 0.45;
+				this.setChargeTicks(10);
+			}
+			else if (this.getAttackTarget() != null && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F)
+			{
+				this.setStompTicks(40);
+			}
+
+			if (this.getStompTicks() == 1)
+			{
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(6.0D, 6.0D, 6.0D));
+				Entity entity;
+
+				for (int i = 0; i < list.size(); i++)
+				{
+					entity = list.get(i);
+					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F - (float)this.getDistanceToEntity(entity));
+				}
+
+				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 1.225F + 4.0F, this.getMobGriefing());
+			}
+
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(8) == 0 && !this.isCharging())
+			{
+				double d0 = this.getAttackTarget().posX - this.posX;
+				double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+				double d2 = this.getAttackTarget().posZ - this.posZ;
+
+				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+
+				switch(rand.nextInt(6))
+				{
+				case 0:
+					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					fireball.posY = this.posY + this.height;
+					this.worldObj.spawnEntityInWorld(fireball);
+					break;
+				case 1:
+					EntitySolarBomb solarBomb = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					solarBomb.posY = this.posY + this.height;
+					this.worldObj.spawnEntityInWorld(solarBomb);
+					break;
+				case 2:
+					EntitySolarBomb solarBomb2 = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					solarBomb2.posY = this.posY + this.height;
+					this.worldObj.spawnEntityInWorld(solarBomb2);
+					break;
+				default:
 					for (int i = 0; i < 3; ++i)
 					{
 						EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
 						fireball2.posY = this.posY + this.height;
 						this.worldObj.spawnEntityInWorld(fireball2);
 					}
+					break;
 				}
-				break;
+			}
+
+			if (this.getAttackTarget() != null && rand.nextInt(48) == 0 && this.ticksExisted % 5 == 0 && !this.isCharging() && this.getHealth() <= this.getMaxHealth() * 2 / 3 && !this.isReflecting())
+			{
+				this.setReflectionTicks(100 + rand.nextInt(120));
 			}
 		}
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
-		if (par1DamageSource.isExplosion())
+		if (this.worldObj.isRemote || par1DamageSource.isExplosion()) return false;
+
+		if (this.isReflecting() && par1DamageSource.getEntity() != null && !(par1DamageSource.getEntity() instanceof EntityApis))
 		{
-			return false;
+			if (par2 > 3.0F) par1DamageSource.getEntity().attackEntityFrom(par1DamageSource, par2 / 2.0F + 1.0F);
+			return true;
 		}
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
@@ -210,79 +402,73 @@ public class EntityApis extends TragicBoss {
 			}
 		}
 
-		if (!par1DamageSource.isProjectile())
-		{
-			par2 *= 0.425F;
-		}
+		if (!par1DamageSource.isProjectile()) par2 *= 0.425F;
 
-		Boolean result = super.attackEntityFrom(par1DamageSource, par2);
+		if (this.getAttackTime() == 0 && !this.isCharging() && !this.isStomping()) this.setAttackTime(10);
 
-		return result;
+		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
+		if (this.worldObj.isRemote || this.isStomping()) return false;
+
 		boolean flag = super.attackEntityAsMob(par1Entity);
-		
+
 		if (flag)
 		{
-			if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0)
-			{
-				switch(rand.nextInt(5))
-				{
-				case 0:
-					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(200) + 160));
-					break;
-				case 1:
-					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200) + 160));
-					break;
-				default:
-					if (TragicNewConfig.allowSubmission)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(200) + 160, rand.nextInt(2)));
-					}
-					break;
-				}
-			}
-
 			if (this.getHealth() <= this.getMaxHealth() / 2)
 			{
 				par1Entity.setFire(8 + rand.nextInt(12));
 			}
 
-			if (this.rand.nextInt(3) == 0 && this.getDistanceToEntity(par1Entity) <= 4.0F)
+			if (this.isCharging())
 			{
-				boolean flag2 = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-				int meow = 3;
-
-				if (!(par1Entity instanceof EntityPlayer))
-				{
-					meow = 7;
-				}
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)rand.nextInt(meow) + 3.0F, flag2);
-			}	
-
-			par1Entity.motionX *= 2.2000000059604645D;
-			par1Entity.motionZ *= 2.2D;
-			par1Entity.motionY += 0.6D;
+				par1Entity.motionX *= 2.2000000059604645D;
+				par1Entity.motionZ *= 2.2D;
+				par1Entity.motionY += 0.56D;
+			}
+			else
+			{
+				if (this.getAttackTime() == 0) this.setAttackTime(10);
+			}
 
 		}
 		return flag;
 	}
 
-	public int getTotalArmorValue()
+	public void collideWithEntity(Entity entity)
 	{
-		if (this.getHealth() <= this.getMaxHealth() / 4)
-		{
-			return 20;
-		}
+		super.collideWithEntity(entity);
 
-		if (this.getHealth() <= this.getMaxHealth() / 2)
-		{
-			return 15;
-		}
-
-		return 10;
+		if (this.worldObj.isRemote) return;
+		if (this.ticksExisted % 10 == 0 && entity instanceof EntityLivingBase && this.isReflecting()) entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
 	}
 
+	public int getTotalArmorValue()
+	{
+		return this.worldObj.isDaytime() ? 15 : 10;
+	}
+
+	@Override
+	protected void fall(float par1) {}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("chargeTicks")) this.setChargeTicks(tag.getInteger("chargeTicks"));
+		if (tag.hasKey("reflectionTicks")) this.setReflectionTicks(tag.getInteger("reflectionTicks"));
+		if (tag.hasKey("stompTicks")) this.setStompTicks(tag.getInteger("stompTicks"));
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("chargeTicks", this.getChargeTicks());
+		tag.setInteger("reflectionTicks", this.getReflectionTicks());
+		tag.setInteger("stompTicks", this.getStompTicks());
+		tag.setInteger("attackTime", this.getAttackTime());
+	}
 }
