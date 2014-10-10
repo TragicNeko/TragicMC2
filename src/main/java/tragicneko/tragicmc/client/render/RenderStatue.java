@@ -104,7 +104,7 @@ public class RenderStatue extends Render {
 	private ResourceLocation getEntityTexture(EntityStatue statue)
 	{
 		if (statue.getTextureID() == 0 || statue.getTextureID() == 15) return textures[0][statue.getMobID()];
-		return textures[1][statue.getTextureID()];
+		return textures[1][statue.getTextureID() - 1];
 	}
 
 }
