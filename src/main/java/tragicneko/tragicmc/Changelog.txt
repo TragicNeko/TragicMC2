@@ -2777,12 +2777,19 @@ Fix up Asphyxiate, it now teleports the mobs on initial use and otherwise freeze
 Fixed up Flight of the Valkyries it now moves enemies in random directions while making them hover higher and higher
 
 1.37.1603++ <172> (October 8, 2014)
-Updating Apis AI, utilizing the charge ticks from the Minotaur, and applying it's render effect to a new reflection ability, it also will now stomp the ground in order to do it's
+Updated Apis AI, utilizing the charge ticks from the Minotaur, and applying it's render effect to a new reflection ability, it also will now stomp the ground in order to do it's
 close range explosive attack, which means it'll have a bit of a delay for when it actually does it, giving the player enough time to move away from it somewhat to reduce the
 damage from it
+Finish up the animations for the Apis, apply a particle effect for when it's about to stomp to give the player even more notification that it's about to stomp the ground
+Make Apis immune to fall damage (like the other bosses), apply particle effects while it is charging and stomping
+Increase the explosion size and damage done when it stomps, it should be a fatal (or at least close) if you're standing right next to it when it does it
+Fix NPEs with Challenge Scroll if an attempt is made to get one that does not have a challenge (using /give to give a scroll that doesn't have a challenge set up)
+Add attack and more movement animations to the Sirv, basic animations still but better than none
+Added "the Worm" idle animation to the Jabba
+Updated the Skultar (aka Death Reaper)'s AI, made it's demeanor give more weight to player attacks, added multiple animations and adjusted it's model and texture, it now turns
+red when it's angry (as a 100% positive sign that everyone knows it's angry) and emits redstone particles
+It now has less armor when it's not being aggressive, fixed it's clone spawning, lowered chance of clones being spawned in
 
-Finish up the idle animations for the other mobs
-After that, start on the Bosses, they will get fewer idle animations than the normal mobs
 Update the creative mode projectile items
 
 Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
@@ -2790,15 +2797,13 @@ mod has, but it should be totally worth it (I'll have to subscribe to the onConf
 
 --Reminders-
 Add a "shudder" animation to the Erkel, idle animation
-Add a "the worm" and a "shake" animation to the Jabba, idle animations
 Add a "detach head" and "stretching" animation to the Pumpkinhead, idle animations
 Add a "headshake" and "footscrape" animation to the Minotaur, idle animations
 Add a "flapping" animation to the Inkling, idle animations
 Add a "spin"  animation to the Gragul, idle animation
 Start making particles for my entities
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
-Could add a Mirror Coat Doomsday that parallels this ability as well, it'd be a scroll-only Doomsday
-Allow Skultar and Enyvil to hover, in other words, they try to match their target's y-value (up to around 120 y-level, so they don't get too high up)
+Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Add the "Epic" weapon models, maybe animate them too
 I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
