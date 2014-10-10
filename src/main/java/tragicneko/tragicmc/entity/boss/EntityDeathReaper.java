@@ -21,23 +21,19 @@ import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityDeathReaperClone;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityDeathReaper extends TragicBoss {
-
-	private boolean isBeingAggressive;
-	private int aiDemeanor;
-
-	private int timeSinceLastHit;
-	private int timeSinceLastAttempt;
 
 	public EntityDeathReaper(World par1World) {
 		super(par1World);
@@ -54,7 +50,92 @@ public class EntityDeathReaper extends TragicBoss {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.isImmuneToFire = true;
-		this.timeSinceLastAttempt = 0;
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(20, Integer.valueOf(0));
+	}
+
+	public int getDemeanor()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setDemeanor(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementDemeanor()
+	{
+		int pow = this.getDemeanor();
+		if (pow > -20) this.setDemeanor(--pow);
+	}
+
+	private void incrementDemeanor()
+	{
+		int pow = this.getDemeanor();
+		if (pow < 20) this.setDemeanor(++pow);
+	}
+
+	public boolean isBeingAggressive()
+	{
+		return this.getDemeanor() > 0;
+	}
+
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
+	}
+
+	public int getHitTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	private void setHitTime(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	private void incrementHitTime()
+	{
+		int pow = this.getHitTime();
+		this.setHitTime(++pow);
+	}
+
+	private int getCloneTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+
+	private void setCloneTime(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+
+	private void incrementCloneTime()
+	{
+		int pow = this.getCloneTime();
+		this.setCloneTime(++pow);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -78,84 +159,70 @@ public class EntityDeathReaper extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(220.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(16.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
 	}
 
 	public void onLivingUpdate()
 	{
-		if (this.isPotionActive(Potion.wither.id))
-		{
-			this.removePotionEffect(Potion.wither.id);
-		}
-
-		if (this.isPotionActive(Potion.weakness.id))
-		{
-			this.removePotionEffect(Potion.weakness.id);
-		}
+		if (this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
+		if (this.isPotionActive(Potion.weakness.id)) this.removePotionEffect(Potion.weakness.id);
+		
+		if (this.getAttackTime() > 0) this.motionX = this.motionZ = 0.0D;
+		if (this.getAttackTime() > 0) this.motionY = -0.1D;
 
 		super.onLivingUpdate();
 
-		if (!this.worldObj.isRemote)
+		if (this.worldObj.isRemote)
 		{
-			this.timeSinceLastHit++;
-			this.timeSinceLastAttempt++;
+			String s = this.isBeingAggressive() ? "reddust" : "mobSpellAmbient";
+			int pow = this.isBeingAggressive() ? 4 : 8;
 
-			if (this.aiDemeanor > 10)
+			for (int i = 0; i < pow; i++)
 			{
-				this.aiDemeanor = 10;
+				this.worldObj.spawnParticle(s,
+						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+						this.posY + (rand.nextDouble() * 0.115D) + 0.545D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
 
-			if (this.aiDemeanor < -10)
+			if (this.getAttackTime() == 2)
 			{
-				this.aiDemeanor = -10;
+				this.worldObj.spawnParticle("smoke",
+						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+						this.posY + (rand.nextDouble() * 0.115D) + 0.375D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
+		}
+		else
+		{
+			this.incrementCloneTime();
+			this.incrementHitTime();
+			if (this.rand.nextInt(524) == 0 && this.getDemeanor() <= 0 && this.getAttackTarget() != null || this.getHitTime() >= 100 && this.getAttackTarget() != null) this.setDemeanor(5);
+			if (this.getAttackTime() > 0) this.decrementAttackTime();
 
-			if (this.timeSinceLastHit >= 200)
-			{
-				this.aiDemeanor = 5;
-			}
-
-			if (this.aiDemeanor < 10 && this.ticksExisted % 120 == 0)
-			{
-				this.aiDemeanor++;
-			}
-
-			if (this.rand.nextInt(1048) == 0)
-			{
-				this.aiDemeanor = 0;
-			}
-
-			if (this.aiDemeanor >= 0)
-			{
-				this.isBeingAggressive = true;
-			}
-			else
-			{
-				this.isBeingAggressive = false;
-			}
-
+			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(6.0F);
 
 			if (this.getAttackTarget() == null)
 			{
-				this.isBeingAggressive = false;
+				this.setDemeanor(0);
+				this.setCloneTime(0);
 			}
 			else
 			{
-				int z = 1;
+				if (this.getAttackTarget().getHealth() <= this.getAttackTarget().getMaxHealth() / 4) this.setDemeanor(5);
 
-				if (this.getHealth() <= this.getMaxHealth() / 2)
-				{
-					z = 2;
-				}
+				int z = this.getHealth() <= this.getMaxHealth() / 2 ? 2 : 1;
 
-				if (this.canEntityBeSeen(this.getAttackTarget()) && this.rand.nextInt(48 / z) == 0)
+				if (this.canEntityBeSeen(this.getAttackTarget()) && this.rand.nextInt(96 / z) == 0)
 				{
 					EntityLivingBase entity = this.getAttackTarget();
 
@@ -189,110 +256,118 @@ public class EntityDeathReaper extends TragicBoss {
 						entity.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
 				}
-			}
 
-			if (this.ticksExisted % 60 == 0 && !this.worldObj.isRemote && this.getHealth() < this.getMaxHealth())
-			{
-				this.heal(6.0F);
-			}
-
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) < 6.0F && this.onGround && rand.nextInt(32) == 0)
-			{
-				if (this.isBeingAggressive)
+				if (this.getDistanceToEntity(this.getAttackTarget()) < 6.0F && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.onGround && rand.nextInt(16) == 0 && this.getAttackTime() == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().posZ - this.posZ;
 					double d2 = this.getAttackTarget().posY - this.posY;
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-					this.motionX = d0 / (double)f2 * 3.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-					this.motionZ = d1 / (double)f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-					this.motionY = d2 / (double)f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+
+					if (this.isBeingAggressive())
+					{
+						this.motionX = d0 / (double)f2 * 2.45D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
+						this.motionZ = d1 / (double)f2 * 2.45D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
+						this.motionY = d2 / (double)f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
+					}
+					else
+					{
+						this.motionX = -d0 / (double)f2 * 2.45D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
+						this.motionZ = -d1 / (double)f2 * 2.45D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
+						this.motionY = d2 / (double)f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
+					}
 				}
-				else
+				else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && this.getAttackTime() == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().posZ - this.posZ;
-					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-					this.motionX = -d0 / (double)f2 * 3.5D * 0.200000011920929D + this.motionX * 0.30000000298023224D;
-					this.motionZ = -d1 / (double)f2 * 3.5D * 0.200000011920929D + this.motionZ * 0.30000000298023224D;
-					this.motionY = 0.15;
+					double d2 = this.getAttackTarget().posY - this.posY;
+					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+
+					if (this.isBeingAggressive())
+					{
+						this.motionX = d0 / (double)f2 * 1.5D * 0.200000011920929D + this.motionX * 0.20000000298023224D;
+						this.motionZ = d1 / (double)f2 * 1.5D * 0.200000011920929D + this.motionZ * 0.20000000298023224D;
+						this.motionY = d2 / (double)f2 * 1.5D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+					}
+					else
+					{
+						this.motionX = -d0 / (double)f2 * 1.25D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
+						this.motionZ = -d1 / (double)f2 * 1.25D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
+						this.motionY = d2 / (double)f2 * 1.25D * 0.200000011920929D + this.motionY * 0.10000000298023224D;
+					}
 				}
-			}
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.onGround && rand.nextInt(32) == 0 && this.isBeingAggressive)
-			{
-				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().posZ - this.posZ;
-				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX = -d0 / (double)f2 * 3.5D * 0.200000011920929D + this.motionX * 0.30000000298023224D;
-				this.motionZ = -d1 / (double)f2 * 3.5D * 0.200000011920929D + this.motionZ * 0.30000000298023224D;
-				this.motionY = 0.15;
-			}
+				int x = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 2;
 
-			int x = 1;
-
-			if (!this.isBeingAggressive)
-			{
-				x = 2;
-			}
-
-			if (this.getHealth() <= this.getMaxHealth() / 2)
-			{
-				x *= 2;
-			}
-
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 2.0F && rand.nextInt(36 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()))
-			{
-				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-				double d2 = this.getAttackTarget().posZ - this.posZ;
-
-				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
-
-				switch(rand.nextInt(10))
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && !this.isBeingAggressive() && this.getAttackTime() == 0)
 				{
-				case 0:
-					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-					fireball.posY = this.posY + (this.height * 2 / 3);
-					this.worldObj.spawnEntityInWorld(fireball);
-					break;
-				case 1:
-					for (int miff = 0; miff < 3; miff++)
-					{
-						EntityWitherSkull solarBomb = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						solarBomb.posY = this.posY + (this.height * 2 / 3);
-						solarBomb.setInvulnerable(true);
-						this.worldObj.spawnEntityInWorld(solarBomb);
-					}
-					break;
-				case 2:
-					for (int wubwub = 0; wubwub < 5; wubwub++)
-					{
-						EntityWitherSkull witherSkull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						witherSkull.posY = this.posY + (this.height * 2 / 3);
-						this.worldObj.spawnEntityInWorld(witherSkull);
-					}
-					break;
-				case 3:
-					for (int i = 0; i < 5; ++i)
-					{
-						EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						fireball2.posY = this.posY + (this.height * 2 / 3);
-						this.worldObj.spawnEntityInWorld(fireball2);
-					}
-					break;
-				case 4:
-					this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ));
-					break;
-				default:
-					for (int i = 0; i < 5; ++i)
-					{
-						EntitySmallFireball fireball3 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						fireball3.posY = this.posY + (this.height * 2 / 3);
-						this.worldObj.spawnEntityInWorld(fireball3);
-					}
-					break;
+					double d0 = this.getAttackTarget().posX - this.posX;
+					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					double d2 = this.getAttackTarget().posZ - this.posZ;
 
+					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+
+					switch(rand.nextInt(10))
+					{
+					case 0:
+						EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+						fireball.posY = this.posY + (this.height * 2 / 3);
+						this.worldObj.spawnEntityInWorld(fireball);
+						break;
+					case 1:
+						for (int miff = 0; miff < 3; miff++)
+						{
+							EntityWitherSkull solarBomb = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+							solarBomb.posY = this.posY + (this.height * 2 / 3);
+							solarBomb.setInvulnerable(true);
+							this.worldObj.spawnEntityInWorld(solarBomb);
+						}
+						break;
+					case 2:
+						for (int wubwub = 0; wubwub < 5; wubwub++)
+						{
+							EntityWitherSkull witherSkull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+							witherSkull.posY = this.posY + (this.height * 2 / 3);
+							this.worldObj.spawnEntityInWorld(witherSkull);
+						}
+						break;
+					case 3:
+						for (int i = 0; i < 5; ++i)
+						{
+							EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+							fireball2.posY = this.posY + (this.height * 2 / 3);
+							this.worldObj.spawnEntityInWorld(fireball2);
+						}
+						break;
+					case 4:
+						this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ));
+						break;
+					default:
+						for (int i = 0; i < 5; ++i)
+						{
+							EntitySmallFireball fireball3 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+							fireball3.posY = this.posY + (this.height * 2 / 3);
+							this.worldObj.spawnEntityInWorld(fireball3);
+						}
+						break;
+					}
+
+					if (rand.nextInt(4) == 0) this.incrementDemeanor();
+				}
+
+				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 0 && this.isBeingAggressive() && rand.nextInt(32) == 0) this.setAttackTime(20);
+
+				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1)
+				{
+					boolean flag = this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 20.0F);
+
+					if (flag)
+					{
+						this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(300) + 320, 2));
+						this.getAttackTarget().motionX *= 2.25D;
+						this.getAttackTarget().motionZ *= 2.25D;
+					}
 				}
 			}
 		}
@@ -300,36 +375,26 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		String s = par1DamageSource.getDamageType();
+		if (this.worldObj.isRemote || par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityDeathReaperClone) return false;
 
-		if (!this.worldObj.isRemote)
-		{
-			this.trackHitType(s);
-		}
+		this.trackHitType(par1DamageSource.getDamageType());
 
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 
-		if (result && !this.worldObj.isRemote)
+		if (result)
 		{
-			this.timeSinceLastHit = 0;
-		}
-
-		if (result && !this.worldObj.isRemote)
-		{
-			if (this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(16) == 0)
+			this.setHitTime(0);
+			
+			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && !this.isBeingAggressive() && par1DamageSource.getEntity() != null)
 			{
-				int potato = 1;
-
-				if (this.getHealth() <= this.getMaxHealth() / 4)
-				{
-					potato = 2;
-				}
+				int potato = this.getHealth() <= this.getMaxHealth() / 4 ? 2 : 1;
 
 				for (int x = 0; x < potato; x++)
 				{
 					this.attemptToSummonClones();
 				}
-				this.timeSinceLastAttempt = 0;
+
+				this.setCloneTime(0);
 			}
 		}
 
@@ -340,12 +405,10 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaperClone.class, boundingBox.expand(32.0, 32.0, 32.0));		
 
-		if (list.size() >= 4 || this.getAttackTarget() == null || this.timeSinceLastAttempt <= 60 || this.worldObj.isRemote)
-		{
-			return;
-		}
+		if (list.size() >= 4 || this.getAttackTarget() == null || this.getCloneTime() <= 100) return;
 
 		EntityDeathReaperClone clone = new EntityDeathReaperClone(this.worldObj);
+		clone.copyLocationAndAnglesFrom(this);
 		EntityLivingBase entitylivingbase = this.getAttackTarget();
 
 		for (int y1 = -4; y1 < 5; y1++)
@@ -362,8 +425,8 @@ public class EntityDeathReaper extends TragicBoss {
 								this.worldObj.getCollidingBoundingBoxes(clone, clone.boundingBox).isEmpty() &&
 								!this.worldObj.isAnyLiquid(clone.boundingBox))
 						{							
-							clone.onSpawnWithEgg(null);
 							this.worldObj.spawnEntityInWorld(clone);
+							clone.onSpawnWithEgg(null);
 							if (entitylivingbase != null) clone.setTarget(entitylivingbase);
 							return;
 						}
@@ -376,11 +439,15 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
+		if (this.worldObj.isRemote || this.getAttackTime() > 0) return false;
+
+		boolean result = super.attackEntityAsMob(par1Entity);
+
+		if (result)
 		{
 			if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0)
 			{
-				switch(rand.nextInt(6))
+				switch(rand.nextInt(8))
 				{
 				case 0:
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(200) + 320));
@@ -395,47 +462,31 @@ public class EntityDeathReaper extends TragicBoss {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 					break;
 				case 4:
-					if (TragicNewConfig.allowDisorientation)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(200) + 320));
-					}
+					if (TragicNewConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(200) + 320));
 					break;
 				case 5:
-					if (TragicNewConfig.allowFear)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Fear.id, rand.nextInt(200) + 320));
-					}
+					if (TragicNewConfig.allowFear) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Fear.id, rand.nextInt(200) + 320));
 					break;
 				default:
-					if (TragicNewConfig.allowSubmission)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
-					}
+					if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
 					break;
 				}
 			}
 
-			if (this.getHealth() <= this.getMaxHealth() / 2)
-			{
-				par1Entity.setFire(4 + rand.nextInt(12));
-			}
-
-			par1Entity.motionX *= 1.4000000059604645D;
+			if (this.getHealth() <= this.getMaxHealth() / 2) par1Entity.setFire(4 + rand.nextInt(12));
+			par1Entity.motionX *= 1.4D;
 			par1Entity.motionZ *= 1.4D;
 			par1Entity.motionY += 0.3D;
+
+			if (this.getAttackTime() == 0) this.setAttackTime(10);
 		}
 
-		return super.attackEntityAsMob(par1Entity);
+		return result;
 	}
 
 	public int getTotalArmorValue()
 	{
-		if (this.getHealth() <= this.getMaxHealth() / 2)
-		{
-			return 20;
-		}
-
-		return 12;
+		return this.isBeingAggressive() ? 20 : 12;
 	}
 
 	public void fall(float par1){}
@@ -443,28 +494,30 @@ public class EntityDeathReaper extends TragicBoss {
 	private void trackHitType(String damageType) 
 	{
 		String hitType = null;
+		boolean flag = false;
 
 		if (damageType.equals("arrow"))
 		{
 			hitType = "projectile";
 		}
-
-		if (damageType.equals("fireball"))
+		else if (damageType.equals("fireball"))
 		{
 			hitType = "projectile";
 		}
-
-		if (damageType.equals("indirectMagic"))
+		else if (damageType.equals("indirectMagic"))
 		{
 			hitType = "normal";
 		}
-
-		if (damageType.equals("player"))
+		else if (damageType.equals("player"))
+		{
+			hitType = "normal";
+			flag = true;
+		}
+		else if (damageType.equals("generic"))
 		{
 			hitType = "normal";
 		}
-
-		if (damageType.equals("generic"))
+		else if (damageType.equals("mob"))
 		{
 			hitType = "normal";
 		}
@@ -475,11 +528,32 @@ public class EntityDeathReaper extends TragicBoss {
 		}
 		else if (hitType == "projectile")
 		{
-			this.aiDemeanor++;
+			this.incrementDemeanor();
+			if (flag) this.incrementDemeanor();
 		}
 		else
 		{
-			this.aiDemeanor--;
+			this.decrementDemeanor();
+			if (flag) this.decrementDemeanor();
 		}
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("demeanor")) this.setDemeanor(tag.getInteger("demeanor"));
+		if (tag.hasKey("hitTime")) this.setHitTime(tag.getInteger("hitTime"));
+		if (tag.hasKey("cloneTime")) this.setCloneTime(tag.getInteger("cloneTime"));
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("demeanor", this.getDemeanor());
+		tag.setInteger("reflectionTicks", this.getHitTime());
+		tag.setInteger("cloneTime", this.getCloneTime());
+		tag.setInteger("attackTime", this.getAttackTime());
 	}
 }

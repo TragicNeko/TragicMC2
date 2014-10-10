@@ -37,13 +37,13 @@ public class EntityDeathReaperClone extends TragicMob {
 		this.stepHeight = 2.0F;
 		this.experienceValue = 0;
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
 		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityGolem.class, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
@@ -78,17 +78,12 @@ public class EntityDeathReaperClone extends TragicMob {
 	
 	public void onLivingUpdate()
 	{		
-		if (this.isPotionActive(Potion.wither.id))
-		{
-			this.removePotionEffect(Potion.wither.id);
-		}
-
-		if (this.isPotionActive(Potion.weakness.id))
-		{
-			this.removePotionEffect(Potion.weakness.id);
-		}
+		if (this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
+		if (this.isPotionActive(Potion.weakness.id)) this.removePotionEffect(Potion.weakness.id);
 
 		super.onLivingUpdate();
+		
+		if (this.worldObj.isRemote) return;
 		
 		if (this.getAttackTarget() != null && this.getAttackTarget() instanceof EntityPlayer)
 		{
@@ -100,12 +95,9 @@ public class EntityDeathReaperClone extends TragicMob {
 			}
 		}
 		
-		if (this.ticksExisted % 60 == 0 && !this.worldObj.isRemote && this.getHealth() < this.getMaxHealth())
-		{
-			this.heal(6.0F);
-		}
+		if (this.ticksExisted % 60 == 0 && !this.worldObj.isRemote && this.getHealth() < this.getMaxHealth()) this.heal(6.0F);
 		
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(72) == 0)
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(72) == 0 && this.onGround)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
@@ -132,7 +124,7 @@ public class EntityDeathReaperClone extends TragicMob {
 				solarBomb2.posY = this.posY + (this.height * 2 / 3);
 				this.worldObj.spawnEntityInWorld(solarBomb2);
 				break;
-			case 3:
+			default:
 				for (int i = 0; i < 3; ++i)
 				{
 					EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
@@ -144,33 +136,26 @@ public class EntityDeathReaperClone extends TragicMob {
 				EntityLightningBolt bolt = new EntityLightningBolt(this.worldObj, this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);
 				this.worldObj.spawnEntityInWorld(bolt);
 				break;
-			case 5:
-				//Use for flame boomerang attack
-				break;
 			}
 		}
 		
 		if (this.ticksExisted >= 200)
 		{
 			this.setDead();
-			this.worldObj.removeEntity(this);
 		}
 	}
 	
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityDeathReaper)
-		{
-			return false;
-		}
+		if (this.worldObj.isRemote || par1DamageSource.getEntity() != null || par1DamageSource.getEntity() instanceof EntityDeathReaper) return false;
 		
-		boolean result = super.attackEntityFrom(par1DamageSource, par2);
+		boolean result = super.attackEntityFrom(par1DamageSource, par2 * 10.0F);
 
 		if (this.isBomb && result)
 		{
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float) (rand.nextDouble() * 3.0F), this.getMobGriefing());
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float) (rand.nextDouble() * 2.0F) + 2.0F, this.getMobGriefing());
 			this.setDead();
-			this.worldObj.removeEntity(this);
+			return result;
 		}
 
 		return result;

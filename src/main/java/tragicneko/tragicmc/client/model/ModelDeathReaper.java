@@ -1,356 +1,330 @@
 package tragicneko.tragicmc.client.model;
 
+import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelDeathReaper extends ModelBase
 {
-	//fields
-	ModelRenderer SpineMiddle;
-	ModelRenderer SpineBottom;
-	ModelRenderer SpineTop;
-	ModelRenderer SkullBack;
-	ModelRenderer RibML;
-	ModelRenderer RibTL;
-	ModelRenderer RibTR;
-	ModelRenderer RibMR;
-	ModelRenderer RibBL;
-	ModelRenderer RibBR;
-	ModelRenderer Heart;
-	ModelRenderer FrontRibTL;
-	ModelRenderer FrontRibTR;
-	ModelRenderer FrontRibML;
-	ModelRenderer FrontRibMR;
-	ModelRenderer FrontRibBL;
-	ModelRenderer FrontRibBR;
-	ModelRenderer ShoulderRight;
-	ModelRenderer ShoulderLeft;
-	ModelRenderer UpperArmLeft;
-	ModelRenderer UpperArmRight;
-	ModelRenderer SkullFront;
-	ModelRenderer UpperTeeth;
-	ModelRenderer LowerJaw;
-	ModelRenderer LowerToothRight;
-	ModelRenderer LowerToothLeft;
-	ModelRenderer HornRight;
-	ModelRenderer HornLeft;
-	ModelRenderer ForearmRight;
-	ModelRenderer ForearmLeft;
-	ModelRenderer ScytheHandle;
-	ModelRenderer ScytheBladeThick;
-	ModelRenderer ScytheBladeMiddle;
-	ModelRenderer ScytheBladeThin;
-	ModelRenderer RightThumb;
-	ModelRenderer RightFinger1;
-	ModelRenderer RightFinger2;
-	ModelRenderer LeftFinger1;
-	ModelRenderer LeftFinger2;
-	ModelRenderer LeftThumb;
+	private ModelRenderer spine;
+	private ModelRenderer head;
+	private ModelRenderer lowerJaw;
+
+	private ModelRenderer heart;
+	private ModelRenderer frontRibTL;
+	private ModelRenderer frontRibTR;
+	private ModelRenderer frontRibML;
+	private ModelRenderer frontRibMR;
+	private ModelRenderer frontRibBL;
+	private ModelRenderer frontRibBR;
+
+	private ModelRenderer armLeft;
+	private ModelRenderer armRight;
+	private ModelRenderer forearmRight;
+	private ModelRenderer forearmLeft;
+
+	private ModelRenderer scythe;
 
 	public ModelDeathReaper()
 	{
 		textureWidth = 128;
 		textureHeight = 64;
 
-		SpineMiddle = new ModelRenderer(this, 0, 0);
-		SpineMiddle.addBox(-1F, -3F, 0F, 2, 6, 1);
-		SpineMiddle.setRotationPoint(0F, 2F, 3F);
-		SpineMiddle.setTextureSize(128, 64);
-		SpineMiddle.mirror = true;
-		setRotation(SpineMiddle, -0.0743572F, 0F, 0F);
-		SpineBottom = new ModelRenderer(this, 0, 0);
-		SpineBottom.addBox(-1F, 0F, 0F, 2, 5, 1);
-		SpineBottom.setRotationPoint(0F, 5F, 3F);
-		SpineBottom.setTextureSize(128, 64);
-		SpineBottom.mirror = true;
-		setRotation(SpineBottom, 0.2974289F, 0F, 0F);
-		SpineTop = new ModelRenderer(this, 0, 0);
-		SpineTop.addBox(-1F, -3F, -1F, 2, 3, 1);
-		SpineTop.setRotationPoint(0F, -1F, 4F);
-		SpineTop.setTextureSize(128, 64);
-		SpineTop.mirror = true;
-		setRotation(SpineTop, 0.3346075F, 0F, 0F);
-		SkullBack = new ModelRenderer(this, 0, 0);
-		SkullBack.addBox(-2.5F, -5F, -1F, 5, 5, 2);
-		SkullBack.setRotationPoint(0F, -4F, 2F);
-		SkullBack.setTextureSize(128, 64);
-		SkullBack.mirror = true;
-		setRotation(SkullBack, 0F, 0F, 0F);
-		RibML = new ModelRenderer(this, 0, 0);
-		RibML.addBox(0F, 0F, 0F, 4, 1, 1);
-		RibML.setRotationPoint(1F, 1F, 4F);
-		RibML.setTextureSize(128, 64);
-		RibML.mirror = true;
-		setRotation(RibML, 0F, 0.3346075F, 0F);
-		RibTL = new ModelRenderer(this, 0, 0);
-		RibTL.addBox(0F, -1F, 0F, 4, 1, 1);
-		RibTL.setRotationPoint(1F, 0F, 4F);
-		RibTL.setTextureSize(128, 64);
-		RibTL.mirror = true;
-		setRotation(RibTL, 0F, 0.3346075F, 0F);
-		RibTR = new ModelRenderer(this, 0, 0);
-		RibTR.addBox(-4F, -1F, 0F, 4, 1, 1);
-		RibTR.setRotationPoint(-1F, 0F, 4F);
-		RibTR.setTextureSize(128, 64);
-		RibTR.mirror = true;
-		setRotation(RibTR, 0F, -0.3346075F, 0F);
-		RibMR = new ModelRenderer(this, 0, 0);
-		RibMR.addBox(-4F, 0F, 0F, 4, 1, 1);
-		RibMR.setRotationPoint(-1F, 1F, 4F);
-		RibMR.setTextureSize(128, 64);
-		RibMR.mirror = true;
-		setRotation(RibMR, 0F, -0.3717861F, 0F);
-		RibBL = new ModelRenderer(this, 0, 0);
-		RibBL.addBox(0F, 0F, 0F, 3, 1, 1);
-		RibBL.setRotationPoint(1F, 3F, 4F);
-		RibBL.setTextureSize(128, 64);
-		RibBL.mirror = true;
-		setRotation(RibBL, 0F, 0.4089647F, 0F);
-		RibBR = new ModelRenderer(this, 0, 0);
-		RibBR.addBox(-3F, 0F, 0F, 3, 1, 1);
-		RibBR.setRotationPoint(-1F, 3F, 4F);
-		RibBR.setTextureSize(128, 64);
-		RibBR.mirror = true;
-		setRotation(RibBR, 0F, -0.5576792F, 0F);
-		Heart = new ModelRenderer(this, 16, 14);
-		Heart.addBox(-1F, -1F, -1F, 2, 2, 2);
-		Heart.setRotationPoint(0F, 1F, 2F);
-		Heart.setTextureSize(128, 64);
-		Heart.mirror = true;
-		setRotation(Heart, 0F, 0F, 0F);
-		FrontRibTL = new ModelRenderer(this, 0, 0);
-		FrontRibTL.addBox(-1F, 0F, 0F, 5, 1, 1);
-		FrontRibTL.setRotationPoint(4F, -1F, 3F);
-		FrontRibTL.setTextureSize(128, 64);
-		FrontRibTL.mirror = true;
-		setRotation(FrontRibTL, 0F, 2.67686F, -0.1115358F);
-		FrontRibTR = new ModelRenderer(this, 0, 0);
-		FrontRibTR.addBox(0F, 0F, -1F, 4, 1, 1);
-		FrontRibTR.setRotationPoint(-4F, -1F, 3F);
-		FrontRibTR.setTextureSize(128, 64);
-		FrontRibTR.mirror = true;
-		setRotation(FrontRibTR, 0F, 0.5948578F, -0.1115358F);
-		FrontRibML = new ModelRenderer(this, 0, 0);
-		FrontRibML.addBox(0F, 0F, 0F, 4, 1, 1);
-		FrontRibML.setRotationPoint(4F, 1F, 3F);
-		FrontRibML.setTextureSize(128, 64);
-		FrontRibML.mirror = true;
-		setRotation(FrontRibML, 0F, 2.490967F, 0F);
-		FrontRibMR = new ModelRenderer(this, 0, 0);
-		FrontRibMR.addBox(0F, 0F, -1F, 4, 1, 1);
-		FrontRibMR.setRotationPoint(-4F, 1F, 3F);
-		FrontRibMR.setTextureSize(128, 64);
-		FrontRibMR.mirror = true;
-		setRotation(FrontRibMR, 0F, 0.8551081F, 0F);
-		FrontRibBL = new ModelRenderer(this, 0, 0);
-		FrontRibBL.addBox(0F, 0F, 0F, 3, 1, 1);
-		FrontRibBL.setRotationPoint(3F, 3F, 3F);
-		FrontRibBL.setTextureSize(128, 64);
-		FrontRibBL.mirror = true;
-		setRotation(FrontRibBL, 0F, 2.602503F, 0.0743572F);
-		FrontRibBR = new ModelRenderer(this, 0, 0);
-		FrontRibBR.addBox(0F, 0F, -1F, 3, 1, 1);
-		FrontRibBR.setRotationPoint(-3F, 3F, 3F);
-		FrontRibBR.setTextureSize(128, 64);
-		FrontRibBR.mirror = true;
-		setRotation(FrontRibBR, 0F, 0.4461433F, 0.1487144F);
-		ShoulderRight = new ModelRenderer(this, 0, 0);
-		ShoulderRight.addBox(-1F, 0F, -1F, 3, 3, 3);
-		ShoulderRight.setRotationPoint(-6F, -1F, 2F);
-		ShoulderRight.setTextureSize(128, 64);
-		ShoulderRight.mirror = true;
-		setRotation(ShoulderRight, 0F, 0F, 0F);
-		ShoulderLeft = new ModelRenderer(this, 0, 0);
-		ShoulderLeft.addBox(0F, 0F, -1F, 3, 3, 3);
-		ShoulderLeft.setRotationPoint(5F, -1F, 2F);
-		ShoulderLeft.setTextureSize(128, 64);
-		ShoulderLeft.mirror = true;
-		setRotation(ShoulderLeft, 0F, 0F, 0F);
-		UpperArmLeft = new ModelRenderer(this, 0, 0);
-		UpperArmLeft.addBox(1F, 3F, 0F, 1, 6, 1);
-		UpperArmLeft.setRotationPoint(5F, -1F, 2F);
-		UpperArmLeft.setTextureSize(128, 64);
-		UpperArmLeft.mirror = true;
-		setRotation(UpperArmLeft, 0F, 0F, 0F);
-		UpperArmRight = new ModelRenderer(this, 0, 0);
-		UpperArmRight.addBox(-1F, 3F, 0F, 1, 6, 1);
-		UpperArmRight.setRotationPoint(-5F, -1F, 3F);
-		UpperArmRight.setTextureSize(128, 64);
-		UpperArmRight.mirror = true;
-		setRotation(UpperArmRight, 0F, 0F, 0F);
-		SkullFront = new ModelRenderer(this, 0, 14);
-		SkullFront.addBox(-2F, -5F, -3F, 4, 4, 2);
-		SkullFront.setRotationPoint(0F, -4F, 2F);
-		SkullFront.setTextureSize(128, 64);
-		SkullFront.mirror = true;
-		setRotation(SkullFront, 0F, 0F, 0F);
-		UpperTeeth = new ModelRenderer(this, 0, 0);
-		UpperTeeth.addBox(-1F, -1F, -3F, 2, 1, 1);
-		UpperTeeth.setRotationPoint(0F, -4F, 2F);
-		UpperTeeth.setTextureSize(128, 64);
-		UpperTeeth.mirror = true;
-		setRotation(UpperTeeth, 0F, 0F, 0F);
-		LowerJaw = new ModelRenderer(this, 0, 0);
-		LowerJaw.addBox(-2.5F, 0F, -4F, 5, 1, 4);
-		LowerJaw.setRotationPoint(0F, -4F, 2F);
-		LowerJaw.setTextureSize(128, 64);
-		LowerJaw.mirror = true;
-		setRotation(LowerJaw, 0F, 0F, 0F);
-		LowerToothRight = new ModelRenderer(this, 0, 0);
-		LowerToothRight.addBox(-2F, -1F, -4F, 1, 1, 1);
-		LowerToothRight.setRotationPoint(0F, -4F, 2F);
-		LowerToothRight.setTextureSize(128, 64);
-		LowerToothRight.mirror = true;
-		setRotation(LowerToothRight, 0F, 0F, 0F);
-		LowerToothLeft = new ModelRenderer(this, 0, 0);
-		LowerToothLeft.addBox(1F, -1F, -4F, 1, 1, 1);
-		LowerToothLeft.setRotationPoint(0F, -4F, 2F);
-		LowerToothLeft.setTextureSize(128, 64);
-		LowerToothLeft.mirror = true;
-		setRotation(LowerToothLeft, 0F, 0F, 0F);
-		HornRight = new ModelRenderer(this, 0, 0);
-		HornRight.addBox(-3F, -8F, 0F, 1, 5, 1);
-		HornRight.setRotationPoint(0F, -4F, 2F);
-		HornRight.setTextureSize(128, 64);
-		HornRight.mirror = true;
-		setRotation(HornRight, 0F, 0F, -0.2230717F);
-		HornLeft = new ModelRenderer(this, 0, 0);
-		HornLeft.addBox(2F, -8F, 0F, 1, 5, 1);
-		HornLeft.setRotationPoint(0F, -4F, 2F);
-		HornLeft.setTextureSize(128, 64);
-		HornLeft.mirror = true;
-		setRotation(HornLeft, 0F, 0F, 0.2230717F);
-		ForearmRight = new ModelRenderer(this, 0, 0);
-		ForearmRight.addBox(-1F, 0F, -1F, 3, 8, 3);
-		ForearmRight.setRotationPoint(-6F, 8F, 3F);
-		ForearmRight.setTextureSize(128, 64);
-		ForearmRight.mirror = true;
-		setRotation(ForearmRight, -0.5576792F, 0F, 0F);
-		ForearmLeft = new ModelRenderer(this, 0, 0);
-		ForearmLeft.addBox(-1F, 0F, -1F, 3, 8, 3);
-		ForearmLeft.setRotationPoint(6F, 8F, 2F);
-		ForearmLeft.setTextureSize(128, 64);
-		ForearmLeft.mirror = true;
-		setRotation(ForearmLeft, 0F, 0F, 0F);
-		ScytheHandle = new ModelRenderer(this, 0, 26);
-		ScytheHandle.addBox(-10F, 0F, 0F, 28, 1, 1);
-		ScytheHandle.setRotationPoint(-6F, 16F, -1F);
-		ScytheHandle.setTextureSize(128, 64);
-		ScytheHandle.mirror = true;
-		setRotation(ScytheHandle, 0F, 2.05995267F, 2.04554337F);
-		ScytheBladeThick = new ModelRenderer(this, 0, 30);
-		ScytheBladeThick.addBox(0F, 0F, 0F, 10, 5, 1);
-		ScytheBladeThick.setRotationPoint(-12F, 7F, -15F);
-		ScytheBladeThick.setTextureSize(128, 64);
-		ScytheBladeThick.mirror = true;
-		setRotation(ScytheBladeThick, 0.9666439F, 0.3346075F, -0.0371786F);
-		ScytheBladeMiddle = new ModelRenderer(this, 0, 38);
-		ScytheBladeMiddle.addBox(5F, 1F, 0F, 13, 4, 1);
-		ScytheBladeMiddle.setRotationPoint(-12F, 7F, -15F);
-		ScytheBladeMiddle.setTextureSize(128, 64);
-		ScytheBladeMiddle.mirror = true;
-		setRotation(ScytheBladeMiddle, 0.9666439F, 0.3346075F, -0.0371786F);
-		ScytheBladeThin = new ModelRenderer(this, 0, 46);
-		ScytheBladeThin.addBox(12F, 2F, 0F, 13, 2, 1);
-		ScytheBladeThin.setRotationPoint(-12F, 7F, -15F);
-		ScytheBladeThin.setTextureSize(128, 64);
-		ScytheBladeThin.mirror = true;
-		setRotation(ScytheBladeThin, 0.9666439F, 0.3346075F, -0.0371786F);
-		RightThumb = new ModelRenderer(this, 0, 0);
-		RightThumb.addBox(1F, 1F, 0F, 1, 2, 1);
-		RightThumb.setRotationPoint(-6F, 14F, -1F);
-		RightThumb.setTextureSize(128, 64);
-		RightThumb.mirror = true;
-		setRotation(RightThumb, -0.3717861F, 0F, 0F);
-		RightFinger1 = new ModelRenderer(this, 0, 0);
-		RightFinger1.addBox(-1F, 1F, -1F, 1, 2, 1);
-		RightFinger1.setRotationPoint(-6F, 14F, -1F);
-		RightFinger1.setTextureSize(128, 64);
-		RightFinger1.mirror = true;
-		setRotation(RightFinger1, -0.3717861F, 0F, 0F);
-		RightFinger2 = new ModelRenderer(this, 0, 0);
-		RightFinger2.addBox(0F, 1F, 1F, 1, 2, 1);
-		RightFinger2.setRotationPoint(-6F, 14F, -1F);
-		RightFinger2.setTextureSize(128, 64);
-		RightFinger2.mirror = true;
-		setRotation(RightFinger2, -0.3717861F, 0F, 0F);
-		LeftFinger1 = new ModelRenderer(this, 0, 0);
-		LeftFinger1.addBox(0F, 0F, 0F, 1, 2, 1);
-		LeftFinger1.setRotationPoint(7F, 16F, 3F);
-		LeftFinger1.setTextureSize(128, 64);
-		LeftFinger1.mirror = true;
-		setRotation(LeftFinger1, 0F, 0F, 0F);
-		LeftFinger1 = new ModelRenderer(this, 0, 0);
-		LeftFinger1.addBox(0F, 0F, -2F, 1, 2, 1);
-		LeftFinger1.setRotationPoint(7F, 16F, 3F);
-		LeftFinger1.setTextureSize(128, 64);
-		LeftFinger1.mirror = true;
-		setRotation(LeftFinger1, 0F, 0F, 0F);
-		LeftFinger1 = new ModelRenderer(this, 0, 0);
-		LeftFinger1.addBox(-2F, 0F, -1F, 1, 2, 1);
-		LeftFinger1.setRotationPoint(7F, 16F, 3F);
-		LeftFinger1.setTextureSize(128, 64);
-		LeftFinger1.mirror = true;
-		setRotation(LeftFinger1, 0F, 0F, 0F);
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-2.5F, -5F, -1F, 5, 5, 2);
+		head.setRotationPoint(0F, -2F, 2F);
+		ModelRenderer hornRight = new ModelRenderer(this, 0, 0);
+		hornRight.addBox(-3F, -8F, 0F, 1, 5, 1);
+		head.addChild(hornRight);
+		ModelRenderer hornLeft = new ModelRenderer(this, 0, 0);
+		hornLeft.addBox(2F, -8F, 0F, 1, 5, 1);
+		head.addChild(hornLeft);
+		ModelRenderer skullFront = new ModelRenderer(this, 0, 14);
+		skullFront.addBox(-2F, -5F, -3F, 4, 2, 2);
+		head.addChild(skullFront);
+		ModelRenderer upperTeeth = new ModelRenderer(this, 0, 0);
+		upperTeeth.addBox(-1F, -3F, -3F, 2, 2, 2);
+		head.addChild(upperTeeth);
+		ModelRenderer leftEye = new ModelRenderer(this, 16, 16);
+		leftEye.addBox(-2F, -3F, -2F, 1, 1, 1);
+		head.addChild(leftEye);
+		ModelRenderer rightEye = new ModelRenderer(this, 16, 16);
+		rightEye.addBox(1F, -3F, -2F, 1, 1, 1);
+		head.addChild(rightEye);
+
+		lowerJaw = new ModelRenderer(this, 0, 0);
+		lowerJaw.addBox(-2.5F, 4F, -6F, 5, 1, 4);
+		lowerJaw.setRotationPoint(0F, -4F, 2F);
+		head.addChild(lowerJaw);
+		ModelRenderer lowerToothRight = new ModelRenderer(this, 0, 0);
+		lowerToothRight.addBox(-2F, 3F, -6F, 1, 1, 1);
+		lowerJaw.addChild(lowerToothRight);
+		ModelRenderer lowerToothLeft = new ModelRenderer(this, 0, 0);
+		lowerToothLeft.addBox(1F, 3F, -6F, 1, 1, 1);
+		lowerJaw.addChild(lowerToothLeft);
+
+		spine = new ModelRenderer(this, 0, 0);
+		spine.addBox(-1F, -3F, -1F, 2, 3, 1);
+		spine.setRotationPoint(0F, 1F, 4F);
+		spine.rotateAngleX = 0.3346075F;
+		ModelRenderer spineMiddle = new ModelRenderer(this, 0, 0);
+		spineMiddle.addBox(-1F, 0F, -1F, 2, 6, 1);
+		spineMiddle.rotateAngleX = -0.1743572F;
+		spine.addChild(spineMiddle);
+		ModelRenderer spineBottom = new ModelRenderer(this, 0, 0);
+		spineBottom.addBox(-1F, 6F, 1F, 2, 5, 1);
+		spineBottom.rotateAngleX = -0.5974289F;
+		spine.addChild(spineBottom);
+
+		ModelRenderer ribML = new ModelRenderer(this, 0, 0);
+		ribML.addBox(1F, 1.5F, 0F, 4, 1, 1);
+		ribML.rotateAngleY = 0.3346075F;
+		spine.addChild(ribML);
+		ModelRenderer ribTL = new ModelRenderer(this, 0, 0);
+		ribTL.addBox(1F, -1F, 0F, 4, 1, 1);
+		ribTL.rotateAngleY = 0.3346075F;
+		ribTL.rotateAngleX = 0.2112592F;
+		spine.addChild(ribTL);
+		ModelRenderer ribTR = new ModelRenderer(this, 0, 0);
+		ribTR.addBox(-5F, -1F, 0F, 4, 1, 1);
+		ribTR.rotateAngleY = -0.3346075F;
+		ribTR.rotateAngleX = 0.2112592F;
+		spine.addChild(ribTR);
+		ModelRenderer ribMR = new ModelRenderer(this, 0, 0);
+		ribMR.addBox(-5F, 1.5F, 0F, 4, 1, 1);
+		ribMR.rotateAngleY = -0.3717861F;
+		spine.addChild(ribMR);
+		ModelRenderer ribBL = new ModelRenderer(this, 0, 0);
+		ribBL.addBox(1F, 3.5F, 0F, 3, 1, 1);
+		ribBL.rotateAngleY = 0.4089647F;
+		ribBL.rotateAngleX = -0.32242714F;
+		spine.addChild(ribBL);
+		ModelRenderer ribBR = new ModelRenderer(this, 0, 0);
+		ribBR.addBox(-4F, 3.5F, 0F, 3, 1, 1);
+		ribBR.rotateAngleY = -0.5576792F;
+		ribBR.rotateAngleX = -0.32242714F;
+		spine.addChild(ribBR);
+		ModelRenderer ribWBL = new ModelRenderer(this, 0, 0);
+		ribWBL.addBox(1F, 5.5F, 0.5F, 3, 1, 1);
+		ribWBL.rotateAngleY = 0.4089647F;
+		ribWBL.rotateAngleX = -0.32242714F;
+		spine.addChild(ribWBL);
+		ModelRenderer ribWBR = new ModelRenderer(this, 0, 0);
+		ribWBR.addBox(-4F, 5.5F, 0.5F, 3, 1, 1);
+		ribWBR.rotateAngleY = -0.5576792F;
+		ribWBR.rotateAngleX = -0.32242714F;
+		spine.addChild(ribWBR);
+
+		heart = new ModelRenderer(this, 16, 14);
+		heart.addBox(-1F, 0F, -3F, 2, 2, 2);
+		heart.rotateAngleX = -0.3346075F;
+		spine.addChild(heart);
+		frontRibTL = new ModelRenderer(this, 0, 0);
+		frontRibTL.addBox(-1F, 0F, -4F, 5, 1, 1);
+		frontRibTL.rotateAngleY = -0.3386F;
+		frontRibTL.rotateAngleZ = -0.1115358F;
+		spine.addChild(frontRibTL);
+		frontRibTR = new ModelRenderer(this, 0, 0);
+		frontRibTR.addBox(-3F, -1F, -4F, 4, 1, 1);
+		frontRibTR.rotateAngleY = 0.344878F;
+		frontRibTR.rotateAngleZ = -0.1115358F;
+		spine.addChild(frontRibTR);
+		frontRibML = new ModelRenderer(this, 0, 0);
+		frontRibML.addBox(0F, 1.5F, -5F, 4, 1, 1);
+		frontRibML.rotateAngleY = -0.3340967F;
+		spine.addChild(frontRibML);
+		frontRibMR = new ModelRenderer(this, 0, 0);
+		frontRibMR.addBox(-3F, 1.5F, -5F, 4, 1, 1);
+		frontRibMR.rotateAngleY = 0.3451081F;
+		spine.addChild(frontRibMR);
+		frontRibBL = new ModelRenderer(this, 0, 0);
+		frontRibBL.addBox(0F, 3.5F, -5F, 3, 1, 1);
+		frontRibBL.rotateAngleY = -0.402503F;
+		frontRibBL.rotateAngleZ = 0.0743572F;
+		spine.addChild(frontRibBL);
+		frontRibBR = new ModelRenderer(this, 0, 0);
+		frontRibBR.addBox(-2F, 3.5F, -5F, 3, 1, 1);
+		frontRibBR.rotateAngleY = 0.5461433F;
+		frontRibBR.rotateAngleX = 0.1487144F;
+		spine.addChild(frontRibBR);
+
+
+		armRight = new ModelRenderer(this, 0, 0);
+		armRight.addBox(-1F, 3F, 0F, 1, 6, 1);
+		armRight.setRotationPoint(-5F, -1F, 3F);
+		armRight.rotateAngleZ = 0.445289F;
+		ModelRenderer shoulderRight = new ModelRenderer(this, 0, 0);
+		shoulderRight.addBox(-2F, 0F, -1F, 3, 3, 3);
+		armRight.addChild(shoulderRight);
+
+		forearmRight = new ModelRenderer(this, 0, 0);
+		forearmRight.addBox(-1F, 0F, -1F, 3, 8, 3);
+		forearmRight.setRotationPoint(-1F, 9F, 0F);
+		forearmRight.rotateAngleX = -0.5576792F;
+		armRight.addChild(forearmRight);
+
+		ModelRenderer rightThumb = new ModelRenderer(this, 0, 0);
+		rightThumb.addBox(1F, 8F, 0F, 1, 2, 1);
+		forearmRight.addChild(rightThumb);
+		ModelRenderer rightFinger = new ModelRenderer(this, 0, 0);
+		rightFinger.addBox(-1F, 8F, -1F, 1, 2, 1);
+		forearmRight.addChild(rightFinger);
+		ModelRenderer rightFinger2 = new ModelRenderer(this, 0, 0);
+		rightFinger2.addBox(0F, 8F, 1F, 1, 2, 1);
+		forearmRight.addChild(rightFinger2);
+
+		armLeft = new ModelRenderer(this, 0, 0);
+		armLeft.addBox(1F, 3F, 0F, 1, 6, 1);
+		armLeft.setRotationPoint(4F, -1F, 2F);
+		armLeft.rotateAngleZ = -0.442529F;
+		ModelRenderer shoulderLeft = new ModelRenderer(this, 0, 0);
+		shoulderLeft.addBox(0F, 0F, -1F, 3, 3, 3);
+		armLeft.addChild(shoulderLeft);
+
+		forearmLeft = new ModelRenderer(this, 0, 0);
+		forearmLeft.addBox(-1F, 0F, -1F, 3, 8, 3);
+		forearmLeft.setRotationPoint(1F, 9F, 0F);
+		forearmLeft.rotateAngleZ = 0.33104194F;
+		forearmLeft.rotateAngleX = -0.950024F;
+		armLeft.addChild(forearmLeft);
+
+		ModelRenderer leftFinger = new ModelRenderer(this, 0, 0);
+		leftFinger.addBox(0F, 8F, 1F, 1, 2, 1);
+		forearmLeft.addChild(leftFinger);
+		ModelRenderer leftFinger2 = new ModelRenderer(this, 0, 0);
+		leftFinger2.addBox(-1F, 8F, -1F, 1, 2, 1);
+		forearmLeft.addChild(leftFinger2);
+		ModelRenderer leftThumb = new ModelRenderer(this, 0, 0);
+		leftThumb.addBox(1F, 8F, 0F, 1, 2, 1);
+		forearmLeft.addChild(leftThumb);
+
+		scythe = new ModelRenderer(this, 0, 26);
+		scythe.addBox(-8F, 0F, 0F, 36, 1, 1);
+		scythe.setRotationPoint(0F, 18F, -2F);
+		scythe.rotateAngleY = 1.25995267F;
+		scythe.rotateAngleZ = -2.24554337F;
+		scythe.rotateAngleX = -0.723F;
+		armRight.addChild(scythe);
+
+		ModelRenderer scytheBlade = new ModelRenderer(this, 0, 46);
+		scytheBlade.addBox(13F, 1F, 0F, 13, 2, 1);
+		scythe.addChild(scytheBlade);
+		ModelRenderer scytheBlade2 = new ModelRenderer(this, 0, 38);
+		scytheBlade2.addBox(14F, 3F, 0F, 11, 4, 1);
+		scythe.addChild(scytheBlade2);
+		ModelRenderer scytheBlade3 = new ModelRenderer(this, 0, 30);
+		scytheBlade3.addBox(13F, 7F, 0F, 10, 5, 1);
+		scythe.addChild(scytheBlade3);
+		ModelRenderer scytheBlade4 = new ModelRenderer(this, 0, 30);
+		scytheBlade4.addBox(12F, 12F, 0F, 10, 4, 1);
+		scythe.addChild(scytheBlade4);
+		ModelRenderer scytheBlade5 = new ModelRenderer(this, 0, 30);
+		scytheBlade5.addBox(12F, 16F, 0F, 9, 4, 1);
+		scythe.addChild(scytheBlade5);
+		ModelRenderer scytheBlade6 = new ModelRenderer(this, 0, 30);
+		scytheBlade6.addBox(11F, 20F, 0F, 9, 2, 1);
+		scythe.addChild(scytheBlade6);
+		ModelRenderer scytheBlade7 = new ModelRenderer(this, 0, 30);
+		scytheBlade7.addBox(10F, 22F, 0F, 7, 2, 1);
+		scythe.addChild(scytheBlade7);
+		ModelRenderer scytheBlade8 = new ModelRenderer(this, 0, 30);
+		scytheBlade8.addBox(9F, 24F, 0F, 7, 2, 1);
+		scythe.addChild(scytheBlade8);
+		ModelRenderer scytheBlade9 = new ModelRenderer(this, 0, 30);
+		scytheBlade9.addBox(6F, 22F, 0F, 4, 2, 1);
+		scythe.addChild(scytheBlade9);
+		ModelRenderer scytheBlade10 = new ModelRenderer(this, 0, 30);
+		scytheBlade10.addBox(6F, 20F, 0F, 2, 2, 1);
+		scythe.addChild(scytheBlade10);
+		ModelRenderer scytheBlade11 = new ModelRenderer(this, 0, 30);
+		scytheBlade11.addBox(5F, 18F, 0F, 1, 2, 1);
+		scythe.addChild(scytheBlade11);
+		ModelRenderer scytheBlade12 = new ModelRenderer(this, 0, 46);
+		scytheBlade12.addBox(12F, -2F, 0F, 12, 2, 1);
+		scythe.addChild(scytheBlade12);
+		ModelRenderer scytheBlade13 = new ModelRenderer(this, 0, 38);
+		scytheBlade13.addBox(13F, -4F, 0F, 10, 2, 1);
+		scythe.addChild(scytheBlade13);
+		ModelRenderer scytheBlade14 = new ModelRenderer(this, 0, 30);
+		scytheBlade14.addBox(15F, -6F, 0F, 6, 2, 1);
+		scythe.addChild(scytheBlade14);
 	}
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		SpineMiddle.render(f5);
-		SpineBottom.render(f5);
-		SpineTop.render(f5);
-		SkullBack.render(f5);
-		RibML.render(f5);
-		RibTL.render(f5);
-		RibTR.render(f5);
-		RibMR.render(f5);
-		RibBL.render(f5);
-		RibBR.render(f5);
-		Heart.render(f5);
-		FrontRibTL.render(f5);
-		FrontRibTR.render(f5);
-		FrontRibML.render(f5);
-		FrontRibMR.render(f5);
-		FrontRibBL.render(f5);
-		FrontRibBR.render(f5);
-		ShoulderRight.render(f5);
-		ShoulderLeft.render(f5);
-		UpperArmLeft.render(f5);
-		UpperArmRight.render(f5);
-		SkullFront.render(f5);
-		UpperTeeth.render(f5);
-		LowerJaw.render(f5);
-		LowerToothRight.render(f5);
-		LowerToothLeft.render(f5);
-		HornRight.render(f5);
-		HornLeft.render(f5);
-		ForearmRight.render(f5);
-		ForearmLeft.render(f5);
-		ScytheHandle.render(f5);
-		ScytheBladeThick.render(f5);
-		ScytheBladeMiddle.render(f5);
-		ScytheBladeThin.render(f5);
-		RightThumb.render(f5);
-		RightFinger1.render(f5);
-		RightFinger2.render(f5);
-		LeftFinger1.render(f5);
-		LeftFinger1.render(f5);
-		LeftFinger1.render(f5);
-	}
-
-	private void setRotation(ModelRenderer model, float x, float y, float z)
-	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
+		spine.render(f5);
+		head.render(f5);
+		armLeft.render(f5);
+		armRight.render(f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		if (!(entity instanceof EntityDeathReaper)) return;
+
+		EntityDeathReaper reap = (EntityDeathReaper) entity;
+
+		lowerJaw.rotateAngleX = head.rotateAngleX = armRight.rotateAngleX = scythe.offsetX = scythe.offsetZ = 0.0F;
+		armRight.rotateAngleZ = 0.445289F;
+		scythe.rotateAngleX = -0.723F;
+		scythe.rotateAngleY = 1.25995267F;
+		scythe.rotateAngleZ = -2.24554337F;
+
+		if (reap.getAttackTime() > 0)
+		{
+			int time = (reap.getAttackTime() % 20) + 10;
+
+			lowerJaw.rotateAngleX = this.simplifyAngle(time, 8.0F) * 0.223F;
+			scythe.rotateAngleZ = 3.25995267F + this.simplifyAngle(time, 20.0F) * -1.667F;
+
+			if (time >= 2 && time <= 7)
+			{
+				armRight.rotateAngleX = this.simplifyAngle(time, 20.0F) * 1.246F + 0.326F;
+				armRight.rotateAngleZ = 0.845289F + this.simplifyAngle(time, 20.0F) * 0.946F;
+			}
+			else
+			{
+				armRight.rotateAngleX = this.simplifyAngle(time, 20.0F) * 1.246F + 0.326F;
+				armRight.rotateAngleZ = 0.845289F + this.simplifyAngle(time, 20.0F) * 0.946F;
+			} 
+		}
+		else
+		{
+			if (reap.getHitTime() > 0 && reap.getHitTime() <= 11)
+			{
+				float hit = reap.getHitTime() - 1.0F;
+				float scale = 0.223F;
+				float rate = 4.0F;
+
+				frontRibTL.rotateAngleY = -0.3386F + this.simplifyAngle(hit, rate) * scale;
+				frontRibTR.rotateAngleY = 0.344878F + this.simplifyAngle(hit, rate) * scale;
+				frontRibML.rotateAngleY = -0.3340967F + this.simplifyAngle(hit, rate) * scale;
+				frontRibMR.rotateAngleY = 0.3451081F + this.simplifyAngle(hit, rate) * scale;
+				frontRibBL.rotateAngleY = -0.402503F + this.simplifyAngle(hit, rate) * scale;
+				frontRibBR.rotateAngleY = 0.5461433F + this.simplifyAngle(hit, rate) * scale;
+
+				lowerJaw.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
+				head.rotateAngleX = -0.223F;
+				armLeft.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
+				armRight.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
+				scythe.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
+			}
+			else
+			{
+				head.rotateAngleY = f3 / (180F / (float)Math.PI);
+				head.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+				armLeft.rotateAngleX = 0.55F * this.simplifyAngle(f, 13.0F) * f1;
+				armRight.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
+			}
+		}
 	}
 
+	private float simplifyAngle(float par1, float par2)
+	{
+		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
+	}
 }
