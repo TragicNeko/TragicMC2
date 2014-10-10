@@ -85,26 +85,42 @@ public class ModelJabba extends ModelBase
 
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
-		this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
-		this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
-		this.head2.rotateAngleY = par4 / (180F / (float)Math.PI);
-		this.head2.rotateAngleX = par5 / (180F / (float)Math.PI);
+		head.rotateAngleY = par4 / (180F / (float)Math.PI);
+		head.rotateAngleX = par5 / (180F / (float)Math.PI);
+		head2.rotateAngleY = -par4 / (180F / (float)Math.PI);
+		head2.rotateAngleX = -par5 / (180F / (float)Math.PI);
 	}
 
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
 		if (!(entity instanceof EntityJabba)) return; //Claymation and Statue protection, temporary
+
 		EntityJabba jab = (EntityJabba) entity;
 		int i = jab.getAttackTicks();
-		int k = (int)par1 % 8;
-		float f0 = 0.345F;
 		
-		this.head.offsetX = movementOffsets[0][k] * f0;
-		this.body.offsetX = movementOffsets[1][k] * f0;
-		this.body2.offsetX = movementOffsets[2][k] * f0;
-		this.body3.offsetX = movementOffsets[3][k] * f0;
-		this.head2.offsetX = movementOffsets[4][k] * f0;
-
+		head.offsetX = body.offsetX = body2.offsetX = body3.offsetX = head2.offsetX = 0.0F;
+		head.offsetY = body.offsetY = body2.offsetY = body3.offsetY = head2.offsetY = 0.0F;
+		
+		if (jab.getWormTicks() > 0)
+		{
+			float f1 = 0.185F;
+			head.offsetY = this.simplifyAngle(jab.getWormTicks(), 15.0F) * f1;
+			body.offsetY = this.simplifyAngle(jab.getWormTicks() + 2.0F, 15.0F) * f1;
+			body2.offsetY = this.simplifyAngle(jab.getWormTicks() + 4.0F, 15.0F) * f1;
+			body3.offsetY = this.simplifyAngle(jab.getWormTicks() + 6.0F, 15.0F) * f1;
+			head2.offsetY = this.simplifyAngle(jab.getWormTicks() + 8.0F, 15.0F) * f1;
+		}
+		else
+		{
+			int k = ((int)par1 % 4) * 2;
+			float f0 = 0.745F;
+			head.offsetX = movementOffsets[0][k] * f0;
+			body.offsetX = movementOffsets[1][k] * f0;
+			body2.offsetX = movementOffsets[2][k] * f0;
+			body3.offsetX = movementOffsets[3][k] * f0;
+			head2.offsetX = movementOffsets[4][k] * f0;			
+		}
+		
 		if (i > 0)
 		{
 			leftPincer.rotateAngleY = -0.15F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F);
