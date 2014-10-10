@@ -3,6 +3,8 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import tragicneko.tragicmc.entity.mob.EntitySirv;
 
 public class ModelSirv extends ModelBase
 {
@@ -77,10 +79,27 @@ public class ModelSirv extends ModelBase
 	{
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		legLeft.rotateAngleX = -1.25F * this.simplifyAngle(f, 5.0F) * f1;
-		legRight.rotateAngleX = 1.25F * this.simplifyAngle(f, 5.0F) * f1;
+		legLeft.rotateAngleX = -0.85F * this.simplifyAngle(f, 10.0F) * f1;
+		legRight.rotateAngleX = 0.85F * this.simplifyAngle(f, 10.0F) * f1;
 	}
 	
+	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
+	{
+		EntitySirv sirv = (EntitySirv)entity;
+		int i = sirv.getAttackTime();
+
+		if (i > 0)
+		{
+			armRight.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle((float)i - par4, 10.0F);
+			armLeft.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle((float)i - par4, 10.0F);
+		}
+		else
+		{
+			armRight.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(par2, 13.0F)) * par3;
+			armLeft.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(par2, 13.0F)) * par3;
+		}
+	}
+
 	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);

@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -36,6 +37,29 @@ public class EntitySirv extends TragicMob {
 	}
 	
 	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+	}
+	
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
+	}
+	
+	@Override
 	public boolean canCorrupt()
 	{
 		return false;
@@ -55,6 +79,13 @@ public class EntitySirv extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
 	}
+	
+	@Override
+	public void onLivingUpdate()
+	{
+		super.onLivingUpdate();
+		if (!this.worldObj.isRemote && this.getAttackTime() > 0) this.decrementAttackTime();
+	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
@@ -70,7 +101,7 @@ public class EntitySirv extends TragicMob {
 				if (list.get(i) instanceof EntitySirv)
 				{
 					sirv = (EntitySirv) list.get(i);
-					sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
+					if (sirv.getAttackTarget() != null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 				}
 			}
 		}
@@ -80,7 +111,9 @@ public class EntitySirv extends TragicMob {
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
+		boolean result = super.attackEntityAsMob(par1Entity);
+		
+		if (result)
 		{
 			if (par1Entity instanceof EntityLivingBase && rand.nextInt(4) == 0)
 			{
@@ -95,8 +128,23 @@ public class EntitySirv extends TragicMob {
 					break;
 				}
 			}
+			
+			this.setAttackTime(10);
 		}
-		return super.attackEntityAsMob(par1Entity);
+		return result;
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("attackTime", this.getAttackTime());
 	}
 
 	@Override

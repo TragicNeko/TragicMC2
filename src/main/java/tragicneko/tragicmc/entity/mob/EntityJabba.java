@@ -68,6 +68,7 @@ public class EntityJabba extends TragicMob {
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
 	}
 
 	protected void setAngerTicks(int i)
@@ -117,15 +118,31 @@ public class EntityJabba extends TragicMob {
 		return this.dataWatcher.getWatchableObjectInt(18);
 	}
 
-	public void setAttackTicks(int i)
+	protected void setAttackTicks(int i)
 	{
 		this.dataWatcher.updateObject(18, i);
 	}
 
-	public void decrementAttackTicks()
+	protected void decrementAttackTicks()
 	{
 		int pow = this.getAttackTicks();
 		this.setAttackTicks(--pow);
+	}
+	
+	public int getWormTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+
+	protected void setWormTicks(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+
+	protected void decrementWormTicks()
+	{
+		int pow = this.getWormTicks();
+		this.setWormTicks(--pow);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -166,6 +183,8 @@ public class EntityJabba extends TragicMob {
 
 	public void onLivingUpdate()
 	{
+		if (this.getWormTicks() > 0) this.motionX = this.motionZ = 0.0D;
+		
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -184,7 +203,8 @@ public class EntityJabba extends TragicMob {
 		else
 		{
 			if (this.superiorForm == null && this.getJabbaType() == 0) this.superiorForm = new EntityJarra(this.worldObj);
-
+			if (this.getAttackTarget() != null && this.getWormTicks() > 0) this.setWormTicks(0);
+			if (this.getWormTicks() > 0) this.decrementWormTicks();
 			if (this.getAttackTicks() > 0) this.decrementAttackTicks();
 
 			if (this.getJabbaType() == 0)
@@ -226,9 +246,14 @@ public class EntityJabba extends TragicMob {
 				}
 			}
 			
-			if (this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(32) == 0)
+			if (this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(32) == 0 && this.getAttackTicks() == 0)
 			{
 				this.setAttackTicks(60);
+			}
+			
+			if (this.getAttackTarget() == null && this.ticksExisted % 10 == 0 && rand.nextInt(48) == 0 && this.getWormTicks() == 0)
+			{
+				this.setWormTicks(60);
 			}
 
 			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(lowHealthDamageBoost);
@@ -243,9 +268,9 @@ public class EntityJabba extends TragicMob {
 		for (int k = 0; k < 3; ++k)
 		{
 			this.worldObj.spawnParticle(s1,
-					this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+					this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 0.95D,
 					this.posY + (rand.nextDouble() * 0.15D),
-					this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+					this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 0.95D,
 					0.0, 0.0, 0.0);
 		}
 
@@ -291,6 +316,8 @@ public class EntityJabba extends TragicMob {
 		if (this.getHealth() <= this.getMaxHealth() / 2) par2 /= 2;
 
 		Boolean result = super.attackEntityFrom(par1DamageSource, par2);
+		
+		if (result && this.getWormTicks() > 0) this.setWormTicks(0);
 
 		if (this.rand.nextInt(8) == 0 && this.worldObj.difficultySetting == EnumDifficulty.HARD && result)
 		{
