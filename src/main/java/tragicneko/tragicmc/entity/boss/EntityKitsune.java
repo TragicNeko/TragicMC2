@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,12 +19,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -33,19 +34,17 @@ import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityKitsune extends TragicBoss {
 
-	private boolean isFiring;
-	private int firingTicks;
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", -0.5, 0);
 
 	public EntityKitsune(World par1World) {
 		super(par1World);
-		this.setSize(0.615F, 1.695F);
+		this.setSize(0.685F, 1.695F);
 		this.experienceValue = 120;
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 64.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
+		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 32.0F));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.isImmuneToFire = true;
@@ -72,183 +71,270 @@ public class EntityKitsune extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.42);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 1), 0.4F);
+
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 1), 0.4F);
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+	}
+
+	public int getFiringTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setFiringTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementFiringTicks()
+	{
+		int pow = this.getFiringTicks();
+		this.setFiringTicks(--pow);
+	}
+
+	public boolean isFiring()
+	{
+		return this.getFiringTicks() > 0;
+	}
+
+	public int getTauntTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	private void setTauntTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void decrementTauntTicks()
+	{
+		int pow = this.getTauntTicks();
+		this.setTauntTicks(--pow);
+	}
+
+	public int getHurtTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	private void setHurtTime(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	private void decrementHurtTime()
+	{
+		int pow = this.getHurtTime();
+		this.setHurtTime(--pow);
 	}
 
 	public void onLivingUpdate()
 	{
+		if (this.getTauntTicks() > 0 || this.isFiring()) this.motionX = this.motionZ = 0.0D;
+		if (this.getTauntTicks() > 0 || this.isFiring()) this.motionY = -0.1D;
+
 		super.onLivingUpdate();
 
-		if (this.firingTicks > 0)
+		if (this.worldObj.isRemote)
 		{
-			this.firingTicks--;
-		}
+			if (rand.nextBoolean() || this.isFiring())
+			{
+				int wow = this.isFiring() ? 4 : 1;
+				String s = this.getHurtTime() > 0 ? "smoke" : "flame";
 
-		UUID modUUID = UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375");
-		AttributeModifier mod = new AttributeModifier(modUUID, "kitsuneSpeedDebuff", -0.5, 0);
+				for (int i = 0; i < wow; i++)
+				{
+					this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
+				}
+			}
 
-		if (this.firingTicks > 0)
-		{
-			this.isFiring = true;
-
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+			if (this.getHurtTime() == 100)
+			{
+				for (int i = 0; i < 24; i++)
+				{
+					this.worldObj.spawnParticle("flame", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
+							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), rand.nextFloat() - rand.nextFloat(), 0.155F * this.rand.nextFloat(), rand.nextFloat());
+				}
+			}
 		}
 		else
 		{
-			this.isFiring = false;
+			if (this.isFiring()) this.decrementFiringTicks();
+			if (this.getHurtTime() > 0) this.decrementHurtTime();
+			if (this.getTauntTicks() > 0 && this.getHurtTime() > 0) this.setTauntTicks(0);
+			if (this.getTauntTicks() > 0) this.decrementTauntTicks();
+
+			if (this.getTauntTicks() == 1) this.teleportRandomly();
+
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-		}
+			if (this.isFiring() || this.getTauntTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 
-		if (this.getAttackTarget() != null)
-		{
-			if (this.canEntityBeSeen(this.getAttackTarget()))
+			if (this.getAttackTarget() != null)
 			{
-				if (this.rand.nextInt(32) == 0)
+				if (this.isFiring() && (this.getDistanceToEntity(this.getAttackTarget()) < 4.0F || this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F)) this.setFiringTicks(0);
+
+				if (this.canEntityBeSeen(this.getAttackTarget()))
 				{
-					EntityLivingBase entity = this.getAttackTarget();
-
-					if (rand.nextInt(72) == 0)
+					if (this.rand.nextInt(48) == 0)
 					{
-						entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300 + rand.nextInt(320), 0));
+						EntityLivingBase entity = this.getAttackTarget();
+
+						if (rand.nextInt(72) == 0)
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300 + rand.nextInt(320), 0));
+						}
+
+						if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
+						{
+							entity.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
+						}
+
+						if (rand.nextInt(72) == 0)
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 300 + rand.nextInt(320), 0));
+						}
+
+						if (this.ticksExisted % 120 == 0 && this.rand.nextInt(16) == 0)
+						{
+							this.teleportRandomly();
+						}
 					}
 
-					if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
+					if (this.getHurtTime() % 20 == 0 && this.getHurtTime() > 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F)
 					{
-						entity.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
-					}
+						double d0 = this.getAttackTarget().posX - this.posX;
+						double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+						double d2 = this.getAttackTarget().posZ - this.posZ;
 
-					if (rand.nextInt(72) == 0)
-					{
-						entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 300 + rand.nextInt(320), 0));
-					}
+						float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.375F;
 
-					if (this.ticksExisted % 120 == 0 && this.rand.nextInt(16) == 0)
-					{
-						this.teleportRandomly();
+						for (int i = 0; i < 3; i++)
+						{
+							EntitySmallFireball fireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+							fireball.posY = this.posY + (this.height * 2 / 3);
+							this.worldObj.spawnEntityInWorld(fireball);
+						}
 					}
 				}
-			}
-			else
-			{
-				if (this.rand.nextInt(56) == 0 || this.hurtResistantTime > 0 && this.hurtResistantTime % 20 == 0)
+				else
 				{
-					this.teleportToEntity(this.getAttackTarget());
+					if (this.rand.nextInt(56) == 0 || this.getHurtTime() > 0 && this.getHurtTime() % 20 == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F)
+					{
+						this.teleportToEntity(this.getAttackTarget());
+					}
 				}
+
+				if (this.getDistanceToEntity(this.getAttackTarget()) < 4.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && this.onGround && rand.nextInt(72) == 0 && !this.isFiring() && this.getTauntTicks() == 0)
+				{
+					double d0 = this.getAttackTarget().posX - this.posX;
+					double d1 = this.getAttackTarget().posZ - this.posZ;
+					double d2 = this.getAttackTarget().posY - this.posY;
+					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+					this.motionX = d0 / (double)f2 * 1.45D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+					this.motionZ = d1 / (double)f2 * 1.45D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+					this.motionY = d2 / (double)f2 * 1.25D * 0.800000011920929D + this.motionY * 0.60000000298023224D;
+				}
+				else if (this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F && rand.nextInt(8) == 0 && !this.isFiring() && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.ticksExisted % 5 == 0)
+				{
+					this.setFiringTicks(40);
+				}
+
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0)
+				{
+					double d0 = this.getAttackTarget().posX - this.posX;
+					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					double d2 = this.getAttackTarget().posZ - this.posZ;
+
+					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.375F;
+
+					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					fireball.posY = this.posY + (this.height * 2 / 3);
+					this.worldObj.spawnEntityInWorld(fireball);
+				}
+
+				if (this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(36) == 0 && !this.isFiring() && this.getTauntTicks() == 0)
+				{
+					boolean flag = this.teleportToEntity(this.getAttackTarget());
+					if (!flag) this.teleportRandomly();
+				}
+
+				if (!this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) > 8.0F && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && rand.nextInt(56) == 0 && this.getTauntTicks() == 0) this.setTauntTicks(40);
 			}
-		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) < 4.0F && this.onGround && rand.nextInt(32) == 0 && !this.isFiring)
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().posZ - this.posZ;
-			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-			this.motionX = d0 / (double)f2 * 2.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-			this.motionZ = d1 / (double)f2 * 2.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-			this.motionY = 0.1;
-		}
-
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(36) == 0 && this.firingTicks == 0 && this.canEntityBeSeen(this.getAttackTarget()))
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-			double d2 = this.getAttackTarget().posZ - this.posZ;
-
-			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
-
-			EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-			fireball.posY = this.posY + (this.height * 2 / 3);
-			this.worldObj.spawnEntityInWorld(fireball);
-			this.firingTicks = 40;
-		}
-
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.hurtResistantTime > 0 && this.hurtResistantTime % 20 == 0 && this.canEntityBeSeen(this.getAttackTarget()))
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-			double d2 = this.getAttackTarget().posZ - this.posZ;
-
-			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
-
-			for (int i = 0; i < 3; i++)
+			if (this.ticksExisted % 5 == 0)
 			{
-				EntitySmallFireball fireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-				fireball.posY = this.posY + (this.height * 2 / 3);
-				this.worldObj.spawnEntityInWorld(fireball);
+				TragicMC.logInfo("Taunt ticks: " + this.getTauntTicks());
+				TragicMC.logInfo("Firing ticks: " + this.getFiringTicks());
+				TragicMC.logInfo("Hurt Time: " + this.getHurtTime());
 			}
-		}
-		
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 20.0F && rand.nextInt(36) == 0 && !this.isFiring)
-		{
-			this.teleportToEntity(this.getAttackTarget());
 		}
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (!par1DamageSource.getDamageType().equals("fireball"))
+		if (this.worldObj.isRemote || this.getHurtTime() > 0) return false;
+
+		boolean flag = false;
+
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
+			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
+		}
+
+		if (!par1DamageSource.getDamageType().equals("fireball") && !flag)
 		{
 			return super.attackEntityFrom(par1DamageSource, 0.0F);
 		}
 		else
 		{
-			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
-			{
-				par2 = 10;
-
-				if (this.isFiring)
-				{
-					par2 = 20;
-				}
-
-				this.teleportToEntity(par1DamageSource.getEntity());
-			}
-			else
-			{
-				return super.attackEntityFrom(par1DamageSource, 0.0F);
-			}
+			if (this.getHurtTime() == 0 && !flag) this.setHurtTime(100);
+			par2 = flag ? Float.MAX_VALUE : (this.isFiring() && this.getFiringTicks() % 20 >= 15 ? 20 : 10);
+			if (!flag) this.teleportToEntity(par1DamageSource.getEntity());
 		}
-
-		this.hurtResistantTime = 100;
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
+		if (this.worldObj.isRemote) return false;
+
+		boolean flag = super.attackEntityAsMob(par1Entity);
+
+		if (flag)
 		{
-			if (par1Entity instanceof EntityLivingBase && rand.nextInt(4) == 0)
+			if (par1Entity instanceof EntityLivingBase && rand.nextBoolean())
 			{
-				switch(rand.nextInt(10))
+				switch(rand.nextInt(8))
 				{
-				case 1:
-					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200) + 320));
-					break;
-				case 2:
+				default:
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, rand.nextInt(200) + 320));
 					break;
-				case 3:
+				case 1:
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 					break;
-				case 4:
+				case 2:
 					if (TragicNewConfig.allowDisorientation)
 					{
 						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(200) + 320));
-					}
-					break;
-				default:
-					if (TragicNewConfig.allowSubmission)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
 					}
 					break;
 				}
@@ -256,15 +342,15 @@ public class EntityKitsune extends TragicBoss {
 
 			if (this.rand.nextInt(4) == 0)
 			{
-				par1Entity.setFire(4 + rand.nextInt(12));
+				par1Entity.setFire(4 + rand.nextInt(8));
 			}
 
-			par1Entity.motionX *= 1.4000000059604645D;
-			par1Entity.motionZ *= 1.4D;
+			par1Entity.motionX *= 1.2000000059604645D;
+			par1Entity.motionZ *= 1.2D;
 			par1Entity.motionY += 0.5D;
 		}
 
-		return super.attackEntityAsMob(par1Entity);
+		return flag;
 	}
 
 	protected boolean teleportRandomly()
@@ -288,6 +374,7 @@ public class EntityKitsune extends TragicBoss {
 
 	protected boolean teleportTo(double par1, double par3, double par5)
 	{
+		TragicMC.logInfo("Teleport attempt.");
 		double d3 = this.posX;
 		double d4 = this.posY;
 		double d5 = this.posZ;
@@ -299,14 +386,7 @@ public class EntityKitsune extends TragicBoss {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		boolean flag2 = false;
-
-		if (this.worldObj.getBlockLightValue(i, j, k) <= 4)
-		{
-			flag2 = true;
-		}
-
-		if (this.worldObj.blockExists(i, j, k) && flag2)
+		if (this.worldObj.blockExists(i, j, k))
 		{
 			boolean flag1 = false;
 
@@ -343,7 +423,6 @@ public class EntityKitsune extends TragicBoss {
 		}
 		else
 		{
-
 			short short1 = 128;
 
 			for (int l = 0; l < short1; ++l)
@@ -358,9 +437,25 @@ public class EntityKitsune extends TragicBoss {
 				this.worldObj.spawnParticle("flame", d7, d8, d9, (double)f, (double)f1, (double)f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
-			this.playSound("mob.endermen.portal", 1.0F, 1.0F);
+			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);
 			return true;
 		}
 	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
+		if (tag.hasKey("tauntTicks")) this.setTauntTicks(tag.getInteger("tauntTicks"));
+		if (tag.hasKey("hurtTime")) this.setHurtTime(tag.getInteger("hurtTime"));
+	}
 
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("firingTicks", this.getFiringTicks());
+		tag.setInteger("tauntTicks", this.getTauntTicks());
+		tag.setInteger("hurtTime", this.getHurtTime());
+	}
 }
