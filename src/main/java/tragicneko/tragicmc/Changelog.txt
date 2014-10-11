@@ -2776,7 +2776,7 @@ as cleaned up the chat message to just display the entity type rather than it's 
 Fix up Asphyxiate, it now teleports the mobs on initial use and otherwise freezes their motion
 Fixed up Flight of the Valkyries it now moves enemies in random directions while making them hover higher and higher
 
-1.37.1603++ <172> (October 8, 2014)
+1.38.1603++ [Starting work on Boss animations/AI rewrites after finishing all of the normal mob ones] <172> (October 8, 2014)
 Updated Apis AI, utilizing the charge ticks from the Minotaur, and applying it's render effect to a new reflection ability, it also will now stomp the ground in order to do it's
 close range explosive attack, which means it'll have a bit of a delay for when it actually does it, giving the player enough time to move away from it somewhat to reduce the
 damage from it
@@ -2789,11 +2789,23 @@ Added "the Worm" idle animation to the Jabba
 Updated the Skultar (aka Death Reaper)'s AI, made it's demeanor give more weight to player attacks, added multiple animations and adjusted it's model and texture, it now turns
 red when it's angry (as a 100% positive sign that everyone knows it's angry) and emits redstone particles
 It now has less armor when it's not being aggressive, fixed it's clone spawning, lowered chance of clones being spawned in
+Updated Kitsune AI, it now taunts the player randomly in between shooting fireballs and it's teleporting has been fixed (it was checking the light values before, which isn't
+necessary since it doesn't take damage from anything but fireballs)
+Fix leg offset with Apis after it does it's stomping animation
+Going to work on it's model and animations when I get home
+
+Add a utility method in the Boss superclass to get if an entity is within a certain range (using getDistanceToEntity() and a min and max range parameter
+Finish up the other Boss AI, models, textures and animations
 
 Update the creative mode projectile items
 
 Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
 mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
+This will be using Property types instead of raw boolean values, but with the way my config is set up, it should be easy to convert the values (all of the arrays will be
+converted to Property arrays instead, and then get the value from that when initializing the variables), most of the properties will be able to be changed without requiring
+minecraft to be reset
+Potion Effects can be changed without reset
+Mobs, Dimension, WorldGen and Biomes require resets
 
 --Reminders-
 Add a "shudder" animation to the Erkel, idle animation
