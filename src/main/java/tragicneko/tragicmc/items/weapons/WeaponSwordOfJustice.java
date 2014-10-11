@@ -24,7 +24,7 @@ public class WeaponSwordOfJustice extends ItemSword {
     {
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote) entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entity2), Float.MAX_VALUE);
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote && !((EntityPlayer) entity2).capabilities.isCreativeMode) stack.stackSize--;
-		return super.hitEntity(stack, entity, entity2);
+		return true;
     }
 	
 	@SideOnly(Side.CLIENT)

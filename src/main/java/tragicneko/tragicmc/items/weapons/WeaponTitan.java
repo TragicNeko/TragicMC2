@@ -2,18 +2,15 @@ package tragicneko.tragicmc.items.weapons;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -38,7 +35,7 @@ public class WeaponTitan extends EpicWeapon {
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (player.worldObj.isRemote) return super.onLeftClickEntity(stack, player, entity);
+		if (player.worldObj.isRemote || !(entity instanceof EntityLivingBase)) return super.onLeftClickEntity(stack, player, entity);
 		
 		if (itemRand.nextInt(6) != 0) return super.onLeftClickEntity(stack, player, entity);
 
