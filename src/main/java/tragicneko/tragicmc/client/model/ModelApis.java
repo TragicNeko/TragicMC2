@@ -140,6 +140,7 @@ public class ModelApis extends ModelBase
 		rightArm.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
 		
 		rightLeg.offsetY = -0.1F;
+		leftLeg.offsetY = -0.1F;
 		
 		if (apis.isStomping())
 		{
