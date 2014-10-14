@@ -16,6 +16,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.items.weapons.EpicWeapon;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.network.MessageAttack;
@@ -33,6 +34,8 @@ public class MouseEvents {
 	@SubscribeEvent
 	public void onMouseInput(MouseEvent event)
 	{
+		BlockGenericLeaves.fancyGraphics = Minecraft.getMinecraft().isFancyGraphicsEnabled();
+		
 		if (event.buttonstate && event.button == 0)
 		{
 			if (mc.thePlayer != null)
