@@ -375,6 +375,17 @@ public class TragicEntities {
 		if (TragicNewConfig.allowWisp)
 		{
 			EntityRegistry.registerModEntity(EntityWisp.class, "Wisp", listid++, TragicMC.instance, 80, 1, true);
+			EntityRegistry.addSpawn(EntityWisp.class, TragicNewConfig.wispSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
+					BiomeGenBase.forest,
+					BiomeGenBase.forestHills,
+					BiomeGenBase.birchForest,
+					BiomeGenBase.birchForestHills,
+					BiomeGenBase.jungle,
+					BiomeGenBase.jungleHills,
+					BiomeGenBase.desert,
+					BiomeGenBase.desertHills,
+					BiomeGenBase.mesa
+					);
 			TragicEntityList.addMapping(EntityWisp.class, "TragicMC.Wisp", id++, 0xFF2323, 0xCB6B4B);
 		}
 
@@ -395,6 +406,14 @@ public class TragicEntities {
 		if (TragicNewConfig.allowErkel)
 		{
 			EntityRegistry.registerModEntity(EntityErkel.class, "Erkel", listid++, TragicMC.instance, 80, 1, true);
+			EntityRegistry.addSpawn(EntityTox.class, TragicNewConfig.toxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
+					BiomeGenBase.forest,
+					BiomeGenBase.forestHills,
+					BiomeGenBase.birchForest,
+					BiomeGenBase.birchForestHills,
+					BiomeGenBase.jungle,
+					BiomeGenBase.jungleHills
+					);
 			TragicEntityList.addMapping(EntityErkel.class, "TragicMC.Erkel", id++, 0x4D935D, 0x30663D);
 		}
 		
