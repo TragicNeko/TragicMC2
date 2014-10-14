@@ -554,8 +554,34 @@ public class TragicEntities {
 
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
-				EntityRegistry.addSpawn(EntityPolaris.class, TragicNewConfig.polarisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
-						BiomeGenBase.desertHills
+				EntityRegistry.addSpawn(EntityPolaris.class, TragicNewConfig.polarisSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.deepOcean,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleEdge,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.ocean,
+						BiomeGenBase.plains,
+						BiomeGenBase.river,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.stoneBeach,
+						BiomeGenBase.swampland,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
 						);
 			}
 			TragicEntityList.addMapping(EntityPolaris.class, "TragicMC.Polaris", id++, 0x4A00BA, 0x000000, EnumEggType.BOSS);
@@ -577,18 +603,90 @@ public class TragicEntities {
 		if (TragicNewConfig.allowTimeController)
 		{
 			EntityRegistry.registerModEntity(EntityTimeController.class, "TimeController", listid++, TragicMC.instance, 80, 1, true);
+			if (TragicNewConfig.allowBossNaturalSpawns)
+			{
+				EntityRegistry.addSpawn(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.deepOcean,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleEdge,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.ocean,
+						BiomeGenBase.plains,
+						BiomeGenBase.river,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.stoneBeach,
+						BiomeGenBase.swampland,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityTimeController.class, "TragicMC.TimeController", id++, 0x94FFA3, 0xEA92E9, EnumEggType.BOSS);
 		}
 		
 		if (TragicNewConfig.allowEnyvil)
 		{
 			EntityRegistry.registerModEntity(EntityEnyvil.class, "Enyvil", listid++, TragicMC.instance, 80, 1, true);
+			
+			if (TragicNewConfig.allowBossNaturalSpawns)
+			{
+				EntityRegistry.addSpawn(EntityEnyvil.class, TragicNewConfig.enyvilSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.deepOcean,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleEdge,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.ocean,
+						BiomeGenBase.plains,
+						BiomeGenBase.river,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.stoneBeach,
+						BiomeGenBase.swampland,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityEnyvil.class, "TragicMC.Enyvil", id++, 0x5D1543, 0xFF6FFF, EnumEggType.BOSS);
 		}
 		
 		if (TragicNewConfig.allowClaymation)
 		{
 			EntityRegistry.registerModEntity(EntityClaymation.class, "Claymation", listid++, TragicMC.instance, 80, 1, true);
+			
+			if (TragicNewConfig.allowBossNaturalSpawns)
+			{
+				EntityRegistry.addSpawn(EntityClaymation.class, TragicNewConfig.claymationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
+						BiomeGenBase.desertHills
+						);
+			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
 
