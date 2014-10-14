@@ -30,7 +30,6 @@ import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
-import tragicneko.tragicmc.entity.mob.EntityDeathReaperClone;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
@@ -537,7 +536,6 @@ public class TragicEntities {
 						);
 			}
 			TragicEntityList.addMapping(EntityDeathReaper.class, "TragicMC.DeathReaper", id++, 0xCFCCB4, 0x553131, EnumEggType.BOSS);
-			EntityRegistry.registerModEntity(EntityDeathReaperClone.class, "DeathReaperClone", listid++, TragicMC.instance, 80, 1, true);
 		}
 
 		if (TragicNewConfig.allowKitsune)

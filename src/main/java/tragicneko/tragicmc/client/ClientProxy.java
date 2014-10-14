@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -15,7 +14,6 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
-import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelGragul;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
 import tragicneko.tragicmc.client.model.ModelInkling;
@@ -73,7 +71,6 @@ import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
-import tragicneko.tragicmc.entity.mob.EntityDeathReaperClone;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
@@ -211,11 +208,9 @@ public class ClientProxy extends CommonProxy {
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaper.class, new RenderDeathReaper());
-		RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaperClone.class, new RenderMob(new ModelDeathReaper(), 0.375F, "DeathReaper_lowRes", 0.875F));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityKitsune.class, new RenderKitsune());
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityPolaris.class, new RenderPolaris());
 		RenderingRegistry.registerEntityRenderingHandler(EntityYeti.class, new RenderYeti());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());

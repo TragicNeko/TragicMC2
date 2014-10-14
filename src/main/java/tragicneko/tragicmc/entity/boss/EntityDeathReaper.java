@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -28,12 +29,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.mob.EntityDeathReaperClone;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityDeathReaper extends TragicBoss {
+
+	private boolean isBomb;
 
 	public EntityDeathReaper(World par1World) {
 		super(par1World);
@@ -50,6 +52,7 @@ public class EntityDeathReaper extends TragicBoss {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.isImmuneToFire = true;
+		this.isBomb = false;
 	}
 
 	@Override
@@ -138,6 +141,23 @@ public class EntityDeathReaper extends TragicBoss {
 		this.setCloneTime(++pow);
 	}
 
+	public int getReaperType()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
+
+	private void setReaperType(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+		if (i == 0) this.isBomb = false;
+	}
+	
+	public void setClone()
+	{
+		this.setReaperType(1);
+		this.isBomb = rand.nextBoolean();
+	}
+
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
@@ -156,15 +176,17 @@ public class EntityDeathReaper extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		boolean flag = this.getReaperType() == 0;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(220.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(16.0);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? 0.35 : 0.32);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 16.0 : 6.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? 1.0 : 0.4);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
 	{
+		if (this.getReaperType() == 1) return;
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
 	}
@@ -173,7 +195,7 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		if (this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
 		if (this.isPotionActive(Potion.weakness.id)) this.removePotionEffect(Potion.weakness.id);
-		
+
 		if (this.getAttackTime() > 0) this.motionX = this.motionZ = 0.0D;
 		if (this.getAttackTime() > 0) this.motionY = -0.1D;
 
@@ -193,13 +215,16 @@ public class EntityDeathReaper extends TragicBoss {
 						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
 
-			if (this.getAttackTime() == 2)
+			if (this.getAttackTime() == 2 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F)
 			{
-				this.worldObj.spawnParticle("smoke",
-						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
-						this.posY + (rand.nextDouble() * 0.115D) + 0.375D,
-						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
-						0.0, rand.nextDouble() * 0.5556, 0.0);
+				for (int i = 0; i < 14; i++)
+				{
+					this.worldObj.spawnParticle("smoke",
+							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+							this.posY + (rand.nextDouble() * 0.115D) + 0.375D,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+							0.0, rand.nextDouble() * 0.5556, 0.0);
+				}
 			}
 		}
 		else
@@ -208,13 +233,22 @@ public class EntityDeathReaper extends TragicBoss {
 			this.incrementHitTime();
 			if (this.rand.nextInt(524) == 0 && this.getDemeanor() <= 0 && this.getAttackTarget() != null || this.getHitTime() >= 100 && this.getAttackTarget() != null) this.setDemeanor(5);
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
+			
+			if (this.isBomb)
+			{
+				this.setCloneTime(0);
+				if (this.getReaperType() == 0) this.isBomb = false;
+			}
 
-			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(6.0F);
+			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && this.getReaperType() == 0) this.heal(6.0F);
+			
+			if (this.ticksExisted >= 600 && this.getReaperType() == 1) this.setDead();
 
 			if (this.getAttackTarget() == null)
 			{
 				this.setDemeanor(0);
 				this.setCloneTime(0);
+				if (this.getReaperType() == 1) this.setDead();
 			}
 			else
 			{
@@ -222,7 +256,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 				int z = this.getHealth() <= this.getMaxHealth() / 2 ? 2 : 1;
 
-				if (this.canEntityBeSeen(this.getAttackTarget()) && this.rand.nextInt(96 / z) == 0)
+				if (this.canEntityBeSeen(this.getAttackTarget()) && this.rand.nextInt(96 / z) == 0 && this.getReaperType() == 0)
 				{
 					EntityLivingBase entity = this.getAttackTarget();
 
@@ -360,13 +394,27 @@ public class EntityDeathReaper extends TragicBoss {
 
 				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1)
 				{
-					boolean flag = this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), 20.0F);
+					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(4.0D, 4.0D, 4.0D));
+					EntityLivingBase target;
 
-					if (flag)
+					for (int i = 0; i < list.size(); i++)
 					{
-						this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(300) + 320, 2));
-						this.getAttackTarget().motionX *= 2.25D;
-						this.getAttackTarget().motionZ *= 2.25D;
+						if (list.get(i) instanceof EntityLivingBase)
+						{
+							target = (EntityLivingBase) list.get(i);
+
+							if (this.getDistanceToEntity(target) <= 3.0F)
+							{
+								boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), target instanceof EntityPlayer ? 10.0F : 20.0F);
+
+								if (flag)
+								{
+									target.addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(160) + 120, 3));
+									target.motionX *= 2.25D;
+									target.motionZ *= 2.25D;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -375,7 +423,17 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (this.worldObj.isRemote || par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityDeathReaperClone) return false;
+		if (this.worldObj.isRemote) return false;
+		
+		if (this.isBomb)
+		{
+			par2 = Float.MAX_VALUE;
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 2.0F, this.getMobGriefing());
+		}
+		else
+		{
+			if (this.getReaperType() == 1) par2 *= 10.0F;
+		}
 
 		this.trackHitType(par1DamageSource.getDamageType());
 
@@ -384,7 +442,7 @@ public class EntityDeathReaper extends TragicBoss {
 		if (result)
 		{
 			this.setHitTime(0);
-			
+
 			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && !this.isBeingAggressive() && par1DamageSource.getEntity() != null)
 			{
 				int potato = this.getHealth() <= this.getMaxHealth() / 4 ? 2 : 1;
@@ -403,12 +461,13 @@ public class EntityDeathReaper extends TragicBoss {
 
 	private void attemptToSummonClones() 
 	{
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaperClone.class, boundingBox.expand(32.0, 32.0, 32.0));		
+		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, boundingBox.expand(32.0, 32.0, 32.0));		
 
 		if (list.size() >= 4 || this.getAttackTarget() == null || this.getCloneTime() <= 100) return;
 
-		EntityDeathReaperClone clone = new EntityDeathReaperClone(this.worldObj);
+		EntityDeathReaper clone = new EntityDeathReaper(this.worldObj);
 		clone.copyLocationAndAnglesFrom(this);
+		clone.setClone();
 		EntityLivingBase entitylivingbase = this.getAttackTarget();
 
 		for (int y1 = -4; y1 < 5; y1++)
@@ -486,7 +545,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public int getTotalArmorValue()
 	{
-		return this.isBeingAggressive() ? 20 : 12;
+		return this.getReaperType() == 1 ? 4 : (this.isBeingAggressive() ? 20 : 12);
 	}
 
 	public void fall(float par1){}
@@ -539,12 +598,24 @@ public class EntityDeathReaper extends TragicBoss {
 	}
 
 	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		if (!this.worldObj.isRemote)
+		{
+			this.isBomb = rand.nextBoolean();
+		}
+		return super.onSpawnWithEgg(data);
+	}
+
+	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("demeanor")) this.setDemeanor(tag.getInteger("demeanor"));
 		if (tag.hasKey("hitTime")) this.setHitTime(tag.getInteger("hitTime"));
 		if (tag.hasKey("cloneTime")) this.setCloneTime(tag.getInteger("cloneTime"));
 		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+		if (tag.hasKey("reaperType")) this.setReaperType(tag.getInteger("reaperType"));
+		if (tag.hasKey("isBomb")) this.isBomb = tag.getBoolean("isBomb");
 	}
 
 	@Override
@@ -555,5 +626,7 @@ public class EntityDeathReaper extends TragicBoss {
 		tag.setInteger("reflectionTicks", this.getHitTime());
 		tag.setInteger("cloneTime", this.getCloneTime());
 		tag.setInteger("attackTime", this.getAttackTime());
+		tag.setInteger("reaperType", this.getReaperType());
+		tag.setBoolean("isBomb", this.isBomb);
 	}
 }
