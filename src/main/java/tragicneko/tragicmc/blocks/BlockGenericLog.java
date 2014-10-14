@@ -31,7 +31,7 @@ public class BlockGenericLog extends BlockRotatedPillar {
 		this.setHardness(1.0F);
 		this.setStepSound(soundTypeWood);
 		this.setHarvestLevel("axe", 1);
-		this.setLightLevel(0.0F);
+		this.setLightLevel(0.5F);
 	}
 
 	@Override

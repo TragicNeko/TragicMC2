@@ -16,6 +16,7 @@ public class BlockGlowvine extends BlockVine {
         super();
         this.setCreativeTab(TragicTabs.Survival);
         this.setLightLevel(1.0F);
+        this.setLightOpacity(0);
         this.setTickRandomly(true);
     }
 	

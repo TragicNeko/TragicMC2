@@ -84,7 +84,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		
 		WorldGenGlowvine worldgenvines = new WorldGenGlowvine();
 
-		for (l = 0; l < 30; ++l)
+		for (l = 0; l < 20; ++l)
 		{
 			i1 = p_76728_3_ + p_76728_2_.nextInt(16) + 8;
 			short short1 = 128;
