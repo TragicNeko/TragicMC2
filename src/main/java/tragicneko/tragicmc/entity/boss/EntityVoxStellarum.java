@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,10 +13,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -278,6 +281,16 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public int getTotalArmorValue()
 	{
 		return 16;
+	}
+	
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		if (!this.worldObj.isRemote)
+		{
+			this.setTextureID(rand.nextInt(8));
+		}
+		return super.onSpawnWithEgg(data);
 	}
 
 	@Override
