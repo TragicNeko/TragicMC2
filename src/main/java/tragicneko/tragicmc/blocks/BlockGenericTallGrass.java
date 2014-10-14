@@ -25,7 +25,7 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 		super();
 		this.texturePrefix = s;
 		this.setCreativeTab(TragicTabs.Survival);
-		this.setLightLevel(0.5F);
+		this.setLightLevel(0.0F);
 		this.setStepSound(soundTypeGrass);
 	}
 	

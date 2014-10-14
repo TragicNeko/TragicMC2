@@ -30,7 +30,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 			int[] coords;
 			ArrayList<int[]> list;
 
-			size = 4.0D * random.nextDouble() + 4.0D;
+			size = 3.0D * random.nextDouble() + 3.0D;
 
 			for (int pow = 0; pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 			{

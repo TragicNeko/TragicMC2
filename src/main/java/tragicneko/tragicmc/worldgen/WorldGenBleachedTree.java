@@ -22,11 +22,11 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 	@Override
 	public boolean generate(World world, Random random, int x, int y, int z) {
 
-		if (!WorldHelper.validBlocksForDimension.contains(world.getBlock(x, y, z)) || random.nextInt(3) != 0) return false;
+		//if (!WorldHelper.validBlocksForDimension.contains(world.getBlock(x, y, z)) || random.nextInt(3) != 0) return false;
 		double size = random.nextDouble() * 2.0D + 3.5D;
 		if (this.isLargeTree) size = random.nextDouble() * 3.0D + 6.5D;
 
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, size * 0.685D, x, y + (size * 0.785D), z);
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, size / 2.0D * 3.0D, x, y + (size * 0.785D), z);
 		int[] coords;
 		Block block;
 
@@ -35,13 +35,13 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 			coords = list.get(i);
 			block = world.getBlock(coords[0], coords[1], coords[2]);
 
-			if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]) && coords[1] >= (y + (size * 0.855D)))
+			if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]) && coords[1] >= (y + (size * 0.555D)))
 			{
 				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedLeaves);
 			}
 		}
-
-		list = WorldHelper.getBlocksInSphericalRange(world, size * 0.515D, x, y + (size * 0.785D) - 1.5D, z);
+		
+		list = WorldHelper.getBlocksInSphericalRange(world, size / 2.0D * 3.0D, x, y + (size * 0.795D) - 2.0D, z);
 
 		for (int i = 0; i < list.size(); i++) //removes extra leaves that are too low
 		{
@@ -53,98 +53,102 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 		}
-
-		size *= 0.663337D; //To scale down the radius to what the tree trunk needs
-
-		for (int y1 = 0; y1 <= size + (size * 0.497777455D) + 1; y1++)
+		
+		if (size > 8.0D)
 		{
-			list = WorldHelper.getBlocksInCircularRange(world, size * 0.267D, x, y + y1, z);
+			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x + 5, y + size + 2.5D, z);
 
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
 				block = world.getBlock(coords[0], coords[1], coords[2]);
-				if (block == TragicBlocks.BleachedLeaves || block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2])) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
-			}
 
-			if (y1 <= size * 0.345D || y1 >= size * 0.885D)
-			{
-				list = WorldHelper.getBlocksInCircularRange(world, size * 0.487D, x, y + y1, z);
-
-				for (int i = 0; i < list.size(); i++)
+				if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
 				{
-					coords = list.get(i);
-					if (random.nextInt(4) != 0)
-					{
-						block = world.getBlock(coords[0], coords[1], coords[2]);
-						if (block == TragicBlocks.BleachedLeaves || block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2])) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
-					}
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
+			
+			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x - 5, y + size + 2.5D, z);
 
-			if (y1 <= size * 0.145D)
+			for (int i = 0; i < list.size(); i++)
 			{
-				list = WorldHelper.getBlocksInCircularRange(world, size * 0.638D, x, y + y1, z);
+				coords = list.get(i);
+				block = world.getBlock(coords[0], coords[1], coords[2]);
 
-				for (int i = 0; i < list.size(); i++)
+				if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
 				{
-					coords = list.get(i);
-					block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block == TragicBlocks.BleachedLeaves || block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2])) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
+			
+			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x, y + size + 2.5D, z + 5);
 
-			if (y1 >= size * 0.925D)
+			for (int i = 0; i < list.size(); i++)
 			{
-				list = WorldHelper.getBlocksInCircularRange(world, size * 0.618D, x, y + y1, z);
+				coords = list.get(i);
+				block = world.getBlock(coords[0], coords[1], coords[2]);
 
-				for (int i = 0; i < list.size(); i++)
+				if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
 				{
-					coords = list.get(i);
-
-					if (((coords[0] != x + 3 || coords[0] != x - 3) && (coords[2] != z + 3 || coords[2] != z - 3)) && ((coords[0] != x + 2 || coords[0] != x - 2) && (coords[2] != z + 2 || coords[2] != z - 2)))
-					{
-						if (random.nextInt(4) != 0)
-						{
-							block = world.getBlock(coords[0], coords[1], coords[2]);
-							if (block == TragicBlocks.BleachedLeaves || block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2])) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
-						}
-					}
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
+			
+			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x + 5, y + size + 2.5D, z - 5);
 
-			if (y1 >= size * 0.887D) //remove some blocks from the inside near the top to give it more of an open look
+			for (int i = 0; i < list.size(); i++)
 			{
-				double d0 = size >= 6.333357D ? 0.3334567D : 0.283D;
-				
-				list = WorldHelper.getBlocksInCircularRange(world, size * 0.283D, x, y + y1, z);
+				coords = list.get(i);
+				block = world.getBlock(coords[0], coords[1], coords[2]);
 
-				for (int i = 0; i < list.size(); i++)
+				if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
 				{
-					coords = list.get(i);
-
-					block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block == TragicBlocks.BleachedWood && random.nextInt(8) != 0) world.setBlockToAir(coords[0], coords[1], coords[2]);
-
-				}
-			}
-
-			if (y1 >= size * 0.956687D && size >= 3.64673D) //fill in some empty space near the top after some wood is removed
-			{
-				list = WorldHelper.getBlocksInCircularRange(world, size * 0.363D, x, y + y1, z);
-
-				for (int i = 0; i < list.size(); i++)
-				{
-					coords = list.get(i);
-
-					block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block == TragicBlocks.BleachedWood && random.nextInt(4) == 0|| block == Blocks.air) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedLeaves);
-
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
 		}
 
-		list = WorldHelper.getBlocksInCircularRange(world, size * 0.728D, x, y - 1, z); //to make the roots appear more widespread
+		list = WorldHelper.getBlocksInSphericalRange(world, size / 2.0D, x, y + size + 1.0D, z);
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			coords = list.get(i);
+			block = world.getBlock(coords[0], coords[1], coords[2]);
+
+			if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
+			{
+				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
+			}
+		}
+
+		list = WorldHelper.getBlocksInSphericalRange(world, size / 4.0D, x, y + (size / 2.0D), z);
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			coords = list.get(i);
+			block = world.getBlock(coords[0], coords[1], coords[2]);
+
+			if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
+			{
+				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
+			}
+		}
+		
+		list = WorldHelper.getBlocksInSphericalRange(world, size / 2.0D, x, y, z);
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			coords = list.get(i);
+			block = world.getBlock(coords[0], coords[1], coords[2]);
+
+			if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]))
+			{
+				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
+			}
+		}
+
+		list = WorldHelper.getBlocksInCircularRange(world, size / 3.0D * 4.0D, x, y, z); //to make the roots appear more widespread
 
 		for (int i = 0; i < list.size(); i++)
 		{
@@ -153,17 +157,6 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 			if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]) && random.nextInt(4) == 0) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 		}
 
-		if (size >= 6.6667D) //for the larger version to give the roots more spread
-		{
-			list = WorldHelper.getBlocksInCircularRange(world, size * 0.838D, x, y - 2, z);
-
-			for (int i = 0; i < list.size(); i++)
-			{
-				coords = list.get(i);
-				block = world.getBlock(coords[0], coords[1], coords[2]);
-				if (block.canBeReplacedByLeaves(world, coords[0], coords[1], coords[2]) && random.nextInt(4) == 0) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
-			}
-		}
 		return true;
 	}
 

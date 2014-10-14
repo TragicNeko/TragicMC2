@@ -57,7 +57,6 @@ public class TragicChunkProvider implements IChunkProvider
 	private MapGenBase caveGenerator = new MapGenCaves();
 	/** Holds ravine generator */
 	private MapGenBase ravineGenerator = new MapGenRavine();
-	private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
 	/** The biomes that are used to generate the chunk */
 	private BiomeGenBase[] biomesForGeneration;
 	double[] field_147427_d;
@@ -70,7 +69,7 @@ public class TragicChunkProvider implements IChunkProvider
 	{
 		this.worldObj = par1World;
 		this.mapFeaturesEnabled = par4;
-		this.field_147435_p = par1World.getWorldInfo().getTerrainType();
+		this.field_147435_p = WorldType.DEFAULT;
 		this.rand = new Random(par2);
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
@@ -157,11 +156,11 @@ public class TragicChunkProvider implements IChunkProvider
 								}
 								else if (k2 * 8 + l2 < b0)
 								{
-									p_147424_3_[j3 += short1] = Blocks.lava;
+									p_147424_3_[j3 += short1] = Blocks.air;
 								}
 								else
 								{
-									p_147424_3_[j3 += short1] = null;
+									p_147424_3_[j3 += short1] = Blocks.air;
 								}
 							}
 
@@ -203,7 +202,7 @@ public class TragicChunkProvider implements IChunkProvider
 	}
 
 	/**
-	 * Will return back a chunk, if it doesn't exist and its not a MP client it will generates all the blocks for the
+	 * Will return back a chunk, if it doesn't exist and its not a MP client it will generate all the blocks for the
 	 * specified chunk from the map seed and chunk seed
 	 */
 	 public Chunk provideChunk(int par1, int par2)
@@ -262,12 +261,6 @@ public class TragicChunkProvider implements IChunkProvider
 						BiomeGenBase biomegenbase1 = this.biomesForGeneration[j1 + l1 + 2 + (k1 + i2 + 2) * 10];
 						float f3 = biomegenbase1.rootHeight;
 						float f4 = biomegenbase1.heightVariation;
-
-						if (this.field_147435_p == WorldType.AMPLIFIED && f3 > 0.0F)
-						{
-							f3 = 1.0F + f3 * 2.0F;
-							f4 = 1.0F + f4 * 4.0F;
-						}
 
 						float f5 = this.parabolicField[l1 + 2 + (i2 + 2) * 5] / (f3 + 2.0F);
 
@@ -377,7 +370,7 @@ public class TragicChunkProvider implements IChunkProvider
 		int k1;
 		int l1;
 		int i2;
-
+		
 		if (!flag && this.rand.nextInt(4) == 0 && TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA))
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
@@ -398,18 +391,6 @@ public class TragicChunkProvider implements IChunkProvider
 			}
 		}
 
-		if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) && !flag && this.rand.nextInt(16) == 0)
-		{
-			k1 = k + this.rand.nextInt(16) + 8;
-			l1 = this.rand.nextInt(this.rand.nextInt(56) + 8);
-			i2 = l + this.rand.nextInt(16) + 8;
-
-			if (this.rand.nextInt(10) == 0)
-			{
-				(new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, k1, l1, i2);
-			}
-		}
-
 		boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
 		for (k1 = 0; doGen && k1 < 16; ++k1)
 		{
@@ -420,13 +401,6 @@ public class TragicChunkProvider implements IChunkProvider
 		}
 
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
-		if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, ANIMALS))
-		{
-			SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, k + 8, l + 8, 16, 16, this.rand);
-		}
-		k += 8;
-		l += 8;
-
 		BlockFalling.fallInstantly = false;
 	}
 
@@ -466,7 +440,7 @@ public class TragicChunkProvider implements IChunkProvider
 	  */
 	 public String makeString()
 	 {
-		 return "RandomLevelSource";
+		 return "TragicDimensionRandomLevelSource";
 	 }
 
 	 /**
@@ -475,7 +449,7 @@ public class TragicChunkProvider implements IChunkProvider
 	 public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
 	 {
 		 BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(par2, par4);
-		 return par1EnumCreatureType == EnumCreatureType.monster && this.scatteredFeatureGenerator.func_143030_a(par2, par3, par4) ? this.scatteredFeatureGenerator.getScatteredFeatureSpawnList() : biomegenbase.getSpawnableList(par1EnumCreatureType);
+		 return biomegenbase.getSpawnableList(par1EnumCreatureType);
 	 }
 
 	 public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_)

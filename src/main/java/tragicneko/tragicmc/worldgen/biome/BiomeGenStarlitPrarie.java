@@ -27,7 +27,7 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 		this.rootHeight = 0.45F;
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.StarlitGrass;
-		this.theBiomeDecorator.treesPerChunk = 2;
+		this.theBiomeDecorator.treesPerChunk = 0;
 		this.theBiomeDecorator.grassPerChunk = 16;
 	}
 
@@ -35,11 +35,5 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
 		return new WorldGenTallGrass(TragicBlocks.StarlitTallGrass, 0);
-	}
-	
-	@Override
-	public WorldGenAbstractTree func_150567_a(Random rand)
-	{
-		return new WorldGenBleachedTree(false, rand.nextInt(8) != 0 ? false : true);
 	}
 }

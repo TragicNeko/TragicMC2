@@ -80,7 +80,6 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{		
 		par3.add(new ItemStack(par1, 1, 0));
-		par3.add(new ItemStack(par1, 1, 1));
 		par3.add(new ItemStack(par1, 1, 4));
 		/*
 		for (int i = 0; i < this.treeNames.length; i++)
@@ -139,7 +138,7 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 			}
 			break;
 		case 1:
-			object = new WorldGenBleachedTree(true, rand.nextBoolean());
+			object = new WorldGenBleachedTree(true, true);
 			break;
 		case 4:
 			object = new WorldGenAshenTree(true);

@@ -69,7 +69,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public boolean isSurfaceWorld()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
     {
-        return this.spawnBlocks.contains(this.worldObj.getTopBlock(par1, par2));
+        return false;
     } 
 	
 	@Override
@@ -141,7 +141,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public float calculateCelestialAngle(long time, float f)
 	{
-		time = 15000L;
+		time = 17000L;
 		int j = (int) (time % 24000L);
 		float f1 = (j + f) / 24000.0F - 0.25F;
 		if (f1 < 0.0F)

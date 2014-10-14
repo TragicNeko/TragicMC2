@@ -33,7 +33,6 @@ public class BlockTragicOres extends Block {
 		this.setStepSound(soundTypeStone);
 		this.setBlockName("tragicmc.tragicOres");
 		this.setHarvestLevels();
-		this.setLightLevel(1.0F);
 	}
 
 	private void setHarvestLevels() {
