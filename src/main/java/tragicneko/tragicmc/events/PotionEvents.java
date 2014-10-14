@@ -89,34 +89,6 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotions.Inhibit))
-		{
-			if (TragicNewConfig.allowImmunity && event.entityLiving.isPotionActive(TragicPotions.Immunity))
-			{
-				event.entityLiving.removePotionEffect(TragicPotions.Immunity.id);
-			}
-
-			if (event.entityLiving.isPotionActive(Potion.regeneration))
-			{
-				event.entityLiving.removePotionEffect(Potion.regeneration.id);
-			}
-
-			if (event.entityLiving.isPotionActive(Potion.damageBoost))
-			{
-				event.entityLiving.removePotionEffect(Potion.damageBoost.id);
-			}
-
-			if (event.entityLiving.isPotionActive(Potion.digSpeed)) 
-			{
-				event.entityLiving.removePotionEffect(Potion.digSpeed.id);
-			} 
-
-			if (event.entityLiving.isPotionActive(Potion.moveSpeed))
-			{
-				event.entityLiving.removePotionEffect(Potion.moveSpeed.id);
-			}
-		}
-
 		if (TragicNewConfig.allowImmunity && event.entityLiving.isPotionActive(TragicPotions.Immunity))
 		{
 			if (TragicNewConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotions.Inhibit))
@@ -143,6 +115,44 @@ public class PotionEvents {
 			{
 				event.entityLiving.removePotionEffect(TragicPotions.Corruption.id);
 			} 
+		}
+		
+		if (TragicNewConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotions.Inhibit))
+		{
+			if (event.entityLiving.isPotionActive(Potion.regeneration))
+			{
+				event.entityLiving.removePotionEffect(Potion.regeneration.id);
+			}
+
+			if (event.entityLiving.isPotionActive(Potion.damageBoost))
+			{
+				event.entityLiving.removePotionEffect(Potion.damageBoost.id);
+			}
+
+			if (event.entityLiving.isPotionActive(Potion.digSpeed)) 
+			{
+				event.entityLiving.removePotionEffect(Potion.digSpeed.id);
+			} 
+
+			if (event.entityLiving.isPotionActive(Potion.moveSpeed))
+			{
+				event.entityLiving.removePotionEffect(Potion.moveSpeed.id);
+			}
+		}
+		
+		if (TragicNewConfig.allowMalnourish && event.entityLiving.isPotionActive(TragicPotions.Malnourish))
+		{
+			if (event.entityLiving.isPotionActive(Potion.field_76443_y)) event.entityLiving.removePotionEffect(TragicPotions.Malnourish.id);
+		}
+		
+		if (TragicNewConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotions.Cripple))
+		{
+			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotions.Cripple.id);
+		}
+		
+		if (TragicNewConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotions.Submission))
+		{
+			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotions.Submission.id);
 		}
 
 		if (TragicNewConfig.allowCorruption && entity.isPotionActive(TragicPotions.Corruption))
