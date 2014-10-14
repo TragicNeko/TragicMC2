@@ -1,12 +1,11 @@
 package tragicneko.tragicmc.entity.boss;
 
-import java.util.UUID;
+import java.util.ArrayList;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +23,7 @@ import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.EntityDropHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class TragicBoss extends EntityMob implements IBossDisplayData
 {
@@ -47,7 +47,16 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		super.onDeath(par1);
 
 		if (this.worldObj.isRemote || !this.getAllowLoot()) return;
-		
+
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 4.0D, this.posX, this.posY, this.posZ);
+		int[] coords;
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			coords= list.get(i);
+			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+		}
+
 		int amt = 0;
 
 		if (TragicNewConfig.allowExtraBossLoot)
@@ -56,7 +65,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 			for (int i = 0; i < amount; i++)
 			{
-				if (rand.nextBoolean())
+				if (rand.nextInt(4) == 0)
 				{
 					this.entityDropItem(luxuryDrops[rand.nextInt(luxuryDrops.length)].copy(), 0.4F);
 					amt++;
@@ -66,50 +75,47 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 			}
 		}
 
-		if (!this.worldObj.isRemote)
+		int x = 1;
+
+		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
 		{
-			int x = 1;
+			EntityPlayer player = (EntityPlayer) par1.getEntity();
 
-			if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
+			if (player.getCurrentEquippedItem() != null)
 			{
-				EntityPlayer player = (EntityPlayer) par1.getEntity();
+				ItemStack weapon = player.getCurrentEquippedItem();
+				x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
+			}
+		}
 
-				if (player.getCurrentEquippedItem() != null)
-				{
-					ItemStack weapon = player.getCurrentEquippedItem();
-					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
-				}
+		int y = TragicNewConfig.commonDropRate;
+		int z = TragicNewConfig.rareDropRate;
+		int total = 0;
+
+		for (int i = 0; i < x; i++)
+		{
+			if (rand.nextInt(100) <= y + (x * 4))
+			{
+				ItemStack drop = EntityDropHelper.getCommonDropFromEntity(this.getClass());
+				if (drop != null) this.entityDropItem(drop, 0.4F);
+				total += 1;
 			}
 
-			int y = TragicNewConfig.commonDropRate;
-			int z = TragicNewConfig.rareDropRate;
-			int total = 0;
-
-			for (int i = 0; i < x; i++)
-			{
-				if (rand.nextInt(100) <= y + (x * 4))
-				{
-					ItemStack drop = EntityDropHelper.getCommonDropFromEntity(this.getClass());
-					if (drop != null) this.entityDropItem(drop, 0.4F);
-					total += 1;
-				}
-
-				if (this.recentlyHit > 0 && rand.nextInt(25) <= z + x)
-				{
-					ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
-					if (drop != null) this.entityDropItem(drop, 0.4F);
-					total += 1;
-				}
-
-				if (total >= x * 2) break;
-			}
-
-			if (this.recentlyHit > 0)
+			if (this.recentlyHit > 0 && rand.nextInt(25) <= z + x)
 			{
 				ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
 				if (drop != null) this.entityDropItem(drop, 0.4F);
-				total++;
+				total += 1;
 			}
+
+			if (total >= x * 2) break;
+		}
+
+		if (this.recentlyHit > 0)
+		{
+			ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
+			if (drop != null) this.entityDropItem(drop, 0.4F);
+			total++;
 		}
 	}
 
@@ -124,7 +130,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	public boolean getCanSpawnHere()
 	{		
 		if (rand.nextInt(10) != 0) return false;
-		
+
 		if (this.posY <= 63)
 		{
 			switch (this.worldObj.provider.dimensionId)
@@ -175,7 +181,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 					if (!flag) return false;
 				}
 			}
-			
+
 			if (rand.nextBoolean() && this.getAttackTarget() != null && par1DamageSource.getEntity() instanceof EntityLivingBase) this.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 		}
 		return super.attackEntityFrom(par1DamageSource, par2);
@@ -185,7 +191,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		return 1;
 	}
-	
+
 	public boolean getMobGriefing()
 	{
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
