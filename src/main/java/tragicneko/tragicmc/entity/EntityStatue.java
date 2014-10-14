@@ -39,7 +39,8 @@ public class EntityStatue extends Entity {
 		
 		this.setDead();
 		this.setBeenAttacked();
-		if (source.getEntity() != null && source.getEntity() instanceof EntityPlayer && ((EntityPlayer)source.getEntity()).capabilities.isCreativeMode) return true;
+		
+		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
 		
 		int id = this.getMobID();
 		
