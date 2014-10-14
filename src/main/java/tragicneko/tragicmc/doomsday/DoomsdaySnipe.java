@@ -34,7 +34,7 @@ public class DoomsdaySnipe extends Doomsday {
 		EntityArrow entityarrow = new EntityArrow(player.worldObj, player, f * 2.0F);
 		ItemStack stack = player.getCurrentEquippedItem();
 		double damage = 20.0;
-		damage += (1 / crisis) * 5;
+		damage += (1 / crisis) * 5.0D;
 
 		if (crucMoment)
 		{

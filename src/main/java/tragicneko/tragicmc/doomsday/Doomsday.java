@@ -32,7 +32,7 @@ public abstract class Doomsday {
 	public static final Doomsday PiercingLight = (new DoomsdayPiercingLight(5, 30, 60));
 	public static final Doomsday NatureDrain = (new DoomsdayNatureDrain(6, 45, 65));
 	public static final Doomsday PoisonBreak = (new DoomsdayPoisonBreak(7, 10, 30));
-	public static final Doomsday Snipe = (new DoomsdaySnipe(8, 55, 80));
+	public static final Doomsday Snipe = (new DoomsdaySnipe(8, 55, 90));
 	public static final Doomsday RapidFire = (new DoomsdayRapidFire(9, 3, 8));
 	public static final Doomsday Pulse = (new DoomsdayPulse(10, 6, 10));
 	public static final Doomsday LightShove = (new DoomsdayLightShove(11, 1, 3));
