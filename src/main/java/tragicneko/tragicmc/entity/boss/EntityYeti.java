@@ -21,6 +21,7 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -557,5 +558,28 @@ public class EntityYeti extends TragicBoss {
 		}
 
 		this.incrementDemeanor();
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("demeanor")) this.setDemeanor(tag.getInteger("demeanor"));
+		if (tag.hasKey("roarTicks")) this.setRoarTicks(tag.getInteger("roarTicks"));
+		if (tag.hasKey("frostTicks")) this.setFrostTicks(tag.getInteger("frostTicks"));
+		if (tag.hasKey("hurtTime")) this.setHurtTime(tag.getInteger("hurtTime"));
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+		if (tag.hasKey("chargeTicks")) this.setChargeTicks(tag.getInteger("chargeTicks"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("demeanor", this.getDemeanor());
+		tag.setInteger("roarTicks", this.getRoarTicks());
+		tag.setInteger("frostTicks", this.getFrostTicks());
+		tag.setInteger("hurtTime", this.getHurtTime());
+		tag.setInteger("attackTime", this.getAttackTime());
+		tag.setInteger("chargeTicks", this.getChargeTicks());
 	}
 }
