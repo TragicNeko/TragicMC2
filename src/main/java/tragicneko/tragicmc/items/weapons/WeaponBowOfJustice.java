@@ -2,6 +2,10 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.List;
 
+import tragicneko.tragicmc.main.TragicEnchantments;
+import tragicneko.tragicmc.main.TragicNewConfig;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
@@ -95,5 +99,15 @@ public class WeaponBowOfJustice extends ItemBow {
 			if (flag) par1ItemStack.stackSize--;
 		}
 	}
-
+	
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
+	{
+		if (world.isRemote) return;
+		
+		if (!stack.isItemEnchanted())
+		{
+			stack.addEnchantment(Enchantment.looting, 10);
+		}
+	}
 }

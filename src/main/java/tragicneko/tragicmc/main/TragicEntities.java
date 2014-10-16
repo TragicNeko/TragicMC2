@@ -613,7 +613,12 @@ public class TragicEntities {
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
 				EntityRegistry.addSpawn(EntityYeti.class, TragicNewConfig.yetiSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
-						BiomeGenBase.iceMountains
+						BiomeGenBase.iceMountains,
+						BiomeGenBase.frozenOcean,
+						BiomeGenBase.frozenRiver,
+						BiomeGenBase.coldBeach,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills
 						);
 			}
 			TragicEntityList.addMapping(EntityYeti.class, "TragicMC.Yeti", id++, 0xDADADA, 0xB9BFC7, EnumEggType.BOSS);

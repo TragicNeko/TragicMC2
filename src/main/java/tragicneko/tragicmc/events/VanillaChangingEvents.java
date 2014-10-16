@@ -589,10 +589,10 @@ public class VanillaChangingEvents {
 			{
 				if (((EntityZombie)event.source.getEntity()).isChild() && rand.nextInt(4) == 0 && TragicNewConfig.allowMalnourish)
 				{
-					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, rand.nextInt(320) + 40, rand.nextInt(4)));
+					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 				}
 
-				if (rand.nextInt(8) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(320) + 40, rand.nextInt(4)));
+				if (rand.nextInt(8) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 			}
 
 			if (event.source.getEntity() instanceof EntitySlime)
@@ -619,15 +619,15 @@ public class VanillaChangingEvents {
 			if (event.source.getEntity() instanceof EntityMagmaCube)
 			{
 				if (rand.nextInt(8) == 0) event.entityLiving.setFire(rand.nextInt(12));
-				if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(320) + 40, rand.nextInt(6)));
-				if (rand.nextInt(32) == 0 && TragicNewConfig.allowCripple) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(320) + 40, rand.nextInt(4)));
-				if (rand.nextInt(64) == 0 && TragicNewConfig.allowStun) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(60) + 40, rand.nextInt(4)));
+				if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(32) == 0 && TragicNewConfig.allowCripple) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(64) == 0 && TragicNewConfig.allowStun) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(20) + 40, rand.nextInt(4)));
 			}
 
 			if (event.source.getEntity() instanceof EntityPigZombie)
 			{
-				if (rand.nextInt(4) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(320) + 40, rand.nextInt(4)));
-				if (rand.nextInt(8) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+				if (rand.nextInt(4) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(8) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(60) + 40, rand.nextInt(6)));
 			}
 
 			if (event.source.getEntity() instanceof EntitySkeleton)
@@ -636,33 +636,33 @@ public class VanillaChangingEvents {
 				{
 					if (rand.nextInt(16) == 0)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(Potion.poison.id, rand.nextInt(320) + 40, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.poison.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 					}
 					else if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					else if (rand.nextInt(16) == 0)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					else if (rand.nextInt(16) == 0)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					else if (rand.nextInt(32) == 0 && TragicNewConfig.allowStun)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(60) + 40, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
 					}
 				}
 				else
 				{
 					if (rand.nextInt(32) == 0)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(Potion.blindness.id, rand.nextInt(120) + 80, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.blindness.id, rand.nextInt(60) + 80, rand.nextInt(4)));
 					}
 				}
 
@@ -670,7 +670,7 @@ public class VanillaChangingEvents {
 				{
 					if (rand.nextInt(4) == 0 && TragicNewConfig.allowStun)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(60) + 40, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
 					}
 				}
 
@@ -678,27 +678,27 @@ public class VanillaChangingEvents {
 				{
 					if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					if (rand.nextInt(16) == 0 && TragicNewConfig.allowDisorientation)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					if (rand.nextInt(32) == 0 && TragicNewConfig.allowCripple)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(320) + 40, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 					}
 
 					if (rand.nextInt(16) == 0)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					if (rand.nextInt(4) == 0)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(Potion.blindness.id, rand.nextInt(320) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.blindness.id, rand.nextInt(80) + 40, rand.nextInt(6)));
 					}
 
 				}
@@ -706,7 +706,7 @@ public class VanillaChangingEvents {
 
 			if (event.source.getEntity() instanceof EntityBlaze)
 			{
-				if (rand.nextInt(8) == 0 && TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(320) + 40, rand.nextInt(4)));
+				if (rand.nextInt(8) == 0 && TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(80) + 40, rand.nextInt(4)));
 			}
 		}
 
