@@ -270,7 +270,7 @@ public class Structure extends WorldGenerator {
 				if (world.provider instanceof TragicWorldProvider)
 				{
 					new SchematicCelestialTemple(variant, world, rand, x, y, z);
-					TragicMC.logInfo("Celestial Temple would've successfully generated at coords: " + x + ", " + y + ", " + z + ", but it is not currently set up.");
+					TragicMC.logInfo("Celestial Temple successfully generated at coords: " + x + ", " + y + ", " + z);
 					return true;
 				}
 				else

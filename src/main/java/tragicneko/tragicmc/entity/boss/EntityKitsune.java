@@ -300,13 +300,6 @@ public class EntityKitsune extends TragicBoss {
 
 				if (!this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) > 8.0F && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && rand.nextInt(56) == 0 && this.getTauntTicks() == 0) this.setTauntTicks(40);
 			}
-			/*
-			if (this.ticksExisted % 5 == 0)
-			{
-				TragicMC.logInfo("Taunt ticks: " + this.getTauntTicks());
-				TragicMC.logInfo("Firing ticks: " + this.getFiringTicks());
-				TragicMC.logInfo("Hurt Time: " + this.getHurtTime());
-			} */
 		}
 	}
 
