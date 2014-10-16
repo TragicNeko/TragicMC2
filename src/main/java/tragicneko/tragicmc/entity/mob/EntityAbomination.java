@@ -206,9 +206,9 @@ public class EntityAbomination extends TragicMob {
 
 		if (result)
 		{
-			par1Entity.motionY += 0.445D;
-			par1Entity.motionX *= 1.114D;
-			par1Entity.motionZ *= 1.114D;
+			par1Entity.motionY += 0.34D;
+			par1Entity.motionX *= 1.11D;
+			par1Entity.motionZ *= 1.11D;
 			this.setAttackTime(10);
 		}
 
