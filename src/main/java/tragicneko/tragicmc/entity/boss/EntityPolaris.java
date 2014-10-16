@@ -1,13 +1,16 @@
 package tragicneko.tragicmc.entity.boss;
 
-import java.util.UUID;
+import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
@@ -15,26 +18,25 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.WorldInfo;
-import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityPolaris extends TragicBoss {
 
-	public boolean isSpamming;
-	private int spamTicks;
+	private EntityAIBase fearGolems = new EntityAIAvoidEntity(this, EntityGolem.class, 6.0F, 1.0D, 1.2D);
 
 	public EntityPolaris(World par1World) {
 		super(par1World);
@@ -42,15 +44,14 @@ public class EntityPolaris extends TragicBoss {
 		this.stepHeight = 2.0F;
 		this.experienceValue = 120;
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
+		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
+		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.75D, 32.0F));
+		this.tasks.addTask(1, fearGolems);
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true));
-		this.isSpamming = false;
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -63,13 +64,29 @@ public class EntityPolaris extends TragicBoss {
 		return true;
 	}
 
+	public boolean canRenderOnFire()
+	{
+		return super.canRenderOnFire() && !this.isInvisible();
+	}
+
+	@SideOnly(Side.CLIENT)
+	public int getBrightnessForRender(float par1)
+	{
+		return !getDaytime() ? 15728880 : super.getBrightnessForRender(par1);
+	}
+
+	public float getBrightness(float par1)
+	{
+		return !getDaytime() ? 1.0F : super.getBrightness(par1);
+	}
+
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(120.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.39);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
 	}
 
@@ -77,126 +94,122 @@ public class EntityPolaris extends TragicBoss {
 	{
 		super.onDeath(par1DamageSource);
 
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 5), 0.4F);
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 5), 0.4F);
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+	}
+
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
+	}
+
+	/**
+	 * Returns true if it is currently day time
+	 * @return
+	 */
+	public boolean getDaytime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17) == 0;
+	}
+
+	private void setDaytime(boolean flag)
+	{
+		this.dataWatcher.updateObject(17, flag ? 0 : 1);
+	}
+
+	public boolean isClone()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18) == 1;
+	}
+
+	public void setClone()
+	{
+		this.dataWatcher.updateObject(18, 1);
 	}
 
 	public void onLivingUpdate()
-	{
-		super.onLivingUpdate();
-
+	{		
 		if (!this.worldObj.isRemote)
 		{
-			if (this.getAttackTarget() != null)
+			if (this.worldObj.isDaytime() && !this.getDaytime())
 			{
-				WorldInfo info = this.worldObj.getWorldInfo();
-
-				if (info.isRaining())
-				{
-					info.setRaining(false);
-					info.setRainTime(0);
-				}
-
-				if (info.isThundering())
-				{
-					info.setThundering(false);
-					info.setThunderTime(0);
-				}
-
-				info.setWorldTime(18000);
+				this.setDaytime(true);
 			}
-
-			if (this.ticksExisted % 120 == 0)
+			else if (!this.worldObj.isDaytime() && this.getDaytime())
 			{
-				this.heal(6.0F);
+				this.setDaytime(false);
 			}
+		}
 
-			if (this.spamTicks > 0)
+		super.onLivingUpdate();
+
+		if (this.worldObj.isRemote)	return;
+		if (this.getAttackTime() > 0) this.decrementAttackTime();
+		if (this.isClone() && this.tasks.taskEntries.contains(fearGolems)) this.tasks.taskEntries.remove(fearGolems);
+
+		if (this.ticksExisted % 240 == 0) this.heal(3.0F);
+
+		if (this.getAttackTarget() != null && !this.isClone())
+		{
+			this.worldObj.getWorldInfo().setWorldTime(18000);
+
+			if (this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
 			{
-				this.spamTicks--;
-				this.isSpamming = true;
+				this.setInvisible(true);
 			}
 			else
 			{
-				this.isSpamming = false;
-			}
-
-			UUID modUUID = UUID.fromString("a89f9af3-29f6-4e0f-a674-fee52f8c9b21");
-			AttributeModifier mod = new AttributeModifier(modUUID, "polarisSpeedDebuff", -0.3, 0);
-
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-
-			if (this.isSpamming)
-			{
-				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-			}
-
-			if (this.getAttackTarget() != null)
-			{
-				if (!this.isSpamming)
-				{
-					if (this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
-					{
-						if (TragicNewConfig.allowStun && !this.isPotionActive(TragicPotions.Stun)) this.setInvisible(true);
-					}
-					else
-					{
-						this.setInvisible(false);
-					}
-				}
-				else
-				{
-					this.setInvisible(false);
-
-					if (this.spamTicks % 5 == 0)
-					{
-						double d0 = this.getAttackTarget().posX - this.posX;
-						double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-						double d2 = this.getAttackTarget().posZ - this.posZ;
-
-						float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.92F;
-
-						for (int i = 0; i < 5; i++)
-						{
-							EntitySpiritCast fireball = new EntitySpiritCast(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-							fireball.posY = this.posY + (this.height * 2 / 3);
-							this.worldObj.spawnEntityInWorld(fireball);
-						}
-					}
-				}
-			}
-			else
-			{
-				this.spamTicks = 0;
-				this.isSpamming = false;
 				this.setInvisible(false);
 			}
+			
+			if (this.getDistanceToEntity(this.getAttackTarget()) > 16.0F && rand.nextInt(48) == 0) this.teleportToEntity(this.getAttackTarget());
+
+			if (this.ticksExisted % 10 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F) this.teleportRandomly();
+		}
+		else
+		{
+			this.setInvisible(false);
 		}
 
-
-		if (this.ticksExisted % 60 == 0 && !this.isSpamming && this.getAttackTarget() != null)
-		{			
-			if (rand.nextInt(48) == 0)
-			{
-				if (TragicNewConfig.allowStun && !this.isPotionActive(TragicPotions.Stun)) this.teleportRandomly();
-			}
-			else if (rand.nextInt(8) == 0)
-			{
-				if (TragicNewConfig.allowStun && !this.isPotionActive(TragicPotions.Stun)) this.teleportToEntity(this.getAttackTarget());
-			}
-		}
+		if (this.isClone() && this.ticksExisted >= 100) this.setDead();
 	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (par1DamageSource.getDamageType().equals("arrow"))
+		if (this.worldObj.isRemote) return false;
+
+		if (this.isClone())
 		{
-			par2 *= 1.15;
+			this.setBeenAttacked();
+			this.setDead();
+			return true;
 		}
+
+		if (par1DamageSource.getDamageType().equals("arrow") || this.isInvisible()) par2 *= 1.15;
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
 		{
-			if (TragicNewConfig.allowStun && !this.isPotionActive(TragicPotions.Stun)) this.teleportRandomly();
+			if (this.getHealth() - par2 > 0.0F) this.teleportRandomly();
 
 			if (par1DamageSource.getEntity() instanceof EntityPlayer)
 			{
@@ -211,28 +224,9 @@ public class EntityPolaris extends TragicBoss {
 					player.experienceTotal = 0;
 				}
 			}
-
-			if (!this.worldObj.isRemote)
-			{
-				if (this.isSpamming)
-				{
-					if (par1DamageSource.getEntity() != null)
-					{
-						if (TragicNewConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60));
-						this.spamTicks = 0;
-						this.isSpamming = false;
-					}
-				}
-				else
-				{
-					if (this.rand.nextInt(16) == 0 && this.getHealth() <= this.getMaxHealth() / 2)
-					{
-						this.spamTicks = 80;
-						this.isSpamming = true;
-					}
-				}
-			}
 		}
+
+		if (this.getAttackTime() == 0) this.setAttackTime(5);
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
@@ -240,18 +234,33 @@ public class EntityPolaris extends TragicBoss {
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
+		if (this.worldObj.isRemote) return false;
+
+		boolean flag = super.attackEntityAsMob(par1Entity);
+
+		if (flag)
 		{
+			if (rand.nextBoolean() && par1Entity instanceof EntityLivingBase) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 30));
 			this.teleportRandomly();
+
+			ArrayList<EntityPolaris> list = (ArrayList<EntityPolaris>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (int i = 0; i < list.size(); i++)
+			{
+				if (list.get(i) != this && !this.isClone() && list.get(i).isClone())
+				{
+					list.get(i).setDead();
+				}
+			}
+			
+			if (this.isClone()) this.setDead();
 		}
 
-		return super.attackEntityAsMob(par1Entity);
-
+		return flag;
 	}
 
 	public int getTotalArmorValue()
 	{
-		return this.isSpamming ? 25 : 16;
+		return this.worldObj.isDaytime() ? 0 : 12;
 	}
 
 	public void fall(float par1){}
@@ -277,6 +286,8 @@ public class EntityPolaris extends TragicBoss {
 
 	protected boolean teleportTo(double par1, double par3, double par5)
 	{
+		if (this.isClone()) return false;
+
 		double d3 = this.posX;
 		double d4 = this.posY;
 		double d5 = this.posZ;
@@ -288,14 +299,7 @@ public class EntityPolaris extends TragicBoss {
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		boolean flag2 = false;
-
-		if (this.worldObj.getBlockLightValue(i, j, k) <= 4)
-		{
-			flag2 = true;
-		}
-
-		if (this.worldObj.blockExists(i, j, k) && flag2)
+		if (this.worldObj.blockExists(i, j, k))
 		{
 			boolean flag1 = false;
 
@@ -344,11 +348,56 @@ public class EntityPolaris extends TragicBoss {
 				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
 				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				this.worldObj.spawnParticle("flame", d7, d8, d9, (double)f, (double)f1, (double)f2);
+				this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.enderdragon.wings", 1.0F, 1.0F);
 			this.playSound("mob.enderdragon.wings", 1.0F, 1.0F);
+
+			if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2)
+			{
+				ArrayList<Entity> list = (ArrayList<Entity>) this.worldObj.getEntitiesWithinAABB(EntityPolaris.class, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+				for (int mow = 0; mow < list.size(); mow++)
+				{
+					if (list.get(mow) == this) list.remove(mow);
+				}
+
+				if (list.size() <= 3)
+				{
+					EntityPolaris polar = new EntityPolaris(this.worldObj);
+					polar.copyLocationAndAnglesFrom(this);
+					polar.setPosition(d3, d4, d5);
+					polar.setClone();
+					this.worldObj.spawnEntityInWorld(polar);
+					if (this.getAttackTarget() != null) polar.setAttackTarget(this.getAttackTarget());
+					polar.onSpawnWithEgg(null);
+				}
+			}
 			return true;
-		}
+		} 
+	}
+	
+	@Override
+	public void setInWeb() {}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		if (!this.worldObj.isRemote && !this.worldObj.isDaytime() && this.getDaytime()) this.setDaytime(false);		
+		return super.onSpawnWithEgg(data);
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+		if (tag.hasKey("isClone") && tag.getBoolean("isClone")) this.setClone();
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("spinTicks", this.getAttackTime());
+		tag.setBoolean("healingTicks", this.isClone());
 	}
 }

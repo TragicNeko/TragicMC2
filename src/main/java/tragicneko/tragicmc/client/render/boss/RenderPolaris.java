@@ -9,11 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelPolaris;
+import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderPolaris extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Polaris_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Polaris2_lowRes.png");
 
 	private boolean isInCombat;
 
@@ -33,57 +34,27 @@ public class RenderPolaris extends RenderBoss {
 			GL11.glDepthMask(true);
 		}
 		
-		if (par2 == 0)
+		EntityPolaris polar = (EntityPolaris) boss;
+		
+		if (par2 == 0 && !polar.getDaytime())
 		{
+			float f1 = (float)boss.ticksExisted;
+			this.bindTexture(texture);
+			GL11.glMatrixMode(GL11.GL_TEXTURE);
+			GL11.glLoadIdentity();
+			float f2 = MathHelper.cos(f1 * 0.02F) * 0.5F;
+			float f3 = f1 * 0.01F;
+			GL11.glTranslatef(f2, f3, 0.0F);
 			this.setRenderPassModel(this.mainModel);
+			GL11.glMatrixMode(GL11.GL_MODELVIEW);
             GL11.glEnable(GL11.GL_NORMALIZE);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             return 1;
 		}
-		
-		if (boss.worldObj.getWorldInfo().getWorldTime() >= 13500 && !boss.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
-		{
-			if (par2 == 1)
-			{
-				float f1 = (float)boss.ticksExisted + par3;
-				this.bindTexture(texture);
-				GL11.glMatrixMode(GL11.GL_TEXTURE);
-				GL11.glLoadIdentity();
-				float f2 = MathHelper.cos(f1 * 0.02F) * 3.0F;
-				float f3 = f1 * 0.01F;
-				GL11.glTranslatef(f2, f3, 0.0F);
-				this.setRenderPassModel(this.mainModel);
-				GL11.glMatrixMode(GL11.GL_MODELVIEW);
-				GL11.glEnable(GL11.GL_BLEND);
-				GL11.glColor4f(0.65F, 0.15F, 0.65F, 0.35F);
-				GL11.glDisable(GL11.GL_LIGHTING);
-				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
-				GL11.glTranslatef(0.0F, -0.001F, 0.0F);
-				GL11.glScalef(1.1F, 1.1F, 1.1F);
-				return 1;
-			}
-			else if (par2 == 2)
-			{
-				float f1 = (float)boss.ticksExisted + 72 + par3;
-				this.bindTexture(texture);
-				GL11.glMatrixMode(GL11.GL_TEXTURE);
-				GL11.glLoadIdentity();
-				float f2 = MathHelper.sin(f1 * 0.02F) * 3.0F;
-				float f3 = f1 * 0.01F;
-				GL11.glTranslatef(f3, f2, 0.0F);
-				this.setRenderPassModel(this.mainModel);
-				GL11.glMatrixMode(GL11.GL_MODELVIEW);
-				GL11.glEnable(GL11.GL_BLEND);
-				GL11.glColor4f(0.55F, 0.1F, 0.55F, 0.35F);
-				GL11.glDisable(GL11.GL_LIGHTING);
-				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
-				GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-				GL11.glScalef(1.0F, 1.0F, 1.0F);
-				return -1;
-			}
-		}
 
+		GL11.glMatrixMode(GL11.GL_TEXTURE);
+		GL11.glLoadIdentity();
 		GL11.glMatrixMode(GL11.GL_TEXTURE);
 		GL11.glLoadIdentity();
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);

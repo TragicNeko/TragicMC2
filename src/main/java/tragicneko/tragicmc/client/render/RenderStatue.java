@@ -35,9 +35,9 @@ public class RenderStatue extends Render {
 	private final String mobPath = "tragicmc:textures/mobs/";
 	private final String textPath = "tragicmc:textures/statue/";
 	
-	private ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune_lowRes.png"),
+	private ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
 		new ResourceLocation(mobPath + "DeathReaper_lowRes.png"), new ResourceLocation(mobPath + "TimeController_lowRes.png"), new ResourceLocation(mobPath + "Yeti_lowRes.png"),
-		new ResourceLocation(mobPath + "Polaris_lowRes.png"), new ResourceLocation(mobPath + "Jarra_lowRes.png"), new ResourceLocation(mobPath + "Kragul_lowRes.png"),
+		new ResourceLocation(mobPath + "Polaris2_lowRes.png"), new ResourceLocation(mobPath + "Jarra_lowRes.png"), new ResourceLocation(mobPath + "Kragul_lowRes.png"),
 		new ResourceLocation(mobPath + "Magmox2_lowRes.png"), new ResourceLocation(mobPath + "MegaCryse_lowRes.png"), new ResourceLocation(mobPath + "StinKing_lowRes.png"),
 		new ResourceLocation(mobPath + "StinQueen_lowRes.png"), new ResourceLocation(mobPath + "GreaterStin_lowRes.png"), new ResourceLocation(mobPath + "VoxStellarum_lowRes.png"),
 		new ResourceLocation(mobPath + "Enyvil_lowRes.png"), new ResourceLocation(mobPath + "Claymation_lowRes.png")},{new ResourceLocation(textPath + "IronStatue.png"),
