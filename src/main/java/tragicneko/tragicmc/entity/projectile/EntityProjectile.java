@@ -302,7 +302,7 @@ public abstract class EntityProjectile extends Entity
         {
             this.setBeenAttacked();
 
-            if (par1DamageSource.getEntity() != null)
+            if (par1DamageSource.isUnblockable())
             {
                this.setDead();
 
