@@ -318,13 +318,7 @@ public class EntityDeathReaper extends TragicBoss {
 					double d2 = this.getAttackTarget().posY - this.posY;
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
 
-					if (this.isBeingAggressive())
-					{
-						this.motionX = d0 / (double)f2 * 1.5D * 0.200000011920929D + this.motionX * 0.20000000298023224D;
-						this.motionZ = d1 / (double)f2 * 1.5D * 0.200000011920929D + this.motionZ * 0.20000000298023224D;
-						this.motionY = d2 / (double)f2 * 1.5D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
-					}
-					else
+					if (!this.isBeingAggressive())
 					{
 						this.motionX = -d0 / (double)f2 * 1.25D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
 						this.motionZ = -d1 / (double)f2 * 1.25D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
