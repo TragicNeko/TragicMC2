@@ -6,6 +6,7 @@ import java.util.UUID;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -17,6 +18,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityGolem;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -24,6 +26,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
@@ -35,14 +38,8 @@ import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityYeti extends TragicBoss {
 
-	private boolean isAngry;
-	private int angerTicks;
-
-	private boolean shouldBeAngry;
-	private int projectileTicks;
-
-	private boolean angerFlag = false; //This ensures that the first time it's health dips below 3/4 it becomes angry
-	private boolean angerFlag2 = false; //This ensures that the first time it's health goes below half it becomes angry
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", -0.5, 0);
+	private int hitTime = 0;
 
 	public EntityYeti(World par1World) {
 		super(par1World);
@@ -51,9 +48,9 @@ public class EntityYeti extends TragicBoss {
 		this.experienceValue = 240;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
+		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.55D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
+		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
@@ -79,159 +76,330 @@ public class EntityYeti extends TragicBoss {
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.2967);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(16.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.326);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(12.0);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(2.0);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 4), 0.4F);
+
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 4), 0.4F);
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(20, Integer.valueOf(0)); 
+		this.dataWatcher.addObject(21, Integer.valueOf(0));
+	}
+
+	public int getDemeanor()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setDemeanor(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void incrementDemeanor()
+	{
+		int pow = this.getDemeanor();
+		if (pow < 20) this.setDemeanor(++pow);
+	}
+
+	private void decrementDemeanor()
+	{
+		int pow = this.getDemeanor();
+		if (pow > -20) this.setDemeanor(--pow);
+	}
+
+	public boolean isBeingAggressive()
+	{
+		return this.getDemeanor() >= 0;
+	}
+
+	public int getFrostTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	private void setFrostTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void decrementFrostTicks()
+	{
+		int pow = this.getFrostTicks();
+		this.setFrostTicks(--pow);
+	}
+
+	public int getRoarTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	private void setRoarTicks(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	private void decrementRoarTicks()
+	{
+		int pow = this.getRoarTicks();
+		this.setRoarTicks(--pow);
+	}
+
+	public boolean isRoaring()
+	{
+		return this.getRoarTicks() > 0;
+	}
+
+	public int getHurtTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+
+	private void setHurtTime(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+
+	private void decrementHurtTime()
+	{
+		int pow = this.getHurtTime();
+		this.setHurtTime(--pow);
+	}
+
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
+	}
+
+	public int getChargeTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(21);
+	}
+
+	private void setChargeTicks(int i)
+	{
+		this.dataWatcher.updateObject(21, i);
+	}
+
+	private void decrementChargeTicks()
+	{
+		int pow = this.getChargeTicks();
+		this.setChargeTicks(--pow);
+	}
+
+	public boolean isCharging()
+	{
+		return this.getChargeTicks() > 0;
 	}
 
 	public void onLivingUpdate()
 	{
+		if (this.getDemeanor() < 0 || this.getFrostTicks() > 0 || this.isRoaring())
+		{
+			this.motionX = this.motionZ = 0.0D;
+			this.motionY = -0.1D;
+		}
+
 		super.onLivingUpdate();
 
-		if (!this.worldObj.isRemote)
+		if (this.worldObj.isRemote)
 		{
-			if (this.shouldBeAngry)
+			if (this.isRoaring())
 			{
-				this.angerTicks = 500;
-				this.shouldBeAngry = false;
-			}
-
-			if (this.angerTicks > 0)
-			{
-				this.angerTicks--;
-			}
-
-			if (this.angerTicks > 0)
-			{
-				this.isAngry = true;
-			}
-			else
-			{
-				this.isAngry = false;
-			}
-
-			if (this.getHealth() <= this.getMaxHealth() / 4)
-			{
-				this.isAngry = true;
-				this.angerTicks = 1000;
-			}
-
-			if (this.projectileTicks > 0)
-			{
-				this.projectileTicks--;
-			}
-
-			if (this.getAttackTarget() == null)
-			{
-				this.angerTicks = 0;
-				this.isAngry = false;
-				this.angerFlag = false;
-				this.angerFlag2 = false;
-			}
-			else
-			{
-				UUID modUUID = UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049");
-				AttributeModifier mod = new AttributeModifier(modUUID, "yetiSpeedDebuff", -0.5, 0);
-
-				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-
-				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().posZ - this.posZ;
-				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-
-				if (this.isAngry)
+				for (int i = 0; i < 2; i++)
 				{
-					if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 7.0F 
-							&& this.onGround && rand.nextInt(24) == 0)
-					{
-						this.motionX = d0 / (double)f2 * 3.5D * 0.500000011920929D + this.motionX * 0.60000000298023224D;
-						this.motionZ = d1 / (double)f2 * 3.5D * 0.500000011920929D + this.motionZ * 0.60000000298023224D;
-						this.motionY = 0.25;
-						this.projectileTicks = 0;
-					}
-					else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 7.0F && this.onGround && rand.nextInt(24) == 0)
-					{
-						this.motionX = d0 / (double)f2 * 3.5D * 0.300000011920929D + this.motionX * 0.60000000298023224D;
-						this.motionZ = d1 / (double)f2 * 3.5D * 0.300000011920929D + this.motionZ * 0.60000000298023224D;
-						this.motionY += 0.45;
-						this.projectileTicks = 0;
-					}
+					this.worldObj.spawnParticle("snowshovel",
+							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							this.posY + (rand.nextDouble() * 0.15D),
+							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							0.0, rand.nextDouble() * 1.2556, 0.0);
+				}
 
-					if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 7.0F && rand.nextInt(128) == 0 && this.projectileTicks == 0)
+				if (this.getRoarTicks() <= 18)
+				{
+					for (int i = 0; i < 36; i++)
 					{
-						d0 = this.getAttackTarget().posX - this.posX;
-						d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-						double d2 = this.getAttackTarget().posZ - this.posZ;
-						float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+						this.worldObj.spawnParticle("snowshovel",
+								this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								this.posY + (rand.nextDouble() * 0.15D),
+								this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								rand.nextDouble() - rand.nextDouble(), rand.nextDouble() * 0.2556, rand.nextDouble() - rand.nextDouble());
+					}
+				}
+			}
+			else if (this.isCharging())
+			{
+				this.worldObj.spawnParticle("crit",
+						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						this.posY + (rand.nextDouble() * 0.75D) + 0.45D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						0.0, 0.0, 0.0);
+			}
+			return;
+		}
 
-						EntityLargeRock fireball = new EntityLargeRock(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						fireball.posY = this.posY + this.height;
-						fireball.posX += d0 * 0.02635D;
-						fireball.posZ += d2 * 0.02635D;
+		if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() ) this.heal(3.0F);
+
+		hitTime++;
+		if (this.getFrostTicks() > 0) this.decrementFrostTicks();
+		if (this.getRoarTicks() > 0) this.decrementRoarTicks();
+		if (this.getHurtTime() > 0) this.decrementHurtTime();
+		if (this.getAttackTime() > 0) this.decrementAttackTime();
+		if (this.getChargeTicks() > 0) this.decrementChargeTicks();
+
+		if (this.getAttackTarget() == null)
+		{
+			this.setDemeanor(0);
+		}
+		else
+		{		
+			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
+
+			double d0 = this.getAttackTarget().posX - this.posX;
+			double d1 = this.getAttackTarget().posZ - this.posZ;
+			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+
+			if (this.isBeingAggressive())
+			{
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.onGround && rand.nextInt(48) == 0 && this.getFrostTicks() == 0 && this.getRoarTicks() == 0 && !this.isCharging())
+				{
+					double d2 = this.getAttackTarget().posY - this.posY;
+					f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+
+					this.motionX = d0 / (double)f2 * 2.15D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
+					this.motionZ = d1 / (double)f2 * 2.15D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
+					this.motionY = d2 / (double)f2 * 1.45D * 0.400000011920929D + this.motionY * 0.80000000298023224D;
+					this.incrementDemeanor();
+					this.setChargeTicks(10);
+				}
+				else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 7.0F && this.onGround && rand.nextInt(128) == 0 &&
+						this.getFrostTicks() == 0 && !this.isRoaring() && !this.isCharging())
+				{
+					this.setFrostTicks(100);
+				}
+				else if (this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.onGround && rand.nextInt(256) == 0 && this.getFrostTicks() == 0 && !this.isRoaring() && this.getHealth() < this.getMaxHealth() / 2 && !this.isCharging())
+				{
+					this.setRoarTicks(20);
+					this.playSound("mob.enderdragon.growl", 1.6F, 1.0F);
+				}
+
+				if (this.getFrostTicks() > 5 && !this.isCharging())
+				{
+					d0 = this.getAttackTarget().posX - this.posX;
+					d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					double d2 = this.getAttackTarget().posZ - this.posZ;
+					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.265F;
+
+					for (int i = 0; i < 2; i++)
+					{
+						EntityIcicle fireball = new EntityIcicle(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+						fireball.posY = this.posY + (this.height * 2 / 3);
+						fireball.posX += d0 * 0.155D;
+						fireball.posZ += d2 * 0.155D;
 						this.worldObj.spawnEntityInWorld(fireball);
 					}
-					
-					if (rand.nextInt(32) == 0 && this.projectileTicks == 0)
-					{
-						this.projectileTicks = 100;
-					}
 
-					if (this.projectileTicks > 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F)
-					{
-						d0 = this.getAttackTarget().posX - this.posX;
-						d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-						double d2 = this.getAttackTarget().posZ - this.posZ;
-						float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+					this.incrementDemeanor();
+				}
 
-						for (int i = 0; i < 2; i++)
+				if (rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F) this.decrementDemeanor();
+
+				if (this.isRoaring() || this.getFrostTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+			}
+			else
+			{
+				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+
+				if (this.getFrostTicks() > 0) this.setFrostTicks(0);
+				if (rand.nextInt(528) == 0 || this.hitTime >= 600 || this.getAttackTarget().getHealth() <= this.getAttackTarget().getMaxHealth() / 3 || this.getDistanceToEntity(this.getAttackTarget()) <= 4.0F) this.setDemeanor(12);
+
+				if (this.ticksExisted % 60 == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && !this.isRoaring() && this.canEntityBeSeen(this.getAttackTarget()) && !this.isCharging())
+				{
+					d0 = this.getAttackTarget().posX - this.posX;
+					d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					double d2 = this.getAttackTarget().posZ - this.posZ;
+					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
+
+					EntityLargeRock fireball = new EntityLargeRock(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					fireball.posY = this.posY + this.height;
+					fireball.posX += d0 * 0.15D;
+					fireball.posZ += d2 * 0.15D;
+					fireball.motionY += 0.12D * f1;
+					this.worldObj.spawnEntityInWorld(fireball);
+					this.decrementDemeanor();
+				}
+				else if (this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.onGround && rand.nextInt(128) == 0 && this.getFrostTicks() == 0 && !this.isRoaring() && this.getHealth() < this.getMaxHealth() / 2 && !this.isCharging())
+				{
+					this.setRoarTicks(20);
+					this.playSound("mob.enderdragon.growl", 1.6F, 1.0F);
+				}
+			}
+
+			if (this.getRoarTicks() > 0 && this.getRoarTicks() == 18)
+			{
+				if (TragicNewConfig.allowAbomination) this.attemptToSummonHelp();
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0D, 12.0D, 12.0D));
+				EntityLivingBase entity;
+				for (int i = 0; i < list.size(); i++)
+				{
+					if (list.get(i) instanceof EntityLivingBase)
+					{
+						entity = (EntityLivingBase) list.get(i);
+						if (!(entity instanceof EntityAbomination) && !(entity instanceof EntityYeti))
 						{
-							EntityIcicle fireball = new EntityIcicle(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-							fireball.posY = this.posY + (this.height * 2 / 3);
-							fireball.posX += d0 * 0.155D;
-							fireball.posZ += d2 * 0.155D;
-							this.worldObj.spawnEntityInWorld(fireball);
+							entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
+							if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 30));
+						}
+						else
+						{
+							entity.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 100));
 						}
 					}
-
-					if (rand.nextInt(24) == 0 && this.onGround)
-					{
-						this.motionY += 0.556D;
-					}
 				}
-				else
+				this.decrementDemeanor();
+				
+				list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+				EntityAbomination mob;
+
+				for (int i = 0; i < list.size(); i++)
 				{
-					this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-
-					if (this.projectileTicks == 0 && rand.nextInt(4) == 0)
+					if (list.get(i) instanceof EntityAbomination)
 					{
-						d0 = this.getAttackTarget().posX - this.posX;
-						d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-						double d2 = this.getAttackTarget().posZ - this.posZ;
-						float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
+						mob = (EntityAbomination) list.get(i);
 
-						EntityLargeRock fireball = new EntityLargeRock(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						fireball.posY = this.posY + this.height;
-						fireball.posX += d0 * 0.35D;
-						fireball.posZ += d2 * 0.35D;
-						this.worldObj.spawnEntityInWorld(fireball);
-						this.projectileTicks = 60;
-					}
-
-					if (this.rand.nextInt(32) == 0 && this.projectileTicks > 0 && this.projectileTicks % 10 == 0)
-					{
-						if (TragicNewConfig.allowAbomination) this.attemptToSummonHelp();
+						if (mob instanceof EntityAbomination)
+						{
+							mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true));
+							mob.setTarget(this.getAttackTarget());
+						}
 					}
 				}
-
-
 			}
 		}
 	}
@@ -242,30 +410,32 @@ public class EntityYeti extends TragicBoss {
 
 		if (list.size() >= 4 || this.getAttackTarget() == null)
 		{
+			this.decrementDemeanor();
 			return;
 		}
 
 		EntityAbomination clone = new EntityAbomination(this.worldObj);
+		clone.copyLocationAndAnglesFrom(this);
 		EntityLivingBase entitylivingbase = this.getAttackTarget();
 
-		for (int y1 = -3; y1 < 4; y1++)
+		for (int y1 = -4; y1 < 5; y1++)
 		{
 			for (int z1 = -3; z1 < 4; z1++)
 			{
 				for (int x1 = -3; x1 < 4; x1++)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int)this.posX + x1, (int)this.posY + y1 - 1, (int)this.posZ + z1) && rand.nextBoolean())
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, (int) this.posX + x1, (int) this.posY + y1 - 1, (int) this.posZ + z1) && rand.nextBoolean())
 					{
 						clone.setPosition(this.posX + x1, this.posY + y1, this.posZ + z1);
 
 						if (this.worldObj.checkNoEntityCollision(clone.boundingBox) &&
 								this.worldObj.getCollidingBoundingBoxes(clone, clone.boundingBox).isEmpty() &&
 								!this.worldObj.isAnyLiquid(clone.boundingBox))
-						{
-							clone.onSpawnWithEgg(null);
+						{							
 							this.worldObj.spawnEntityInWorld(clone);
+							clone.onSpawnWithEgg(null);
 							if (entitylivingbase != null) clone.setTarget(entitylivingbase);
-							break;
+							return;
 						}
 					}
 				}
@@ -276,39 +446,39 @@ public class EntityYeti extends TragicBoss {
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
+		if (this.worldObj.isRemote) return false;
+
+		this.trackHitType(par1DamageSource.damageType);
+
+		if (par1DamageSource.isProjectile()) par2 *= 0.725F;
+
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 
-		if (result && !this.worldObj.isRemote)
+		if (result)
 		{
-			if (!this.angerFlag && this.getHealth() <= this.getMaxHealth() / 3 * 4)
-			{
-				this.shouldBeAngry = true;
-				this.angerFlag = true;
-			}
+			this.hitTime = 0;
+			if (this.getFrostTicks() > 0) this.setFrostTicks(0);
+			if (this.getHurtTime() == 0) this.setHurtTime(10);
+			if (par2 >= 10.0F) this.incrementDemeanor();
 
-			if (!this.angerFlag2 && this.getHealth() <= this.getMaxHealth() / 2)
-			{
-				this.shouldBeAngry = true;
-				this.angerFlag2 = true;
-			}
+			if (!this.isBeingAggressive() && rand.nextInt(4) == 0) this.setDemeanor(12);
 
-			if (this.rand.nextInt(128) == 0)
+			if (this.getAttackTarget() != null)
 			{
-				this.shouldBeAngry = true;
-			}
+				List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+				EntityAbomination mob;
 
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0, 32.0, 32.0));
-			TragicMob mob;
-
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (list.get(i) instanceof TragicMob)
+				for (int i = 0; i < list.size(); i++)
 				{
-					mob = (TragicMob) list.get(i);
-
-					if (mob instanceof EntityAbomination)
+					if (list.get(i) instanceof EntityAbomination)
 					{
-						if (mob.getAttackTarget() != this.getAttackTarget()) mob.setTarget(this.getAttackTarget());
+						mob = (EntityAbomination) list.get(i);
+
+						if (mob instanceof EntityAbomination)
+						{
+							mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true));
+							mob.setTarget(this.getAttackTarget());
+						}
 					}
 				}
 			}
@@ -319,46 +489,73 @@ public class EntityYeti extends TragicBoss {
 
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (super.attackEntityAsMob(par1Entity))
-		{
-			if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0 && this.isAngry)
-			{
-				if (TragicNewConfig.allowSubmission && rand.nextInt(4) == 0)
-				{
-					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
-				}
+		if (this.worldObj.isRemote) return false;
 
-				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
+		boolean flag = super.attackEntityAsMob(par1Entity);
+
+		if (flag)
+		{
+			if (this.isCharging() || this.isRoaring())
+			{
+				par1Entity.motionX *= 1.4D;
+				par1Entity.motionZ *= 1.4D;
+				par1Entity.motionY += 0.65D;
 			}
 
-			par1Entity.motionX *= 1.4000000059604645D;
-			par1Entity.motionZ *= 1.4D;
-			par1Entity.motionY += 0.75D;
+			this.incrementDemeanor();
+			if (this.getAttackTime() == 0 && !this.isCharging()) this.setAttackTime(10);
 		}
 
-		return super.attackEntityAsMob(par1Entity);
+		return flag;
 	}
 
 	public int getTotalArmorValue()
 	{
-		if (this.getHealth() <= this.getMaxHealth() / 4)
-		{
-			return 20;
-		}
-		else if (this.getHealth() <= this.getMaxHealth() / 2)
-		{
-			return 16;
-		}
-		else if (this.getHealth() <= this.getMaxHealth() / 3 * 4)
-		{
-			return 12;
-		}
-		else
-		{
-			return 10;
-		}
+		return this.isBeingAggressive() || this.isCharging() ? 16 : 8;
 	}
 
 	public void fall(float par1){}
 
+	private void trackHitType(String damageType) 
+	{
+		String hitType = null;
+		boolean flag = false;
+
+		if (damageType.equals("arrow"))
+		{
+			hitType = "projectile";
+		}
+		else if (damageType.equals("fireball"))
+		{
+			hitType = "projectile";
+		}
+		else if (damageType.equals("indirectMagic"))
+		{
+			hitType = "normal";
+		}
+		else if (damageType.equals("player"))
+		{
+			hitType = "normal";
+			flag = true;
+		}
+		else if (damageType.equals("generic"))
+		{
+			hitType = "normal";
+		}
+		else if (damageType.equals("mob"))
+		{
+			hitType = "normal";
+		}
+
+		if (hitType == null)
+		{
+			return;
+		}
+		else if (hitType == "projectile")
+		{
+			this.incrementDemeanor();
+		}
+
+		this.incrementDemeanor();
+	}
 }

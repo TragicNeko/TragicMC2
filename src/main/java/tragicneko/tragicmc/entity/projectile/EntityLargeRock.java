@@ -14,13 +14,11 @@ public class EntityLargeRock extends EntityProjectile {
 
 	public EntityLargeRock(World world) {
 		super(world);
-		this.motionY += 0.45D;
 	}
 
 	public EntityLargeRock(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
-		this.motionY += 0.45D;
 	}
 
 	protected float getMotionFactor()

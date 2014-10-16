@@ -41,6 +41,8 @@ public class EntityIcicle extends EntityProjectile {
 
 		if (mop.entityHit != null) 
 		{			
+			if (mop.entityHit instanceof EntityIcicle) return;
+			
 			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityYeti || mop.entityHit instanceof EntityAbomination || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse))
 			{
 				float f = mop.entityHit instanceof EntityBlaze ? 6.0F : 2.0F;
