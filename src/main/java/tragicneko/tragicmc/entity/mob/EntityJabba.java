@@ -394,6 +394,7 @@ public class EntityJabba extends TragicMob {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("jabbaType")) this.setJabbaType(tag.getInteger("jabbaType"));
 		if (tag.hasKey("angerTicks")) this.setAngerTicks(tag.getInteger("angerTicks"));
+		if (tag.hasKey("wormTicks")) this.setWormTicks(tag.getInteger("wormTicks"));
 	}
 
 	@Override
@@ -402,6 +403,7 @@ public class EntityJabba extends TragicMob {
 		super.writeEntityToNBT(tag);
 		tag.setInteger("jabbaType", this.getJabbaType());
 		tag.setInteger("angerTicks", this.getAngerTicks());
+		tag.setInteger("wormTicks", this.getWormTicks());
 	}
 
 	@Override
@@ -416,5 +418,28 @@ public class EntityJabba extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return TragicNewConfig.allowJarra;
 	}
-
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.jabba.breath";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.jabba.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.jabba.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return this.getJabbaType() == 0 ? super.getSoundPitch() : super.getSoundPitch() + 1.4F;
+	}
 }

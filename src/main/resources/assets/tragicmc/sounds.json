@@ -1,11 +1,38 @@
 {
-"test":
+    "random.test":
     {
         "category": "master",
         "sounds":
         [
             "random/test1",
 			"random/test2"
+        ]
+    },
+    "mob.jabba.breath":
+    {
+        "category": "master",
+        "sounds":
+        [
+            "mob/jabba/breath",
+            "mob/jabba/breath2",
+            "mob/jabba/breath3"
+        ]
+    },
+    "mob.jabba.hurt":
+    {
+        "category": "master",
+        "sounds":
+        [
+            "mob/jabba/hurt",
+            "mob/jabba/hurt2"
+        ]
+    },
+    "mob.jabba.death":
+    {
+        "category": "master",
+        "sounds":
+        [
+            "mob/jabba/death"
         ]
     }
 }

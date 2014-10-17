@@ -79,8 +79,6 @@ public class TragicEntities {
 	{
 		int id = 0;
 		int listid = 0;
-		int color = 0x000000;
-		int color2 = 0x000000;
 
 		if (TragicNewConfig.allowJabba)
 		{
@@ -718,31 +716,23 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityLargePumpkinbomb.class, "LargePumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityPoisonBarb.class, "PoisonBarb", listid++, TragicMC.instance, 80, 5, true);
-
 		EntityRegistry.registerModEntity(EntityNekoRocket.class, "NekoRocket", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityNekoStickyBomb.class, "NekoStickyBomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityNekoClusterBomb.class, "NekoClusterBomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityNekoMiniBomb.class, "NekoMiniBomb", listid++, TragicMC.instance, 80, 5, true);
-
 		EntityRegistry.registerModEntity(EntitySolarBomb.class, "SolarBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntitySpiritCast.class, "SpiritCast", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntitySpore.class, "Spore", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityBanana.class, "Banana", listid++, TragicMC.instance, 80, 5, true);
-
 		EntityRegistry.registerModEntity(EntityTimeBomb.class, "TimeBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityTimeDisruption.class, "TimeDisruption", listid++, TragicMC.instance, 80, 3, true);
-
 		EntityRegistry.registerModEntity(EntityLargeRock.class, "LargeRock", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityIcicle.class, "Icicle", listid++, TragicMC.instance, 80, 3, true);
-
 		EntityRegistry.registerModEntity(EntityStatue.class, "Statue", listid++, TragicMC.instance, 80, 3, false);
-
 		EntityRegistry.registerModEntity(EntityStarShard.class, "StarShard", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkLightning.class, "DarkLightning", listid++, TragicMC.instance, 80, 3, true);
-		
 		EntityRegistry.registerModEntity(EntityPitchBlack.class, "PitchBlack", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkEnergy.class, "DarkEnergy", listid++, TragicMC.instance, 80, 3, true);
-		
 		EntityRegistry.registerModEntity(EntityDarkCrystal.class, "DarkCrystal", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkMortor.class, "DarkMortor", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityWebBomb.class, "WebBomb", listid++, TragicMC.instance, 80, 3, true);
