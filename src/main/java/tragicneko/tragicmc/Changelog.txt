@@ -2776,7 +2776,7 @@ as cleaned up the chat message to just display the entity type rather than it's 
 Fix up Asphyxiate, it now teleports the mobs on initial use and otherwise freezes their motion
 Fixed up Flight of the Valkyries it now moves enemies in random directions while making them hover higher and higher
 
-1.38.1603++ [Starting work on Boss animations/AI rewrites after finishing all of the normal mob ones] <172> (October 8, 2014)
+1.38.1633 [Starting work on Boss animations/AI rewrites after finishing all of the normal mob ones, opitimize the Dimension again] <172> (October 8, 2014)
 Updated Apis AI, utilizing the charge ticks from the Minotaur, and applying it's render effect to a new reflection ability, it also will now stomp the ground in order to do it's
 close range explosive attack, which means it'll have a bit of a delay for when it actually does it, giving the player enough time to move away from it somewhat to reduce the
 damage from it
@@ -2791,11 +2791,80 @@ red when it's angry (as a 100% positive sign that everyone knows it's angry) and
 It now has less armor when it's not being aggressive, fixed it's clone spawning, lowered chance of clones being spawned in
 Updated Kitsune AI, it now taunts the player randomly in between shooting fireballs and it's teleporting has been fixed (it was checking the light values before, which isn't
 necessary since it doesn't take damage from anything but fireballs)
-Fix leg offset with Apis after it does it's stomping animation
-Going to work on it's model and animations when I get home
+Fixed leg offset with Apis after it does it's stomping animation
+Created a new model for the Kitsunakuma, to better match with the other models as well as give it a more mischievous look, it also got a new texture that uses nearly the same
+colors the previous one did, but with better blending
+Improved Death Reaper's Reaper Slash, it now hits all entities close to it with the attack, reduced damage when attacking players to try and avoid instakills
+Made the Polaris and Claymation's textures animated
+Finished up the Kitsunakuma's new texture and animations, added an attack time, switched it's normal attack to a "double swipe" attack, which will rarely actually double hit it's
+target, but it has that chance
+Lowered it's attack damage but improved it's ability to handle close quarters combat, increased range it's double swipe can hit
+Added a safeguard for bosses that use a lot of fire abilities (causing a lot of fires to be created by them) to extinguish all of the fires within a certain radius when they die
+to avoid the drops from going into nearby fire and getting destroyed, lava is something that the player should account for so it is not going to be dealt with here
+Reduce overall chance of luxury drops from bosses, they were dropping a bit too much
+Integrated Death Reaper clone into the Death Reaper's class, it'll use all of the same abilities but take 10x the damage, with reduced armor as well
+Added more of the bosses to the natural spawns in the overworld, this is in case ppl dont want to use the Dimension for whatever reason, they can still "complete" the mod
+Revert change to stop statue from dropping when destroyed by a creative mode player, they now uphold to the mob loot gamerule as well
+Reduce lighting in the Dimension (reduce amount of blocks that emit light), hopefully to improve load times and overall stability (had some effect but it still hangs randomly)
+Reduce average size of void pits in the Dimension (again), to reduce the lag spikes those create
+Added Wisp and Erkel to the overworld, they spawn in forest biomes, the Wisp may also spawn in deserts and mesas
+Fix some things with potion effects, Immunity now overrides Inhibit, Saturation overrides Malnourish, Health Boost overrides Cripple
+Remove Balloon tree generation, it is extremely laggy and isn't worth it aesthetically, therefore I'll possibly modify the vanilla tree gen in order to do what I want at a 
+later date
+Change my leaf blocks to update once the player does a mouse input to match the game setting, this requires the block to be updated (client-side) in order to show a change though
+The largest improvement for the dimension was reducing the amount of attempts the Dimension layers had to generate, from 256 * 3 down to 48 * 3 per chunk, with both of those
+* 10, again, I didn't realize this when I did it but that is 7680 blocks checked per chunk, with a render distance of 10 that is easily 768000 blocks checked each time you load
+up a new area, now it is down to 144000, less than 20% of that amount, with even less since it now does a check before checking all the blocks to ensure that it even can gen
+blocks in that y-range, reducing about 10% more of that value, on average
+Void pits and giant spikes still cause lag spikes, but that is understandable due to their large nature
+Revert light level change to tall grass and logs, give them minimal light
+Add new bleach tree for the starlit biomes to replace the balloon tree, it is a basic small tree
 
+1.38.1646 <173> (October 14, 2014)
+Add Polaris to Starlit Praries spawn
+Reimplement the sky in the Dimension
+Fix up exception handling for the entity drop helper, this shouldn't crash anymore even without it as I've fixed all of the possible bugs with it, but just in case I forget
+whenever I add new entities
+Start updating the Polaris AI, it's AI is greatly simplified, it no longer spams fireballs when it's health is low as fire doesn't really fit it too well, it can now create a
+clone when it's health is below half when it teleports, causing confusion to the player
+Remove quicksand as a drop from the Polaris, it can now drop various durations/types of invisibility potions
+Reduce overall duration of vanilla potion effects (effects inflicted by vanilla mobs that I added)
+Updating the Empariah(Yeti) AI now, it'll use a wider ranged Demeanor system from the Reaper, when it's not being aggressive it'll stay back and throw rocks, it has lower
+armor while this is happening, otherwise it leaps towards it's target, when angry it'll also sometimes stop and use a frost breath attack, sometimes it'll stop and roar, which
+will allow it to summon a bunch of Abominations to help it
+Also reduce damage it takes from projectiles
+Improved regeneration of Golden Sushi by one amplifier, it gives a tiny amount of invincibility now as well (about 5 seconds)
+I was going to create a new Yeti model, but I just slightly modified the newest one, adding more detail to the crown and fixing the foot claws
+Added necessary nbt data for the Yeti (almost forgot)
+Removed some logger spam
+Doing an interim build for CommodoreAlpha as soon as we get internet back...
+
+1.38.1646++ <174> (October 16, 2014)
+Added some sounds for the Jabba, Janna and Jarra
+
+
+I'm going to remove the Time Controller time phases and instead make it have entity states (similarly to the Enyvil)
+The Time Controller will get a Gravity Flux attack, basically it'll pull every entity nearby towards it, damaging anything that touches it, and absorbing any damage that is
+inflicted on it, it'll then do an equal amount of damage to each entity near it based on the total damage absorbed
+It'll get a Purge attack, which will damage anything near it and knock them away with a high knockback horizontal hit
+It'll get a Time Alter attack which will move entities to their positions from a few seconds ago (hopefully keeping track of this will be easy and not laggy at all)
+It'll get a Dimensional Atrophy attack which will set the world time to random times as well as teleport all nearby entities to random positions
+It can still launch Time Bombs which will get a model (simple spherical model, may just modify the large rock for it), they will work like the mortors in that they have a very
+high amplitude in their parabolic arc, the Time Disruption will be simplified to only damage entities that get near it, but damaging with magic damage
+Most of the Time Controller's attacks will inflict magic damage
+
+Experiment with a new fluid block for the Dimension (turns out the lava barely did anything for helping the lag in the Dimension)
 Add a utility method in the Boss superclass to get if an entity is within a certain range (using getDistanceToEntity() and a min and max range parameter
 Finish up the other Boss AI, models, textures and animations
+Add the Psygote, a Dimension only mob, it'll attack it's target with dark mortor strikes and will swap spots with it's target randomly as well, inflicting blindness on them,
+it'll rotate before doing the switch so that the player knows
+Add the Locbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
+Add the Paranoid Android, a Mini-Boss that'll attack with it's guns (non-projectile non-magic projectile attack), it'll be destructible, meaning it's arms could be blasted off
+and it can lose those guns, it could get it's head blown off, which will make it more aggressive, it could also lose it's legs and be unable to move, it has two guns intead of
+one that the locbot has, it'll also will be able to fire missles if it loses both guns
+Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a solid block (it also remains a solid block if it is idle), it bounces around and attacks whatever
+it collides with, it'll have dubstep-like sounds
+Start work on the Overlord
 
 Update the creative mode projectile items
 
@@ -2804,7 +2873,7 @@ mod has, but it should be totally worth it (I'll have to subscribe to the onConf
 This will be using Property types instead of raw boolean values, but with the way my config is set up, it should be easy to convert the values (all of the arrays will be
 converted to Property arrays instead, and then get the value from that when initializing the variables), most of the properties will be able to be changed without requiring
 minecraft to be reset
-Potion Effects can be changed without reset
+Potion Effects, Doom, Doomsdays, Amulets can be changed without reset
 Mobs, Dimension, WorldGen and Biomes require resets
 
 --Reminders-
@@ -2819,7 +2888,7 @@ Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scro
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Add the "Epic" weapon models, maybe animate them too
 I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
-Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'm need to set up
+Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
 a keybinding and gui screen in order to do this
 
 --Before Next Release--
@@ -2849,11 +2918,14 @@ Luex could be the lightning phoenix, able to shoot dark lightning and normal lig
 If all 3 get near each other, they could form Lazarus Ultim, a larger, stronger version that actively seeks out hostile mobs and destroys them with the combined powers of all
 3 lesser versions
 The Phoenix will not be one of the required kills for the endboss, it'll be a free roaming side boss, it'll still be pretty strong though
-The Overlord will give the player a permanent health buff (maybe of 10 hearts per kill on it)
+The Overlord will give the player a permanent health buff (maybe of 10 hearts per kill on it), this will need to be stored in an nbt tag or an extended property
 
 --Reminders for later--
 Add the custom mob sounds
 Add new particle effects
 Add animated textures for some of the items
 Add the pets, Kitsuneko, Panda Cub, the Bangatang
-Add the achievements
+Add the achievements, which will have a set questline leading up to the overlord
+
+Updating to 1.8 is going to be a HUGE pain in the ass, especially in regards to block states, block positions will just take a while to convert all of the methods, but block
+states are going to be the bane of my existance (unless fml/forge comes up with a better way to implement these into mods)
