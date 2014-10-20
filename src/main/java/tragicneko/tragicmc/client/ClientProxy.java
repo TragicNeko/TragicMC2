@@ -32,6 +32,7 @@ import tragicneko.tragicmc.client.render.RenderDarkCrystal;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
+import tragicneko.tragicmc.client.render.RenderTimeDisruption;
 import tragicneko.tragicmc.client.render.boss.RenderApis;
 import tragicneko.tragicmc.client.render.boss.RenderClaymation;
 import tragicneko.tragicmc.client.render.boss.RenderDeathReaper;
@@ -53,6 +54,7 @@ import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
+import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -106,7 +108,6 @@ import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
-import tragicneko.tragicmc.entity.projectile.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.events.KeyInputEvents;
 import tragicneko.tragicmc.events.MouseEvents;
@@ -150,31 +151,23 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinbomb.class, new RenderProjectile(TragicItems.Pumpkinbomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLargePumpkinbomb.class, new RenderProjectile(TragicItems.Pumpkinbomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPoisonBarb.class, new RenderProjectile(TragicItems.PoisonBarb));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityNekoRocket.class, new RenderProjectile(TragicItems.NekoRocket));
 		RenderingRegistry.registerEntityRenderingHandler(EntityNekoStickyBomb.class, new RenderProjectile(TragicItems.NekoStickyBomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityNekoClusterBomb.class, new RenderProjectile(TragicItems.NekoClusterBomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityNekoMiniBomb.class, new RenderProjectile(TragicItems.NekoClusterBomb));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntitySolarBomb.class, new RenderProjectile(TragicItems.SolarBomb));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpiritCast.class, new RenderProjectile(TragicItems.SpiritCast));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, new RenderProjectile(TragicItems.Spore));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanana.class, new RenderProjectile(TragicItems.Banana));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityLargeRock.class, new RenderLargeRock());
 		RenderingRegistry.registerEntityRenderingHandler(EntityIcicle.class, new RenderProjectile(TragicItems.CrushedIce));
-
-		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderProjectile(Items.clock));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeBomb.class, new RenderProjectile(Items.clock));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityStarShard.class, new RenderProjectile(TragicItems.StarPieces));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderProjectile(TragicItems.PureDarkness));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(TragicItems.PitchBlack));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkEnergy.class, new RenderProjectile(TragicItems.DarkParticles));
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkMortor.class, new RenderProjectile(TragicItems.ObsidianOrb));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWebBomb.class, new RenderProjectile(Item.getItemFromBlock(Blocks.web)));
@@ -210,11 +203,10 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDeathReaper.class, new RenderDeathReaper());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKitsune.class, new RenderKitsune());
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityPolaris.class, new RenderPolaris());
 		RenderingRegistry.registerEntityRenderingHandler(EntityYeti.class, new RenderYeti());
-		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 		
+		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 	}

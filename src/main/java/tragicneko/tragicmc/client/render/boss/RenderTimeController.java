@@ -29,35 +29,15 @@ public class RenderTimeController extends RenderBoss {
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
 		{       
 			GL11.glPushMatrix();
-			float f = 1.0F;
-			float f2 = 1.0F;
-			float f3 = 1.0F;
 			Random rand = par1EntityLivingBase.worldObj.rand;
-
-			if (par1EntityLivingBase instanceof EntityTimeController)
+			float f2 = 1.8F;
+			EntityTimeController ctrl = (EntityTimeController) par1EntityLivingBase;
+			if (ctrl.getLeapTicks() > 0)
 			{
-				EntityTimeController ctrl = (EntityTimeController) par1EntityLivingBase;
-
-				switch(ctrl.getDataWatcher().getWatchableObjectInt(16))
-				{
-				case 0:
-					break;
-				case 1:
-					f = 0.775F;
-					f2 = 0.775F;
-					f3 = 0.775F;
-					break;
-				case 2:
-					f = (rand.nextFloat() * 0.605F) + 0.395F;
-					f2 = (rand.nextFloat() * 0.605F) + 0.395F;
-					f3 = (rand.nextFloat() * 0.605F) + 0.395F;
-					break;
-				default:
-					break;
-				}
+				f2 = 1.0F + MathHelper.cos(ctrl.ticksExisted * 0.4F) * 0.876F;
 			}
-			
-			GL11.glColor4f(f, f2, f3, 0.35F);
+
+			GL11.glColor4f(f2 - 0.4F, f2, f2 - 0.4F, 1.0F);
 			GL11.glDepthMask(false);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -95,19 +75,19 @@ public class RenderTimeController extends RenderBoss {
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		if (par2 == 0)
 		{
 			this.setRenderPassModel(this.mainModel);
-            GL11.glEnable(GL11.GL_NORMALIZE);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            return 1;
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			return 1;
 		}
 
 		EntityTimeController ctrl = (EntityTimeController) boss;
 
-		if (ctrl.getDataWatcher().getWatchableObjectInt(16) == 0)
+		if (ctrl.getPurgeTicks() > 0)
 		{
 			if (par2 == 1)
 			{
@@ -115,8 +95,8 @@ public class RenderTimeController extends RenderBoss {
 				this.bindTexture(texture);
 				GL11.glMatrixMode(GL11.GL_TEXTURE);
 				GL11.glLoadIdentity();
-				float f2 = MathHelper.cos(f1 * 0.02F) * 3.0F;
-				float f3 = f1 * 0.01F;
+				float f2 = MathHelper.cos(f1 * 0.15F) * 0.56F;
+				float f3 = f1 * 0.02F;
 				GL11.glTranslatef(f2, f3, 0.0F);
 				this.setRenderPassModel(this.mainModel);
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
@@ -131,12 +111,12 @@ public class RenderTimeController extends RenderBoss {
 
 			if (par2 == 2)
 			{
-				float f1 = (float)boss.ticksExisted + 72 + par3;
+				float f1 = (float)boss.ticksExisted + 28 + par3;
 				this.bindTexture(texture);
 				GL11.glMatrixMode(GL11.GL_TEXTURE);
 				GL11.glLoadIdentity();
-				float f2 = MathHelper.sin(f1 * 0.02F) * 3.0F;
-				float f3 = f1 * 0.01F;
+				float f2 = MathHelper.sin(f1 * 0.15F) * 0.56F;
+				float f3 = f1 * 0.02F;
 				GL11.glTranslatef(f3, f2, 0.0F);
 				this.setRenderPassModel(this.mainModel);
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
@@ -147,17 +127,6 @@ public class RenderTimeController extends RenderBoss {
 				GL11.glTranslatef(0.0F, 0.0F, 0.0F);
 				GL11.glScalef(1.0F, 1.0F, 1.0F);
 				return 3;
-			}
-
-			if (par2 == 3)
-			{
-				GL11.glMatrixMode(GL11.GL_TEXTURE);
-				GL11.glLoadIdentity();
-				GL11.glMatrixMode(GL11.GL_MODELVIEW);
-				GL11.glEnable(GL11.GL_LIGHTING);
-				GL11.glDisable(GL11.GL_BLEND);
-				
-				return -1;
 			}
 		}
 

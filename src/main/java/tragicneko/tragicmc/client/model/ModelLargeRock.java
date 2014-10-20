@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.client.model;
 
+import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -34,10 +35,15 @@ public class ModelLargeRock extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-		rock.rotateAngleX = (float) (Math.cos(entity.ticksExisted) * 0.5F);
+		rock.rotateAngleX = rock.rotateAngleY = rock.rotateAngleZ = 0.0F;
+		rock.offsetY = 0.4F;
+		
 		rock.rotateAngleY = (float) (Math.sin(entity.ticksExisted) * 0.5F);
+		
+		if (!(entity instanceof EntityLargeRock)) return;
+		rock.offsetY = 0.0F;
+		rock.rotateAngleX = (float) (Math.cos(entity.ticksExisted) * 0.5F);
+		rock.rotateAngleZ = (float) (Math.cos(entity.ticksExisted) * 0.45F);
 	}
 
 }
