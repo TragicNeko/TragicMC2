@@ -5,8 +5,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 
 public class DamageHelper {
-	
-	//These may get changed to actually extend EntityDamageSource
 
 	/**
 	 * Should be used to inflict suffocation damage on entities
@@ -26,7 +24,7 @@ public class DamageHelper {
 	 */
 	public static DamageSource causeModMagicDamageToEntity(EntityLivingBase entity)
 	{
-		EntityDamageSource source = (EntityDamageSource) new EntityDamageSource("modMagic", entity).setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
+		EntityDamageSource source = (EntityDamageSource) new EntityDamageSource("modMagic", entity).setDamageBypassesArmor().setMagicDamage();
 		return source;
 	}
 	

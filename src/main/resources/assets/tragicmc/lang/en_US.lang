@@ -2,8 +2,10 @@
 itemGroup.tragicMCMain=Tragic MC - Survival
 itemGroup.tragicMCMobs=Tragic MC - Creative
 
-death.attack.suffocation=Player had the air removed from their lungs
-death.attack.modMagic=Player was murdered through the wonders of magic
+death.attack.suffocation=%1$s had the air removed from their lungs by %2$s
+death.attack.modMagic=%1$s was murdered with magic by %2$s
+death.attack.armorPiercing=%1$s was slayed with piercing damage by %2$s
+death.attack.armorPiercing.item=%1$s was slayed with piercing damage by %2$s using %3$s
 
 command.tragicmc.doom.usage=Usage: /doom <player> <int to apply>
 command.tragicmc.doomsday.usage=Usage: /doomsday <player> <doomsday id>
