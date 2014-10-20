@@ -27,6 +27,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicEntities;
+import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -188,7 +189,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		super.collideWithEntity(entity);
 
 		if (this.worldObj.isRemote) return;
-		if (this.ticksExisted % 20 == 0 && entity instanceof EntityLivingBase && this.getShields() > 0) entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
+		if (this.ticksExisted % 20 == 0 && entity instanceof EntityLivingBase && this.getShields() > 0) entity.attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), 1.0F);
 	}
 
 	@Override

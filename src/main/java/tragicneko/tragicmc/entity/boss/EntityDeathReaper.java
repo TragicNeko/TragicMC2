@@ -291,7 +291,7 @@ public class EntityDeathReaper extends TragicBoss {
 					}
 				}
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) < 6.0F && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.onGround && rand.nextInt(16) == 0 && this.getAttackTime() == 0)
+				if (this.isEntityInRange(this.getAttackTarget(), 2.0F, 6.0F)  && this.onGround && rand.nextInt(16) == 0 && this.getAttackTime() == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().posZ - this.posZ;
@@ -311,7 +311,7 @@ public class EntityDeathReaper extends TragicBoss {
 						this.motionY = d2 / (double)f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
 					}
 				}
-				else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F && this.getAttackTime() == 0)
+				else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 1.0F, 12.0F)  && this.getAttackTime() == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().posZ - this.posZ;

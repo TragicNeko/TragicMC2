@@ -337,6 +337,6 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public boolean canAttackClass(Class par1Class)
 	{
-		return super.canAttackClass(par1Class) && this instanceof TragicMiniBoss ? par1Class != this.getLesserForm() : true;
+		return super.canAttackClass(par1Class) && par1Class != TragicBoss.class && this instanceof TragicMiniBoss ? par1Class != this.getLesserForm() : true;
 	}
 }

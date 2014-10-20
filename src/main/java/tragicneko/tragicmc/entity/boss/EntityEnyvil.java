@@ -436,7 +436,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
-		return false;
+		return this.attackEntityFromPart(this.enyvilShell, source, damage);
 	}
 
 	@Override
@@ -447,12 +447,12 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	@Override
 	public boolean attackEntityFromPart(EntityPart entity, DamageSource source, float damage) {
 
-		if (source.isExplosion() || source == DamageSource.drown) return false;
+		if (this.worldObj.isRemote || source.isExplosion() || source == DamageSource.drown) return false;
 		
 		if (this.currentCrystal != null) damage /= 2;
 
 		if (entity == this.enyvilEye)
-		{
+		{			
 			if (super.attackEntityFrom(source, damage))
 			{
 				if (this.getEntityState() == 1 && rand.nextInt(8) == 0) this.setEntityState(0);

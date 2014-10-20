@@ -42,6 +42,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		this.experienceValue = 100;
 	}
 
+	@Override
 	public void onDeath(DamageSource par1)
 	{
 		super.onDeath(par1);
@@ -119,14 +120,16 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		}
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
-		if (!this.worldObj.isRemote && TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption)) this.removePotionEffect(TragicPotions.Corruption.id);
+		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption)) this.removePotionEffect(TragicPotions.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();
 	}
 
+	@Override
 	public boolean getCanSpawnHere()
 	{		
 		if (rand.nextInt(10) != 0) return false;
@@ -155,12 +158,14 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		return super.getCanSpawnHere();
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false;
 		return super.attackEntityAsMob(par1Entity);
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -187,6 +192,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 1;
@@ -200,5 +206,11 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	public boolean getAllowLoot()
 	{
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
+	}
+	
+	public boolean isEntityInRange(Entity entity, float min, float max)
+	{
+		float f = this.getDistanceToEntity(entity);
+		return f >= min && f <= max;
 	}
 }

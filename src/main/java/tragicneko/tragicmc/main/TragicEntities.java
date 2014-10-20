@@ -12,6 +12,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
+import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -65,7 +66,6 @@ import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
-import tragicneko.tragicmc.entity.projectile.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.main.TragicEntityList.EnumEggType;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -625,6 +625,7 @@ public class TragicEntities {
 		if (TragicNewConfig.allowTimeController)
 		{
 			EntityRegistry.registerModEntity(EntityTimeController.class, "TimeController", listid++, TragicMC.instance, 80, 1, true);
+			
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
 				EntityRegistry.addSpawn(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,

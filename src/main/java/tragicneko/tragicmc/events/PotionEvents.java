@@ -187,7 +187,7 @@ public class PotionEvents {
 						{
 							flag = true;
 							PotionEffect temp = entity.getActivePotionEffect(TragicPotions.Corruption);
-							if (rand.nextBoolean()) target.addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, temp.getDuration() * 2, temp.getAmplifier()));
+							if (rand.nextBoolean() && target.isPotionActive(TragicPotions.Corruption)) target.addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, temp.getDuration() / 2, temp.getAmplifier()));
 						}
 					}
 				}
@@ -197,20 +197,18 @@ public class PotionEvents {
 
 				if (!flag && !(entity instanceof TragicMob))
 				{
-					list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(16.0D, 16.0D, 16.0D));
+					list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(12.0D, 12.0D, 12.0D));
 
 					for (int i = 0; i < list.size(); i++)
 					{
-						if (entity.canEntityBeSeen(list.get(i)) && entity.getDistanceToEntity(list.get(i)) <= 10.0F)
+						if (entity.canEntityBeSeen(list.get(i)) && entity.getDistanceToEntity(list.get(i)) <= 8.0F)
 						{
 							flag2 = true;
 						}
 					}
 
 					tag = CommonProxy.getEntityData("" + entity.getEntityId());
-
 					if (tag == null) tag = new NBTTagCompound();
-					
 
 					if (!flag2)
 					{
@@ -786,7 +784,8 @@ public class PotionEvents {
 
 				if (source.isPotionActive(TragicPotions.Corruption.id))
 				{
-					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 600));
+					PotionEffect effect = source.getActivePotionEffect(TragicPotions.Corruption);
+					event.entityLiving.addPotionEffect(new PotionEffect(effect.getPotionID(), effect.getDuration()));
 				}
 			}
 		}

@@ -256,7 +256,7 @@ public class EntityApis extends TragicBoss {
 
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F 
+			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 2.0F, 8.0F) 
 					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()))
 			{
 				if (rand.nextInt(3) == 0)
@@ -273,7 +273,7 @@ public class EntityApis extends TragicBoss {
 				this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 				this.setChargeTicks(10);
 			}
-			else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.getDistanceToEntity(this.getAttackTarget()) < 12.0F 
+			else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)  
 					&& this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
 			{
 				if (rand.nextInt(3) == 0)

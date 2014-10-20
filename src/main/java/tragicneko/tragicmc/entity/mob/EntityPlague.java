@@ -120,38 +120,37 @@ public class EntityPlague extends TragicMob {
 				{
 					Entity entity = list.get(i);
 
-					if (this.canEntityBeSeen(entity))
-					{
-						if (entity instanceof TragicMob && ((TragicMob) entity).canCorrupt() || entity instanceof EntityGolem)
-						{
-							((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 800));
-						}
-						else if (entity instanceof EntityAnimal)
-						{
-							((EntityCreature) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 400));
-						}
-						else if (entity instanceof EntityPlayer && !((EntityPlayer)entity).capabilities.isCreativeMode)
-						{
-							((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 200));
+					if (!this.canEntityBeSeen(entity) || !(entity instanceof EntityLivingBase) || ((EntityLivingBase)entity).isPotionActive(TragicPotions.Corruption)) continue;
 
-							if (rand.nextBoolean())
+					if (entity instanceof TragicMob && ((TragicMob) entity).canCorrupt() || entity instanceof EntityGolem)
+					{
+						((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 800));
+					}
+					else if (entity instanceof EntityAnimal)
+					{
+						((EntityCreature) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 400));
+					}
+					else if (entity instanceof EntityPlayer && !((EntityPlayer)entity).capabilities.isCreativeMode)
+					{
+						((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 200));
+
+						if (rand.nextBoolean())
+						{
+							if (this.rand.nextInt(16) == 0)
 							{
-								if (this.rand.nextInt(16) == 0)
-								{
-									((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 100 + rand.nextInt(100)));
-								}
-								else if (this.rand.nextInt(16) == 0)
-								{
-									((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
-								}
-								else if (TragicNewConfig.allowSubmission && this.rand.nextInt(32) == 0)
-								{
-									((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 160 + rand.nextInt(160)));
-								}
-								else if (TragicNewConfig.allowDisorientation && this.rand.nextInt(16) == 0)
-								{
-									((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 60 + rand.nextInt(80)));
-								}
+								((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 100 + rand.nextInt(100)));
+							}
+							else if (this.rand.nextInt(16) == 0)
+							{
+								((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
+							}
+							else if (TragicNewConfig.allowSubmission && this.rand.nextInt(32) == 0)
+							{
+								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 160 + rand.nextInt(160)));
+							}
+							else if (TragicNewConfig.allowDisorientation && this.rand.nextInt(16) == 0)
+							{
+								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 60 + rand.nextInt(80)));
 							}
 						}
 					}

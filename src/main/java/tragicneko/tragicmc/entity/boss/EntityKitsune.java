@@ -274,12 +274,12 @@ public class EntityKitsune extends TragicBoss {
 					}
 				}
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F && rand.nextInt(4) == 0 && !this.isFiring() && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.ticksExisted % 5 == 0)
+				if (this.isEntityInRange(this.getAttackTarget(), 6.0F, 16.0F) && rand.nextInt(4) == 0 && !this.isFiring() && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.ticksExisted % 5 == 0)
 				{
 					this.setFiringTicks(40);
 				}
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0)
+				if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));

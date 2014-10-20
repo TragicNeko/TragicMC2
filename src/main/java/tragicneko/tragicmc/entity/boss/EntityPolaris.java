@@ -172,7 +172,7 @@ public class EntityPolaris extends TragicBoss {
 		{
 			this.worldObj.getWorldInfo().setWorldTime(18000);
 
-			if (this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
+			if (this.isEntityInRange(this.getAttackTarget(), 3.0F, 16.0F))
 			{
 				this.setInvisible(true);
 			}
