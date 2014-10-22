@@ -2837,25 +2837,48 @@ Improved regeneration of Golden Sushi by one amplifier, it gives a tiny amount o
 I was going to create a new Yeti model, but I just slightly modified the newest one, adding more detail to the crown and fixing the foot claws
 Added necessary nbt data for the Yeti (almost forgot)
 Removed some logger spam
-Doing an interim build for CommodoreAlpha as soon as we get internet back...
+Doing an interim build for CommodoreAlpha as soon as we get internet back
 
-1.38.1646++ <174> (October 16, 2014)
+1.38.1668 <174> (October 16, 2014)
 Added some sounds for the Jabba, Janna and Jarra
+Fixing some things with corruption, it should no longer apply huge amounts of corruption to nearby entities that are already corrupted, this should eliminate the issue of getting
+30 minutes of corruption just from being around things that are corrupted
+Added new utility method for getting if an entity is within a certain range for bosses
+Fix up some issues with attacking the Enyvil (or any future multipart entity) with a melee attack, it uses my reach enchantment event in order to attack any multipart entities
+within a certain range
+Fix initial bug with double-hitting entities within normal melee range
+Added proper death strings to my custom damage sources, I just looked into how vanilla does it since it's been bothering me
+Beginning the complete rewrite of the Time Controller AI now
+Added it's Quantum Leap ability, which teleports nearby entities to their position from a few seconds ago (this is to confuse things and just cause mischief wherever they are)
+Added it's Time Flux attack, which is the previous Gravity Flux attack along with randomly setting the world time, it absorbs damage during this time and inflicts it onto all
+entities that attack it
+Added it's Purge attack, it will inflict a huge horizontal knockback hit and damages anything near it
+Added it's Spaz attack, which should teleport entities near it to random spots and it should teleport itself to random spots as well, it'll also spawn time bombs
+Finishing up the Time Disruption and Time Bomb code
+The Time Disruption reuses the Large Rock's model, it doesn't look too good but I'll make a new model another time, it now knocks nearby entities into random directions and
+damages them
+There was a bug with attacking/doing things after the Time Controller teleports you, this has been fixed (I think), this was due to how the teleport would occur, it'd be called
+client-side and server-side but pick a random spot on both that didn't always match up, so you'd think you were in one spot, but you're really in another spot
+Removed some parts from the Enyvil, it is really laggy so I'm going to possibly remove more parts from it but we'll see
+Made Time Controller immune to projectiles when it is doing it's Purge attack
+Made Time Controller unable to get potion effects put onto it
+I'm going to basically fully rewrite the Envil, but it'll maintain most of it's attacks in addition to being able to detroy blocks it collides with
+Fixed up Enyvil's AI, it uses a TON of datawatchers, but it still works pretty effectively, trying to do it's particle effects right now, then I'll work on it's model and
+animations tomorrow (or later, whenever)
+It also lags a lot less than it did before, so that's a good sign, fixed up it's interaction with the dark crystals, they now work more effectively
+Remove Jabba sounds, temporarily until I add the other mob's sounds and adjust them and such
+Bump version number again, this is to check if an issue with Twilight Forest (and possibly other Dimensional mods) is resolved
 
+1.38.1668 <175> (October 22, 2014)
 
-I'm going to remove the Time Controller time phases and instead make it have entity states (similarly to the Enyvil)
-The Time Controller will get a Gravity Flux attack, basically it'll pull every entity nearby towards it, damaging anything that touches it, and absorbing any damage that is
-inflicted on it, it'll then do an equal amount of damage to each entity near it based on the total damage absorbed
-It'll get a Purge attack, which will damage anything near it and knock them away with a high knockback horizontal hit
-It'll get a Time Alter attack which will move entities to their positions from a few seconds ago (hopefully keeping track of this will be easy and not laggy at all)
-It'll get a Dimensional Atrophy attack which will set the world time to random times as well as teleport all nearby entities to random positions
-It can still launch Time Bombs which will get a model (simple spherical model, may just modify the large rock for it), they will work like the mortors in that they have a very
-high amplitude in their parabolic arc, the Time Disruption will be simplified to only damage entities that get near it, but damaging with magic damage
-Most of the Time Controller's attacks will inflict magic damage
+Change the luxury drops to use a weighted random system, instead of a completely random system, this could be either using weighted random item or it could be what I use for
+their normal drops
+Change how projectiles are fired from weapons, use a vector based direction instead of a block hit position, this would allow you to shoot them up into the air and such
 
-Experiment with a new fluid block for the Dimension (turns out the lava barely did anything for helping the lag in the Dimension)
-Add a utility method in the Boss superclass to get if an entity is within a certain range (using getDistanceToEntity() and a min and max range parameter
-Finish up the other Boss AI, models, textures and animations
+Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
+that stay in it too long)
+Possibly change Clarity to instead of just turning invisible enemies visible, spawn a client-side particle effect around them while the effect is active (it'd be nice to have
+them render partially transparent, but that would take a lot of rendering due to the sheer amount of models and renders available
 Add the Psygote, a Dimension only mob, it'll attack it's target with dark mortor strikes and will swap spots with it's target randomly as well, inflicting blindness on them,
 it'll rotate before doing the switch so that the player knows
 Add the Locbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
@@ -2865,8 +2888,7 @@ one that the locbot has, it'll also will be able to fire missles if it loses bot
 Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a solid block (it also remains a solid block if it is idle), it bounces around and attacks whatever
 it collides with, it'll have dubstep-like sounds
 Start work on the Overlord
-
-Update the creative mode projectile items
+Add a Tower Guardian Mini-Boss to get into the Overlord Dimension, it'll create the portal where it dies
 
 Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
 mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
@@ -2885,6 +2907,7 @@ Add a "spin"  animation to the Gragul, idle animation
 Start making particles for my entities
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
 Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
+A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Add the "Epic" weapon models, maybe animate them too
 I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
