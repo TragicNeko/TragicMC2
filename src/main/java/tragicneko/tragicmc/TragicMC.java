@@ -102,7 +102,7 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "1.38.1646 Beta";
+	public static final String VERSION = "1.38.1668 Beta";
 
 	@Instance(TragicMC.MODID)
 	public static TragicMC instance;
@@ -136,7 +136,7 @@ public class TragicMC
 			}
 			else
 			{
-				TragicMC.logError("The potionType array was not set to an adequate amount, this is likely due to an error somewhere, but as a result potion effects are disabled now.");
+				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now.");
 				TragicNewConfig.disablePotions();
 			}
 		}
@@ -241,7 +241,7 @@ public class TragicMC
 		if (!event.getServer().isFlightAllowed())
 		{
 			TragicNewConfig.allowFlight = false;
-			logWarning("Flight potion effect functionality is disabled due to the Server not allowing it. Please change the option in your server.properties file if you wish to have it enabled.");
+			logWarning("Flight potion effect is disabled due to the server not allowing it. Change the option in your server.properties file if you want it enabled.");
 		}
 	}
 
