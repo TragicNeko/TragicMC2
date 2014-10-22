@@ -56,7 +56,7 @@ public class EnchantmentWeaponExtra extends Enchantment {
 
 	public float calcModifierLiving(int par1, EntityLivingBase par2EntityLivingBase)
 	{
-		MathHelper.clamp_int(par1, 1, 5);
+		par1 = MathHelper.clamp_int(par1, 1, 5);
 
 		if (rand.nextInt(12 - (par1 * 2)) == 0 && this.damageType == 3)
 		{

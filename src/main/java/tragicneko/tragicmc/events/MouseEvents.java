@@ -18,6 +18,7 @@ import net.minecraftforge.client.event.MouseEvent;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.entity.boss.EntityPart;
+import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.items.weapons.EpicWeapon;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.network.MessageAttack;
@@ -74,7 +75,7 @@ public class MouseEvents {
 					entity = list.get(i);
 					if (d <= limit) 
 					{
-						if (entity instanceof EntityPart) TragicMC.net.sendToServer(new MessageAttack(entity));
+						if (entity instanceof EntityPart || entity instanceof IMultiPart) TragicMC.net.sendToServer(new MessageAttack(entity));
 						flag = true;
 						break;
 					}

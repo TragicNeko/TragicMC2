@@ -96,7 +96,7 @@ public class WeaponBowOfJustice extends ItemBow {
 		if (!par2World.isRemote)
 		{
 			par2World.spawnEntityInWorld(entityarrow);
-			if (flag) par1ItemStack.stackSize--;
+			if (!flag) par1ItemStack.stackSize--;
 		}
 	}
 	
