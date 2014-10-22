@@ -14,7 +14,7 @@ public class MessageHandlerAttack implements IMessageHandler<MessageAttack, IMes
 	@Override
 	public IMessage onMessage(MessageAttack message, MessageContext ctx) {
 		EntityPlayer player = MinecraftServer.getServer().isDedicatedServer() ? TragicMC.proxy.getPlayerFromMessageCtx(ctx) : ctx.getServerHandler().playerEntity;
-		if (player instanceof EntityPlayerMP)
+		if (player != null && player instanceof EntityPlayerMP)
 		{
 			Entity entity = MinecraftServer.getServer().getEntityWorld().getEntityByID(message.entityID);
 			if (entity != null && !entity.isDead) ((EntityPlayerMP) player).attackTargetEntityWithCurrentItem(entity);

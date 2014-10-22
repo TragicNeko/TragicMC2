@@ -11,10 +11,8 @@ public class MessageHandlerAmulet implements IMessageHandler<MessageAmulet, IMes
 	@Override
 	public MessageAmulet onMessage(MessageAmulet message, MessageContext ctx) {
 		PropertyAmulets amulets = PropertyAmulets.get(TragicMC.proxy.getPlayerFromMessageCtx(ctx));
-		if (amulets != null)
-		{
-			amulets.loadNBTData(message.tag);
-		}
+		if (amulets != null) amulets.loadNBTData(message.tag);
+		
 		return null;
 	}
 

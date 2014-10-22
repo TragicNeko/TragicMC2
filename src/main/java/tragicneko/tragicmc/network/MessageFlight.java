@@ -7,23 +7,23 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageFlight implements IMessage {
 
-	public int flightEnabled;
+	public byte flightEnabled;
 	
 	public MessageFlight() {}
 	
 	public MessageFlight(boolean enabled)
 	{
-		this.flightEnabled = enabled ? 1 : 0;
+		this.flightEnabled = (byte) (enabled ? 1 : 0);
 	}
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		this.flightEnabled = buf.readInt();
+		this.flightEnabled = buf.readByte();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.flightEnabled);
+		buf.writeByte(this.flightEnabled);
 	}
 
 }
