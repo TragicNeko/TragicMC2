@@ -148,8 +148,7 @@ public class EntityDropHelper {
 
 		entityLootDrops.put(EntityEnyvil.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkPlate),
 			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles),
-			new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialSteel)},
-			{new ItemStack(TragicItems.PureDarkness)}});
+			new ItemStack(TragicItems.CelestialSteel), new ItemStack(Items.diamond)}, {new ItemStack(TragicItems.PureDarkness)}});
 
 		entityLootDrops.put(EntityClaymation.class, new ItemStack[][] {{new ItemStack(TragicItems.LivingClay), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.Quicksilver),
 			new ItemStack(TragicBlocks.Wax), new ItemStack(Blocks.sand), new ItemStack(TragicBlocks.Quicksand), new ItemStack(Items.clay_ball)}, {new ItemStack(TragicItems.LivingClay)}});

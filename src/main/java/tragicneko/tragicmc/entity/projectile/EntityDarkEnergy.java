@@ -5,6 +5,7 @@ import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -33,6 +34,8 @@ public class EntityDarkEnergy extends EntityProjectile {
 
 		if (mop.entityHit != null) 
 		{			
+			if (mop.entityHit instanceof EntityDarkEnergy) return;
+			
 			if (mop.entityHit instanceof EntityLivingBase)
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 3.0F);
@@ -41,6 +44,13 @@ public class EntityDarkEnergy extends EntityProjectile {
 		}
 
 		if (mop != null) this.setDead();
+	}
+	
+	public void onUpdate()
+	{
+		super.onUpdate();
+		
+		if (!this.worldObj.isRemote && this.ticksExisted >= 80) this.setDead();
 	}
 
 	@Override

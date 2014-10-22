@@ -22,6 +22,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -33,6 +34,7 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityEnyvil extends TragicBoss implements IMultiPart {
@@ -44,30 +46,16 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public EntityPart enyvilShell2;
 	public EntityPart enyvilShell3;
 
-	public EntityPart enyvilArm;
-	public EntityPart enyvilArm2;
 	public EntityPart enyvilClaw;
 	public EntityPart enyvilClaw2;
 
-	public EntityPart enyvilLeg;
-	public EntityPart enyvilLeg2;
-	public EntityPart enyvilLeg3;
-	public EntityPart enyvilLeg4;
-	public EntityPart enyvilLeg5;
-	public EntityPart enyvilLeg6;
-
-	public EntityDarkCrystal currentCrystal;
+	public EntityDarkCrystal crystal;
 
 	public EntityEnyvil(World par1World) {
 		super(par1World);
 		this.enyvilParts = new EntityPart[] {this.enyvilEye = new EntityPart(this, "enyvilEye", 1.0F, 1.0F), this.enyvilShell = new EntityPart(this, "enyvilShell", 2.5F, 1.5F),
-				this.enyvilShell2 = new EntityPart(this, "enyvilShell2", 2.5F, 1.0F), this.enyvilArm = new EntityPart(this, "enyvilArm", 1.0F, 1.0F),
-				this.enyvilArm2 = new EntityPart(this, "enyvilArm2", 1.0F, 1.0F), this.enyvilClaw = new EntityPart(this, "enyvilClaw", 1.0F, 1.0F),
-				this.enyvilClaw2 = new EntityPart(this, "enyvilClaw2", 1.0F, 1.0F), this.enyvilLeg = new EntityPart(this, "enyvilLeg", 1.5F, 1.5F),
-				this.enyvilLeg2 = new EntityPart(this, "enyvilLeg2", 1.5F, 1.5F), this.enyvilLeg3 = new EntityPart(this, "enyvilLeg3", 1.5F, 1.5F),
-				this.enyvilLeg4 = new EntityPart(this, "enyvilLeg4", 1.5F, 1.5F), this.enyvilLeg5 = new EntityPart(this, "enyvilLeg5", 1.5F, 1.5F),
-				this.enyvilLeg6 = new EntityPart(this, "enyvilLeg6", 1.5F, 1.5F), this.enyvilShell3 = new EntityPart(this, "enyvilShell3", 1.5F, 2.5F)
-		};
+				this.enyvilShell2 = new EntityPart(this, "enyvilShell2", 2.5F, 1.0F), this.enyvilClaw = new EntityPart(this, "enyvilClaw", 1.0F, 1.0F),
+				this.enyvilClaw2 = new EntityPart(this, "enyvilClaw2", 1.0F, 1.0F), this.enyvilShell3 = new EntityPart(this, "enyvilShell3", 1.5F, 2.5F)};
 		this.setSize(5.5F, 5.5F);
 		this.setHealth(this.getMaxHealth());
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -82,59 +70,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true));
 		this.isImmuneToFire = true;
 		this.stepHeight = 2.5F;
-	}
-
-	protected void entityInit()
-	{
-		super.entityInit();
-		this.getDataWatcher().addObject(16, Integer.valueOf((int) 0));
-		this.getDataWatcher().addObject(17, Integer.valueOf((int) 0));
-		this.getDataWatcher().addObject(18, Integer.valueOf((int) 0));
-	}
-
-	/**
-	 * State 0 is nothing active, 1 is using the tractor beam, 2 is using the dark energy waves, 3 is using lightning storm, 4 is without any crystals nearby
-	 * @return
-	 */
-	private void setEntityState(int i)
-	{
-		this.getDataWatcher().updateObject(16, i);
-		this.setStateTicks(0);
-	}
-
-	/**
-	 * State 0 is nothing active, 1 is using the tractor beam, 2 is using the dark energy waves, 3 is using lightning storm, 4 is without any crystals nearby
-	 * @return
-	 */
-	public int getEntityState()
-	{
-		return this.getDataWatcher().getWatchableObjectInt(16);
-	}
-
-	public int getStateTicks()
-	{
-		return this.getDataWatcher().getWatchableObjectInt(17);
-	}
-
-	private void setStateTicks(int i)
-	{
-		this.getDataWatcher().updateObject(17, i);
-	}
-	
-	private void incrementStateTicks()
-	{
-		int pow = this.getStateTicks();
-		this.setStateTicks(++pow);
-	}
-
-	public int getLaserTicks()
-	{
-		return this.getDataWatcher().getWatchableObjectInt(18);
-	}
-
-	private void setLaserTicks(int i)
-	{
-		this.getDataWatcher().updateObject(18, i);
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -152,35 +87,215 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		return true;
 	}
 
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0)); //attack time
+		this.dataWatcher.addObject(17, Integer.valueOf(0)); //hurt time
+		this.dataWatcher.addObject(18, Integer.valueOf(0)); //dark lightning ticks
+		this.dataWatcher.addObject(19, Integer.valueOf(0)); //dark energy spray
+		this.dataWatcher.addObject(20, Integer.valueOf(0)); //tractor beam
+		this.dataWatcher.addObject(21, Integer.valueOf(0)); //laser shots
+		this.dataWatcher.addObject(22, Integer.valueOf(0)); //thunderstorm
+		this.dataWatcher.addObject(23, Integer.valueOf(0)); //current crystal id
+		this.dataWatcher.addObject(24, Integer.valueOf(0)); //slam
+		this.dataWatcher.addObject(25, Integer.valueOf(0)); //client-side sync for current target
+	}
+
+	public int getAttackTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setAttackTime(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	private void decrementAttackTime()
+	{
+		int pow = this.getAttackTime();
+		this.setAttackTime(--pow);
+	}
+
+	public int getHurtTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	private void setHurtTime(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	private void decrementHurtTime()
+	{
+		int pow = this.getHurtTime();
+		this.setHurtTime(--pow);
+	}
+
+	public int getLightningTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	private void setLightningTicks(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	private void decrementLightningTicks()
+	{
+		int pow = this.getLightningTicks();
+		this.setLightningTicks(--pow);
+	}
+
+	public int getDarkEnergyTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19);
+	}
+
+	private void setDarkEnergyTicks(int i)
+	{
+		this.dataWatcher.updateObject(19, i);
+	}
+
+	private void decrementDarkEnergyTicks()
+	{
+		int pow = this.getDarkEnergyTicks();
+		this.setDarkEnergyTicks(--pow);
+	}
+
+	public int getTractorBeamTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
+
+	private void setTractorBeamTicks(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+	}
+
+	private void decrementTractorBeamTicks()
+	{
+		int pow = this.getTractorBeamTicks();
+		this.setTractorBeamTicks(--pow);
+	}
+
+	public int getLaserTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(21);
+	}
+
+	private void setLaserTicks(int i)
+	{
+		this.dataWatcher.updateObject(21, i);
+	}
+
+	private void decrementLaserTicks()
+	{
+		int pow = this.getLaserTicks();
+		this.setLaserTicks(--pow);
+	}
+
+	public int getThunderstormTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(22);
+	}
+
+	private void setThunderstormTicks(int i)
+	{
+		this.dataWatcher.updateObject(22, i);
+	}
+
+	private void decrementThunderstormTicks()
+	{
+		int pow = this.getThunderstormTicks();
+		this.setThunderstormTicks(--pow);
+	}
+
+	public int getCrystalID()
+	{
+		return this.dataWatcher.getWatchableObjectInt(23);
+	}
+
+	private void setCrystalID(int i)
+	{
+		this.dataWatcher.updateObject(23, i);
+	}
+
+	private boolean hasCrystal()
+	{
+		return this.crystal != null && !this.crystal.isDead;
+	}
+
+	public int getSlamTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(24);
+	}
+
+	private void setSlamTicks(int i)
+	{
+		this.dataWatcher.updateObject(24, i);
+	}
+
+	private void decrementSlamTicks()
+	{
+		int pow = this.getSlamTicks();
+		this.setSlamTicks(--pow);
+	}
+
+	public int getAttackTargetID()
+	{
+		return this.dataWatcher.getWatchableObjectInt(25);
+	}
+
+	private void setAttackTargetID(int i)
+	{
+		this.dataWatcher.updateObject(25, i);
+	}
+
+	public EntityLivingBase getClientSideTarget()
+	{
+		Entity entity = this.worldObj.getEntityByID(this.getAttackTargetID());
+		return (EntityLivingBase) (entity instanceof EntityLivingBase ? entity : null);
+	}
+
+	private boolean canUseNewAbility()
+	{
+		return this.hasCrystal() && this.getLightningTicks() == 0 && this.getDarkEnergyTicks() == 0 && this.getTractorBeamTicks() == 0 && this.getLaserTicks() == 0 && this.getThunderstormTicks() == 0 && this.getSlamTicks() == 0;
+	}
+
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(450.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.24);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.276);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(24.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(16.0);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
-		
+		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
+
 		if (!this.worldObj.isRemote)
 		{
 			List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(128.0D, 128.0D, 128.0D));
 			Iterator ite = list.iterator();
 			EntityDarkCrystal crystal;
-			
+
 			while (ite.hasNext())
 			{
 				crystal = (EntityDarkCrystal) ite.next();
-				crystal.setDead();
+				crystal.attackEntityFrom(DamageSource.causeMobDamage(this), 10000.0F);
 			}
 		}
 	}
-	
+
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote) this.createNewCrystals();
@@ -190,9 +305,25 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public void onLivingUpdate()
 	{		
 		this.fallDistance = 0.0F;
-		super.onLivingUpdate();	
+		super.onLivingUpdate();
 
-		if (worldObj.isRemote) return;
+		if (!this.canUseNewAbility()) this.motionX = this.motionY = this.motionZ = 0.0D;
+
+		if (this.getTractorBeamTicks() > 0) this.tractorBeamEntity();
+		if (this.getLaserTicks() > 0 && this.getLaserTicks() % 50 == 0) this.useLasers();
+
+		if (worldObj.isRemote)
+		{
+			if (this.hasCrystal())
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					this.worldObj.spawnParticle("witchMagic", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.655D), this.posY + 0.415D + rand.nextDouble(),
+							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.655D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
+				}
+			}
+			return;
+		}
 
 		for (int i = 0; i < this.enyvilParts.length; i++)
 		{
@@ -209,225 +340,307 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.enyvilShell.setPosition(this.posX - (f2 * 0.25D), this.posY + 4.5D, this.posZ + (f3 * 0.25D));
 		this.enyvilShell2.setPosition(this.posX - (f2 * 0.25D), this.posY + 2.0D, this.posZ + (f3 * 0.25D));
 		this.enyvilShell3.setPosition(this.posX - (f2 * 0.95D), this.posY + 2.5D, this.posZ - (f3 * 0.95D));
-		this.enyvilArm.setPosition(this.posX + (f3 * 0.725D), this.posY, this.posZ + (f2 * 0.725D));
-		this.enyvilArm2.setPosition(this.posX - (f3 * 0.725D), this.posY, this.posZ - (f2 * 0.725D));
 		this.enyvilClaw.setPosition(this.posX + (f3 * 0.875D), this.posY, this.posZ + (f2 * 0.875D));
 		this.enyvilClaw2.setPosition(this.posX - (f3 * 0.875D), this.posY, this.posZ - (f2 * 0.875D));
-		this.enyvilLeg.setPosition(this.posX + (f3 * d), this.posY + 3.0D, this.posZ - (f2 * d));
-		this.enyvilLeg2.setPosition(this.posX - (f3 * d), this.posY + 3.0D, this.posZ - (f2 * d));
-		this.enyvilLeg3.setPosition(this.posX + (f3 * d), this.posY + 4.5D, this.posZ - (f2 * d));
-		this.enyvilLeg4.setPosition(this.posX - (f3 * d), this.posY + 4.5D, this.posZ - (f2 * d));
-		this.enyvilLeg5.setPosition(this.posX + (f3 * d), this.posY + 6.0D, this.posZ - (f2 * d));
-		this.enyvilLeg6.setPosition(this.posX - (f3 * d), this.posY + 6.0D, this.posZ - (f2 * d));
 
-		this.updateEnyvilAI();
-		this.updateDarkCrystal();
+		this.decrementValues();
+		this.updateCrystal();
+		this.updateTargetInfo();
 
-		this.useAbilitiesBasedOnState();						
-
-		if (this.getLaserTicks() > 0) this.setLaserTicks(this.getLaserTicks() - 1);
-		
-		if (this.getAttackTarget() != null && this.getEntityState() == 1)
+		if (this.getAttackTarget() == null)
 		{
-			double d0 = this.posX - this.getAttackTarget().posX;
-			double d1 = this.posZ - this.getAttackTarget().posZ;
-			double d2 = this.posY - this.getAttackTarget().posY;
-			
-			float f4 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2) * (float) Math.PI / 180.0F;
-			this.rotationYaw = f4;
-		}
-
-	}
-
-	private void updateEnyvilAI() {
-
-		if (this.getStateTicks() >= 250 && rand.nextInt(256) == 0) this.setEntityState(0);
-		this.incrementStateTicks();
-
-		AttributeModifier mod = new AttributeModifier(UUID.fromString("6824bb10-3472-4b58-8c9d-18bf73dc709c"), "enyvilSpeedDebuff", -0.5D, 0);
-		AttributeModifier mod2 = new AttributeModifier(UUID.fromString("59b1124e-a0fa-47dd-ae99-2ceeeccc4b62"), "enyvilRangeBuff", 32.0D, 0);
-
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mod2);
-
-		if (this.getEntityState() == 0)
-		{
-			if (this.getAttackTarget() != null && rand.nextInt(24) == 0)
-			{
-				if (this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
-				{
-					if (this.canEntityBeSeen(this.getAttackTarget()) && rand.nextInt(4) == 0)
-					{
-						this.setEntityState(1);
-					}
-				}
-				else
-				{
-					if (this.canEntityBeSeen(this.getAttackTarget()) && rand.nextInt(16) == 0)
-					{
-						this.setEntityState(2);
-					}
-				}
-			}
-			else if (rand.nextInt(1048) == 0 && this.getAttackTarget() != null)
-			{
-				this.setEntityState(3);
-			}
-			this.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(mod2);
+			if (this.getLightningTicks() > 0) this.setLightningTicks(0);
+			if (this.getDarkEnergyTicks() > 0) this.setDarkEnergyTicks(0);
+			if (this.getTractorBeamTicks() > 0) this.setTractorBeamTicks(0);
+			if (this.getLaserTicks() > 0) this.setLaserTicks(0);
+			if (this.getThunderstormTicks() > 0) this.setThunderstormTicks(0);
 		}
 		else
 		{
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 20.0F) && rand.nextInt(48) == 0) this.setLightningTicks(100);
+			if (this.getLightningTicks() > 0 && this.getLightningTicks() % 20 == 0) this.useDarkLightning();
+
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 5.0F, 16.0F) && rand.nextInt(96) == 0) this.setDarkEnergyTicks(160);
+			if (this.getDarkEnergyTicks() > 0) this.useDarkEnergySpray();
+
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 12.0F, 28.0F) && rand.nextInt(128) == 0 && this.canEntityBeSeen(this.getAttackTarget())) this.setTractorBeamTicks(200);
+
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 8.0F, 24.0F) && rand.nextInt(64) == 0 && !this.canEntityBeSeen(this.getAttackTarget())) this.setLaserTicks(200);
+
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 18.0F) && rand.nextInt(256) == 0) this.setThunderstormTicks(120);
+			if (this.getThunderstormTicks() > 0 && this.getThunderstormTicks() % 10 == 0) this.createThunderstorm();
+
+			if (this.canUseNewAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(48) == 0) this.setSlamTicks(40);
+			if (this.getSlamTicks() == 4) this.useSlam();
+
+			if (this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0)
+			{
+				for (int meow = 0; meow < 4 + rand.nextInt(3); meow++)
+				{
+					double d0 = this.posX + getIntegerInRange(6, 22);
+					double d1 = this.posZ + getIntegerInRange(6, 22);
+					double d2 = this.worldObj.getTopSolidOrLiquidBlock((int) d0, (int) d1);
+					this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
+					this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 3.0F + 1.5F, this.getMobGriefing());
+				}
+			}
+		}
+
+		if (this.ticksExisted % 10 == 0)
+		{
+			//TragicMC.logInfo("Crystal info, has? " + this.hasCrystal() + ", id? " + this.getCrystalID());
+			//TragicMC.logInfo("Attack time: " + this.getAttackTime());
+			//TragicMC.logInfo("Hurt time: " + this.getHurtTime());
+			//TragicMC.logInfo("Lightning ticks: " + this.getLightningTicks());
+			//TragicMC.logInfo("Dark energy ticks: " + this.getDarkEnergyTicks());
+			//TragicMC.logInfo("Tractor Beam ticks: " + this.getTractorBeamTicks());
+			//TragicMC.logInfo("Laser ticks: " + this.getLaserTicks());
+			//TragicMC.logInfo("Thunderstorm ticks: " + this.getThunderstormTicks());
+			//TragicMC.logInfo("Slam ticks: " + this.getSlamTicks());
 		}
 	}
 
-	private void useAbilitiesBasedOnState() {
-		if (this.getAttackTarget() != null)
+	private void updateTargetInfo() {
+		if (this.getAttackTarget() == null) 
 		{
-			switch(this.getEntityState())
+			this.setAttackTargetID(0);
+		}
+		else if (!this.getAttackTarget().isDead)
+		{
+			this.setAttackTargetID(this.getAttackTarget().getEntityId());
+		}
+		else
+		{
+			this.setAttackTargetID(0);
+		}
+	}
+
+	private void decrementValues() {
+		if (this.getAttackTime() > 0) this.decrementAttackTime();
+		if (this.getHurtTime() > 0) this.decrementHurtTime();
+		if (this.getLightningTicks() > 0) this.decrementLightningTicks();
+		if (this.getDarkEnergyTicks() > 0) this.decrementDarkEnergyTicks();
+		if (this.getTractorBeamTicks() > 0) this.decrementTractorBeamTicks();
+		if (this.getLaserTicks() > 0) this.decrementLaserTicks();
+		if (this.getThunderstormTicks() > 0) this.decrementThunderstormTicks();
+		if (this.getSlamTicks() > 0) this.decrementSlamTicks();
+	}
+
+	private void updateCrystal() {
+		Entity entity = this.worldObj.getEntityByID(this.getCrystalID());
+		if (entity != null && entity instanceof EntityDarkCrystal && !entity.isDead)
+		{
+			this.crystal = (EntityDarkCrystal) entity;
+		}
+		else
+		{
+			this.crystal = null;
+		}
+
+		if (this.crystal != null)
+		{
+			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(1.0F);
+			this.crystal.motionX = this.motionX;
+			this.crystal.motionZ = this.motionZ;
+
+			if (this.getDistanceToEntity(this.crystal) >= 18.0F)
 			{
-			case 0:
-				if (this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 22.0F &&
-				this.canEntityBeSeen(this.getAttackTarget()) && rand.nextInt(16) == 0 && this.ticksExisted % 20 == 0)
-				{
-					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-					double d2 = this.getAttackTarget().posZ - this.posZ;
-
-					float f = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.9875F;
-
-					EntityDarkLightning fireball = new EntityDarkLightning(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f, d1, d2 + this.rand.nextGaussian() * (double)f);
-					fireball.posX = this.posX + (d0 * 0.115D);
-					fireball.posY = this.posY + 3.75D;
-					fireball.posZ = this.posZ + (d0 * 0.115D);
-					this.worldObj.spawnEntityInWorld(fireball);
-				}
-
-				if (rand.nextInt(64) == 0)
-				{
-					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(2.0D, 2.0D, 2.0D));
-					this.attackEntitiesInList(list);
-					EntityLivingBase entity;
-					if (!list.isEmpty())
-					{
-						this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 4.0F + 1.5F, false);
-					}
-				}
-				break;
-			case 1:
-				this.tractorBeamEntity();
-				break;
-			case 2:
-				if (this.ticksExisted % 15 == 0 && rand.nextInt(3) == 0)
-				{
-					this.useDarkEnergySpray();
-				}
-				break;
-			case 3:
-				if (this.ticksExisted % 20 == 0 && rand.nextBoolean())
-				{
-					for (int meow = 0; meow < 6 + rand.nextInt(6); meow++)
-					{
-						double d0 = this.posX + getInteger(16, 4);
-						double d1 = this.posZ + getInteger(16, 4);
-						double d2 = this.worldObj.getTopSolidOrLiquidBlock((int) d0, (int) d1);
-						this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 3.0F + 1.5F, WorldHelper.getMobGriefing(this.worldObj));
-						this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
-					}
-				}
-				break;
-			}
-
-			if (rand.nextInt(1048) == 0 && this.getLaserTicks() == 0 && this.getEntityState() != 4)
-			{
-				if (this.currentCrystal != null && !this.currentCrystal.isDead && this.getAttackTarget().canEntityBeSeen(this.currentCrystal))
-				{
-					this.getAttackTarget().attackEntityFrom(DamageSource.magic, 2.5F * rand.nextFloat() + 1.0F);
-					this.setLaserTicks(1000);
-				}
+				this.crystal.setPosition(this.posX + getIntegerInRange(4, 8), this.posY + Math.abs(getIntegerInRange(4, 8)), this.posZ + getIntegerInRange(4, 8));
+				this.crystal.playSound("mob.endermen.portal", 0.4F, 0.4F);
 			}
 		}
 		else
 		{
-			this.setEntityState(0);
-		}
-	}
+			float f = 32.0F;
+			List list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand((double)f, (double)f, (double)f));
+			EntityDarkCrystal crystal = null;
+			double d0 = Double.MAX_VALUE;
+			Iterator iterator = list.iterator();
 
-	private void useDarkEnergySpray() {
-		for (int i = 0; i < rand.nextInt(8) + 10; i++)
-		{
-			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
-			double d2 = this.getAttackTarget().posZ - this.posZ;
+			while (iterator.hasNext())
+			{
+				EntityDarkCrystal crystal1 = (EntityDarkCrystal)iterator.next();
+				double d1 = crystal1.getDistanceSqToEntity(this);
 
-			float f = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.9875F;
+				if (d1 < d0)
+				{
+					d0 = d1;
+					crystal = crystal1;
+				}
+				crystal1.motionX = this.motionX;
+				crystal1.motionZ = this.motionZ;
+			}
 
-			EntityDarkEnergy fireball = new EntityDarkEnergy(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f, d1, d2 + this.rand.nextGaussian() * (double)f);
-			fireball.posX = this.posX + (d0 * 0.115D);
-			fireball.posY = this.posY + 3.75D;
-			fireball.posZ = this.posZ + (d0 * 0.115D);
-			this.worldObj.spawnEntityInWorld(fireball);
+			this.crystal = crystal;
+			if (crystal != null) this.setCrystalID(crystal.getEntityId());
+
+			if (!this.hasCrystal() && rand.nextInt(16) == 0)
+			{
+				this.createNewCrystals();
+			}
 		}
 	}
 
 	public void createNewCrystals() {
 		List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(64.0D, 64.0D, 64.0D));
 		if (list.size() >= 5) return;
-		
+
 		for (int i = 0; i < rand.nextInt(3) + 2; i++)
 		{
 			EntityDarkCrystal crystal = new EntityDarkCrystal(this.worldObj, this);
-			crystal.setPosition(this.posX + getInteger(12, 4), this.posY + Math.abs(getInteger(8, 4)), this.posZ + getInteger(12, 4));
+			crystal.setPosition(this.posX + getIntegerInRange(4, 12), this.posY + Math.abs(getIntegerInRange(4, 12)), this.posZ + getIntegerInRange(4, 12));
 			this.worldObj.spawnEntityInWorld(crystal);
 		}
 	}
 
-	/**
-	 * Get a random integer with a range of i (in positive and negative directions) and a minimum value from 0 of min, i.e. range of 4 gets a random value from -4 to 4, then
-	 * a min of 2 will ensure it is always -4 to -2 or 2 to 4
-	 * @param i
-	 * @param min
-	 * @return
-	 */
-	private int getInteger(int i, int min) {
-		MathHelper.getRandomIntegerInRange(this.rand, -i, i);
-		if (Math.abs(i) <= min)
+	private void useDarkLightning() {
+		if (!this.canEntityBeSeen(this.getAttackTarget())) return;
+
+		double d0 = this.getAttackTarget().posX - this.posX;
+		double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d2 = this.getAttackTarget().posZ - this.posZ;
+
+		float f = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.4875F;
+
+		EntityDarkLightning lightning = new EntityDarkLightning(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f, d1, d2 + this.rand.nextGaussian() * (double)f);
+		lightning.posX = this.posX + (d0 * 0.115D);
+		lightning.posY = this.posY + 3.75D;
+		lightning.posZ = this.posZ + (d0 * 0.115D);
+		this.worldObj.spawnEntityInWorld(lightning);
+	}
+
+	private void useDarkEnergySpray() {
+		for (int i = 0; i < rand.nextInt(4) + 3; i++)
 		{
-			if (i < 0) i -= min;
-			if (i >= 0) i += min;
+			double d0 = this.getAttackTarget().posX - this.posX;
+			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+			double d2 = this.getAttackTarget().posZ - this.posZ;
+
+			float f = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.1875F;
+
+			EntityDarkEnergy energy = new EntityDarkEnergy(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f, d1, d2 + this.rand.nextGaussian() * (double)f);
+			energy.posX = this.posX + (d0 * 0.115D);
+			energy.posY = this.posY + 3.75D;
+			energy.posZ = this.posZ + (d0 * 0.115D);
+			this.worldObj.spawnEntityInWorld(energy);
 		}
-		int l = rand.nextBoolean() ? -1 : 1;
-		return i * l;
 	}
 
 	public void tractorBeamEntity()
 	{
-		if (this.getAttackTarget() != null)
-		{
-			EntityLivingBase entity = this.getAttackTarget();
-			
-			if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode) return;
-			
-			double d0 = entity.posX - this.posX;
-			double d1 = entity.posY - this.posY + 2.0D;
-			double d2 = entity.posZ - this.posZ;
-			float f = MathHelper.sqrt_double(d0 * d0 + d1* d1 + d2 * d2);
+		if (this.worldObj.isRemote && this.getClientSideTarget() == null || !this.worldObj.isRemote && this.getAttackTarget() == null) return;
 
-			entity.motionX = -d0 / (double)f * d0 * 0.100000011920929D + entity.motionX * 0.20000000298023224D;
-			entity.motionY = -d1 / (double)f * d1 * 0.0500000000019408D + entity.motionY * 0.2242009940220809D;
-			entity.motionZ = -d2 / (double)f * d2 * 0.100000011920929D + entity.motionZ * 0.20000000298023224D;
-			entity.moveEntity(entity.motionX, 0.115D, entity.motionZ);
+		EntityLivingBase entity = this.worldObj.isRemote ? this.getClientSideTarget() : this.getAttackTarget();
+
+		if (entity instanceof EntityPlayer)
+		{
+			if (!((EntityPlayer)entity).capabilities.isCreativeMode)
+			{
+				double d1 = entity.posX - this.posX;
+				double d2 = entity.posZ - this.posZ;
+				double d3 = entity.posY - this.posY;
+				float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
+				double d4 = 0.25D;
+
+				entity.motionX = -d1 / (double)f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
+				entity.motionZ = -d2 / (double)f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
+				entity.motionY = -d3 / (double)f2 * d4 * 0.140000011920929D + entity.motionZ * 0.30000000298023224D;
+				entity.moveEntity(entity.motionX, entity.motionY, entity.motionZ);
+			}
 		}
 		else
 		{
-			this.setEntityState(0);
+			double d1 = entity.posX - this.posX;
+			double d2 = entity.posZ - this.posZ;
+			double d3 = entity.posY - this.posY;
+			float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
+			double d4 = 0.5D;
+
+			entity.motionX = -d1 / (double)f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
+			entity.motionZ = -d2 / (double)f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
+			entity.motionY = -d3 / (double)f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
+		}
+
+		if (this.worldObj.isRemote && this.getClientSideTarget() != null)
+		{
+			double d3 = this.getClientSideTarget().posX - this.posX + 0.5D;
+			double d4 = this.getClientSideTarget().posY - this.posY - 1.85D;
+			double d5 = this.getClientSideTarget().posZ - this.posZ + 0.5D;
+
+			for (int i = 0; i < 8; i++)
+			{
+				double d6 = 0.12D * i + (rand.nextDouble() * 0.25D);
+				this.worldObj.spawnParticle("witchMagic", this.posX + d3 * d6, this.posY + d4 * d6 + 2.45D, this.posZ + d5 * d6, 0.0, 0.0, 0.0);
+			}
 		}
 	}
 
-	public boolean canUseAbilities()
+	private void useLasers()
 	{
-		return this.currentCrystal != null;
+		if (this.worldObj.isRemote && this.getClientSideTarget() == null || !this.worldObj.isRemote && this.getAttackTarget() == null) return;
+
+		float f = 32.0F;
+		List list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand((double)f, (double)f, (double)f));
+		EntityDarkCrystal crystal = null;
+		Iterator iterator = list.iterator();
+
+		while (iterator.hasNext())
+		{
+			crystal = (EntityDarkCrystal)iterator.next();
+			if (this.worldObj.isRemote)
+			{
+				if (this.getClientSideTarget().canEntityBeSeen(crystal)) break;
+			}
+			else 
+			{
+				if (this.getAttackTarget().canEntityBeSeen(crystal)) break;
+			}
+		}
+
+		if (crystal != null && !crystal.isDead)
+		{
+			if (!this.worldObj.isRemote && crystal.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
+			{
+				this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), 2.5F * rand.nextFloat() + 1.0F);
+				this.getAttackTarget().setFire(4);
+			}
+			else if (this.worldObj.isRemote)
+			{
+				double d0 = crystal.posX - this.posX + 0.5D;
+				double d1 = crystal.posY - this.posY + 2.45D;
+				double d2 = crystal.posZ - this.posZ + 0.5D;
+
+				for (int i = 0; i < 8; i++)
+				{
+					double d3 = 0.12D * i + (rand.nextDouble() * 0.25D);
+					this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 0.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+				}
+			}
+		}
 	}
+
+	private void createThunderstorm()
+	{
+		for (int i = 0; i < 3 + rand.nextInt(3); i++)
+		{
+			double d0 = this.posX + this.getIntegerInRange(4, 16) + rand.nextDouble();
+			double d1 = this.posZ + this.getIntegerInRange(4, 16) + rand.nextDouble();
+			double d2 = this.worldObj.getTopSolidOrLiquidBlock((int) d0, (int) d1);
+
+			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
+			this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 2.0F + 0.5F, this.getMobGriefing());
+		}
+	}
+
+	private void useSlam()
+	{
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.0D, 5.0D, 5.0D));
+		if (!list.isEmpty())
+		{
+			this.attackEntitiesInList(list);
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 4.0F + 1.5F, false);
+		}
+	}	
 
 	public boolean canBeCollidedWith()
 	{
@@ -448,19 +661,21 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public boolean attackEntityFromPart(EntityPart entity, DamageSource source, float damage) {
 
 		if (this.worldObj.isRemote || source.isExplosion() || source == DamageSource.drown) return false;
-		
-		if (this.currentCrystal != null) damage /= 2;
+
+		if (!this.hasCrystal()) damage /= 2;
 
 		if (entity == this.enyvilEye)
 		{			
+			TragicMC.logInfo("Enyvil hit in the eye.");
 			if (super.attackEntityFrom(source, damage))
 			{
-				if (this.getEntityState() == 1 && rand.nextInt(8) == 0) this.setEntityState(0);
-				if (this.getEntityState() == 4 && rand.nextBoolean())
+				if (rand.nextBoolean() && !this.hasCrystal())
 				{
 					this.createNewCrystals();
 				}
 			}
+
+			this.setHurtTime(10);
 		}
 		else
 		{
@@ -488,92 +703,73 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	@Override
 	public void onStruckByLightning(EntityLightningBolt bolt) {}
 
-	private void attackEntitiesInList(List p_70971_1_)
+	private void attackEntitiesInList(List list)
 	{
-		for (int i = 0; i < p_70971_1_.size(); ++i)
+		for (int i = 0; i < list.size(); ++i)
 		{
-			Entity entity = (Entity)p_70971_1_.get(i);
+			Entity entity = (Entity)list.get(i);
 
 			if (entity instanceof EntityLivingBase)
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 12.0F);
-				if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 60 + rand.nextInt(160), rand.nextInt(3))); 
-				
-				entity.motionX *= 1.225D;
-				entity.motionZ *= 1.225D;
+				if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 60 + rand.nextInt(160), 1)); 
+
+				entity.motionX *= 3.225D;
+				entity.motionZ *= 3.225D;
 				entity.motionY += 0.225D;
 			}
 		}
 	}
-	
+
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.getDistanceToEntity(par1Entity) >= 6.0D) return false;
-		
-		par1Entity.motionX *= 1.225D;
-		par1Entity.motionZ *= 1.225D;
-		par1Entity.motionY += 0.225D;
+		if (this.worldObj.isRemote || this.getDistanceToEntity(par1Entity) > 6.0F) return false;
+
 		boolean result = super.attackEntityAsMob(par1Entity);
-		if (result && this.getEntityState() == 1) this.setEntityState(0);
+
+		if (result)
+		{
+			par1Entity.motionX *= 4.225D;
+			par1Entity.motionZ *= 4.225D;
+			par1Entity.motionY += 0.625D;
+			this.setAttackTime(10);
+			if (this.getTractorBeamTicks() > 0)
+			{
+				par1Entity.motionX *= 2;
+				par1Entity.motionZ *= 2;
+				this.setTractorBeamTicks(0);
+			}
+		}
+
 		return result;
 	}
 
-	private void updateDarkCrystal()
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
+		if (tag.hasKey("hurtTime")) this.setHurtTime(tag.getInteger("hurtTime"));
+		if (tag.hasKey("lightningTicks")) this.setLightningTicks(tag.getInteger("lightningTicks"));
+		if (tag.hasKey("darkEnergyTicks")) this.setDarkEnergyTicks(tag.getInteger("darkEnergyTicks"));
+		if (tag.hasKey("tractorBeamTicks")) this.setTractorBeamTicks(tag.getInteger("tractorBeamTicks"));
+		if (tag.hasKey("laserTicks")) this.setLaserTicks(tag.getInteger("laserTicks"));
+		if (tag.hasKey("thunderstormTicks")) this.setThunderstormTicks(tag.getInteger("thunderstormTicks"));
+		if (tag.hasKey("crystalID")) this.setCrystalID(tag.getInteger("crystalID"));
+		if (tag.hasKey("slamTicks")) this.setSlamTicks(tag.getInteger("slamTicks"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
 	{
-		if (this.currentCrystal != null)
-		{
-			if (this.currentCrystal.isDead)
-			{
-				this.attackEntityFromPart(this.enyvilEye, DamageSource.magic, 25.0F);
-				this.currentCrystal = null;
-			}
-			else
-			{
-				if (this.getEntityState() == 4) this.setEntityState(0);
-				if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(1.0F);
-				this.currentCrystal.motionX = this.motionX;
-				this.currentCrystal.motionZ = this.motionZ;
-
-				if (this.getDistanceToEntity(this.currentCrystal) >= 18.0F)
-				{
-					this.currentCrystal.setPosition(this.posX + getInteger(8, 4), this.posY + Math.abs(getInteger(8, 4)), this.posZ + getInteger(8, 4));
-					this.playSound("mob.endermen.portal", 0.4F, 0.4F);
-				}
-			}
-		}
-		else
-		{
-			this.setEntityState(4);
-		}
-
-		if (this.rand.nextInt(16) == 0)
-		{
-			float f = 32.0F;
-			List list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand((double)f, (double)f, (double)f));
-			EntityDarkCrystal entityendercrystal = null;
-			double d0 = Double.MAX_VALUE;
-			Iterator iterator = list.iterator();
-
-			while (iterator.hasNext())
-			{
-				EntityDarkCrystal entityendercrystal1 = (EntityDarkCrystal)iterator.next();
-				double d1 = entityendercrystal1.getDistanceSqToEntity(this);
-
-				if (d1 < d0)
-				{
-					d0 = d1;
-					entityendercrystal = entityendercrystal1;
-				}
-				entityendercrystal1.motionX = this.motionX;
-				entityendercrystal1.motionZ = this.motionZ;
-			}
-
-			this.currentCrystal = entityendercrystal;
-
-			if (list.isEmpty() && rand.nextInt(24) == 0 && this.getEntityState() == 4)
-			{
-				this.createNewCrystals();
-			}			
-		}
+		super.writeEntityToNBT(tag);
+		tag.setInteger("attackTime", this.getAttackTime());
+		tag.setInteger("hurtTime", this.getHurtTime());
+		tag.setInteger("lightningTicks", this.getLightningTicks());
+		tag.setInteger("darkEnergyTicks", this.getDarkEnergyTicks());
+		tag.setInteger("tractorBeamTicks", this.getTractorBeamTicks());
+		tag.setInteger("laserTicks", this.getLaserTicks());
+		tag.setInteger("thunderstormTicks", this.getThunderstormTicks());
+		tag.setInteger("crystalID", this.getCrystalID());
+		tag.setInteger("slamTicks", this.getSlamTicks());
 	}
 }

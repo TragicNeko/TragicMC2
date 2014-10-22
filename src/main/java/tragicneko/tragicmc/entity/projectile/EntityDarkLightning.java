@@ -14,6 +14,8 @@ public class EntityDarkLightning extends EntityProjectile {
 	public EntityDarkLightning(World par1World)
 	{
 		super(par1World);
+		this.isImmuneToFire = true;
+		this.setSize(0.325F, 0.325F);
 	}
 	
 	public EntityDarkLightning(World par1World, EntityLivingBase entity, double par2, double par4, double par6) {
@@ -33,8 +35,10 @@ public class EntityDarkLightning extends EntityProjectile {
 		}
 		else
 		{
-			if (var1.entityHit != null && !inGround && !(var1.entityHit instanceof EntityEnyvil)) 
+			if (var1.entityHit != null && !(var1.entityHit instanceof EntityEnyvil)) 
 			{			
+				if (var1.entityHit instanceof EntityDarkLightning) return;
+				
 				var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 				this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, var1.entityHit.posX, var1.entityHit.posY, var1.entityHit.posZ));
 				if (var1.entityHit instanceof EntityLivingBase) ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
@@ -52,7 +56,7 @@ public class EntityDarkLightning extends EntityProjectile {
 			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.posX, this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ), this.posZ));
 		}
 		
-		if (this.ticksInAir >= 120) this.setDead();
+		if (!this.worldObj.isRemote && this.ticksExisted >= 120) this.setDead();
 	}
 	
 	@Override
