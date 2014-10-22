@@ -33,9 +33,9 @@ public class EntityAbomination extends TragicMob {
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(3, new EntityAILookIdle(this));
-		this.tasks.addTask(4, new EntityAIWander(this, 0.55D));
-		this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
+		this.tasks.addTask(5, new EntityAILookIdle(this));
+		this.tasks.addTask(5, new EntityAIWander(this, 0.55D));
+		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 	}

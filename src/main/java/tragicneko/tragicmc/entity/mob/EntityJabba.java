@@ -418,7 +418,7 @@ public class EntityJabba extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return TragicNewConfig.allowJarra;
 	}
-	
+	/*
 	@Override
 	public String getLivingSound()
 	{
@@ -435,7 +435,7 @@ public class EntityJabba extends TragicMob {
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.jabba.death";
-	}
+	} */
 	
 	@Override
 	public float getSoundPitch()

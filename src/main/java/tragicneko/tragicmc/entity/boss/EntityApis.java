@@ -385,7 +385,7 @@ public class EntityApis extends TragicBoss {
 			{
 				if (!(player.getCurrentEquippedItem().getItem() instanceof ItemBow))
 				{
-					player.getCurrentEquippedItem().damageItem(rand.nextInt(3) + 1, player);
+					player.getCurrentEquippedItem().damageItem(rand.nextInt(2) + 1, player);
 				}
 			}
 			else

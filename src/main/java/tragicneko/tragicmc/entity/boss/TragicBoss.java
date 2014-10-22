@@ -213,4 +213,10 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		float f = this.getDistanceToEntity(entity);
 		return f >= min && f <= max;
 	}
+	
+	public int getIntegerInRange(int min, int max)
+	{
+		int cand = MathHelper.getRandomIntegerInRange(rand, min, max);
+		return rand.nextBoolean() ? cand : -cand;
+	}
 }

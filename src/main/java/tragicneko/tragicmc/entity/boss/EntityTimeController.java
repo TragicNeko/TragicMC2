@@ -508,6 +508,8 @@ public class EntityTimeController extends TragicBoss {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
+		
+		if (this.getPurgeTicks() > 0 && par1DamageSource.isProjectile()) return false;
 
 		if (this.getFluxTicks() > 0)
 		{
@@ -728,6 +730,9 @@ public class EntityTimeController extends TragicBoss {
 
 	@Override
 	protected void fall(float par1) {}
+	
+	@Override
+	public void addPotionEffect(PotionEffect effect) {}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
