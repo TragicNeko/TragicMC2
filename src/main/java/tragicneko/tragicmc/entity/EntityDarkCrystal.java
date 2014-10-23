@@ -120,7 +120,7 @@ public class EntityDarkCrystal extends Entity {
 			this.incrementRotation();
 		}
 		
-		if (this.ticksExisted % 20 == 0) this.motionY = MathHelper.cos(0.63F * this.ticksExisted + this.getEntityId()) * 0.265 - 0.027;
+		if (this.ticksExisted % 20 == 0) this.motionY = MathHelper.sin(this.ticksExisted + this.getEntityId()) * 0.115;
 		if (Math.abs(this.motionX) >= 0.225D && Math.abs(this.motionX) <= 0.5D) this.motionX *= 1.125D;
 		if (Math.abs(this.motionZ) >= 0.225D && Math.abs(this.motionZ) <= 0.5D) this.motionZ *= 1.125D;
 		if (!this.worldObj.isRemote) this.moveEntity(this.motionX, this.motionY, this.motionZ);
