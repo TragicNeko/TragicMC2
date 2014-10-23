@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockErodedStone extends Block {
 	
-	private String[] oreNames = new String[] {"Smooth", "Carved"};
+	private String[] oreNames = new String[] {"Smooth", "Carved", "Scattered"};
 	private IIcon[] iconArray = new IIcon[oreNames.length];
 
 	public BlockErodedStone() {

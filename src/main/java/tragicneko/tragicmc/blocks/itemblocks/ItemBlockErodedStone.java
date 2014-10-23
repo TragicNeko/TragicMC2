@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockErodedStone extends TragicItemBlock {
 
 	public ItemBlockErodedStone(Block p_i45328_1_) {
-		super(p_i45328_1_, new String[] {"smooth", "carved"});
+		super(p_i45328_1_, new String[] {"smooth", "carved", "scattered"});
 		this.setUnlocalizedName("tragicmc.erodedStone");
 	}
 }
