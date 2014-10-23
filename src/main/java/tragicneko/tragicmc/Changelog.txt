@@ -2870,11 +2870,32 @@ Remove Jabba sounds, temporarily until I add the other mob's sounds and adjust t
 Bump version number again, this is to check if an issue with Twilight Forest (and possibly other Dimensional mods) is resolved
 
 1.38.1668 <175> (October 22, 2014)
+The issue was fixed with using reach on the twilight forest mobs, but I have no idea what caused it, possibly due to how the Twilight Forest dimension is set up
+Added Enyvil's animations and updated it's model, it now can break blocks if it can't move horizontally or if it takes damage from being inside of a block
+Added a few new blocks for the Overlord Tower, I have the basic design for the tower I want to do, now all I have to do is create the schematic and set up the whole thing
+Also added the blocks for the Overlord Dimension, the Overlord is going to be a cyborg alien thing now, instead of just an alien thing, maybe I could make it summon swarms
+of nanobots in addition to the Underlings that it'll spawn, the swarms of nanobots will work like the bomb clones of the Skultar, which will die on impact with their target
+Updated the Claymation's AI now to fit with all of the new rewritten AI, and to also animate each model separately based off of utility values
+Finished up all of the Claymation's forms, this includes each model's separate animations
+I'm going to add the new weapon models and if that goes quickly then I may start on the new mobs, otherwise I'll do a release
 
+
+
+
+--Reminders-
+Add a "shudder" animation to the Erkel, idle animation
+Start making particles for my entities
+Finish making the actual rendered armor textures, only need the lowRes ones at this point
+Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
+A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami
+Make it so that corrupted mob's textures darken the longer they are corrupted
+Add the "Epic" weapon models, maybe animate them too
+I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
+Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
+a keybinding and gui screen in order to do this
 Change the luxury drops to use a weighted random system, instead of a completely random system, this could be either using weighted random item or it could be what I use for
 their normal drops
 Change how projectiles are fired from weapons, use a vector based direction instead of a block hit position, this would allow you to shoot them up into the air and such
-
 Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
 that stay in it too long)
 Possibly change Clarity to instead of just turning invisible enemies visible, spawn a client-side particle effect around them while the effect is active (it'd be nice to have
@@ -2889,7 +2910,6 @@ Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a
 it collides with, it'll have dubstep-like sounds
 Start work on the Overlord
 Add a Tower Guardian Mini-Boss to get into the Overlord Dimension, it'll create the portal where it dies
-
 Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
 mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
 This will be using Property types instead of raw boolean values, but with the way my config is set up, it should be easy to convert the values (all of the arrays will be
@@ -2897,22 +2917,6 @@ converted to Property arrays instead, and then get the value from that when init
 minecraft to be reset
 Potion Effects, Doom, Doomsdays, Amulets can be changed without reset
 Mobs, Dimension, WorldGen and Biomes require resets
-
---Reminders-
-Add a "shudder" animation to the Erkel, idle animation
-Add a "detach head" and "stretching" animation to the Pumpkinhead, idle animations
-Add a "headshake" and "footscrape" animation to the Minotaur, idle animations
-Add a "flapping" animation to the Inkling, idle animations
-Add a "spin"  animation to the Gragul, idle animation
-Start making particles for my entities
-Finish making the actual rendered armor textures, only need the lowRes ones at this point
-Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
-A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami
-Make it so that corrupted mob's textures darken the longer they are corrupted
-Add the "Epic" weapon models, maybe animate them too
-I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
-Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
-a keybinding and gui screen in order to do this
 
 --Before Next Release--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
