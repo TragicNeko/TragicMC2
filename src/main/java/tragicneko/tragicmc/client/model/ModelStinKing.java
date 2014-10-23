@@ -3,22 +3,23 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityStinKing;
 
 public class ModelStinKing extends ModelBase
 {
 	private ModelRenderer body;
 	private ModelRenderer head;
-	
+
 	private ModelRenderer legFR;
 	private ModelRenderer legFL;
 	private ModelRenderer legML;
 	private ModelRenderer legMR;
 	private ModelRenderer legBR;
 	private ModelRenderer legBL;
-	
+
 	private ModelRenderer tail;
-	
+
 	private float[] legValues = new float[] {-0.2230717F, -0.2230717F, -0.0371786F, -0.0371786F, 0.0743572F, 0.0743572F};
 
 	public ModelStinKing()
@@ -33,7 +34,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer bodyThickness = new ModelRenderer(this, 0, 30);
 		bodyThickness.addBox(-4F, 2F, 0F, 8, 8, 13);
 		body.addChild(bodyThickness);
-		
+
 		//Back spikes
 		ModelRenderer backSpike = new ModelRenderer(this, 0, 18);
 		backSpike.addBox(0F, -3F, 6F, 2, 11, 2);
@@ -49,7 +50,7 @@ public class ModelStinKing extends ModelBase
 		backSpike3.rotateAngleX = -0.1115358F;
 		backSpike3.rotateAngleZ = -0.1115358F;
 		body.addChild(backSpike3);
-		
+
 		//Head and neck spikes
 		head = new ModelRenderer(this, 0, 54);
 		head.addBox(-2F, -14F, -5F, 4, 9, 6);
@@ -60,7 +61,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer neckThickness2 = new ModelRenderer(this, 32, 80);
 		neckThickness2.addBox(-1F, -23F, -4F, 2, 17, 6);
 		head.addChild(neckThickness2);
-		
+
 		//Tusks, Horns and Horn tips
 		ModelRenderer tuskRight = new ModelRenderer(this, 0, 18);
 		tuskRight.addBox(-3F, -12F, -5F, 2, 15, 3);
@@ -78,7 +79,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer tuskRightTip = new ModelRenderer(this, 0, 18);
 		tuskRightTip.addBox(-2F, -27F, -5F, 1, 15, 2);
 		tuskRight.addChild(tuskRightTip);
-		
+
 		ModelRenderer horn = new ModelRenderer(this, 0, 18);
 		horn.addBox(-1F, -14F, -7F, 2, 14, 3);
 		horn.rotateAngleX = 0.5205006F;
@@ -93,7 +94,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer neckSpikeTip = new ModelRenderer(this, 0, 18);
 		neckSpikeTip.addBox(-1.05F, -21F, -2F, 2, 5, 1);
 		neckSpike.addChild(neckSpikeTip);
-		
+
 		//Legs
 		legFR = new ModelRenderer(this, 64, 0);
 		legFR.addBox(-5F, -4F, 0F, 2, 22, 3);
@@ -103,7 +104,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer legTipFR = new ModelRenderer(this, 0, 0);
 		legTipFR.addBox(-4.05F, 17F, 1F, 1, 15, 2);
 		legFR.addChild(legTipFR);
-		
+
 		legFL = new ModelRenderer(this, 64, 18);
 		legFL.addBox(4F, -4F, -1F, 2, 22, 3);
 		legFL.rotateAngleX = -0.2230717F;
@@ -112,7 +113,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer legTipFL = new ModelRenderer(this, 10, 0);
 		legTipFL.addBox(4.05F, 18F, 0F, 1, 15, 2);
 		legFL.addChild(legTipFL);
-		
+
 		legML = new ModelRenderer(this, 64, 20);
 		legML.addBox(3F, 0F, 4F, 2, 20, 3);
 		legML.rotateAngleX = -0.0371786F;
@@ -121,7 +122,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer legTipML = new ModelRenderer(this, 10, 0);
 		legTipML.addBox(2.95F, 19F, 4.5F, 1, 15, 2);
 		legML.addChild(legTipML);
-		
+
 		legMR = new ModelRenderer(this, 64, 0);
 		legMR.addBox(-5F, 0F, 4F, 2, 20, 3);
 		legMR.rotateAngleX = -0.0371786F;
@@ -130,7 +131,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer legTipMR = new ModelRenderer(this, 0, 0);
 		legTipMR.addBox(-3.95F, 19F, 4.5F, 1, 15, 2);
 		legMR.addChild(legTipMR);
-		
+
 		legBR = new ModelRenderer(this, 64, 0);
 		legBR.addBox(-5F, 0F, 8F, 2, 20, 3);
 		legBR.rotateAngleX = 0.0743572F;
@@ -139,7 +140,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer legTipBR = new ModelRenderer(this, 0, 0);
 		legTipBR.addBox(-4.95F, 19F, 7.95F, 1, 15, 2);
 		legBR.addChild(legTipBR);
-		
+
 		legBL = new ModelRenderer(this, 64, 20);
 		legBL.addBox(3F, 0F, 8F, 2, 20, 3);
 		legBL.rotateAngleX = 0.1115358F;
@@ -148,7 +149,7 @@ public class ModelStinKing extends ModelBase
 		ModelRenderer legTipBL = new ModelRenderer(this, 10, 0);
 		legTipBL.addBox(3.95F, 19F, 7.95F, 1, 15, 2);
 		legBL.addChild(legTipBL);
-		
+
 		//Tail
 		tail = new ModelRenderer(this, 32, 56);
 		tail.addBox(-3F, 6F, 12F, 6, 4, 5);
@@ -171,14 +172,28 @@ public class ModelStinKing extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		if (!(entity instanceof EntityStinKing)) return;
+		if (!(entity instanceof EntityStinKing) && !(entity instanceof EntityClaymation)) return;
+		
+		int gallop = 0;
+		int charge = 0;
 
-		EntityStinKing stin = (EntityStinKing) entity;
+		if (entity instanceof EntityStinKing)
+		{
+			EntityStinKing stin = (EntityStinKing) entity;
+			gallop = stin.getGallopTicks();
+			charge = stin.getChargeTicks();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			gallop = clay.getUtilityInt();
+			charge = clay.getUtilityInt2();
+		}
 
-		if (stin.isGalloping())
+		if (gallop > 0)
 		{
 			float rate = 15.0F;
-			float wow = stin.getGallopTicks() % rate;
+			float wow = gallop % rate;
 
 			body.rotateAngleX = -0.215F + this.simplifyAngle(wow, rate) * 0.235F;
 			body.offsetY = this.simplifyAngle(wow, rate) * 0.115F - 0.1F;
@@ -220,7 +235,7 @@ public class ModelStinKing extends ModelBase
 			body.rotateAngleX = head.rotateAngleX = tail.rotateAngleX = 0.0F;
 			legFR.offsetY = legFL.offsetY = legBR.offsetY = legBL.offsetY = legMR.offsetY = legML.offsetY = 0.0F;
 
-			if (stin.isCharging() && stin.getChargeTicks() >= 170)
+			if (charge >= 170)
 			{
 				body.rotateAngleX = 0.2F; 
 				legFL.rotateAngleX = legValues[1] - 0.2F;
@@ -235,7 +250,7 @@ public class ModelStinKing extends ModelBase
 				head.rotateAngleY = f3 / (180F / (float)Math.PI);
 				head.rotateAngleX = f4 / (180F / (float)Math.PI);
 
-				tail.rotateAngleX = this.simplifyAngle(stin.ticksExisted, 40.0F) * 0.0245F + 0.2230717F;
+				tail.rotateAngleX = this.simplifyAngle(entity.ticksExisted, 40.0F) * 0.0245F + 0.2230717F;
 
 				legFR.rotateAngleX = legValues[0] + this.simplifyAngle(f, 3.0F) * 0.093F * f1;
 				legMR.rotateAngleX = legValues[3] + this.simplifyAngle(f + 0.5F, 3.0F) * 0.093F * f1;

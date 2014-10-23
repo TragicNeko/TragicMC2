@@ -208,7 +208,7 @@ public class EntityKitsune extends TragicBoss {
 
 			if (this.getAttackTarget() != null)
 			{
-				if (this.isFiring() && (this.getDistanceToEntity(this.getAttackTarget()) < 4.0F || this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F))
+				if (this.isFiring() && (this.getDistanceToEntity(this.getAttackTarget()) < 4.0F || this.getDistanceToEntity(this.getAttackTarget()) >= 14.0F))
 				{
 					this.setFiringTicks(0);
 				}
@@ -323,7 +323,7 @@ public class EntityKitsune extends TragicBoss {
 		{
 			if (this.getHurtTime() == 0 && !flag) this.setHurtTime(100);
 			par2 = flag ? Float.MAX_VALUE : (this.isFiring() && this.getFiringTicks() % 20 >= 15 ? 20 : 10);
-			if (!flag) this.teleportToEntity(par1DamageSource.getEntity());
+			if (!flag && par1DamageSource.getEntity() != null) this.teleportToEntity(par1DamageSource.getEntity());
 		}
 
 		return super.attackEntityFrom(par1DamageSource, par2);

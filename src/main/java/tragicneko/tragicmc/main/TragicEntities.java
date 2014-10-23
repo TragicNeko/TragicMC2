@@ -707,7 +707,10 @@ public class TragicEntities {
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
 				EntityRegistry.addSpawn(EntityClaymation.class, TragicNewConfig.claymationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
-						BiomeGenBase.desertHills
+						BiomeGenBase.desertHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F
 						);
 			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);

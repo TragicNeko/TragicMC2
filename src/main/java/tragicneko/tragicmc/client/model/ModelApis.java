@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 
 public class ModelApis extends ModelBase
 {
@@ -127,9 +128,7 @@ public class ModelApis extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		if (!(entity instanceof EntityApis)) return;
-
-		EntityApis apis = (EntityApis) entity;
+		if (!(entity instanceof EntityApis) && !(entity instanceof EntityClaymation)) return;
 
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		head.rotateAngleX = f4 / (180F / (float)Math.PI);
@@ -142,21 +141,40 @@ public class ModelApis extends ModelBase
 		rightLeg.offsetY = -0.1F;
 		leftLeg.offsetY = -0.1F;
 		
-		if (apis.isStomping())
+		int stomp = 0;
+		int charge = 0;
+		int attack = 0;
+		
+		if (entity instanceof EntityApis)
+		{
+			EntityApis apis = (EntityApis) entity;
+			stomp = apis.getStompTicks();
+			charge = apis.getChargeTicks();
+			attack = apis.getAttackTime();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			stomp = clay.getUtilityInt();
+			charge = clay.getUtilityInt2();
+			attack = clay.getUtilityInt3();
+		}
+		
+		if (stomp > 0)
 		{
 			head.rotateAngleX = rightArm.rotateAngleX = leftArm.rotateAngleX = rightArm.rotateAngleZ = leftArm.rotateAngleZ = leftLeg.rotateAngleX = rightLeg.rotateAngleX = 0.0F;
 			
-			head.rotateAngleX = 0.435F * simplifyAngle(apis.getStompTicks(), 40.0F);
+			head.rotateAngleX = 0.435F * simplifyAngle(stomp, 40.0F);
 
-			rightArm.rotateAngleX = 0.645F * simplifyAngle(apis.getStompTicks(), 40.0F) + 0.2115358F;
-			leftArm.rotateAngleX = 0.645F * simplifyAngle(apis.getStompTicks(), 40.0F) + 0.2115358F;
+			rightArm.rotateAngleX = 0.645F * simplifyAngle(stomp, 40.0F) + 0.2115358F;
+			leftArm.rotateAngleX = 0.645F * simplifyAngle(stomp, 40.0F) + 0.2115358F;
 
-			rightArm.rotateAngleZ = -0.325F * simplifyAngle(apis.getStompTicks(), 40.0F) + 0.21115358F;
-			leftArm.rotateAngleZ = 0.325F * simplifyAngle(apis.getStompTicks(), 40.0F) + -0.21115358F;
+			rightArm.rotateAngleZ = -0.325F * simplifyAngle(stomp, 40.0F) + 0.21115358F;
+			leftArm.rotateAngleZ = 0.325F * simplifyAngle(stomp, 40.0F) + -0.21115358F;
 
-			if (apis.getStompTicks() <= 22 && apis.getStompTicks() >= 2)
+			if (stomp <= 22 && stomp >= 2)
 			{
-				leftLeg.offsetY = 0.125F * simplifyAngle(apis.ticksExisted, 40.0F) - 0.2F;
+				leftLeg.offsetY = 0.125F * simplifyAngle(stomp, 40.0F) - 0.2F;
 			}
 			else
 			{
@@ -167,19 +185,19 @@ public class ModelApis extends ModelBase
 		{
 			head.rotateAngleX = rightArm.rotateAngleX = leftArm.rotateAngleX = rightArm.rotateAngleZ = leftArm.rotateAngleZ = 0.0F;
 
-			if (apis.getAttackTime() > 0)
+			if (attack > 0)
 			{			
-				head.rotateAngleX = 0.235F * simplifyAngle(apis.getAttackTime(), 10.0F);
+				head.rotateAngleX = 0.235F * simplifyAngle(attack, 10.0F);
 
-				rightArm.rotateAngleX = 0.745F * simplifyAngle(apis.getAttackTime(), 10.0F) + 0.2115358F;
-				leftArm.rotateAngleX = 0.745F * simplifyAngle(apis.getAttackTime(), 10.0F) + 0.2115358F;
+				rightArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) + 0.2115358F;
+				leftArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) + 0.2115358F;
 
-				rightArm.rotateAngleZ = -0.225F * simplifyAngle(apis.getAttackTime(), 10.0F) + 0.21115358F;
-				leftArm.rotateAngleZ = 0.225F * simplifyAngle(apis.getAttackTime(), 10.0F) + -0.21115358F;
+				rightArm.rotateAngleZ = -0.225F * simplifyAngle(attack, 10.0F) + 0.21115358F;
+				leftArm.rotateAngleZ = 0.225F * simplifyAngle(attack, 10.0F) + -0.21115358F;
 			}
 			else
 			{
-				if (apis.isCharging())
+				if (charge > 0)
 				{
 					rightArm.rotateAngleX = -0.556F;
 					leftArm.rotateAngleX = -0.446F;

@@ -201,9 +201,9 @@ public class EntityStin extends TragicMob {
 				this.setSize(0.65F, 0.65F);
 				this.stepHeight = 0.5F;
 			}
+			
+			return;
 		}
-		
-		if (this.worldObj.isRemote) return;
 
 		if (this.getAgeTicks() <= 700) this.incrementAgeTicks();
 		if (this.getGallopTicks() > 0) this.decrementGallopTicks();
@@ -288,7 +288,7 @@ public class EntityStin extends TragicMob {
 
 		if (flag)
 		{
-			this.setGallopTicks(15);
+			if (this.getGallopTicks() == 0) this.setGallopTicks(15);
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0, 8.0, 8.0));
 			TragicMob mob;
 

@@ -320,7 +320,7 @@ public class EntityRagr extends TragicMob {
 			{
 				if (!(player.getCurrentEquippedItem().getItem() instanceof ItemBow))
 				{
-					player.getCurrentEquippedItem().damageItem(rand.nextInt(5) + 1, player);
+					player.getCurrentEquippedItem().damageItem(rand.nextInt(4) + 1, player);
 				}
 			}
 			else

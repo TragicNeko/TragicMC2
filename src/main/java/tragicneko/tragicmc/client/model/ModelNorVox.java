@@ -1,9 +1,10 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
+import tragicneko.tragicmc.entity.mob.EntityNorVox;
 
 public class ModelNorVox extends ModelBase
 {
@@ -90,13 +91,29 @@ public class ModelNorVox extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		if (!(entity instanceof EntityNorVox) && !(entity instanceof EntityClaymation)) return;
+		
+		int firing = 0;
+		int nod = 0;
+		int attack = 0;
 
-		EntityNorVox vox = (EntityNorVox) entity;
-
-		if (vox.getFiringTicks() >= 40 || vox.getNodTicks() > 0 || vox.getAttackTime() > 0)
+		if (entity instanceof EntityNorVox)
 		{
-			this.jaw.offsetY = this.simplifyAngle(vox.ticksExisted, 0.35F) * 0.1F;
+			EntityNorVox vox = (EntityNorVox) entity;
+			firing = vox.getFiringTicks();
+			nod = vox.getNodTicks();
+			attack = vox.getAttackTime();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			firing = clay.getUtilityInt();
+			attack = clay.getUtilityInt2();
+		}
+
+		if (firing >= 40 || nod > 0 || attack > 0)
+		{
+			this.jaw.offsetY = this.simplifyAngle(entity.ticksExisted, 0.35F) * 0.1F;
 		}
 		else
 		{
@@ -105,15 +122,15 @@ public class ModelNorVox extends ModelBase
 
 		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
 
-		if (vox.getNodTicks() > 0)
+		if (nod > 0)
 		{
-			this.head.rotateAngleX = this.simplifyAngle(vox.ticksExisted, 10.0F) * 0.25F + f4 / (180F / (float)Math.PI);
+			this.head.rotateAngleX = this.simplifyAngle(entity.ticksExisted, 10.0F) * 0.25F + f4 / (180F / (float)Math.PI);
 		}
 		else
 		{
-			if (vox.getAttackTime() > 0)
+			if (attack > 0)
 			{
-				this.head.rotateAngleX = this.simplifyAngle(vox.ticksExisted, 5.0F) * 0.25F + f4 / (180F / (float)Math.PI);
+				this.head.rotateAngleX = this.simplifyAngle(entity.ticksExisted, 5.0F) * 0.25F + f4 / (180F / (float)Math.PI);
 			}
 			else
 			{

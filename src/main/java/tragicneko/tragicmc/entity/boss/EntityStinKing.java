@@ -80,10 +80,7 @@ public class EntityStinKing extends EntityGreaterStin implements TragicMiniBoss 
 	}
 
 	public void onLivingUpdate()
-	{		
-		//this.motionX = this.motionY = this.motionZ = 0.0D;
-		//this.rotationYaw = this.rotationPitch = this.rotationYawHead = 0.0F;
-		
+	{				
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)

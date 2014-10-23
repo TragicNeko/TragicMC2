@@ -1,9 +1,10 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
+import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 
 public class ModelDeathReaper extends ModelBase
 {
@@ -263,9 +264,23 @@ public class ModelDeathReaper extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		if (!(entity instanceof EntityDeathReaper)) return;
+		if (!(entity instanceof EntityDeathReaper) && !(entity instanceof EntityClaymation)) return;
+		
+		int attack = 0;
+		int hit = 0;
 
-		EntityDeathReaper reap = (EntityDeathReaper) entity;
+		if (entity instanceof EntityDeathReaper)
+		{
+			EntityDeathReaper reap = (EntityDeathReaper) entity;
+			hit = reap.getHitTime();
+			attack = reap.getAttackTime();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			hit = clay.getUtilityInt3();
+			attack = clay.getUtilityInt2();
+		}
 
 		lowerJaw.rotateAngleX = head.rotateAngleX = armRight.rotateAngleX = scythe.offsetX = scythe.offsetZ = 0.0F;
 		armRight.rotateAngleZ = 0.445289F;
@@ -273,9 +288,9 @@ public class ModelDeathReaper extends ModelBase
 		scythe.rotateAngleY = 1.25995267F;
 		scythe.rotateAngleZ = -2.24554337F;
 
-		if (reap.getAttackTime() > 0)
+		if (attack > 0)
 		{
-			int time = (reap.getAttackTime() % 20) + 10;
+			int time = (attack % 20) + 10;
 
 			lowerJaw.rotateAngleX = this.simplifyAngle(time, 8.0F) * 0.223F;
 			scythe.rotateAngleZ = 3.25995267F + this.simplifyAngle(time, 20.0F) * -1.667F;
@@ -293,24 +308,24 @@ public class ModelDeathReaper extends ModelBase
 		}
 		else
 		{
-			if (reap.getHitTime() > 0 && reap.getHitTime() <= 11)
+			if (hit > 0 && hit <= 11)
 			{
-				float hit = reap.getHitTime() - 1.0F;
+				float hurt = hit - 1.0F;
 				float scale = 0.223F;
 				float rate = 4.0F;
 
-				frontRibTL.rotateAngleY = -0.3386F + this.simplifyAngle(hit, rate) * scale;
-				frontRibTR.rotateAngleY = 0.344878F + this.simplifyAngle(hit, rate) * scale;
-				frontRibML.rotateAngleY = -0.3340967F + this.simplifyAngle(hit, rate) * scale;
-				frontRibMR.rotateAngleY = 0.3451081F + this.simplifyAngle(hit, rate) * scale;
-				frontRibBL.rotateAngleY = -0.402503F + this.simplifyAngle(hit, rate) * scale;
-				frontRibBR.rotateAngleY = 0.5461433F + this.simplifyAngle(hit, rate) * scale;
+				frontRibTL.rotateAngleY = -0.3386F + this.simplifyAngle(hurt, rate) * scale;
+				frontRibTR.rotateAngleY = 0.344878F + this.simplifyAngle(hurt, rate) * scale;
+				frontRibML.rotateAngleY = -0.3340967F + this.simplifyAngle(hurt, rate) * scale;
+				frontRibMR.rotateAngleY = 0.3451081F + this.simplifyAngle(hurt, rate) * scale;
+				frontRibBL.rotateAngleY = -0.402503F + this.simplifyAngle(hurt, rate) * scale;
+				frontRibBR.rotateAngleY = 0.5461433F + this.simplifyAngle(hurt, rate) * scale;
 
-				lowerJaw.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
+				lowerJaw.rotateAngleX = this.simplifyAngle(hurt + 2.0F, rate) * scale;
 				head.rotateAngleX = -0.223F;
-				armLeft.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
-				armRight.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
-				scythe.rotateAngleX = this.simplifyAngle(hit + 2.0F, rate) * scale;
+				armLeft.rotateAngleX = this.simplifyAngle(hurt + 2.0F, rate) * scale;
+				armRight.rotateAngleX = this.simplifyAngle(hurt + 2.0F, rate) * scale;
+				scythe.rotateAngleX = this.simplifyAngle(hurt + 2.0F, rate) * scale;
 			}
 			else
 			{

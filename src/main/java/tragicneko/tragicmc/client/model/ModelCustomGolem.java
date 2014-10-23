@@ -11,7 +11,7 @@ public class ModelCustomGolem extends ModelIronGolem {
 	public void setLivingAnimations(EntityLivingBase entity, float p_78086_2_, float p_78086_3_, float p_78086_4_)
     {
         EntityClaymation clay = (EntityClaymation) entity;
-        int i = clay.getFiringTicks();
+        int i = clay.getUtilityInt();
 
         if (i > 0)
         {

@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 
 public class ModelKitsune2 extends ModelBase
@@ -208,12 +209,31 @@ public class ModelKitsune2 extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		if (!(entity instanceof EntityKitsune)) return;
+		if (!(entity instanceof EntityKitsune) && !(entity instanceof EntityClaymation)) return;
 
 		leftLeg.offsetY = 0.0F;
 		rightLeg.offsetY = 0.0F;
+		
+		int taunt = 0;
+		int firing = 0;
+		int attack = 0;
+		int hurt = 0;
 
-		EntityKitsune kitsu = (EntityKitsune) entity;
+		if (entity instanceof EntityKitsune)
+		{
+			EntityKitsune kitsu = (EntityKitsune) entity;
+			taunt = kitsu.getTauntTicks();
+			firing = kitsu.getFiringTicks();
+			attack = kitsu.getAttackTime();
+			hurt = kitsu.getHurtTime();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			firing = clay.getUtilityInt();
+			attack = clay.getUtilityInt2();
+			hurt = clay.getUtilityInt3();
+		}
 
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		head.rotateAngleX = f4 / (180F / (float)Math.PI);
@@ -224,72 +244,72 @@ public class ModelKitsune2 extends ModelBase
 		leftArm.rotateAngleX = 0.55F * this.simplifyAngle(f, 20.0F) * f1;
 		rightArm.rotateAngleX = -0.55F * this.simplifyAngle(f, 20.0F) * f1;
 
-		tailFR.rotateAngleZ = -0.8922867F + this.simplifyAngle(kitsu.ticksExisted - 45.0F, 70.0F) * 0.14F;
-		tailMR.rotateAngleZ = -0.4833219F + this.simplifyAngle(kitsu.ticksExisted - 15.0F, 70.0F) * 0.14F;
-		tailMid.rotateAngleZ = this.simplifyAngle(kitsu.ticksExisted, 60.0F) * 0.14F;
-		tailML.rotateAngleZ = 0.4833219F + this.simplifyAngle(kitsu.ticksExisted + 50.0F, 70.0F) * 0.14F;
-		tailFL.rotateAngleZ = 0.8922867F + this.simplifyAngle(kitsu.ticksExisted + 30.0F, 70.0F) * 0.14F; 
+		tailFR.rotateAngleZ = -0.8922867F + this.simplifyAngle(entity.ticksExisted - 45.0F, 70.0F) * 0.14F;
+		tailMR.rotateAngleZ = -0.4833219F + this.simplifyAngle(entity.ticksExisted - 15.0F, 70.0F) * 0.14F;
+		tailMid.rotateAngleZ = this.simplifyAngle(entity.ticksExisted, 60.0F) * 0.14F;
+		tailML.rotateAngleZ = 0.4833219F + this.simplifyAngle(entity.ticksExisted + 50.0F, 70.0F) * 0.14F;
+		tailFL.rotateAngleZ = 0.8922867F + this.simplifyAngle(entity.ticksExisted + 30.0F, 70.0F) * 0.14F; 
 
-		tailTipFR.rotateAngleZ = this.simplifyAngle(kitsu.ticksExisted - 45.0F, 70.0F) * 0.04F;
-		tailTipMR.rotateAngleZ = this.simplifyAngle(kitsu.ticksExisted - 15.0F, 70.0F) * 0.04F;
-		tailTipMid.rotateAngleZ = this.simplifyAngle(kitsu.ticksExisted, 70.0F) * 0.04F;
-		tailTipML.rotateAngleZ = this.simplifyAngle(kitsu.ticksExisted + 50.0F, 70.0F) * 0.04F;
-		tailTipFL.rotateAngleZ = this.simplifyAngle(kitsu.ticksExisted + 30.0F, 70.0F) * 0.04F;
+		tailTipFR.rotateAngleZ = this.simplifyAngle(entity.ticksExisted - 45.0F, 70.0F) * 0.04F;
+		tailTipMR.rotateAngleZ = this.simplifyAngle(entity.ticksExisted - 15.0F, 70.0F) * 0.04F;
+		tailTipMid.rotateAngleZ = this.simplifyAngle(entity.ticksExisted, 70.0F) * 0.04F;
+		tailTipML.rotateAngleZ = this.simplifyAngle(entity.ticksExisted + 50.0F, 70.0F) * 0.04F;
+		tailTipFL.rotateAngleZ = this.simplifyAngle(entity.ticksExisted + 30.0F, 70.0F) * 0.04F;
 
 		lowerMouth.rotateAngleX = 0.0F;
 
-		if (kitsu.getTauntTicks() > 0)
+		if (taunt > 0)
 		{
-			leftArm.rotateAngleX = -1.86F + this.simplifyAngle(kitsu.ticksExisted, 10.0F) * -0.165F;
-			rightArm.rotateAngleX = -1.86F + this.simplifyAngle(kitsu.ticksExisted, 10.0F) * -0.165F;
+			leftArm.rotateAngleX = -1.86F + this.simplifyAngle(taunt, 10.0F) * -0.165F;
+			rightArm.rotateAngleX = -1.86F + this.simplifyAngle(taunt, 10.0F) * -0.165F;
 
-			leftArm.rotateAngleZ = 0.48F + this.simplifyAngle(kitsu.ticksExisted, 10.0F) * -0.065F;
-			rightArm.rotateAngleZ = -0.48F + this.simplifyAngle(kitsu.ticksExisted, 10.0F) * 0.065F;
+			leftArm.rotateAngleZ = 0.48F + this.simplifyAngle(taunt, 10.0F) * -0.065F;
+			rightArm.rotateAngleZ = -0.48F + this.simplifyAngle(taunt, 10.0F) * 0.065F;
 
 			lowerMouth.rotateAngleX = 0.15F;
 
-			rightEar.rotateAngleX = -0.4089647F + this.simplifyAngle(kitsu.ticksExisted, 8.0F) * 0.125F;
-			leftEar.rotateAngleX = -0.4089647F + this.simplifyAngle(kitsu.ticksExisted, 8.0F) * 0.125F;
+			rightEar.rotateAngleX = -0.4089647F + this.simplifyAngle(taunt, 8.0F) * 0.125F;
+			leftEar.rotateAngleX = -0.4089647F + this.simplifyAngle(taunt, 8.0F) * 0.125F;
 		}
 		else
 		{
-			if (kitsu.getAttackTime() > 0)
+			if (attack > 0)
 			{
-				if (kitsu.getAttackTime() >= 5)
+				if (attack >= 5)
 				{
-					leftArm.rotateAngleX = -0.186F + this.simplifyAngle(kitsu.getFiringTicks(), 5.0F) * -0.865F;
-					leftArm.rotateAngleZ = -0.48F + this.simplifyAngle(kitsu.getFiringTicks(), 5.0F) * -0.125F;
+					leftArm.rotateAngleX = -0.186F + this.simplifyAngle(attack, 5.0F) * -0.865F;
+					leftArm.rotateAngleZ = -0.48F + this.simplifyAngle(attack, 5.0F) * -0.125F;
 				}
 				else
 				{
-					rightArm.rotateAngleX = -0.186F + this.simplifyAngle(kitsu.getFiringTicks(), 5.0F) * -0.865F;
-					rightArm.rotateAngleZ = 0.48F + this.simplifyAngle(kitsu.getFiringTicks(), 5.0F) * 0.125F;
+					rightArm.rotateAngleX = -0.186F + this.simplifyAngle(attack, 5.0F) * -0.865F;
+					rightArm.rotateAngleZ = 0.48F + this.simplifyAngle(attack, 5.0F) * 0.125F;
 				}
 			}
 			else
 			{
-				if (kitsu.isFiring())
+				if (firing > 0)
 				{
-					leftArm.rotateAngleX = -1.25F + this.simplifyAngle(kitsu.getFiringTicks(), 40.0F) * 0.265F;
-					rightArm.rotateAngleX = -1.25F + this.simplifyAngle(kitsu.getFiringTicks(), 40.0F) * 0.265F;
+					leftArm.rotateAngleX = -1.25F + this.simplifyAngle(firing, 40.0F) * 0.265F;
+					rightArm.rotateAngleX = -1.25F + this.simplifyAngle(firing, 40.0F) * 0.265F;
 
-					leftArm.rotateAngleZ = -0.48F + this.simplifyAngle(kitsu.getFiringTicks(), 40.0F) * -0.225F;
-					rightArm.rotateAngleZ = 0.48F + this.simplifyAngle(kitsu.getFiringTicks(), 40.0F) * 0.225F;
+					leftArm.rotateAngleZ = -0.48F + this.simplifyAngle(firing, 40.0F) * -0.225F;
+					rightArm.rotateAngleZ = 0.48F + this.simplifyAngle(firing, 40.0F) * 0.225F;
 
-					lowerMouth.rotateAngleX = this.simplifyAngle(kitsu.getFiringTicks(), 40.0F) * 0.215F;
+					lowerMouth.rotateAngleX = this.simplifyAngle(firing, 40.0F) * 0.215F;
 				}
 				else
 				{
 
-					if (kitsu.getHurtTime() > 90 && kitsu.getHurtTime() <= 100)
+					if (hurt > 90 && hurt <= 100)
 					{
-						leftArm.rotateAngleZ = -0.4858931F + this.simplifyAngle(kitsu.ticksExisted, 10.0F) * 0.215F;
-						rightArm.rotateAngleZ = 0.4858931F + this.simplifyAngle(kitsu.ticksExisted, 10.0F) * -0.215F;
+						leftArm.rotateAngleZ = -0.4858931F + this.simplifyAngle(hurt, 10.0F) * 0.215F;
+						rightArm.rotateAngleZ = 0.4858931F + this.simplifyAngle(hurt, 10.0F) * -0.215F;
 
-						lowerMouth.rotateAngleX = this.simplifyAngle(kitsu.ticksExisted, 10.0F) * 0.115F;
+						lowerMouth.rotateAngleX = this.simplifyAngle(hurt, 10.0F) * 0.115F;
 
-						rightEar.rotateAngleX = -0.4089647F + this.simplifyAngle(kitsu.ticksExisted, 8.0F) * 0.125F;
-						leftEar.rotateAngleX = -0.4089647F + this.simplifyAngle(kitsu.ticksExisted, 8.0F) * 0.125F;
+						rightEar.rotateAngleX = -0.4089647F + this.simplifyAngle(hurt, 8.0F) * 0.125F;
+						leftEar.rotateAngleX = -0.4089647F + this.simplifyAngle(hurt, 8.0F) * 0.125F;
 					}
 					else
 					{

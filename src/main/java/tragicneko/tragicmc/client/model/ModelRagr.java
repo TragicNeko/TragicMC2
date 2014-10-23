@@ -99,8 +99,6 @@ public class ModelRagr extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
 		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
 		
@@ -112,10 +110,7 @@ public class ModelRagr extends ModelBase
 			this.leftLeg.rotateAngleX = -1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * f5;
 			this.rightLeg.rotateAngleX = 1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * f5;
 		}
-	}
-
-	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
-	{
+		
 		if (entity.onGround || entity.isRiding() || entity.isSneaking())
 		{		
 			this.rightShoulder.rotateAngleX = 0.8000468F;
@@ -139,10 +134,10 @@ public class ModelRagr extends ModelBase
 		}
 		else
 		{
-			this.leftShoulder.rotateAngleX = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * par3;
-			this.rightShoulder.rotateAngleX = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * par3;
-			this.leftShoulder.rotateAngleZ = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * par3;
-			this.rightShoulder.rotateAngleZ = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * par3;
+			this.leftShoulder.rotateAngleX = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
+			this.rightShoulder.rotateAngleX = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
+			this.leftShoulder.rotateAngleZ = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
+			this.rightShoulder.rotateAngleZ = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
 			
 			this.rightForearm.rotateAngleX = 0.0F;
 			this.leftForearm.rotateAngleX = 0.0F;
@@ -157,7 +152,7 @@ public class ModelRagr extends ModelBase
 			{
 				this.partArray[i].offsetY = 0.0F;
 			}
-		} 
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

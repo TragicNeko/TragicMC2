@@ -1,13 +1,11 @@
 package tragicneko.tragicmc.client.model;
 
-import java.util.Random;
-
-import tragicneko.tragicmc.entity.mob.EntityJabba;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
+import tragicneko.tragicmc.entity.mob.EntityJabba;
 
 public class ModelJabba extends ModelBase
 {
@@ -93,22 +91,34 @@ public class ModelJabba extends ModelBase
 
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
-		if (!(entity instanceof EntityJabba)) return; //Claymation and Statue protection, temporary
+		if (!(entity instanceof EntityJabba) && !(entity instanceof EntityClaymation)) return;
 
-		EntityJabba jab = (EntityJabba) entity;
-		int i = jab.getAttackTicks();
-		
+		int attack = 0;
+		int worm = 0;
+
+		if (entity instanceof EntityJabba)
+		{
+			EntityJabba jab = (EntityJabba) entity;
+			attack = jab.getAttackTicks();
+			worm = jab.getWormTicks();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			attack = clay.getUtilityInt2();
+		}
+
 		head.offsetX = body.offsetX = body2.offsetX = body3.offsetX = head2.offsetX = 0.0F;
 		head.offsetY = body.offsetY = body2.offsetY = body3.offsetY = head2.offsetY = 0.0F;
-		
-		if (jab.getWormTicks() > 0)
+
+		if (worm > 0)
 		{
 			float f1 = 0.185F;
-			head.offsetY = this.simplifyAngle(jab.getWormTicks(), 15.0F) * f1;
-			body.offsetY = this.simplifyAngle(jab.getWormTicks() + 2.0F, 15.0F) * f1;
-			body2.offsetY = this.simplifyAngle(jab.getWormTicks() + 4.0F, 15.0F) * f1;
-			body3.offsetY = this.simplifyAngle(jab.getWormTicks() + 6.0F, 15.0F) * f1;
-			head2.offsetY = this.simplifyAngle(jab.getWormTicks() + 8.0F, 15.0F) * f1;
+			head.offsetY = this.simplifyAngle(worm, 15.0F) * f1;
+			body.offsetY = this.simplifyAngle(worm + 2.0F, 15.0F) * f1;
+			body2.offsetY = this.simplifyAngle(worm + 4.0F, 15.0F) * f1;
+			body3.offsetY = this.simplifyAngle(worm + 6.0F, 15.0F) * f1;
+			head2.offsetY = this.simplifyAngle(worm + 8.0F, 15.0F) * f1;
 		}
 		else
 		{
@@ -120,13 +130,13 @@ public class ModelJabba extends ModelBase
 			body3.offsetX = movementOffsets[3][k] * f0;
 			head2.offsetX = movementOffsets[4][k] * f0;			
 		}
-		
-		if (i > 0)
+
+		if (attack > 0)
 		{
-			leftPincer.rotateAngleY = -0.15F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F);
-			rightPincer.rotateAngleY = -(-0.15F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F));
-			leftTailPincer.rotateAngleY = 0.1F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F);
-			rightTailPincer.rotateAngleY = -(0.1F + 0.15F * this.simplifyAngle((float)i - par3, 10.0F));
+			leftPincer.rotateAngleY = -0.15F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F);
+			rightPincer.rotateAngleY = -(-0.15F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F));
+			leftTailPincer.rotateAngleY = 0.1F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F);
+			rightTailPincer.rotateAngleY = -(0.1F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F));
 		}
 		else
 		{

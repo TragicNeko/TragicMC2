@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 
 public class ModelMinotaur extends ModelBase
@@ -107,21 +108,28 @@ public class ModelMinotaur extends ModelBase
 
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
+		if (!(entity instanceof EntityMinotaur) && !(entity instanceof EntityClaymation)) return;
+		
 		this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
 		this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
 		this.leftLeg.rotateAngleX = -1.5F * this.simplifyAngle(par1, 13.0F) * par2;
 		this.rightLeg.rotateAngleX = 1.5F * this.simplifyAngle(par1, 13.0F) * par2;
 		this.leftArm.rotateAngleX = 0.55F * this.simplifyAngle(par1, 13.0F) * par2;
 		this.rightArm.rotateAngleX = -0.55F * this.simplifyAngle(par1, 13.0F) * par2; 
-	}
 
-	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
-	{
-		if (!(entity instanceof EntityMinotaur)) return; //This is here to prevent problems from happening with the Claymation, temporarily
-		
-		EntityMinotaur mino = (EntityMinotaur)entity;
+		int charge = 0;
+		if (entity instanceof EntityMinotaur)
+		{
+			EntityMinotaur mino = (EntityMinotaur)entity;
+			charge = mino.getChargeTicks();
+		}
+		else
+		{
+			EntityClaymation clay = (EntityClaymation) entity;
+			charge = clay.getUtilityInt();
+		}
 
-		if (mino.isCharging())
+		if (charge > 0)
 		{
 			body.rotateAngleX = 0.4082002F;
 			body.offsetY = 0.235F;
@@ -159,7 +167,6 @@ public class ModelMinotaur extends ModelBase
 			rightArm.rotateAngleX = -0.1189716F;
 			rightArm.rotateAngleZ = 0.2082002F;
 		}
-
 	}
 
 	private float simplifyAngle(float par1, float par2)
