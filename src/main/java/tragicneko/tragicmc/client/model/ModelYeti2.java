@@ -324,12 +324,14 @@ public class ModelYeti2 extends ModelBase
 						}
 						else
 						{
-							if (!yeti.isBeingAggressive())
+							int meow = yeti.ticksExisted % 60;
+							
+							if (!yeti.isBeingAggressive() && meow - 10 >= 40 && meow - 10 < 60)
 							{
-								rightArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted + 30.0F, 60.0F) * 1.214F;
-								leftArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted + 30.0F, 60.0F) * 1.214F;
-								rightArm.rotateAngleZ = 0.46F + this.simplifyAngle(yeti.ticksExisted, 60.0F) * -0.264F;
-								leftArm.rotateAngleZ = -0.46F + this.simplifyAngle(yeti.ticksExisted, 60.0F) * 0.264F;
+								rightArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 1.214F;
+								leftArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 1.214F;
+								rightArm.rotateAngleZ = 0.26F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * -0.164F;
+								leftArm.rotateAngleZ = -0.26F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 0.164F;
 							}
 						}
 					}
