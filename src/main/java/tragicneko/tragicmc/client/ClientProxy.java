@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
@@ -29,6 +30,7 @@ import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
+import tragicneko.tragicmc.client.render.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
@@ -144,7 +146,15 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
 		
 		//Weapon models
-		//MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(0, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.ReaperScythe, new RenderEpicWeapon(0, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(1, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.DragonFang, new RenderEpicWeapon(2, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.Thardus, new RenderEpicWeapon(3, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.Splinter, new RenderEpicWeapon(4, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
+		MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
+		
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));
@@ -205,7 +215,6 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityKitsune.class, new RenderKitsune());
 		RenderingRegistry.registerEntityRenderingHandler(EntityPolaris.class, new RenderPolaris());
 		RenderingRegistry.registerEntityRenderingHandler(EntityYeti.class, new RenderYeti());
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
