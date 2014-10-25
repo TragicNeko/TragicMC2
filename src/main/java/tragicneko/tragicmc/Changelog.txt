@@ -2821,7 +2821,7 @@ Revert light level change to tall grass and logs, give them minimal light
 Add new bleach tree for the starlit biomes to replace the balloon tree, it is a basic small tree
 
 1.38.1646 <173> (October 14, 2014)
-Add Polaris to Starlit Praries spawn
+Added Polaris to Starlit Praries spawn
 Reimplement the sky in the Dimension
 Fix up exception handling for the entity drop helper, this shouldn't crash anymore even without it as I've fixed all of the possible bugs with it, but just in case I forget
 whenever I add new entities
@@ -2869,7 +2869,7 @@ It also lags a lot less than it did before, so that's a good sign, fixed up it's
 Remove Jabba sounds, temporarily until I add the other mob's sounds and adjust them and such
 Bump version number again, this is to check if an issue with Twilight Forest (and possibly other Dimensional mods) is resolved
 
-1.38.1668 <175> (October 22, 2014)
+1.38.1678 <175> (October 22, 2014)
 The issue was fixed with using reach on the twilight forest mobs, but I have no idea what caused it, possibly due to how the Twilight Forest dimension is set up
 Added Enyvil's animations and updated it's model, it now can break blocks if it can't move horizontally or if it takes damage from being inside of a block
 Added a few new blocks for the Overlord Tower, I have the basic design for the tower I want to do, now all I have to do is create the schematic and set up the whole thing
@@ -2877,9 +2877,11 @@ Also added the blocks for the Overlord Dimension, the Overlord is going to be a 
 of nanobots in addition to the Underlings that it'll spawn, the swarms of nanobots will work like the bomb clones of the Skultar, which will die on impact with their target
 Updated the Claymation's AI now to fit with all of the new rewritten AI, and to also animate each model separately based off of utility values
 Finished up all of the Claymation's forms, this includes each model's separate animations
-I'm going to add the new weapon models and if that goes quickly then I may start on the new mobs, otherwise I'll do a release
-
-
+Added the Reaper Scythe's weapon model, along with all of the Epic weapon models
+Fix Emapariah's rock throwing animation a bit, it now doesn't do a weird slow arm movement the entire time when it can throw them, it just does it when it's about to, it isn't
+quite in sync but it's close enough
+Fix Empariah rendering on fire, derp
+Bump version number for actual release!
 
 
 --Reminders-
@@ -2889,7 +2891,6 @@ Finish making the actual rendered armor textures, only need the lowRes ones at t
 Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
 A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami
 Make it so that corrupted mob's textures darken the longer they are corrupted
-Add the "Epic" weapon models, maybe animate them too
 I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
 Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
 a keybinding and gui screen in order to do this
