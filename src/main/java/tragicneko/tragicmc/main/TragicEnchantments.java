@@ -7,6 +7,7 @@ import tragicneko.tragicmc.enchantment.EnchantmentAgility;
 import tragicneko.tragicmc.enchantment.EnchantmentArmorExtra;
 import tragicneko.tragicmc.enchantment.EnchantmentCombustion;
 import tragicneko.tragicmc.enchantment.EnchantmentDamageBoost;
+import tragicneko.tragicmc.enchantment.EnchantmentLuminescence;
 import tragicneko.tragicmc.enchantment.EnchantmentMultiply;
 import tragicneko.tragicmc.enchantment.EnchantmentRange;
 import tragicneko.tragicmc.enchantment.EnchantmentRuneWalker;
@@ -16,7 +17,7 @@ import tragicneko.tragicmc.enchantment.EnchantmentWeaponExtra;
 public class TragicEnchantments {
 	
 	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, RuneBreak, Reach, Unbreakable, Rust;
-	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch, Agility, RuneWalker;
+	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch, Agility, RuneWalker, Luminescence;
 
 	public static void load()
 	{
@@ -40,6 +41,7 @@ public class TragicEnchantments {
 		if (TragicNewConfig.allowElasticity)Elasticity = (new EnchantmentArmorExtra(TragicNewConfig.idElasticity, 10, 3));
 		if (TragicNewConfig.allowDeathTouch)DeathTouch = (new EnchantmentArmorExtra(TragicNewConfig.idDeathTouch, 1, 4));
 		if (TragicNewConfig.allowAgility) Agility = (new EnchantmentAgility(TragicNewConfig.idAgility, 2, EnumEnchantmentType.armor));
-		if (TragicNewConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicNewConfig.idRuneWalker, 2, EnumEnchantmentType.armor));		
+		if (TragicNewConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicNewConfig.idRuneWalker, 2, EnumEnchantmentType.armor));
+		Luminescence = (new EnchantmentLuminescence(150, 1, EnumEnchantmentType.all));
 	}
 }

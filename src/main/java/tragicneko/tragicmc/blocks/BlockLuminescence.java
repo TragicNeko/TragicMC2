@@ -21,7 +21,7 @@ public class BlockLuminescence extends Block {
 	public BlockLuminescence() {
 		super(Material.circuits);
 		this.setCreativeTab(TragicTabs.Creative);
-		this.setLightLevel(0.45F);
+		this.setLightLevel(0.55F);
 		this.setLightOpacity(0);
 		this.setResistance(0.0F);
 		this.setHardness(0.0F);

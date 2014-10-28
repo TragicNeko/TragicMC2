@@ -3,23 +3,23 @@ package tragicneko.tragicmc.events;
 import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.util.ArrayList;
+import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicEnchantments;
@@ -27,9 +27,45 @@ import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
+
+import com.google.common.collect.Sets;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class EnchantmentEvents {
+
+	private Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
+
+	@SubscribeEvent
+	public void onLuminescence(LivingUpdateEvent event)
+	{
+		if (!event.entityLiving.worldObj.isRemote)
+		{
+			boolean flag = false;
+
+			for (int i = 0; i < 5; i++)
+			{
+				ItemStack stack = event.entityLiving.getEquipmentInSlot(i);
+				if (stack != null && stack.getItem() != Items.enchanted_book && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luminescence.effectId, stack) > 0) flag = true;
+			}
+			if (!flag) return;
+
+			ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(event.entityLiving.worldObj, 1.25, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
+			int[] coords;
+			Block block;
+
+			for (int i = 0; i < list.size(); i++)
+			{
+				coords = list.get(i);
+				block = event.entityLiving.worldObj.getBlock(coords[0], coords[1], coords[2]);
+				if (replaceableBlocks.contains(block))
+				{
+					event.entityLiving.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.Luminescence); 
+				}
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
@@ -70,7 +106,7 @@ public class EnchantmentEvents {
 					{
 						ItemStack stack = null;
 						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-						
+
 						switch(event.blockMetadata)
 						{
 						case 0:
@@ -86,9 +122,9 @@ public class EnchantmentEvents {
 							stack = new ItemStack(Items.iron_ingot, rand.nextInt(z + 1) + 1);
 							break;
 						}
-						
+
 						if (stack == null) return;
-						
+
 						event.drops.clear();
 						event.drops.add(stack);
 					}
