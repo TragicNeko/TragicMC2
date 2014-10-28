@@ -519,7 +519,7 @@ public class EntityTimeController extends TragicBoss {
 
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 
-		if (result && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && rand.nextInt(4) == 0 && this.getHealth() <= this.getMaxHealth() / 2 && this.getSpazTicks() == 0)
+		if (result && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && rand.nextInt(8) == 0 && this.getHealth() <= this.getMaxHealth() / 2 && this.getSpazTicks() == 0)
 		{
 			this.setSpazTicks(120);
 		}
