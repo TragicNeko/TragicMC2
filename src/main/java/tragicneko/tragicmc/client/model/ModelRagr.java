@@ -134,10 +134,10 @@ public class ModelRagr extends ModelBase
 		}
 		else
 		{
-			this.leftShoulder.rotateAngleX = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
-			this.rightShoulder.rotateAngleX = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
-			this.leftShoulder.rotateAngleZ = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
-			this.rightShoulder.rotateAngleZ = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f2;
+			this.leftShoulder.rotateAngleX = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
+			this.rightShoulder.rotateAngleX = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
+			this.leftShoulder.rotateAngleZ = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
+			this.rightShoulder.rotateAngleZ = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
 			
 			this.rightForearm.rotateAngleX = 0.0F;
 			this.leftForearm.rotateAngleX = 0.0F;
