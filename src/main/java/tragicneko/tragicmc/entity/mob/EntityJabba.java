@@ -435,11 +435,11 @@ public class EntityJabba extends TragicMob {
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.jabba.death";
-	} */
+	} 
 	
 	@Override
 	public float getSoundPitch()
 	{
 		return this.getJabbaType() == 0 ? super.getSoundPitch() : super.getSoundPitch() + 1.4F;
-	}
+	} */
 }

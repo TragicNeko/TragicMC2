@@ -123,10 +123,4 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityJabba.class;
 	}
-	
-	@Override
-	public float getSoundPitch()
-	{
-		return 0.2F;
-	}
 }
