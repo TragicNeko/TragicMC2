@@ -5,6 +5,7 @@ import static tragicneko.tragicmc.TragicMC.rand;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityPortalFX;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -116,7 +117,7 @@ public class PotionEvents {
 				event.entityLiving.removePotionEffect(TragicPotions.Corruption.id);
 			} 
 		}
-		
+
 		if (TragicNewConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotions.Inhibit))
 		{
 			if (event.entityLiving.isPotionActive(Potion.regeneration))
@@ -139,17 +140,17 @@ public class PotionEvents {
 				event.entityLiving.removePotionEffect(Potion.moveSpeed.id);
 			}
 		}
-		
+
 		if (TragicNewConfig.allowMalnourish && event.entityLiving.isPotionActive(TragicPotions.Malnourish))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76443_y)) event.entityLiving.removePotionEffect(TragicPotions.Malnourish.id);
 		}
-		
+
 		if (TragicNewConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotions.Cripple))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotions.Cripple.id);
 		}
-		
+
 		if (TragicNewConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotions.Submission))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotions.Submission.id);
@@ -504,7 +505,7 @@ public class PotionEvents {
 
 		if (world.isRemote && TragicNewConfig.allowClarity && entity.isPotionActive(TragicPotions.Clarity))
 		{
-			double d0 = 8.0D + (8.0D * entity.getActivePotionEffect(TragicPotions.Clarity).getAmplifier());
+			double d0 = 16.0D + (8.0D * entity.getActivePotionEffect(TragicPotions.Clarity).getAmplifier());
 
 			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(d0, d0, d0));
 			EntityLivingBase target;
@@ -514,7 +515,18 @@ public class PotionEvents {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					target = (EntityLivingBase) list.get(i);
-					if (target.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer)) target.setInvisible(false);
+					if (target.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
+					{
+						for (int j = 0; j < 4; j++)
+						{
+							double d1 = target.width * (rand.nextDouble() - rand.nextDouble());
+							double d2 = target.height * rand.nextDouble();
+							double d3 = target.width * (rand.nextDouble() - rand.nextDouble());
+							EntityPortalFX fx = new EntityPortalFX(target.worldObj, target.posX + d1, target.posY + d2, target.posZ + d3, 0.0, 0.0, 0.0);
+							fx.setRBGColorF(1.0F, 1.0F, 1.0F);
+							target.worldObj.spawnEntityInWorld(fx);
+						}
+					}
 				}
 			}
 		} 
