@@ -57,8 +57,8 @@ public class WeaponCelestialLongbow extends ItemBow {
 	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting};
 	private int[] rareLevels = new int[] {5, 3, 3};
 
-	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting, TragicEnchantments.Multiply, Enchantment.infinity};
-	private int[] epicLevels = new int[] {10, 5, 5, 1, 1};
+	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting, TragicEnchantments.Multiply, Enchantment.infinity, TragicEnchantments.Luminescence};
+	private int[] epicLevels = new int[] {10, 5, 5, 1, 1, 1};
 
 	public WeaponCelestialLongbow()
 	{

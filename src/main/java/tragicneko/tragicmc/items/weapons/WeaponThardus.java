@@ -33,8 +33,8 @@ public class WeaponThardus extends EpicWeapon {
 		this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness};
 		this.rareLevels = new int[] {5, 3, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness, TragicEnchantments.Rust};
-		this.epicLevels = new int[] {10, 3, 5, 3};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.sharpness, TragicEnchantments.Rust, TragicEnchantments.Luminescence};
+		this.epicLevels = new int[] {10, 3, 5, 3, 1};
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
