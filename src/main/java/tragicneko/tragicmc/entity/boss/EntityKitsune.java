@@ -72,7 +72,7 @@ public class EntityKitsune extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.42);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)

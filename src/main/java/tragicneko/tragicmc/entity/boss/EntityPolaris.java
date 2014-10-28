@@ -87,7 +87,7 @@ public class EntityPolaris extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.39);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
