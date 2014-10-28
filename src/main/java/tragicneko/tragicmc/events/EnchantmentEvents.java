@@ -40,7 +40,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onLuminescence(LivingUpdateEvent event)
 	{
-		if (!event.entityLiving.worldObj.isRemote)
+		if (!event.entityLiving.worldObj.isRemote && TragicNewConfig.allowLuminescence)
 		{
 			boolean flag = false;
 

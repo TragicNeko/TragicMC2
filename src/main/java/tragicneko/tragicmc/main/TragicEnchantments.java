@@ -33,7 +33,7 @@ public class TragicEnchantments {
 		if (TragicNewConfig.allowRuneBreak) RuneBreak = (new EnchantmentDamageBoost(TragicNewConfig.idRuneBreak, 4, 3));
 		if (TragicNewConfig.allowReach) Reach = (new EnchantmentRange(TragicNewConfig.idReach, 6, EnumEnchantmentType.weapon));
 		if (TragicNewConfig.allowUnbreakable) Unbreakable = (new EnchantmentUnbreakable(TragicNewConfig.idUnbreakable, 1, EnumEnchantmentType.breakable));
-		if (TragicNewConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicNewConfig.idRust, 6, 4)); 
+		if (TragicNewConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicNewConfig.idRust, 6, 4));
 
 		if (TragicNewConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicNewConfig.idIgnition, 6, 0));
 		if (TragicNewConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicNewConfig.idParalysis, 1, 1));
@@ -42,6 +42,6 @@ public class TragicEnchantments {
 		if (TragicNewConfig.allowDeathTouch)DeathTouch = (new EnchantmentArmorExtra(TragicNewConfig.idDeathTouch, 1, 4));
 		if (TragicNewConfig.allowAgility) Agility = (new EnchantmentAgility(TragicNewConfig.idAgility, 2, EnumEnchantmentType.armor));
 		if (TragicNewConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicNewConfig.idRuneWalker, 2, EnumEnchantmentType.armor));
-		Luminescence = (new EnchantmentLuminescence(150, 1, EnumEnchantmentType.all));
+		if (TragicNewConfig.allowLuminescence) Luminescence = (new EnchantmentLuminescence(TragicNewConfig.idLuminescence, 1, EnumEnchantmentType.all));
 	}
 }

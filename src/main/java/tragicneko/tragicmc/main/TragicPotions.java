@@ -9,8 +9,8 @@ import net.minecraft.potion.Potion;
 
 public class TragicPotions {
 
-	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit;
-	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity;
+	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked;
+	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence;
 
 	public static void load()
 	{
@@ -22,6 +22,8 @@ public class TragicPotions {
 		if (TragicNewConfig.allowMalnourish) Malnourish = (new TragicPotion(TragicNewConfig.idMalnourish, true, 0x59701C).setPotionName("potion.malnourish"));
 		if (TragicNewConfig.allowSubmission) Submission = (new TragicPotion(TragicNewConfig.idSubmission, true, 0xB152B7).setPotionName("potion.submission"));
 		if (TragicNewConfig.allowInhibit) Inhibit = (new TragicPotion(TragicNewConfig.idInhibit, true, 0x232323).setPotionName("potion.inhibit"));
+		if (TragicNewConfig.allowLeadFoot) LeadFoot = (new TragicPotion(TragicNewConfig.idLeadFoot, true, 0x78AB76).setPotionName("potion.leadFoot"));
+		if (TragicNewConfig.allowHacked) Hacked = (new TragicPotion(TragicNewConfig.idHacked, true, 0xC6F6FF).setPotionName("potion.hacked"));
 		
 		if (TragicNewConfig.allowFlight) Flight = (new TragicPotion(TragicNewConfig.idFlight, false, 0xFDDC69).setPotionName("potion.flight"));
 		if (TragicNewConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(TragicNewConfig.idAquaSuperiority, true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));
@@ -29,7 +31,8 @@ public class TragicPotions {
 		if (TragicNewConfig.allowResurrection) Resurrection = (new TragicPotion(TragicNewConfig.idResurrection, false, 0x9DFD69).setPotionName("potion.resurrection"));
 		if (TragicNewConfig.allowHarmony) Harmony = (new TragicPotion(TragicNewConfig.idHarmony, false, 0xE67CED).setPotionName("potion.harmony").func_111184_a(SharedMonsterAttributes.followRange, "ac2b9b0e-2eb2-443f-8ca2-a045f36f9e73", -256.0, 2));
 		if (TragicNewConfig.allowInvulnerability) Invulnerability = (new TragicPotion(TragicNewConfig.idInvulnerability, false, 0xD5ECFF).setPotionName("potion.invulnerability").func_111184_a(SharedMonsterAttributes.movementSpeed, "43d74ab6-d058-40e4-9761-70b0b80b8743", -0.2D, 2));
-		if (TragicNewConfig.allowClarity) Clarity = (new TragicPotion(TragicNewConfig.idClarity, true, 0xFFFFFF).setPotionName("potion.clarity"));
+		if (TragicNewConfig.allowClarity) Clarity = (new TragicPotion(TragicNewConfig.idClarity, false, 0xFFFFFF).setPotionName("potion.clarity"));
+		if (TragicNewConfig.allowConvergence) Convergence = (new TragicPotion(TragicNewConfig.idConvergence, false, 0x9B2525).setPotionName("potion.convergence"));
 	}
 	
 	public static void setPotionIcons()
@@ -42,6 +45,8 @@ public class TragicPotions {
 		if (Malnourish != null) ((TragicPotion) Malnourish).setIcon(new ItemStack(TragicItems.NourishmentSacrifice));
 		if (Submission != null) ((TragicPotion) Submission).setIcon(new ItemStack(TragicItems.Thorns));
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
+		if (LeadFoot != null) ((TragicPotion) LeadFoot).setIcon(new ItemStack(Blocks.anvil));
+		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicItems.TimeEssence));
 		
 		if (Flight != null) ((TragicPotion) Flight).setIcon(new ItemStack(Items.feather));
 		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.LifeWater));
@@ -50,5 +55,6 @@ public class TragicPotions {
 		if (Harmony != null) ((TragicPotion) Harmony).setIcon(new ItemStack(TragicItems.Sushi));
 		if (Invulnerability != null) ((TragicPotion) Invulnerability).setIcon(new ItemStack(TragicItems.AwakeningStone));
 		if (Clarity != null) ((TragicPotion) Clarity).setIcon(new ItemStack(Items.ender_eye));
+		if (Convergence != null) ((TragicPotion) Convergence).setIcon(new ItemStack(TragicItems.DoomConsume));
 	}
 }

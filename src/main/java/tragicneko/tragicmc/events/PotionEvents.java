@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,6 +49,7 @@ import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.network.MessageFlight;
+import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -494,6 +496,32 @@ public class PotionEvents {
 				event.entityLiving.setHealth(event.entityLiving.getMaxHealth());
 			}
 		}
+		
+		if (TragicNewConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotions.LeadFoot))
+		{
+			event.entityLiving.motionY = -0.1D;
+			if (TragicNewConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotions.Flight)) event.entityLiving.removePotionEffect(TragicPotions.Flight.id); 
+		}
+		
+		if (TragicNewConfig.allowConvergence && event.entityLiving.isPotionActive(TragicPotions.Convergence) && event.entityLiving instanceof EntityPlayerMP && TragicNewConfig.allowDoom)
+		{
+			PropertyDoom doom = PropertyDoom.get((EntityPlayer) event.entityLiving);
+			if (doom != null && event.entityLiving.ticksExisted % 5 == 0 && rand.nextBoolean())
+			{
+				doom.increaseDoom(rand.nextInt(4));
+			}
+		}
+		
+		if (!TragicNewConfig.allowAnimalGolemCorruption && TragicNewConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotions.Corruption) && (event.entityLiving instanceof EntityGolem || event.entityLiving instanceof EntityAnimal))
+		{
+			event.entityLiving.removePotionEffect(TragicPotions.Corruption.id);
+		}
+	}
+	
+	@SubscribeEvent
+	public void denyJump(LivingJumpEvent event)
+	{
+		if (TragicNewConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotions.LeadFoot)) event.entityLiving.motionY = -0.1D;
 	}
 
 	@SideOnly(Side.CLIENT)
