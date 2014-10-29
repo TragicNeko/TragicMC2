@@ -3,32 +3,30 @@ package tragicneko.tragicmc.blocks;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.main.TragicTabs;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockQuicksand extends BlockFalling
 {
-
 	private String[] variantNames = new String[]{"Quicksand", "Mud", "NetherDrudge"};
-
 	private IIcon[] iconArray = new IIcon[variantNames.length];
 
 	public BlockQuicksand()
@@ -41,7 +39,7 @@ public class BlockQuicksand extends BlockFalling
 		this.setHarvestLevel("shovel", 3);
 		this.setStepSound(soundTypeSand);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -60,12 +58,12 @@ public class BlockQuicksand extends BlockFalling
 			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "_lowRes");
 		}
 	}
-	
+
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
-	
+
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.variantNames.length; i++)
@@ -78,38 +76,27 @@ public class BlockQuicksand extends BlockFalling
 	 * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
 	 */
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
-	{
-		if (entity instanceof EntityFallingBlock && ((EntityFallingBlock)entity).func_145805_f() != this)
-		{
-			entity.setDead();
-			return;
-		}
+	{				
+		if (!(entity instanceof EntityPlayer) || ((EntityPlayer)entity).capabilities.isCreativeMode) return;
 
-		entity.setInWeb();
-
-		if (world.getBlockMetadata(x, y, z) == 1)
-		{
-			if (entity.motionX >= -0.2 && entity.motionX <= 0.2 || entity.motionZ >= -0.2 && entity.motionZ <= 0.2)
-			{
-				entity.motionY = -0.25;
-			}
-			else
-			{
-				entity.motionY = -0.05;
-			}
-		}
-
+		entity.motionX *= 0.0015;
+		entity.motionZ *= 0.0015;
+		entity.motionY *= world.getBlockMetadata(x, y, z) == 1 ? 0.0025 : 0.0125;
+		entity.onGround = true;
+		entity.fallDistance = 0.0F;
 	}
 
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity)
 	{
-		entity.motionX *= 0.1;
-		entity.motionZ *= 0.1;
+		entity.motionX *= 0.0015;
+		entity.motionZ *= 0.0015;
 	}
 
 	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float distance)
 	{
-		entity.setInWeb();
+		entity.motionX *= 0.0015;
+		entity.motionZ *= 0.0015;
+		entity.fallDistance = 0.0F;
 	}
 
 	public boolean canHarvestBlock(EntityPlayer player, int meta)

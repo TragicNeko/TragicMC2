@@ -203,8 +203,33 @@ tile.tragicmc.starCrystal.limeGreen.name=Lime Star Crystal
 
 tile.tragicmc.erodedStone.smooth.name=Eroded Stone
 tile.tragicmc.erodedStone.carved.name=Carved Eroded Stone
+tile.tragicmc.erodedStone.scattered.name=Scattered Eroded Stone
 
 tile.tragicmc.luminescence.name=Luminescence
+
+tile.tragicmc.circuit.live.name=Live Circuit
+tile.tragicmc.circuit.dead.name=Dead Circuit
+tile.tragicmc.circuit.aged.name=Aged Circuit
+tile.tragicmc.circuit.damaged.name=Damaged Circuit
+tile.tragicmc.circuit.veryDamaged.name=Very Damaged Circuit
+
+tile.tragicmc.celled.name=Celled Block
+tile.tragicmc.celledLamp.white.name=Celled Lamp (White)
+tile.tragicmc.celledLamp.red.name=Celled Lamp (Red)
+tile.tragicmc.celledLamp.cyan.name=Celled Lamp (Cyan)
+tile.tragicmc.celledLamp.orange.name=Celled Lamp (Orange)
+tile.tragicmc.celledLamp.black.name=Celled Lamp (Black)
+tile.tragicmc.celledLamp.lightGray.name=Celled Lamp (Light Gray)
+tile.tragicmc.celledLamp.darkGray.name=Celled Lamp (Dark Gray)
+tile.tragicmc.celledLamp.magenta.name=Celled Lamp (Magenta)
+tile.tragicmc.celledLamp.pink.name=Celled Lamp (Pink)
+tile.tragicmc.celledLamp.yellow.name=Celled Lamp (Yellow)
+tile.tragicmc.celledLamp.brown.name=Celled Lamp (Brown)
+tile.tragicmc.celledLamp.blue.name=Celled Lamp (Blue)
+tile.tragicmc.celledLamp.green.name=Celled Lamp (Green)
+tile.tragicmc.celledLamp.lime.name=Celled Lamp (Lime)
+tile.tragicmc.celledLamp.purple.name=Celled Lamp (Purple)
+tile.tragicmc.celledLamp.lightBlue.name=Celled Lamp (Light Blue)
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
@@ -731,10 +756,14 @@ entity.TragicMC.LavaPirah.name=Lava Pirah
 entity.TragicMC.Pox.name=Pox
 entity.TragicMC.Enyvil.name=Enyvil
 entity.TragicMC.Claymation.name=Claymation
+entity.TragicMC.Overlord.name=Overlord
+entity.TragicMC.Lockbot.name=Lockbot
+entity.TragicMC.Locobot.name=Locobot
+entity.TragicMC.NanoSwarm.name=Nano Swarm
 
 enchantment.combustion=Combustion
 enchantment.multiply=Multiply
-enchantment.agility=Agility
+enchantment.agility=Elude
 enchantment.damageBoost.decay=Decay
 enchantment.damageBoost.absolve=Absolve
 enchantment.damageBoost.slay=Slay
@@ -752,6 +781,8 @@ enchantment.weaponExtra.distract=Distract
 enchantment.weaponExtra.rust=Rust
 enchantment.reach=Reach
 enchantment.unbreakable=Unbreakable
+enchantment.luminescence=Luminescence
+enchantment.veteran=Veteran
 
 potion.corruption=Corruption
 potion.flight=Flight
@@ -768,6 +799,9 @@ potion.submission=Submission
 potion.invulnerability=Invulnerability
 potion.inhibit=Inhibit
 potion.clarity=Clarity
+potion.leadFoot=Lead Foot
+potion.hacked=Hacked
+potion.convergence=Convergence
 
 doomsday.influence.type=Influence
 doomsday.overflow.type=Overflow

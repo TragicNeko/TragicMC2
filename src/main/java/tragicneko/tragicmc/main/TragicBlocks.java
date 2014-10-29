@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import tragicneko.tragicmc.blocks.BlockBone;
 import tragicneko.tragicmc.blocks.BlockCandle;
+import tragicneko.tragicmc.blocks.BlockCelledLamp;
+import tragicneko.tragicmc.blocks.BlockCircuit;
 import tragicneko.tragicmc.blocks.BlockDarkCobble;
 import tragicneko.tragicmc.blocks.BlockDarkSand;
 import tragicneko.tragicmc.blocks.BlockDarkStone;
@@ -44,6 +46,8 @@ import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockBone;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCircuit;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkCobble;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkenedQuartz;
@@ -153,10 +157,6 @@ public class TragicBlocks {
 	public static Block Luminescence;
 	
 	public static Block CircuitBlock;
-	public static Block DeadCircuitBlock;
-	public static Block DamagedCircuitBlock;
-	public static Block VeryDamagedCircuitBlock;
-	public static Block AgedCircuitBlock;
 	
 	public static Block CelledBlock;
 	public static Block CelledLamp;
@@ -334,26 +334,14 @@ public class TragicBlocks {
 		Luminescence = (new BlockLuminescence().setBlockName("tragicmc.luminescence"));
 		GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
 		
-		CircuitBlock = (new BlockGeneric(Material.circuits, "pickaxe", 1).setBlockName("tragicmc.circuit").setBlockTextureName("tragicmc:LiveCircuit").setHardness(0.6F).setResistance(20.0F).setLightLevel(0.75F));
-		GameRegistry.registerBlock(CircuitBlock, ItemBlock.class, "circuit");
+		CircuitBlock = (new BlockCircuit().setBlockName("tragicmc.circuit").setStepSound(Block.soundTypeStone));
+		GameRegistry.registerBlock(CircuitBlock, ItemBlockCircuit.class, "circuit");
 		
-		DeadCircuitBlock = (new BlockGeneric(Material.circuits, "pickaxe", 1).setBlockName("tragicmc.deadCircuit").setBlockTextureName("tragicmc:DeadCircuit").setHardness(0.6F).setResistance(20.0F));
-		GameRegistry.registerBlock(DeadCircuitBlock, ItemBlock.class, "deadCircuit");
-		
-		DamagedCircuitBlock = (new BlockGeneric(Material.circuits, "pickaxe", 1).setBlockName("tragicmc.damagedCircuit").setBlockTextureName("tragicmc:DamagedCircuit").setHardness(0.6F).setResistance(20.0F).setLightLevel(0.55F));
-		GameRegistry.registerBlock(DamagedCircuitBlock, ItemBlock.class, "damagedCircuit");
-		
-		VeryDamagedCircuitBlock = (new BlockGeneric(Material.circuits, "pickaxe", 1).setBlockName("tragicmc.veryDamagedCircuit").setBlockTextureName("tragicmc:VeryDamagedCircuit").setHardness(0.4F).setResistance(15.0F).setLightLevel(0.45F));
-		GameRegistry.registerBlock(VeryDamagedCircuitBlock, ItemBlock.class, "veryDamagedCircuit");
-		
-		AgedCircuitBlock = (new BlockGeneric(Material.circuits, "pickaxe", 1).setBlockName("tragicmc.agedCircuit").setBlockTextureName("tragicmc:AgedCircuit").setHardness(0.2F).setResistance(10.0F));
-		GameRegistry.registerBlock(AgedCircuitBlock, ItemBlock.class, "agedCircuit");
-		
-		CelledBlock = (new BlockGeneric(Material.rock, "pickaxe", 1).setBlockName("tragicmc.celled").setBlockTextureName("tragicmc:CelledBlock_lowRes").setHardness(1.0F).setResistance(4.0F));
+		CelledBlock = (new BlockGeneric(Material.rock, "pickaxe", 1).setBlockName("tragicmc.celled").setBlockTextureName("tragicmc:CelledBlock_lowRes").setHardness(6.0F).setResistance(35.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(CelledBlock, ItemBlock.class, "celled");
 		
-		CelledLamp = (new BlockGeneric(Material.circuits, "pickaxe", 1).setBlockName("tragicmc.celledLamp").setBlockTextureName("tragicmc:WrappedLampWhite").setHardness(0.4F).setResistance(8.0F).setLightLevel(1.0F).setStepSound(Block.soundTypeGlass));
-		GameRegistry.registerBlock(CelledLamp, ItemBlock.class, "celledLamp");
+		CelledLamp = (new BlockCelledLamp().setBlockName("tragicmc.celledLamp"));
+		GameRegistry.registerBlock(CelledLamp, ItemBlockCelledLamp.class, "celledLamp");
 		
 		for (int i = 0; i < 3; i++)
 		{

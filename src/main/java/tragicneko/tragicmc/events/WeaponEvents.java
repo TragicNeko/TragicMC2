@@ -10,13 +10,10 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.items.weapons.EpicWeapon;
+import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
@@ -27,6 +24,12 @@ import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class WeaponEvents {
+	
+	@SubscribeEvent
+	public void quicksandJumping(LivingJumpEvent event)
+	{
+		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlock((int) event.entityLiving.posX, (int) event.entityLiving.posY, (int) event.entityLiving.posZ) instanceof BlockQuicksand) event.entityLiving.motionY *= 0.725D;
+	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void whileHoldingSpecialWeapon(LivingHurtEvent event)
