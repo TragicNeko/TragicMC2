@@ -66,46 +66,46 @@ public class TragicNewConfig {
 	public static boolean allowDecay, allowSlay, allowAbsolve, allowVampirism, allowLeech, allowConsume, allowDistract, allowMultiply, allowCombustion, allowRuneBreak;
 	public static boolean allowReach, allowUnbreakable, allowRust;
 	private static boolean[] armorEnchantConfigs = new boolean[12];
-	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility, allowRuneWalker;
+	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility, allowRuneWalker, allowLuminescence;
 	private static int[] weaponEnchantIDs = new int[14];
 	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable, idRust;
 	private static int[] armorEnchantIDs = new int[12];
-	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker;
+	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
 
 	private static boolean[] blanketMob = new boolean[8];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossNaturalSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
-	public static boolean allowSirv;
+	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem;
 	private static int[] mobsSC = new int[32];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC;
+	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
-	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen;
+	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
 	private static int[] miniBossSC = new int[16];
-	public static int jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, stinKingSC, stinQueenSC;
+	public static int jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, stinKingSC, stinQueenSC, locobotSC, aegarSC;
 	private static boolean[] bossConfigs = new boolean[12];
-	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation;
+	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
 	private static int[] bossSC = new int[12];
-	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC;
+	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
 	private static int[] mobInts = new int[3];
 	public static int commonDropRate, rareDropRate, mobTransformationChance;
 
 	private static boolean[] blanketPotion = new boolean[2];
 	public static boolean allowPositivePotions, allowNegativePotions;
-	private static boolean[] positivePotionConfigs = new boolean[8];
-	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity;
-	private static boolean[] negativePotionConfigs = new boolean[8];
-	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit;
-	private static int[] positivePotionIDs = new int[8];
-	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity;
-	private static int[] negativePotionIDs = new int[8];
-	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit;
+	private static boolean[] positivePotionConfigs = new boolean[12];
+	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence;
+	private static boolean[] negativePotionConfigs = new boolean[12];
+	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked;
+	private static int[] positivePotionIDs = new int[12];
+	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence;
+	private static int[] negativePotionIDs = new int[12];
+	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked;
 
-	private static boolean[] blanketVanillaChanges = new boolean[12];
+	private static boolean[] blanketVanillaChanges = new boolean[14];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmorAndEnchants, allowRespawnPunishment, allowExtraExplosiveEffects;
-	public static boolean allowBabySpawns, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowQuicksandGen;
+	public static boolean allowBabySpawns, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowQuicksandGen, allowAnimalGolemCorruption;
 	private static int[] vanillaInts = new int[7];
 	public static int rubyOreRarity, sapphireOreRarity, mercuryOreRarity, tungstenOreRarity, quicksandGenRarity, drudgeGenRarity, silverfishGenRarity;
 
@@ -315,6 +315,8 @@ public class TragicNewConfig {
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "agilityAllow", true).getBoolean(true));
 		armorEnchantIDs[mapping] = (config.get(catEnchant, "runeWalkerID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "runeWalkerAllow", true).getBoolean(true));
+		armorEnchantIDs[mapping] = (config.get(catEnchant, "luminescenceID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
+		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "luminescenceAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < armorEnchantConfigs.length; i++)
 		{
@@ -385,6 +387,14 @@ public class TragicNewConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "erkelAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "sirvSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "sirvAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "psygoteSpawnChance", 5).getInt(5));
+		mobConfigs[mapping++] = (config.get(catMobs, "psygoteAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "lockbotSpawnChance", 25).getInt(25));
+		mobConfigs[mapping++] = (config.get(catMobs, "lockbotAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "nanoSwarmSpawnChance", 5).getInt(5));
+		mobConfigs[mapping++] = (config.get(catMobs, "nanoSwarmAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "circuitGolemSpawnChance", 5).getInt(5));
+		mobConfigs[mapping++] = (config.get(catMobs, "circuitGolemAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < mobConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -406,6 +416,8 @@ public class TragicNewConfig {
 		miniBossConfigs[mapping++] = (config.get(catMobs, "stinKingAllow", true).getBoolean(true));
 		miniBossSC[mapping] = (config.get(catMobs, "stinQueenSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "stinQueenAllow", true).getBoolean(true));
+		miniBossSC[mapping] = (config.get(catMobs, "aegarSpawnChance", 5).getInt(5));
+		miniBossConfigs[mapping++] = (config.get(catMobs, "aegarAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < miniBossConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -429,6 +441,8 @@ public class TragicNewConfig {
 		bossConfigs[mapping++] = (config.get(catMobs, "enyvilAllow", true).getBoolean(true));
 		bossSC[mapping] = (config.get(catMobs, "claymationSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "claymationAllow", true).getBoolean(true));
+		bossSC[mapping] = (config.get(catMobs, "overlordSpawnChance", 5).getInt(5));
+		bossConfigs[mapping++] = (config.get(catMobs, "overlordAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < bossConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -464,7 +478,9 @@ public class TragicNewConfig {
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "invulnerabilityAllow", true).getBoolean(true));
 		positivePotionIDs[mapping] = (config.get(catPotion, "clarityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "clarityAllow", true).getBoolean(true));
-
+		positivePotionIDs[mapping] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
+		positivePotionConfigs[mapping++] = (config.get(catPotion, "convergenceAllow", true).getBoolean(true));
+		
 		temp = mapping - 1;
 
 		for (i = 0; i + mapping < positivePotionConfigs.length; i++) //sets all unused slots in the array to false
@@ -489,6 +505,10 @@ public class TragicNewConfig {
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "submissionAllow", true).getBoolean(true));
 		negativePotionIDs[mapping] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "inhibitAllow", true).getBoolean(true));
+		negativePotionIDs[mapping] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
+		negativePotionConfigs[mapping++] = (config.get(catPotion, "leadFootAllow", true).getBoolean(true));
+		negativePotionIDs[mapping] = (config.get(catPotion, "hackedID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
+		negativePotionConfigs[mapping++] = (config.get(catPotion, "hackedAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < negativePotionConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -510,6 +530,7 @@ public class TragicNewConfig {
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowNetherOreGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowOverworldOreGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowQuicksandAndDrudgeGen", true).getBoolean(true));
+		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowAnimalAndGolemCorruption", true).getBoolean(true));
 
 		mapping = 0;
 		vanillaInts[mapping++] = MathHelper.clamp_int(config.get(catVanilla, "rubyOreGenRate", 10).getInt(10), 1, 25);
@@ -920,6 +941,8 @@ public class TragicNewConfig {
 		allowAgility = armorEnchantConfigs[mapping++];
 		idRuneWalker = armorEnchantIDs[mapping];
 		allowRuneWalker = armorEnchantConfigs[mapping++];
+		idLuminescence = armorEnchantIDs[mapping];
+		allowLuminescence = armorEnchantConfigs[mapping++];
 
 		allowNormalMobs = blanketMob[0];
 		allowMiniBosses = blanketMob[1];
@@ -983,6 +1006,14 @@ public class TragicNewConfig {
 		allowErkel = mobConfigs[mapping++];
 		sirvSC = mobsSC[mapping];
 		allowSirv = mobConfigs[mapping++];
+		psygoteSC = mobsSC[mapping];
+		allowPsygote = mobConfigs[mapping++];
+		lockbotSC = mobsSC[mapping];
+		allowLockbot = mobConfigs[mapping++];
+		nanoSwarmSC = mobsSC[mapping];
+		allowNanoSwarm = mobConfigs[mapping++];
+		circuitGolemSC = mobsSC[mapping];
+		allowCircuitGolem = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -999,6 +1030,8 @@ public class TragicNewConfig {
 		allowStinKing = miniBossConfigs[mapping++];
 		stinQueenSC = miniBossSC[mapping];
 		allowStinQueen = miniBossConfigs[mapping++];
+		aegarSC = miniBossSC[mapping];
+		allowAegar = miniBossConfigs[mapping++];
 
 		mapping = 0;
 		apisSC = bossSC[mapping];
@@ -1017,6 +1050,8 @@ public class TragicNewConfig {
 		allowEnyvil = bossConfigs[mapping++];
 		claymationSC = bossSC[mapping];
 		allowClaymation = bossConfigs[mapping++];
+		overlordSC = bossSC[mapping];
+		allowOverlord = bossConfigs[mapping++];
 
 		allowPositivePotions = blanketPotion[0];
 		allowNegativePotions = blanketPotion[1];
@@ -1036,6 +1071,8 @@ public class TragicNewConfig {
 		allowInvulnerability = positivePotionConfigs[mapping++];
 		idClarity = positivePotionIDs[mapping];
 		allowClarity = positivePotionConfigs[mapping++];
+		idConvergence = positivePotionIDs[mapping];
+		allowConvergence = positivePotionConfigs[mapping++];
 
 		mapping = 0;
 		idCorruption = negativePotionIDs[mapping];
@@ -1054,6 +1091,10 @@ public class TragicNewConfig {
 		allowSubmission = negativePotionConfigs[mapping++];
 		idInhibit = negativePotionIDs[mapping];
 		allowInhibit = negativePotionConfigs[mapping++];
+		idLeadFoot = negativePotionIDs[mapping];
+		allowLeadFoot = negativePotionConfigs[mapping++];
+		idHacked = negativePotionIDs[mapping];
+		allowHacked = negativePotionConfigs[mapping++];
 
 		mapping = 0;
 		allowVanillaMobBuffs = blanketVanillaChanges[mapping++];
@@ -1068,6 +1109,7 @@ public class TragicNewConfig {
 		allowNetherOreGen = blanketVanillaChanges[mapping++];
 		allowOverworldOreGen = blanketVanillaChanges[mapping++];
 		allowQuicksandGen = blanketVanillaChanges[mapping++];
+		allowAnimalGolemCorruption = blanketVanillaChanges[mapping++];
 
 		mapping = 0;
 		rubyOreRarity = vanillaInts[mapping++];
