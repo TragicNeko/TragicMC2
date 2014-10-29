@@ -776,13 +776,9 @@ public class PotionEvents {
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void invulnerableHurt(LivingHurtEvent event)
 	{
-		if (TragicNewConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotions.Invulnerability))
+		if (TragicNewConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotions.Invulnerability) && !event.source.canHarmInCreative())
 		{
-			if (event.isCancelable())
-			{
-				event.setCanceled(true);
-			}
-
+			if (event.isCancelable()) event.setCanceled(true);
 			if (event.source.getSourceOfDamage() != null) event.entityLiving.applyEntityCollision(event.source.getSourceOfDamage());
 		}
 	}
