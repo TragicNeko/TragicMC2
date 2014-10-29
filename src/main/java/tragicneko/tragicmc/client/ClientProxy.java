@@ -122,8 +122,8 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
 
-	public static KeyBinding useSpecial;
-	public static KeyBinding openAmuletGui;	
+	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
+	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_P, TragicMC.MODNAME);	
 
 	@Override
 	public void registerRenders()
@@ -135,10 +135,7 @@ public class ClientProxy extends CommonProxy {
 		if (TragicNewConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(mc));
 
 		//Keybinding registrations
-		useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 		ClientRegistry.registerKeyBinding(useSpecial);
-
-		openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_P, TragicMC.MODNAME);
 		ClientRegistry.registerKeyBinding(openAmuletGui);
 
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
@@ -154,7 +151,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
 		MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
 		MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
-		
+		//MinecraftForgeClient.registerItemRenderer(TragicItems.Sentinel, new RenderEpicWeapon(8, mc);
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));
