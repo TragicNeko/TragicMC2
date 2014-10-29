@@ -56,6 +56,7 @@ public class ItemBloodSacrifice extends Item {
 
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Health sacrificed!"));
 				if (TragicNewConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Inhibit.id, 600, 0));
+				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Convergence.id, 300));
 			}
 		}
 

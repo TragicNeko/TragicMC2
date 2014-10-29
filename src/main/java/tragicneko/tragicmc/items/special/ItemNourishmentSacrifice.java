@@ -49,6 +49,7 @@ public class ItemNourishmentSacrifice extends Item {
 				
 				par3EntityPlayer.getFoodStats().addStats(-par3EntityPlayer.getFoodStats().getFoodLevel() + 1, 0.0F);
 				if (TragicNewConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, 600, 0));
+				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Convergence.id, 300));
 				
 				if (!par3EntityPlayer.capabilities.isCreativeMode)
 				{
