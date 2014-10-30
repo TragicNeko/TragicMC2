@@ -2883,34 +2883,80 @@ quite in sync but it's close enough
 Fix Empariah rendering on fire, derp
 Bump version number for actual release!
 
+1.38.1698 <176> (October 25, 2014)
+Fix derp in Ragr's arm animation
+Added new Luminescence enchantment, it can be applied to weapons, tools and armor
+Updated the Clarity effect, it was meant to create a huge amount of particles around an invisible enemy so that you know where they are, but it creates blocks since the
+client renders particles as such when they aren't spawned in using packets, the blocks work better than particle effects would have so I'm actually going to keep it like that
+Added the LeadFoot effect, based off of the Heavy effect in Lycanite's Mobs mod, hopefully people don't think I'm just stealing it, it's a really nice idea
+Reduced Kitsunakuma and Polaris's knockback resistance to 0
+Reduced overall chance of Time Controller to spaz out when it's health is low, it's fine doing it every now and then, but it does it basically every other hit, which is way
+too often for what the ability does and how many hits it can take
+Added Luminescence, Lead Foot, Hacked, Convergence and the mobs, Lockbot, Locobot, Nano Swarm, Aegar, Overlord to the config
+Added config option to prevent animals and golems from being corruptible
+Added initializations of all of the new config options
+Added localizations for the last group of blocks added, as well as for all of the mobs, effects and enchantments added
+Added Convergence effect, it will now randomly quickly give you Doom, this may be given by a certain Doomsday or you may get it from wearing the full Overlord armor set (or both)
+You can also get it when you use a Blood or Nourishment Sacrifice
+Renamed Agility to Elude
+Fix sound pitch of Jabba family
+Added new Enchantments to some of the weapon's Enchantment tiers
+Update the last group of blocks added to use metadata, adjusted localizations
+Adjusted them to have slightly longer time to mine, made them have way higher explosive resistance
+Added recipes for the Celled Lamps and for Celled blocks, as they will only generate in Overlord Towers
+Allow Circuit blocks to give off redstone signals (only the live or damaged ones will do this)
+Fix derp in Celestial Aegis enchantment tier
+Fixed bug with Invulnerability negating things that should always kill you, this was an oversight but is fixed up now
+This should wrap up all of the pre-huge update stuff
+
+1.38.1698 <177> (October, 28, 2014)
+Modified Quicksand physics
+Modified how Enchantments are added to vanilla entities from my vanilla changing event
+Modified how Entity drops work, variants also now have separate drops from their main form
+Added more Looting for the Epic weapons, I didn't realize that most of them didn't have it, with it being so important for my mob's drops this was a pretty huge oversight
+Moved Boss luxury drops into the drop helper rather than keeping them in the TragicBoss class, this allows for easier use of it, they were converted to use the random weighted
+system as well
+Due to the change in drops, some of the mobs drops were changed, more variety was added to some of them (generally, the tougher mobs got more drops)
+Adding Nano Swarm and Psygote (I'll work on their models and animations after getting their AI)
+
+The Psygote will drop Dark Particles and Doomsday Scrolls with a rare chance to drop Dimensional Keys (just for the Tragic Dimension)
+The Nano Swarm will drop nothing, it's just there to be annoying basically
+
+Note: Psygote's main drop will be random Doomsday scrolls and rarely Dimensional Keys
+Note: Actually start to add the Overlord Dimension's mobs, Nano Swarm, Lockbot, Circuit Golem, Psygote
+Note: Add a new Portal entity that will transport you to the Overlord Dimension, rather than have Aegar create it when it dies, this should drop as an item which
+can be placed on right-click but can only be used in the Tragic Dimension, if Aegar is disabled I'll make an extraordinarily expensive recipe to craft the item, like 9 stacks of
+diamonds, emeralds, rubies, sapphires, tungsten, expensive lol
+Note: The Sentinel will only have one rarity, but it will have different lore that it can be
 
 --Reminders-
-Add a "shudder" animation to the Erkel, idle animation
+Add more config options for specific mobGriefing instances, but also have it still blanket for toggling mobGriefing off
+Modify World Shaper Doomsdays to have some additional non-griefing effects
+Make the Sky Fruit able to grow on Painted Biome trees, similarly to cocoa beans
 Start making particles for my entities
+Look into adding a custom sky texture for my Dimension, the Overlord Dimension will not have a sky
+Add a Dimensional Key for the End, Nether and the Overlord Dimension, these will take you to their Dimension from the Overworld, and will teleport you back to it if used in the
+key's dimension, these would be Creative Mode only items
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
 Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
-A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami
+A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami, or just have it as a rare Doomsday Scroll
 Make it so that corrupted mob's textures darken the longer they are corrupted
 I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
 Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
 a keybinding and gui screen in order to do this
-Change the luxury drops to use a weighted random system, instead of a completely random system, this could be either using weighted random item or it could be what I use for
-their normal drops
 Change how projectiles are fired from weapons, use a vector based direction instead of a block hit position, this would allow you to shoot them up into the air and such
 Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
 that stay in it too long)
-Possibly change Clarity to instead of just turning invisible enemies visible, spawn a client-side particle effect around them while the effect is active (it'd be nice to have
-them render partially transparent, but that would take a lot of rendering due to the sheer amount of models and renders available
 Add the Psygote, a Dimension only mob, it'll attack it's target with dark mortor strikes and will swap spots with it's target randomly as well, inflicting blindness on them,
 it'll rotate before doing the switch so that the player knows
-Add the Locbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
-Add the Paranoid Android, a Mini-Boss that'll attack with it's guns (non-projectile non-magic projectile attack), it'll be destructible, meaning it's arms could be blasted off
+Add the Lockbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
+Add the Locobot, a Mini-Boss that'll attack with it's guns (non-projectile non-magic projectile attack), it'll be destructible, meaning it's arms could be blasted off
 and it can lose those guns, it could get it's head blown off, which will make it more aggressive, it could also lose it's legs and be unable to move, it has two guns intead of
 one that the locbot has, it'll also will be able to fire missles if it loses both guns
 Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a solid block (it also remains a solid block if it is idle), it bounces around and attacks whatever
 it collides with, it'll have dubstep-like sounds
 Start work on the Overlord
-Add a Tower Guardian Mini-Boss to get into the Overlord Dimension, it'll create the portal where it dies
+Add Aegar to get into the Overlord Dimension, it'll drop an item that creates a portal to the Overlord Dimension when it dies
 Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
 mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
 This will be using Property types instead of raw boolean values, but with the way my config is set up, it should be easy to convert the values (all of the arrays will be
@@ -2919,7 +2965,7 @@ minecraft to be reset
 Potion Effects, Doom, Doomsdays, Amulets can be changed without reset
 Mobs, Dimension, WorldGen and Biomes require resets
 
---Before Next Release--
+--Before Next Release (I failed this goal the first time OTL|||)--
 The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
 will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
 at a constant rate but will not knock them away, it'll also leech Doom off of them
