@@ -27,10 +27,10 @@ public class WeaponTitan extends EpicWeapon {
 	public WeaponTitan(Doomsday dday) {
 		super(dday);
 		this.lores = uniqueLores;
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach};
-		this.rareLevels = new int[] {5, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.knockback};
-		this.epicLevels = new int[] {10, 3, 1};
+		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.looting};
+		this.rareLevels = new int[] {5, 3, 3};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.looting, Enchantment.knockback};
+		this.epicLevels = new int[] {10, 3, 5, 1};
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)

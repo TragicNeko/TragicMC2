@@ -32,8 +32,8 @@ public class WeaponParanoia extends EpicWeapon {
 		this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
 		this.rareLevels = new int[] {5, 3, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Leech};
-		this.epicLevels = new int[] {10, 3, 5, 3};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Leech, Enchantment.looting};
+		this.epicLevels = new int[] {10, 3, 5, 3, 3};
 	}
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)

@@ -36,8 +36,8 @@ public class WeaponCelestialAegis extends TragicWeapon {
 		this.uncommonLevels = new int[] {3, 1};
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Absolve, TragicEnchantments.Consume};
 		this.rareLevels = new int[] {5, 3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Absolve, TragicEnchantments.Consume, TragicEnchantments.Reach, Enchantment.fireAspect, TragicEnchantments.Luminescence};
-		this.epicLevels = new int[] {10, 5, 3, 3, 2, 1};
+		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Absolve, TragicEnchantments.Consume, TragicEnchantments.Reach, Enchantment.looting, TragicEnchantments.Luminescence};
+		this.epicLevels = new int[] {10, 5, 3, 3, 3, 1};
 	}
 	
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
