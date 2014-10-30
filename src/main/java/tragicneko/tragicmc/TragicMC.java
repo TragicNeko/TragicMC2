@@ -72,6 +72,7 @@ import tragicneko.tragicmc.network.MessageHandlerFlight;
 import tragicneko.tragicmc.network.MessageHandlerGui;
 import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.DarkShieldWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
@@ -164,6 +165,7 @@ public class TragicMC
 			TragicEntities.load();
 			if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
+			EntityDropHelper.addEntitiesToDropList();
 		}
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());

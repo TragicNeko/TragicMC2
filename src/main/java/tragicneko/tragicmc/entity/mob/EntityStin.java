@@ -51,6 +51,11 @@ public class EntityStin extends TragicMob {
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.targetTasks.addTask(3, targetPlayer);
 	}
+	
+	public boolean isMobVariant()
+	{
+		return !this.isAdult();
+	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{

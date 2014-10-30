@@ -25,6 +25,11 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 		this.experienceValue = 12;
 		this.isImmuneToFire = true;
 	}
+	
+	public boolean isMobVariant()
+	{
+		return false;
+	}
 
 	@Override
 	protected void setToxType(int i)

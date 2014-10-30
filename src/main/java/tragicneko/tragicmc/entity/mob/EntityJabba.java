@@ -60,6 +60,11 @@ public class EntityJabba extends TragicMob {
 	{
 		return false;
 	}
+	
+	public boolean isMobVariant()
+	{
+		return this.getJabbaType() == 1;
+	}
 
 	@Override
 	protected void entityInit()

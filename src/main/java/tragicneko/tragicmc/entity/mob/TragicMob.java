@@ -254,27 +254,25 @@ public abstract class TragicMob extends EntityMob
 				}
 			}
 
-			int y = TragicNewConfig.commonDropRate;
-			int z = TragicNewConfig.rareDropRate;
 			int drops = 0;
 
 			for (int i = 0; i < x; i++)
 			{
-				if (rand.nextInt(100) <= y + (x * 4))
+				if (rand.nextInt(100) <= TragicNewConfig.commonDropRate + (x * 4))
 				{
-					ItemStack drop = EntityDropHelper.getCommonDropFromEntity(this.getClass());
+					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), true) : EntityDropHelper.getDropFromEntity(this.getClass(), true);
 					if (drop != null) this.entityDropItem(drop, 0.4F);
 					drops++;
 				}
 
-				if (this.recentlyHit > 0 && rand.nextInt(100) <= z + x)
+				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicNewConfig.rareDropRate + x)
 				{
-					ItemStack drop = EntityDropHelper.getRareDropFromEntity(this.getClass());
+					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), false) : EntityDropHelper.getDropFromEntity(this.getClass(), false);
 					if (drop != null) this.entityDropItem(drop, 0.4F);
 					drops++;
 				}
 
-				if (drops > x * 2) break;
+				if (drops > x * 2.5) break;
 			}
 
 			if (!TragicNewConfig.allowMobStatueDrops) return;
@@ -317,13 +315,18 @@ public abstract class TragicMob extends EntityMob
 			if (id != 0 && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 		}		
 	}
+	
+	public boolean isMobVariant()
+	{
+		return false;
+	}
 
 	@Override
 	public void onKillEntity(EntityLivingBase entity)
 	{
 		super.onKillEntity(entity);
 		if (this.worldObj.isRemote) return;
-		int i = (int) (entity.getMaxHealth() * 10);
+		int i = (int) (entity.getMaxHealth() * 20);
 		if (entity instanceof EntityPlayer) i *= 20;
 		this.addPotionEffect(new PotionEffect(Potion.damageBoost.id, i, 2));
 		this.addPotionEffect(new PotionEffect(Potion.resistance.id, i, 2));

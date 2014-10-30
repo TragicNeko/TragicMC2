@@ -40,6 +40,11 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		super(par1World);
 		this.experienceValue = 12;
 	}
+	
+	public boolean isMobVariant()
+	{
+		return false;
+	}
 
 	@Override
 	protected void entityInit()

@@ -37,6 +37,11 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		this.experienceValue = 15;
 		this.stepHeight = 1.5F;
 	}
+	
+	public boolean isMobVariant()
+	{
+		return false;
+	}
 
 	protected void applyEntityAttributes()
 	{

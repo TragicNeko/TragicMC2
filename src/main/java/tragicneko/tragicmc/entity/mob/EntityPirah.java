@@ -51,6 +51,11 @@ public class EntityPirah extends TragicMob {
 			}
 		}));
 	}
+	
+	public boolean isMobVariant()
+	{
+		return this.getPirahType() == 1;
+	}
 
 	@Override
 	public boolean canCorrupt()

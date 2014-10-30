@@ -38,6 +38,11 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.2);
 	}
+	
+	public boolean isMobVariant()
+	{
+		return false;
+	}
 
 	public boolean canRenderOnFire()
 	{

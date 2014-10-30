@@ -22,6 +22,11 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		this.experienceValue = 20;
 		this.isImmuneToFire = false;
 	}
+	
+	public boolean isMobVariant()
+	{
+		return false;
+	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{

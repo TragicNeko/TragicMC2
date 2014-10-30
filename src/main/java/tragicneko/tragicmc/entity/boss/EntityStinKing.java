@@ -32,7 +32,7 @@ import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 
-public class EntityStinKing extends EntityGreaterStin implements TragicMiniBoss {
+public class EntityStinKing extends EntityGreaterStin {
 
 	public EntityStinKing(World par1World) {
 		super(par1World);

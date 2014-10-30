@@ -47,6 +47,11 @@ public class EntityCryse extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
+	
+	public boolean isMobVariant()
+	{
+		return this.getCryseType() == 1;
+	}
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
