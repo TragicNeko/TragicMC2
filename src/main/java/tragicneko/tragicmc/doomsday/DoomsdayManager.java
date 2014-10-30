@@ -65,7 +65,7 @@ public class DoomsdayManager {
 		this.combinationMap.put(Doomsday.Snipe, Doomsday.Shotgun);
 	}
 
-	public static void registerDoomsdayEffect(String playerName, DoomsdayEffect effect)
+	public synchronized static void registerDoomsdayEffect(String playerName, DoomsdayEffect effect)
 	{
 		if (playerMap.containsKey(playerName))
 		{
@@ -106,7 +106,7 @@ public class DoomsdayManager {
 		}
 	}
 
-	public static void clearRegistry()
+	public synchronized static void clearRegistry()
 	{
 		try
 		{
@@ -118,7 +118,7 @@ public class DoomsdayManager {
 		}
 	}
 
-	public static void clearPlayerFromRegistry(String playerName, String reason)
+	public synchronized static void clearPlayerFromRegistry(String playerName, String reason)
 	{
 		try
 		{

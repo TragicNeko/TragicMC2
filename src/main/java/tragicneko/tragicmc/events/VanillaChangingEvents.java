@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -108,7 +109,6 @@ public class VanillaChangingEvents {
 				event.entityLiving.entityDropItem(new ItemStack(Items.ghast_tear, 1 + rand.nextInt(2)), rand.nextFloat());
 			}
 		}
-
 
 		if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD && TragicNewConfig.allowAnimalRetribution && rand.nextInt(16) == 0)
 		{
@@ -287,7 +287,7 @@ public class VanillaChangingEvents {
 							switch(i)
 							{
 							case 0:
-								switch(rand.nextInt(6))
+								switch(rand.nextInt(8))
 								{
 								case 0:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.Scythe));
@@ -406,144 +406,10 @@ public class VanillaChangingEvents {
 
 						stack = ((EntityMob)event.entity).getEquipmentInSlot(i);
 
-						if (stack != null && i == 0 && event.entity instanceof EntitySkeleton)
+						if (stack != null && !stack.isItemEnchanted())
 						{
-							if (!stack.isItemEnchanted() && stack.getItem() instanceof ItemBow && rand.nextInt(8) == 0)
-							{
-								switch(rand.nextInt(3))
-								{
-								case 0:
-									if (TragicNewConfig.allowMultiply)
-									{
-										stack.addEnchantment(TragicEnchantments.Multiply, 1);
-									}
-									break;
-								case 1:
-									stack.addEnchantment(Enchantment.punch, rand.nextInt(2) + 1);
-									break;
-								case 2:
-									stack.addEnchantment(Enchantment.flame, rand.nextInt(2) + 1);
-									break;
-								}
-
-							}
-						}
-
-						if (stack != null && i == 0)
-						{
-							if (!stack.isItemEnchanted() && stack.getItem() instanceof ItemSword && rand.nextInt(6) == 0)
-							{
-								switch(rand.nextInt(4))
-								{
-								case 4:
-									switch(rand.nextInt(5))
-									{
-									case 0:
-										if (TragicNewConfig.allowVampirism)
-										{
-											stack.addEnchantment(TragicEnchantments.Vampirism, rand.nextInt(2) + 1);
-										}
-										break;
-									case 1:
-										if (TragicNewConfig.allowDistract)
-										{
-											stack.addEnchantment(TragicEnchantments.Distract, rand.nextInt(2) + 1);
-										}
-										break;
-									case 2:
-										if (TragicNewConfig.allowLeech)
-										{
-											stack.addEnchantment(TragicEnchantments.Leech, rand.nextInt(2) + 1);
-										}
-										break;
-									case 3:
-										if (TragicNewConfig.allowConsume)
-										{
-											stack.addEnchantment(TragicEnchantments.Consume, rand.nextInt(2) + 1);
-										}
-										break;
-									default:
-										break;
-									}
-									break;
-								case 3:
-									stack.addEnchantment(Enchantment.unbreaking, rand.nextInt(5) + 1);
-									break;
-								case 2:
-									stack.addEnchantment(Enchantment.knockback, rand.nextInt(2) + 1);
-									break;
-								case 1:
-									stack.addEnchantment(Enchantment.fireAspect, rand.nextInt(2) + 1);
-									break;
-								case 0:
-									stack.addEnchantment(Enchantment.sharpness, rand.nextInt(5) + 1);
-									break;
-								}
-							}
-						}
-
-						if (stack != null && i > 0)
-						{
-							if (!stack.isItemEnchanted() && stack.getItem() instanceof ItemArmor && rand.nextInt(8) == 0)
-							{
-								switch(rand.nextInt(3))
-								{
-								case 0:
-									switch (rand.nextInt(5))
-									{
-									case 0:
-										if (TragicNewConfig.allowAgility)
-										{
-											stack.addEnchantment(TragicEnchantments.Agility, rand.nextInt(3) + 1);
-										}
-										break;
-									case 1:
-										if (TragicNewConfig.allowIgnition)
-										{
-											stack.addEnchantment(TragicEnchantments.Ignition, rand.nextInt(3) + 1);
-										}
-										break;
-									case 2:
-										if (TragicNewConfig.allowParalysis)
-										{
-											stack.addEnchantment(TragicEnchantments.Paralysis, rand.nextInt(3) + 1);
-										}
-										break;
-									case 3:
-										if (TragicNewConfig.allowDeathTouch)
-										{
-											stack.addEnchantment(TragicEnchantments.DeathTouch, rand.nextInt(3) + 1);
-										}
-										break;
-									case 4:
-										if (TragicNewConfig.allowElasticity)
-										{
-											stack.addEnchantment(TragicEnchantments.Elasticity, rand.nextInt(3) + 1);
-										}
-										break;
-									}
-									break;
-								case 1:
-									stack.addEnchantment(Enchantment.unbreaking, rand.nextInt(5) + 1);
-									break;
-								case 2:
-									stack.addEnchantment(Enchantment.protection, rand.nextInt(5) + 1);
-									break;
-								case 3:
-									stack.addEnchantment(Enchantment.projectileProtection, rand.nextInt(5) + 1);
-									break;
-								case 4:
-									stack.addEnchantment(Enchantment.fireProtection, rand.nextInt(5) + 1);
-									break;
-								case 5:
-									if (i == 4)
-									{
-										stack.addEnchantment(Enchantment.featherFalling, rand.nextInt(4) + 1);
-									}
-									break;
-								}
-
-							}
+							float f = event.entity.worldObj.func_147462_b(event.entity.posX, event.entity.posY, event.entity.posZ);
+							EnchantmentHelper.addRandomEnchantment(rand, stack, (int)(5.0F + f * (float)rand.nextInt(18)));
 						}
 					}
 				}
@@ -555,12 +421,12 @@ public class VanillaChangingEvents {
 	public void onEntityAttack(LivingAttackEvent event)
 	{		
 		if (event.entityLiving.worldObj.isRemote) return;
-		
+
 		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
 		{
 			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
 		}
-		
+
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && !event.source.isMagicDamage()
 				&& event.source.isExplosion() && !event.source.isProjectile() && rand.nextInt(4) == 0 && TragicNewConfig.allowExtraExplosiveEffects)
 		{
@@ -576,7 +442,7 @@ public class VanillaChangingEvents {
 				}
 			}
 		}
-		
+
 		if (event.entityLiving.worldObj.difficultySetting == EnumDifficulty.HARD && event.source.getEntity() != null && TragicNewConfig.allowExtraMobEffects)
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity().isBurning() && !event.source.isMagicDamage()
@@ -725,10 +591,10 @@ public class VanillaChangingEvents {
 				event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(mobBlindnessDebuff);
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	@SubscribeEvent
 	public void denyFallEvent(LivingFallEvent event)
 	{

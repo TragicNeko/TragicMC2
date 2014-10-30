@@ -420,6 +420,26 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntitySirv.class, "Sirv", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntitySirv.class, "TragicMC.Sirv", id++, 0xADADAD, 0xBDBDBD);
 		}
+		
+		if (TragicNewConfig.allowPsygote)
+		{
+			//TODO add psygote
+		}
+		
+		if (TragicNewConfig.allowLockbot)
+		{
+			//TODO add lockbot
+		}
+		
+		if (TragicNewConfig.allowNanoSwarm)
+		{
+			//TODO add Nano Swarm
+		}
+		
+		if (TragicNewConfig.allowCircuitGolem)
+		{
+			//TODO add Circuit Golem
+		}
 
 		//Iron Golem
 		TragicEntityList.addMapping(EntityIronGolem.class, "TragicMC.IronGolem", id++, 0xDBCDC1, 0x8B7260);
@@ -506,6 +526,17 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, 0xFDC169, 0xFD3C69, EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicNewConfig.allowLocobot)
+		{
+			//TODO add Locobot
+		}
+		
+		
+		if (TragicNewConfig.allowAegar)
+		{
+			//TODO add Aegar
 		}
 		
 		//Bosses
@@ -715,6 +746,15 @@ public class TragicEntities {
 			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
+		
+		
+		if (TragicNewConfig.allowOverlord)
+		{
+			//TODO add Overlord
+			//EntityRegistry.registerModEntity(EntityOverlord.class, "Overlord", listid++, TragicMC.instance, 80, 1, true);
+			//TragicEntitList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x000000, 0x000000, EnumEggType.BOSS);
+		}
+		 
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
