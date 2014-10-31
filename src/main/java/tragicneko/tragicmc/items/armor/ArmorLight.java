@@ -1,8 +1,9 @@
 package tragicneko.tragicmc.items.armor;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -16,9 +17,6 @@ import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
-import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorLight extends TragicArmor {
 
@@ -48,11 +46,16 @@ public class ArmorLight extends TragicArmor {
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == TragicItems.LightLegs)
+		if (slot == 2)
 		{
-			return "tragicmc:textures/items/Light2_lowRes.png";
+			return "tragicmc:textures/armor/Light2_lowRes.png";
 		}
-		return "tragicmc:textures/items/Light1_lowRes.png";
+		return "tragicmc:textures/armor/Light1_lowRes.png";
+	}
+	
+	public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
+	{
+		return super.getArmorModel(entity, stack, slot);
 	}
 
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
@@ -75,22 +78,10 @@ public class ArmorLight extends TragicArmor {
 				{
 					Item armor = player.getEquipmentInSlot(a).getItem();
 
-					if (armor == TragicItems.LightHelm)
-					{
-						flag1 = true;
-					}
-					if (armor == TragicItems.LightPlate)
-					{
-						flag2 = true;
-					}
-					if (armor == TragicItems.LightLegs)
-					{
-						flag3 = true;
-					}
-					if (armor == TragicItems.LightBoots)
-					{
-						flag4 = true;
-					}
+					if (armor == TragicItems.LightHelm) flag1 = true;
+					if (armor == TragicItems.LightPlate) flag2 = true;
+					if (armor == TragicItems.LightLegs) flag3 = true;
+					if (armor == TragicItems.LightBoots) flag4 = true;
 
 					if (flag1 && flag2 && flag3 && flag4)
 					{

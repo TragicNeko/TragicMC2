@@ -23,8 +23,8 @@ public class ArmorHunter extends TragicArmor {
 	{
 		if (stack.getItem() == TragicItems.HuntersLegs)
 		{
-			return "tragicmc:textures/items/Hunter2_lowRes.png";
+			return "tragicmc:textures/armor/Hunter2_lowRes.png";
 		}
-		return "tragicmc:textures/items/Hunter1_lowRes.png";
+		return "tragicmc:textures/armor/Hunter1_lowRes.png";
 	}
 }

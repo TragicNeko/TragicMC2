@@ -49,11 +49,11 @@ public class ArmorDark extends TragicArmor {
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == TragicItems.DarkLegs)
+		if (slot == 2)
 		{
-			return "tragicmc:textures/items/Dark2_lowRes.png";
+			return "tragicmc:textures/armor/Dark2_lowRes.png";
 		}
-		return "tragicmc:textures/items/Dark1_lowRes.png";
+		return "tragicmc:textures/armor/Dark1_lowRes.png";
 	}
 
 
@@ -76,22 +76,10 @@ public class ArmorDark extends TragicArmor {
 				{
 					Item armor = player.getEquipmentInSlot(a).getItem();
 
-					if (armor == TragicItems.DarkHelm)
-					{
-						flag1 = true;
-					}
-					if (armor == TragicItems.DarkPlate)
-					{
-						flag2 = true;
-					}
-					if (armor == TragicItems.DarkLegs)
-					{
-						flag3 = true;
-					}
-					if (armor == TragicItems.DarkBoots)
-					{
-						flag4 = true;
-					}
+					if (armor == TragicItems.DarkHelm) flag1 = true;
+					if (armor == TragicItems.DarkPlate) flag2 = true;
+					if (armor == TragicItems.DarkLegs) flag3 = true;
+					if (armor == TragicItems.DarkBoots) flag4 = true;
 					
 					if (flag1 && flag2 && flag2 && flag4 && TragicNewConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotions.Immunity.id, 600));
 				}

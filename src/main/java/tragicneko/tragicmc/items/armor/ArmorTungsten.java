@@ -66,9 +66,9 @@ public class ArmorTungsten extends TragicArmor {
 	{
 		if (slot == 2)
 		{
-			return "tragicmc:textures/items/Tungsten2_lowRes.png";
+			return "tragicmc:textures/armor/Tungsten2_lowRes.png";
 		}
-		return "tragicmc:textures/items/Tungsten1_lowRes.png";
+		return "tragicmc:textures/armor/Tungsten1_lowRes.png";
 	}
 }
 

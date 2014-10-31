@@ -45,10 +45,10 @@ public class ArmorMercury extends TragicArmor {
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == TragicItems.MercuryLegs)
+		if (slot == 2)
 		{
-			return "tragicmc:textures/items/Mercury2_lowRes.png";
+			return "tragicmc:textures/armor/Mercury2_lowRes.png";
 		}
-		return "tragicmc:textures/items/Mercury1_lowRes.png";
+		return "tragicmc:textures/armor/Mercury1_lowRes.png";
 	}
 }

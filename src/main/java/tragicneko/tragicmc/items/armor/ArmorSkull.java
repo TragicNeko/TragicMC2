@@ -37,10 +37,10 @@ public class ArmorSkull extends TragicArmor {
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == TragicItems.SkullLegs)
+		if (slot == 2)
 		{
-			return "tragicmc:textures/items/Skull2" + TragicItems.textureRes + ".png";
+			return "tragicmc:textures/armor/Skull2" + TragicItems.textureRes + ".png";
 		}
-		return "tragicmc:textures/items/Skull1" + TragicItems.textureRes + ".png";
+		return "tragicmc:textures/armor/Skull1" + TragicItems.textureRes + ".png";
 	}
 }
