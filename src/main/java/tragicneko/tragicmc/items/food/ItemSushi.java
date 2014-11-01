@@ -17,6 +17,7 @@ public class ItemSushi extends ItemFood {
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{
 		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, 0));
+		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 600, 0));
 		return super.onEaten(stack, world, player);
 	}
 	
@@ -24,5 +25,4 @@ public class ItemSushi extends ItemFood {
 	{
 		return 16;
 	}
-
 }

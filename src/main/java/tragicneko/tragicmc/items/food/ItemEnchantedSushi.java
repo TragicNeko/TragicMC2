@@ -47,6 +47,7 @@ public class ItemEnchantedSushi extends ItemFood {
 		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 1200, 1));
 		player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400, 1));
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 2));
+		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
 		if (TragicNewConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotions.Clarity.id, 2400, 1));
 		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 60));
 		
