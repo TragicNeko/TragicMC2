@@ -36,9 +36,11 @@ import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
+import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
@@ -423,7 +425,8 @@ public class TragicEntities {
 		
 		if (TragicNewConfig.allowPsygote)
 		{
-			//TODO add psygote
+			EntityRegistry.registerModEntity(EntityPsygote.class, "Psygote", listid++, TragicMC.instance, 80, 1, true);
+			TragicEntityList.addMapping(EntityPsygote.class, "TragicMC.Psygote", id++, 0x000000, 0x000000);
 		}
 		
 		if (TragicNewConfig.allowLockbot)
@@ -433,7 +436,8 @@ public class TragicEntities {
 		
 		if (TragicNewConfig.allowNanoSwarm)
 		{
-			//TODO add Nano Swarm
+			EntityRegistry.registerModEntity(EntityNanoSwarm.class, "NanoSwarm", listid++, TragicMC.instance, 80, 1, true);
+			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0x000000, 0x000000);
 		}
 		
 		if (TragicNewConfig.allowCircuitGolem)

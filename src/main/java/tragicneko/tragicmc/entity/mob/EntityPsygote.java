@@ -30,13 +30,40 @@ public class EntityPsygote extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
+	
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+	
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+	}
+	
+	public int getFiringTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+	
+	private void setFiringTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+	
+	private void decrementFiringTicks()
+	{
+		this.setFiringTicks(this.getFiringTicks() - 1);
+	}
 
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(72.0);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.19);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.65);
 	}
@@ -51,16 +78,27 @@ public class EntityPsygote extends TragicMob {
 		if (this.worldObj.isRemote) return;
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-		//if (this.getFiringTicks() >= 60) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+		if (this.getFiringTicks() >= 60) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 
-		//if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(8) == 0 && !this.isFiring())
-		//{
-		//	this.setFiringTicks(120);
-		//}
+		if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(48) == 0 && this.getFiringTicks() == 0)
+		{
+			this.setFiringTicks(120);
+		}
+		
+		if (this.getFiringTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(96) == 0) this.doSwitch();
 
-		//if (this.getFiringTicks() >= 60 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null) this.shootProjectiles();
+		if (this.getFiringTicks() >= 60 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null) this.shootProjectiles();
 
 		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(3.0F);
+	}
+
+	private void doSwitch() {
+		//Swap positions with the entity
+		
+	}
+
+	private void shootProjectiles() {
+		//spin around and fire dark mortors at random spots
 	}
 
 	@Override

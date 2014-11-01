@@ -24,6 +24,8 @@ public class KeyInputEvents {
 		if (Minecraft.getMinecraft().inGameHasFocus)
 		{
 			EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+			
+			if (player == null) return;
 
 			if (ClientProxy.openAmuletGui.getIsKeyPressed() && TragicNewConfig.allowAmulets)
 			{
@@ -44,7 +46,7 @@ public class KeyInputEvents {
 
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 
-		if (TragicNewConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotions.Flight.id) && player.ticksExisted % 2 == 0)
+		if (player != null && TragicNewConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotions.Flight.id) && player.ticksExisted % 2 == 0)
 		{	
 			PotionEffect effect = player.getActivePotionEffect(TragicPotions.Flight);
 

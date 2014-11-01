@@ -1,7 +1,9 @@
 package tragicneko.tragicmc.main;
 
-import java.awt.Color;
+import org.apache.commons.lang3.ArrayUtils;
 
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -9,9 +11,11 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.WeightedRandomFishable;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
+import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemGeneric;
@@ -35,6 +39,7 @@ import tragicneko.tragicmc.items.food.ItemNastyFruit;
 import tragicneko.tragicmc.items.food.ItemRice;
 import tragicneko.tragicmc.items.food.ItemSkyFruit;
 import tragicneko.tragicmc.items.food.ItemSushi;
+import tragicneko.tragicmc.items.food.ItemTentacle;
 import tragicneko.tragicmc.items.special.ItemAmulet;
 import tragicneko.tragicmc.items.special.ItemAmuletRelease;
 import tragicneko.tragicmc.items.special.ItemBleedingObsidianOrb;
@@ -241,6 +246,7 @@ public class TragicItems {
 	public static Item NastyFruit;
 	public static Item Rice;
 	public static Item Sushi;
+	public static Item Tentacle;
 	public static Item Banana;
 	public static Item BananaSplit;
 	public static Item GoldenSushi;
@@ -573,10 +579,10 @@ public class TragicItems {
 		Rice = (new ItemRice(2, false).setUnlocalizedName("tragicmc.rice").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Rice" + textureRes));
 		GameRegistry.registerItem(Rice, "rice");
 
-		Sushi = (new ItemSushi(4, false).setUnlocalizedName("tragicmc.sushi").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Sushi" + textureRes)); 
+		Sushi = (new ItemSushi(4, true).setUnlocalizedName("tragicmc.sushi").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Sushi" + textureRes)); 
 		GameRegistry.registerItem(Sushi, "sushi");
 
-		GoldenSushi = (new ItemEnchantedSushi(8, false).setUnlocalizedName("tragicmc.goldenSushi").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:GoldenSushi" + textureRes));
+		GoldenSushi = (new ItemEnchantedSushi(8, true).setUnlocalizedName("tragicmc.goldenSushi").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:GoldenSushi" + textureRes));
 		GameRegistry.registerItem(GoldenSushi, "goldenSushi");
 
 		Banana = (new ItemBanana(1, false).setUnlocalizedName("tragicmc.banana").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Banana" + textureRes));
@@ -587,6 +593,9 @@ public class TragicItems {
 		
 		SkyFruit = (new ItemSkyFruit(4, false).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:SkyFruit" + textureRes));
 		GameRegistry.registerItem(SkyFruit, "skyFruit");
+		
+		Tentacle = (new ItemTentacle(3, true).setUnlocalizedName("tragicmc.tentacle").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Tentacle" + textureRes));
+		GameRegistry.registerItem(Tentacle, "tentacle");
 
 		//Special Item Registrations
 		RubyCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.rubyCharm").setMaxStackSize(16).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:RubyCharm" + textureRes));
@@ -885,7 +894,6 @@ public class TragicItems {
 		}
 
 		//Chest Gens
-		//WeightedRandomChestContent(ItemStack, min gen chance, max gen chance, item weight);
 
 		WeightedRandomChestContent[] bossStructureContent = new WeightedRandomChestContent[] {
 				new WeightedRandomChestContent(new ItemStack(RubyCharm), 0, 1, 5),
@@ -958,9 +966,17 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 2),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 5),
-				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5),
-				new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, TragicMC.rand.nextInt(Doomsday.doomsdayNames.length - 1)), 0, 1, 3)
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5)
 		};
+		
+		WeightedRandomChestContent[] scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
+		
+		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
+		{
+			if (Doomsday.doomsdayList[i] != null) scrollArray[i] = new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, i), 0, 1, 3);
+		}
+		
+		ArrayUtils.addAll(bossStructureContent, scrollArray);
 
 		WeightedRandomChestContent[] netherStructureContent = new WeightedRandomChestContent[] {
 				new WeightedRandomChestContent(new ItemStack(RubyCharm), 0, 1, 10),
@@ -1008,9 +1024,17 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 10),
-				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10),
-				new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, TragicMC.rand.nextInt(Doomsday.doomsdayNames.length - 1)), 0, 1, 5)
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10)
 		};
+		
+		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
+		
+		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
+		{
+			if (Doomsday.doomsdayList[i] != null) scrollArray[i] = new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, i), 0, 1, 5);
+		}
+		
+		ArrayUtils.addAll(netherStructureContent, scrollArray);
 
 		WeightedRandomChestContent[] lameChestContent = new WeightedRandomChestContent[] {
 				new WeightedRandomChestContent(new ItemStack(Blocks.cobblestone), 3, 5, 50),
@@ -1050,9 +1074,17 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 20),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 20),
-				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 20),
-				new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, TragicMC.rand.nextInt(Doomsday.doomsdayNames.length - 1)), 0, 1, 10)
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 20)
 		};
+		
+		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
+		
+		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
+		{
+			if (Doomsday.doomsdayList[i] != null) scrollArray[i] = new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, i), 0, 1, 10);
+		}
+		
+		ArrayUtils.addAll(awesomeChestContent, scrollArray);
 
 		BossStructureHook = (new ChestGenHooks("TragicMC.BossStructure", bossStructureContent, 3, 7));
 		NetherStructureHook = (new ChestGenHooks("TragicMC.NetherBossStructure", netherStructureContent, 5, 8));
@@ -1066,7 +1098,7 @@ public class TragicItems {
 			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicNewConfig.cooldownDefuseRarity));
 			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicNewConfig.cooldownDefuseRarity));
 			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicNewConfig.cooldownDefuseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 2), 1, 3, TragicNewConfig.cooldownDefuseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicNewConfig.cooldownDefuseRarity));
 			ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(CooldownDefuse, 1), 1, 3, TragicNewConfig.cooldownDefuseRarity));
 		}
 
@@ -1075,13 +1107,19 @@ public class TragicItems {
 			ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.doomConsumeRarity));
 			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.doomConsumeRarity));
 			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.doomConsumeRarity));
+			ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.doomConsumeRarity));
+			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.doomConsumeRarity));
+			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.doomConsumeRarity));
 		}
 
 		if (TragicNewConfig.shouldUnlockAmuletSlots)
 		{
-			ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
-			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
+			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
 		}
 
 		OreDictionary.registerOre("itemRock", Rock);
@@ -1101,6 +1139,7 @@ public class TragicItems {
 		{
 			OreDictionary.registerOre("fish", new ItemStack(Items.fish, 1, i));
 		}
+		OreDictionary.registerOre("fish", Tentacle);
 
 		OreDictionary.registerOre("oreCharms", RubyCharm);
 		OreDictionary.registerOre("oreCharms", SapphireCharm);

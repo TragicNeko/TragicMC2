@@ -58,17 +58,16 @@ public class EntityNanoSwarm extends TragicMob {
 		
 		if (this.worldObj.isRemote)
 		{
-			/*
 			for (int l = 0; l < 2; ++l)
 			{
-				this.worldObj.spawnParticle("happyVillager",
+				this.worldObj.spawnParticle("enchantmenttable",
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
 						this.posY + this.rand.nextDouble() * (double)this.height,
 						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
-			} */
+			} 
 		}
 		
 		if (this.motionY < 0 && !this.onGround) this.motionY *= 0.65D;
@@ -84,7 +83,7 @@ public class EntityNanoSwarm extends TragicMob {
 
 			if (entity.getEquipmentInSlot(0) != null)
 			{
-				if (!(entity.getEquipmentInSlot(0).getItem() instanceof ItemBow) && (TragicNewConfig.allowReach ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, entity.getHeldItem()) == 0 : true))
+				if (!(entity.getEquipmentInSlot(0).getItem() instanceof ItemBow) && this.getDistanceToEntity(entity) <= 2.0F)
 				{
 					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
 					if (TragicNewConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotions.Hacked.id, 120 + rand.nextInt(180)));

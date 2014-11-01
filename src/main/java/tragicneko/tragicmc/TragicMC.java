@@ -165,7 +165,6 @@ public class TragicMC
 			TragicEntities.load();
 			if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
-			EntityDropHelper.addEntitiesToDropList();
 		}
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());

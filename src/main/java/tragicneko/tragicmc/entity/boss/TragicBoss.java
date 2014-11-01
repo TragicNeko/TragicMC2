@@ -79,7 +79,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 					amt++;
 				}
 
-				if (amt >= 7) break;
+				if (amt >= 6 + x) break;
 			}
 		}
 
