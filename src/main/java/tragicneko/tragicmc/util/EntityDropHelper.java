@@ -13,15 +13,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.entity.mob.EntityAbomination;
+import tragicneko.tragicmc.entity.mob.EntityCryse;
+import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
+import tragicneko.tragicmc.entity.mob.EntityNorVox;
+import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntitySirv;
+import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
+import tragicneko.tragicmc.entity.mob.EntityWisp;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
 
@@ -38,7 +47,7 @@ public class EntityDropHelper {
 				new ItemStack(TragicBlocks.StorageBlock, 1, 3), new ItemStack(TragicBlocks.StorageBlock, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
 		new EntityDrop(15, getDoomsdayScrollStacks())};
 
-	public static void addEntitiesToDropList()
+	static
 	{
 		//Normal Mob Drops
 		addToDropList(EntityJabba.class, new EntityDrop[][] {{new EntityDrop(25, Items.magma_cream), new EntityDrop(15, TragicItems.Ash)},
@@ -46,7 +55,7 @@ public class EntityDropHelper {
 			{new EntityDrop(25, Items.slime_ball), new EntityDrop(10, Items.magma_cream)},
 			{new EntityDrop(5, TragicItems.Spore)}}, true);
 		
-		addToDropList(EntityPlague.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.Ash), new EntityDrop(5, TragicItems.DarkParticles)},
+		addToDropList(EntityPlague.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Ash), new EntityDrop(5, TragicItems.DarkParticles)},
 			{new EntityDrop(5, TragicItems.DarkParticles)}});
 		
 		addToDropList(EntityGragul.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.Ash), new EntityDrop(25, Items.clay_ball), new EntityDrop(5, Items.coal)},
@@ -59,7 +68,7 @@ public class EntityDropHelper {
 			{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(5, Items.coal)}});
 		
 		addToDropList(EntityRagr.class, new EntityDrop[][] {{new EntityDrop(25, Items.leather), new EntityDrop(10, TragicItems.CrushedIce), new EntityDrop(15, Items.snowball),
-				new EntityDrop(5, new ItemStack(Items.fish, 1, 0), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.fish, 1, 2), new ItemStack(Items.fish, 1, 3))},
+				new EntityDrop(5, Items.fish)},
 			{new EntityDrop(25, TragicItems.ToughLeather), new EntityDrop(15, TragicItems.IceOrb), new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.GoldenSushi)}});
 		
 		addToDropList(EntityPumpkinhead.class, new EntityDrop[][]{{new EntityDrop(25, Items.pumpkin_pie), new EntityDrop(5, Items.pumpkin_seeds), new EntityDrop(10, Blocks.pumpkin)},
@@ -76,28 +85,55 @@ public class EntityDropHelper {
 			{new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(5, TragicItems.GooeyFruit), new EntityDrop(25, Items.slime_ball)}},
 				true);
 		
+		addToDropList(EntityCryse.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.CrushedIce), new EntityDrop(15, Items.snowball), new EntityDrop(5, TragicItems.IceOrb)},
+			{new EntityDrop(5, TragicItems.IceOrb)},
+			{new EntityDrop(5, new ItemStack(TragicBlocks.StarCrystal, 15)), new EntityDrop(25, Items.glowstone_dust)},
+			{new EntityDrop(5, TragicBlocks.StarCrystal)}},
+				true);
+		
+		addToDropList(EntityPirah.class, new EntityDrop[][] {{new EntityDrop(25, new ItemStack(Items.fish, 1, 0), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.fish, 1, 2),
+				new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.LifeWater), new EntityDrop(15, TragicItems.Tentacle)},
+			{new EntityDrop(5, TragicItems.LifeWater)},
+			{new EntityDrop(25, new ItemStack(Items.fish, 1, 0), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.fish, 1, 2),
+				new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(25, TragicItems.Tentacle)},
+			{new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(10, Items.fire_charge)}},
+				true);
+		
+		addToDropList(EntityNorVox.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Rock), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.ObsidianOrb),
+				new EntityDrop(10, Blocks.stone)},
+			{new EntityDrop(15, Items.emerald), new EntityDrop(15, Items.diamond), new EntityDrop(25, TragicItems.Tungsten), new EntityDrop(25, TragicItems.RedMercury), new EntityDrop(5, TragicItems.Ruby),
+				new EntityDrop(5, TragicItems.Sapphire), new EntityDrop(15, Items.experience_bottle)},
+			{new EntityDrop(25, new ItemStack(TragicBlocks.StarCrystal, 1, 15)), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.ObsidianOrb)},
+			{new EntityDrop(15, Items.emerald), new EntityDrop(15, Items.diamond), new EntityDrop(25, TragicItems.Tungsten), new EntityDrop(25, TragicItems.RedMercury), new EntityDrop(5, TragicItems.Ruby),
+				new EntityDrop(5, TragicItems.Sapphire), new EntityDrop(15, Items.experience_bottle)}},
+				true);
+		
+		addToDropList(EntityStin.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Ash), new EntityDrop(5, TragicItems.DarkParticles)},
+			{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(5, Items.ender_pearl), new EntityDrop(5, Items.ender_eye)},
+			{new EntityDrop(25, TragicItems.Ash), new EntityDrop(5, Items.coal)},
+			{new EntityDrop(5, Items.ender_pearl)}},
+				true);
+		
+		addToDropList(EntityWisp.class, new EntityDrop[][] {{new EntityDrop(25, Items.glowstone_dust), new EntityDrop(5, TragicItems.WispParticles)},
+			{new EntityDrop(5, TragicItems.WispParticles)}});
+		
+		addToDropList(EntityAbomination.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.CrushedIce), new EntityDrop(15, Items.fish), new EntityDrop(10, Items.snowball)},
+			{new EntityDrop(25, TragicItems.IcyFur), new EntityDrop(5, TragicItems.IceOrb)}});
+		
+		addToDropList(EntityErkel.class, new EntityDrop[][] {{new EntityDrop(25, Blocks.brown_mushroom), new EntityDrop(15, Blocks.red_mushroom), new EntityDrop(5, TragicItems.Spore)},
+			{new EntityDrop(5, Items.mushroom_stew), new EntityDrop(25, TragicItems.Spore), new EntityDrop(5, Items.nether_wart)}});
+		
+		addToDropList(EntitySirv.class, new EntityDrop[][] {{new EntityDrop(25, Items.clay_ball), new EntityDrop(5, Blocks.clay)},
+			{new EntityDrop(25, Blocks.clay), new EntityDrop(5, Blocks.brick_block)}});
+		
+		addToDropList(EntityPsygote.class, new EntityDrop[][] {{new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, Items.ender_pearl)},
+			{new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(25, Items.ender_eye), new EntityDrop(5, TragicItems.DimensionalKey)}});
+		
+		
+		//Mini-Boss drops
+		
+		
 		/*
-		entityLootDrops.put(EntityCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.snowball)}, {new ItemStack(TragicItems.IceOrb),
-			new ItemStack(TragicBlocks.StarCrystal)}});
-
-		entityLootDrops.put(EntityPirah.class, new ItemStack[][] {{new ItemStack(Items.fish, 1, rand.nextInt(4))}, {new ItemStack(TragicItems.LifeWater)}});
-
-		entityLootDrops.put(EntityNorVox.class, new ItemStack[][] {{new ItemStack(TragicItems.Rock)},{new ItemStack(TragicBlocks.StarCrystal), new ItemStack(Items.glowstone_dust),
-			new ItemStack(TragicItems.ObsidianOrb), new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.RedMercury)}});
-
-		entityLootDrops.put(EntityStin.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.DarkParticles), new ItemStack(Items.ender_pearl)}});
-
-		entityLootDrops.put(EntityWisp.class, new ItemStack[][] {{new ItemStack(Items.glowstone_dust)}, {new ItemStack(TragicItems.WispParticles)}});
-
-		entityLootDrops.put(EntityAbomination.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(Items.fish), new ItemStack(Items.snowball)},
-			{new ItemStack(TragicItems.IcyFur), new ItemStack(TragicItems.IceOrb)}});
-
-		entityLootDrops.put(EntityErkel.class, new ItemStack[][] {{new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom)}, {new ItemStack(Items.slime_ball),
-			new ItemStack(TragicItems.Ectoplasm), new ItemStack(TragicItems.Spore)}
-		});
-
-		entityLootDrops.put(EntitySirv.class, new ItemStack[][] {{new ItemStack(Items.clay_ball)}, {new ItemStack(Blocks.clay)}});
-
 		//Mini-Boss drops
 		entityLootDrops.put(EntityJarra.class, new ItemStack[][] {{new ItemStack(TragicItems.Thorns), new ItemStack(Items.magma_cream)}, {new ItemStack(TragicItems.Spore),
 			new ItemStack(TragicItems.Ectoplasm)}});
