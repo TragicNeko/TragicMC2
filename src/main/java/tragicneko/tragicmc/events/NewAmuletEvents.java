@@ -9,6 +9,8 @@ import java.util.Set;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -670,11 +672,11 @@ public class NewAmuletEvents {
 	}
 	
 	@SubscribeEvent
-	public void onEndermanAmuletUse(HarvestDropsEvent event)
+	public void onEndermanAmuletUse(BreakEvent event)
 	{
-		if (event.harvester != null && TragicNewConfig.amuEnderman && event.harvester.getCurrentEquippedItem() == null)
+		if (TragicNewConfig.amuEnderman && event.getPlayer() != null && event.getPlayer().getEquipmentInSlot(0) == null && event.getPlayer() instanceof EntityPlayerMP)
 		{
-			EntityPlayerMP mp = (EntityPlayerMP) event.harvester;
+			EntityPlayerMP mp = (EntityPlayerMP) event.getPlayer();
 			PropertyAmulets amu = PropertyAmulets.get(mp);
 
 			if (amu == null) return;
@@ -691,10 +693,12 @@ public class NewAmuletEvents {
 
 			for (i = 0; i < 3; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletName().equals("Enderman") && event.block.canHarvestBlock(mp, event.blockMetadata))
+				if (amulets[i] != null && amulets[i].getAmuletName().equals("Enderman"))
 				{
-					event.drops.clear();
-					event.drops.add(new ItemStack(event.block, 1, event.blockMetadata));
+					mp.worldObj.setBlockToAir(event.x, event.y, event.z);
+					EntityItem item = new EntityItem(mp.worldObj, event.x, event.y, event.z, new ItemStack(event.block, 1, event.blockMetadata));
+					mp.worldObj.spawnEntityInWorld(item);
+					if (event.isCancelable()) event.setCanceled(true);
 					break;
 				}
 			}
