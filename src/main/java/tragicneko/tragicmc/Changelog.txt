@@ -2909,7 +2909,7 @@ Fix derp in Celestial Aegis enchantment tier
 Fixed bug with Invulnerability negating things that should always kill you, this was an oversight but is fixed up now
 This should wrap up all of the pre-huge update stuff
 
-1.38.1698 <177> (October, 28, 2014)
+1.39.1721 [The Start of some huge changes for the mod] <177> (October, 28, 2014)
 Modified Quicksand physics
 Modified how Enchantments are added to vanilla entities from my vanilla changing event
 Modified how Entity drops work, variants also now have separate drops from their main form
@@ -2918,37 +2918,77 @@ Moved Boss luxury drops into the drop helper rather than keeping them in the Tra
 system as well
 Due to the change in drops, some of the mobs drops were changed, more variety was added to some of them (generally, the tougher mobs got more drops)
 Adding Nano Swarm and Psygote (I'll work on their models and animations after getting their AI)
+Adding armor textures now, Tungsten, Red Mercury and Hunter's armor will use the normal armor models, but Light, Dark and Overlord armor will use custom models
+Finished up more of the new mob drops, added Tentacles for Squid to drop, these can be crafted into sushi (alongside the other vanilla fish)
+Fix up some derps in vanilla mob drops (dropping my items)
+Add all of the Doomsday Scrolls properly to the ChestGenHooks, actually add the Amulet Release to the ChestGenHooks, this was a MAJOR derp
+Fix the Enderman Amulet, it wasn't actually Silk Touching any of the blocks you mined, now I kinda do a fake block mine, deny the player breaking the block and just set the
+block to air and spawn an item entity of the block at the block's location
+Added Psygote's switch ability and it's mortor spam ability
+Changed the Light/Dark particle textures, the Dark particle was pretty hard to see against the Gui background and the Light one was changed to match it (since they are opposite)
+Finished up the Psygote's AI, may add one more projectile attack as it doesn't seem to attack enough but otherwise it's finished, model and animations included
+Psygote now shoot a single dark mortor while they are fleeing from their attack target
+Modifying WorldGen now, slightly, adding the Tainted biome set and possibly adding two other biome sets as well
+Changed how weapons with two Doomsdays use their abilities, now you sneak + hit the button you set to use the Doomsday and it'll use the 2nd one, or just hit the button to
+use the first one
+Fix problem with shooting fireballs on right-click with the Dragon Fang
+Reduce spread of Fire Rain Doomsday, it now rains fireballs in a tighter spread around you, it also now gives you fire resistance so that you don't take as much damage from
+the fireballs (the fire at least)
+Added a custom sky render, currently I just use a modified version of the End's render, but I want to have it look kinda circuit-y, like with a pulsating circuit in the sky
+Started adding the basic entity class for the Aegar, I'm planning it's AI right now then I'll start to actually implement it, otherwise I'll keep working on other miscellaneous
+things
+Modifying how the ItemBlocks for the blocks are done to reduce the amount of classes I have total, added the last couple of bosses to the summon blocks (forgot)
+Unfortunately, this will heavily corrupt worlds from previous versions (only really affects the Dimension)
+The Dimension is now named the Collision
 
-The Psygote will drop Dark Particles and Doomsday Scrolls with a rare chance to drop Dimensional Keys (just for the Tragic Dimension)
-The Nano Swarm will drop nothing, it's just there to be annoying basically
+1.39.1721++ <178> (November 4, 2014)
+Added textures for the Enyvil and Claymation summon blocks, modified the Ender Dragon and Polaris ones as they looked too similar to the Enyvil one
+Removed lava generation for the tainted isles and lowlands biome, however, the isle generation is still quite laggy, this will have to be necessary though
+Started planning for the new biome sets that I will add, this will add way more variety in the collision and will give a really "collided" feel to the Dimension
+Prevent Multipart entities from taking damage via lightning, fix up some more bugs with the Reach enchantment, it should now work in other Dimensional mods (need to test this)
+Fix Challenge scrolls not properly giving a completion for stand on block challenges, this was due to it being improperly labeled an item challenge, added difficulty label to
+the scroll description so it is easier to determine the difficulty of a particular challenge
+Added new rewards for completing harder challenges, fixed another issue with armor challenges
+Added Hacked Potion Effect along with a Gui overlay to render the effect, it looks pretty cool
+Experimented with using the circuit texture for the sky in the dimension, it'll work well for the Synapse dimension sky
+Updated spawn egg colors for the Nano Swarm, Erkel and Psygote
+Updated the Ash and Nasty Fruit texture, ash texture was updated due to looking too similar to the Dark Particle one, Nasty Fruit was updated to to it's recipe requiring some
+ectoplasm
+Updated Tungsten Jack texture, it looks way cooler, maybe a bit too cool lol
 
-Note: Psygote's main drop will be random Doomsday scrolls and rarely Dimensional Keys
-Note: Actually start to add the Overlord Dimension's mobs, Nano Swarm, Lockbot, Circuit Golem, Psygote
+Aegar will move around slowly, attacking the player with a laser from ranged randomly as well as using a ground shockwave attack
+The laser will be armor piercing and do around 3 hearts in damage per hit (6 in normal damage), it won't fire it very often until it gets angered
+It'll smack anything that gets near it (this AI up to this point is similar to the Enyvil's AI)
+It has very high armor and very high attack damage, however, if it's crystal gets destroyed, it'll take a huge amount of damage and be stunned for a couple of seconds, when it
+awakens, it'll go into hyper super mega anger mode and move faster, it'll gain two new attacks, a rapid fire laser attack and a crystal homing grenade attack, it'll also have
+even higher defense and may even deflect incoming attacks
+Aegar will also inflict the hacked effect on enemies, however, it'll only affect players, this effect will only apply when it hits an enemy directly
+
+Note: Name the Overlord Dimension, the Synapse
+Note: Add the Lockbot, Locobot, Circuit Golem, The Worm and the Overlord, possibly also add the WubWub in this update
+Note: Fix the Greater Stin's model, it's legs are glitched
 Note: Add a new Portal entity that will transport you to the Overlord Dimension, rather than have Aegar create it when it dies, this should drop as an item which
-can be placed on right-click but can only be used in the Tragic Dimension, if Aegar is disabled I'll make an extraordinarily expensive recipe to craft the item, like 9 stacks of
-diamonds, emeralds, rubies, sapphires, tungsten, expensive lol
-Note: The Sentinel will only have one rarity, but it will have different lore that it can be
+can be placed on right-click but can only be used in the Tragic Dimension
+Note: The Sentinel will only have one rarity, but it will have different lore that it can be, same goes for the Sentinel armor set
+Note: The Sentinel will have a couple of Doomsdays, the Armor will only have one but it will give you up to 20 hearts and be the most "OP" set in the mod
+Note: Allow ppl to configure whether weapon models show or not, do the same for armor models when I add them
 
 --Reminders-
 Add more config options for specific mobGriefing instances, but also have it still blanket for toggling mobGriefing off
 Modify World Shaper Doomsdays to have some additional non-griefing effects
 Make the Sky Fruit able to grow on Painted Biome trees, similarly to cocoa beans
 Start making particles for my entities
-Look into adding a custom sky texture for my Dimension, the Overlord Dimension will not have a sky
 Add a Dimensional Key for the End, Nether and the Overlord Dimension, these will take you to their Dimension from the Overworld, and will teleport you back to it if used in the
 key's dimension, these would be Creative Mode only items
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
 Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
 A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami, or just have it as a rare Doomsday Scroll
 Make it so that corrupted mob's textures darken the longer they are corrupted
-I just realized that hitboxes for entities are done client-side, this means that I CAN set the bounding box after the entity is created, will update the Claymation later on
 Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
 a keybinding and gui screen in order to do this
 Change how projectiles are fired from weapons, use a vector based direction instead of a block hit position, this would allow you to shoot them up into the air and such
 Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
 that stay in it too long)
-Add the Psygote, a Dimension only mob, it'll attack it's target with dark mortor strikes and will swap spots with it's target randomly as well, inflicting blindness on them,
-it'll rotate before doing the switch so that the player knows
 Add the Lockbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
 Add the Locobot, a Mini-Boss that'll attack with it's guns (non-projectile non-magic projectile attack), it'll be destructible, meaning it's arms could be blasted off
 and it can lose those guns, it could get it's head blown off, which will make it more aggressive, it could also lose it's legs and be unable to move, it has two guns intead of
@@ -2956,34 +2996,26 @@ one that the locbot has, it'll also will be able to fire missles if it loses bot
 Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a solid block (it also remains a solid block if it is idle), it bounces around and attacks whatever
 it collides with, it'll have dubstep-like sounds
 Start work on the Overlord
-Add Aegar to get into the Overlord Dimension, it'll drop an item that creates a portal to the Overlord Dimension when it dies
-Do another rewrite of the config file in order to implement the Gui, there will be a LOT of code involved in this, unfortunately due to the large amount of config options the
-mod has, but it should be totally worth it (I'll have to subscribe to the onConfigChanged event, and this will be in the main class, which will sync the config)
-This will be using Property types instead of raw boolean values, but with the way my config is set up, it should be easy to convert the values (all of the arrays will be
-converted to Property arrays instead, and then get the value from that when initializing the variables), most of the properties will be able to be changed without requiring
-minecraft to be reset
-Potion Effects, Doom, Doomsdays, Amulets can be changed without reset
-Mobs, Dimension, WorldGen and Biomes require resets
 
 --Before Next Release (I failed this goal the first time OTL|||)--
-The Tragic Armor and Tragic Hellraiser Doomsdays will combine to form Isolation, which inflicts high damage and knocks all mobs away from the user, Tragic Armor's normal one
-will be Harden, which gives the player a quick resistance 10 buff (3 seconds, short cooldown of maybe 10), the Hellraiser Doomsday will inflict damage on all mobs near the player
-at a constant rate but will not knock them away, it'll also leech Doom off of them
-Tragic Armor (with the full set) will also bring you back to life randomly if you die (like a 10% chance with random health)
-The Sentinel's Doomsday will be Judgment day, which will stall all mobs in the air and inflict judgment damage onto them (they take damage equal to one-tenth of
-their max health, this caps at around 15 though so that bosses don't get killed easily by this), this will be crafted with one Overlord Eye along with Celestial Diamonds,
-it'll extend ItemJack so that it can be used to mine stuff as well
+The Sentinel's doomsday will create shield entities around you that block attacks and prevent entities from moving past them (like a block), you can punch these shields and
+they will move like a large fireball
+The Sentinel armor's Doomsday will be Harden, it'll give you a quick Resistance 10 buff and heal you 3 hearts, it will give you a 10 heart buff when you have the full set on
+and will also give you Convergence
+The armor will look kinda scaly like the celled blocks, and have trim that matches the Overlord's design, it'll require nano-bots which will drop from Harvesters and the Overlord
+itself, and each armor piece will require Overlord Essence, which it will drop as it's boss drop
 The final boss will be the Overlord, it'll have a ton of health and actually have a similar appearance to Orespawn's Kraken, however, it isn't a squid/octopus thing, it's a large
 "metroid"-like creature, probably most similar to metroid prime in it's final boss stage, but with a few differences of course, it'll most likely utilize the multipart entity
 thing as well as have a helper creature/underling
-Regardless, it'll have a "cocoon" form in which it doesn't move, but shoots projectiles and can only be hurt with pickaxes/jacks, it'll spawn in Baby Underlings which will 
+Regardless, it'll have a "cocoon" form in which it doesn't move, but shoots projectiles and can only be hurt with pickaxes/jacks, it'll spawn in Seekers which will 
 latch onto the player, doing damage per few ticks, only unlatching when killed
-Afterwards, it'll evolve into a "Combat" form which will charge around and attack like the Apis/Yeti shooting projectiles, spawning normal Underlings which will attach to the
-player with more health and do more damage per few ticks, it'll also have very high armor
+Afterwards, it'll evolve into a "Combat" form which will charge around and attack like the Apis shooting projectiles, spawning Adult Seekers which will attach to the
+player with more health and do more damage per few ticks, it'll also have very high armor, it will also spawn Harvesters which basically act like autonomous cleaner bots that
+spawn nano swarms to "clean" up problems
 Each of these forms will have 500 health
 After the "Combat" form is defeated, it'll turn into a "Core" form, which will be the aforementioned giant squid/metroid prime looking creature, it'll shoot slow moving projectiles
 that do massive damage and create a massive explosion, as well as faster moving ones that do less damage, it'll be able to latch onto targets with it's tentacles and pull them
-towards it, in order to do a massive hit, it'll also spawn in Adult Underlings (in addition to the other variants) which will fire projectiles at their target and can spawn in
+towards it, in order to do a massive hit, it'll also spawn in Seekers (in addition to the other variants) which will fire projectiles at their target and can spawn in
 other smaller ones, this is the final form and has 1000 health, it will be a very, very tough fight
 Pyris, Veneera, Luex could be the names of the Phoenix, each one could be a slight variant of each other, with different textures and slightly different attack patterns
 Pyris could be the normal fire phoenix, shooting fireballs and launching waves of fireballs at it's attackers, lighting any enemies nearby on fire
@@ -2992,7 +3024,6 @@ Luex could be the lightning phoenix, able to shoot dark lightning and normal lig
 If all 3 get near each other, they could form Lazarus Ultim, a larger, stronger version that actively seeks out hostile mobs and destroys them with the combined powers of all
 3 lesser versions
 The Phoenix will not be one of the required kills for the endboss, it'll be a free roaming side boss, it'll still be pretty strong though
-The Overlord will give the player a permanent health buff (maybe of 10 hearts per kill on it), this will need to be stored in an nbt tag or an extended property
 
 --Reminders for later--
 Add the custom mob sounds
@@ -3000,6 +3031,3 @@ Add new particle effects
 Add animated textures for some of the items
 Add the pets, Kitsuneko, Panda Cub, the Bangatang
 Add the achievements, which will have a set questline leading up to the overlord
-
-Updating to 1.8 is going to be a HUGE pain in the ass, especially in regards to block states, block positions will just take a while to convert all of the methods, but block
-states are going to be the bane of my existance (unless fml/forge comes up with a better way to implement these into mods)
