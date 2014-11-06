@@ -43,8 +43,8 @@ public class EntityDropHelper {
 		new EntityDrop(10, Blocks.diamond_block), new EntityDrop(5, Blocks.emerald_block), new EntityDrop(5, TragicItems.AmuletRelease), new EntityDrop(5, TragicItems.AwakeningStone),
 		new EntityDrop(5, TragicItems.DoomConsume), new EntityDrop(15, TragicItems.CooldownDefuse), new EntityDrop(3, TragicItems.Titan), new EntityDrop(3, TragicItems.Paranoia),
 		new EntityDrop(3, TragicItems.Splinter), new EntityDrop(3, TragicItems.Butcher), new EntityDrop(3, TragicItems.Thardus), new EntityDrop(3, TragicItems.DragonFang),
-		new EntityDrop(8, new ItemStack(TragicBlocks.StorageBlock, 1, 0), new ItemStack(TragicBlocks.StorageBlock, 1, 1), new ItemStack(TragicBlocks.StorageBlock, 1, 2),
-				new ItemStack(TragicBlocks.StorageBlock, 1, 3), new ItemStack(TragicBlocks.StorageBlock, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
+		new EntityDrop(8, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1), new ItemStack(TragicBlocks.CompactOre, 1, 2),
+				new ItemStack(TragicBlocks.CompactOre, 1, 3), new ItemStack(TragicBlocks.CompactOre, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
 		new EntityDrop(15, getDoomsdayScrollStacks())};
 
 	static

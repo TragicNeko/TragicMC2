@@ -9,4 +9,5 @@ import tragicneko.tragicmc.main.TragicNewConfig;
 
 public abstract interface TragicMiniBoss
 {
+	//This is a marker interface
 }

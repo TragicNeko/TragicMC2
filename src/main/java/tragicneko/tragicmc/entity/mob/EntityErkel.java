@@ -117,7 +117,7 @@ public class EntityErkel extends TragicMob {
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
 		int i = 0;
-		if (TragicBiomes.ashenBiomes.contains(biome))
+		if (TragicBiomes.ashenBiomes.contains(biome) || TragicBiomes.taintedBiomes.contains(biome))
 		{
 			i = 1;
 		}

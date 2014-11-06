@@ -13,6 +13,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
+import tragicneko.tragicmc.entity.boss.EntityAegar;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -365,7 +366,7 @@ public class TragicEntities {
 					);
 			TragicEntityList.addMapping(EntityPirah.class, "TragicMC.Pirah", id++, 0x69A2FF, 0xFF6666);
 		}
-		
+
 		if (TragicNewConfig.allowStin)
 		{
 			EntityRegistry.registerModEntity(EntityStin.class, "Stin", listid++, TragicMC.instance, 80, 1, true);
@@ -402,7 +403,7 @@ public class TragicEntities {
 					);
 			TragicEntityList.addMapping(EntityAbomination.class, "TragicMC.Abomination", id++, 0xCDCDCD, 0xA9AFB7);
 		}
-		
+
 		if (TragicNewConfig.allowErkel)
 		{
 			EntityRegistry.registerModEntity(EntityErkel.class, "Erkel", listid++, TragicMC.instance, 80, 1, true);
@@ -414,32 +415,32 @@ public class TragicEntities {
 					BiomeGenBase.jungle,
 					BiomeGenBase.jungleHills
 					);
-			TragicEntityList.addMapping(EntityErkel.class, "TragicMC.Erkel", id++, 0x4D935D, 0x30663D);
+			TragicEntityList.addMapping(EntityErkel.class, "TragicMC.Erkel", id++, 0x43BD43, 0x30663D);
 		}
-		
+
 		if (TragicNewConfig.allowSirv)
 		{
 			EntityRegistry.registerModEntity(EntitySirv.class, "Sirv", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntitySirv.class, "TragicMC.Sirv", id++, 0xADADAD, 0xBDBDBD);
 		}
-		
+
 		if (TragicNewConfig.allowPsygote)
 		{
 			EntityRegistry.registerModEntity(EntityPsygote.class, "Psygote", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityPsygote.class, "TragicMC.Psygote", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityPsygote.class, "TragicMC.Psygote", id++, 0x8965A4, 0x000000);
 		}
-		
+
 		if (TragicNewConfig.allowLockbot)
 		{
 			//TODO add lockbot
 		}
-		
+
 		if (TragicNewConfig.allowNanoSwarm)
 		{
 			EntityRegistry.registerModEntity(EntityNanoSwarm.class, "NanoSwarm", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
 		}
-		
+
 		if (TragicNewConfig.allowCircuitGolem)
 		{
 			//TODO add Circuit Golem
@@ -457,7 +458,7 @@ public class TragicEntities {
 				BiomeGenBase.coldTaigaHills
 				);
 		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, 0xFFFDF1, 0xABA290);
-		
+
 		//Mini-Bosses
 		if (TragicNewConfig.allowJarra)
 		{
@@ -471,7 +472,7 @@ public class TragicEntities {
 					);
 			TragicEntityList.addMapping(EntityJarra.class, "TragicMC.Jarra", id++, 0x77329B, 0xC457FD, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicNewConfig.allowKragul)
 		{
 			EntityRegistry.registerModEntity(EntityKragul.class, "Kragul", listid++, TragicMC.instance, 80, 1, true);
@@ -489,14 +490,14 @@ public class TragicEntities {
 					);
 			TragicEntityList.addMapping(EntityKragul.class, "TragicMC.Kragul", id++, 0xDE3C31, 0x747474, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicNewConfig.allowMagmox)
 		{
 			EntityRegistry.registerModEntity(EntityMagmox.class, "Magmox", listid++, TragicMC.instance, 80, 1, true);
 			EntityRegistry.addSpawn(EntityMagmox.class, TragicNewConfig.magmoxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell);
 			TragicEntityList.addMapping(EntityMagmox.class, "TragicMC.Magmox", id++, 0xC20000, 0x550000, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicNewConfig.allowMegaCryse)
 		{
 			EntityRegistry.registerModEntity(EntityMegaCryse.class, "MegaCryse", listid++, TragicMC.instance, 80, 1, true);
@@ -507,7 +508,7 @@ public class TragicEntities {
 					);
 			TragicEntityList.addMapping(EntityMegaCryse.class, "TragicMC.MegaCryse", id++, 0xDADADA, 0xB9BFC7, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicNewConfig.allowGreaterStin)
 		{
 			EntityRegistry.registerModEntity(EntityGreaterStin.class, "GreaterStin", listid++, TragicMC.instance, 80, 1, true);
@@ -525,31 +526,32 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityStinQueen.class, "StinQueen", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityStinQueen.class, "TragicMC.StinQueen", id++, 0x232323, 0x767676, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicNewConfig.allowVoxStellarum)
 		{
 			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, 0xFDC169, 0xFD3C69, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicNewConfig.allowLocobot)
 		{
 			//TODO add Locobot
 		}
-		
-		
+
+
 		if (TragicNewConfig.allowAegar)
 		{
-			//TODO add Aegar
+			EntityRegistry.registerModEntity(EntityAegar.class, "Aegar", listid++, TragicMC.instance, 80, 1, true);
+			TragicEntityList.addMapping(EntityAegar.class, "TragicMC.Aegar", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
 		}
-		
-		//Bosses
 
-		//Wither
-		TragicEntityList.addMapping(EntityWither.class, "TragicMC.Wither", id++, 0x1C1C1C, 0x252525, EnumEggType.BOSS);
+		//Bosses
 
 		//Ender Dragon
 		TragicEntityList.addMapping(EntityDragon.class, "TragicMC.EnderDragon", id++, 0x1A1A1A, 0xCC00FA, EnumEggType.BOSS);
+
+		//Wither
+		TragicEntityList.addMapping(EntityWither.class, "TragicMC.Wither", id++, 0x1C1C1C, 0x252525, EnumEggType.BOSS);
 
 		if (TragicNewConfig.allowApis)
 		{
@@ -660,7 +662,7 @@ public class TragicEntities {
 		if (TragicNewConfig.allowTimeController)
 		{
 			EntityRegistry.registerModEntity(EntityTimeController.class, "TimeController", listid++, TragicMC.instance, 80, 1, true);
-			
+
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
 				EntityRegistry.addSpawn(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
@@ -695,11 +697,11 @@ public class TragicEntities {
 			}
 			TragicEntityList.addMapping(EntityTimeController.class, "TragicMC.TimeController", id++, 0x94FFA3, 0xEA92E9, EnumEggType.BOSS);
 		}
-		
+
 		if (TragicNewConfig.allowEnyvil)
 		{
 			EntityRegistry.registerModEntity(EntityEnyvil.class, "Enyvil", listid++, TragicMC.instance, 80, 1, true);
-			
+
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
 				EntityRegistry.addSpawn(EntityEnyvil.class, TragicNewConfig.enyvilSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
@@ -734,11 +736,11 @@ public class TragicEntities {
 			}
 			TragicEntityList.addMapping(EntityEnyvil.class, "TragicMC.Enyvil", id++, 0x5D1543, 0xFF6FFF, EnumEggType.BOSS);
 		}
-		
+
 		if (TragicNewConfig.allowClaymation)
 		{
 			EntityRegistry.registerModEntity(EntityClaymation.class, "Claymation", listid++, TragicMC.instance, 80, 1, true);
-			
+
 			if (TragicNewConfig.allowBossNaturalSpawns)
 			{
 				EntityRegistry.addSpawn(EntityClaymation.class, TragicNewConfig.claymationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
@@ -750,15 +752,15 @@ public class TragicEntities {
 			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
-		
-		
+
+
 		if (TragicNewConfig.allowOverlord)
 		{
 			//TODO add Overlord
 			//EntityRegistry.registerModEntity(EntityOverlord.class, "Overlord", listid++, TragicMC.instance, 80, 1, true);
 			//TragicEntitList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x000000, 0x000000, EnumEggType.BOSS);
 		}
-		 
+
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);

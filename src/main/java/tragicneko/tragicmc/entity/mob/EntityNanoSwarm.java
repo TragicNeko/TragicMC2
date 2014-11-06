@@ -62,7 +62,7 @@ public class EntityNanoSwarm extends TragicMob {
 			{
 				this.worldObj.spawnParticle("enchantmenttable",
 						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
-						this.posY + this.rand.nextDouble() * (double)this.height,
+						this.posY + this.rand.nextDouble() * (double)this.height + 0.15D,
 						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
