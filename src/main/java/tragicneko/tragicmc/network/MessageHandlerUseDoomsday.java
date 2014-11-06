@@ -48,7 +48,8 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			}
 			else if (stack.getItem() instanceof TragicWeapon)
 			{
-				doomsday = ((TragicWeapon)stack.getItem()).doomsday;
+				TragicWeapon weapon = (TragicWeapon) stack.getItem();
+				doomsday = !player.isSneaking() && weapon.getSecondaryDoomsday() != null ? weapon.getSecondaryDoomsday() : weapon.doomsday;
 			}
 			else if (stack.getItem() instanceof ItemShield)
 			{
@@ -113,6 +114,8 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			player.addChatComponentMessage(new ChatComponentText("The Doomsday of that type is disabled, enable in config."));
 			return null;
 		}
+		
+		TragicMC.logInfo("Doomsday is " + doomsday);
 
 		doomsday.activateDoomsday(doom);
 
