@@ -225,7 +225,7 @@ public class Challenge {
 	{
 		this.challengeID = id;			
 		this.savesProgress = flag;
-		this.isItemChallenge = true;
+		this.isItemChallenge = false;
 		this.requirement = limit;
 		this.challengeBlock = block;
 		this.isBlockChallenge = true;
@@ -296,7 +296,6 @@ public class Challenge {
 		this.isLocationBased = true;
 		return this;
 	}
-
 
 	public static String getNameFromID(int id)
 	{

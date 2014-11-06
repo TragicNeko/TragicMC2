@@ -39,7 +39,9 @@ public class ItemChallenge extends Item {
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinKing") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinKing")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen"))
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen")),
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum")),
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Aegar") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Aegar"))
 	};
 
 	private static final ItemStack[] rewards = new ItemStack[] {new ItemStack(Items.diamond, itemRand.nextInt(3) + 1), new ItemStack(Items.emerald, itemRand.nextInt(3) + 1),
@@ -52,15 +54,20 @@ public class ItemChallenge extends Item {
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Yeti") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Yeti")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.TimeController") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.TimeController")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.DeathReaper") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.DeathReaper")),
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.DeathReaper") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil")),
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Claymation") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Claymation")),
 		new ItemStack(TragicItems.ApisAmulet), new ItemStack(TragicItems.CreeperAmulet), new ItemStack(TragicItems.BlacksmithAmulet), new ItemStack(TragicItems.KitsuneAmulet),
 		new ItemStack(TragicItems.ZombieAmulet), new ItemStack(TragicItems.SkeletonAmulet), new ItemStack(TragicItems.SunkenAmulet), new ItemStack(TragicItems.PeaceAmulet),
 		new ItemStack(TragicItems.ChickenAmulet), new ItemStack(TragicItems.ClaymationAmulet), new ItemStack(TragicItems.YetiAmulet), new ItemStack(TragicItems.MartyrAmulet),
 		new ItemStack(TragicItems.GoldenSushi, 1 + itemRand.nextInt(3)), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Butcher),
-		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman)
+		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.EndermanAmulet)
 	};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};
+	
+	private static final String progress = "challengeProgress";
+	private static final String location = "challengeLocation";
 
 	public ItemChallenge()
 	{
@@ -143,6 +150,7 @@ public class ItemChallenge extends Item {
 				item.setEntityItemStack(reward.copy());
 				item.setPosition(player.posX + itemRand.nextDouble() - itemRand.nextDouble(), player.posY + 0.6D, player.posZ  + itemRand.nextDouble() - itemRand.nextDouble());
 				world.spawnEntityInWorld(item);
+				if (extra > 3 && itemRand.nextInt(3) == 0) break;
 			}
 			stack.stackSize--;
 		}
@@ -173,6 +181,8 @@ public class ItemChallenge extends Item {
 			if (challenge == null) return;
 			EnumChatFormatting format = challenge.difficulty == 1 ? EnumChatFormatting.AQUA : (challenge.difficulty == 2 ? EnumChatFormatting.BLUE : (challenge.difficulty == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
 			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
+			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 2 ? "Medium" : (challenge.difficulty == 3 ? "Hard" : "Harsh"));
+			par2List.add("Difficulty: " + format + diff);
 			String s = challenge.getDesc(challenge.challengeID);
 			String s2 = null;
 			String s3 = null;
@@ -235,15 +245,7 @@ public class ItemChallenge extends Item {
 		if (world.isRemote || stack.getItemDamage() == 0 || stack.getItemDamage() == 250) return; 
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-
-		if (stack.stackTagCompound.hasKey("challengeID"))
-		{
-			if (stack.getItemDamage() != stack.stackTagCompound.getInteger("challengeID")) stack.setItemDamage(stack.stackTagCompound.getInteger("challengeID"));
-		}
-		else
-		{
-			stack.stackTagCompound.setInteger("challengeID", stack.getItemDamage());
-		}
+		if (!stack.stackTagCompound.hasKey("challengeID")) stack.stackTagCompound.setInteger("challengeID", stack.getItemDamage());
 		
 		Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 
@@ -272,7 +274,7 @@ public class ItemChallenge extends Item {
 			}
 			else
 			{
-				if (!stack.stackTagCompound.hasKey("challengeProgress")) stack.stackTagCompound.setInteger("challengeProgress", amt);
+				if (!stack.stackTagCompound.hasKey("challengeProgress")) stack.stackTagCompound.setInteger("challengeProgress", 0);
 
 				if (challenge.isTimed)
 				{

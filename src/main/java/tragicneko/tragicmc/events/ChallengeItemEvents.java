@@ -65,7 +65,7 @@ public class ChallengeItemEvents {
 					}
 				}
 			}
-			
+
 			if (TragicMC.rand.nextInt(1000) <= TragicNewConfig.challengeScrollDropChance && event.entityLiving instanceof EntityMob)
 			{
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.ChallengeScroll, 1, 0), 0.4F);
@@ -99,9 +99,8 @@ public class ChallengeItemEvents {
 						{
 							list.get(i).setAttackTarget(player);
 						}
-						
-						player.worldObj.getChunkFromBlockCoords((int) player.posX, (int) player.posZ).inhabitedTime += 10000L;
 
+						player.worldObj.getChunkFromBlockCoords((int) player.posX, (int) player.posZ).inhabitedTime += 10000L;
 					}
 					else if (challenge.isTargetChallenge && challenge.challengeClass != null)
 					{
@@ -139,17 +138,17 @@ public class ChallengeItemEvents {
 					}
 					else if (challenge.isArmorChallenge)
 					{
-						ItemStack loreStack;
 						int amt = 0;
 						ItemStack[] armorInv = player.inventory.armorInventory;
+						ItemStack[] challengeArmor = challenge.challengeArmor;
 
 						for (int m = 0; m < armorInv.length; m++)
 						{
-							if (inv[m] != null)
+							if (armorInv[m] != null)
 							{
-								for (int pew = 0; pew < challenge.challengeArmor.length; pew++)
+								for (int pew = 0; pew < challengeArmor.length; pew++)
 								{
-									if (challenge.challengeArmor[pew] != null && inv[m].getItem() == challenge.challengeArmor[pew].getItem()) amt++;
+									if (challengeArmor[pew] != null && armorInv[m].getItem() == challengeArmor[pew].getItem()) amt++;
 								}
 							}
 						}
