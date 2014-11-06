@@ -51,7 +51,9 @@ public class TragicNewConfig {
 	private static int[] biomeIDs = new int[48];
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
-	public static int idTaintedArchipelago, idTaintedRises, idTaintedScarlands, idTaintedIsles;
+	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles;
+	public static int idMagmaSprings, idMagmaMountains, idMagmaSinkholes, idMagmaScarlands;
+	public static int idFrozenValley, idFrozenForest, idFrozenTundra, idFrozenSwamps;
 
 	private static boolean[] blanketDoom = new boolean[17];
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
@@ -115,10 +117,13 @@ public class TragicNewConfig {
 	public static int voidPitRarity, largeSpikeRarity, starCrystalRarity, structureOverallRarity, apisTempleRarity, desertTowerRarity, deathCircleRarity, obsidianCavernRarity;
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
 
-	private static boolean[] miscConfigs = new boolean[8];
-	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui;
-	private static int[] miscInts = new int[8];
+	private static boolean[] miscConfigs = new boolean[16];
+	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, ignoreMobGriefCheck;
+	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture;
+	private static boolean[] griefConfigs = new boolean[16];
+	//set up each Doomsday, mob ability and what-not that checks for mobGriefing, each mob will override the superclass method that checks by utilizing these boolean values
+	//similar to how the transformation is set up for them
 
 	public static void initialize()
 	{
@@ -225,7 +230,7 @@ public class TragicNewConfig {
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeStarlitCliffsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeStarlitLowlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedSpikesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
-		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedArchipelagoID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedLowlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedRisesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedIslesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
@@ -862,7 +867,7 @@ public class TragicNewConfig {
 		idStarlitCliffs = biomeIDs[mapping++];
 		idStarlitLowlands = biomeIDs[mapping++];
 		idTaintedSpikes = biomeIDs[mapping++];
-		idTaintedArchipelago = biomeIDs[mapping++];
+		idTaintedLowlands = biomeIDs[mapping++];
 		idTaintedRises = biomeIDs[mapping++];
 		idTaintedScarlands = biomeIDs[mapping++];
 		idTaintedIsles = biomeIDs[mapping++];

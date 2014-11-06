@@ -21,7 +21,9 @@ import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
+import tragicneko.tragicmc.client.model.ModelNanoSwarm;
 import tragicneko.tragicmc.client.model.ModelPlague;
+import tragicneko.tragicmc.client.model.ModelPsygote;
 import tragicneko.tragicmc.client.model.ModelPumpkinhead;
 import tragicneko.tragicmc.client.model.ModelRagr;
 import tragicneko.tragicmc.client.model.ModelSirv;
@@ -80,9 +82,11 @@ import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
+import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
@@ -151,9 +155,6 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
 		MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
 		MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
-		//MinecraftForgeClient.registerItemRenderer(TragicItems.Sentinel, new RenderEpicWeapon(8, mc);
-		
-		
 
 		//Projectile and non-mob entity renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));
@@ -207,6 +208,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.475F, "Abomination_lowRes"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityErkel.class, new RenderErkel());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(new ModelSirv(), 0.245F, "Sirv_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPsygote.class, new RenderMob(new ModelPsygote(), 0.565F, "Psygote_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNanoSwarm.class, new RenderMob(new ModelNanoSwarm(), 0.215F, "NanoSwarm_lowRes", 1.545F));
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
