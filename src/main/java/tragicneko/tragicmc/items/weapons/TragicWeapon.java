@@ -27,6 +27,7 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 public class TragicWeapon extends ItemSword {
 
 	public final Doomsday doomsday;
+	protected Doomsday doomsday2;
 	public Item.ToolMaterial material;
 
 	protected int cooldown;
@@ -225,4 +226,8 @@ public class TragicWeapon extends ItemSword {
 		return getMOPFromPlayer(player, 50.0D);
 	}
 
+	public Doomsday getSecondaryDoomsday()
+	{
+		return this.doomsday2;
+	}
 }

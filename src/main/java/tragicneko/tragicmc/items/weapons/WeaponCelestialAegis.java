@@ -17,8 +17,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponCelestialAegis extends TragicWeapon {
 	
-	public final Doomsday doomsday2 = Doomsday.Purge;
-	
 	private final Lore[] uniqueLores = new Lore[] {new Lore("Such a Beautiful Night Sky.", EnumRarity.epic), new Lore("Nice tune.", EnumRarity.uncommon),
 			new Lore("A lovely melody.", EnumRarity.rare), new Lore("Death in 6/4 time.", EnumRarity.rare), new Lore("What a lovely screaming voice you have!", EnumRarity.epic),
 			new Lore("Death in D-Minor!", EnumRarity.epic), new Lore("Shrieks of terror make a nice ambience~", EnumRarity.rare),
@@ -31,6 +29,7 @@ public class WeaponCelestialAegis extends TragicWeapon {
 
 	public WeaponCelestialAegis(ToolMaterial material, Doomsday dday) {
 		super(material, dday);
+		this.doomsday2 = Doomsday.Purge;
 		this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Absolve};
 		this.uncommonLevels = new int[] {3, 1};
@@ -59,12 +58,7 @@ public class WeaponCelestialAegis extends TragicWeapon {
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.allowOverflowDoomsday)
-		{
-			PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-			if (doom != null) doomsday2.activateDoomsday(doom);
-		}
-		return par1ItemStack;
+		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
 
 }

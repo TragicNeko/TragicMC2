@@ -21,8 +21,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponDragonFang extends EpicWeapon {
 
-	public Doomsday doomsday2 = Doomsday.FireRain;
-	
 	private final Lore[] uniqueLores = new Lore[] {new Lore("Here be dragons.", EnumRarity.epic), new Lore("Is that a Centaur?", EnumRarity.uncommon), new Lore("Pegasus!", EnumRarity.rare),
 			new Lore("I need some Nymphs...", EnumRarity.uncommon), new Lore("Is that Nessie?", EnumRarity.uncommon), new Lore("Sasquatch!"), new Lore("I found Big Foot!", EnumRarity.rare),
 			new Lore("It's obviously a Jackalope.", EnumRarity.rare), new Lore("Someone call the CIA or MIB", EnumRarity.epic), new Lore("UFO!", EnumRarity.rare),
@@ -31,6 +29,7 @@ public class WeaponDragonFang extends EpicWeapon {
 
 	public WeaponDragonFang(Doomsday dday) {
 		super(dday);
+		this.doomsday2 = Doomsday.FireRain;
 		this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.fireAspect};
 		this.rareLevels = new int[] {5, 3, 3, 1};
@@ -41,7 +40,7 @@ public class WeaponDragonFang extends EpicWeapon {
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		super.addInformation(stack, par2EntityPlayer, par2List, par4);
-		
+
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
 			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
@@ -54,7 +53,7 @@ public class WeaponDragonFang extends EpicWeapon {
 			}
 		}
 	}
-	
+
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0 || !TragicNewConfig.allowNonDoomsdayAbilities) return super.onLeftClickEntity(stack, player, entity);
@@ -91,35 +90,25 @@ public class WeaponDragonFang extends EpicWeapon {
 			double d5 = mop.hitVec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
 			double d6 = mop.hitVec.zCoord - par3EntityPlayer.posZ;
 
-			if (par3EntityPlayer.isSneaking())
+			if (doom.getCurrentDoom() >= 10 && TragicNewConfig.allowNonDoomsdayAbilities)
 			{
-				if (doom.getCurrentDoom() >= 10 && !TragicNewConfig.allowNonDoomsdayAbilities)
-				{
-					EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
-							d6 + itemRand.nextDouble() - itemRand.nextDouble());
-					rocket.posX += d4 * 0.115D;
-					rocket.posY = par3EntityPlayer.posY + 0.6D;
-					rocket.posZ += d6 * 0.115D;
-					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
-				}
-
+				EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
+						d6 + itemRand.nextDouble() - itemRand.nextDouble());
+				rocket.posX += d4 * 0.115D;
+				rocket.posY = par3EntityPlayer.posY + 0.6D;
+				rocket.posZ += d6 * 0.115D;
+				par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+				
 				if (!par3EntityPlayer.capabilities.isCreativeMode)
 				{
 					doom.increaseDoom(-10);
-				}
-			}
-			else
-			{
-				if (TragicNewConfig.allowWorldShaperDoomsday)
-				{
-					doomsday2.activateDoomsday(doom);
 				}
 			}
 		}
 
 		return par1ItemStack;
 	}
-	
+
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
 		super.onUpdate(stack, world, entity, par4, par5);
