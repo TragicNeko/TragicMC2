@@ -38,6 +38,8 @@ tile.tragicmc.summonBlock.kitsune.name=Summon Kitsunakuma
 tile.tragicmc.summonBlock.yeti.name=Summon Empariah
 tile.tragicmc.summonBlock.polaris.name=Summon Polaris
 tile.tragicmc.summonBlock.timeController.name=Summon Time Controller
+tile.tragicmc.summonBlock.enyvil.name=Summon Enyvil
+tile.tragicmc.summonBlock.claymation.name=Summon Claymation
 
 tile.tragicmc.sandstonePressurePlate.name=Sandstone Pressure Plate
 tile.tragicmc.netherBrickPressurePlate.name=Nether Brick Pressure Plate
@@ -588,7 +590,7 @@ challenge.findNorVox.desc=Find a single Nor-Vox mob
 challenge.killInklings.name=Kill Inklings
 challenge.killInklings.desc=Kill 50 Inklings
 challenge.findHorses.name=Find a Horse
-challenge.findhorses.desc=Find a single Horse, Donkey or Mule
+challenge.findHorses.desc=Find a single Horse, Donkey or Mule
 challenge.killTragicMobs.name=Kill Tragic Mobs
 challenge.killTragicMobs.desc=Kill 100 normal Tragic Mobs (i.e. Inkling, Jabba) or Mini-Bosses (i.e. Jarra, Magmox)
 challenge.findOcelots.name=Find an Ocelot
@@ -870,7 +872,37 @@ tragicmc.starlitLowlands=Starlit Lowlands
 tragicmc.starlitPlateaus=Starlit Plateaus
 
 tragicmc.taintedSpikes=Tainted Spikes
-tragicmc.taintedArchipelago=Tainted Archipelago
+tragicmc.taintedLowlands=Tainted Lowlands
 tragicmc.taintedIsles=Tainted Isles
 tragicmc.taintedRises=Tainted Rises
 tragicmc.taintedScarlands=Tainted Scarlands
+
+tragicmc.magmaSprings=Magma Springs
+tragicmc.magmaCliffs=Magma Cliffs
+tragicmc.magmaBarrens=Magma Barrens
+tragicmc.magmaVolcano=Volcano
+
+tragicmc.frozenOcean=Frozen Ocean
+tragicmc.frozenRises=Frozen Rises
+tragicmc.frozenTundra=Frozen Tundra
+tragicmc.frozenSpikes=Frozen Spikes
+
+tragicmc.jungleRuins=Jungle Ruins
+tragicmc.jungleHills=Jungle Hills
+tragicmc.jungle=Jungle
+tragicmc.junglePlains=Jungle Plains
+
+tragicmc.desertRuins=Desert Ruins
+tragicmc.desertHills=Desert Hills
+tragicmc.cdesert=Desert
+tragicmc.desertSinkholes=Desert Sinkholes
+
+tragicmc.darkForest=Dark Forest
+tragicmc.darkForestHills=Dark Forest Hills
+tragicmc.darkForestValley=Dark Forest Valley
+tragicmc.darkForestClearing=Dark Forest Clearing
+
+tragicmc.crystalShield=Crystal Shield
+tragicmc.crystalSpikes=Crystal Spikes
+tragicmc.crystalCliffs=Crystal Cliffs
+tragicmc.crystalDives=Crystal Dives
