@@ -35,10 +35,10 @@ public class ItemDimensionalKey extends Item {
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to the Tragic Dimension!");
+		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to the Collision!");
 		par2List.add("Hold down right-click for a couple");
 		par2List.add("seconds then let go to use.");
-		par2List.add("The dimension is WIP");
+		par2List.add("The Collision is WIP");
 	}
 
 	public EnumAction getItemInUseAction(ItemStack par1ItemStack)
