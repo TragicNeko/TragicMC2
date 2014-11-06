@@ -3,7 +3,6 @@ package tragicneko.tragicmc.blocks.tileentity;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -16,12 +15,13 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class TileEntitySummonBlock extends TileEntity {
@@ -85,6 +85,14 @@ public class TileEntitySummonBlock extends TileEntity {
 		else if (meta == 7 && TragicNewConfig.allowTimeController)
 		{
 			boss = new EntityTimeController(this.worldObj);
+		}
+		else if (meta == 8 && TragicNewConfig.allowEnyvil)
+		{
+			boss =  new EntityEnyvil(this.worldObj);
+		}
+		else if (meta == 9 && TragicNewConfig.allowClaymation)
+		{
+			boss = new EntityClaymation(this.worldObj);
 		}
 
 		if (list.size() > 0)

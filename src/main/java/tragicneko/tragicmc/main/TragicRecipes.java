@@ -788,7 +788,7 @@ public class TragicRecipes {
 			TragicItems.Glue, TragicItems.Sap, Items.clay_ball, Items.nether_wart
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StorageBlock, 1, 3), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CompactOre, 1, 3), new Object[] {
 			"xxx",
 			"xxx",
 			"xxx",
@@ -796,10 +796,10 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.RedMercury, 9), new Object[] {
-			new ItemStack(TragicBlocks.StorageBlock, 1, 3)
+			new ItemStack(TragicBlocks.CompactOre, 1, 3)
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StorageBlock, 1, 4), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CompactOre, 1, 4), new Object[] {
 			"xxx",
 			"xxx",
 			"xxx",
@@ -807,10 +807,10 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.QuicksilverIngot, 9), new Object[] {
-			new ItemStack(TragicBlocks.StorageBlock, 1, 4)
+			new ItemStack(TragicBlocks.CompactOre, 1, 4)
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StorageBlock, 1, 0), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CompactOre, 1, 0), new Object[] {
 			"xxx",
 			"xxx",
 			"xxx",
@@ -818,10 +818,10 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Ruby, 9), new Object[] {
-			new ItemStack(TragicBlocks.StorageBlock, 1, 0)
+			new ItemStack(TragicBlocks.CompactOre, 1, 0)
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StorageBlock, 1, 1), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CompactOre, 1, 1), new Object[] {
 			"xxx",
 			"xxx",
 			"xxx",
@@ -829,10 +829,10 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Sapphire, 9), new Object[] {
-			new ItemStack(TragicBlocks.StorageBlock, 1, 1)
+			new ItemStack(TragicBlocks.CompactOre, 1, 1)
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StorageBlock, 1, 2), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CompactOre, 1, 2), new Object[] {
 			"xxx",
 			"xxx",
 			"xxx",
@@ -840,7 +840,7 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Tungsten, 9), new Object[] {
-			new ItemStack(TragicBlocks.StorageBlock, 1, 2)
+			new ItemStack(TragicBlocks.CompactOre, 1, 2)
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.PotatoBlock, 1), new Object[] {
@@ -1220,7 +1220,7 @@ public class TragicRecipes {
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.TimeDisruptionCube, 1), new Object[] {
 			TragicItems.LightIngot, TragicItems.LightIngot, TragicItems.DarkIngot, TragicItems.DarkIngot, TragicItems.LunarPowder, TragicItems.AwakeningStone,
-			Items.nether_star, new ItemStack(TragicBlocks.StorageBlock, 1, 0), new ItemStack(TragicBlocks.StorageBlock, 1, 1)
+			Items.nether_star, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1)
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CelestialDiamond, 1), new Object[] {

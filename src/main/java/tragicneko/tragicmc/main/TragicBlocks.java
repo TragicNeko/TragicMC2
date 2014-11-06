@@ -45,25 +45,15 @@ import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockBone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCircuit;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkCobble;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkenedQuartz;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDeadDirt;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockErodedStone;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockFox;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockLightCobble;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockObsidianVariants;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockQuicksandBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStarCrystal;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStorageBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockSummonBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicSapling;
+import tragicneko.tragicmc.blocks.itemblocks.TragicItemBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityMagnetar;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityPulsar;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
@@ -78,7 +68,7 @@ public class TragicBlocks {
 	public static Block RubyOre;
 	public static Block SapphireOre;
 
-	public static Block StorageBlock;
+	public static Block CompactOre;
 
 	public static Block Wax;
 	public static Block Light;
@@ -164,19 +154,19 @@ public class TragicBlocks {
 	public static void load()
 	{		
 		MercuryOre = (new BlockGenericOre(1, true).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:MercuryOre_lowRes").setBlockName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
-		GameRegistry.registerBlock(MercuryOre, ItemBlock.class, "mercuryOreBlock");
+		GameRegistry.registerBlock(MercuryOre, ItemBlock.class, "mercuryOre");
 
 		TungstenOre = (new BlockGenericOre(2, true).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:TungstenOre_lowRes").setBlockName("tragicmc.tungstenOre").setHardness(4.0F).setResistance(5.0F));
-		GameRegistry.registerBlock(TungstenOre, ItemBlock.class, "tungstenOreBlock");
+		GameRegistry.registerBlock(TungstenOre, ItemBlock.class, "tungstenOre");
 
 		RubyOre = (new BlockGenericOre(3, false).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:RubyNetherOre_lowRes").setBlockName("tragicmc.rubyOre").setHardness(6.0F).setResistance(7.0F));
-		GameRegistry.registerBlock(RubyOre, ItemBlock.class, "rubyOreBlock");
+		GameRegistry.registerBlock(RubyOre, ItemBlock.class, "rubyOre");
 
 		SapphireOre = (new BlockGenericOre(3, false).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:SapphireNetherOre_lowRes").setBlockName("tragicmc.sapphireOre").setHardness(6.0F).setResistance(7.0F));
-		GameRegistry.registerBlock(SapphireOre, ItemBlock.class, "sapphireOreBlock");
+		GameRegistry.registerBlock(SapphireOre, ItemBlock.class, "sapphireOre");
 
-		StorageBlock = (new BlockStorage());
-		GameRegistry.registerBlock(StorageBlock, ItemBlockStorageBlocks.class, "storageBlocks");
+		CompactOre = (new BlockStorage());
+		GameRegistry.registerBlock(CompactOre, TragicItemBlock.class, "compactOre", new Object[] {new String[] {"ruby", "sapphire", "tungsten", "mercury", "quicksilver"}, "compactOre"});
 
 		Wax = (((BlockGeneric) (new BlockGeneric(Material.clay, "spade", 0).setBlockTextureName("tragicmc:Wax_lowRes").setBlockName("tragicmc.wax").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone).setLightOpacity(5))).setRenderPass(1));
 		GameRegistry.registerBlock(Wax, ItemBlock.class, "wax");
@@ -200,12 +190,12 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(NetherBrickPressurePlate, ItemBlock.class, "netherBrickPressurePlate");
 
 		SummonBlock = (new BlockSummon());
-		GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlocks");
+		GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");
 		
 		GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "summonBlock");
 
 		StructureSeed = (new BlockStructureSeed());
-		GameRegistry.registerBlock(StructureSeed, ItemBlockStructureSeeds.class, "structureSeeds");
+		GameRegistry.registerBlock(StructureSeed, ItemBlockStructureSeeds.class, "structureSeed");
 		
 		GameRegistry.registerTileEntity(TileEntityStructureSeed.class, "structureSeed");
 
@@ -216,19 +206,19 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(DisappearingBlockInvis, null, "disappearingBlockInvis");
 
 		Quicksand = (new BlockQuicksand());
-		GameRegistry.registerBlock(Quicksand, ItemBlockQuicksandBlocks.class, "quicksandBlocks");
+		GameRegistry.registerBlock(Quicksand, TragicItemBlock.class, "quicksand", new Object[] {new String[] {"quicksand", "mud", "netherDrudge"}, "quicksand"});
 
 		DarkStone = (new BlockDarkStone());
-		GameRegistry.registerBlock(DarkStone, ItemBlockDarkStone.class, "darkStoneBlocks");
+		GameRegistry.registerBlock(DarkStone, ItemBlockDarkStone.class, "darkStone");
 
 		DarkCobblestone = (new BlockDarkCobble());
-		GameRegistry.registerBlock(DarkCobblestone, ItemBlockDarkCobble.class, "darkCobbleBlocks");
+		GameRegistry.registerBlock(DarkCobblestone, TragicItemBlock.class, "darkCobblestone", new Object[] {new String[] {"normal", "hot", "toxic", "ashen"}, "darkCobblestone"});
 
 		LightCobblestone = (new BlockLightCobble());
-		GameRegistry.registerBlock(LightCobblestone, ItemBlockLightCobble.class, "lightCobble");
+		GameRegistry.registerBlock(LightCobblestone, TragicItemBlock.class, "lightCobblestone", new Object[] {new String[] {"normal", "frozen", "glowing"}, "lightCobblestone"});
 
 		TragicObsidian = (new BlockObsidianVariant());
-		GameRegistry.registerBlock(TragicObsidian, ItemBlockObsidianVariants.class, "obsidianVariants");
+		GameRegistry.registerBlock(TragicObsidian, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
 
 		Pulsar = (new BlockPulsar().setBlockName("tragicmc.pulsar").setBlockTextureName("tragicmc:Pulsar_lowRes"));
 		GameRegistry.registerBlock(Pulsar, ItemBlock.class, "pulsar");
@@ -240,7 +230,7 @@ public class TragicBlocks {
 		GameRegistry.registerTileEntity(TileEntityMagnetar.class, "magnetar");
 		
 		DeadDirt = (new BlockDeadDirt().setBlockName("tragicmc.deadDirt").setBlockTextureName("tragicmc:DeadDirt_lowRes"));
-		GameRegistry.registerBlock(DeadDirt, ItemBlockDeadDirt.class, "deadDirt");
+		GameRegistry.registerBlock(DeadDirt, TragicItemBlock.class, "deadDirt", new Object[] {new String[] {"normal", "rugged", "mixed"}, "deadDirt"});
 		
 		DarkSand = (new BlockDarkSand().setBlockName("tragicmc.darkSand").setBlockTextureName("tragicmc:DarkSand_lowRes"));
 		GameRegistry.registerBlock(DarkSand, ItemBlock.class, "darkSand");
@@ -254,10 +244,10 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(TragicOres, ItemBlockOres.class, "tragicOres");
 		
 		BoneBlock = (new BlockBone());
-		GameRegistry.registerBlock(BoneBlock, ItemBlockBone.class, "boneBlock");
+		GameRegistry.registerBlock(BoneBlock, TragicItemBlock.class, "boneBlock", new Object[] {new String[]{"normal", "rotten"}, "boneBlock"});
 		
 		SmoothNetherrack = (new BlockFox());
-		GameRegistry.registerBlock(SmoothNetherrack, ItemBlockFox.class, "foxBlock");
+		GameRegistry.registerBlock(SmoothNetherrack, TragicItemBlock.class, "smoothNetherrack", new Object[] {new String[] {"normal", "chiseled", "beveled", "sculpted", "foxtail", "molten"}, "smoothNetherrack"});
 		
 		BrushedGrass = (new BlockGenericGrass("Brushed").setBlockName("tragicmc.brushedGrass"));
 		GameRegistry.registerBlock(BrushedGrass, ItemBlock.class, "brushedGrass");
@@ -326,16 +316,16 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(StarlitTallGrass, ItemBlock.class, "starlitTallGrass");
 		
 		ErodedStone = (new BlockErodedStone());
-		GameRegistry.registerBlock(ErodedStone, ItemBlockErodedStone.class, "erodedStone");
+		GameRegistry.registerBlock(ErodedStone, TragicItemBlock.class, "erodedStone", new Object[] {new String[] {"smooth", "carved", "scattered"}, "erodedStone"});
 		
 		DarkenedQuartz = (new BlockDarkenedQuartz());
-		GameRegistry.registerBlock(DarkenedQuartz, ItemBlockDarkenedQuartz.class, "darkenedQuartz");
+		GameRegistry.registerBlock(DarkenedQuartz, TragicItemBlock.class, "darkenedQuartz", new Object[] {new String[] {"smooth", "chiseled", "pillared"}, "darkenedQuartz"});
 		
 		Luminescence = (new BlockLuminescence().setBlockName("tragicmc.luminescence"));
 		GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
 		
 		CircuitBlock = (new BlockCircuit().setBlockName("tragicmc.circuit").setStepSound(Block.soundTypeStone));
-		GameRegistry.registerBlock(CircuitBlock, ItemBlockCircuit.class, "circuit");
+		GameRegistry.registerBlock(CircuitBlock, TragicItemBlock.class, "circuit", new Object[] {new String[] {"live", "damaged", "veryDamaged", "dead", "aged"}, "circuit"});
 		
 		CelledBlock = (new BlockGeneric(Material.rock, "pickaxe", 1).setBlockName("tragicmc.celled").setBlockTextureName("tragicmc:CelledBlock_lowRes").setHardness(6.0F).setResistance(35.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(CelledBlock, ItemBlock.class, "celled");

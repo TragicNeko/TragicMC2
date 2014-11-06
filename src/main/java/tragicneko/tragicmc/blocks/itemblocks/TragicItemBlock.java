@@ -8,11 +8,17 @@ public class TragicItemBlock extends ItemBlock {
 
 	protected final String[] subNames;
 
-	public TragicItemBlock(Block p_i45326_1_, String[] subNames) {
+	public TragicItemBlock(Block p_i45326_1_, String[] subNames, String unlocalizedName) {
 		super(p_i45326_1_);
+		this.setUnlocalizedName("tragicmc." + unlocalizedName);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.subNames = subNames;
+	}
+	
+	public TragicItemBlock(Block block, String[] subNames)
+	{
+		this(block, subNames, "null");
 	}
 
 	@Override

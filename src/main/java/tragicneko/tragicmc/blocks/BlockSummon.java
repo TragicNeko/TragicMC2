@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSummon extends BlockContainer {
 
-	private String[] bossNames = new String[]{"Wither", "EnderDragon", "Apis", "DeathReaper", "Kitsune", "Polaris", "Yeti", "TimeController"};
+	private String[] bossNames = new String[]{"Wither", "EnderDragon", "Apis", "DeathReaper", "Kitsune", "Polaris", "Yeti", "TimeController", "Enyvil", "Claymation"};
 	
 	private IIcon[] iconArray = new IIcon[bossNames.length];
 
