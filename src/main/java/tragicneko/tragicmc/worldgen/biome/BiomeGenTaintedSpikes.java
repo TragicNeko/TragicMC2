@@ -1,17 +1,15 @@
 package tragicneko.tragicmc.worldgen.biome;
 
-import java.util.Random;
-
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
+import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class BiomeGenTaintedSpikes extends TragicBiome {
 
 	public BiomeGenTaintedSpikes(int par1) {
 		super(par1);
+		if (TragicNewConfig.allowPsygote) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPsygote.class, TragicNewConfig.psygoteSC, 0, 1));
 		this.enableSnow = false;
 		this.enableRain = false;
 		this.temperature = 1.8F;

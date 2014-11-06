@@ -41,7 +41,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 					for (int mapping = 0; mapping < list.size(); mapping++)
 					{
 						coords = list.get(mapping);
-						if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
+						if (random.nextBoolean()) world.setBlockToAir(coords[0], coords[1], coords[2]);
 					} 
 				}
 
@@ -50,7 +50,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
 					coords = list.get(mapping);
-					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
+					if (random.nextBoolean()) world.setBlockToAir(coords[0], coords[1], coords[2]);
 				} 
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
@@ -58,8 +58,10 @@ public class VoidPitWorldGen implements IWorldGenerator {
 				for (int mapping = 0; mapping < list.size(); mapping++)
 				{
 					coords = list.get(mapping);
-					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
+					if (random.nextBoolean()) world.setBlockToAir(coords[0], coords[1], coords[2]);
 				}
+				
+				if (size >= 3.0D && random.nextInt(4) == 0) size *= 0.987425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
 			}
 		}
 	}

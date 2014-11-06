@@ -28,12 +28,14 @@ public class RuggedTerrainWorldGen implements IWorldGenerator {
 			int y = world.getTopSolidOrLiquidBlock(x, z);
 			BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 
-			if (world.getBlock(x, y, z) == TragicBlocks.AshenLeaves || world.getBlock(x, y, z) == TragicBlocks.AshenWood || biome != TragicBiomes.AshenBadlands) return;
+			if (world.getBlock(x, y, z) == TragicBlocks.AshenLeaves || world.getBlock(x, y, z) == TragicBlocks.AshenWood) return;
+			if (biome != TragicBiomes.AshenBadlands && biome != TragicBiomes.TaintedScarlands) return;
 
 			double radius;
 			ArrayList<int[]> list;
 			int[] coords;
 			Block block;
+			boolean flag = biome == TragicBiomes.AshenBadlands;
 
 			for (int pow = 0; pow < 4; pow++)
 			{
@@ -56,9 +58,10 @@ public class RuggedTerrainWorldGen implements IWorldGenerator {
 
 							if (world.getBlock(coords[0], coords[1] - 1, coords[2]).isOpaqueCube())
 							{
-								if (block == TragicBlocks.AshenGrass || block == Blocks.air || block instanceof BlockGenericTallGrass)
+								if (block == TragicBlocks.AshenGrass || block == Blocks.air && !flag || block instanceof BlockGenericTallGrass || block == TragicBlocks.ErodedStone)
 								{
-									world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 1, 2);
+									
+									world.setBlock(coords[0], coords[1], coords[2], flag ? TragicBlocks.DeadDirt : TragicBlocks.ErodedStone, flag ? 1 : 2, 2);
 								}
 							}
 						}

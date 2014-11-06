@@ -274,7 +274,7 @@ public class SchematicObsidianCavern extends Schematic {
 		Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 		int meta = 0;
 
-		if (luxury == TragicBlocks.StorageBlock)
+		if (luxury == TragicBlocks.CompactOre)
 		{
 			meta = rand.nextInt(5);
 		}
@@ -962,7 +962,7 @@ public class SchematicObsidianCavern extends Schematic {
 			Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 			int meta = 0;
 
-			if (luxury == TragicBlocks.StorageBlock)
+			if (luxury == TragicBlocks.CompactOre)
 			{
 				meta = rand.nextInt(5);
 			}

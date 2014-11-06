@@ -72,12 +72,13 @@ import tragicneko.tragicmc.network.MessageHandlerFlight;
 import tragicneko.tragicmc.network.MessageHandlerGui;
 import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
-import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.DarkShieldWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
+import tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen;
+import tragicneko.tragicmc.worldgen.IsleWorldGen;
 import tragicneko.tragicmc.worldgen.NetherOreWorldGen;
 import tragicneko.tragicmc.worldgen.OverworldOreWorldGen;
 import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
@@ -137,7 +138,7 @@ public class TragicMC
 			}
 			else
 			{
-				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now.");
+				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent a crash.");
 				TragicNewConfig.disablePotions();
 			}
 		}
@@ -223,10 +224,12 @@ public class TragicMC
 
 			if (TragicNewConfig.allowVoidPitGen) GameRegistry.registerWorldGenerator(new VoidPitWorldGen(), 4);
 			if (TragicNewConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new DimensionLayerWorldGen(), 5);
-			GameRegistry.registerWorldGenerator(new StarCrystalWorldGen(), 6);
-			GameRegistry.registerWorldGenerator(new CustomSpikesWorldGen(), 7);
-			GameRegistry.registerWorldGenerator(new RuggedTerrainWorldGen(), 8);
-			GameRegistry.registerWorldGenerator(new DarkShieldWorldGen(), 9);
+			GameRegistry.registerWorldGenerator(new StarCrystalWorldGen(), 6); //for the starlit prarie
+			GameRegistry.registerWorldGenerator(new CustomSpikesWorldGen(), 7); //for the decaying wasteland and tainted spikes
+			GameRegistry.registerWorldGenerator(new RuggedTerrainWorldGen(), 8); //for the ashen badlands and tainted scarlands
+			GameRegistry.registerWorldGenerator(new DarkShieldWorldGen(), 9); //for the ashen badlands and decaying wasteland
+			GameRegistry.registerWorldGenerator(new IsleWorldGen(), 10); //for the tainted isles
+			GameRegistry.registerWorldGenerator(new InvertedSpikeWorldGen(), 11); //For the tainted scarlands
 			GameRegistry.registerWorldGenerator(new DimensionOreWorldGen(), 19);
 		}
 

@@ -49,7 +49,7 @@ public class SchematicDesertTower extends Schematic {
 	private static Block ice = Blocks.packed_ice;
 
 	//9 luxury blocks currently
-	public static Block[] luxuryBlocks = new Block[] {Blocks.diamond_block, Blocks.gold_block, Blocks.emerald_block, TragicBlocks.StorageBlock, Blocks.iron_block, Blocks.lapis_block};
+	public static Block[] luxuryBlocks = new Block[] {Blocks.diamond_block, Blocks.gold_block, Blocks.emerald_block, TragicBlocks.CompactOre, Blocks.iron_block, Blocks.lapis_block};
 
 	public SchematicDesertTower(int variant, World world, Random rand, int x, int y, int z)
 	{

@@ -14,7 +14,7 @@ import tragicneko.tragicmc.TragicMC;
 
 public class TragicGenLayer {
 	
-	private static final int biomeSize = 6;
+	private static final int biomeSize = 5;
 
 	public GenLayer[] createWorld(long seed, WorldType worldType)
 	{
@@ -26,6 +26,5 @@ public class TragicGenLayer {
 		voronoiZoom.initWorldGenSeed(seed);
 
 		return new GenLayer[] {biomes, voronoiZoom};
-
 	}
 }

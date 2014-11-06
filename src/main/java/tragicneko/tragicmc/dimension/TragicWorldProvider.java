@@ -8,6 +8,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.client.IRenderHandler;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicNewConfig;
 
@@ -19,6 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TragicWorldProvider extends WorldProvider
 {
 	public float[]	colorsSunriseSunset	= new float[4];
+	
+	private IRenderHandler skyRenderer = new TragicSkyRenderer();
 	
 	public static Set spawnBlocks = Sets.newHashSet(new Block[] {TragicBlocks.DeadDirt, TragicBlocks.DarkSand, TragicBlocks.BrushedGrass, TragicBlocks.AshenGrass,
 			TragicBlocks.StarlitGrass, TragicBlocks.ErodedStone});
@@ -57,7 +60,7 @@ public class TragicWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public boolean isSkyColored()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -175,4 +178,11 @@ public class TragicWorldProvider extends WorldProvider
 	public String getDimensionName() {
 		return "TragicDimension";
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer()
+    {
+        return this.skyRenderer;
+    }
 }

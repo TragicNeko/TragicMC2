@@ -34,18 +34,24 @@ public class TragicBiomes {
 	public static TragicBiome StarlitCliffs;
 	public static TragicBiome StarlitLowlands;
 	
-	public static TragicBiome TaintedSpikes; //will be low hilly terrain that will use a custom world gen to create tons of nearly vertical spikes in the biome
-	public static TragicBiome TaintedArchipelago; //will be very low, intermittent lava sea and have very little land
-	public static TragicBiome TaintedRises; //will be mid-height but have huge tall mesas that form into it (it'll be custom as well)
-	public static TragicBiome TaintedScarlands; //will be rugged mid-height terrain with lots of ravines and caves generating in it
-	public static TragicBiome TaintedIsles; //will be completely covered in lava, however, islands will generate at very high levels in the sky
-	//color scheme for these will be a dark green, with splashes of neon green thrown in, the spike gen will probably use toxic cobblestone
+	public static TragicBiome TaintedSpikes;
+	public static TragicBiome TaintedLowlands;
+	public static TragicBiome TaintedRises;
+	public static TragicBiome TaintedScarlands;
+	public static TragicBiome TaintedIsles;
 	
 	public static Set decayingBiomes;
 	public static Set paintedBiomes;
 	public static Set ashenBiomes;
 	public static Set starlitBiomes;
 	public static Set taintedBiomes;
+	
+	public static Set magmaBiomes;
+	public static Set frozenBiomes; //will be based off of the ice plains biome, frozen spikes will take from the ice spikes biome, but using my spike generator
+	public static Set jungleBiomes; //will be based off of the vanilla jungle biome, but altered some, mostly aesthetic-wise and worldgen wise to reduce lag
+	public static Set desertBiomes; //will be based off of the vanilla desert, etc.
+	public static Set darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
+	public static Set crystalBiomes; //will be a biome made of really tough, hard to mine blocks
 
 	public static void load()
 	{
@@ -64,11 +70,15 @@ public class TragicBiomes {
 		AshenBadlands = ((TragicBiome) (new BiomeGenAshenHills(TragicNewConfig.idAshenBadlands).setBiomeName("tragicmc.ashenBadlands"))).setHeightVariation(0.05F).setRootHeight(0.35F).setGrassPerChunk(4).setTreesPerChunk(1);
 		
 		StarlitPrarie = ((TragicBiome) (new BiomeGenStarlitPrarie(TragicNewConfig.idStarlitPrarie).setBiomeName("tragicmc.starlitPrarie"))).setHeightVariation(0.05F).setRootHeight(0.65F);
-		StarlitPlateaus = ((TragicBiome) (new BiomeGenStarlitPrarie(TragicNewConfig.idStarlitPlateaus).setBiomeName("tragicmc.starlitPlateaus"))).setHeightVariation(0.0F).setRootHeight(1.6F);
+		StarlitPlateaus = ((TragicBiome) (new BiomeGenStarlitPrarie(TragicNewConfig.idStarlitPlateaus).setBiomeName("tragicmc.starlitPlateaus"))).setHeightVariation(0.02F).setRootHeight(1.6F);
 		StarlitCliffs = ((TragicBiome) (new BiomeGenStarlitPrarie(TragicNewConfig.idStarlitCliffs).setBiomeName("tragicmc.starlitCliffs"))).setHeightVariation(1.55F).setRootHeight(0.95F);
 		StarlitLowlands = ((TragicBiome) (new BiomeGenStarlitPrarie(TragicNewConfig.idStarlitLowlands).setBiomeName("tragicmc.starlitLowlands"))).setHeightVariation(0.2F).setRootHeight(0.45F);
 		
 		TaintedSpikes = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedSpikes).setBiomeName("tragicmc.taintedSpikes"))).setHeightVariation(0.45F).setRootHeight(0.15F);
+		TaintedLowlands = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedLowlands).setBiomeName("tragicmc.taintedLowlands"))).setHeightVariation(0.15F).setRootHeight(-0.35F).setMushroomsPerChunk(12);
+		TaintedRises = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedRises).setBiomeName("tragicmc.taintedRises"))).setHeightVariation(1.85F).setRootHeight(0.45F);
+		TaintedScarlands = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedScarlands).setBiomeName("tragicmc.taintedScarlands"))).setHeightVariation(0.05F).setRootHeight(0.65F);
+		TaintedIsles = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedIsles).setBiomeName("tragicmc.taintedIsles"))).setHeightVariation(0.25F).setRootHeight(-0.65F);
 		
 		createSets();
 	}
@@ -79,6 +89,6 @@ public class TragicBiomes {
 		paintedBiomes = Sets.newHashSet(new BiomeGenBase[] {PaintedForest, PaintedPlains, PaintedHills, PaintedClearing});
 		ashenBiomes = Sets.newHashSet(new BiomeGenBase[] {AshenMountains, AshenHills, AshenBadlands});
 		starlitBiomes = Sets.newHashSet(new BiomeGenBase[] {StarlitPrarie, StarlitPlateaus, StarlitCliffs, StarlitLowlands});
-		taintedBiomes = Sets.newHashSet(new BiomeGenBase[] {TaintedSpikes});
+		taintedBiomes = Sets.newHashSet(new BiomeGenBase[] {TaintedSpikes, TaintedLowlands, TaintedRises, TaintedScarlands, TaintedIsles});
 	}
 }
