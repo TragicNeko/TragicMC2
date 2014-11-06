@@ -43,9 +43,7 @@ public class GuiAmuletStatus extends Gui
 		if (event.isCancelable() || event.type != ElementType.EXPERIENCE || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
-		if (amu == null || amu.getSlotsOpen() <= 0) {
-			return; 
-		}
+		if (amu == null || amu.getSlotsOpen() <= 0) return; 
 
 		int xPos = 2;
 		int yPos = 12;

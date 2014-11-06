@@ -128,22 +128,8 @@ public class GuiDoom extends Gui
 				}
 				else if (stack.getItem() instanceof TragicWeapon)
 				{
-					if (stack.getItem() instanceof WeaponCelestialAegis)
-					{
-						if (((WeaponCelestialAegis)stack.getItem()).doomsday2.doesCurrentDoomMeetRequirement(props))
-						{
-							flag = true;
-						}
-						else if (((WeaponCelestialAegis)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props));
-						{
-							long time = mc.theWorld.getWorldTime();
-							if (mc.theWorld.canBlockSeeTheSky((int) mc.thePlayer.posX, (int) mc.thePlayer.posY, (int) mc.thePlayer.posZ) && time >= 16000 && time <= 18000)
-							{
-								flag = true;
-							}
-						}
-					}
-					else if (((TragicWeapon)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
+					TragicWeapon weapon = (TragicWeapon) stack.getItem();
+					if (weapon.doomsday.doesCurrentDoomMeetRequirement(props) || weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props) )
 					{
 						flag = true;
 					}

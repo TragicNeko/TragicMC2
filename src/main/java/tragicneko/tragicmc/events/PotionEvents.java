@@ -594,10 +594,7 @@ public class PotionEvents {
 	{
 		if (TragicNewConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotions.Flight.id))
 		{
-			if (event.isCancelable())
-			{
-				event.setCanceled(true);
-			}
+			if (event.isCancelable()) event.setCanceled(true);
 		}
 	}
 
@@ -663,55 +660,44 @@ public class PotionEvents {
 
 			if (event.entityPlayer.getHealth() >= event.entityPlayer.getMaxHealth() - amp)
 			{
-				if (event.isCancelable())
-				{
-					event.setCanceled(true);
-				}
+				if (event.isCancelable()) event.setCanceled(true);
 			}
 		}
 
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear))
+		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear) ||
+				TragicNewConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotions.Hacked))
 		{
-			if (event.isCancelable())
-			{
-				event.setCanceled(true);
-			}
+			if (event.isCancelable()) event.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent
 	public void whileUsingItem(Tick event)
 	{
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear))
+		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear) ||
+				TragicNewConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotions.Hacked))
 		{
-			if (event.isCancelable())
-			{
-				event.setCanceled(true);
-			}
+			if (event.isCancelable()) event.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent
 	public void onDig(BreakEvent event)
 	{
-		if (event.getPlayer() != null && TragicNewConfig.allowStun && event.getPlayer().isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotions.Fear))
+		if (event.getPlayer() != null && TragicNewConfig.allowStun && event.getPlayer().isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotions.Fear) ||
+				TragicNewConfig.allowHacked && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotions.Hacked))
 		{
-			if (event.isCancelable())
-			{
-				event.setCanceled(true);
-			}
+			if (event.isCancelable()) event.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent
 	public void onBreaking(BreakSpeed event)
 	{
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear))
+		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotions.Fear) ||
+				TragicNewConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotions.Hacked))
 		{
-			if (event.isCancelable())
-			{
-				event.setCanceled(true);
-			}
+			if (event.isCancelable()) event.setCanceled(true);
 		}
 	}
 
@@ -722,18 +708,12 @@ public class PotionEvents {
 		{
 			if (TragicNewConfig.allowHarmony && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotions.Harmony))
 			{
-				if (event.isCancelable())
-				{
-					event.setCanceled(true);
-				}
+				if (event.isCancelable()) event.setCanceled(true);
 			}
 
 			if (TragicNewConfig.allowStun && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotions.Stun))
 			{
-				if (event.isCancelable())
-				{
-					event.setCanceled(true);
-				}
+				if (event.isCancelable()) event.setCanceled(true);
 			}
 		}
 	}
