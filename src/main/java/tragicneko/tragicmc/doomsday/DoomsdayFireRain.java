@@ -31,18 +31,20 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
 		}
+		
+		player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 500));
 	}
 
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		double d1 = (MathHelper.getRandomIntegerInRange(rand, -8, 8) + player.posX) - player.posX; 
-		double d2 = (MathHelper.getRandomIntegerInRange(rand, 2, 8) + player.posY) - player.posY;
-		double d3 = (MathHelper.getRandomIntegerInRange(rand, -8, 8) + player.posZ) - player.posZ;
+		double d1 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
+		double d2 = (MathHelper.getRandomIntegerInRange(rand, 4, 10) + player.posY) - player.posY;
+		double d3 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ;
 		
 		for (int l = 0; l < 16; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 40 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
