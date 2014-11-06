@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -50,4 +51,6 @@ public class EntityPart extends Entity {
         return this == p_70028_1_ || this.main == p_70028_1_;
     }
 
+    @Override
+	public void onStruckByLightning(EntityLightningBolt bolt) {} //prevents the Enyvil from hurting itself
 }
