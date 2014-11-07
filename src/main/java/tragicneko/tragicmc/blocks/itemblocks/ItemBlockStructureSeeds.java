@@ -12,7 +12,8 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockStructureSeeds extends TragicItemBlock {
 
 	private static String[] subNames = new String[] {"apisTemple", "desertTower", "forestTower", "mesaTower", "netherTower", "deathCircle", "iceTower", "obsidianCavern.random",
-		"obsidianCavern.lootStash", "obsidianCavern.deathTrap", "obsidianCavern.mobSpawners", "obsidianCavern.bossChallenge", "kitsuneDen", "celestialTemple", "timeAltar"};
+		"obsidianCavern.lootStash", "obsidianCavern.deathTrap", "obsidianCavern.mobSpawners", "obsidianCavern.bossChallenge", "kitsuneDen", "celestialTemple", "timeAltar",
+		"aegarTower", "decayingSkull", "decayingRibCage", "decayingBone"};
 
 	public ItemBlockStructureSeeds(Block p_i45326_1_) {
 		super(p_i45326_1_, subNames);
@@ -22,51 +23,51 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
 	{
-		Color color = new Color(0x00, 0x00, 0x00);
+		int color = 0x000000;
 
 		switch (par1ItemStack.getItemDamage())
 		{
 		case 0: //Apis Temple
-			color = new Color(0xEA, 0xD7, 0x39);
+			color = 0xEAD739;
 			break;
 		case 1: //Desert Tower
-			color = new Color(0xEA, 0xD2, 0xAD);
+			color = 0xEAD2AD;
 			break;
 		case 2: //Forest tower
-			color = new Color(0xC3, 0xE7, 0x99);
+			color = 0xC3E799;
 			break;
 		case 3: //Mesa tower
-			color = new Color(0xEF, 0xBC, 0x59);
+			color = 0xEFBC59;
 			break;
 		case 4: //Nether tower
-			color = new Color(0xCD, 0x47, 0x2D);
+			color = 0xCD472D;
 			break;
 		case 5: //Death Circle
-			color = new Color(0x77, 0x03, 0x00);
+			color = 0x770300;
 			break;
 		case 6: //Ice Tower
-			color = new Color(0xD0, 0xFF, 0xEF);
+			color = 0xD0FFEF;
 			break;
 		case 7:
 		case 8:
 		case 9:
 		case 10:
 		case 11:
-			color = new Color(0x56, 0x56, 0x56);
+			color = 0x797979;
 			break;
 		case 12: //Kitsune Den
-			color = new Color(0xAF, 0x00, 0x00);
+			color = 0xAF0000;
 			break;
 		case 13: //Celestial Temple
-			color = new Color(0xAA, 0x23, 0xAA);
+			color = 0xAA23AA;
 			break;
 		case 14: //Time Altar
-			color = new Color(0x23, 0xFF, 0x23);
+			color = 0x23FF23;
 			break;
 		default:
 			break;
 		}
-		return color.getRGB();
+		return color;
 	}
 
 	@SideOnly(Side.CLIENT)
