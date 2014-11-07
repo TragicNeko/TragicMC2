@@ -33,7 +33,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 
 	public EntityAegar(World par1World) {
 		super(par1World);
-		this.aegarParts = new EntityPart[] {aegarBody = new EntityPart(this, "body", 1.0F, 1.0F), aegarCrystal = new EntityAegarCrystal(this, "crystal", 2.0F, 2.0F),
+		this.aegarParts = new EntityPart[] {aegarBody = new EntityPart(this, "body", 1.0F, 1.0F), aegarCrystal = new EntityAegarCrystal(this),
 				aegarClaw = new EntityPart(this, "claw", 1.5F, 1.5F), aegarCannon = new EntityPart(this, "cannon", 1.5F, 1.5F),
 				aegarHead = new EntityPart(this, "head", 1.0F, 1.0F)};
 		this.setSize(1.385F * 1.545F, 2.325F * 1.545F);
@@ -315,7 +315,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		{
 			if (entity == this.aegarCrystal)
 			{
-				damage = damage / 4.0F + 1.0F;
+				damage /= 2.0F;
 			}
 			else
 			{
