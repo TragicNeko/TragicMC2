@@ -2,7 +2,6 @@ package tragicneko.tragicmc.network;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

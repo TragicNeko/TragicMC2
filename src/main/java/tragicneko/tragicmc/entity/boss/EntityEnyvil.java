@@ -313,6 +313,31 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (this.getTractorBeamTicks() > 0) this.tractorBeamEntity();
 		if (this.getLaserTicks() > 0 && this.getLaserTicks() % 50 == 0) this.useLasers();
+		
+		float f1 = this.rotationYaw * (float)Math.PI / 180.0F;
+		float f2 = MathHelper.sin(f1);
+		float f3 = MathHelper.cos(f1);
+		double d = 1.225D;
+		
+		this.enyvilEye.width = this.enyvilEye.height = 1.0F;
+		this.enyvilShell.width = this.enyvilShell2.width = 1.65F;
+		this.enyvilShell.height = this.enyvilShell2.height = 1.05F;
+		this.enyvilShell3.height = 1.35F;
+		this.enyvilShell3.width = 2.25F;
+		this.enyvilClaw.width = this.enyvilClaw.height = this.enyvilClaw2.width = this.enyvilClaw2.height = 1.0F;
+
+		this.enyvilEye.setLocationAndAngles(this.posX - (f2 * 0.025D), this.posY + 3.5D, this.posZ - (f3 * 0.025D), 0.0F, 0.0F);
+		this.enyvilShell.setLocationAndAngles(this.posX - (f2 * 0.25D), this.posY + 4.5D, this.posZ + (f3 * 0.25D), 0.0F, 0.0F);
+		this.enyvilShell2.setLocationAndAngles(this.posX - (f2 * 0.25D), this.posY + 2.0D, this.posZ + (f3 * 0.25D), 0.0F, 0.0F);
+		this.enyvilShell3.setLocationAndAngles(this.posX - (f2 * 0.95D), this.posY + 2.5D, this.posZ - (f3 * 0.95D), 0.0F, 0.0F);
+		this.enyvilClaw.setLocationAndAngles(this.posX + (f3 * 0.875D), this.posY + 0.5D, this.posZ + (f2 * 0.875D), 0.0F, 0.0F);
+		this.enyvilClaw2.setLocationAndAngles(this.posX - (f3 * 0.875D), this.posY + 0.5D, this.posZ - (f2 * 0.875D), 0.0F, 0.0F);
+		
+		for (int i = 0; i < this.enyvilParts.length; i++)
+		{
+			if (enyvilParts[i].isBurning()) enyvilParts[i].extinguish();
+			enyvilParts[i].onUpdate();
+		}
 
 		if (worldObj.isRemote)
 		{
@@ -344,24 +369,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			}
 			return;
 		}
-
-		for (int i = 0; i < this.enyvilParts.length; i++)
-		{
-			if (enyvilParts[i].isBurning()) enyvilParts[i].extinguish();
-			enyvilParts[i].onUpdate();
-		}
-
-		float f1 = this.rotationYaw * (float)Math.PI / 180.0F;
-		float f2 = MathHelper.sin(f1);
-		float f3 = MathHelper.cos(f1);
-		double d = 1.225D;
-
-		this.enyvilEye.setPosition(this.posX - (f2 * 0.025D), this.posY + 3.5D, this.posZ - (f3 * 0.025D));
-		this.enyvilShell.setPosition(this.posX - (f2 * 0.25D), this.posY + 4.5D, this.posZ + (f3 * 0.25D));
-		this.enyvilShell2.setPosition(this.posX - (f2 * 0.25D), this.posY + 2.0D, this.posZ + (f3 * 0.25D));
-		this.enyvilShell3.setPosition(this.posX - (f2 * 0.95D), this.posY + 2.5D, this.posZ - (f3 * 0.95D));
-		this.enyvilClaw.setPosition(this.posX + (f3 * 0.875D), this.posY, this.posZ + (f2 * 0.875D));
-		this.enyvilClaw2.setPosition(this.posX - (f3 * 0.875D), this.posY, this.posZ - (f2 * 0.875D));
 
 		this.decrementValues();
 		this.updateCrystal();
@@ -676,7 +683,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
-		return source.isExplosion() ? false : this.attackEntityFromPart(this.enyvilShell, source, damage);
+		return false;
 	}
 
 	@Override
@@ -699,7 +706,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (entity == this.enyvilEye)
 		{			
-			TragicMC.logInfo("Enyvil hit in the eye.");
 			if (super.attackEntityFrom(source, damage))
 			{
 				if (rand.nextInt(4) == 0 && !this.hasCrystal())
@@ -778,6 +784,11 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		return result;
 	}
+	
+	@Override
+	public EntityPart getDefaultPart() {
+		return this.enyvilShell;
+	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
@@ -806,5 +817,5 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		tag.setInteger("thunderstormTicks", this.getThunderstormTicks());
 		tag.setInteger("crystalID", this.getCrystalID());
 		tag.setInteger("slamTicks", this.getSlamTicks());
-	}
+	}	
 }

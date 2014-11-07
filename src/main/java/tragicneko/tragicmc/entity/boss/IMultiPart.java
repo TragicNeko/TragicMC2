@@ -8,4 +8,6 @@ public interface IMultiPart {
 	World getWorld();
 	
 	boolean attackEntityFromPart(EntityPart entity, DamageSource source, float damage);
+	
+	EntityPart getDefaultPart();
 }
