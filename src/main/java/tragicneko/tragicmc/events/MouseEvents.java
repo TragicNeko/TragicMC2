@@ -66,7 +66,7 @@ public class MouseEvents {
 			for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
 			{
 				Vec3 vec31 = vec3.addVector((double)f7 * d, (double)f6 * d, (double)f8 * d);
-				AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord, vec31.yCoord, vec31.zCoord).expand(1.35D, 1.35D, 1.35D);
+				AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord - 0.675, vec31.yCoord - 0.675, vec31.zCoord - 0.675).expand(1.35D, 1.35D, 1.35D);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 				Entity entity;
 
