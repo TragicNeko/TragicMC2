@@ -5,15 +5,14 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-public class TragicSkyRenderer extends IRenderHandler {
+public class SynapseSkyRenderer extends IRenderHandler {
 	
-	private static final ResourceLocation skyTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky2.png");
+	private static final ResourceLocation circuitTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky3.png");
 
 	@Override
 	public void render(float partialTicks, WorldClient world, Minecraft mc) {
@@ -24,7 +23,7 @@ public class TragicSkyRenderer extends IRenderHandler {
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         RenderHelper.disableStandardItemLighting();
         GL11.glDepthMask(false);
-        mc.renderEngine.bindTexture(skyTexture);
+        mc.renderEngine.bindTexture(circuitTexture);
         Tessellator tessellator = Tessellator.instance;
 
         for (int i = 0; i < 6; ++i)

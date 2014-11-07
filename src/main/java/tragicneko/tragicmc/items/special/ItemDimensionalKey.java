@@ -13,18 +13,27 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicTeleporter;
 import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDimensionalKey extends Item {
-	
-	public ItemDimensionalKey()
+
+	public final int targetDimension;
+
+	public ItemDimensionalKey(int i)
 	{
 		super();
+		this.targetDimension = i;
 		this.setMaxDamage(30);
+		this.setCreativeTab(TragicTabs.Creative);
+		this.setMaxStackSize(1);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -35,10 +44,10 @@ public class ItemDimensionalKey extends Item {
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to the Collision!");
+		String s = this.targetDimension == 1 ? "the End" : (this.targetDimension == 2 ? "the Collision" : (this.targetDimension == -1 ? "the Nether" : "the Synapse"));
+		par2List.add(EnumChatFormatting.DARK_RED + "Teleports you to " + s + "!");
 		par2List.add("Hold down right-click for a couple");
 		par2List.add("seconds then let go to use.");
-		par2List.add("The Collision is WIP");
 	}
 
 	public EnumAction getItemInUseAction(ItemStack par1ItemStack)
@@ -84,33 +93,33 @@ public class ItemDimensionalKey extends Item {
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
-		if (TragicNewConfig.allowDimension)
+		if (!TragicNewConfig.allowDimension && this.targetDimension > 2)
 		{
-			if (par3EntityPlayer instanceof EntityPlayerMP)
+			par3EntityPlayer.addChatMessage(new ChatComponentText("TragicMC Dimensions are disabled, enable in config."));
+			return;
+		} 
+
+		if (par3EntityPlayer instanceof EntityPlayerMP)
+		{
+			if (par4 >= 30 || par3EntityPlayer.capabilities.isCreativeMode)
 			{
-				if (par4 >= 30 || par3EntityPlayer.capabilities.isCreativeMode)
+				int dim = par3EntityPlayer.dimension;
+
+				ServerConfigurationManager manager = MinecraftServer.getServer().getConfigurationManager();
+				TragicMC.logInfo("Target dimension was " + this.targetDimension + ", current dimension is " + dim);
+
+				if (dim != this.targetDimension)
 				{
-					int dim = par2World.provider.dimensionId;
-					int id = TragicNewConfig.dimensionID;
-
-					ServerConfigurationManager manager = MinecraftServer.getServer().getConfigurationManager();
-
-					if (dim != id)
-					{
-						manager.transferPlayerToDimension((EntityPlayerMP) par3EntityPlayer, TragicNewConfig.dimensionID, new TragicTeleporter(MinecraftServer.getServer().worldServerForDimension(id)));
-					}
-					else
-					{
-						manager.transferPlayerToDimension((EntityPlayerMP) par3EntityPlayer, 0, new TragicTeleporter(MinecraftServer.getServer().worldServerForDimension(0)));
-					}
+					manager.transferPlayerToDimension((EntityPlayerMP) par3EntityPlayer, this.targetDimension, new TragicTeleporter(MinecraftServer.getServer().worldServerForDimension(this.targetDimension)));
 				}
-				
-				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.damageItem(1, par3EntityPlayer); 
+				else
+				{
+					manager.transferPlayerToDimension((EntityPlayerMP) par3EntityPlayer, 0, new TragicTeleporter(MinecraftServer.getServer().worldServerForDimension(0)));
+				}
 			}
+
+			if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.damageItem(1, par3EntityPlayer); 
 		}
-		else
-		{
-			par3EntityPlayer.addChatMessage(new ChatComponentText("Tragic Dimension is disabled, enable in config."));
-		}
+
 	}
 }

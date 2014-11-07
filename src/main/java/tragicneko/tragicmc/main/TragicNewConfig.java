@@ -46,14 +46,15 @@ public class TragicNewConfig {
 	public static boolean amuTime, amuWither;
 
 	public static boolean keepDimensionLoaded;
-	private static int[] dimensionIDs = new int[2];
-	public static int dimensionID, providerID;
+	private static int[] dimensionIDs = new int[4];
+	public static int dimensionID, providerID, synapseID, synapseProviderID;
 	private static int[] biomeIDs = new int[48];
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
 	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles;
 	public static int idMagmaSprings, idMagmaMountains, idMagmaSinkholes, idMagmaScarlands;
 	public static int idFrozenValley, idFrozenForest, idFrozenTundra, idFrozenSwamps;
+	public static int idSynapse;
 
 	private static boolean[] blanketDoom = new boolean[17];
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;

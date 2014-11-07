@@ -2,12 +2,12 @@ package tragicneko.tragicmc.main;
 
 import java.util.Set;
 
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenSynapse;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
 import tragicneko.tragicmc.worldgen.biome.TragicBiome;
 
@@ -39,6 +39,8 @@ public class TragicBiomes {
 	public static TragicBiome TaintedRises;
 	public static TragicBiome TaintedScarlands;
 	public static TragicBiome TaintedIsles;
+	
+	public static TragicBiome Synapse;
 	
 	public static Set decayingBiomes;
 	public static Set paintedBiomes;
@@ -79,6 +81,8 @@ public class TragicBiomes {
 		TaintedRises = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedRises).setBiomeName("tragicmc.taintedRises"))).setHeightVariation(1.85F).setRootHeight(0.45F);
 		TaintedScarlands = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedScarlands).setBiomeName("tragicmc.taintedScarlands"))).setHeightVariation(0.05F).setRootHeight(0.65F);
 		TaintedIsles = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedIsles).setBiomeName("tragicmc.taintedIsles"))).setHeightVariation(0.25F).setRootHeight(-0.65F);
+		
+		Synapse = (TragicBiome) (new BiomeGenSynapse(TaintedIsles.biomeID + 1).setBiomeName("tragicmc.synapse").setDisableRain());
 		
 		createSets();
 	}

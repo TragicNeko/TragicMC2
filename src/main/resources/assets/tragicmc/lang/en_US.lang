@@ -415,7 +415,10 @@ item.tragicmc.stinHorn.name=Stin Horn
 item.tragicmc.livingClay.name=Living Clay
 item.tragicmc.pureDarkness.name=Pure Darkness
 
-item.tragicmc.dimensionalKey.name=Dimensional Key
+item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
+item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
+item.tragicmc.dimensionalKey.nether.name=Dimensional Key (Nether)
+item.tragicmc.dimensionalKey.synapse.name=Dimensional Key (Synapse)
 
 item.tragicmc.mobStatue.apis.name=Apis Statue
 item.tragicmc.mobStatue.kitsune.name=Kitsunakuma Statue
@@ -909,3 +912,5 @@ tragicmc.crystalShield=Crystal Shield
 tragicmc.crystalSpikes=Crystal Spikes
 tragicmc.crystalCliffs=Crystal Cliffs
 tragicmc.crystalDives=Crystal Dives
+
+tragicmc.synapse=Synapse

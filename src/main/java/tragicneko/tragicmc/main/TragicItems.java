@@ -252,7 +252,7 @@ public class TragicItems {
 	public static Item GoldenSushi;
 	public static Item SkyFruit;
 
-	public static Item DimensionalKey;
+	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse;
 
 	public static Item BowOfJustice;
 	public static Item SwordOfJustice;
@@ -700,8 +700,17 @@ public class TragicItems {
 		NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:NourishmentSacrifice" + textureRes));
 		GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
 		
-		DimensionalKey = (new ItemDimensionalKey().setUnlocalizedName("tragicmc.dimensionalKey").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey" + textureRes));
 		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
+		
+		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		GameRegistry.registerItem(DimensionalKeyEnd, "dimensionalKeyEnd");
+		
+		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
+		
+		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
 		
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");

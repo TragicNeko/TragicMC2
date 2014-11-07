@@ -3,7 +3,11 @@ package tragicneko.tragicmc.dimension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
+import com.google.common.collect.Sets;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,17 +17,16 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class TragicTeleporter extends Teleporter {
 
 	protected final WorldServer worldServerInstance;
-	/** A private Random() function in Teleporter */
 	protected final Random random;
-	/**
-	 * A list of valid keys for the destinationCoordainteCache. These are based on the X & Z of the players initial
-	 * location.
-	 */
-	protected final List destinationCoordinateKeys = new ArrayList();
+	
+	public static Set spawnBlocks = Sets.newHashSet(new Block[] {TragicBlocks.DeadDirt, TragicBlocks.DarkSand, TragicBlocks.BrushedGrass, TragicBlocks.AshenGrass,
+			TragicBlocks.StarlitGrass, TragicBlocks.ErodedStone, TragicBlocks.CircuitBlock, Blocks.end_stone, Blocks.netherrack, Blocks.soul_sand, Blocks.nether_brick,
+			Blocks.obsidian, TragicBlocks.AshenTallGrass, TragicBlocks.StarlitTallGrass});
 
 	public TragicTeleporter(WorldServer par1WorldServer)
 	{
@@ -34,18 +37,28 @@ public class TragicTeleporter extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
-	{
+	{		
 		if (this.worldServerInstance.provider.dimensionId != 0)
 		{
-			int i = worldServerInstance.getSpawnPoint().posX;
-			int k = worldServerInstance.getSpawnPoint().posZ;
-			int j = worldServerInstance.getTopSolidOrLiquidBlock(i, k);
+			int i = this.worldServerInstance.getSpawnPoint().posX;
+			int k = this.worldServerInstance.getSpawnPoint().posZ;
+			int j = this.worldServerInstance.provider instanceof TragicWorldProvider ? this.worldServerInstance.getTopSolidOrLiquidBlock(i, k) : this.worldServerInstance.getSpawnPoint().posY;
 			byte b0 = 1;
 			byte b1 = 0;
+			
+			boolean endFlag = this.worldServerInstance.provider.dimensionId == 1;
+			
+			if (endFlag)
+			{
+				i = this.worldServerInstance.provider.getEntrancePortalLocation().posX;
+				j = this.worldServerInstance.provider.getEntrancePortalLocation().posY;
+				k = this.worldServerInstance.provider.getEntrancePortalLocation().posZ;
+			}
 
-			boolean lavaFlag = worldServerInstance.getBlock(i, j, k).getMaterial() == Material.lava || worldServerInstance.getBlock(i, j + 1, k).getMaterial() == Material.lava;
+			Block spawnBlock = this.worldServerInstance.getBlock(i, j, k);
+			boolean lavaFlag = spawnBlock.getMaterial() == Material.lava || spawnBlock.getMaterial() == Material.lava;
 
-			if (!TragicWorldProvider.spawnBlocks.contains(worldServerInstance.getTopBlock(i, k)))
+			if (!spawnBlocks.contains(spawnBlock))
 			{
 				for (int l = -2; l <= 2; ++l)
 				{
@@ -57,7 +70,7 @@ public class TragicTeleporter extends Teleporter {
 							int l1 = j + j1;
 							int i2 = k + i1 * b1 - l * b0;
 							boolean flag = j1 < 0;
-							this.worldServerInstance.setBlock(k1, l1, i2, flag ? TragicBlocks.DeadDirt : Blocks.air);
+							this.worldServerInstance.setBlock(k1, l1, i2, flag ? (endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt) : Blocks.air);
 						}
 					}
 				}
@@ -66,16 +79,17 @@ public class TragicTeleporter extends Teleporter {
 				{
 					for (int x = -1; x < 2; x++)
 					{
-						this.worldServerInstance.setBlock(i + x, j, k - 3, TragicBlocks.DeadDirt);
-						this.worldServerInstance.setBlock(i + x, j, k + 3, TragicBlocks.DeadDirt);
-						this.worldServerInstance.setBlock(i + 3, j, k + x, TragicBlocks.DeadDirt);
-						this.worldServerInstance.setBlock(i - 3, j, k + x, TragicBlocks.DeadDirt);
+						this.worldServerInstance.setBlock(i + x, j, k - 3, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
+						this.worldServerInstance.setBlock(i + x, j, k + 3, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
+						this.worldServerInstance.setBlock(i + 3, j, k + x, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
+						this.worldServerInstance.setBlock(i - 3, j, k + x, endFlag ? Blocks.obsidian : TragicBlocks.DeadDirt);
 					}
 				}
 			}
 
-			par1Entity.setLocationAndAngles((double)i, (double)j + 1, (double)k, par1Entity.rotationYaw, 0.0F);
+			par1Entity.setLocationAndAngles((double)i, (double)j + 1, (double)k, par1Entity.rotationYaw, par1Entity.rotationPitch);
 			par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
+			par1Entity.fallDistance = 0.0F;
 		}
 		else
 		{
@@ -86,23 +100,25 @@ public class TragicTeleporter extends Teleporter {
 			if (par1Entity instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer) par1Entity;
-				ChunkCoordinates cc = player.getBedLocation(this.worldServerInstance.provider.dimensionId);
+				ChunkCoordinates cc = player.getBedLocation(0);
 
 				if (cc != null)
 				{
-					par1Entity.setLocationAndAngles((double)cc.posX, (double)cc.posY + 1.5D, (double)cc.posZ, par1Entity.rotationYaw, 0.0F);
+					player.setLocationAndAngles((double)cc.posX, (double)cc.posY + 1.5D, (double)cc.posZ, player.rotationYaw, player.rotationPitch);
 				}
 				else
 				{
-					par1Entity.setLocationAndAngles((double)i, (double)j, (double)k, par1Entity.rotationYaw, 0.0F);
+					player.setLocationAndAngles((double)i, (double)j, (double)k, player.rotationYaw, player.rotationPitch);
 				}
 				
-				par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
+				player.motionX = player.motionY = player.motionZ = 0.0D;
+				player.fallDistance = 0.0F;
 			}
 			else
 			{				
-				par1Entity.setLocationAndAngles((double)i, (double)j, (double)k, par1Entity.rotationYaw, 0.0F);
+				par1Entity.setLocationAndAngles((double)i, (double)j, (double)k, par1Entity.rotationYaw, par1Entity.rotationPitch);
 				par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
+				par1Entity.fallDistance = 0.0F;
 			}
 		}
 

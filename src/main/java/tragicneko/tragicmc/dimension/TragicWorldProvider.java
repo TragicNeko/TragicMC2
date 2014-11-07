@@ -18,13 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicWorldProvider extends WorldProvider
-{
-	public float[]	colorsSunriseSunset	= new float[4];
-	
+{	
 	private IRenderHandler skyRenderer = new TragicSkyRenderer();
-	
-	public static Set spawnBlocks = Sets.newHashSet(new Block[] {TragicBlocks.DeadDirt, TragicBlocks.DarkSand, TragicBlocks.BrushedGrass, TragicBlocks.AshenGrass,
-			TragicBlocks.StarlitGrass, TragicBlocks.ErodedStone});
 
 	public TragicWorldProvider()
 	{
@@ -46,7 +41,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public String getSaveFolder()
 	{
-		return this.getDimensionName();
+		return "Collision";
 	}
 
 	@Override
@@ -118,6 +113,7 @@ public class TragicWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public float[] calcSunriseSunsetColors(float f, float f1)
 	{
+		float[] colors = new float[4];
 		float f2 = 0.4F;
 		float f3 = MathHelper.cos(f * 3.141593F * 2.0F) - 0.0F;
 		float f4 = -0.0F;
@@ -126,11 +122,11 @@ public class TragicWorldProvider extends WorldProvider
 			float f5 = (f3 - f4) / f2 * 0.5F + 0.5F;
 			float f6 = 1.0F - (1.0F - MathHelper.sin(f5 * 3.141593F)) * 0.99F;
 			f6 *= f6;
-			this.colorsSunriseSunset[0] = f5 * 0.3F + 0.7F;
-			this.colorsSunriseSunset[1] = f5 * f5 * 0.7F + 0.2F;
-			this.colorsSunriseSunset[2] = 0.2F;
-			this.colorsSunriseSunset[3] = f6;
-			return this.colorsSunriseSunset;
+			colors[0] = f5 * 0.3F + 0.7F;
+			colors[1] = f5 * f5 * 0.7F + 0.2F;
+			colors[2] = 0.2F;
+			colors[3] = f6;
+			return colors;
 		}
 		return null;
 	}
@@ -176,7 +172,7 @@ public class TragicWorldProvider extends WorldProvider
 
 	@Override
 	public String getDimensionName() {
-		return "TragicDimension";
+		return "The Collision";
 	}
 	
 	@Override
