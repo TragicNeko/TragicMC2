@@ -763,6 +763,9 @@ entity.TragicMC.Overlord.name=Overlord
 entity.TragicMC.Lockbot.name=Lockbot
 entity.TragicMC.Locobot.name=Locobot
 entity.TragicMC.NanoSwarm.name=Nano Swarm
+entity.TragicMC.Aegar.name=Aegar
+entity.TragicMC.CircuitGolem.name=Circuit Golem
+entity.TragicMC.Overlord.name=The Overlord
 
 enchantment.combustion=Combustion
 enchantment.multiply=Multiply

@@ -2955,6 +2955,10 @@ Updated spawn egg colors for the Nano Swarm, Erkel and Psygote
 Updated the Ash and Nasty Fruit texture, ash texture was updated due to looking too similar to the Dark Particle one, Nasty Fruit was updated to to it's recipe requiring some
 ectoplasm
 Updated Tungsten Jack texture, it looks way cooler, maybe a bit too cool lol
+Started work on the Aegar's AI, getting the multipart entity stuff out of the way on it before I work on it's actual attacks and such
+Fix issue with hitting a multipart entity with a melee weapon, it was because I wasn't setting the part positions and updating them on the client-side, the client-side was
+then attacking the entity itself which returns false on any hit so that it does nothing, however, switching the attack target to it's default part remedied this issue
+Since I finished messing with the Aegar's parts and also fixed a long standing issue with multipart entities in my mod, I can now start on it's AI and attacks
 
 Aegar will move around slowly, attacking the player with a laser from ranged randomly as well as using a ground shockwave attack
 The laser will be armor piercing and do around 3 hearts in damage per hit (6 in normal damage), it won't fire it very often until it gets angered
