@@ -617,7 +617,7 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("demeanor", this.getDemeanor());
-		tag.setInteger("reflectionTicks", this.getHitTime());
+		tag.setInteger("hitTime", this.getHitTime());
 		tag.setInteger("cloneTime", this.getCloneTime());
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setInteger("reaperType", this.getReaperType());
