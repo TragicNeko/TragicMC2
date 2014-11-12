@@ -703,13 +703,13 @@ public class TragicItems {
 		DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey" + textureRes));
 		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 		
-		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeyEnd" + textureRes));
 		GameRegistry.registerItem(DimensionalKeyEnd, "dimensionalKeyEnd");
 		
-		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeyNether" + textureRes));
 		GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
 		
-		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKey" + textureRes));
+		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeySynapse" + textureRes));
 		GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
 		
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
