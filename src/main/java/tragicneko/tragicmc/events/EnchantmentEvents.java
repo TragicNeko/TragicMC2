@@ -83,21 +83,10 @@ public class EnchantmentEvents {
 
 					if (result != null)
 					{
-						if (event.world.isRemote)
-						{
-							for (int i = 0; i < 10; i++)
-							{
-								event.world.spawnParticle("flame", event.harvester.posX + rand.nextDouble() - rand.nextDouble(), event.harvester.posY + 0.25 + rand.nextDouble(),
-										event.harvester.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, rand.nextDouble(), 0.0);
-							}
-						}
-						else
-						{
-							result.stackSize = rand.nextInt(z + 1) + 1;
-
-							event.drops.clear();
-							event.drops.add(result.copy());
-						}
+						result.stackSize = rand.nextInt(z + 1) + 1;
+						tool.attemptDamageItem(1, rand);
+						event.drops.clear();
+						event.drops.add(result.copy());
 					}
 				}
 			}
