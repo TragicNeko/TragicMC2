@@ -9,6 +9,7 @@ import java.util.Set;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
@@ -52,7 +53,7 @@ public class NewAmuletEvents {
 
 	public static Set badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
 			Potion.poison, Potion.weakness, Potion.wither, TragicPotions.Corruption, TragicPotions.Cripple, TragicPotions.Disorientation, TragicPotions.Fear,
-			TragicPotions.Inhibit, TragicPotions.Malnourish, TragicPotions.Stun, TragicPotions.Submission});
+			TragicPotions.Inhibit, TragicPotions.Malnourish, TragicPotions.Stun, TragicPotions.Submission, TragicPotions.Hacked, TragicPotions.LeadFoot});
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
@@ -422,8 +423,10 @@ public class NewAmuletEvents {
 			while (ite.hasNext())
 			{
 				mob = (EntityMob) ite.next();
+				mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, EntityPlayer.class, 0, true));
 				mob.setAttackTarget(mp);
-				mob.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(d);
+				mob.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(d + 32.0D);
+				amu.damageStackInSlot(slot, 4 - level);
 			}
 		}
 		else if (s.equals("IronGolem") && TragicNewConfig.amuIronGolem)
@@ -496,7 +499,11 @@ public class NewAmuletEvents {
 			{
 				if (amulets[i] != null && amulets[i].getAmuletName().equals("Apis") && TragicNewConfig.amuApis)
 				{
-					if (event.source.isExplosion() && event.isCancelable()) event.setCanceled(true);
+					if (event.source.isExplosion() && event.isCancelable())
+					{
+						event.setCanceled(true);
+						amu.damageStackInSlot(i, 1);
+					}
 					if (event.source.isProjectile()) event.ammount *= 1.75F;
 					break;
 				}
@@ -530,12 +537,13 @@ public class NewAmuletEvents {
 						{
 							((EntityLivingBase) event.source.getEntity()).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100 * levels[i], levels[i]));
 						}
+						amu.damageStackInSlot(i, 4 - levels[i]);
 						event.ammount *= 0.475F;
 						break;
 					}
 				}
 			}
-			
+
 			for (i = 0; i < 3; i++)
 			{
 				if (amulets[i] != null && amulets[i].getAmuletName().equals("Wither") && TragicNewConfig.amuWither)
@@ -543,7 +551,7 @@ public class NewAmuletEvents {
 					if (event.source == DamageSource.wither)
 					{
 						if (event.isCancelable()) event.setCanceled(true);
-						mp.heal(1.0F);
+						mp.heal(event.ammount);
 						break;
 					}
 				}
@@ -570,6 +578,7 @@ public class NewAmuletEvents {
 				if (amulets[i] != null && amulets[i].getAmuletName().equals("Piercing") && TragicNewConfig.amuPiercing)
 				{
 					event.entityLiving.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(mp), event.ammount * 0.135F + 1.0F);
+					amu.damageStackInSlot(i, 1);
 					break;
 				}
 			}
@@ -628,7 +637,7 @@ public class NewAmuletEvents {
 					break;
 				}
 			}
-			
+
 			for (i = 0; i < 3 && TragicNewConfig.amuIronGolem; i++)
 			{
 				if (amulets[i] != null && amulets[i].getAmuletName().equals("IronGolem") && levels[i] >= 3)
@@ -665,12 +674,13 @@ public class NewAmuletEvents {
 				if (amulets[i] != null && amulets[i].getAmuletName().equals("Skeleton") && rand.nextInt(16 - (levels[i] * 5)) == 0)
 				{
 					event.charge += levels[i] * 5;
+					amu.damageStackInSlot(i, 4 - levels[i]);
 					break;
 				}
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onEndermanAmuletUse(BreakEvent event)
 	{

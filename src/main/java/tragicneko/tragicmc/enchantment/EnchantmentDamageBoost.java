@@ -6,7 +6,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
-import tragicneko.tragicmc.entity.boss.TragicMiniBoss;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicNewConfig;

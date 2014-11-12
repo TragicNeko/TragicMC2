@@ -50,6 +50,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.main.TragicEnchantments;
