@@ -279,7 +279,6 @@ public class EntityPsygote extends TragicMob {
 		mortor.posY = this.posY + (this.height * 2 / 3);
 		mortor.posZ = this.posZ + 0.115D * d2;
 		this.worldObj.spawnEntityInWorld(mortor);
-
 	}
 
 	protected void fall(float f) {}

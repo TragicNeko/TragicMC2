@@ -8,11 +8,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -27,8 +25,10 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityPart;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart {
 
@@ -52,8 +52,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.experienceValue = 100;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
@@ -207,6 +205,8 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			if (this.getLaserTicks() > 0) this.setLaserTicks(0);
 			if (this.getMortorTicks() > 0) this.setMortorTicks(0);
 		}
+		
+		if (this.getLaserTicks() > 0 || this.getShockwaveTicks() > 0) this.motionX = this.motionZ = this.motionY = 0.0D;
 
 		super.onLivingUpdate();
 
@@ -268,8 +268,50 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.getHypermode()) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+		
+		if (this.getAttackTarget() == null)
+		{
+			if (this.getShockwaveTicks() > 0) this.setShockwaveTicks(0);
+			if (this.getHurtTime() > 0) this.setHurtTime(0);
+			if (this.getAttackTime() > 0) this.setAttackTime(0);
+			if (this.getLaserTicks() > 0) this.setLaserTicks(0);
+			if (this.getMortorTicks() > 0) this.setMortorTicks(0);
+		}
+		else
+		{
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(128) == 0) this.setLaserTicks(40);
+			if (this.getLaserTicks() == 5 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && this.getAttackTarget().canEntityBeSeen(this.aegarCannon)) this.fireLaser();
+			
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 256) == 0 && this.onGround) this.setShockwaveTicks(60);
+			if (this.getShockwaveTicks() == 5) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(6.0D, 6.0D , 6.0D)));
+			
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.getHypermode() && rand.nextInt(128) == 0) this.setMortorTicks(40);
+			if (this.getMortorTicks() > 0 && this.getMortorTicks() % 20 == 0) this.createCrystalMortors();
+		}
 
 		if (this.ticksExisted % 40 == 0) TragicMC.logInfo("Aegar health is at " + this.getHealth());
+	}
+
+	private void createCrystalMortors() {
+		TragicMC.logInfo("Mortor created."); //TODO change these into a new projectile, a slow-moving crystal mortor that explodes on impact and inflicts Hacked on players
+		
+		double d0 = rand.nextInt(2) - rand.nextInt(2);
+		double d1 = rand.nextInt(4);
+		double d2 = rand.nextInt(2) - rand.nextInt(2);
+		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
+
+		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		mortor.posY = this.posY + this.height + 0.5D;
+		mortor.posX += d0 * 0.04335D;
+		mortor.posZ += d2 * 0.04335D;
+		mortor.motionY += 0.36D * f1;
+		this.worldObj.spawnEntityInWorld(mortor);
+	}
+
+	private void fireLaser() {
+		TragicMC.logInfo("Laser fired.");
+		//This should be set client and server side so that I can do a particle effect for the client to show they've been hit by the laser, rather than just a random hit
+		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), 3.0F + 3.0F * rand.nextFloat());
 	}
 
 	private void onCrystalDestruction() {
@@ -363,7 +405,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.worldObj.isRemote || this.getAttackTime() != 0) return false;
+		if (this.worldObj.isRemote || this.getAttackTime() != 0 || this.getStunTicks() > 0 || this.getDistanceToEntity(par1Entity) > 4.0F) return false;
 		boolean result = super.attackEntityAsMob(par1Entity);
 		if (result)
 		{
@@ -383,7 +425,8 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 
 			if (entity instanceof EntityLivingBase)
 			{
-				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 12.0F);
+				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 16.0F);
+				if (entity instanceof EntityPlayer && TragicNewConfig.allowHacked && rand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Hacked.id, 60, 0));
 
 				entity.motionX *= 3.225D;
 				entity.motionZ *= 3.225D;
