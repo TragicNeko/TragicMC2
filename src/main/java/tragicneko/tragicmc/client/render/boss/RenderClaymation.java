@@ -26,9 +26,12 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 public class RenderClaymation extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Claymation_lowRes.png");
+	
+	private static final ModelBase[] models = new ModelBase[] {new ModelClaymation(), new ModelMinotaur(), new ModelApis(), new ModelStinKing(), new ModelNorVox(), new ModelJabba(),
+		new ModelRagr(), new ModelDeathReaper(), new ModelKitsune2(), new ModelCustomGolem()};
 
 	public RenderClaymation() {
-		super(new ModelClaymation(), 0.556F);
+		super(models[0], 0.556F);
 	}
 
 	@Override
@@ -103,29 +106,7 @@ public class RenderClaymation extends RenderBoss {
 	}
 
 	private ModelBase getModelFromClaymationForm(EntityClaymation clay) {
-		switch(clay.getEntityForm())
-		{
-		case 1:
-			return new ModelMinotaur();
-		case 2:
-			return new ModelApis();
-		case 3:
-			return new ModelStinKing();
-		case 4:
-			return new ModelNorVox();
-		case 5:
-			return new ModelJabba();
-		case 6:
-			return new ModelRagr();
-		case 7:
-			return new ModelDeathReaper();
-		case 8:
-			return new ModelKitsune2();
-		case 9:
-			return new ModelCustomGolem();
-		default:
-			return new ModelClaymation();
-		}
+		return models[clay.getEntityForm()];
 	}
 
 	@Override

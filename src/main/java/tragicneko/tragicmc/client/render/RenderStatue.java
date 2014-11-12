@@ -32,10 +32,10 @@ public class RenderStatue extends Render {
 	
 	private ModelBase model = new ModelBlock();
 	
-	private final String mobPath = "tragicmc:textures/mobs/";
-	private final String textPath = "tragicmc:textures/statue/";
+	private static final String mobPath = "tragicmc:textures/mobs/";
+	private static final String textPath = "tragicmc:textures/statue/";
 	
-	private ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
+	private static ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
 		new ResourceLocation(mobPath + "DeathReaper_lowRes.png"), new ResourceLocation(mobPath + "TimeController_lowRes.png"), new ResourceLocation(mobPath + "Yeti_lowRes.png"),
 		new ResourceLocation(mobPath + "Polaris2_lowRes.png"), new ResourceLocation(mobPath + "Jarra_lowRes.png"), new ResourceLocation(mobPath + "Kragul_lowRes.png"),
 		new ResourceLocation(mobPath + "Magmox2_lowRes.png"), new ResourceLocation(mobPath + "MegaCryse_lowRes.png"), new ResourceLocation(mobPath + "StinKing_lowRes.png"),
@@ -47,7 +47,7 @@ public class RenderStatue extends Render {
 			new ResourceLocation(textPath + "RedstoneStatue.png"), new ResourceLocation(textPath + "CoalStatue.png"), new ResourceLocation(textPath + "LapisStatue.png"),
 			new ResourceLocation(textPath + "NetherrackStatue.png")}};
 	
-	private ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
+	private static ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
 			new ModelEnyvil(), new ModelClaymation()};
 
