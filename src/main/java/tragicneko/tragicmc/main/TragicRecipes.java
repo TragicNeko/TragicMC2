@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.main;
 
+import scala.actors.threadpool.Arrays;
+import tragicneko.tragicmc.items.special.RecipeWeapons;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -628,8 +630,12 @@ public class TragicRecipes {
 			'x', TragicBlocks.Wax
 		});
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkIngot, 1), new Object[] {
-			TragicItems.DarkParticles, TragicItems.QuicksilverIngot
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.DarkIngot, 1), new Object[] {
+			"yxy",
+			"xyx",
+			"yxy",
+			'y', TragicItems.DarkParticles,
+			'x', TragicItems.QuicksilverIngot
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.DarkHelm, 1), new Object[] {
@@ -951,6 +957,7 @@ public class TragicRecipes {
 			"xyx",
 			'x', TragicItems.Tungsten,
 			'y', TragicItems.Sushi,
+			'z', TragicItems.AwakeningStone
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ClaymationAmulet, 1), new Object[] {
@@ -1623,5 +1630,129 @@ public class TragicRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.IronGolemAmulet3, 1), new Object[] {
 			TragicItems.IronGolemAmulet2, TragicItems.AmuletRelease
 		});
+		
+		//Weapon fusing recipes
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryDagger),
+				new Object[] {new ItemStack(TragicItems.MercuryDagger), new ItemStack(TragicItems.MercuryDagger), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.HuntersBow),
+				new Object[] {new ItemStack(TragicItems.HuntersBow), new ItemStack(TragicItems.HuntersBow), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.PitchBlack),
+				new Object[] {new ItemStack(TragicItems.PitchBlack), new ItemStack(TragicItems.PitchBlack), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.BlindingLight),
+				new Object[] {new ItemStack(TragicItems.BlindingLight), new ItemStack(TragicItems.BlindingLight), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.GravitySpike),
+				new Object[] {new ItemStack(TragicItems.GravitySpike), new ItemStack(TragicItems.GravitySpike), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.HarmonyBell),
+				new Object[] {new ItemStack(TragicItems.HarmonyBell), new ItemStack(TragicItems.HarmonyBell), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MourningStar),
+				new Object[] {new ItemStack(TragicItems.MourningStar), new ItemStack(TragicItems.MourningStar), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.BeastlyClaws),
+				new Object[] {new ItemStack(TragicItems.BeastlyClaws), new ItemStack(TragicItems.BeastlyClaws), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.GuiltyThorn),
+				new Object[] {new ItemStack(TragicItems.GuiltyThorn), new ItemStack(TragicItems.GuiltyThorn), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.NekoLauncher),
+				new Object[] {new ItemStack(TragicItems.NekoLauncher), new ItemStack(TragicItems.NekoLauncher), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.ReaperScythe),
+				new Object[] {new ItemStack(TragicItems.ReaperScythe), new ItemStack(TragicItems.ReaperScythe), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.EnigmaShield),
+				new Object[] {new ItemStack(TragicItems.EnigmaShield), new ItemStack(TragicItems.EnigmaShield), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.WitheringAxe),
+				new Object[] {new ItemStack(TragicItems.WitheringAxe), new ItemStack(TragicItems.WitheringAxe), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.FrozenLightning),
+				new Object[] {new ItemStack(TragicItems.FrozenLightning), new ItemStack(TragicItems.FrozenLightning), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.CelestialLongbow),
+				new Object[] {new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialLongbow), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.CelestialAegis),
+				new Object[] {new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialAegis), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Titan),
+				new Object[] {new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Titan), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Splinter),
+				new Object[] {new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Splinter), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Butcher),
+				new Object[] {new ItemStack(TragicItems.Butcher), new ItemStack(TragicItems.Butcher), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Thardus),
+				new Object[] {new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.Thardus), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Paranoia),
+				new Object[] {new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Paranoia), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.DragonFang),
+				new Object[] {new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.DragonFang), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Jack),
+				new Object[] {new ItemStack(TragicItems.Jack), new ItemStack(TragicItems.Jack), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.SkullHelmet),
+				new Object[] {new ItemStack(TragicItems.SkullHelmet), new ItemStack(TragicItems.SkullHelmet), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.SkullPlate),
+				new Object[] {new ItemStack(TragicItems.SkullPlate), new ItemStack(TragicItems.SkullPlate), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.SkullLegs),
+				new Object[] {new ItemStack(TragicItems.SkullLegs), new ItemStack(TragicItems.SkullLegs), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.SkullBoots),
+				new Object[] {new ItemStack(TragicItems.SkullBoots), new ItemStack(TragicItems.SkullBoots), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.HuntersCap),
+				new Object[] {new ItemStack(TragicItems.HuntersCap), new ItemStack(TragicItems.HuntersCap), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.HuntersTunic),
+				new Object[] {new ItemStack(TragicItems.HuntersTunic), new ItemStack(TragicItems.HuntersTunic), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.HuntersLegs),
+				new Object[] {new ItemStack(TragicItems.HuntersLegs), new ItemStack(TragicItems.HuntersLegs), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.HuntersBoots),
+				new Object[] {new ItemStack(TragicItems.HuntersBoots), new ItemStack(TragicItems.HuntersBoots), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryHelm),
+				new Object[] {new ItemStack(TragicItems.MercuryHelm), new ItemStack(TragicItems.MercuryHelm), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryPlate),
+				new Object[] {new ItemStack(TragicItems.MercuryPlate), new ItemStack(TragicItems.MercuryPlate), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryLegs),
+				new Object[] {new ItemStack(TragicItems.MercuryLegs), new ItemStack(TragicItems.MercuryLegs), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryBoots),
+				new Object[] {new ItemStack(TragicItems.MercuryBoots), new ItemStack(TragicItems.MercuryBoots), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.TungstenHelm),
+				new Object[] {new ItemStack(TragicItems.TungstenHelm), new ItemStack(TragicItems.TungstenHelm), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.TungstenPlate),
+				new Object[] {new ItemStack(TragicItems.TungstenPlate), new ItemStack(TragicItems.TungstenPlate), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.TungstenLegs),
+				new Object[] {new ItemStack(TragicItems.TungstenLegs), new ItemStack(TragicItems.TungstenLegs), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.TungstenBoots),
+				new Object[] {new ItemStack(TragicItems.TungstenBoots), new ItemStack(TragicItems.TungstenBoots), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.LightHelm),
+				new Object[] {new ItemStack(TragicItems.LightHelm), new ItemStack(TragicItems.LightHelm), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.LightPlate),
+				new Object[] {new ItemStack(TragicItems.LightPlate), new ItemStack(TragicItems.LightPlate), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.LightLegs),
+				new Object[] {new ItemStack(TragicItems.LightLegs), new ItemStack(TragicItems.LightLegs), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.LightBoots),
+				new Object[] {new ItemStack(TragicItems.LightBoots), new ItemStack(TragicItems.LightBoots), "oreCharms"}));
+		
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.DarkHelm),
+				new Object[] {new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkHelm), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.DarkPlate),
+				new Object[] {new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkPlate), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.DarkLegs),
+				new Object[] {new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkLegs), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.DarkBoots),
+				new Object[] {new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkBoots), "oreCharms"}));
 	}
 }
