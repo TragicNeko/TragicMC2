@@ -13,6 +13,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -23,7 +24,6 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -70,63 +70,34 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
 	{
-		if (event.harvester != null && !event.isSilkTouching && TragicNewConfig.allowCombustion && !event.harvester.worldObj.isRemote)
+		if (event.harvester != null && !event.isSilkTouching && TragicNewConfig.allowCombustion)
 		{			
-			if (event.harvester.getCurrentEquippedItem() != null)
+			if (event.harvester.getEquipmentInSlot(0) != null)
 			{
-				ItemStack tool = event.harvester.getCurrentEquippedItem();
+				ItemStack tool = event.harvester.getEquipmentInSlot(0);
 
 				if (EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
 				{
-					if (event.block == TragicBlocks.MercuryOre)
-					{
-						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-						event.drops.clear();
-						event.drops.add(new ItemStack(TragicItems.RedMercury, rand.nextInt(z + 1) + 1));
-					}
-					else if (event.block == TragicBlocks.TungstenOre)
-					{
-						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-						event.drops.clear();
-						event.drops.add(new ItemStack(TragicItems.Tungsten, rand.nextInt(z + 1) + 1));
-					}
-					else if (event.block == Blocks.iron_ore)
-					{
-						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-						event.drops.clear();
-						event.drops.add(new ItemStack(Items.iron_ingot, rand.nextInt(z + 1) + 1));
-					}
-					else if (event.block == Blocks.gold_ore)
-					{
-						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-						event.drops.clear();
-						event.drops.add(new ItemStack(Items.gold_ingot, rand.nextInt(z + 1) + 1));
-					}
-					else if (event.block == TragicBlocks.TragicOres)
-					{
-						ItemStack stack = null;
-						int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+					int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
+					ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(event.block, 1, event.blockMetadata));
 
-						switch(event.blockMetadata)
+					if (result != null)
+					{
+						if (event.world.isRemote)
 						{
-						case 0:
-							stack = new ItemStack(TragicItems.RedMercury, rand.nextInt(z + 1) + 1);
-							break;
-						case 1:
-							stack = new ItemStack(TragicItems.Tungsten, rand.nextInt(z + 1) + 1);
-							break;
-						case 7:
-							stack = new ItemStack(Items.gold_ingot, rand.nextInt(z + 1) + 1);
-							break;
-						case 8:
-							stack = new ItemStack(Items.iron_ingot, rand.nextInt(z + 1) + 1);
-							break;
+							for (int i = 0; i < 10; i++)
+							{
+								event.world.spawnParticle("flame", event.harvester.posX + rand.nextDouble() - rand.nextDouble(), event.harvester.posY + 0.25 + rand.nextDouble(),
+										event.harvester.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, rand.nextDouble(), 0.0);
+							}
 						}
+						else
+						{
+							result.stackSize = rand.nextInt(z + 1) + 1;
 
-						if (stack == null) return;
-
-						event.drops.clear();
-						event.drops.add(stack);
+							event.drops.clear();
+							event.drops.add(result.copy());
+						}
 					}
 				}
 			}

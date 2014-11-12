@@ -56,8 +56,8 @@ public class ItemJack extends ItemTool {
 		private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune};
 		private int[] rareLevels = new int[] {3, 3, 1};
 
-		private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune, TragicEnchantments.Combustion};
-		private int[] epicLevels = new int[] {5, 5, 3, 1};
+		private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune, TragicEnchantments.Combustion, Enchantment.fireAspect};
+		private int[] epicLevels = new int[] {5, 5, 3, 1, 1};
 
 	public ItemJack(ToolMaterial material, Doomsday dday) {
 		super(1.0F, material, blocksEffectiveAgainst);
