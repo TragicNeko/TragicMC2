@@ -13,6 +13,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.entity.miniboss.EntityAegar;
+import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
+import tragicneko.tragicmc.entity.miniboss.EntityJarra;
+import tragicneko.tragicmc.entity.miniboss.EntityKragul;
+import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
+import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
+import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
+import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
+import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
@@ -59,7 +68,7 @@ public class EntityDropHelper {
 			{new EntityDrop(5, TragicItems.DarkParticles)}});
 		
 		addToDropList(EntityGragul.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.Ash), new EntityDrop(25, Items.clay_ball), new EntityDrop(5, Items.coal)},
-			{new EntityDrop(5, TragicItems.GravityOrb)}});
+			{new EntityDrop(25, Items.coal), new EntityDrop(5, TragicItems.GravityOrb)}});
 		
 		addToDropList(EntityMinotaur.class, new EntityDrop[][] {{new EntityDrop(25, Items.beef), new EntityDrop(5, Items.leather), new EntityDrop(5, TragicItems.Horn)},
 			{new EntityDrop(10, TragicItems.Horn), new EntityDrop(5, TragicItems.ToughLeather)}});
@@ -131,34 +140,42 @@ public class EntityDropHelper {
 		
 		
 		//Mini-Boss drops
+		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.Spore), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream)},
+			{new EntityDrop(15, TragicItems.Spore), new EntityDrop(10, TragicItems.Ectoplasm), new EntityDrop(5, TragicItems.GooeyFruit)}});
 		
+		addToDropList(EntityKragul.class, new EntityDrop[][] {{new EntityDrop(15, Items.redstone), new EntityDrop(25, Items.clay_ball), new EntityDrop(5, Blocks.clay)},
+			{new EntityDrop(5, Items.coal), new EntityDrop(15, TragicItems.GravityOrb), new EntityDrop(5, Blocks.redstone_block)}});
+		
+		addToDropList(EntityMagmox.class, new EntityDrop[][] {{new EntityDrop(15, Items.magma_cream), new EntityDrop(35, Items.blaze_powder), new EntityDrop(5, Items.blaze_rod),
+				new EntityDrop(5, new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.GooeyFruit)), new EntityDrop(5, Items.nether_wart)},
+			{new EntityDrop(15, new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.GooeyFruit)), new EntityDrop(5, TragicItems.FireOrb)}});
+		
+		addToDropList(EntityMegaCryse.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.CrushedIce), new EntityDrop(15, TragicItems.IceOrb), new EntityDrop(5, Blocks.ice)},
+			{new EntityDrop(25, TragicItems.IceOrb), new EntityDrop(15, Blocks.ice), new EntityDrop(5, Blocks.packed_ice)}});
+		
+		addToDropList(EntityGreaterStin.class, new EntityDrop[][] {{new EntityDrop(25, Items.ender_pearl), new EntityDrop(15, TragicItems.DarkParticles), new EntityDrop(5, Blocks.coal_block)},
+			{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, Items.ender_eye), new EntityDrop(5, TragicItems.StinHorn)}});
+		
+		addToDropList(EntityStinKing.class, new EntityDrop[][] {{new EntityDrop(5, TragicItems.DarkIngot), new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(5, Blocks.obsidian),
+				new EntityDrop(15, Items.ender_pearl)},
+			{new EntityDrop(25, TragicItems.StinHorn), new EntityDrop(5, TragicItems.DarkIngot), new EntityDrop(10, Items.ender_eye)}});
+		
+		addToDropList(EntityStinQueen.class, new EntityDrop[][] {{new EntityDrop(5, TragicItems.DarkIngot), new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(5, Blocks.web),
+				new EntityDrop(15, Items.string)},
+			{new EntityDrop(25, Blocks.web), new EntityDrop(5, TragicItems.DarkIngot), new EntityDrop(10, TragicItems.WovenSilk)}});
+		
+		addToDropList(EntityVoxStellarum.class, new EntityDrop[][] {{new EntityDrop(25, new ItemStack(TragicBlocks.StarCrystal, 1, 15)), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.ObsidianOrb)},
+			{new EntityDrop(15, Items.emerald), new EntityDrop(15, Items.diamond), new EntityDrop(5, TragicItems.Tungsten), new EntityDrop(5, TragicItems.RedMercury), new EntityDrop(10, TragicItems.Ruby),
+				new EntityDrop(10, TragicItems.Sapphire), new EntityDrop(15, Items.experience_bottle), new EntityDrop(5, getLuxuryBlocks(true))}});
+		
+		addToDropList(EntityAegar.class, new EntityDrop[][] {{new EntityDrop(5, getLuxuryBlocks(true)), new EntityDrop(25, Items.emerald), new EntityDrop(25, Items.diamond),
+				new EntityDrop(15, TragicItems.Ruby), new EntityDrop(15, TragicItems.Sapphire), new EntityDrop(5, getOreCharms())},
+			{new EntityDrop(15, getLuxuryBlocks(true)), new EntityDrop(5, getOreCharms())}});
+		
+		
+		//Boss Drops
 		
 		/*
-		//Mini-Boss drops
-		entityLootDrops.put(EntityJarra.class, new ItemStack[][] {{new ItemStack(TragicItems.Thorns), new ItemStack(Items.magma_cream)}, {new ItemStack(TragicItems.Spore),
-			new ItemStack(TragicItems.Ectoplasm)}});
-
-		entityLootDrops.put(EntityKragul.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash), new ItemStack(Items.redstone), new ItemStack(Blocks.redstone_block)},
-			{new ItemStack(TragicItems.GravityOrb)}});
-
-		entityLootDrops.put(EntityMagmox.class, new ItemStack[][] {{new ItemStack(Items.magma_cream), new ItemStack(TragicItems.Spore), new ItemStack(Items.nether_wart),
-			new ItemStack(TragicItems.Thorns), new ItemStack(Blocks.vine)}, {new ItemStack(Items.blaze_powder), new ItemStack(TragicItems.GooeyFruit)}});
-
-		entityLootDrops.put(EntityMegaCryse.class, new ItemStack[][] {{new ItemStack(TragicItems.CrushedIce), new ItemStack(TragicItems.IceOrb)},
-			{new ItemStack(TragicItems.IceOrb)}});
-
-		entityLootDrops.put(EntityGreaterStin.class, new ItemStack[][] {{new ItemStack(TragicItems.Ash)}, {new ItemStack(TragicItems.ObsidianOrb), new ItemStack(TragicItems.DarkIngot),
-			new ItemStack(TragicItems.StinHorn)}});
-
-		entityLootDrops.put(EntityStinKing.class, new ItemStack[][] {{new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
-			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)}, {new ItemStack(TragicItems.StinHorn)}});
-
-		entityLootDrops.put(EntityStinQueen.class, new ItemStack[][] {{new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.DarkBoots),
-			new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkPlate), new ItemStack(TragicItems.DarkLegs)}, {new ItemStack(TragicItems.StinHorn)}});
-
-		entityLootDrops.put(EntityVoxStellarum.class, new ItemStack[][] {{new ItemStack(TragicBlocks.StarCrystal, 1, 15), new ItemStack(Items.glowstone_dust), new ItemStack(TragicItems.GravityOrb)},
-			{new ItemStack(Items.emerald), new ItemStack(Items.diamond), new ItemStack(TragicItems.Sapphire), new ItemStack(TragicItems.Ruby), new ItemStack(Items.quartz)}});
-
 		//Boss drops
 		entityLootDrops.put(EntityApis.class, new ItemStack[][] {{new ItemStack(TragicItems.LightParticles), new ItemStack(TragicItems.Horn), new ItemStack(TragicItems.LightIngot),
 			new ItemStack(TragicItems.LightHelm), new ItemStack(TragicItems.LightPlate), new ItemStack(TragicItems.LightLegs), new ItemStack(TragicItems.LightBoots)},
@@ -190,16 +207,19 @@ public class EntityDropHelper {
 
 	public static void addToDropList(DropEntry entry)
 	{
+		if (entityDrops.containsKey(entry.getEntityClass())) TragicMC.logWarning("Duplicate drop mapping for " + entry.getEntityClass());
 		entityDrops.put(entry.getEntityClass(), entry);
 	}
 
 	public static void addToDropList(Class clazz, EntityDrop[][] drops)
 	{
+		if (entityDrops.containsKey(clazz)) TragicMC.logWarning("Duplicate drop mapping for " + clazz);
 		entityDrops.put(clazz, new DropEntry(clazz, drops));
 	}
 
 	public static void addToDropList(Class clazz, EntityDrop[][] drops, boolean variants)
 	{
+		if (entityDrops.containsKey(clazz)) TragicMC.logWarning("Duplicate drop mapping for " + clazz);
 		entityDrops.put(clazz, new DropEntry(clazz, drops, variants));
 	}
 	
@@ -210,6 +230,39 @@ public class EntityDropHelper {
 		{
 			if (Doomsday.doomsdayList[i] != null) stack[i] = new ItemStack(TragicItems.DoomsdayScroll, 1, i);
 		}
+		return stack;
+	}
+	
+	/**
+	 * Get all of the luxury blocks in an ItemStack array for ease, flag toggles whether modded luxury blocks are included
+	 */
+	private static ItemStack[] getLuxuryBlocks(boolean flag)
+	{
+		ItemStack[] stack = new ItemStack[16];
+		
+		stack[0] = new ItemStack(Blocks.diamond_block);
+		stack[1] = new ItemStack(Blocks.emerald_block);
+		stack[2] = new ItemStack(Blocks.coal_block);
+		stack[3] = new ItemStack(Blocks.gold_block);
+		stack[4] = new ItemStack(Blocks.iron_block);
+		stack[5] = new ItemStack(Blocks.lapis_block);
+		stack[6] = new ItemStack(Blocks.redstone_block);
+		
+		if (flag)
+		{
+			for (int i = 0; i < 5; i++) stack[7 + i] = new ItemStack(TragicBlocks.CompactOre, 1, i);
+		}
+		
+		return stack;
+	}
+	
+	private static ItemStack[] getOreCharms()
+	{
+		ItemStack[] stack = new ItemStack[4];
+		stack[0] = new ItemStack(TragicItems.RubyCharm);
+		stack[1] = new ItemStack(TragicItems.SapphireCharm);
+		stack[2] = new ItemStack(TragicItems.DiamondCharm);
+		stack[3] = new ItemStack(TragicItems.EmeraldCharm);
 		return stack;
 	}
 
