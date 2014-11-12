@@ -25,7 +25,7 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Dragon's Roar!"));
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Fire Rain!"));
 
 		if (crucMoment)
 		{

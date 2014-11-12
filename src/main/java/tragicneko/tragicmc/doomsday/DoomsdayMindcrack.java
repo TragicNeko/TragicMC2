@@ -55,6 +55,7 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 			if (list.get(i) instanceof EntityCreature)
 			{
 				EntityCreature entity = (EntityCreature) list.get(i);
+				if (entity.getMaxHealth() >= 40.0F) continue;
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 2400, 4));
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));
 				if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 240));

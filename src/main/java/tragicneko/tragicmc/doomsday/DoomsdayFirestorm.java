@@ -69,14 +69,14 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		player.worldObj.setRainStrength(1.0F);
 		player.worldObj.setThunderStrength(1.0F);
 		
-		double d1 = (MathHelper.getRandomIntegerInRange(rand, -8, 8) + player.posX) - player.posX; 
-		double d2 = (MathHelper.getRandomIntegerInRange(rand, 2, 8) + player.posY) - player.posY;
-		double d3 = (MathHelper.getRandomIntegerInRange(rand, -8, 8) + player.posZ) - player.posZ;
+		double d1 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
+		double d2 = (MathHelper.getRandomIntegerInRange(rand, 4, 10) + player.posY) - player.posY;
+		double d3 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ;
 		
 		for (int l = 0; l < 12; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 40 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
@@ -84,7 +84,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		for (int l = 0; l < 24; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 40 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(8) - rand.nextInt(8));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}

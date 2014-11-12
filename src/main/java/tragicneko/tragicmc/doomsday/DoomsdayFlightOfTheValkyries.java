@@ -66,7 +66,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 				
 				if (rand.nextBoolean())
 				{
-					entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F + (rand.nextFloat() * 4.0F));
+					entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F + (rand.nextFloat() * damage));
 					
 					if (rand.nextInt(16) == 0)
 					{

@@ -30,7 +30,7 @@ public abstract class Doomsday {
 	public static final Doomsday Toxicity = (new DoomsdayToxicity(3, 15, 40));
 	public static final Doomsday Berserker = (new DoomsdayBerserker(4, 20, 50));
 	public static final Doomsday PiercingLight = (new DoomsdayPiercingLight(5, 30, 60));
-	public static final Doomsday NatureDrain = (new DoomsdayNatureDrain(6, 45, 65));
+	public static final Doomsday NatureDrain = (new DoomsdayNatureDrain(6, 6, 12));
 	public static final Doomsday PoisonBreak = (new DoomsdayPoisonBreak(7, 10, 30));
 	public static final Doomsday Snipe = (new DoomsdaySnipe(8, 55, 90));
 	public static final Doomsday RapidFire = (new DoomsdayRapidFire(9, 3, 8));
@@ -136,12 +136,12 @@ public abstract class Doomsday {
 
 		if (dif == EnumDifficulty.PEACEFUL)
 		{
-			return (short) (reqDoom / 2);
+			return (short) (1);
 		}
 
 		if (dif == EnumDifficulty.EASY)
 		{
-			return (short) ((reqDoom * 2) / 3);
+			return (short) (reqDoom / 2);
 		}
 
 		if (dif == EnumDifficulty.HARD)
@@ -149,7 +149,7 @@ public abstract class Doomsday {
 			return (short) (reqDoom);
 		}
 
-		return reqDoom;
+		return (short) (reqDoom * 2 / 3);
 	}
 
 	/**
@@ -211,6 +211,8 @@ public abstract class Doomsday {
 
 			if (!player.capabilities.isCreativeMode)
 			{
+				doom.increaseCooldown(this.getScaledCooldown(player.worldObj.difficultySetting) / 3);
+				doom.increaseDoom(this.getScaledDoomRequirement(doom) / 3);
 				this.doBacklashEffect(doom, player);
 				return;
 			}
@@ -418,7 +420,7 @@ public abstract class Doomsday {
 		{
 			return (byte) (this.cooldown / 2);
 		}
-		return cooldown;
+		return 0;
 	}
 
 	/**
