@@ -27,7 +27,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
+import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 

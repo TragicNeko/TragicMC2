@@ -13,23 +13,23 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
-import tragicneko.tragicmc.entity.boss.EntityAegar;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
-import tragicneko.tragicmc.entity.boss.EntityGreaterStin;
-import tragicneko.tragicmc.entity.boss.EntityJarra;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
-import tragicneko.tragicmc.entity.boss.EntityKragul;
-import tragicneko.tragicmc.entity.boss.EntityMagmox;
-import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
-import tragicneko.tragicmc.entity.boss.EntityStinKing;
-import tragicneko.tragicmc.entity.boss.EntityStinQueen;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
-import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
+import tragicneko.tragicmc.entity.miniboss.EntityAegar;
+import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
+import tragicneko.tragicmc.entity.miniboss.EntityJarra;
+import tragicneko.tragicmc.entity.miniboss.EntityKragul;
+import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
+import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
+import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
+import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
+import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
@@ -430,15 +430,15 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityPsygote.class, "TragicMC.Psygote", id++, 0x8965A4, 0x000000);
 		}
 
-		if (TragicNewConfig.allowLockbot)
-		{
-			//TODO add lockbot
-		}
-
 		if (TragicNewConfig.allowNanoSwarm)
 		{
 			EntityRegistry.registerModEntity(EntityNanoSwarm.class, "NanoSwarm", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
+		}
+		
+		if (TragicNewConfig.allowLockbot)
+		{
+			//TODO add lockbot
 		}
 
 		if (TragicNewConfig.allowCircuitGolem)

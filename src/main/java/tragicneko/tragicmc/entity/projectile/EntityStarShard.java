@@ -4,8 +4,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
-import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
+import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 

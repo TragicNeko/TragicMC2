@@ -3,7 +3,7 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import tragicneko.tragicmc.entity.boss.EntityAegar;
+import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 
 public class ModelAegar extends ModelBase
 {
@@ -157,7 +157,7 @@ public class ModelAegar extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		
 	}
 
 }

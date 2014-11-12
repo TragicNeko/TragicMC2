@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.boss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

@@ -20,7 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.entity.boss.EntityMagmox;
+import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.main.TragicEntities;

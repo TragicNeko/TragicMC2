@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
+import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import net.minecraft.entity.EntityLivingBase;

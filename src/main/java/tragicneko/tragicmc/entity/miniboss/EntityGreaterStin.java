@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.entity.boss;
+package tragicneko.tragicmc.entity.miniboss;
 
 import java.util.List;
 

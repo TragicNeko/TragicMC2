@@ -1,5 +1,7 @@
-package tragicneko.tragicmc.entity.boss;
+package tragicneko.tragicmc.entity.miniboss;
 
+import tragicneko.tragicmc.entity.boss.EntityPart;
+import tragicneko.tragicmc.entity.boss.IMultiPart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 
@@ -9,7 +11,7 @@ public class EntityAegarCrystal extends EntityPart {
 
 	public EntityAegarCrystal(IMultiPart main) {
 		super(main, "crystal", 2.0F, 2.0F);
-		this.health = 50.0F;
+		this.health = 100.0F;
 	}
 	
 	public float getHealth()
@@ -17,23 +19,25 @@ public class EntityAegarCrystal extends EntityPart {
 		return this.health;
 	}
 	
+	public void setHealth(float f)
+	{
+		this.health = f;
+	}
+	
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(4, Float.valueOf(0));
 	}
 	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		this.health = tag.getFloat("crystalHealth");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tag) {
 		super.writeEntityToNBT(tag);
-		tag.setFloat("crystalHealth", this.health);
 		
 	}
 

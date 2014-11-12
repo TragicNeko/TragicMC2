@@ -18,9 +18,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
-import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.main.TragicEntities;
 
 public class EntityAbomination extends TragicMob {

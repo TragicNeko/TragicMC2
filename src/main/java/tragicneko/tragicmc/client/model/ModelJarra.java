@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import tragicneko.tragicmc.entity.boss.EntityJarra;
+import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 
 public class ModelJarra extends ModelJabba
 {   

@@ -2,7 +2,7 @@ package tragicneko.tragicmc.client.model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import tragicneko.tragicmc.entity.boss.EntityMegaCryse;
+import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 
 public class ModelMegaCryse extends ModelCryse
 {

@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
-import tragicneko.tragicmc.entity.boss.EntityStinKing;
+import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 
 public class ModelStinKing extends ModelBase
 {

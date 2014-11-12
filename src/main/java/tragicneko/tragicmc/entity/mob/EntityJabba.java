@@ -27,7 +27,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.boss.EntityJarra;
+import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
