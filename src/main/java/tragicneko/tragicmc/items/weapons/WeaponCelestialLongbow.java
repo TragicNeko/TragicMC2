@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
@@ -77,15 +78,15 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 		int ticksInUse = stack.getMaxItemUseDuration() - useRemaining;
 
-		if (ticksInUse > 22) 
+		if (ticksInUse > 48) 
 		{
 			return iconArray[2];
 		}
-		else if (ticksInUse > 12) 
+		else if (ticksInUse > 24) 
 		{
 			return iconArray[1];
 		}
-		else if (ticksInUse > 2) 
+		else if (ticksInUse > 6) 
 		{
 			return iconArray[0];
 		}
@@ -193,10 +194,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
 			MinecraftForge.EVENT_BUS.post(event);
-			if (event.isCanceled())
-			{
-				return event.result;
-			}
+			if (event.isCanceled()) return event.result;
 
 			if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(Items.arrow))
 			{
@@ -284,24 +282,29 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 		ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
 		MinecraftForge.EVENT_BUS.post(event);
-		if (event.isCanceled())
-		{
-			return;
-		}
+		if (event.isCanceled()) return;
+		
 		j = event.charge;
 
 		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
+		if (!flag && !par3EntityPlayer.inventory.hasItem(Items.arrow)) return;
 
-		float f = (float)j / 20.0F;
-		f = 1.0F;
+		float f = (float)j / 40.0F;
+        f = (f * f + f * 2.0F) / 3.0F;
+		f *= 0.75F;	
+		
+		TragicMC.logInfo("Pull strength was " + f);
+		
+		if ((double)f < 0.2D) return;
+		if (f > 1.0F) f = 1.0F;
 
-		EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
+		EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f);
 
 		entityarrow.setDamage(entityarrow.getDamage() + 3.0);
 		entityarrow.motionX *= 1.1;
 		entityarrow.motionZ *= 1.1;
 
-		if (f == 1.0F)
+		if (f >= 1.0F)
 		{
 			entityarrow.setIsCritical(true);
 		}
@@ -328,7 +331,14 @@ public class WeaponCelestialLongbow extends ItemBow {
 		par1ItemStack.damageItem(1, par3EntityPlayer);
 		par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-		entityarrow.canBePickedUp = 2;
+		if (flag)
+		{
+			entityarrow.canBePickedUp = 2;
+		}
+		else
+		{
+			par3EntityPlayer.inventory.consumeInventoryItem(Items.arrow);
+		}
 
 		if (!par2World.isRemote)
 		{

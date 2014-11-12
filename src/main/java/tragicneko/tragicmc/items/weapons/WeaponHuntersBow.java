@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
@@ -67,11 +68,11 @@ public class WeaponHuntersBow extends ItemBow {
 
 		int ticksInUse = stack.getMaxItemUseDuration() - useRemaining;
 
-		if (ticksInUse > 22) 
+		if (ticksInUse > 14) 
 		{
 			return iconArray[2];
 		}
-		else if (ticksInUse > 12) 
+		else if (ticksInUse > 8) 
 		{
 			return iconArray[1];
 		}
@@ -211,25 +212,21 @@ public class WeaponHuntersBow extends ItemBow {
 		if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow))
 		{
 			float f = (float)j / 20.0F;
-			f = (f * f + f * 2.0F) / 3.0F;
+	        f = (f * f + f * 2.0F) / 3.0F;
+			f *= 1.275F;	
+			
+			TragicMC.logInfo("Pull strength was " + f);
+			
+			if ((double)f < 0.2D) return;
+			if (f > 1.0F) f = 1.0F;
 
-			if ((double)f < 0.1D)
-			{
-				return;
-			}
-
-			if (f > 1.0F)
-			{
-				f = 1.0F;
-			}
-
-			EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
+			EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f);
 
 			entityarrow.motionX *= 1.3;
 			entityarrow.motionZ *= 1.3;
 			entityarrow.motionY *= 1.1;
 
-			if (f == 1.0F)
+			if (f >= 1.0F)
 			{
 				entityarrow.setIsCritical(true);
 			}
