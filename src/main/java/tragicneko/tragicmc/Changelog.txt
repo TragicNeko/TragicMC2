@@ -2959,16 +2959,29 @@ Started work on the Aegar's AI, getting the multipart entity stuff out of the wa
 Fix issue with hitting a multipart entity with a melee weapon, it was because I wasn't setting the part positions and updating them on the client-side, the client-side was
 then attacking the entity itself which returns false on any hit so that it does nothing, however, switching the attack target to it's default part remedied this issue
 Since I finished messing with the Aegar's parts and also fixed a long standing issue with multipart entities in my mod, I can now start on it's AI and attacks
+The Aegar will have a drop that can be crafted into a new block that can be used to make the Circuit Golem
+Added Dimensional Keys for the Nether, the End and the Synapse, there is no Overworld one as using any of the keys twice should return you there anyway, they are all in the
+Creative tab now (including the Collision one)
+Created a new type of crafting recipe for fusing weapons to upgrade their lore/rarity, you can now get 4 common weapons and combine them up to an epic weapon, each one requires
+an ore charm to fuse though, added for all of my weapons and armor
+Added new texture for the alternative Dimensional Keys, there will be a synapse link item created that has 5 uses, it'll basically be the same as the Synapse Dimensional Key
+Created a texture for Aegar in normal and hypermode, added a partical effect to also help illustrate the change
+Increased base health of it's crystal so that it takes longer to break it and send it into hypermode, also added it's nbt tags, going to start work on it's animations and attacks
+now
+Added it's movement speed modifier as well, I'll keep it's extra long reach as an attack feature
+Added the Mini-Boss drops, moved the Mini-Boss entity classes into their own package, I'm going to split the models into packages as well as there is too many
+Attempt to allow vanilla entities to damage my multipart entities, doesn't look like it's going to happen so I reverted that change
+Fix memory leak from Claymation, this was due to me instancing new models every render tick, which I didn't realize I was doing when I created the render, this was also the cause
+of some of the memory leaks with the statues, though that was also due to opengl rendering
+Reduce cost of Nature Drain, I didn't realize it was an extended doomsday so it cost way too much for normal use
+Improved Combustion, if any block that is mined with it is smeltable (it has a furnace recipe), it'll now be auto-smelted and you will get the amount of drops based on the tool's
+current fortune level
+Changes to the bows, Hunter's Bow now fires faster than the Vanilla bow, but not spammable fast, Celestial Longbow now fires way slower and has a higher minimum tension required
+to fire
+Made the Thardus and Frozen Lightning inflict magic damage on entities rather than normal hit damage
+Fix a minor offset in the Challenge scroll description for their difficulty level
 
-Aegar will move around slowly, attacking the player with a laser from ranged randomly as well as using a ground shockwave attack
-The laser will be armor piercing and do around 3 hearts in damage per hit (6 in normal damage), it won't fire it very often until it gets angered
-It'll smack anything that gets near it (this AI up to this point is similar to the Enyvil's AI)
-It has very high armor and very high attack damage, however, if it's crystal gets destroyed, it'll take a huge amount of damage and be stunned for a couple of seconds, when it
-awakens, it'll go into hyper super mega anger mode and move faster, it'll gain two new attacks, a rapid fire laser attack and a crystal homing grenade attack, it'll also have
-even higher defense and may even deflect incoming attacks
-Aegar will also inflict the hacked effect on enemies, however, it'll only affect players, this effect will only apply when it hits an enemy directly
 
-Note: Name the Overlord Dimension, the Synapse
 Note: Add the Lockbot, Locobot, Circuit Golem, The Worm and the Overlord, possibly also add the WubWub in this update
 Note: Fix the Greater Stin's model, it's legs are glitched
 Note: Add a new Portal entity that will transport you to the Overlord Dimension, rather than have Aegar create it when it dies, this should drop as an item which
@@ -2977,16 +2990,25 @@ Note: The Sentinel will only have one rarity, but it will have different lore th
 Note: The Sentinel will have a couple of Doomsdays, the Armor will only have one but it will give you up to 20 hearts and be the most "OP" set in the mod
 Note: Allow ppl to configure whether weapon models show or not, do the same for armor models when I add them
 
+Possibility: Add small attribute modififers to amulets, like +2 health, +1 attack, +3 speed, etc.
+What I could do is, instead of each thing keeping track of separate modifiers, have the overall modifiers added up, then applied to the player every tick, however, each single one
+would have a max modifier of +5 on anything, and a overall max modifier of +15 from that, unless I extended it to apply to armor and weapons
+Combining weapon rarities will be 5 levels, plus 5 per rarity level for the outputted weapon, i.e. combining two level 2 rarities for a level 3 is 20 levels
+Combining Amulets will cost nothing, it'll be done automatically when you craft them to upgrade them, modifiers will max out at +5 each modifier, and the total amount per
+amulet will be +15, this may not be capped but we'll see when I actually implement this
+
 --Reminders-
 Add more config options for specific mobGriefing instances, but also have it still blanket for toggling mobGriefing off
 Modify World Shaper Doomsdays to have some additional non-griefing effects
 Make the Sky Fruit able to grow on Painted Biome trees, similarly to cocoa beans
 Start making particles for my entities
-Add a Dimensional Key for the End, Nether and the Overlord Dimension, these will take you to their Dimension from the Overworld, and will teleport you back to it if used in the
-key's dimension, these would be Creative Mode only items
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
 Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
 A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami, or just have it as a rare Doomsday Scroll
+Add a "Life split" Doomsday that gets the health of all nearby entities and splits them amongst them evenly, this will use percentages rather than raw health numbers as there
+are far too many different health amounts to compensate for otherwise, i.e. mob with 1000 health has 750, 0.75, player with 20 health has 15, 0.75, nothing happens to either
+as they have the same percent, mob with 1000 health has 550, 0.55, player with 20 health has 3, 0.15, the mob gets set to 350, the player gets set to 7 because the average is
+0.35 for the two
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
 a keybinding and gui screen in order to do this
@@ -3000,6 +3022,7 @@ one that the locbot has, it'll also will be able to fire missles if it loses bot
 Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a solid block (it also remains a solid block if it is idle), it bounces around and attacks whatever
 it collides with, it'll have dubstep-like sounds
 Start work on the Overlord
+Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 
 --Before Next Release (I failed this goal the first time OTL|||)--
 The Sentinel's doomsday will create shield entities around you that block attacks and prevent entities from moving past them (like a block), you can punch these shields and
@@ -3028,6 +3051,10 @@ Luex could be the lightning phoenix, able to shoot dark lightning and normal lig
 If all 3 get near each other, they could form Lazarus Ultim, a larger, stronger version that actively seeks out hostile mobs and destroys them with the combined powers of all
 3 lesser versions
 The Phoenix will not be one of the required kills for the endboss, it'll be a free roaming side boss, it'll still be pretty strong though
+All of the side bosses will possibly be the build-up for the next major boss, which will probably be another giant boss but maybe won't be multistage, maybe I could do that
+monster that transforms into other mobs (similar to the Claymation) except it turns into mobs that it kills and will only transform if it kills a stronger mob or is defeated in
+that mob's form, when defeated it'll revert back to a previous form until it runs out of forms
+This would require an NBTTagList and a HashMap to keep it saved for it (the HashMap will have a limit of maybe 10 forms)
 
 --Reminders for later--
 Add the custom mob sounds
