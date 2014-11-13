@@ -2,6 +2,7 @@ package tragicneko.tragicmc.events;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -9,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -17,11 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
-import tragicneko.tragicmc.entity.boss.EntityPart;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
-import tragicneko.tragicmc.items.weapons.EpicWeapon;
+import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.network.MessageAttack;
+import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class MouseEvents {
@@ -71,6 +73,21 @@ public class MouseEvents {
 				Entity entity;
 				
 				if (list.size() > 0 && d <= limit) break;
+				
+				if (list.size() > 0)
+				{
+					List<int[]> list2 = WorldHelper.getBlocksInSphericalRange(world, 1.0, vec31.xCoord - 0.5, vec31.yCoord - 0.5, vec31.zCoord - 0.5);
+					int[] coords;
+					Block block;
+					
+					for (int j = 0; j < list2.size(); j++)
+					{
+						coords = list2.get(j);
+						block = world.getBlock(coords[0], coords[1], coords[2]);
+						
+						if (block != Blocks.air && block != TragicBlocks.Luminescence) break meow;
+					}
+				}
 
 				for (int i = 0; i < list.size(); i++)
 				{
