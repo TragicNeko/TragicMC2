@@ -36,6 +36,7 @@ import org.apache.logging.log4j.Logger;
 import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.commands.DoomCommand;
 import tragicneko.tragicmc.commands.DoomsdayCoomand;
+import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.BlockDropsEvent;
@@ -198,6 +199,20 @@ public class TragicMC
 				TragicNewConfig.providerID = id;
 				DimensionManager.registerProviderType(TragicNewConfig.providerID, TragicWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
 				DimensionManager.registerDimension(TragicNewConfig.dimensionID, TragicNewConfig.providerID);
+			}
+			
+			if (!DimensionManager.isDimensionRegistered(TragicNewConfig.synapseID))
+			{
+				DimensionManager.registerProviderType(TragicNewConfig.synapseProviderID, SynapseWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
+				DimensionManager.registerDimension(TragicNewConfig.synapseID, TragicNewConfig.synapseProviderID);
+			}
+			else
+			{
+				int id = DimensionManager.getNextFreeDimId();
+				TragicNewConfig.synapseID = id;
+				TragicNewConfig.synapseProviderID = id;
+				DimensionManager.registerProviderType(TragicNewConfig.synapseProviderID, SynapseWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
+				DimensionManager.registerDimension(TragicNewConfig.synapseID, TragicNewConfig.synapseProviderID);
 			}
 
 			TragicBiomes.load();

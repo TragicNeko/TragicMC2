@@ -20,7 +20,7 @@ public class SynapseWorldProvider extends WorldProvider
 
 	public SynapseWorldProvider()
 	{
-		this.dimensionId = 3; //TragicNewConfig.synapseID;
+		this.dimensionId = TragicNewConfig.synapseID;
 		this.hasNoSky = true;
 	}
 
@@ -33,7 +33,7 @@ public class SynapseWorldProvider extends WorldProvider
 	@Override
 	public IChunkProvider createChunkGenerator()
 	{
-		return new ChunkProviderHell(this.worldObj, this.worldObj.getSeed());
+		return new SynapseChunkProvider(this.worldObj, this.worldObj.getSeed());
 	}
 
 	@Override
