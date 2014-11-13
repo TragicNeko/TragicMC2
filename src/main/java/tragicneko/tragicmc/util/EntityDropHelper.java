@@ -170,7 +170,7 @@ public class EntityDropHelper {
 		
 		addToDropList(EntityAegar.class, new EntityDrop[][] {{new EntityDrop(5, getLuxuryBlocks(true)), new EntityDrop(25, Items.emerald), new EntityDrop(25, Items.diamond),
 				new EntityDrop(15, TragicItems.Ruby), new EntityDrop(15, TragicItems.Sapphire), new EntityDrop(5, getOreCharms())},
-			{new EntityDrop(15, getLuxuryBlocks(true)), new EntityDrop(5, getOreCharms())}});
+			{new EntityDrop(10, getLuxuryBlocks(true)), new EntityDrop(5, getOreCharms()), new EntityDrop(25, TragicItems.SynapseCrystal)}});
 		
 		
 		//Boss Drops

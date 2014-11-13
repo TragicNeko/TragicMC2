@@ -87,7 +87,7 @@ public class ModelAegar extends ModelBase
 		ModelRenderer rightForearm = new ModelRenderer(this, 24, 22);
 		rightForearm.addBox(-4F, 12F, -2F, 5, 4, 4);
 		rightJoint.addChild(rightForearm);
-		
+
 		ModelRenderer rightPalm = new ModelRenderer(this, 42, 12);
 		rightPalm.addBox(-3F, 8F, -1F, 3, 4, 2);
 		rightJoint.addChild(rightPalm);
@@ -95,11 +95,11 @@ public class ModelAegar extends ModelBase
 		ModelRenderer claw = new ModelRenderer(this, 54, 8);
 		claw.addBox(1F, 15F, -1F, 1, 5, 2);
 		rightJoint.addChild(claw);
-		
+
 		ModelRenderer claw2 = new ModelRenderer(this, 54, 8);
 		claw2.addBox(-2F, 14F, -3F, 1, 7, 2);
 		rightJoint.addChild(claw2);
-		
+
 		ModelRenderer claw3 = new ModelRenderer(this, 54, 8);
 		claw3.addBox(-5F, 15F, -1F, 1, 5, 2);
 		rightJoint.addChild(claw3);
@@ -107,23 +107,23 @@ public class ModelAegar extends ModelBase
 		leftShoulder = new ModelRenderer(this, 36, 0);
 		leftShoulder.addBox(-2F, -2F, -2F, 4, 6, 4);
 		leftShoulder.setRotationPoint(9F, -4F, 0F);
-		
+
 		leftJoint = new ModelRenderer(this, 54, 0);
 		leftJoint.addBox(-0.5F, 5F, -1F, 2, 2, 2);
 		leftShoulder.addChild(leftJoint);
-		
+
 		ModelRenderer leftForearm = new ModelRenderer(this, 42, 12);
 		leftForearm.addBox(-1F, 8F, -1F, 3, 4, 2);
 		leftJoint.addChild(leftForearm);
-		
+
 		ModelRenderer leftCannon = new ModelRenderer(this, 42, 20);
 		leftCannon.addBox(-2F, 12F, -2F, 5, 6, 4);
 		leftJoint.addChild(leftCannon);
-		
+
 		ModelRenderer rail = new ModelRenderer(this, 0, 7);
 		rail.addBox(-1F, 18F, 0F, 1, 5, 1);
 		leftJoint.addChild(rail);
-		
+
 		ModelRenderer rail2 = new ModelRenderer(this, 0, 7);
 		rail2.addBox(1F, 18F, 0F, 1, 5, 1);
 		leftJoint.addChild(rail2);
@@ -133,7 +133,7 @@ public class ModelAegar extends ModelBase
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		
+
 		head.render(f5);
 		body.render(f5);
 		rightShoulder.render(f5);
@@ -157,7 +157,101 @@ public class ModelAegar extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
+		if (!(entity instanceof EntityAegar)) return;
+
+		EntityAegar aegar = (EntityAegar) entity;
+
+		bar.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted + 13, 120.0F);
+		bar2.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted + 97, 120.0F);
+		bar3.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted - 7, 120.0F);
+		bar4.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted - 79, 120.0F);
+		bar5.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted - 87, 120.0F);
+		bar6.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted - 44, 120.0F);
+		bar7.offsetY = 0.35F * this.simplifyAngle(aegar.ticksExisted + 69, 120.0F);
+
+		bar.rotateAngleY = 0.15F + 3.0F * this.simplifyAngle(aegar.ticksExisted + 33, 60.0F);
+		bar2.rotateAngleY = -0.35F + 3.0F * this.simplifyAngle(aegar.ticksExisted - 27, 60.0F);
+		bar3.rotateAngleY = 0.65F + 3.0F * this.simplifyAngle(aegar.ticksExisted + 57, 60.0F);
+		bar4.rotateAngleY = -0.85F + 3.0F * this.simplifyAngle(aegar.ticksExisted - 3, 60.0F);
+		bar5.rotateAngleY = -0.35F + 3.0F * this.simplifyAngle(aegar.ticksExisted + 17, 60.0F);
+		bar6.rotateAngleY = 0.65F + 3.0F * this.simplifyAngle(aegar.ticksExisted + 6, 60.0F);
+		bar7.rotateAngleY = -0.85F + 3.0F * this.simplifyAngle(aegar.ticksExisted - 48, 60.0F);
+
+		rightShoulder.rotateAngleX = rightShoulder.rotateAngleZ = 0.0F;
+		leftShoulder.rotateAngleX = leftShoulder.rotateAngleZ = 0.0F;
+		leftJoint.rotateAngleX = 0.0F;
+		body.rotateAngleX = 0.0F;
 		
+		head.rotateAngleY = f3 / (180F / (float)Math.PI);
+		head.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+		leftShoulder.rotateAngleX = 0.55F * this.simplifyAngle(f, 13.0F) * f1;
+		rightShoulder.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
+		
+		body.offsetY = head.offsetY = rightShoulder.offsetY = leftShoulder.offsetY = 0.0F;
+
+		if (aegar.getAttackTime() >= 10)
+		{
+			rightShoulder.rotateAngleX = 0.65F * this.simplifyAngle(aegar.getAttackTime(), 10.0F) - 0.65F;
+			rightShoulder.rotateAngleZ = 0.55F * this.simplifyAngle(aegar.getAttackTime(), 10.0F) - 0.25F;
+
+			leftShoulder.rotateAngleX = 0.65F * this.simplifyAngle(aegar.getAttackTime(), 10.0F) - 0.65F;
+			leftShoulder.rotateAngleZ = -0.55F * this.simplifyAngle(aegar.getAttackTime(), 10.0F) + 0.25F;
+		}
+		else
+		{
+			if (aegar.getHurtTime() > 0)
+			{
+				rightShoulder.rotateAngleX = 0.65F * this.simplifyAngle(aegar.getHurtTime(), 10.0F) - 0.65F;
+				rightShoulder.rotateAngleZ = -0.15F * this.simplifyAngle(aegar.getHurtTime(), 10.0F) - 0.15F;
+
+				leftShoulder.rotateAngleX = 0.65F * this.simplifyAngle(aegar.getHurtTime(), 10.0F) - 0.65F;
+				leftShoulder.rotateAngleZ = 0.15F * this.simplifyAngle(aegar.getHurtTime(), 10.0F) + 0.15F;
+				
+				head.offsetY = -0.075F + this.simplifyAngle(aegar.getHurtTime(), 10.0F) * 0.075F;
+				body.offsetY = 0.075F - this.simplifyAngle(aegar.getHurtTime(), 10.0F) * 0.075F;
+			}
+			else
+			{
+				if (aegar.getLaserTicks() > 0 || aegar.getAutoTicks() > 20)
+				{
+					leftShoulder.rotateAngleX = -0.65F;
+					leftJoint.rotateAngleX = -0.75F;
+				}
+				else if (aegar.getMortorTicks() > 20)
+				{
+					rightShoulder.rotateAngleX = -1.75F;
+					leftShoulder.rotateAngleX = -1.75F;
+					rightShoulder.rotateAngleZ = aegar.worldObj.rand.nextFloat();
+					leftShoulder.rotateAngleZ = aegar.worldObj.rand.nextFloat();
+				}
+				else if (aegar.getShockwaveTicks() > 0)
+				{
+					if (aegar.getShockwaveTicks() >= 10)
+					{
+						rightShoulder.rotateAngleX = -1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 100.0F) - 1.25F;
+						leftShoulder.rotateAngleX = -1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 100.0F) - 1.25F;
+						
+						body.rotateAngleX = -0.15F * this.simplifyAngle(aegar.getShockwaveTicks(), 100.0F) - 0.15F;
+					}
+					else if (aegar.getShockwaveTicks() > 5)
+					{
+						rightShoulder.rotateAngleX = -1.25F - 1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 10.0F);
+						leftShoulder.rotateAngleX = -1.25F - 1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 10.0F);
+						
+						body.rotateAngleX = -0.15F * this.simplifyAngle(aegar.getShockwaveTicks(), 10.0F) - 0.15F;
+					}
+				}
+				else
+				{
+					body.offsetY = head.offsetY = rightShoulder.offsetY = leftShoulder.offsetY = -0.075F + this.simplifyAngle(aegar.ticksExisted, 60.0F) * 0.075F;
+				}
+			}
+		}
 	}
 
+	protected float simplifyAngle(float par1, float par2)
+	{
+		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
+	}
 }

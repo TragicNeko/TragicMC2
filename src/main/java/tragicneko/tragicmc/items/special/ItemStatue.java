@@ -20,9 +20,9 @@ import tragicneko.tragicmc.main.TragicTabs;
 public class ItemStatue extends Item {
 
 	private String[] subNames = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul", "magmox", "megaCryse", "stinKing",
-			"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation"};
+			"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord"};
 	private String[] textureNames = new String[] {"Apis", "Kitsune", "DeathReaper", "TimeController", "Yeti", "Polaris", "Jarra", "Kragul", "Magmox", "MegaCryse", "StinKing",
-			"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation"};
+			"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation", "Aegar", "Overlord"};
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemStatue()
@@ -92,7 +92,7 @@ public class ItemStatue extends Item {
 	private String getExtraStringName(int damage) {
 		int var = 0;
 
-		for (int i = 1; i < 16; i++)
+		for (int i = 1; i < 18; i++)
 		{
 			if (damage >= subNames.length * i && damage < (i * subNames.length) + subNames.length)
 			{
@@ -133,14 +133,13 @@ public class ItemStatue extends Item {
 		case 15:
 			return "tragicmc.mobTexture.checkered";
 		default:
-		case 0:
 			return "";
 		}
 	}
 
 	private byte getTextureIDFromDamage(int damage)
 	{		
-		for (byte i = 1; i < 16; i++)
+		for (byte i = 1; i < 18; i++)
 		{
 			if (damage >= subNames.length * i && damage < (i * subNames.length) + subNames.length) return i;
 		}
