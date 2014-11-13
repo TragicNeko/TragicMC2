@@ -26,7 +26,7 @@ public class WeaponButcher extends EpicWeapon {
 	
 	private final Lore[] uniqueLores = new Lore[] {new Lore("Time to Eat!", EnumRarity.epic), new Lore("Can we eat now?", EnumRarity.uncommon), new Lore("Dinner Time!", EnumRarity.rare),
 			new Lore("I'm hungry...", EnumRarity.uncommon), new Lore("That looks delicious!", EnumRarity.uncommon), new Lore("I need food..."), new Lore("My stomach won't stop growling!", EnumRarity.rare),
-			new Lore("MMMmmm... donuts...", EnumRarity.rare), new Lore("OMNOMNOMNOM", EnumRarity.epic), new Lore("Anything here is edible, even I am, but that would be cannibalism.", EnumRarity.rare),
+			new Lore("MMMmmm... donuts...", EnumRarity.rare), new Lore("OMNOMNOMNOM", EnumRarity.epic), new Lore("Everything is edible, even me, but that would be cannibalism.", EnumRarity.rare),
 			new Lore("Tasty.", EnumRarity.uncommon), new Lore("That was delicious!"), new Lore("I'm having an old friend for dinner!", EnumRarity.rare), new Lore("Bon apetite!", EnumRarity.uncommon),
 			new Lore("Just add salt!", EnumRarity.rare), new Lore("Just a pinch of sage!", EnumRarity.uncommon)};
 
