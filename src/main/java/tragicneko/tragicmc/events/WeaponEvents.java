@@ -10,15 +10,18 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -125,6 +128,22 @@ public class WeaponEvents {
 					if (mp.getHealth() <= mp.getMaxHealth()) mp.heal(mp.getMaxHealth());
 					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-25);
 				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onMagicAttack(LivingAttackEvent event)
+	{
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
+			ItemStack stack = player.getEquipmentInSlot(0);
+			
+			if (stack != null && (stack.getItem() == TragicItems.Thardus || stack.getItem() == TragicItems.FrozenLightning) && !event.source.isMagicDamage())
+			{
+				if (event.isCancelable()) event.setCanceled(true);
+				event.entityLiving.attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(player), event.ammount);
 			}
 		}
 	}
