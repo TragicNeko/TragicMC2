@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc.util;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -333,6 +333,7 @@ public class TragicEntityList
     	NORMAL,
     	PET,
     	MINIBOSS,
-    	BOSS
+    	BOSS,
+    	BIGBOSS
     }
 }

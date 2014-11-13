@@ -50,6 +50,7 @@ import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
+import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
@@ -70,7 +71,8 @@ import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
-import tragicneko.tragicmc.main.TragicEntityList.EnumEggType;
+import tragicneko.tragicmc.util.TragicEntityList;
+import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class TragicEntities {
@@ -761,7 +763,6 @@ public class TragicEntities {
 			//TragicEntitList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x000000, 0x000000, EnumEggType.BOSS);
 		}
 
-
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
 		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
 		EntityRegistry.registerModEntity(EntityLargePumpkinbomb.class, "LargePumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
@@ -786,5 +787,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityDarkCrystal.class, "DarkCrystal", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkMortor.class, "DarkMortor", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityWebBomb.class, "WebBomb", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityCrystalMortor.class, "CrystalMortor", listid++, TragicMC.instance, 80, 5, true);
 	}
 }
