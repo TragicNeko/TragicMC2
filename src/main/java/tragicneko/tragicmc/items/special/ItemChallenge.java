@@ -17,9 +17,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicEntityList;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.util.TragicEntityList;
 
 public class ItemChallenge extends Item {
 
@@ -181,7 +181,7 @@ public class ItemChallenge extends Item {
 			if (challenge == null) return;
 			EnumChatFormatting format = challenge.difficulty == 1 ? EnumChatFormatting.AQUA : (challenge.difficulty == 2 ? EnumChatFormatting.BLUE : (challenge.difficulty == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
 			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
-			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 2 ? "Medium" : (challenge.difficulty == 3 ? "Hard" : "Harsh"));
+			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
 			par2List.add("Difficulty: " + format + diff);
 			String s = challenge.getDesc(challenge.challengeID);
 			String s2 = null;
