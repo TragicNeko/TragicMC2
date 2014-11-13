@@ -293,8 +293,6 @@ public class WeaponCelestialLongbow extends ItemBow {
         f = (f * f + f * 2.0F) / 3.0F;
 		f *= 0.75F;	
 		
-		TragicMC.logInfo("Pull strength was " + f);
-		
 		if ((double)f < 0.2D) return;
 		if (f > 1.0F) f = 1.0F;
 
