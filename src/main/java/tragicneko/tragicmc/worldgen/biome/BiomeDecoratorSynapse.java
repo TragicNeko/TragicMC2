@@ -11,7 +11,7 @@ public class BiomeDecoratorSynapse extends BiomeDecorator {
         if (this.chunk_X == 0 && this.chunk_Z == 0)
         {
             EntityDragon entitydragon = new EntityDragon(this.currentWorld);
-            entitydragon.setLocationAndAngles(0.0D, 128.0D, 0.0D, this.randomGenerator.nextFloat() * 360.0F, 0.0F);
+            entitydragon.setLocationAndAngles(0.0D, 64.0D, 0.0D, this.randomGenerator.nextFloat() * 360.0F, 0.0F);
             this.currentWorld.spawnEntityInWorld(entitydragon);
         }
     }
