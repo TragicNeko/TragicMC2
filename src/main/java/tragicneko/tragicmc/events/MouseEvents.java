@@ -61,13 +61,16 @@ public class MouseEvents {
 			float f8 = f3 * f5;
 			double limit = player.capabilities.isCreativeMode ? 2.5D : 1.5D;
 			double enchantLimit = limit + EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) * 1.5D;
+			AxisAlignedBB bb;
 
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
-			{
+			{				
 				Vec3 vec31 = vec3.addVector((double)f7 * d, (double)f6 * d, (double)f8 * d);
-				AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord - 0.675, vec31.yCoord - 0.675, vec31.zCoord - 0.675).expand(1.35D, 1.35D, 1.35D);
+				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord - 0.675, vec31.yCoord - 0.675, vec31.zCoord - 0.675).expand(1.35, 1.35, 1.35);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 				Entity entity;
+				
+				if (list.size() > 0 && d <= limit) break;
 
 				for (int i = 0; i < list.size(); i++)
 				{
@@ -76,11 +79,6 @@ public class MouseEvents {
 					if (entity instanceof IMultiPart)
 					{
 						TragicMC.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
-						break meow;
-					}
-					
-					if (d <= limit) 
-					{
 						break meow;
 					}
 
