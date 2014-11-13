@@ -150,6 +150,8 @@ public class TragicBlocks {
 	
 	public static Block CelledBlock;
 	public static Block CelledLamp;
+	
+	public static Block SynapseCore;
 
 	public static void load()
 	{		
@@ -332,6 +334,9 @@ public class TragicBlocks {
 		
 		CelledLamp = (new BlockCelledLamp().setBlockName("tragicmc.celledLamp"));
 		GameRegistry.registerBlock(CelledLamp, ItemBlockCelledLamp.class, "celledLamp");
+		
+		SynapseCore = (new BlockGeneric(Material.iron, "pickaxe", 0).setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore_lowRes").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
+		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
 		
 		for (int i = 0; i < 3; i++)
 		{

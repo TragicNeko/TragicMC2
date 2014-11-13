@@ -212,17 +212,17 @@ public class EntityPirah extends TragicMob {
 				
 				if (this.ticksExisted % 5 == 0)
 				{
-					this.motionY += ((rand.nextDouble() - rand.nextDouble()) + 0.525D) * 0.725D;
-					this.motionX += ((rand.nextDouble() - rand.nextDouble())) * 0.425D;
-					this.motionZ += ((rand.nextDouble() - rand.nextDouble())) * 0.425D;
+					this.motionY += ((rand.nextDouble() - rand.nextDouble()) + 0.625D) * 0.725D;
+					this.motionX += ((rand.nextDouble() - rand.nextDouble())) * 0.825D;
+					this.motionZ += ((rand.nextDouble() - rand.nextDouble())) * 0.825D;
 					
 					if (this.getAttackTarget() == null)
 					{
 						if (this.ticksExisted % 10 == 0)
 						{
-							this.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.325D;
-							this.motionY = (rand.nextDouble() - rand.nextDouble()) * 0.335D;
-							this.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.325D;
+							this.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.625D;
+							this.motionY = (rand.nextDouble() - rand.nextDouble()) * 0.435D;
+							this.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.625D;
 						}
 					}
 					else

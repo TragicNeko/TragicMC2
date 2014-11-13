@@ -18,6 +18,7 @@ import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
+import tragicneko.tragicmc.entity.boss.EntityOverlord;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -544,7 +545,7 @@ public class TragicEntities {
 		if (TragicNewConfig.allowAegar)
 		{
 			EntityRegistry.registerModEntity(EntityAegar.class, "Aegar", listid++, TragicMC.instance, 80, 1, true);
-			TragicEntityList.addMapping(EntityAegar.class, "TragicMC.Aegar", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
+			TragicEntityList.addMapping(EntityAegar.class, "TragicMC.Aegar", id++, 0x45C0CB, 0xCEFBFF, EnumEggType.MINIBOSS);
 		}
 
 		//Bosses
@@ -754,13 +755,14 @@ public class TragicEntities {
 			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
+		
 
-
+		//Big bosses
+		
 		if (TragicNewConfig.allowOverlord)
 		{
-			//TODO add Overlord
-			//EntityRegistry.registerModEntity(EntityOverlord.class, "Overlord", listid++, TragicMC.instance, 80, 1, true);
-			//TragicEntitList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x000000, 0x000000, EnumEggType.BOSS);
+			EntityRegistry.registerModEntity(EntityOverlord.class, "Overlord", listid++, TragicMC.instance, 80, 1, true);
+			TragicEntityList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
 		}
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);

@@ -253,6 +253,7 @@ public class TragicItems {
 	public static Item SkyFruit;
 
 	public static Item DimensionalKey, DimensionalKeyEnd, DimensionalKeyNether, DimensionalKeySynapse;
+	public static Item SynapseLink, SynapseCrystal;
 
 	public static Item BowOfJustice;
 	public static Item SwordOfJustice;
@@ -711,6 +712,12 @@ public class TragicItems {
 		
 		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeySynapse" + textureRes));
 		GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
+		
+		SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:SynapseLink" + textureRes));
+		GameRegistry.registerItem(SynapseLink, "synapseLink");
+		
+		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:SynapseCrystal" + textureRes));
+		GameRegistry.registerItem(SynapseCrystal, "synapseCrystal");
 		
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");

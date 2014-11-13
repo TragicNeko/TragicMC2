@@ -233,6 +233,8 @@ tile.tragicmc.celledLamp.lime.name=Celled Lamp (Lime)
 tile.tragicmc.celledLamp.purple.name=Celled Lamp (Purple)
 tile.tragicmc.celledLamp.lightBlue.name=Celled Lamp (Light Blue)
 
+tile.tragicmc.synapseCore.name=Synapse Core
+
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
 item.tragicmc.mercuryPlate.name=Red Mercury Chestplate
@@ -420,6 +422,9 @@ item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
 item.tragicmc.dimensionalKey.nether.name=Dimensional Key (Nether)
 item.tragicmc.dimensionalKey.synapse.name=Dimensional Key (Synapse)
 
+item.tragicmc.synapseLink.name=Synapse Link
+item.tragicmc.synapseCrystal.name=Synapse Crystal
+
 item.tragicmc.mobStatue.apis.name=Apis Statue
 item.tragicmc.mobStatue.kitsune.name=Kitsunakuma Statue
 item.tragicmc.mobStatue.deathReaper.name=Skultar Statue
@@ -436,6 +441,8 @@ item.tragicmc.mobStatue.greaterStin.name=Greater Stin Statue
 item.tragicmc.mobStatue.voxStellarum.name=Vox Stellarum Statue
 item.tragicmc.mobStatue.enyvil.name=Enyvil Statue
 item.tragicmc.mobStatue.claymation.name=Claymation Statue
+item.tragicmc.mobStatue.aegar.name=Aegar Statue
+item.tragicmc.mobStatue.overlord.name=Overlord Statue
 
 tragicmc.mobTexture.iron=(Iron)
 tragicmc.mobTexture.gold=(Gold)
