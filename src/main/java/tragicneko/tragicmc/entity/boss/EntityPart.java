@@ -20,7 +20,6 @@ public class EntityPart extends Entity {
 
 	@Override
 	protected void entityInit() {
-		
 	}
 
 	@Override

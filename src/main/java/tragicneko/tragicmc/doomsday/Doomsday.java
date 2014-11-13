@@ -63,24 +63,32 @@ public abstract class Doomsday {
 	public static final Doomsday DragonsRoar = (new DoomsdayDragonsRoar(36, 15, 25));
 	public static final Doomsday Firestorm = (new DoomsdayFirestorm(37, 8, 10));
 	public static final Doomsday Shotgun = (new DoomsdayShotgun(38, 5, 10));
-
-	/*
-	public static final Doomsday Isolation = (new Doomsday(31, 25, 125, EnumDoomType.WORLDSHAPER)); //knocks away all enemies near you and inflicts a huge amount of damage
-	//to them, also throws a bunch of blocks near you up into the air and out away from you, causes major terrain damage, Tragic Armor
-	public static final Doomsday JudgmentDay = (new Doomsday(32, 160, 200, EnumDoomType.COMBINATION)); //teleports all nearby entities into the air above you and damages them
-	//multiple times with magic damage, for every hit you heal yourself, they also get hurt by spirit bursts fired from the ground and will take huge amounts of damage the more health 
-	//that they have, potentionally doing hundreds of points of damage to boss mobs, Tragic Hellraiser
-	public static final Doomsday ParadigmShift = (new Doomsday(33, 55, 100, EnumDoomType.ULTIMATE)); //Activates a random doomsday
-	public static final Doomsday Harden = (new Doomsday(34, 35, 30)); //gives you resistance 10 for a very short amount of time
-	public static final Doomsday Sharpen = (new Doomsday(35, 35, 30)); //gives you strength 10 for a very short amount of time
-	public static final Doomsday DeathMark = (new Doomsday(44, 6, 4)); //inflicts a mob nearby with submission 10, damage that mob with magic bursts over the duration of it
-	 */
+	//public static final Doomsday Guardian = (new DoomsdayGuardian(39, 50, 75));
+	//public static final Doomsday Harden = (new DoomsdayHarden(40, 4, 60));
+	//public static final Doomsday Sharpen = (new DoomsdaySharpen(41, 6, 75));
+	
+	//Scroll only Doomsdays
+	//Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
+	//Death Mark, Overflow, a nearby enemy is inflicted with Submission X and gets damaged randomly for a few minutes
+	//Paradigm Shift, Influence, activates a random Doomsday effect
+	//Adrenaline, Crisis, gives you a Speed Boost V for like 5 seconds, higher amplifier for lower health that you have
+	//Escape, World Shaper, creates multiple explosive particles around the user and inflicts blindness on all nearby mobs
+	//Gift of the Gods, World Shaper, makes it rain random luxury drops, like diamond, ruby, sapphire, etc. may also do stuff like coal, cake or sushi
+	//Gambler, Influence, gives you a random Potion Effect for a random duration and random amplifier
+	//Soulstealer, Influence, steals health from the mob closest to you and gives it to you
+	//Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
+	//Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
+	//Time Crash, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
+	//Hacker, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
+	//Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
+	//Dimentia, Influence, mobs around you start attacking each other
+	//Drillshot, World Shaper, fires a single "Drill" projectile that mines blocks that it gets near, like a mobile Miner Skills
+	//Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", //"isolation", "judgmentDay", "paradigmShift", "harden", "diamondCut",
-		//"deathMark", "lateralus"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

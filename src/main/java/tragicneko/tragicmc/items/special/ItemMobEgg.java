@@ -20,9 +20,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicEntityList;
-import tragicneko.tragicmc.main.TragicEntityList.EnumEggType;
 import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.util.TragicEntityList;
+import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -230,6 +230,11 @@ public class ItemMobEgg extends Item
 		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.MINIBOSS)
 		{
 			return par2 > 0 ? this.miniBossIcon : this.miniBossIconOverlay;
+		}
+		
+		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.BIGBOSS)
+		{
+			return par2 > 0 ? this.theIcon : super.getIconFromDamageForRenderPass(par1, par2); //TODO add a new bigboss icon for the spawn eggs
 		}
 		
 		return par2 > 0 ? this.normalMobIconOverlay : this.normalMobIcon;

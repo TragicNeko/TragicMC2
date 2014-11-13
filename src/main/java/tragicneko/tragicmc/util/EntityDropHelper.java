@@ -238,7 +238,7 @@ public class EntityDropHelper {
 	 */
 	private static ItemStack[] getLuxuryBlocks(boolean flag)
 	{
-		ItemStack[] stack = new ItemStack[16];
+		ItemStack[] stack = new ItemStack[13];
 		
 		stack[0] = new ItemStack(Blocks.diamond_block);
 		stack[1] = new ItemStack(Blocks.emerald_block);

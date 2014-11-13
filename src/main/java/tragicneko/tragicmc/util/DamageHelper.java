@@ -35,7 +35,7 @@ public class DamageHelper {
 	 */
 	public static DamageSource causeArmorPiercingDamageToEntity(EntityLivingBase entity)
 	{
-		EntityDamageSource source = (EntityDamageSource) new EntityDamageSource("armorPiercing", entity);
+		EntityDamageSource source = (EntityDamageSource) new EntityDamageSource("armorPiercing", entity).setDamageBypassesArmor();
 		return source;
 	}
 }
