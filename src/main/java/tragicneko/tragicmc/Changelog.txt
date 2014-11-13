@@ -2980,7 +2980,7 @@ Changes to the bows, Hunter's Bow now fires faster than the Vanilla bow, but not
 to fire
 Made the Thardus and Frozen Lightning inflict magic damage on entities rather than normal hit damage
 Fix a minor offset in the Challenge scroll description for their difficulty level
-
+Reduce Aegar's defense, it is way too high, reduce it's attack damage and attack speed as well, otherwise it can basically insta-kill anything that gets near it
 
 Note: Add the Lockbot, Locobot, Circuit Golem, The Worm and the Overlord, possibly also add the WubWub in this update
 Note: Fix the Greater Stin's model, it's legs are glitched
