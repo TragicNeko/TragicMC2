@@ -19,6 +19,8 @@ import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityOverlord;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -761,6 +763,12 @@ public class TragicEntities {
 		
 		if (TragicNewConfig.allowOverlord)
 		{
+			EntityRegistry.registerModEntity(EntityOverlordCocoon.class, "OverlordCocoon", listid++, TragicMC.instance, 80, 1, true);
+			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
+			
+			EntityRegistry.registerModEntity(EntityOverlordCombat.class, "OverlordCombat", listid++, TragicMC.instance, 80, 1, true);
+			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
+			
 			EntityRegistry.registerModEntity(EntityOverlord.class, "Overlord", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
 		}

@@ -15,10 +15,13 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
+import tragicneko.tragicmc.client.model.ModelApis;
+import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelGragul;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
 import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelJarra;
+import tragicneko.tragicmc.client.model.ModelKitsune2;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
@@ -65,6 +68,9 @@ import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
+import tragicneko.tragicmc.entity.boss.EntityOverlord;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -225,6 +231,11 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
+		
+		//Big Boss renders TODO change these to their proper models, these are placeholders
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlord.class, new RenderMob(new ModelApis(), 0.885F, "ApisCombat2_lowRes", 2.556F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelDeathReaper(), 0.885F, "DeathReaper_lowRes", 2.556F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelKitsune2(), 0.885F, "Kitsune2_lowRes", 2.556F));
 	}
 
 	@Override

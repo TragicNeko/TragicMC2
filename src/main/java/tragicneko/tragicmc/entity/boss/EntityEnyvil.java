@@ -431,7 +431,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 				this.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}
 		}
-
 	}
 
 	private void updateTargetInfo() {

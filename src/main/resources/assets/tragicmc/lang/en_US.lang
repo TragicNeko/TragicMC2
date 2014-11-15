@@ -234,6 +234,7 @@ tile.tragicmc.celledLamp.purple.name=Celled Lamp (Purple)
 tile.tragicmc.celledLamp.lightBlue.name=Celled Lamp (Light Blue)
 
 tile.tragicmc.synapseCore.name=Synapse Core
+tile.tragicmc.overlordBarrier.name=Overlord Barrier
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
@@ -769,7 +770,9 @@ entity.TragicMC.LavaPirah.name=Lava Pirah
 entity.TragicMC.Pox.name=Pox
 entity.TragicMC.Enyvil.name=Enyvil
 entity.TragicMC.Claymation.name=Claymation
-entity.TragicMC.Overlord.name=Overlord
+entity.TragicMC.Overlord.name=The Overlord (Core)
+entity.TragicMC.OverlordCombat.name=The Overlord (Combat)
+entity.TragicMC.OverlordCocoon.name=The Overlord (Cocoon)
 entity.TragicMC.Lockbot.name=Lockbot
 entity.TragicMC.Locobot.name=Locobot
 entity.TragicMC.NanoSwarm.name=Nano Swarm

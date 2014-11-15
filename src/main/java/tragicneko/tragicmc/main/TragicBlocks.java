@@ -152,6 +152,7 @@ public class TragicBlocks {
 	public static Block CelledLamp;
 	
 	public static Block SynapseCore;
+	public static Block OverlordBarrier;
 
 	public static void load()
 	{		
@@ -337,6 +338,23 @@ public class TragicBlocks {
 		
 		SynapseCore = (new BlockGeneric(Material.iron, "pickaxe", 0).setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore_lowRes").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
+		
+		OverlordBarrier = (new BlockGeneric(Material.iron, "", 0) {
+			@cpw.mods.fml.relauncher.SideOnly(cpw.mods.fml.relauncher.Side.CLIENT)
+			@Override
+			public int getRenderBlockPass()
+			{
+				return 1;
+			}
+			
+			@Override
+			public boolean isOpaqueCube()
+			{
+				return false;
+			}
+			
+		}.setBlockName("tragicmc.overlordBarrier").setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(TragicTabs.Creative).setStepSound(Block.soundTypeStone).setBlockTextureName("tragicmc:OverlordBarrier_lowRes").setLightLevel(10.0F).setLightOpacity(0));
+		GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
 		
 		for (int i = 0; i < 3; i++)
 		{
