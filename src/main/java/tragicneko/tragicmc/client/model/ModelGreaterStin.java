@@ -72,7 +72,7 @@ public class ModelGreaterStin extends ModelBase
 
 		//Front Right leg
 		legFR = new ModelRenderer(this, 64, 0);
-		legFR.addBox(-5F, -4F, 0F, 2, 15, 3);
+		legFR.addBox(-5F, 4F, 0F, 2, 15, 3);
 		legFR.rotateAngleX = -0.2230717F;
 		legFR.rotateAngleZ = 0.0371786F;
 		body.addChild(legFR);
@@ -84,12 +84,12 @@ public class ModelGreaterStin extends ModelBase
 
 		//Front Left leg
 		legFL = new ModelRenderer(this, 64, 20);
-		legFL.addBox(-1F, -5F, -1F, 2, 15, 3);
+		legFL.addBox(2F, 4F, -1F, 2, 15, 3);
 		legFL.rotateAngleX = -0.2230717F;
 		legFL.rotateAngleZ = -0.0371786F;
 		body.addChild(legFL);
 		ModelRenderer legTipFL = new ModelRenderer(this, 10, 0);
-		legTipFL.addBox(-1F, 0F, -1F, 1, 15, 2);
+		legTipFL.addBox(1.5F, 19F, -2.5F, 1, 15, 2);
 		legTipFL.rotateAngleX = 0.1115358F;
 		legTipFL.rotateAngleZ = -0.0743572F;
 		legFL.addChild(legTipFL);
@@ -125,7 +125,7 @@ public class ModelGreaterStin extends ModelBase
 		legBR.rotateAngleZ = 0.1115358F;
 		body.addChild(legBR);
 		ModelRenderer legTipBR = new ModelRenderer(this, 0, 0);
-		legTipBR.addBox(-5F, 19F, 6F, 1, 15, 2);
+		legTipBR.addBox(-4.5F, 19F, 6F, 1, 15, 2);
 		legTipBR.rotateAngleX = 0.1487144F;
 		legBR.addChild(legTipBR);
 
