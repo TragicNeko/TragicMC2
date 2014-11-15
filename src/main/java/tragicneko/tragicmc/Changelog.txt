@@ -2997,6 +2997,13 @@ Fix being able to attack entities through walls with the Reach enchantment this 
 attacking things
 Created basic entity class for the Overlord, experimenting with it's final form's motion, which will use a modified version of the Pirah's except it'll use a target intead of
 random motion offsets to determine where it's going
+Did more work on the Overlord's final form movements, it works adequately, though I'll work on a way to smooth it out a bit more later on
+Allow the Overlord to randomly hover in place now, at this time planning to block incoming projectiles with it's barrier blocks and will fire crystal mortors at it's target (if it has
+any targets, otherwise it'll fire them at random locations around it) whenever it's hovering
+I have decided that I need to split off the Overlord into 3 separate classes as I previously planned to, each form has a different amount of parts (if it is multipart) and then
+also has different movement patterns which needs to be put into it's update method an then they also have different attack patterns and it'll just be easier to spawn the next
+form after a small transformation phase from the previous form
+Fixed Greater Stin model offsets
 
 --Overlord plan, may fit in other random small things in between doing this--
 After I get that motion adequate I'll make it Multipart, and work out the details of that, afterwards I'll add it's attack patterns and AI, at this point it'd be best to start
@@ -3011,7 +3018,6 @@ When each form is "defeated" it'll go through a transformation period which it t
 This is going to take a long time to do, afterwards I'll make the other smaller entities like the Lockbot and Locobot
 
 Note: Add the Lockbot, Locobot, Circuit Golem, The Worm, possibly also add the WubWub in this update
-Note: Fix the Greater Stin's model, it's legs are glitched
 Note: Add a new Portal entity that will transport you to the Overlord Dimension, rather than have Aegar create it when it dies, this should drop as an item which
 can be placed on right-click but can only be used in the Tragic Dimension
 Note: The Sentinel will only have one rarity, but it will have different lore that it can be, same goes for the Sentinel armor set
@@ -3063,6 +3069,7 @@ The final boss will be the Overlord, it'll have a ton of health and actually hav
 thing as well as have a helper creature/underling
 Regardless, it'll have a "cocoon" form in which it doesn't move, but shoots projectiles and can only be hurt with pickaxes/jacks, it'll spawn in Seekers which will 
 latch onto the player, doing damage per few ticks, only unlatching when killed
+It could have a "poison gas" attack which attacks all entities that are near it for a short period of time
 Afterwards, it'll evolve into a "Combat" form which will charge around and attack like the Apis shooting projectiles, spawning Adult Seekers which will attach to the
 player with more health and do more damage per few ticks, it'll also have very high armor, it will also spawn Harvesters which basically act like autonomous cleaner bots that
 spawn nano swarms to "clean" up problems

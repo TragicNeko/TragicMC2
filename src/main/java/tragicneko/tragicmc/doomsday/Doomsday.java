@@ -82,8 +82,9 @@ public abstract class Doomsday {
 	//Hacker, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
 	//Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
 	//Dimentia, Influence, mobs around you start attacking each other
-	//Drillshot, World Shaper, fires a single "Drill" projectile that mines blocks that it gets near, like a mobile Miner Skills
+	//Delete, World Shaper, fires a single "Drill" projectile that mines blocks that it goes through, like a laser almost except not instantaneous
 	//Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
+	//Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except instantaneous mining but less mined per effect
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
