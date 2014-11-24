@@ -45,8 +45,6 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 	public final Doomsday doomsday = Doomsday.Snipe;
 
-	private int cooldown;
-
 	private final Lore[] lores = new Lore[] {new Lore("Shooting stars!", EnumRarity.epic), new Lore("Like Meteor showers~"), new Lore("Beautiful Starlights", EnumRarity.rare),
 			new Lore("So Beautiful.", EnumRarity.rare), new Lore("Meteor Smash!", EnumRarity.epic), new Lore("Make a wish!", EnumRarity.uncommon),
 			new Lore("Time for Armageddon", EnumRarity.epic), new Lore("Guardian of the Galaxy", EnumRarity.rare), new Lore("Time for the Star Festival!", EnumRarity.epic),
@@ -117,26 +115,12 @@ public class WeaponCelestialLongbow extends ItemBow {
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
-	}
-
-	protected EnumRarity getRarityFromInt(int i) {
-		return i == 1 ? EnumRarity.uncommon : (i == 2 ? EnumRarity.rare : (i == 3 ? EnumRarity.epic : EnumRarity.common));
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? TragicWeapon.getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
 	}
 
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
-	}
-
-	protected int getRarityFromEnum(Lore lore)
-	{
-		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
-	}
-
-	protected EnumChatFormatting getFormatFromRarity(int rarity)
-	{
-		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
 	}
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
@@ -146,7 +130,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 			String lore = null;
 			EnumChatFormatting loreFormat = EnumChatFormatting.WHITE;
 			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLore")) lore = stack.stackTagCompound.getString("tragicLore");
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
+			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = TragicWeapon.getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
 			if (lore != null)
 			{
 				par2List.add(loreFormat + lore);
@@ -190,7 +174,8 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par3EntityPlayer.isSneaking())
+		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
+		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, 5))
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
 			MinecraftForge.EVENT_BUS.post(event);
@@ -203,8 +188,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 		}
 		else
 		{
-			PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-			if (doom != null && doom.getCurrentDoom() >= 5 && cooldown == 0)
+			if (TragicWeapon.getStackCooldown(par1ItemStack) == 0)
 			{
 				float f = 1.0F;
 				float f1 = par3EntityPlayer.prevRotationPitch + (par3EntityPlayer.rotationPitch - par3EntityPlayer.prevRotationPitch) * f;
@@ -239,11 +223,11 @@ public class WeaponCelestialLongbow extends ItemBow {
 				if (mop.typeOfHit == MovingObjectType.BLOCK && par3EntityPlayer instanceof EntityPlayerMP && ((EntityPlayerMP) par3EntityPlayer).playerNetServerHandler.func_147362_b().isChannelOpen())
 				{
 					if (par3EntityPlayer.isRiding()) par3EntityPlayer.mountEntity((Entity)null);
-					
+
 					double d4 = mop.hitVec.xCoord;
 					double d5 = mop.hitVec.yCoord;
 					double d6 = mop.hitVec.zCoord;
-					
+
 					switch(mop.sideHit)
 					{
 					case 0:
@@ -268,7 +252,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 					par3EntityPlayer.setPositionAndUpdate(d4, d5, d6);
 					par3EntityPlayer.fallDistance = 0.0F;
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
-					this.cooldown = 5;
+					TragicWeapon.setStackCooldown(par1ItemStack, 5);
 				}
 			}
 
@@ -283,16 +267,16 @@ public class WeaponCelestialLongbow extends ItemBow {
 		ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
 		MinecraftForge.EVENT_BUS.post(event);
 		if (event.isCanceled()) return;
-		
+
 		j = event.charge;
 
 		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
 		if (!flag && !par3EntityPlayer.inventory.hasItem(Items.arrow)) return;
 
 		float f = (float)j / 40.0F;
-        f = (f * f + f * 2.0F) / 3.0F;
+		f = (f * f + f * 2.0F) / 3.0F;
 		f *= 0.75F;	
-		
+
 		if ((double)f < 0.2D) return;
 		if (f > 1.0F) f = 1.0F;
 
@@ -347,16 +331,14 @@ public class WeaponCelestialLongbow extends ItemBow {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
-		if (!world.isRemote && cooldown > 0)
-		{
-			this.cooldown--;
-		}
-
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
 		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)getRarityFromEnum(lore)));
+		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)TragicWeapon.getRarityFromEnum(lore)));
+		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
+
+		if (TragicWeapon.getStackCooldown(stack) > 0) TragicWeapon.setStackCooldown(stack, TragicWeapon.getStackCooldown(stack) - 1);
 
 		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
 		{

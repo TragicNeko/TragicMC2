@@ -32,11 +32,11 @@ public class WeaponGravitySpike extends TragicWeapon {
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && cooldown == 0 && TragicNewConfig.allowNonDoomsdayAbilities)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(8) == 0  && TragicNewConfig.allowNonDoomsdayAbilities)
 		{
 			PropertyDoom doom = PropertyDoom.get(player);
 
-			if (doom != null && cooldown == 0 && !player.worldObj.isRemote && doom.getCurrentDoom() >= 7)
+			if (canUseAbility(doom, 7) && getStackCooldown(stack) == 0)
 			{
 				double d0 = 16.0D;
 				double d1 = entity.posX - player.posX;
@@ -48,12 +48,8 @@ public class WeaponGravitySpike extends TragicWeapon {
 				entity.motionZ = d2 / (double)f2 * d3 * 0.800000011920929D + entity.motionZ * 0.60000000298023224D;
 				entity.motionY += 1.45;
 				
-				if (!player.capabilities.isCreativeMode)
-				{
-					doom.increaseDoom(-7);
-				}
-
-				cooldown = 100;
+				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-7);
+				setStackCooldown(stack, 5);
 			}
 		}
 		return super.onLeftClickEntity(stack, player, entity);

@@ -9,7 +9,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
+import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -66,11 +67,11 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		if (entity != null && !entity.isDead)
 		{
-			MovingObjectPosition mop = this.getMOPFromPlayer(player, 5.0D);
+			Vec3 vec = TragicWeapon.getVecFromPlayer(player, 5.0D);
 
-			if (mop != null)
+			if (vec != null)
 			{
-				entity.setPositionAndUpdate(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
+				entity.setPositionAndUpdate(vec.xCoord, vec.yCoord, vec.zCoord);
 				if (rand.nextInt(8) == 0) entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
 			}
 		}

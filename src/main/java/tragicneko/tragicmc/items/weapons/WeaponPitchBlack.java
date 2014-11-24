@@ -36,41 +36,31 @@ public class WeaponPitchBlack extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities) return par1ItemStack;
+		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
 
-		MovingObjectPosition mop = getMOPFromPlayer(par3EntityPlayer);
+		Vec3 vec = getVecFromPlayer(par3EntityPlayer);
+		if (vec == null) return par1ItemStack;
 
-		if (mop == null)
+		if (canUseAbility(doom, 5) && getStackCooldown(par1ItemStack) == 0)
 		{
+			setStackCooldown(par1ItemStack, 5);
+			double d4 = vec.xCoord - par3EntityPlayer.posX;
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+			double d6 = vec.zCoord - par3EntityPlayer.posZ;
+
+			EntityPitchBlack rocket = new EntityPitchBlack(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
+			rocket.posX = par3EntityPlayer.posX + d4 * 0.15D;
+			rocket.posY = par3EntityPlayer.posY + 0.6D;
+			rocket.posZ = par3EntityPlayer.posZ + d6 * 0.15D;
+			rocket.setStack(par1ItemStack);
+			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
+			par1ItemStack.stackSize--;
+
 			return par1ItemStack;
 		}
 
-		if (cooldown == 0 && !par2World.isRemote)
-		{
-			if (doom.getCurrentDoom() >= 5)
-			{
-				double d4 = mop.hitVec.xCoord - par3EntityPlayer.posX;
-				double d5 = mop.hitVec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-				double d6 = mop.hitVec.zCoord - par3EntityPlayer.posZ;
-
-				EntityPitchBlack rocket = new EntityPitchBlack(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
-				rocket.posX = par3EntityPlayer.posX + d4 * 0.15D;
-				rocket.posY = par3EntityPlayer.posY + 0.6D;
-				rocket.posZ = par3EntityPlayer.posZ + d6 * 0.15D;
-				rocket.setStack(par1ItemStack);
-				par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
-
-				if (!par3EntityPlayer.capabilities.isCreativeMode)
-				{
-					doom.increaseDoom(-5);
-				}
-				
-				par1ItemStack.stackSize--;
-				this.cooldown = 5;
-
-				return par1ItemStack;
-			}
-		}
 
 		return par1ItemStack;
 	}

@@ -91,7 +91,7 @@ public class DoomsdayMinerSkills extends Doomsday {
 			
 			if (minableBlocks.contains(block))
 			{
-				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+				player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}
 		}
 		
@@ -103,7 +103,7 @@ public class DoomsdayMinerSkills extends Doomsday {
 			
 			if (minableBlocks.contains(block))
 			{
-				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+				player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}
 		}
 		
@@ -115,7 +115,7 @@ public class DoomsdayMinerSkills extends Doomsday {
 			
 			if (minableBlocks.contains(block))
 			{
-				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+				player.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}
 		}
 	}

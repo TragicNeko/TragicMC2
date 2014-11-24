@@ -8,10 +8,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -38,15 +37,15 @@ public class WeaponSplinter extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities) return par1ItemStack;
+		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
 		
-		MovingObjectPosition mop = getMOPFromPlayer(par3EntityPlayer);
+		Vec3 vec = getVecFromPlayer(par3EntityPlayer);
 
-		if (mop == null) return par1ItemStack;
+		if (vec == null) return par1ItemStack;
 
-		if (!par2World.isRemote && doom.getCurrentDoom() >= 10)
+		if (canUseAbility(doom, 10) && getStackCooldown(par1ItemStack) == 0)
 		{
-			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D));
+			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D).offset(vec.xCoord, vec.yCoord, vec.zCoord));
 			EntityLivingBase entity;
 			
 			for (int i = 0; i < list.size(); i++)
@@ -55,18 +54,14 @@ public class WeaponSplinter extends EpicWeapon {
 				{
 					entity = (EntityLivingBase) list.get(i);
 					
-					entity.motionX = itemRand.nextDouble() - itemRand.nextDouble();
+					entity.motionX = (itemRand.nextDouble() - itemRand.nextDouble()) * 2.455;
 					entity.motionY = 0.45D;
-					entity.motionZ = itemRand.nextDouble() - itemRand.nextDouble();
+					entity.motionZ = (itemRand.nextDouble() - itemRand.nextDouble()) * 2.455;
 				}
 			}
 			
-			if (!par3EntityPlayer.capabilities.isCreativeMode)
-			{
-				doom.increaseDoom(-10);
-			}
-			
-			cooldown = 40;
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-10);
+			setStackCooldown(par1ItemStack, 5);
 		}
 		
 		return par1ItemStack;

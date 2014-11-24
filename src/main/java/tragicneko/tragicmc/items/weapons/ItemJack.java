@@ -69,11 +69,7 @@ public class ItemJack extends ItemTool {
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
-	}
-	
-	protected EnumRarity getRarityFromInt(int i) {
-		return i == 1 ? EnumRarity.uncommon : (i == 2 ? EnumRarity.rare : (i == 3 ? EnumRarity.epic : EnumRarity.common));
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? TragicWeapon.getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
 	}
 	
 	protected Lore getRandomLore()
@@ -88,7 +84,7 @@ public class ItemJack extends ItemTool {
 			String lore = null;
 			EnumChatFormatting loreFormat = EnumChatFormatting.WHITE;
 			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLore")) lore = stack.stackTagCompound.getString("tragicLore");
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
+			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = TragicWeapon.getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
 			if (lore != null)
 			{
 				par2List.add(loreFormat + lore);
@@ -128,16 +124,6 @@ public class ItemJack extends ItemTool {
 			}
 		}	
 	}
-	
-	protected int getRarityFromEnum(Lore lore)
-	{
-		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
-	}
-
-	protected EnumChatFormatting getFormatFromRarity(int rarity)
-	{
-		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
-	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
@@ -146,7 +132,7 @@ public class ItemJack extends ItemTool {
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
 		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)getRarityFromEnum(lore)));
+		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)TragicWeapon.getRarityFromEnum(lore)));
 		
 		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
 		{

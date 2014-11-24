@@ -43,11 +43,10 @@ public class WeaponButcher extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && cooldown == 0 && doom != null && doom.getCurrentDoom() >= 1
-				&& TragicNewConfig.allowNonDoomsdayAbilities)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, 0) && getStackCooldown(stack) == 0)
 		{
 			if (itemRand.nextBoolean()) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 1));
-			cooldown = 10;
+			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	} 	
@@ -58,14 +57,13 @@ public class WeaponButcher extends EpicWeapon {
 		super.onUpdate(stack, world, entity, numb, flag);
 		if (world.isRemote || !(entity instanceof EntityPlayer) || !(TragicNewConfig.allowNonDoomsdayAbilities)) return;
 		
-		UUID uuidForMod = UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e");
-		AttributeModifier mod = new AttributeModifier(uuidForMod, "butcherModifier", 1.0, 0);
+		AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherModifier", 1.0, 0);
 		EntityPlayer player = (EntityPlayer) entity;
 		PropertyDoom doom = PropertyDoom.get(player);
 		
 		player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).removeModifier(mod);
 		
-		if (flag && doom != null && doom.getCurrentDoom() > 0)
+		if (flag && doom != null && canUseAbility(doom, 0))
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(mod);
 		}

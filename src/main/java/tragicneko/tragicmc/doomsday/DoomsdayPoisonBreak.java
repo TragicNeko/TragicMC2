@@ -3,14 +3,13 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
+import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPoisonBreak extends Doomsday {
-	
-	private MovingObjectPosition mop;
 	
 	public DoomsdayPoisonBreak(int id, int cd, int reqDoom) {
 		super(id, cd, reqDoom);
@@ -18,9 +17,9 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		mop = this.getMOPFromPlayer(player);
+		Vec3 vec = TragicWeapon.getVecFromPlayer(player);
 		
-		if (mop == null)
+		if (vec == null)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Doomsday needs to be aimed..."));
 		}
@@ -38,13 +37,14 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		if (mop == null) return;
+		Vec3 vec = TragicWeapon.getVecFromPlayer(player);
+		if (vec == null) return;
 		
 		for (int i = 0; i < 4; i ++)
 		{
-			double d0 = player.posX - mop.blockX; 
-			double d1 = player.posY - mop.blockY;
-			double d2 = player.posZ - mop.blockZ;
+			double d0 = player.posX - vec.xCoord; 
+			double d1 = player.posY - vec.yCoord + 0.65;
+			double d2 = player.posZ - vec.zCoord;
 
 			EntityPoisonBarb fireball = new EntityPoisonBarb(player.worldObj, player, d0, d1, d2);
 			fireball.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6D, player.posZ + (d2 * 0.115));

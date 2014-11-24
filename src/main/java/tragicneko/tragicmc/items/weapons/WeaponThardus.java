@@ -43,16 +43,11 @@ public class WeaponThardus extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (doom != null && doom.getCurrentDoom() >= 5 && entity instanceof EntityLivingBase)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, 5) && getStackCooldown(stack) == 0)
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1200, 6));
-
-			if (!player.capabilities.isCreativeMode)
-			{
-				doom.increaseDoom(-5);
-			}
-
-			this.cooldown = 40;
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-5);
+			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	}
@@ -61,17 +56,17 @@ public class WeaponThardus extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities) return par1ItemStack;
+		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
 		
-		MovingObjectPosition mop = getMOPFromPlayer(par3EntityPlayer);
+		Vec3 vec = getVecFromPlayer(par3EntityPlayer);
 
-		if (mop == null) return par1ItemStack;
+		if (vec == null) return par1ItemStack;
 
-		if (!par2World.isRemote && doom.getCurrentDoom() >= 3)
+		if (canUseAbility(doom, 3))
 		{
-			double d4 = mop.hitVec.xCoord - par3EntityPlayer.posX;
-			double d5 = mop.hitVec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-			double d6 = mop.hitVec.zCoord - par3EntityPlayer.posZ;
+			double d4 = vec.xCoord - par3EntityPlayer.posX;
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 			
 			for (int i = 0; i < 7; i++)
 			{
@@ -83,10 +78,8 @@ public class WeaponThardus extends EpicWeapon {
 				par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 			}
 			
-			if (!par3EntityPlayer.capabilities.isCreativeMode)
-			{
-				doom.increaseDoom(-3);
-			}
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-3);
+			setStackCooldown(par1ItemStack, 5);
 		}
 		
 		return par1ItemStack;

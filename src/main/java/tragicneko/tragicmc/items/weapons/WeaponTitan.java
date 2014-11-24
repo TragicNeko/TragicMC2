@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.main.TragicEnchantments;
@@ -41,7 +41,7 @@ public class WeaponTitan extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (doom != null && doom.getCurrentDoom() >= 10)
+		if (canUseAbility(doom, 10) && getStackCooldown(stack) == 0)
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -51,34 +51,27 @@ public class WeaponTitan extends EpicWeapon {
 
 			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, WorldHelper.getMobGriefing(player.worldObj));
 
-			if (!player.capabilities.isCreativeMode)
-			{
-				doom.increaseDoom(-10);
-			}
-
-			this.cooldown = 40;
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-10);
+			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
+		if (par2World.isRemote) return par1ItemStack;
+		
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-
 		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities) return par1ItemStack;
 
-		MovingObjectPosition mop = this.getMOPFromPlayer(par3EntityPlayer);
+		Vec3 vec = this.getVecFromPlayer(par3EntityPlayer, 50.0);
+		if (vec == null) return par1ItemStack;
 
-		if (mop == null)
+		if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0)
 		{
-			return par1ItemStack;
-		}
-
-		if (cooldown == 0 && !par2World.isRemote && doom.getCurrentDoom() >= 20)
-		{
-			double d4 = mop.hitVec.xCoord - par3EntityPlayer.posX;
-			double d5 = mop.hitVec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-			double d6 = mop.hitVec.zCoord - par3EntityPlayer.posZ;
+			double d4 = vec.xCoord - par3EntityPlayer.posX;
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 			double d7 = MathHelper.sqrt_double(d4 * d4 + d5 * d5 + d6 * d6);
 
@@ -123,8 +116,8 @@ public class WeaponTitan extends EpicWeapon {
 					}
 				}
 				
-				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseCooldown(-20);
-				cooldown = 40;
+				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-20);
+				setStackCooldown(par1ItemStack, 5);
 			}
 		}
 		return par1ItemStack;

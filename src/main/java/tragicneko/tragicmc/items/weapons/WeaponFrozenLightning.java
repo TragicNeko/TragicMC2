@@ -42,21 +42,13 @@ public class WeaponFrozenLightning extends TragicWeapon {
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && cooldown == 0 && TragicNewConfig.allowNonDoomsdayAbilities)
+		PropertyDoom doom = PropertyDoom.get(player);
+
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, 3) && getStackCooldown(stack) == 0)
 		{
-			PropertyDoom doom = PropertyDoom.get(player);
-
-			if (doom != null && cooldown == 0 && !player.worldObj.isRemote && doom.getCurrentDoom() >= 3)
-			{
-				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
-
-				if (!player.capabilities.isCreativeMode)
-				{
-					doom.increaseDoom(-3);
-				}
-
-				cooldown = 100;
-			}
+			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-3);
+			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
 	}
@@ -65,19 +57,18 @@ public class WeaponFrozenLightning extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom != null && cooldown == 0 && !par2World.isRemote)
+		if (doom != null && !par2World.isRemote)
 		{
-			MovingObjectPosition mop = getMOPFromPlayer(par3EntityPlayer);
+			Vec3 vec = getVecFromPlayer(par3EntityPlayer, 30.0);
+			if (vec == null) return par1ItemStack;
 
-			if (mop == null) return par1ItemStack;
-
-			double d4 = mop.hitVec.xCoord;
-			double d5 = mop.hitVec.yCoord;
-			double d6 = mop.hitVec.zCoord;
+			double d4 = vec.xCoord;
+			double d5 = vec.yCoord;
+			double d6 = vec.zCoord;
 
 			if (par3EntityPlayer.isSneaking())
 			{
-				if (doom.getCurrentDoom() >= 30)
+				if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0)
 				{
 					for (int i = 0; i < 3; i++)
 					{
@@ -86,24 +77,19 @@ public class WeaponFrozenLightning extends TragicWeapon {
 					}
 
 					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, itemRand.nextFloat() * 2.0F, WorldHelper.getMobGriefing(par2World));
-
-					if (!par3EntityPlayer.capabilities.isCreativeMode)
-					{
-						doom.increaseDoom(-30);
-					}
-
-					this.cooldown = 40;
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-20);
+					setStackCooldown(par1ItemStack, 5);
 				}
 			}
 			else
 			{
-				if (doom.getCurrentDoom() >= 5)
+				if (canUseAbility(doom, 3) && getStackCooldown(par1ItemStack) == 0)
 				{
 					for (int i = 0; i < 5; i++)
 					{
-						d4 = mop.hitVec.xCoord - par3EntityPlayer.posX;
-						d5 = mop.hitVec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-						d6 = mop.hitVec.zCoord - par3EntityPlayer.posZ;
+						d4 = vec.xCoord - par3EntityPlayer.posX;
+						d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight());
+						d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 						EntityIcicle rocket = new EntityIcicle(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
 								d6 + itemRand.nextDouble() - itemRand.nextDouble());
@@ -112,14 +98,9 @@ public class WeaponFrozenLightning extends TragicWeapon {
 						rocket.posZ += d6 * 0.115D;
 						par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 					}
-					
-					if (!par3EntityPlayer.capabilities.isCreativeMode)
-					{
-						doom.increaseDoom(-5);
-					}
 
-					this.cooldown = 5;
-
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-3);
+					setStackCooldown(par1ItemStack, 5);
 					return par1ItemStack;
 				}
 			}

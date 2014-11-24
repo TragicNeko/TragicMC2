@@ -30,8 +30,6 @@ public class TragicWeapon extends ItemSword {
 	protected Doomsday doomsday2;
 	public Item.ToolMaterial material;
 
-	protected int cooldown;
-
 	protected Lore[] lores = new Lore[] {new Lore("So boring."), new Lore("Nice."), new Lore("Interesting.", EnumRarity.uncommon), new Lore("That's cool.", EnumRarity.rare),
 			new Lore("Lame.", EnumRarity.uncommon), new Lore("Meh."), new Lore("Ha.", EnumRarity.rare), new Lore("Awesome.", EnumRarity.epic), new Lore("I'm oozing with excitement", EnumRarity.epic)};
 
@@ -57,7 +55,7 @@ public class TragicWeapon extends ItemSword {
 		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
 	}
 
-	protected EnumRarity getRarityFromInt(int i) {
+	protected static EnumRarity getRarityFromInt(int i) {
 		return i == 1 ? EnumRarity.uncommon : (i == 2 ? EnumRarity.rare : (i == 3 ? EnumRarity.epic : EnumRarity.common));
 	}
 
@@ -126,16 +124,14 @@ public class TragicWeapon extends ItemSword {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
-		if (!world.isRemote && cooldown > 0)
-		{
-			this.cooldown--;
-		}
-
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
 		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
 		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)getRarityFromEnum(lore)));
+		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
+		
+		if (getStackCooldown(stack) > 0) setStackCooldown(stack, getStackCooldown(stack) - 1);
 
 		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
 		{
@@ -168,12 +164,12 @@ public class TragicWeapon extends ItemSword {
 		}
 	}
 
-	protected int getRarityFromEnum(Lore lore)
+	protected static int getRarityFromEnum(Lore lore)
 	{
 		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
 	}
 
-	protected EnumChatFormatting getFormatFromRarity(int rarity)
+	protected static EnumChatFormatting getFormatFromRarity(int rarity)
 	{
 		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
 	}
@@ -195,7 +191,7 @@ public class TragicWeapon extends ItemSword {
 		}
 	}
 	
-	public MovingObjectPosition getMOPFromPlayer(EntityPlayer player, double distance)
+	public static MovingObjectPosition getMOPFromPlayer(EntityPlayer player, double distance)
 	{
 		float f = 1.0F;
 		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
@@ -217,13 +213,34 @@ public class TragicWeapon extends ItemSword {
 			d3 = ((EntityPlayerMP)player).theItemInWorldManager.getBlockReachDistance() + (d3 - 4.0D);
 		}
 		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
-
+		
 		return player.worldObj.func_147447_a(vec3, vec31, true, false, true);
 	}
 	
-	public MovingObjectPosition getMOPFromPlayer(EntityPlayer player)
+	public static Vec3 getVecFromPlayer(EntityPlayer player, double distance)
 	{
-		return getMOPFromPlayer(player, 50.0D);
+		return getMOPFromPlayer(player, distance).hitVec;
+	}
+	
+	public static Vec3 getVecFromPlayer(EntityPlayer player)
+	{
+		return getMOPFromPlayer(player, 6.0D).hitVec;
+	}
+	
+	public static boolean canUseAbility(PropertyDoom doom, int rq)
+	{
+		return doom != null && TragicNewConfig.allowNonDoomsdayAbilities && doom.getCurrentCooldown() == 0 && doom.getCurrentDoom() > rq;
+	}
+	
+	public static void setStackCooldown(ItemStack stack, int i)
+	{
+		if (!stack.hasTagCompound()) return;
+		stack.stackTagCompound.setInteger("cooldown", i);
+	}
+	
+	public static int getStackCooldown(ItemStack stack)
+	{
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("cooldown") ? stack.stackTagCompound.getInteger("cooldown") : 0;
 	}
 
 	public Doomsday getSecondaryDoomsday()
