@@ -12,26 +12,35 @@ import net.minecraft.world.World;
 
 public class EntityThrowingRock extends EntityThrowable {
 
-	public boolean isLavaRock;
-
 	public EntityThrowingRock(World world) {
 		super(world);
-		this.isLavaRock = false;
 	}
 
 	public EntityThrowingRock(World world, EntityLivingBase entity, boolean flag) {
 		super(world, entity);
-		this.isLavaRock = flag;
+		if (flag) this.setLavaRock();
 	}
 
 	public EntityThrowingRock(World world, double par2, double par4, double par6, boolean flag) {
 		super(world, par2, par4, par6);
-		this.isLavaRock = flag;
+		if (flag) this.setLavaRock();
+	}
+	
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+	}
+	
+	public void setLavaRock()
+	{
+		this.dataWatcher.updateObject(16, 1);
 	}
 
 	@Override
 	protected float getGravityVelocity() {
-		return 0.65F;
+		return 0.0375F;
 	}
 
 	@Override
@@ -49,7 +58,7 @@ public class EntityThrowingRock extends EntityThrowable {
 			{
 				float f = 1.0F;
 
-				if (this.isLavaRock)
+				if (this.isLavaRock())
 				{
 					f = 3.0F;
 					mop.entityHit.setFire(rand.nextInt(6) + 2);
@@ -64,6 +73,10 @@ public class EntityThrowingRock extends EntityThrowable {
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player) {
 
+	}
+
+	public boolean isLavaRock() {
+		return this.dataWatcher.getWatchableObjectInt(16) == 1;
 	}
 }
 
