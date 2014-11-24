@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class EntityNekoRocket extends EntityProjectile {
 
-	private EntityLivingBase target = null;
+	public EntityLivingBase target = null;
 	private int ticksWithTarget;
 
 	public EntityNekoRocket(World par1World) {
@@ -33,10 +33,11 @@ public class EntityNekoRocket extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop == null || this.worldObj.isRemote) return;
+		if (this.worldObj.isRemote) return;
 
 		if (mop.entityHit != null) 
 		{			
+			if (mop.entityHit == this.shootingEntity) return;
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 		}
 
@@ -53,12 +54,12 @@ public class EntityNekoRocket extends EntityProjectile {
 			this.target = null;
 		}
 
-		if (this.target != null && this.ticksInAir > 5)
+		if (this.target != null && this.ticksInAir > 2)
 		{
 			this.ticksWithTarget++;
 		}
 
-		if (this.ticksWithTarget > 60)
+		if (this.ticksWithTarget > 60 || this.ticksInAir > 80)
 		{
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 
@@ -71,7 +72,7 @@ public class EntityNekoRocket extends EntityProjectile {
 
 		super.onUpdate();
 
-		if (this.target == null && this.ticksInAir > 5)
+		if (this.target == null && this.ticksInAir > 2)
 		{
 			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(8.0, 8.0, 8.0));
 
@@ -79,8 +80,7 @@ public class EntityNekoRocket extends EntityProjectile {
 			{
 				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)))
 				{
-					this.target = (EntityLivingBase) list.get(i);
-					break;
+					if (this.target == null || this.getDistanceToEntity(list.get(i)) < this.getDistanceToEntity(this.target)) this.target = (EntityLivingBase) list.get(i);
 				}
 			}
 		}

@@ -39,7 +39,7 @@ public class EntityTragicNeko extends TragicMob {
 
 	public EntityTragicNeko(World par1World) {
 		super(par1World);
-		this.setSize(0.4F, 1.955F);
+		this.setSize(0.475F, 1.955F);
 		this.experienceValue = 16;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -85,17 +85,17 @@ public class EntityTragicNeko extends TragicMob {
 
 	public boolean isAboutToFire()
 	{
-		return this.getFiringTicks() > 0 && this.getFiringTicks() <= 60;
+		return this.getFiringTicks() > 0 && this.getFiringTicks() <= 40;
 	}
 
 	public boolean hasFired()
 	{
-		return this.getFiringTicks() > 60;
+		return this.getFiringTicks() > 40;
 	}
 
 	public boolean canFire()
 	{
-		return this.getFiringTicks() >= 120;
+		return this.getFiringTicks() >= 80;
 	}
 
 	public int getThrowingTicks()
@@ -183,19 +183,11 @@ public class EntityTragicNeko extends TragicMob {
 		if (this.getAttackTime() > 0) this.decrementAttackTime();
 		if (this.getFlickTime() > 0) this.decrementFlickTime();
 
-		int i = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 16;
-
-		if (this.getAttackTarget() != null && rand.nextInt(i) == 0 && this.canFire() && this.ticksExisted % 20 == 0 && this.getThrowingTicks() == 0 && this.getAttackTime() == 0
-				&& this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
-		{
-			this.setFiringTicks(0);
-		}
-
 		if (this.getAttackTarget() != null)
 		{
 			if (this.getFlickTime() > 0) this.setFlickTime(0);
 			
-			if (this.getFiringTicks() == 60)
+			if (this.getFiringTicks() == 40)
 			{
 				this.doMissleAttack();
 			}
@@ -204,11 +196,19 @@ public class EntityTragicNeko extends TragicMob {
 				this.throwRandomProjectile();
 				this.setThrowingTicks(20);
 			}
+			
+			int i = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 16;
+
+			if (rand.nextInt(i) == 0 && this.canFire() && this.ticksExisted % 10 == 0 && this.getThrowingTicks() == 0 && this.getAttackTime() == 0
+					&& this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
+			{
+				this.setFiringTicks(0);
+			}
 		}
 		else
 		{
 			if (this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0) this.setFlickTime(10);
-			this.setFiringTicks(65);
+			this.setFiringTicks(35);
 		}
 		
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
@@ -228,43 +228,20 @@ public class EntityTragicNeko extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.deathTime % 10 == 0)
+		if (this.deathTime == 20 && rand.nextBoolean())
 		{
-			EntityNekoStickyBomb bomb = new EntityNekoStickyBomb(this.worldObj, this);
-
-			bomb.posY = this.posY + 0.1;
-			bomb.posX = this.posX + rand.nextDouble() * 1.000035;
-			bomb.posZ = this.posZ + rand.nextDouble() * 1.000035;
-			bomb.motionY = rand.nextDouble() * 0.35;
-			bomb.motionZ = (rand.nextDouble() - 0.55) * 0.55;
-			bomb.motionX = (rand.nextDouble() - 0.55) * 0.55;
-
-			this.worldObj.spawnEntityInWorld(bomb);
-		}
-		else if (this.deathTime == 20)
-		{
-			boolean flag = false;
-			int x = 1;
-
-			if (this.rand.nextInt(10) == 0)
-			{
-				flag = true;
-			}
-
-			if (!flag)
-			{
-				x = rand.nextInt(3) + 2;
-			}
+			int x = rand.nextInt(10) == 0 ? 1 : rand.nextInt(3) + 2;
 
 			for (int i = 0; i < x; i++)
 			{
-				EntityNekoClusterBomb bomb = new EntityNekoClusterBomb(this.worldObj, this);
-				bomb.posY = this.posY + 0.2;
-				bomb.posX = this.posX + rand.nextDouble() * 1.000035;
-				bomb.posZ = this.posZ + rand.nextDouble() * 1.000035;
-				bomb.motionY = 0.6;
-				bomb.motionZ = (rand.nextDouble() - 0.55) * 0.15;
-				bomb.motionX = (rand.nextDouble() - 0.55) * 0.15;
+				EntityNekoClusterBomb bomb = new EntityNekoClusterBomb(this.worldObj);
+				
+				bomb.posY = this.posY + 0.15;
+				bomb.posX = this.posX + rand.nextDouble() - rand.nextDouble();
+				bomb.posZ = this.posZ + rand.nextDouble() - rand.nextDouble();
+				bomb.motionY = rand.nextDouble() + 0.25;
+				bomb.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.125;
+				bomb.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.125;
 
 				this.worldObj.spawnEntityInWorld(bomb);
 			}
@@ -275,11 +252,12 @@ public class EntityTragicNeko extends TragicMob {
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + (double)(this.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d1 = entity.boundingBox.minY + entity.height / 2.0 - this.posY - 0.65;
 		double d2 = entity.posZ - this.posZ;
 		EntityNekoRocket rocket = new EntityNekoRocket(this.worldObj, this, d0, d1, d2);
 		rocket.shootingEntity = this;
-		rocket.posY = this.posY + (0.5D);
+		rocket.target = entity;
+		rocket.posY = this.posY + (0.65D);
 		rocket.posX = this.posX - (Math.sin(this.rotationYaw * (float)Math.PI / 180.0F) * 0.025D);
 		rocket.posZ = this.posZ - (Math.cos(this.rotationYaw * (float)Math.PI / 180.0F) * 0.025D);
 		this.worldObj.spawnEntityInWorld(rocket);
@@ -307,6 +285,7 @@ public class EntityTragicNeko extends TragicMob {
 		
 		theProjectile.motionX = (this.getAttackTarget().posX - this.posX) * 0.335D;
 		theProjectile.motionZ = (this.getAttackTarget().posZ - this.posZ) * 0.335D;
+		theProjectile.motionY = (this.getAttackTarget().posY - this.posY) * 0.335D;
 		this.worldObj.spawnEntityInWorld(theProjectile);
 	}
 
@@ -328,10 +307,7 @@ public class EntityTragicNeko extends TragicMob {
 
 			if ((calendar.get(2) + 1 != 10 || calendar.get(5) < 20) && (calendar.get(2) + 1 != 11 || calendar.get(5) > 3))
 			{
-				if (this.rand.nextBoolean())
-				{
-					return false;
-				}
+				if (this.rand.nextBoolean()) return false;
 			}
 			else
 			{
