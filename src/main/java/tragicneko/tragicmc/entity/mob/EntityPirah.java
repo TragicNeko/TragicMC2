@@ -80,6 +80,7 @@ public class EntityPirah extends TragicMob {
 
 	public boolean handleWaterMovement()
 	{
+		if (this.isBurning()) this.extinguish();
 		return false;
 	}
 
