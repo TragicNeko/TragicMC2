@@ -88,6 +88,8 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 				this.timeSinceFiring = 0;
 			}
 		}
+		
+		if (this.getAttackTarget() != null && this.ticksExisted % 40 == 0 && rand.nextInt(16) == 0) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotions.LeadFoot.id, 120));
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)

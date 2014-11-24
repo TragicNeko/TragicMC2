@@ -114,7 +114,6 @@ public class EntityGragul extends TragicMob {
 			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextInt(6) == 0)
 			{
 				if (par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer)par1DamageSource.getEntity()).capabilities.isCreativeMode) return result; 
-				((EntityLivingBase) par1DamageSource.getEntity()).addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 1));
 			}
 		}
 
@@ -133,14 +132,8 @@ public class EntityGragul extends TragicMob {
 			{
 				if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
 				{
-					if (rand.nextInt(4) == 0)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
-					}
-					else if (rand.nextInt(8) == 0)
-					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 120));
-					}
+					if (rand.nextInt(4) == 0 && TragicNewConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.LeadFoot.id, 120));
+					
 				}
 			}
 
