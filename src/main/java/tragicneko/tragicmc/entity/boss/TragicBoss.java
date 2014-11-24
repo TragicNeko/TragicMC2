@@ -26,7 +26,7 @@ import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
-public class TragicBoss extends EntityMob implements IBossDisplayData
+public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 {
 	public TragicBoss(World par1World) {
 		super(par1World);
@@ -47,9 +47,7 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 		{
 			coords= list.get(i);
 			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
-		}
-
-		
+		}		
 
 		int x = 1;
 
@@ -164,23 +162,17 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (par1DamageSource.getEntity() != null)
 		{
-			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= 30)
+			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= 30.0F)
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
+				boolean flag = player.getCurrentEquippedItem() == null ? false : (player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice);
 
-				if (!player.capabilities.isCreativeMode)
-				{
-					par2 = MathHelper.clamp_float(par2, 0.0F, 30.0F);
-				}
-				else if (player.getCurrentEquippedItem() != null)
-				{
-					boolean flag = player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice;
-					if (!flag) return false;
-				}
+				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, 30.0F);
 			}
 
-			if (rand.nextBoolean() && this.getAttackTarget() != null && par1DamageSource.getEntity() instanceof EntityLivingBase) this.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
+			if (rand.nextBoolean() && this.getAttackTarget() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && this.getAttackTarget() != par1DamageSource.getEntity()) this.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 		}
+		
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
@@ -210,5 +202,24 @@ public class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		int cand = MathHelper.getRandomIntegerInRange(rand, min, max);
 		return rand.nextBoolean() ? cand : -cand;
+	}
+	
+	public int getPlayersNearby() {
+		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(64.0, 64.0, 64.0)).size();
+	}
+	
+	public int getPlayersNearby(int min, int max)
+	{
+		return MathHelper.clamp_int(getPlayersNearby(), min, max);
+	}
+	
+	public int getPlayersNearby(double range)
+	{
+		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(range, range, range)).size();
+	}
+	
+	public int getPlayersNearby(double range, int min, int max)
+	{
+		return MathHelper.clamp_int(getPlayersNearby(range), min, max);
 	}
 }
