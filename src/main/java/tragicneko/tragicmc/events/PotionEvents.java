@@ -472,23 +472,6 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotions.Disorientation))
-		{
-			float strafe = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
-			float forward = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
-
-			if (event.entityLiving.ticksExisted % 60 == 0)
-			{
-				event.entityLiving.moveEntityWithHeading(strafe, forward);
-			}
-
-			if (event.entityLiving instanceof EntityPlayer)
-			{
-				((EntityPlayer)event.entityLiving).cameraYaw = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -1, 1) * 2.0F;
-				((EntityPlayer)event.entityLiving).cameraPitch = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -1, 1) * 2.0F;
-			}
-		}
-
 		if (TragicNewConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotions.Cripple))
 		{
 			if (event.entityLiving.getHealth() > event.entityLiving.getMaxHealth())
@@ -558,6 +541,23 @@ public class PotionEvents {
 				}
 			}
 		} 
+		
+		if (world.isRemote && TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotions.Disorientation))
+		{
+			float strafe = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
+			float forward = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
+
+			if (event.entityLiving.ticksExisted % 60 == 0)
+			{
+				event.entityLiving.moveEntityWithHeading(strafe, forward);
+			}
+
+			if (event.entityLiving instanceof EntityPlayer)
+			{
+				((EntityPlayer)event.entityLiving).cameraYaw = rand.nextFloat() - rand.nextFloat();
+				((EntityPlayer)event.entityLiving).cameraPitch = rand.nextFloat() - rand.nextFloat();
+			}
+		}
 	}
 
 	@SubscribeEvent
