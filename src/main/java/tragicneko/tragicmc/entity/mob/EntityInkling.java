@@ -184,8 +184,7 @@ public class EntityInkling extends TragicMob {
 						Block block = worldObj.getBlock(x + x1, y + y1, z + z1);
 						if (block instanceof BlockTorch)
 						{
-							worldObj.setBlockToAir(x + x1, y + y1, z + z1);
-							this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, x + x1, y + y1, z + z1, new ItemStack(Blocks.torch)));
+							this.worldObj.func_147480_a(x + x1, y + y1, z + z1, true);
 							return;
 						}
 					}

@@ -2,24 +2,18 @@ package tragicneko.tragicmc.util;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicBlocks;
+
+import com.google.common.collect.Sets;
 
 public class WorldHelper {
 

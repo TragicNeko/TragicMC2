@@ -165,9 +165,10 @@ public class TragicMC
 		if (TragicNewConfig.allowMobs)
 		{
 			TragicEntities.load();
-			if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
 		}
+		
+		if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsEvent());
@@ -291,7 +292,7 @@ public class TragicMC
 		}
 		catch (Throwable throwable)
 		{
-			CrashReport report = CrashReport.makeCrashReport(throwable, "Reflection Potion Array");
+			CrashReport report = CrashReport.makeCrashReport(throwable, "Reflection of Potion Array");
 			CrashReportCategory cat = report.makeCategory("Invalid field name");
 			cat.addCrashSection("Obfuscated name", Potion.potionTypes.toString());
 			CrashReportCategory cat2 = report.makeCategory("General mod info");

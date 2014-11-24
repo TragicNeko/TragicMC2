@@ -237,7 +237,7 @@ public class ItemMobEgg extends Item
 		
 		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.BIGBOSS)
 		{
-			return par2 > 0 ? this.bigBossIcon : this.bigBossIconOverlay; //TODO add a new bigboss icon for the spawn eggs
+			return par2 > 0 ? this.bigBossIcon : this.bigBossIconOverlay;
 		}
 		
 		return par2 > 0 ? this.normalMobIconOverlay : this.normalMobIcon;
