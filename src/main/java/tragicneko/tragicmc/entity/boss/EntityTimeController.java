@@ -39,6 +39,7 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -261,7 +262,7 @@ public class EntityTimeController extends TragicBoss {
 	public void onLivingUpdate()
 	{
 		this.fallDistance = 0.0F;
-		
+
 		if (this.getLeapTicks() > 0 || this.getFluxTicks() > 0 || this.getSpazTicks() > 0) this.motionX = this.motionY = this.motionZ = 0.0D;
 		for (int i = 0; i < Potion.potionTypes.length; i++)
 		{
@@ -338,7 +339,12 @@ public class EntityTimeController extends TragicBoss {
 		ticksSinceFlux++;
 		if (this.ticksExisted % 5 == 0 && this.getHealth() < this.getMaxHealth() && this.getFluxTicks() == 0) this.heal(1.0F);
 
-		if (this.getLeapTicks() > 0) this.decrementLeapTicks();
+		if (this.getLeapTicks() > 0)
+		{
+			this.decrementLeapTicks();
+			if (TragicNewConfig.allowLeadFoot) this.weighDownEntities();
+		}
+		
 		if (this.getFluxTicks() > 0)
 		{
 			if (this.getLeapTicks() > 0) this.setLeapTicks(0);
@@ -346,12 +352,14 @@ public class EntityTimeController extends TragicBoss {
 			this.pullEntities();
 			this.worldObj.setWorldTime(rand.nextInt(48) * 500);
 		}
+		
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.getPurgeTicks() > 0) 
 		{
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 			this.decrementPurgeTicks();
 		}
+		
 		if (this.getSpazTicks() > 0) this.decrementSpazTicks();
 		if (this.getFluxTicks() == 2) this.damageNearbyEntities();
 
@@ -383,6 +391,23 @@ public class EntityTimeController extends TragicBoss {
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+	}
+
+	private void weighDownEntities() {
+		double d0 = 16.0D;
+		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
+		Iterator iterator = list.iterator();
+
+		while (iterator.hasNext())
+		{
+			EntityLivingBase entity = (EntityLivingBase) iterator.next();
+
+			if (entity.canEntityBeSeen(this) && entity != this)
+			{				
+				entity.addPotionEffect(new PotionEffect(TragicPotions.LeadFoot.id, 60));
+			}
+		}
+		
 	}
 
 	private void createTimeBombs() {		
@@ -508,7 +533,7 @@ public class EntityTimeController extends TragicBoss {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		if (this.getPurgeTicks() > 0 && par1DamageSource.isProjectile()) return false;
 
 		if (this.getFluxTicks() > 0)
@@ -730,7 +755,7 @@ public class EntityTimeController extends TragicBoss {
 
 	@Override
 	protected void fall(float par1) {}
-	
+
 	@Override
 	public void addPotionEffect(PotionEffect effect) {}
 
