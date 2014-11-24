@@ -1,9 +1,5 @@
 package tragicneko.tragicmc.main;
 
-import org.apache.commons.lang3.ArrayUtils;
-
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -11,17 +7,16 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.util.WeightedRandomFishable;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
-import scala.actors.threadpool.Arrays;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemGeneric;
 import tragicneko.tragicmc.items.ItemProjectile;
-import tragicneko.tragicmc.items.ItemPumpkinbomb;
-import tragicneko.tragicmc.items.ItemRock;
 import tragicneko.tragicmc.items.armor.ArmorDark;
 import tragicneko.tragicmc.items.armor.ArmorHunter;
 import tragicneko.tragicmc.items.armor.ArmorLight;
@@ -208,7 +203,6 @@ public class TragicItems {
 	public static Item DarkParticles;
 	public static Item Spore;
 	public static Item Sap;
-	public static Item Rock;
 	public static Item Thorns;
 	public static Item BoneMarrow;
 	public static Item Horn;
@@ -229,15 +223,7 @@ public class TragicItems {
 	public static Item NourishmentSacrifice;
 
 	//Projectile items
-	public static Item Pumpkinbomb;
-	public static Item NekoStickyBomb;
-	public static Item NekoClusterBomb;
-	public static Item NekoMiniBomb;
-	public static Item NekoRocket;
-	public static Item FlameBoomerang;
-	public static Item SolarBomb;
-	public static Item PoisonBarb;
-	public static Item SpiritCast;
+	public static Item Projectile;
 
 	//Food items
 	public static Item IceCream;
@@ -274,7 +260,6 @@ public class TragicItems {
 	public static Item MobStatue;
 	public static Item ChallengeScroll;
 	public static Item DoomsdayScroll;
-	
 
 	public static ChestGenHooks BossStructureHook;
 	public static ChestGenHooks NetherStructureHook;
@@ -498,7 +483,7 @@ public class TragicItems {
 		AquaOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.aquaOrb").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:AquaOrb" + textureRes));
 		GameRegistry.registerItem(AquaOrb, "aquaOrb");
 
-		Spore = (new ItemGeneric().setUnlocalizedName("tragicmc.spore").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Spore" + textureRes));
+		Spore = (new ItemGeneric().setUnlocalizedName("tragicmc.spore").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:ProjectileSpore" + textureRes));
 		GameRegistry.registerItem(Spore, "spore");
 
 		Thorns = (new ItemGeneric().setUnlocalizedName("tragicmc.thorns").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Thorns" + textureRes));
@@ -586,7 +571,7 @@ public class TragicItems {
 		GoldenSushi = (new ItemEnchantedSushi(8, true).setUnlocalizedName("tragicmc.goldenSushi").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:GoldenSushi" + textureRes));
 		GameRegistry.registerItem(GoldenSushi, "goldenSushi");
 
-		Banana = (new ItemBanana(1, false).setUnlocalizedName("tragicmc.banana").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Banana" + textureRes));
+		Banana = (new ItemBanana(1, false).setUnlocalizedName("tragicmc.banana").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:ProjectileBanana" + textureRes));
 		GameRegistry.registerItem(Banana, "banana");
 
 		BananaSplit = (new ItemBananaSplit(8, false).setUnlocalizedName("tragicmc.bananaSplit").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BananaSplit" + textureRes));
@@ -653,34 +638,6 @@ public class TragicItems {
 		
 		LightningRodTalisman = (new ItemLightningRod().setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman" + textureRes));
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
-
-		//Projectile Items
-		Rock = (new ItemRock().setUnlocalizedName("tragicmc.rock"));
-		GameRegistry.registerItem(Rock, "rock");
-
-		Pumpkinbomb = (new ItemPumpkinbomb().setUnlocalizedName("tragicmc.pumpkinbomb"));
-		GameRegistry.registerItem(Pumpkinbomb, "pumpkinbomb");
-
-		PoisonBarb = (new ItemProjectile().setUnlocalizedName("tragicmc.poisonBarb").setTextureName("tragicmc:PoisonBarb" + textureRes));
-		GameRegistry.registerItem(PoisonBarb, "poisonBarb");
-
-		NekoRocket = (new ItemProjectile().setUnlocalizedName("tragicmc.nekoRocket").setTextureName("tragicmc:NekoRocket" + textureRes));
-		GameRegistry.registerItem(NekoRocket, "nekoRocket");
-
-		NekoStickyBomb = (new ItemProjectile().setUnlocalizedName("tragicmc.nekoStickyBomb").setTextureName("tragicmc:NekoStickyBomb" + textureRes));
-		GameRegistry.registerItem(NekoStickyBomb, "nekoStickyBomb");
-
-		NekoClusterBomb = (new ItemProjectile().setUnlocalizedName("tragicmc.nekoClusterBomb").setTextureName("tragicmc:NekoClusterBomb" + textureRes));
-		GameRegistry.registerItem(NekoClusterBomb, "nekoClusterBomb");
-
-		NekoMiniBomb = (new ItemProjectile().setUnlocalizedName("tragicmc.nekoMiniBomb").setTextureName("tragicmc:NekoMiniBomb" + textureRes));
-		GameRegistry.registerItem(NekoMiniBomb, "nekoMiniBomb");
-
-		SolarBomb = (new ItemProjectile().setUnlocalizedName("tragicmc.solarBomb").setTextureName("tragicmc:SolarBomb" + textureRes));
-		GameRegistry.registerItem(SolarBomb, "solarBomb");
-
-		SpiritCast = (new ItemProjectile().setUnlocalizedName("tragicmc.spiritCast").setTextureName("tragicmc:SpiritCast" + textureRes));
-		GameRegistry.registerItem(SpiritCast, "spiritCast");
 
 		//Special item registrations
 		MobStatue = (new ItemStatue());
@@ -908,6 +865,9 @@ public class TragicItems {
 			SpawnEgg = (new ItemMobEgg());
 			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
 		}
+		
+		Projectile = (new ItemProjectile());
+		GameRegistry.registerItem(Projectile, "projectile");
 
 		//Chest Gens
 
@@ -1138,8 +1098,6 @@ public class TragicItems {
 			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicNewConfig.amuletReleaseRarity));
 		}
 
-		OreDictionary.registerOre("itemRock", Rock);
-		OreDictionary.registerOre("itemLavaRock", new ItemStack(Rock, 1, 1));
 		OreDictionary.registerOre("gemRuby", Ruby);
 		OreDictionary.registerOre("gemSapphire", Sapphire);
 		OreDictionary.registerOre("cropRice", Rice);
@@ -1151,10 +1109,7 @@ public class TragicItems {
 		OreDictionary.registerOre("ingotMercury", QuicksilverIngot);
 
 		//Vanilla entries for my mod
-		for (int i = 0; i < 5; i++)
-		{
-			OreDictionary.registerOre("fish", new ItemStack(Items.fish, 1, i));
-		}
+		for (int i = 0; i < 5; i++) OreDictionary.registerOre("fish", new ItemStack(Items.fish, 1, i));
 		OreDictionary.registerOre("fish", Tentacle);
 
 		OreDictionary.registerOre("oreCharms", RubyCharm);

@@ -165,32 +165,34 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
 		MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
 
-		//Projectile and non-mob entity renders
-		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(TragicItems.Rock));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinbomb.class, new RenderProjectile(TragicItems.Pumpkinbomb));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLargePumpkinbomb.class, new RenderProjectile(TragicItems.Pumpkinbomb));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPoisonBarb.class, new RenderProjectile(TragicItems.PoisonBarb));
-		RenderingRegistry.registerEntityRenderingHandler(EntityNekoRocket.class, new RenderProjectile(TragicItems.NekoRocket));
-		RenderingRegistry.registerEntityRenderingHandler(EntityNekoStickyBomb.class, new RenderProjectile(TragicItems.NekoStickyBomb));
-		RenderingRegistry.registerEntityRenderingHandler(EntityNekoClusterBomb.class, new RenderProjectile(TragicItems.NekoClusterBomb));
-		RenderingRegistry.registerEntityRenderingHandler(EntityNekoMiniBomb.class, new RenderProjectile(TragicItems.NekoClusterBomb));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySolarBomb.class, new RenderProjectile(TragicItems.SolarBomb));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySpiritCast.class, new RenderProjectile(TragicItems.SpiritCast));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, new RenderProjectile(TragicItems.Spore));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBanana.class, new RenderProjectile(TragicItems.Banana));
+		//Projectile renders
+		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinbomb.class, new RenderProjectile(2));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLargePumpkinbomb.class, new RenderProjectile(3));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPoisonBarb.class, new RenderProjectile(4));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNekoRocket.class, new RenderProjectile(5));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNekoStickyBomb.class, new RenderProjectile(6));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNekoClusterBomb.class, new RenderProjectile(7));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNekoMiniBomb.class, new RenderProjectile(8));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySolarBomb.class, new RenderProjectile(9));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySpiritCast.class, new RenderProjectile(10));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySpore.class, new RenderProjectile(11));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBanana.class, new RenderProjectile(12));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLargeRock.class, new RenderLargeRock());
-		RenderingRegistry.registerEntityRenderingHandler(EntityIcicle.class, new RenderProjectile(TragicItems.CrushedIce));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
-		RenderingRegistry.registerEntityRenderingHandler(EntityTimeBomb.class, new RenderProjectile(Items.clock));
+		RenderingRegistry.registerEntityRenderingHandler(EntityIcicle.class, new RenderProjectile(14));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTimeBomb.class, new RenderProjectile(15));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStarShard.class, new RenderProjectile(16));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderProjectile(17));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(18));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkEnergy.class, new RenderProjectile(19));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkMortor.class, new RenderProjectile(20));
+		RenderingRegistry.registerEntityRenderingHandler(EntityWebBomb.class, new RenderProjectile(21));
+		RenderingRegistry.registerEntityRenderingHandler(EntityCrystalMortor.class, new RenderProjectile(22));
+		
+		//Non projectile renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
-		RenderingRegistry.registerEntityRenderingHandler(EntityStarShard.class, new RenderProjectile(TragicItems.StarPieces));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderProjectile(TragicItems.PureDarkness));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPitchBlack.class, new RenderProjectile(TragicItems.PitchBlack));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDarkEnergy.class, new RenderProjectile(TragicItems.DarkParticles));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
-		RenderingRegistry.registerEntityRenderingHandler(EntityDarkMortor.class, new RenderProjectile(TragicItems.ObsidianOrb));
-		RenderingRegistry.registerEntityRenderingHandler(EntityWebBomb.class, new RenderProjectile(Item.getItemFromBlock(Blocks.web)));
-		RenderingRegistry.registerEntityRenderingHandler(EntityCrystalMortor.class, new RenderProjectile(TragicItems.CelestialDiamond));
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderJabba());

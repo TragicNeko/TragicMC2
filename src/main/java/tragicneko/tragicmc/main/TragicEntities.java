@@ -773,18 +773,18 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
 		}
 
-		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 10, true);
-		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityLargePumpkinbomb.class, "LargePumpkinbomb", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityPoisonBarb.class, "PoisonBarb", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityNekoRocket.class, "NekoRocket", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityNekoStickyBomb.class, "NekoStickyBomb", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityNekoClusterBomb.class, "NekoClusterBomb", listid++, TragicMC.instance, 80, 5, true);
-		EntityRegistry.registerModEntity(EntityNekoMiniBomb.class, "NekoMiniBomb", listid++, TragicMC.instance, 80, 5, true);
+		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityPumpkinbomb.class, "Pumpkinbomb", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityLargePumpkinbomb.class, "LargePumpkinbomb", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityPoisonBarb.class, "PoisonBarb", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityNekoRocket.class, "NekoRocket", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityNekoStickyBomb.class, "NekoStickyBomb", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityNekoClusterBomb.class, "NekoClusterBomb", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityNekoMiniBomb.class, "NekoMiniBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntitySolarBomb.class, "SolarBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntitySpiritCast.class, "SpiritCast", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntitySpore.class, "Spore", listid++, TragicMC.instance, 80, 3, true);
-		EntityRegistry.registerModEntity(EntityBanana.class, "Banana", listid++, TragicMC.instance, 80, 5, true);
+		EntityRegistry.registerModEntity(EntityBanana.class, "Banana", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityTimeBomb.class, "TimeBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityTimeDisruption.class, "TimeDisruption", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityLargeRock.class, "LargeRock", listid++, TragicMC.instance, 80, 3, true);
@@ -797,6 +797,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityDarkCrystal.class, "DarkCrystal", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDarkMortor.class, "DarkMortor", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityWebBomb.class, "WebBomb", listid++, TragicMC.instance, 80, 3, true);
-		EntityRegistry.registerModEntity(EntityCrystalMortor.class, "CrystalMortor", listid++, TragicMC.instance, 80, 5, true);
+		EntityRegistry.registerModEntity(EntityCrystalMortor.class, "CrystalMortor", listid++, TragicMC.instance, 80, 3, true);
 	}
 }

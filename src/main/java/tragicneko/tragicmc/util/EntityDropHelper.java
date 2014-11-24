@@ -108,7 +108,7 @@ public class EntityDropHelper {
 			{new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(10, Items.fire_charge)}},
 				true);
 		
-		addToDropList(EntityNorVox.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Rock), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.ObsidianOrb),
+		addToDropList(EntityNorVox.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Projectile), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.ObsidianOrb),
 				new EntityDrop(10, Blocks.stone)},
 			{new EntityDrop(15, Items.emerald), new EntityDrop(15, Items.diamond), new EntityDrop(25, TragicItems.Tungsten), new EntityDrop(25, TragicItems.RedMercury), new EntityDrop(5, TragicItems.Ruby),
 				new EntityDrop(5, TragicItems.Sapphire), new EntityDrop(15, Items.experience_bottle)},

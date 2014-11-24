@@ -767,7 +767,7 @@ public class TragicRecipes {
 			" x ",
 			"xyx",
 			" x ",
-			'x', new ItemStack(TragicItems.Rock, 1, 1),
+			'x', new ItemStack(TragicItems.Projectile, 1, 1),
 			'y', Items.glass_bottle
 		});
 
@@ -867,14 +867,14 @@ public class TragicRecipes {
 			TragicItems.LifeWater, TragicItems.LifeWater, Items.clay_ball, Items.clay_ball
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Rock, 3), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Projectile, 3), new Object[] {
 			"xx",
 			"xx",
 			'x', Blocks.gravel
 		});
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Rock, 3, 1), new Object[] {
-			TragicItems.Rock, TragicItems.FireOrb
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Projectile, 3, 1), new Object[] {
+			TragicItems.Projectile, TragicItems.FireOrb
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(Items.clay_ball, 3), new Object[] {
@@ -889,20 +889,20 @@ public class TragicRecipes {
 			"xxx",
 			"xxx",
 			"xxx",
-			'x', TragicItems.Rock
+			'x', TragicItems.Projectile
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.gravel, 1), new Object[] {
 			"xx",
 			"xx",
-			'x', TragicItems.Rock
+			'x', TragicItems.Projectile
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.netherrack, 1), new Object[] {
 			"xxx",
 			"xxx",
 			"xxx",
-			'x', new ItemStack(TragicItems.Rock, 1, 1)
+			'x', new ItemStack(TragicItems.Projectile, 1, 1)
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NetherBrickPressurePlate, 1), new Object[] {

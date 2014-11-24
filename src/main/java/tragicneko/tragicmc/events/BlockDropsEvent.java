@@ -52,12 +52,12 @@ public class BlockDropsEvent {
 		else if (event.block == Blocks.cobblestone && rand.nextInt(32) == 0)
 		{
 			event.drops.clear();
-			event.drops.add(new ItemStack(TragicItems.Rock));
+			event.drops.add(new ItemStack(TragicItems.Projectile));
 		}
 		else if (event.block == Blocks.netherrack && rand.nextInt(48) == 0)
 		{
 			event.drops.clear();
-			event.drops.add(new ItemStack(TragicItems.Rock, 1, 1));
+			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 1));
 		}
 		else if (event.block == Blocks.log && rand.nextInt(64) == 0)
 		{

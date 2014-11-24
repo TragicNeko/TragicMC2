@@ -60,7 +60,7 @@ public class BlockFox extends Block {
 	{
 		if (meta == 5)
 		{
-			return TragicItems.Rock;
+			return TragicItems.Projectile;
 		}
 		return super.getItemDropped(meta, rand, level);
 	}
