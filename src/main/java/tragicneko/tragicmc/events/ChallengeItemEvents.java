@@ -57,7 +57,8 @@ public class ChallengeItemEvents {
 					challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge)
 					{
-						if (challenge.challengeClass != null && challenge.challengeClass == event.entityLiving.getClass())
+						Class cls = challenge.challengeClass;
+						if (cls != null && (cls == event.entityLiving.getClass() || event.entityLiving.getClass().getSuperclass() == cls))
 						{
 							int pow = stack.stackTagCompound.getInteger("challengeProgress");
 							stack.stackTagCompound.setInteger("challengeProgress", ++pow);
@@ -114,7 +115,6 @@ public class ChallengeItemEvents {
 								break;
 							}
 						}
-
 					}
 					else if (challenge.isBlockChallenge)
 					{
@@ -158,7 +158,6 @@ public class ChallengeItemEvents {
 					if (challenge.isLocationBased)
 					{
 						boolean flag = false;
-
 						if (challenge.challengeBiome != null)
 						{
 							flag = player.worldObj.getBiomeGenForCoords((int) player.posX, (int) player.posZ) == challenge.challengeBiome;
@@ -167,7 +166,6 @@ public class ChallengeItemEvents {
 						{
 							flag = MathHelper.sqrt_double(player.posX * player.posX + player.posZ * player.posZ) >= challenge.challengeRange;
 						}
-
 						stack.stackTagCompound.setBoolean("challengeLocation", flag);
 					}
 				}
