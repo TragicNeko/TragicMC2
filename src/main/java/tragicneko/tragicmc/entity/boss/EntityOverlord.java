@@ -11,14 +11,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -39,7 +35,7 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 	private int hoverBuffer = 0;
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
-	
+
 	public EntityPart[] overlordParts;
 	public EntityPart overlordHead;
 	public EntityPart overlordHead2;
@@ -97,7 +93,7 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 		this.fallDistance = 0.0F;
 
 		super.onLivingUpdate();		
-		
+
 		//TODO final form parts
 
 		if (this.worldObj.isRemote)
@@ -149,7 +145,7 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 
 		if (this.shouldHover)
 		{
-			TragicMC.logInfo("Overlord is hovering");
+			if (this.hoverTicks % 5 == 0) TragicMC.logInfo("Overlord is hovering");
 			this.hoverTicks++;
 			this.motionX = this.motionY = this.motionZ = 0.0;
 			this.target = new double[] {this.posX, this.posY, this.posZ};
@@ -164,6 +160,12 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 		{
 			this.hoverTicks = 0;
 			this.hoverBuffer++;
+		}
+
+		if (this.ticksExisted % 120 == 0)
+		{
+			int i = this.getPlayersNearby(64.0, 1, 8);
+			this.heal(i * 5.0F);
 		}
 	}
 
@@ -244,6 +246,6 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 
 	@Override
 	public EntityPart getDefaultPart() {
-		return null;
+		return this.overlordHead;
 	}
 }
