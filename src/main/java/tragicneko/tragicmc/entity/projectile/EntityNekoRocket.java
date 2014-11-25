@@ -49,17 +49,10 @@ public class EntityNekoRocket extends EntityProjectile {
 
 	public void onUpdate()
 	{
-		if (this.target != null && (this.target.getHealth() == 0 || this.target.isDead))
-		{
-			this.target = null;
-		}
+		if (this.target != null && (this.target.getHealth() == 0 || this.target.isDead)) this.target = null;
+		if (this.target != null && this.ticksInAir > 2) this.ticksWithTarget++;
 
-		if (this.target != null && this.ticksInAir > 2)
-		{
-			this.ticksWithTarget++;
-		}
-
-		if (this.ticksWithTarget > 60 || this.ticksInAir > 80)
+		if (this.ticksWithTarget > 60 || this.ticksInAir > 80 || this.target != null && this.getDistanceToEntity(this.target) <= 2.0)
 		{
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 

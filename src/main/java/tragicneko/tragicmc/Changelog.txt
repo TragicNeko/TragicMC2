@@ -2992,8 +2992,8 @@ Finished up the Synapse Dimension (for now), it now generates similarly to the N
 for now it is good enough, there is no bedrock ceiling or floor, as well, the areas closest to the top and bottom generate sorta "faded", I'm debating if I should add void pits
 to this Dimension as a feature to make cooler looking areas
 
-2.40.1756++ [Creating the Overlord, my first "Big" boss] <179> (November 13, 2014)
-Fix being able to attack entities through walls with the Reach enchantment this makes attacking entities near walls a bit wonky, but is necessary to prevent a cheap way of
+2.40.1770 [Creating the Overlord, my first "Big" boss] <179> (November 13, 2014)
+Fixed being able to attack entities through walls with the Reach enchantment this makes attacking entities near walls a bit wonky, but is necessary to prevent a cheap way of
 attacking things
 Created basic entity class for the Overlord, experimenting with it's final form's motion, which will use a modified version of the Pirah's except it'll use a target intead of
 random motion offsets to determine where it's going
@@ -3009,28 +3009,33 @@ Added dynamic healing, the amount it heals per few seconds depends on how many p
 Added methods in the boss superclass for that purpose
 Added Leadfoot to Gragul/Kragul which replaces their nausea/blindness effect, changed potion icon for the Hacked effect, added Leadfoot to the Time Controller when it's using
 it's Quantum Leap ability, to make it more difficult to attack it during that time
-Fix Pirah not extinguishing in water
-Fix Disorientation not working due to changes brought out with Clarity working on Servers
-Fix Challenges based on killing or finding entities based on superclass
-Fix up some minor things with bosses taking damage from stronger weapons (anything over 30 and not done by a creative mode player would be negated completely)
+Fixed Pirah not extinguishing in water
+Fixed Disorientation not working due to changes brought out with Clarity working on Servers
+Fixed Challenges based on killing or finding entities based on superclass
+Fixed up some minor things with bosses taking damage from stronger weapons (anything over 30 and not done by a creative mode player would be negated completely)
 Rewrote the projectile items to use one class and item id now, this also will modify their renders to be simplified greatly, each one will have a new unique texture now
 Modified the creative projectile item to use vector based direction rather than if a block is in range and using that block's coodinates
 Fixed gravity velocity with the rock projectiles
 Reduce amount of "idle" time the Tragic Neko has while doing it's attack cycle
-Fix bug with Withering Axe's right click ability (firing wither skulls) wouldn't actually take doom unless you were in Creative
-Fix bug with Titan's right-click lightning not using Doom (it was lowering coolown instead, derp)
+Fixed bug with Withering Axe's right click ability (firing wither skulls) wouldn't actually take doom unless you were in Creative
+Fixed bug with Titan's right-click lightning not using Doom (it was lowering coolown instead, derp)
 Made it so that all weapon's non-Doomsday abilities now require the player to have no global cooldown active and force each one to use vector-based directions for projectiles
-Fix up Beastly Claws to use NBT tags to control it's cooldown instead of using an arbitrary variable in the item class (which would be static regardless of the context so it
+Fixed up Beastly Claws to use NBT tags to control it's cooldown instead of using an arbitrary variable in the item class (which would be static regardless of the context so it
 would cause bugs with more than one person using it)
 Convert the few Doomsdays that used mop to use the hit vector, this should fix poison barb's flight path, but I'll keep it reversed
 Change the Inkling's torch breaking to use the same method the Enyvil uses to break blocks, as well, do the same for the Miner Skills doomsday
 Update the cooldown variables used in the weapons to be nbt tags instead of arbitrary variables in the item classes, which were basically static variables that would affect all
 items in current existence, client-server syncing notwithstanding, now each one is treated separately per itemstack and will have a set cooldown rate of 5, which should be barely
 noticeable for pretty much everyone, this is to prevent you from using an ability multiple times on one click
+Fixed the Neko Launcher firing a missile client side
+Bump version number for testing (for streaming)
+
+2.40.1770++
 
 TODO still
 Make the Overlord block disappear after a couple seconds
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
+Create the Overlord's final form model, I can't set up the bounding boxes for the Multipart aspect until this gets done
 
 --Overlord plan, may fit in other random small things in between doing this--
 After I get that motion adequate I'll make it Multipart, and work out the details of that, afterwards I'll add it's attack patterns and AI, at this point it'd be best to start
