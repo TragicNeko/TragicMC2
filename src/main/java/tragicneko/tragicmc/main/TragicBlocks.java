@@ -31,10 +31,9 @@ import tragicneko.tragicmc.blocks.BlockGlowvine;
 import tragicneko.tragicmc.blocks.BlockLight;
 import tragicneko.tragicmc.blocks.BlockLightCobble;
 import tragicneko.tragicmc.blocks.BlockLuminescence;
-import tragicneko.tragicmc.blocks.BlockMagnetar;
 import tragicneko.tragicmc.blocks.BlockNetherBrickPressurePlate;
 import tragicneko.tragicmc.blocks.BlockObsidianVariant;
-import tragicneko.tragicmc.blocks.BlockPulsar;
+import tragicneko.tragicmc.blocks.BlockOverlordBarrier;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.blocks.BlockSandstonePressurePlate;
 import tragicneko.tragicmc.blocks.BlockStarCrystal;
@@ -54,8 +53,6 @@ import tragicneko.tragicmc.blocks.itemblocks.ItemBlockSummonBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicSapling;
 import tragicneko.tragicmc.blocks.itemblocks.TragicItemBlock;
-import tragicneko.tragicmc.blocks.tileentity.TileEntityMagnetar;
-import tragicneko.tragicmc.blocks.tileentity.TileEntityPulsar;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
@@ -101,11 +98,6 @@ public class TragicBlocks {
 	public static Block Root;
 
 	public static Block TragicObsidian;
-	
-	public static Block Pulsar;
-	public static Block Magnetar;
-	
-	public static Block WeatherBlock; //Dehydrator, Lightning Rod, Cooler, Heater
 	
 	public static Block TimeDisruptionCube;
 	
@@ -222,15 +214,6 @@ public class TragicBlocks {
 
 		TragicObsidian = (new BlockObsidianVariant());
 		GameRegistry.registerBlock(TragicObsidian, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
-
-		Pulsar = (new BlockPulsar().setBlockName("tragicmc.pulsar").setBlockTextureName("tragicmc:Pulsar_lowRes"));
-		GameRegistry.registerBlock(Pulsar, ItemBlock.class, "pulsar");
-		
-		Magnetar = (new BlockMagnetar().setBlockName("tragicmc.magnetar").setBlockTextureName("tragicmc:Magnetar_lowRes"));
-		GameRegistry.registerBlock(Magnetar, ItemBlock.class, "magnetar");
-
-		GameRegistry.registerTileEntity(TileEntityPulsar.class, "pulsar");
-		GameRegistry.registerTileEntity(TileEntityMagnetar.class, "magnetar");
 		
 		DeadDirt = (new BlockDeadDirt().setBlockName("tragicmc.deadDirt").setBlockTextureName("tragicmc:DeadDirt_lowRes"));
 		GameRegistry.registerBlock(DeadDirt, TragicItemBlock.class, "deadDirt", new Object[] {new String[] {"normal", "rugged", "mixed"}, "deadDirt"});
@@ -339,21 +322,7 @@ public class TragicBlocks {
 		SynapseCore = (new BlockGeneric(Material.iron, "pickaxe", 0).setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore_lowRes").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
 		
-		OverlordBarrier = (new BlockGeneric(Material.iron, "", 0) {
-			@cpw.mods.fml.relauncher.SideOnly(cpw.mods.fml.relauncher.Side.CLIENT)
-			@Override
-			public int getRenderBlockPass()
-			{
-				return 1;
-			}
-			
-			@Override
-			public boolean isOpaqueCube()
-			{
-				return false;
-			}
-			
-		}.setBlockName("tragicmc.overlordBarrier").setBlockUnbreakable().setResistance(6000000.0F).setCreativeTab(TragicTabs.Creative).setStepSound(Block.soundTypeStone).setBlockTextureName("tragicmc:OverlordBarrier_lowRes").setLightLevel(10.0F).setLightOpacity(0));
+		OverlordBarrier = (new BlockOverlordBarrier());
 		GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
 		
 		for (int i = 0; i < 3; i++)
