@@ -3031,11 +3031,20 @@ Fixed the Neko Launcher firing a missile client side
 Bump version number for testing (for streaming)
 
 2.40.1770++
+Possibly fix targetting issues with my mobs and improve it a bit (hopefully) this needs to be tested but it's apparently a very rare crash as it hasn't happened before
+Upon further thought, I've decided that the final form of the Overlord doesn't need to be multipart
+Changed a few of the Talismans to use anonymous classes rather than having them override one thing and use a superclass, part of my desire to have as few useless classes as possible
+Remove empty LifeWater class, may have been planning to use that for a bonemeal type of effect but I can do that later on
+Move all of the items in the "special" package to the normal item package, there is no need for a separate package for these as if they have their own class they are generally going to
+be "special" anyway
+Created a new block class for the Overlord Barrier, there is a lot needed for it that necessitates it's own class rather than an anonymous class
+Change the Generator item to use the vector based position rather than the block hit position, update them to use metadata of one item since it is a Creative only item and doesn't
+necessitate separate identifiers, at least not internally
+In the future, I'll add some of the vanilla generators like cave and ravine generators, also will add some of the vanilla structures like mineshafts and villages
 
 TODO still
-Make the Overlord block disappear after a couple seconds
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
-Create the Overlord's final form model, I can't set up the bounding boxes for the Multipart aspect until this gets done
+Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
 
 --Overlord plan, may fit in other random small things in between doing this--
 After I get that motion adequate I'll make it Multipart, and work out the details of that, afterwards I'll add it's attack patterns and AI, at this point it'd be best to start
@@ -3060,6 +3069,7 @@ Note: For the Magma biomes, add a geyser block that will randomly shoot steam up
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago
 
 Possibility: Add small attribute modififers to amulets, like +2 health, +1 attack, +3 speed, etc.
+Modifiers: Health, Attack Damage, Movement Speed, Knockback Resistance, Reach, Jump Height, Resistance (Armor), Luck
 What I could do is, instead of each thing keeping track of separate modifiers, have the overall modifiers added up, then applied to the player every tick, however, each single one
 would have a max modifier of +5 on anything, and a overall max modifier of +15 from that, unless I extended it to apply to armor and weapons
 Combining Amulets will cost nothing, it'll be done automatically when you craft them to upgrade them, modifiers will max out at +5 each modifier, and the total amount per
@@ -3071,25 +3081,17 @@ Modify World Shaper Doomsdays to have some additional non-griefing effects
 Make the Sky Fruit able to grow on Painted Biome trees, similarly to cocoa beans
 Start making particles for my entities
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
-Could add a Mirror Coat Doomsday that parallels the Apis ability, it'd be a scroll-only Doomsday
-A new fox-styled weapon that could have a dark Kitsune summoned for it's doomsday, Kurayami, or just have it as a rare Doomsday Scroll
-Add a "Life split" Doomsday that gets the health of all nearby entities and splits them amongst them evenly, this will use percentages rather than raw health numbers as there
-are far too many different health amounts to compensate for otherwise, i.e. mob with 1000 health has 750, 0.75, player with 20 health has 15, 0.75, nothing happens to either
-as they have the same percent, mob with 1000 health has 550, 0.55, player with 20 health has 3, 0.15, the mob gets set to 350, the player gets set to 7 because the average is
-0.35 for the two
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
 a keybinding and gui screen in order to do this
-Change how projectiles are fired from weapons, use a vector based direction instead of a block hit position, this would allow you to shoot them up into the air and such
 Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
 that stay in it too long)
 Add the Lockbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
 Add the Locobot, a Mini-Boss that'll attack with it's guns (non-projectile non-magic projectile attack), it'll be destructible, meaning it's arms could be blasted off
 and it can lose those guns, it could get it's head blown off, which will make it more aggressive, it could also lose it's legs and be unable to move, it has two guns intead of
 one that the locbot has, it'll also will be able to fire missles if it loses both guns
-Add the WubWub, it'll be a small bouncy anthropod that will randomly turn into a solid block (it also remains a solid block if it is idle), it bounces around and attacks whatever
-it collides with, it'll have dubstep-like sounds
-Start work on the Overlord
+Add the Harvester and the Hunter for the Overlord, the Harvester will be passive, but spawns Nano Swarms randomly, it'll hover around and randomly destroy circuit blocks
+The Hunter will actively track nearby non-Synapse entities and will "laser" them slowing them down and will also latch onto them hacking them directly
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 
 --Before Next Release (I failed this goal the first time OTL|||)--
