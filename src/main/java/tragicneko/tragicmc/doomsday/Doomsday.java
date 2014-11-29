@@ -69,6 +69,7 @@ public abstract class Doomsday {
 	
 	//Scroll only Doomsdays
 	//Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
+	//Life Share, Influence, gets the average percentage of health each mob has around you and sets all to the average (includes your health in both calculations)
 	//Death Mark, Overflow, a nearby enemy is inflicted with Submission X and gets damaged randomly for a few minutes
 	//Paradigm Shift, Influence, activates a random Doomsday effect
 	//Adrenaline, Crisis, gives you a Speed Boost V for like 5 seconds, higher amplifier for lower health that you have
@@ -78,7 +79,7 @@ public abstract class Doomsday {
 	//Soulstealer, Influence, steals health from the mob closest to you and gives it to you
 	//Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
 	//Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
-	//Time Crash, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
+	//Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
 	//Hacker, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
 	//Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
 	//Dimentia, Influence, mobs around you start attacking each other

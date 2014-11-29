@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.main;
 
 import scala.actors.threadpool.Arrays;
-import tragicneko.tragicmc.items.special.RecipeWeapons;
+import tragicneko.tragicmc.items.RecipeWeapons;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -1124,24 +1124,6 @@ public class TragicRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 2), new Object[] {
 			Blocks.netherrack, TragicItems.LifeWater, TragicItems.LivingClay
 		});
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(TragicBlocks.Pulsar, new Object[] {
-				"xzx",
-				"zyz",
-				"xzx",
-				'x', "cobblestone",
-				'y', TragicItems.GravityOrb,
-				'z', Items.iron_ingot
-		}));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(TragicBlocks.Magnetar, new Object[] {
-				"xzx",
-				"xwx",
-				"xzx",
-				'x', "stone",
-				'z', Blocks.iron_block,
-				'w', TragicItems.GravityOrb
-		}));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.lit_pumpkin, 1), new Object[] {
 			TragicBlocks.Candle, Blocks.pumpkin

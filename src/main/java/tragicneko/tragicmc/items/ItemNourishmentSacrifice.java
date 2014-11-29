@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.items.special;
+package tragicneko.tragicmc.items;
 
 import java.util.List;
 
@@ -51,10 +51,7 @@ public class ItemNourishmentSacrifice extends Item {
 				if (TragicNewConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, 600, 0));
 				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Convergence.id, 300));
 				
-				if (!par3EntityPlayer.capabilities.isCreativeMode)
-				{
-					par1ItemStack.stackSize--;
-				}
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 				
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Hunger sacrificed!"));
 			}

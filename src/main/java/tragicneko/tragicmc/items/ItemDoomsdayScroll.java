@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.items.special;
+package tragicneko.tragicmc.items;
 
 import java.awt.Color;
 import java.util.List;

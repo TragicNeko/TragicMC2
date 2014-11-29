@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.util;
 
-import tragicneko.tragicmc.items.special.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet;
 
 public class AmuletHelper {
 

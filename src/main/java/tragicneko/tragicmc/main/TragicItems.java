@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.main;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -7,6 +9,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
@@ -15,8 +18,29 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.items.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmuletRelease;
+import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
+import tragicneko.tragicmc.items.ItemBloodSacrifice;
+import tragicneko.tragicmc.items.ItemChallenge;
+import tragicneko.tragicmc.items.ItemCooldownDefuse;
+import tragicneko.tragicmc.items.ItemCryingObsidianOrb;
+import tragicneko.tragicmc.items.ItemDimensionalKey;
+import tragicneko.tragicmc.items.ItemDoomUpgrade;
+import tragicneko.tragicmc.items.ItemDoomsdayScroll;
+import tragicneko.tragicmc.items.ItemDyingObsidianOrb;
+import tragicneko.tragicmc.items.ItemGenerator;
 import tragicneko.tragicmc.items.ItemGeneric;
+import tragicneko.tragicmc.items.ItemHydration;
+import tragicneko.tragicmc.items.ItemLightningRod;
+import tragicneko.tragicmc.items.ItemMobEgg;
+import tragicneko.tragicmc.items.ItemMoonlight;
+import tragicneko.tragicmc.items.ItemNekoWand;
+import tragicneko.tragicmc.items.ItemNourishmentSacrifice;
 import tragicneko.tragicmc.items.ItemProjectile;
+import tragicneko.tragicmc.items.ItemStatue;
+import tragicneko.tragicmc.items.ItemSynthesis;
+import tragicneko.tragicmc.items.ItemTalisman;
 import tragicneko.tragicmc.items.armor.ArmorDark;
 import tragicneko.tragicmc.items.armor.ArmorHunter;
 import tragicneko.tragicmc.items.armor.ArmorLight;
@@ -35,31 +59,6 @@ import tragicneko.tragicmc.items.food.ItemRice;
 import tragicneko.tragicmc.items.food.ItemSkyFruit;
 import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.food.ItemTentacle;
-import tragicneko.tragicmc.items.special.ItemAmulet;
-import tragicneko.tragicmc.items.special.ItemAmuletRelease;
-import tragicneko.tragicmc.items.special.ItemBleedingObsidianOrb;
-import tragicneko.tragicmc.items.special.ItemBloodSacrifice;
-import tragicneko.tragicmc.items.special.ItemChallenge;
-import tragicneko.tragicmc.items.special.ItemCooldownDefuse;
-import tragicneko.tragicmc.items.special.ItemCryingObsidianOrb;
-import tragicneko.tragicmc.items.special.ItemDimensionalKey;
-import tragicneko.tragicmc.items.special.ItemDoomUpgrade;
-import tragicneko.tragicmc.items.special.ItemDoomsdayScroll;
-import tragicneko.tragicmc.items.special.ItemDyingObsidianOrb;
-import tragicneko.tragicmc.items.special.ItemGenerator;
-import tragicneko.tragicmc.items.special.ItemHydration;
-import tragicneko.tragicmc.items.special.ItemLifeWater;
-import tragicneko.tragicmc.items.special.ItemLightningRod;
-import tragicneko.tragicmc.items.special.ItemMobEgg;
-import tragicneko.tragicmc.items.special.ItemMoonlight;
-import tragicneko.tragicmc.items.special.ItemNekoWand;
-import tragicneko.tragicmc.items.special.ItemNourishmentSacrifice;
-import tragicneko.tragicmc.items.special.ItemRainDance;
-import tragicneko.tragicmc.items.special.ItemStatue;
-import tragicneko.tragicmc.items.special.ItemSunnyDay;
-import tragicneko.tragicmc.items.special.ItemSynthesis;
-import tragicneko.tragicmc.items.special.ItemThunderstorm;
-import tragicneko.tragicmc.items.special.ItemTimeManipulator;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
 import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
@@ -146,7 +145,7 @@ public class TragicItems {
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
-	
+
 	public static Item Sentinel;
 
 	//Weather/Time items
@@ -164,9 +163,9 @@ public class TragicItems {
 	public static Item KitsuneTail; //Kitsunakuma
 	public static Item LivingClay; //Claymation
 	public static Item StarPieces; //Polaris
-	public static Item PhoenixFeather; //Phoenix
+	//public static Item PhoenixFeather; //Phoenix
 	public static Item OverlordEye; //The Overlord
-	
+
 	public static Item OverlordSeed; //there will be an End-like dimension created
 
 	//Doom items
@@ -218,7 +217,7 @@ public class TragicItems {
 	public static Item IcyFur;
 
 	public static Item FrozenLightning;
-	
+
 	public static Item BloodSacrifice;
 	public static Item NourishmentSacrifice;
 
@@ -243,17 +242,7 @@ public class TragicItems {
 
 	public static Item BowOfJustice;
 	public static Item SwordOfJustice;
-
-	public static Item VoidPitGenerator;
-	public static Item SphereGenerator;
-	public static Item SphereEraser;
-	public static Item LiquidRemover;
-	public static Item TreeGenerator;
-	public static Item SpikeGenerator;
-	public static Item StarCrystalGenerator;
-	public static Item LightningSummoner;
-	public static Item ExplosionGenerator;
-
+	public static Item Generator;
 	public static Item NekoNekoWand;
 
 	public static Item SpawnEgg;
@@ -407,29 +396,29 @@ public class TragicItems {
 
 		FrozenLightning = (new WeaponFrozenLightning(toolFrozen, Doomsday.Freeze).setUnlocalizedName("tragicmc.frozenLightning").setTextureName("tragicmc:FrozenLightning" + textureRes));
 		GameRegistry.registerItem(FrozenLightning, "frozenLightning");
-		
+
 		CelestialAegis = (new WeaponCelestialAegis(toolCelestial, Doomsday.MoonlightSonata).setUnlocalizedName("tragicmc.celestialAegis").setTextureName("tragicmc:CelestialAegis" + textureRes));
 		GameRegistry.registerItem(CelestialAegis, "celestialAegis");
-		
+
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
-		
+
 		//Epic weapons
 		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" + textureRes));
 		GameRegistry.registerItem(Titan, "titan");
-		
+
 		Splinter = (new WeaponSplinter(Doomsday.Marionette).setUnlocalizedName("tragicmc.splinter").setTextureName("tragicmc:Splinter" + textureRes));
 		GameRegistry.registerItem(Splinter, "splinter");
-		
+
 		Butcher = (new WeaponButcher(Doomsday.Bloodlust).setUnlocalizedName("tragicmc.butcher").setTextureName("tragicmc:Butcher" + textureRes));
 		GameRegistry.registerItem(Butcher, "butcher");
-		
+
 		Thardus = (new WeaponThardus(Doomsday.Permafrost).setUnlocalizedName("tragicmc.thardus").setTextureName("tragicmc:Thardus" + textureRes));
 		GameRegistry.registerItem(Thardus, "thardus");
-		
+
 		Paranoia = (new WeaponParanoia(Doomsday.Asphyxiate).setUnlocalizedName("tragicmc.paranoia").setTextureName("tragicmc:Paranoia" + textureRes));
 		GameRegistry.registerItem(Paranoia, "paranoia");
-		
+
 		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
 		GameRegistry.registerItem(DragonFang, "dragonFang");
 
@@ -450,7 +439,7 @@ public class TragicItems {
 		Ash = (new ItemGeneric().setUnlocalizedName("tragicmc.ash").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Ash" + textureRes));
 		GameRegistry.registerItem(Ash, "ash");
 
-		LifeWater = (new ItemLifeWater().setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:LifeWater" + textureRes));
+		LifeWater = (new ItemGeneric().setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:LifeWater" + textureRes));
 		GameRegistry.registerItem(LifeWater, "lifeWater");
 
 		ToughLeather = (new ItemGeneric().setUnlocalizedName("tragicmc.toughLeather").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:ToughLeather" + textureRes));
@@ -545,7 +534,7 @@ public class TragicItems {
 
 		LivingClay = (new ItemGeneric().setUnlocalizedName("tragicmc.livingClay").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:LivingClay" + textureRes));
 		GameRegistry.registerItem(LivingClay, "livingClay");
-		
+
 		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:CelestialSteel" + textureRes));
 		GameRegistry.registerItem(CelestialSteel, "celestialSteel");
 
@@ -576,10 +565,10 @@ public class TragicItems {
 
 		BananaSplit = (new ItemBananaSplit(8, false).setUnlocalizedName("tragicmc.bananaSplit").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BananaSplit" + textureRes));
 		GameRegistry.registerItem(BananaSplit, "bananaSplit");
-		
+
 		SkyFruit = (new ItemSkyFruit(4, false).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:SkyFruit" + textureRes));
 		GameRegistry.registerItem(SkyFruit, "skyFruit");
-		
+
 		Tentacle = (new ItemTentacle(3, true).setUnlocalizedName("tragicmc.tentacle").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Tentacle" + textureRes));
 		GameRegistry.registerItem(Tentacle, "tentacle");
 
@@ -610,32 +599,76 @@ public class TragicItems {
 
 		DyingObsidianOrb = (new ItemDyingObsidianOrb().setUnlocalizedName("tragicmc.dyingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DyingObsidianOrb" + textureRes));
 		GameRegistry.registerItem(DyingObsidianOrb, "dyingObsidianOrb");
-		
+
 		//Weather/Time Talismans
 		Talisman = (new ItemGeneric().setUnlocalizedName("tragicmc.talisman").setMaxStackSize(16).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Talisman" + textureRes));
 		GameRegistry.registerItem(Talisman, "talisman");
-		
-		RainDanceTalisman = (new ItemRainDance().setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman" + textureRes));
+
+		RainDanceTalisman = (new ItemTalisman()
+		{
+			@Override
+			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
+			{
+				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
+				
+				EntityPlayer player = (EntityPlayer) entity;
+				if (!world.isRaining()) world.rainingStrength = 1.0F;
+			}
+		}.setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman" + textureRes));
 		GameRegistry.registerItem(RainDanceTalisman, "rainDanceTalisman");
-		
-		SunnyDayTalisman = (new ItemSunnyDay().setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman" + textureRes));
+
+		SunnyDayTalisman = (new ItemTalisman()
+		{
+			@Override
+			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
+			{
+				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
+
+				EntityPlayer player = (EntityPlayer) entity;
+
+				if (world.isThundering()) world.thunderingStrength = 0.0F;
+				if (world.isRaining()) world.rainingStrength = 0.0F;
+			}
+		}).setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman" + textureRes);
 		GameRegistry.registerItem(SunnyDayTalisman, "sunnyDayTalisman");
-		
-		ThunderstormTalisman = (new ItemThunderstorm().setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman" + textureRes));
+
+		ThunderstormTalisman = (new ItemTalisman()
+		{
+			@Override
+			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
+			{
+				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
+				
+				EntityPlayer player = (EntityPlayer) entity;
+				if (!world.isThundering()) world.thunderingStrength = 1.0F;
+			}
+		}).setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman" + textureRes);
 		GameRegistry.registerItem(ThunderstormTalisman, "thunderstormTalisman");
-		
-		TimeManipulatorTalisman = (new ItemTimeManipulator().setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman" + textureRes));
+
+		TimeManipulatorTalisman = (new ItemTalisman()
+		{
+			@Override
+			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
+			{
+				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
+				
+				EntityPlayer player = (EntityPlayer) entity;
+				
+				int a = flag ? -5 : 5;
+				world.setWorldTime(world.getWorldTime() + a);
+			}
+		}.setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman" + textureRes));
 		GameRegistry.registerItem(TimeManipulatorTalisman, "timeManipulatorTalisman");
-		
+
 		MoonlightTalisman = (new ItemMoonlight().setUnlocalizedName("tragicmc.moonlightTalisman").setTextureName("tragicmc:MoonlightTalisman" + textureRes));
 		GameRegistry.registerItem(MoonlightTalisman, "moonlightTalisman");
-		
+
 		SynthesisTalisman = (new ItemSynthesis().setUnlocalizedName("tragicmc.synthesisTalisman").setTextureName("tragicmc:SynthesisTalisman" + textureRes));
 		GameRegistry.registerItem(SynthesisTalisman, "synthesisTalisman");
-		
+
 		HydrationTalisman = (new ItemHydration().setUnlocalizedName("tragicmc.hydrationTalisman").setTextureName("tragicmc:HydrationTalisman" + textureRes));
 		GameRegistry.registerItem(HydrationTalisman, "hydrationTalisman");
-		
+
 		LightningRodTalisman = (new ItemLightningRod().setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman" + textureRes));
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
 
@@ -651,31 +684,31 @@ public class TragicItems {
 
 		AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:AmuletRelease" + textureRes));
 		GameRegistry.registerItem(AmuletRelease, "amuletRelease");
-		
+
 		BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BloodSacrifice" + textureRes));
 		GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
-		
+
 		NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:NourishmentSacrifice" + textureRes));
 		GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
-		
+
 		DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey" + textureRes));
 		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
-		
+
 		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeyEnd" + textureRes));
 		GameRegistry.registerItem(DimensionalKeyEnd, "dimensionalKeyEnd");
-		
+
 		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeyNether" + textureRes));
 		GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
-		
+
 		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:DimensionalKeySynapse" + textureRes));
 		GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
-		
+
 		SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicTabs.Creative).setTextureName("tragicmc:SynapseLink" + textureRes));
 		GameRegistry.registerItem(SynapseLink, "synapseLink");
-		
+
 		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:SynapseCrystal" + textureRes));
 		GameRegistry.registerItem(SynapseCrystal, "synapseCrystal");
-		
+
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
 
@@ -830,32 +863,8 @@ public class TragicItems {
 		SwordOfJustice = (new WeaponSwordOfJustice(toolJustice).setUnlocalizedName("tragicmc.swordOfJustice").setTextureName("gold_sword").setCreativeTab(TragicTabs.Creative));
 		GameRegistry.registerItem(SwordOfJustice, "swordOfJustice");
 
-		VoidPitGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.voidPitGenerator").setTextureName("tragicmc:VoidPitGenerator_lowRes"));
-		GameRegistry.registerItem(VoidPitGenerator, "voidPitGenerator");
-
-		SpikeGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.spikeGenerator").setTextureName("tragicmc:SpikeGenerator_lowRes"));
-		GameRegistry.registerItem(SpikeGenerator, "spikeGenerator");
-
-		StarCrystalGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.starCrystalGenerator").setTextureName("tragicmc:StarCrystalGenerator_lowRes"));
-		GameRegistry.registerItem(StarCrystalGenerator, "starCrystalGenerator");
-
-		SphereGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.sphereGenerator").setTextureName("tragicmc:SphereGenerator_lowRes"));
-		GameRegistry.registerItem(SphereGenerator, "sphereGenerator");
-
-		SphereEraser = (new ItemGenerator().setUnlocalizedName("tragicmc.sphereEraser").setTextureName("tragicmc:SphereEraser_lowRes"));
-		GameRegistry.registerItem(SphereEraser, "sphereEraser");
-
-		LiquidRemover = (new ItemGenerator().setUnlocalizedName("tragicmc.liquidRemover").setTextureName("tragicmc:LiquidRemover_lowRes"));
-		GameRegistry.registerItem(LiquidRemover, "liquidRemover");
-
-		TreeGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.treeGenerator").setTextureName("tragicmc:TreeGenerator_lowRes"));
-		GameRegistry.registerItem(TreeGenerator, "treeGenerator");
-
-		LightningSummoner = (new ItemGenerator().setUnlocalizedName("tragicmc.lightningSummoner").setTextureName("tragicmc:LightningSummoner_lowRes"));
-		GameRegistry.registerItem(LightningSummoner, "lightningSummoner");
-
-		ExplosionGenerator = (new ItemGenerator().setUnlocalizedName("tragicmc.explosionGenerator").setTextureName("tragicmc:ExplosionGenerator_lowRes"));
-		GameRegistry.registerItem(ExplosionGenerator, "explosionGenerator");
+		Generator = (new ItemGenerator());
+		GameRegistry.registerItem(Generator, "generator");
 
 		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand_lowRes").setCreativeTab(TragicTabs.Creative));
 		GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
@@ -865,7 +874,7 @@ public class TragicItems {
 			SpawnEgg = (new ItemMobEgg());
 			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
 		}
-		
+
 		Projectile = (new ItemProjectile());
 		GameRegistry.registerItem(Projectile, "projectile");
 
@@ -944,14 +953,14 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5)
 		};
-		
+
 		WeightedRandomChestContent[] scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
-		
+
 		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
 		{
 			if (Doomsday.doomsdayList[i] != null) scrollArray[i] = new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, i), 0, 1, 3);
 		}
-		
+
 		ArrayUtils.addAll(bossStructureContent, scrollArray);
 
 		WeightedRandomChestContent[] netherStructureContent = new WeightedRandomChestContent[] {
@@ -1002,14 +1011,14 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10)
 		};
-		
+
 		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
-		
+
 		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
 		{
 			if (Doomsday.doomsdayList[i] != null) scrollArray[i] = new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, i), 0, 1, 5);
 		}
-		
+
 		ArrayUtils.addAll(netherStructureContent, scrollArray);
 
 		WeightedRandomChestContent[] lameChestContent = new WeightedRandomChestContent[] {
@@ -1052,14 +1061,14 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 20),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 20)
 		};
-		
+
 		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
-		
+
 		for (int i = 0; i < Doomsday.doomsdayNames.length; i++)
 		{
 			if (Doomsday.doomsdayList[i] != null) scrollArray[i] = new WeightedRandomChestContent(new ItemStack(DoomsdayScroll, 1, i), 0, 1, 10);
 		}
-		
+
 		ArrayUtils.addAll(awesomeChestContent, scrollArray);
 
 		BossStructureHook = (new ChestGenHooks("TragicMC.BossStructure", bossStructureContent, 3, 7));
@@ -1116,7 +1125,7 @@ public class TragicItems {
 		OreDictionary.registerOre("oreCharms", SapphireCharm);
 		OreDictionary.registerOre("oreCharms", DiamondCharm);
 		OreDictionary.registerOre("oreCharms", EmeraldCharm);
-		
+
 		OreDictionary.registerOre("celestialSteelDrops", TimeEssence);
 		OreDictionary.registerOre("celestialSteelDrops", LivingClay);
 		OreDictionary.registerOre("celestialSteelDrops", LightParticles);

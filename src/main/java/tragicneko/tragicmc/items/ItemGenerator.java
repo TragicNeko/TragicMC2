@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.items.special;
+package tragicneko.tragicmc.items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,21 +8,30 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderGenerate;
+import net.minecraft.world.gen.MapGenCaves;
+import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenCanopyTree;
+import net.minecraft.world.gen.feature.WorldGenDungeons;
 import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
@@ -30,9 +39,9 @@ import net.minecraft.world.gen.feature.WorldGenSavannaTree;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.dimension.TragicChunkProvider;
+import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicTabs;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
@@ -43,60 +52,50 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 
 public class ItemGenerator extends Item {
 
+	private String[] subNames = new String[] {"VoidPitGenerator", "SpikeGenerator", "StarCrystalGenerator", "SphereGenerator", "SphereEraser", "LiquidRemover", "TreeGenerator",
+			"LightningSummoner", "ExplosionGenerator"};
+
+	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
+			"lightningSummoner", "explosionGenerator"};
+
+	private IIcon[] iconArray = new IIcon[subNames.length];
+
 	public ItemGenerator()
 	{
 		super();
 		this.setCreativeTab(TragicTabs.Creative);
+		this.setMaxDamage(0);
+		this.setHasSubtypes(true);
+		this.setUnlocalizedName("tragicmc.worldGen");
 	}
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("Generate some of the WorldGen features!");
 		par2List.add("Some of this is really CPU intensive.");
+		par2List.add("Fair warning.");
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		if (world.isRemote) return stack;
-		Random random = TragicMC.rand;
+		Random random = world.rand;
 
 		double size;
+		int meta = stack.getItemDamage();
 
 		int[] coords;
 		ArrayList<int[]> list;
-		
-		double distance = 50.0D;
-		float f = 1.0F;
-		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
-		float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
-		double d0 = player.prevPosX + (player.posX - player.prevPosX) * (double)f;
-		double d1 = player.prevPosY + (player.posY - player.prevPosY) * (double)f + (double)(player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
-		double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * (double)f;
-		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
-		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
-		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
-		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
-		float f6 = MathHelper.sin(-f1 * 0.017453292F);
-		float f7 = f4 * f5;
-		float f8 = f3 * f5;
-		double d3 = distance;
 
-		if (player instanceof EntityPlayerMP)
+		Vec3 vec = TragicWeapon.getVecFromPlayer(player, 100.0);
+
+		int Xcoord = MathHelper.floor_double(vec.xCoord);
+		int Ycoord = MathHelper.floor_double(vec.yCoord);
+		int Zcoord = MathHelper.floor_double(vec.zCoord);
+
+		switch(meta)
 		{
-			d3 = ((EntityPlayerMP)player).theItemInWorldManager.getBlockReachDistance() + (d3 - 4.0D);
-		}
-		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
-
-		MovingObjectPosition mop = player.worldObj.func_147447_a(vec3, vec31, true, false, true);
-
-		if (mop == null) return stack;
-
-		int Xcoord = mop.blockX;
-		int Ycoord = mop.blockY;
-		int Zcoord = mop.blockZ;
-
-		if (this == TragicItems.VoidPitGenerator)
-		{
+		case 0:
 			size = 15.0D * random.nextDouble() + 10.0D;
 
 			for (int pow = 0; pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
@@ -130,9 +129,8 @@ public class ItemGenerator extends Item {
 			}
 
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Void pit generated with size of " + size));
-		}
-		else if (this == TragicItems.SphereGenerator)
-		{
+			break;
+		case 1:
 			size = 5.0D * random.nextDouble() + 2.5D;
 			Block ablock;
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord, Zcoord);
@@ -151,10 +149,7 @@ public class ItemGenerator extends Item {
 				}
 			} 
 
-			if (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable)|| ablock.hasTileEntity(0) || ablock instanceof BlockFalling)
-			{
-				ablock = Blocks.tnt;
-			}
+			if (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable)|| ablock.hasTileEntity(0) || ablock instanceof BlockFalling) ablock = Blocks.tnt;
 
 			for (int i = 0; i < list.size(); i++)
 			{
@@ -167,9 +162,8 @@ public class ItemGenerator extends Item {
 				String s = ablock.getUnlocalizedName();
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Sphere generated with size of " + size + " made of " + StatCollector.translateToLocal(s + ".name")));
 			}
-		}
-		else if (this == TragicItems.SphereEraser)
-		{
+			break;
+		case 2:
 			list = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
 
 			for (int i = 0; i < list.size(); i++)
@@ -182,9 +176,8 @@ public class ItemGenerator extends Item {
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area erased."));
 			}
-		}
-		else if (this == TragicItems.LiquidRemover)
-		{
+			break;
+		case 3:
 			list = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
 
 			for (int i = 0; i < list.size(); i++)
@@ -197,13 +190,10 @@ public class ItemGenerator extends Item {
 				}
 			}
 
-			if (!list.isEmpty())
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area of liquid removed."));
-			}
-		}
-		else if (this == TragicItems.TreeGenerator)
-		{
+			if (!list.isEmpty()) player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area of liquid removed."));
+
+			break;
+		case 4:
 			WorldGenerator object;
 
 			switch (random.nextInt(14))
@@ -265,15 +255,13 @@ public class ItemGenerator extends Item {
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Tree generation failed."));
 			}
-
-		}
-		else if (this == TragicItems.SpikeGenerator)
-		{
+			break;
+		case 5:
 			size = random.nextDouble() + 1.5D;
 			Block spike = random.nextBoolean() ? TragicBlocks.BoneBlock : (random.nextBoolean() ? TragicBlocks.DarkCobblestone : TragicBlocks.DarkStone);
-			int meta = spike == TragicBlocks.BoneBlock ? random.nextInt(2) : (spike == TragicBlocks.DarkStone ? 14 : (random.nextBoolean() ? 0 : 2));
+			int blockMeta = spike == TragicBlocks.BoneBlock ? random.nextInt(2) : (spike == TragicBlocks.DarkStone ? 14 : (random.nextBoolean() ? 0 : 2));
 			spike = TragicBlocks.DarkStone;
-			meta = 14;
+			blockMeta = 14;
 			int spikeType = random.nextInt(6);
 			boolean flag = false;
 			boolean flag2 = false;
@@ -305,26 +293,22 @@ public class ItemGenerator extends Item {
 				}
 				else if (spikeType == 3 && !flag2 && random.nextBoolean() && y1 >= 35 && size <= 1.41115648D && size >= 0.76663601D) //Type 3 has a chance to create "new" smaller spikes near the top
 				{
-					player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike spawned child at Y coord: " + (Ycoord + y1)));
-					CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.32977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, meta);
+					CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.32977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, blockMeta);
 					flag2 = true;
 				}
 				else if (spikeType == 4 && random.nextBoolean() && y1 >= 25 && size >= 0.76663601D) //Type 4 creates a lot of smaller spikes going up the spike
 				{
-					player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike spawned child at Y coord: " + (Ycoord + y1)));
-					CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.12977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, meta);
+					CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.12977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, blockMeta);
 				}
 				else if (spikeType == 5 && random.nextBoolean()) //Type 5 creates huge spikes at the base, and smaller ones near the top
 				{
 					if (y1 <= 16)
 					{
-						player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike spawned child at Y coord: " + (Ycoord + y1)));
-						CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.12977745D, Xcoord + random.nextInt(6) - random.nextInt(6), Ycoord + y1, Zcoord + random.nextInt(6) - random.nextInt(6), spike, meta);
+						CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.12977745D, Xcoord + random.nextInt(6) - random.nextInt(6), Ycoord + y1, Zcoord + random.nextInt(6) - random.nextInt(6), spike, blockMeta);
 					}
 					else if (size >= 0.76663601D)
 					{
-						player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike spawned child at Y coord: " + (Ycoord + y1)));
-						CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, meta);
+						CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, blockMeta);
 					}
 				}
 
@@ -338,11 +322,10 @@ public class ItemGenerator extends Item {
 					world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
 				}
 			}
-		}
-		else if (this == TragicItems.StarCrystalGenerator)
-		{
+			break;
+		case 6:
 			size = 0.35D * random.nextDouble() + 0.75D;
-			int meta = random.nextInt(16);
+			int blockMeta2 = random.nextInt(16);
 			Block block;
 
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Star Crystal with size of " + size + " generated."));
@@ -358,19 +341,54 @@ public class ItemGenerator extends Item {
 				for (int j = 0; j < list.size(); j++)
 				{
 					coords = list.get(j);
-					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.StarCrystal, meta, 2);
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.StarCrystal, blockMeta2, 2);
 				}
 			}
-		}
-		else if (this == TragicItems.LightningSummoner)
-		{
+			break;
+		case 7:
 			world.addWeatherEffect(new EntityLightningBolt(world, Xcoord, Ycoord, Zcoord));
-		}
-		else if (this == TragicItems.ExplosionGenerator)
-		{
-			world.createExplosion(player, Xcoord, Ycoord, Zcoord, 3.0F + (7.0F * itemRand.nextFloat()), WorldHelper.getMobGriefing(world));
+			player.addChatMessage(new ChatComponentText("Lightning created."));
+			break;
+		case 8:
+			float f = 3.0F + (7.0F * itemRand.nextFloat());
+			world.createExplosion(player, Xcoord, Ycoord, Zcoord, f, WorldHelper.getMobGriefing(world));
+			player.addChatMessage(new ChatComponentText("Explosion created with size of " + f));
+			break;
 		}
 
 		return stack;
+	}
+
+	@Override
+	public void getSubItems(Item item, CreativeTabs tab, List list)
+	{
+		for (int i = 0; i < subNames.length; i++)
+		{
+			list.add(new ItemStack(item, 1, i));
+		}
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int damage)
+	{
+		if (damage >= this.iconArray.length) damage = this.iconArray.length - 1;
+		return this.iconArray[damage];
+	}
+
+	@Override
+	public void registerIcons(IIconRegister register)
+	{
+		for (int i = 0; i < subNames.length; i++)
+		{
+			this.iconArray[i] = register.registerIcon("tragicmc:" + textureNames[i] + "_lowRes");
+		}
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack itemstack) {
+		int damage = itemstack.getItemDamage();
+		if (damage >= subNames.length) damage = subNames.length - 1;
+
+		return getUnlocalizedName() + "." + subNames[damage];
 	}
 }

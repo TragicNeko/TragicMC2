@@ -12,7 +12,7 @@ import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.inventory.SlotActiveAmulet;
-import tragicneko.tragicmc.items.special.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.network.MessageAmulet;
 
 public class PropertyAmulets implements IExtendedEntityProperties {

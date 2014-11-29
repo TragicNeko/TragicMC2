@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.inventory;
 
-import tragicneko.tragicmc.items.special.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

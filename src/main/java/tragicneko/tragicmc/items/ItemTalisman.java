@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.items.special;
+package tragicneko.tragicmc.items;
 
 import net.minecraft.item.Item;
 import tragicneko.tragicmc.main.TragicTabs;

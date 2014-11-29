@@ -36,7 +36,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.items.special.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.network.MessageAmulet;

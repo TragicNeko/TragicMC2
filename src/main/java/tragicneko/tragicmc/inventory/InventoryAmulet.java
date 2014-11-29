@@ -5,7 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import tragicneko.tragicmc.items.special.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 
 public class InventoryAmulet implements IInventory {

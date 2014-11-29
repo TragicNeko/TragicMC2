@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.items.special;
+package tragicneko.tragicmc.items;
 
 import java.util.List;
 
@@ -49,10 +49,7 @@ public class ItemBloodSacrifice extends Item {
 				
 				par3EntityPlayer.setHealth(1.0F);
 				
-				if (!par3EntityPlayer.capabilities.isCreativeMode)
-				{
-					par1ItemStack.stackSize--;
-				}
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Health sacrificed!"));
 				if (TragicNewConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Inhibit.id, 600, 0));
