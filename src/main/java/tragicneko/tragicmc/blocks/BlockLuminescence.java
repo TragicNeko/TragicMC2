@@ -27,6 +27,7 @@ public class BlockLuminescence extends Block {
 		this.setHardness(0.0F);
 		this.canBlockGrass = false;
 		this.opaque = false;
+		this.setTickRandomly(true);
 	}
 
 	@Override
