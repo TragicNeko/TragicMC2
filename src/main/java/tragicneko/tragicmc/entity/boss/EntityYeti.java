@@ -63,11 +63,6 @@ public class EntityYeti extends TragicBoss {
 		return TragicEntities.Beast;
 	}
 
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();

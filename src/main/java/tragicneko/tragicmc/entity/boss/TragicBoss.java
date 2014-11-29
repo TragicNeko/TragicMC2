@@ -32,6 +32,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		super(par1World);
 		this.experienceValue = 100;
 	}
+	
+	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
 
 	@Override
 	public void onDeath(DamageSource par1)
@@ -47,7 +53,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		{
 			coords= list.get(i);
 			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
-		}		
+		}
 
 		int x = 1;
 

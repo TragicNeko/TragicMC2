@@ -59,11 +59,6 @@ public class EntityPolaris extends TragicBoss {
 		return TragicEntities.Natural;
 	}
 
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
 	public boolean canRenderOnFire()
 	{
 		return super.canRenderOnFire() && !this.isInvisible();

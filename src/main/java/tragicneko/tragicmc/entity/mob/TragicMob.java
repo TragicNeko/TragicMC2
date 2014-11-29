@@ -83,6 +83,7 @@ public abstract class TragicMob extends EntityMob
 		{
 			if (this.getAttackTarget().getClass() == this.getLesserForm() || this.getAttackTarget() == this.superiorForm) this.setAttackTarget(null);
 			if (this.getAttackTarget().getClass() == this.getClass() && !(this instanceof EntityRagr)) this.setAttackTarget(null);
+			if (this.getSuperiorForm() != null && this.getAttackTarget().getClass() == this.getSuperiorForm().getClass()) this.setAttackTarget(null);
 		}
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption.id))
@@ -332,9 +333,9 @@ public abstract class TragicMob extends EntityMob
 		this.addPotionEffect(new PotionEffect(Potion.resistance.id, i, 2));
 	}
 
-	public Class getLesserForm()
+	public Class<? extends TragicMob> getLesserForm()
 	{
-		return null;
+		return this.getClass();
 	}
 
 	@Override

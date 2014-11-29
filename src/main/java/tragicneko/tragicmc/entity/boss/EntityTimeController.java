@@ -222,11 +222,6 @@ public class EntityTimeController extends TragicBoss {
 		this.setSpazTicks(--pow);
 	}
 
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{

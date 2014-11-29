@@ -60,11 +60,6 @@ public class EntityKitsune extends TragicBoss {
 		return false;
 	}
 
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();

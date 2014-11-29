@@ -26,7 +26,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;
 
-public class EntityOverlord extends TragicBoss implements IMultiPart {
+public class EntityOverlord extends TragicBoss {
 
 	private double[] target = new double[] {0, 0, 0};
 	private int targetChangeCooldown = 0;
@@ -36,15 +36,8 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
 
-	public EntityPart[] overlordParts;
-	public EntityPart overlordHead;
-	public EntityPart overlordHead2;
-	public EntityPart overlordTentacles;
-	public EntityPart overlordTentacles2;
-
 	public EntityOverlord(World par1World) {
 		super(par1World);
-		this.overlordParts = new EntityPart[] {this.overlordHead = new EntityPart(this, "head", 2.0F, 2.0F)};
 		this.setSize(6.0F, 6.0F);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
@@ -57,11 +50,6 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 		}));
 		this.target = new double[] {this.posX, this.posY, this.posZ};
 		this.shouldHover = false;
-	}
-
-	public boolean isAIEnabled()
-	{
-		return true;
 	}
 
 	public boolean handleWaterMovement()
@@ -233,19 +221,4 @@ public class EntityOverlord extends TragicBoss implements IMultiPart {
 
 	@Override
 	public void fall(float f) {}
-
-	@Override
-	public World getWorld() {
-		return this.worldObj;
-	}
-
-	@Override
-	public boolean attackEntityFromPart(EntityPart entity, DamageSource source, float damage) {
-		return false;
-	}
-
-	@Override
-	public EntityPart getDefaultPart() {
-		return this.overlordHead;
-	}
 }

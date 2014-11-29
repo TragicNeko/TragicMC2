@@ -83,11 +83,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		return false;
 	}
 
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
 	@Override
 	protected void entityInit()
 	{
