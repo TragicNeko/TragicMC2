@@ -464,15 +464,16 @@ tragicmc.mobTexture.checkered=(Animated)
 item.tragicmc.bowOfJustice.name=Bow of Justice
 item.tragicmc.swordOfJustice.name=Sword of Justice
 
-item.tragicmc.voidPitGenerator.name=Void Pit Generator
-item.tragicmc.sphereGenerator.name=Sphere Generator
-item.tragicmc.sphereEraser.name=Sphere Eraser
-item.tragicmc.liquidRemover.name=Liquid Remover
-item.tragicmc.treeGenerator.name=Tree Generator
-item.tragicmc.starCrystalGenerator.name=Star Crystal Generator
-item.tragicmc.spikeGenerator.name=Spike Generator
-item.tragicmc.lightningSummoner.name=Lightning Summoner
-item.tragicmc.explosionGenerator.name=Explosion Generator
+item.tragicmc.worldGen.voidPitGenerator.name=Void Pit Generator
+item.tragicmc.worldGen.sphereGenerator.name=Sphere Generator
+item.tragicmc.worldGen.sphereEraser.name=Sphere Eraser
+item.tragicmc.worldGen.liquidRemover.name=Liquid Remover
+item.tragicmc.worldGen.treeGenerator.name=Tree Generator
+item.tragicmc.worldGen.starCrystalGenerator.name=Star Crystal Generator
+item.tragicmc.worldGen.spikeGenerator.name=Spike Generator
+item.tragicmc.worldGen.lightningSummoner.name=Lightning Summoner
+item.tragicmc.worldGen.explosionGenerator.name=Explosion Generator
+
 item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 
 item.tragicmc.gooeyFruit.name=Gooey Fruit
