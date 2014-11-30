@@ -3041,14 +3041,14 @@ Created a new block class for the Overlord Barrier, there is a lot needed for it
 Change the Generator item to use the vector based position rather than the block hit position, update them to use metadata of one item since it is a Creative only item and doesn't
 necessitate separate identifiers, at least not internally
 In the future, I'll add some of the vanilla generators like cave and ravine generators, also will add some of the vanilla structures like mineshafts and villages
+Fixed biome decoration for the Synapse, implementing variant Circuit block generation, using a modified ice path gen to create the swathes of dead circuits within the dimension
+Fixed a warning flag with my custom weapon recipe in order to resolve possible conflicts, this is good to know for future recipes I may create
 
 TODO still
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
 Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
 
 --Overlord plan, may fit in other random small things in between doing this--
-After I get that motion adequate I'll make it Multipart, and work out the details of that, afterwards I'll add it's attack patterns and AI, at this point it'd be best to start
-work on the model and then start working on animations for it
 After all of that is finished, I'll work on it's combat form, which will be pretty much like a normal boss, since it attacks on the ground, it'll be able to create platforms
 wherever it goes, made of dimensional fabric (a semi-transparent slab-like block), which will appear whenever it's motion is below 0 and it's not on the ground, it'll only activate
 whenever it's target is above it to avoid it continously doing it
