@@ -1,17 +1,8 @@
 package tragicneko.tragicmc.dimension;
 
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_CAVE;
-import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.QUARTZ;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.FIRE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.GLOWSTONE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA;
-
 import java.util.List;
 import java.util.Random;
 
-import tragicneko.tragicmc.main.TragicBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -27,19 +18,9 @@ import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.WorldGenFire;
-import net.minecraft.world.gen.feature.WorldGenFlowers;
-import net.minecraft.world.gen.feature.WorldGenGlowStone1;
-import net.minecraft.world.gen.feature.WorldGenGlowStone2;
-import net.minecraft.world.gen.feature.WorldGenHellLava;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.structure.MapGenNetherBridge;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.ChunkProviderEvent;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import cpw.mods.fml.common.eventhandler.Event.Result;
+import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.worldgen.WorldGenDeadCircuit;
 
 public class SynapseChunkProvider implements IChunkProvider
 {
@@ -290,10 +271,6 @@ public class SynapseChunkProvider implements IChunkProvider
      */
     private double[] initializeNoiseField(double[] p_73164_1_, int p_73164_2_, int p_73164_3_, int p_73164_4_, int p_73164_5_, int p_73164_6_, int p_73164_7_)
     {
-        ChunkProviderEvent.InitNoiseField event = new ChunkProviderEvent.InitNoiseField(this, p_73164_1_, p_73164_2_, p_73164_3_, p_73164_4_, p_73164_5_, p_73164_6_, p_73164_7_);
-        MinecraftForge.EVENT_BUS.post(event);
-        if (event.getResult() == Result.DENY) return event.noisefield;
-
         if (p_73164_1_ == null)
         {
             p_73164_1_ = new double[p_73164_5_ * p_73164_6_ * p_73164_7_];
@@ -443,9 +420,23 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * Populates chunk with ores etc etc
      */
-    public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_)
+    public void populate(IChunkProvider p_73153_1_, int x, int z)
     {
         BlockFalling.fallInstantly = true;
+        
+        int k = x * 16;
+        int l = z * 16;
+        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(k + 16, l + 16);
+        biomegenbase.decorate(this.worldObj, this.worldObj.rand, k, l);
+        
+        for (int i = 0; i < 4; i++)
+		{
+			int a = x * 16 + this.worldObj.rand.nextInt(16);
+			int b = z * 16 + this.worldObj.rand.nextInt(16);
+			int c = this.worldObj.rand.nextInt(100) + 10;
+			new WorldGenDeadCircuit(8).generate(worldObj, synapseRNG, a, c, b);
+		}
+        
         BlockFalling.fallInstantly = false;
     }
 

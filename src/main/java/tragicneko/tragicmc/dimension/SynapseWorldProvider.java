@@ -127,4 +127,10 @@ public class SynapseWorldProvider extends WorldProvider
 	{
 		return this.skyRenderer;
 	}
+	
+	@Override
+	public ChunkCoordinates getEntrancePortalLocation()
+    {
+        return new ChunkCoordinates(50, 50, 50);
+    }
 }
