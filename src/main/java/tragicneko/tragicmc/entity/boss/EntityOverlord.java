@@ -8,19 +8,27 @@ import net.minecraft.block.Block;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
+import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
+import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -31,7 +39,6 @@ public class EntityOverlord extends TragicBoss {
 	private double[] target = new double[] {0, 0, 0};
 	private int targetChangeCooldown = 0;
 	private boolean shouldHover = false;
-	private int hoverTicks = 0;
 	private int hoverBuffer = 0;
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
@@ -65,6 +72,21 @@ public class EntityOverlord extends TragicBoss {
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 	}
+	
+	public int getHoverTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+	
+	public void setHoverTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+	
+	private void incrementHoverTicks()
+	{
+		this.setHoverTicks(this.getHoverTicks() - 1);
+	}
 
 	protected void applyEntityAttributes()
 	{
@@ -79,8 +101,9 @@ public class EntityOverlord extends TragicBoss {
 	public void onLivingUpdate()
 	{
 		this.fallDistance = 0.0F;
+		if (this.getHoverTicks() > 0) this.motionX = this.motionY = this.motionZ = 0.0;
 
-		super.onLivingUpdate();		
+		super.onLivingUpdate();	
 
 		//TODO final form parts
 
@@ -106,9 +129,9 @@ public class EntityOverlord extends TragicBoss {
 		{
 			if (this.ticksExisted % 5 == 0)
 			{
-				this.motionX = (target[0] - this.posX) * 0.25 / d3;
-				this.motionY = (target[1] - this.posY) * 0.25 / d3;
-				this.motionZ = (target[2] - this.posZ) * 0.25 / d3;
+				this.motionX = (target[0] - this.posX) * 0.275 / d3;
+				this.motionY = (target[1] - this.posY) * 0.275 / d3;
+				this.motionZ = (target[2] - this.posZ) * 0.275 / d3;
 			}
 		}
 		else
@@ -133,11 +156,10 @@ public class EntityOverlord extends TragicBoss {
 
 		if (this.shouldHover)
 		{
-			if (this.hoverTicks % 5 == 0) TragicMC.logInfo("Overlord is hovering");
-			this.hoverTicks++;
-			this.motionX = this.motionY = this.motionZ = 0.0;
+			if (this.getHoverTicks() % 10 == 0) TragicMC.logInfo("Overlord is hovering");
+			this.incrementHoverTicks();
 			this.target = new double[] {this.posX, this.posY, this.posZ};
-			if (this.hoverTicks > 300)
+			if (this.getHoverTicks() > 300)
 			{
 				this.shouldHover = false;
 				this.setNewMotionTarget();
@@ -146,7 +168,7 @@ public class EntityOverlord extends TragicBoss {
 		}
 		else
 		{
-			this.hoverTicks = 0;
+			this.setHoverTicks(0);
 			this.hoverBuffer++;
 		}
 
@@ -155,6 +177,110 @@ public class EntityOverlord extends TragicBoss {
 			int i = this.getPlayersNearby(64.0, 1, 8);
 			this.heal(i * 5.0F);
 		}
+		
+		if (this.ticksExisted % 20 == 0 && this.getHoverTicks() > 0)
+		{
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
+			if (list.isEmpty())
+			{
+				if (this.getAttackTarget() != null) this.createCrystalMortors();
+			}
+			else
+			{
+				for (Entity ent : list)
+				{
+					if (ent instanceof EntityArrow || ent instanceof EntityThrowable || ent instanceof EntityFireball || ent instanceof EntityProjectile || ent instanceof IProjectile)
+					{
+						if (this.getDistanceToEntity(ent) < 10.0F) this.createShield(ent);
+					}
+				}
+			}
+		}
+	}
+	
+	private void createShield(Entity ent) {
+		
+		Vec3 vec = getVecFromEntity(ent, 12.0D);
+		if (this.boundingBox.isVecInside(vec))
+		{
+			double shieldX = ent.posX + ent.motionX;
+			double shieldY = ent.posY + ent.motionY;
+			double shieldZ = ent.posZ + ent.motionZ;
+			
+			boolean flag = ent.motionY > 0.6D || ent.motionY < 0.6D;
+			List<int[]> list;
+			
+			if (flag)
+			{
+				list = WorldHelper.getBlocksInCircularRangeVertical(worldObj, 1.5, ent.posX, ent.posY, ent.posZ, ent.posX - this.posX > 0);
+				for (int[] coords : list)
+				{
+					if (ignoredBlocks.contains(worldObj.getBlock(coords[0], coords[1], coords[2]))) worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.OverlordBarrier);
+				}
+			}
+			else
+			{
+				list = WorldHelper.getBlocksInCircularRange(worldObj, 1.5, ent.posX, ent.posY, ent.posZ);
+				
+				for (int[] coords : list)
+				{
+					if (ignoredBlocks.contains(worldObj.getBlock(coords[0], coords[1], coords[2]))) worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.OverlordBarrier);
+				}
+			}
+		}
+		
+	}
+	
+	public static MovingObjectPosition getMOPFromEntity(Entity ent, double distance)
+	{
+		float f = 1.0F;
+		float f1 = ent.prevRotationPitch + (ent.rotationPitch - ent.prevRotationPitch) * f;
+		float f2 = ent.prevRotationYaw + (ent.rotationYaw - ent.prevRotationYaw) * f;
+		double d0 = ent.prevPosX + (ent.posX - ent.prevPosX) * (double)f;
+		double d1 = ent.prevPosY + (ent.posY - ent.prevPosY) * (double)f + (double)(ent.getEyeHeight());
+		double d2 = ent.prevPosZ + (ent.posZ - ent.prevPosZ) * (double)f;
+		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
+		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
+		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
+		float f6 = MathHelper.sin(-f1 * 0.017453292F);
+		float f7 = f4 * f5;
+		float f8 = f3 * f5;
+		double d3 = distance;
+
+		if (ent instanceof EntityPlayerMP)
+		{
+			d3 = ((EntityPlayerMP)ent).theItemInWorldManager.getBlockReachDistance() + (d3 - 4.0D);
+		}
+		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
+		
+		return ent.worldObj.func_147447_a(vec3, vec31, true, false, true);
+	}
+	
+	public static Vec3 getVecFromEntity(Entity ent, double distance)
+	{
+		return getMOPFromEntity(ent, distance).hitVec;
+	}
+	
+	public static Vec3 getVecFromEntity(Entity ent)
+	{
+		return getMOPFromEntity(ent, 6.0D).hitVec;
+	}
+
+	private void createCrystalMortors() {
+		TragicMC.logInfo("Mortor created.");
+
+		double d0 = this.getAttackTarget().posX - this.posX;
+		double d1 = rand.nextInt(4);
+		double d2 = this.getAttackTarget().posZ - this.posZ;
+		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
+
+		EntityCrystalMortor mortor = new EntityCrystalMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		mortor.posY = this.posY + this.height + 0.5D;
+		mortor.posX += d0 * 0.04335D;
+		mortor.posZ += d2 * 0.04335D;
+		mortor.motionY += 0.36D * f1;
+		this.worldObj.spawnEntityInWorld(mortor);
 	}
 
 	private void destroyBlocks() {
@@ -169,7 +295,8 @@ public class EntityOverlord extends TragicBoss {
 
 			if (!this.ignoredBlocks.contains(block))
 			{
-				this.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
+				this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+				//this.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}
 		}
 	}
@@ -179,7 +306,7 @@ public class EntityOverlord extends TragicBoss {
 
 		TragicMC.logInfo("New target selected.");
 		this.target = new double[] {rand.nextInt(48) - rand.nextInt(48) + this.posX,
-				rand.nextInt(48) - rand.nextInt(32) + this.posY,
+				rand.nextInt(48) - rand.nextInt(48) + this.posY,
 				rand.nextInt(48) - rand.nextInt(48) + this.posZ};
 
 		if (this.posY < 5) this.target[1] += rand.nextInt(32) + 5;
