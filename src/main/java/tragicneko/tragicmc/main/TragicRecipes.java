@@ -5,6 +5,7 @@ import tragicneko.tragicmc.items.RecipeWeapons;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -1612,6 +1613,8 @@ public class TragicRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.IronGolemAmulet3, 1), new Object[] {
 			TragicItems.IronGolemAmulet2, TragicItems.AmuletRelease
 		});
+		
+		RecipeSorter.INSTANCE.register("tragicmc:weaponcombining", RecipeWeapons.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
 		
 		//Weapon fusing recipes
 		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryDagger),
