@@ -3043,6 +3043,8 @@ necessitate separate identifiers, at least not internally
 In the future, I'll add some of the vanilla generators like cave and ravine generators, also will add some of the vanilla structures like mineshafts and villages
 Fixed biome decoration for the Synapse, implementing variant Circuit block generation, using a modified ice path gen to create the swathes of dead circuits within the dimension
 Fixed a warning flag with my custom weapon recipe in order to resolve possible conflicts, this is good to know for future recipes I may create
+Experimenting with a better method for the Overlord final form's movement, most of this month will be dedicated to getting the Overlord setup
+Changed config name of natural boss spawns to be overworld boss spawns (since that's what it was used for mostly anyway), this is now defaulted to false
 
 TODO still
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
