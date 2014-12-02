@@ -89,7 +89,7 @@ public class TragicRecipes {
 			"yzy",
 			"xyx",
 			'x', TragicItems.LivingClay,
-			'y', TragicItems.ReaperSkull,
+			'y', TragicItems.DeathlyHallow,
 			'z', Blocks.redstone_block
 		});
 
@@ -360,11 +360,11 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16), new Object[] {
-			TragicItems.ReaperSkull
+			TragicItems.DeathlyHallow
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16, 1), new Object[] {
-			TragicItems.ReaperSkull, Items.rotten_flesh
+			TragicItems.DeathlyHallow, Items.rotten_flesh
 		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StarCrystal, 15), new Object[] {
@@ -1151,7 +1151,7 @@ public class TragicRecipes {
 			"y  ",
 			'x', TragicItems.DarkIngot,
 			'y', TragicItems.StinHorn,
-			'z', TragicItems.ReaperSkull
+			'z', TragicItems.DeathlyHallow
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 3, 15), new Object[] {
@@ -1163,7 +1163,7 @@ public class TragicRecipes {
 			"xyx",
 			"zxx",
 			'x', TragicItems.StinHorn,
-			'y', TragicItems.ReaperSkull,
+			'y', TragicItems.DeathlyHallow,
 			'z', TragicItems.DarkIngot
 		});
 

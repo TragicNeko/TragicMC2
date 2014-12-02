@@ -157,7 +157,7 @@ public class TragicItems {
 	//Boss drops
 	public static Item LightParticles; //Apis
 	public static Item EmpariahClaw; //Empariah
-	public static Item ReaperSkull; //Skultar
+	public static Item DeathlyHallow; //Skultar
 	public static Item TimeEssence; //Time Controller
 	public static Item PureDarkness; //Enyvil
 	public static Item KitsuneTail; //Kitsunakuma
@@ -502,8 +502,8 @@ public class TragicItems {
 		KitsuneTail = (new ItemGeneric().setUnlocalizedName("tragicmc.kitsuneTail").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:KitsuneTail" + textureRes));
 		GameRegistry.registerItem(KitsuneTail, "kitsuneTail");
 
-		ReaperSkull = (new ItemGeneric().setUnlocalizedName("tragicmc.reaperSkull").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:ReaperSkull" + textureRes));
-		GameRegistry.registerItem(ReaperSkull, "reaperSkull");
+		DeathlyHallow = (new ItemGeneric().setUnlocalizedName("tragicmc.reaperSkull").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:DeathlyHallow" + textureRes));
+		GameRegistry.registerItem(DeathlyHallow, "deathlyHallow");
 
 		EmpariahClaw = (new ItemGeneric().setUnlocalizedName("tragicmc.yetiClaw").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:YetiClaw" + textureRes));
 		GameRegistry.registerItem(EmpariahClaw, "yetiClaw");
@@ -1133,7 +1133,7 @@ public class TragicItems {
 		OreDictionary.registerOre("celestialSteelDrops", PureDarkness);
 		OreDictionary.registerOre("celestialSteelDrops", EmpariahClaw);
 		OreDictionary.registerOre("celestialSteelDrops", KitsuneTail);
-		OreDictionary.registerOre("celestialSteelDrops", ReaperSkull);
+		OreDictionary.registerOre("celestialSteelDrops", DeathlyHallow);
 	}
 
 	public static void initializeChallengeItem()
