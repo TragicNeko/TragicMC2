@@ -11,8 +11,6 @@ import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TragicNewConfig {
-	
-	public static TragicNewConfig instance = new TragicNewConfig();
 
 	public static boolean mobsOnly;
 	private static int resolution;

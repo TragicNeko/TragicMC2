@@ -126,9 +126,9 @@ public class TragicMC
 	{
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
-		TragicNewConfig.instance.initialize();
+		TragicNewConfig.initialize();
 		
-		MinecraftForge.EVENT_BUS.register(TragicNewConfig.instance);
+		MinecraftForge.EVENT_BUS.register(new TragicNewConfig());
 
 		if (TragicNewConfig.allowPotions)
 		{
