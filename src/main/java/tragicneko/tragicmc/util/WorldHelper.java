@@ -8,7 +8,10 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.main.TragicBlocks;
@@ -244,5 +247,59 @@ public class WorldHelper {
 		}
 
 		return list;
+	}
+	
+	/**
+	 * Get a MovingObjectPosition based on the input entity's motion and rotation for the specified distance
+	 * @param ent
+	 * @param distance
+	 * @return
+	 */
+	public static MovingObjectPosition getMOPFromEntity(Entity ent, double distance)
+	{
+		float f = 1.0F;
+		float f1 = ent.prevRotationPitch + (ent.rotationPitch - ent.prevRotationPitch) * f;
+		float f2 = ent.prevRotationYaw + (ent.rotationYaw - ent.prevRotationYaw) * f;
+		double d0 = ent.prevPosX + (ent.posX - ent.prevPosX) * (double)f;
+		double d1 = ent.prevPosY + (ent.posY - ent.prevPosY) * (double)f + (double)(ent.getEyeHeight());
+		double d2 = ent.prevPosZ + (ent.posZ - ent.prevPosZ) * (double)f;
+		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
+		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
+		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
+		float f6 = MathHelper.sin(-f1 * 0.017453292F);
+		float f7 = f4 * f5;
+		float f8 = f3 * f5;
+		double d3 = distance;
+
+		if (ent instanceof EntityPlayerMP)
+		{
+			d3 = ((EntityPlayerMP)ent).theItemInWorldManager.getBlockReachDistance() + (d3 - 4.0D);
+		}
+		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
+
+		return ent.worldObj.func_147447_a(vec3, vec31, true, false, true);
+	}
+
+	/**
+	 * Get a vector based on the input entity's motion and rotation for the specified distance
+	 * @param ent
+	 * @param distance
+	 * @return
+	 */
+	public static Vec3 getVecFromEntity(Entity ent, double distance)
+	{
+		return getMOPFromEntity(ent, distance).hitVec;
+	}
+
+	/**
+	 * Get a vector based on the input entity's motion and rotation
+	 * @param ent
+	 * @param distance
+	 * @return
+	 */
+	public static Vec3 getVecFromEntity(Entity ent)
+	{
+		return getMOPFromEntity(ent, 6.0D).hitVec;
 	}
 }
