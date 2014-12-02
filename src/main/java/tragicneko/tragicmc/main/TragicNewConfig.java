@@ -76,7 +76,7 @@ public class TragicNewConfig {
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
 
 	private static boolean[] blanketMob = new boolean[8];
-	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossNaturalSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
+	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
@@ -334,7 +334,7 @@ public class TragicNewConfig {
 		blanketMob[0] = (config.get(catMobs, "allowNormalMobs", true).getBoolean(true));
 		blanketMob[1] = (config.get(catMobs, "allowMiniBosses", true).getBoolean(true));
 		blanketMob[2] = (config.get(catMobs, "allowBosses", true).getBoolean(true));
-		blanketMob[3] = (config.get(catMobs, "allowNaturalBossSpawns", true).getBoolean(true));
+		blanketMob[3] = (config.get(catMobs, "allowOverworldBossSpawns", false).getBoolean(false));
 		blanketMob[4] = (config.get(catMobs, "allowExtraBossLoot", true).getBoolean(true));
 		blanketMob[5] = (config.get(catMobs, "allowVictoryBuffs", true).getBoolean(true));
 		blanketMob[6] = (config.get(catMobs, "allowCorruptionDamage", true).getBoolean(true));
@@ -953,7 +953,7 @@ public class TragicNewConfig {
 		allowNormalMobs = blanketMob[0];
 		allowMiniBosses = blanketMob[1];
 		allowBosses = blanketMob[2];
-		allowBossNaturalSpawns = blanketMob[3];
+		allowBossOverworldSpawns = blanketMob[3];
 		allowExtraBossLoot = blanketMob[4];
 		allowVictoryBuffs = blanketMob[5];
 		allowCorruptionDamage = blanketMob[6];

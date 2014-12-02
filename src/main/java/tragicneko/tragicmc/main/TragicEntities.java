@@ -562,7 +562,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityApis.class, "Apis", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityApis.class, TragicNewConfig.apisSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.plains,
 						BiomeGenBase.savanna,
@@ -586,7 +586,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityDeathReaper.class, "DeathReaper", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityDeathReaper.class, TragicNewConfig.deathReaperSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.forest,
 						BiomeGenBase.forestHills,
@@ -600,7 +600,7 @@ public class TragicEntities {
 		if (TragicNewConfig.allowKitsune)
 		{
 			EntityRegistry.registerModEntity(EntityKitsune.class, "Kitsune", listid++, TragicMC.instance, 80, 1, true);
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityKitsune.class, TragicNewConfig.kitsuneSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.hell);
 			}
@@ -611,7 +611,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityPolaris.class, "Polaris", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityPolaris.class, TragicNewConfig.polarisSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
 						BiomeGenBase.birchForestHills,
@@ -650,7 +650,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityYeti.class, "Yeti", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityYeti.class, TragicNewConfig.yetiSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
 						BiomeGenBase.iceMountains,
@@ -668,7 +668,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityTimeController.class, "TimeController", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
 						BiomeGenBase.birchForestHills,
@@ -707,7 +707,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityEnyvil.class, "Enyvil", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityEnyvil.class, TragicNewConfig.enyvilSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
 						BiomeGenBase.birchForestHills,
@@ -746,7 +746,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityClaymation.class, "Claymation", listid++, TragicMC.instance, 80, 1, true);
 
-			if (TragicNewConfig.allowBossNaturalSpawns)
+			if (TragicNewConfig.allowBossOverworldSpawns)
 			{
 				EntityRegistry.addSpawn(EntityClaymation.class, TragicNewConfig.claymationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.desert,
 						BiomeGenBase.desertHills,
