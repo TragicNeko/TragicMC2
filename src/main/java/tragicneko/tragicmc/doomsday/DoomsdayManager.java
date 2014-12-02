@@ -231,16 +231,6 @@ public class DoomsdayManager {
 			{
 				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");
 			}
-			
-			if (CommonProxy.extendedEntityData.containsKey(PropertyDoom.getSaveKey(net.playerEntity)))
-			{
-				CommonProxy.extendedEntityData.remove(PropertyDoom.getSaveKey(net.playerEntity));
-			}
-			
-			if (CommonProxy.extendedEntityData.containsKey(PropertyAmulets.getSaveKey(net.playerEntity)))
-			{
-				CommonProxy.extendedEntityData.remove(PropertyAmulets.getSaveKey(net.playerEntity));
-			}
 		} 
 	}
 }

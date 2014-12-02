@@ -21,9 +21,7 @@ public class RespawnDoomEvents {
 		if (!(event.player instanceof EntityPlayerMP)) return;
 
 		PropertyDoom property = PropertyDoom.get(event.player);
-
 		if (property == null) return;
-		property.loadProxyData(event.player);
 
 		if (TragicNewConfig.allowRespawnPunishment && !event.player.capabilities.isCreativeMode)
 		{

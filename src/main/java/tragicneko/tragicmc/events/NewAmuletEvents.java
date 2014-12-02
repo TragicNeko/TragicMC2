@@ -10,8 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,15 +24,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -72,25 +68,21 @@ public class NewAmuletEvents {
 
 			if (event.entity instanceof EntityPlayerMP && amu != null)
 			{
-				amu.saveProxyData((EntityPlayer) event.entity);
 				TragicMC.net.sendTo(new MessageAmulet((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
-		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) 
-		{
-			if (PropertyAmulets.get((EntityPlayer) event.entity) != null) PropertyAmulets.loadProxyData((EntityPlayer) event.entity);
-		}
-	}
-
-	@SubscribeEvent
-	public void onLivingDeathEvent(LivingDeathEvent event) 
+	public void onLivingDeathEvent(PlayerEvent.Clone event) 
 	{
-		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
-			PropertyAmulets.saveProxyData((EntityPlayer) event.entity);
+		if (!event.entity.worldObj.isRemote && TragicNewConfig.allowAmulets) {
+			if (PropertyAmulets.get(event.original) != null)
+			{
+				NBTTagCompound tag = new NBTTagCompound();
+				PropertyAmulets.get(event.original).saveNBTData(tag);
+				PropertyAmulets.get(event.entityPlayer).loadNBTData(tag);
+			}
 		}
 	}
 

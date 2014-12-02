@@ -210,7 +210,7 @@ public class PotionEvents {
 						}
 					}
 
-					tag = CommonProxy.getEntityData("" + entity.getEntityId());
+					tag = CommonProxy.getEntityData("" + entity.getUniqueID());
 					if (tag == null) tag = new NBTTagCompound();
 
 					if (!flag2)
@@ -223,20 +223,20 @@ public class PotionEvents {
 							tag.setInteger("recoveryTicks", 0);	
 						}
 
-						CommonProxy.storeEntityData("" + entity.getEntityId(), tag);
+						CommonProxy.storeEntityData("" + entity.getUniqueID(), tag);
 					}
 					else
 					{
 						tag.setInteger("recoveryTicks", 0);
-						CommonProxy.storeEntityData("" + entity.getEntityId(), tag);
+						CommonProxy.storeEntityData("" + entity.getUniqueID(), tag);
 					}
 				}
 				else if (flag && !(entity instanceof TragicMob))
 				{
-					tag = CommonProxy.getEntityData("" + entity.getEntityId());
+					tag = CommonProxy.getEntityData("" + entity.getUniqueID());
 					if (tag == null) tag = new NBTTagCompound();
 					tag.setInteger("recoveryTicks", 0);
-					CommonProxy.storeEntityData("" + entity.getEntityId(), tag);
+					CommonProxy.storeEntityData("" + entity.getUniqueID(), tag);
 				}
 			}
 		}

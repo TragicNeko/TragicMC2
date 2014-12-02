@@ -1,6 +1,9 @@
 package tragicneko.tragicmc.properties;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+
+import java.util.UUID;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -381,39 +384,4 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	public EntityPlayer getPlayer() {
 		return this.thePlayer;
 	}
-
-	/*
-	 * This part of the code is copied directly from CoolAlias's packet handler/extended properties tutorial
-	 */
-
-	public static final String getSaveKey(EntityPlayer player) {
-		return player.getCommandSenderName() + ":" + PropertyDoom.propertyName;
-	}
-
-	/**
-	 * Does everything I did in onLivingDeathEvent and it's static,
-	 * so you now only need to use the following in the above event:
-	 * ExtendedPlayer.saveProxyData((EntityPlayer) event.entity));
-	 */
-	public static final void saveProxyData(EntityPlayer player) {
-		NBTTagCompound savedData = new NBTTagCompound();
-		PropertyDoom.get(player).saveNBTData(savedData);
-		CommonProxy.storeEntityData(getSaveKey(player), savedData);
-	}
-
-	/**
-	 * This cleans up the onEntityJoinWorld event by replacing most of the code
-	 * with a single line: ExtendedPlayer.loadProxyData((EntityPlayer) event.entity));
-	 */
-	public static final void loadProxyData(EntityPlayer player) {
-		PropertyDoom playerData = PropertyDoom.get(player);
-		NBTTagCompound savedData = CommonProxy.getEntityData(getSaveKey(player));
-		if (savedData != null) 
-		{
-			playerData.loadNBTData(savedData); 
-		}
-		TragicMC.net.sendTo(new MessageDoom(player), (EntityPlayerMP) player);
-	}
-
-
 }

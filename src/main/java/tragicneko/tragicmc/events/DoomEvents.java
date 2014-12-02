@@ -6,9 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -38,7 +38,6 @@ public class DoomEvents {
 
 			if (event.entity instanceof EntityPlayerMP && doom != null)
 			{
-				doom.saveProxyData((EntityPlayer) event.entity);
 				TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
@@ -69,10 +68,15 @@ public class DoomEvents {
 	}
 
 	@SubscribeEvent
-	public void onLivingDeathEvent(LivingDeathEvent event) 
+	public void onLivingDeathEvent(PlayerEvent.Clone event) 
 	{
-		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
-			if (PropertyDoom.get((EntityPlayer) event.entity) != null) PropertyDoom.saveProxyData((EntityPlayer) event.entity);
+		if (!event.entity.worldObj.isRemote && TragicNewConfig.allowDoom) {
+			if (PropertyDoom.get(event.original) != null)
+			{
+				NBTTagCompound tag = new NBTTagCompound();
+				PropertyDoom.get(event.original).saveNBTData(tag);
+				PropertyDoom.get(event.entityPlayer).loadNBTData(tag);
+			}
 		}
 	}
 

@@ -128,30 +128,4 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 			}
 		}
 	}
-
-	public static final String getSaveKey(EntityPlayer player) 
-	{
-		return player.getCommandSenderName() + ":" + propertyName;
-	}
-
-	public static final void saveProxyData(EntityPlayer player) 
-	{
-		NBTTagCompound savedData = new NBTTagCompound();
-		PropertyAmulets.get(player).saveNBTData(savedData);
-		CommonProxy.storeEntityData(getSaveKey(player), savedData);
-	}
-
-
-	public static final void loadProxyData(EntityPlayer player) 
-	{
-		PropertyAmulets playerData = PropertyAmulets.get(player);
-		NBTTagCompound savedData = CommonProxy.getEntityData(getSaveKey(player));
-
-		if (savedData != null) 
-		{
-			playerData.loadNBTData(savedData);
-		}
-		TragicMC.net.sendTo(new MessageAmulet(player), (EntityPlayerMP) player);
-	}
-
 }
