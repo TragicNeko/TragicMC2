@@ -73,7 +73,6 @@ public class ItemGenerator extends Item {
 	{
 		par2List.add("Generate some of the WorldGen features!");
 		par2List.add("Some of this is really CPU intensive.");
-		par2List.add("Fair warning.");
 	}
 
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
@@ -389,6 +388,6 @@ public class ItemGenerator extends Item {
 		int damage = itemstack.getItemDamage();
 		if (damage >= subNames.length) damage = subNames.length - 1;
 
-		return getUnlocalizedName() + "." + subNames[damage];
+		return getUnlocalizedName() + "." + textureNames[damage];
 	}
 }
