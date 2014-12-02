@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
@@ -46,12 +48,12 @@ import tragicneko.tragicmc.main.TragicItems;
 public class EntityDropHelper {
 
 	private static Map<Class, DropEntry> entityDrops = new HashMap();
-	private static EntityDrop[] luxuryDrops = new EntityDrop[] {new EntityDrop(50, Items.diamond), new EntityDrop(35, Items.emerald), new EntityDrop(75, Items.iron_ingot),
-		new EntityDrop(60, Items.gold_ingot), new EntityDrop(75, Items.gold_nugget), new EntityDrop(40, TragicItems.Sapphire), new EntityDrop(25, TragicItems.Ruby),
+	private static EntityDrop[] luxuryDrops = new EntityDrop[] {new EntityDrop(60, Items.diamond), new EntityDrop(45, Items.emerald), new EntityDrop(75, Items.iron_ingot),
+		new EntityDrop(60, Items.gold_ingot), new EntityDrop(75, Items.gold_nugget), new EntityDrop(20, TragicItems.Sapphire), new EntityDrop(25, TragicItems.Ruby),
 		new EntityDrop(65, TragicItems.Tungsten), new EntityDrop(75, TragicItems.RedMercury), new EntityDrop(10, Blocks.gold_block), new EntityDrop(15, Blocks.iron_block),
 		new EntityDrop(10, Blocks.diamond_block), new EntityDrop(5, Blocks.emerald_block), new EntityDrop(5, TragicItems.AmuletRelease), new EntityDrop(5, TragicItems.AwakeningStone),
-		new EntityDrop(5, TragicItems.DoomConsume), new EntityDrop(15, TragicItems.CooldownDefuse), new EntityDrop(3, TragicItems.Titan), new EntityDrop(3, TragicItems.Paranoia),
-		new EntityDrop(3, TragicItems.Splinter), new EntityDrop(3, TragicItems.Butcher), new EntityDrop(3, TragicItems.Thardus), new EntityDrop(3, TragicItems.DragonFang),
+		new EntityDrop(5, TragicItems.DoomConsume), new EntityDrop(15, TragicItems.CooldownDefuse), new EntityDrop(1, TragicItems.Titan), new EntityDrop(1, TragicItems.Paranoia),
+		new EntityDrop(1, TragicItems.Splinter), new EntityDrop(1, TragicItems.Butcher), new EntityDrop(1, TragicItems.Thardus), new EntityDrop(3, TragicItems.DragonFang),
 		new EntityDrop(8, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1), new ItemStack(TragicBlocks.CompactOre, 1, 2),
 				new ItemStack(TragicBlocks.CompactOre, 1, 3), new ItemStack(TragicBlocks.CompactOre, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
 		new EntityDrop(15, getDoomsdayScrollStacks())};
@@ -175,15 +177,16 @@ public class EntityDropHelper {
 		
 		//Boss Drops
 		
+		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LightParticles)}, {new EntityDrop(25, TragicItems.LightParticles), new EntityDrop(20, TragicItems.Horn),
+				new EntityDrop(15, Items.leather), new EntityDrop(5, TragicItems.ToughLeather)}});
+		
+		addToDropList(EntityDeathReaper.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DeathlyHallow)}, {new EntityDrop(25, TragicItems.DeathlyHallow), new EntityDrop(15, TragicItems.BoneMarrow),
+				new EntityDrop(15, TragicItems.DarkParticles), new EntityDrop(3, TragicItems.FireOrb), new EntityDrop(20, Items.bone), new EntityDrop(5, Items.blaze_rod), new EntityDrop(5, Items.blaze_powder)}});
+		
+		
+		
 		/*
 		//Boss drops
-		entityLootDrops.put(EntityApis.class, new ItemStack[][] {{new ItemStack(TragicItems.LightParticles), new ItemStack(TragicItems.Horn), new ItemStack(TragicItems.LightIngot),
-			new ItemStack(TragicItems.LightHelm), new ItemStack(TragicItems.LightPlate), new ItemStack(TragicItems.LightLegs), new ItemStack(TragicItems.LightBoots)},
-			{new ItemStack(TragicItems.LightParticles)}});
-
-		entityLootDrops.put(EntityDeathReaper.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.Ash), new ItemStack(Items.bone),
-			new ItemStack(TragicItems.DarkParticles), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_rod)}, {new ItemStack(TragicItems.ReaperSkull)}});
-
 		entityLootDrops.put(EntityKitsune.class, new ItemStack[][] {{new ItemStack(TragicItems.KitsuneTail), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_powder), 
 			new ItemStack(Items.fire_charge)}, {new ItemStack(TragicItems.KitsuneTail)}});
 
