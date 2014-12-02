@@ -20,6 +20,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -36,16 +37,17 @@ import com.google.common.collect.Sets;
 
 public class EntityOverlord extends TragicBoss {
 
-	private double[] target = new double[] {0, 0, 0};
+	private double[] target;
 	private int targetChangeCooldown = 0;
-	private boolean shouldHover = false;
 	private int hoverBuffer = 0;
+	private int timeWithTarget = 0;
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
 
 	public EntityOverlord(World par1World) {
 		super(par1World);
 		this.setSize(6.0F, 6.0F);
+		this.target = new double[3];
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
@@ -55,8 +57,6 @@ public class EntityOverlord extends TragicBoss {
 				return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityOverlord) && !(par1Entity instanceof EntityNanoSwarm) && !(par1Entity instanceof EntityAegar);
 			}
 		}));
-		this.target = new double[] {this.posX, this.posY, this.posZ};
-		this.shouldHover = false;
 	}
 
 	public boolean handleWaterMovement()
@@ -72,18 +72,18 @@ public class EntityOverlord extends TragicBoss {
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 	}
-	
+
 	public int getHoverTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
 	}
-	
+
 	public void setHoverTicks(int i)
 	{
 		this.dataWatcher.updateObject(16, i);
 	}
-	
-	private void incrementHoverTicks()
+
+	private void decrementHoverTicks()
 	{
 		this.setHoverTicks(this.getHoverTicks() - 1);
 	}
@@ -103,45 +103,52 @@ public class EntityOverlord extends TragicBoss {
 		this.fallDistance = 0.0F;
 		if (this.getHoverTicks() > 0) this.motionX = this.motionY = this.motionZ = 0.0;
 
-		super.onLivingUpdate();	
-
-		//TODO final form parts
+		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
 		{
+
 			//particles
 			return;
 		}
 
+		timeWithTarget++;
 		if (this.targetChangeCooldown > 0) this.targetChangeCooldown--;
-		if (this.getMobGriefing() && this.getDistanceToTarget() > 4.0 && rand.nextInt(4) == 0 && this.ticksExisted % 5 == 0) this.destroyBlocks();
+		if (this.getMobGriefing() && this.ticksExisted % 2 == 0) this.destroyBlocks();
 
 		double d0 = this.target[0] - this.posX;
 		double d1 = this.target[1] - this.posY;
 		double d2 = this.target[2] - this.posZ;
 
 		double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-		if (!this.isCourseTraversable(d3)) this.setNewMotionTarget();
-		if (this.getDistanceToTarget() < 16.0 || this.getDistanceToTarget() > 12200.0 || this.target[1] < 5 || this.target[1] > this.worldObj.provider.getHeight() - 10) this.setNewMotionTarget();
-		if (rand.nextInt(1048) == 0 && this.hoverBuffer >= 300) this.shouldHover = true;
 
 		if (this.getAttackTarget() == null)
 		{
-			if (this.ticksExisted % 5 == 0)
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, boundingBox.expand(64.0, 64.0, 64.0));
+			for (EntityLivingBase ent : list)
 			{
-				this.motionX = (target[0] - this.posX) * 0.275 / d3;
-				this.motionY = (target[1] - this.posY) * 0.275 / d3;
-				this.motionZ = (target[2] - this.posZ) * 0.275 / d3;
+				if (!(ent instanceof EntityNanoSwarm) && !(ent instanceof EntityAegar) && !(ent instanceof EntityOverlord))
+				{
+					this.setAttackTarget(ent);
+					break;
+				}
 			}
 		}
-		else
-		{
-			this.motionX = (this.getAttackTarget().posX - this.posX) * 0.23 / d3;
-			this.motionY = (this.getAttackTarget().posY - this.posY) * 0.23 / d3;
-			this.motionZ = (this.getAttackTarget().posZ - this.posZ) * 0.23 / d3;
-		}
 
-		if (this.motionY < 0 && this.getAttackTarget() != null && this.getAttackTarget().posY - this.posY >= 0 || this.posY < 5)
+		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
+
+		if (this.getAttackTarget() == null)
+		{
+			if (!this.isCourseTraversable(d3) || this.timeWithTarget > 200) this.setNewMotionTarget();
+			if (this.getDistanceToTarget() > 12200.0 || this.target[1] < 5 || this.target[1] > this.worldObj.provider.getHeight() - 10) this.setNewMotionTarget();
+		}
+		else if (this.getDistanceToTarget() < 4.0) this.setNewMotionTarget();
+
+		this.motionX = (target[0] - this.posX) * 0.175 / d3;
+		this.motionY = (target[1] - this.posY) * 0.145 / d3;
+		this.motionZ = (target[2] - this.posZ) * 0.175 / d3;
+
+		if (this.motionY < 0 && this.getAttackTarget() != null && this.getAttackTarget().posY - this.posY >= 0 || this.posY < 5 || this.getHoverTicks() > 0)
 		{
 			List<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
 			int[] coords;
@@ -154,21 +161,22 @@ public class EntityOverlord extends TragicBoss {
 			}
 		}
 
-		if (this.shouldHover)
+		if (this.shouldHover()) this.setHoverTicks(240 + rand.nextInt(120));
+
+		if (this.getHoverTicks() > 0)
 		{
+			this.decrementHoverTicks();
 			if (this.getHoverTicks() % 10 == 0) TragicMC.logInfo("Overlord is hovering");
-			this.incrementHoverTicks();
-			this.target = new double[] {this.posX, this.posY, this.posZ};
-			if (this.getHoverTicks() > 300)
+			this.resetTarget();
+			if (this.getHoverTicks() == 0)
 			{
-				this.shouldHover = false;
+				TragicMC.logInfo("Overlord should not be hovering anymore");
 				this.setNewMotionTarget();
 			}
 			this.hoverBuffer = 0;
 		}
 		else
 		{
-			this.setHoverTicks(0);
 			this.hoverBuffer++;
 		}
 
@@ -176,40 +184,40 @@ public class EntityOverlord extends TragicBoss {
 		{
 			int i = this.getPlayersNearby(64.0, 1, 8);
 			this.heal(i * 5.0F);
+
+			TragicMC.logInfo("Current target is " + target[0] + ", " + target[1] + ", " + target[2]);
 		}
-		
-		if (this.ticksExisted % 20 == 0 && this.getHoverTicks() > 0)
+
+		if (this.ticksExisted % 10 == 0 && this.getHoverTicks() > 0)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
-			if (list.isEmpty())
-			{
-				if (this.getAttackTarget() != null) this.createCrystalMortors();
-			}
-			else
-			{
-				for (Entity ent : list)
-				{
-					if (ent instanceof EntityArrow || ent instanceof EntityThrowable || ent instanceof EntityFireball || ent instanceof EntityProjectile || ent instanceof IProjectile)
-					{
-						if (this.getDistanceToEntity(ent) < 10.0F) this.createShield(ent);
-					}
-				}
-			}
+			TragicMC.logInfo("Fired one mortor");
+			if (this.getAttackTarget() != null) this.createCrystalMortors();
 		}
 	}
-	
+
+	private void resetTarget() {
+		this.target[0] = this.posX;
+		this.target[1] = this.posY;
+		this.target[2] = this.posZ;
+	}
+
+	private boolean shouldHover()
+	{
+		return rand.nextInt(1048) == 0 && this.hoverBuffer >= 300;
+	}
+
 	private void createShield(Entity ent) {
-		
+
 		Vec3 vec = getVecFromEntity(ent, 12.0D);
 		if (this.boundingBox.isVecInside(vec))
 		{
 			double shieldX = ent.posX + ent.motionX;
 			double shieldY = ent.posY + ent.motionY;
 			double shieldZ = ent.posZ + ent.motionZ;
-			
-			boolean flag = ent.motionY > 0.6D || ent.motionY < 0.6D;
+
+			boolean flag = Math.abs(ent.motionY) > 0.6D;
 			List<int[]> list;
-			
+
 			if (flag)
 			{
 				list = WorldHelper.getBlocksInCircularRangeVertical(worldObj, 1.5, ent.posX, ent.posY, ent.posZ, ent.posX - this.posX > 0);
@@ -221,16 +229,16 @@ public class EntityOverlord extends TragicBoss {
 			else
 			{
 				list = WorldHelper.getBlocksInCircularRange(worldObj, 1.5, ent.posX, ent.posY, ent.posZ);
-				
+
 				for (int[] coords : list)
 				{
 					if (ignoredBlocks.contains(worldObj.getBlock(coords[0], coords[1], coords[2]))) worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.OverlordBarrier);
 				}
 			}
 		}
-		
+
 	}
-	
+
 	public static MovingObjectPosition getMOPFromEntity(Entity ent, double distance)
 	{
 		float f = 1.0F;
@@ -253,15 +261,15 @@ public class EntityOverlord extends TragicBoss {
 			d3 = ((EntityPlayerMP)ent).theItemInWorldManager.getBlockReachDistance() + (d3 - 4.0D);
 		}
 		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
-		
+
 		return ent.worldObj.func_147447_a(vec3, vec31, true, false, true);
 	}
-	
+
 	public static Vec3 getVecFromEntity(Entity ent, double distance)
 	{
 		return getMOPFromEntity(ent, distance).hitVec;
 	}
-	
+
 	public static Vec3 getVecFromEntity(Entity ent)
 	{
 		return getMOPFromEntity(ent, 6.0D).hitVec;
@@ -302,16 +310,25 @@ public class EntityOverlord extends TragicBoss {
 	}
 
 	private void setNewMotionTarget() {
-		if (this.targetChangeCooldown > 0 || this.shouldHover) return;
+		if (this.targetChangeCooldown > 0 || this.getHoverTicks() > 0) return;
 
-		TragicMC.logInfo("New target selected.");
-		this.target = new double[] {rand.nextInt(48) - rand.nextInt(48) + this.posX,
-				rand.nextInt(48) - rand.nextInt(48) + this.posY,
-				rand.nextInt(48) - rand.nextInt(48) + this.posZ};
+		this.target[0] = rand.nextInt(48) - rand.nextInt(48) + this.posX;
+		this.target[1] = rand.nextInt(48) - rand.nextInt(48) + this.posY;
+		this.target[2] = rand.nextInt(48) - rand.nextInt(48) + this.posZ;
 
-		if (this.posY < 5) this.target[1] += rand.nextInt(32) + 5;
-		if (this.posY > this.worldObj.provider.getHeight() - 10) this.target[1] -= rand.nextInt(32) - 5;
+		if (this.getAttackTarget() != null)
+		{
+			this.target[0] = this.getAttackTarget().posX;
+			this.target[1] = this.getAttackTarget().posY;
+			this.target[2] = this.getAttackTarget().posZ;
+		}
+
+		if (this.posY < 5) this.target[1] += rand.nextInt(16) + 5;
+		if (this.posY > this.worldObj.provider.getHeight() - 10) this.target[1] -= rand.nextInt(16) - 5;
 		this.targetChangeCooldown = 200;
+		this.timeWithTarget = 0;
+
+		TragicMC.logInfo("New target selected. Target is " + target[0] + ", " + target[1] + ", " + target[2]);
 	}
 
 	private double getDistanceToTarget() {
@@ -348,4 +365,15 @@ public class EntityOverlord extends TragicBoss {
 
 	@Override
 	public void fall(float f) {}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+	}
 }
