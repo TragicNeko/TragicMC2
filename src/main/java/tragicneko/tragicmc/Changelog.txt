@@ -3045,12 +3045,22 @@ Fixed biome decoration for the Synapse, implementing variant Circuit block gener
 Fixed a warning flag with my custom weapon recipe in order to resolve possible conflicts, this is good to know for future recipes I may create
 Experimenting with a better method for the Overlord final form's movement, most of this month will be dedicated to getting the Overlord setup
 Changed config name of natural boss spawns to be overworld boss spawns (since that's what it was used for mostly anyway), this is now defaulted to false
+Modified Properties to no longer utilize a temporary hashmap to save proxy data for them, they should now maintain properties through death and dimension change without
+Modified Corruption recovery to use an entity's UUID rather than their temporary id from the tracker
+Fix localizations of the WorldGen items, used the wrong string array in the item class
+I'm going to restart work on the Overlord's motion, it's not working how I want it to so I'll set it up to be either more simplified or to parallel a vanilla entity, most likely using
+a combination of the Ender Dragon and Ghast's movement
+This is mostly with how the Overlord was not properly saving it's target destination and then would arbitrarily move to a random spot that didn't match it's target, it would also completely
+ignore actual entities that it could target
+Changing the drop of the Death Reaper from Reaper Skull to Deathly Hallow (that's a Harry Potter reference right there, yep), this is to make more sense for it to drop more than one of it
+Added the Bosses drops back to the drop helper
 
 TODO still
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
 Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
 
 --Overlord plan, may fit in other random small things in between doing this--
+Finish up the Overlord's motion and attack patterns, as well as create it's model
 After all of that is finished, I'll work on it's combat form, which will be pretty much like a normal boss, since it attacks on the ground, it'll be able to create platforms
 wherever it goes, made of dimensional fabric (a semi-transparent slab-like block), which will appear whenever it's motion is below 0 and it's not on the ground, it'll only activate
 whenever it's target is above it to avoid it continously doing it
@@ -3058,6 +3068,8 @@ After all of the details of it's attack pattern and AI are done, I'll then work 
 After that, I will set up the Cocoon form, which should be the easiest of all of the forms, it won't move and won't rotate, it'll be completely stationary, it will be the easiest
 to animate and create AI for, as well as the easiest to create a model for, overall just the easiest
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
+Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
+
 This is going to take a long time to do, afterwards I'll make the other smaller entities like the Lockbot and Locobot
 
 Note: Add the Lockbot, Locobot, Circuit Golem, The Worm, possibly also add the WubWub in this update
@@ -3067,7 +3079,7 @@ Note: The Sentinel will only have one rarity, but it will have different lore th
 Note: The Sentinel will have a couple of Doomsdays, the Armor will only have one but it will give you up to 20 hearts and be the most "OP" set in the mod
 Note: Allow ppl to configure whether weapon models show or not, do the same for armor models when I add them
 Note: After the frozen biomes are added, make that the only place that the Ragr spawns
-Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air
+Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago
 
 Possibility: Add small attribute modififers to amulets, like +2 health, +1 attack, +3 speed, etc.
