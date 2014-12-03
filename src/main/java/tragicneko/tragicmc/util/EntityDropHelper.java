@@ -14,7 +14,13 @@ import net.minecraft.util.WeightedRandom;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
+import tragicneko.tragicmc.entity.boss.EntityEnyvil;
+import tragicneko.tragicmc.entity.boss.EntityKitsune;
+import tragicneko.tragicmc.entity.boss.EntityPolaris;
+import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
@@ -176,36 +182,29 @@ public class EntityDropHelper {
 		
 		
 		//Boss Drops
-		
 		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LightParticles)}, {new EntityDrop(25, TragicItems.LightParticles), new EntityDrop(20, TragicItems.Horn),
 				new EntityDrop(15, Items.leather), new EntityDrop(5, TragicItems.ToughLeather)}});
 		
 		addToDropList(EntityDeathReaper.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DeathlyHallow)}, {new EntityDrop(25, TragicItems.DeathlyHallow), new EntityDrop(15, TragicItems.BoneMarrow),
 				new EntityDrop(15, TragicItems.DarkParticles), new EntityDrop(3, TragicItems.FireOrb), new EntityDrop(20, Items.bone), new EntityDrop(5, Items.blaze_rod), new EntityDrop(5, Items.blaze_powder)}});
 		
+		addToDropList(EntityKitsune.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.KitsuneTail)}, {new EntityDrop(25, TragicItems.FireOrb), new EntityDrop(15, Items.blaze_powder),
+				new EntityDrop(15, Items.blaze_rod), new EntityDrop(5, Items.fire_charge), new EntityDrop(3, Items.ghast_tear), new EntityDrop(10, TragicItems.Ash)}});
 		
+		addToDropList(EntityPolaris.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.StarPieces)},{new EntityDrop(15, Items.glowstone_dust), new EntityDrop(10, getInvisPotions()),
+				new EntityDrop(5, TragicItems.WispParticles)}});
 		
-		/*
-		//Boss drops
-		entityLootDrops.put(EntityKitsune.class, new ItemStack[][] {{new ItemStack(TragicItems.KitsuneTail), new ItemStack(TragicItems.FireOrb), new ItemStack(Items.blaze_powder), 
-			new ItemStack(Items.fire_charge)}, {new ItemStack(TragicItems.KitsuneTail)}});
-
-		entityLootDrops.put(EntityPolaris.class, new ItemStack[][] {{new ItemStack(Items.potionitem, 1, 16446), new ItemStack(Items.potionitem, 1, 78), new ItemStack(TragicItems.StarPieces),
-			new ItemStack(Items.glowstone_dust), new ItemStack(Items.potionitem, 1, 46), new ItemStack(Items.potionitem, 1, 16478)}, {new ItemStack(TragicItems.StarPieces)}});
-
-		entityLootDrops.put(EntityTimeController.class, new ItemStack[][] {{new ItemStack(TragicItems.TimeEssence), new ItemStack(Items.clock), new ItemStack(Items.diamond),
-			new ItemStack(Items.emerald), new ItemStack(TragicItems.CelestialAegis), new ItemStack(TragicItems.CelestialLongbow), new ItemStack(TragicItems.CelestialSteel)}, 
-			{new ItemStack(TragicItems.TimeEssence)}});
-
-		entityLootDrops.put(EntityYeti.class, new ItemStack[][] {{new ItemStack(TragicItems.EmpariahClaw), new ItemStack(TragicItems.IceOrb), new ItemStack(TragicItems.CrushedIce),
-			new ItemStack(Items.fish), new ItemStack(TragicItems.IcyFur)}, {new ItemStack(TragicItems.EmpariahClaw)}});
-
-		entityLootDrops.put(EntityEnyvil.class, new ItemStack[][] {{new ItemStack(TragicItems.BoneMarrow), new ItemStack(TragicItems.DarkBoots), new ItemStack(TragicItems.DarkPlate),
-			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkHelm), new ItemStack(TragicItems.DarkIngot), new ItemStack(TragicItems.DarkParticles),
-			new ItemStack(TragicItems.CelestialSteel), new ItemStack(Items.diamond)}, {new ItemStack(TragicItems.PureDarkness)}});
-
-		entityLootDrops.put(EntityClaymation.class, new ItemStack[][] {{new ItemStack(TragicItems.LivingClay), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.Quicksilver),
-			new ItemStack(TragicBlocks.Wax), new ItemStack(Blocks.sand), new ItemStack(TragicBlocks.Quicksand), new ItemStack(Items.clay_ball)}, {new ItemStack(TragicItems.LivingClay)}}); */
+		addToDropList(EntityTimeController.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.TimeEssence)}, {new EntityDrop(25, Items.clock), new EntityDrop(15, Items.redstone),
+				new EntityDrop(5, Items.emerald), new EntityDrop(5, Items.diamond), new EntityDrop(3, TragicItems.CelestialSteel), new EntityDrop(5, Blocks.redstone_block)}});
+		
+		addToDropList(EntityYeti.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.EmpariahClaw)}, {new EntityDrop(25, TragicItems.IcyFur), new EntityDrop(15, TragicItems.CrushedIce),
+				new EntityDrop(10, Items.fish), new EntityDrop(5, TragicItems.IceOrb)}});
+		
+		addToDropList(EntityEnyvil.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.PureDarkness)}, {new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, TragicItems.QuicksilverIngot),
+				new EntityDrop(10, TragicItems.CelestialSteel), new EntityDrop(10, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.LightningOrb)}});
+		
+		addToDropList(EntityClaymation.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LivingClay)}, {new EntityDrop(5, TragicItems.Talisman), new EntityDrop(10, TragicBlocks.Wax),
+			new EntityDrop(5, TragicItems.LifeWater), new EntityDrop(15, Items.clay_ball), new EntityDrop(5, Blocks.clay)}});
 	}
 
 	public static void addToDropList(DropEntry entry)
@@ -266,6 +265,18 @@ public class EntityDropHelper {
 		stack[1] = new ItemStack(TragicItems.SapphireCharm);
 		stack[2] = new ItemStack(TragicItems.DiamondCharm);
 		stack[3] = new ItemStack(TragicItems.EmeraldCharm);
+		return stack;
+	}
+	
+	private static ItemStack[] getInvisPotions()
+	{
+		ItemStack[] stack = new ItemStack[4];
+		
+		stack[0] = new ItemStack(Items.potionitem, 1, 16446);
+		stack[1] = new ItemStack(Items.potionitem, 1, 78);
+		stack[2] = new ItemStack(Items.potionitem, 1, 46);
+		stack[3] = new ItemStack(Items.potionitem, 1, 16478);
+		
 		return stack;
 	}
 
