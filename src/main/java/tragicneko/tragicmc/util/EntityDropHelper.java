@@ -271,12 +271,10 @@ public class EntityDropHelper {
 	private static ItemStack[] getInvisPotions()
 	{
 		ItemStack[] stack = new ItemStack[4];
-		
 		stack[0] = new ItemStack(Items.potionitem, 1, 16446);
 		stack[1] = new ItemStack(Items.potionitem, 1, 78);
 		stack[2] = new ItemStack(Items.potionitem, 1, 46);
 		stack[3] = new ItemStack(Items.potionitem, 1, 16478);
-		
 		return stack;
 	}
 

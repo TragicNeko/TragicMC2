@@ -441,10 +441,7 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
 		}
 		
-		if (TragicNewConfig.allowLockbot)
-		{
-			//TODO add lockbot
-		}
+		//TODO add Harvester/Hunter
 
 		if (TragicNewConfig.allowCircuitGolem)
 		{
@@ -536,11 +533,6 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityVoxStellarum.class, "VoxStellarum", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, 0xFDC169, 0xFD3C69, EnumEggType.MINIBOSS);
-		}
-
-		if (TragicNewConfig.allowLocobot)
-		{
-			//TODO add Locobot
 		}
 
 
