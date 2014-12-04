@@ -139,10 +139,8 @@ public class TragicBlocks {
 	public static Block Luminescence;
 	
 	public static Block CircuitBlock;
-	
 	public static Block CelledBlock;
 	public static Block CelledLamp;
-	
 	public static Block SynapseCore;
 	public static Block OverlordBarrier;
 
@@ -332,10 +330,7 @@ public class TragicBlocks {
 			OreDictionary.registerOre("cobblestone", new ItemStack(LightCobblestone, 1, i));
 		}
 		
-		for (int i = 0; i < 8; i++)
-		{
-			OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, i));
-		}
+		for (int i = 0; i < 8; i++) OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, i));
 		
 		OreDictionary.registerOre("stone", ErodedStone);
 		
@@ -352,8 +347,6 @@ public class TragicBlocks {
 		
 		OreDictionary.registerOre("logWood", PaintedWood);
 		OreDictionary.registerOre("plankWood", PaintedPlanks);
-		
-		OreDictionary.registerOre("treeSapling", new ItemStack(TragicSapling, 1, 0));
 	}
 
 }
