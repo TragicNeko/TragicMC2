@@ -23,49 +23,49 @@ public abstract class Doomsday {
 
 	protected final Random rand = TragicMC.rand;
 
-	public static final Doomsday[] doomsdayList = new Doomsday[48];
+	public static final Doomsday[] doomsdayList = new Doomsday[64];
 
-	public static final Doomsday Decay = (new DoomsdayDecay(1, 20, 40));
-	public static final Doomsday HuntersInstinct = (new DoomsdayHuntersInstinct(2, 25, 60));
-	public static final Doomsday Toxicity = (new DoomsdayToxicity(3, 15, 40));
-	public static final Doomsday Berserker = (new DoomsdayBerserker(4, 20, 50));
-	public static final Doomsday PiercingLight = (new DoomsdayPiercingLight(5, 30, 60));
-	public static final Doomsday NatureDrain = (new DoomsdayNatureDrain(6, 6, 12));
-	public static final Doomsday PoisonBreak = (new DoomsdayPoisonBreak(7, 10, 30));
-	public static final Doomsday Snipe = (new DoomsdaySnipe(8, 55, 90));
-	public static final Doomsday RapidFire = (new DoomsdayRapidFire(9, 3, 8));
-	public static final Doomsday Pulse = (new DoomsdayPulse(10, 6, 10));
-	public static final Doomsday LightShove = (new DoomsdayLightShove(11, 1, 3));
-	public static final Doomsday Fear = (new DoomsdayFear(12, 20, 30));
-	public static final Doomsday Harmonizer = (new DoomsdayHarmonizer(13, 30, 40));
-	public static final Doomsday Ravage = (new DoomsdayRavage(14, 35, 55));
-	public static final Doomsday Torment = (new DoomsdayTorment(15, 20, 45));
-	public static final Doomsday BeastlyImpulses = (new DoomsdayBeastlyImpulses(16, 50, 60));
-	public static final Doomsday SuicidalTendencies = (new DoomsdaySuicidalTendencies(17, 4, 20));
-	public static final Doomsday ReaperLaugh = (new DoomsdayReaperLaugh(18, 3, 16));
-	public static final Doomsday RealityAlter = (new DoomsdayRealityAlter(19, 12, 40));
-	public static final Doomsday SkullCrusher = (new DoomsdaySkullCrusher(20, 15, 50));
-	public static final Doomsday MinerSkills = (new DoomsdayMinerSkills(21, 20, 30));
-	public static final Doomsday Freeze = (new DoomsdayFreeze(22, 30, 30));
-	public static final Doomsday MoonlightSonata = (new DoomsdayMoonlightSonata(23, 60, 1));
-	public static final Doomsday FlightOfTheValkyries = (new DoomsdayFlightOfTheValkyries(24, 10, 10));
-	public static final Doomsday Titanfall = (new DoomsdayTitanfall(25, 10, 5));
-	public static final Doomsday Bloodlust = (new DoomsdayBloodlust(26, 30, 80));
-	public static final Doomsday Permafrost = (new DoomsdayPermafrost(27, 5, 6));
-	public static final Doomsday Purge = (new DoomsdayPurge(28, 4, 5));
-	public static final Doomsday LightningRush = (new DoomsdayLightningRush(29, 6, 8));
-	public static final Doomsday Marionette = (new DoomsdayMarionette(30, 3, 3));
-	public static final Doomsday Mindcrack = (new DoomsdayMindcrack(31, 60, 45));
-	public static final Doomsday GrowthSpurt = (new DoomsdayGrowthSpurt(32, 60, 50));
-	public static final Doomsday Blizzard = (new DoomsdayBlizzard(33, 6, 10));
-	public static final Doomsday Asphyxiate = (new DoomsdayAsphyxiate(34, 3, 3));
-	public static final Doomsday FireRain = (new DoomsdayFireRain(35, 5, 8));
-	public static final Doomsday DragonsRoar = (new DoomsdayDragonsRoar(36, 15, 25));
-	public static final Doomsday Firestorm = (new DoomsdayFirestorm(37, 8, 10));
-	public static final Doomsday Shotgun = (new DoomsdayShotgun(38, 5, 10));
-	//public static final Doomsday Guardian = (new DoomsdayGuardian(39, 50, 75));
-	//public static final Doomsday Harden = (new DoomsdayHarden(40, 4, 60));
-	//public static final Doomsday Sharpen = (new DoomsdaySharpen(41, 6, 75));
+	public static final Doomsday Decay = (new DoomsdayDecay(1));
+	public static final Doomsday HuntersInstinct = (new DoomsdayHuntersInstinct(2));
+	public static final Doomsday Toxicity = (new DoomsdayToxicity(3));
+	public static final Doomsday Berserker = (new DoomsdayBerserker(4));
+	public static final Doomsday PiercingLight = (new DoomsdayPiercingLight(5));
+	public static final Doomsday NatureDrain = (new DoomsdayNatureDrain(6));
+	public static final Doomsday PoisonBreak = (new DoomsdayPoisonBreak(7));
+	public static final Doomsday Snipe = (new DoomsdaySnipe(8));
+	public static final Doomsday RapidFire = (new DoomsdayRapidFire(9));
+	public static final Doomsday Pulse = (new DoomsdayPulse(10));
+	public static final Doomsday LightShove = (new DoomsdayLightShove(11));
+	public static final Doomsday Fear = (new DoomsdayFear(12));
+	public static final Doomsday Harmonizer = (new DoomsdayHarmonizer(13));
+	public static final Doomsday Ravage = (new DoomsdayRavage(14));
+	public static final Doomsday Torment = (new DoomsdayTorment(15));
+	public static final Doomsday BeastlyImpulses = (new DoomsdayBeastlyImpulses(16));
+	public static final Doomsday SuicidalTendencies = (new DoomsdaySuicidalTendencies(17));
+	public static final Doomsday ReaperLaugh = (new DoomsdayReaperLaugh(18));
+	public static final Doomsday RealityAlter = (new DoomsdayRealityAlter(19));
+	public static final Doomsday SkullCrusher = (new DoomsdaySkullCrusher(20));
+	public static final Doomsday MinerSkills = (new DoomsdayMinerSkills(21));
+	public static final Doomsday Freeze = (new DoomsdayFreeze(22));
+	public static final Doomsday MoonlightSonata = (new DoomsdayMoonlightSonata(23));
+	public static final Doomsday FlightOfTheValkyries = (new DoomsdayFlightOfTheValkyries(24));
+	public static final Doomsday Titanfall = (new DoomsdayTitanfall(25));
+	public static final Doomsday Bloodlust = (new DoomsdayBloodlust(26));
+	public static final Doomsday Permafrost = (new DoomsdayPermafrost(27));
+	public static final Doomsday Purge = (new DoomsdayPurge(28));
+	public static final Doomsday LightningRush = (new DoomsdayLightningRush(29));
+	public static final Doomsday Marionette = (new DoomsdayMarionette(30));
+	public static final Doomsday Mindcrack = (new DoomsdayMindcrack(31));
+	public static final Doomsday GrowthSpurt = (new DoomsdayGrowthSpurt(32));
+	public static final Doomsday Blizzard = (new DoomsdayBlizzard(33));
+	public static final Doomsday Asphyxiate = (new DoomsdayAsphyxiate(34));
+	public static final Doomsday FireRain = (new DoomsdayFireRain(35));
+	public static final Doomsday DragonsRoar = (new DoomsdayDragonsRoar(36));
+	public static final Doomsday Firestorm = (new DoomsdayFirestorm(37));
+	public static final Doomsday Shotgun = (new DoomsdayShotgun(38));
+	//public static final Doomsday Guardian = (new DoomsdayGuardian(39));
+	//public static final Doomsday Harden = (new DoomsdayHarden(40));
+	//public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	
 	//Scroll only Doomsdays
 	//Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
@@ -103,17 +103,17 @@ public abstract class Doomsday {
 	public int waitTime;
 	public int maxIterations;
 
-	public Doomsday(int id, int cd, int reqDoom)
+	public Doomsday(int id)
 	{
-		this(id, cd, reqDoom, EnumDoomType.INFLUENCE);
+		this(id, EnumDoomType.INFLUENCE);
 	}
 
-	public Doomsday(int id, int cd, int reqDoom, EnumDoomType doomType)
+	public Doomsday(int id, EnumDoomType doomType)
 	{
 		this.doomsdayType = doomType;
 		this.doomID = (byte)id;
-		this.cooldown = (short) cd;
-		this.requiredDoom = (short) reqDoom;
+		this.cooldown = (short) TragicNewConfig.doomsdayCooldowns[id];
+		this.requiredDoom = (short) TragicNewConfig.doomsdayCosts[id];
 		this.waitTime = 0;
 		this.maxIterations = 1;
 		doomsdayList[id] = this;
@@ -197,6 +197,11 @@ public abstract class Doomsday {
 				doom.getPlayer().isPotionActive(TragicPotions.Harmony) || TragicNewConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotions.Fear))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You can't use a Doomsday with that effect active..."));
+			return;
+		}
+		else if (!TragicNewConfig.doomsdayAllow[this.doomID])
+		{
+			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have that particular Doomsday disabled, enable in config."));
 			return;
 		}
 		
@@ -508,6 +513,11 @@ public abstract class Doomsday {
 		CRISIS,
 		WORLDSHAPER,
 		COMBINATION
+	}
+	
+	public interface IExtendedDoomsday
+	{
+		
 	}
 
 	static

@@ -11,6 +11,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
@@ -20,8 +21,8 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayAsphyxiate(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdayAsphyxiate(int id) {
+		super(id, EnumDoomType.CRISIS);
 		this.waitTime = 3;
 		this.maxIterations = 30;
 	}

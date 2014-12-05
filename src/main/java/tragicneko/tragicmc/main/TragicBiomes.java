@@ -82,7 +82,7 @@ public class TragicBiomes {
 		TaintedScarlands = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedScarlands).setBiomeName("tragicmc.taintedScarlands"))).setHeightVariation(0.05F).setRootHeight(0.65F);
 		TaintedIsles = ((TragicBiome) (new BiomeGenTaintedSpikes(TragicNewConfig.idTaintedIsles).setBiomeName("tragicmc.taintedIsles"))).setHeightVariation(0.25F).setRootHeight(-0.65F);
 		
-		Synapse = (TragicBiome) (new BiomeGenSynapse(TaintedIsles.biomeID + 1).setBiomeName("tragicmc.synapse").setDisableRain());
+		Synapse = (TragicBiome) (new BiomeGenSynapse(TragicNewConfig.idSynapse).setBiomeName("tragicmc.synapse").setDisableRain());
 		
 		createSets();
 	}

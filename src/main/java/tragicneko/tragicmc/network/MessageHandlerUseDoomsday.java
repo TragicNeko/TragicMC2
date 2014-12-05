@@ -115,6 +115,12 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			return null;
 		}
 		
+		if (!TragicNewConfig.doomsdayAllow[doomsday.doomID])
+		{
+			player.addChatComponentMessage(new ChatComponentText("That particular Doomsday is disabled, enable in config."));
+			return null;
+		}
+		
 		TragicMC.logInfo("Doomsday is " + doomsday);
 
 		doomsday.activateDoomsday(doom);

@@ -58,8 +58,8 @@ public class GuiDoom extends Gui
 			return; 
 		}
 
-		int xPos = 1;
-		int yPos = 1;
+		int xPos = TragicNewConfig.guiX;
+		int yPos = TragicNewConfig.guiY;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 
 		GL11.glEnable(GL11.GL_BLEND);

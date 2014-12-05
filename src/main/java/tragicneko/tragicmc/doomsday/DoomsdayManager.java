@@ -29,7 +29,7 @@ import cpw.mods.fml.common.network.FMLNetworkEvent.ServerDisconnectionFromClient
 
 public class DoomsdayManager {
 
-	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/ Doomsday Manager");
+	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/Doomsday Manager");
 	private static Map<String, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
 	private Map<Doomsday, Doomsday> combinations = new HashMap();
 	private Map<Doomsday, Doomsday> combinationMap = new HashMap();

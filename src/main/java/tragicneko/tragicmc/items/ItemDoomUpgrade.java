@@ -36,9 +36,9 @@ public class ItemDoomUpgrade extends Item {
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 
-			if (property.getMaxDoom() + 100 <= TragicNewConfig.maxDoomAmount)
+			if (property.getMaxDoom() + TragicNewConfig.doomConsumeAmount <= TragicNewConfig.maxDoomAmount)
 			{
-				property.increaseConsumptionLevel(100);
+				property.increaseConsumptionLevel();
 
 				if (TragicNewConfig.allowConsumeRefill)
 				{

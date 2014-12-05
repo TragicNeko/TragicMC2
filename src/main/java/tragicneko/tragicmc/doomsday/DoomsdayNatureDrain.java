@@ -19,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -26,8 +27,8 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 	private ArrayList<int[]> list = new ArrayList();
 
-	public DoomsdayNatureDrain(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+	public DoomsdayNatureDrain(int id) {
+		super(id, EnumDoomType.WORLDSHAPER);
 		this.waitTime = 10;
 		this.maxIterations = 50;
 	}

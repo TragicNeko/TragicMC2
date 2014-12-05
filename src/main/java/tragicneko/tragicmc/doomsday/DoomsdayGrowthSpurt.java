@@ -18,8 +18,8 @@ public class DoomsdayGrowthSpurt extends Doomsday {
 
 	private ArrayList<int[]> list = new ArrayList();
 
-	public DoomsdayGrowthSpurt(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+	public DoomsdayGrowthSpurt(int id) {
+		super(id, EnumDoomType.COMBINATION);
 	}
 
 	@Override

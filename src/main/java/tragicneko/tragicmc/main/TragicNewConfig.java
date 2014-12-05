@@ -7,26 +7,24 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TragicNewConfig {
 
 	public static boolean mobsOnly;
 	private static int resolution;
 
-	private static String catMaster = "Master Configs";
-	private static String catBlanket = "Blanket Configs";
-	private static String catAchievement = "Achievements";
-	private static String catAmulet = "Amulets";
-	private static String catDimension = "Dimension";
-	private static String catDoom = "Doom";
-	private static String catEnchant = "Enchantments";
-	private static String catMobs = "Mobs";
-	private static String catPotion = "Potions";
-	private static String catVanilla = "Vanilla Changes";
-	private static String catWorldGen = "WorldGen";
-	private static String catMisc = "Miscellaneous";
+	private static final String catMaster = "Master Configs";
+	private static final String catBlanket = "Blanket Configs";
+	private static final String catAchievement = "Achievements";
+	private static final String catAmulet = "Amulets";
+	private static final String catDimension = "Dimension";
+	private static final String catDoom = "Doom";
+	private static final String catEnchant = "Enchantments";
+	private static final String catMobs = "Mobs";
+	private static final String catPotion = "Potions";
+	private static final String catVanilla = "Vanilla Changes";
+	private static final String catWorldGen = "WorldGen";
+	private static final String catMisc = "Miscellaneous";
 
 	private static boolean[] blanketConfigs = new boolean[9];
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
@@ -58,8 +56,12 @@ public class TragicNewConfig {
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
 	public static boolean shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash, allowCooldown;
 	public static boolean allowCooldownDefuse, showDoomGui;
-	private static int[] doomInts = new int[8];
+	private static int[] doomInts = new int[12];
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
+	public static int doomConsumeAmount, maxDoomMinimum;
+	public static boolean[] doomsdayAllow = new boolean[64];
+	public static int[] doomsdayCooldowns = new int[64];
+	public static int[] doomsdayCosts = new int[64];
 
 	private static boolean[] blanketEnchant = new boolean[2];
 	public static boolean allowWeaponEnchants, allowArmorEnchants;
@@ -117,12 +119,11 @@ public class TragicNewConfig {
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
 
 	private static boolean[] miscConfigs = new boolean[16];
-	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, ignoreMobGriefCheck;
+	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering;
 	private static int[] miscInts = new int[16];
-	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture;
+	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	private static boolean[] griefConfigs = new boolean[16];
-	//set up each Doomsday, mob ability and what-not that checks for mobGriefing, each mob will override the superclass method that checks by utilizing these boolean values
-	//similar to how the transformation is set up for them
+	//everything that isn't a mob will check this to see if it is allowed instead of using mobGriefing, this includes things like Doomsdays and items
 
 	public static void initialize()
 	{
@@ -233,7 +234,8 @@ public class TragicNewConfig {
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedRisesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedIslesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
-
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeSynapseID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		
 		config.addCustomCategoryComment(catDimension, "Set the various biome IDs in the Dimension, including the Dimension's own ID, also set if the Dimension should stay loaded.");
 
 		mapping = 0;
@@ -255,16 +257,147 @@ public class TragicNewConfig {
 		blanketDoom[mapping++] = (config.get(catDoom, "showDoomGui", true).getBoolean(true));
 
 		mapping = 0;
-		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "maxDoomAmount", 500).getInt(500), 100, 1000);
-		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "doomRechargeRate", 1).getInt(1), 1, 4);
-		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "doomConsumeRarity", 3).getInt(3), 3, 250);
-		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "cooldownDefuseRarity", 5).getInt(5), 3, 250);
-		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "doomConsumeRefillAmount", 50).getInt(50), 1, 100);
-		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "cooldownDefuseRefillAmount", 30).getInt(30), 1, 100);
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "maxDoomAmount", 500).getInt(500));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomRechargeRate", 1).getInt(1));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeRarity", 3).getInt(3));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "cooldownDefuseRarity", 5).getInt(5));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeRefillAmount", 50).getInt(50));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "cooldownDefuseRefillAmount", 30).getInt(30));
 		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "backlashChance", 5).getInt(5), 1, 100);
 		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "crucialMomentChance", 5).getInt(5), 1, 100);
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeAmount", 100).getInt(100));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "maxDoomMinimumAmount", 100).getInt(100));
+		
+		mapping = 1;
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDecayAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHuntersInstinctAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayToxicityAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayBerserkerAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPiercingLightAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayNatureDrainAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPoisonBreakAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySnipeAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayRapidFireAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPulseAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayLightShoveAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFearAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHarmonizerAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayRavageAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayTormentAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayBeastlyImpulsesAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySuicidalTendenciesAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayReaperLaughAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayRealityAlterAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySkullCrusherAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayMinerSkillsAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFreezeAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayMoonlightSonataAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFlightOfTheValkyriesAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayTitanfallAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayBloodlustAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPermafrostAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPurgeAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayLightningRushAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayMarionetteAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayMindcrackAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayGrowthSpurtAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayBlizzardAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayAsphyxiateAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFireRainAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDragonsRoarAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFirestormAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayShotgunAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayGuardianAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHardenAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySharpenAllow", true).getBoolean(true));
+		
+		mapping = 1;
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHuntersInstinctCooldown", 25).getInt(25));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayToxicityCooldown", 15).getInt(15));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayBerserkerCooldown", 15).getInt(15));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPiercingLightCooldown", 30).getInt(30));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayNatureDrainCooldown", 6).getInt(6));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPoisonBreakCooldown", 10).getInt(10));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySnipeCooldown", 55).getInt(55));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRapidFireCooldown", 3).getInt(3));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPulseCooldown", 6).getInt(6));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayLightShoveCooldown", 1).getInt(1));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFearCooldown", 20).getInt(20));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHarmonizerCooldown", 30).getInt(30));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRavageCooldown", 35).getInt(35));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayTormentCooldown", 20).getInt(20));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayBeastlyImpulsesCooldown", 50).getInt(50));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySuicidalTendenciesCooldown", 4).getInt(4));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayReaperLaughCooldown", 3).getInt(3));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRealityAlterCooldown", 12).getInt(12));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySkullCrusherCooldown", 15).getInt(15));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayMinerSkillsCooldown", 20).getInt(20));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFreezeCooldown", 30).getInt(30));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayMoonlightSonataCooldown", 60).getInt(60));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlightOfTheValkyriesCooldown", 10).getInt(10));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayTitanfallCooldown", 10).getInt(10));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayBloodlustCooldown", 30).getInt(30));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPermafrostCooldown", 5).getInt(5));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurgeCooldown", 4).getInt(4));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayLightningRushCooldown", 6).getInt(6));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayMarionetteCooldown", 3).getInt(3));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayMindcrackCooldown", 60).getInt(60));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayGrowthSpurtCooldown", 10).getInt(10));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayBlizzardCooldown", 6).getInt(6));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayAsphyxiateCooldown", 3).getInt(3));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFireRainCooldown", 5).getInt(5));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDragonsRoarCooldown", 15).getInt(15));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFirestormCooldown", 8).getInt(8));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayShotgunCooldown", 5).getInt(5));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayGuardianCooldown", 50).getInt(50));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCooldown", 4).getInt(4));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCooldown", 6).getInt(6));
+		
+		mapping = 1;
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHuntersInstinctCost", 60).getInt(60));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayToxicityCost", 40).getInt(40));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayBerserkerCost", 50).getInt(50));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPiercingLightCost", 60).getInt(60));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayNatureDrainCost", 12).getInt(12));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPoisonBreakCost", 30).getInt(30));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySnipeCost", 90).getInt(90));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRapidFireCost", 8).getInt(8));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPulseCost", 10).getInt(10));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayLightShoveCost", 3).getInt(3));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFearCost", 30).getInt(30));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHarmonizerCost", 40).getInt(40));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRavageCost", 55).getInt(55));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayTormentCost", 45).getInt(45));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayBeastlyImpulsesCost", 60).getInt(60));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySuicidalTendenciesCost", 20).getInt(20));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayReaperLaughCost", 16).getInt(16));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRealityAlterCost", 40).getInt(40));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySkullCrusherCost", 50).getInt(50));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayMinerSkillsCost", 30).getInt(30));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFreezeCost", 30).getInt(30));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayMoonlightSonataCost", 1).getInt(1));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlightOfTheValkyriesCost", 10).getInt(10));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayTitanfallCost", 5).getInt(5));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayBloodlustCost", 80).getInt(80));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPermafrostCost", 6).getInt(6));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurgeCost", 5).getInt(5));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayLightningRushCost", 8).getInt(8));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayMarionetteCost", 3).getInt(3));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayMindcrackCost", 45).getInt(45));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayGrowthSpurtCost", 50).getInt(50));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayBlizzardCost", 10).getInt(10));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayAsphyxiateCost", 3).getInt(3));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFireRainCost", 8).getInt(8));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDragonsRoarCost", 25).getInt(25));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFirestormCost", 10).getInt(10));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayShotgunCost", 10).getInt(10));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayGuardianCost", 75).getInt(75));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCost", 60).getInt(60));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
 
-		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount");
+		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount.");
 
 		blanketEnchant[0] = (config.get(catEnchant, "allowWeaponEnchantments", true).getBoolean(true));
 		blanketEnchant[1] = (config.get(catEnchant, "allowArmorEnchantments", true).getBoolean(true));
@@ -459,6 +592,8 @@ public class TragicNewConfig {
 			if (i < miniBossSC.length) miniBossSC[i] = MathHelper.clamp_int(miniBossSC[i], 5, 250);
 			if (i < bossSC.length) bossSC[i] = MathHelper.clamp_int(bossSC[i], 0, 250);
 		}
+		
+		//TODO add all of the mob stat configs, there will be a LOT
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed, or disable certain groups like Mini-Bosses or Bosses, also set their Spawn Chances");
 
@@ -576,6 +711,8 @@ public class TragicNewConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowChallengeScrolls", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowMobStatues", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowAnimatedGui", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowGeneratorItems", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowItemTimeAltering", true).getBoolean(true));
 
 		for (i = 0; i + mapping < miscConfigs.length; i++)
 		{
@@ -587,6 +724,8 @@ public class TragicNewConfig {
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "mobStatueDropChance", 100).getInt(100), 1, 100);
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "guiTransparency", 100).getInt(100), 1, 100);
 		miscInts[mapping++] = config.get(catMisc, "guiTextureSkins", 0).getInt(0);
+		miscInts[mapping++] = config.get(catMisc, "guiXPosition", 1).getInt(1);
+		miscInts[mapping++] = config.get(catMisc, "guiYPosition", 1).getInt(1);
 
 		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
 
@@ -898,6 +1037,8 @@ public class TragicNewConfig {
 		defuseRefillAmount = doomInts[mapping++];
 		backlashChance = doomInts[mapping++];
 		crucialMomentChance = doomInts[mapping++];
+		doomConsumeAmount = doomInts[mapping++];
+		maxDoomMinimum = doomInts[mapping++];
 
 		allowWeaponEnchants = blanketEnchant[0];
 		allowArmorEnchants = blanketEnchant[1];
@@ -1151,12 +1292,16 @@ public class TragicNewConfig {
 		allowChallengeScrolls = miscConfigs[mapping++];
 		allowMobStatueDrops = miscConfigs[mapping++];
 		allowAnimatedGui = miscConfigs[mapping++];
+		allowGeneratorItems = miscConfigs[mapping++];
+		allowItemTimeAltering = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
 		mobStatueDropChance = miscInts[mapping++];
 		guiTransparency = miscInts[mapping++];
 		guiTexture = miscInts[mapping++];
+		guiX = miscInts[mapping++];
+		guiY = miscInts[mapping++];
 	}
 
 	public static void disablePotions()
@@ -1258,12 +1403,7 @@ public class TragicNewConfig {
 		return configId;
 	}
 	
-	@SubscribeEvent
-	public void onConfigChange(OnConfigChangedEvent event)
-	{
-		if (TragicMC.MODID.equals(event.modID))
-		{
-			TragicMC.logInfo("Config changed, configID was " + event.configID + ", this isn't implemented yet and should be ignored.");
-		}
+	private static int clampPositive(int i) {
+		return i < 0 ? 0 : i;
 	}
 }

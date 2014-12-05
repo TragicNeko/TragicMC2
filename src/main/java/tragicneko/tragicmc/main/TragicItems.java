@@ -610,7 +610,7 @@ public class TragicItems {
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
-				
+
 				EntityPlayer player = (EntityPlayer) entity;
 				if (!world.isRaining()) world.rainingStrength = 1.0F;
 			}
@@ -638,7 +638,7 @@ public class TragicItems {
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
-				
+
 				EntityPlayer player = (EntityPlayer) entity;
 				if (!world.isThundering()) world.thunderingStrength = 1.0F;
 			}
@@ -650,10 +650,10 @@ public class TragicItems {
 			@Override
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
-				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
-				
+				if (world.isRemote || !(entity instanceof EntityPlayer) || !TragicNewConfig.allowItemTimeAltering) return;
+
 				EntityPlayer player = (EntityPlayer) entity;
-				
+
 				int a = flag ? -5 : 5;
 				world.setWorldTime(world.getWorldTime() + a);
 			}
@@ -863,8 +863,11 @@ public class TragicItems {
 		SwordOfJustice = (new WeaponSwordOfJustice(toolJustice).setUnlocalizedName("tragicmc.swordOfJustice").setTextureName("gold_sword").setCreativeTab(TragicTabs.Creative));
 		GameRegistry.registerItem(SwordOfJustice, "swordOfJustice");
 
-		Generator = (new ItemGenerator());
-		GameRegistry.registerItem(Generator, "generator");
+		if (TragicNewConfig.allowGeneratorItems)
+		{
+			Generator = (new ItemGenerator());
+			GameRegistry.registerItem(Generator, "generator");
+		}
 
 		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand_lowRes").setCreativeTab(TragicTabs.Creative));
 		GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");

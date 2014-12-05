@@ -12,8 +12,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBerserker extends Doomsday {
 
-	public DoomsdayBerserker(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
+	public DoomsdayBerserker(int id) {
+		super(id, EnumDoomType.OVERFLOW);
 	}
 	
 	@Override

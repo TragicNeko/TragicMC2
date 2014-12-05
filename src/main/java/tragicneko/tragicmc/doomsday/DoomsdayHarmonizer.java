@@ -18,8 +18,8 @@ public class DoomsdayHarmonizer extends Doomsday {
 
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayHarmonizer(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdayHarmonizer(int id) {
+		super(id, EnumDoomType.CRISIS);
 	}
 
 	@Override

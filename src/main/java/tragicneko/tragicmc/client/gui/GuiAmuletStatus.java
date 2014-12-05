@@ -45,8 +45,8 @@ public class GuiAmuletStatus extends Gui
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
 		if (amu == null || amu.getSlotsOpen() <= 0) return; 
 
-		int xPos = 2;
-		int yPos = 12;
+		int xPos = TragicNewConfig.guiX + 1;
+		int yPos = TragicNewConfig.guiY + 11;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 		int length = 0;
 		if (amu.getSlotsOpen() == 1) length = 20;

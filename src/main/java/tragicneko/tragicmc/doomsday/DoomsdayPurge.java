@@ -8,12 +8,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPurge extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdayPurge(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
+	public DoomsdayPurge(int id) {
+		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 3;
 		this.maxIterations = 200;
 	}

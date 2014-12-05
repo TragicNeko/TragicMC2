@@ -7,12 +7,13 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayShotgun extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdayShotgun(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+	public DoomsdayShotgun(int id) {
+		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 10;
 		this.maxIterations = 30;
 	}

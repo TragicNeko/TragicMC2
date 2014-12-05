@@ -12,14 +12,15 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdayFirestorm(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+	public DoomsdayFirestorm(int id) {
+		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 10;
 		this.maxIterations = 120;
 	}

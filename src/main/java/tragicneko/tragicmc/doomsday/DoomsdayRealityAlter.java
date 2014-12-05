@@ -30,8 +30,8 @@ public class DoomsdayRealityAlter extends Doomsday {
 			TragicBlocks.Light, Blocks.red_flower, Blocks.yellow_flower, Blocks.double_plant, Blocks.wooden_slab, Blocks.cake, Blocks.bed, Blocks.hay_block, Blocks.hardened_clay,
 			Blocks.red_mushroom_block, Blocks.brown_mushroom_block, Blocks.water, Blocks.lava, Blocks.activator_rail, Blocks.tnt};
 
-	public DoomsdayRealityAlter(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+	public DoomsdayRealityAlter(int id) {
+		super(id, EnumDoomType.WORLDSHAPER);
 	}
 
 	@Override

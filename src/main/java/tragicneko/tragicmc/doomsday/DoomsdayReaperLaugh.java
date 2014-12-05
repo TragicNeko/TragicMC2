@@ -1,24 +1,20 @@
 package tragicneko.tragicmc.doomsday;
 
-import net.minecraft.crash.CrashReport;
-import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ReportedException;
-import net.minecraftforge.common.MinecraftForge;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdayReaperLaugh(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
+	public DoomsdayReaperLaugh(int id) {
+		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 15;
 		this.maxIterations = 20;
 	}

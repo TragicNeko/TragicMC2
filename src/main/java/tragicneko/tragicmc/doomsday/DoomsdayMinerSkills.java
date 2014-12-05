@@ -26,8 +26,8 @@ public class DoomsdayMinerSkills extends Doomsday {
 	private ArrayList<int[]> list3 = new ArrayList();
 	private ArrayList<int[]> list4 = new ArrayList();
 
-	public DoomsdayMinerSkills(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+	public DoomsdayMinerSkills(int id) {
+		super(id, EnumDoomType.WORLDSHAPER);
 	}
 	
 	@Override

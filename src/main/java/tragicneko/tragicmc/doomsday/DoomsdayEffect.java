@@ -2,6 +2,7 @@ package tragicneko.tragicmc.doomsday;
 
 import java.util.Random;
 
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -81,13 +82,12 @@ public class DoomsdayEffect {
 				{
 					this.isActive = false;
 				}
-				
 			}
 		}
 	}
 	
 	public boolean equals(DoomsdayEffect effect)
 	{
-		return this == effect ? true : (effect.dday == this.dday ? true : false);
+		return this.equals(effect) || effect.dday == this.dday;
 	}
 }

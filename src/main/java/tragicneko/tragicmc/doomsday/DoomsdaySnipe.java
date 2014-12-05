@@ -12,8 +12,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdaySnipe extends Doomsday {
 
-	public DoomsdaySnipe(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdaySnipe(int id) {
+		super(id, EnumDoomType.CRISIS);
 	}
 	
 	@Override

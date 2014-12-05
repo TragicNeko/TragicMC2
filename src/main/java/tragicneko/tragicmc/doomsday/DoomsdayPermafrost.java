@@ -16,6 +16,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -24,8 +25,8 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 	private ArrayList<int[]> list = new ArrayList();
 	private List<Entity> list2 = new ArrayList();
 
-	public DoomsdayPermafrost(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+	public DoomsdayPermafrost(int id) {
+		super(id, EnumDoomType.WORLDSHAPER);
 		this.waitTime = 3;
 		this.maxIterations = 60;
 	}

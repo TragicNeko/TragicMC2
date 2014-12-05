@@ -18,8 +18,8 @@ public class DoomsdaySkullCrusher extends Doomsday {
 	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdaySkullCrusher(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdaySkullCrusher(int id) {
+		super(id, EnumDoomType.CRISIS);
 	}
 	
 	@Override

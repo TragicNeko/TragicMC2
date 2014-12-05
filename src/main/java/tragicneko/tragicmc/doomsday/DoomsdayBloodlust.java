@@ -13,8 +13,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBloodlust extends Doomsday {
 
-	public DoomsdayBloodlust(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayBloodlust(int id) {
+		super(id);
 	}
 
 	@Override

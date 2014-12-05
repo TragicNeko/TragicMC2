@@ -15,8 +15,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayDragonsRoar extends Doomsday {
 
-	public DoomsdayDragonsRoar(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayDragonsRoar(int id) {
+		super(id);
 	}
 
 	@Override

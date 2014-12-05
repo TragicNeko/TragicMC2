@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
@@ -11,8 +12,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdaySuicidalTendencies(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+	public DoomsdaySuicidalTendencies(int id) {
+		super(id, EnumDoomType.WORLDSHAPER);
 		this.waitTime = 10;
 		this.maxIterations = 5;
 	}

@@ -7,8 +7,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayMoonlightSonata extends Doomsday {
 
-	public DoomsdayMoonlightSonata(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.INFLUENCE);
+	public DoomsdayMoonlightSonata(int id) {
+		super(id);
 	}
 	
 	@Override

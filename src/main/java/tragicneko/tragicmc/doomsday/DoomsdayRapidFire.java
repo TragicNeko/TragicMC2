@@ -1,28 +1,20 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ConcurrentModificationException;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.crash.CrashReport;
-import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ReportedException;
-import net.minecraftforge.common.MinecraftForge;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdayRapidFire(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
+	public DoomsdayRapidFire(int id) {
+		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 2;
 		this.maxIterations = 30;
 	}

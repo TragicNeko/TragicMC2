@@ -11,6 +11,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -19,8 +20,8 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayFlightOfTheValkyries(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+	public DoomsdayFlightOfTheValkyries(int id) {
+		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 5;
 		this.maxIterations = 200;
 	}

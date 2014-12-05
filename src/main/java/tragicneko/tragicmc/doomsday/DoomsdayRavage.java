@@ -14,8 +14,8 @@ public class DoomsdayRavage extends Doomsday {
 	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayRavage(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.WORLDSHAPER);
+	public DoomsdayRavage(int id) {
+		super(id, EnumDoomType.WORLDSHAPER);
 	}
 	
 	@Override

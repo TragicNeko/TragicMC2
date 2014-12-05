@@ -10,6 +10,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -18,8 +19,8 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayMindcrack(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+	public DoomsdayMindcrack(int id) {
+		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 3;
 		this.maxIterations = 300;
 	}

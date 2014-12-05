@@ -32,7 +32,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		this.thePlayer = player;
 		this.doomCooldown = 0;
-		this.maxDoom = 100;
+		this.maxDoom = TragicNewConfig.maxDoomMinimum;
 		this.currentDoom = 0;
 	}
 
@@ -115,10 +115,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 				int doom = this.getCurrentDoom();
 				int increment = TragicNewConfig.doomRechargeRate;
 
-				if (doom > this.getMaxDoom())
-				{
-					return;
-				}
+				if (doom > this.getMaxDoom()) return;
 
 				if (increment + doom >= this.getMaxDoom())
 				{
@@ -217,23 +214,18 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 * amount to decrease
 	 * @param amount
 	 */
-	public void increaseConsumptionLevel(int amount)
+	public void increaseConsumptionLevel()
 	{
-		if (this.canIncreaseMax(amount))
+		if (this.getMaxDoom() + TragicNewConfig.doomConsumeAmount <= TragicNewConfig.maxDoomAmount)
 		{
-			this.setMaxDoom(this.getMaxDoom() + 100);
+			this.setMaxDoom(this.getMaxDoom() + TragicNewConfig.doomConsumeAmount);
+		}
+		else
+		{
+			this.setMaxDoom(TragicNewConfig.maxDoomAmount);
 		}
 
 		TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
-	}
-
-	private boolean canIncreaseMax(int amount) 
-	{
-		if (this.getMaxDoom() + amount <= TragicNewConfig.maxDoomAmount)
-		{
-			return true;
-		}
-		return false;
 	}
 
 	/**

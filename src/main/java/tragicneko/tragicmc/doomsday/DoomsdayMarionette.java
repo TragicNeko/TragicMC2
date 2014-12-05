@@ -10,6 +10,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
@@ -19,8 +20,8 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
 	private EntityLivingBase entity;
 
-	public DoomsdayMarionette(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
+	public DoomsdayMarionette(int id) {
+		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 3;
 		this.maxIterations = 100;
 	}

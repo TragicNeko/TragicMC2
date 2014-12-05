@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -14,8 +15,8 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 
 	private int tick = 0;
 
-	public DoomsdayTitanfall(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.OVERFLOW);
+	public DoomsdayTitanfall(int id) {
+		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 10;
 		this.maxIterations = 100;
 	}

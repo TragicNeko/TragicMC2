@@ -18,8 +18,8 @@ public class DoomsdayFreeze extends Doomsday {
 
 	private List<Entity> list = new ArrayList();
 	
-	public DoomsdayFreeze(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayFreeze(int id) {
+		super(id);
 	}
 	
 	@Override

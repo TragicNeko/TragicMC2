@@ -9,8 +9,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayHuntersInstinct extends Doomsday {
 
-	public DoomsdayHuntersInstinct(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayHuntersInstinct(int id) {
+		super(id);
 	}
 	
 	@Override

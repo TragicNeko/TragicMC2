@@ -16,8 +16,8 @@ public class DoomsdayPiercingLight extends Doomsday {
 
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayPiercingLight(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdayPiercingLight(int id) {
+		super(id, EnumDoomType.CRISIS);
 	}
 
 	@Override

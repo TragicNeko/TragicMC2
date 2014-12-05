@@ -19,8 +19,8 @@ public class DoomsdayFear extends Doomsday {
 
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayFear(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayFear(int id) {
+		super(id);
 	}
 
 	@Override

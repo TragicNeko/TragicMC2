@@ -11,8 +11,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPoisonBreak extends Doomsday {
 	
-	public DoomsdayPoisonBreak(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayPoisonBreak(int id) {
+		super(id);
 	}
 	
 	@Override

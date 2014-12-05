@@ -14,8 +14,8 @@ public class DoomsdayLightShove extends Doomsday {
 	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayLightShove(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.CRISIS);
+	public DoomsdayLightShove(int id) {
+		super(id, EnumDoomType.CRISIS);
 	}
 	
 	@Override

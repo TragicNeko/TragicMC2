@@ -18,8 +18,8 @@ public class DoomsdayTorment extends Doomsday {
 	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayTorment(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayTorment(int id) {
+		super(id);
 	}
 	
 	@Override

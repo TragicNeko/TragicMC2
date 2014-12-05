@@ -98,6 +98,12 @@ public class DoomsdayCoomand extends CommandBase {
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "There was an error using that Doomsday."));
 			return;
 		}
+		
+		if (!TragicNewConfig.doomsdayAllow[doomsday.doomID])
+		{
+			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "That particular Doomsday is disabled, enable in config."));
+			return;
+		}
 
 		boolean crucMoment = false;
 		if (TragicNewConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicNewConfig.crucialMomentChance) crucMoment = true;

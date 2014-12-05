@@ -4,13 +4,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 
-	public DoomsdayBlizzard(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom, EnumDoomType.COMBINATION);
+	public DoomsdayBlizzard(int id) {
+		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 6;
 		this.maxIterations = 100;
 	}

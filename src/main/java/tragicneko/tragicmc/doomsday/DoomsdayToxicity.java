@@ -17,8 +17,8 @@ public class DoomsdayToxicity extends Doomsday {
 	
 	private List<Entity> list = new ArrayList();
 
-	public DoomsdayToxicity(int id, int cd, int reqDoom) {
-		super(id, cd, reqDoom);
+	public DoomsdayToxicity(int id) {
+		super(id);
 	}
 	
 	@Override
