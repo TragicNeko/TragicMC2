@@ -3056,6 +3056,14 @@ This is mostly with how the Overlord was not properly saving it's target destina
 ignore actual entities that it could target
 Changing the drop of the Death Reaper from Reaper Skull to Deathly Hallow (that's a Harry Potter reference right there, yep), this is to make more sense for it to drop more than one of it
 Added the Bosses drops back to the drop helper
+Updated to Forge 10.13.2.1240, wrote a small batch program to update this easier
+Adding config options now, added new option to change the amount you gain from Doom Consumes as well as the max amount you start with
+Added config options to disable specific Doomsdays
+Added config options for each Doomsday's cost and cooldown
+Added these to the Doomsdays, this greatly simplifies their construction, so much in fact I may not even need static methods to reference them at this point
+Remove unused imports in Doomsdays, remove the IExtendedDoomsday marker as a separate class, it is now nested inside the Doomsday class
+Added config option to disable time altering items/blocks, at this point is only the Time Manipulator Talisman and Time Disruptor block
+Added config option for the default position of the gui
 
 TODO still
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
@@ -3090,17 +3098,14 @@ amulet will be +15, this may not be capped but we'll see when I actually impleme
 
 Config stuff:
 Option to disable Amulet modifiers
-Option to disable Doomsdays separately
 Options to disable each non-mobGriefing instance separately, mostly this will be with Doomsdays
 Possibly an option to make all explosions "recoverable" in addition to removing mobGriefing completely or allowing it
-Option to remove Generator items, default to false
-Option to negate Time-altering items (this could be annoying in a large server environment)
 Option to set each mob's stats, max health, attack damage, movement speed, knockback resistance, etc.
 Option to disable weapon models and armor models (if I add them)
-Option to move the default position of the gui
-Separate the config options between client and server, there should only be a few client-side only options like gui stuff and weapon model things
 
 --Reminders-
+Make "Directed" Lightning, as an alternative to using the vanilla lightning
+Add client-side effects for the Doomsdays (other than the vanilla stuff)
 Start making particles for my entities
 Finish making the actual rendered armor textures, only need the lowRes ones at this point
 Make it so that corrupted mob's textures darken the longer they are corrupted
