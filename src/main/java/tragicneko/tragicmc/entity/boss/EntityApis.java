@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.apisStats;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,11 +69,11 @@ public class EntityApis extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(160.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.325);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(apisStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(apisStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(apisStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(apisStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(apisStats[4]);
 	}
 
 	public void onDeath(DamageSource par1)
@@ -442,7 +444,7 @@ public class EntityApis extends TragicBoss {
 
 	public int getTotalArmorValue()
 	{
-		return this.worldObj.isDaytime() ? 15 : 10;
+		return this.worldObj.isDaytime() ? (int) apisStats[5] : MathHelper.floor_double(apisStats[5] / 2);
 	}
 
 	@Override

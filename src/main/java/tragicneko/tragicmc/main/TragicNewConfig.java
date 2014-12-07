@@ -94,6 +94,14 @@ public class TragicNewConfig {
 	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
 	private static int[] mobInts = new int[3];
 	public static int commonDropRate, rareDropRate, mobTransformationChance;
+	private static double[][] mobStats = new double[32][];
+	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
+	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
+	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats;
+	private static double[][] miniBossStats = new double[16][];
+	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats;
+	private static double[][] bossStats = new double[12][];
+	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordStats;
 
 	private static boolean[] blanketPotion = new boolean[2];
 	public static boolean allowPositivePotions, allowNegativePotions;
@@ -119,7 +127,7 @@ public class TragicNewConfig {
 	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, yetiRavineRarity;
 
 	private static boolean[] miscConfigs = new boolean[16];
-	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering;
+	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	private static boolean[] griefConfigs = new boolean[16];
@@ -460,7 +468,7 @@ public class TragicNewConfig {
 			armorEnchantConfigs[i + mapping] = false;
 		}
 
-		config.addCustomCategoryComment(catEnchant, "Set whether specific Enchantments are allowed, also can choose whether an enchantment type is allowed, also set their IDs");
+		config.addCustomCategoryComment(catEnchant, "Set whether specific Enchantments are allowed, also can choose whether an enchantment type is allowed, set their IDs as well.");
 
 		blanketMob[0] = (config.get(catMobs, "allowNormalMobs", true).getBoolean(true));
 		blanketMob[1] = (config.get(catMobs, "allowMiniBosses", true).getBoolean(true));
@@ -586,16 +594,64 @@ public class TragicNewConfig {
 			bossConfigs[mapping + i] = false;
 		}
 
-		for (i = 0; i < mobsSC.length; i++) //clamps all of the spawn chances between 5 and 250
+		for (i = 0; i < mobsSC.length; i++) //clamps all of the spawn chances positive
 		{
-			mobsSC[i] = MathHelper.clamp_int(mobsSC[i], 5, 250);
-			if (i < miniBossSC.length) miniBossSC[i] = MathHelper.clamp_int(miniBossSC[i], 5, 250);
-			if (i < bossSC.length) bossSC[i] = MathHelper.clamp_int(bossSC[i], 0, 250);
+			mobsSC[i] = clampPositive(mobsSC[i]);
+			if (i < miniBossSC.length) miniBossSC[i] = clampPositive(miniBossSC[i]);
+			if (i < bossSC.length) bossSC[i] = clampPositive(bossSC[i]);
 		}
 		
-		//TODO add all of the mob stat configs, there will be a LOT
+		mapping = 0;
+		mobStats[mapping++] = (config.get(catMobs, "jabbaStats", new double[] {50.0, 0.275, 5.5, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "jannaStats", new double[] {40.0, 0.325, 4.5, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "plagueStats", new double[] {4.0, 0.235, 1.0, 16.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "gragulStats", new double[] {5.0, 0.350, 5.0, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "minotaurStats", new double[] {42.0, 0.350, 8.0, 32.0, 0.5, 6}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "inklingStats", new double[] {16.0, 0.230, 1.0, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "ragrStats", new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "pumpkinheadStats", new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 15}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "tragicNekoStats", new double[] {80.0, 0.335, 6.0, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "toxStats", new double[] {50.0, 0.050, 8.0, 64.0, 1.0, 16}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "poxStats", new double[] {30.0, 0.050, 4.0, 64.0, 0.7, 10}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "cryseStats", new double[] {35.0, 0.285, 4.0, 48.0, 0.0, 4}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "starCryseStats", new double[] {55.0, 0.315, 4.0, 48.0, 4}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "norVoxStats", new double[] {50.0, 0.390, 4.0, 32.0, 0.25, 8}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "starVoxStats", new double[] {40.0, 0.390, 4.0, 32.0, 0.25, 16}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "goldenPirahStats", new double[] {25.0, 0.450, 7.5, 16.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "pirahStats", new double[] {10.0, 0.450, 3.0, 16.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "stinStats", new double[] {40.0, 0.246, 10.0, 32.0, 0.5, 6}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "stinBabyStats", new double[] {16.0, 0.346, 6.0, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "greaterStinStats", new double[] {80.0, 0.276, 14.0, 24.0, 1.0, 12}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "wispStats", new double[] {8.0, 0.476, 1.0, 16.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "abominationStats", new double[] {45.0, 0.276, 7.0, 32.0, 0.5, 4}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "erkelStats", new double[] {16.0, 0.476, 1.0, 16.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "sirvStats", new double[] {8.0, 0.375, 14.0, 64.0, 0.5, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "psygoteStats", new double[] {64.0, 0.290, 8.0, 32.0, 0.65, 16}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "lockbotStats", new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "nanoSwarmStats", new double[] {6.0, 0.335, 2.0, 64.0, 0.0, 0}).getDoubleList());
+		
+		mapping = 0;
+		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "kragulStats", new double[] {8.0, 0.380, 5.0, 5.0, 32.0, 0}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "magmoxStats", new double[] {75.0, 0.050, 15.0, 64.0, 1.0, 20}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "megaCryseStats", new double[] {50.0, 0.310, 6.0, 48.0, 1.0, 10}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "voxStellarumStats", new double[] {150.0, 0.460, 4.0, 64.0, 0.2, 16}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "stinKingStats", new double[] {100.0, 0.226, 20.0, 32.0, 2.0, 20}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "stinQueenStats", new double[] {160.0, 0.186, 12.0, 24, 2.0, 10}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24}).getDoubleList());
+		
+		mapping = 0;
+		bossStats[mapping++] = (config.get(catMobs, "apisStats", new double[] {160.0, 0.325, 8.0, 32.0, 1.0, 15}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "deathReaperStats", new double[] {220.0, 0.350, 16.0, 32.0, 1.0, 20}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "kitsuneStats", new double[] {50.0, 0.420, 6.0, 64.0, 0.0, 0}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "polarisStats", new double[] {120.0, 0.390, 5.0, 64.0, 0.0, 12}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "yetiStats", new double[] {140.0, 0.326, 12.0, 48.0, 2.0, 16}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "timeControllerStats", new double[] {350.0, 0.386, 6.0, 64.0, 0.5, 16}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "enyvilStats", new double[] {450.0, 0.276, 24.0, 48.0, 1.0, 0}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "claymationStats", new double[] {150.0, 0.220, 12.0, 32.0, 1.0, 18}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "overlordStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 
-		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed, or disable certain groups like Mini-Bosses or Bosses, also set their Spawn Chances");
+		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed or disable certain groups like Mini-Bosses or Bosses. Stats are: Health, Movement Speed, Attack Damage, Follow Range, Knockback Resistance, Armor Value.");
 
 		TragicMC.doPotionReflection();
 
@@ -713,6 +769,7 @@ public class TragicNewConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowAnimatedGui", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowGeneratorItems", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowItemTimeAltering", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowWeaponModels", true).getBoolean(true));
 
 		for (i = 0; i + mapping < miscConfigs.length; i++)
 		{
@@ -1197,6 +1254,56 @@ public class TragicNewConfig {
 		allowClaymation = bossConfigs[mapping++];
 		overlordSC = bossSC[mapping];
 		allowOverlord = bossConfigs[mapping++];
+		
+		mapping = 0;
+		jabbaStats = mobStats[mapping++];
+		jannaStats = mobStats[mapping++];
+		plagueStats = mobStats[mapping++];
+		gragulStats = mobStats[mapping++];
+		minotaurStats = mobStats[mapping++];
+		inklingStats = mobStats[mapping++];
+		ragrStats = mobStats[mapping++];
+		pumpkinheadStats = mobStats[mapping++];
+		tragicNekoStats = mobStats[mapping++];
+		toxStats = mobStats[mapping++];
+		poxStats = mobStats[mapping++];
+		cryseStats = mobStats[mapping++];
+		starCryseStats = mobStats[mapping++];
+		norVoxStats = mobStats[mapping++];
+		starVoxStats = mobStats[mapping++];
+		goldenPirahStats = mobStats[mapping++];
+		pirahStats = mobStats[mapping++];
+		stinStats = mobStats[mapping++];
+		stinBabyStats = mobStats[mapping++];
+		greaterStinStats = mobStats[mapping++];
+		wispStats = mobStats[mapping++];
+		abominationStats = mobStats[mapping++];
+		erkelStats = mobStats[mapping++];
+		sirvStats = mobStats[mapping++];
+		psygoteStats = mobStats[mapping++];
+		lockbotStats = mobStats[mapping++];
+		nanoSwarmStats = mobStats[mapping++];
+		
+		mapping = 0;
+		jarraStats = miniBossStats[mapping++];
+		kragulStats = miniBossStats[mapping++];
+		magmoxStats = miniBossStats[mapping++];
+		megaCryseStats = miniBossStats[mapping++];
+		voxStellarumStats = miniBossStats[mapping++];
+		stinKingStats = miniBossStats[mapping++];
+		stinQueenStats = miniBossStats[mapping++];
+		aegarStats = miniBossStats[mapping++];
+		
+		mapping = 0;
+		apisStats = bossStats[mapping++];
+		deathReaperStats = bossStats[mapping++];
+		kitsuneStats = bossStats[mapping++];
+		polarisStats = bossStats[mapping++];
+		yetiStats = bossStats[mapping++];
+		timeControllerStats = bossStats[mapping++];
+		enyvilStats = bossStats[mapping++];
+		claymationStats = bossStats[mapping++];
+		overlordStats = bossStats[mapping++];
 
 		allowPositivePotions = blanketPotion[0];
 		allowNegativePotions = blanketPotion[1];
@@ -1294,6 +1401,7 @@ public class TragicNewConfig {
 		allowAnimatedGui = miscConfigs[mapping++];
 		allowGeneratorItems = miscConfigs[mapping++];
 		allowItemTimeAltering = miscConfigs[mapping++];
+		allowWeaponModels = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];

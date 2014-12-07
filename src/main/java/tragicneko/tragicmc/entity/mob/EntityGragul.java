@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.gragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -64,10 +65,17 @@ public class EntityGragul extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(gragulStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(gragulStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(gragulStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(gragulStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(gragulStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) gragulStats[5];
 	}
 
 	public void onLivingUpdate()

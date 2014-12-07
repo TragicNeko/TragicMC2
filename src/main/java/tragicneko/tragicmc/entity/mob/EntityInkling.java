@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.inklingStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.Entity;
@@ -82,10 +83,11 @@ public class EntityInkling extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.23);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(inklingStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(inklingStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(inklingStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(inklingStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(inklingStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -219,7 +221,7 @@ public class EntityInkling extends TragicMob {
 	public int getTotalArmorValue()
 	{
 		if (this.isBurning()) return 0; 
-		return 4;
+		return (int) inklingStats[5];
 	}
 
 	protected boolean teleportRandomly()

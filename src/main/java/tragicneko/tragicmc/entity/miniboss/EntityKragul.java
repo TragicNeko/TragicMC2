@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.kragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -55,10 +56,17 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.38);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kragulStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kragulStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kragulStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(kragulStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kragulStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) kragulStats[5];
 	}
 
 	public void onLivingUpdate()

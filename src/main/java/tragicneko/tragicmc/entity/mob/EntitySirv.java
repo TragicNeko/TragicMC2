@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.sirvStats;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -73,11 +74,17 @@ public class EntitySirv extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.375);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(14.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(sirvStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(sirvStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(sirvStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(sirvStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(sirvStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) sirvStats[5];
 	}
 	
 	@Override

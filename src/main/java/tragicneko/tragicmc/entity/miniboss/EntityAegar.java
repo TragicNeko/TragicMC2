@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.aegarStats;
 import java.util.List;
 import java.util.UUID;
 
@@ -68,11 +69,11 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(150.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.185);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(26.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(2.5);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(aegarStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(aegarStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(aegarStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(aegarStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(aegarStats[4]);
 	}
 
 	protected void entityInit()
@@ -396,7 +397,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 
 	public int getTotalArmorValue()
 	{
-		return 24;
+		return (int) aegarStats[5];
 	}
 
 	@Override

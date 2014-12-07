@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.jarraStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -60,10 +61,17 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(70.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.36);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.5);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(jarraStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(jarraStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(jarraStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(jarraStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(jarraStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) jarraStats[5];
 	}
 
 	public void onLivingUpdate()

@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.megaCryseStats;
 import java.util.UUID;
 
 import net.minecraft.entity.Entity;
@@ -132,11 +133,11 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.31);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(megaCryseStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(megaCryseStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(megaCryseStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(megaCryseStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(megaCryseStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -186,7 +187,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
 	public int getTotalArmorValue()
 	{
-		return 10;
+		return (int) megaCryseStats[5];
 	}
 
 	public void collideWithEntity(Entity entity)

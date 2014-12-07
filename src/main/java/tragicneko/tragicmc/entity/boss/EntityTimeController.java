@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.timeControllerStats;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -241,11 +243,11 @@ public class EntityTimeController extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(350.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.386);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(timeControllerStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(timeControllerStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(timeControllerStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(timeControllerStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(timeControllerStats[4]);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
@@ -562,7 +564,7 @@ public class EntityTimeController extends TragicBoss {
 
 	public int getTotalArmorValue()
 	{
-		return 16;
+		return (int) timeControllerStats[5];
 	}
 
 	public void collideWithEntity(Entity entity)

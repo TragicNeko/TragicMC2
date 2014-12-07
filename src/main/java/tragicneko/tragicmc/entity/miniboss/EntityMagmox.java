@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.magmoxStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -51,11 +52,11 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(75.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.05);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(15.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(magmoxStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(magmoxStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(magmoxStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(magmoxStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(magmoxStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -126,7 +127,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 
 	public int getTotalArmorValue()
 	{
-		return this.isFiring() ? 8 : 20;
+		return this.isFiring() ? MathHelper.floor_double(magmoxStats[5] * 0.4) : (int) magmoxStats[5];
 	}
 
 	@Override

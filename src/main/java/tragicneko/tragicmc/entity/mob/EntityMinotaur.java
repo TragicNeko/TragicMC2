@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.minotaurStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -88,11 +89,11 @@ public class EntityMinotaur extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(42.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.35);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(minotaurStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(minotaurStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(minotaurStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(minotaurStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(minotaurStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -188,7 +189,7 @@ public class EntityMinotaur extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		return 6;
+		return (int) minotaurStats[5];
 	}
 	
 	@Override

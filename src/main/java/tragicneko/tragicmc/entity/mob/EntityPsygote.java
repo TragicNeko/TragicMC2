@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.psygoteStats;
 import java.util.UUID;
 
 import tragicneko.tragicmc.TragicMC;
@@ -107,11 +108,11 @@ public class EntityPsygote extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.29);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.65);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(psygoteStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(psygoteStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(psygoteStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(psygoteStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(psygoteStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -293,7 +294,7 @@ public class EntityPsygote extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return 16;
+		return (int) psygoteStats[5];
 	}
 	
 	@Override

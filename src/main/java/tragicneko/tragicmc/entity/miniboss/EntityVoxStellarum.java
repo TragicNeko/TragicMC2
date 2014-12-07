@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.voxStellarumStats;
 import java.util.UUID;
 
 import net.minecraft.entity.Entity;
@@ -32,11 +33,11 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(150.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.46);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.2);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(voxStellarumStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(voxStellarumStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(voxStellarumStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(voxStellarumStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(voxStellarumStats[4]);
 	}
 	
 	public boolean isMobVariant()
@@ -285,7 +286,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 
 	public int getTotalArmorValue()
 	{
-		return 16;
+		return (int) voxStellarumStats[5];
 	}
 	
 	@Override

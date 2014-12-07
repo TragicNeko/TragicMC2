@@ -2,14 +2,21 @@ package tragicneko.tragicmc.entity.boss;
 
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
 import static tragicneko.tragicmc.events.NewAmuletEvents.badPotions;
+import static tragicneko.tragicmc.main.TragicNewConfig.apisStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.claymationStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.deathReaperStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.jabbaStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.kitsuneStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.minotaurStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.norVoxStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.ragrStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.stinKingStats;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockTallGrass;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -39,8 +46,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
@@ -52,9 +57,16 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityClaymation extends TragicBoss {
 
-	private double[][] formValues = new double[][] {{150.0D, 0.22D, 12.0D, 32.0D, 1.0D}, {42.0D, 0.35D, 8.0D, 32.0D, 0.5D}, {160.0D, 0.325D, 8.0D, 32.0D, 1.0D},
-			{100.0D, 0.226D, 20.0D, 32.0D, 2.0D}, {50.0D, 0.39D, 4.0D, 32.0D, 0.25D}, {50.0D, 0.275D, 5.5D, 32.0D, 1.0D}, {65.0D, 0.38D, 7.0D, 32.0D, 1.0D},
-			{220.0D, 0.35D, 16.0D, 32.0D, 0.4D}, {50.0D, 0.42D, 6.0D, 64.0D, 1.0D}, {100.0D, 0.25D, 12.0D, 32.0D, 0.5D}};
+	private double[][] formValues = new double[][] {{claymationStats[0], claymationStats[1], claymationStats[2], claymationStats[3], claymationStats[4]}, //claymation
+			{minotaurStats[0], minotaurStats[1], minotaurStats[2], minotaurStats[3], minotaurStats[4]}, //minotaur
+			{apisStats[0], apisStats[1], apisStats[2], apisStats[3], apisStats[4]}, //apis
+			{stinKingStats[0], stinKingStats[1], stinKingStats[2], stinKingStats[3], stinKingStats[4]}, //stin king
+			{norVoxStats[0], norVoxStats[1], norVoxStats[2], norVoxStats[3], norVoxStats[4]}, //nor-vox
+			{jabbaStats[0], jabbaStats[1], jabbaStats[2], jabbaStats[3], jabbaStats[4]}, //jabba
+			{ragrStats[0], ragrStats[1], ragrStats[2], ragrStats[3], ragrStats[4]}, //ragr
+			{deathReaperStats[0], deathReaperStats[1], deathReaperStats[2], deathReaperStats[3], deathReaperStats[4]}, //skultar
+			{kitsuneStats[0], kitsuneStats[1], kitsuneStats[2], kitsuneStats[3], kitsuneStats[4]}, //kitsune
+			{100.0D, 0.25D, 12.0D, 32.0D, 0.5D}}; //iron golem
 
 	private float[][] formSizes = new float[][] {{1.375F, 2.575F}, {0.725F, 2.575F}, {1.385F, 3.325F}, {1.7835F, 5.15F}, {1.135F, 1.575F}, {0.825F, 0.725F}, {1.335F, 2.675F},
 			{0.7F, 2.1F}, {0.745F, 1.745F}, {1.4F, 2.9F}};
@@ -85,11 +97,11 @@ public class EntityClaymation extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(150.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.22);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(12.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(claymationStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(TragicNewConfig.claymationStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(TragicNewConfig.claymationStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(TragicNewConfig.claymationStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(TragicNewConfig.claymationStats[4]);
 	}
 
 	protected void entityInit()
@@ -1788,7 +1800,7 @@ public class EntityClaymation extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.getEntityForm() == 0 ? 18 : 12;
+		return this.getEntityForm() == 0 ? (int) claymationStats[5] : MathHelper.floor_double(claymationStats[5] / 2);
 	}
 
 	@Override
@@ -1805,8 +1817,6 @@ public class EntityClaymation extends TragicBoss {
 	{
 		return 1;
 	}
-
-
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {

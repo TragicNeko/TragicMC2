@@ -1,6 +1,7 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.stinKingStats;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -44,11 +45,11 @@ public class EntityStinKing extends EntityGreaterStin {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.226);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(20.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(2.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stinKingStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stinKingStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stinKingStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stinKingStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stinKingStats[4]);
 	}
 
 	@Override
@@ -133,7 +134,7 @@ public class EntityStinKing extends EntityGreaterStin {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return 20;
+		return (int) stinKingStats[5];
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)

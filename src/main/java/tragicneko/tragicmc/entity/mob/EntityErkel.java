@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.erkelStats;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -43,11 +44,17 @@ public class EntityErkel extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.476);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(16);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(erkelStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(erkelStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(erkelStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(erkelStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(erkelStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) erkelStats[5];
 	}
 	
 	public boolean attackEntityFrom(DamageSource source, float damage)

@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.jabbaStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.jannaStats;
 import java.util.List;
 import java.util.UUID;
 
@@ -180,10 +182,17 @@ public class EntityJabba extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getJabbaType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 50.0 : 40.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? 0.275 : 0.325);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 5.5 : 4.5);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? jabbaStats[0] : jannaStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? jabbaStats[1] : jannaStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? jabbaStats[2] : jannaStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? jabbaStats[3] : jannaStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? jabbaStats[4] : jannaStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) (this.getJabbaType() == 0 ? jabbaStats[5] : jannaStats[5]);
 	}
 
 	public void onLivingUpdate()

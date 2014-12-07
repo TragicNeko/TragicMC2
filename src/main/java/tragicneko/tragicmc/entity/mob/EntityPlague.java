@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.plagueStats;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -47,9 +48,17 @@ public class EntityPlague extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.235);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(plagueStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(plagueStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(plagueStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(plagueStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(plagueStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) plagueStats[5];
 	}
 
 	public boolean isAIEnabled()

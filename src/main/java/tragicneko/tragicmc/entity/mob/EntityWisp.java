@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.wispStats;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -83,6 +84,7 @@ public class EntityWisp extends TragicMob {
 		return false;
 	}
 
+	@Override
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
 		;
@@ -119,11 +121,17 @@ public class EntityWisp extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.476);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(16);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(wispStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(wispStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(wispStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(wispStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(wispStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) wispStats[5];
 	}
 
 	public void onLivingUpdate()

@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.kitsuneStats;
+
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -26,7 +28,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.main.TragicNewConfig;
@@ -63,11 +64,16 @@ public class EntityKitsune extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.42);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kitsuneStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kitsuneStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kitsuneStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(kitsuneStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kitsuneStats[4]);
+	}
+	
+	public int getTotalArmorValue()
+	{
+		return (int) kitsuneStats[5];
 	}
 
 	public void onDeath(DamageSource par1DamageSource)

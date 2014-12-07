@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.stinStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.stinBabyStats;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,20 +173,20 @@ public class EntityStin extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? 40.0 : 16.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? .246 : .346);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? 10.0 : 6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? 0.5 : 0.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
 	}
 
 	protected void reapplyEntityAttributes()
 	{
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? 40.0 : 16.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? .246 : .346);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? 10.0 : 6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? 0.5 : 0.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
 	}
 
 	public void onLivingUpdate()
@@ -274,9 +276,10 @@ public class EntityStin extends TragicMob {
 		if (this.getAttackTarget() == null && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && !this.isGalloping() && this.isAdult() && this.onGround) this.setGallopTicks(30);
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isAdult() ? 6 : 0;
+		return (int) (this.isAdult() ? stinStats[5] : stinBabyStats[5]);
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)

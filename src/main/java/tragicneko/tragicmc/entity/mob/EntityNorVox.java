@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.norVoxStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.starVoxStats;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -179,11 +181,11 @@ public class EntityNorVox extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getNorVoxType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 50.0 : 40.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.39);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.25);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? norVoxStats[0] : starVoxStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? norVoxStats[1] : starVoxStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? norVoxStats[2] : starVoxStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? norVoxStats[3] : starVoxStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? norVoxStats[4] : starVoxStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -309,7 +311,7 @@ public class EntityNorVox extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		return this.getNorVoxType() == 0 ? 8 : 16;
+		return (int) (this.getNorVoxType() == 0 ? norVoxStats[5] : starVoxStats[5]);
 	}
 
 	protected void fall(float par1) {}

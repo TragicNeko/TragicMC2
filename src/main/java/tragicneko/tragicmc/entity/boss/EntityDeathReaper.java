@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.deathReaperStats;
+
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -172,11 +174,11 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getReaperType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(220.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? 0.35 : 0.32);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 16.0 : 6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? 1.0 : 0.4);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(deathReaperStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? deathReaperStats[1] : deathReaperStats[1] * 0.875);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? deathReaperStats[2] : deathReaperStats[2] / 2);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(deathReaperStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? deathReaperStats[4] : deathReaperStats[4] * 0.4);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
@@ -534,7 +536,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 	public int getTotalArmorValue()
 	{
-		return this.getReaperType() == 1 ? 4 : (this.isBeingAggressive() ? 20 : 12);
+		return this.getReaperType() == 1 ? MathHelper.floor_double(deathReaperStats[5] / 4) : (this.isBeingAggressive() ? (int) deathReaperStats[5] : MathHelper.floor_double(deathReaperStats[5] / 3));
 	}
 
 	public void fall(float par1){}

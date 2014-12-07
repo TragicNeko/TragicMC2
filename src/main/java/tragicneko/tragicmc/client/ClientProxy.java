@@ -154,16 +154,18 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
-		
-		//Weapon models
-		MinecraftForgeClient.registerItemRenderer(TragicItems.ReaperScythe, new RenderEpicWeapon(0, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(1, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.DragonFang, new RenderEpicWeapon(2, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.Thardus, new RenderEpicWeapon(3, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.Splinter, new RenderEpicWeapon(4, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
-		MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
+
+		if (TragicNewConfig.allowWeaponModels)
+		{
+			MinecraftForgeClient.registerItemRenderer(TragicItems.ReaperScythe, new RenderEpicWeapon(0, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(1, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.DragonFang, new RenderEpicWeapon(2, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.Thardus, new RenderEpicWeapon(3, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.Splinter, new RenderEpicWeapon(4, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
+		}
 
 		//Projectile renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrowingRock.class, new RenderProjectile(0));
@@ -188,7 +190,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkMortor.class, new RenderProjectile(20));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWebBomb.class, new RenderProjectile(21));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCrystalMortor.class, new RenderProjectile(22));
-		
+
 		//Non projectile renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
@@ -233,7 +235,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeController.class, new RenderTimeController());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
-		
+
 		//Big Boss renders TODO change these to their proper models, these are placeholders
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlord.class, new RenderMob(new ModelApis(), 0.885F, "ApisCombat2_lowRes", 2.556F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelDeathReaper(), 0.885F, "DeathReaper_lowRes", 2.556F));

@@ -1,5 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.goldenPirahStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.pirahStats;
+
 import java.util.UUID;
 
 import tragicneko.tragicmc.TragicMC;
@@ -90,9 +93,11 @@ public class EntityPirah extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getTextureID() == 7;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 25.0 : 10.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.45);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 7.5 : 3.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? goldenPirahStats[0] : pirahStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? goldenPirahStats[1] : pirahStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? goldenPirahStats[2] : pirahStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? goldenPirahStats[3] : pirahStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? goldenPirahStats[4] : pirahStats[4]);
 	}
 
 	@Override
@@ -272,7 +277,7 @@ public class EntityPirah extends TragicMob {
 	
 	public int getTotalArmorValue()
 	{
-		return this.getTextureID() == 7 ? 10 : 0;
+		return (int) (this.getTextureID() == 7 ? goldenPirahStats[5] : pirahStats[5]);
 	}
 
 	protected Material getMaterial() {

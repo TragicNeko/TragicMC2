@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.toxStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.poxStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -156,11 +158,11 @@ public class EntityTox extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getToxType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 50.0 : 30.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.05);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? 8.0 : 4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? 1.0 : 0.7);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? toxStats[0] : poxStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? toxStats[1] : poxStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? toxStats[2] : poxStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? toxStats[3] : poxStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? toxStats[4] : poxStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -298,7 +300,7 @@ public class EntityTox extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		return this.isFiring() ? 2 : (this.getToxType() == 0 ? 16 : 10);
+		return this.isFiring() ? 0 : (this.getToxType() == 0 ? (int) toxStats[5] : (int) poxStats[5]);
 	}
 
 	@Override

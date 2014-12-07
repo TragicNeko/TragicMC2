@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.nanoSwarmStats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,10 +37,17 @@ public class EntityNanoSwarm extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.335);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(nanoSwarmStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(nanoSwarmStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(nanoSwarmStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(nanoSwarmStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(nanoSwarmStats[4]);
+	}
+	
+	@Override
+	public int getTotalArmorValue()
+	{
+		return (int) nanoSwarmStats[5];
 	}
 
 	public boolean isAIEnabled()

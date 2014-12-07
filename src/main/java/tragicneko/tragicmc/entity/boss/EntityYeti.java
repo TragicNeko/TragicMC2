@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.yetiStats;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -66,11 +68,11 @@ public class EntityYeti extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.326);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(12.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(2.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(yetiStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(yetiStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(yetiStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(yetiStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(yetiStats[4]);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
@@ -502,7 +504,7 @@ public class EntityYeti extends TragicBoss {
 
 	public int getTotalArmorValue()
 	{
-		return this.isBeingAggressive() || this.isCharging() ? 16 : 8;
+		return this.isBeingAggressive() || this.isCharging() ? (int) yetiStats[5] : MathHelper.floor_double(yetiStats[5] / 2);
 	}
 
 	public void fall(float par1){}

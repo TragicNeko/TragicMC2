@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.pumpkinheadStats;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +24,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.main.TragicEntities;
@@ -129,10 +132,11 @@ public class EntityPumpkinhead extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.275);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(pumpkinheadStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(pumpkinheadStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(pumpkinheadStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(pumpkinheadStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(pumpkinheadStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -219,10 +223,10 @@ public class EntityPumpkinhead extends TragicMob {
 		}
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
-		if (this.hasHomePumpkin()) return 15;
-		return 5;
+		return this.hasHomePumpkin() ? (int) pumpkinheadStats[5] : MathHelper.floor_double(pumpkinheadStats[5] / 3);
 	}
 
 	public boolean isPumpkinNearby()

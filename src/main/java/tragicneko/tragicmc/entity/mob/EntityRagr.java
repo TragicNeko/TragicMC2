@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.ragrStats;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -96,11 +97,11 @@ public class EntityRagr extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(65.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.38);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ragrStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(ragrStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(ragrStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(ragrStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(ragrStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -269,9 +270,7 @@ public class EntityRagr extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		if (this.isBurning()) return 0;
-		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption)) return 16;
-		return 10;
+		return this.isBurning() ? 0 : (int) ragrStats[5];
 	}
 
 	public boolean getCanSpawnHere()

@@ -1,6 +1,7 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.stinQueenStats;
 import java.util.ArrayList;
 
 import net.minecraft.entity.Entity;
@@ -28,17 +29,17 @@ public class EntityStinQueen extends EntityGreaterStin {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(160.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.186);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(12.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(2.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(stinQueenStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(stinQueenStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(stinQueenStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(stinQueenStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(stinQueenStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return 10;
+		return (int) stinQueenStats[5];
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.cryseStats;
+import static tragicneko.tragicmc.main.TragicNewConfig.starCryseStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -175,10 +177,11 @@ public class EntityCryse extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getCryseType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? 35.0 : 55.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? .285 : .315);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? cryseStats[0] : starCryseStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? cryseStats[1] : starCryseStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag? cryseStats[2] : starCryseStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? cryseStats[3] : starCryseStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? cryseStats[4] : starCryseStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -285,9 +288,10 @@ public class EntityCryse extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
-		return 4;
+		return (int) (this.getCryseType() == 0 ? cryseStats[5] : starCryseStats[5]);
 	}
 
 	@Override

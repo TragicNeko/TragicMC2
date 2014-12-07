@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.tragicNekoStats;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -154,10 +155,11 @@ public class EntityTragicNeko extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.335);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(tragicNekoStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(tragicNekoStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(tragicNekoStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(tragicNekoStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(tragicNekoStats[4]);
 	}
 
 	public int getMaxSpawnedInChunk()
@@ -169,7 +171,7 @@ public class EntityTragicNeko extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		return 0;
+		return (int) tragicNekoStats[5];
 	}
 
 	public void onLivingUpdate()

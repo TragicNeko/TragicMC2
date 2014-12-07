@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.abominationStats;
+
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -86,11 +88,11 @@ public class EntityAbomination extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.276);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.53);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(abominationStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(abominationStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(abominationStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(abominationStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(abominationStats[4]);
 	}
 
 	public void onLivingUpdate()
@@ -214,7 +216,7 @@ public class EntityAbomination extends TragicMob {
 
 	public int getTotalArmorValue()
 	{
-		return 4;
+		return (int) abominationStats[5];
 	}
 	
 	@Override

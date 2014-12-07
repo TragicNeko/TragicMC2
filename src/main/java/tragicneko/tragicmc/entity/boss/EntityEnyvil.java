@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.enyvilStats;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -266,11 +268,16 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(450.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.276);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(24.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(48.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(enyvilStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(enyvilStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(enyvilStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(enyvilStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(enyvilStats[4]);
+	}
+	
+	public int getTotalArmorValue()
+	{
+		return (int) enyvilStats[5];
 	}
 
 	public void onDeath(DamageSource par1DamageSource)

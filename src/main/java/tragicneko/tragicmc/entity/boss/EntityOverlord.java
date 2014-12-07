@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.overlordStats;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -14,7 +16,6 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
@@ -60,11 +61,16 @@ public class EntityOverlord extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1000.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.326);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(24.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(4.5);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(overlordStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(overlordStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(overlordStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(overlordStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(overlordStats[4]);
+	}
+	
+	public int getTotalArmorValue()
+	{
+		return (int) overlordStats[5];
 	}
 
 	public void onLivingUpdate()

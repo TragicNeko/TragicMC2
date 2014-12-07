@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.polarisStats;
+
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
@@ -78,11 +80,11 @@ public class EntityPolaris extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(120.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.39);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(64.0);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(polarisStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(polarisStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(polarisStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(polarisStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(polarisStats[4]);
 	}
 
 	public void onDeath(DamageSource par1DamageSource)
@@ -255,7 +257,7 @@ public class EntityPolaris extends TragicBoss {
 
 	public int getTotalArmorValue()
 	{
-		return this.worldObj.isDaytime() ? 0 : 12;
+		return this.worldObj.isDaytime() ? 0 : (int) polarisStats[5];
 	}
 
 	public void fall(float par1){}

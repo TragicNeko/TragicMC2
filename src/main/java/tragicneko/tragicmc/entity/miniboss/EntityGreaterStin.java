@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.greaterStinStats;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -46,11 +47,11 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(.276);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(14.0);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(greaterStinStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(greaterStinStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(greaterStinStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(greaterStinStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(greaterStinStats[4]);
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return 12;
+		return (int) greaterStinStats[5];
 	}
 
 	@Override
