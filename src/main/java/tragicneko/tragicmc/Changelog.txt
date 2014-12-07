@@ -3057,13 +3057,16 @@ ignore actual entities that it could target
 Changing the drop of the Death Reaper from Reaper Skull to Deathly Hallow (that's a Harry Potter reference right there, yep), this is to make more sense for it to drop more than one of it
 Added the Bosses drops back to the drop helper
 Updated to Forge 10.13.2.1240, wrote a small batch program to update this easier
-Adding config options now, added new option to change the amount you gain from Doom Consumes as well as the max amount you start with
+Added new option to change the amount you gain from Doom Consumes as well as the max amount you start with
 Added config options to disable specific Doomsdays
 Added config options for each Doomsday's cost and cooldown
 Added these to the Doomsdays, this greatly simplifies their construction, so much in fact I may not even need static methods to reference them at this point
 Remove unused imports in Doomsdays, remove the IExtendedDoomsday marker as a separate class, it is now nested inside the Doomsday class
 Added config option to disable time altering items/blocks, at this point is only the Time Manipulator Talisman and Time Disruptor block
 Added config option for the default position of the gui
+Added config options to set each mob, miniboss and boss's particular stats, including armor value
+Added config option to disable weapon models
+Fix minor derps in statue textures/models
 
 TODO still
 Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
@@ -3100,7 +3103,6 @@ Config stuff:
 Option to disable Amulet modifiers
 Options to disable each non-mobGriefing instance separately, mostly this will be with Doomsdays
 Possibly an option to make all explosions "recoverable" in addition to removing mobGriefing completely or allowing it
-Option to set each mob's stats, max health, attack damage, movement speed, knockback resistance, etc.
 Option to disable weapon models and armor models (if I add them)
 
 --Reminders-
@@ -3175,6 +3177,7 @@ it will teleport around and fire slow moving projectiles at it's target (maybe t
 could just avoid the player (like the Skultar when it's passive) and if threatened (target gets really close to it) it could asphyxiate them and damage them with dark energy like
 the Doomsday, it will inflict Lightweight onto the player, which basically makes them float up into the air (unwillingly) almost like they're flying but they have no control over it,
 it will be overridden by leadfoot which will be one of its attacks (doing lightweight then doing leadfoot), it'll be sorta mischievous, gravity themed
+Possibility is to use the Pumpkinhead's home pumpkin ai for it, and make it that it falls asleep while the block is gone (it'd be like a sound defuser or something)
 Titan = A Giant Tesla Coil-like robot that winds itself up and fires off lightning bolts, it can also fold itself down into a cannon and fire a lightning ball at it's target and
 may also fire homing missles randomly, it'll stun it's target a lot and sometimes even inflict the Hacked effect
 Dragon Fang = The Lava Dragon (or Nether Dragon), meant to parallel the Ender Dragon, it could use multiple fire attacks including the fire rain ability from the Doomsday
