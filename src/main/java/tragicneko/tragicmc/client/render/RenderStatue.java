@@ -17,7 +17,7 @@ import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelEnyvil;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
 import tragicneko.tragicmc.client.model.ModelJarra;
-import tragicneko.tragicmc.client.model.ModelKitsune;
+import tragicneko.tragicmc.client.model.ModelKitsune2;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
@@ -40,7 +40,7 @@ public class RenderStatue extends Render {
 	private static ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
 		new ResourceLocation(mobPath + "DeathReaper_lowRes.png"), new ResourceLocation(mobPath + "TimeController_lowRes.png"), new ResourceLocation(mobPath + "Yeti_lowRes.png"),
 		new ResourceLocation(mobPath + "Polaris2_lowRes.png"), new ResourceLocation(mobPath + "Jarra_lowRes.png"), new ResourceLocation(mobPath + "Kragul_lowRes.png"),
-		new ResourceLocation(mobPath + "Magmox2_lowRes.png"), new ResourceLocation(mobPath + "MegaCryse_lowRes.png"), new ResourceLocation(mobPath + "StinKing_lowRes.png"),
+		new ResourceLocation(mobPath + "Magmox2_lowRes.png"), new ResourceLocation(mobPath + "Cryse_lowRes.png"), new ResourceLocation(mobPath + "StinKing_lowRes.png"),
 		new ResourceLocation(mobPath + "StinQueen_lowRes.png"), new ResourceLocation(mobPath + "GreaterStin_lowRes.png"), new ResourceLocation(mobPath + "VoxStellarum_lowRes.png"),
 		new ResourceLocation(mobPath + "Enyvil_lowRes.png"), new ResourceLocation(mobPath + "Claymation_lowRes.png"), new ResourceLocation(mobPath + "Aegar_lowRes.png"),
 		new ResourceLocation(mobPath + "Overlord_lowRes.png")},
@@ -51,7 +51,7 @@ public class RenderStatue extends Render {
 			new ResourceLocation(textPath + "RedstoneStatue.png"), new ResourceLocation(textPath + "CoalStatue.png"), new ResourceLocation(textPath + "LapisStatue.png"),
 			new ResourceLocation(textPath + "NetherrackStatue.png")}};
 	
-	private static ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
+	private static ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
 			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelNanoSwarm()};
 
