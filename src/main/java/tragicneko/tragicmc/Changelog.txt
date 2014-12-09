@@ -3083,6 +3083,7 @@ Updated ReadMe.txt
 Extended Doomsdays update the amount they use per iteration instead of all at once, the cooldown is applied after the effect is used
 Combination Doomsdays now inflict cooldown based on that particular Doomsdays's cooldown, plus the cooldown of the combined Doomsdays, the iterations allowed by the extended one plus
 the cost of using the instant one
+Fixed meta values of blocks in the Growth Spurt Doomsday, double plants now have the proper upper blocks and stay
 
 TODO still
 Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
