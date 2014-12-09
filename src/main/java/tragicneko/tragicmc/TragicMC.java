@@ -22,9 +22,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.potion.Potion;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ReportedException;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -110,15 +112,21 @@ public class TragicMC
 
 	public static final Random rand = new Random();
 	private static Configuration config;
+	
+	private static long time = 0L;
+	public static boolean DEBUG = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		logTime();
+		
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicNewConfig.initialize();
-		
 		MinecraftForge.EVENT_BUS.register(new TragicNewConfig());
+		
+		logDuration("Configuration");
 
 		if (TragicNewConfig.allowPotions)
 		{
@@ -136,11 +144,16 @@ public class TragicMC
 		
 		if (TragicNewConfig.allowEnchantments) TragicEnchantments.load();
 		if (TragicNewConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
+		
+		logDuration("Potions and Enchantments");
 
 		TragicTabs.load();
 		TragicBlocks.load();
+		logDuration("Blocks");
 		TragicItems.load();
+		logDuration("Items");
 		if (TragicNewConfig.allowPotions) TragicPotions.setPotionIcons();
+		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
 		
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
@@ -151,6 +164,7 @@ public class TragicMC
 			MinecraftForge.EVENT_BUS.register(new DoomEvents());
 			FMLCommonHandler.instance().bus().register(new RespawnDoomEvents());
 		}
+		logDuration("Events 1");
 		
 		if (TragicNewConfig.allowMobs)
 		{
@@ -158,12 +172,14 @@ public class TragicMC
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
 		}
 		
+		logDuration("Entities");
+		
 		if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsEvent());
-
-		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
+		
+		logDuration("Events 2");
 
 		proxy.registerRenders();
 
@@ -174,6 +190,8 @@ public class TragicMC
 		net.registerMessage(MessageHandlerUseDoomsday.class, MessageUseDoomsday.class, 3, Side.SERVER);
 		net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
 		net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
+		
+		logDuration("Network Handlers");
 
 		if (TragicNewConfig.allowDimension)
 		{
@@ -209,14 +227,20 @@ public class TragicMC
 			MinecraftForge.ORE_GEN_BUS.register(new DenyVanillaGenEvent());
 		}
 		
+		logDuration("Dimension");
+		
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
+		
+		logDuration("Events 3");
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		logTime();
+		
 		if (TragicNewConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
 		if (TragicNewConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
 		if (TragicNewConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
@@ -239,6 +263,8 @@ public class TragicMC
 		}
 
 		if (TragicNewConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);
+		
+		logDuration("WorldGen registration");
 	}
 
 	@EventHandler
@@ -327,5 +353,19 @@ public class TragicMC
 	public static Configuration getConfig()
 	{
 		return config;
+	}
+	
+	public static void logTime()
+	{
+		time = System.currentTimeMillis();
+	}
+	
+	public static void logDuration(String sectionName)
+	{
+		if (!DEBUG) return;
+		
+		long l = System.currentTimeMillis() - time;
+		logInfo("Time to complete section (" + sectionName + ") was " + l + " ms.");
+		time = System.currentTimeMillis();
 	}
 }

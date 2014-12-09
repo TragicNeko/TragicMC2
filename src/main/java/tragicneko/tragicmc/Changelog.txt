@@ -3068,7 +3068,7 @@ Added config options to set each mob, miniboss and boss's particular stats, incl
 Added config option to disable weapon models
 Fix minor derps in statue textures/models
 
-2.40.1798++
+2.40.1798++ <181> (Decemeber 9, 2014)
 Updated to Forge 13.10.2.1258, that batch program is really useful
 Minor fix in Nor-Vox to reduce idle time between attacks
 I need to test out all of the mobs in a Survival situation to make sure their AI is working properly
@@ -3084,9 +3084,14 @@ Extended Doomsdays update the amount they use per iteration instead of all at on
 Combination Doomsdays now inflict cooldown based on that particular Doomsdays's cooldown, plus the cooldown of the combined Doomsdays, the iterations allowed by the extended one plus
 the cost of using the instant one
 Fixed meta values of blocks in the Growth Spurt Doomsday, double plants now have the proper upper blocks and stay
+Added a debugger to see what is causing the most lag within the mod, for initialization the Config, Entities and Items are understandably taking a larger portion of the time, however,
+I'm unsure as to why the network handlers are taking so long, but it's possibly due to the fact that it uses a network wrapper for netty and it takes some time to set these up within
+it
 
 TODO still
 Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
+Add armor models
+Add the Overlord armor set and the Sentinel
 
 --Overlord plan, may fit in other random small things in between doing this--
 Finish up the Overlord's motion and attack patterns, as well as create it's model
@@ -3113,7 +3118,7 @@ Modifiers: Health, Attack Damage, Movement Speed, Knockback Resistance, Reach, J
 What I could do is, instead of each thing keeping track of separate modifiers, have the overall modifiers added up, then applied to the player every tick, however, each single one
 would have a max modifier of +5 on anything, and a overall max modifier of +15 from that, unless I extended it to apply to armor and weapons
 Combining Amulets will cost nothing, it'll be done automatically when you craft them to upgrade them, modifiers will max out at +5 each modifier, and the total amount per
-amulet will be +15, this may not be capped but we'll see when I actually implement this
+amulet will be +15, this may not be capped but we'll see when I actually implement this, combining two amulets of the same level will randomize their modifier to a lower level one
 
 Config stuff:
 Option to disable Amulet modifiers
