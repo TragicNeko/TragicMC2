@@ -2992,7 +2992,7 @@ Finished up the Synapse Dimension (for now), it now generates similarly to the N
 for now it is good enough, there is no bedrock ceiling or floor, as well, the areas closest to the top and bottom generate sorta "faded", I'm debating if I should add void pits
 to this Dimension as a feature to make cooler looking areas
 
-2.40.1770 [Creating the Overlord, my first "Big" boss] <179> (November 13, 2014)
+2.40.1770 [Creating the first Big Boss of the mod, as well as doing other huge rewrites/changes that I've been putting off] <179> (November 13, 2014)
 Fixed being able to attack entities through walls with the Reach enchantment this makes attacking entities near walls a bit wonky, but is necessary to prevent a cheap way of
 attacking things
 Created basic entity class for the Overlord, experimenting with it's final form's motion, which will use a modified version of the Pirah's except it'll use a target intead of
@@ -3030,7 +3030,7 @@ noticeable for pretty much everyone, this is to prevent you from using an abilit
 Fixed the Neko Launcher firing a missile client side
 Bump version number for testing (for streaming)
 
-2.40.1770++ (December 1, 2014)
+2.40.1798 <180> (December 1, 2014)
 Possibly fix targetting issues with my mobs and improve it a bit (hopefully) this needs to be tested but it's apparently a very rare crash as it hasn't happened before so it's not too
 big of a deal
 Upon further thought, I've decided that the final form of the Overlord doesn't need to be multipart
@@ -3068,8 +3068,23 @@ Added config options to set each mob, miniboss and boss's particular stats, incl
 Added config option to disable weapon models
 Fix minor derps in statue textures/models
 
+2.40.1798++
+Updated to Forge 13.10.2.1258, that batch program is really useful
+Minor fix in Nor-Vox to reduce idle time between attacks
+I need to test out all of the mobs in a Survival situation to make sure their AI is working properly
+Reduce charging speed of the Minotaur and Apis
+Added config option to disable snow golem spawns (in regards to my mod)
+Re-added config option to disable dynamic health scaling, I didn't realize I removed this
+Cleaned up some AttributeModifiers that I use for mobs and such, made them configurable due to the fact that mob stats are configurable now
+Added the few Doomsdays and non-mob destructive features to the config, allowing whether they are destructive or not
+Removed extraneous statue events class, it is now handled inside the statue entity itself
+Remove extraneous "main" package, move all classes in it to the true main package, that's a lot of import refactoring
+Updated ReadMe.txt
+Extended Doomsdays update the amount they use per iteration instead of all at once, the cooldown is applied after the effect is used
+Combination Doomsdays now inflict cooldown based on that particular Doomsdays's cooldown, plus the cooldown of the combined Doomsdays, the iterations allowed by the extended one plus
+the cost of using the instant one
+
 TODO still
-Make it so that Extended Doomsdays update your Doom amount per iteration instead of all at once at the end
 Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
 
 --Overlord plan, may fit in other random small things in between doing this--
@@ -3101,9 +3116,7 @@ amulet will be +15, this may not be capped but we'll see when I actually impleme
 
 Config stuff:
 Option to disable Amulet modifiers
-Options to disable each non-mobGriefing instance separately, mostly this will be with Doomsdays
 Possibly an option to make all explosions "recoverable" in addition to removing mobGriefing completely or allowing it
-Option to disable weapon models and armor models (if I add them)
 
 --Reminders-
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
