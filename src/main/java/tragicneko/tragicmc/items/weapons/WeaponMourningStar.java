@@ -14,6 +14,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.main.TragicEnchantments;
+import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -49,7 +50,7 @@ public class WeaponMourningStar extends TragicWeapon {
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-25);
 					setStackCooldown(par1ItemStack, 5);
 
-					par2World.createExplosion(par3EntityPlayer, par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ, 3.0F * itemRand.nextFloat() + 2.0F, WorldHelper.getMobGriefing(par2World));
+					par2World.createExplosion(par3EntityPlayer, par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ, 3.0F * itemRand.nextFloat() + 2.0F, TragicNewConfig.griefConfigs[3]);
 					return par1ItemStack;
 				}
 			}
@@ -64,7 +65,7 @@ public class WeaponMourningStar extends TragicWeapon {
 					double d5 = vec.yCoord;
 					double d6 = vec.zCoord;
 
-					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, 3.0F * itemRand.nextFloat() + 2.0F, WorldHelper.getMobGriefing(par2World));
+					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, 3.0F * itemRand.nextFloat() + 2.0F, TragicNewConfig.griefConfigs[3]);
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-30);
 					setStackCooldown(par1ItemStack, 5);
 					

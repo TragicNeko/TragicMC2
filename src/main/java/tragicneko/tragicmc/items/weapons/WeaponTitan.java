@@ -49,7 +49,7 @@ public class WeaponTitan extends EpicWeapon {
 						entity.posZ + itemRand.nextDouble() - itemRand.nextDouble()));
 			}
 
-			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, WorldHelper.getMobGriefing(player.worldObj));
+			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicNewConfig.griefConfigs[4]);
 
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-10);
 			setStackCooldown(stack, 5);

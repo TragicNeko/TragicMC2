@@ -486,16 +486,6 @@ public abstract class Doomsday {
 		return getDoomsdayFromId(stringToIDMapping.get(s));
 	}
 
-	public boolean getMobGriefing(World world)
-	{
-		return world.getGameRules().getGameRuleBooleanValue("mobGriefing");
-	}
-
-	public boolean getMobGriefing(EntityPlayer player)
-	{
-		return getMobGriefing(player.worldObj);
-	}
-
 	public short getOverflow(PropertyDoom doom)
 	{
 		return (short) (doom.getMaxDoom() - doom.getCurrentDoom());

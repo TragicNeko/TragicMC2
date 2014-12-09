@@ -76,7 +76,7 @@ public class WeaponFrozenLightning extends TragicWeapon {
 								d6 + itemRand.nextDouble() - itemRand.nextDouble()));
 					}
 
-					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, itemRand.nextFloat() * 2.0F, WorldHelper.getMobGriefing(par2World));
+					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, itemRand.nextFloat() * 2.0F, TragicNewConfig.griefConfigs[2]);
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-20);
 					setStackCooldown(par1ItemStack, 5);
 				}
