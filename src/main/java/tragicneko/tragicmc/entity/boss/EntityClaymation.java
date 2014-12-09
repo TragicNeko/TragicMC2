@@ -1,16 +1,16 @@
 package tragicneko.tragicmc.entity.boss;
 
+import static tragicneko.tragicmc.TragicNewConfig.apisStats;
+import static tragicneko.tragicmc.TragicNewConfig.claymationStats;
+import static tragicneko.tragicmc.TragicNewConfig.deathReaperStats;
+import static tragicneko.tragicmc.TragicNewConfig.jabbaStats;
+import static tragicneko.tragicmc.TragicNewConfig.kitsuneStats;
+import static tragicneko.tragicmc.TragicNewConfig.minotaurStats;
+import static tragicneko.tragicmc.TragicNewConfig.norVoxStats;
+import static tragicneko.tragicmc.TragicNewConfig.ragrStats;
+import static tragicneko.tragicmc.TragicNewConfig.stinKingStats;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
 import static tragicneko.tragicmc.events.NewAmuletEvents.badPotions;
-import static tragicneko.tragicmc.main.TragicNewConfig.apisStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.claymationStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.deathReaperStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.jabbaStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.kitsuneStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.minotaurStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.norVoxStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.ragrStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.stinKingStats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +46,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 

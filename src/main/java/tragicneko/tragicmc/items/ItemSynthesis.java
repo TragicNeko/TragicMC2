@@ -2,7 +2,7 @@ package tragicneko.tragicmc.items;
 
 import java.util.UUID;
 
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;

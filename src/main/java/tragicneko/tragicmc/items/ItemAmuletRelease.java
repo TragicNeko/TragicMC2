@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

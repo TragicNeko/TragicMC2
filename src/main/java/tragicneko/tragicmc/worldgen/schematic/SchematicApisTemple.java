@@ -7,9 +7,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
 
 public class SchematicApisTemple extends Schematic {
 

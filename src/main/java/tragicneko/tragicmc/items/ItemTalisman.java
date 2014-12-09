@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.items;
 
 import net.minecraft.item.Item;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 
 public class ItemTalisman extends Item {
 

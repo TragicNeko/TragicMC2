@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.erkelStats;
+import static tragicneko.tragicmc.TragicNewConfig.erkelStats;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -17,9 +17,9 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
-import tragicneko.tragicmc.main.TragicBiomes;
-import tragicneko.tragicmc.main.TragicEntities;
 
 public class EntityErkel extends TragicMob {
 

@@ -15,8 +15,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.CommonProxy;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 

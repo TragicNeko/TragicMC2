@@ -12,10 +12,10 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.StructureWorldGen;
 

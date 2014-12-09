@@ -11,7 +11,9 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.input.Keyboard;
 
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
@@ -126,8 +128,6 @@ import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 import tragicneko.tragicmc.events.KeyInputEvents;
 import tragicneko.tragicmc.events.MouseEvents;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;

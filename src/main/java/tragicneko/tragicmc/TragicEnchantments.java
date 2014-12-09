@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;

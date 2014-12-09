@@ -14,8 +14,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.entity.EntityStatue;
-import tragicneko.tragicmc.main.TragicTabs;
 
 public class ItemStatue extends Item {
 

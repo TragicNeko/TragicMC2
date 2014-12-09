@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.wispStats;
+import static tragicneko.tragicmc.TragicNewConfig.wispStats;
+
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -14,11 +15,11 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBiomes;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 
 import com.google.common.collect.Sets;
 

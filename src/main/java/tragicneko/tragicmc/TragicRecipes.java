@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.items.RecipeWeapons;

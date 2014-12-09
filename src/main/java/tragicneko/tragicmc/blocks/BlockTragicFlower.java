@@ -5,8 +5,8 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFlower;

@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.worldgen;
 
-import static tragicneko.tragicmc.main.TragicBlocks.DarkStone;
-import static tragicneko.tragicmc.main.TragicBlocks.TragicOres;
+import static tragicneko.tragicmc.TragicBlocks.DarkStone;
+import static tragicneko.tragicmc.TragicBlocks.TragicOres;
 
 import java.util.Random;
 

@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.events;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.modifierAmts;
+import static tragicneko.tragicmc.TragicNewConfig.modifierAmts;
+
 import java.util.UUID;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -10,10 +11,10 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

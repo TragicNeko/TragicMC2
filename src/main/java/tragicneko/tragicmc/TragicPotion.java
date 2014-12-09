@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

@@ -2,9 +2,9 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

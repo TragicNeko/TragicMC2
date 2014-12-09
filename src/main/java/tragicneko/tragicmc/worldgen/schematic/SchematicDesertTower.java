@@ -2,9 +2,9 @@ package tragicneko.tragicmc.worldgen.schematic;
 
 import java.util.Random;
 
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;

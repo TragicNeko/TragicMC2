@@ -1,9 +1,9 @@
 package tragicneko.tragicmc.worldgen;
 
 import static net.minecraft.init.Blocks.dirt;
-import static tragicneko.tragicmc.main.TragicBlocks.BleachedLeaves;
-import static tragicneko.tragicmc.main.TragicBlocks.BleachedWood;
-import static tragicneko.tragicmc.main.TragicBlocks.DeadDirt;
+import static tragicneko.tragicmc.TragicBlocks.BleachedLeaves;
+import static tragicneko.tragicmc.TragicBlocks.BleachedWood;
+import static tragicneko.tragicmc.TragicBlocks.DeadDirt;
 
 import java.util.ArrayList;
 import java.util.Random;

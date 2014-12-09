@@ -10,9 +10,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
 import tragicneko.tragicmc.client.render.RenderProjectile;
-import tragicneko.tragicmc.main.TragicItems;
 
 public class RenderMegaCryse extends RenderLiving {
 	

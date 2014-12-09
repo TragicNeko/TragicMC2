@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 
 public class WorldGenPaintedTree extends WorldGenAbstractTree
 {

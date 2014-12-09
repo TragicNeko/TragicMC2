@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.deathReaperStats;
+import static tragicneko.tragicmc.TragicNewConfig.deathReaperStats;
 
 import java.util.List;
 
@@ -30,10 +30,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 
 public class EntityDeathReaper extends TragicBoss {
 

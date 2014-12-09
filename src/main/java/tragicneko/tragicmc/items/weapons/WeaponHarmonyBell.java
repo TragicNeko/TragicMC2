@@ -8,11 +8,11 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponHarmonyBell extends TragicWeapon {

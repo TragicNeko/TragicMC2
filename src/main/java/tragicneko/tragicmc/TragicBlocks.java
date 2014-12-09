@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

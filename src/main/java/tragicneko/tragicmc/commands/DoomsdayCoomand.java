@@ -9,10 +9,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.DoomsdayEffect;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayCoomand extends CommandBase {

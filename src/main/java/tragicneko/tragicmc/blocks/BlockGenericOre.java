@@ -7,9 +7,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
 
 public class BlockGenericOre extends Block {
 	

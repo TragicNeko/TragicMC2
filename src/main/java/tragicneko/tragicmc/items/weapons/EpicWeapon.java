@@ -8,10 +8,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.management.ItemInWorldManager;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicItems;
 
 public class EpicWeapon extends TragicWeapon {
 

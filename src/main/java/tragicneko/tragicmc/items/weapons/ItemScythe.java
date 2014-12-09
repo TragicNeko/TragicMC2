@@ -8,9 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
 
 import com.google.common.collect.Sets;
 

@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.items.food;
 
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import net.minecraft.item.ItemFood;
 
 public class ItemSkyFruit extends ItemFood {

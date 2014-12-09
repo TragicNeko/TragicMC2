@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.yetiStats;
+import static tragicneko.tragicmc.TragicNewConfig.yetiStats;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,15 +29,15 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityYeti extends TragicBoss {
 

@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.worldgen.biome;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
-import tragicneko.tragicmc.main.TragicBlocks;
 
 public class BiomeGenSynapse extends TragicBiome {
 

@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WorldGenBleachedTree extends WorldGenAbstractTree {

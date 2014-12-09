@@ -18,7 +18,7 @@ import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import tragicneko.tragicmc.main.TragicItems;
+import tragicneko.tragicmc.TragicItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class MobDropEvents {

@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.apisStats;
+import static tragicneko.tragicmc.TragicNewConfig.apisStats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +30,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityApis extends TragicBoss {

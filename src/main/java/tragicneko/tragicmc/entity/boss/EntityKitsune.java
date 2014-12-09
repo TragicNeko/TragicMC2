@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.kitsuneStats;
+import static tragicneko.tragicmc.TragicNewConfig.kitsuneStats;
 
 import java.util.UUID;
 
@@ -28,10 +28,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 
 public class EntityKitsune extends TragicBoss {
 

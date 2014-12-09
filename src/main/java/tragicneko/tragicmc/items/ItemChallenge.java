@@ -16,9 +16,9 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.util.TragicEntityList;
 
 public class ItemChallenge extends Item {

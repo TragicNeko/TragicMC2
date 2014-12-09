@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

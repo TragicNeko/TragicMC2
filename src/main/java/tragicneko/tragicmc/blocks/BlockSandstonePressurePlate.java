@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.blocks;
 
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;

@@ -15,8 +15,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
-import tragicneko.tragicmc.main.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

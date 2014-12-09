@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.blocks;
 
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.init.Blocks;

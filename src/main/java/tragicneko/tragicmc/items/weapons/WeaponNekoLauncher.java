@@ -10,9 +10,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
-import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponNekoLauncher extends TragicWeapon {

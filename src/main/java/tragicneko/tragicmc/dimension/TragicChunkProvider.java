@@ -30,7 +30,7 @@ import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
 import cpw.mods.fml.common.eventhandler.Event.Result;

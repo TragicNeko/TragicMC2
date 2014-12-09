@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.jarraStats;
+import static tragicneko.tragicmc.TragicNewConfig.jarraStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -9,9 +9,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
-import tragicneko.tragicmc.main.TragicEntities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

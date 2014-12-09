@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.client.render;
 
-import static tragicneko.tragicmc.main.TragicItems.Projectile;
-
+import static tragicneko.tragicmc.TragicItems.Projectile;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -16,12 +15,12 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
-import tragicneko.tragicmc.main.TragicItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

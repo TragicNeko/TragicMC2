@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.tragicNekoStats;
+import static tragicneko.tragicmc.TragicNewConfig.tragicNekoStats;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -28,13 +28,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class EntityTragicNeko extends TragicMob {
 	

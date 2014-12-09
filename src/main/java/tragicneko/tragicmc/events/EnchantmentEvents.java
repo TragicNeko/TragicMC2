@@ -22,10 +22,10 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 

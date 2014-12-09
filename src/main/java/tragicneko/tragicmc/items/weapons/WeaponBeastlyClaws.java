@@ -12,9 +12,9 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.main.TragicEnchantments;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponBeastlyClaws extends TragicWeapon {

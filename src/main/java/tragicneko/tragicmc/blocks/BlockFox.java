@@ -5,9 +5,9 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

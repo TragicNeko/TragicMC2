@@ -1,12 +1,12 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.goldenPirahStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.pirahStats;
+import static tragicneko.tragicmc.TragicNewConfig.goldenPirahStats;
+import static tragicneko.tragicmc.TragicNewConfig.pirahStats;
 
 import java.util.UUID;
 
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.IEntitySelector;

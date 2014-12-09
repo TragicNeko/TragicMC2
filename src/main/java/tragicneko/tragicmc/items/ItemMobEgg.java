@@ -20,7 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 import cpw.mods.fml.relauncher.Side;

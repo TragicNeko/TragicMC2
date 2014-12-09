@@ -12,7 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -30,8 +32,6 @@ import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

@@ -6,11 +6,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicTabs;
 
 public class BlockTimeDisruptor extends BlockContainer {
 

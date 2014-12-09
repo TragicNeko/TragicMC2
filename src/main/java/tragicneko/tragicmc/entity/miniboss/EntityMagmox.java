@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.magmoxStats;
+import static tragicneko.tragicmc.TragicNewConfig.magmoxStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -12,9 +12,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
-import tragicneko.tragicmc.main.TragicEntities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

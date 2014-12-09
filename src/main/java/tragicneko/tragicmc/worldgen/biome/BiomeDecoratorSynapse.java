@@ -4,9 +4,9 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
-import tragicneko.tragicmc.main.TragicBlocks;
 
 public class BiomeDecoratorSynapse extends BiomeDecorator {
 

@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.inklingStats;
+import static tragicneko.tragicmc.TragicNewConfig.inklingStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.Entity;
@@ -26,7 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicEntities;
+import tragicneko.tragicmc.TragicEntities;
 
 public class EntityInkling extends TragicMob {
 

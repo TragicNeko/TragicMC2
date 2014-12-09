@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayRavage extends Doomsday {

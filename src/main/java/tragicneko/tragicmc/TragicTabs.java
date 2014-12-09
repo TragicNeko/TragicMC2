@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import tragicneko.tragicmc.creativetabs.TabTragicMC;
 import tragicneko.tragicmc.creativetabs.TabTragicMCSpecial;

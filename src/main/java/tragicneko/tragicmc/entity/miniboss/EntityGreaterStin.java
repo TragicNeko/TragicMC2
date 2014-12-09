@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.greaterStinStats;
+import static tragicneko.tragicmc.TragicNewConfig.greaterStinStats;
+
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -25,10 +26,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.TragicMob;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 

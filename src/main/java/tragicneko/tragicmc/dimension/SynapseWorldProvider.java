@@ -9,8 +9,8 @@ import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderHell;
 import net.minecraftforge.client.IRenderHandler;
-import tragicneko.tragicmc.main.TragicBiomes;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicNewConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

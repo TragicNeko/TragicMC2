@@ -15,9 +15,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 
 public class TragicTeleporter extends Teleporter {
 

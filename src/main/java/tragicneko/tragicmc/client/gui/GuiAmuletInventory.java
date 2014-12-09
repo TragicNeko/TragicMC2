@@ -8,10 +8,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

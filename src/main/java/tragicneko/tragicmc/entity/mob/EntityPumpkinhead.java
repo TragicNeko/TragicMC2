@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.pumpkinheadStats;
+import static tragicneko.tragicmc.TragicNewConfig.pumpkinheadStats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
-import tragicneko.tragicmc.main.TragicEntities;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityPumpkinhead extends TragicMob {

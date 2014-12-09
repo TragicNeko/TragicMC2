@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmuletRelease;

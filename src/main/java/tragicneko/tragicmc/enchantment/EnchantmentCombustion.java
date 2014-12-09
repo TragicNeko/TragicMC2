@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.enchantment;
 
-import tragicneko.tragicmc.main.TragicEnchantments;
+import tragicneko.tragicmc.TragicEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 

@@ -2,7 +2,7 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;

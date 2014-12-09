@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.abominationStats;
+import static tragicneko.tragicmc.TragicNewConfig.abominationStats;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicEntities;
+import tragicneko.tragicmc.TragicEntities;
 
 public class EntityAbomination extends TragicMob {
 

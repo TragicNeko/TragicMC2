@@ -7,10 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponGravitySpike extends TragicWeapon {

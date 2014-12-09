@@ -5,7 +5,7 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockObsidian;
 import net.minecraft.block.material.Material;

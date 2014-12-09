@@ -17,6 +17,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
@@ -27,9 +30,6 @@ import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.EntityDropHelper;
 
 public abstract class TragicMob extends EntityMob

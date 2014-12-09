@@ -6,9 +6,9 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
-import tragicneko.tragicmc.main.TragicBiomes;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
 

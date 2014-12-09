@@ -18,9 +18,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.client.ClientProxy;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

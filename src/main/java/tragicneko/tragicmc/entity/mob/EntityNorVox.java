@@ -1,7 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.norVoxStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.starVoxStats;
+import static tragicneko.tragicmc.TragicNewConfig.norVoxStats;
+import static tragicneko.tragicmc.TragicNewConfig.starVoxStats;
+
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -28,11 +29,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
 public class EntityNorVox extends TragicMob {

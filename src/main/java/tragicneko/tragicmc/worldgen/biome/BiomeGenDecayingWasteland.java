@@ -2,10 +2,10 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
-import tragicneko.tragicmc.main.TragicBiomes;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class BiomeGenDecayingWasteland extends TragicBiome {
 

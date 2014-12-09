@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.EnumCreatureType;
@@ -9,7 +9,6 @@ import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;

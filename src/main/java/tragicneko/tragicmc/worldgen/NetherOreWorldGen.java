@@ -6,8 +6,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class NetherOreWorldGen implements IWorldGenerator {

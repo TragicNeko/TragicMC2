@@ -1,7 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.stinStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.stinBabyStats;
+import static tragicneko.tragicmc.TragicNewConfig.stinBabyStats;
+import static tragicneko.tragicmc.TragicNewConfig.stinStats;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityStin extends TragicMob {

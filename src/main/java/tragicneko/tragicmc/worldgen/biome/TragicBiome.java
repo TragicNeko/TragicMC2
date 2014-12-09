@@ -9,6 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
@@ -17,8 +19,6 @@ import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class TragicBiome extends BiomeGenBase {
 

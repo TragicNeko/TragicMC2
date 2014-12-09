@@ -17,9 +17,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
-import tragicneko.tragicmc.main.TragicItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class BlockDropsEvent {

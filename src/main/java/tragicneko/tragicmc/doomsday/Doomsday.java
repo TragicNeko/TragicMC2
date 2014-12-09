@@ -15,8 +15,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public abstract class Doomsday {

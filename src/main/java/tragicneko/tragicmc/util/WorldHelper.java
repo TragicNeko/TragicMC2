@@ -14,7 +14,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 
 import com.google.common.collect.Sets;
 

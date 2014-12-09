@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.items.Challenge;
 import tragicneko.tragicmc.items.ItemChallenge;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ChallengeItemEvents {

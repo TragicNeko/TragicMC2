@@ -7,8 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityMagnetar;
-import tragicneko.tragicmc.main.TragicTabs;
 
 public class BlockMagnetar extends BlockContainer {
 

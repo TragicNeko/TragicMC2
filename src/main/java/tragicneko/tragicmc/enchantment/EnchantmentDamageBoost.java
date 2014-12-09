@@ -6,11 +6,11 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 
 public class EnchantmentDamageBoost extends Enchantment {
 

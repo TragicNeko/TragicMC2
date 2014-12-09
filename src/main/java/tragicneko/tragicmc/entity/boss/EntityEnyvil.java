@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.enyvilStats;
+import static tragicneko.tragicmc.TragicNewConfig.enyvilStats;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,13 +30,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 

@@ -4,9 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
-import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPoisonBreak extends Doomsday {

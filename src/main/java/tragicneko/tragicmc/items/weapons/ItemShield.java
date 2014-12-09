@@ -10,10 +10,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicTabs;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 import com.google.common.collect.Multimap;

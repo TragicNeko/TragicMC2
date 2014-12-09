@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.main;
+package tragicneko.tragicmc;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
@@ -6,7 +6,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
-import tragicneko.tragicmc.TragicMC;
 
 public class TragicNewConfig {
 

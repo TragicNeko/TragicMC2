@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.overlordStats;
+import static tragicneko.tragicmc.TragicNewConfig.overlordStats;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -18,11 +18,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
-import tragicneko.tragicmc.main.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;

@@ -2,7 +2,7 @@ package tragicneko.tragicmc.blocks.tileentity;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.storage.WorldInfo;

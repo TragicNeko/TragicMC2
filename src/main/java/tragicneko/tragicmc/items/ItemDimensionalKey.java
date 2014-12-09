@@ -17,9 +17,9 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.dimension.TragicTeleporter;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

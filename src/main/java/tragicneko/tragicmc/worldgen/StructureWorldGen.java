@@ -9,10 +9,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
 
 import com.google.common.collect.Sets;
 

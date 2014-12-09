@@ -7,8 +7,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBloodlust extends Doomsday {

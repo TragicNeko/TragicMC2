@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.voxStellarumStats;
+import static tragicneko.tragicmc.TragicNewConfig.voxStellarumStats;
+
 import java.util.UUID;
 
 import net.minecraft.entity.Entity;
@@ -15,10 +16,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

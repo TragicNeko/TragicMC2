@@ -14,6 +14,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -36,7 +37,6 @@ import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
-import tragicneko.tragicmc.main.TragicTabs;
 
 public class ItemProjectile extends Item {
 

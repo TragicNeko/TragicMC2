@@ -13,6 +13,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
 import org.lwjgl.opengl.GL11;
 
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.ItemJack;
@@ -22,7 +23,6 @@ import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.megaCryseStats;
+import static tragicneko.tragicmc.TragicNewConfig.megaCryseStats;
 
 import java.util.UUID;
 
@@ -25,11 +25,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.TragicMob;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -11,8 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.CommonProxy;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.network.MessageDoom;
 
 public class PropertyDoom implements IExtendedEntityProperties {

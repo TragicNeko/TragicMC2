@@ -15,9 +15,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 

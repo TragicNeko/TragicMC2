@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import tragicneko.tragicmc.main.TragicBiomes;
+import tragicneko.tragicmc.TragicBiomes;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;

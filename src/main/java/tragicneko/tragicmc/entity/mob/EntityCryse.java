@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.cryseStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.starCryseStats;
+import static tragicneko.tragicmc.TragicNewConfig.cryseStats;
+import static tragicneko.tragicmc.TragicNewConfig.starCryseStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -24,10 +24,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import cpw.mods.fml.relauncher.Side;

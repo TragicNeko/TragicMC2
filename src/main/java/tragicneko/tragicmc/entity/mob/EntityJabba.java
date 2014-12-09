@@ -1,7 +1,8 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.jabbaStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.jannaStats;
+import static tragicneko.tragicmc.TragicNewConfig.jabbaStats;
+import static tragicneko.tragicmc.TragicNewConfig.jannaStats;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -28,10 +29,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import cpw.mods.fml.relauncher.Side;

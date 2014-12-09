@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.creativetabs;
 
-import tragicneko.tragicmc.main.TragicItems;
+import tragicneko.tragicmc.TragicItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 

@@ -1,9 +1,9 @@
 package tragicneko.tragicmc.worldgen.biome;
 
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class BiomeGenTaintedSpikes extends TragicBiome {
 

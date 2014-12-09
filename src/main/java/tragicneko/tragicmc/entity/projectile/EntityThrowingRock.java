@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import tragicneko.tragicmc.main.TragicItems;
+import tragicneko.tragicmc.TragicItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;

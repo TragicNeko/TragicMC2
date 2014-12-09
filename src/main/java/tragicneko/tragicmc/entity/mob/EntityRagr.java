@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.ragrStats;
+import static tragicneko.tragicmc.TragicNewConfig.ragrStats;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -28,11 +29,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;

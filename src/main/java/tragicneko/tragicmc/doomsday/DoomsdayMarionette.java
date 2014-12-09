@@ -10,10 +10,10 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {

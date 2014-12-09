@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;

@@ -1,7 +1,8 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.stinQueenStats;
+import static tragicneko.tragicmc.TragicNewConfig.stinQueenStats;
+
 import java.util.ArrayList;
 
 import net.minecraft.entity.Entity;
@@ -11,10 +12,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityStinQueen extends EntityGreaterStin {

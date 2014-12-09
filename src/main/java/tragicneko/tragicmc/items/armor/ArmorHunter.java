@@ -7,9 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

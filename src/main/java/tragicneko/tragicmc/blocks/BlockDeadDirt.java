@@ -2,7 +2,7 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.List;
 
-import tragicneko.tragicmc.main.TragicTabs;
+import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

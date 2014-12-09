@@ -19,8 +19,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
-import tragicneko.tragicmc.main.TragicTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

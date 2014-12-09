@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.kragulStats;
+import static tragicneko.tragicmc.TragicNewConfig.kragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -20,11 +20,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityKragul extends EntityGragul implements TragicMiniBoss {

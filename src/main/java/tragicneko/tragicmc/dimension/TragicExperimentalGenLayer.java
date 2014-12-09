@@ -9,8 +9,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBiomes;
 
 public class TragicExperimentalGenLayer extends GenLayer {
 

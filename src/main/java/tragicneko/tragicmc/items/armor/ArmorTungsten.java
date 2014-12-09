@@ -7,11 +7,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

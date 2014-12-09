@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.worldgen;
 
-import static tragicneko.tragicmc.main.TragicBlocks.CircuitBlock;
+import static tragicneko.tragicmc.TragicBlocks.CircuitBlock;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;

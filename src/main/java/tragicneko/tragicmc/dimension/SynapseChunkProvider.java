@@ -19,7 +19,7 @@ import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.worldgen.WorldGenDeadCircuit;
 
 public class SynapseChunkProvider implements IChunkProvider

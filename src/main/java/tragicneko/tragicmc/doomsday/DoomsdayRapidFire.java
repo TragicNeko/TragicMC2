@@ -7,8 +7,8 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-import tragicneko.tragicmc.main.TragicItems;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {

@@ -15,11 +15,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
-import tragicneko.tragicmc.main.TragicEnchantments;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponButcher extends EpicWeapon {

@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.items.food;
 
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicPotions;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;

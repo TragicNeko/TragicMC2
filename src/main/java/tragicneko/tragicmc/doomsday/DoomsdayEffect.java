@@ -2,8 +2,8 @@ package tragicneko.tragicmc.doomsday;
 
 import java.util.Random;
 
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayEffect {

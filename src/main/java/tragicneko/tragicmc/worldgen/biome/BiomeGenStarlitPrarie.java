@@ -6,12 +6,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
 
 public class BiomeGenStarlitPrarie extends TragicBiome {

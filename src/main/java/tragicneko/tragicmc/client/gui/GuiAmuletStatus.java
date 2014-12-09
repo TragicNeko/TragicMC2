@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

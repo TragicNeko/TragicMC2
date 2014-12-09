@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.aegarStats;
+import static tragicneko.tragicmc.TragicNewConfig.aegarStats;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -23,12 +24,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.boss.EntityPart;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart {

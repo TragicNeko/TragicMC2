@@ -4,8 +4,8 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;

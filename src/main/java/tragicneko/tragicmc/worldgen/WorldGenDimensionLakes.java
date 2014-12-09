@@ -2,7 +2,7 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.main.TragicBlocks;
+import tragicneko.tragicmc.TragicBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

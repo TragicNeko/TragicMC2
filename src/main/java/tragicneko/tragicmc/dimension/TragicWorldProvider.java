@@ -9,8 +9,8 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 
 import com.google.common.collect.Sets;
 

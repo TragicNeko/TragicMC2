@@ -19,8 +19,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 

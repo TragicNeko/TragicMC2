@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.toxStats;
-import static tragicneko.tragicmc.main.TragicNewConfig.poxStats;
+import static tragicneko.tragicmc.TragicNewConfig.poxStats;
+import static tragicneko.tragicmc.TragicNewConfig.toxStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -22,11 +22,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
-import tragicneko.tragicmc.main.TragicEntities;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

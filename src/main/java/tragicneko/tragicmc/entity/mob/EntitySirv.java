@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.main.TragicNewConfig.sirvStats;
+import static tragicneko.tragicmc.TragicNewConfig.sirvStats;
+
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -20,8 +21,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.main.TragicNewConfig;
-import tragicneko.tragicmc.main.TragicPotions;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotions;
 
 public class EntitySirv extends TragicMob {
 

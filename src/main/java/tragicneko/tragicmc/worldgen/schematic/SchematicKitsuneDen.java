@@ -9,10 +9,10 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicItems;
-import tragicneko.tragicmc.main.TragicNewConfig;
+import tragicneko.tragicmc.TragicNewConfig;
 
 public class SchematicKitsuneDen extends Schematic {
 

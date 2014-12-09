@@ -7,11 +7,11 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
-import tragicneko.tragicmc.main.TragicBlocks;
-import tragicneko.tragicmc.main.TragicNewConfig;
 import tragicneko.tragicmc.worldgen.WorldGenAshenShrubs;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 
