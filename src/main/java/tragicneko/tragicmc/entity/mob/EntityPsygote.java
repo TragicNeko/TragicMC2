@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 
 public class EntityPsygote extends TragicMob {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("1e8bc939-443c-46b6-8158-0d53513a47e6"), "psygoteSpeedDebuff", -0.50, 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("1e8bc939-443c-46b6-8158-0d53513a47e6"), "psygoteSpeedDebuff", TragicNewConfig.modifierAmts[8], 0);
 
 	public EntityPsygote(World par1World) {
 		super(par1World);

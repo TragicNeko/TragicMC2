@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.events;
 
+import static tragicneko.tragicmc.main.TragicNewConfig.modifierAmts;
 import java.util.UUID;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -12,33 +13,28 @@ import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.main.TragicNewConfig;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DynamicHealthScaling {
 
-	private static UUID normHealthDebuffUUID = UUID.fromString("967abeb0-255d-4ac9-bfa7-9636b25b8ca0");
-	private static AttributeModifier normalHealthDebuff = new AttributeModifier(normHealthDebuffUUID, "normalHealthDebuff", -20.0, 0);
-	
-	private static UUID normHealthBuffUUID = UUID.fromString("3abc10da-144e-4f04-a5dd-f9d7e5feeafe");
-	private static AttributeModifier normalHealthBuff = new AttributeModifier(normHealthBuffUUID, "normalHealthBuff", 20.0, 0);
-	
-	private static UUID bossHealthDebuffUUID = UUID.fromString("b1c91594-c901-41aa-bbd1-e8767a846a80");
-	private static AttributeModifier bossHealthDebuff = new AttributeModifier(bossHealthDebuffUUID, "bossHealthDebuff", -50.0, 0);
-	
-	private static UUID bossHealthBuffUUID = UUID.fromString("909ba6e3-8763-4720-8fb4-c36db00da69b");
-	private static AttributeModifier bossHealthBuff = new AttributeModifier(bossHealthBuffUUID, "bossHealthBuff", 50.0, 0);
+	private static AttributeModifier normalHealthDebuff = new AttributeModifier(UUID.fromString("967abeb0-255d-4ac9-bfa7-9636b25b8ca0"), "dynamicMobHealthDebuff", modifierAmts[10], 0);
+	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("3abc10da-144e-4f04-a5dd-f9d7e5feeafe"), "dynamicMobHealthBuff", modifierAmts[11], 0);
+	private static AttributeModifier bossHealthBuff = new AttributeModifier(UUID.fromString("909ba6e3-8763-4720-8fb4-c36db00da69b"), "dynamicBossHealthBuff", modifierAmts[13], 0);
 
 	@SubscribeEvent
 	public void onJoinWorld(EntityJoinWorldEvent event)
 	{
+		if (!TragicNewConfig.allowDynamicHealthScaling) return;
+		
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.EASY)
 		{
 			if (event.entity instanceof TragicMob)
 			{
 				IAttributeInstance att = ((EntityLivingBase) event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth);
 
-				if (att.getBaseValue() > 40.0)
+				if (att.getBaseValue() > Math.abs(normalHealthDebuff.getAmount()) * 2)
 				{
 					att.removeModifier(normalHealthDebuff);
 					att.applyModifier(normalHealthDebuff);
@@ -56,7 +52,7 @@ public class DynamicHealthScaling {
 			{
 				IAttributeInstance att = ((EntityLivingBase) event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth);
 
-				if (att.getBaseValue() > 50.0)
+				if (att.getBaseValue() > Math.abs(normalHealthBuff.getAmount()) * 2)
 				{
 					att.removeModifier(normalHealthBuff);
 					att.applyModifier(normalHealthBuff);
@@ -67,7 +63,7 @@ public class DynamicHealthScaling {
 			{
 				IAttributeInstance att = ((EntityLivingBase) event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth);
 
-				if (att.getBaseValue() > 80.0)
+				if (att.getBaseValue() > Math.abs(bossHealthBuff.getAmount()) * 1.25)
 				{
 					att.removeModifier(bossHealthBuff);
 					att.applyModifier(bossHealthBuff);

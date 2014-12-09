@@ -72,7 +72,7 @@ public class EntityClaymation extends TragicBoss {
 			{0.7F, 2.1F}, {0.745F, 1.745F}, {1.4F, 2.9F}};
 
 	private int formTicks;
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8b42b35e-f870-40ca-ae74-95a38879bed0"), "claymationUtilitySpeedDebuff", -1.0, 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8b42b35e-f870-40ca-ae74-95a38879bed0"), "claymationUtilitySpeedDebuff", TragicNewConfig.modifierAmts[0], 0);
 
 	public EntityClaymation(World par1World) {
 		super(par1World);

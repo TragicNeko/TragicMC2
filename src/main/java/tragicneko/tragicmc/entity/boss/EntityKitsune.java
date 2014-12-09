@@ -35,7 +35,7 @@ import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityKitsune extends TragicBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", -0.5, 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicNewConfig.modifierAmts[1], 0);
 
 	public EntityKitsune(World par1World) {
 		super(par1World);

@@ -119,8 +119,8 @@ public class EntityMinotaur extends TragicMob {
 			double d1 = this.getAttackTarget().posZ - this.posZ;
 			double d2 = this.getAttackTarget().posY - this.posY;
 			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-			this.motionX = d0 / (double)f2 * 2.5D * 0.700000011920929D + this.motionX * 0.40000000298023224D;
-			this.motionZ = d1 / (double)f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
+			this.motionX = d0 / (double)f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
+			this.motionZ = d1 / (double)f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
 			this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 			this.setChargeTicks(20);
 		}

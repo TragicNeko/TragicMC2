@@ -2,6 +2,7 @@ package tragicneko.tragicmc.items;
 
 import java.util.UUID;
 
+import tragicneko.tragicmc.main.TragicNewConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -11,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ItemHydration extends ItemTalisman {
 	
-	public static final AttributeModifier mod = new AttributeModifier(UUID.fromString("a0de9d5c-2fa2-4042-8261-f68bec735e56"), "hydrationModifier", 1.0, 0);
+	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("a0de9d5c-2fa2-4042-8261-f68bec735e56"), "hydrationKnockbackResistanceBuff", TragicNewConfig.modifierAmts[19], 0);
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

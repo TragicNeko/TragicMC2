@@ -156,7 +156,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 			double modifier = (Math.sin((2.115D / (Math.PI * 2)) * (this.getSpinTicks() / 100.0D) - 0.125D)) * 0.235D;
 			AttributeModifier mod2 = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-99A2-181d3ac9eb17"), "voxStellarumSpinning", modifier, 0);
 
-			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod2); 
+			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod2);
 
 			if (this.isSpinning() && this.getSpinTicks() >= 100 && this.getSpinTicks() <= 800)
 			{

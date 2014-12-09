@@ -41,7 +41,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	public EntityPart aegarCannon;
 	public EntityPart aegarHead;
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8771eb81-724e-4d6b-91a4-d7e2cd17f82c"), "aegarSpeedBuff", 0.156, 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8771eb81-724e-4d6b-91a4-d7e2cd17f82c"), "aegarSpeedBuff", TragicNewConfig.modifierAmts[4], 0);
 
 	public EntityAegar(World par1World) {
 		super(par1World);

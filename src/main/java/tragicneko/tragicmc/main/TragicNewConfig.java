@@ -25,6 +25,7 @@ public class TragicNewConfig {
 	private static final String catVanilla = "Vanilla Changes";
 	private static final String catWorldGen = "WorldGen";
 	private static final String catMisc = "Miscellaneous";
+	private static final String catMod = "Attribute Modifiers";
 
 	private static boolean[] blanketConfigs = new boolean[9];
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
@@ -75,15 +76,16 @@ public class TragicNewConfig {
 	private static int[] armorEnchantIDs = new int[12];
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
 
-	private static boolean[] blanketMob = new boolean[8];
+	private static boolean[] blanketMob = new boolean[12];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
+	public static boolean allowDynamicHealthScaling;
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
-	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem;
+	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem;
 	private static int[] mobsSC = new int[32];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC;
+	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC, snowGolemSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
 	private static int[] miniBossSC = new int[16];
@@ -116,7 +118,7 @@ public class TragicNewConfig {
 
 	private static boolean[] blanketVanillaChanges = new boolean[14];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmorAndEnchants, allowRespawnPunishment, allowExtraExplosiveEffects;
-	public static boolean allowBabySpawns, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowQuicksandGen, allowAnimalGolemCorruption;
+	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowQuicksandGen, allowAnimalGolemCorruption;
 	private static int[] vanillaInts = new int[7];
 	public static int rubyOreRarity, sapphireOreRarity, mercuryOreRarity, tungstenOreRarity, quicksandGenRarity, drudgeGenRarity, silverfishGenRarity;
 
@@ -130,7 +132,8 @@ public class TragicNewConfig {
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
-	private static boolean[] griefConfigs = new boolean[16];
+	public static double[] modifierAmts = new double[32];
+	public static boolean[] griefConfigs = new boolean[8];
 	//everything that isn't a mob will check this to see if it is allowed instead of using mobGriefing, this includes things like Doomsdays and items
 
 	public static void initialize()
@@ -478,6 +481,7 @@ public class TragicNewConfig {
 		blanketMob[5] = (config.get(catMobs, "allowVictoryBuffs", true).getBoolean(true));
 		blanketMob[6] = (config.get(catMobs, "allowCorruptionDamage", true).getBoolean(true));
 		blanketMob[7] = (config.get(catMobs, "allowMobTransformation", true).getBoolean(true));
+		blanketMob[8] = (config.get(catMobs, "allowMobHealthScaling", true).getBoolean(true));
 
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
@@ -540,6 +544,8 @@ public class TragicNewConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "nanoSwarmAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "circuitGolemSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "circuitGolemAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "snowGolemSpawnChance",40).getInt(40));
+		mobConfigs[mapping++] = (config.get(catMobs, "snowGolemAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < mobConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -719,13 +725,13 @@ public class TragicNewConfig {
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowMobModdedArmorAndEnchantments", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowRespawnPunishment", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowExtraExplosiveEffects", true).getBoolean(true));
-		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowBabySpawns", false).getBoolean(false));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowModdedOverworldFlowerGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowOverworldSilverfishOregen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowNetherOreGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowOverworldOreGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowQuicksandAndDrudgeGen", true).getBoolean(true));
 		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowAnimalAndGolemCorruption", true).getBoolean(true));
+		blanketVanillaChanges[mapping++] = (config.get(catVanilla, "allowMobBlindnessDebuff", true).getBoolean(true));
 
 		mapping = 0;
 		vanillaInts[mapping++] = MathHelper.clamp_int(config.get(catVanilla, "rubyOreGenRate", 10).getInt(10), 1, 25);
@@ -771,10 +777,14 @@ public class TragicNewConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowItemTimeAltering", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowWeaponModels", true).getBoolean(true));
 
-		for (i = 0; i + mapping < miscConfigs.length; i++)
-		{
-			miscConfigs[mapping + i] = false;
-		}
+		for (i = 0; i + mapping < miscConfigs.length; i++) miscConfigs[mapping + i] = false;
+		
+		mapping = 0;
+		griefConfigs[mapping++] = config.get(catMisc, "allowNatureDrainDestruction", true).getBoolean(true);
+		griefConfigs[mapping++] = config.get(catMisc, "allowRavageDestruction", true).getBoolean(true);
+		griefConfigs[mapping++] = config.get(catMisc, "allowFrozenLightningDestruction", true).getBoolean(true);
+		griefConfigs[mapping++] = config.get(catMisc, "allowMourningStarDestruction", true).getBoolean(true);
+		griefConfigs[mapping++] = config.get(catMisc, "allowTitanDestruction", true).getBoolean(true);
 
 		mapping = 0;
 		miscInts[mapping++] = MathHelper.clamp_int(config.get(catMisc, "challengeScrollDropChance", 5).getInt(5), 1, 100);
@@ -785,12 +795,36 @@ public class TragicNewConfig {
 		miscInts[mapping++] = config.get(catMisc, "guiYPosition", 1).getInt(1);
 
 		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
+		
+		mapping = 0;
+		modifierAmts[mapping++] = config.get(catMod, "claymationUtilitySpeedDebuff", -1.0).getDouble(-1.0);
+		modifierAmts[mapping++] = config.get(catMod, "kitsuneSpeedDebuff", -0.5).getDouble(-0.5);
+		modifierAmts[mapping++] = config.get(catMod, "timeControllerSpeedBuff", 0.055).getDouble(0.055);
+		modifierAmts[mapping++] = config.get(catMod, "yetiSpeedDebuff", -0.5).getDouble(-0.5);
+		modifierAmts[mapping++] = config.get(catMod, "aegarSpeedBuff", 0.156).getDouble(0.156);
+		modifierAmts[mapping++] = config.get(catMod, "megaCryseNoShieldAttackBuff", 2.0).getDouble(2.0);
+		modifierAmts[mapping++] = config.get(catMod, "jabbaLowHealthDamageBoost", 2.5).getDouble(2.5);
+		modifierAmts[mapping++] = config.get(catMod, "norVoxSpeedDebuff", -0.5).getDouble(-0.5);
+		modifierAmts[mapping++] = config.get(catMod, "psygoteSpeedDebuff", -0.5).getDouble(-0.5);
+		modifierAmts[mapping++] = config.get(catMod, "tragicNekoSpeedDebuff", -0.5).getDouble(-0.5); //9
+		modifierAmts[mapping++] = config.get(catMod, "dynamicMobHealthBuff", 20.0).getDouble(20.0);
+		modifierAmts[mapping++] = config.get(catMod, "dynamicMobHealthDebuff", -20.0).getDouble(-20.0);
+		modifierAmts[mapping++] = config.get(catMod, "dynamicBossHealthBuff", 50.0).getDouble(50.0);
+		modifierAmts[mapping++] = 0.0; //13, this particular attribute modifier wasn't actually being used so it'll have no value
+		modifierAmts[mapping++] = config.get(catMod, "ghastHealthBuff", 30.0).getDouble(30.0);
+		modifierAmts[mapping++] = config.get(catMod, "zombieSkeletonCreeperHealthBuff", 10.0).getDouble(10.0);
+		modifierAmts[mapping++] = config.get(catMod, "endermanHealthBuff", 20.0).getDouble(20.0);
+		modifierAmts[mapping++] = config.get(catMod, "spiderHealthBuff", 8.0).getDouble(8.0);
+		modifierAmts[mapping++] = config.get(catMod, "mobBlindnessFollowRangeDebuff", -16.0).getDouble(-16.0); //18
+		modifierAmts[mapping++] = config.get(catMod, "hydrationKnockbackResistanceBuff", 1.0).getDouble(1.0);
+		modifierAmts[mapping++] = config.get(catMod, "lightningRodAttackBuff", 5.0).getDouble(5.0);
+		modifierAmts[mapping++] = config.get(catMod, "moonlightHealthBuff", 10.0).getDouble(10.0);
+		modifierAmts[mapping++] = config.get(catMod, "synthesisHealthBuff", 10.0).getDouble(10.0); //22
+		modifierAmts[mapping++] = config.get(catMod, "butcherKnockbackResistanceBuff", 1.0).getDouble(1.0);
+		
+		config.addCustomCategoryComment(catMod, "These are here due to the addition of the mob stats, in case these need to be modified to fit with the input stats. These could also be set to 0 if you want to nullify them.");
 
-		if (config.hasChanged())
-		{
-			config.save();
-		}
-
+		if (config.hasChanged()) config.save();
 		postProcessConfigs();
 	}
 
@@ -1154,6 +1188,7 @@ public class TragicNewConfig {
 		allowVictoryBuffs = blanketMob[5];
 		allowCorruptionDamage = blanketMob[6];
 		allowMobTransformation = blanketMob[7];
+		allowDynamicHealthScaling = blanketMob[8];
 
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
@@ -1216,6 +1251,8 @@ public class TragicNewConfig {
 		allowNanoSwarm = mobConfigs[mapping++];
 		circuitGolemSC = mobsSC[mapping];
 		allowCircuitGolem = mobConfigs[mapping++];
+		snowGolemSC = mobsSC[mapping];
+		allowSnowGolem = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1355,13 +1392,13 @@ public class TragicNewConfig {
 		allowMobModdedArmorAndEnchants = blanketVanillaChanges[mapping++];
 		allowRespawnPunishment = blanketVanillaChanges[mapping++];
 		allowExtraExplosiveEffects = blanketVanillaChanges[mapping++];
-		allowBabySpawns = blanketVanillaChanges[mapping++];
 		allowExtraOverworldFlowers = blanketVanillaChanges[mapping++];
 		allowOverworldSilverfishGen = blanketVanillaChanges[mapping++];
 		allowNetherOreGen = blanketVanillaChanges[mapping++];
 		allowOverworldOreGen = blanketVanillaChanges[mapping++];
 		allowQuicksandGen = blanketVanillaChanges[mapping++];
 		allowAnimalGolemCorruption = blanketVanillaChanges[mapping++];
+		allowMobBlindnessDebuff = blanketVanillaChanges[mapping++];
 
 		mapping = 0;
 		rubyOreRarity = vanillaInts[mapping++];

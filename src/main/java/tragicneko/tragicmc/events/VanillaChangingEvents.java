@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
+import static tragicneko.tragicmc.main.TragicNewConfig.modifierAmts;
 
 import java.util.List;
 import java.util.UUID;
@@ -62,23 +63,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class VanillaChangingEvents {
 
-	private static final UUID ghastHealthUUID = UUID.fromString("cb92285c-f0b5-44b5-b500-3ddd7e08ceae");
-	private static final AttributeModifier ghastHealthBuff = new AttributeModifier(ghastHealthUUID, "ghastHealthBuff", 30.0, 0);
-
-	private static final UUID normalHealthUUID = UUID.fromString("d72b0471-d23a-4a9a-a7f8-e2a54018a4ee");
-	private static final AttributeModifier normalHealthBuff = new AttributeModifier(normalHealthUUID, "normalHealthBuff", 10.0, 0);
-
-	private static final UUID endermanHealthUUID = UUID.fromString("883e8a02-2f76-43d0-b7ee-de412b0c352d");
-	private static final AttributeModifier endermanHealthBuff = new AttributeModifier(endermanHealthUUID, "endermanHealthBuff", 20.0, 0);
-
-	private static final UUID spiderHealthUUID = UUID.fromString("e4cec251-fce7-4cbb-9784-eba58a140c30");
-	private static final AttributeModifier spiderHealthBuff = new AttributeModifier(spiderHealthUUID, "spiderHealthBuff", 8.0, 0);
-
-	private static final UUID mobKnockbackUUID = UUID.fromString("8cd324c5-d805-4426-8884-ae3bade47705");
-	private static final AttributeModifier mobKnockbackBuff = new AttributeModifier(mobKnockbackUUID, "mobKnockbackBuff", 0.5, 0);
-
-	private static final UUID mobBlindnessUUID = UUID.fromString("6a73b2cb-c791-4b10-849c-6817ec3eab22");
-	private static final AttributeModifier mobBlindnessDebuff = new AttributeModifier(mobBlindnessUUID, "mobBlindnessDebuff", -16.0, 0);
+	private static AttributeModifier ghastHealthBuff = new AttributeModifier(UUID.fromString("cb92285c-f0b5-44b5-b500-3ddd7e08ceae"), "ghastHealthBuff", modifierAmts[14], 0);
+	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("d72b0471-d23a-4a9a-a7f8-e2a54018a4ee"), "zombieSkeletonCreeperHealthBuff", modifierAmts[15], 0);
+	private static AttributeModifier endermanHealthBuff = new AttributeModifier(UUID.fromString("883e8a02-2f76-43d0-b7ee-de412b0c352d"), "endermanHealthBuff", 20.0, 0);
+	private static AttributeModifier spiderHealthBuff = new AttributeModifier(UUID.fromString("e4cec251-fce7-4cbb-9784-eba58a140c30"), "spiderHealthBuff", 8.0, 0);
+	private static AttributeModifier mobBlindnessDebuff = new AttributeModifier(UUID.fromString("6a73b2cb-c791-4b10-849c-6817ec3eab22"), "mobBlindnessFollowRangeDebuff", -16.0, 0);
 
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
@@ -190,54 +179,6 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
 	{
-		if (event.entity instanceof EntityAnimal && !event.entity.worldObj.isRemote && TragicNewConfig.allowBabySpawns)
-		{
-			EntityAnimal animal = (EntityAnimal) event.entity;
-
-			if (!animal.isChild() && rand.nextInt(4) == 0)
-			{
-				List<EntityAnimal> list = animal.worldObj.getEntitiesWithinAABB(EntityAnimal.class, animal.boundingBox.expand(8.0, 8.0, 8.0));
-
-				boolean flag = true;
-
-				for (int i = 0; i < list.size(); i++)
-				{
-					EntityAnimal ani = list.get(i);
-
-					if (!ani.isChild())
-					{
-						List<EntityAnimal> list2 = ani.worldObj.getEntitiesWithinAABB(EntityAnimal.class, ani.boundingBox.expand(8.0D, 8.0D, 8.0D));
-						int childCount = 0;
-
-						for (int j = 0; j < list.size(); j++)
-						{
-							EntityAnimal ani2 = list.get(j);
-							if (ani2.isChild())
-							{
-								childCount++;
-								if (childCount > 2) break;
-							}
-						}
-
-						if (childCount > 2)
-						{
-							flag = false;
-							break;
-						}
-						else
-						{
-							flag = true;
-						}
-					}
-				}
-
-				if (flag)
-				{
-					animal.setGrowingAge(-24000);
-				}
-			}
-		}
-
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD)
 		{
 			if (TragicNewConfig.allowVanillaMobBuffs)
@@ -582,7 +523,7 @@ public class VanillaChangingEvents {
 			if (event.entityLiving.isBurning()) event.entityLiving.extinguish();
 		}
 
-		if (!(event.entityLiving instanceof EntityPlayer) && event.entityLiving instanceof EntityCreature)
+		if (event.entityLiving instanceof EntityCreature && TragicNewConfig.allowMobBlindnessDebuff)
 		{
 			event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mobBlindnessDebuff);
 

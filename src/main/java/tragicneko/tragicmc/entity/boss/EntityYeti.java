@@ -41,7 +41,7 @@ import tragicneko.tragicmc.main.TragicPotions;
 
 public class EntityYeti extends TragicBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", -0.5, 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", TragicNewConfig.modifierAmts[3], 0);
 	private int hitTime = 0;
 
 	public EntityYeti(World par1World) {

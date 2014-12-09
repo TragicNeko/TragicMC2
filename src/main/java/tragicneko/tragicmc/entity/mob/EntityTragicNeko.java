@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.main.TragicNewConfig.tragicNekoStats;
+
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -33,10 +34,11 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 import tragicneko.tragicmc.main.TragicItems;
+import tragicneko.tragicmc.main.TragicNewConfig;
 
 public class EntityTragicNeko extends TragicMob {
 	
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", -0.50, 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicNewConfig.modifierAmts[9], 0);
 
 	public EntityTragicNeko(World par1World) {
 		super(par1World);

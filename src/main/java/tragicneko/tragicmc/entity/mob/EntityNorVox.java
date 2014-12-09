@@ -37,7 +37,7 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 
 public class EntityNorVox extends TragicMob {
 
-	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", -0.50, 0);
+	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", TragicNewConfig.modifierAmts[7], 0);
 
 	public EntityNorVox(World par1World) {
 		super(par1World);
@@ -220,7 +220,7 @@ public class EntityNorVox extends TragicMob {
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 			if (this.getFiringTicks() >= 60) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 
-			if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(8) == 0 && !this.isFiring())
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(64) == 0 && !this.isFiring())
 			{
 				boolean flag = !TragicNewConfig.allowStun ? true : (this.isPotionActive(TragicPotions.Stun.id) ? false : true);
 				if (flag) this.setFiringTicks(120);

@@ -24,6 +24,8 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponButcher extends EpicWeapon {
 	
+	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherKnockbackResistanceBuff", TragicNewConfig.modifierAmts[23], 0);
+	
 	private final Lore[] uniqueLores = new Lore[] {new Lore("Time to Eat!", EnumRarity.epic), new Lore("Can we eat now?", EnumRarity.uncommon), new Lore("Dinner Time!", EnumRarity.rare),
 			new Lore("I'm hungry...", EnumRarity.uncommon), new Lore("That looks delicious!", EnumRarity.uncommon), new Lore("I need food..."), new Lore("My stomach won't stop growling!", EnumRarity.rare),
 			new Lore("MMMmmm... donuts...", EnumRarity.rare), new Lore("OMNOMNOMNOM", EnumRarity.epic), new Lore("Everything is edible, even me, but that would be cannibalism.", EnumRarity.rare),
@@ -57,7 +59,6 @@ public class WeaponButcher extends EpicWeapon {
 		super.onUpdate(stack, world, entity, numb, flag);
 		if (world.isRemote || !(entity instanceof EntityPlayer) || !(TragicNewConfig.allowNonDoomsdayAbilities)) return;
 		
-		AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherModifier", 1.0, 0);
 		EntityPlayer player = (EntityPlayer) entity;
 		PropertyDoom doom = PropertyDoom.get(player);
 		
