@@ -19,6 +19,7 @@ public class DoomsdayEffect {
 	public boolean crucMoment;
 
 	public int iterations;
+	public int inheritedCooldown;
 	
 	public Random rand = new Random();
 
@@ -39,9 +40,9 @@ public class DoomsdayEffect {
 		this.iterations = 0;
 	}
 	
-	public DoomsdayEffect inheritIterations(DoomsdayEffect effect)
+	public DoomsdayEffect inheritCooldown(DoomsdayEffect ext, DoomsdayEffect ins)
 	{
-		this.iterations = effect.iterations;
+		this.inheritedCooldown = (ext.iterations * ext.dday.getScaledCooldown(ext.doom.getPlayer().worldObj.difficultySetting)) + ins.dday.cooldown;
 		return this;
 	}
 
@@ -71,7 +72,7 @@ public class DoomsdayEffect {
 			}
 			else
 			{
-				if (this.dday.doesCurrentDoomMeetRequirement(doom, iterations == 0 ? 1 : iterations))
+				if (this.dday.doesCurrentDoomMeetRequirement(doom))
 				{
 					this.dday.useDoomsday(doom, doom.getPlayer(), crucMoment);
 					if (this.isInstant) this.isActive = false;

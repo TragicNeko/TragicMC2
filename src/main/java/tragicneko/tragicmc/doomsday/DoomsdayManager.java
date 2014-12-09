@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.CommonProxy;
+import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
+import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -157,6 +159,7 @@ public class DoomsdayManager {
 				EntityPlayerMP mp = MinecraftServer.getServer().getConfigurationManager().func_152612_a(ite.next());
 				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getCommandSenderName());
 				DoomsdayEffect effect;
+				DoomsdayEffect temp = null;
 				boolean flag = false;
 				reason = null;
 
@@ -181,34 +184,43 @@ public class DoomsdayManager {
 					{
 						if (flag && combinations.containsValue(effect.dday))
 						{
-							if (effect.isActive && !effect.isInstant)
+							if (temp != null && temp.isActive && !temp.isInstant)
 							{
-								if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomAndCooldown(effect.doom, effect.iterations);
-							}
+								if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
+								TragicMC.logInfo("Instant Dday used for the Combination should've applied doom cost on use");
+							} 
 							list.clear();
-							list.add(new DoomsdayEffect(combinationMap.get(effect.dday).getDoomId(), effect.doom, effect.isCommandActivated));
+							list.add(new DoomsdayEffect(combinationMap.get(effect.dday).getDoomId(), effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
 							break;
 						}
 
 						if (combinations.containsKey(effect.dday))
 						{
 							flag = true;
+							temp = effect;
 						}
 					}
 
 					effect.onDoomsdayUpdate();
 
+					if (!effect.isActive && effect.isInstant || effect.dday instanceof IExtendedDoomsday && effect.timeBetweenUpdates == effect.dday.waitTime)
+					{
+						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomCost(effect.doom);
+					}
+
 					if (!effect.isActive)
 					{
-						if (effect.isInstant)
+						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated)
 						{
-							if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomAndCooldown(effect.doom);
+							if (effect.dday.doomsdayType == EnumDoomType.COMBINATION)
+							{
+								effect.dday.applyCooldown(effect.doom, effect.iterations, effect.inheritedCooldown);
+							}
+							else
+							{
+								effect.dday.applyCooldown(effect.doom, effect.iterations);
+							}
 						}
-						else
-						{
-							if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomAndCooldown(effect.doom, effect.iterations);
-						}
-
 						list.remove(effect);
 						reason = "No more Doomsday effects.";
 					}
@@ -226,7 +238,7 @@ public class DoomsdayManager {
 		{
 			NetHandlerPlayServer net = (NetHandlerPlayServer) event.handler;
 			if (net.playerEntity == null) return;
-			
+
 			if (playerMap.containsKey(net.playerEntity.getCommandSenderName()))
 			{
 				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");

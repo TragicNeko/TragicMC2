@@ -265,12 +265,23 @@ public abstract class Doomsday {
 	{
 		doom.decreaseDoomAmountAndApplyCooldown(this.getScaledDoomRequirement(doom), this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting));
 	}
-
-	public void applyDoomAndCooldown(PropertyDoom doom, int iterations)
+	
+	public void applyDoomCost(PropertyDoom doom)
 	{
-		doom.decreaseDoomAmountAndApplyCooldown(this.getScaledDoomRequirement(doom) * iterations, this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting) * iterations);
+		doom.increaseDoom(-this.getScaledDoomRequirement(doom));
 	}
-
+	
+	public void applyCooldown(PropertyDoom doom, int iterations)
+	{
+		doom.increaseCooldown(this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting) * iterations);
+	}
+	
+	public void applyCooldown(PropertyDoom doom, int iterations, int inheritence)
+	{
+		this.applyCooldown(doom, iterations);
+		doom.increaseCooldown(inheritence);
+	}
+	
 	/**
 	 * Backlash chance scales based on difficulty, with higher difficulty having a higher chance to backlash, crisis and overflow doomsdays that reduce the
 	 * chance for backlash based on their respective amounts should be done individually
@@ -420,7 +431,7 @@ public abstract class Doomsday {
 	 * @param cooldown2
 	 * @return
 	 */
-	private short getScaledCooldown(EnumDifficulty dif) {
+	public short getScaledCooldown(EnumDifficulty dif) {
 		if (dif == EnumDifficulty.HARD)
 		{
 			return (byte) (this.cooldown);
@@ -454,11 +465,7 @@ public abstract class Doomsday {
 
 	public boolean doesCurrentDoomMeetRequirement(PropertyDoom doom, int iterations)
 	{
-		if (doom.getCurrentDoom() >= this.getScaledDoomRequirement(doom) * iterations)
-		{
-			return true;
-		}
-		return false;
+		return doom.getCurrentDoom() >= this.getScaledDoomRequirement(doom) * iterations;
 	}
 
 	public int getDoomId()

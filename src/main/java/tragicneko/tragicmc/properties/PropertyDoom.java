@@ -264,7 +264,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	public void decreaseDoomAmountAndApplyCooldown(int amount, int cooldown)
 	{
 		this.increaseCooldown(cooldown);
-		this.increaseDoom(-amount);;
+		this.increaseDoom(-amount);
 	}
 
 	public void emptyDoom()
