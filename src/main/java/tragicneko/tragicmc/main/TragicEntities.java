@@ -440,7 +440,7 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityNanoSwarm.class, "NanoSwarm", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
 		}
-		
+
 		//TODO add Harvester/Hunter
 
 		if (TragicNewConfig.allowCircuitGolem)
@@ -452,13 +452,16 @@ public class TragicEntities {
 		TragicEntityList.addMapping(EntityIronGolem.class, "TragicMC.IronGolem", id++, 0xDBCDC1, 0x8B7260);
 
 		//Added snow golem to ice biomes
-		EntityRegistry.addSpawn(EntitySnowman.class, 40, 0, 2, EnumCreatureType.creature, BiomeGenBase.icePlains, BiomeGenBase.iceMountains,
-				BiomeGenBase.frozenOcean,
-				BiomeGenBase.frozenRiver,
-				BiomeGenBase.coldBeach,
-				BiomeGenBase.coldTaiga,
-				BiomeGenBase.coldTaigaHills
-				);
+		if (TragicNewConfig.allowSnowGolem)
+		{
+			EntityRegistry.addSpawn(EntitySnowman.class, TragicNewConfig.snowGolemSC, 0, 2, EnumCreatureType.creature, BiomeGenBase.icePlains, BiomeGenBase.iceMountains,
+					BiomeGenBase.frozenOcean,
+					BiomeGenBase.frozenRiver,
+					BiomeGenBase.coldBeach,
+					BiomeGenBase.coldTaiga,
+					BiomeGenBase.coldTaigaHills
+					);
+		}
 		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, 0xFFFDF1, 0xABA290);
 
 		//Mini-Bosses
@@ -749,18 +752,18 @@ public class TragicEntities {
 			}
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
-		
+
 
 		//Big bosses
-		
+
 		if (TragicNewConfig.allowOverlord)
 		{
 			EntityRegistry.registerModEntity(EntityOverlordCocoon.class, "OverlordCocoon", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
-			
+
 			EntityRegistry.registerModEntity(EntityOverlordCombat.class, "OverlordCombat", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
-			
+
 			EntityRegistry.registerModEntity(EntityOverlord.class, "Overlord", listid++, TragicMC.instance, 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlord.class, "TragicMC.Overlord", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
 		}
