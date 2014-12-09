@@ -49,7 +49,6 @@ import tragicneko.tragicmc.events.MobDropEvents;
 import tragicneko.tragicmc.events.NewAmuletEvents;
 import tragicneko.tragicmc.events.PotionEvents;
 import tragicneko.tragicmc.events.RespawnDoomEvents;
-import tragicneko.tragicmc.events.StatueEvents;
 import tragicneko.tragicmc.events.VanillaChangingEvents;
 import tragicneko.tragicmc.events.WeaponEvents;
 import tragicneko.tragicmc.main.TragicBiomes;
@@ -172,7 +171,6 @@ public class TragicMC
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsEvent());
-		MinecraftForge.EVENT_BUS.register(new StatueEvents());
 
 		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
 
