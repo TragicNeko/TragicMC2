@@ -11,6 +11,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -71,16 +72,26 @@ public class DoomsdayGrowthSpurt extends Doomsday {
 						{
 							if (rand.nextBoolean())
 							{
-							player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.tallgrass);
+								if (rand.nextBoolean())
+								{
+									player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.tallgrass, rand.nextInt(4), 3);
+								}
+								else
+								{
+									player.worldObj.setBlock(coords[0], coords[1], coords[ 2], TragicBlocks.TragicFlower, rand.nextInt(16), 3);
+								}
 							}
 							else
 							{
-								player.worldObj.setBlock(coords[0], coords[1], coords[2], rand.nextBoolean() ? Blocks.red_flower : Blocks.yellow_flower);
+								Block block3 = rand.nextBoolean() ? Blocks.red_flower : Blocks.yellow_flower;
+								player.worldObj.setBlock(coords[0], coords[1], coords[2], block3, block3 == Blocks.red_flower ? rand.nextInt(8) : 0, 3);
 							}
 						}
 						else
 						{
-							player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.double_plant, 0, 2);
+							int meta = rand.nextInt(6);
+							player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.double_plant, meta, 2);
+							player.worldObj.setBlock(coords[0], coords[1] + 1, coords[2], Blocks.double_plant, 8, 2);
 						}
 					}
 					else if (block2 == Blocks.mycelium)
