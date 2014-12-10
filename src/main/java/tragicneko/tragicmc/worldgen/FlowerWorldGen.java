@@ -37,15 +37,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (world.provider.dimensionId == 0 && !TragicNewConfig.allowExtraOverworldFlowers)
-		{
-			return;
-		}
-
-		if (world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider))
-		{
-			return;
-		}
+		if (world.provider.dimensionId == 0 && !TragicNewConfig.allowExtraOverworldFlowers || world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider)) return;
 
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);
@@ -54,10 +46,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		BlockTragicFlower flower = (BlockTragicFlower) TragicBlocks.TragicFlower;
 		boolean bushType = random.nextBoolean();
 
-		if (!allowedBiomes.contains(biome))
-		{
-			return;
-		}
+		if (!allowedBiomes.contains(biome)) return;
 
 		int meta = random.nextInt(16);
 
@@ -78,7 +67,8 @@ public class FlowerWorldGen implements IWorldGenerator {
 				discrim[meow] = true;
 			}
 
-			discrim[14] = random.nextInt(50) == 0; //this is the stapelia, it's rare
+			discrim[14] = random.nextInt(50) == 0; //this is the stapelia, it's rare, this means there's a one in 50 chance for a specific chunk to be able to generate a stapelia
+			//the chunk then has to choose it out of all available flowers based on biome, this makes it extremely rare in natural generation however it can generate in any allowed biome
 
 			if (flag)
 			{
