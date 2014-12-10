@@ -33,7 +33,7 @@ public class BlockDarkCobble extends Block {
 	
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
     {
-        if (side == ForgeDirection.UP)
+        if (side == ForgeDirection.UP && world.getBlockMetadata(x, y, z) == 1)
         {
             return true;
         }
