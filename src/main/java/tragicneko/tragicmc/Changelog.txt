@@ -3087,9 +3087,14 @@ Fixed meta values of blocks in the Growth Spurt Doomsday, double plants now have
 Added a debugger to see what is causing the most lag within the mod, for initialization the Config, Entities and Items are understandably taking a larger portion of the time, however,
 I'm unsure as to why the network handlers are taking so long, but it's possibly due to the fact that it uses a network wrapper for netty and it takes some time to set these up within
 it
+Fix NBT Tags for Polaris
+Update some storage block textures, particularly the Tungsten, Red Mercury and Ruby block textures
+Dark stone will now drop dark cobblestone, added some recipes added to obtain the variants, including the light cobblestone variants, added light stone
+Added more of the blocks to the ore dictionary
+Slightly update FlowerWorldGen
 
 TODO still
-Create the Overlord's final form model, since it will no longer be multipart I'll start working on it's AI more
+Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
 
