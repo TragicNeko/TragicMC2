@@ -89,6 +89,7 @@ public class TragicBlocks {
 	public static Block DarkStone;
 	public static Block DarkCobblestone;
 	public static Block LightCobblestone;
+	public static Block LightStone;
 	
 	public static Block DeadDirt;
 	public static Block DarkSand;
@@ -209,6 +210,9 @@ public class TragicBlocks {
 
 		LightCobblestone = (new BlockLightCobble());
 		GameRegistry.registerBlock(LightCobblestone, TragicItemBlock.class, "lightCobblestone", new Object[] {new String[] {"normal", "frozen", "glowing"}, "lightCobblestone"});
+		
+		LightStone = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:SmoothLightStone_lowRes").setBlockName("tragicmc.lightStone").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
+		GameRegistry.registerBlock(LightStone, ItemBlock.class, "lightStone");
 
 		TragicObsidian = (new BlockObsidianVariant());
 		GameRegistry.registerBlock(TragicObsidian, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
@@ -326,12 +330,13 @@ public class TragicBlocks {
 		for (int i = 0; i < 3; i++)
 		{
 			OreDictionary.registerOre("blockQuicksand", new ItemStack(Quicksand, 1, i));
-			OreDictionary.registerOre("cobblestone", new ItemStack(DarkCobblestone, 1, i));
 			OreDictionary.registerOre("cobblestone", new ItemStack(LightCobblestone, 1, i));
 		}
 		
+		for (int i = 0; i < 4; i++) OreDictionary.registerOre("cobblestone", new ItemStack(DarkCobblestone, 1, i));
 		for (int i = 0; i < 8; i++) OreDictionary.registerOre("stone", new ItemStack(DarkStone, 1, i));
 		
+		OreDictionary.registerOre("stone", LightStone);
 		OreDictionary.registerOre("stone", ErodedStone);
 		
 		OreDictionary.registerOre("materialVine", Blocks.vine);
@@ -347,6 +352,10 @@ public class TragicBlocks {
 		
 		OreDictionary.registerOre("logWood", PaintedWood);
 		OreDictionary.registerOre("plankWood", PaintedPlanks);
+		OreDictionary.registerOre("logWood", AshenWood);
+		OreDictionary.registerOre("plankWood", AshenPlanks);
+		OreDictionary.registerOre("logWood", BleachedWood);
+		OreDictionary.registerOre("plankWood", BleachedPlanks);
 	}
 
 }

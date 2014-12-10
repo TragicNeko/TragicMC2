@@ -19,6 +19,8 @@ public class TragicRecipes {
 		GameRegistry.addSmelting(TragicBlocks.MercuryOre, new ItemStack(TragicItems.RedMercury), 2F);
 		GameRegistry.addSmelting(TragicBlocks.TungstenOre, new ItemStack(TragicItems.Tungsten), 3.5F);
 		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 0), new ItemStack(TragicItems.RedMercury), 2F);
+		GameRegistry.addSmelting(TragicBlocks.DarkCobblestone, new ItemStack(TragicBlocks.DarkStone, 1, 0), 1F);
+		GameRegistry.addSmelting(TragicBlocks.LightCobblestone, new ItemStack(TragicBlocks.LightStone, 1, 0), 1F);
 
 		//Crafting Recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.QuicksilverIngot, 1), new Object[] {
@@ -1346,6 +1348,71 @@ public class TragicRecipes {
 			"xx",
 			"xx",
 			'x', TragicBlocks.ErodedStone
+		});
+		
+		//Cobblestone recipes
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 1), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.DarkCobblestone,
+			'y', Items.redstone
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 2), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.DarkCobblestone,
+			'y', TragicItems.Spore
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 3), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.DarkCobblestone,
+			'y', TragicItems.DarkParticles
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.DarkCobblestone,
+			'y', TragicItems.WispParticles
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.DarkCobblestone,
+			'y', TragicItems.LightParticles
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 1), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.LightCobblestone,
+			'y', TragicItems.IceOrb
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 2), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.LightCobblestone,
+			'y', TragicItems.WispParticles
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 2), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.LightCobblestone,
+			'y', TragicItems.LightParticles
 		});
 
 		//Flower-to-Dye recipes
