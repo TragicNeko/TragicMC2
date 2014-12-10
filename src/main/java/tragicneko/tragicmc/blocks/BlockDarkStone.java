@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.blocks;
 
 import java.util.List;
+import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicTabs;
 
 public class BlockDarkStone extends Block {
@@ -71,4 +73,9 @@ public class BlockDarkStone extends Block {
 		}
 	}
 
+	@Override
+	public Item getItemDropped(int meta, Random rand, int looting)
+	{
+		return meta == 0 ? TragicBlocks.DarkCobblestone.getItemDropped(0, rand, looting) : super.getItemDropped(meta, rand, looting);
+	}
 }
