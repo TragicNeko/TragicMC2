@@ -394,7 +394,7 @@ public class EntityPolaris extends TragicBoss {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("spinTicks", this.getAttackTime());
-		tag.setBoolean("healingTicks", this.isClone());
+		tag.setInteger("attackTime", this.getAttackTime());
+		tag.setBoolean("isClone", this.isClone());
 	}
 }
