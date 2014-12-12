@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -8,23 +9,25 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class EntityPitchBlack extends EntityProjectile {
+public class EntityPitchBlack extends EntityThrowable {
 
 	private ItemStack stack;
 
-	public EntityPitchBlack(World par1World)
-	{
-		super(par1World);
+	public EntityPitchBlack(World world) {
+		super(world);
 	}
 
-	public EntityPitchBlack(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5,
-			double par7) {
-		super(par1World, par2EntityLivingBase, par3, par5, par7);
+	public EntityPitchBlack(World par1World, EntityLivingBase par2EntityLivingBase) {
+		super(par1World, par2EntityLivingBase);
 	}
-	
-	protected float getMotionFactor()
-	{
-		return 0.865F;
+
+	public EntityPitchBlack(World world, double par2, double par4, double par6, boolean flag) {
+		super(world, par2, par4, par6);
+	}
+
+	@Override
+	protected float getGravityVelocity() {
+		return inGround ? 0.0F : 0.05F;
 	}
 
 	public void setStack(ItemStack stack)
@@ -44,9 +47,9 @@ public class EntityPitchBlack extends EntityProjectile {
 		}
 		else 
 		{
-			if (mop.entityHit != null && !mop.entityHit.equals(this.shootingEntity)) 
+			if (mop.entityHit != null && !mop.entityHit.equals(this.getThrower())) 
 			{						
-				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 10.0F);
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 10.0F);
 
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
@@ -54,14 +57,19 @@ public class EntityPitchBlack extends EntityProjectile {
 				}
 			}
 			
-			if (this.shootingEntity != null && this.stack != null)
+			if (this.getThrower() != null && this.stack != null)
 			{
-				if (mop.entityHit != null) this.setPosition(this.shootingEntity.posX + rand.nextDouble() - rand.nextDouble(), this.shootingEntity.posY + 0.4D, this.shootingEntity.posZ + rand.nextDouble() - rand.nextDouble());
+				if (mop.entityHit != null) this.setPosition(this.getThrower().posX + rand.nextDouble() - rand.nextDouble(), this.getThrower().posY + 0.4D, this.getThrower().posZ + rand.nextDouble() - rand.nextDouble());
 				this.entityDropItem(stack, 0.4F);
 			}
 			
 			if (mop != null) this.setDead();
 		}
+	}
+	
+	public void onUpdate()
+	{
+		super.onUpdate();
 	}
 
 }

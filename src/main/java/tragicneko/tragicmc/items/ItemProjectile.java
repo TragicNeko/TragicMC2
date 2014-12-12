@@ -146,7 +146,7 @@ public class ItemProjectile extends Item {
 			entity = new EntityDarkLightning(world, player, x, y, z);
 			break;
 		case 18:
-			entity = new EntityPitchBlack(world, player, x, y, z);
+			entity = new EntityPitchBlack(world, player);
 			break;
 		case 19:
 			entity = new EntityDarkEnergy(world, player, x, y, z);
