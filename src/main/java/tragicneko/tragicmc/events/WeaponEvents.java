@@ -50,7 +50,7 @@ public class WeaponEvents {
 
 				if (weapon == TragicItems.BlindingLight && event.source.isProjectile())
 				{
-					if (event.isCancelable() && doom.getCurrentDoom() >= 5)
+					if (event.isCancelable() && TragicWeapon.canUseAbility(doom, 5))
 					{
 						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-5);
 						event.setCanceled(true);
@@ -59,19 +59,19 @@ public class WeaponEvents {
 
 				if (weapon == TragicItems.EnigmaShield)
 				{
-					if (event.source.isUnblockable() && !event.source.isMagicDamage() && !event.source.canHarmInCreative() && event.isCancelable() && doom.getCurrentDoom() >= 8)
+					if (event.source.isUnblockable() && !event.source.isMagicDamage() && !event.source.canHarmInCreative() && event.isCancelable() && TragicWeapon.canUseAbility(doom, 8))
 					{
 						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-8);
 						event.setCanceled(true);
 					}
 				}
 
-				if (weapon == TragicItems.Sentinel && doom.getCurrentDoom() > 0)
+				if (weapon == TragicItems.Sentinel && TragicWeapon.canUseAbility(doom, 0))
 				{
 					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
 				}
 
-				if (weapon == TragicItems.CelestialAegis && doom.getCurrentDoom() > 0)
+				if (weapon == TragicItems.CelestialAegis && TragicWeapon.canUseAbility(doom, 0))
 				{
 					event.ammount *= 0.825F;
 				}
@@ -86,20 +86,20 @@ public class WeaponEvents {
 			{
 				Item weapon = player.getCurrentEquippedItem().getItem();
 
-				if (weapon == TragicItems.Butcher && doom.getCurrentDoom() > 0)
+				if (weapon == TragicItems.Butcher && TragicWeapon.canUseAbility(doom, 1))
 				{
 					event.entity.motionX = event.entity.posX - player.posX;
 					event.entity.motionY = event.entity.posY - player.posY;
 					event.entity.motionZ = event.entity.posZ - player.posZ;
 
-					if (player.isSprinting() || player.motionY < 0.0)
+					if (player.isSprinting() && player.motionY < 0.0 && player.fallDistance > 0)
 					{
 						event.entity.motionX *= 1.2D;
 						event.entity.motionY *= 1.15D;
 						event.entity.motionZ *= 1.2D;
 					}
 				}
-				else if (weapon == TragicItems.Splinter && doom.getCurrentDoom() > 3 && player.worldObj.rand.nextInt(4) == 0)
+				else if (weapon == TragicItems.Splinter && TragicWeapon.canUseAbility(doom, 3) && player.worldObj.rand.nextInt(4) == 0)
 				{
 					event.entity.motionX = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 					event.entity.motionY = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
@@ -120,13 +120,13 @@ public class WeaponEvents {
 			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
 			PropertyDoom doom = PropertyDoom.get(mp);
 
-			if (mp.getCurrentEquippedItem() != null)
+			if (mp.getCurrentEquippedItem() != null && TragicWeapon.canUseAbility(doom, 5))
 			{
-				if (mp.getCurrentEquippedItem().getItem() == TragicItems.Titan && doom.getCurrentDoom() >= 25)
+				if (mp.getCurrentEquippedItem().getItem() == TragicItems.Titan)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
-					if (mp.getHealth() <= mp.getMaxHealth()) mp.heal(mp.getMaxHealth());
-					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-25);
+					if (mp.getHealth() <= mp.getMaxHealth()) mp.heal(mp.getMaxHealth() * 0.25F);
+					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-5);
 				}
 			}
 		}

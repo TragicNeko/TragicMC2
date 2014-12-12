@@ -49,7 +49,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			else if (stack.getItem() instanceof TragicWeapon)
 			{
 				TragicWeapon weapon = (TragicWeapon) stack.getItem();
-				doomsday = !player.isSneaking() && weapon.getSecondaryDoomsday() != null ? weapon.getSecondaryDoomsday() : weapon.doomsday;
+				doomsday = !player.isSneaking() && weapon.getSecondaryDoomsday() != null ? weapon.getSecondaryDoomsday() : weapon.getDoomsday();
 			}
 			else if (stack.getItem() instanceof ItemShield)
 			{

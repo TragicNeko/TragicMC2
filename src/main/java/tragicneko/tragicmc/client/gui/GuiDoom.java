@@ -129,7 +129,7 @@ public class GuiDoom extends Gui
 				else if (stack.getItem() instanceof TragicWeapon)
 				{
 					TragicWeapon weapon = (TragicWeapon) stack.getItem();
-					if (weapon.doomsday.doesCurrentDoomMeetRequirement(props) || weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props) )
+					if (weapon.getDoomsday().doesCurrentDoomMeetRequirement(props) || weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props) )
 					{
 						flag = true;
 					}

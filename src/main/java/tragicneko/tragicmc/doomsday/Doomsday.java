@@ -139,9 +139,8 @@ public abstract class Doomsday {
 	 * @param doom
 	 * @return
 	 */
-	public short getScaledDoomRequirement(PropertyDoom doom)
+	public short getScaledDoomRequirement(EnumDifficulty dif)
 	{
-		EnumDifficulty dif = doom.getPlayer().worldObj.difficultySetting;
 		Short reqDoom = this.requiredDoom;
 
 		if (dif == EnumDifficulty.PEACEFUL)
@@ -160,6 +159,16 @@ public abstract class Doomsday {
 		}
 
 		return (short) (reqDoom * 2 / 3);
+	}
+	
+	public short getScaledDoomRequirement(World world)
+	{
+		return getScaledDoomRequirement(world.difficultySetting);
+	}
+	
+	public short getScaledDoomRequirement(PropertyDoom doom)
+	{
+		return getScaledDoomRequirement(doom.getPlayer().worldObj);
 	}
 
 	/**
@@ -506,16 +515,27 @@ public abstract class Doomsday {
 	public enum EnumDoomType
 	{
 		INFLUENCE,
-		OVERFLOW,
-		CRISIS,
-		WORLDSHAPER,
-		COMBINATION
+		OVERFLOW(EnumChatFormatting.GREEN),
+		CRISIS(EnumChatFormatting.RED),
+		WORLDSHAPER(EnumChatFormatting.DARK_PURPLE),
+		COMBINATION(EnumChatFormatting.YELLOW);
+		
+		private final EnumChatFormatting format;
+		
+		private EnumDoomType()
+		{
+			this(EnumChatFormatting.WHITE);
+		}
+		
+		private EnumDoomType(EnumChatFormatting format)
+		{
+			this.format = format;
+		}
+		
+		public EnumChatFormatting getFormat() { return this.format; }
 	}
 	
-	public interface IExtendedDoomsday
-	{
-		
-	}
+	public interface IExtendedDoomsday {} //Marker interface
 
 	static
 	{		
