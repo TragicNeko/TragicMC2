@@ -13,9 +13,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class OverworldOreWorldGen implements IWorldGenerator {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if(world.provider.dimensionId == 0)
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		if (world.provider.dimensionId == 0)
 		{		
 			int Xcoord;
 			int Ycoord;
@@ -34,8 +33,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(24) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-
-				new WorldGenMinable(TragicBlocks.TungstenOre, 0, 2, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.TungstenOre, 0, 3, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 			
 			for (int i = 0; i < TragicNewConfig.silverfishGenRarity && TragicNewConfig.allowOverworldSilverfishGen; i++)

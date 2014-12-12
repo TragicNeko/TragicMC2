@@ -23,7 +23,7 @@ public class NetherOreWorldGen implements IWorldGenerator {
 				int Xcoord = (chunkX * 16) + random.nextInt(16);
 				int Ycoord = random.nextInt(30) + 20;
 				int Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.RubyOre, 0, 2, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.RubyOre, 0, 3, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 			
 			for (int i = 0; i < TragicNewConfig.sapphireOreRarity; i++)
@@ -31,7 +31,7 @@ public class NetherOreWorldGen implements IWorldGenerator {
 				int Xcoord = (chunkX * 16) + random.nextInt(16);
 				int Ycoord = random.nextInt(30) + 85;
 				int Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.SapphireOre, 0, 2, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.SapphireOre, 0, 3, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 			
 			for (int i = 0; i < TragicNewConfig.drudgeGenRarity && TragicNewConfig.allowQuicksandGen; i++)
