@@ -22,16 +22,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderGenerate;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenDungeons;
 import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
@@ -41,8 +33,6 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicTabs;
-import tragicneko.tragicmc.dimension.TragicChunkProvider;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
@@ -86,7 +76,7 @@ public class ItemGenerator extends Item {
 		int[] coords;
 		ArrayList<int[]> list;
 
-		Vec3 vec = TragicWeapon.getVecFromPlayer(player, 100.0);
+		Vec3 vec = WorldHelper.getVecFromEntity(player, 100.0);
 
 		int Xcoord = MathHelper.floor_double(vec.xCoord);
 		int Ycoord = MathHelper.floor_double(vec.yCoord);

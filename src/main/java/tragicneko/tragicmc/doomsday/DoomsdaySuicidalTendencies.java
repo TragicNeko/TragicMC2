@@ -7,8 +7,8 @@ import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoomsday {
 
@@ -20,7 +20,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		Vec3 vec = TragicWeapon.getVecFromPlayer(player, 30.0);
+		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 
 		if (vec == null)
 		{
@@ -40,7 +40,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player,	boolean crucMoment) 
 	{
-		Vec3 vec = TragicWeapon.getVecFromPlayer(player, 30.0);
+		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 		if (vec == null) return;
 
 		double d4 = vec.xCoord - player.posX;

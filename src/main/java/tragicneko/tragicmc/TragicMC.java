@@ -112,7 +112,7 @@ public class TragicMC
 
 	public static final Random rand = new Random();
 	private static Configuration config;
-	
+
 	private static long time = 0L;
 	public static boolean DEBUG = false;
 
@@ -120,12 +120,12 @@ public class TragicMC
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		logTime();
-		
+
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicNewConfig.initialize();
 		MinecraftForge.EVENT_BUS.register(new TragicNewConfig());
-		
+
 		logDuration("Configuration");
 
 		if (TragicNewConfig.allowPotions)
@@ -141,10 +141,10 @@ public class TragicMC
 				TragicNewConfig.disablePotions();
 			}
 		}
-		
+
 		if (TragicNewConfig.allowEnchantments) TragicEnchantments.load();
 		if (TragicNewConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
-		
+
 		logDuration("Potions and Enchantments");
 
 		TragicTabs.load();
@@ -154,31 +154,31 @@ public class TragicMC
 		logDuration("Items");
 		if (TragicNewConfig.allowPotions) TragicPotions.setPotionIcons();
 		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
-		
+
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
 		MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
-		
+
 		if (TragicNewConfig.allowDoom)
 		{
 			MinecraftForge.EVENT_BUS.register(new DoomEvents());
 			FMLCommonHandler.instance().bus().register(new RespawnDoomEvents());
 		}
 		logDuration("Events 1");
-		
+
 		if (TragicNewConfig.allowMobs)
 		{
 			TragicEntities.load();
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
 		}
-		
+
 		logDuration("Entities");
-		
+
 		if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 
 		MinecraftForge.EVENT_BUS.register(new MobDropEvents());
 		MinecraftForge.EVENT_BUS.register(new BlockDropsEvent());
-		
+
 		logDuration("Events 2");
 
 		proxy.registerRenders();
@@ -190,7 +190,7 @@ public class TragicMC
 		net.registerMessage(MessageHandlerUseDoomsday.class, MessageUseDoomsday.class, 3, Side.SERVER);
 		net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
 		net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
-		
+
 		logDuration("Network Handlers");
 
 		if (TragicNewConfig.allowDimension)
@@ -208,7 +208,7 @@ public class TragicMC
 				DimensionManager.registerProviderType(TragicNewConfig.providerID, TragicWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
 				DimensionManager.registerDimension(TragicNewConfig.dimensionID, TragicNewConfig.providerID);
 			}
-			
+
 			if (!DimensionManager.isDimensionRegistered(TragicNewConfig.synapseID))
 			{
 				DimensionManager.registerProviderType(TragicNewConfig.synapseProviderID, SynapseWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
@@ -226,13 +226,13 @@ public class TragicMC
 			TragicBiomes.load();
 			MinecraftForge.ORE_GEN_BUS.register(new DenyVanillaGenEvent());
 		}
-		
+
 		logDuration("Dimension");
-		
+
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
-		
+
 		logDuration("Events 3");
 	}
 
@@ -240,7 +240,7 @@ public class TragicMC
 	public void init(FMLInitializationEvent event)
 	{
 		logTime();
-		
+
 		if (TragicNewConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
 		if (TragicNewConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
 		if (TragicNewConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
@@ -263,7 +263,7 @@ public class TragicMC
 		}
 
 		if (TragicNewConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);
-		
+
 		logDuration("WorldGen registration");
 	}
 
@@ -305,65 +305,51 @@ public class TragicMC
 				logWarning("potionTypes[]'s array length was " + Potion.potionTypes.length + ", so it is assumed that it was previously reflected to an adequate amount.");
 			}
 		}
-		catch (Throwable throwable)
+		catch (Throwable t)
 		{
-			CrashReport report = CrashReport.makeCrashReport(throwable, "Reflection of Potion Array");
-			CrashReportCategory cat = report.makeCategory("Invalid field name");
-			cat.addCrashSection("Obfuscated name", Potion.potionTypes.toString());
-			CrashReportCategory cat2 = report.makeCategory("General mod info");
-			cat2.addCrashSection("Mod Version", VERSION);
-			cat2.addCrashSection("Forge Version", MinecraftForge.getBrandingVersion());
-
-			try
-			{
-				throw new ReportedException(report);
-			}
-			catch (ReportedException e)
-			{
-				logError("There was an error during Potion array reflection, this may be due to obfuscation and could have unintended side effects.", e);
-			}
+			logError("There was an error during Potion array reflection, this may be due to obfuscation and could have unintended side effects.", t);
 		}
 	}
-	
+
 	public static void logError(String s)
 	{
 		logger.error(s);
 	}
-	
+
 	public static void logError(String s, Exception e)
 	{
 		logger.error(s, e);
 	}
-	
+
 	public static void logError(String s, Throwable t)
 	{
 		logger.error(s, t);
 	}
-	
+
 	public static void logInfo(String s)
 	{
 		logger.info(s);
 	}
-	
+
 	public static void logWarning(String s)
 	{
 		logger.warn(s);
 	}
-	
+
 	public static Configuration getConfig()
 	{
 		return config;
 	}
-	
+
 	public static void logTime()
 	{
 		time = System.currentTimeMillis();
 	}
-	
+
 	public static void logDuration(String sectionName)
 	{
 		if (!DEBUG) return;
-		
+
 		long l = System.currentTimeMillis() - time;
 		logInfo("Time to complete section (" + sectionName + ") was " + l + " ms.");
 		time = System.currentTimeMillis();

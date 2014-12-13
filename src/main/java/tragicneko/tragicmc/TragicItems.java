@@ -165,8 +165,6 @@ public class TragicItems {
 	//public static Item PhoenixFeather; //Phoenix
 	public static Item OverlordEye; //The Overlord
 
-	public static Item OverlordSeed; //there will be an End-like dimension created
-
 	//Doom items
 	public static Item DoomConsume, CooldownDefuse, AmuletRelease;
 

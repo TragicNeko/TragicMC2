@@ -13,8 +13,8 @@ import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
@@ -68,7 +68,7 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		if (entity != null && !entity.isDead)
 		{
-			Vec3 vec = TragicWeapon.getVecFromPlayer(player, 5.0D);
+			Vec3 vec = WorldHelper.getVecFromEntity(player, 5.0D);
 
 			if (vec != null)
 			{

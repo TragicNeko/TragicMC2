@@ -6,8 +6,8 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayPoisonBreak extends Doomsday {
 	
@@ -17,7 +17,7 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	
 	@Override
 	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		Vec3 vec = TragicWeapon.getVecFromPlayer(player);
+		Vec3 vec = WorldHelper.getVecFromEntity(player);
 		
 		if (vec == null)
 		{
@@ -37,7 +37,7 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	@Override
 	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		Vec3 vec = TragicWeapon.getVecFromPlayer(player);
+		Vec3 vec = WorldHelper.getVecFromEntity(player);
 		if (vec == null) return;
 		
 		for (int i = 0; i < 4; i ++)
