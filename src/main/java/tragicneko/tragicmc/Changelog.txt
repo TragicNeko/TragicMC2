@@ -3092,11 +3092,39 @@ Update some storage block textures, particularly the Tungsten, Red Mercury and R
 Dark stone will now drop dark cobblestone, added some recipes added to obtain the variants, including the light cobblestone variants, added light stone
 Added more of the blocks to the ore dictionary
 Slightly update FlowerWorldGen
+Converted the Pitch Black entity to a throwable projectile, so that it has better gravity
+Fixed possible NPE with weapons that had two doomsdays
+Fixed possible bug with Cooldown not being applied when Doomsday abilities are disabled
+Rewriting how Lore is chosen and applied, it should still allow custom lore and rarity to be set, in fact now you can choose a specific lore from the preset lores if you know the id
+and rarity tier, there is now an overall 10% chance for a weapon to be "epic" rarity, and then the chosen lores have set weights in their own rarity tiers
+While it would be better to have each weapon have a large pool of lores which have different weights, that wouldn't quite work for custom lores
+Removed unnecessary tag compound for Beastly Claws, keeping track of the damage amount when it depends on the combo count is redundant
+Fixed continous errors brought forth by inputting a custom id that was too high
+Fixed bugs with WorldGen, apparently WorldGenMinable doesn't like amounts that are lower than 3
+Added new ToolMaterials for the Harmony Bell and Neko Launcher
+Removed the ID system for the Lore, this didn't work quite correctly and complicated the matter of finding a lore for a rarity, as such the Lore basically works off of the previously
+used system except that it is cleaner and all in one spot now instead of scattered across multiple classes
+Fixed error loop with a weapon that had it's rarity set to common
+Fixed bug that didn't allow weapons to have a common rarity
+Fixed bug with a null string being saved from a common rarity item, it now gets saved as "" which is an empty string but isn't null
 
 TODO still
 Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
+Convert Enigma Shield to a different item/weapon, maybe a special one like the Harmony Bell, currently it is rather useless
+Rewrite the Amulet items to use one item per type, but allow their levels and such to be set using nbt tags, their name and title can also be set with this method
+Along with that rewrite, I'll also add modifiers at this time
+
+Note for Bosses:
+Some Bosses don't have structures or are random spawns, for each one I want an Iron Golem-like spawning ability in which you create a structure with a particular block and it is summoned
+there (like I did for the Enyvil and Time Controller)
+Change the Death Reaper to use Pumpkinbombs, I completely forgot about that aspect until now, the Reaper Scythe will be changed to fire small and large pumpkinbombs and the Reaper Sycthe
+ability will be changed to fire those as well, the Withering Axe will probably gain the previous Reaper's Laugh ability as a 2nd doomsday since it requires a nether star to craft
+
+Note for Doomsdays:
+Remove any variables within the Doomsdays that are not static, these are arbitrary and may cause weird bugs in a server or multi-user environment
+This will require DoomsdayEffect to have a couple of utility methods for storing an entity and for storing a list of things, as well as storing a utility flag
 
 --Overlord plan, may fit in other random small things in between doing this--
 Finish up the Overlord's motion and attack patterns, as well as create it's model
@@ -3166,7 +3194,7 @@ other smaller ones, this is the final form and has 1000 health, it will be a ver
 --Reminders for later--
 Add the custom mob sounds
 Add new particle effects
-Add the achievements, which will have a set questline leading up to the overlord
+Add the achievements, which will have a set questline leading up to the overlord but won't be enforced like Twilight Forest
 
 --For after 1.0 Release--
 Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
