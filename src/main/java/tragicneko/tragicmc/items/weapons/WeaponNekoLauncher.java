@@ -2,28 +2,24 @@ package tragicneko.tragicmc.items.weapons;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponNekoLauncher extends TragicWeapon {
 
-	private final Lore[] uniqueLores = new Lore[] {new Lore("Some days you just can't get rid of a bomb!", EnumRarity.epic), new Lore("I meant to do that!", EnumRarity.uncommon),
-			new Lore("That was supposed to happen!"), new Lore("Oops."), new Lore("This is why I can't have nice things!", EnumRarity.rare),
-			new Lore("It's just a flesh wound.", EnumRarity.rare), new Lore("Meow~", EnumRarity.epic)};
+	//private final Lore[] uniqueLores = new Lore[] {new Lore("Some days you just can't get rid of a bomb!", EnumRarity.epic), new Lore("I meant to do that!", EnumRarity.uncommon),
+	//		new Lore("That was supposed to happen!"), new Lore("Oops."), new Lore("This is why I can't have nice things!", EnumRarity.rare),
+	//		new Lore("It's just a flesh wound.", EnumRarity.rare), new Lore("Meow~", EnumRarity.epic)};
 
 	public WeaponNekoLauncher(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.setMaxDamage(250);
 		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
 		this.uncommonLevels = new int[] {1};
@@ -39,7 +35,7 @@ public class WeaponNekoLauncher extends TragicWeapon {
 
 		if (doom == null || doom.getCurrentDoom() < 5 || getStackCooldown(par1ItemStack) > 0) return par1ItemStack;
 
-		Vec3 vec = getVecFromPlayer(par3EntityPlayer);
+		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
 		double d4 = vec.xCoord - par3EntityPlayer.posX;

@@ -4,7 +4,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -12,17 +11,16 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponHarmonyBell extends TragicWeapon {
 
-	private final Lore[] uniqueLores = new Lore[] {new Lore("Hell's Bells!", EnumRarity.rare), new Lore("Ding dong.", EnumRarity.uncommon), new Lore("For Whom the Bell Tolls...", EnumRarity.epic),
-		new Lore("Fahoo Fores, Dahoo Dores!", EnumRarity.rare), new Lore("Ding ding, dinner's ready!"), new Lore("Ring-a-ding ding", EnumRarity.uncommon), new Lore("Jingle Bells!")};
+	//private final Lore[] uniqueLores = new Lore[] {new Lore("Hell's Bells!", EnumRarity.rare), new Lore("Ding dong.", EnumRarity.uncommon), new Lore("For Whom the Bell Tolls...", EnumRarity.epic),
+	//	new Lore("Fahoo Fores, Dahoo Dores!", EnumRarity.rare), new Lore("Ding ding, dinner's ready!"), new Lore("Ring-a-ding ding", EnumRarity.uncommon), new Lore("Jingle Bells!")};
 	
 	public WeaponHarmonyBell(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
 		this.uncommonLevels = new int[] {1};
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback};

@@ -3,20 +3,14 @@ package tragicneko.tragicmc.items.armor;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorTungsten extends TragicArmor {
-	
+	/*
 	protected Lore[] uniqueLores = new Lore[] {new Lore("Hot stuff."), new Lore("Feels lukewarm"), new Lore("Pretty hot"), new Lore("Warm"), new Lore("Warmer"),
 			new Lore("It's a bit stuffy out"), new Lore("Just warming up!", EnumRarity.uncommon), new Lore("Things are heating up!", EnumRarity.rare),
 			new Lore("Burn, baby, burn!", EnumRarity.rare), new Lore("I'm pretty heated right now.", EnumRarity.uncommon), new Lore("In heat."),
@@ -28,11 +22,11 @@ public class ArmorTungsten extends TragicArmor {
 			new Lore("We can't wait to burn it to the ground!", EnumRarity.epic), new Lore("Burn it Down!", EnumRarity.uncommon), new Lore("Scream, Aim, Fire!", EnumRarity.epic),
 			new Lore("Shepherd of Fire!", EnumRarity.epic), new Lore("Light my Fire!", EnumRarity.uncommon), new Lore("I Don't Want to Set the World on Fire", EnumRarity.epic),
 			new Lore("I fell down in a burning ring of fire", EnumRarity.uncommon), new Lore("Through the Fire and Flames", EnumRarity.uncommon),
-			new Lore("Original Fire", EnumRarity.uncommon), new Lore("Caution: Contents may explode under pressure!", EnumRarity.epic)};
+			new Lore("Original Fire", EnumRarity.uncommon), new Lore("Caution: Contents may explode under pressure!", EnumRarity.epic)}; */
 
 	public ArmorTungsten(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
 		this.uncommonLevels = new int[][] {{1}, {1, 1}, {1}};
 		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};

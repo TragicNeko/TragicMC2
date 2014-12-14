@@ -5,26 +5,22 @@ import java.util.List;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponEnigmaShield extends ItemShield {
 	
-	private final Lore[] lores = new Lore[] {new Lore("Enigmatic.", EnumRarity.uncommon), new Lore("Quite the mystery", EnumRarity.uncommon), new Lore("Elementary, my dear Watson!"),
-			new Lore("I would've gotten away with it too!"), new Lore("Looks like another mystery solved!", EnumRarity.rare), new Lore("We've got a mystery on our hands!"),
-			new Lore("It's Old Man Withers from the Amusement Park!", EnumRarity.uncommon), new Lore("To the Mystery Machine!"), new Lore("Scooby Snax?", EnumRarity.rare),
-			new Lore("Jinkies!", EnumRarity.rare), new Lore("I'm a high functioning Sociopath.", EnumRarity.epic), new Lore("I live by Harry's Code", EnumRarity.uncommon), 
-			new Lore("Whodunit?"), new Lore("Colonel Mustard with a Knife in the Library!", EnumRarity.epic), new Lore("We just found a Clue!", EnumRarity.rare), 
-			new Lore("Let's get out our Handy Dandy notebook!", EnumRarity.epic)};
+	//private final Lore[] lores = new Lore[] {new Lore("Enigmatic.", EnumRarity.uncommon), new Lore("Quite the mystery", EnumRarity.uncommon), new Lore("Elementary, my dear Watson!"),
+	//		new Lore("I would've gotten away with it too!"), new Lore("Looks like another mystery solved!", EnumRarity.rare), new Lore("We've got a mystery on our hands!"),
+	//		new Lore("It's Old Man Withers from the Amusement Park!", EnumRarity.uncommon), new Lore("To the Mystery Machine!"), new Lore("Scooby Snax?", EnumRarity.rare),
+	//		new Lore("Jinkies!", EnumRarity.rare), new Lore("I'm a high functioning Sociopath.", EnumRarity.epic), new Lore("I live by Harry's Code", EnumRarity.uncommon), 
+	//		new Lore("Whodunit?"), new Lore("Colonel Mustard with a Knife in the Library!", EnumRarity.epic), new Lore("We just found a Clue!", EnumRarity.rare), 
+	//		new Lore("Let's get out our Handy Dandy notebook!", EnumRarity.epic)};
 		
 		private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
 		private int[] uncommonLevels = new int[] {1};
@@ -39,7 +35,7 @@ public class WeaponEnigmaShield extends ItemShield {
 		super(material);
 		this.doomsday = dday;
 	}
-	
+	/*
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
@@ -49,7 +45,7 @@ public class WeaponEnigmaShield extends ItemShield {
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
-	}
+	} */
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
@@ -59,6 +55,7 @@ public class WeaponEnigmaShield extends ItemShield {
 	
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
+		/*
 		if (TragicNewConfig.allowRandomWeaponLore)
 		{
 			String lore = null;
@@ -69,7 +66,7 @@ public class WeaponEnigmaShield extends ItemShield {
 			{
 				par2List.add(loreFormat + lore);
 			}
-		}
+		} */
 		
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
@@ -104,6 +101,7 @@ public class WeaponEnigmaShield extends ItemShield {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{		
+		/*
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
@@ -138,7 +136,7 @@ public class WeaponEnigmaShield extends ItemShield {
 			{
 				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
 			}
-		}
+		} */
 	}
 
 }

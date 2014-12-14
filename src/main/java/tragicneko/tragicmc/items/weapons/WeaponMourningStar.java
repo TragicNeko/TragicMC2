@@ -2,31 +2,24 @@ package tragicneko.tragicmc.items.weapons;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponMourningStar extends TragicWeapon {
 
-	private final Lore[] uniqueLores = new Lore[] {new Lore("I mourn for no man.", EnumRarity.rare), new Lore("Sleep is for the weak", EnumRarity.uncommon), new Lore("Boom!"),
-			new Lore("Just die already!", EnumRarity.rare), new Lore("For Spartaaaaaaa!", EnumRarity.uncommon), new Lore("I have an explosive temper.", EnumRarity.rare), 
-			new Lore("Kaboom!"), new Lore("I'm TNT, I'm dynamite!", EnumRarity.uncommon), new Lore("Dy-no-mite!")};
+	//private final Lore[] uniqueLores = new Lore[] {new Lore("I mourn for no man.", EnumRarity.rare), new Lore("Sleep is for the weak", EnumRarity.uncommon), new Lore("Boom!"),
+	//		new Lore("Just die already!", EnumRarity.rare), new Lore("For Spartaaaaaaa!", EnumRarity.uncommon), new Lore("I have an explosive temper.", EnumRarity.rare), 
+	//		new Lore("Kaboom!"), new Lore("I'm TNT, I'm dynamite!", EnumRarity.uncommon), new Lore("Dy-no-mite!")};
 
 	public WeaponMourningStar(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[] {Enchantment.smite};
 		this.uncommonLevels = new int[] {3};
 		this.rareEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume};
@@ -58,7 +51,7 @@ public class WeaponMourningStar extends TragicWeapon {
 			{
 				if (canUseAbility(doom, 30) && getStackCooldown(par1ItemStack) == 0)
 				{
-					Vec3 vec = getVecFromPlayer(par3EntityPlayer, 30.0);			
+					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);			
 					if (vec == null) return par1ItemStack;
 					
 					double d4 = vec.xCoord;

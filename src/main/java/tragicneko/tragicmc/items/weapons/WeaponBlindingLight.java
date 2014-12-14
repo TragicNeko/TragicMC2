@@ -4,13 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
@@ -18,25 +13,13 @@ import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponBlindingLight extends TragicWeapon {
 
-	private final Lore[] uniqueLores = new Lore[] {new Lore("Ooh... shiny!", EnumRarity.rare), new Lore("But it's so pretty...", EnumRarity.epic),
-			new Lore("Aw, you're glowing~", EnumRarity.uncommon), new Lore("It's bright, like me."), new Lore("Like a shooting star!"),
-			new Lore("Always look on the bright side of life!", EnumRarity.uncommon), new Lore("Shine on you Crazy Diamond", EnumRarity.rare),
-			new Lore("Heaven let your light shine on!"), new Lore("Turn on your lovelight!", EnumRarity.uncommon)};
-
 	public WeaponBlindingLight(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
-		this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[] {TragicEnchantments.Absolve};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {TragicEnchantments.Absolve, Enchantment.unbreaking};
-		this.rareLevels = new int[] {3, 1};
-		this.epicEnchants = new Enchantment[] {TragicEnchantments.Absolve, Enchantment.unbreaking, Enchantment.fireAspect};
-		this.epicLevels = new int[] {5, 3, 2};
 	}
 
 	public boolean onLeftClickEntity(ItemStack itemstack, EntityPlayer player, Entity entity)
@@ -76,7 +59,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		if (canUseAbility(doom, 15) && getStackCooldown(par1ItemStack) == 0)
 		{
-			Vec3 vec = getVecFromPlayer(par3EntityPlayer, 30.0);
+			Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 			if (vec == null) return par1ItemStack;
 
 			double d4 = vec.xCoord - par3EntityPlayer.posX;

@@ -16,19 +16,20 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponDragonFang extends EpicWeapon {
 
-	private final Lore[] uniqueLores = new Lore[] {new Lore("Here be dragons.", EnumRarity.epic), new Lore("Is that a Centaur?", EnumRarity.uncommon), new Lore("Pegasus!", EnumRarity.rare),
-			new Lore("I need some Nymphs...", EnumRarity.uncommon), new Lore("Is that Nessie?", EnumRarity.uncommon), new Lore("Sasquatch!"), new Lore("I found Big Foot!", EnumRarity.rare),
-			new Lore("It's obviously a Jackalope.", EnumRarity.rare), new Lore("Someone call the CIA or MIB", EnumRarity.epic), new Lore("UFO!", EnumRarity.rare),
-			new Lore("It's a Ghost!", EnumRarity.uncommon), new Lore("There's a cold spot here..."), new Lore("I'm having an old friend for dinner!", EnumRarity.rare),
-			new Lore("Can't remember what they said...", EnumRarity.epic), new Lore("Area 51", EnumRarity.rare), new Lore("I've been abducted by aliens!", EnumRarity.uncommon)};
+	//private final Lore[] uniqueLores = new Lore[] {new Lore("Here be dragons.", EnumRarity.epic), new Lore("Is that a Centaur?", EnumRarity.uncommon), new Lore("Pegasus!", EnumRarity.rare),
+	//		new Lore("I need some Nymphs...", EnumRarity.uncommon), new Lore("Is that Nessie?", EnumRarity.uncommon), new Lore("Sasquatch!"), new Lore("I found Big Foot!", EnumRarity.rare),
+	//		new Lore("It's obviously a Jackalope.", EnumRarity.rare), new Lore("Someone call the CIA or MIB", EnumRarity.epic), new Lore("UFO!", EnumRarity.rare),
+	//		new Lore("It's a Ghost!", EnumRarity.uncommon), new Lore("There's a cold spot here..."), new Lore("I'm having an old friend for dinner!", EnumRarity.rare),
+	//		new Lore("Can't remember what they said...", EnumRarity.epic), new Lore("Area 51", EnumRarity.rare), new Lore("I've been abducted by aliens!", EnumRarity.uncommon)};
 
 	public WeaponDragonFang(Doomsday dday) {
 		super(dday);
 		this.doomsday2 = Doomsday.FireRain;
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.fireAspect};
 		this.rareLevels = new int[] {5, 3, 3, 1};
 		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.fireAspect, Enchantment.knockback, Enchantment.looting};
@@ -39,7 +40,7 @@ public class WeaponDragonFang extends EpicWeapon {
 	{
 		super.addInformation(stack, par2EntityPlayer, par2List, par4);
 
-		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicNewConfig.allowDoomsdays && this.doomsday2 != null)
 		{
 			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
 			EnumChatFormatting format = EnumChatFormatting.DARK_PURPLE;
@@ -74,7 +75,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 		if (doom == null) return par1ItemStack;
 
-		Vec3 vec = getVecFromPlayer(par3EntityPlayer);
+		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
 		double d4 = vec.xCoord - par3EntityPlayer.posX;

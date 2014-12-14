@@ -1,10 +1,8 @@
 package tragicneko.tragicmc.items.armor;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -14,13 +12,9 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
-import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorDark extends TragicArmor {
-	
+	/*
 	protected Lore[] uniqueLores = new Lore[] {new Lore("It's dark"), new Lore("Dim"), new Lore("Rather dark out!"), new Lore("Hold me"), new Lore("I'm so alone"),
 			new Lore("Cold, dark and alone", EnumRarity.uncommon), new Lore("Darkness all around me", EnumRarity.uncommon), new Lore("I Know What You Did Last Summer", EnumRarity.rare),
 			new Lore("Scream!", EnumRarity.rare), new Lore("Just another slasher...", EnumRarity.uncommon), 
@@ -32,11 +26,11 @@ public class ArmorDark extends TragicArmor {
 			new Lore("I see dead people", EnumRarity.uncommon), new Lore("Join us, one of us!", EnumRarity.epic), new Lore("Victims... aren't we all?", EnumRarity.epic),
 			new Lore("You will die in 7 days.", EnumRarity.uncommon), new Lore("Three, Four, better lock your door", EnumRarity.epic),
 			new Lore("Everything will be okay...", EnumRarity.uncommon), new Lore("Don't worry, there's nothing to be afraid of", EnumRarity.uncommon),
-			new Lore("Maybe I'm the Schizophrenic Psycho", EnumRarity.rare), new Lore("We all go a little mad sometimes", EnumRarity.epic)};
+			new Lore("Maybe I'm the Schizophrenic Psycho", EnumRarity.rare), new Lore("We all go a little mad sometimes", EnumRarity.epic)}; */
 	
 	public ArmorDark(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, Enchantment.protection}, {Enchantment.unbreaking}};
 		this.uncommonLevels = new int[][] {{3}, {3, 1}, {3}};
 		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking, TragicEnchantments.DeathTouch}, {Enchantment.unbreaking, Enchantment.protection,

@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.TragicEntityList;
 
 public class ItemChallenge extends Item {
@@ -183,58 +184,8 @@ public class ItemChallenge extends Item {
 			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
 			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
 			par2List.add("Difficulty: " + format + diff);
-			String s = challenge.getDesc(challenge.challengeID);
-			String s2 = null;
-			String s3 = null;
-
-			if (s.length() > 28)
-			{
-				char space = new Character(' ');
-				int index = 0;
-
-				for (int i = 28; i < s.length(); i++)
-				{
-					if (s.substring(0, i).endsWith(" "))
-					{
-						if (s2 == null)
-						{
-							s2 = s.substring(i).trim();
-							s = s.substring(0, i).trim();
-							break;
-						}
-
-					}
-				}
-			}
-
-			if (s2 != null && s2.length() > 28)
-			{
-				char space = new Character(' ');
-				int index = 0;
-
-				for (int i = 28; i < s2.length(); i++)
-				{
-					if (s2.substring(0, i).endsWith(" "))
-					{
-						if (s3 == null)
-						{
-							s3 = s2.substring(i).trim();
-							s2 = s2.substring(0, i).trim();
-							break;
-						}
-
-					}
-				}
-
-				if (s3 != null && s3.length() > 28)
-				{
-					s3 = s3.substring(0, 28).trim();
-				}
-			}
-
-			if (s != null) par2List.add(s);
-			if (s2 != null) par2List.add(s2);
-			if (s3 != null) par2List.add(s3);
+			String[] subs = LoreHelper.splitDesc(challenge.getDesc(challenge.challengeID));
+			for (String s : subs) par2List.add(s);
 			par2List.add("Progress: " + stack.stackTagCompound.getInteger("challengeProgress") + "/ " + challenge.requirement);
 		}
 	}

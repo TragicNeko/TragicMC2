@@ -6,10 +6,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -17,10 +15,7 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicArmor extends ItemArmor {
 
@@ -29,7 +24,7 @@ public class TragicArmor extends ItemArmor {
 	protected long tick;
 
 	private IIcon damagedIcon;
-
+	/*
 	protected Lore[] lores = new Lore[] {new Lore("Move swiftly.", EnumRarity.uncommon), new Lore("Make Haste."), new Lore("Feel the wind on your face!", EnumRarity.uncommon),
 			new Lore("Fast as the wind!"), new Lore("Too fast, too furious", EnumRarity.uncommon), new Lore("Windswept.", EnumRarity.uncommon),
 			new Lore("Rock You Like a Hurricane!", EnumRarity.rare), new Lore("Watch out for windburn!"), new Lore("Like a tornado!"),
@@ -38,7 +33,7 @@ public class TragicArmor extends ItemArmor {
 			new Lore("Used Gust!", EnumRarity.uncommon), new Lore("Used Whirlwind!"), new Lore("Used Sky Attack! Critical Hit!", EnumRarity.rare),
 			new Lore("Used Fly! It's super effective!", EnumRarity.epic), new Lore("I'm like a bird"), new Lore("Here comes the Rooster!", EnumRarity.uncommon),
 			new Lore("Won't you find me, Free Bird!", EnumRarity.rare), new Lore("He crawls like a worm from a bird!", EnumRarity.rare),
-			new Lore("Fly like the wind, Bullseye!", EnumRarity.rare), new Lore("I can go the distance!", EnumRarity.uncommon)};
+			new Lore("Fly like the wind, Bullseye!", EnumRarity.rare), new Lore("I can go the distance!", EnumRarity.uncommon)}; */
 
 	protected Enchantment[][] uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking}, {Enchantment.unbreaking}};
 	protected int[][] uncommonLevels = new int[][] {{1}, {1}, {1}};
@@ -55,13 +50,13 @@ public class TragicArmor extends ItemArmor {
 		this.doomsday = dday;
 		this.setCreativeTab(TragicTabs.Survival);
 	}
-
+	/*
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
 	}
-
+	
 	protected EnumRarity getRarityFromInt(int i) {
 		return i == 1 ? EnumRarity.uncommon : (i == 2 ? EnumRarity.rare : (i == 3 ? EnumRarity.epic : EnumRarity.common));
 	}
@@ -69,7 +64,7 @@ public class TragicArmor extends ItemArmor {
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
-	}
+	} */
 
 	public void registerIcons(IIconRegister register)
 	{
@@ -85,6 +80,7 @@ public class TragicArmor extends ItemArmor {
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
+		/*
 		if (TragicNewConfig.allowRandomWeaponLore)
 		{
 			String lore = null;
@@ -95,7 +91,7 @@ public class TragicArmor extends ItemArmor {
 			{
 				par2List.add(loreFormat + lore);
 			}
-		}
+		} */
 
 		if (TragicNewConfig.allowDoomsdays)
 		{
@@ -126,6 +122,7 @@ public class TragicArmor extends ItemArmor {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{	
+		/*
 		if (world.isRemote || !TragicNewConfig.allowRandomWeaponLore || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
@@ -161,10 +158,10 @@ public class TragicArmor extends ItemArmor {
 			{
 				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
 			}
-		}
+		} */
 	}
 
-
+	/*
 	protected int getRarityFromEnum(Lore lore)
 	{
 		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
@@ -173,6 +170,6 @@ public class TragicArmor extends ItemArmor {
 	protected EnumChatFormatting getFormatFromRarity(int rarity)
 	{
 		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
-	}
+	} */
 
 }

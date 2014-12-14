@@ -5,29 +5,24 @@ import java.util.List;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponReaperScythe extends ItemScythe {
 
-	private final Lore[] lores = new Lore[] {new Lore("Bleed for me.", EnumRarity.epic), new Lore("Bleed out.", EnumRarity.uncommon), new Lore("Let's paint this town red!"),
-			new Lore("Care for fava beans and a nice chianti?"), new Lore("It's raining blood!", EnumRarity.rare), new Lore("Blood is thicker than water.", EnumRarity.uncommon),
-			new Lore("Digging deeper just to throw it away!", EnumRarity.epic), new Lore("We all bleed the same.", EnumRarity.uncommon), new Lore("Blood is flowing!", EnumRarity.rare)};
+	//private final Lore[] lores = new Lore[] {new Lore("Bleed for me.", EnumRarity.epic), new Lore("Bleed out.", EnumRarity.uncommon), new Lore("Let's paint this town red!"),
+	//		new Lore("Care for fava beans and a nice chianti?"), new Lore("It's raining blood!", EnumRarity.rare), new Lore("Blood is thicker than water.", EnumRarity.uncommon),
+	//		new Lore("Digging deeper just to throw it away!", EnumRarity.epic), new Lore("We all bleed the same.", EnumRarity.uncommon), new Lore("Blood is flowing!", EnumRarity.rare)};
 
 	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay};
 	private int[] uncommonLevels = new int[] {3, 1};
@@ -42,7 +37,7 @@ public class WeaponReaperScythe extends ItemScythe {
 		super(par2Material);
 		this.doomsday = dday;
 	}
-
+	/*
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
@@ -52,7 +47,7 @@ public class WeaponReaperScythe extends ItemScythe {
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
-	}
+	} */
 
 	public Doomsday getDoomsday()
 	{
@@ -66,6 +61,7 @@ public class WeaponReaperScythe extends ItemScythe {
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
+		/*
 		if (TragicNewConfig.allowRandomWeaponLore)
 		{
 			String lore = null;
@@ -76,7 +72,7 @@ public class WeaponReaperScythe extends ItemScythe {
 			{
 				par2List.add(loreFormat + lore);
 			}
-		}
+		} */
 
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
@@ -118,8 +114,7 @@ public class WeaponReaperScythe extends ItemScythe {
 
 		if (!TragicWeapon.canUseAbility(doom, 5) || TragicWeapon.getStackCooldown(par1ItemStack) > 0 || par2World.isRemote) return par1ItemStack;
 
-		Vec3 vec = TragicWeapon.getVecFromPlayer(par3EntityPlayer, 30.0);
-
+		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 		if (vec == null) return par1ItemStack;
 
 
@@ -165,7 +160,7 @@ public class WeaponReaperScythe extends ItemScythe {
 
 		return par1ItemStack;
 	}
-
+	/*
 	protected int getRarityFromEnum(Lore lore)
 	{
 		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
@@ -174,11 +169,12 @@ public class WeaponReaperScythe extends ItemScythe {
 	protected EnumChatFormatting getFormatFromRarity(int rarity)
 	{
 		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
-	}
+	} */
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
+		/*
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
@@ -220,7 +216,7 @@ public class WeaponReaperScythe extends ItemScythe {
 			{
 				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
 			}
-		}
+		} */
 	}
 
 }

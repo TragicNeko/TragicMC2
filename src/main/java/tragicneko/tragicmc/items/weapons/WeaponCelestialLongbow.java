@@ -10,10 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
@@ -26,12 +24,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -45,10 +41,10 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 	public final Doomsday doomsday = Doomsday.Snipe;
 
-	private final Lore[] lores = new Lore[] {new Lore("Shooting stars!", EnumRarity.epic), new Lore("Like Meteor showers~"), new Lore("Beautiful Starlights", EnumRarity.rare),
-			new Lore("So Beautiful.", EnumRarity.rare), new Lore("Meteor Smash!", EnumRarity.epic), new Lore("Make a wish!", EnumRarity.uncommon),
-			new Lore("Time for Armageddon", EnumRarity.epic), new Lore("Guardian of the Galaxy", EnumRarity.rare), new Lore("Time for the Star Festival!", EnumRarity.epic),
-			new Lore("Ooh a free Starman!", EnumRarity.uncommon), new Lore("The Final Starman!?", EnumRarity.epic), new Lore("Good morning Starshine, the Earth says, Hello!", EnumRarity.rare)};
+	//private final Lore[] lores = new Lore[] {new Lore("Shooting stars!", EnumRarity.epic), new Lore("Like Meteor showers~"), new Lore("Beautiful Starlights", EnumRarity.rare),
+	//		new Lore("So Beautiful.", EnumRarity.rare), new Lore("Meteor Smash!", EnumRarity.epic), new Lore("Make a wish!", EnumRarity.uncommon),
+	//		new Lore("Time for Armageddon", EnumRarity.epic), new Lore("Guardian of the Galaxy", EnumRarity.rare), new Lore("Time for the Star Festival!", EnumRarity.epic),
+	//		new Lore("Ooh a free Starman!", EnumRarity.uncommon), new Lore("The Final Starman!?", EnumRarity.epic), new Lore("Good morning Starshine, the Earth says, Hello!", EnumRarity.rare)};
 
 	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power};
 	private int[] uncommonLevels = new int[] {3, 1};
@@ -111,6 +107,8 @@ public class WeaponCelestialLongbow extends ItemBow {
 	{
 		return this.iconArray[par1];
 	}
+	
+	/*
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
@@ -121,10 +119,11 @@ public class WeaponCelestialLongbow extends ItemBow {
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
-	}
+	} */
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
+		/*
 		if (TragicNewConfig.allowRandomWeaponLore)
 		{
 			String lore = null;
@@ -135,12 +134,11 @@ public class WeaponCelestialLongbow extends ItemBow {
 			{
 				par2List.add(loreFormat + lore);
 			}
-		}
+		} */
 
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
 			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-
 			EnumChatFormatting format = EnumChatFormatting.DARK_AQUA;
 
 			if (doomsday.getDoomsdayType() == EnumDoomType.CRISIS)
@@ -331,6 +329,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
+		/*
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
@@ -372,7 +371,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 			{
 				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
 			}
-		}
+		} */
 	}
 
 }

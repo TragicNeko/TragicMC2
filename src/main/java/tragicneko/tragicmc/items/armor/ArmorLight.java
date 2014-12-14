@@ -5,7 +5,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -16,10 +15,9 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 
 public class ArmorLight extends TragicArmor {
-
+	/*
 	protected Lore[] uniqueLores = new Lore[] {new Lore("Believe it!", EnumRarity.rare), new Lore("Don't give up."), new Lore("Overcome", EnumRarity.uncommon),
 			new Lore("Be Bright!", EnumRarity.uncommon), new Lore("Live and Let Die", EnumRarity.rare), new Lore("Rise Above This", EnumRarity.rare),
 			new Lore("Brighten your day!"), new Lore("Don't Stop Believin'", EnumRarity.rare), new Lore("Shinedown", EnumRarity.epic), new Lore("I'm Mr. Brightside", EnumRarity.epic),
@@ -29,11 +27,11 @@ public class ArmorLight extends TragicArmor {
 			new Lore("Beacon of Hope",EnumRarity.epic), new Lore("Stand up!", EnumRarity.uncommon), new Lore("Everything in its right place", EnumRarity.epic),
 			new Lore("Let your light shine down.", EnumRarity.epic), new Lore("Keep faith."), new Lore("Turn around, bright eyes!", EnumRarity.epic), new Lore("Have hope."),
 			new Lore("Everything will be alright.", EnumRarity.uncommon), new Lore("It gets better.", EnumRarity.rare), new Lore("Don't ever give up!"),
-			new Lore("Always look on the bright side of life!", EnumRarity.epic)};
+			new Lore("Always look on the bright side of life!", EnumRarity.epic)}; */
 	
 	public ArmorLight(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
-		this.lores = uniqueLores;
+		//this.lores = uniqueLores;
 		this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
 		this.uncommonLevels = new int[][] {{3}, {3, 3}, {3}};
 		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity}, {Enchantment.unbreaking, TragicEnchantments.Ignition, TragicEnchantments.RuneWalker},

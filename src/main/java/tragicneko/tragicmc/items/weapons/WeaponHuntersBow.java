@@ -9,22 +9,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
-import tragicneko.tragicmc.items.weapons.TragicWeapon.Lore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,10 +33,10 @@ public class WeaponHuntersBow extends ItemBow {
 
 	public final Doomsday doomsday = Doomsday.RapidFire;
 	
-	private final Lore[] lores = new Lore[] {new Lore("Let the hunt begin.", EnumRarity.rare), new Lore("On the hunt."), new Lore("Time to join the Hunting Party!", EnumRarity.rare),
-			new Lore("I'm an expert tracker.", EnumRarity.uncommon), new Lore("Catch me if you can.", EnumRarity.rare), new Lore("The Hunter became the Hunted"),
-			new Lore("The Hunter became the Prey", EnumRarity.uncommon), new Lore("Conquest!"), new Lore("Night of the Hunter", EnumRarity.uncommon),
-			new Lore("The Most Dangerous Game", EnumRarity.epic)};
+	//private final Lore[] lores = new Lore[] {new Lore("Let the hunt begin.", EnumRarity.rare), new Lore("On the hunt."), new Lore("Time to join the Hunting Party!", EnumRarity.rare),
+	//		new Lore("I'm an expert tracker.", EnumRarity.uncommon), new Lore("Catch me if you can.", EnumRarity.rare), new Lore("The Hunter became the Hunted"),
+	//		new Lore("The Hunter became the Prey", EnumRarity.uncommon), new Lore("Conquest!"), new Lore("Night of the Hunter", EnumRarity.uncommon),
+	//		new Lore("The Most Dangerous Game", EnumRarity.epic)};
 
 	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
 	private int[] uncommonLevels = new int[] {1, 1};
@@ -103,7 +98,7 @@ public class WeaponHuntersBow extends ItemBow {
 	{
 		return this.iconArray[par1];
 	}
-	
+	/*
 	@Override
 	public EnumRarity getRarity(ItemStack stack)
 	{
@@ -113,10 +108,11 @@ public class WeaponHuntersBow extends ItemBow {
 	protected Lore getRandomLore()
 	{
 		return lores[itemRand.nextInt(lores.length)];
-	}
+	} */
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
+		/*
 		if (TragicNewConfig.allowRandomWeaponLore)
 		{
 			String lore = null;
@@ -127,7 +123,7 @@ public class WeaponHuntersBow extends ItemBow {
 			{
 				par2List.add(loreFormat + lore);
 			}
-		}
+		} */
 		
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
@@ -256,6 +252,7 @@ public class WeaponHuntersBow extends ItemBow {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{		
+		/*
 		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		Lore lore = getRandomLore();
@@ -291,6 +288,6 @@ public class WeaponHuntersBow extends ItemBow {
 			{
 				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
 			}
-		}
+		} */
 	}
 }
