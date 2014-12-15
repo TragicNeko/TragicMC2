@@ -40,6 +40,7 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 				size = 0.35D * random.nextDouble() + 0.75D;
 				meta = random.nextInt(16);
+				for (int j = 0; j < 5 && meta != 15; j++) meta = random.nextInt(16); //randomizes the crystal if it doesn't choose a white crystal, this is to make it more common
 
 				if (WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord)))
 				{

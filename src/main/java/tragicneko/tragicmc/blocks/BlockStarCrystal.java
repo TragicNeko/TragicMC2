@@ -30,31 +30,27 @@ public class BlockStarCrystal extends Block {
 		super(Material.glass);
 		this.setCreativeTab(TragicTabs.Survival);
 		this.setResistance(10.0F);
-		this.setHardness(8.0F);
+		this.setHardness(2.0F);
 		this.setStepSound(soundTypeGlass);
 		this.setBlockName("tragicmc.starCrystal");
 		this.lightValue = 15;
 		this.lightOpacity = 2;
-		this.setHarvestLevel("pickaxe", 1);
+		this.setHarvestLevel("pickaxe", 0);
 	}
 
 	@Override
-	public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
+	public int quantityDroppedWithBonus(int fortune, Random rand)
 	{
-		if (p_149679_1_ > 0 && Item.getItemFromBlock(this) != this.getItemDropped(0, p_149679_2_, p_149679_1_))
+		if (fortune > 0 && this.getItemDropped(0, rand, fortune) == Items.dye)
 		{
-			int j = p_149679_2_.nextInt(p_149679_1_ + 2) - 1;
+			int j = rand.nextInt(fortune + 2) - 1;
+			if (j < 0) j = 0;
 
-			if (j < 0)
-			{
-				j = 0;
-			}
-
-			return this.quantityDropped(p_149679_2_) * (j + 1);
+			return this.quantityDropped(rand) * (j + 1);
 		}
 		else
 		{
-			return this.quantityDropped(p_149679_2_);
+			return this.quantityDropped(rand);
 		}
 	}
 	
@@ -67,12 +63,7 @@ public class BlockStarCrystal extends Block {
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
-		if (meta != 15)
-		{
-			return Items.dye;
-		}
-
-		return Item.getItemFromBlock(this);
+		return Items.dye;
 	}
 
 	@SideOnly(Side.CLIENT)
