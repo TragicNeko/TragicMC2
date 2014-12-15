@@ -32,7 +32,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class FlowerWorldGen implements IWorldGenerator {
 
 	public static Set allowedBiomes = Sets.newHashSet(new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills,
-			BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.taigaHills, BiomeGenBase.roofedForest});
+			BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.taigaHills, BiomeGenBase.roofedForest, BiomeGenBase.savanna,
+			BiomeGenBase.savannaPlateau, BiomeGenBase.swampland});
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -53,7 +54,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		boolean flag = !(biome instanceof BiomeGenJungle);
 		boolean flag2 = !(biome instanceof BiomeGenTaiga); 
 		boolean flag3 = !(biome instanceof BiomeGenPlains);
-		boolean flag4 = biome != BiomeGenBase.roofedForest;
+		boolean flag4 = biome != BiomeGenBase.roofedForest && biome != BiomeGenBase.swampland;
 		boolean flag5 = TragicBiomes.paintedBiomes.contains(biome) && world.provider instanceof TragicWorldProvider;
 
 		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
@@ -94,12 +95,9 @@ public class FlowerWorldGen implements IWorldGenerator {
 				discrim[15] = false;
 			}
 
-			boolean value = discrim[meta];
-
-			while (!value)
+			while (!discrim[meta])
 			{
 				meta = random.nextInt(16);
-				value = discrim[meta];
 			}
 
 			for (int i = 0; i < biome.theBiomeDecorator.flowersPerChunk * 4; i++)

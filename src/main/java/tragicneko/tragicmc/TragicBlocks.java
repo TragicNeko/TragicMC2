@@ -5,6 +5,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenJungle;
+import net.minecraft.world.biome.BiomeGenPlains;
+import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraftforge.oredict.OreDictionary;
 import tragicneko.tragicmc.blocks.BlockBone;
 import tragicneko.tragicmc.blocks.BlockCandle;
@@ -56,6 +60,7 @@ import tragicneko.tragicmc.blocks.itemblocks.TragicItemBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
+import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TragicBlocks {
@@ -356,6 +361,49 @@ public class TragicBlocks {
 		OreDictionary.registerOre("plankWood", AshenPlanks);
 		OreDictionary.registerOre("logWood", BleachedWood);
 		OreDictionary.registerOre("plankWood", BleachedPlanks);
+		
+		java.util.Set<BiomeGenBase> set = FlowerWorldGen.allowedBiomes;
+		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);
+		boolean[] discrim = new boolean[16];
+		
+		for (int j = 0; j < 16; j++) discrim[j] = true;
+		
+		for (BiomeGenBase b : biomes)
+		{
+			boolean flag = !(b instanceof BiomeGenJungle);
+			boolean flag2 = !(b instanceof BiomeGenTaiga); 
+			boolean flag3 = !(b instanceof BiomeGenPlains);
+			boolean flag4 = b != BiomeGenBase.roofedForest && b != BiomeGenBase.swampland;
+			
+			if (flag)
+			{
+				discrim[12] = false;
+				discrim[4] = false;
+				discrim[5] = false;
+			}
+
+			if (flag2)
+			{
+				discrim[13] = false;
+			}
+
+			if (flag3)
+			{
+				discrim[8] = false;
+			}
+
+			if (flag4)
+			{
+				discrim[6] = false;
+				discrim[7] = false;
+				discrim[15] = false;
+			}
+			
+			for (int i = 0; i < 16; i++)
+			{
+				if (discrim[i]) b.addFlower(TragicFlower, i, i == 14 ? 1 : 10);
+			}
+		}
 	}
 
 }
