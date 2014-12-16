@@ -82,7 +82,7 @@ public abstract class TragicMob extends EntityMob
 		if (this.getAttackTarget() != null)
 		{
 			if (this.getAttackTarget().getClass() == this.getLesserForm() || this.getAttackTarget() == this.superiorForm) this.setAttackTarget(null);
-			if (this.getAttackTarget().getClass() == this.getClass() && !(this instanceof EntityRagr)) this.setAttackTarget(null);
+			if (this.getAttackTarget().getClass() == this.getClass() && this.getClass() != EntityRagr.class) this.setAttackTarget(null);
 			if (this.getSuperiorForm() != null && this.getAttackTarget().getClass() == this.getSuperiorForm().getClass()) this.setAttackTarget(null);
 		}
 
