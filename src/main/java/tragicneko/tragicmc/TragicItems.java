@@ -59,7 +59,6 @@ import tragicneko.tragicmc.items.food.ItemSkyFruit;
 import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.food.ItemTentacle;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
-import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
@@ -84,6 +83,7 @@ import tragicneko.tragicmc.items.weapons.WeaponSplinter;
 import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponThardus;
 import tragicneko.tragicmc.items.weapons.WeaponTitan;
+import tragicneko.tragicmc.items.weapons.WeaponTungstenJack;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -95,7 +95,7 @@ public class TragicItems {
 	//Item variables
 	public static Item RedMercury, Quicksilver, QuicksilverIngot;
 	public static Item MercuryDagger, MercuryHelm, MercuryPlate, MercuryLegs, MercuryBoots;
-	public static Item Tungsten, Jack, TungstenHelm, TungstenPlate, TungstenLegs, TungstenBoots;
+	public static Item Tungsten, TungstenJack, TungstenHelm, TungstenPlate, TungstenLegs, TungstenBoots;
 
 	public static Item Scythe, SkullHelmet, SkullPlate, SkullLegs, SkullBoots;
 	public static Item HuntersBow, HuntersCap, HuntersTunic, HuntersLegs, HuntersBoots;
@@ -222,7 +222,7 @@ public class TragicItems {
 
 	//Tool Materials
 	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 12.0F, 0.0F, 6).setRepairItem(new ItemStack(Items.bone));
-	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 1650, 12.0F, 0.0F, 5);
+	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 1650, 15.0F, 0.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
 	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, 0F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
@@ -232,7 +232,7 @@ public class TragicItems {
 	private static final ToolMaterial toolClaws = EnumHelper.addToolMaterial("CLAWS", 2, 350, 4.0F, 4.0F, 2);
 	private static final ToolMaterial toolThorn = EnumHelper.addToolMaterial("THORN", 1, 330, 6.0F, 6.0F, 4);
 	private static final ToolMaterial toolFrozen = EnumHelper.addToolMaterial("FROZEN", 2, 400, 6.0F, 6.0F, 3);
-	private static final ToolMaterial toolWithering = EnumHelper.addToolMaterial("WITHERING", 3, 550, 12.0F, 6.0F, 16);
+	private static final ToolMaterial toolWithering = EnumHelper.addToolMaterial("WITHERING", 3, 550, 15.0F, 6.0F, 16);
 	private static final ToolMaterial toolDarkness = EnumHelper.addToolMaterial("DARKNESS", 3, 350, 8.0F, 8.0F, 26).setRepairItem(new ItemStack(DarkParticles));
 	private static final ToolMaterial toolLight = EnumHelper.addToolMaterial("LIGHT", 3, 333, 8.0F, 8.0F, 14).setRepairItem(new ItemStack(LightParticles));
 	private static final ToolMaterial toolMourning = EnumHelper.addToolMaterial("MOURNING", 3, 440, 9.0F, 9.0F, 14);
@@ -428,8 +428,8 @@ public class TragicItems {
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:EverlastingLight" + textureRes));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
 
-		Jack = (new ItemJack(toolJack, Doomsday.MinerSkills).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
-		GameRegistry.registerItem(Jack, "jack");
+		TungstenJack = (new WeaponTungstenJack(toolJack, Doomsday.MinerSkills).setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
+		GameRegistry.registerItem(TungstenJack, "tungstenJack");
 
 		//Normal Item Registrations
 		Ectoplasm = (new ItemGeneric().setUnlocalizedName("tragicmc.ectoplasm").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Ectoplasm" + textureRes));

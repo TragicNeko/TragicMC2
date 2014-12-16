@@ -16,6 +16,7 @@ import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponReaperScythe extends ItemScythe {
@@ -37,76 +38,6 @@ public class WeaponReaperScythe extends ItemScythe {
 		super(par2Material);
 		this.doomsday = dday;
 	}
-	/*
-	@Override
-	public EnumRarity getRarity(ItemStack stack)
-	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? TragicWeapon.getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
-	}
-
-	protected Lore getRandomLore()
-	{
-		return lores[itemRand.nextInt(lores.length)];
-	} */
-
-	public Doomsday getDoomsday()
-	{
-		return this.doomsday;
-	}
-
-	public EnumDoomType doomsdayType()
-	{
-		return this.doomsday.doomsdayType;
-	}
-
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	{
-		/*
-		if (TragicNewConfig.allowRandomWeaponLore)
-		{
-			String lore = null;
-			EnumChatFormatting loreFormat = EnumChatFormatting.WHITE;
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLore")) lore = stack.stackTagCompound.getString("tragicLore");
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
-			if (lore != null)
-			{
-				par2List.add(loreFormat + lore);
-			}
-		} */
-
-		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
-		{
-			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-
-			EnumChatFormatting format = EnumChatFormatting.DARK_AQUA;
-
-			switch(doomsday.getDoomsdayType())
-			{
-			case COMBINATION:
-				format = EnumChatFormatting.YELLOW;
-				break;
-			case CRISIS:
-				format = EnumChatFormatting.RED;
-				break;
-			case OVERFLOW:
-				format = EnumChatFormatting.GREEN;
-				break;
-			case WORLDSHAPER:
-				format = EnumChatFormatting.DARK_PURPLE;
-				break;
-			case INFLUENCE:
-			default:
-				break;
-			}
-
-			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-
-			if (doom != null)
-			{
-				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(doom));
-			}
-		}
-	}
 
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
@@ -117,8 +48,7 @@ public class WeaponReaperScythe extends ItemScythe {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 		if (vec == null) return par1ItemStack;
 
-
-		if (TragicWeapon.getStackCooldown(par1ItemStack) == 0) //TODO change onUpdate in Scythe to use the new cooldown system
+		if (TragicWeapon.getStackCooldown(par1ItemStack) == 0)
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
@@ -160,63 +90,4 @@ public class WeaponReaperScythe extends ItemScythe {
 
 		return par1ItemStack;
 	}
-	/*
-	protected int getRarityFromEnum(Lore lore)
-	{
-		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
-	}
-
-	protected EnumChatFormatting getFormatFromRarity(int rarity)
-	{
-		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
-	} */
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{
-		/*
-		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		Lore lore = getRandomLore();
-		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)getRarityFromEnum(lore)));
-		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
-
-		if (TragicWeapon.getStackCooldown(stack) > 0) TragicWeapon.setStackCooldown(stack, TragicWeapon.getStackCooldown(stack) - 1);
-
-		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
-		{
-			int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
-
-			Enchantment[] enchants;
-			int[] levels;
-
-			if (rarity == 0)
-			{
-				enchants = new Enchantment[] {Enchantment.unbreaking};
-				levels = new int[] {1};
-			}
-			else if (rarity == 1)
-			{
-				enchants = this.uncommonEnchants;
-				levels = this.uncommonLevels;
-			}
-			else if (rarity == 2)
-			{
-				enchants = this.rareEnchants;
-				levels = this.rareLevels;
-			}
-			else
-			{
-				enchants = this.epicEnchants;
-				levels = this.epicLevels;
-			}
-
-			for (int i = 0; i < enchants.length; i++)
-			{
-				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
-			}
-		} */
-	}
-
 }

@@ -1,10 +1,13 @@
 package tragicneko.tragicmc.items.weapons;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -80,4 +83,9 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		return par1ItemStack;
 	}
 
+	public float func_150893_a(ItemStack stack, Block block)
+	{
+		Material material = block.getMaterial();
+		return material == Material.wood || material == Material.gourd ? this.material.getEfficiencyOnProperMaterial() : super.func_150893_a(stack, block);
+	}
 }

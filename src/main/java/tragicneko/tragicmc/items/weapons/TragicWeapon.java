@@ -96,7 +96,6 @@ public class TragicWeapon extends ItemSword {
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{		
 		if (world.isRemote || !(entity instanceof EntityPlayer)) return; 
-
 		updateAsWeapon(stack, world, entity, numb, flag);
 	}
 

@@ -238,7 +238,7 @@ public class VanillaChangingEvents {
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.MercuryDagger));
 									break;
 								case 2:
-									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.Jack));
+									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.TungstenJack));
 									break;
 								case 3:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.iron_sword));

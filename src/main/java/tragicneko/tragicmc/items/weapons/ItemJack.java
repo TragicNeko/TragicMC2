@@ -56,20 +56,25 @@ public class ItemJack extends ItemTool {
 	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune, TragicEnchantments.Combustion, Enchantment.fireAspect};
 	private int[] epicLevels = new int[] {5, 5, 3, 1, 1};
 
-	public ItemJack(ToolMaterial material, Doomsday dday) {
+	public ItemJack(ToolMaterial material) {
 		super(1.0F, material, blocksEffectiveAgainst);
-		this.doomsday = dday;
+		
 		this.setHarvestLevel("pickaxe", 3);
 		this.setCreativeTab(TragicTabs.Survival);
 	}
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{		
-		if (TragicNewConfig.allowRandomWeaponLore)
+		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
-			par2List.add(loreFormat + lore);
+			
+			if (lore != null)
+			{
+				String[] subs = LoreHelper.splitDesc(lore);
+				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
+			}
 		}
 
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
@@ -83,41 +88,11 @@ public class ItemJack extends ItemTool {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{		
-		/*
-		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		Lore lore = getRandomLore();
-		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)TragicWeapon.getRarityFromEnum(lore)));
-
-		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
-		{
-			int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
-
-			Enchantment[] enchants;
-			int[] levels;
-			if (rarity == 0) return;
-
-			if (rarity == 1)
-			{
-				enchants = this.uncommonEnchants;
-				levels = this.uncommonLevels;
-			}
-			else if (rarity == 2)
-			{
-				enchants = this.rareEnchants;
-				levels = this.rareLevels;
-			}
-			else
-			{
-				enchants = this.epicEnchants;
-				levels = this.epicLevels;
-			}
-
-			for (int i = 0; i < enchants.length; i++)
-			{
-				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
-			}
-		} */
+		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
+	}
+	
+	public float func_150893_a(ItemStack stack, Block block)
+	{
+		return this.toolMaterial.getEfficiencyOnProperMaterial();
 	}
 }

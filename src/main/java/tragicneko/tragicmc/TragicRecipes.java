@@ -1132,7 +1132,7 @@ public class TragicRecipes {
 			TragicBlocks.Candle, Blocks.pumpkin
 		});
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Jack, 1), new Object[] {
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.TungstenJack, 1), new Object[] {
 			"xxx",
 			" xx",
 			"x x",
@@ -1758,8 +1758,8 @@ public class TragicRecipes {
 		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.DragonFang),
 				new Object[] {new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.DragonFang), "oreCharms"}));
 
-		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.Jack),
-				new Object[] {new ItemStack(TragicItems.Jack), new ItemStack(TragicItems.Jack), "oreCharms"}));
+		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.TungstenJack),
+				new Object[] {new ItemStack(TragicItems.TungstenJack), new ItemStack(TragicItems.TungstenJack), "oreCharms"}));
 
 		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.SkullHelmet),
 				new Object[] {new ItemStack(TragicItems.SkullHelmet), new ItemStack(TragicItems.SkullHelmet), "oreCharms"}));
