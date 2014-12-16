@@ -3068,7 +3068,7 @@ Added config options to set each mob, miniboss and boss's particular stats, incl
 Added config option to disable weapon models
 Fix minor derps in statue textures/models
 
-2.40.1798++ <181> (Decemeber 9, 2014)
+2.40.1835 <181> (Decemeber 9, 2014)
 Updated to Forge 13.10.2.1258, that batch program is really useful
 Minor fix in Nor-Vox to reduce idle time between attacks
 I need to test out all of the mobs in a Survival situation to make sure their AI is working properly
@@ -3107,14 +3107,31 @@ used system except that it is cleaner and all in one spot now instead of scatter
 Fixed error loop with a weapon that had it's rarity set to common
 Fixed bug that didn't allow weapons to have a common rarity
 Fixed bug with a null string being saved from a common rarity item, it now gets saved as "" which is an empty string but isn't null
+Fixed bug with duplicating Star Crystals by breaking them with an open hand, reduced their hardness so that they mine somewhat faster, make it so that they always drop dyes unless they
+are silk touched
+Fix bug with Star pieces recipe giving the wrong color of star crystal
+Added new star crystal recipes to craft them from dyes and wisp particles
+Added my custom flowers to savanna and swamps
+Added ability to grow my custom flowers in each biome that they can generate in, stapelia can generate in any of these biomes when bonemeal is used but it's very uncommon
+Optimized FlowerWorldGen a bit
+
+2.40.1835++ <182> (December 15, 2014)
+Updated to Forge 13.10.2.1264
+Improved efficiency of the Scythe, it now works on more materials, it can now be extended by other classes better, rather than having all of the Lore and Doomsday stuff in just the
+Reaper Scythe class
+Finally fix NPE with targetting for mobs
+Updated efficiency of Withering Axe on wood and Tungsten Jack on everything, split the Tungsten Jack into a separate class to allow for more than one version of it and to allow easily
+extending the class to create a new hybrid weapon
+Finish up the Lore rewrite, start on the Amulet rewrite, work on the small Doomsday Effect changes
 
 TODO still
 Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
-Convert Enigma Shield to a different item/weapon, maybe a special one like the Harmony Bell, currently it is rather useless
+Convert Enigma Shield to a different item/weapon, maybe a special one like the Harmony Bell, currently it is rather useless and isn't even craftable
 Rewrite the Amulet items to use one item per type, but allow their levels and such to be set using nbt tags, their name and title can also be set with this method
 Along with that rewrite, I'll also add modifiers at this time
+For Doomsday abilities, allow each of these to have configurable amounts
 
 Note for Bosses:
 Some Bosses don't have structures or are random spawns, for each one I want an Iron Golem-like spawning ability in which you create a structure with a particular block and it is summoned
@@ -3125,6 +3142,7 @@ ability will be changed to fire those as well, the Withering Axe will probably g
 Note for Doomsdays:
 Remove any variables within the Doomsdays that are not static, these are arbitrary and may cause weird bugs in a server or multi-user environment
 This will require DoomsdayEffect to have a couple of utility methods for storing an entity and for storing a list of things, as well as storing a utility flag
+As well, DoomsdayEffect will be a required argument in the methods
 
 --Overlord plan, may fit in other random small things in between doing this--
 Finish up the Overlord's motion and attack patterns, as well as create it's model
@@ -3143,7 +3161,7 @@ Note: The Sentinel will only have one rarity, but it will have different lore th
 Note: The Sentinel will have a couple of Doomsdays, the Armor will only have one but it will give you up to 20 hearts and be the most "OP" set in the mod
 Note: After the frozen biomes are added, make that the only place that the Ragr spawns
 Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
-Note: For the Tainted biomes, add more stuff for the Isles and Archipelago
+Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
 
 Amulet Modifiers:
 Add small attribute modififers to amulets, like +2 health, +1 attack, +3 speed, etc.
@@ -3224,12 +3242,13 @@ target directly, which will do more damage the longer the effect is on you
 Splinter = Kung Fu Master (Ancient Warrior), it could move very quickly and attack quickly, possibly uses clones similarly to the Skultar but used in the way that the Polaris uses them
 as sort of after images, it will use the Expose potion effect, which treats damage to you like you have no armor (basically all damage is converted to magic, but I'll just use my armor
 piercing damage for it)
-Paranoia = Psychic Marionette (Possibly based off of FNAF2), this would use a Nightmare potion effect that would darken your screen and rarely also display a jumpscare with sound,
+Paranoia = Malicious Marionette (Possibly based off of FNAF2), this would use a Nightmare potion effect that would darken your screen and rarely also display a jumpscare with sound,
 it will teleport around and fire slow moving projectiles at it's target (maybe teleportation is overused at this point, in regards to my bosses anyway) so instead of teleport it
 could just avoid the player (like the Skultar when it's passive) and if threatened (target gets really close to it) it could asphyxiate them and damage them with dark energy like
 the Doomsday, it will inflict Lightweight onto the player, which basically makes them float up into the air (unwillingly) almost like they're flying but they have no control over it,
 it will be overridden by leadfoot which will be one of its attacks (doing lightweight then doing leadfoot), it'll be sorta mischievous, gravity themed
-Possibility is to use the Pumpkinhead's home pumpkin ai for it, and make it that it falls asleep while the block is gone (it'd be like a sound defuser or something)
+Possibility is to use the Pumpkinhead's home pumpkin ai for it, and make it that it falls asleep while the block is deactivated, so it must be right-clicked to put it to sleep for a
+little while, then it'll disappear and move to a different spot where it must be activated again, it'll spawn within 20 blocks of the marionette
 Titan = A Giant Tesla Coil-like robot that winds itself up and fires off lightning bolts, it can also fold itself down into a cannon and fire a lightning ball at it's target and
 may also fire homing missles randomly, it'll stun it's target a lot and sometimes even inflict the Hacked effect
 Dragon Fang = The Lava Dragon (or Nether Dragon), meant to parallel the Ender Dragon, it could use multiple fire attacks including the fire rain ability from the Doomsday
