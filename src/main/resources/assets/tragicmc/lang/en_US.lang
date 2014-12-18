@@ -252,7 +252,7 @@ item.tragicmc.quicksilver.name=Quicksilver
 item.tragicmc.quicksilverIngot.name=Solidified Quicksilver
 
 item.tragicmc.tungsten.name=Tungsten
-item.tragicmc.jack.name=Tungsten Jack
+item.tragicmc.tungstenJack.name=Tungsten Jack
 
 item.tragicmc.lightIngot.name=Light Ingot
 item.tragicmc.darkIngot.name=Dark Ingot
@@ -265,6 +265,8 @@ item.tragicmc.skullPlate.name=Bone Chestplate
 item.tragicmc.skullLegs.name=Bone Legs
 item.tragicmc.skullBoots.name=Bone Boots
 item.tragicmc.scythe.name=Scythe
+
+item.tragicmc.jack.name=Jack
 
 item.tragicmc.huntersCap.name=Hunter's Cap
 item.tragicmc.huntersTunic.name=Hunter's Tunic
@@ -288,6 +290,7 @@ item.tragicmc.everlastingLight.name=Everlasting Light
 item.tragicmc.celestialSteel.name=Celestial Steel
 item.tragicmc.celestialAegis.name=Celestial Aegis
 item.tragicmc.celestialLongbow.name=Celestial Longbow
+item.tragicmc.celestialJack.name=Celestial Jack
 
 item.tragicmc.titan.name=The Titan
 item.tragicmc.paranoia.name=The Paranoia

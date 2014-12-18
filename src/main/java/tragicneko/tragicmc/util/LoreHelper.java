@@ -30,9 +30,9 @@ import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
 import tragicneko.tragicmc.items.weapons.WeaponBlindingLight;
 import tragicneko.tragicmc.items.weapons.WeaponButcher;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
+import tragicneko.tragicmc.items.weapons.WeaponCelestialJack;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponDragonFang;
-import tragicneko.tragicmc.items.weapons.WeaponEnigmaShield;
 import tragicneko.tragicmc.items.weapons.WeaponFrozenLightning;
 import tragicneko.tragicmc.items.weapons.WeaponGravitySpike;
 import tragicneko.tragicmc.items.weapons.WeaponGuiltyThorn;
@@ -66,6 +66,7 @@ public class LoreHelper {
 		//Tools
 		addToLoreMap(ItemJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponTungstenJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponCelestialJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(ItemScythe.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 
 		//Weapons
@@ -98,7 +99,6 @@ public class LoreHelper {
 		addToLoreMap(WeaponCelestialAegis.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		
 		addToLoreMap(WeaponCelestialLongbow.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponEnigmaShield.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponFrozenLightning.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponGravitySpike.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponGuiltyThorn.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
@@ -117,7 +117,6 @@ public class LoreHelper {
 		addToLoreMap(WeaponSplinter.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponThardus.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponTitan.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		
 	}
 
 	public static void addToLoreMap(Class clazz, LoreEntry entry)

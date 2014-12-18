@@ -57,7 +57,7 @@ public class WeaponEvents {
 					}
 				}
 
-				if (weapon == TragicItems.EnigmaShield)
+				if (weapon == TragicItems.CelestialJack)
 				{
 					if (event.source.isUnblockable() && !event.source.isMagicDamage() && !event.source.canHarmInCreative() && event.isCancelable() && TragicWeapon.canUseAbility(doom, 8))
 					{
@@ -66,7 +66,7 @@ public class WeaponEvents {
 					}
 				}
 
-				if (weapon == TragicItems.Sentinel && TragicWeapon.canUseAbility(doom, 0))
+				if (weapon == TragicItems.Sentinel && TragicWeapon.canUseAbility(doom, 0) && TragicMC.rand.nextBoolean())
 				{
 					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
 				}

@@ -11,7 +11,6 @@ import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
-import tragicneko.tragicmc.items.weapons.ItemShield;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
@@ -50,10 +49,6 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			{
 				TragicWeapon weapon = (TragicWeapon) stack.getItem();
 				doomsday = !player.isSneaking() && weapon.getSecondaryDoomsday() != null ? weapon.getSecondaryDoomsday() : weapon.getDoomsday();
-			}
-			else if (stack.getItem() instanceof ItemShield)
-			{
-				doomsday = ((ItemShield)stack.getItem()).doomsday;
 			}
 			else if (stack.getItem() instanceof ItemScythe)
 			{

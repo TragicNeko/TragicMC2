@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.util;
 
+import static tragicneko.tragicmc.items.ItemAmulet.amuletNames;
+import net.minecraft.item.ItemStack;
 import tragicneko.tragicmc.items.ItemAmulet;
 
 public class AmuletHelper {
@@ -100,7 +102,7 @@ public class AmuletHelper {
 		{
 			if (amu2 != null && amu3 != null)
 			{
-				if (amu2.getAmuletName() == amu3.getAmuletName())
+				if (amu2.getAmuletID() == amu3.getAmuletID())
 				{
 					return 23;
 				}
@@ -112,7 +114,7 @@ public class AmuletHelper {
 		{
 			if (amu1 != null && amu3 != null)
 			{
-				if (amu1.getAmuletName() == amu3.getAmuletName())
+				if (amu1.getAmuletID() == amu3.getAmuletID())
 				{
 					return 13;
 				}
@@ -124,7 +126,7 @@ public class AmuletHelper {
 		{
 			if (amu1 != null && amu2 != null)
 			{
-				if (amu1.getAmuletName() == amu2.getAmuletName())
+				if (amu1.getAmuletID() == amu2.getAmuletID())
 				{
 					return 12;
 				}
@@ -132,26 +134,31 @@ public class AmuletHelper {
 			return 0;
 		}
 
-		if (amu1.getAmuletName() == amu2.getAmuletName() && amu1.getAmuletName() == amu3.getAmuletName())
+		if (amu1.getAmuletID() == amu2.getAmuletID() && amu1.getAmuletID() == amu3.getAmuletID())
 		{
 			return 123;
 		}
 
-		if (amu1.getAmuletName() == amu2.getAmuletName() && amu1.getAmuletName() != amu3.getAmuletName())
+		if (amu1.getAmuletID() == amu2.getAmuletID() && amu1.getAmuletID() != amu3.getAmuletID())
 		{
 			return 12;
 		}
 
-		if (amu1.getAmuletName() == amu3.getAmuletName() && amu1.getAmuletName() != amu2.getAmuletName())
+		if (amu1.getAmuletID() == amu3.getAmuletID() && amu1.getAmuletID() != amu2.getAmuletID())
 		{
 			return 13;
 		}
 
-		if (amu2.getAmuletName() == amu3.getAmuletName() && amu2.getAmuletName() != amu1.getAmuletName())
+		if (amu2.getAmuletID() == amu3.getAmuletID() && amu1.getAmuletID() != amu3.getAmuletID())
 		{
 			return 23;
 		}
 
 		return 0;
+	}
+	
+	public static int getAmuletLevel(ItemStack stack)
+	{
+		return stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : 0;
 	}
 }

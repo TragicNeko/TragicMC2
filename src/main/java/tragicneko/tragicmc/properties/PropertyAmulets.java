@@ -2,18 +2,15 @@ package tragicneko.tragicmc.properties;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.inventory.SlotActiveAmulet;
 import tragicneko.tragicmc.items.ItemAmulet;
-import tragicneko.tragicmc.network.MessageAmulet;
 
 public class PropertyAmulets implements IExtendedEntityProperties {
 
@@ -107,6 +104,22 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 				return (ItemAmulet) this.inventory.getStackInSlot(slot).getItem();
 			}
 		}
+		return null;
+	}
+	
+	public ItemStack getActiveAmuletItemStack(int slot)
+	{
+		if (this.inventory.getStackInSlot(slot) != null)
+		{
+			ContainerAmulet container = new ContainerAmulet(thePlayer, thePlayer.inventory, this.inventory);
+			Slot invSlot = (Slot) container.inventorySlots.get(slot);
+
+			if (invSlot instanceof SlotActiveAmulet && !((SlotActiveAmulet) invSlot).isLocked())
+			{
+				return this.inventory.getStackInSlot(slot);
+			}
+		}
+		
 		return null;
 	}
 	

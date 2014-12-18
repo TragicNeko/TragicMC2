@@ -59,6 +59,7 @@ import tragicneko.tragicmc.items.food.ItemSkyFruit;
 import tragicneko.tragicmc.items.food.ItemSushi;
 import tragicneko.tragicmc.items.food.ItemTentacle;
 import tragicneko.tragicmc.items.weapons.ItemEverlastingLight;
+import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
@@ -66,9 +67,9 @@ import tragicneko.tragicmc.items.weapons.WeaponBlindingLight;
 import tragicneko.tragicmc.items.weapons.WeaponBowOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponButcher;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
+import tragicneko.tragicmc.items.weapons.WeaponCelestialJack;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponDragonFang;
-import tragicneko.tragicmc.items.weapons.WeaponEnigmaShield;
 import tragicneko.tragicmc.items.weapons.WeaponFrozenLightning;
 import tragicneko.tragicmc.items.weapons.WeaponGravitySpike;
 import tragicneko.tragicmc.items.weapons.WeaponGuiltyThorn;
@@ -93,7 +94,7 @@ public class TragicItems {
 	public static String textureRes = "_lowRes";
 
 	//Item variables
-	public static Item RedMercury, Quicksilver, QuicksilverIngot;
+	public static Item RedMercury, Quicksilver, QuicksilverIngot, Jack;
 	public static Item MercuryDagger, MercuryHelm, MercuryPlate, MercuryLegs, MercuryBoots;
 	public static Item Tungsten, TungstenJack, TungstenHelm, TungstenPlate, TungstenLegs, TungstenBoots;
 
@@ -107,13 +108,14 @@ public class TragicItems {
 	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser;
 
 	//Can be found in random boss structures, can also be crafted from drops from the Time Controller
-	public static Item CelestialAegis, CelestialLongbow, CelestialSteel;
-	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, EnigmaShield, WitheringAxe;
+	public static Item CelestialAegis, CelestialLongbow, CelestialJack, CelestialSteel;
+	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, WitheringAxe;
 
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
 
-	public static Item Sentinel;
+	//Big boss drops, from the Overlord and the Administrator (way future boss)
+	public static Item Sentinel, Password;
 
 	//Weather/Time items
 	public static Item RainDanceTalisman, SunnyDayTalisman, ThunderstormTalisman, TimeManipulatorTalisman;
@@ -138,22 +140,22 @@ public class TragicItems {
 
 	//Amulets
 	public static Item KitsuneAmulet;
-	public static Item YetiAmulet, YetiAmulet2, YetiAmulet3;
-	public static Item PeaceAmulet, PeaceAmulet2, PeaceAmulet3;
-	public static Item ClaymationAmulet, ClaymationAmulet2, ClaymationAmulet3;
-	public static Item ChickenAmulet, ChickenAmulet2, ChickenAmulet3;
+	public static Item YetiAmulet;
+	public static Item PeaceAmulet;
+	public static Item ClaymationAmulet;
+	public static Item ChickenAmulet;
 	public static Item MartyrAmulet;
 	public static Item PiercingAmulet;
-	public static Item BlacksmithAmulet, BlacksmithAmulet2, BlacksmithAmulet3;
+	public static Item BlacksmithAmulet;
 	public static Item ApisAmulet;
-	public static Item CreeperAmulet, CreeperAmulet2, CreeperAmulet3;
-	public static Item ZombieAmulet, ZombieAmulet2, ZombieAmulet3;
-	public static Item SkeletonAmulet, SkeletonAmulet2, SkeletonAmulet3;
+	public static Item CreeperAmulet;
+	public static Item ZombieAmulet;
+	public static Item SkeletonAmulet;
 	public static Item SunkenAmulet;
 	public static Item TimeAmulet;
-	public static Item IceAmulet, IceAmulet2, IceAmulet3;
-	public static Item SnowGolemAmulet, SnowGolemAmulet2, SnowGolemAmulet3;
-	public static Item IronGolemAmulet, IronGolemAmulet2, IronGolemAmulet3;
+	public static Item IceAmulet;
+	public static Item SnowGolemAmulet;
+	public static Item IronGolemAmulet;
 	public static Item EndermanAmulet;
 	public static Item WitherAmulet;
 
@@ -221,8 +223,9 @@ public class TragicItems {
 	public static ChestGenHooks AwesomeChestHook;
 
 	//Tool Materials
+	private static final ToolMaterial toolBasic = EnumHelper.addToolMaterial("BASIC", 1, 115, 12.0F, 0.0F, 1).setRepairItem(new ItemStack(Items.flint));
 	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 12.0F, 0.0F, 6).setRepairItem(new ItemStack(Items.bone));
-	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 1650, 15.0F, 0.0F, 5);
+	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 15.0F, 2.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
 	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, 0F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
@@ -237,8 +240,8 @@ public class TragicItems {
 	private static final ToolMaterial toolLight = EnumHelper.addToolMaterial("LIGHT", 3, 333, 8.0F, 8.0F, 14).setRepairItem(new ItemStack(LightParticles));
 	private static final ToolMaterial toolMourning = EnumHelper.addToolMaterial("MOURNING", 3, 440, 9.0F, 9.0F, 14);
 	private static final ToolMaterial toolReaper = EnumHelper.addToolMaterial("REAPER", 3, 800, 30.0F, 12.0F, 10);
-	private static final ToolMaterial toolEnigma = EnumHelper.addToolMaterial("ENIGMA", 3, 444, 4.0F, 4.0F, 4);
-	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24);
+	private static final ToolMaterial toolCelesJack = EnumHelper.addToolMaterial("CELESJACK", 3, 1280, 20.0F, 4.0F, 4).setRepairItem(new ItemStack(CelestialSteel));
+	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24).setRepairItem(new ItemStack(CelestialSteel));
 	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
 	public static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 2100, 21.0F, 21.0F, 28);
@@ -387,9 +390,6 @@ public class TragicItems {
 		ReaperScythe = (new WeaponReaperScythe(toolReaper, Doomsday.ReaperLaugh).setUnlocalizedName("tragicmc.reaperScythe").setTextureName("tragicmc:ReaperScythe" + textureRes));
 		GameRegistry.registerItem(ReaperScythe, "reaperScythe");
 
-		EnigmaShield = (new WeaponEnigmaShield(toolEnigma, Doomsday.RealityAlter).setUnlocalizedName("tragicmc.enigmaShield").setTextureName("tragicmc:EnigmaShield" + textureRes));
-		GameRegistry.registerItem(EnigmaShield, "enigmaShield");
-
 		WitheringAxe = (new WeaponWitheringAxe(toolWithering, Doomsday.SkullCrusher).setUnlocalizedName("tragicmc.witheringAxe").setTextureName("tragicmc:WitheringAxe" + textureRes));
 		GameRegistry.registerItem(WitheringAxe, "witheringAxe");
 
@@ -427,9 +427,15 @@ public class TragicItems {
 
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:EverlastingLight" + textureRes));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
+		
+		Jack = (new ItemJack(toolBasic).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BasicJack_lowRes"));
+		GameRegistry.registerItem(Jack, "jack");
 
 		TungstenJack = (new WeaponTungstenJack(toolJack, Doomsday.MinerSkills).setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
 		GameRegistry.registerItem(TungstenJack, "tungstenJack");
+		
+		CelestialJack = (new WeaponCelestialJack(toolCelesJack, Doomsday.RealityAlter).setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack" + textureRes));
+		GameRegistry.registerItem(CelestialJack, "celestialJack");
 
 		//Normal Item Registrations
 		Ectoplasm = (new ItemGeneric().setUnlocalizedName("tragicmc.ectoplasm").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:Ectoplasm" + textureRes));
@@ -712,131 +718,63 @@ public class TragicItems {
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
 
 		//Amulet Registrations
-		int color = 0x000000;
-		int color2 = 0xFFFFFF;
 		int id = 0;
-
-		KitsuneAmulet = (new ItemAmulet(id++, 4, "Kitsune", 0x000000, 0xB51919));
+		
+		KitsuneAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
 
-		color = 0x9F5B86;
-		color2 = 0xFF9ACA;
-		PeaceAmulet = (new ItemAmulet(id, 1, "Peace", color, color2));
+		PeaceAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
-		PeaceAmulet2 = (new ItemAmulet(id, 2, "Peace", color, color2));
-		GameRegistry.registerItem(PeaceAmulet2, "peaceAmulet2");
-		PeaceAmulet3 = (new ItemAmulet(id++, 3, "Peace", color, color2));
-		GameRegistry.registerItem(PeaceAmulet3, "peaceAmulet3");
 
-		color = 0xFAFAFA;
-		color2 = 0x98B4C1;
-		YetiAmulet = (new ItemAmulet(id, 1, "Yeti", color, color2));
+		YetiAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
-		YetiAmulet2 = (new ItemAmulet(id, 2, "Yeti", color, color2));
-		GameRegistry.registerItem(YetiAmulet2, "yetiAmulet2");
-		YetiAmulet3 = (new ItemAmulet(id++, 3, "Yeti", color, color2));
-		GameRegistry.registerItem(YetiAmulet3, "yetiAmulet3");
 
-		color = 0xFF9500;
-		color2 = 0xFFCA02;
-		ClaymationAmulet = (new ItemAmulet(id, 1, "Claymation", color, color2));
+		ClaymationAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
-		ClaymationAmulet2 = (new ItemAmulet(id, 2, "Claymation", color, color2));
-		GameRegistry.registerItem(ClaymationAmulet2, "claymationAmulet2");
-		ClaymationAmulet3 = (new ItemAmulet(id++, 3, "Claymation", color, color2));
-		GameRegistry.registerItem(ClaymationAmulet3, "claymationAmulet3");
 
-		color = 0xDEDEDE;
-		color2 = 0xFFEAA1;
-		ChickenAmulet = (new ItemAmulet(id, 1, "Chicken", color, color2));
+		ChickenAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
-		ChickenAmulet2 = (new ItemAmulet(id, 2, "Chicken", color, color2));
-		GameRegistry.registerItem(ChickenAmulet2, "chickenAmulet2");
-		ChickenAmulet3 = (new ItemAmulet(id++, 3, "Chicken", color, color2));
-		GameRegistry.registerItem(ChickenAmulet3, "chickenAmulet3");
 
-		MartyrAmulet = (new ItemAmulet(id++, 4, "Martyr", 000000, 454545));
+		MartyrAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
 
-		PiercingAmulet = (new ItemAmulet(id++, 4, "Piercing", 0x000000, 0xFFFA5E));
+		PiercingAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
 
-		color = 0x949494;
-		color2 = 0x696969;
-		BlacksmithAmulet = (new ItemAmulet(id, 1, "Blacksmith", color, color2));
+		BlacksmithAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
-		BlacksmithAmulet2 = (new ItemAmulet(id, 2, "Blacksmith", color, color2));
-		GameRegistry.registerItem(BlacksmithAmulet2, "blacksmithAmulet2");
-		BlacksmithAmulet3 = (new ItemAmulet(id++, 3, "Blacksmith", color, color2));
-		GameRegistry.registerItem(BlacksmithAmulet3, "blacksmithAmulet3");
 
-		ApisAmulet = (new ItemAmulet(id++, 4, "Apis", 0x000000, 0xEFE297));
+		ApisAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(ApisAmulet, "apisAmulet");
 
-		color = 0x27C123;
-		color2 = 0x43E140;
-		CreeperAmulet = (new ItemAmulet(id, 1, "Creeper", color, color2));
+		CreeperAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
-		CreeperAmulet2 = (new ItemAmulet(id, 2, "Creeper", color, color2));
-		GameRegistry.registerItem(CreeperAmulet2, "creeperAmulet2");
-		CreeperAmulet3 = (new ItemAmulet(id++, 3, "Creeper", color, color2));
-		GameRegistry.registerItem(CreeperAmulet3, "creeperAmulet3");
 
-		color = 0x3A8F4A;
-		color2 = 0x27C1C9;
-		ZombieAmulet = (new ItemAmulet(id, 1, "Zombie", color, color2));
+		ZombieAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
-		ZombieAmulet2 = (new ItemAmulet(id, 2, "Zombie", color, color2));
-		GameRegistry.registerItem(ZombieAmulet2, "zombieAmulet2");
-		ZombieAmulet3 = (new ItemAmulet(id++, 3, "Zombie", color, color2));
-		GameRegistry.registerItem(ZombieAmulet3, "zombieAmulet3");
-
-		color = 0xA0A0A0;
-		color2 = 0xC1C1C1;
-		SkeletonAmulet = (new ItemAmulet(id, 1, "Skeleton", color, color2));
+		
+		SkeletonAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
-		SkeletonAmulet2 = (new ItemAmulet(id, 2, "Skeleton", color, color2));
-		GameRegistry.registerItem(SkeletonAmulet2, "skeletonAmulet2");
-		SkeletonAmulet3 = (new ItemAmulet(id++, 3, "Skeleton", color, color2));
-		GameRegistry.registerItem(SkeletonAmulet3, "skeletonAmulet3");
 
-		SunkenAmulet = (new ItemAmulet(id++, 4, "Sunken", 0x000000, 0x466DB3));
+		SunkenAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
 
-		TimeAmulet = (new ItemAmulet(id++, 5, "Time", 0x94FFA3, 0xEA92E9));
+		TimeAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
 
-		color = 0xC4EFFF;
-		color2 = 0xA5D0E0;
-		IceAmulet = (new ItemAmulet(id, 1, "Ice", color, color2));
+		IceAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(IceAmulet, "iceAmulet");
-		IceAmulet2 = (new ItemAmulet(id, 2, "Ice", color, color2));
-		GameRegistry.registerItem(IceAmulet2, "iceAmulet2");
-		IceAmulet3 = (new ItemAmulet(id++, 3, "Ice", color, color2));
-		GameRegistry.registerItem(IceAmulet3, "iceAmulet3");
 
-		color = 0xFFFDF1;
-		color2 = 0xABA290;
-		SnowGolemAmulet = (new ItemAmulet(id, 1, "SnowGolem", color, color2));
+		SnowGolemAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
-		SnowGolemAmulet2 = (new ItemAmulet(id, 2, "SnowGolem", color, color2));
-		GameRegistry.registerItem(SnowGolemAmulet2, "snowGolemAmulet2");
-		SnowGolemAmulet3 = (new ItemAmulet(id++, 3, "SnowGolem", color, color2));
-		GameRegistry.registerItem(SnowGolemAmulet3, "snowGolemAmulet3");
 
-		color = 0xDBCDC1;
-		color2 = 0x8B7260;
-		IronGolemAmulet = (new ItemAmulet(id, 1, "IronGolem", color, color2));
+		IronGolemAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
-		IronGolemAmulet2 = (new ItemAmulet(id, 2, "IronGolem", color, color2));
-		GameRegistry.registerItem(IronGolemAmulet2, "ironGolemAmulet2");
-		IronGolemAmulet3 = (new ItemAmulet(id++, 3, "IronGolem", color, color2));
-		GameRegistry.registerItem(IronGolemAmulet3, "ironGolemAmulet3");
 
-		EndermanAmulet = (new ItemAmulet(id++, 4, "Enderman", 0x000000, 0xB547DE));
+		EndermanAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
 
-		WitherAmulet = (new ItemAmulet(id++, 5, "Wither", 0x1C1C1C, 0x252525));
+		WitherAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 
 		//Armor and Tool materials

@@ -7,7 +7,6 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class RecipeWeapons extends ShapelessOreRecipe {
 
-
 	public RecipeWeapons(ItemStack output, Object... items) {
 		super(output, items);
 	}

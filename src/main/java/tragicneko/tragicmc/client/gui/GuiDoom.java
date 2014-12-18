@@ -18,9 +18,7 @@ import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
-import tragicneko.tragicmc.items.weapons.ItemShield;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
-import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -130,13 +128,6 @@ public class GuiDoom extends Gui
 				{
 					TragicWeapon weapon = (TragicWeapon) stack.getItem();
 					if (weapon.getDoomsday().doesCurrentDoomMeetRequirement(props) || weapon.getSecondaryDoomsday() != null && weapon.getSecondaryDoomsday().doesCurrentDoomMeetRequirement(props) )
-					{
-						flag = true;
-					}
-				}
-				else if (stack.getItem() instanceof ItemShield)
-				{
-					if (((ItemShield)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
 					{
 						flag = true;
 					}
