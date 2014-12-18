@@ -3122,14 +3122,17 @@ Reaper Scythe class
 Finally fix NPE with targetting for mobs
 Updated efficiency of Withering Axe on wood and Tungsten Jack on everything, split the Tungsten Jack into a separate class to allow for more than one version of it and to allow easily
 extending the class to create a new hybrid weapon
-Finish up the Lore rewrite, start on the Amulet rewrite, work on the small Doomsday Effect changes
+Rewrote the Amulets, fixed initial issues with getting the proper icon for them, changed their recipes to utilize the new nbt tags for them, reduced the amount of game registry entrants
+with this method and cleaned up that section of code
+Modified the AmuletHelper and the Amulet Event Handler to use the new nbt tag system and their ids rather than just using their names (which was a stupid system to begin with)
+Finish adding the rest of the weapon/armor/item lores, update Doomsdays
+Added the basic jack, changed the Enigma Shield to a Celestial Jack, craftable from Celestial Steel and Celestial Diamonds
+Lowered the Tungsten Jack's durability, the basic jack is craftable with flint and quicksilver, the Celestial Jack has higher base efficiency than the Tungsten Jack
 
 TODO still
 Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
-Convert Enigma Shield to a different item/weapon, maybe a special one like the Harmony Bell, currently it is rather useless and isn't even craftable
-Rewrite the Amulet items to use one item per type, but allow their levels and such to be set using nbt tags, their name and title can also be set with this method
 Along with that rewrite, I'll also add modifiers at this time
 For Doomsday abilities, allow each of these to have configurable amounts
 
