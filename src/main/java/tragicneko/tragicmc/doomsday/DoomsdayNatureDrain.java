@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -26,8 +26,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
-	private ArrayList<int[]> list = new ArrayList();
-
 	public DoomsdayNatureDrain(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
 		this.waitTime = 10;
@@ -35,9 +33,9 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double radius = crucMoment ? 12.0D : 7.0D;
-		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
 		boolean griefCheck = TragicNewConfig.griefConfigs[0];
 		double plantCount = 0.0D;
@@ -45,7 +43,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = list.get(i);
+			coords = (int[]) list.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
@@ -115,10 +113,10 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double radius = crucMoment ? 12.0D : 7.0D;
-		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
 		boolean griefCheck = TragicNewConfig.griefConfigs[0];
 		double plantCount = 0.0D;
@@ -126,7 +124,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = list.get(i);
+			coords = (int[]) list.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
@@ -195,7 +193,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		float f = list.size() / 10.0F;
+		float f = rand.nextFloat() * 10.0F;
 		player.addExhaustion(f);
 	}
 

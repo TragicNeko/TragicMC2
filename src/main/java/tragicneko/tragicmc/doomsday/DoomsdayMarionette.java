@@ -18,8 +18,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
-	private EntityLivingBase entity;
-
 	public DoomsdayMarionette(int id) {
 		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 3;
@@ -27,9 +25,8 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		entity = null;
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(2.0D, 2.0D, 2.0D));
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(4.0D, 4.0D, 4.0D));
 
 		if (list.isEmpty())
 		{
@@ -37,19 +34,25 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 		}
 		else
 		{
+			EntityLivingBase entity = null;
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) instanceof EntityLivingBase)
 				{
-					this.entity = (EntityLivingBase) list.get(i);
-					break;
+					if (entity != null)
+					{
+						if (player.getDistanceToEntity(entity) > player.getDistanceToEntity(list.get(i))) entity = (EntityLivingBase) list.get(i);
+					}
+					if (entity == null) entity = (EntityLivingBase) list.get(i);
 				}
 			}
 			
-			if (this.entity != null)
+			effect.utilityEntity = entity;
+
+			if (effect.utilityEntity != null && effect.utilityEntity instanceof EntityLivingBase)
 			{
-				if (TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 200, 10));
-				
+				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) effect.utilityEntity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 200, 10));
+
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Marionette!"));
 
 				if (crucMoment)
@@ -65,28 +68,35 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		if (entity != null && !entity.isDead)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		if (effect.utilityEntity != null && !effect.utilityEntity.isDead && effect.utilityEntity instanceof EntityLivingBase)
 		{
 			Vec3 vec = WorldHelper.getVecFromEntity(player, 5.0D);
 
 			if (vec != null)
 			{
-				entity.setPositionAndUpdate(vec.xCoord, vec.yCoord, vec.zCoord);
-				if (rand.nextInt(8) == 0) entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
+				((EntityLivingBase) effect.utilityEntity).setPositionAndUpdate(vec.xCoord, vec.yCoord, vec.zCoord);
+				if (rand.nextInt(8) == 0) effect.utilityEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
 			}
 		}
 		else
 		{
-			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(2.0D, 2.0D, 2.0D));
+			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(4.0D, 4.0D, 4.0D));
+			EntityLivingBase entity = null;
+			
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) instanceof EntityLivingBase)
 				{
-					this.entity = (EntityLivingBase) list.get(i);
-					break;
+					if (entity != null)
+					{
+						if (player.getDistanceToEntity(entity) > player.getDistanceToEntity(list.get(i))) entity = (EntityLivingBase) list.get(i);
+					}
+					if (entity == null) entity = (EntityLivingBase) list.get(i);
 				}
 			}
+			
+			effect.utilityEntity = entity;
 		}
 	}
 

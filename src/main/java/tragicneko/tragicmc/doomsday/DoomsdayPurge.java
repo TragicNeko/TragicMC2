@@ -20,13 +20,13 @@ public class DoomsdayPurge extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Purge!"));
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(2.0D, 2.0D, 2.0D));
 		EntityLivingBase entity;

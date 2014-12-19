@@ -12,18 +12,16 @@ import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayRavage extends Doomsday {
-	
-	private List<Entity> list = new ArrayList();
 
 	public DoomsdayRavage(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		double d0 = crucMoment ? 24.0D : 12.0D;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 		
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Ravage!"));
 		
@@ -34,16 +32,16 @@ public class DoomsdayRavage extends Doomsday {
 	}
 	
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		float f = crucMoment ? 5.0F : 2.5F;
 		int meow = crucMoment ? 4 : 0;
 
-		for (int i = 0; i < list.size(); i ++)
+		for (int i = 0; i < effect.utilityList.size(); i ++)
 		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicNewConfig.griefConfigs[1]);
 			}
 		}

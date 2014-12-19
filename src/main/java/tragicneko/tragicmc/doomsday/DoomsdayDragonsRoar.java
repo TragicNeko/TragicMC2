@@ -20,7 +20,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Dragon's Roar!"));
 
 		if (crucMoment)
@@ -30,7 +30,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		if (TragicNewConfig.allowFlight)
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotions.Flight.id, 6000, 0));

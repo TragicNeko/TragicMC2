@@ -14,15 +14,13 @@ import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayToxicity extends Doomsday {
-	
-	private List<Entity> list = new ArrayList();
 
 	public DoomsdayToxicity(int id) {
 		super(id);
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d = 12.0;
 
 		if (crucMoment)
@@ -30,9 +28,9 @@ public class DoomsdayToxicity extends Doomsday {
 			d = 16.0;
 		}
 
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d, d, d));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d, d, d));
 		
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Toxicity!"));
 
@@ -48,18 +46,18 @@ public class DoomsdayToxicity extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (int i = 0; i < effect.utilityList.size(); i++)
 		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 
 				for (int j = 0; j < 4; j ++)
 				{
 					double d0 = entity.posX - player.posX; 
-					double d1 = entity.posY - player.posY;
+					double d1 = entity.posY - player.posY + 0.65;
 					double d2 = entity.posZ - player.posZ;
 
 					EntityPoisonBarb fireball = new EntityPoisonBarb(player.worldObj, player, d0, d1, d2);

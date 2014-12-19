@@ -21,7 +21,7 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public abstract class Doomsday {
 
-	protected final Random rand = TragicMC.rand;
+	protected static final Random rand = new Random();
 
 	public static final Doomsday[] doomsdayList = new Doomsday[64];
 
@@ -246,16 +246,17 @@ public abstract class Doomsday {
 		DoomsdayManager.registerDoomsdayEffect(player.getCommandSenderName(), effect);
 	}
 
-	public abstract void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment);
+	public abstract void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment);
 
 	/**
 	 * This is the main method each doomsday will override to do it's unique abilities
+	 * @param effect TODO
 	 * @param doom
 	 * @param player
 	 * @param crucMoment
 	 * @param griefCheck
 	 */
-	public abstract void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment);
+	public abstract void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment);
 
 	/**
 	 * This applies the backlash effect, will be overriden by each Doomsday to have their own unique effects

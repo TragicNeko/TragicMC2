@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.doomsday;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -22,9 +23,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 
-	private ArrayList<int[]> list = new ArrayList();
-	private List<Entity> list2 = new ArrayList();
-
 	public DoomsdayPermafrost(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
 		this.waitTime = 3;
@@ -32,7 +30,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Permafrost!"));
 
 		if (crucMoment)
@@ -41,8 +39,8 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 		}
 
 		double radius = crucMoment ? 6.0D : 4.0D;
-		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
 		
 		Block block;
 		int[] coords;
@@ -54,7 +52,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = list.get(i);
+			coords = (int[]) list.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block == Blocks.lava)
@@ -81,11 +79,11 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		double radius = crucMoment ? 6.0D : 4.0D;
-		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
 		
 		Block block;
 		int[] coords;
@@ -97,7 +95,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = list.get(i);
+			coords = (int[]) list.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block == Blocks.lava)

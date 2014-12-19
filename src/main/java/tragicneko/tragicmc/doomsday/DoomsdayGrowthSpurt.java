@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -17,27 +17,25 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayGrowthSpurt extends Doomsday {
 
-	private ArrayList<int[]> list = new ArrayList();
-
 	public DoomsdayGrowthSpurt(int id) {
 		super(id, EnumDoomType.COMBINATION);
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double radius = crucMoment ? 12.0D : 7.0D;
-		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		effect.utilityList =  WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		double plantCount = 0.0D;
 		int[] coords;
 
-		for (int i = 0; i < list.size(); i++)
+		for (int i = 0; i < effect.utilityList.size(); i++)
 		{
-			coords = list.get(i);
+			coords = (int[]) effect.utilityList.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block == Blocks.gravel)

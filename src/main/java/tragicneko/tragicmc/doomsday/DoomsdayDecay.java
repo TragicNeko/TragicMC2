@@ -15,18 +15,16 @@ import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayDecay extends Doomsday {
-	
-	private List<Entity> list = new ArrayList();
 
 	public DoomsdayDecay(int id) {
 		super(id);
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0, 8.0, 8.0));
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0, 8.0, 8.0));
 		
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Decay!"));
 			if (crucMoment)
@@ -41,13 +39,13 @@ public class DoomsdayDecay extends Doomsday {
 	}
 	
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		for (int i = 0; i < list.size(); i++)
+		for (int i = 0; i < effect.utilityList.size(); i++)
 		{
-			if (list.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(120) + 120));
 				entity.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(240) + 160, rand.nextInt(2)));

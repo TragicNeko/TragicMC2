@@ -17,7 +17,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 	
-	private List<Entity> list = new ArrayList();
 
 	public DoomsdayMindcrack(int id) {
 		super(id, EnumDoomType.COMBINATION);
@@ -26,12 +25,12 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		double d0 = 12.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Mindcrack!"));
 
@@ -47,15 +46,15 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = 12.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 		
-		for (int i = 0; i < list.size(); i ++)
+		for (int i = 0; i < effect.utilityList.size(); i ++)
 		{
-			if (list.get(i) instanceof EntityCreature)
+			if (effect.utilityList.get(i) instanceof EntityCreature)
 			{
-				EntityCreature entity = (EntityCreature) list.get(i);
+				EntityCreature entity = (EntityCreature) effect.utilityList.get(i);
 				if (entity.getMaxHealth() >= 40.0F) continue;
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 2400, 4));
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));

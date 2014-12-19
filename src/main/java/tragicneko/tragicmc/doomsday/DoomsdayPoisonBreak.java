@@ -16,7 +16,7 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		Vec3 vec = WorldHelper.getVecFromEntity(player);
 		
 		if (vec == null)
@@ -35,16 +35,16 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		Vec3 vec = WorldHelper.getVecFromEntity(player);
 		if (vec == null) return;
 		
 		for (int i = 0; i < 4; i ++)
 		{
-			double d0 = player.posX - vec.xCoord; 
-			double d1 = player.posY - vec.yCoord + 0.65;
-			double d2 = player.posZ - vec.zCoord;
+			double d0 = vec.xCoord - player.posX; 
+			double d1 = vec.yCoord - player.posY + 0.65;
+			double d2 = vec.zCoord - player.posZ;
 
 			EntityPoisonBarb fireball = new EntityPoisonBarb(player.worldObj, player, d0, d1, d2);
 			fireball.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6D, player.posZ + (d2 * 0.115));

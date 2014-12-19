@@ -17,7 +17,7 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Blizzard!"));
 
 		if (crucMoment)
@@ -27,7 +27,7 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		for (int l = 0; l < 30; l++)
 		{
 			double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 

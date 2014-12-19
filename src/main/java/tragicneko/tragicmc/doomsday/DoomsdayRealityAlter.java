@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.doomsday;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -23,9 +24,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayRealityAlter extends Doomsday {
 
-	private ArrayList<int[]> list = new ArrayList();
-	private List<Entity> list2 = new ArrayList();
-
 	private Block[] randomBlocks = new Block[] {Blocks.wheat, Blocks.glowstone, Blocks.cactus, Blocks.deadbush, Blocks.carrots, TragicBlocks.CarrotBlock, TragicBlocks.PotatoBlock,
 			TragicBlocks.Light, Blocks.red_flower, Blocks.yellow_flower, Blocks.double_plant, Blocks.wooden_slab, Blocks.cake, Blocks.bed, Blocks.hay_block, Blocks.hardened_clay,
 			Blocks.red_mushroom_block, Blocks.brown_mushroom_block, Blocks.water, Blocks.lava, Blocks.activator_rail, Blocks.tnt};
@@ -35,7 +33,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Reality Alter!"));
 
 		if (crucMoment)
@@ -44,13 +42,18 @@ public class DoomsdayRealityAlter extends Doomsday {
 		}
 
 		double radius = crucMoment ? 24.0D : 12.0D;
-		list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+		effect.utilityList.add(list);
+		effect.utilityList.add(list2);
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player,	boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom,	EntityPlayer player, boolean crucMoment)
 	{
+		List list = (List) effect.utilityList.get(0);
+		List list2 = (List) effect.utilityList.get(1);
+		
 		for (int i = 0; i < list2.size(); i++)
 		{
 			if (list2.get(i) instanceof EntityAnimal && rand.nextInt(8) == 0)
@@ -59,11 +62,11 @@ public class DoomsdayRealityAlter extends Doomsday {
 				{
 					if (rand.nextFloat() > 0.35F)
 					{
-						list2.get(i).getDataWatcher().updateObject(10, "Dinnerbone");
+						((Entity) list2.get(i)).getDataWatcher().updateObject(10, "Dinnerbone");
 					}
 					else
 					{
-						list2.get(i).getDataWatcher().updateObject(10, "Grumm");
+						((Entity) list2.get(i)).getDataWatcher().updateObject(10, "Grumm");
 					}
 				}
 			}
@@ -75,7 +78,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 
 		for (int i = 0; i < list.size(); i++)
 		{
-			coords = list.get(i);
+			coords = (int[]) list.get(i);
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (!(block instanceof BlockAir) && rand.nextInt(48) == 0)

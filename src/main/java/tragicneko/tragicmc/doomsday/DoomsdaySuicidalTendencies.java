@@ -19,7 +19,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 
 		if (vec == null)
@@ -38,7 +38,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player,	boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom,	EntityPlayer player, boolean crucMoment) 
 	{
 		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 		if (vec == null) return;

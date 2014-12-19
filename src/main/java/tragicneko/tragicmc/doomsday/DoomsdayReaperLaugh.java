@@ -20,7 +20,7 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		if (TragicNewConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotions.Immunity.id, 300, 0));
 		
@@ -33,7 +33,7 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player,	boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom,	EntityPlayer player, boolean crucMoment) 
 	{		
 		for (int l = 0; l < 5; l++)
 		{

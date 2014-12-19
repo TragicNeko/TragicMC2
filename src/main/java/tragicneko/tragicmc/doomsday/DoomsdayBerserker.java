@@ -17,7 +17,7 @@ public class DoomsdayBerserker extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Berserker!"));
 		
 		if (crucMoment)
@@ -27,7 +27,7 @@ public class DoomsdayBerserker extends Doomsday {
 	}
 	
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		short overflow = this.getOverflow(doom);
 		int a = MathHelper.ceiling_double_int(overflow / 10);

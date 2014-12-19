@@ -16,18 +16,16 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayHarmonizer extends Doomsday {
 
-	private List<Entity> list = new ArrayList();
-
 	public DoomsdayHarmonizer(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = 12.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Harmonizer!"));
 
@@ -43,16 +41,16 @@ public class DoomsdayHarmonizer extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		float crisis = this.getCrisis(player);
 		crisis /= 1.0F / 20.0F;
 
-		for (int i = 0; i < list.size(); i ++)
+		for (int i = 0; i < effect.utilityList.size(); i ++)
 		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 
 				int dur = crucMoment ? 600 : 300;
 

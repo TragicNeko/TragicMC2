@@ -19,8 +19,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 
-	private List<Entity> list = new ArrayList();
-
 	public DoomsdayAsphyxiate(int id) {
 		super(id, EnumDoomType.CRISIS);
 		this.waitTime = 3;
@@ -28,9 +26,9 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = 12.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
 		if (list.size() > 0)
 		{
@@ -76,9 +74,9 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		double d0 = 12.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
 		float crisis = 1 / this.getCrisis(player);
 

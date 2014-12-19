@@ -15,15 +15,13 @@ import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdaySkullCrusher extends Doomsday {
-	
-	private List<Entity> list = new ArrayList();
 
 	public DoomsdaySkullCrusher(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		double d0 = 2.0;
 		float crisis = this.getCrisis(player);
@@ -40,9 +38,9 @@ public class DoomsdaySkullCrusher extends Doomsday {
 
 		if (crucMoment) d0 *= 2;
 
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 		
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Skull Crusher!"));
 
@@ -58,7 +56,7 @@ public class DoomsdaySkullCrusher extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		double d0 = 2.0;
 		float crisis = this.getCrisis(player);
@@ -75,11 +73,11 @@ public class DoomsdaySkullCrusher extends Doomsday {
 
 		if (crucMoment) d0 *= 2;
 		
-		for (int x = 0; x < list.size(); x++)
+		for (int x = 0; x < effect.utilityList.size(); x++)
 		{
-			if (list.get(x) instanceof EntityLivingBase)
+			if (effect.utilityList.get(x) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(x);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(x);
 				entity.applyEntityCollision(player);
 				entity.motionX *= 1.25D * d0;
 				entity.motionZ *= 1.25D * d0;

@@ -14,14 +14,12 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPiercingLight extends Doomsday {
 
-	private List<Entity> list = new ArrayList();
-
 	public DoomsdayPiercingLight(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		int posX = (int) player.posX;
 		int posY = (int) player.posY;
 		int posZ = (int) player.posZ;
@@ -47,9 +45,9 @@ public class DoomsdayPiercingLight extends Doomsday {
 				d0 = 4.0;
 			}
 
-			list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+			effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
-			if (list.size() > 0)
+			if (effect.utilityList.size() > 0)
 			{
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Piercing Light!"));
 
@@ -66,18 +64,18 @@ public class DoomsdayPiercingLight extends Doomsday {
 		else
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "It's not dark enough to use that..."));
-			if (!list.isEmpty()) list.clear();
+			if (!effect.utilityList.isEmpty()) effect.utilityList.clear();
 		}
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		for (int x = 0; x < list.size(); x++)
+		for (int x = 0; x < effect.utilityList.size(); x++)
 		{
-			if (list.get(x) instanceof EntityLivingBase)
+			if (effect.utilityList.get(x) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(x);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(x);
 
 				float f = entity.worldObj.getLightBrightness((int)entity.posX, (int)entity.posY, (int)entity.posZ);
 

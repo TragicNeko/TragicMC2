@@ -11,22 +11,20 @@ import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayLightShove extends Doomsday {
-	
-	private List<Entity> list = new ArrayList();
 
 	public DoomsdayLightShove(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		float crisis = this.getCrisis(player);
 		double d0 = crucMoment ? 6.0D : 3.0D;
 		
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 		
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Light Shove!"));
 
@@ -42,13 +40,13 @@ public class DoomsdayLightShove extends Doomsday {
 	}
 	
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
 	{
-		for (int i = 0; i < list.size(); i ++)
+		for (int i = 0; i < effect.utilityList.size(); i ++)
 		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 
 				entity.applyEntityCollision(player);
 				if (crucMoment)

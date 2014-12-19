@@ -16,7 +16,7 @@ public class DoomsdayBeastlyImpulses extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Beastly Impulses!"));
 
@@ -27,7 +27,7 @@ public class DoomsdayBeastlyImpulses extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
 	{
 		int d0 = 12;
 		d0 /= this.getCrisis(player);

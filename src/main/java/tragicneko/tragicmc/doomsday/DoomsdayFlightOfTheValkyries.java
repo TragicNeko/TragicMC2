@@ -18,8 +18,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedDoomsday {
 
-	private List<Entity> list = new ArrayList();
-
 	public DoomsdayFlightOfTheValkyries(int id) {
 		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 5;
@@ -27,10 +25,10 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
 
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Flight of the Valkyries!"));	
 			if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 200, 0));
@@ -43,7 +41,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		EntityLivingBase entity;
 		float damage = crucMoment ? 8.0F : 4.0F;
 		float amt = crucMoment ? 1.5F : 0.5F;
@@ -53,13 +51,13 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
 		}
 		
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
 		
-		for (int i = 0; i < list.size(); i++)
+		for (int i = 0; i < effect.utilityList.size(); i++)
 		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
-				entity = (EntityLivingBase) list.get(i);
+				entity = (EntityLivingBase) effect.utilityList.get(i);
 				
 				entity.motionX = rand.nextDouble() - rand.nextDouble();
 				entity.motionY = 0.75 - rand.nextDouble();

@@ -17,7 +17,7 @@ public class DoomsdaySnipe extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Snipe!"));
 
 		if (crucMoment)
@@ -27,7 +27,7 @@ public class DoomsdaySnipe extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		float crisis = this.getCrisis(player);
 		float f = 1.0F;

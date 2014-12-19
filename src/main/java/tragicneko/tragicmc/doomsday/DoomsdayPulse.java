@@ -16,9 +16,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 
-	private int phase = 0;
-	private List<Entity> list = new ArrayList();
-
 	public DoomsdayPulse(int id) {
 		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 10;
@@ -26,12 +23,10 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-
-		if (this.phase != 0) this.phase = 0;
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
 		double d0 = crucMoment ? 16.0 : 8.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
 
 		if (list.isEmpty())
 		{
@@ -49,27 +44,28 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{		
 		double d0 = crucMoment ? 16.0 : 8.0;
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
+		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
 		
 		for (int j = 0; j < list.size(); j++)
 		{
-			if (list.get(j) instanceof EntityLivingBase && player.canEntityBeSeen(list.get(j)))
+			if (list.get(j) instanceof EntityLivingBase && player.canEntityBeSeen((Entity) list.get(j)))
 			{
-				if (phase % 2 == 0)
+				if (effect.utilityFlag)
 				{
-					list.get(j).motionY = 1.0;
+					((Entity) list.get(j)).motionY = 1.0;
 					if (TragicNewConfig.allowSubmission) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 120, rand.nextInt(2)));
 				}
 				else
 				{
-					list.get(j).motionY = -1.0;
+					((Entity) list.get(j)).motionY = -1.0;
 				}
 			}
 		}
-		phase++;
+		
+		effect.utilityFlag = !effect.utilityFlag;
 	}
 	
 	@Override

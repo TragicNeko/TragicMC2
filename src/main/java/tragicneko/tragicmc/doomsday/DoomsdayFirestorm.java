@@ -26,7 +26,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Dragon's Roar!"));
 
 		if (crucMoment)
@@ -65,7 +65,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 		player.worldObj.setRainStrength(1.0F);
 		player.worldObj.setThunderStrength(1.0F);

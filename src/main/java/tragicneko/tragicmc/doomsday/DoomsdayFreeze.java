@@ -3,6 +3,8 @@ package tragicneko.tragicmc.doomsday;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,18 +17,16 @@ import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayFreeze extends Doomsday {
-
-	private List<Entity> list = new ArrayList();
 	
 	public DoomsdayFreeze(int id) {
 		super(id);
 	}
 	
 	@Override
-	public void doInitialEffects(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0, 8.0, 8.0));
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0, 8.0, 8.0));
 		
-		if (list.size() > 0)
+		if (effect.utilityList.size() > 0)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Freeze!"));
 			if (crucMoment)
@@ -41,13 +41,13 @@ public class DoomsdayFreeze extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
-		for (int i = 0; i < list.size(); i++)
+		for (int i = 0; i < effect.utilityList.size(); i++)
 		{
-			if (list.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
+			if (effect.utilityList.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
 			{
-				EntityLivingBase entity = (EntityLivingBase) list.get(i);
+				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 				entity.motionX = 0;
 				entity.motionY = 0;
 				entity.motionZ = 0;
