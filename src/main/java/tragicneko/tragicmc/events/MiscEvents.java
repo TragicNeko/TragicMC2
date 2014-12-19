@@ -14,11 +14,14 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.terraingen.OreGenEvent;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
+import tragicneko.tragicmc.dimension.SynapseWorldProvider;
+import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -26,7 +29,7 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class WeaponEvents {
+public class MiscEvents {
 	
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
@@ -308,6 +311,15 @@ public class WeaponEvents {
 			event.output = stack;
 
 			event.cost = 5 + extra;
+		}
+	}
+	
+	@SubscribeEvent
+	public void denyDimensionVanillaGen(OreGenEvent.GenerateMinable event)
+	{
+		if (event.world.provider instanceof TragicWorldProvider || event.world.provider instanceof SynapseWorldProvider)
+		{
+			if (event.hasResult()) event.setResult(Result.DENY);
 		}
 	}
 }
