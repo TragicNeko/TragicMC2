@@ -250,7 +250,7 @@ public abstract class Doomsday {
 
 	/**
 	 * This is the main method each doomsday will override to do it's unique abilities
-	 * @param effect TODO
+	 * @param effect
 	 * @param doom
 	 * @param player
 	 * @param crucMoment

@@ -22,12 +22,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.crash.CrashReport;
-import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.potion.Potion;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ReportedException;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -41,18 +36,16 @@ import tragicneko.tragicmc.commands.DoomsdayCoomand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
-import tragicneko.tragicmc.events.BlockDropsEvent;
 import tragicneko.tragicmc.events.ChallengeItemEvents;
-import tragicneko.tragicmc.events.DenyVanillaGenEvent;
 import tragicneko.tragicmc.events.DoomEvents;
+import tragicneko.tragicmc.events.DropEvents;
 import tragicneko.tragicmc.events.DynamicHealthScaling;
 import tragicneko.tragicmc.events.EnchantmentEvents;
-import tragicneko.tragicmc.events.MobDropEvents;
+import tragicneko.tragicmc.events.MiscEvents;
 import tragicneko.tragicmc.events.NewAmuletEvents;
 import tragicneko.tragicmc.events.PotionEvents;
 import tragicneko.tragicmc.events.RespawnDoomEvents;
 import tragicneko.tragicmc.events.VanillaChangingEvents;
-import tragicneko.tragicmc.events.WeaponEvents;
 import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.network.MessageAttack;
 import tragicneko.tragicmc.network.MessageDoom;
@@ -114,7 +107,7 @@ public class TragicMC
 	private static Configuration config;
 
 	private static long time = 0L;
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -156,7 +149,7 @@ public class TragicMC
 		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
 
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
-		MinecraftForge.EVENT_BUS.register(new WeaponEvents());
+		MinecraftForge.EVENT_BUS.register(new MiscEvents());
 		MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
 
 		if (TragicNewConfig.allowDoom)
@@ -176,12 +169,12 @@ public class TragicMC
 
 		if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 
-		MinecraftForge.EVENT_BUS.register(new MobDropEvents());
-		MinecraftForge.EVENT_BUS.register(new BlockDropsEvent());
-
+		MinecraftForge.EVENT_BUS.register(new DropEvents());
 		logDuration("Events 2");
 
 		proxy.registerRenders();
+		
+		logDuration("Proxy Registrations");
 
 		net = new SimpleNetworkWrapper(TragicMC.MODID);
 		net.registerMessage(MessageHandlerDoom.class, MessageDoom.class, 0, Side.CLIENT);
@@ -224,10 +217,10 @@ public class TragicMC
 			}
 
 			TragicBiomes.load();
-			MinecraftForge.ORE_GEN_BUS.register(new DenyVanillaGenEvent());
+			MinecraftForge.ORE_GEN_BUS.register(new MiscEvents());
 		}
 
-		logDuration("Dimension");
+		logDuration("Dimension Registrations");
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
