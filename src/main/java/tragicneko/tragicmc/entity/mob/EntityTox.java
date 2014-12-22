@@ -230,7 +230,7 @@ public class EntityTox extends TragicMob {
 			}
 
 			int rate = this.getToxType() == 0 ? 10 : 5;
-			if (this.getFiringTicks() >= 20 && this.ticksExisted % rate == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
+			if (this.getFiringTicks() >= 40 && this.ticksExisted % rate == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
 					this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
 			{
 				this.shootProjectiles();
