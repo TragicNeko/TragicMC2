@@ -9,9 +9,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,7 +18,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicTabs;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -77,11 +74,9 @@ public class BlockQuicksand extends BlockFalling
 	 */
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{				
-		if (!(entity instanceof EntityPlayer) || ((EntityPlayer)entity).capabilities.isCreativeMode) return;
-
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
-		entity.motionY *= world.getBlockMetadata(x, y, z) == 1 ? 0.0025 : 0.0125;
+		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.0125;
 		entity.onGround = true;
 		entity.fallDistance = 0.0F;
 	}

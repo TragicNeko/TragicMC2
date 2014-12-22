@@ -406,6 +406,8 @@ public class TragicNewConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayGuardianCost", 75).getInt(75));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
+		
+		//TODO add non-Doomsday ability costs and may as well add allowances as well
 
 		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount.");
 
@@ -607,20 +609,20 @@ public class TragicNewConfig {
 		}
 		
 		mapping = 0;
-		mobStats[mapping++] = (config.get(catMobs, "jabbaStats", new double[] {50.0, 0.275, 5.5, 32.0, 0.0, 0}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "jannaStats", new double[] {40.0, 0.325, 4.5, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "jabbaStats", new double[] {40.0, 0.275, 5.5, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "jannaStats", new double[] {20.0, 0.325, 4.5, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "plagueStats", new double[] {4.0, 0.235, 1.0, 16.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "gragulStats", new double[] {5.0, 0.350, 5.0, 32.0, 0.0, 0}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "minotaurStats", new double[] {42.0, 0.350, 8.0, 32.0, 0.5, 6}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "minotaurStats", new double[] {32.0, 0.350, 7.0, 32.0, 0.5, 6}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "inklingStats", new double[] {16.0, 0.230, 1.0, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "ragrStats", new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "pumpkinheadStats", new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 15}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "tragicNekoStats", new double[] {80.0, 0.335, 6.0, 32.0, 0.0, 0}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "toxStats", new double[] {50.0, 0.050, 8.0, 64.0, 1.0, 16}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "toxStats", new double[] {40.0, 0.050, 8.0, 64.0, 1.0, 16}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "poxStats", new double[] {30.0, 0.050, 4.0, 64.0, 0.7, 10}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "cryseStats", new double[] {35.0, 0.285, 4.0, 48.0, 0.0, 4}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "starCryseStats", new double[] {55.0, 0.315, 4.0, 48.0, 4}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "norVoxStats", new double[] {50.0, 0.390, 4.0, 32.0, 0.25, 8}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "norVoxStats", new double[] {30.0, 0.390, 4.0, 32.0, 0.25, 8}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "starVoxStats", new double[] {40.0, 0.390, 4.0, 32.0, 0.25, 16}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "goldenPirahStats", new double[] {25.0, 0.450, 7.5, 16.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "pirahStats", new double[] {10.0, 0.450, 3.0, 16.0, 0.0, 0}).getDoubleList());
