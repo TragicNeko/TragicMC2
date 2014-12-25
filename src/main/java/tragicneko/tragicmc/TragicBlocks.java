@@ -48,6 +48,7 @@ import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
+import tragicneko.tragicmc.blocks.BlockGas;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
@@ -149,6 +150,8 @@ public class TragicBlocks {
 	public static Block CelledLamp;
 	public static Block SynapseCore;
 	public static Block OverlordBarrier;
+	
+	public static Block Gas;
 
 	public static void load()
 	{		
@@ -331,6 +334,9 @@ public class TragicBlocks {
 		
 		OverlordBarrier = (new BlockOverlordBarrier());
 		GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
+		
+		Gas = (new BlockGas().setBlockName("tragicmc.gas"));
+		GameRegistry.registerBlock(Gas, ItemBlock.class, "gas");
 		
 		for (int i = 0; i < 3; i++)
 		{
