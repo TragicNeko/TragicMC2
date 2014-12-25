@@ -10,6 +10,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.attributes.BaseAttributeMap;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +26,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -35,6 +39,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.items.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -87,6 +92,44 @@ public class NewAmuletEvents {
 	}
 
 	@SubscribeEvent
+	public void addAttributesToPlayer(EntityJoinWorldEvent event)
+	{
+		if (event.world.isRemote || !(event.entity instanceof EntityPlayer)) return;
+
+		EntityPlayer player = (EntityPlayer) event.entity;
+		BaseAttributeMap map = player.getAttributeMap();
+
+		map.registerAttribute(AmuletModifier.jumpHeight);
+		map.registerAttribute(AmuletModifier.luck);
+		map.registerAttribute(AmuletModifier.reach);
+		map.registerAttribute(AmuletModifier.resistance);
+	}
+
+	@SubscribeEvent
+	public void onPlayerJump(LivingJumpEvent event)
+	{
+		if (event.entityLiving instanceof EntityPlayer)
+		{
+			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.jumpHeight);
+			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
+			event.entityLiving.motionY += 0.2 * d0;
+			//TragicMC.logInfo("Jump modifier applied to player. Amount was " + d0);
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerHurt(LivingHurtEvent event)
+	{
+		if (event.entityLiving instanceof EntityPlayer)
+		{
+			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.resistance);
+			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
+			event.ammount -= d0;
+			//TragicMC.logInfo("Resistance modifier applied to player. Amount was " + d0);
+		}
+	}
+
+	@SubscribeEvent
 	public void onAmuletTick(LivingUpdateEvent event)
 	{
 		if (event.entityLiving instanceof EntityPlayerMP)
@@ -94,21 +137,25 @@ public class NewAmuletEvents {
 			EntityPlayerMP mp = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(mp);
 
-			if (amu == null) return;
+			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
+			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
+			if (rand.nextDouble() < d0) mp.addExperience(1);
+			//TragicMC.logInfo("Luck modifier applied to player. Amount was " + d0);
 
+			if (amu == null) return;
 			TragicMC.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
 
 			int[] levels = new int[3];
 			ItemAmulet[] amulets = new ItemAmulet[3];
+			
 			int i;
 
 			for (i = 0; i < 3; i++)
 			{
 				amulets[i] = amu.getActiveAmulet(i);
 				levels[i] = AmuletHelper.getAmuletLevel(amu.getActiveAmuletItemStack(i));
+				
 			}
-
-			//TODO add amulet modifier calculations and applications here
 
 			int same = AmuletHelper.getSameAmulets(amulets[0], amulets[1], amulets[2]);
 			int id = 0;

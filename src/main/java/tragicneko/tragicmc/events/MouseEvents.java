@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -22,6 +23,7 @@ import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
+import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAttack;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -63,6 +65,12 @@ public class MouseEvents {
 			float f8 = f3 * f5;
 			double limit = player.capabilities.isCreativeMode ? 2.5D : 1.5D;
 			double enchantLimit = limit + EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) * 1.5D;
+			
+			IAttributeInstance ins = player.getEntityAttribute(AmuletModifier.reach);
+			double d3 = ins == null ? 0.0 : ins.getAttributeValue();
+			enchantLimit += d3;
+			//TragicMC.logInfo("Reach modifier was applied to the player. Amount was " + d3);
+			
 			AxisAlignedBB bb;
 
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
