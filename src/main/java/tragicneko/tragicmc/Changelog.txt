@@ -3115,7 +3115,7 @@ Added my custom flowers to savanna and swamps
 Added ability to grow my custom flowers in each biome that they can generate in, stapelia can generate in any of these biomes when bonemeal is used but it's very uncommon
 Optimized FlowerWorldGen a bit
 
-2.40.1835++ <182> (December 15, 2014)
+2.40.1857 <182> (December 15, 2014)
 Updated to Forge 13.10.2.1264
 Improved efficiency of the Scythe, it now works on more materials, it can now be extended by other classes better, rather than having all of the Lore and Doomsday stuff in just the
 Reaper Scythe class
@@ -3128,24 +3128,36 @@ Modified the AmuletHelper and the Amulet Event Handler to use the new nbt tag sy
 Finish adding the rest of the weapon/armor/item lores, update Doomsdays
 Added the basic jack, changed the Enigma Shield to a Celestial Jack, craftable from Celestial Steel and Celestial Diamonds
 Lowered the Tungsten Jack's durability, the basic jack is craftable with flint and quicksilver, the Celestial Jack has higher base efficiency than the Tungsten Jack
+Updated Doomsdays to no longer use arbitrary variables to save their necessary information, DoomsdayEffect now contains utility variables for use by each one
+Fixed Poison Break firing the wrong direction
+Fixed initial bugs with conversion of DoomsdayEffect to use utility values, mostly involved with updating the Doomsday (such derps here, I don't even)
+Added exception handling for the DoomsdayEffect so that if anything goes wrong with a particular Doomsday, it won't crash the game and it'll remove the effect but will log it
+Modified Marionette to choose the entity closest to you when the effect is done
+Fixed initial bug with Amulet icons
+Registered the Modifiers that the amulets will use now on the player
+Running into some problems with getting the modifiers from the nbt tag of the itemstack, no idea what is causing it to not read them properly from it
+Quicksand affects all entities now instead of just players, trying to make it so that horses with a player riding them can get out of it
+Adjusted some of the mob's default health and attack
+Fix explicit casts on player entities in the Doom and Amulet events, this is to prevent issues with mods that use entities that extend EntityPlayer (for whatever reason)
+Upon testing with Balkon's weapon mod, there is no negative knockback at all
+Bump version numbers for testing with mod compatibilities
+
+2.40.1857 <183> (December 24, 2014)
+Updated Death Reaper AI again, removed random projectiles it fires, it now shoots Large Pumpkinbombs while being aggressive and Wither Skulls while being defensive, it will now spawn
+in wither gas when it gets attacked or attack something, which damages entities within it with wither damage (if they aren't undead)
+Added Wither Gas block, may add a few variants of this for other entities (most likely the mortor entities)
 
 TODO still
 Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
-Along with that rewrite, I'll also add modifiers at this time
-For Doomsday abilities, allow each of these to have configurable amounts
+For non-Doomsday abilities, allow each of these to have configurable amounts
 
 Note for Bosses:
 Some Bosses don't have structures or are random spawns, for each one I want an Iron Golem-like spawning ability in which you create a structure with a particular block and it is summoned
 there (like I did for the Enyvil and Time Controller)
 Change the Death Reaper to use Pumpkinbombs, I completely forgot about that aspect until now, the Reaper Scythe will be changed to fire small and large pumpkinbombs and the Reaper Sycthe
 ability will be changed to fire those as well, the Withering Axe will probably gain the previous Reaper's Laugh ability as a 2nd doomsday since it requires a nether star to craft
-
-Note for Doomsdays:
-Remove any variables within the Doomsdays that are not static, these are arbitrary and may cause weird bugs in a server or multi-user environment
-This will require DoomsdayEffect to have a couple of utility methods for storing an entity and for storing a list of things, as well as storing a utility flag
-As well, DoomsdayEffect will be a required argument in the methods
 
 --Overlord plan, may fit in other random small things in between doing this--
 Finish up the Overlord's motion and attack patterns, as well as create it's model
@@ -3264,3 +3276,6 @@ of this tier of bosses, when broken apart it can fire a multitude of projectiles
 randomly inflict the Hacked effect by shooting Nano Bombs at it's target, in additional to it's homing missiles
 The Admin and Lateralus would be new weapons, the Admin could modify nearby entity's base stats and freeze their motion, whereas the Lateralus could inflict gravity altering effects
 like Leadfoot and Lightweight and will give the player buffs while the player is wet (in rain or in water)
+
+Also with the new tier, all of the current epic weapons and a few of the other weapons crafted from boss drops could be upgraded to a new weapon, some of these weapons will gain a new
+or a 2nd doomsday, as well, their attack damage will go up and their non-doomsday ability may change or they may gain one if they didn't have one
