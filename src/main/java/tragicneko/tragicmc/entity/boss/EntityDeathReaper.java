@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicNewConfig.deathReaperStats;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -17,12 +18,10 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -30,10 +29,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityDeathReaper extends TragicBoss {
 
@@ -153,7 +154,7 @@ public class EntityDeathReaper extends TragicBoss {
 		this.dataWatcher.updateObject(20, i);
 		if (i == 0) this.isBomb = false;
 	}
-	
+
 	public void setClone()
 	{
 		this.setReaperType(1);
@@ -186,6 +187,12 @@ public class EntityDeathReaper extends TragicBoss {
 		if (this.getReaperType() == 1) return;
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
+		
+		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+		for (EntityDeathReaper reaper : list)
+		{
+			if (reaper.getReaperType() == 1) reaper.setDead();
+		}
 	}
 
 	public void onLivingUpdate()
@@ -230,7 +237,7 @@ public class EntityDeathReaper extends TragicBoss {
 			this.incrementHitTime();
 			if (this.rand.nextInt(524) == 0 && this.getDemeanor() <= 0 && this.getAttackTarget() != null || this.getHitTime() >= 100 && this.getAttackTarget() != null) this.setDemeanor(5);
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
-			
+
 			if (this.isBomb)
 			{
 				this.setCloneTime(0);
@@ -238,7 +245,7 @@ public class EntityDeathReaper extends TragicBoss {
 			}
 
 			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && this.getReaperType() == 0) this.heal(6.0F);
-			
+
 			if (this.ticksExisted >= 600 && this.getReaperType() == 1) this.setDead();
 
 			if (this.getAttackTarget() == null)
@@ -325,7 +332,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 				int x = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 2;
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && !this.isBeingAggressive() && this.getAttackTime() == 0)
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
@@ -333,49 +340,17 @@ public class EntityDeathReaper extends TragicBoss {
 
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
 
-					switch(rand.nextInt(10))
+					if (this.isBeingAggressive())
 					{
-					case 0:
-						EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-						fireball.posY = this.posY + (this.height * 2 / 3);
-						this.worldObj.spawnEntityInWorld(fireball);
-						break;
-					case 1:
-						for (int miff = 0; miff < 3; miff++)
-						{
-							EntityWitherSkull solarBomb = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-							solarBomb.posY = this.posY + (this.height * 2 / 3);
-							solarBomb.setInvulnerable(true);
-							this.worldObj.spawnEntityInWorld(solarBomb);
-						}
-						break;
-					case 2:
-						for (int wubwub = 0; wubwub < 5; wubwub++)
-						{
-							EntityWitherSkull witherSkull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-							witherSkull.posY = this.posY + (this.height * 2 / 3);
-							this.worldObj.spawnEntityInWorld(witherSkull);
-						}
-						break;
-					case 3:
-						for (int i = 0; i < 5; ++i)
-						{
-							EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-							fireball2.posY = this.posY + (this.height * 2 / 3);
-							this.worldObj.spawnEntityInWorld(fireball2);
-						}
-						break;
-					case 4:
-						this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ));
-						break;
-					default:
-						for (int i = 0; i < 5; ++i)
-						{
-							EntitySmallFireball fireball3 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-							fireball3.posY = this.posY + (this.height * 2 / 3);
-							this.worldObj.spawnEntityInWorld(fireball3);
-						}
-						break;
+						EntityLargePumpkinbomb bomb = new EntityLargePumpkinbomb(this.worldObj, this);
+						bomb.posY = this.posY + (this.height * 2.0 / 3.0);
+						this.worldObj.spawnEntityInWorld(bomb);
+					}
+					else
+					{
+						EntityWitherSkull skull = new EntityWitherSkull(this.worldObj, this, d0, d1, d2);
+						skull.posY = this.posY + (this.height * 2.0 / 3.0);
+						this.worldObj.spawnEntityInWorld(skull);
 					}
 
 					if (rand.nextInt(4) == 0) this.incrementDemeanor();
@@ -383,30 +358,15 @@ public class EntityDeathReaper extends TragicBoss {
 
 				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 0 && this.isBeingAggressive() && rand.nextInt(32) == 0) this.setAttackTime(20);
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1)
+				if (this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1)
 				{
-					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(4.0D, 4.0D, 4.0D));
-					EntityLivingBase target;
-
-					for (int i = 0; i < list.size(); i++)
+					List<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
+					for (int[] coords : list)
 					{
-						if (list.get(i) instanceof EntityLivingBase)
-						{
-							target = (EntityLivingBase) list.get(i);
-
-							if (this.getDistanceToEntity(target) <= 3.0F)
-							{
-								boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), target instanceof EntityPlayer ? 10.0F : 20.0F);
-
-								if (flag)
-								{
-									target.addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(160) + 120, 3));
-									target.motionX *= 2.25D;
-									target.motionZ *= 2.25D;
-								}
-							}
-						}
+						Block block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+						if ((block == Blocks.air || block == TragicBlocks.Gas) && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.Gas);
 					}
+
 				}
 			}
 		}
@@ -415,15 +375,11 @@ public class EntityDeathReaper extends TragicBoss {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
-		
-		if (this.isBomb)
+
+		if (this.isBomb && this.getReaperType() == 1 && !par1DamageSource.isExplosion())
 		{
 			par2 = Float.MAX_VALUE;
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 2.0F, this.getMobGriefing());
-		}
-		else
-		{
-			if (this.getReaperType() == 1) par2 *= 10.0F;
+			if (this.isBomb && this.getReaperType() == 1) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 2.0F, this.getMobGriefing());
 		}
 
 		this.trackHitType(par1DamageSource.getDamageType());
@@ -434,15 +390,11 @@ public class EntityDeathReaper extends TragicBoss {
 		{
 			this.setHitTime(0);
 
-			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && !this.isBeingAggressive() && par1DamageSource.getEntity() != null)
+			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && par1DamageSource.getEntity() != null)
 			{
 				int potato = this.getHealth() <= this.getMaxHealth() / 4 ? 2 : 1;
 
-				for (int x = 0; x < potato; x++)
-				{
-					this.attemptToSummonClones();
-				}
-
+				for (int x = 0; x < potato && this.attemptToSummonClones(); x++);
 				this.setCloneTime(0);
 			}
 		}
@@ -450,11 +402,11 @@ public class EntityDeathReaper extends TragicBoss {
 		return result;
 	}
 
-	private void attemptToSummonClones() 
+	private boolean attemptToSummonClones() 
 	{
 		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, boundingBox.expand(32.0, 32.0, 32.0));		
 
-		if (list.size() >= 4 || this.getAttackTarget() == null || this.getCloneTime() <= 100) return;
+		if (list.size() >= 4 || this.getAttackTarget() == null || this.getCloneTime() <= 100) return false;
 
 		EntityDeathReaper clone = new EntityDeathReaper(this.worldObj);
 		clone.copyLocationAndAnglesFrom(this);
@@ -478,13 +430,14 @@ public class EntityDeathReaper extends TragicBoss {
 							this.worldObj.spawnEntityInWorld(clone);
 							clone.onSpawnWithEgg(null);
 							if (entitylivingbase != null) clone.setTarget(entitylivingbase);
-							return;
+							return true;
 						}
 					}
 				}
 			}
 		}
 
+		return false;
 	}
 
 	public boolean attackEntityAsMob(Entity par1Entity)
