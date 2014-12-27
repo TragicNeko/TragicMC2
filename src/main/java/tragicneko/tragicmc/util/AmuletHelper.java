@@ -1,10 +1,21 @@
 package tragicneko.tragicmc.util;
 
-import static tragicneko.tragicmc.items.ItemAmulet.amuletNames;
+import static tragicneko.tragicmc.TragicMC.rand;
+
+import java.util.UUID;
+
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import tragicneko.tragicmc.items.ItemAmulet;
+import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 
 public class AmuletHelper {
+	
+	private static IAttribute[] attributes = new IAttribute[] {AmuletModifier.jumpHeight, AmuletModifier.luck, AmuletModifier.reach, AmuletModifier.resistance,
+		AmuletModifier.knockbackResistance, AmuletModifier.attackDamage, AmuletModifier.maxHealth, AmuletModifier.movementSpeed};
 
 	/**
 	 * Gets the highest amulet level of the 3 integers passed in, if par3 is 0, only checks for the first two integers passed in
@@ -160,5 +171,70 @@ public class AmuletHelper {
 	public static int getAmuletLevel(ItemStack stack)
 	{
 		return stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : 0;
+	}
+	
+	public static AttributeModifier getRandomModifier(IAttribute attr)
+	{
+		double d0 = 0.0D;
+		UUID uuid = null;
+
+		if (attr == SharedMonsterAttributes.attackDamage)
+		{
+			d0 = Math.round(rand.nextDouble() * 10.0D);
+			uuid = UUID.fromString("237ab9b5-459c-4dcb-bcb8-4e8068ce9135");
+		}
+		else if (attr == SharedMonsterAttributes.knockbackResistance)
+		{
+			d0 = rand.nextInt(10) * 0.1;
+			uuid = UUID.fromString("b41f1b8d-a0e7-42ee-acb4-a0f9c198626f");
+		}
+		else if (attr == SharedMonsterAttributes.maxHealth)
+		{
+			d0 = Math.round(rand.nextDouble() * 20.0D);
+			uuid = UUID.fromString("b06dedf7-fd45-442c-93b4-8fa70bc64d51");
+		}
+		else if (attr == SharedMonsterAttributes.movementSpeed)
+		{
+			d0 = rand.nextInt(50) * 0.5;
+			uuid = UUID.fromString("1ab86156-baf5-4906-bb07-314a0e7faa59");
+		}
+		else if (attr == AmuletModifier.reach)
+		{
+			d0 = rand.nextInt(10) * 0.1;
+			uuid = UUID.fromString("829ea197-31bf-4360-912e-93f6775fedc1");
+		}
+		else if (attr == AmuletModifier.jumpHeight)
+		{
+			d0 = rand.nextInt(10);
+			uuid = UUID.fromString("8d325bc1-9b36-457f-a984-50cfed8331ed");
+		}
+		else if (attr == AmuletModifier.resistance)
+		{
+			d0 = rand.nextInt(10);
+			uuid = UUID.fromString("f1695e8a-87f1-4491-bc02-90f3671d299e");
+		}
+		else if (attr == AmuletModifier.luck)
+		{
+			d0 = rand.nextDouble();
+			uuid = UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540");
+		}
+
+		return uuid == null ? null : new AttributeModifier(uuid, attr.getAttributeUnlocalizedName(), d0, 0);
+	}
+	
+	public static IAttribute getRandomAttribute()
+	{
+		return attributes[rand.nextInt(attributes.length)];
+	}
+	
+	public static NBTTagCompound writeAttributeModifierToNBT(AttributeModifier modif)
+	{
+		NBTTagCompound nbttagcompound = new NBTTagCompound();
+		nbttagcompound.setString("Name", modif.getName());
+		nbttagcompound.setDouble("Amount", modif.getAmount());
+		nbttagcompound.setInteger("Operation", modif.getOperation());
+		nbttagcompound.setLong("UUIDMost", modif.getID().getMostSignificantBits());
+		nbttagcompound.setLong("UUIDLeast", modif.getID().getLeastSignificantBits());
+		return nbttagcompound;
 	}
 }

@@ -20,7 +20,7 @@ import com.google.common.collect.Sets;
 
 public class WorldHelper {
 
-	public final static Set validBlocksForDimension = Sets.newHashSet(new Block[] {TragicBlocks.AshenGrass, TragicBlocks.BrushedGrass, TragicBlocks.DeadDirt,
+	public final static Set<Block> validBlocksForDimension = Sets.newHashSet(new Block[] {TragicBlocks.AshenGrass, TragicBlocks.BrushedGrass, TragicBlocks.DeadDirt,
 			TragicBlocks.DarkStone, TragicBlocks.DarkSand, TragicBlocks.StarlitGrass, TragicBlocks.TragicSapling, TragicBlocks.ErodedStone,
 			TragicBlocks.DarkCobblestone});
 

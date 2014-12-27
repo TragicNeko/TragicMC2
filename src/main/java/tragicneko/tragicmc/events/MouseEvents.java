@@ -93,7 +93,7 @@ public class MouseEvents {
 						coords = list2.get(j);
 						block = world.getBlock(coords[0], coords[1], coords[2]);
 						
-						if (block != Blocks.air && block != TragicBlocks.Luminescence) break meow;
+						if (block != Blocks.air && block != TragicBlocks.Luminescence && block != TragicBlocks.Gas) break meow;
 					}
 				}
 

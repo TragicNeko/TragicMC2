@@ -12,6 +12,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -92,28 +93,30 @@ public class NewAmuletEvents {
 	}
 
 	@SubscribeEvent
-	public void addAttributesToPlayer(EntityJoinWorldEvent event)
+	public void addAttributesToPlayer(EntityConstructing event)
 	{
-		if (event.world.isRemote || !(event.entity instanceof EntityPlayer)) return;
+		if (event.entity.worldObj.isRemote || !(event.entity instanceof EntityPlayer)) return;
 
 		EntityPlayer player = (EntityPlayer) event.entity;
 		BaseAttributeMap map = player.getAttributeMap();
-
+		
 		map.registerAttribute(AmuletModifier.jumpHeight);
-		map.registerAttribute(AmuletModifier.luck);
 		map.registerAttribute(AmuletModifier.reach);
 		map.registerAttribute(AmuletModifier.resistance);
+		map.registerAttribute(AmuletModifier.luck);
 	}
 
 	@SubscribeEvent
 	public void onPlayerJump(LivingJumpEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.entityLiving instanceof EntityPlayer && !event.entityLiving.worldObj.isRemote)
 		{
 			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.jumpHeight);
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
-			event.entityLiving.motionY += 0.2 * d0;
-			//TragicMC.logInfo("Jump modifier applied to player. Amount was " + d0);
+			double d1 = event.entityLiving.motionY;
+			event.entityLiving.motionY = d0 + d1;
+			TragicMC.logInfo("Entity motion is " + d1 + " amount after modifier is " + (d0 + d1));
+			if (!event.entityLiving.worldObj.isRemote) TragicMC.logInfo("Jump modifier check. Amount was " + d0);
 		}
 	}
 
@@ -125,7 +128,7 @@ public class NewAmuletEvents {
 			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.resistance);
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
 			event.ammount -= d0;
-			//TragicMC.logInfo("Resistance modifier applied to player. Amount was " + d0);
+			TragicMC.logInfo("Resistance modifier applied to player. Amount was " + d0);
 		}
 	}
 
