@@ -16,12 +16,14 @@ import tragicneko.tragicmc.blocks.BlockCelledLamp;
 import tragicneko.tragicmc.blocks.BlockCircuit;
 import tragicneko.tragicmc.blocks.BlockDarkCobble;
 import tragicneko.tragicmc.blocks.BlockDarkSand;
+import tragicneko.tragicmc.blocks.BlockDarkSandstone;
 import tragicneko.tragicmc.blocks.BlockDarkStone;
 import tragicneko.tragicmc.blocks.BlockDarkenedQuartz;
 import tragicneko.tragicmc.blocks.BlockDeadDirt;
 import tragicneko.tragicmc.blocks.BlockDisappearing;
 import tragicneko.tragicmc.blocks.BlockErodedStone;
 import tragicneko.tragicmc.blocks.BlockFox;
+import tragicneko.tragicmc.blocks.BlockGas;
 import tragicneko.tragicmc.blocks.BlockGeneric;
 import tragicneko.tragicmc.blocks.BlockGenericBush;
 import tragicneko.tragicmc.blocks.BlockGenericGrass;
@@ -48,7 +50,6 @@ import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
-import tragicneko.tragicmc.blocks.BlockGas;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
@@ -99,6 +100,7 @@ public class TragicBlocks {
 	
 	public static Block DeadDirt;
 	public static Block DarkSand;
+	public static Block DarkSandstone;
 
 	public static Block WickedVine;
 	public static Block GlowVine;
@@ -230,6 +232,9 @@ public class TragicBlocks {
 		
 		DarkSand = (new BlockDarkSand().setBlockName("tragicmc.darkSand").setBlockTextureName("tragicmc:DarkSand_lowRes"));
 		GameRegistry.registerBlock(DarkSand, ItemBlock.class, "darkSand");
+		
+		DarkSandstone = new BlockDarkSandstone();
+		GameRegistry.registerBlock(DarkSandstone, TragicItemBlock.class, "darkSandstone", new Object[] {new String[] {"rough", "smooth", "bricked", "chiseled", "gridded", "carved"}, "darkSandstone"});
 		
 		TimeDisruptionCube = (new BlockTimeDisruptor().setBlockName("tragicmc.timeDisruptor").setBlockTextureName("tragicmc:DimensionBlock_lowRes"));
 		GameRegistry.registerBlock(TimeDisruptionCube, ItemBlock.class, "timeDisruptor");

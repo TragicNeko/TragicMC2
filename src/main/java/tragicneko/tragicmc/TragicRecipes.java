@@ -977,6 +977,46 @@ public class TragicRecipes {
 			'y', TragicItems.LightningOrb,
 			'z', TragicItems.IcyFur
 		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 0), new Object[] {
+			"xx",
+			"xx",
+			'x', TragicBlocks.DarkSand
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 1), new Object[] {
+			"xx",
+			"xx",
+			'x', new ItemStack(TragicBlocks.DarkSandstone, 1, 0)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 2), new Object[] {
+			"xx",
+			"xx",
+			'x', new ItemStack(TragicBlocks.DarkSandstone, 1, 1)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 3), new Object[] {
+			"xx",
+			"xx",
+			'x', new ItemStack(TragicBlocks.DarkSandstone, 1, 2)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 4), new Object[] {
+			"xxx",
+			"xxx",
+			"xxx",
+			'x', new ItemStack(TragicBlocks.DarkSandstone, 1, 2)
+		});
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 5), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', new ItemStack(TragicBlocks.DarkSandstone, 1, 1),
+			'y', TragicItems.DarkParticles,
+			'z', Items.ender_eye
+		});
 
 		//Amulets
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ChickenAmulet, 1), new Object[] {
