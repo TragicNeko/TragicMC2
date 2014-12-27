@@ -3142,10 +3142,14 @@ Fix explicit casts on player entities in the Doom and Amulet events, this is to 
 Upon testing with Balkon's weapon mod, there is no negative knockback at all
 Bump version numbers for testing with mod compatibilities
 
-2.40.1857 <183> (December 24, 2014)
+2.40.1857++ <183> (December 24, 2014)
 Updated Death Reaper AI again, removed random projectiles it fires, it now shoots Large Pumpkinbombs while being aggressive and Wither Skulls while being defensive, it will now spawn
 in wither gas when it gets attacked or attack something, which damages entities within it with wither damage (if they aren't undead)
 Added Wither Gas block, may add a few variants of this for other entities (most likely the mortor entities)
+Rewrote AmuletModifiers, idk what I was on the first time I wrote them but they work now and also apply to the itemstack correctly, but they don't display properly on the description
+Added new Dark Sandstone blocks, it has a few different variants similar to other "natural" blocks in the mod
+Recipes start from Dark Sand and go down the line and branch some for variants, Dark Sand -> Rough Sandstone -> Smooth Sandstone -> Bricked/Carved Sandstone -> Gridded/Chiseled Sandstone
+
 
 TODO still
 Work on the Overlord
@@ -3170,21 +3174,11 @@ to animate and create AI for, as well as the easiest to create a model for, over
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
 
-Note: Add a new Portal entity that will transport you to the Overlord Dimension, rather than have Aegar create it when it dies, this should drop as an item which
-can be placed on right-click but can only be used in the Tragic Dimension
 Note: The Sentinel will only have one rarity, but it will have different lore that it can be, same goes for the Sentinel armor set
 Note: The Sentinel will have a couple of Doomsdays, the Armor will only have one but it will give you up to 20 hearts and be the most "OP" set in the mod
 Note: After the frozen biomes are added, make that the only place that the Ragr spawns
 Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
-
-Amulet Modifiers:
-Add small attribute modififers to amulets, like +2 health, +1 attack, +3 speed, etc.
-Modifiers: Health, Attack Damage, Movement Speed, Knockback Resistance, Reach, Jump Height, Resistance (Armor), Luck
-What I could do is, instead of each thing keeping track of separate modifiers, have the overall modifiers added up, then applied to the player every tick, however, each single one
-would have a max modifier of +5 on anything, and a overall max modifier of +15 from that, unless I extended it to apply to armor and weapons
-Combining Amulets will cost nothing, it'll be done automatically when you craft them to upgrade them, modifiers will max out at +5 each modifier, and the total amount per
-amulet will be +15, this may not be capped but we'll see when I actually implement this, combining two amulets of the same level will randomize their modifier to a lower level one
 
 Config stuff:
 Option to disable Amulet modifiers
