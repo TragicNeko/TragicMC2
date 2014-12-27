@@ -236,6 +236,14 @@ tile.tragicmc.celledLamp.lightBlue.name=Celled Lamp (Light Blue)
 tile.tragicmc.synapseCore.name=Synapse Core
 tile.tragicmc.overlordBarrier.name=Overlord Barrier
 
+tile.tragicmc.darkSandstone.smooth.name=Smooth Dark Sandstone
+tile.tragicmc.darkSandstone.gridded.name=Gridded Dark Sandstone
+tile.tragicmc.darkSandstone.bricked.name=Bricked Dark Sandstone
+tile.tragicmc.darkSandstone.rough.name=Rough Dark Sandstone
+tile.tragicmc.darkSandstone.beveled.name=Beveled Dark Sandstone
+tile.tragicmc.darkSandstone.chiseled.name=Chiseled Dark Sandstone
+tile.tragicmc.darkSandstone.carved.name=Carved Dark Sandstone
+
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
 item.tragicmc.mercuryPlate.name=Red Mercury Chestplate
@@ -738,6 +746,11 @@ challenge.travelFar3.name=Travel Far (Far Beyond)
 challenge.travelFar3.desc=Travel over 10,000 blocks from 0, 0
 challenge.travelFar4.name=Travel Far (Way Beyond)
 challenge.travelFar4.desc=Travel over 100,000 blocks from 0, 0
+
+attribute.name.tragicmc.reach=Reach
+attribute.name.tragicmc.jumpHeight=Jump Height
+attribute.name.tragicmc.luck=Luck
+attribute.name.tragicmc.resistance=Resistance
 
 entity.TragicMC.Plague.name=Plague
 entity.TragicMC.Jabba.name=Jabba
