@@ -78,13 +78,7 @@ public abstract class TragicMob extends EntityMob
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null); 
-		if (this.getAttackTarget() != null)
-		{
-			if (this.getAttackTarget().getClass() == this.getLesserForm() || this.getAttackTarget() == this.superiorForm) this.setAttackTarget(null);
-			if (this.getAttackTarget().getClass() == this.getClass() && this.getClass() != EntityRagr.class) this.setAttackTarget(null);
-			if (this.getSuperiorForm() != null && this.getAttackTarget().getClass() == this.getSuperiorForm().getClass()) this.setAttackTarget(null);
-		}
+		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption.id))
 		{
