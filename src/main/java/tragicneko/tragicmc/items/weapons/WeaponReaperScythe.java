@@ -1,22 +1,15 @@
 package tragicneko.tragicmc.items.weapons;
 
-import java.util.List;
-
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
+import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
+import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponReaperScythe extends ItemScythe {
@@ -54,13 +47,9 @@ public class WeaponReaperScythe extends ItemScythe {
 			{
 				if (TragicWeapon.canUseAbility(doom, 5) && TragicWeapon.getStackCooldown(par1ItemStack) == 0)
 				{
-					double d4 = vec.xCoord - par3EntityPlayer.posX;
-					double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-					double d6 = vec.zCoord - par3EntityPlayer.posZ;
-
-					EntitySmallFireball rocket = new EntitySmallFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
-					rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
-					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+					EntityPumpkinbomb bomb = new EntityPumpkinbomb(par2World, par3EntityPlayer);
+					bomb.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
+					par3EntityPlayer.worldObj.spawnEntityInWorld(bomb);
 
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
 					TragicWeapon.setStackCooldown(par1ItemStack, 5);
@@ -72,13 +61,9 @@ public class WeaponReaperScythe extends ItemScythe {
 			{
 				if (TragicWeapon.canUseAbility(doom, 15) && TragicWeapon.getStackCooldown(par1ItemStack) == 0)
 				{
-					double d4 = vec.xCoord - par3EntityPlayer.posX;
-					double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
-					double d6 = vec.zCoord - par3EntityPlayer.posZ;
-
-					EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
-					rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
-					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+					EntityLargePumpkinbomb bomb = new EntityLargePumpkinbomb(par2World, par3EntityPlayer);
+					bomb.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
+					par3EntityPlayer.worldObj.spawnEntityInWorld(bomb);
 
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-15);
 					TragicWeapon.setStackCooldown(par1ItemStack, 5);
