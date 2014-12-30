@@ -237,6 +237,14 @@ public class TragicRecipes {
 			'y', TragicItems.OverlordEye,
 			'z', Blocks.redstone_block
 		}); */
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15), new Object[] {
+			"xxx",
+			"xyx",
+			"xxx",
+			'x', TragicBlocks.TimeDisruptionCube,
+			'y', TragicItems.LifeWater
+		});
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Talisman, 1), new Object[] {
 			" x ",
@@ -366,7 +374,7 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1), new Object[] {
-			"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", Items.iron_ingot
+			"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", TragicItems.CelestialDiamond
 		}));
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CelestialAegis, 1), new Object[] {
@@ -1261,7 +1269,7 @@ public class TragicRecipes {
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LunarPowder, 1), new Object[] {
-			TragicItems.StarPieces, TragicItems.StarPieces, TragicItems.StarPieces, TragicItems.WispParticles
+			TragicItems.StarPieces, TragicItems.WispParticles, TragicItems.StarPieces, TragicItems.WispParticles
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 32), new Object[] {
@@ -1284,9 +1292,13 @@ public class TragicRecipes {
 			TragicItems.StinHorn
 		});
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.TimeDisruptionCube, 1), new Object[] {
-			TragicItems.LightIngot, TragicItems.LightIngot, TragicItems.DarkIngot, TragicItems.DarkIngot, TragicItems.LunarPowder, TragicItems.AwakeningStone,
-			Items.nether_star, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1)
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TimeDisruptionCube, 1), new Object[] {
+			"xyx",
+			"yzy",
+			"xyx",
+			'x', TragicItems.CelestialSteel,
+			'y', TragicItems.LunarPowder,
+			'z', TragicItems.ObsidianOrb
 		});
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CelestialDiamond, 1), new Object[] {
