@@ -130,7 +130,7 @@ public class WorldHelper {
 	public static ArrayList<int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z) 
 	{		
 		ArrayList<int[]> list = new ArrayList();
-		if (y < 0 || y > 256 || radius <= 0) return list;
+		if (radius <= 0) return list;
 
 		int[] coords;
 
@@ -167,7 +167,7 @@ public class WorldHelper {
 	public static ArrayList<int[]> getBlocksInCircularRangeVertical(World world, double radius, double x, double y, double z, boolean flag) 
 	{		
 		ArrayList<int[]> list = new ArrayList();
-		if (y < 0 || y > 256 || radius <= 0) return list;
+		if (radius <= 0) return list;
 
 		int[] coords;
 
@@ -218,7 +218,7 @@ public class WorldHelper {
 	{		
 		ArrayList<int[]> list = new ArrayList();
 
-		if (y <= 0 || y >= 256 || radius <= 0) return list;
+		if (radius <= 0) return list;
 
 		double distance = radius + 1.5D;
 
@@ -230,8 +230,6 @@ public class WorldHelper {
 			{
 				for (double z1 = -distance; z1 < distance; z1 += 0.5D)
 				{					
-					if (y + y1 < 0 || y + y1 >= 256) break;
-
 					if (MathHelper.sqrt_double(x1 * x1 + z1 * z1 + y1 * y1) < radius)
 					{
 						coords = new int[] {(int) Math.round(x + x1), (int) Math.round(y + y1), (int) Math.round(z + z1)};
