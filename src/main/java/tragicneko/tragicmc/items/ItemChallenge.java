@@ -32,7 +32,7 @@ public class ItemChallenge extends Item {
 	};
 	
 	private static final ItemStack[] cheapRewards = new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(Items.apple), new ItemStack(Items.iron_ingot),
-		new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget), new ItemStack(Items.coal), new ItemStack(Items.dye, 1, 4), new ItemStack(TragicItems.Tungsten),
+		new ItemStack(Items.gold_ingot), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.BloodSacrifice), new ItemStack(TragicItems.NourishmentSacrifice),
 		new ItemStack(TragicItems.RedMercury), new ItemStack(TragicItems.Quicksilver), new ItemStack(TragicItems.QuicksilverIngot), new ItemStack(Blocks.obsidian),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Jarra") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Jarra")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Magmox") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Magmox")),
@@ -62,13 +62,11 @@ public class ItemChallenge extends Item {
 		new ItemStack(TragicItems.ZombieAmulet), new ItemStack(TragicItems.SkeletonAmulet), new ItemStack(TragicItems.SunkenAmulet), new ItemStack(TragicItems.PeaceAmulet),
 		new ItemStack(TragicItems.ChickenAmulet), new ItemStack(TragicItems.ClaymationAmulet), new ItemStack(TragicItems.YetiAmulet), new ItemStack(TragicItems.MartyrAmulet),
 		new ItemStack(TragicItems.GoldenSushi, 1 + itemRand.nextInt(3)), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Butcher),
-		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.EndermanAmulet)
+		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.EndermanAmulet),
+		new ItemStack(TragicItems.BloodSacrifice), new ItemStack(TragicItems.NourishmentSacrifice),
 	};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};
-	
-	private static final String progress = "challengeProgress";
-	private static final String location = "challengeLocation";
 
 	public ItemChallenge()
 	{
@@ -144,14 +142,14 @@ public class ItemChallenge extends Item {
 			int extra = itemRand.nextInt((challenge.difficulty + 1) * 2) + 1;
 			ItemStack reward = null;
 			
-			for (int i = 0; i < extra; i++)
+			for (int i = 0; i < extra && i < 5; i++)
 			{
 				EntityItem item = new EntityItem(world);
 				reward = challenge.difficulty > 2 ? rewards[itemRand.nextInt(rewards.length)] : (challenge.difficulty > 0 ? cheapRewards[itemRand.nextInt(cheapRewards.length)] : badRewards[itemRand.nextInt(badRewards.length)]);
 				item.setEntityItemStack(reward.copy());
 				item.setPosition(player.posX + itemRand.nextDouble() - itemRand.nextDouble(), player.posY + 0.6D, player.posZ  + itemRand.nextDouble() - itemRand.nextDouble());
 				world.spawnEntityInWorld(item);
-				if (extra > 3 && itemRand.nextInt(3) == 0) break;
+				if (i > 3 && itemRand.nextInt(4) == 0) break;
 			}
 			stack.stackSize--;
 		}
