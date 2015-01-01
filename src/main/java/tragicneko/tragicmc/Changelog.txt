@@ -3148,20 +3148,31 @@ in wither gas when it gets attacked or attack something, which damages entities 
 Added Wither Gas block, may add a few variants of this for other entities (most likely the mortor entities)
 Rewrote AmuletModifiers, idk what I was on the first time I wrote them but they work now and also apply to the itemstack correctly, but they don't display properly on the description
 Added new Dark Sandstone blocks, it has a few different variants similar to other "natural" blocks in the mod
-Recipes start from Dark Sand and go down the line and branch some for variants, Dark Sand -> Rough Sandstone -> Smooth Sandstone -> Bricked/Carved Sandstone -> Gridded/Chiseled Sandstone
-
+Added recipes for them, Dark Sand -> Rough Sandstone -> Smooth Sandstone -> Bricked/Carved Sandstone -> Gridded/Chiseled Sandstone
+Carved requires Dark particles
+Updated Reaper's Laugh to fire small Pumpkinbombs in random directions around you, large pumpkinbombs are too destructive and in fact have a very high chance to kill a player without
+op armor on
+Creating the Guardian Doomsday, created new shield entities, completely experimental as I've never made something like this before
+I need to update the shield entity to use a datawatcher so that I can get the owner on client-side to update the rotation of the model correctly
+Maybe I'll change it to be a EntityProjectile rather than a living entity so that it keeps it's motion once it's set and it has built in owner capability
+Updated a few later tier recipes, involving creation of Lunar Powder and Time Disruption cube, this is to make the item flow more circular on this particular tier
+Added recipe for the Aegar Tower structure seed, may change to a custom block to have some prerequisites that the seeds don't (like placing at y=64 or something)
+Fixed issues with Modifiers on Amulets, now I just need to apply them to the player every tick while they are in the amulet slots instead of only when they are in the player's hands
+and then ensure that modifiers are removed when the effect is taken off
+Modified Amulet Container to allow players to shift-click amulets to an active amulet slot, rather than having to place it manually each time
+Added config option to disable amulet modifiers and set each modifier's chance to be applied
+Added config options to disable specific non-Doomsday abilities like the Beastly Claws's Combo
+Fix Gravity Spike's launch ability
+Apply cooldown on some abilities that were unintentionally exempt from it
 
 TODO still
 Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
-For non-Doomsday abilities, allow each of these to have configurable amounts
 
 Note for Bosses:
 Some Bosses don't have structures or are random spawns, for each one I want an Iron Golem-like spawning ability in which you create a structure with a particular block and it is summoned
 there (like I did for the Enyvil and Time Controller)
-Change the Death Reaper to use Pumpkinbombs, I completely forgot about that aspect until now, the Reaper Scythe will be changed to fire small and large pumpkinbombs and the Reaper Sycthe
-ability will be changed to fire those as well, the Withering Axe will probably gain the previous Reaper's Laugh ability as a 2nd doomsday since it requires a nether star to craft
 
 --Overlord plan, may fit in other random small things in between doing this--
 Finish up the Overlord's motion and attack patterns, as well as create it's model
@@ -3222,54 +3233,3 @@ other smaller ones, this is the final form and has 1000 health, it will be a ver
 Add the custom mob sounds
 Add new particle effects
 Add the achievements, which will have a set questline leading up to the overlord but won't be enforced like Twilight Forest
-
---For after 1.0 Release--
-Experiment with a few new fluid blocks, possibly like an oxygen deficient block that makes mobs drown faster, and a heavy water block that has slight toxicity (may poison things
-that stay in it too long)
-Add the pets, Kitsuneko, Panda Cub, the Bangatang
-Add the Lockbot, a small robot that fires a single strong shot at it's target if at long range, or an automatic gun if at close range, it does very minimal damage but hits a lot
-Add the Locobot, a Mini-Boss that'll attack with it's guns (non-projectile non-magic projectile attack), it'll be destructible, meaning it's arms could be blasted off
-and it can lose those guns, it could get it's head blown off, which will make it more aggressive, it could also lose it's legs and be unable to move, it has two guns intead of
-one that the locbot has, it'll also will be able to fire missles if it loses both guns
-Pyris, Veneera, Luex could be the names of the Phoenix, each one could be a slight variant of each other, with different textures and slightly different attack patterns
-Pyris could be the normal fire phoenix, shooting fireballs and launching waves of fireballs at it's attackers, lighting any enemies nearby on fire
-Veneera could be the ice phoenix, shooting icicles and leaving snow anywhere it goes, inflicting slowness on anything near it, rusting any nearby enemy's armor
-Luex could be the lightning phoenix, able to shoot dark lightning and normal lightning energy at it's attackers, it could also stun any enemies nearby
-If all 3 get defeated (they form a trio similarly to the Arbiter), they create the Lazarus Ultim, a very strong form of the previous 3 which should be like pushovers, it'll use combined
-elemental attacks of the 3 forms
-The Phoenix will be the Aegar of this tier, it'll be summoned as a phoenix egg in an island structure, which will always generate in the sky, you must bring each boss drop to it and
-it'll grow up with each one until the egg hatches, which will hatch as the 3 baby phoenix, you must then use a time altering effect on them
-All of the side bosses will possibly be the build-up for the next major boss, which will probably be another giant boss but maybe won't be multistage, maybe I could do that
-monster that transforms into other mobs (similar to the Claymation) except it turns into mobs that it kills and will only transform if it kills a stronger mob or is defeated in
-that mob's form, when defeated it'll revert back to a previous form until it runs out of forms
-This would require an NBTTagList and a HashMap to keep it saved for it (the HashMap will have a limit of maybe 10 forms), this could be a random roaming side-boss or it could
-be for another mod entirely by itself
-Maybe the next set of bosses could be modeled after the epic weapons, like a giant Butcher Ogre thing, a Psychic Marionette thing, 
-Butcher = A Shewolf, a sort of generic boss similar to the Yeti, attacks normally but every landing it does knocks things up in the air like an earthquake and it does other
-earth-based attacks like ground shockwaves and creates fissures, it leaps at it's target quickly and can summon angry wolves to attack it's target, it'll inflict bleed if it bites it's
-target directly, which will do more damage the longer the effect is on you
-Splinter = Kung Fu Master (Ancient Warrior), it could move very quickly and attack quickly, possibly uses clones similarly to the Skultar but used in the way that the Polaris uses them
-as sort of after images, it will use the Expose potion effect, which treats damage to you like you have no armor (basically all damage is converted to magic, but I'll just use my armor
-piercing damage for it)
-Paranoia = Malicious Marionette (Possibly based off of FNAF2), this would use a Nightmare potion effect that would darken your screen and rarely also display a jumpscare with sound,
-it will teleport around and fire slow moving projectiles at it's target (maybe teleportation is overused at this point, in regards to my bosses anyway) so instead of teleport it
-could just avoid the player (like the Skultar when it's passive) and if threatened (target gets really close to it) it could asphyxiate them and damage them with dark energy like
-the Doomsday, it will inflict Lightweight onto the player, which basically makes them float up into the air (unwillingly) almost like they're flying but they have no control over it,
-it will be overridden by leadfoot which will be one of its attacks (doing lightweight then doing leadfoot), it'll be sorta mischievous, gravity themed
-Possibility is to use the Pumpkinhead's home pumpkin ai for it, and make it that it falls asleep while the block is deactivated, so it must be right-clicked to put it to sleep for a
-little while, then it'll disappear and move to a different spot where it must be activated again, it'll spawn within 20 blocks of the marionette
-Titan = A Giant Tesla Coil-like robot that winds itself up and fires off lightning bolts, it can also fold itself down into a cannon and fire a lightning ball at it's target and
-may also fire homing missles randomly, it'll stun it's target a lot and sometimes even inflict the Hacked effect
-Dragon Fang = The Lava Dragon (or Nether Dragon), meant to parallel the Ender Dragon, it could use multiple fire attacks including the fire rain ability from the Doomsday
-Thardus = A giant icy polyp-like thing, sort of like Lileep the Pokemon, it will attack with icy projectiles and will grab whatever gets near it and damage it quickly
-and repeatedly until the prey breaks loose, it'll also shoot icy projectiles, if I added a "frozen" effect, this would probably be what would use it
-Lateralus = the Leviathan, a giant sea creature that can completely eat it's target if it gets close to it's mouth, will otherwise swim around and ignore any attacks until it
-gets lower in health, when it'll actually try and eat any annoyances it has
-Admin = Paranoid Android, larger robot boss that is modular, it can break into multiple entities and then recombine to reform the Paranoid Android, it will be the most difficult
-of this tier of bosses, when broken apart it can fire a multitude of projectiles as well as attack with melee hits, it'll be very difficult to code but it should look awesome, it'll
-randomly inflict the Hacked effect by shooting Nano Bombs at it's target, in additional to it's homing missiles
-The Admin and Lateralus would be new weapons, the Admin could modify nearby entity's base stats and freeze their motion, whereas the Lateralus could inflict gravity altering effects
-like Leadfoot and Lightweight and will give the player buffs while the player is wet (in rain or in water)
-
-Also with the new tier, all of the current epic weapons and a few of the other weapons crafted from boss drops could be upgraded to a new weapon, some of these weapons will gain a new
-or a 2nd doomsday, as well, their attack damage will go up and their non-doomsday ability may change or they may gain one if they didn't have one
