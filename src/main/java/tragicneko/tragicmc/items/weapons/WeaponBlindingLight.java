@@ -30,14 +30,14 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		if (!result && doom != null && getStackCooldown(itemstack) == 0 && TragicNewConfig.nonDoomsdayAbilities[2])
 		{
-			if (entity instanceof EntityLivingBase && itemRand.nextInt(16) == 0 && canUseAbility(doom, 10))
+			if (entity instanceof EntityLivingBase && itemRand.nextInt(16) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[2]))
 			{
 				int x = itemRand.nextInt(6) + 10;
 
 				if (entity.worldObj.getBlockLightValue(MathHelper.ceiling_double_int(entity.posX), MathHelper.ceiling_double_int(entity.posY), MathHelper.ceiling_double_int(entity.posZ)) <= 6)
 				{
 					entity.setFire(x);
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-10);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[2]);
 					setStackCooldown(itemstack, 5);
 				}
 			}
@@ -57,7 +57,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (canUseAbility(doom, 15) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[1])
+		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[1]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[1])
 		{
 			Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 			if (vec == null) return par1ItemStack;

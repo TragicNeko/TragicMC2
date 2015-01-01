@@ -38,9 +38,9 @@ public class WeaponMourningStar extends TragicWeapon {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, 25) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[19])
+				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[19]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[19])
 				{
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-25);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[19]);
 					setStackCooldown(par1ItemStack, 5);
 
 					par2World.createExplosion(par3EntityPlayer, par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ, 3.0F * itemRand.nextFloat() + 2.0F, TragicNewConfig.griefConfigs[3]);
@@ -49,7 +49,7 @@ public class WeaponMourningStar extends TragicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, 30) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[20])
+				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[20]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[20])
 				{
 					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);	
 					if (vec == null) return par1ItemStack;
@@ -59,7 +59,7 @@ public class WeaponMourningStar extends TragicWeapon {
 					double d6 = vec.zCoord;
 
 					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, 3.0F * itemRand.nextFloat() + 2.0F, TragicNewConfig.griefConfigs[3]);
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-30);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[20]);
 					setStackCooldown(par1ItemStack, 5);
 					
 					return par1ItemStack;

@@ -33,12 +33,12 @@ public class WeaponHarmonyBell extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicNewConfig.allowHarmony && canUseAbility(doom, 3) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[17])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicNewConfig.allowHarmony && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[17]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[17])
 		{
 			if (doom != null && doom.getCurrentDoom() >= 3)
 			{
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, 60, 0));
-				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-3);
+				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[17]);
 				setStackCooldown(stack, 5);
 			}
 		}
@@ -56,12 +56,13 @@ public class WeaponHarmonyBell extends TragicWeapon {
 			{
 				if (entity instanceof EntityPlayer)
 				{
-					PropertyDoom doom = PropertyDoom.get((EntityPlayer) entity);
+					EntityPlayer player = (EntityPlayer) entity;
+					PropertyDoom doom = PropertyDoom.get(player);
 
-					if (canUseAbility(doom, 0))
+					if (doom != null && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[18]))
 					{
-						if (!((EntityPlayer) entity).capabilities.isCreativeMode) doom.increaseDoom(-1);
-						((EntityLivingBase) entity).heal(1.0F);
+						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[18]);
+						player.heal(1.0F);
 					}
 				}
 			}

@@ -152,7 +152,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, 5))
+		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[5]))
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
 			MinecraftForge.EVENT_BUS.post(event);
@@ -228,7 +228,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 					par3EntityPlayer.setPositionAndUpdate(d4, d5, d6);
 					par3EntityPlayer.fallDistance = 0.0F;
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[8]);
 					TragicWeapon.setStackCooldown(par1ItemStack, 5);
 				}
 			}

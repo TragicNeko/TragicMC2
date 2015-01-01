@@ -33,12 +33,12 @@ public class WeaponPitchBlack extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
+		if (par2World.isRemote || doom == null) return par1ItemStack;
 
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, 5) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[24])
+		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[24]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[24])
 		{
 			setStackCooldown(par1ItemStack, 5);
 
@@ -47,7 +47,7 @@ public class WeaponPitchBlack extends TragicWeapon {
 			rocket.setStack(par1ItemStack);
 			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[24]);
 			par1ItemStack.stackSize--;
 
 			return par1ItemStack;

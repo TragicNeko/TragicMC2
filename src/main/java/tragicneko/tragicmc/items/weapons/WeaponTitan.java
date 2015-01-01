@@ -40,7 +40,7 @@ public class WeaponTitan extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, 10) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[31])
+		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[31]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[31])
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -50,7 +50,7 @@ public class WeaponTitan extends EpicWeapon {
 
 			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicNewConfig.griefConfigs[4]);
 
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-10);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[31]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -61,12 +61,12 @@ public class WeaponTitan extends EpicWeapon {
 		if (par2World.isRemote) return par1ItemStack;
 		
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities) return par1ItemStack;
+		if (doom == null) return par1ItemStack;
 
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 50.0);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[32])
+		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[32]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[32])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
@@ -115,7 +115,7 @@ public class WeaponTitan extends EpicWeapon {
 					}
 				}
 				
-				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-20);
+				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[32]);
 				setStackCooldown(par1ItemStack, 5);
 			}
 		}

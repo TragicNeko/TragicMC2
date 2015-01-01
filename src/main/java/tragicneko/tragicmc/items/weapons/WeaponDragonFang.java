@@ -1,15 +1,12 @@
 package tragicneko.tragicmc.items.weapons;
 
-import java.util.List;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
@@ -38,14 +35,14 @@ public class WeaponDragonFang extends EpicWeapon {
 
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0 || !TragicNewConfig.allowNonDoomsdayAbilities) return super.onLeftClickEntity(stack, player, entity);
+		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0) return super.onLeftClickEntity(stack, player, entity);
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (doom != null && canUseAbility(doom, 0) && entity instanceof EntityLivingBase && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[9])
+		if (doom != null && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[9]) && entity instanceof EntityLivingBase && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[9])
 		{
 			entity.setFire(8 + itemRand.nextInt(5));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-1);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[9]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -65,7 +62,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
-		if (canUseAbility(doom, 10) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[10])
+		if (canUseAbility(doom,  TragicNewConfig.nonDoomsdayAbilityCosts[10]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[10])
 		{
 			EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
 					d6 + itemRand.nextDouble() - itemRand.nextDouble());
@@ -74,7 +71,7 @@ public class WeaponDragonFang extends EpicWeapon {
 			rocket.posZ += d6 * 0.115D;
 			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-10);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(- TragicNewConfig.nonDoomsdayAbilityCosts[10]);
 			setStackCooldown(par1ItemStack, 5);
 		}
 
@@ -85,7 +82,17 @@ public class WeaponDragonFang extends EpicWeapon {
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
 		super.onUpdate(stack, world, entity, par4, par5);
-		if (entity.isBurning() && TragicNewConfig.nonDoomsdayAbilities[11]) entity.extinguish();
+		if (entity.isBurning() && TragicNewConfig.nonDoomsdayAbilities[11])
+		{
+			entity.extinguish();
+			if (entity instanceof EntityPlayerMP)
+			{
+				EntityPlayerMP mp = (EntityPlayerMP) entity;
+				PropertyDoom doom = PropertyDoom.get(mp);
+				
+				if (doom != null && !mp.capabilities.isCreativeMode) doom.increaseDoom(TragicNewConfig.nonDoomsdayAbilityCosts[11]);
+			}
+		}
 	}
 
 }

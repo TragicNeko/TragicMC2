@@ -46,13 +46,13 @@ public class WeaponReaperScythe extends ItemScythe {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (TragicWeapon.canUseAbility(doom, 5) && TragicNewConfig.nonDoomsdayAbilities[25])
+				if (TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[25]) && TragicNewConfig.nonDoomsdayAbilities[25])
 				{
 					EntityPumpkinbomb bomb = new EntityPumpkinbomb(par2World, par3EntityPlayer);
 					bomb.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
 					par3EntityPlayer.worldObj.spawnEntityInWorld(bomb);
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[25]);
 					TragicWeapon.setStackCooldown(par1ItemStack, 5);
 
 					return par1ItemStack;
@@ -60,13 +60,13 @@ public class WeaponReaperScythe extends ItemScythe {
 			}
 			else
 			{
-				if (TragicWeapon.canUseAbility(doom, 15) && TragicNewConfig.nonDoomsdayAbilities[26])
+				if (TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[26]) && TragicNewConfig.nonDoomsdayAbilities[26])
 				{
 					EntityLargePumpkinbomb bomb = new EntityLargePumpkinbomb(par2World, par3EntityPlayer);
 					bomb.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
 					par3EntityPlayer.worldObj.spawnEntityInWorld(bomb);
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-15);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[26]);
 					TragicWeapon.setStackCooldown(par1ItemStack, 5);
 
 					return par1ItemStack;

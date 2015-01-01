@@ -38,12 +38,12 @@ public class WeaponParanoia extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, 10) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[21])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[21]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[21])
 		{
 			if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 240, itemRand.nextInt(2)));
 			if (TragicNewConfig.allowSubmission && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 320, itemRand.nextInt(4)));
 			
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-10);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[21]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -53,11 +53,11 @@ public class WeaponParanoia extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
+		if (par2World.isRemote || doom == null) return par1ItemStack;
 
 			if (par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, 25) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[22])
+				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[22]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[22])
 				{
 					for (int l = 0; l < 5; l++)
 					{
@@ -70,7 +70,7 @@ public class WeaponParanoia extends EpicWeapon {
 						par3EntityPlayer.worldObj.spawnEntityInWorld(fireball);
 					}
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode)doom.increaseDoom(-25);
+					if (!par3EntityPlayer.capabilities.isCreativeMode)doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[22]);
 					setStackCooldown(par1ItemStack, 5);
 					
 					return par1ItemStack;
@@ -78,7 +78,7 @@ public class WeaponParanoia extends EpicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, 5) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[23])
+				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[23]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[23])
 				{
 					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 					if (vec == null) return par1ItemStack;
@@ -93,7 +93,7 @@ public class WeaponParanoia extends EpicWeapon {
 					rocket.posZ = par3EntityPlayer.posZ + d6 * 0.15D;
 					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[23]);
 					setStackCooldown(par1ItemStack, 5);
 
 					return par1ItemStack;

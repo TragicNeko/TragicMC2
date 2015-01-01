@@ -414,7 +414,6 @@ public class TragicNewConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
 		
-		//TODO add non-Doomsday ability costs and may as well add allowances as well
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "blindingLight-SolarBombs", true).getBoolean(true));
@@ -455,8 +454,49 @@ public class TragicNewConfig {
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "WitheringAxe-BlueWitherSkull", true).getBoolean(true));
 		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
 		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
+		
+		mapping = 0;
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "beastlyClaws-ComboCost", 0).getInt(0));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "blindingLight-SolarBombsCost", 15).getInt(15));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "blindingLight-BurnCost", 10).getInt(10));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "blindingLight-ProjectilDeflectCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "butcher-CriticalKnockbackCost", 1).getInt(1));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "butcher-KnockbackResistanceBuffCost", 0).getInt(0));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "butcher-WeaknessDebuffCost", 0).getInt(0));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "celestialAegis-DamageReductionCost", 0).getInt(0));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "celestialLongbow-TeleportCost", 0).getInt(0));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "dragonFang-BurnCost", 1).getInt(1));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "dragonFang-LargeFireballCost", 10).getInt(10));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "dragonFang-ExtinguishCost", 1).getInt(1));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "frozenLightning-SlowdownHitCost", 3).getInt(3));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "frozenLightning-LightningStrikeCost", 20).getInt(20));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "frozenLightning-IciclesCost", 3).getInt(3));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "gravitySpike-LaunchCost", 7).getInt(7));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "guiltyThorn-PoisonStunCost", 10).getInt(10));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "harmonyBell-HarmonyHitCost", 3).getInt(3));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "harmonyBell-HealingCost", 1).getInt(1));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "mourningStar-SelfDestructCost", 25).getInt(25));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "mourningStar-SightExplosionCost", 30).getInt(30));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "paranoia-FearSubmissionHitCost", 10).getInt(10));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "paranoia-DarkEnergySprayCost", 15).getInt(15));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "paranoia-SingleDarkEnergyCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "pitchBlack-ThrowCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "reaperScythe-SmallPumpkinbombCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "reaperScythe-LargePumpkinbombCost", 15).getInt(15));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "splinter-RandomDirectionHitCost", 3).getInt(3));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "splinter-AOERandomDirectionHitCost", 10).getInt(10));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "thardus-SlownessHitCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "thardus-IciclesCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "titan-LightningStrikeHitCost", 10).getInt(10));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "titan-LightningChainCost", 20).getInt(20));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "titan-LightningAbsorbCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "witheringAxe-WitherHitCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "witheringAxe-WitherSkullCost", 5).getInt(5));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "witheringAxe-BlueWitherSkullCost", 15).getInt(15));
+		//nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "", 0).getInt(0));
+		//nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "", 0).getInt(0));
 
-		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount.");
+		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount. Set each Doomsday and weapon ability's cost and allowances.");
 
 		blanketEnchant[0] = (config.get(catEnchant, "allowWeaponEnchantments", true).getBoolean(true));
 		blanketEnchant[1] = (config.get(catEnchant, "allowArmorEnchantments", true).getBoolean(true));
