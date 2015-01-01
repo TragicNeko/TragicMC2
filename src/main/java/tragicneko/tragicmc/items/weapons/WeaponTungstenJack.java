@@ -9,5 +9,5 @@ public class WeaponTungstenJack extends ItemJack {
 		this.doomsday = dday;
 	}
 	
-	//TODO on right click, make it cost like 15 Doom to put a torch down on right-click
+	//TODO on right click, make it cost like 15 Doom or so to put a torch down on right-click
 }

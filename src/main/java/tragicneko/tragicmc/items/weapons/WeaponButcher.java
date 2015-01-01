@@ -40,7 +40,7 @@ public class WeaponButcher extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, 0) && getStackCooldown(stack) == 0)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, 0) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[6])
 		{
 			if (itemRand.nextBoolean()) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 1));
 			setStackCooldown(stack, 5);
@@ -52,7 +52,7 @@ public class WeaponButcher extends EpicWeapon {
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
 		super.onUpdate(stack, world, entity, numb, flag);
-		if (world.isRemote || !(entity instanceof EntityPlayer) || !(TragicNewConfig.allowNonDoomsdayAbilities)) return;
+		if (world.isRemote || !(entity instanceof EntityPlayer) || !(TragicNewConfig.allowNonDoomsdayAbilities) || !(TragicNewConfig.nonDoomsdayAbilities[5])) return;
 		
 		EntityPlayer player = (EntityPlayer) entity;
 		PropertyDoom doom = PropertyDoom.get(player);

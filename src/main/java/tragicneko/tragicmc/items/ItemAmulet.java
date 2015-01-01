@@ -20,6 +20,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.util.AmuletHelper;
 
@@ -170,16 +171,18 @@ public class ItemAmulet extends Item {
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setInteger("amuletLevel", getDefaultLevels(this.amuletID));
-		if (!stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
+		if (TragicNewConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
 	}
 	
 	public void applyModifiersToItemStack(ItemStack stack)
 	{
 		NBTTagList taglist = new NBTTagList();
 		NBTTagCompound tag;
-
-		AttributeModifier mod = AmuletHelper.getRandomModifier(AmuletHelper.getRandomAttribute());
-		if (itemRand.nextInt(100) <= 54 || getDefaultLevels(this.amuletID) > 1) //55% chance to have no modifier TODO allow these percentages to be configurable
+		
+		IAttribute atr = AmuletHelper.getRandomAttribute();
+		AttributeModifier mod = AmuletHelper.getRandomModifier(atr);
+		
+		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4) //55% chance to have no modifier, by default cursed amulets have no modifiers
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied no modifiers");
@@ -188,11 +191,14 @@ public class ItemAmulet extends Item {
 
 		if (mod != null)
 		{
-			tag = AmuletHelper.writeAttributeModifierToNBT(mod);
+			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
 			taglist.appendTag(tag);
 		}
-		mod = AmuletHelper.getRandomModifier(AmuletHelper.getRandomAttribute());
-		if (itemRand.nextInt(100) <= 79) //36% chance to have 1 modifier only
+		
+		atr = AmuletHelper.getRandomAttribute();
+		mod = AmuletHelper.getRandomModifier(atr);
+		
+		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance2) //36% chance to have 1 modifier only
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied 1 modifier");
@@ -201,11 +207,14 @@ public class ItemAmulet extends Item {
 
 		if (mod != null)
 		{
-			tag = AmuletHelper.writeAttributeModifierToNBT(mod);
+			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
 			taglist.appendTag(tag);
 		}
-		mod = AmuletHelper.getRandomModifier(AmuletHelper.getRandomAttribute());
-		if (itemRand.nextInt(100) <= 90) //8% chance to have 2 modifiers
+		
+		atr = AmuletHelper.getRandomAttribute();
+		mod = AmuletHelper.getRandomModifier(atr);
+		
+		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance3) //8% chance to have 2 modifiers
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied 2 modifiers");
@@ -214,7 +223,7 @@ public class ItemAmulet extends Item {
 
 		if (mod != null) //1% chance to have 3 modifiers
 		{
-			tag = AmuletHelper.writeAttributeModifierToNBT(mod);
+			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
 			taglist.appendTag(tag);
 		}
 		
@@ -223,10 +232,9 @@ public class ItemAmulet extends Item {
 	}
 
 	public static class AmuletModifier extends SharedMonsterAttributes {
-
-		public static final IAttribute reach = (new RangedAttribute("tragicmc.reach", 0.0, 0.0, Double.MAX_VALUE));
-		public static final IAttribute jumpHeight = (new RangedAttribute("tragicmc.jumpHeight", 0.0, 0.0, Double.MAX_VALUE));
-		public static final IAttribute resistance = (new RangedAttribute("tragicmc.resistance", 0.0, 0.0, Double.MAX_VALUE));
-		public static final IAttribute luck = (new RangedAttribute("tragicmc.luck", 0.0, 0.0, Double.MAX_VALUE));
+		public static final IAttribute reach = (new RangedAttribute("tragicmc.reach", 3.5, 0.0, Double.MAX_VALUE)).setDescription("Reach");
+		public static final IAttribute jumpHeight = (new RangedAttribute("tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height");
+		public static final IAttribute resistance = (new RangedAttribute("tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance");
+		public static final IAttribute luck = (new RangedAttribute("tragicmc.luck", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Luck");
 	}
 }

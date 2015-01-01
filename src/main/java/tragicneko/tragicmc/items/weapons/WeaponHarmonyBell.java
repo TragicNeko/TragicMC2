@@ -33,7 +33,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicNewConfig.allowHarmony && canUseAbility(doom, 3) && getStackCooldown(stack) == 0)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicNewConfig.allowHarmony && canUseAbility(doom, 3) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[17])
 		{
 			if (doom != null && doom.getCurrentDoom() >= 3)
 			{
@@ -52,7 +52,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 		
 		if (entity instanceof EntityLivingBase)
 		{
-			if (par5 && entity.ticksExisted % 120 == 0 && ((EntityLivingBase) entity).getHealth() < ((EntityLivingBase) entity).getMaxHealth() && TragicNewConfig.allowNonDoomsdayAbilities)
+			if (par5 && entity.ticksExisted % 120 == 0 && ((EntityLivingBase) entity).getHealth() < ((EntityLivingBase) entity).getMaxHealth() && TragicNewConfig.nonDoomsdayAbilities[18])
 			{
 				if (entity instanceof EntityPlayer)
 				{

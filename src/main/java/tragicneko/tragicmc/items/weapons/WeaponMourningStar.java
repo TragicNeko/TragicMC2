@@ -38,7 +38,7 @@ public class WeaponMourningStar extends TragicWeapon {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, 25) && getStackCooldown(par1ItemStack) == 0)
+				if (canUseAbility(doom, 25) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[19])
 				{
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-25);
 					setStackCooldown(par1ItemStack, 5);
@@ -49,9 +49,9 @@ public class WeaponMourningStar extends TragicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, 30) && getStackCooldown(par1ItemStack) == 0)
+				if (canUseAbility(doom, 30) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[20])
 				{
-					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);			
+					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);	
 					if (vec == null) return par1ItemStack;
 					
 					double d4 = vec.xCoord;

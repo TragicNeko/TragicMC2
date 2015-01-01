@@ -38,7 +38,7 @@ public class WeaponPitchBlack extends TragicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, 5) && getStackCooldown(par1ItemStack) == 0)
+		if (canUseAbility(doom, 5) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[24])
 		{
 			setStackCooldown(par1ItemStack, 5);
 

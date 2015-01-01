@@ -95,7 +95,7 @@ public class NewAmuletEvents {
 	@SubscribeEvent
 	public void addAttributesToPlayer(EntityConstructing event)
 	{
-		if (event.entity.worldObj.isRemote || !(event.entity instanceof EntityPlayer)) return;
+		if (!(event.entity instanceof EntityPlayer)) return;
 
 		EntityPlayer player = (EntityPlayer) event.entity;
 		BaseAttributeMap map = player.getAttributeMap();
@@ -109,10 +109,10 @@ public class NewAmuletEvents {
 	@SubscribeEvent
 	public void onPlayerJump(LivingJumpEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && !event.entityLiving.worldObj.isRemote)
+		if (event.entityLiving instanceof EntityPlayer)
 		{
 			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.jumpHeight);
-			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
+			double d0 = ins == null ? 0.0 : ins.getAttributeValue() * 0.25D;
 			double d1 = event.entityLiving.motionY;
 			event.entityLiving.motionY = d0 + d1;
 			TragicMC.logInfo("Entity motion is " + d1 + " amount after modifier is " + (d0 + d1));
@@ -142,11 +142,13 @@ public class NewAmuletEvents {
 
 			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
-			if (rand.nextDouble() < d0) mp.addExperience(1);
+			if (rand.nextDouble() * 2.5D < d0 && mp.ticksExisted % 20 == 0) mp.addExperience(1);
 			//TragicMC.logInfo("Luck modifier applied to player. Amount was " + d0);
 
 			if (amu == null) return;
 			TragicMC.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
+			
+			if (mp.ticksExisted % 2 != 0) return;
 
 			int[] levels = new int[3];
 			ItemAmulet[] amulets = new ItemAmulet[3];
@@ -460,6 +462,7 @@ public class NewAmuletEvents {
 		{
 			double d = level * 16.0D + 16.0D;
 			List<EntityItem> list = world.getEntitiesWithinAABB(EntityMob.class, mp.boundingBox.expand(d, d, d));
+			if (list.size() > 0 && mp.ticksExisted % 5 == 0) amu.damageStackInSlot(slot, 4 - level);
 			Iterator ite = list.iterator();
 			EntityMob mob;
 
@@ -469,7 +472,6 @@ public class NewAmuletEvents {
 				mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, EntityPlayer.class, 0, true));
 				mob.setAttackTarget(mp);
 				mob.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(d + 32.0D);
-				amu.damageStackInSlot(slot, 4 - level);
 			}
 		}
 		else if (id == 16 && TragicNewConfig.amuIronGolem)

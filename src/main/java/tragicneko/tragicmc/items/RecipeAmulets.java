@@ -40,6 +40,8 @@ public class RecipeAmulets extends ShapelessOreRecipe {
 						break;
 					}
 				}
+				
+				//TODO add modifier combining
 			}
 		}
 

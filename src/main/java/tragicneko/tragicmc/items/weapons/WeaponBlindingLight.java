@@ -28,7 +28,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!result && doom != null && getStackCooldown(itemstack) == 0)
+		if (!result && doom != null && getStackCooldown(itemstack) == 0 && TragicNewConfig.nonDoomsdayAbilities[2])
 		{
 			if (entity instanceof EntityLivingBase && itemRand.nextInt(16) == 0 && canUseAbility(doom, 10))
 			{
@@ -57,7 +57,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (canUseAbility(doom, 15) && getStackCooldown(par1ItemStack) == 0)
+		if (canUseAbility(doom, 15) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[1])
 		{
 			Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 			if (vec == null) return par1ItemStack;

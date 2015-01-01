@@ -29,53 +29,29 @@ public class ItemDoomsdayScroll extends Item {
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("tragicmc.doomsdayScroll");
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
-	
+
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		Doomsday dday = Doomsday.getDoomsdayFromId(par1ItemStack.getItemDamage() + 1);
-		
+
 		par2List.add(EnumChatFormatting.WHITE + "This is a one-time use, regardless of if");
 		par2List.add(EnumChatFormatting.WHITE + "the effect is successful or not.");
-		
-		if (dday != null)
+
+		if (TragicNewConfig.allowDoomsdays && dday != null)
 		{
-			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-			EnumChatFormatting format = EnumChatFormatting.DARK_AQUA;
-
-			switch(dday.getDoomsdayType())
-			{
-			case COMBINATION:
-				format = EnumChatFormatting.YELLOW;
-				break;
-			case CRISIS:
-				format = EnumChatFormatting.RED;
-				break;
-			case OVERFLOW:
-				format = EnumChatFormatting.GREEN;
-				break;
-			case WORLDSHAPER:
-				format = EnumChatFormatting.DARK_PURPLE;
-				break;
-			case INFLUENCE:
-			default:
-				break;
-			}
-
+			par2List.add(""); //extra space in between
+			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
 			par2List.add(format + dday.getLocalizedType() + ": " + dday.getLocalizedName());
-
-			if (doom != null)
-			{
-				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(doom));
-			}
+			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
 	{
@@ -110,25 +86,25 @@ public class ItemDoomsdayScroll extends Item {
 				default:
 					break;
 				}
-				
+
 				return color.getRGB();
 			}
 		}
 		return -1;
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
-    {
+	{
 		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
 		if (stack.getItemDamage() >= Doomsday.doomsdayNames.length - 1 || Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1) == null) return s;
-        return Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1).getLocalizedName() + " " + s;
-    }
-	
+		return Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1).getLocalizedName() + " " + s;
+	}
+
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		if (world.isRemote || !TragicNewConfig.allowDoomsdays) return stack;
-		
+
 		PropertyDoom doom = PropertyDoom.get(player);
 		if (doom != null)
 		{
@@ -138,7 +114,7 @@ public class ItemDoomsdayScroll extends Item {
 		}
 		return stack;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list)
 	{

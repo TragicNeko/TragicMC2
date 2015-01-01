@@ -40,7 +40,7 @@ public class WeaponTitan extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, 10) && getStackCooldown(stack) == 0)
+		if (canUseAbility(doom, 10) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[31])
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -66,7 +66,7 @@ public class WeaponTitan extends EpicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 50.0);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0)
+		if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[32])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));

@@ -15,7 +15,7 @@ public class WeaponNekoLauncher extends TragicWeapon {
 
 	//private final Lore[] uniqueLores = new Lore[] {new Lore("Some days you just can't get rid of a bomb!", EnumRarity.epic), new Lore("I meant to do that!", EnumRarity.uncommon),
 	//		new Lore("That was supposed to happen!"), new Lore("Oops."), new Lore("This is why I can't have nice things!", EnumRarity.rare),
-	//		new Lore("It's just a flesh wound.", EnumRarity.rare), new Lore("Meow~", EnumRarity.epic)};
+	//		new Lore("It's just a flesh wound.", EnumRarity.rare), new Lore("Meow~", EnumRarity.epic)}; "Tell me where it hurts!~", "Does it hurt when I do this?"
 
 	public WeaponNekoLauncher(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);

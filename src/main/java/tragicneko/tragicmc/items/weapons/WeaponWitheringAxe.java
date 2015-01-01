@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -38,7 +39,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, 5) && getStackCooldown(stack) == 0)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, 5) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[34])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.wither.id, 60, itemRand.nextInt(4)));
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-5);
@@ -55,7 +56,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, 10))
+				if (canUseAbility(doom, 10) && TragicNewConfig.nonDoomsdayAbilities[35])
 				{
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-10);
 					setStackCooldown(par1ItemStack, 5);
@@ -67,7 +68,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, 25))
+				if (canUseAbility(doom, 25) && TragicNewConfig.nonDoomsdayAbilities[36])
 				{
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-25);
 					setStackCooldown(par1ItemStack, 5);

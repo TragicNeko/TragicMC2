@@ -85,51 +85,8 @@ public class ContainerAmulet extends Container {
 		boolean flag1 = false;
 		int k = par2;
 
-		if (par4)
-		{
-			k = par3 - 1;
-		}
-
 		Slot slot;
 		ItemStack itemstack1;
-
-		if (par1ItemStack.isStackable())
-		{
-			while (par1ItemStack.stackSize > 0 && (!par4 && k < par3 || par4 && k >= par2))
-			{
-				slot = (Slot)this.inventorySlots.get(k);
-				itemstack1 = slot.getStack();
-
-				if (itemstack1 != null && itemstack1.getItem() == par1ItemStack.getItem() && (!par1ItemStack.getHasSubtypes() || par1ItemStack.getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(par1ItemStack, itemstack1))
-				{
-					int l = itemstack1.stackSize + par1ItemStack.stackSize;
-
-					if (l <= par1ItemStack.getMaxStackSize())
-					{
-						par1ItemStack.stackSize = 0;
-						itemstack1.stackSize = l;
-						slot.onSlotChanged();
-						flag1 = true;
-					}
-					else if (itemstack1.stackSize < par1ItemStack.getMaxStackSize())
-					{
-						par1ItemStack.stackSize -= par1ItemStack.getMaxStackSize() - itemstack1.stackSize;
-						itemstack1.stackSize = par1ItemStack.getMaxStackSize();
-						slot.onSlotChanged();
-						flag1 = true;
-					}
-				}
-
-				if (par4)
-				{
-					--k;
-				}
-				else
-				{
-					++k;
-				}
-			}
-		}
 
 		if (par1ItemStack.stackSize > 0)
 		{
@@ -147,7 +104,7 @@ public class ContainerAmulet extends Container {
 				slot = (Slot)this.inventorySlots.get(k);
 				itemstack1 = slot.getStack();
 
-				if (itemstack1 == null && !(slot instanceof SlotActiveAmulet))
+				if (itemstack1 == null && !(slot instanceof SlotActiveAmulet) || itemstack1 == null && slot instanceof SlotActiveAmulet && !((SlotActiveAmulet) slot).isLocked())
 				{
 					slot.putStack(par1ItemStack.copy());
 					slot.onSlotChanged();

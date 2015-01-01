@@ -93,16 +93,11 @@ public class TragicArmor extends ItemArmor {
 			}
 		} */
 
-		if (TragicNewConfig.allowDoomsdays)
+		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
-			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-
-			par2List.add(EnumChatFormatting.DARK_AQUA + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-
-			if (doom != null)
-			{
-				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(doom));
-			}
+			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
+			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
+			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
 		}
 	}
 

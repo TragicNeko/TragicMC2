@@ -34,7 +34,7 @@ public class WeaponGuiltyThorn extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 		
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(8) == 0 && canUseAbility(doom, 10) && getStackCooldown(stack) == 0)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(8) == 0 && canUseAbility(doom, 10) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[16])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60, itemRand.nextInt(4)));
 			if (TragicNewConfig.allowStun && itemRand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 40, 0));

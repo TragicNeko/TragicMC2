@@ -85,6 +85,7 @@ public class TragicWeapon extends ItemSword {
 
 			if (this.doomsday2 != null)
 			{
+				par2List.add(""); //extra space in between
 				format = doomsday2.getDoomsdayType().getFormat();
 				par2List.add(format + doomsday2.getLocalizedType() + ": " + doomsday2.getLocalizedName());
 				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday2.getScaledDoomRequirement(par2EntityPlayer.worldObj));

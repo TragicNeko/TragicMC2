@@ -29,11 +29,11 @@ public class TragicNewConfig {
 	private static boolean[] blanketConfigs = new boolean[9];
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
 
-	private static boolean[] blanketAmulet = new boolean[8];
+	private static boolean[] blanketAmulet = new boolean[10];
 	public static boolean allowNormalAmulets, allowCursedAmulets, allowEpicAmulets, allowAmuletLeveling, allowAmuletCrafting, shouldUnlockAmuletSlots, allowAmuletKillRecharge;
-	public static boolean showAmuletStatus;
-	private static int[] amuletInts = new int[3];
-	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity;
+	public static boolean showAmuletStatus, allowAmuletModifiers;
+	private static int[] amuletInts = new int[8];
+	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity, amuletModifierChance, amuletModifierChance2, amuletModifierChance3;
 	private static boolean[] normalAmuletConfigs = new boolean[24];
 	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton, amuIce, amuSnowGolem, amuIronGolem;
 	private static boolean[] cursedAmuletConfigs = new boolean[12];
@@ -62,6 +62,8 @@ public class TragicNewConfig {
 	public static boolean[] doomsdayAllow = new boolean[64];
 	public static int[] doomsdayCooldowns = new int[64];
 	public static int[] doomsdayCosts = new int[64];
+	public static boolean[] nonDoomsdayAbilities = new boolean[64];
+	public static int[] nonDoomsdayAbilityCosts = new int[64];
 
 	private static boolean[] blanketEnchant = new boolean[2];
 	public static boolean allowWeaponEnchants, allowArmorEnchants;
@@ -171,10 +173,15 @@ public class TragicNewConfig {
 		blanketAmulet[mapping++] = (config.get(catAmulet, "requireUnlockAmuletSlots", true).getBoolean(true));
 		blanketAmulet[mapping++] = (config.get(catAmulet, "allowToughKillRecharge", true).getBoolean(true));
 		blanketAmulet[mapping++] = (config.get(catAmulet, "showAmuletStatusGui", true).getBoolean(true));
+		blanketAmulet[mapping++] = (config.get(catAmulet, "allowAmuletModifiers", true).getBoolean(true));
 
-		amuletInts[0] = MathHelper.clamp_int((config.get(catAmulet, "maxAmuletSlots", 3).getInt(3)), 1, 3);
-		amuletInts[1] = MathHelper.clamp_int(config.get(catAmulet, "overallAmuletRarity", 5).getInt(5), 3, 250);
-		amuletInts[2] = MathHelper.clamp_int(config.get(catAmulet, "amuletReleaseRarity", 5).getInt(5), 3, 250);
+		mapping = 0;
+		amuletInts[mapping++] = MathHelper.clamp_int((config.get(catAmulet, "maxAmuletSlots", 3).getInt(3)), 1, 3);
+		amuletInts[mapping++] = MathHelper.clamp_int(config.get(catAmulet, "overallAmuletRarity", 5).getInt(5), 3, 250);
+		amuletInts[mapping++] = MathHelper.clamp_int(config.get(catAmulet, "amuletReleaseRarity", 5).getInt(5), 3, 250);
+		amuletInts[mapping++] = MathHelper.clamp_int(config.get(catAmulet, "modifierChance", 54).getInt(54), 1, 100);
+		amuletInts[mapping++] = MathHelper.clamp_int(config.get(catAmulet, "modifierChance2", 79).getInt(79), 1, 100);
+		amuletInts[mapping++] = MathHelper.clamp_int(config.get(catAmulet, "modifierChance3", 89).getInt(89), 1, 100);
 
 		mapping = 0;
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectPeace", true).getBoolean(true));
@@ -408,6 +415,46 @@ public class TragicNewConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
 		
 		//TODO add non-Doomsday ability costs and may as well add allowances as well
+		mapping = 0;
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "blindingLight-SolarBombs", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "blindingLight-Burn", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "blindingLight-ProjectileDeflect", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "butcher-CriticalKnockback", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "butcher-KnockbackResistanceBuff", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "butcher-WeaknessDebuff", true).getBoolean(true)); //6
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "celestialAegis-DamageReduction", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "celestialLongbow-Teleport", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "dragonFang-Burn", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "dragonFang-LargeFireball", true).getBoolean(true)); //10
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "dragonFang-Extinguish", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "frozenLightning-SlowdownHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "frozenLightning-LightningStrike", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "frozenLightning-Icicles", true).getBoolean(true)); //14
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "gravitySpike-Launch", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "guiltyThorn-PoisonStun", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "harmonyBell-HarmonyHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "harmonyBell-Healing", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "mourningStar-SelfDestruct", true).getBoolean(true)); //19
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "mourningStar-SightExplosion", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "paranoia-FearSubmissionHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "paranoia-DarkEnergySpray", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "paranoia-SingleDarkEnergy", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "pitchBlack-Throw", true).getBoolean(true)); //24
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "reaperScythe-SmallPumpkinbomb", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "reaperScythe-LargePumpkinbomb", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "splinter-RandomDirectionHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "splinter-AOERandomDirectionHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "thardus-SlownessHit", true).getBoolean(true)); //29
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "thardus-Icicles", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "titan-LightningStrikeHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "titan-LightningChain", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "titan-LightningAbsorb", true).getBoolean(true)); //33
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "witheringAxe-WitherHit", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "witheringAxe-WitherSkull", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "WitheringAxe-BlueWitherSkull", true).getBoolean(true));
+		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
+		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
 
 		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount.");
 
@@ -906,6 +953,14 @@ public class TragicNewConfig {
 			{
 				blanketDoom[14] = false;
 			}
+			
+			if (!blanketDoom[6])
+			{
+				for (i = 0; i < nonDoomsdayAbilities.length; i++)
+				{
+					nonDoomsdayAbilities[i] = false;
+				}
+			}
 		}
 
 		if (!blanketConfigs[4])
@@ -1051,10 +1106,15 @@ public class TragicNewConfig {
 		shouldUnlockAmuletSlots = blanketAmulet[mapping++];
 		allowAmuletKillRecharge = blanketAmulet[mapping++];
 		showAmuletStatus = blanketAmulet[mapping++];
+		allowAmuletModifiers = blanketAmulet[mapping++];
 
-		maxAmuletSlots = amuletInts[0];
-		overallAmuletRarity = amuletInts[1];
-		amuletReleaseRarity = amuletInts[2];
+		mapping = 0;
+		maxAmuletSlots = amuletInts[mapping++];
+		overallAmuletRarity = amuletInts[mapping++];
+		amuletReleaseRarity = amuletInts[mapping++];
+		amuletModifierChance = amuletInts[mapping++];
+		amuletModifierChance2 = amuletInts[mapping++];
+		amuletModifierChance3 = amuletInts[mapping++];
 
 		mapping = 0;
 		amuPeace = normalAmuletConfigs[mapping++];

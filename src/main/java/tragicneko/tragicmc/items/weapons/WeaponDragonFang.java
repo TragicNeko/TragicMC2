@@ -36,30 +36,13 @@ public class WeaponDragonFang extends EpicWeapon {
 		this.epicLevels = new int[] {10, 3, 5, 3, 3, 3};
 	}
 
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	{
-		super.addInformation(stack, par2EntityPlayer, par2List, par4);
-
-		if (TragicNewConfig.allowDoomsdays && this.doomsday2 != null)
-		{
-			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-			EnumChatFormatting format = EnumChatFormatting.DARK_PURPLE;
-			par2List.add(format + doomsday2.getLocalizedType() + ": " + doomsday2.getLocalizedName());
-
-			if (doom != null)
-			{
-				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday2.getScaledDoomRequirement(doom));
-			}
-		}
-	}
-
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0 || !TragicNewConfig.allowNonDoomsdayAbilities) return super.onLeftClickEntity(stack, player, entity);
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, 0) && entity instanceof EntityLivingBase && getStackCooldown(stack) == 0)
+		if (doom != null && canUseAbility(doom, 0) && entity instanceof EntityLivingBase && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[9])
 		{
 			entity.setFire(8 + itemRand.nextInt(5));
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-1);
@@ -82,7 +65,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
-		if (canUseAbility(doom, 10) && getStackCooldown(par1ItemStack) == 0)
+		if (canUseAbility(doom, 10) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[10])
 		{
 			EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
 					d6 + itemRand.nextDouble() - itemRand.nextDouble());
@@ -102,7 +85,7 @@ public class WeaponDragonFang extends EpicWeapon {
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
 		super.onUpdate(stack, world, entity, par4, par5);
-		if (entity.isBurning()) entity.extinguish();
+		if (entity.isBurning() && TragicNewConfig.nonDoomsdayAbilities[11]) entity.extinguish();
 	}
 
 }

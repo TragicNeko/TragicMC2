@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
@@ -45,7 +46,7 @@ public class WeaponReaperScythe extends ItemScythe {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (TragicWeapon.canUseAbility(doom, 5) && TragicWeapon.getStackCooldown(par1ItemStack) == 0)
+				if (TragicWeapon.canUseAbility(doom, 5) && TragicNewConfig.nonDoomsdayAbilities[25])
 				{
 					EntityPumpkinbomb bomb = new EntityPumpkinbomb(par2World, par3EntityPlayer);
 					bomb.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
@@ -59,7 +60,7 @@ public class WeaponReaperScythe extends ItemScythe {
 			}
 			else
 			{
-				if (TragicWeapon.canUseAbility(doom, 15) && TragicWeapon.getStackCooldown(par1ItemStack) == 0)
+				if (TragicWeapon.canUseAbility(doom, 15) && TragicNewConfig.nonDoomsdayAbilities[26])
 				{
 					EntityLargePumpkinbomb bomb = new EntityLargePumpkinbomb(par2World, par3EntityPlayer);
 					bomb.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();

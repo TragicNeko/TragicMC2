@@ -39,7 +39,7 @@ public class WeaponThardus extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, 5) && getStackCooldown(stack) == 0)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, 5) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[29])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1200, 6));
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-5);
@@ -57,7 +57,7 @@ public class WeaponThardus extends EpicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, 3))
+		if (canUseAbility(doom, 3) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[30])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));

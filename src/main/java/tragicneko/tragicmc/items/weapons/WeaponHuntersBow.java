@@ -127,31 +127,9 @@ public class WeaponHuntersBow extends ItemBow {
 		
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
-			PropertyDoom doom = PropertyDoom.get(par2EntityPlayer);
-
-			EnumChatFormatting format = EnumChatFormatting.DARK_AQUA;
-
-			if (doomsday.getDoomsdayType() == EnumDoomType.CRISIS)
-			{
-				format = EnumChatFormatting.DARK_RED;
-			}
-
-			if (doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW)
-			{
-				format = EnumChatFormatting.GREEN;
-			}
-
-			if (doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER)
-			{
-				format = EnumChatFormatting.DARK_PURPLE;
-			}
-
+			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-
-			if (doom != null)
-			{
-				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(doom));
-			}
+			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
 		}
 	}
 

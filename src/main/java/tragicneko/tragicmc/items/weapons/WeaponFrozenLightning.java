@@ -44,7 +44,7 @@ public class WeaponFrozenLightning extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, 3) && getStackCooldown(stack) == 0)
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, 3) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[12])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-3);
@@ -68,7 +68,7 @@ public class WeaponFrozenLightning extends TragicWeapon {
 
 			if (par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0)
+				if (canUseAbility(doom, 20) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[13])
 				{
 					for (int i = 0; i < 3; i++)
 					{
@@ -83,7 +83,7 @@ public class WeaponFrozenLightning extends TragicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, 3) && getStackCooldown(par1ItemStack) == 0)
+				if (canUseAbility(doom, 3) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[14])
 				{
 					for (int i = 0; i < 5; i++)
 					{
