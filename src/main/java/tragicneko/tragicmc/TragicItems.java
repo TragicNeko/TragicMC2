@@ -223,25 +223,25 @@ public class TragicItems {
 	public static ChestGenHooks AwesomeChestHook;
 
 	//Tool Materials
-	private static final ToolMaterial toolBasic = EnumHelper.addToolMaterial("BASIC", 1, 115, 12.0F, 0.0F, 1).setRepairItem(new ItemStack(Items.flint));
-	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 12.0F, 0.0F, 6).setRepairItem(new ItemStack(Items.bone));
+	private static final ToolMaterial toolBasic = EnumHelper.addToolMaterial("BASIC", 1, 115, 12.0F, 0.0F, 1);
+	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 12.0F, 0.0F, 6);
 	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 15.0F, 2.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
 	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, 0F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
 	private static final ToolMaterial toolHunter = EnumHelper.addToolMaterial("HUNTER", 1, 160, 1F, 1F, 4);
-	private static final ToolMaterial toolMercury = EnumHelper.addToolMaterial("MERCURY", 2, 170, 1.5F, 1.5F, 12).setRepairItem(new ItemStack(RedMercury));
-	private static final ToolMaterial toolTungsten = EnumHelper.addToolMaterial("TUNGSTEN", 3, 770, 2.5F, 2.5F, 8).setRepairItem(new ItemStack(Tungsten));
+	private static final ToolMaterial toolMercury = EnumHelper.addToolMaterial("MERCURY", 2, 170, 1.5F, 1.5F, 12);
+	private static final ToolMaterial toolTungsten = EnumHelper.addToolMaterial("TUNGSTEN", 3, 770, 2.5F, 2.5F, 8);
 	private static final ToolMaterial toolClaws = EnumHelper.addToolMaterial("CLAWS", 2, 350, 4.0F, 4.0F, 2);
 	private static final ToolMaterial toolThorn = EnumHelper.addToolMaterial("THORN", 1, 330, 6.0F, 6.0F, 4);
 	private static final ToolMaterial toolFrozen = EnumHelper.addToolMaterial("FROZEN", 2, 400, 6.0F, 6.0F, 3);
 	private static final ToolMaterial toolWithering = EnumHelper.addToolMaterial("WITHERING", 3, 550, 15.0F, 6.0F, 16);
-	private static final ToolMaterial toolDarkness = EnumHelper.addToolMaterial("DARKNESS", 3, 350, 8.0F, 8.0F, 26).setRepairItem(new ItemStack(DarkParticles));
-	private static final ToolMaterial toolLight = EnumHelper.addToolMaterial("LIGHT", 3, 333, 8.0F, 8.0F, 14).setRepairItem(new ItemStack(LightParticles));
+	private static final ToolMaterial toolDarkness = EnumHelper.addToolMaterial("DARKNESS", 3, 350, 8.0F, 8.0F, 26);
+	private static final ToolMaterial toolLight = EnumHelper.addToolMaterial("LIGHT", 3, 333, 8.0F, 8.0F, 14);
 	private static final ToolMaterial toolMourning = EnumHelper.addToolMaterial("MOURNING", 3, 440, 9.0F, 9.0F, 14);
 	private static final ToolMaterial toolReaper = EnumHelper.addToolMaterial("REAPER", 3, 800, 30.0F, 12.0F, 10);
-	private static final ToolMaterial toolCelesJack = EnumHelper.addToolMaterial("CELESJACK", 3, 1280, 20.0F, 4.0F, 4).setRepairItem(new ItemStack(CelestialSteel));
-	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24).setRepairItem(new ItemStack(CelestialSteel));
+	private static final ToolMaterial toolCelesJack = EnumHelper.addToolMaterial("CELESJACK", 3, 1280, 20.0F, 4.0F, 4);
+	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24);
 	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
 	public static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 2100, 21.0F, 21.0F, 28);
@@ -427,13 +427,13 @@ public class TragicItems {
 
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:EverlastingLight" + textureRes));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
-		
+
 		Jack = (new ItemJack(toolBasic).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:BasicJack_lowRes"));
 		GameRegistry.registerItem(Jack, "jack");
 
 		TungstenJack = (new WeaponTungstenJack(toolJack, Doomsday.MinerSkills).setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicTabs.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
 		GameRegistry.registerItem(TungstenJack, "tungstenJack");
-		
+
 		CelestialJack = (new WeaponCelestialJack(toolCelesJack, Doomsday.RealityAlter).setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack" + textureRes));
 		GameRegistry.registerItem(CelestialJack, "celestialJack");
 
@@ -677,6 +677,97 @@ public class TragicItems {
 		LightningRodTalisman = (new ItemLightningRod().setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman" + textureRes));
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
 
+		//Amulet Registrations
+		int id = 0;
+
+		KitsuneAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
+
+		PeaceAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
+
+		YetiAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
+
+		ClaymationAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
+
+		ChickenAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
+
+		MartyrAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
+
+		PiercingAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
+
+		BlacksmithAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
+
+		ApisAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(ApisAmulet, "apisAmulet");
+
+		CreeperAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
+
+		ZombieAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
+
+		SkeletonAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
+
+		SunkenAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
+
+		TimeAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
+
+		IceAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(IceAmulet, "iceAmulet");
+
+		SnowGolemAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
+
+		IronGolemAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
+
+		EndermanAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
+
+		WitherAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
+
+		//Armor and Tool materials
+		armorSkull.customCraftingMaterial = Items.bone;
+		armorMercury.customCraftingMaterial = RedMercury;
+		armorHunter.customCraftingMaterial = ToughLeather;
+		armorLight.customCraftingMaterial = LightParticles;
+		armorDark.customCraftingMaterial = DarkParticles;
+
+		try
+		{
+			toolBasic.setRepairItem(new ItemStack(Items.flint));
+			toolScythe.setRepairItem(new ItemStack(Items.bone));
+			toolMercury.setRepairItem(new ItemStack(RedMercury));
+			toolTungsten.setRepairItem(new ItemStack(Tungsten));
+			toolLight.setRepairItem(new ItemStack(LightParticles));
+			toolDarkness.setRepairItem(new ItemStack(DarkParticles));
+			toolCelestial.setRepairItem(new ItemStack(CelestialSteel));
+			toolCelesJack.setRepairItem(new ItemStack(CelestialSteel));
+		}
+		catch (NoSuchMethodError e)
+		{
+			TragicMC.logWarning("Error caught while setting repair items for materials. Update Forge to at least (1258) to avoid this error in the future.");
+
+			toolBasic.customCraftingMaterial = Items.flint;
+			toolScythe.customCraftingMaterial = Items.bone;
+			toolMercury.customCraftingMaterial = RedMercury;
+			toolTungsten.customCraftingMaterial = Tungsten;
+			toolLight.customCraftingMaterial = LightParticles;
+			toolDarkness.customCraftingMaterial = DarkParticles;
+			toolCelestial.customCraftingMaterial = toolCelesJack.customCraftingMaterial = CelestialSteel;
+		}
+
 		//Special item registrations
 		MobStatue = (new ItemStatue());
 		GameRegistry.registerItem(MobStatue, "mobStatue");
@@ -716,73 +807,6 @@ public class TragicItems {
 
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
-
-		//Amulet Registrations
-		int id = 0;
-		
-		KitsuneAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
-
-		PeaceAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
-
-		YetiAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
-
-		ClaymationAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
-
-		ChickenAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
-
-		MartyrAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
-
-		PiercingAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
-
-		BlacksmithAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
-
-		ApisAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ApisAmulet, "apisAmulet");
-
-		CreeperAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
-
-		ZombieAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
-		
-		SkeletonAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
-
-		SunkenAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
-
-		TimeAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
-
-		IceAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(IceAmulet, "iceAmulet");
-
-		SnowGolemAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
-
-		IronGolemAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
-
-		EndermanAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
-
-		WitherAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
-
-		//Armor and Tool materials
-		armorSkull.customCraftingMaterial = Items.bone;
-		armorMercury.customCraftingMaterial = RedMercury;
-		armorHunter.customCraftingMaterial = ToughLeather;
-		armorLight.customCraftingMaterial = LightParticles;
-		armorDark.customCraftingMaterial = DarkParticles;
 
 		//Creative only items
 		BowOfJustice = (new WeaponBowOfJustice().setUnlocalizedName("tragicmc.bowOfJustice").setTextureName("bow").setCreativeTab(TragicTabs.Creative));
