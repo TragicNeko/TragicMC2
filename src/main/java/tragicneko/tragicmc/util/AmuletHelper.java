@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 
@@ -180,32 +181,32 @@ public class AmuletHelper {
 
 		if (attr == SharedMonsterAttributes.attackDamage)
 		{
-			d0 = Math.round(rand.nextDouble() * 10.0D);
+			d0 = rand.nextInt(20);
 			uuid = UUID.fromString("237ab9b5-459c-4dcb-bcb8-4e8068ce9135");
 		}
 		else if (attr == SharedMonsterAttributes.knockbackResistance)
 		{
-			d0 = rand.nextInt(10) * 0.1;
+			d0 = rand.nextInt(20) * 0.2;
 			uuid = UUID.fromString("b41f1b8d-a0e7-42ee-acb4-a0f9c198626f");
 		}
 		else if (attr == SharedMonsterAttributes.maxHealth)
 		{
-			d0 = Math.round(rand.nextDouble() * 20.0D);
+			d0 = rand.nextInt(20);
 			uuid = UUID.fromString("b06dedf7-fd45-442c-93b4-8fa70bc64d51");
 		}
 		else if (attr == SharedMonsterAttributes.movementSpeed)
 		{
-			d0 = rand.nextInt(50) * 0.5;
+			d0 = rand.nextInt(20) * 0.02;
 			uuid = UUID.fromString("1ab86156-baf5-4906-bb07-314a0e7faa59");
 		}
 		else if (attr == AmuletModifier.reach)
 		{
-			d0 = rand.nextInt(10) * 0.1;
+			d0 = rand.nextInt(20) * 0.05;
 			uuid = UUID.fromString("829ea197-31bf-4360-912e-93f6775fedc1");
 		}
 		else if (attr == AmuletModifier.jumpHeight)
 		{
-			d0 = rand.nextInt(10);
+			d0 = rand.nextInt(10) * 0.25;
 			uuid = UUID.fromString("8d325bc1-9b36-457f-a984-50cfed8331ed");
 		}
 		else if (attr == AmuletModifier.resistance)
@@ -218,6 +219,8 @@ public class AmuletHelper {
 			d0 = rand.nextDouble();
 			uuid = UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540");
 		}
+		
+		d0 = attr.clampValue(d0);
 
 		return uuid == null ? null : new AttributeModifier(uuid, attr.getAttributeUnlocalizedName(), d0, 0);
 	}
@@ -227,7 +230,7 @@ public class AmuletHelper {
 		return attributes[rand.nextInt(attributes.length)];
 	}
 	
-	public static NBTTagCompound writeAttributeModifierToNBT(AttributeModifier modif)
+	public static NBTTagCompound writeAttributeModifierToNBT(IAttribute atr, AttributeModifier modif)
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		nbttagcompound.setString("Name", modif.getName());
@@ -235,6 +238,7 @@ public class AmuletHelper {
 		nbttagcompound.setInteger("Operation", modif.getOperation());
 		nbttagcompound.setLong("UUIDMost", modif.getID().getMostSignificantBits());
 		nbttagcompound.setLong("UUIDLeast", modif.getID().getLeastSignificantBits());
+		nbttagcompound.setString("AttributeName", atr.getAttributeUnlocalizedName());
 		return nbttagcompound;
 	}
 }
