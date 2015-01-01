@@ -3164,6 +3164,11 @@ Added config option to disable amulet modifiers and set each modifier's chance t
 Added config options to disable specific non-Doomsday abilities like the Beastly Claws's Combo
 Fix Gravity Spike's launch ability
 Apply cooldown on some abilities that were unintentionally exempt from it
+Fix inverted logic on the Guilty Thorn's ability for creative mode players
+Added config options to set each non-Doomsday ability's cost
+The config options are a bit messy internally (like the mob stats) but the configurability is pretty nice
+Default the Amulet GUI to open with the Y key
+Slight modification to the Life Water recipe to no longer require Enchanted Books
 
 TODO still
 Work on the Overlord
@@ -3192,7 +3197,6 @@ Note: For the Magma biomes, add a geyser block that will randomly shoot steam up
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
 
 Config stuff:
-Option to disable Amulet modifiers
 Possibly an option to make all explosions "recoverable" in addition to removing mobGriefing completely or allowing it
 
 --Reminders-
