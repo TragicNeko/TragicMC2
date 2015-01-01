@@ -793,10 +793,8 @@ public class TragicRecipes {
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LifeWater, 3), new Object[] {
 			" x ",
-			"xyx",
-			" z ",
+			"xzx",
 			'x', Items.ghast_tear,
-			'y', Items.enchanted_book,
 			'z', Items.glass_bottle
 		});
 
