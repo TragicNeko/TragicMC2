@@ -22,7 +22,7 @@ public class BlockStructureSeed extends BlockContainer {
 
 	private String[] structureNames = new String[]{"ApisTemple", "DesertTower", "ForestTower", "MesaTower", "NetherTower", "DeathCircle", "IceTower", "ObsidianCavernRandom", 
 			"ObsidianCavernLootStash", "ObsdianCavernDeathTrap", "ObsdianCavernMobSpawners", "ObsidianCavernBossSummoners", "KitsuneDen", "CelestialTemple", "TimeAltar",
-			"AegarTower", "DecayingSkull", "DecayingRibCage", "DecayingBone"};
+			"AegarTower"};
 
 	public BlockStructureSeed() {
 		super(Material.gourd);

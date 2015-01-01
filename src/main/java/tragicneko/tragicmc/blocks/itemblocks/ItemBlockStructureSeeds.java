@@ -13,7 +13,7 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 
 	private static String[] subNames = new String[] {"apisTemple", "desertTower", "forestTower", "mesaTower", "netherTower", "deathCircle", "iceTower", "obsidianCavern.random",
 		"obsidianCavern.lootStash", "obsidianCavern.deathTrap", "obsidianCavern.mobSpawners", "obsidianCavern.bossChallenge", "kitsuneDen", "celestialTemple", "timeAltar",
-		"aegarTower", "decayingSkull", "decayingRibCage", "decayingBone"};
+		"aegarTower"};
 
 	public ItemBlockStructureSeeds(Block p_i45326_1_) {
 		super(p_i45326_1_, subNames);
@@ -64,6 +64,8 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 		case 14: //Time Altar
 			color = 0x23FF23;
 			break;
+		case 15: //Aegar Tower
+			color = 0xFFFFFF;
 		default:
 			break;
 		}
