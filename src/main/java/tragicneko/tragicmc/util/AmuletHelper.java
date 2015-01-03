@@ -4,12 +4,14 @@ import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.util.UUID;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 
@@ -216,7 +218,7 @@ public class AmuletHelper {
 		}
 		else if (attr == AmuletModifier.luck)
 		{
-			d0 = rand.nextDouble();
+			d0 = rand.nextInt(100) * 0.01;
 			uuid = UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540");
 		}
 		
@@ -240,5 +242,20 @@ public class AmuletHelper {
 		nbttagcompound.setLong("UUIDLeast", modif.getID().getLeastSignificantBits());
 		nbttagcompound.setString("AttributeName", atr.getAttributeUnlocalizedName());
 		return nbttagcompound;
+	}
+	
+	public static IAttribute getAttributeFromMap(BaseAttributeMap map, String s)
+	{
+		return getAttributeInstanceFromMap(map, s) != null ? getAttributeInstanceFromMap(map, s).getAttribute() : null;
+	}
+	
+	public static IAttribute getAttributeFromEntity(EntityLivingBase entity, String s)
+	{
+		return getAttributeFromMap(entity.getAttributeMap(), s);
+	}
+	
+	public static IAttributeInstance getAttributeInstanceFromMap(BaseAttributeMap map, String s)
+	{
+		return map != null ? map.getAttributeInstanceByName(s) : null;
 	}
 }

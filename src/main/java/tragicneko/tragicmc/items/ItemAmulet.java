@@ -182,7 +182,7 @@ public class ItemAmulet extends Item {
 		IAttribute atr = AmuletHelper.getRandomAttribute();
 		AttributeModifier mod = AmuletHelper.getRandomModifier(atr);
 		
-		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4) //55% chance to have no modifier, by default cursed amulets have no modifiers
+		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied no modifiers");
@@ -198,7 +198,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 		
-		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance2) //36% chance to have 1 modifier only
+		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance2)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied 1 modifier");
@@ -214,14 +214,14 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 		
-		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance3) //8% chance to have 2 modifiers
+		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance3)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied 2 modifiers");
 			return;
 		}
 
-		if (mod != null) //1% chance to have 3 modifiers
+		if (mod != null)
 		{
 			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
 			taglist.appendTag(tag);
