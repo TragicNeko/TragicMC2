@@ -3175,6 +3175,9 @@ Allow Pumpkinhead to spawn regardless of it there is a pumpkin near it's spawn, 
 It will attempt to generate a pumpkin 25% of the time if there is not one near it when it spawns, this is to alleviate the need for it to generate one each time it spawns
 Added Amulet Modifier transfer to the Amulet upgrading, it will only transfer one of the Amulet's modifiers (the first one in the crafting grid), this was supposed to work with
 both of their modifiers but for some reason it doesn't get it for both
+Reduce amount of Pumpkinheads that can spawn in one chunk, lowered it's default spawn rate, reduced the amount of biomes it can generate in
+Modified Projectile superclass, added a new method to determine if the projectile can be deflected by things
+Updated the Tuple I use for the Modifier transfer to be my custom one rather than the vanilla util one, this is so that I can parameterize it
 
 TODO still
 Work on the Overlord
