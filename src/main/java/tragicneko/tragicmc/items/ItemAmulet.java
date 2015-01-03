@@ -232,9 +232,9 @@ public class ItemAmulet extends Item {
 	}
 
 	public static class AmuletModifier extends SharedMonsterAttributes {
-		public static final IAttribute reach = (new RangedAttribute("tragicmc.reach", 3.5, 0.0, Double.MAX_VALUE)).setDescription("Reach");
-		public static final IAttribute jumpHeight = (new RangedAttribute("tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height");
-		public static final IAttribute resistance = (new RangedAttribute("tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance");
-		public static final IAttribute luck = (new RangedAttribute("tragicmc.luck", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Luck");
+		public static final IAttribute reach = (new RangedAttribute("tragicmc.reach", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Reach").setShouldWatch(true);
+		public static final IAttribute jumpHeight = (new RangedAttribute("tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height").setShouldWatch(true);
+		public static final IAttribute resistance = (new RangedAttribute("tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance").setShouldWatch(true);
+		public static final IAttribute luck = (new RangedAttribute("tragicmc.luck", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Luck").setShouldWatch(true);
 	}
 }
