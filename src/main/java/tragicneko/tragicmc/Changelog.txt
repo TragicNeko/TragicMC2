@@ -3170,7 +3170,7 @@ The config options are a bit messy internally (like the mob stats) but the confi
 Default the Amulet GUI to open with the Y key
 Slight modification to the Life Water recipe to no longer require Enchanted Books
 
-2.40.1868 <184>
+2.40.1868 <184> (January 2, 2015)
 Allow Pumpkinhead to spawn regardless of it there is a pumpkin near it's spawn, this allows for it to spawn under normal circumstances
 It will attempt to generate a pumpkin 25% of the time if there is not one near it when it spawns, this is to alleviate the need for it to generate one each time it spawns
 Added Amulet Modifier transfer to the Amulet upgrading, it will only transfer one of the Amulet's modifiers (the first one in the crafting grid), this was supposed to work with
@@ -3178,8 +3178,13 @@ both of their modifiers but for some reason it doesn't get it for both
 Reduce amount of Pumpkinheads that can spawn in one chunk, lowered it's default spawn rate, reduced the amount of biomes it can generate in
 Modified Projectile superclass, added a new method to determine if the projectile can be deflected by things
 Updated the Tuple I use for the Modifier transfer to be my custom one rather than the vanilla util one, this is so that I can parameterize it
+Increase the size of the Guardian Shields so that they deflect projectiles better, fix their health so that it can actually be higher than 20, crucial moments with the Doomsday now
+heal half the player's health
+Fixed bug with the Jump Modifier not having the right default value
+Reduce chance for Pumpkinhead to generate a pumpkin when it spawns, reduce radius in which it checks for nearby pumpkins on update
 
 TODO still
+Add the render/model for the Guardian Shields
 Work on the Overlord
 Add armor models
 Add the Overlord armor set and the Sentinel
