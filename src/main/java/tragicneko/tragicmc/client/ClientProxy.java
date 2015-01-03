@@ -136,7 +136,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class ClientProxy extends CommonProxy {
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
-	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_P, TragicMC.MODNAME);	
+	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);	
 
 	@Override
 	public void registerRenders()
