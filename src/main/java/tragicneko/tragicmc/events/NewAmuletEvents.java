@@ -112,23 +112,23 @@ public class NewAmuletEvents {
 		if (event.entityLiving instanceof EntityPlayer)
 		{
 			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.jumpHeight);
-			double d0 = ins == null ? 0.0 : ins.getAttributeValue() * 0.25D;
+			double d0 = ins == null ? 0.0 : (ins.getAttributeValue() - 1.4D) * 0.25D;
 			double d1 = event.entityLiving.motionY;
 			event.entityLiving.motionY = d0 + d1;
-			TragicMC.logInfo("Entity motion is " + d1 + " amount after modifier is " + (d0 + d1));
-			if (!event.entityLiving.worldObj.isRemote) TragicMC.logInfo("Jump modifier check. Amount was " + d0);
+			//TragicMC.logInfo("Entity motion is " + d1 + " amount after modifier is " + (d0 + d1));
+			//if (!event.entityLiving.worldObj.isRemote) TragicMC.logInfo("Jump modifier check. Amount was " + d0);
 		}
 	}
 
 	@SubscribeEvent
 	public void onPlayerHurt(LivingHurtEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer)
+		if (event.entityLiving instanceof EntityPlayer && !event.source.isDamageAbsolute() && !event.source.isUnblockable())
 		{
 			IAttributeInstance ins = event.entityLiving.getEntityAttribute(AmuletModifier.resistance);
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
 			event.ammount -= d0;
-			TragicMC.logInfo("Resistance modifier applied to player. Amount was " + d0);
+			//TragicMC.logInfo("Resistance modifier applied to player. Amount was " + d0);
 		}
 	}
 
