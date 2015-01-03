@@ -5,13 +5,9 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
@@ -63,7 +59,7 @@ public abstract class Doomsday {
 	public static final Doomsday DragonsRoar = (new DoomsdayDragonsRoar(36));
 	public static final Doomsday Firestorm = (new DoomsdayFirestorm(37));
 	public static final Doomsday Shotgun = (new DoomsdayShotgun(38));
-	//public static final Doomsday Guardian = (new DoomsdayGuardian(39));
+	public static final Doomsday GuardiansCall = (new DoomsdayGuardian(39));
 	//public static final Doomsday Harden = (new DoomsdayHarden(40));
 	//public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	
@@ -86,11 +82,14 @@ public abstract class Doomsday {
 	//Delete, World Shaper, fires a single "Drill" projectile that mines blocks that it goes through, like a laser almost except not instantaneous
 	//Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
 	//Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except instantaneous mining but less mined per effect
+	//Twilight Zone, Influence, any mobs near you get inflicted with Weakness XGHVWRBOA and pretty much do no damage at all to anything
+	//Danger Zone, Crisis, any mobs in the area get exploded and get stunned
+	//Support, Overflow, increase nearby player's doom at the cost of yours
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
