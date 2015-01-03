@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class EntityGuardianShield extends EntityProjectile {
@@ -27,7 +29,7 @@ public class EntityGuardianShield extends EntityProjectile {
 		super(world);
 		this.motionFlag = false;
 		this.preventEntitySpawning = true;
-		this.setSize(1.5F, 3.5F);
+		this.setSize(2.25F, 2.55F);
 	}
 	
 	public EntityGuardianShield(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7) {
@@ -117,6 +119,18 @@ public class EntityGuardianShield extends EntityProjectile {
 		{
 			this.motionFlag = true;
 			TragicMC.logInfo("Shield attacked by creator");
+			Vec3 vec3 = this.shootingEntity.getLookVec();
+			
+			if (vec3 != null) 	
+			{ 	
+				this.motionX = vec3.xCoord; 	
+				this.motionY = vec3.yCoord; 	
+				this.motionZ = vec3.zCoord; 	
+				this.accelerationX = this.motionX * 0.1D; 	
+				this.accelerationY = this.motionY * 0.1D; 	
+				this.accelerationZ = this.motionZ * 0.1D; 	
+			}
+			
 			return super.attackEntityFrom(src, dmg);
 		}
 		
@@ -140,13 +154,15 @@ public class EntityGuardianShield extends EntityProjectile {
 			this.motionZ = this.shootingEntity.motionZ;
 
 			this.setPosition(this.shootingEntity.posX + this.xOffset, this.shootingEntity.posY + 0.3, this.shootingEntity.posZ + this.zOffset);
+			
+			if (!this.worldObj.isRemote && this.shootingEntity.isDead) this.setDead();
 		}
 		else if (this.motionFlag)
 		{
 			super.onUpdate();
 		}
 
-		if (this.ticksExisted > 1200) this.setDead();
+		if (this.ticksExisted > 600)  this.setDead();
 	}
 
 	@Override
@@ -157,10 +173,12 @@ public class EntityGuardianShield extends EntityProjectile {
 		{
 			if (var1.entityHit != null)
 			{
+				if (var1.entityHit instanceof EntityGuardianShield) return;
 				var1.entityHit.attackEntityFrom(this.shootingEntity != null ? DamageHelper.causeModMagicDamageToEntity(this.shootingEntity) : DamageSource.magic , this.maxHealth / 10.0F);
 			}
 			
-			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, (this.maxHealth / 10.0F) * rand.nextFloat(), false);
+			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, (this.maxHealth / 10.0F) * rand.nextFloat(), WorldHelper.getMobGriefing(this.worldObj));
+			this.setDead();
 		}
 	}
 }
