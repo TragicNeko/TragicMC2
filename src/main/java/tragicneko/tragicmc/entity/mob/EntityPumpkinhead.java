@@ -170,9 +170,9 @@ public class EntityPumpkinhead extends TragicMob {
 
 		if (this.worldObj.isRemote) return;	
 
-		if (!this.hasHomePumpkin() && this.isPumpkinNearby() && this.ticksExisted % 60 == 0)
+		if (!this.hasHomePumpkin() && this.ticksExisted % 120 == 0)
 		{
-			this.setHomeCoordinates(getNearbyPumpkin());
+			if (this.isPumpkinNearby()) this.setHomeCoordinates(getNearbyPumpkin());
 		}
 
 		if (this.isBurning())
@@ -304,7 +304,7 @@ public class EntityPumpkinhead extends TragicMob {
 	{
 		if (!this.isPumpkinNearby())
 		{
-			if (rand.nextInt(4) == 0) this.createHomePumpkin();
+			if (rand.nextInt(32) == 0) this.createHomePumpkin();
 		}
 		else
 		{
