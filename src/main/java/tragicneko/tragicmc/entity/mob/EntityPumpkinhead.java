@@ -335,5 +335,9 @@ public class EntityPumpkinhead extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-
+	
+	public int getMaxSpawnedInChunk()
+	{
+		return 1;
+	}
 }

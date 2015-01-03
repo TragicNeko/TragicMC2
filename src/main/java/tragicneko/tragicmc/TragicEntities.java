@@ -10,6 +10,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
+import tragicneko.tragicmc.entity.EntityGuardianShield;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -251,44 +252,19 @@ public class TragicEntities {
 		if (TragicNewConfig.allowPumpkinhead)
 		{
 			EntityRegistry.registerModEntity(EntityPumpkinhead.class, "Pumpkinhead", listid++, TragicMC.instance, 80, 1, true);
-			EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicNewConfig.pumpkinheadSC, 2, 5, EnumCreatureType.monster, BiomeGenBase.beach,
+			EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicNewConfig.pumpkinheadSC, 2, 5, EnumCreatureType.monster,
 					BiomeGenBase.birchForest,
 					BiomeGenBase.birchForestHills,
-					BiomeGenBase.coldBeach,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills,
-					BiomeGenBase.deepOcean,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsEdge,
-					BiomeGenBase.extremeHillsPlus,
 					BiomeGenBase.forest,
 					BiomeGenBase.forestHills,
-					BiomeGenBase.frozenOcean,
-					BiomeGenBase.frozenRiver,
-					BiomeGenBase.hell,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.icePlains,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleEdge,
-					BiomeGenBase.jungleHills,
 					BiomeGenBase.megaTaiga,
 					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
 					BiomeGenBase.mushroomIsland,
 					BiomeGenBase.mushroomIslandShore,
-					BiomeGenBase.ocean,
 					BiomeGenBase.plains,
-					BiomeGenBase.river,
 					BiomeGenBase.roofedForest,
 					BiomeGenBase.savanna,
 					BiomeGenBase.savannaPlateau,
-					BiomeGenBase.sky,
-					BiomeGenBase.stoneBeach,
-					BiomeGenBase.swampland,
 					BiomeGenBase.taiga,
 					BiomeGenBase.taigaHills
 					);
@@ -792,5 +768,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityDarkMortor.class, "DarkMortor", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityWebBomb.class, "WebBomb", listid++, TragicMC.instance, 80, 3, true);
 		EntityRegistry.registerModEntity(EntityCrystalMortor.class, "CrystalMortor", listid++, TragicMC.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(EntityGuardianShield.class, "GuardianShield", listid++, TragicMC.instance, 80, 3, true);
 	}
 }

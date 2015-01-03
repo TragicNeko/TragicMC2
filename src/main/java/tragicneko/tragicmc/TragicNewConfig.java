@@ -590,7 +590,7 @@ public class TragicNewConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "inklingAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "ragrSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "ragrAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "pumpkinheadSpawnChance", 75).getInt(75));
+		mobsSC[mapping] = (config.get(catMobs, "pumpkinheadSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "pumpkinheadAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "tragicNekoSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "tragicNekoAllow", true).getBoolean(true));
