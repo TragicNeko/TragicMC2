@@ -300,16 +300,11 @@ public class EntityPumpkinhead extends TragicMob {
 		return result;
 	}
 
-	public boolean getCanSpawnHere()
-	{
-		return super.getCanSpawnHere() && this.isPumpkinNearby();
-	}
-
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		if (!this.isPumpkinNearby())
 		{
-			this.createHomePumpkin();
+			if (rand.nextInt(4) == 0) this.createHomePumpkin();
 		}
 		else
 		{

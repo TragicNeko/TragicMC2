@@ -3142,7 +3142,7 @@ Fix explicit casts on player entities in the Doom and Amulet events, this is to 
 Upon testing with Balkon's weapon mod, there is no negative knockback at all
 Bump version numbers for testing with mod compatibilities
 
-2.40.1857++ <183> (December 24, 2014)
+2.40.1868 <183> (December 24, 2014)
 Updated Death Reaper AI again, removed random projectiles it fires, it now shoots Large Pumpkinbombs while being aggressive and Wither Skulls while being defensive, it will now spawn
 in wither gas when it gets attacked or attack something, which damages entities within it with wither damage (if they aren't undead)
 Added Wither Gas block, may add a few variants of this for other entities (most likely the mortor entities)
@@ -3170,6 +3170,12 @@ The config options are a bit messy internally (like the mob stats) but the confi
 Default the Amulet GUI to open with the Y key
 Slight modification to the Life Water recipe to no longer require Enchanted Books
 
+2.40.1868 <184>
+Allow Pumpkinhead to spawn regardless of it there is a pumpkin near it's spawn, this allows for it to spawn under normal circumstances
+It will attempt to generate a pumpkin 25% of the time if there is not one near it when it spawns, this is to alleviate the need for it to generate one each time it spawns
+Added Amulet Modifier transfer to the Amulet upgrading, it will only transfer one of the Amulet's modifiers (the first one in the crafting grid), this was supposed to work with
+both of their modifiers but for some reason it doesn't get it for both
+
 TODO still
 Work on the Overlord
 Add armor models
@@ -3196,9 +3202,6 @@ Note: After the frozen biomes are added, make that the only place that the Ragr 
 Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
 
-Config stuff:
-Possibly an option to make all explosions "recoverable" in addition to removing mobGriefing completely or allowing it
-
 --Reminders-
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
 Add client-side effects for the Doomsdays (other than the vanilla stuff)
@@ -3212,8 +3215,6 @@ The Hunter will actively track nearby non-Synapse entities and will "laser" them
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 
 --More Reminders--
-The Sentinel's doomsday will create shield entities around you that block attacks and prevent entities from moving past them (like a block), you can punch these shields and
-they will move like a large fireball
 The Sentinel armor's Doomsday will be Harden, it'll give you a quick Resistance 10 buff and heal you 3 hearts, it will give you a 10 heart buff when you have the full set on
 and will also give you Convergence
 The armor will look kinda scaly like the celled blocks, and have trim that matches the Overlord's design, it'll require nano-bots which will drop from Harvesters and the Overlord
