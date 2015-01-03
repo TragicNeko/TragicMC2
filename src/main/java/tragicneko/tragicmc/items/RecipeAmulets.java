@@ -9,10 +9,10 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.Tuple;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.AmuletHelper;
+import tragicneko.tragicmc.util.Tuple;
 
 import com.google.common.collect.Multimap;
 
@@ -28,7 +28,7 @@ public class RecipeAmulets extends ShapelessOreRecipe {
 		ItemStack stack = this.getRecipeOutput().copy();
 		int level = 0;
 		boolean flag = false;
-		Tuple[] tuples = new Tuple[5];
+		Tuple<String, AttributeModifier>[] tuples = new Tuple[5];
 
 		for (int i = 0; i < crafting.getSizeInventory(); i++)
 		{
@@ -74,7 +74,7 @@ public class RecipeAmulets extends ShapelessOreRecipe {
 		return stack;
 	}
 
-	public static void applyModifiersToItemStack(ItemStack stack, Tuple[] tuples)
+	public static void applyModifiersToItemStack(ItemStack stack, Tuple<String, AttributeModifier>[] tuples)
 	{
 		NBTTagList taglist = new NBTTagList();
 		NBTTagCompound tag;
@@ -82,13 +82,13 @@ public class RecipeAmulets extends ShapelessOreRecipe {
 
 		for (int i = 0; i < 3; i++)
 		{
-			Tuple tup = tuples[i];
+			Tuple<String, AttributeModifier> tup = tuples[i];
 			if (tup == null) continue;
 			
 			try
 			{
-				AttributeModifier mod = (AttributeModifier) tup.getSecond();
-				String atrName = (String) tup.getFirst();
+				AttributeModifier mod = tup.getRight();
+				String atrName = tup.getLeft();
 				
 				tag = AmuletHelper.writeAttributeModifierToNBT(AmuletHelper.getAttributeFromEntity(Minecraft.getMinecraft().thePlayer, atrName), mod);
 				taglist.appendTag(tag);
