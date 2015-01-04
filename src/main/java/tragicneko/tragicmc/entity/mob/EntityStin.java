@@ -175,19 +175,19 @@ public class EntityStin extends TragicMob {
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[1] : stinBabyStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[2] : stinBabyStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[3] : stinBabyStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[4] : stinBabyStats[4]);
 	}
 
 	protected void reapplyEntityAttributes()
 	{
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[1] : stinBabyStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[2] : stinBabyStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[3] : stinBabyStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[4] : stinBabyStats[4]);
 	}
 
 	public void onLivingUpdate()
