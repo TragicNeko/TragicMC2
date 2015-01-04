@@ -51,6 +51,7 @@ import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
+import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -830,7 +831,7 @@ public class EntityClaymation extends TragicBoss {
 
 		int x = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 2;
 
-		if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getUtilityInt() <= 0 && this.getUtilityInt2() == 0)
+		if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getUtilityInt2() == 0)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
@@ -838,49 +839,17 @@ public class EntityClaymation extends TragicBoss {
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
 
-			switch(rand.nextInt(10))
+			if (this.getUtilityInt() > 0)
 			{
-			case 0:
-				EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-				fireball.posY = this.posY + (this.height * 2 / 3);
-				this.worldObj.spawnEntityInWorld(fireball);
-				break;
-			case 1:
-				for (int miff = 0; miff < 3; miff++)
-				{
-					EntityWitherSkull solarBomb = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-					solarBomb.posY = this.posY + (this.height * 2 / 3);
-					solarBomb.setInvulnerable(true);
-					this.worldObj.spawnEntityInWorld(solarBomb);
-				}
-				break;
-			case 2:
-				for (int wubwub = 0; wubwub < 5; wubwub++)
-				{
-					EntityWitherSkull witherSkull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-					witherSkull.posY = this.posY + (this.height * 2 / 3);
-					this.worldObj.spawnEntityInWorld(witherSkull);
-				}
-				break;
-			case 3:
-				for (int i = 0; i < 5; ++i)
-				{
-					EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-					fireball2.posY = this.posY + (this.height * 2 / 3);
-					this.worldObj.spawnEntityInWorld(fireball2);
-				}
-				break;
-			case 4:
-				this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ));
-				break;
-			default:
-				for (int i = 0; i < 5; ++i)
-				{
-					EntitySmallFireball fireball3 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-					fireball3.posY = this.posY + (this.height * 2 / 3);
-					this.worldObj.spawnEntityInWorld(fireball3);
-				}
-				break;
+				EntityLargePumpkinbomb bomb = new EntityLargePumpkinbomb(this.worldObj, this);
+				bomb.posY = this.posY + (this.height * 2.0 / 3.0);
+				this.worldObj.spawnEntityInWorld(bomb);
+			}
+			else
+			{
+				EntityWitherSkull skull = new EntityWitherSkull(this.worldObj, this, d0, d1, d2);
+				skull.posY = this.posY + (this.height * 2.0 / 3.0);
+				this.worldObj.spawnEntityInWorld(skull);
 			}
 
 			if (rand.nextInt(4) == 0 && this.getUtilityInt() < 10) this.incrementUtilityInt();
