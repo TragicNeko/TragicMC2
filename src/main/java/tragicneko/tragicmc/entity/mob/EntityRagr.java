@@ -115,7 +115,7 @@ public class EntityRagr extends TragicMob {
 			this.incrementAngerTicks();
 			if (this.isCorrupted()) this.incrementAngerTicks();
 
-			if (this.onGround && this.ticksExisted % 10 == 0 && this.rand.nextInt(32) == 0)
+			if (this.onGround && this.rand.nextInt(16) == 0)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().posZ - this.posZ;
