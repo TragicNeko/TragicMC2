@@ -3182,6 +3182,8 @@ Increase the size of the Guardian Shields so that they deflect projectiles bette
 heal half the player's health
 Fixed bug with the Jump Modifier not having the right default value
 Reduce chance for Pumpkinhead to generate a pumpkin when it spawns, reduce radius in which it checks for nearby pumpkins on update
+Fix bug with Stin's attributes
+Update the Claymation's Skultar form to fire the correct projectiles
 
 TODO still
 Add the render/model for the Guardian Shields
