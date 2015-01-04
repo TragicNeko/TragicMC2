@@ -3184,6 +3184,8 @@ Fixed bug with the Jump Modifier not having the right default value
 Reduce chance for Pumpkinhead to generate a pumpkin when it spawns, reduce radius in which it checks for nearby pumpkins on update
 Fix bug with Stin's attributes
 Update the Claymation's Skultar form to fire the correct projectiles
+Added Sharpen/Harden Doomsdays, Sharpen serves as the first Doomsday for the Sentinel weapon, Guardian's Call is it's second but they do not form a Combination Doomsday together
+Added localizations for the new Doomsdays and the new weapon
 
 TODO still
 Add the render/model for the Guardian Shields
