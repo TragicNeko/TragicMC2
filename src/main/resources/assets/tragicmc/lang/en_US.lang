@@ -307,6 +307,8 @@ item.tragicmc.butcher.name=The Butcher
 item.tragicmc.thardus.name=The Thardus
 item.tragicmc.dragonFang.name=Dragon Fang
 
+item.tragicmc.sentinel.name=The Sentinel
+
 item.tragicmc.gravitySpike.name=Gravity Spike
 item.tragicmc.mourningStar.name=Mourning Star
 item.tragicmc.harmonyBell.name=Harmony Bell
@@ -895,6 +897,9 @@ doomsday.fireRain.name=Fire Rain
 doomsday.dragonsRoar.name=Dragon's Roar
 doomsday.firestorm.name=Firestorm
 doomsday.shotgun.name=Shotgun
+doomsday.guardiansCall.name=Guardian's Call
+doomsday.sharpen.name=Sharpen
+doomsday.harden.name=Harden
 
 tragicmc.paintedForest=Painted Forest
 tragicmc.paintedPlains=Painted Plains
