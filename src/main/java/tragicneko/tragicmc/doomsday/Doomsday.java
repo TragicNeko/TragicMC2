@@ -60,8 +60,8 @@ public abstract class Doomsday {
 	public static final Doomsday Firestorm = (new DoomsdayFirestorm(37));
 	public static final Doomsday Shotgun = (new DoomsdayShotgun(38));
 	public static final Doomsday GuardiansCall = (new DoomsdayGuardian(39));
-	//public static final Doomsday Harden = (new DoomsdayHarden(40));
-	//public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
+	public static final Doomsday Harden = (new DoomsdayHarden(40));
+	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	
 	//Scroll only Doomsdays
 	//Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
@@ -89,7 +89,7 @@ public abstract class Doomsday {
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
