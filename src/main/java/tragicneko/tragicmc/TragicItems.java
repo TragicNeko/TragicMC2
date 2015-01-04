@@ -80,6 +80,7 @@ import tragicneko.tragicmc.items.weapons.WeaponNekoLauncher;
 import tragicneko.tragicmc.items.weapons.WeaponParanoia;
 import tragicneko.tragicmc.items.weapons.WeaponPitchBlack;
 import tragicneko.tragicmc.items.weapons.WeaponReaperScythe;
+import tragicneko.tragicmc.items.weapons.WeaponSentinel;
 import tragicneko.tragicmc.items.weapons.WeaponSplinter;
 import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponThardus;
@@ -420,6 +421,10 @@ public class TragicItems {
 
 		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
 		GameRegistry.registerItem(DragonFang, "dragonFang");
+		
+		//Big boss weapons
+		Sentinel = (new WeaponSentinel(toolSentinel, Doomsday.Sharpen).setUnlocalizedName("tragicmc.sentinel").setTextureName("tragicmc:Sentinel" + textureRes));
+		GameRegistry.registerItem(Sentinel, "sentinel");
 
 		//Tool Registrations
 		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" + textureRes));
