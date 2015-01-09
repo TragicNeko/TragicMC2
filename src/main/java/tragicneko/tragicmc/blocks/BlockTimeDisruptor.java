@@ -1,5 +1,8 @@
 package tragicneko.tragicmc.blocks;
 
+import static net.minecraft.init.Blocks.air;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,10 +10,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class BlockTimeDisruptor extends BlockContainer {
 
@@ -29,101 +34,46 @@ public class BlockTimeDisruptor extends BlockContainer {
 	{
 		super.onBlockAdded(world, x, y, z);
 
-		if (world.getBlock(x, y - 1, z) == Blocks.quartz_block && world.getBlock(x, y - 2, z) == Blocks.quartz_block)
+		Block block = null;
+		if (world.getBlock(x, y - 1, z) == Blocks.quartz_block && world.getBlock(x, y - 2, z) == Blocks.quartz_block) block = Blocks.quartz_block;
+		if (world.getBlock(x, y - 1, z) == TragicBlocks.DarkenedQuartz && world.getBlock(x, y - 2, z) == TragicBlocks.DarkenedQuartz) block = TragicBlocks.DarkenedQuartz;
+		
+		if (block == null) return;
+		boolean flag = world.getBlock(x - 1, y - 1, z) == block && world.getBlock(x + 1, y - 1, z) == block && world.getBlock(x, y - 1, z - 1) == block && world.getBlock(x, y - 1, z + 1) == block;
+
+		if (flag)
 		{
-			boolean flag = world.getBlock(x - 1, y - 1, z) == Blocks.quartz_block && world.getBlock(x + 1, y - 1, z) == Blocks.quartz_block;
-			boolean flag1 = world.getBlock(x, y - 1, z - 1) == Blocks.quartz_block && world.getBlock(x, y - 1, z + 1) == Blocks.quartz_block;
+			TragicBoss boss = null;
+			if (block == Blocks.quartz_block && TragicNewConfig.allowTimeController) boss = new EntityTimeController(world);
+			else if (block == TragicBlocks.DarkenedQuartz && TragicNewConfig.allowEnyvil) boss = new EntityEnyvil(world);
+			
+			if (boss == null) return;
+			
+			world.setBlock(x, y, z, air, 0, 2);
+			world.setBlock(x, y - 1, z, air, 0, 2);
+			world.setBlock(x, y - 2, z, air, 0, 2);
+			world.setBlock(x - 1, y - 1, z, air, 0, 2);
+			world.setBlock(x + 1, y - 1, z, air, 0, 2);
+			world.setBlock(x, y - 1, z - 1, air, 0, 2);
+			world.setBlock(x, y - 1, z + 1, air, 0, 2);
+			
+			boss.setLocationAndAngles((double)x + 0.5D, (double)y - 1.95D, (double)z + 0.5D, 0.0F, 0.0F);
+			EntityPlayer player = boss.worldObj.getClosestVulnerablePlayerToEntity(boss, 16.0D);
+			if (player != null) boss.setTarget(player);
+			world.spawnEntityInWorld(boss);
 
-			if (flag && flag1)
-			{
-				world.setBlock(x, y, z, getBlockById(0), 0, 2);
-				world.setBlock(x, y - 1, z, getBlockById(0), 0, 2);
-				world.setBlock(x, y - 2, z, getBlockById(0), 0, 2);
+			for (int l = 0; l < 120; ++l) 
+				world.spawnParticle("hugeexplosion", (double)x + world.rand.nextDouble(), (double)(y - 2) + world.rand.nextDouble() * 3.9D, (double)z + world.rand.nextDouble(),
+						0.0D, 0.0D, 0.0D);
 
-				if (flag)
-				{
-					world.setBlock(x - 1, y - 1, z, getBlockById(0), 0, 2);
-					world.setBlock(x + 1, y - 1, z, getBlockById(0), 0, 2);
-					world.setBlock(x, y - 1, z - 1, getBlockById(0), 0, 2);
-					world.setBlock(x, y - 1, z + 1, getBlockById(0), 0, 2);
-				}
+			world.notifyBlockChange(x, y, z, air);
+			world.notifyBlockChange(x, y - 1, z, air);
+			world.notifyBlockChange(x, y - 2, z, air);
+			world.notifyBlockChange(x - 1, y - 1, z, air);
+			world.notifyBlockChange(x + 1, y - 1, z, air);
+			world.notifyBlockChange(x, y - 1, z - 1, air);
+			world.notifyBlockChange(x, y - 1, z + 1, air);
 
-				EntityTimeController entityirongolem = new EntityTimeController(world);
-				entityirongolem.setLocationAndAngles((double)x + 0.5D, (double)y - 1.95D, (double)z + 0.5D, 0.0F, 0.0F);
-				
-				EntityPlayer player = entityirongolem.worldObj.getClosestVulnerablePlayerToEntity(entityirongolem, 16.0D);
-				if (player != null)
-				{
-					entityirongolem.setTarget(player);
-				}
-				
-				world.spawnEntityInWorld(entityirongolem);
-
-				for (int l = 0; l < 120; ++l)
-				{
-					world.spawnParticle("hugeexplosion", (double)x + world.rand.nextDouble(), (double)(y - 2) + world.rand.nextDouble() * 3.9D, (double)z + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
-				}
-
-				world.notifyBlockChange(x, y, z, getBlockById(0));
-				world.notifyBlockChange(x, y - 1, z, getBlockById(0));
-				world.notifyBlockChange(x, y - 2, z, getBlockById(0));
-
-				if (flag)
-				{
-					world.notifyBlockChange(x - 1, y - 1, z, getBlockById(0));
-					world.notifyBlockChange(x + 1, y - 1, z, getBlockById(0));
-					world.notifyBlockChange(x, y - 1, z - 1, getBlockById(0));
-					world.notifyBlockChange(x, y - 1, z + 1, getBlockById(0));
-				}
-			}
-		}
-		else if (world.getBlock(x, y - 1, z) == TragicBlocks.DarkenedQuartz && world.getBlock(x, y - 2, z) == TragicBlocks.DarkenedQuartz)
-		{
-			boolean flag = world.getBlock(x - 1, y - 1, z) == TragicBlocks.DarkenedQuartz && world.getBlock(x + 1, y - 1, z) == TragicBlocks.DarkenedQuartz;
-			boolean flag1 = world.getBlock(x, y - 1, z - 1) == TragicBlocks.DarkenedQuartz && world.getBlock(x, y - 1, z + 1) == TragicBlocks.DarkenedQuartz;
-
-			if (flag && flag1)
-			{
-				world.setBlock(x, y, z, getBlockById(0), 0, 2);
-				world.setBlock(x, y - 1, z, getBlockById(0), 0, 2);
-				world.setBlock(x, y - 2, z, getBlockById(0), 0, 2);
-
-				if (flag)
-				{
-					world.setBlock(x - 1, y - 1, z, getBlockById(0), 0, 2);
-					world.setBlock(x + 1, y - 1, z, getBlockById(0), 0, 2);
-					world.setBlock(x, y - 1, z - 1, getBlockById(0), 0, 2);
-					world.setBlock(x, y - 1, z + 1, getBlockById(0), 0, 2);
-				}
-
-				EntityEnyvil entityirongolem = new EntityEnyvil(world);
-				entityirongolem.setLocationAndAngles((double)x + 0.5D, (double)y - 1.95D, (double)z + 0.5D, 0.0F, 0.0F);
-				
-				EntityPlayer player = entityirongolem.worldObj.getClosestVulnerablePlayerToEntity(entityirongolem, 16.0D);
-				if (player != null)
-				{
-					entityirongolem.setTarget(player);
-				}
-				
-				world.spawnEntityInWorld(entityirongolem);
-
-				for (int l = 0; l < 120; ++l)
-				{
-					world.spawnParticle("hugeexplosion", (double)x + world.rand.nextDouble(), (double)(y - 2) + world.rand.nextDouble() * 3.9D, (double)z + world.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
-				}
-
-				world.notifyBlockChange(x, y, z, getBlockById(0));
-				world.notifyBlockChange(x, y - 1, z, getBlockById(0));
-				world.notifyBlockChange(x, y - 2, z, getBlockById(0));
-
-				if (flag)
-				{
-					world.notifyBlockChange(x - 1, y - 1, z, getBlockById(0));
-					world.notifyBlockChange(x + 1, y - 1, z, getBlockById(0));
-					world.notifyBlockChange(x, y - 1, z - 1, getBlockById(0));
-					world.notifyBlockChange(x, y - 1, z + 1, getBlockById(0));
-				}
-			}
 		}
 	}
 }
