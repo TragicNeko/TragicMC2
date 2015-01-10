@@ -3200,7 +3200,7 @@ Removed unneeded pressure plate block classes in favor of anonymous classes sinc
 Combined TragicPotions into TragicPotion, it's been bothering me that they were treated as separate classes so now it is more efficient having them combined
 Changed Divination to Divinity
 Fixed arbitrary variables in Gooey Fruit's item class
-Finished up adding the Lore
+Adding more of the Lores as I do other random stuff
 
 TODO still
 Add the render/model for the Guardian Shields
