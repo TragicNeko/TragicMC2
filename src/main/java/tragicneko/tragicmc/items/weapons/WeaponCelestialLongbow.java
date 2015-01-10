@@ -23,12 +23,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.LoreHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -41,38 +41,21 @@ public class WeaponCelestialLongbow extends ItemBow {
 
 	public final Doomsday doomsday = Doomsday.Snipe;
 
-	//private final Lore[] lores = new Lore[] {new Lore("Shooting stars!", EnumRarity.epic), new Lore("Like Meteor showers~"), new Lore("Beautiful Starlights", EnumRarity.rare),
-	//		new Lore("So Beautiful.", EnumRarity.rare), new Lore("Meteor Smash!", EnumRarity.epic), new Lore("Make a wish!", EnumRarity.uncommon),
-	//		new Lore("Time for Armageddon", EnumRarity.epic), new Lore("Guardian of the Galaxy", EnumRarity.rare), new Lore("Time for the Star Festival!", EnumRarity.epic),
-	//		new Lore("Ooh a free Starman!", EnumRarity.uncommon), new Lore("The Final Starman!?", EnumRarity.epic), new Lore("Good morning Starshine, the Earth says, Hello!", EnumRarity.rare)};
-
-	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power};
-	private int[] uncommonLevels = new int[] {3, 1};
-
-	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting};
-	private int[] rareLevels = new int[] {5, 3, 3};
-
-	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.power, Enchantment.looting, TragicEnchantments.Multiply, Enchantment.infinity, TragicEnchantments.Luminescence};
-	private int[] epicLevels = new int[] {10, 5, 5, 1, 1, 1};
-
 	public WeaponCelestialLongbow()
 	{
 		this.setMaxDamage(1348);
 		this.setFull3D();
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) 
 	{
-		if (usingItem == null) 
-		{
-			return itemIcon;
-		}
+		if (usingItem == null) return itemIcon;
 
 		int ticksInUse = stack.getMaxItemUseDuration() - useRemaining;
 
-		if (ticksInUse > 48) 
+		if (ticksInUse > 48)
 		{
 			return iconArray[2];
 		}
@@ -107,34 +90,20 @@ public class WeaponCelestialLongbow extends ItemBow {
 	{
 		return this.iconArray[par1];
 	}
-	
-	/*
-
-	@Override
-	public EnumRarity getRarity(ItemStack stack)
-	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? TragicWeapon.getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
-	}
-
-	protected Lore getRandomLore()
-	{
-		return lores[itemRand.nextInt(lores.length)];
-	} */
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		/*
-		if (TragicNewConfig.allowRandomWeaponLore)
+		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
 		{
-			String lore = null;
-			EnumChatFormatting loreFormat = EnumChatFormatting.WHITE;
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLore")) lore = stack.stackTagCompound.getString("tragicLore");
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = TragicWeapon.getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
+			String lore = LoreHelper.getDescFromStack(stack);
+			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
+
 			if (lore != null)
 			{
-				par2List.add(loreFormat + lore);
+				String[] subs = LoreHelper.splitDesc(lore);
+				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
 			}
-		} */
+		}
 
 		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
 		{
@@ -152,6 +121,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
+		
 		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[5]))
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -188,7 +158,6 @@ public class WeaponCelestialLongbow extends ItemBow {
 				}
 
 				Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
-
 				MovingObjectPosition mop = par3EntityPlayer.worldObj.func_147447_a(vec3, vec31, true, false, true);
 
 				if (mop == null)
@@ -201,30 +170,9 @@ public class WeaponCelestialLongbow extends ItemBow {
 				{
 					if (par3EntityPlayer.isRiding()) par3EntityPlayer.mountEntity((Entity)null);
 
-					double d4 = mop.hitVec.xCoord;
-					double d5 = mop.hitVec.yCoord;
-					double d6 = mop.hitVec.zCoord;
-
-					switch(mop.sideHit)
-					{
-					case 0:
-						d5 -= 2.2D;
-						break;
-					case 1:
-						break;
-					case 2:
-						d6 -= 1.0D;
-						break;
-					case 3:
-						d6 += 1.0D;
-						break;
-					case 4:
-						d4 -= 1.0D;
-						break;
-					case 5:
-						d4 += 1.0D;
-						break;
-					}
+					double d4 = WorldHelper.getXPositionFromSide(mop.sideHit, mop.hitVec.xCoord);
+					double d5 = WorldHelper.getYPositionFromSide(mop.sideHit, mop.hitVec.yCoord);
+					double d6 = WorldHelper.getZPositionFromSide(mop.sideHit, mop.hitVec.zCoord);
 
 					par3EntityPlayer.setPositionAndUpdate(d4, d5, d6);
 					par3EntityPlayer.fallDistance = 0.0F;
@@ -244,113 +192,48 @@ public class WeaponCelestialLongbow extends ItemBow {
 		ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
 		MinecraftForge.EVENT_BUS.post(event);
 		if (event.isCanceled()) return;
-
 		j = event.charge;
 
-		boolean flag = par3EntityPlayer.capabilities.isCreativeMode;
-		if (!flag && !par3EntityPlayer.inventory.hasItem(Items.arrow)) return;
+		boolean flag = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-		float f = (float)j / 40.0F;
-		f = (f * f + f * 2.0F) / 3.0F;
-		f *= 0.75F;	
-
-		if ((double)f < 0.2D) return;
-		if (f > 1.0F) f = 1.0F;
-
-		EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f);
-
-		entityarrow.setDamage(entityarrow.getDamage() + 3.0);
-		entityarrow.motionX *= 1.1;
-		entityarrow.motionZ *= 1.1;
-
-		if (f >= 1.0F)
+		if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow))
 		{
-			entityarrow.setIsCritical(true);
-		}
+			float f = (float)j / 40.0F;
+			f = (f * f + f * 2.0F) / 3.0F;
+			f *= 0.75F;	
 
-		int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
+			if ((double)f < 0.2D) return;
+			if (f > 1.0F) f = 1.0F;
 
-		if (k > 0)
-		{
-			entityarrow.setDamage(entityarrow.getDamage() + (double)k * 0.5D + 0.5D);
-		}
+			EntityArrow arrow = new EntityArrow(par2World, par3EntityPlayer, f);
+			arrow.setDamage(arrow.getDamage() + 3.0);
+			arrow.motionX *= 1.1;
+			arrow.motionZ *= 1.1;
+			if (f >= 1.0F) arrow.setIsCritical(true);
 
-		int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);
+			int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
+			if (k > 0) arrow.setDamage(arrow.getDamage() + (double)k * 0.5D + 0.5D);
 
-		if (l > 0)
-		{
-			entityarrow.setKnockbackStrength(l);
-		}
+			k = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);
+			if (k > 0) arrow.setKnockbackStrength(k);
 
-		if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack) > 0)
-		{
-			entityarrow.setFire(100);
-		}
+			if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack) > 0) arrow.setFire(100);
 
-		par1ItemStack.damageItem(1, par3EntityPlayer);
-		par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+			par1ItemStack.damageItem(1, par3EntityPlayer);
+			par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-		if (flag)
-		{
-			entityarrow.canBePickedUp = 2;
-		}
-		else
-		{
-			par3EntityPlayer.inventory.consumeInventoryItem(Items.arrow);
-		}
+			if (flag) arrow.canBePickedUp = 2;
+			else par3EntityPlayer.inventory.consumeInventoryItem(Items.arrow);
 
-		if (!par2World.isRemote)
-		{
-			par2World.spawnEntityInWorld(entityarrow);
+			if (!par2World.isRemote) par2World.spawnEntityInWorld(arrow);
 		}
 	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
-		/*
-		if (!TragicNewConfig.allowRandomWeaponLore || world.isRemote || !(entity instanceof EntityPlayer)) return; 
-		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		Lore lore = getRandomLore();
-		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)TragicWeapon.getRarityFromEnum(lore)));
-		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
-
-		if (TragicWeapon.getStackCooldown(stack) > 0) TragicWeapon.setStackCooldown(stack, TragicWeapon.getStackCooldown(stack) - 1);
-
-		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
-		{
-			int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
-
-			Enchantment[] enchants;
-			int[] levels;
-
-			if (rarity == 0)
-			{
-				enchants = new Enchantment[] {Enchantment.unbreaking};
-				levels = new int[] {1};
-			}
-			else if (rarity == 1)
-			{
-				enchants = this.uncommonEnchants;
-				levels = this.uncommonLevels;
-			}
-			else if (rarity == 2)
-			{
-				enchants = this.rareEnchants;
-				levels = this.rareLevels;
-			}
-			else
-			{
-				enchants = this.epicEnchants;
-				levels = this.epicLevels;
-			}
-
-			for (int i = 0; i < enchants.length; i++)
-			{
-				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
-			}
-		} */
+		if (world.isRemote || !(entity instanceof EntityPlayer)) return; 
+		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 
 }
