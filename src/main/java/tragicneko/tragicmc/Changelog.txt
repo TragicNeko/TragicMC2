@@ -3200,12 +3200,14 @@ Removed unneeded pressure plate block classes in favor of anonymous classes sinc
 Combined TragicPotions into TragicPotion, it's been bothering me that they were treated as separate classes so now it is more efficient having them combined
 Changed Divination to Divinity
 Fixed arbitrary variables in Gooey Fruit's item class
+Actually updated part of the mod to 1.8, but the whole thing won't be updated for a while, for now I'm just messing with it to get the hang of the new block and item rendering
+stuff, as well as the entity changes and blockstate/pos things
 Adding more of the Lores as I do other random stuff
 
 TODO still
 Add the render/model for the Guardian Shields
 Work on the Overlord
-Add the Dimensional Tear entity in order to grant the player the new effect, Divination, in order to damage the Core
+Add the Dimensional Tear entity in order to grant the player the new effect, Divinity, in order to damage the Core
 Add armor models
 Add the Overlord armor set
 

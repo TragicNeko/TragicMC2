@@ -248,4 +248,26 @@ public class ClientProxy extends CommonProxy {
 		return Minecraft.getMinecraft().thePlayer;
 	}
 
+	/*//These are just being kept here until I update to 1.8, assuming there is no changes to forge until then, if you're wondering, these are for the new block/item rendering
+	
+	public static void registerItemToMesher(Item item, int meta, String location)
+	{
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation("tragicmc:" + location, "inventory"));
+	}
+	
+	public static void registerBlockToMesher(Block block, int meta, String location)
+	{
+		registerItemToMesher(Item.getItemFromBlock(block), meta, location);
+	}
+	
+	public static void registerBlockToBakery(Block block, String... names)
+	{
+		registerItemToBakery(Item.getItemFromBlock(block), names);
+	}
+	
+	public static void registerItemToBakery(Item item, String... names)
+	{
+		ModelBakery.registerVariantNames(item, names);
+	}
+	 */
 }
