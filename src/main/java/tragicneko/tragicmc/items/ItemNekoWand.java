@@ -2,6 +2,7 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
+import tragicneko.tragicmc.TragicMC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +17,12 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public class ItemNekoWand extends Item {
+	
+	public ItemNekoWand()
+	{
+		super();
+		this.setCreativeTab(TragicMC.Creative);
+	}
 
 	private int cooldown = 0;
 

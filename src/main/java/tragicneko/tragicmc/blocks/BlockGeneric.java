@@ -1,11 +1,8 @@
 package tragicneko.tragicmc.blocks;
 
-import tragicneko.tragicmc.TragicTabs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import tragicneko.tragicmc.TragicMC;
 
 public class BlockGeneric extends Block {
 
@@ -13,7 +10,7 @@ public class BlockGeneric extends Block {
 	
 	public BlockGeneric(Material p_i45394_1_, String s, int level) {
 		super(p_i45394_1_);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setHarvestLevel(s, level);
 	}
 	

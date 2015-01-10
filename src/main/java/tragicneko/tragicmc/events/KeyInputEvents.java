@@ -19,7 +19,7 @@ import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
@@ -58,9 +58,9 @@ public class KeyInputEvents extends Gui {
 
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 
-		if (player != null && TragicNewConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotions.Flight.id) && player.ticksExisted % 2 == 0)
+		if (player != null && TragicNewConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotion.Flight.id) && player.ticksExisted % 2 == 0)
 		{
-			PotionEffect effect = player.getActivePotionEffect(TragicPotions.Flight);
+			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
 
 			if (effect.getDuration() >= 40)
 			{
@@ -81,9 +81,9 @@ public class KeyInputEvents extends Gui {
 				}
 			}
 		}
-		else if (player != null && TragicNewConfig.allowHacked && player.isPotionActive(TragicPotions.Hacked.id) && player.ticksExisted % 2 == 0)
+		else if (player != null && TragicNewConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
 		{
-			PotionEffect effect = player.getActivePotionEffect(TragicPotions.Hacked);
+			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Hacked);
 
 			if (effect.getDuration() >= 40)
 			{
@@ -103,7 +103,7 @@ public class KeyInputEvents extends Gui {
 			}
 		}
 		
-		boolean flag = TragicNewConfig.allowHacked ? player != null && player.isPotionActive(TragicPotions.Hacked) : false;
+		boolean flag = TragicNewConfig.allowHacked ? player != null && player.isPotionActive(TragicPotion.Hacked) : false;
 		if (!flag && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 	}
 	
@@ -114,7 +114,7 @@ public class KeyInputEvents extends Gui {
 		
 		Minecraft mc = Minecraft.getMinecraft();
 		
-		if (!mc.thePlayer.isPotionActive(TragicPotions.Hacked)) return;
+		if (!mc.thePlayer.isPotionActive(TragicPotion.Hacked)) return;
 		
 		mc.renderEngine.bindTexture(hackedTexture);
 		

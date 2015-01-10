@@ -2,24 +2,17 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.List;
 
-import com.google.common.base.Strings;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -49,8 +42,14 @@ public class TragicWeapon extends ItemSword {
 	public TragicWeapon(ToolMaterial material, Doomsday dday) {
 		super(material);
 		this.doomsday = dday;
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.material = material;
+	}
+	
+	public TragicWeapon(ToolMaterial material, Doomsday dday, Doomsday dday2)
+	{
+		this(material, dday);
+		this.doomsday2 = dday2;
 	}
 
 	public Doomsday getDoomsday()

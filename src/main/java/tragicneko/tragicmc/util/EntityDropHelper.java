@@ -84,7 +84,7 @@ public class EntityDropHelper {
 		addToDropList(EntityInkling.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Ash), new EntityDrop(5, TragicItems.DarkParticles)},
 			{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(5, Items.coal)}});
 		
-		addToDropList(EntityRagr.class, new EntityDrop[][] {{new EntityDrop(25, Items.leather), new EntityDrop(10, TragicItems.CrushedIce), new EntityDrop(15, Items.snowball),
+		addToDropList(EntityRagr.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.IcyFur), new EntityDrop(10, TragicItems.CrushedIce), new EntityDrop(15, Items.snowball),
 				new EntityDrop(5, Items.fish)},
 			{new EntityDrop(25, TragicItems.ToughLeather), new EntityDrop(15, TragicItems.IceOrb), new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.GoldenSushi)}});
 		

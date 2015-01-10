@@ -5,10 +5,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBloodlust extends Doomsday {
@@ -47,7 +45,7 @@ public class DoomsdayBloodlust extends Doomsday {
 		{
 			a = 1;
 			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 160 * a, 0));
-			if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 160 * a, a));
+			if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 160 * a, a));
 		}
 	}
 
@@ -61,7 +59,7 @@ public class DoomsdayBloodlust extends Doomsday {
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 0));
 		
 		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 640, 0));
-		if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 640, 1));
+		if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 640, 1));
 	}
 
 

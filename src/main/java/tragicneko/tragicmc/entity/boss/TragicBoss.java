@@ -10,19 +10,15 @@ import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
-import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -119,7 +115,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	public void onLivingUpdate()
 	{
-		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotions.Corruption)) this.removePotionEffect(TragicPotions.Corruption.id);
+		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();
@@ -157,7 +153,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotions.Stun)) return false;
+		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
 		return super.attackEntityAsMob(par1Entity);
 	}
 

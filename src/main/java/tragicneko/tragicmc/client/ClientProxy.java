@@ -70,7 +70,7 @@ import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
-import tragicneko.tragicmc.entity.boss.EntityOverlord;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
@@ -237,7 +237,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 
 		//Big Boss renders TODO change these to their proper models, these are placeholders
-		RenderingRegistry.registerEntityRenderingHandler(EntityOverlord.class, new RenderMob(new ModelApis(), 0.885F, "ApisCombat2_lowRes", 2.556F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderMob(new ModelApis(), 0.885F, "ApisCombat2_lowRes", 2.556F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelDeathReaper(), 0.885F, "DeathReaper_lowRes", 2.556F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelKitsune2(), 0.885F, "Kitsune2_lowRes", 2.556F));
 	}

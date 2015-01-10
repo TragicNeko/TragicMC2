@@ -1,9 +1,7 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -12,7 +10,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -52,7 +50,7 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(i);
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));
-				if (TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 2400, (int) crisis));
+				if (TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 2400, (int) crisis));
 				entity.motionX = entity.motionY = entity.motionZ = 0.0;
 				entity.setPositionAndUpdate(entity.posX, entity.posY + 7.5, entity.posZ);
 
@@ -98,7 +96,7 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(i);
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));
-				if (TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 2400, (int) crisis));
+				if (TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 2400, (int) crisis));
 				entity.motionX = entity.motionY = entity.motionZ = 0.0;
 
 				if (rand.nextInt(8) == 0)

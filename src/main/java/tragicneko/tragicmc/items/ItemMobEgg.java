@@ -20,7 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 import cpw.mods.fml.relauncher.Side;
@@ -46,7 +46,7 @@ public class ItemMobEgg extends Item
 	public ItemMobEgg()
 	{
 		this.setHasSubtypes(true);
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setUnlocalizedName("tragicmc.mobEgg");
 		this.setTextureName("tragicmc:SpawnEgg_lowRes");
 	}

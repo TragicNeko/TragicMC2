@@ -1,9 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -11,7 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayHarmonizer extends Doomsday {
@@ -56,7 +52,7 @@ public class DoomsdayHarmonizer extends Doomsday {
 
 				if (TragicNewConfig.allowHarmony)
 				{
-					entity.addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, dur));
+					entity.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, dur));
 				}
 				else
 				{
@@ -77,7 +73,7 @@ public class DoomsdayHarmonizer extends Doomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		if (TragicNewConfig.allowHarmony)
 		{
-			player.addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, 240)); 
+			player.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 240)); 
 		}
 		else
 		{

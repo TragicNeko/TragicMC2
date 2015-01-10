@@ -3,6 +3,7 @@ package tragicneko.tragicmc.items.weapons;
 import java.util.List;
 
 import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -28,6 +29,7 @@ public class WeaponBowOfJustice extends ItemBow {
 	{
 		super();
 		this.setMaxDamage(1);
+		this.setCreativeTab(TragicMC.Creative);
 	}
 	
 	@SideOnly(Side.CLIENT)

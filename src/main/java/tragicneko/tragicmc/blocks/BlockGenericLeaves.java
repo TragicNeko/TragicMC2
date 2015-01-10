@@ -2,21 +2,18 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockGenericLeaves extends BlockLeaves {
 
@@ -30,7 +27,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 		super();
 		this.field_150121_P = true;
 		this.fancyGraphics = false;
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 
 	@Override

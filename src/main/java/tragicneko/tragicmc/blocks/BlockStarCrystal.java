@@ -3,22 +3,18 @@ package tragicneko.tragicmc.blocks;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStarCrystal extends Block {
 
@@ -28,7 +24,7 @@ public class BlockStarCrystal extends Block {
 
 	public BlockStarCrystal() {
 		super(Material.glass);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setResistance(10.0F);
 		this.setHardness(2.0F);
 		this.setStepSound(soundTypeGlass);

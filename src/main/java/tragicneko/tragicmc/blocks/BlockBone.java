@@ -3,9 +3,6 @@ package tragicneko.tragicmc.blocks;
 import java.util.List;
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicTabs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +11,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBone extends Block {
 
@@ -22,7 +22,7 @@ public class BlockBone extends Block {
 
 	public BlockBone() {
 		super(Material.gourd);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setHardness(0.5F);
 		this.setResistance(1.0F);
 		this.setStepSound(soundTypeStone);

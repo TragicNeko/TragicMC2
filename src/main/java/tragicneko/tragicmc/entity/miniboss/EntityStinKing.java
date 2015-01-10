@@ -2,37 +2,14 @@
 package tragicneko.tragicmc.entity.miniboss;
 
 import static tragicneko.tragicmc.TragicNewConfig.stinKingStats;
-
-import java.util.List;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityGolem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.mob.EntityStin;
-import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
-import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 
 public class EntityStinKing extends EntityGreaterStin {
 
@@ -101,7 +78,7 @@ public class EntityStinKing extends EntityGreaterStin {
 
 			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicNewConfig.allowFear)
 			{
-				this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
+				this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
 			}
 
 			if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0F &&

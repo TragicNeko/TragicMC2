@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.util.LoreHelper;
@@ -41,7 +41,7 @@ public class ItemScythe extends ItemTool {
 	public ItemScythe(ToolMaterial par2Material) {
 		super(3.0F, par2Material, blocksEffectiveAgainst);
 		this.setHarvestLevel("scythe", 3);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	
 	public Doomsday getDoomsday()

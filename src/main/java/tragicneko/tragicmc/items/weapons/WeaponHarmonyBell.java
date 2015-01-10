@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -37,7 +37,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 		{
 			if (doom != null && doom.getCurrentDoom() >= 3)
 			{
-				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, 60, 0));
+				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 60, 0));
 				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[17]);
 				setStackCooldown(stack, 5);
 			}

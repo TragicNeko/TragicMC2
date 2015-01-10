@@ -6,9 +6,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.boss.EntityYeti;
-import tragicneko.tragicmc.entity.mob.EntityAbomination;
+import tragicneko.tragicmc.TragicPotion;
 
 public class EntityLargeRock extends EntityProjectile {
 
@@ -36,7 +34,7 @@ public class EntityLargeRock extends EntityProjectile {
 
 			if (this.rand.nextInt(4) == 0 && mop.entityHit instanceof EntityLivingBase && TragicNewConfig.allowStun)
 			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60, 0));
+				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 0));
 			}
 		}
 

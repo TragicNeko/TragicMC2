@@ -2,18 +2,15 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockTorch;
-import net.minecraft.block.BlockWeb;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLight extends Block {
 
@@ -24,6 +21,7 @@ public class BlockLight extends Block {
 		this.setResistance(1.0F);
 		this.setHardness(0.5F);
 		this.setStepSound(soundTypeGlass);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	
 	@SideOnly(Side.CLIENT)

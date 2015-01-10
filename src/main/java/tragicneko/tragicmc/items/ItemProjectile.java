@@ -14,7 +14,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.entity.projectile.EntityBanana;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -53,7 +52,7 @@ public class ItemProjectile extends Item {
 	public ItemProjectile()
 	{
 		super();
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("tragicmc.projectile");

@@ -2,11 +2,6 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.properties.PropertyDoom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -14,6 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.properties.PropertyDoom;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBloodSacrifice extends Item {
 
@@ -52,8 +52,8 @@ public class ItemBloodSacrifice extends Item {
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Health sacrificed!"));
-				if (TragicNewConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Inhibit.id, 600, 0));
-				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Convergence.id, 300));
+				if (TragicNewConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 600, 0));
+				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
 			}
 		}
 

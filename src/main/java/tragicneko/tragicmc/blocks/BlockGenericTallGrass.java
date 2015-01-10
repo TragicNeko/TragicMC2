@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +24,7 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 	{
 		super();
 		this.texturePrefix = s;
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setLightLevel(0.5F);
 		this.setStepSound(soundTypeGrass);
 	}

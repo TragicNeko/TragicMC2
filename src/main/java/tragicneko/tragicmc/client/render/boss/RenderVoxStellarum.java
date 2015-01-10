@@ -9,8 +9,6 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
 import tragicneko.tragicmc.client.model.ModelVoxStellarum;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 

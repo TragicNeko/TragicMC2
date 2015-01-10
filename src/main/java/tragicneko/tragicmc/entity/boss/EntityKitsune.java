@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 
 public class EntityKitsune extends TragicBoss {
 
@@ -237,7 +237,7 @@ public class EntityKitsune extends TragicBoss {
 
 						if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
 						{
-							entity.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
+							entity.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 						}
 
 						if (rand.nextInt(72) == 0)
@@ -355,7 +355,7 @@ public class EntityKitsune extends TragicBoss {
 				case 2:
 					if (TragicNewConfig.allowDisorientation)
 					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(200) + 320));
+						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 					}
 					break;
 				}

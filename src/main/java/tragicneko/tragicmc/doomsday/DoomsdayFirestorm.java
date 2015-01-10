@@ -13,7 +13,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -36,7 +36,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		
 		if (TragicNewConfig.allowFlight)
 		{
-			player.addPotionEffect(new PotionEffect(TragicPotions.Flight.id, 6000, 0));
+			player.addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 6000, 0));
 		}
 		else
 		{
@@ -55,7 +55,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 					entity = (EntityLivingBase) list.get(i);
 					if (TragicNewConfig.allowStun && crucMoment)
 					{
-						entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 120, 1));
+						entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
 					}
 					
 					entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 300, 15));

@@ -3,8 +3,6 @@ package tragicneko.tragicmc.blocks;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,7 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDarkStone extends Block {
 
@@ -26,7 +26,7 @@ public class BlockDarkStone extends Block {
 	public BlockDarkStone() {
 		super(Material.rock);
 		this.setHarvestLevel("pickaxe", 0);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setResistance(3.0F);
 		this.setHardness(1.5F);
 		this.setBlockName("tragicmc.darkStone");

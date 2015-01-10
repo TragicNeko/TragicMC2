@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +20,7 @@ public class BlockGiantCrop extends Block {
 
 	public BlockGiantCrop() {
 		super(Material.plants);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setHardness(0.5F);
 		this.setResistance(1.0F);
 		this.setStepSound(soundTypeGrass);

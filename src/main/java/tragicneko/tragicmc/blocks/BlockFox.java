@@ -3,21 +3,18 @@ package tragicneko.tragicmc.blocks;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicTabs;
-import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFox extends Block {
 	
@@ -27,7 +24,7 @@ public class BlockFox extends Block {
 
 	public BlockFox() {
 		super(Material.rock);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setResistance(12.0F);
 		this.setHardness(6.0F);
 		this.setStepSound(soundTypeStone);

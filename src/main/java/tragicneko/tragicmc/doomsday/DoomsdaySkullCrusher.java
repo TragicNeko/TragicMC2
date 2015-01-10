@@ -1,9 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -11,7 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdaySkullCrusher extends Doomsday {
@@ -84,7 +80,7 @@ public class DoomsdaySkullCrusher extends Doomsday {
 				entity.motionY += 0.4D + (d0 * 0.25D);
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 600, 4));
-				if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 120));
+				if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
 			}
 		}
 	}

@@ -1,20 +1,16 @@
 package tragicneko.tragicmc.blocks;
 
 import java.util.List;
-import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockObsidian;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockObsidianVariant extends BlockObsidian {
 	
@@ -24,7 +20,7 @@ private String[] variantNames = new String[]{"Crying", "Bleeding", "Dying"};
 
 	public BlockObsidianVariant() {
 		super();
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setResistance(2500.0F);
 		this.setHardness(50.0F);
 		this.setBlockName("tragicmc.tragicObsidian");

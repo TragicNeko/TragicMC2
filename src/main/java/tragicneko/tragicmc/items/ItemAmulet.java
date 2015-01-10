@@ -21,7 +21,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.util.AmuletHelper;
 
 import com.google.common.collect.Sets;
@@ -53,7 +52,7 @@ public class ItemAmulet extends Item {
 	{
 		this.amuletID = id;
 		this.setUnlocalizedName("tragicmc.amulet" + amuletNames[id]);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setMaxStackSize(1);
 	}
 

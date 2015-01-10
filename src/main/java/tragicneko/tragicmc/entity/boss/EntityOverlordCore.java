@@ -27,11 +27,11 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;
 
-public class EntityOverlord extends TragicBoss {
+public class EntityOverlordCore extends TragicBoss {
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
 
-	public EntityOverlord(World par1World) {
+	public EntityOverlordCore(World par1World) {
 		super(par1World);
 		this.setSize(6.0F, 6.0F);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -40,7 +40,7 @@ public class EntityOverlord extends TragicBoss {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, new IEntitySelector() {
 			public boolean isEntityApplicable(Entity par1Entity)
 			{
-				return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityOverlord) && !(par1Entity instanceof EntityNanoSwarm) && !(par1Entity instanceof EntityAegar);
+				return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityOverlordCore) && !(par1Entity instanceof EntityNanoSwarm) && !(par1Entity instanceof EntityAegar);
 			}
 		}));
 	}

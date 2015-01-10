@@ -2,11 +2,6 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicTabs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDeadBush;
 import net.minecraft.block.BlockGrass;
@@ -23,6 +18,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockGenericGrass extends BlockGrass {
 
@@ -36,7 +35,7 @@ public class BlockGenericGrass extends BlockGrass {
 		this.texturePrefix = s;
 		this.setHardness(0.6F);
 		this.setHarvestLevel("shovel", 0);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setStepSound(soundTypeGrass);
 	}
 

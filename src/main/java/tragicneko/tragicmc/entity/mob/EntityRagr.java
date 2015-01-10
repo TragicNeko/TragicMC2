@@ -31,7 +31,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -354,7 +354,7 @@ public class EntityRagr extends TragicMob {
 				case 2:
 					if (TragicNewConfig.allowSubmission)
 					{
-						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(200)));
+						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
 					}
 					break;
 				}

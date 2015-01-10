@@ -11,11 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,7 +26,7 @@ public class BlockSummon extends BlockContainer {
 
 	public BlockSummon() {
 		super(Material.iron);
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setResistance(100.0F);
 		this.setHardness(10.0F);
 		this.setStepSound(soundTypeStone);

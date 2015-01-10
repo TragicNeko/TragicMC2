@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.blocks;
 
 import static net.minecraft.init.Blocks.air;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -10,8 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
@@ -21,7 +20,7 @@ public class BlockTimeDisruptor extends BlockContainer {
 
 	public BlockTimeDisruptor() {
 		super(Material.iron);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setBlockTextureName("tragicmc:TimeDisruptor_lowRes");
 	}
 

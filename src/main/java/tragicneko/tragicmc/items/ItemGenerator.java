@@ -32,7 +32,7 @@ import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
@@ -53,7 +53,7 @@ public class ItemGenerator extends Item {
 	public ItemGenerator()
 	{
 		super();
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("tragicmc.worldGen");

@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import com.google.common.collect.Sets;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -39,10 +37,12 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.mob.EntityAbomination;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.util.DamageHelper;
+
+import com.google.common.collect.Sets;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -401,7 +401,7 @@ public class EntityTimeController extends TragicBoss {
 
 			if (entity.canEntityBeSeen(this) && entity != this)
 			{				
-				entity.addPotionEffect(new PotionEffect(TragicPotions.LeadFoot.id, 60));
+				entity.addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 60));
 			}
 		}
 		

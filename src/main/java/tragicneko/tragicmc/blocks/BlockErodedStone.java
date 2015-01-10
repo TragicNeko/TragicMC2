@@ -1,24 +1,17 @@
 package tragicneko.tragicmc.blocks;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderEnd;
-import net.minecraftforge.common.util.ForgeDirection;
+import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockErodedStone extends Block {
 	
@@ -30,7 +23,7 @@ public class BlockErodedStone extends Block {
 		this.setHarvestLevel("pickaxe", 0);
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setStepSound(soundTypeStone);
 		this.setBlockName("tragicmc.erodedStone");
 	}

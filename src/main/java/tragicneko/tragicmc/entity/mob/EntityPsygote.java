@@ -4,10 +4,6 @@ import static tragicneko.tragicmc.TragicNewConfig.psygoteStats;
 
 import java.util.UUID;
 
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -20,14 +16,15 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 
 public class EntityPsygote extends TragicMob {
 
@@ -186,7 +183,7 @@ public class EntityPsygote extends TragicMob {
 
 		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(3.0F);
 
-		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicNewConfig.allowInhibit) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotions.Inhibit.id, 120));
+		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicNewConfig.allowInhibit) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
 		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(32) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F) this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
 	}
 

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 
 public class ArmorDark extends TragicArmor {
@@ -55,7 +55,7 @@ public class ArmorDark extends TragicArmor {
 	{
 		super.onArmorTick(world, player, itemStack);
 		
-		if (TragicNewConfig.allowFear && player.isPotionActive(TragicPotions.Fear)) player.removePotionEffect(TragicPotions.Fear.id); 
+		if (TragicNewConfig.allowFear && player.isPotionActive(TragicPotion.Fear)) player.removePotionEffect(TragicPotion.Fear.id); 
 		
 		if (!world.isRemote && tick % 120 == 0)
 		{
@@ -75,7 +75,7 @@ public class ArmorDark extends TragicArmor {
 					if (armor == TragicItems.DarkLegs) flag3 = true;
 					if (armor == TragicItems.DarkBoots) flag4 = true;
 					
-					if (flag1 && flag2 && flag2 && flag4 && TragicNewConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotions.Immunity.id, 600));
+					if (flag1 && flag2 && flag2 && flag4 && TragicNewConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600));
 				}
 			}
 		}

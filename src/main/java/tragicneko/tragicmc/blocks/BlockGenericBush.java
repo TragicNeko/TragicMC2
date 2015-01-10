@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.blocks;
 
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.init.Blocks;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 
 public class BlockGenericBush extends BlockBush {
 
@@ -12,7 +12,7 @@ public class BlockGenericBush extends BlockBush {
 	{
 		super();
 		this.setStepSound(soundTypeGrass);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	
 	@Override

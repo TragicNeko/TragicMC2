@@ -11,8 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +19,7 @@ public class BlockLuminescence extends Block {
 
 	public BlockLuminescence() {
 		super(Material.circuits);
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setLightLevel(0.55F);
 		this.setLightOpacity(0);
 		this.setResistance(0.0F);

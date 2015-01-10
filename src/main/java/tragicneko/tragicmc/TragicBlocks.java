@@ -1,6 +1,7 @@
 package tragicneko.tragicmc;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -37,11 +38,9 @@ import tragicneko.tragicmc.blocks.BlockGlowvine;
 import tragicneko.tragicmc.blocks.BlockLight;
 import tragicneko.tragicmc.blocks.BlockLightCobble;
 import tragicneko.tragicmc.blocks.BlockLuminescence;
-import tragicneko.tragicmc.blocks.BlockNetherBrickPressurePlate;
 import tragicneko.tragicmc.blocks.BlockObsidianVariant;
 import tragicneko.tragicmc.blocks.BlockOverlordBarrier;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
-import tragicneko.tragicmc.blocks.BlockSandstonePressurePlate;
 import tragicneko.tragicmc.blocks.BlockStarCrystal;
 import tragicneko.tragicmc.blocks.BlockStorage;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
@@ -157,16 +156,16 @@ public class TragicBlocks {
 
 	public static void load()
 	{		
-		MercuryOre = (new BlockGenericOre(1, true).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:MercuryOre_lowRes").setBlockName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
+		MercuryOre = (new BlockGenericOre(1, true).setBlockTextureName("tragicmc:MercuryOre_lowRes").setBlockName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
 		GameRegistry.registerBlock(MercuryOre, ItemBlock.class, "mercuryOre");
 
-		TungstenOre = (new BlockGenericOre(2, true).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:TungstenOre_lowRes").setBlockName("tragicmc.tungstenOre").setHardness(4.0F).setResistance(5.0F));
+		TungstenOre = (new BlockGenericOre(2, true).setBlockTextureName("tragicmc:TungstenOre_lowRes").setBlockName("tragicmc.tungstenOre").setHardness(4.0F).setResistance(5.0F));
 		GameRegistry.registerBlock(TungstenOre, ItemBlock.class, "tungstenOre");
 
-		RubyOre = (new BlockGenericOre(3, false).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:RubyNetherOre_lowRes").setBlockName("tragicmc.rubyOre").setHardness(6.0F).setResistance(7.0F));
+		RubyOre = (new BlockGenericOre(3, false).setBlockTextureName("tragicmc:RubyNetherOre_lowRes").setBlockName("tragicmc.rubyOre").setHardness(6.0F).setResistance(7.0F));
 		GameRegistry.registerBlock(RubyOre, ItemBlock.class, "rubyOre");
 
-		SapphireOre = (new BlockGenericOre(3, false).setCreativeTab(TragicTabs.Survival).setBlockTextureName("tragicmc:SapphireNetherOre_lowRes").setBlockName("tragicmc.sapphireOre").setHardness(6.0F).setResistance(7.0F));
+		SapphireOre = (new BlockGenericOre(3, false).setBlockTextureName("tragicmc:SapphireNetherOre_lowRes").setBlockName("tragicmc.sapphireOre").setHardness(6.0F).setResistance(7.0F));
 		GameRegistry.registerBlock(SapphireOre, ItemBlock.class, "sapphireOre");
 
 		CompactOre = (new BlockStorage());
@@ -175,10 +174,10 @@ public class TragicBlocks {
 		Wax = (((BlockGeneric) (new BlockGeneric(Material.clay, "spade", 0).setBlockTextureName("tragicmc:Wax_lowRes").setBlockName("tragicmc.wax").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone).setLightOpacity(5))).setRenderPass(1));
 		GameRegistry.registerBlock(Wax, ItemBlock.class, "wax");
 
-		Light = (new BlockLight().setCreativeTab(TragicTabs.Survival).setBlockName("tragicmc.light").setStepSound(Block.soundTypeGlass));
+		Light = (new BlockLight().setBlockName("tragicmc.light").setStepSound(Block.soundTypeGlass));
 		GameRegistry.registerBlock(Light, ItemBlock.class, "light");
 
-		Candle = (new BlockCandle().setCreativeTab(TragicTabs.Survival).setBlockName("tragicmc.candle"));
+		Candle = (new BlockCandle().setBlockName("tragicmc.candle"));
 		GameRegistry.registerBlock(Candle, ItemBlock.class, "candle");
 
 		PotatoBlock = (new BlockGiantCrop().setBlockName("tragicmc.potatoBlock").setBlockTextureName("PotatoBlock"));
@@ -187,10 +186,12 @@ public class TragicBlocks {
 		CarrotBlock = (new BlockGiantCrop().setBlockName("tragicmc.carrotBlock").setBlockTextureName("CarrotBlock"));
 		GameRegistry.registerBlock(CarrotBlock, ItemBlock.class, "carrotBlock");
 
-		SandstonePressurePlate = (new BlockSandstonePressurePlate().setBlockName("tragicmc.sandstonePressurePlate"));
+		SandstonePressurePlate = (new BlockPressurePlate("sandstone_top", Material.rock, BlockPressurePlate.Sensitivity.players) {
+		}.setBlockName("tragicmc.sandstonePressurePlate").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerBlock(SandstonePressurePlate, ItemBlock.class, "sandstonePressurePlate");
 
-		NetherBrickPressurePlate = (new BlockNetherBrickPressurePlate().setBlockName("tragicmc.netherBrickPressurePlate"));
+		NetherBrickPressurePlate = (new BlockPressurePlate("nether_brick", Material.rock, BlockPressurePlate.Sensitivity.mobs) {
+		}.setBlockName("tragicmc.netherBrickPressurePlate").setCreativeTab(TragicMC.Survival));
 		GameRegistry.registerBlock(NetherBrickPressurePlate, ItemBlock.class, "netherBrickPressurePlate");
 
 		SummonBlock = (new BlockSummon());

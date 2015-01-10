@@ -7,7 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.EnumDifficulty;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -32,7 +32,7 @@ public class RespawnDoomEvents {
 
 				if (TragicNewConfig.allowCripple)
 				{
-					event.player.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, 1800, 5));
+					event.player.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1800, 5));
 					event.player.setHealth(event.player.getMaxHealth());
 				}
 			}
@@ -44,7 +44,7 @@ public class RespawnDoomEvents {
 
 				if (TragicNewConfig.allowCripple)
 				{
-					event.player.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, 1200, 3));
+					event.player.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1200, 3));
 					event.player.setHealth(event.player.getMaxHealth());
 				}
 			}
@@ -55,7 +55,7 @@ public class RespawnDoomEvents {
 
 				if (TragicNewConfig.allowCripple)
 				{
-					event.player.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, 600, 1));
+					event.player.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 600, 1));
 					event.player.setHealth(event.player.getMaxHealth());
 				}
 			}

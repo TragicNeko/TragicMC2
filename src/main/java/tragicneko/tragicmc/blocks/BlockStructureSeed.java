@@ -1,19 +1,16 @@
 package tragicneko.tragicmc.blocks;
 
-import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicTabs;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,7 +25,7 @@ public class BlockStructureSeed extends BlockContainer {
 		super(Material.gourd);
 		this.setResistance(100.0F);
 		this.setHardness(10.0F);
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setBlockName("tragicmc.structureSeed");
 	}
 	

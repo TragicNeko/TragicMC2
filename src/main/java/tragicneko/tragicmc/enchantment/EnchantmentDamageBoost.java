@@ -8,9 +8,7 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
-import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.TragicPotion;
 
 public class EnchantmentDamageBoost extends Enchantment {
 
@@ -66,11 +64,11 @@ public class EnchantmentDamageBoost extends Enchantment {
 			}
 			break;
 		case 1:
-			if (TragicNewConfig.allowCorruption && par2EntityLivingBase.isPotionActive(TragicPotions.Corruption))
+			if (TragicNewConfig.allowCorruption && par2EntityLivingBase.isPotionActive(TragicPotion.Corruption))
 			{
 				if (par2EntityLivingBase.worldObj.rand.nextInt((16 / par1) + 1) == 0)
 				{
-					par2EntityLivingBase.removePotionEffect(TragicPotions.Corruption.id);
+					par2EntityLivingBase.removePotionEffect(TragicPotion.Corruption.id);
 				}
 
 				return (float) (par1 * 1.25);

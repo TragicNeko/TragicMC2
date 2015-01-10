@@ -12,7 +12,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 
 public class EnchantmentArmorExtra extends Enchantment {
 
@@ -68,22 +68,13 @@ public class EnchantmentArmorExtra extends Enchantment {
 					switch(this.damageType)
 					{
 					case 0:
-						if (rand.nextInt(2) == 0) //12.5% chance with level 3, 6.25% with level 1
-						{
-							entity.setFire(8 * par1);
-						}
+						if (rand.nextInt(2) == 0) entity.setFire(8 * par1);
 						break;
 					case 1:
-						if (rand.nextInt(4) == 0 && TragicNewConfig.allowStun) //6.25% chance with level 3, 3.125% with level 1
-						{
-							entity.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 60 * par1));
-						}
+						if (rand.nextInt(4) == 0 && TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 * par1));
 						break;
 					case 2:
-						if (rand.nextInt(3) == 0) //8.33% chance with level 3, 4.16% with level 1
-						{
-							entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120 * par1, par1));
-						}
+						if (rand.nextInt(3) == 0) entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120 * par1, par1));
 						break;
 					case 3:
 						if (rand.nextInt(2) == 0) //12.5% chance with level 3, 6.25% with level 1
@@ -118,10 +109,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 						}
 						break;
 					case 4:
-						if (rand.nextInt(3) == 0) //8.33% chance with level 3, 4.16% with level 1
-						{
-							entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120 * par1, par1));
-						}
+						if (rand.nextInt(3) == 0) entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120 * par1, par1));
 						break;
 					}
 				}

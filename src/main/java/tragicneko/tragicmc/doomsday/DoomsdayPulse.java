@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -10,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -56,7 +55,7 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 				if (effect.utilityFlag)
 				{
 					((Entity) list.get(j)).motionY = 1.0;
-					if (TragicNewConfig.allowSubmission) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 120, rand.nextInt(2)));
+					if (TragicNewConfig.allowSubmission) ((EntityLivingBase) list.get(j)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120, rand.nextInt(2)));
 				}
 				else
 				{

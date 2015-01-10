@@ -10,7 +10,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -48,8 +48,8 @@ public class ItemNourishmentSacrifice extends Item {
 				}
 				
 				par3EntityPlayer.getFoodStats().addStats(-par3EntityPlayer.getFoodStats().getFoodLevel() + 1, 0.0F);
-				if (TragicNewConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, 600, 0));
-				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotions.Convergence.id, 300));
+				if (TragicNewConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 600, 0));
+				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
 				
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 				

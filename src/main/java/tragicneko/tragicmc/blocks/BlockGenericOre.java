@@ -20,6 +20,7 @@ public class BlockGenericOre extends Block {
 		this.dropsSelf = dropsSelf;
 		this.setHarvestLevel("pickaxe", level);
 		this.setStepSound(soundTypeStone);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	
 	public Item getItemDropped(int par1, Random rand, int par3)

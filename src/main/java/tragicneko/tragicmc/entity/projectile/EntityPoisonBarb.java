@@ -7,7 +7,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 
 public class EntityPoisonBarb extends EntityProjectile {
 
@@ -45,7 +45,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 
 					if (rand.nextInt(16) == 0 && TragicNewConfig.allowStun)
 					{
-						((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 20 + rand.nextInt(40), rand.nextInt(2)));
+						((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 20 + rand.nextInt(40), rand.nextInt(2)));
 					}
 				}
 			}

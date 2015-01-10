@@ -9,7 +9,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -37,7 +37,7 @@ public class WeaponGuiltyThorn extends TragicWeapon {
 		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(8) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[16]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[16])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60, itemRand.nextInt(4)));
-			if (TragicNewConfig.allowStun && itemRand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Stun.id, 40, 0));
+			if (TragicNewConfig.allowStun && itemRand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 40, 0));
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[16]);
 			setStackCooldown(stack, 5);
 		}

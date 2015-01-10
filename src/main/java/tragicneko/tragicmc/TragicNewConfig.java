@@ -109,11 +109,11 @@ public class TragicNewConfig {
 	private static boolean[] blanketPotion = new boolean[2];
 	public static boolean allowPositivePotions, allowNegativePotions;
 	private static boolean[] positivePotionConfigs = new boolean[12];
-	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence;
+	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
 	private static boolean[] negativePotionConfigs = new boolean[12];
 	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked;
 	private static int[] positivePotionIDs = new int[12];
-	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence;
+	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence, idDivinity;
 	private static int[] negativePotionIDs = new int[12];
 	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked;
 
@@ -769,6 +769,8 @@ public class TragicNewConfig {
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "clarityAllow", true).getBoolean(true));
 		positivePotionIDs[mapping] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "convergenceAllow", true).getBoolean(true));
+		positivePotionIDs[mapping] = (config.get(catPotion, "divinityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
+		positivePotionConfigs[mapping++] = (config.get(catPotion, "divinityAllow", true).getBoolean(true));
 		
 		temp = mapping - 1;
 
@@ -1463,6 +1465,8 @@ public class TragicNewConfig {
 		allowClarity = positivePotionConfigs[mapping++];
 		idConvergence = positivePotionIDs[mapping];
 		allowConvergence = positivePotionConfigs[mapping++];
+		idDivinity = positivePotionIDs[mapping];
+		allowDivinity = positivePotionConfigs[mapping++];
 
 		mapping = 0;
 		idCorruption = negativePotionIDs[mapping];

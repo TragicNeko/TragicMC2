@@ -12,7 +12,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +26,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -38,7 +36,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAmulet;
@@ -54,8 +52,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class NewAmuletEvents {
 
 	public static Set badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
-			Potion.poison, Potion.weakness, Potion.wither, TragicPotions.Corruption, TragicPotions.Cripple, TragicPotions.Disorientation, TragicPotions.Fear,
-			TragicPotions.Inhibit, TragicPotions.Malnourish, TragicPotions.Stun, TragicPotions.Submission, TragicPotions.Hacked, TragicPotions.LeadFoot});
+			Potion.poison, Potion.weakness, Potion.wither, TragicPotion.Corruption, TragicPotion.Cripple, TragicPotion.Disorientation, TragicPotion.Fear,
+			TragicPotion.Inhibit, TragicPotion.Malnourish, TragicPotion.Stun, TragicPotion.Submission, TragicPotion.Hacked, TragicPotion.LeadFoot});
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
@@ -237,9 +235,9 @@ public class NewAmuletEvents {
 			{
 				if (list.get(i) instanceof EntityMob && rand.nextInt(100) <= chance)
 				{
-					if (!((EntityLivingBase) list.get(i)).isPotionActive(TragicPotions.Harmony.id))
+					if (!((EntityLivingBase) list.get(i)).isPotionActive(TragicPotion.Harmony.id))
 					{
-						((EntityMob)list.get(i)).addPotionEffect(new PotionEffect(TragicPotions.Harmony.id, 120 + rand.nextInt(320)));
+						((EntityMob)list.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 120 + rand.nextInt(320)));
 						amu.damageStackInSlot(slot, 4 - level);
 					}
 				}
@@ -425,8 +423,8 @@ public class NewAmuletEvents {
 		}
 		else if (id == 12 && TragicNewConfig.amuSunken && mp.ticksExisted % 60 == 0 && TragicNewConfig.allowAquaSuperiority && mp.isInWater())
 		{
-			mp.addPotionEffect(new PotionEffect(TragicPotions.AquaSuperiority.id, 200, level));
-			if (mp.isPotionActive(TragicPotions.AquaSuperiority) && rand.nextBoolean()) amu.damageStackInSlot(slot, 4 - level);
+			mp.addPotionEffect(new PotionEffect(TragicPotion.AquaSuperiority.id, 200, level));
+			if (mp.isPotionActive(TragicPotion.AquaSuperiority) && rand.nextBoolean()) amu.damageStackInSlot(slot, 4 - level);
 		}
 		else if (id == 13 && TragicNewConfig.amuTime)
 		{
@@ -674,7 +672,7 @@ public class NewAmuletEvents {
 						{
 							if (list.get(i) instanceof EntityLivingBase)
 							{
-								if (TragicNewConfig.allowSubmission) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 120 + rand.nextInt(320), rand.nextInt(4)));
+								if (TragicNewConfig.allowSubmission) ((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(320), rand.nextInt(4)));
 								((EntityLivingBase) list.get(i)).addPotionEffect(new PotionEffect(Potion.weakness.id, 120 + rand.nextInt(320), rand.nextInt(4)));
 							}
 						}

@@ -1,20 +1,17 @@
 package tragicneko.tragicmc.blocks;
 
+import net.minecraft.block.BlockVine;
+import net.minecraft.world.IBlockAccess;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicTabs;
-import net.minecraft.block.BlockVine;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
 
 public class BlockGlowvine extends BlockVine {
 
 	public BlockGlowvine()
     {
         super();
-        this.setCreativeTab(TragicTabs.Survival);
+        this.setCreativeTab(TragicMC.Survival);
         this.setLightLevel(1.0F);
         this.setLightOpacity(0);
         this.setTickRandomly(true);

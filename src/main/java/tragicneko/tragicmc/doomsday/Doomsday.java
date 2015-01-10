@@ -12,7 +12,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public abstract class Doomsday {
@@ -76,15 +76,16 @@ public abstract class Doomsday {
 	//Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
 	//Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
 	//Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
-	//Hacker, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
+	//Magnetizer, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
 	//Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
 	//Dimentia, Influence, mobs around you start attacking each other
-	//Delete, World Shaper, fires a single "Drill" projectile that mines blocks that it goes through, like a laser almost except not instantaneous
+	//Delete, World Shaper, fires a single "Drill" projectile that instantly mines blocks that it goes through
 	//Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
-	//Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except instantaneous mining but less mined per effect
-	//Twilight Zone, Influence, any mobs near you get inflicted with Weakness XGHVWRBOA and pretty much do no damage at all to anything
+	//Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except non instantaneous mining
+	//Twilight Zone, Influence, any mobs near you get inflicted with Weakness XGHVWRBOA and pretty much do no damage at all to anything, meanwhile you get Strength XGIAHR and can oneshot most things
 	//Danger Zone, Crisis, any mobs in the area get exploded and get stunned
 	//Support, Overflow, increase nearby player's doom at the cost of yours
+	//Hacker, Influence, clear all potion effects on all entities nearby
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
@@ -201,8 +202,8 @@ public abstract class Doomsday {
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have Doom disabled... this shouldn't have been called, report this"));
 			return;
 		}
-		else if (TragicNewConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotions.Stun) || TragicNewConfig.allowHarmony &&
-				doom.getPlayer().isPotionActive(TragicPotions.Harmony) || TragicNewConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotions.Fear))
+		else if (TragicNewConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicNewConfig.allowHarmony &&
+				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicNewConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You can't use a Doomsday with that effect active..."));
 			return;

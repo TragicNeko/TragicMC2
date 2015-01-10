@@ -13,12 +13,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.dimension.TragicTeleporter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +29,7 @@ public class ItemDimensionalKey extends Item {
 		super();
 		this.targetDimension = i;
 		this.setMaxDamage(30);
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setMaxStackSize(1);
 	}
 

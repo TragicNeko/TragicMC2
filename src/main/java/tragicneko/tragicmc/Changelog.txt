@@ -3170,7 +3170,7 @@ The config options are a bit messy internally (like the mob stats) but the confi
 Default the Amulet GUI to open with the Y key
 Slight modification to the Life Water recipe to no longer require Enchanted Books
 
-2.40.1868 <184> (January 2, 2015)
+2.40.1880 <184> (January 2, 2015)
 Allow Pumpkinhead to spawn regardless of it there is a pumpkin near it's spawn, this allows for it to spawn under normal circumstances
 It will attempt to generate a pumpkin 25% of the time if there is not one near it when it spawns, this is to alleviate the need for it to generate one each time it spawns
 Added Amulet Modifier transfer to the Amulet upgrading, it will only transfer one of the Amulet's modifiers (the first one in the crafting grid), this was supposed to work with
@@ -3187,11 +3187,27 @@ Update the Claymation's Skultar form to fire the correct projectiles
 Added Sharpen/Harden Doomsdays, Sharpen serves as the first Doomsday for the Sentinel weapon, Guardian's Call is it's second but they do not form a Combination Doomsday together
 Added localizations for the new Doomsdays and the new weapon
 
+2.40.1880++ <185> (January 8, 2015)
+Removed unnecessary object arrays in recipes
+Adjusted methods inside of the Time Disruption Cube's block class in order to simplify it and to allow for it to be easily modifiable in the case that I want to add another boss
+spawn with it
+Update the Celestial Longbow and Hunter's Bow classes to use less total code and take away the Celestial Longbow's built in infinity ability
+Added new utility method to get modified positioning from the side hit of a vector, useful for transports based on vector location
+Added Divination potion effect
+Removed TragicTabs and the two tab classes, they aren't important enough to even require their own classes as such they are now anonymous classes registered and declared in the
+main class, this however, causes a bunch of import errors for other classes
+Removed unneeded pressure plate block classes in favor of anonymous classes since they were empty anyway
+Combined TragicPotions into TragicPotion, it's been bothering me that they were treated as separate classes so now it is more efficient having them combined
+Changed Divination to Divinity
+Fixed arbitrary variables in Gooey Fruit's item class
+Finished up adding the Lore
+
 TODO still
 Add the render/model for the Guardian Shields
 Work on the Overlord
+Add the Dimensional Tear entity in order to grant the player the new effect, Divination, in order to damage the Core
 Add armor models
-Add the Overlord armor set and the Sentinel
+Add the Overlord armor set
 
 Note for Bosses:
 Some Bosses don't have structures or are random spawns, for each one I want an Iron Golem-like spawning ability in which you create a structure with a particular block and it is summoned
@@ -3209,7 +3225,6 @@ When each form is "defeated" it'll go through a transformation period which it t
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
 
 Note: The Sentinel will only have one rarity, but it will have different lore that it can be, same goes for the Sentinel armor set
-Note: The Sentinel will have a couple of Doomsdays, the Armor will only have one but it will give you up to 20 hearts and be the most "OP" set in the mod
 Note: After the frozen biomes are added, make that the only place that the Ragr spawns
 Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
@@ -3250,3 +3265,7 @@ other smaller ones, this is the final form and has 1000 health, it will be a ver
 Add the custom mob sounds
 Add new particle effects
 Add the achievements, which will have a set questline leading up to the overlord but won't be enforced like Twilight Forest
+
+IDEA:
+Random modifiers applied to mobs that give them random buffs, like more health than normal or more attack damage than normal, this would be like species exclusive buffs or maybe
+a better description would be like the infernal mobs mod, except instead of adding a ton of random effects it's just a group that spawns at a time has a chance for modifiers

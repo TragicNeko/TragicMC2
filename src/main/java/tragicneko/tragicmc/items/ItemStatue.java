@@ -14,7 +14,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.entity.EntityStatue;
 
 public class ItemStatue extends Item {
@@ -29,7 +28,7 @@ public class ItemStatue extends Item {
 	{
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setUnlocalizedName("tragicmc.mobStatue");
 		this.setMaxStackSize(1);
 	}

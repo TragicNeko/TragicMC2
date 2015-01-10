@@ -18,7 +18,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.TragicEntityList;
 
@@ -70,7 +69,7 @@ public class ItemChallenge extends Item {
 
 	public ItemChallenge()
 	{
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setMaxDamage(0);
 		this.maxStackSize = 1;
 		this.setHasSubtypes(true);

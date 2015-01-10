@@ -22,6 +22,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Random;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -93,7 +95,7 @@ public class TragicMC
 	public static final String VERSION = "2.40.1857 Beta";
 
 	@Instance(TragicMC.MODID)
-	public static TragicMC instance;
+	private static TragicMC instance;
 
 	@SidedProxy(clientSide = "tragicneko.tragicmc.client.ClientProxy", serverSide = "tragicneko.tragicmc.client.CommonProxy")
 	public static CommonProxy proxy;
@@ -107,7 +109,10 @@ public class TragicMC
 	private static Configuration config;
 
 	private static long time = 0L;
-	public static boolean DEBUG = true;
+	private static boolean DEBUG = true;
+	
+	public static CreativeTabs Survival;
+	public static CreativeTabs Creative;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -125,7 +130,7 @@ public class TragicMC
 		{
 			if (Potion.potionTypes.length >= 64)
 			{
-				TragicPotions.load();
+				TragicPotion.load();
 				MinecraftForge.EVENT_BUS.register(new PotionEvents());
 			}
 			else
@@ -139,13 +144,26 @@ public class TragicMC
 		if (TragicNewConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
 
 		logDuration("Potions and Enchantments");
-
-		TragicTabs.load();
+		
+		Survival = (new CreativeTabs("tragicMCSurvival") {
+			@Override
+			public Item getTabIconItem() {
+				return TragicItems.AwakeningStone;
+			}
+		});
+		
+		Creative = (new CreativeTabs("tragicMCCreative") {
+			@Override
+			public Item getTabIconItem() {
+				return TragicItems.NekoNekoWand;
+			}
+		});
+		
 		TragicBlocks.load();
 		logDuration("Blocks");
 		TragicItems.load();
 		logDuration("Items");
-		if (TragicNewConfig.allowPotions) TragicPotions.setPotionIcons();
+		if (TragicNewConfig.allowPotions) TragicPotion.setPotionIcons();
 		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
 
 		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
@@ -345,6 +363,10 @@ public class TragicMC
 
 		long l = System.currentTimeMillis() - time;
 		logInfo("Time to complete section (" + sectionName + ") was " + l + " ms.");
-		time = System.currentTimeMillis();
+		logTime();
+	}
+
+	public static TragicMC getInstance() {
+		return instance;
 	}
 }

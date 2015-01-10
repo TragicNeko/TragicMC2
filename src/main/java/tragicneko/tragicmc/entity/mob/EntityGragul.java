@@ -4,7 +4,6 @@ import static tragicneko.tragicmc.TragicNewConfig.gragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -14,16 +13,13 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.miniboss.EntityJarra;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -90,7 +86,7 @@ public class EntityGragul extends TragicMob {
 		{
 			if (this.getAttackTarget() instanceof EntityPlayer && TragicNewConfig.allowInhibit && this.canEntityBeSeen(this.getAttackTarget()))
 			{
-				((EntityPlayer) this.getAttackTarget()).addPotionEffect(new PotionEffect(TragicPotions.Inhibit.id, 200));
+				((EntityPlayer) this.getAttackTarget()).addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 200));
 			}
 		}
 	}
@@ -140,7 +136,7 @@ public class EntityGragul extends TragicMob {
 			{
 				if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
 				{
-					if (rand.nextInt(4) == 0 && TragicNewConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.LeadFoot.id, 120));
+					if (rand.nextInt(4) == 0 && TragicNewConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 					
 				}
 			}

@@ -8,7 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -16,10 +16,7 @@ public class ItemEnchantedSushi extends ItemFood {
 
 	public ItemEnchantedSushi(int p_i45340_1_, boolean p_i45340_2_) {
 		super(p_i45340_1_, p_i45340_2_);
-		if (TragicNewConfig.allowImmunity)
-		{
-			this.setPotionEffect(TragicPotions.Immunity.id, 120, 0, 1.0F);
-		}
+		if (TragicNewConfig.allowImmunity) this.setPotionEffect(TragicPotion.Immunity.id, 120, 0, 1.0F);
 		this.setAlwaysEdible();
 	}
 	
@@ -48,8 +45,8 @@ public class ItemEnchantedSushi extends ItemFood {
 		player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400, 1));
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 2));
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
-		if (TragicNewConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotions.Clarity.id, 2400, 1));
-		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 60));
+		if (TragicNewConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
+		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 60));
 		
 		return super.onEaten(stack, world, player);
 	}

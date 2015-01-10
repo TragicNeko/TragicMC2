@@ -2,6 +2,7 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockTorch;
@@ -14,6 +15,7 @@ public class BlockCandle extends BlockTorch {
 		super();
 		this.setLightLevel(0.49F);
 		this.setLightOpacity(0);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	
 	@SideOnly(Side.CLIENT)

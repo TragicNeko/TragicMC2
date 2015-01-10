@@ -6,7 +6,6 @@ import static tragicneko.tragicmc.TragicNewConfig.modifierAmts;
 import java.util.List;
 import java.util.UUID;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -28,17 +27,13 @@ import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -49,13 +44,9 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
-import tragicneko.tragicmc.entity.boss.IMultiPart;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -380,7 +371,7 @@ public class VanillaChangingEvents {
 				}
 				else
 				{
-					if (TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(80) + 60));
+					if (TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(80) + 60));
 				}
 			}
 		}
@@ -397,7 +388,7 @@ public class VanillaChangingEvents {
 			{
 				if (((EntityZombie)event.source.getEntity()).isChild() && rand.nextInt(4) == 0 && TragicNewConfig.allowMalnourish)
 				{
-					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Malnourish.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 				}
 
 				if (rand.nextInt(8) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(160) + 40, rand.nextInt(4)));
@@ -427,15 +418,15 @@ public class VanillaChangingEvents {
 			if (event.source.getEntity() instanceof EntityMagmaCube)
 			{
 				if (rand.nextInt(8) == 0) event.entityLiving.setFire(rand.nextInt(12));
-				if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(160) + 40, rand.nextInt(4)));
-				if (rand.nextInt(32) == 0 && TragicNewConfig.allowCripple) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
-				if (rand.nextInt(64) == 0 && TragicNewConfig.allowStun) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(20) + 40, rand.nextInt(4)));
+				if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(32) == 0 && TragicNewConfig.allowCripple) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+				if (rand.nextInt(64) == 0 && TragicNewConfig.allowStun) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(20) + 40, rand.nextInt(4)));
 			}
 
 			if (event.source.getEntity() instanceof EntityPigZombie)
 			{
 				if (rand.nextInt(4) == 0) event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(160) + 40, rand.nextInt(4)));
-				if (rand.nextInt(8) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(60) + 40, rand.nextInt(6)));
+				if (rand.nextInt(8) == 0 && TragicNewConfig.allowSubmission) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(60) + 40, rand.nextInt(6)));
 			}
 
 			if (event.source.getEntity() instanceof EntitySkeleton)
@@ -448,7 +439,7 @@ public class VanillaChangingEvents {
 					}
 					else if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					else if (rand.nextInt(16) == 0)
@@ -463,7 +454,7 @@ public class VanillaChangingEvents {
 
 					else if (rand.nextInt(32) == 0 && TragicNewConfig.allowStun)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
 					}
 				}
 				else
@@ -478,7 +469,7 @@ public class VanillaChangingEvents {
 				{
 					if (rand.nextInt(4) == 0 && TragicNewConfig.allowStun)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(40) + 20, rand.nextInt(4)));
 					}
 				}
 
@@ -486,17 +477,17 @@ public class VanillaChangingEvents {
 				{
 					if (rand.nextInt(16) == 0 && TragicNewConfig.allowSubmission)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					if (rand.nextInt(16) == 0 && TragicNewConfig.allowDisorientation)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(160) + 40, rand.nextInt(6)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(160) + 40, rand.nextInt(6)));
 					}
 
 					if (rand.nextInt(32) == 0 && TragicNewConfig.allowCripple)
 					{
-						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
+						event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(160) + 40, rand.nextInt(4)));
 					}
 
 					if (rand.nextInt(16) == 0)
@@ -514,7 +505,7 @@ public class VanillaChangingEvents {
 
 			if (event.source.getEntity() instanceof EntityBlaze)
 			{
-				if (rand.nextInt(8) == 0 && TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, rand.nextInt(80) + 40, rand.nextInt(4)));
+				if (rand.nextInt(8) == 0 && TragicNewConfig.allowDisorientation) event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(80) + 40, rand.nextInt(4)));
 			}
 		}
 
@@ -528,7 +519,7 @@ public class VanillaChangingEvents {
 			event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mobBlindnessDebuff);
 
 			if (event.entityLiving.isPotionActive(Potion.blindness.id)|| event.entityLiving.isPotionActive(Potion.confusion.id) 
-					|| TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotions.Disorientation.id))
+					|| TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation.id))
 			{
 				event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(mobBlindnessDebuff);
 			}
@@ -558,7 +549,7 @@ public class VanillaChangingEvents {
 			mob.onSpawnWithEgg((IEntityLivingData)null);
 			event.entity.worldObj.removeEntity(event.entity);
 			event.entity.worldObj.spawnEntityInWorld(mob);
-			if (TragicNewConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotions.Invulnerability.id, 80));
+			if (TragicNewConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
 		}
 
 		if (rand.nextInt(4) == 0 && !event.lightning.worldObj.isRemote)

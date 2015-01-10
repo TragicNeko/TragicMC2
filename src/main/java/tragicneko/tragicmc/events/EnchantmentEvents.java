@@ -25,7 +25,7 @@ import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -299,7 +299,7 @@ public class EnchantmentEvents {
 
 						if (TragicNewConfig.allowCripple)
 						{
-							event.entityLiving.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, 60 * vamp, vamp * 2));
+							event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 60 * vamp, vamp * 2));
 						}
 
 						if (rand.nextInt(3) == 0)

@@ -2,7 +2,6 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
@@ -10,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +20,7 @@ public class BlockOverlordBarrier extends Block {
 		this.setBlockName("tragicmc.overlordBarrier");
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
-		this.setCreativeTab(TragicTabs.Creative);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setStepSound(soundTypeStone);
 		this.setBlockTextureName("tragicmc:OverlordBarrier_lowRes");
 		this.setLightLevel(10.0F);

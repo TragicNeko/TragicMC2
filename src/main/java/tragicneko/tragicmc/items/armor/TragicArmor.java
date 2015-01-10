@@ -12,10 +12,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class TragicArmor extends ItemArmor {
 
@@ -48,7 +47,7 @@ public class TragicArmor extends ItemArmor {
 	public TragicArmor(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, 0, armorType);
 		this.doomsday = dday;
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	/*
 	@Override

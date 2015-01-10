@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.items.weapons;
 
 import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -19,6 +20,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 	public WeaponSwordOfJustice(ToolMaterial p_i45356_1_) {
 		super(p_i45356_1_);
 		this.setMaxDamage(1);
+		this.setCreativeTab(TragicMC.Creative);
 	}
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)

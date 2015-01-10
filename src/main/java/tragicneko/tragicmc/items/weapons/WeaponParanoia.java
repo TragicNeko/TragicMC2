@@ -11,7 +11,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -40,8 +40,8 @@ public class WeaponParanoia extends EpicWeapon {
 
 		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[21]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[21])
 		{
-			if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 240, itemRand.nextInt(2)));
-			if (TragicNewConfig.allowSubmission && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 320, itemRand.nextInt(4)));
+			if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 240, itemRand.nextInt(2)));
+			if (TragicNewConfig.allowSubmission && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 320, itemRand.nextInt(4)));
 			
 			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[21]);
 			setStackCooldown(stack, 5);

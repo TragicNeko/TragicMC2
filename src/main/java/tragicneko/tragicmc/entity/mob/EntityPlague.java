@@ -24,7 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -104,7 +104,7 @@ public class EntityPlague extends TragicMob {
 		{
 			if (this.ticksExisted % 120 == 0 && TragicNewConfig.allowCorruption)
 			{
-				this.addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 200, 0));
+				this.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200, 0));
 			}
 
 			if (this.ticksExisted % 5 == 0)
@@ -130,19 +130,19 @@ public class EntityPlague extends TragicMob {
 				{
 					Entity entity = list.get(i);
 
-					if (!this.canEntityBeSeen(entity) || !(entity instanceof EntityLivingBase) || ((EntityLivingBase)entity).isPotionActive(TragicPotions.Corruption)) continue;
+					if (!this.canEntityBeSeen(entity) || !(entity instanceof EntityLivingBase) || ((EntityLivingBase)entity).isPotionActive(TragicPotion.Corruption)) continue;
 
 					if (entity instanceof TragicMob && ((TragicMob) entity).canCorrupt() || entity instanceof EntityGolem)
 					{
-						((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 800));
+						((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 800));
 					}
 					else if (entity instanceof EntityAnimal)
 					{
-						((EntityCreature) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 400));
+						((EntityCreature) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 400));
 					}
 					else if (entity instanceof EntityPlayer && !((EntityPlayer)entity).capabilities.isCreativeMode)
 					{
-						((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Corruption.id, 200));
+						((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200));
 
 						if (rand.nextBoolean())
 						{
@@ -156,11 +156,11 @@ public class EntityPlague extends TragicMob {
 							}
 							else if (TragicNewConfig.allowSubmission && this.rand.nextInt(32) == 0)
 							{
-								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 160 + rand.nextInt(160)));
+								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 160 + rand.nextInt(160)));
 							}
 							else if (TragicNewConfig.allowDisorientation && this.rand.nextInt(16) == 0)
 							{
-								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotions.Disorientation.id, 60 + rand.nextInt(80)));
+								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 60 + rand.nextInt(80)));
 							}
 						}
 					}

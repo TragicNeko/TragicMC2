@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicNewConfig.nanoSwarmStats;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -12,13 +11,11 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 
 public class EntityNanoSwarm extends TragicMob {
 
@@ -94,14 +91,14 @@ public class EntityNanoSwarm extends TragicMob {
 				if (!(entity.getEquipmentInSlot(0).getItem() instanceof ItemBow) && this.getDistanceToEntity(entity) <= 2.0F)
 				{
 					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
-					if (TragicNewConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotions.Hacked.id, 120 + rand.nextInt(180)));
+					if (TragicNewConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(180)));
 					return super.attackEntityFrom(par1DamageSource, Float.MAX_VALUE);
 				}
 			}
 			else
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
-				if (TragicNewConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotions.Hacked.id, 120 + rand.nextInt(80)));
+				if (TragicNewConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(80)));
 				return super.attackEntityFrom(par1DamageSource, Float.MAX_VALUE);
 			}
 		}
@@ -118,7 +115,7 @@ public class EntityNanoSwarm extends TragicMob {
 		if (result && par1Entity instanceof EntityLivingBase)
 		{
 			this.setDead();
-			if (TragicNewConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotions.Hacked.id, 240 + rand.nextInt(160)));
+			if (TragicNewConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 240 + rand.nextInt(160)));
 		}
 		
 		return result;

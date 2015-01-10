@@ -7,7 +7,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBerserker extends Doomsday {
@@ -41,7 +41,7 @@ public class DoomsdayBerserker extends Doomsday {
 		if (crucMoment) a /= 4;
 
 		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 30 * a));
-		if (TragicNewConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 60 * a, a));
+		if (TragicNewConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 60 * a, a));
 	}
 
 	@Override
@@ -55,6 +55,6 @@ public class DoomsdayBerserker extends Doomsday {
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 30 * a, 0));
 
 		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 120 * a, a));
-		if (TragicNewConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 120 * a, a));
+		if (TragicNewConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 * a, a));
 	}
 }

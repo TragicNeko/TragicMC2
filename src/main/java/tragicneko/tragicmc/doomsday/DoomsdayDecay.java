@@ -1,9 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -11,7 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayDecay extends Doomsday {
@@ -49,7 +45,7 @@ public class DoomsdayDecay extends Doomsday {
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(120) + 120));
 				entity.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(240) + 160, rand.nextInt(2)));
-				if (crucMoment && TragicNewConfig.allowCripple) entity.addPotionEffect(new PotionEffect(TragicPotions.Cripple.id, rand.nextInt(240) + 120, rand.nextInt(6)));
+				if (crucMoment && TragicNewConfig.allowCripple) entity.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(240) + 120, rand.nextInt(6)));
 			}
 		}
 	}

@@ -96,9 +96,28 @@ public class LoreHelper {
 			new EnchantEntry[][] {{}, {new EnchantEntry(TragicEnchantments.Absolve, 1)}, {new EnchantEntry(TragicEnchantments.Absolve, 3), new EnchantEntry(Enchantment.unbreaking, 1)},
 				{new EnchantEntry(TragicEnchantments.Absolve, 5), new EnchantEntry(Enchantment.unbreaking, 1), new EnchantEntry(Enchantment.fireAspect, 1)}});
 		
-		addToLoreMap(WeaponCelestialAegis.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponCelestialAegis.class, new Lore[] {new Lore(25, "This is my jam!", 1), new Lore(15, "Sounds to die for!", 1), new Lore(5, "The Benny Hill theme song!", 1),
+				new Lore(5, "First things first, I'm the realist!", 1), new Lore(20, "Nice tune!", 1), new Lore(20, "What a lovely melody!", 1), new Lore(25, "Death in E-Minor!", 2),
+				new Lore(15, "Screams in 6/4 time!", 2), new Lore(25, "4/4 at 120 bpm", 2), new Lore(15, "What a lovely death sound you make!", 2), new Lore(10, "Such a lovely scream!", 2),
+				new Lore(5, "Shrieks of terror have a nice ambience!", 2), new Lore(5, "Let the music take your breath away~", 2), new Lore(25, "I can show you the world!", 3),
+				new Lore(25, "I wish I could be part of your world!", 3), new Lore(15, "Be our guest!", 3), new Lore(15, "Poor unfortunate souls!", 3), new Lore(10, "Go! Go! Power Rangers!", 3),
+				new Lore(10, "Heroes in a half-shell, turtle power!", 3), new Lore(5, "Flight of the Bumblebee!", 3), new Lore(5, "The Blue Danube!", 3), new Lore(20, "It's Mambo No. 5!", 3),
+				new Lore(15, "Guess who's back, back again!", 3), new Lore(15, "Under the sea!", 3), new Lore(5, "The Hall of the Mountain King!", 3),
+				new Lore(5, "Dance of the Hours!", 3), new Lore(25, "Carmina Burana!", 3), new Lore(5, "Symphony No.5!", 3)},
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Absolve, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Absolve, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Absolve, 5), new EnchantEntry(TragicEnchantments.Consume, 3),
+				new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 3), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
 		
-		addToLoreMap(WeaponCelestialLongbow.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponCelestialLongbow.class, new Lore[] {new Lore(25, "Like meteor showers!", 1), new Lore(10, "Shooting stars!", 1), new Lore(15, "Beautiful Starlights!", 1),
+				new Lore(5, "Make a Wish!", 1), new Lore(25, "So beautiful!", 2), new Lore(10, "Ooh, a free starman!", 2), new Lore(5, "Make a wish!", 2), new Lore(5, "Time for the star festival!", 3),
+				new Lore(5, "Meteor Smash!", 3), new Lore(25, "Time for armageddon!", 3), new Lore(5, "Guardian of the Galaxy!", 3), new Lore(15, "The Final Starman!?", 3),
+				new Lore(5, "Good Morning Starshine!", 3), new Lore(5, "The Earth says, Hello!", 3), new Lore(5, "Warm the celestial bodies!", 3)},
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.power, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.power, 3), new EnchantEntry(Enchantment.looting, 3)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.power, 5), new EnchantEntry(Enchantment.looting, 5),
+				new EnchantEntry(TragicEnchantments.Multiply, 1), new EnchantEntry(Enchantment.infinity, 1), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
+		
 		addToLoreMap(WeaponFrozenLightning.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponGravitySpike.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponGuiltyThorn.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
@@ -322,7 +341,7 @@ public class LoreHelper {
 		public Lore(int weight, String desc, int rarity) {
 			super(weight);
 			this.desc = desc;
-			this.rarity = rarity;
+			this.rarity = net.minecraft.util.MathHelper.clamp_int(rarity, 0, 3);
 		}
 
 		public String getDesc() { return this.desc; }

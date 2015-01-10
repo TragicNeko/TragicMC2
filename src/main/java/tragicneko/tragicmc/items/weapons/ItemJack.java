@@ -14,10 +14,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEnchantments;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicTabs;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.LoreHelper;
 
 import com.google.common.collect.Sets;
@@ -60,7 +59,7 @@ public class ItemJack extends ItemTool {
 		super(1.0F, material, blocksEffectiveAgainst);
 		
 		this.setHarvestLevel("pickaxe", 3);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)

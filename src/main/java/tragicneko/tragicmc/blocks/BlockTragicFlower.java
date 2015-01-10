@@ -3,23 +3,18 @@ package tragicneko.tragicmc.blocks;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicTabs;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 
 public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	
@@ -30,7 +25,7 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 
 	public BlockTragicFlower() {
 		super(0);
-		this.setCreativeTab(TragicTabs.Survival);
+		this.setCreativeTab(TragicMC.Survival);
 		this.setBlockName("tragicmc.flower");
 		this.setStepSound(soundTypeGrass);
 	}

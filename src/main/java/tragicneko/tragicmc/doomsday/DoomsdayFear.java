@@ -1,9 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -12,7 +8,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.TragicPotions;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayFear extends Doomsday {
@@ -51,8 +47,8 @@ public class DoomsdayFear extends Doomsday {
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300));
-				if (TragicNewConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 300, crucMoment ? 1 + rand.nextInt(3) : 0));
-				if (crucMoment && TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotions.Submission.id, 300, 5));
+				if (TragicNewConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 300, crucMoment ? 1 + rand.nextInt(3) : 0));
+				if (crucMoment && TragicNewConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 5));
 
 				if (crucMoment)
 				{
@@ -69,7 +65,7 @@ public class DoomsdayFear extends Doomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
-		if (TragicNewConfig.allowFear) player.addPotionEffect(new PotionEffect(TragicPotions.Fear.id, 120, 1));
+		if (TragicNewConfig.allowFear) player.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
 	}
 
 }

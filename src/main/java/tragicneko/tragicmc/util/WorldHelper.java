@@ -246,7 +246,7 @@ public class WorldHelper {
 
 		return list;
 	}
-	
+
 	/**
 	 * Get a MovingObjectPosition based on the input entity's motion and rotation for the specified distance
 	 * @param ent
@@ -299,5 +299,47 @@ public class WorldHelper {
 	public static Vec3 getVecFromEntity(Entity ent)
 	{
 		return getMOPFromEntity(ent, 6.0D).hitVec;
+	}
+
+	public static double[] getTransportPositionFromSide(int sideHit, double x, double y, double z)
+	{
+		switch(sideHit)
+		{
+		case 0:
+			y -= 2.2D;
+			break;
+		default:
+		case 1:
+			break;
+		case 2:
+			z -= 1.0D;
+			break;
+		case 3:
+			z += 1.0D;
+			break;
+		case 4:
+			x -= 1.0D;
+			break;
+		case 5:
+			x += 1.0D;
+			break;
+		}
+
+		return new double[] {x, y, z};
+	}
+
+	public static double getXPositionFromSide(int sideHit, double x)
+	{
+		return getTransportPositionFromSide(sideHit, x, 0.0, 0.0)[0];
+	}
+
+	public static double getYPositionFromSide(int sideHit, double y)
+	{
+		return getTransportPositionFromSide(sideHit, 0.0, y, 0.0)[1];
+	}
+
+	public static double getZPositionFromSide(int sideHit, double z)
+	{
+		return getTransportPositionFromSide(sideHit, 0.0, 0.0, z)[2];
 	}
 }
