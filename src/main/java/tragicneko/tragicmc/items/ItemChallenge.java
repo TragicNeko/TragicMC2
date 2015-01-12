@@ -118,6 +118,7 @@ public class ItemChallenge extends Item {
 		this.completeIcon = register.registerIcon("tragicmc:ChallengeComplete_lowRes");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		if (world.isRemote) return stack;
@@ -160,6 +161,7 @@ public class ItemChallenge extends Item {
 		return stack;
 	}
 
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		if (stack.getItemDamage() == 250)
@@ -181,7 +183,7 @@ public class ItemChallenge extends Item {
 			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
 			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
 			par2List.add("Difficulty: " + format + diff);
-			String[] subs = LoreHelper.splitDesc(challenge.getDesc(challenge.challengeID));
+			String[] subs = LoreHelper.splitDesc(Challenge.getDesc(challenge.challengeID));
 			for (String s : subs) par2List.add(s);
 			par2List.add("Progress: " + stack.stackTagCompound.getInteger("challengeProgress") + "/ " + challenge.requirement);
 		}

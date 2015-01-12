@@ -33,6 +33,7 @@ public class WeaponReaperScythe extends ItemScythe {
 		this.doomsday = dday;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);

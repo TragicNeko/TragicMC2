@@ -1597,7 +1597,7 @@ public class TragicRecipes {
 		}
 
 		//Amulet level-up recipes
-		RecipeSorter.INSTANCE.register("tragicmc:amuletleveling", RecipeAmulets.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
+		RecipeSorter.register("tragicmc:amuletleveling", RecipeAmulets.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
 
 		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
 			TragicItems.BlacksmithAmulet, TragicItems.BlacksmithAmulet, "oreCharms"
@@ -1687,7 +1687,7 @@ public class TragicRecipes {
 			TragicItems.IronGolemAmulet, TragicItems.AmuletRelease
 		));
 
-		RecipeSorter.INSTANCE.register("tragicmc:weaponcombining", RecipeWeapons.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
+		RecipeSorter.register("tragicmc:weaponcombining", RecipeWeapons.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
 
 		//Weapon fusing recipes
 		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryDagger),

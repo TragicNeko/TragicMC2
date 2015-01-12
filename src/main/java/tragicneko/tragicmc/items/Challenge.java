@@ -25,7 +25,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;

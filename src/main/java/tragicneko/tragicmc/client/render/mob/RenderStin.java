@@ -1,14 +1,11 @@
 package tragicneko.tragicmc.client.render.mob;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelStin;
 import tragicneko.tragicmc.client.model.ModelStinBaby;
-import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 
 public class RenderStin extends RenderLiving {
@@ -19,6 +16,7 @@ public class RenderStin extends RenderLiving {
 		super(new ModelStin(), 0.755F);
 	}
 
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		EntityStin stin = (EntityStin) entity;

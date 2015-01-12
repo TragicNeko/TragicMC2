@@ -16,14 +16,8 @@ import org.apache.logging.log4j.Logger;
 
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-import tragicneko.tragicmc.properties.PropertyAmulets;
-import tragicneko.tragicmc.properties.PropertyDoom;
-
-import com.google.common.collect.Sets;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;

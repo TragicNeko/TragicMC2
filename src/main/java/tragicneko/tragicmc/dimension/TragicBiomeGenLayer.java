@@ -2,11 +2,8 @@ package tragicneko.tragicmc.dimension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import tragicneko.tragicmc.TragicBiomes;

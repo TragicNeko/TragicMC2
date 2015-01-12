@@ -6,7 +6,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDurability;
 import net.minecraft.enchantment.EnchantmentUntouching;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class EnchantmentUnbreakable extends Enchantment {
@@ -17,27 +16,32 @@ public class EnchantmentUnbreakable extends Enchantment {
 		this.setName("unbreakable");
 	}
 	
+	@Override
 	public int getMinEnchantability(int par1)
     {
         return 30;
     }
 
-    public int getMaxEnchantability(int par1)
+    @Override
+	public int getMaxEnchantability(int par1)
     {
         return super.getMinEnchantability(par1) + 50;
     }
 
-    public int getMaxLevel()
+    @Override
+	public int getMaxLevel()
     {
         return 1;
     }
     
-    public boolean canApplyTogether(Enchantment par1Enchantment)
+    @Override
+	public boolean canApplyTogether(Enchantment par1Enchantment)
     {
         return super.canApplyTogether(par1Enchantment) && !(par1Enchantment instanceof EnchantmentUntouching) && !(par1Enchantment instanceof EnchantmentDurability);
     }
     
-    public boolean canApply(ItemStack p_92089_1_)
+    @Override
+	public boolean canApply(ItemStack p_92089_1_)
     {
         return p_92089_1_.isItemStackDamageable() ? true : super.canApply(p_92089_1_);
     }

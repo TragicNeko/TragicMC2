@@ -62,11 +62,13 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.isImmuneToFire = true;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -77,6 +79,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(aegarStats[4]);
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -293,9 +296,9 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 					float f4 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
 					double d3 = 0.75D;
 
-					double d4 = d0 / (double)f4 * d3 * 0.100000011920929D + d7 * 0.10000000298023224D;
-					double d5 = d1 / (double)f4 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
-					double d6 = d2 / (double)f4 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
+					double d4 = d0 / f4 * d3 * 0.100000011920929D + d7 * 0.10000000298023224D;
+					double d5 = d1 / f4 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
+					double d6 = d2 / f4 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
 
 					this.worldObj.spawnParticle("reddust", d0, d1, d2, d4 * 2.5D, d5 * 2.5D, d6 * 2.5D);
 				}
@@ -371,7 +374,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		double d2 = this.getAttackTarget().posZ - this.posZ;
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
 
-		EntityCrystalMortor mortor = new EntityCrystalMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		EntityCrystalMortor mortor = new EntityCrystalMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 		mortor.posY = this.posY + this.height + 0.5D;
 		mortor.posX += d0 * 0.04335D;
 		mortor.posZ += d2 * 0.04335D;
@@ -396,6 +399,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		if (this.getMortorTicks() > 0) this.setMortorTicks(0);
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) aegarStats[5];
@@ -423,16 +427,19 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		return this.worldObj;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
 		return false;

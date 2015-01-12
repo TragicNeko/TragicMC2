@@ -342,7 +342,7 @@ public class VanillaChangingEvents {
 						if (stack != null && !stack.isItemEnchanted())
 						{
 							float f = event.entity.worldObj.func_147462_b(event.entity.posX, event.entity.posY, event.entity.posZ);
-							EnchantmentHelper.addRandomEnchantment(rand, stack, (int)(5.0F + f * (float)rand.nextInt(18)));
+							EnchantmentHelper.addRandomEnchantment(rand, stack, (int)(5.0F + f * rand.nextInt(18)));
 						}
 					}
 				}

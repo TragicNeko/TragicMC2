@@ -4,8 +4,6 @@ import java.util.Random;
 
 import tragicneko.tragicmc.TragicBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -167,7 +165,8 @@ public class WorldGenLargePaintedTree extends WorldGenAbstractTree
         world.getBlock(x, y, z).onPlantGrow(world, x, y, z, sourceX, sourceY, sourceZ);
     }
     
-    public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
+    @Override
+	public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
     {
         int l = this.func_150533_a(p_76484_2_);
 
@@ -188,8 +187,8 @@ public class WorldGenLargePaintedTree extends WorldGenAbstractTree
 
                 for (l1 = 0; l1 < 5; ++l1)
                 {
-                    j1 = p_76484_3_ + (int)(1.5F + MathHelper.cos(f) * (float)l1);
-                    k1 = p_76484_5_ + (int)(1.5F + MathHelper.sin(f) * (float)l1);
+                    j1 = p_76484_3_ + (int)(1.5F + MathHelper.cos(f) * l1);
+                    k1 = p_76484_5_ + (int)(1.5F + MathHelper.sin(f) * l1);
                     this.setBlockAndNotifyAdequately(p_76484_1_, j1, i1 - 3 + l1 / 2, k1, TragicBlocks.PaintedWood, 0);
                 }
 

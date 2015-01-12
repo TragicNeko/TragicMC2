@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityWitherSkull;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -35,6 +34,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		this.setHarvestLevel("axe", 3);
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
@@ -48,6 +48,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		return super.onLeftClickEntity(stack, player, entity);
 	} 
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
@@ -84,6 +85,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		return par1ItemStack;
 	}
 
+	@Override
 	public float func_150893_a(ItemStack stack, Block block)
 	{
 		Material material = block.getMaterial();

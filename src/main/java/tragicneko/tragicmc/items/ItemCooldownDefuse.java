@@ -15,17 +15,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCooldownDefuse extends Item {
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.rare;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("Removes some global Doomsday cooldown");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote && TragicNewConfig.allowCooldownDefuse)

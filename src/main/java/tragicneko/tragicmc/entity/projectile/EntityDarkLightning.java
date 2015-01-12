@@ -22,6 +22,7 @@ public class EntityDarkLightning extends EntityProjectile {
 		super(par1World, entity, par2, par4, par6);
 	}
 	
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.766736F;
@@ -47,6 +48,7 @@ public class EntityDarkLightning extends EntityProjectile {
 		}
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

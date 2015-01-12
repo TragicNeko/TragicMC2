@@ -57,17 +57,20 @@ public class ModelJarra extends ModelJabba
       this.spikeArray = new ModelRenderer[] {body2Spike, body2Spike2, body2Spike3, body2Spike4, bodySpike, bodySpike2, bodySpike3, body3Spike, body3Spike2, body3Spike3};
   }
   
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+  @Override
+public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		
 	}
 
+	@Override
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 		super.setRotationAngles(par1, par2, par3, par4, par5, par6, entity);
 	}
 
+	@Override
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
 		super.setLivingAnimations(entity, par1, par2, par3);
@@ -82,8 +85,8 @@ public class ModelJarra extends ModelJabba
 		{
 			for (int j = 0; j < this.spikeArray.length; j++)
 			{
-				spikeArray[j].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.15F) * this.simplifyAngle((float)i - par3, 15.0F);
-				spikeArray[j].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.15F) * this.simplifyAngle((float)i - par3, 15.0F);
+				spikeArray[j].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.15F) * this.simplifyAngle(i - par3, 15.0F);
+				spikeArray[j].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.15F) * this.simplifyAngle(i - par3, 15.0F);
 			}
 		}
 		else

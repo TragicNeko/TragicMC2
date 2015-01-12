@@ -26,7 +26,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 	{
 		super();
 		this.field_150121_P = true;
-		this.fancyGraphics = false;
+		BlockGenericLeaves.fancyGraphics = false;
 		this.setCreativeTab(TragicMC.Survival);
 	}
 
@@ -51,6 +51,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 		}
 	}
 	
+	@Override
 	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
 		//if (p_149674_1_.isRemote) fancyGraphics = Minecraft.getMinecraft().gameSettings.fancyGraphics;
@@ -79,6 +80,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 		return this.blockIcon;
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return this == TragicBlocks.PaintedLeaves ? 0 : (this == TragicBlocks.BleachedLeaves ? 1 : (this == TragicBlocks.AshenLeaves ? 4 : 0));

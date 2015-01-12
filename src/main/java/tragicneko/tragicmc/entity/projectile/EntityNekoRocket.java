@@ -4,8 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -26,6 +24,7 @@ public class EntityNekoRocket extends EntityProjectile {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
 
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.95F;
@@ -47,6 +46,7 @@ public class EntityNekoRocket extends EntityProjectile {
 		this.setDead();
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		if (this.target != null && (this.target.getHealth() == 0 || this.target.isDead)) this.target = null;
@@ -85,9 +85,9 @@ public class EntityNekoRocket extends EntityProjectile {
 			this.motionZ = (target.posZ - this.posZ) * 0.05D;
 
 			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-			this.posX -= this.motionX / (double) f2 * 0.0000000074505806D;
-			this.posY -= this.motionY / (double) f2 * 0.00000000074505806D;
-			this.posZ -= this.motionZ / (double) f2 * 0.0000000074505806D; 
+			this.posX -= this.motionX / f2 * 0.0000000074505806D;
+			this.posY -= this.motionY / f2 * 0.00000000074505806D;
+			this.posZ -= this.motionZ / f2 * 0.0000000074505806D; 
 		}
 		
 		if (this.isInWater())

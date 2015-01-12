@@ -43,21 +43,25 @@ public class EntityGragul extends TragicMob {
 		this.isImmuneToFire = true;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -74,6 +78,7 @@ public class EntityGragul extends TragicMob {
 		return (int) gragulStats[5];
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -91,6 +96,7 @@ public class EntityGragul extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote ||par1DamageSource.isProjectile() || par1DamageSource.isFireDamage()) return false;
@@ -124,6 +130,7 @@ public class EntityGragul extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;

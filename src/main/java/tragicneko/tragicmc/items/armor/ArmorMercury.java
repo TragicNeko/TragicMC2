@@ -29,6 +29,7 @@ public class ArmorMercury extends TragicArmor {
 		this.epicLevels = new int[][] {{3, 1}, {3, 3, 1}, {3}};
 	}
 
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 2)

@@ -19,6 +19,7 @@ public class RenderTox extends RenderLiving {
 		super(new ModelTox(), 0.855F);
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		EntityTox tox = (EntityTox) entity;

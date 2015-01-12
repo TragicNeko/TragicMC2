@@ -23,6 +23,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 		this.setCreativeTab(TragicMC.Creative);
 	}
 	
+	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
     {
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote) entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entity2), Float.MAX_VALUE);
@@ -30,12 +31,14 @@ public class WeaponSwordOfJustice extends ItemSword {
 		return true;
     }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack par1ItemStack, int passes)
 	{

@@ -41,6 +41,7 @@ public class ArmorDark extends TragicArmor {
 		this.epicLevels = new int[][] {{10, 5, 1}, {10, 5, 3, 3}, {10, 5, 1}};
 	}
 
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 2)
@@ -51,6 +52,7 @@ public class ArmorDark extends TragicArmor {
 	}
 
 
+	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{
 		super.onArmorTick(world, player, itemStack);

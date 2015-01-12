@@ -67,6 +67,7 @@ public class EntityPitchBlack extends EntityThrowable {
 		}
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

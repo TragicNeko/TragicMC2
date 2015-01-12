@@ -51,16 +51,19 @@ public class EntityKitsune extends TragicBoss {
 		this.isImmuneToFire = true;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -71,11 +74,13 @@ public class EntityKitsune extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kitsuneStats[4]);
 	}
 	
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) kitsuneStats[5];
 	}
 
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
@@ -162,6 +167,7 @@ public class EntityKitsune extends TragicBoss {
 		this.setAttackTime(--pow);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.getTauntTicks() > 0 || this.isFiring()) this.motionX = this.motionZ = 0.0D;
@@ -219,9 +225,9 @@ public class EntityKitsune extends TragicBoss {
 					double d1 = this.getAttackTarget().posZ - this.posZ;
 					double d2 = this.getAttackTarget().posY - this.posY;
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-					this.motionX = d0 / (double)f2 * 1.05D * 0.500000011920929D + this.motionX * 0.40000000298023224D;
-					this.motionZ = d1 / (double)f2 * 1.05D * 0.500000011920929D + this.motionZ * 0.40000000298023224D;
-					this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+					this.motionX = d0 / f2 * 1.05D * 0.500000011920929D + this.motionX * 0.40000000298023224D;
+					this.motionZ = d1 / f2 * 1.05D * 0.500000011920929D + this.motionZ * 0.40000000298023224D;
+					this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 				}
 
 				if (this.canEntityBeSeen(this.getAttackTarget()))
@@ -254,14 +260,14 @@ public class EntityKitsune extends TragicBoss {
 					if (this.getHurtTime() % 20 == 0 && this.getHurtTime() > 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F)
 					{
 						double d0 = this.getAttackTarget().posX - this.posX;
-						double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+						double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 						double d2 = this.getAttackTarget().posZ - this.posZ;
 
 						float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.175F;
 
 						for (int i = 0; i < 3; i++)
 						{
-							EntitySmallFireball fireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+							EntitySmallFireball fireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 							fireball.posY = this.posY + (this.height * 2 / 3);
 							this.worldObj.spawnEntityInWorld(fireball);
 						}
@@ -283,12 +289,12 @@ public class EntityKitsune extends TragicBoss {
 				if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.375F;
 
-					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 					fireball.posY = this.posY + (this.height * 2 / 3);
 					this.worldObj.spawnEntityInWorld(fireball);
 				}
@@ -304,6 +310,7 @@ public class EntityKitsune extends TragicBoss {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote || this.getHurtTime() > 0) return false;
@@ -330,6 +337,7 @@ public class EntityKitsune extends TragicBoss {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -370,18 +378,18 @@ public class EntityKitsune extends TragicBoss {
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		double d1 = this.posY + (double)(this.rand.nextInt(48) - 24);
+		double d1 = this.posY + (this.rand.nextInt(48) - 24);
 		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
 		return this.teleportTo(d0, d1, d2);
 	}
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - par1Entity.posY + (double)par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (double)(this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
+		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
 		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
 		return this.teleportTo(d1, d2, d3);
 	}
@@ -440,14 +448,14 @@ public class EntityKitsune extends TragicBoss {
 
 			for (int l = 0; l < short1; ++l)
 			{
-				double d6 = (double)l / ((double)short1 - 1.0D);
+				double d6 = l / (short1 - 1.0D);
 				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				this.worldObj.spawnParticle("flame", d7, d8, d9, (double)f, (double)f1, (double)f2);
+				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle("flame", d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);

@@ -1,16 +1,8 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import java.util.List;
-
 import tragicneko.tragicmc.util.DamageHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class EntitySpiritCast extends EntityProjectile {
@@ -25,6 +17,7 @@ public class EntitySpiritCast extends EntityProjectile {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
 
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.812F;
@@ -41,6 +34,7 @@ public class EntitySpiritCast extends EntityProjectile {
 		}
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

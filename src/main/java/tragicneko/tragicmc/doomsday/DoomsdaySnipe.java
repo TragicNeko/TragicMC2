@@ -63,7 +63,7 @@ public class DoomsdaySnipe extends Doomsday {
 			entityarrow.setFire(100);
 		}
 
-		player.worldObj.playSoundAtEntity(player, "random.bow", 1.0F, 1.0F / (this.rand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+		player.worldObj.playSoundAtEntity(player, "random.bow", 1.0F, 1.0F / (Doomsday.rand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 		entityarrow.canBePickedUp = 2;
 
 		if (!player.worldObj.isRemote)

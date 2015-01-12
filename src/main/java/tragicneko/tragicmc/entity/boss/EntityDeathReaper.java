@@ -161,16 +161,19 @@ public class EntityDeathReaper extends TragicBoss {
 		this.isBomb = rand.nextBoolean();
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -182,6 +185,7 @@ public class EntityDeathReaper extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? deathReaperStats[4] : deathReaperStats[4] * 0.4);
 	}
 
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		if (this.getReaperType() == 1) return;
@@ -195,6 +199,7 @@ public class EntityDeathReaper extends TragicBoss {
 		}
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
@@ -213,9 +218,9 @@ public class EntityDeathReaper extends TragicBoss {
 			for (int i = 0; i < pow; i++)
 			{
 				this.worldObj.spawnParticle(s,
-						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 						this.posY + (rand.nextDouble() * 0.115D) + 0.545D,
-						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
 
@@ -224,9 +229,9 @@ public class EntityDeathReaper extends TragicBoss {
 				for (int i = 0; i < 14; i++)
 				{
 					this.worldObj.spawnParticle("smoke",
-							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 							this.posY + (rand.nextDouble() * 0.115D) + 0.375D,
-							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 1.3D,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 							0.0, rand.nextDouble() * 0.5556, 0.0);
 				}
 			}
@@ -304,15 +309,15 @@ public class EntityDeathReaper extends TragicBoss {
 
 					if (this.isBeingAggressive())
 					{
-						this.motionX = d0 / (double)f2 * 2.45D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
-						this.motionZ = d1 / (double)f2 * 2.45D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
-						this.motionY = d2 / (double)f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
+						this.motionX = d0 / f2 * 2.45D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
+						this.motionZ = d1 / f2 * 2.45D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
+						this.motionY = d2 / f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
 					}
 					else
 					{
-						this.motionX = -d0 / (double)f2 * 2.45D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
-						this.motionZ = -d1 / (double)f2 * 2.45D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
-						this.motionY = d2 / (double)f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
+						this.motionX = -d0 / f2 * 2.45D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
+						this.motionZ = -d1 / f2 * 2.45D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
+						this.motionY = d2 / f2 * 2.45D * 0.800000011920929D + this.motionY * 0.80000000298023224D;
 					}
 				}
 				else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 1.0F, 12.0F)  && this.getAttackTime() == 0)
@@ -324,9 +329,9 @@ public class EntityDeathReaper extends TragicBoss {
 
 					if (!this.isBeingAggressive())
 					{
-						this.motionX = -d0 / (double)f2 * 1.25D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
-						this.motionZ = -d1 / (double)f2 * 1.25D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
-						this.motionY = d2 / (double)f2 * 1.25D * 0.200000011920929D + this.motionY * 0.10000000298023224D;
+						this.motionX = -d0 / f2 * 1.25D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
+						this.motionZ = -d1 / f2 * 1.25D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
+						this.motionY = d2 / f2 * 1.25D * 0.200000011920929D + this.motionY * 0.10000000298023224D;
 					}
 				}
 
@@ -335,7 +340,7 @@ public class EntityDeathReaper extends TragicBoss {
 				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
@@ -372,6 +377,7 @@ public class EntityDeathReaper extends TragicBoss {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -440,6 +446,7 @@ public class EntityDeathReaper extends TragicBoss {
 		return false;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote || this.getAttackTime() > 0) return false;
@@ -487,11 +494,13 @@ public class EntityDeathReaper extends TragicBoss {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return this.getReaperType() == 1 ? MathHelper.floor_double(deathReaperStats[5] / 4) : (this.isBeingAggressive() ? (int) deathReaperStats[5] : MathHelper.floor_double(deathReaperStats[5] / 3));
 	}
 
+	@Override
 	public void fall(float par1){}
 
 	private void trackHitType(String damageType) 

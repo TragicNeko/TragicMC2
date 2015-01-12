@@ -40,7 +40,8 @@ public class MouseEvents {
 	@SubscribeEvent
 	public void onMouseInput(MouseEvent event)
 	{
-		BlockGenericLeaves.fancyGraphics = Minecraft.getMinecraft().isFancyGraphicsEnabled();
+		Minecraft.getMinecraft();
+		BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
 
 		if (event.buttonstate && event.button == 0)
 		{
@@ -53,9 +54,9 @@ public class MouseEvents {
 			float f = 1.0F;
 			float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
 			float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
-			double d0 = player.prevPosX + (player.posX - player.prevPosX) * (double)f;
-			double d1 = player.prevPosY + (player.posY - player.prevPosY) * (double)f + (double)(player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
-			double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * (double)f;
+			double d0 = player.prevPosX + (player.posX - player.prevPosX) * f;
+			double d1 = player.prevPosY + (player.posY - player.prevPosY) * f + (player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
+			double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
 			Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
 			float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
 			float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
@@ -75,7 +76,7 @@ public class MouseEvents {
 
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
 			{				
-				Vec3 vec31 = vec3.addVector((double)f7 * d, (double)f6 * d, (double)f8 * d);
+				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
 				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord - 0.675, vec31.yCoord - 0.675, vec31.zCoord - 0.675).expand(1.35, 1.35, 1.35);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 				Entity entity;

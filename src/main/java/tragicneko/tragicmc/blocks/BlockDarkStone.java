@@ -32,6 +32,7 @@ public class BlockDarkStone extends Block {
 		this.setBlockName("tragicmc.darkStone");
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -49,6 +50,7 @@ public class BlockDarkStone extends Block {
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -60,11 +62,13 @@ public class BlockDarkStone extends Block {
 		this.spikeTexture[1] = par1IconRegister.registerIcon("tragicmc:SpikeSideDarkStone_lowRes");
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.oreNames.length; i++)

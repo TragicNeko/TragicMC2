@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;

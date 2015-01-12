@@ -4,10 +4,8 @@ import java.util.Random;
 
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -20,6 +18,7 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 
 	public static final ChestGenHooks chestHook = TragicItems.NetherStructureHook;
 	
+	@Override
 	public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
 	{
 		byte b0 = 3;
@@ -133,7 +132,7 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 
 								if (tileentitychest != null)
 								{
-									WeightedRandomChestContent.generateChestContents(p_76484_2_, this.chestHook.getItems(p_76484_2_), tileentitychest, this.chestHook.getCount(p_76484_2_));
+									WeightedRandomChestContent.generateChestContents(p_76484_2_, WorldGenDimensionDungeon.chestHook.getItems(p_76484_2_), tileentitychest, WorldGenDimensionDungeon.chestHook.getCount(p_76484_2_));
 								}
 
 								break label101;

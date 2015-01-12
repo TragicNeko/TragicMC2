@@ -28,6 +28,7 @@ public class WeaponMourningStar extends TragicWeapon {
 		this.epicLevels = new int[] {10, 3, 3, 5};
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;

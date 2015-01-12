@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -121,7 +120,7 @@ public class DoomsdayMinerSkills extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, (int) 300, 2));
+		player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 300, 2));
 	}
 
 }

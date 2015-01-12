@@ -2,8 +2,6 @@ package tragicneko.tragicmc.properties;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
-import java.util.UUID;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -12,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
-import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.network.MessageDoom;
 
 public class PropertyDoom implements IExtendedEntityProperties {

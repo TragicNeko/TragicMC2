@@ -34,6 +34,7 @@ public class EntitySpore extends EntityProjectile {
 		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

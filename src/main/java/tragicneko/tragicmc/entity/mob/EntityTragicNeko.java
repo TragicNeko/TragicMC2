@@ -5,8 +5,6 @@ import static tragicneko.tragicmc.TragicNewConfig.tragicNekoStats;
 import java.util.Calendar;
 import java.util.UUID;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,15 +19,10 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
@@ -149,11 +142,13 @@ public class EntityTragicNeko extends TragicMob {
 		this.setFlickTime(--pow);
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -164,18 +159,22 @@ public class EntityTragicNeko extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(tragicNekoStats[4]);
 	}
 
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 1;
 	}
 
+	@Override
 	public void setInWeb() {}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) tragicNekoStats[5];
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -220,12 +219,14 @@ public class EntityTragicNeko extends TragicMob {
 		
 	}
 	
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote) this.setThrowingTicks(20);
 	}
 
+	@Override
 	public void onDeathUpdate()
 	{
 		super.onDeathUpdate();
@@ -293,6 +294,7 @@ public class EntityTragicNeko extends TragicMob {
 		this.worldObj.spawnEntityInWorld(theProjectile);
 	}
 
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor_double(this.boundingBox.minY);
@@ -322,6 +324,7 @@ public class EntityTragicNeko extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (par1DamageSource.isExplosion() || this.worldObj.isRemote) return false;
@@ -333,6 +336,7 @@ public class EntityTragicNeko extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.getThrowingTicks() > 0) return false;

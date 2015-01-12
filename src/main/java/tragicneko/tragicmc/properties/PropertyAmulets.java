@@ -40,14 +40,14 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 		NBTTagCompound comp = new NBTTagCompound();
 		inventory.writeToNBT(comp);
 		comp.setByte("slotsOpen", this.slotsOpen);
-		compound.setTag(this.propertyName, comp);
+		compound.setTag(PropertyAmulets.propertyName, comp);
 
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
 		if (compound == null) return;
-		NBTTagCompound comp = (NBTTagCompound) compound.getTag(this.propertyName);
+		NBTTagCompound comp = (NBTTagCompound) compound.getTag(PropertyAmulets.propertyName);
 		if (comp == null) return;
 		inventory.readFromNBT(comp);
 		this.slotsOpen = comp.getByte("slotsOpen");

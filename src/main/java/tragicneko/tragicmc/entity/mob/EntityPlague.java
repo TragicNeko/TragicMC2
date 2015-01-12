@@ -46,6 +46,7 @@ public class EntityPlague extends TragicMob {
 		this.yOffset = 0.425F;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -62,27 +63,32 @@ public class EntityPlague extends TragicMob {
 		return (int) plagueStats[5];
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return 0;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 0.0F;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -92,9 +98,9 @@ public class EntityPlague extends TragicMob {
 			for (int l = 0; l < 2; ++l)
 			{
 				this.worldObj.spawnParticle("witchMagic",
-						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
-						this.posY + this.rand.nextDouble() * (double)this.height,
-						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
+						this.posY + this.rand.nextDouble() * this.height,
+						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -174,8 +180,10 @@ public class EntityPlague extends TragicMob {
 		}
 	}
 
+	@Override
 	public void fall(float par1){}
 
+	@Override
 	public void updateFallState(double par1, boolean par2) {}
 
 	@Override

@@ -21,6 +21,7 @@ public class RenderVoxStellarum extends RenderLiving {
 		super(new ModelVoxStellarum(), 0.75F * scale);
 	}
 
+	@Override
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
 		this.renderModel((EntityVoxStellarum) par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
@@ -78,9 +79,10 @@ public class RenderVoxStellarum extends RenderLiving {
 		}
 	}
 
+	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
 	{
-		GL11.glScalef(this.scale, this.scale, this.scale);
+		GL11.glScalef(RenderVoxStellarum.scale, RenderVoxStellarum.scale, RenderVoxStellarum.scale);
 	}
 
 	@Override
@@ -113,7 +115,7 @@ public class RenderVoxStellarum extends RenderLiving {
 		{
 			if (par2 == 1)
 			{
-				float f1 = (float)boss.ticksExisted + par3;
+				float f1 = boss.ticksExisted + par3;
 				this.bindTexture(texture);
 				GL11.glMatrixMode(GL11.GL_TEXTURE);
 				GL11.glLoadIdentity();
@@ -145,11 +147,13 @@ public class RenderVoxStellarum extends RenderLiving {
 		return -1;
 	}
 
+	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return this.shouldRenderPass((EntityVoxStellarum)par1EntityLivingBase, par2, par3);
 	}
 
+	@Override
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;

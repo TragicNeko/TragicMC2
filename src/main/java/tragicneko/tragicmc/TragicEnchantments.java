@@ -2,7 +2,6 @@ package tragicneko.tragicmc;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.enchantment.EnchantmentAgility;
 import tragicneko.tragicmc.enchantment.EnchantmentArmorExtra;
 import tragicneko.tragicmc.enchantment.EnchantmentCombustion;

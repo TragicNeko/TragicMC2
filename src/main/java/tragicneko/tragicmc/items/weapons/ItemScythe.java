@@ -54,6 +54,7 @@ public class ItemScythe extends ItemTool {
 		return this.doomsday.doomsdayType;
 	}
 	
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
@@ -82,12 +83,14 @@ public class ItemScythe extends ItemTool {
 		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 
+	@Override
 	public float func_150893_a(ItemStack stack, Block block)
 	{
 		Material material = block.getMaterial();
 		return material == Material.plants || material == Material.vine || material == Material.coral || material == Material.leaves || material == Material.gourd ? this.toolMaterial.getEfficiencyOnProperMaterial() : super.func_150893_a(stack, block);
 	}
 	
+	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int meta, float f, float f1, float f2)
     {
         if (!player.canPlayerEdit(x, y, z, meta, stack))
@@ -113,7 +116,7 @@ public class ItemScythe extends ItemTool {
             if (meta != 0 && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (block == Blocks.grass || block == Blocks.dirt))
             {
                 Block block1 = Blocks.farmland;
-                world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
+                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
 
                 if (world.isRemote)
                 {

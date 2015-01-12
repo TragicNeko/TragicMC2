@@ -1,11 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import tragicneko.tragicmc.entity.boss.EntityYeti;
-import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
-import tragicneko.tragicmc.entity.mob.EntityAbomination;
-import tragicneko.tragicmc.entity.mob.EntityCryse;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -23,6 +18,7 @@ public class EntityDarkEnergy extends EntityProjectile {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
 
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.965F;
@@ -46,6 +42,7 @@ public class EntityDarkEnergy extends EntityProjectile {
 		if (mop != null) this.setDead();
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

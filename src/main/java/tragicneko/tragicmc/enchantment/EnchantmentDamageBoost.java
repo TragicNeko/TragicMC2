@@ -21,21 +21,25 @@ public class EnchantmentDamageBoost extends Enchantment {
 		this.damageType = par3;
 	}
 
+	@Override
 	public int getMinEnchantability(int par1)
 	{
 		return 15 + (par1 * 3);
 	}
 
+	@Override
 	public int getMaxEnchantability(int par1)
 	{
 		return super.getMinEnchantability(par1) + 50;
 	}
 
+	@Override
 	public int getMaxLevel()
 	{
 		return 5;
 	}
 
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
 	{
 		Boolean flag = true;
@@ -48,6 +52,7 @@ public class EnchantmentDamageBoost extends Enchantment {
 		return flag;
 	}
 
+	@Override
 	public boolean canApply(ItemStack par1ItemStack)
 	{
 		return par1ItemStack.getItem() instanceof ItemAxe ? true : super.canApply(par1ItemStack);

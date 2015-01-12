@@ -13,7 +13,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
@@ -32,8 +31,6 @@ import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityStatue extends Entity {
 
@@ -44,6 +41,7 @@ public class EntityStatue extends Entity {
 		this.isImmuneToFire = true;
 	}
 	
+	@Override
 	protected boolean canTriggerWalking()
     {
         return false;
@@ -132,9 +130,9 @@ public class EntityStatue extends Entity {
 
 	@Override
 	protected void entityInit() {
-		this.dataWatcher.addObject(2, Integer.valueOf((int) 0));
-		this.dataWatcher.addObject(3, Integer.valueOf((int)0));
-		this.dataWatcher.addObject(4, Float.valueOf((float) 0));
+		this.dataWatcher.addObject(2, Integer.valueOf(0));
+		this.dataWatcher.addObject(3, Integer.valueOf(0));
+		this.dataWatcher.addObject(4, Float.valueOf(0));
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package tragicneko.tragicmc.items.food;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 
 public class ItemIceCream extends ItemFood {

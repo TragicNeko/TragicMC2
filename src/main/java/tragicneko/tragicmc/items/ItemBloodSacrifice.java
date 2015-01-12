@@ -17,17 +17,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBloodSacrifice extends Item {
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("Sacrifice some Health for Doom");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.uncommon;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote && TragicNewConfig.allowDoom)

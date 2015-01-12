@@ -1,18 +1,14 @@
 package tragicneko.tragicmc.client.render.boss;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
-import tragicneko.tragicmc.client.render.RenderProjectile;
 
 public class RenderMegaCryse extends RenderLiving {
 	
@@ -23,11 +19,13 @@ public class RenderMegaCryse extends RenderLiving {
 		super(new ModelMegaCryse(), 0.375F * scale);
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
     {
-		GL11.glScalef(this.scale, this.scale, this.scale);
+		GL11.glScalef(RenderMegaCryse.scale, RenderMegaCryse.scale, RenderMegaCryse.scale);
     }
 	
+	@Override
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
     {
 		this.bindEntityTexture(par1EntityLivingBase);
@@ -53,6 +51,7 @@ public class RenderMegaCryse extends RenderLiving {
         }
     }
 	
+	@Override
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
     {
         if (p_77032_1_.isInvisible())

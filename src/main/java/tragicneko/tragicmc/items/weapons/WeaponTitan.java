@@ -32,6 +32,7 @@ public class WeaponTitan extends EpicWeapon {
 		this.epicLevels = new int[] {10, 3, 5, 1};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote || !(entity instanceof EntityLivingBase)) return super.onLeftClickEntity(stack, player, entity);
@@ -56,6 +57,7 @@ public class WeaponTitan extends EpicWeapon {
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;
@@ -69,7 +71,7 @@ public class WeaponTitan extends EpicWeapon {
 		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[32]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[32])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
-			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 			double d7 = MathHelper.sqrt_double(d4 * d4 + d5 * d5 + d6 * d6);

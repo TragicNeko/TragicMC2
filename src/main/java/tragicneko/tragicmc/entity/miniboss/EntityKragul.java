@@ -28,21 +28,25 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		this.experienceValue = 16;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -59,6 +63,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		return (int) kragulStats[5];
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -71,14 +76,14 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 				&& this.canEntityBeSeen(this.getAttackTarget()) && this.timeSinceFiring >= 60)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
-			double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.75F;
 
 			for (int i = 0; i < 3; i++)
 			{
-				EntitySpiritCast fireball = new EntitySpiritCast(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+				EntitySpiritCast fireball = new EntitySpiritCast(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 				fireball.posX = this.posX + d0 * 0.115D;
 				fireball.posY = this.posY + this.height;
 				fireball.posZ = this.posZ + d0 * 0.115D;
@@ -90,6 +95,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		if (this.getAttackTarget() != null && this.ticksExisted % 40 == 0 && rand.nextInt(16) == 0) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote || !(par1Entity instanceof EntityLivingBase)) return false;

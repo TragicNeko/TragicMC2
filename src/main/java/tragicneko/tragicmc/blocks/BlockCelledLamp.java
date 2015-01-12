@@ -29,6 +29,7 @@ public class BlockCelledLamp extends Block {
 		this.setStepSound(soundTypeMetal);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -39,6 +40,7 @@ public class BlockCelledLamp extends Block {
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -48,11 +50,13 @@ public class BlockCelledLamp extends Block {
 		}
 	}
 	
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 	
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.subNames.length; i++)

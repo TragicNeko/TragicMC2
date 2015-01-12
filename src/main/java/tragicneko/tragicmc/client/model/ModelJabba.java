@@ -70,6 +70,7 @@ public class ModelJabba extends ModelBase
 		head2.addChild(rightTailPincer);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -81,6 +82,7 @@ public class ModelJabba extends ModelBase
 		head2.render(f5);
 	}
 
+	@Override
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 		head.rotateAngleY = par4 / (180F / (float)Math.PI);
@@ -89,6 +91,7 @@ public class ModelJabba extends ModelBase
 		head2.rotateAngleX = -par5 / (180F / (float)Math.PI);
 	}
 
+	@Override
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
 	{				
 		if (!(entity instanceof EntityJabba) && !(entity instanceof EntityClaymation)) return;
@@ -133,10 +136,10 @@ public class ModelJabba extends ModelBase
 
 		if (attack > 0)
 		{
-			leftPincer.rotateAngleY = -0.15F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F);
-			rightPincer.rotateAngleY = -(-0.15F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F));
-			leftTailPincer.rotateAngleY = 0.1F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F);
-			rightTailPincer.rotateAngleY = -(0.1F + 0.15F * this.simplifyAngle((float)attack - par3, 10.0F));
+			leftPincer.rotateAngleY = -0.15F + 0.15F * this.simplifyAngle(attack - par3, 10.0F);
+			rightPincer.rotateAngleY = -(-0.15F + 0.15F * this.simplifyAngle(attack - par3, 10.0F));
+			leftTailPincer.rotateAngleY = 0.1F + 0.15F * this.simplifyAngle(attack - par3, 10.0F);
+			rightTailPincer.rotateAngleY = -(0.1F + 0.15F * this.simplifyAngle(attack - par3, 10.0F));
 		}
 		else
 		{

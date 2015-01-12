@@ -235,7 +235,8 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * loads or generates the chunk at the chunk location specified
      */
-    public Chunk loadChunk(int p_73158_1_, int p_73158_2_)
+    @Override
+	public Chunk loadChunk(int p_73158_1_, int p_73158_2_)
     {
         return this.provideChunk(p_73158_1_, p_73158_2_);
     }
@@ -244,9 +245,10 @@ public class SynapseChunkProvider implements IChunkProvider
      * Will return back a chunk, if it doesn't exist and its not a MP client it will generates all the blocks for the
      * specified chunk from the map seed and chunk seed
      */
-    public Chunk provideChunk(int p_73154_1_, int p_73154_2_)
+    @Override
+	public Chunk provideChunk(int p_73154_1_, int p_73154_2_)
     {
-        this.synapseRNG.setSeed((long)p_73154_1_ * 341873128712L + (long)p_73154_2_ * 132897987541L);
+        this.synapseRNG.setSeed(p_73154_1_ * 341873128712L + p_73154_2_ * 132897987541L);
         Block[] ablock = new Block[32768];
         byte[] meta = new byte[ablock.length];
         BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, p_73154_1_ * 16, p_73154_2_ * 16, 16, 16); //Forge Move up to allow for passing to replaceBiomeBlocks
@@ -290,12 +292,12 @@ public class SynapseChunkProvider implements IChunkProvider
 
         for (i2 = 0; i2 < p_73164_6_; ++i2)
         {
-            adouble1[i2] = Math.cos((double)i2 * Math.PI * 6.0D / (double)p_73164_6_) * 2.0D;
-            double d2 = (double)i2;
+            adouble1[i2] = Math.cos(i2 * Math.PI * 6.0D / p_73164_6_) * 2.0D;
+            double d2 = i2;
 
             if (i2 > p_73164_6_ / 2)
             {
-                d2 = (double)(p_73164_6_ - 1 - i2);
+                d2 = p_73164_6_ - 1 - i2;
             }
 
             if (d2 < 4.0D)
@@ -350,7 +352,7 @@ public class SynapseChunkProvider implements IChunkProvider
                 }
 
                 d3 += 0.5D;
-                d5 = d5 * (double)p_73164_6_ / 16.0D;
+                d5 = d5 * p_73164_6_ / 16.0D;
                 ++l1;
 
                 for (int j2 = 0; j2 < p_73164_6_; ++j2)
@@ -379,13 +381,13 @@ public class SynapseChunkProvider implements IChunkProvider
 
                     if (j2 > p_73164_6_ - 4)
                     {
-                        d11 = (double)((float)(j2 - (p_73164_6_ - 4)) / 3.0F);
+                        d11 = (j2 - (p_73164_6_ - 4)) / 3.0F;
                         d6 = d6 * (1.0D - d11) + -10.0D * d11;
                     }
 
-                    if ((double)j2 < d4)
+                    if (j2 < d4)
                     {
-                        d11 = (d4 - (double)j2) / 4.0D;
+                        d11 = (d4 - j2) / 4.0D;
 
                         if (d11 < 0.0D)
                         {
@@ -412,7 +414,8 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * Checks to see if a chunk exists at x, y
      */
-    public boolean chunkExists(int p_73149_1_, int p_73149_2_)
+    @Override
+	public boolean chunkExists(int p_73149_1_, int p_73149_2_)
     {
         return true;
     }
@@ -420,7 +423,8 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * Populates chunk with ores etc etc
      */
-    public void populate(IChunkProvider p_73153_1_, int x, int z)
+    @Override
+	public void populate(IChunkProvider p_73153_1_, int x, int z)
     {
         BlockFalling.fallInstantly = true;
         
@@ -444,7 +448,8 @@ public class SynapseChunkProvider implements IChunkProvider
      * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
      * Return true if all chunks have been saved.
      */
-    public boolean saveChunks(boolean p_73151_1_, IProgressUpdate p_73151_2_)
+    @Override
+	public boolean saveChunks(boolean p_73151_1_, IProgressUpdate p_73151_2_)
     {
         return true;
     }
@@ -453,12 +458,14 @@ public class SynapseChunkProvider implements IChunkProvider
      * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
      * unimplemented.
      */
-    public void saveExtraData() {}
+    @Override
+	public void saveExtraData() {}
 
     /**
      * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
      */
-    public boolean unloadQueuedChunks()
+    @Override
+	public boolean unloadQueuedChunks()
     {
         return false;
     }
@@ -466,7 +473,8 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * Returns if the IChunkProvider supports saving.
      */
-    public boolean canSave()
+    @Override
+	public boolean canSave()
     {
         return true;
     }
@@ -474,7 +482,8 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * Converts the instance data to a readable string.
      */
-    public String makeString()
+    @Override
+	public String makeString()
     {
         return "SynapseRandomLevelSource";
     }
@@ -482,23 +491,27 @@ public class SynapseChunkProvider implements IChunkProvider
     /**
      * Returns a list of creatures of the specified type that can spawn at the given location.
      */
-    public List getPossibleCreatures(EnumCreatureType p_73155_1_, int p_73155_2_, int p_73155_3_, int p_73155_4_)
+    @Override
+	public List getPossibleCreatures(EnumCreatureType p_73155_1_, int p_73155_2_, int p_73155_3_, int p_73155_4_)
     {
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(p_73155_2_, p_73155_4_);
         return biomegenbase.getSpawnableList(p_73155_1_);
     }
 
-    public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_)
+    @Override
+	public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_)
     {
         return null;
     }
 
-    public int getLoadedChunkCount()
+    @Override
+	public int getLoadedChunkCount()
     {
         return 0;
     }
 
-    public void recreateStructures(int p_82695_1_, int p_82695_2_)
+    @Override
+	public void recreateStructures(int p_82695_1_, int p_82695_2_)
     {
     }
 }

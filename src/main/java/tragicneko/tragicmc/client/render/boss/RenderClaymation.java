@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.client.render.boss;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,7 +13,6 @@ import tragicneko.tragicmc.client.model.ModelClaymation;
 import tragicneko.tragicmc.client.model.ModelCustomGolem;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelJabba;
-import tragicneko.tragicmc.client.model.ModelKitsune;
 import tragicneko.tragicmc.client.model.ModelKitsune2;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNorVox;
@@ -56,7 +54,7 @@ public class RenderClaymation extends RenderBoss {
 		
 		if (par2 == 0)
 		{
-			float f1 = (float)boss.ticksExisted;
+			float f1 = boss.ticksExisted;
 			this.bindTexture(texture);
 			GL11.glMatrixMode(GL11.GL_TEXTURE);
 			GL11.glLoadIdentity();
@@ -82,11 +80,13 @@ public class RenderClaymation extends RenderBoss {
 		return -1;
 	}
 
+	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return this.shouldRenderPass((TragicBoss)par1EntityLivingBase, par2, par3);
 	}
 
+	@Override
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;

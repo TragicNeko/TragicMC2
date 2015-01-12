@@ -18,19 +18,21 @@ public class BlockCandle extends BlockTorch {
 		this.setCreativeTab(TragicMC.Survival);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon("tragicmc:Candle_lowRes");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
     {
         int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
-        double d0 = (double)((float)p_149734_2_ + 0.5F);
-        double d1 = (double)((float)p_149734_3_ + 0.75F);
-        double d2 = (double)((float)p_149734_4_ + 0.5F);
+        double d0 = p_149734_2_ + 0.5F;
+        double d1 = p_149734_3_ + 0.75F;
+        double d2 = p_149734_4_ + 0.5F;
         double d3 = 0.2399999988079071D;
         double d4 = 0.27000001072883606D;
 

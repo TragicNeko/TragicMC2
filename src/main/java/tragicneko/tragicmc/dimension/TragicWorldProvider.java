@@ -1,18 +1,12 @@
 package tragicneko.tragicmc.dimension;
 
-import java.util.Set;
-
-import net.minecraft.block.Block;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicNewConfig;
-
-import com.google.common.collect.Sets;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -165,7 +159,7 @@ public class TragicWorldProvider extends WorldProvider
 
         for (int i = 0; i <= 15; ++i)
         {
-            float f1 = 1.0F - (float)i / 15.0F;
+            float f1 = 1.0F - i / 15.0F;
             this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f;
         }
     }

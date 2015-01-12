@@ -42,6 +42,7 @@ public class ArmorLight extends TragicArmor {
 		this.epicLevels = new int[][] {{10, 5, 3}, {10, 5, 5, 3}, {5, 5, 1}};
 	}
 	
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 2)
@@ -51,11 +52,13 @@ public class ArmorLight extends TragicArmor {
 		return "tragicmc:textures/armor/Light1_lowRes.png";
 	}
 	
+	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
 		return super.getArmorModel(entity, stack, slot);
 	}
 
+	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{
 		super.onArmorTick(world, player, itemStack);

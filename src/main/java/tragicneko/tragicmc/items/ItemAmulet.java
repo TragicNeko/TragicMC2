@@ -56,24 +56,28 @@ public class ItemAmulet extends Item {
 		this.setMaxStackSize(1);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass)
 	{
 		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") && stack.getTagCompound().getInteger("amuletLevel") > 3;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses()
 	{
 		return true;
 	}
 
+	@Override
 	public IIcon getIcon(ItemStack stack, int pass)
 	{
 		int i = stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : getDefaultLevels(this.amuletID);
 		return this.iconArray[net.minecraft.util.MathHelper.clamp_int(i, 1, 4) - 1][pass > 0 ? 1 : 0];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
@@ -94,6 +98,7 @@ public class ItemAmulet extends Item {
 		return EnumRarity.common;
 	}
 
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		int i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : getDefaultLevels(this.amuletID);
@@ -110,11 +115,13 @@ public class ItemAmulet extends Item {
 		return i <= 1 ? EnumChatFormatting.AQUA : (i == 2 ? EnumChatFormatting.BLUE : (i == 3 ? EnumChatFormatting.DARK_BLUE : (i == 4 ? EnumChatFormatting.DARK_RED : EnumChatFormatting.GOLD)));
 	}
 
+	@Override
 	public int getMaxDamage()
 	{
 		return 300;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int par2)
 	{
@@ -128,6 +135,7 @@ public class ItemAmulet extends Item {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister regi)
 	{		

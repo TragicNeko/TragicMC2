@@ -22,6 +22,7 @@ public abstract class RenderBoss extends RenderLiving {
 		this(model, shadowSize, 1.0F);
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		GL11.glScalef(scale, scale, scale);
@@ -30,9 +31,10 @@ public abstract class RenderBoss extends RenderLiving {
 	public void doRender(TragicBoss boss, double par2, double par4, double par6, float par8, float par9)
 	{
 		BossStatus.setBossStatus(boss, true);
-		super.doRender((EntityLiving)boss, par2, par4, par6, par8, par9);
+		super.doRender(boss, par2, par4, par6, par8, par9);
 	}
 	
+	@Override
 	public void doRender(EntityLiving entity, double par2, double par4, double par6, float par8, float par9)
 	{
 		this.doRender((TragicBoss)entity, par2, par4, par6, par8, par9);

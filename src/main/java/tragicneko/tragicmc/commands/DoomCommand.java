@@ -1,18 +1,14 @@
 package tragicneko.tragicmc.commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tragicneko.tragicmc.properties.PropertyDoom;
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 
 public class DoomCommand extends CommandBase {
 
@@ -100,11 +96,13 @@ public class DoomCommand extends CommandBase {
 		}
 	}
 
+	@Override
 	public int getRequiredPermissionLevel()
     {
         return 2;
     }
 
+	@Override
 	public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getAllUsernames()) : null;
@@ -115,7 +113,8 @@ public class DoomCommand extends CommandBase {
         return MinecraftServer.getServer().getAllUsernames();
     }
 
-    public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
+    @Override
+	public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
     {
         return par2 == 0;
     }

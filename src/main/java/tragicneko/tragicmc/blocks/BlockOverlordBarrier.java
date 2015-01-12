@@ -51,6 +51,7 @@ public class BlockOverlordBarrier extends Block {
 		world.setBlockToAir(x, y, z);
 	}
 
+	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		if (!world.isRemote) world.scheduleBlockUpdate(x, y, z, this, 45 + world.rand.nextInt(16));
@@ -75,5 +76,6 @@ public class BlockOverlordBarrier extends Block {
 		return false;
 	}
 	
+	@Override
 	public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
 }

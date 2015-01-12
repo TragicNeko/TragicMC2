@@ -14,27 +14,32 @@ public class EnchantmentRuneWalker extends Enchantment {
 		this.setName("runeWalker");
 	}
 
+	@Override
 	public int getMinEnchantability(int par1)
     {
         return 15 + (par1 * 3);
     }
 
-    public int getMaxEnchantability(int par1)
+    @Override
+	public int getMaxEnchantability(int par1)
     {
         return super.getMinEnchantability(par1) + 50;
     }
 
-    public int getMaxLevel()
+    @Override
+	public int getMaxLevel()
     {
         return 5;
     }
     
-    public int calcModifierDamage(int par1, DamageSource source)
+    @Override
+	public int calcModifierDamage(int par1, DamageSource source)
     {
     	return source.isMagicDamage() && !(source.canHarmInCreative()) ? MathHelper.floor_float(par1 * 1.5F) : 0;
     }
     
-    public boolean canApplyTogether(Enchantment par1Enchantment)
+    @Override
+	public boolean canApplyTogether(Enchantment par1Enchantment)
     {
     	Boolean flag = true;
     	

@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 
 public class ItemDyingObsidianOrb extends Item {
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("When Right-Clicked, will teleport you");
@@ -17,6 +18,7 @@ public class ItemDyingObsidianOrb extends Item {
 		par2List.add("no matter what dimension you're in");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote)

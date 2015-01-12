@@ -56,11 +56,13 @@ public class EntityYeti extends TragicBoss {
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -71,6 +73,7 @@ public class EntityYeti extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(yetiStats[4]);
 	}
 
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
@@ -207,6 +210,7 @@ public class EntityYeti extends TragicBoss {
 		return this.getChargeTicks() > 0;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.getDemeanor() < 0 || this.getFrostTicks() > 0 || this.isRoaring())
@@ -224,9 +228,9 @@ public class EntityYeti extends TragicBoss {
 				for (int i = 0; i < 2; i++)
 				{
 					this.worldObj.spawnParticle("snowshovel",
-							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 							this.posY + (rand.nextDouble() * 0.15D),
-							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 							0.0, rand.nextDouble() * 1.2556, 0.0);
 				}
 
@@ -235,9 +239,9 @@ public class EntityYeti extends TragicBoss {
 					for (int i = 0; i < 36; i++)
 					{
 						this.worldObj.spawnParticle("snowshovel",
-								this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 								this.posY + (rand.nextDouble() * 0.15D),
-								this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 								rand.nextDouble() - rand.nextDouble(), rand.nextDouble() * 0.2556, rand.nextDouble() - rand.nextDouble());
 					}
 				}
@@ -245,9 +249,9 @@ public class EntityYeti extends TragicBoss {
 			else if (this.isCharging())
 			{
 				this.worldObj.spawnParticle("crit",
-						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 						this.posY + (rand.nextDouble() * 0.75D) + 0.45D,
-						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 						0.0, 0.0, 0.0);
 			}
 			return;
@@ -281,9 +285,9 @@ public class EntityYeti extends TragicBoss {
 					double d2 = this.getAttackTarget().posY - this.posY;
 					f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
 
-					this.motionX = d0 / (double)f2 * 2.15D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
-					this.motionZ = d1 / (double)f2 * 2.15D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
-					this.motionY = d2 / (double)f2 * 1.45D * 0.400000011920929D + this.motionY * 0.80000000298023224D;
+					this.motionX = d0 / f2 * 2.15D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
+					this.motionZ = d1 / f2 * 2.15D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
+					this.motionY = d2 / f2 * 1.45D * 0.400000011920929D + this.motionY * 0.80000000298023224D;
 					this.incrementDemeanor();
 					this.setChargeTicks(10);
 				}
@@ -301,13 +305,13 @@ public class EntityYeti extends TragicBoss {
 				if (this.getFrostTicks() > 5 && !this.isCharging())
 				{
 					d0 = this.getAttackTarget().posX - this.posX;
-					d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.265F;
 
 					for (int i = 0; i < 2; i++)
 					{
-						EntityIcicle fireball = new EntityIcicle(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+						EntityIcicle fireball = new EntityIcicle(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 						fireball.posY = this.posY + (this.height * 2 / 3);
 						fireball.posX += d0 * 0.155D;
 						fireball.posZ += d2 * 0.155D;
@@ -331,11 +335,11 @@ public class EntityYeti extends TragicBoss {
 				if (this.ticksExisted % 60 == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && !this.isRoaring() && this.canEntityBeSeen(this.getAttackTarget()) && !this.isCharging())
 				{
 					d0 = this.getAttackTarget().posX - this.posX;
-					d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+					d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
 
-					EntityLargeRock fireball = new EntityLargeRock(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					EntityLargeRock fireball = new EntityLargeRock(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 					fireball.posY = this.posY + this.height;
 					fireball.posX += d0 * 0.15D;
 					fireball.posZ += d2 * 0.15D;
@@ -433,6 +437,7 @@ public class EntityYeti extends TragicBoss {
 
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -476,6 +481,7 @@ public class EntityYeti extends TragicBoss {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -498,11 +504,13 @@ public class EntityYeti extends TragicBoss {
 		return flag;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return this.isBeingAggressive() || this.isCharging() ? (int) yetiStats[5] : MathHelper.floor_double(yetiStats[5] / 2);
 	}
 
+	@Override
 	public void fall(float par1){}
 
 	private void trackHitType(String damageType) 

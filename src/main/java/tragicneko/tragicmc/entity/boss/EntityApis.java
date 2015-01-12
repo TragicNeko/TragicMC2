@@ -52,16 +52,19 @@ public class EntityApis extends TragicBoss {
 		this.isImmuneToFire = true;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -72,6 +75,7 @@ public class EntityApis extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(apisStats[4]);
 	}
 
+	@Override
 	public void onDeath(DamageSource par1)
 	{
 		super.onDeath(par1);
@@ -167,6 +171,7 @@ public class EntityApis extends TragicBoss {
 		this.setAttackTime(--pow);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.isStomping()) 
@@ -185,9 +190,9 @@ public class EntityApis extends TragicBoss {
 				for (int i = 0; i < 2; i++)
 				{
 					this.worldObj.spawnParticle("flame",
-							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 							this.posY + (rand.nextDouble() * 0.15D),
-							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 							0.0, rand.nextDouble() * 1.2556, 0.0);
 				}
 
@@ -196,9 +201,9 @@ public class EntityApis extends TragicBoss {
 					for (int i = 0; i < 36; i++)
 					{
 						this.worldObj.spawnParticle("flame",
-								this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 								this.posY + (rand.nextDouble() * 0.15D),
-								this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+								this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 								rand.nextDouble() - rand.nextDouble(), rand.nextDouble() * 0.2556, rand.nextDouble() - rand.nextDouble());
 					}
 				}
@@ -206,9 +211,9 @@ public class EntityApis extends TragicBoss {
 			else if (this.isCharging())
 			{
 				this.worldObj.spawnParticle("crit",
-						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 						this.posY + (rand.nextDouble() * 0.75D) + 0.45D,
-						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D,
 						0.0, 0.0, 0.0);
 			}
 		}
@@ -261,9 +266,9 @@ public class EntityApis extends TragicBoss {
 				double d1 = this.getAttackTarget().posZ - this.posZ;
 				double d2 = this.getAttackTarget().posY - this.posY;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-				this.motionX = d0 / (double)f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
-				this.motionZ = d1 / (double)f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
-				this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+				this.motionX = d0 / f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
+				this.motionZ = d1 / f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
+				this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 				this.setChargeTicks(10);
 			}
 			else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)  
@@ -278,9 +283,9 @@ public class EntityApis extends TragicBoss {
 				double d1 = this.getAttackTarget().posZ - this.posZ;
 				double d2 = this.getAttackTarget().posY - this.posY;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-				this.motionX = d0 / (double)f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
-				this.motionZ = d1 / (double)f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
-				this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+				this.motionX = d0 / f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
+				this.motionZ = d1 / f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
+				this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 				this.setChargeTicks(10);
 			}
 			else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
@@ -293,8 +298,8 @@ public class EntityApis extends TragicBoss {
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().posZ - this.posZ;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX = d0 / (double)f2 * 3.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-				this.motionZ = d1 / (double)f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionX = d0 / f2 * 3.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 				this.motionY = 0.45;
 				this.setChargeTicks(10);
 			}
@@ -311,7 +316,7 @@ public class EntityApis extends TragicBoss {
 				for (int i = 0; i < list.size(); i++)
 				{
 					entity = list.get(i);
-					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F - (float)this.getDistanceToEntity(entity));
+					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F - this.getDistanceToEntity(entity));
 				}
 
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 1.225F + 4.0F, this.getMobGriefing());
@@ -320,7 +325,7 @@ public class EntityApis extends TragicBoss {
 			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(8) == 0 && !this.isCharging())
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 				double d2 = this.getAttackTarget().posZ - this.posZ;
 
 				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
@@ -328,24 +333,24 @@ public class EntityApis extends TragicBoss {
 				switch(rand.nextInt(6))
 				{
 				case 0:
-					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 					fireball.posY = this.posY + this.height;
 					this.worldObj.spawnEntityInWorld(fireball);
 					break;
 				case 1:
-					EntitySolarBomb solarBomb = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					EntitySolarBomb solarBomb = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 					solarBomb.posY = this.posY + this.height;
 					this.worldObj.spawnEntityInWorld(solarBomb);
 					break;
 				case 2:
-					EntitySolarBomb solarBomb2 = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+					EntitySolarBomb solarBomb2 = new EntitySolarBomb(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 					solarBomb2.posY = this.posY + this.height;
 					this.worldObj.spawnEntityInWorld(solarBomb2);
 					break;
 				default:
 					for (int i = 0; i < 3; ++i)
 					{
-						EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+						EntitySmallFireball fireball2 = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 						fireball2.posY = this.posY + this.height;
 						this.worldObj.spawnEntityInWorld(fireball2);
 					}
@@ -360,6 +365,7 @@ public class EntityApis extends TragicBoss {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote || par1DamageSource.isExplosion()) return false;
@@ -402,6 +408,7 @@ public class EntityApis extends TragicBoss {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote || this.isStomping()) return false;
@@ -430,6 +437,7 @@ public class EntityApis extends TragicBoss {
 		return flag;
 	}
 
+	@Override
 	public void collideWithEntity(Entity entity)
 	{
 		super.collideWithEntity(entity);
@@ -438,6 +446,7 @@ public class EntityApis extends TragicBoss {
 		if (this.ticksExisted % 10 == 0 && entity instanceof EntityLivingBase && this.isReflecting()) entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return this.worldObj.isDaytime() ? (int) apisStats[5] : MathHelper.floor_double(apisStats[5] / 2);

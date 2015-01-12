@@ -51,6 +51,7 @@ public class ItemMobEgg extends Item
 		this.setTextureName("tragicmc:SpawnEgg_lowRes");
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack par1ItemStack)
 	{
 		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
@@ -64,6 +65,7 @@ public class ItemMobEgg extends Item
 		return s;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
 	{
@@ -75,6 +77,7 @@ public class ItemMobEgg extends Item
 	 * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
 	 * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
 	 */
+	@Override
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
 	{
 		if (par3World.isRemote)
@@ -94,7 +97,7 @@ public class ItemMobEgg extends Item
 				d0 = 0.5D;
 			}
 
-			Entity entity = spawnCreature(par3World, par1ItemStack.getItemDamage(), (double)par4 + 0.5D, (double)par5 + d0, (double)par6 + 0.5D);
+			Entity entity = spawnCreature(par3World, par1ItemStack.getItemDamage(), par4 + 0.5D, par5 + d0, par6 + 0.5D);
 
 			if (entity != null)
 			{
@@ -116,6 +119,7 @@ public class ItemMobEgg extends Item
 	/**
 	 * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
 	 */
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote)
@@ -150,7 +154,7 @@ public class ItemMobEgg extends Item
 
 					if (par2World.getBlock(i, j, k) instanceof BlockLiquid)
 					{
-						Entity entity = spawnCreature(par2World, par1ItemStack.getItemDamage(), (double)i, (double)j, (double)k);
+						Entity entity = spawnCreature(par2World, par1ItemStack.getItemDamage(), i, j, k);
 
 						if (entity != null)
 						{
@@ -206,6 +210,7 @@ public class ItemMobEgg extends Item
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses()
 	{
@@ -215,6 +220,7 @@ public class ItemMobEgg extends Item
 	/**
 	 * Gets an icon index based on an item's damage value and the given render pass
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamageForRenderPass(int par1, int par2)
 	{
@@ -235,7 +241,7 @@ public class ItemMobEgg extends Item
 			return par2 > 0 ? this.miniBossIcon : this.miniBossIconOverlay;
 		}
 		
-		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.BIGBOSS)
+		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.ALPHA)
 		{
 			return par2 > 0 ? this.bigBossIcon : this.bigBossIconOverlay;
 		}
@@ -246,6 +252,7 @@ public class ItemMobEgg extends Item
 	/**
 	 * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_)
 	{
@@ -260,6 +267,7 @@ public class ItemMobEgg extends Item
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{

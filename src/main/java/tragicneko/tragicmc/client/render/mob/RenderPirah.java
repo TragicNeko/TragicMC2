@@ -25,6 +25,7 @@ public class RenderPirah extends RenderLiving {
 		super(new ModelPirah(), 0.255F);
 	}
 
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		EntityPirah pirah = (EntityPirah) entity;

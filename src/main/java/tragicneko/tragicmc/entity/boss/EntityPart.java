@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
 
 public class EntityPart extends Entity {
 	
@@ -32,12 +31,14 @@ public class EntityPart extends Entity {
 		
 	}
 	
+	@Override
 	public boolean canBeCollidedWith()
     {
         return true;
     }
 
-    public boolean attackEntityFrom(DamageSource source, float damage)
+    @Override
+	public boolean attackEntityFrom(DamageSource source, float damage)
     {
         return this.isEntityInvulnerable() ? false : this.main.attackEntityFromPart(this, source, damage);
     }
@@ -45,7 +46,8 @@ public class EntityPart extends Entity {
     /**
      * Returns true if Entity argument is equal to this Entity
      */
-    public boolean isEntityEqual(Entity p_70028_1_)
+    @Override
+	public boolean isEntityEqual(Entity p_70028_1_)
     {
         return this == p_70028_1_ || this.main == p_70028_1_;
     }

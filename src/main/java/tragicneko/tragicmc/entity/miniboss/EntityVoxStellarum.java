@@ -29,6 +29,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		this.stepHeight = 2.0F;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -39,22 +40,26 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(voxStellarumStats[4]);
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return !this.isHealing() && this.isBurning();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
@@ -122,6 +127,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		return ((float) Math.cos((2.115F / (Math.PI * 2.0F)) * (this.getSpinTicks() / 100.0F) + 0.125F)) * 2.35F;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -133,9 +139,9 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 			if (this.isSpinning())
 			{
 				this.worldObj.spawnParticle("crit",
-						this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
-						this.posY + this.rand.nextDouble() * (double)this.height,
-						this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
+						this.posY + this.rand.nextDouble() * this.height,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -197,8 +203,8 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				double d3 = 0.5D;
 				double d4 = this.getSpinTicks() >= 100 && this.getSpinTicks() <= 800 ? 0.22786D : 0.1433467D;
 
-				this.motionX = d0 / (double)f2 * d3 * 0.100000011920929D + entity.motionX * d4;
-				this.motionZ = d1 / (double)f2 * d3 * 0.100000011920929D + entity.motionZ * d4;
+				this.motionX = d0 / f2 * d3 * 0.100000011920929D + entity.motionX * d4;
+				this.motionZ = d1 / f2 * d3 * 0.100000011920929D + entity.motionZ * d4;
 				if (this.motionY >= 0.25D) this.motionY = -0.15D;
 
 				if (this.getHealth() <= this.getMaxHealth() / 3 && this.ticksExisted % 10 == 0) this.shootProjectiles();
@@ -226,7 +232,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				d2 = rand.nextInt(16) - rand.nextInt(16);
 			}
 
-			EntityStarShard shard = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+			EntityStarShard shard = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			shard.posX = this.posX + (0.115D * d0);
 			shard.posY = this.posY + (this.height * 3 / 4);
 			shard.posZ = this.posZ + (0.115D * d2);
@@ -234,6 +240,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false; 
@@ -247,6 +254,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.isHealing()) return false;
@@ -267,6 +275,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		return flag;
 	}
 
+	@Override
 	public void collideWithEntity(Entity entity)
 	{
 		super.collideWithEntity(entity);
@@ -283,6 +292,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		}
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) voxStellarumStats[5];

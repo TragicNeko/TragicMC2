@@ -27,21 +27,25 @@ public class EnchantmentArmorExtra extends Enchantment {
 		this.damageType = par3;
 	}
 
+	@Override
 	public int getMinEnchantability(int par1)
 	{
 		return 24 + (par1 * 2);
 	}
 
+	@Override
 	public int getMaxEnchantability(int par1)
 	{
 		return super.getMinEnchantability(par1) + 50;
 	}
 
+	@Override
 	public int getMaxLevel()
 	{
 		return 3;
 	}
 
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
 	{
 		Boolean flag = true;
@@ -54,6 +58,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 		return flag;
 	}
 
+	@Override
 	public int calcModifierDamage(int par1, DamageSource par2DamageSource)
 	{
 		if (!par2DamageSource.canHarmInCreative())

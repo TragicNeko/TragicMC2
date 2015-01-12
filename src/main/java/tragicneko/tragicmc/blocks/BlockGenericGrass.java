@@ -46,12 +46,14 @@ public class BlockGenericGrass extends BlockGrass {
 		return false;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess p_149673_1_, int p_149673_2_, int p_149673_3_, int p_149673_4_, int p_149673_5_)
     {
         return this.getIcon(p_149673_5_, p_149673_1_.getBlockMetadata(p_149673_2_, p_149673_3_, p_149673_4_));
     }
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2)
 	{
@@ -68,6 +70,7 @@ public class BlockGenericGrass extends BlockGrass {
 		return this.sideIcon;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -75,11 +78,13 @@ public class BlockGenericGrass extends BlockGrass {
 		this.sideIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassSide_lowRes");
 	}
 
+	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
 	{
 		return Item.getItemFromBlock(TragicBlocks.DeadDirt);
 	}
 	
+	@Override
 	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
         if (!p_149674_1_.isRemote && this != TragicBlocks.AshenGrass)
@@ -106,6 +111,7 @@ public class BlockGenericGrass extends BlockGrass {
         }
     }
 	
+	@Override
 	public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
     {
         int l = 0;

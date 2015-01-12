@@ -33,6 +33,7 @@ public class WeaponSplinter extends EpicWeapon {
 		this.epicLevels = new int[] {10, 5, 5, 3};
 	}
 	
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);

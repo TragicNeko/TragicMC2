@@ -29,6 +29,7 @@ public class ArmorSkull extends TragicArmor {
 		this.epicLevels = new int[][] {{5}, {5, 3}, {5}};
 	}
 
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 2)

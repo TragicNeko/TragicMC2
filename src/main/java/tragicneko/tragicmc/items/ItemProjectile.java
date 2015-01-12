@@ -26,6 +26,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
+import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 import tragicneko.tragicmc.entity.projectile.EntityPitchBlack;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
@@ -41,11 +42,11 @@ public class ItemProjectile extends Item {
 
 	private String[] subNames = new String[] {"rock", "lavaRock", "pumpkinbomb", "largePumpkinbomb", "poisonBarb", "nekoRocket", "nekoStickyBomb", "nekoClusterBomb",
 			"nekoMiniBomb", "solarBomb", "spiritCast", "spore", "banana", "largeRock", "icicle", "timeBomb", "starShard", "darkLightning", "pitchBlack", "darkEnergy",
-			"darkMortor", "webBomb", "crystalMortor"};
+			"darkMortor", "webBomb", "crystalMortor", "overlordMortor"};
 
 	private String[] textureNames = new String[] {"Rock", "LavaRock", "Pumpkinbomb", "LargePumpkinbomb", "PoisonBarb", "NekoRocket", "NekoStickyBomb", "NekoClusterBomb",
 			"NekoMiniBomb", "SolarBomb", "SpiritCast", "Spore", "Banana", "LargeRock", "Icicle", "TimeBomb", "StarShard", "DarkLightning", "PitchBlack", "DarkEnergy", 
-			"DarkMortor", "WebBomb", "CrystalMortor"};
+			"DarkMortor", "WebBomb", "CrystalMortor", "overlordMortor"};
 
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
@@ -58,6 +59,7 @@ public class ItemProjectile extends Item {
 		this.setUnlocalizedName("tragicmc.projectile");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		if (world.isRemote) return stack;
@@ -67,9 +69,9 @@ public class ItemProjectile extends Item {
 		float f = 1.0F;
 		float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
 		float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
-		double d0 = player.prevPosX + (player.posX - player.prevPosX) * (double)f;
-		double d1 = player.prevPosY + (player.posY - player.prevPosY) * (double)f + (double)(player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
-		double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * (double)f;
+		double d0 = player.prevPosX + (player.posX - player.prevPosX) * f;
+		double d1 = player.prevPosY + (player.posY - player.prevPosY) * f + (player.worldObj.isRemote ? player.getEyeHeight() - player.getDefaultEyeHeight() : player.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
+		double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
 		Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
 		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
 		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
@@ -79,7 +81,7 @@ public class ItemProjectile extends Item {
 		float f8 = f3 * f5;
 		double d3 = 6.0D;
 
-		Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
+		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
 		MovingObjectPosition mop = world.func_147447_a(vec3, vec31, true, false, true);
 
 		double x = mop.hitVec.xCoord - player.posX;
@@ -162,6 +164,11 @@ public class ItemProjectile extends Item {
 			entity = new EntityCrystalMortor(world, player, x, y, z);
 			entity.motionY += f9;
 			break;
+		case 23:
+			entity = new EntityOverlordMortor(world, player, x, y, z);
+			entity.motionX += itemRand.nextFloat() - itemRand.nextFloat();
+			entity.motionY += itemRand.nextFloat() - itemRand.nextFloat();
+			entity.motionZ += itemRand.nextFloat() - itemRand.nextFloat();
 		}
 
 		if (entity != null)

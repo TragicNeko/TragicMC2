@@ -44,7 +44,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 		if (vec == null) return;
 
 		double d4 = vec.xCoord - player.posX;
-		double d5 = vec.yCoord - (player.posY + (double)(player.height / 2.0F));
+		double d5 = vec.yCoord - (player.posY + player.height / 2.0F);
 		double d6 = vec.zCoord - player.posZ;
 
 		EntityNekoRocket rocket = new EntityNekoRocket(player.worldObj, player, d4, d5, d6);

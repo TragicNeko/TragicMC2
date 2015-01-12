@@ -18,7 +18,6 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
@@ -116,8 +115,8 @@ public class MiscEvents {
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
 					double d3 = 5.0D;
 
-					event.entity.motionX = d1 / (double)f2 * d3 * 0.800000011920929D + event.entity.motionX * 0.60000000298023224D;
-					event.entity.motionZ = d2 / (double)f2 * d3 * 0.800000011920929D + event.entity.motionZ * 0.60000000298023224D;
+					event.entity.motionX = d1 / f2 * d3 * 0.800000011920929D + event.entity.motionX * 0.60000000298023224D;
+					event.entity.motionZ = d2 / f2 * d3 * 0.800000011920929D + event.entity.motionZ * 0.60000000298023224D;
 					event.entity.motionY += 1.45;
 					
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[15]);

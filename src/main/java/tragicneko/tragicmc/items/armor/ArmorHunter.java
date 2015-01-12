@@ -1,17 +1,9 @@
 package tragicneko.tragicmc.items.armor;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorHunter extends TragicArmor {
 
@@ -19,6 +11,7 @@ public class ArmorHunter extends TragicArmor {
 		super(material, armorType, dday);
 	}
 
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == TragicItems.HuntersLegs)

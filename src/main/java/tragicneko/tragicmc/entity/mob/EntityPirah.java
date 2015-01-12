@@ -3,15 +3,9 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicNewConfig.goldenPirahStats;
 import static tragicneko.tragicmc.TragicNewConfig.pirahStats;
 
-import java.util.UUID;
-
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.IEntitySelector;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -22,20 +16,12 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityWaterMob;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 
 public class EntityPirah extends TragicMob {
 
@@ -48,6 +34,7 @@ public class EntityPirah extends TragicMob {
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, false, false, new IEntitySelector() {
+			@Override
 			public boolean isEntityApplicable(Entity par1Entity)
 			{
 				return par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPirah);
@@ -55,6 +42,7 @@ public class EntityPirah extends TragicMob {
 		}));
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return this.getPirahType() == 1;
@@ -66,29 +54,35 @@ public class EntityPirah extends TragicMob {
 		return false;
 	}
 	
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return this.getPirahType() == 1 ? false : super.canRenderOnFire();
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean handleWaterMovement()
 	{
 		if (this.isBurning()) this.extinguish();
 		return false;
 	}
 
+	@Override
 	public void setAir(int i){}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -170,11 +164,13 @@ public class EntityPirah extends TragicMob {
 		return this.dataWatcher.getWatchableObjectInt(18);
 	}
 
+	@Override
 	protected boolean canTriggerWalking()
 	{
 		return false;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -237,9 +233,9 @@ public class EntityPirah extends TragicMob {
 						double d1 = this.getAttackTarget().posY - this.posY;
 						double d2 = this.getAttackTarget().posZ - this.posZ;
 						float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-						this.motionX = d0 / (double)f2 * 0.75D * 0.150000011920929D + this.motionX * 0.20000000298023224D;
+						this.motionX = d0 / f2 * 0.75D * 0.150000011920929D + this.motionX * 0.20000000298023224D;
 						this.motionY = d1 * 0.10000000298023224D;
-						this.motionZ = d2 / (double)f2 * 0.75D * 0.150000011920929D + this.motionZ * 0.20000000298023224D;
+						this.motionZ = d2 / f2 * 0.75D * 0.150000011920929D + this.motionZ * 0.20000000298023224D;
 
 						if (this.getAttackTarget().isDead) this.setAttackTarget(null);
 					}
@@ -263,6 +259,7 @@ public class EntityPirah extends TragicMob {
 		}
 	}
 
+	@Override
 	public void moveEntity(double d0, double d1, double d2)
 	{
 		if (this.isInsideOfMaterial(getMaterial())) 
@@ -275,6 +272,7 @@ public class EntityPirah extends TragicMob {
 		}
 	}
 	
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) (this.getTextureID() == 7 ? goldenPirahStats[5] : pirahStats[5]);
@@ -284,11 +282,13 @@ public class EntityPirah extends TragicMob {
 		return this.getPirahType() == 0 ? Material.water : Material.lava;
 	}
 
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		return this.posY > 35.0D && this.posY < 65.0D && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && this.isInsideOfMaterial(this.getMaterial());
 	}
 
+	@Override
 	protected void fall(float f) {
 		if (this.worldObj.isRemote) return;
 		if (!this.isInsideOfMaterial(getMaterial()))

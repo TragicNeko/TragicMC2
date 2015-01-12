@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -21,11 +20,13 @@ public class EntitySolarBomb extends EntityProjectile {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
 	
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return true;
 	}
 
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.90F;
@@ -42,6 +43,7 @@ public class EntitySolarBomb extends EntityProjectile {
 		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

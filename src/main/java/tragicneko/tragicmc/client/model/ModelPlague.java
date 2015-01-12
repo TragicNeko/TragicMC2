@@ -69,6 +69,7 @@ public class ModelPlague extends ModelBase
 		this.shapeArray = new ModelRenderer[] {shape, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10};
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -85,6 +86,7 @@ public class ModelPlague extends ModelBase
 		shape10.render(f5);
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -93,9 +95,9 @@ public class ModelPlague extends ModelBase
 		
 		for (int i = 0; i < this.boxList.size(); i++)
 		{
-			shapeArray[i].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle((float)j - f2, 10.0F);
-			shapeArray[i].rotateAngleY = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle((float)j - f2, 10.0F);
-			shapeArray[i].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle((float)j - f2, 10.0F);
+			shapeArray[i].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
+			shapeArray[i].rotateAngleY = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
+			shapeArray[i].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
 		}
 	}
 	

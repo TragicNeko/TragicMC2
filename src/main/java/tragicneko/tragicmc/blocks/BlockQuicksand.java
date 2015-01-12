@@ -37,6 +37,7 @@ public class BlockQuicksand extends BlockFalling
 		this.setStepSound(soundTypeSand);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -47,6 +48,7 @@ public class BlockQuicksand extends BlockFalling
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -56,11 +58,13 @@ public class BlockQuicksand extends BlockFalling
 		}
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.variantNames.length; i++)
@@ -72,6 +76,7 @@ public class BlockQuicksand extends BlockFalling
 	/**
 	 * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{				
 		entity.motionX *= 0.0015;
@@ -81,12 +86,14 @@ public class BlockQuicksand extends BlockFalling
 		entity.fallDistance = 0.0F;
 	}
 
+	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity)
 	{
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 	}
 
+	@Override
 	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float distance)
 	{
 		entity.motionX *= 0.0015;
@@ -94,6 +101,7 @@ public class BlockQuicksand extends BlockFalling
 		entity.fallDistance = 0.0F;
 	}
 
+	@Override
 	public boolean canHarvestBlock(EntityPlayer player, int meta)
 	{
 		return true;
@@ -103,6 +111,7 @@ public class BlockQuicksand extends BlockFalling
 	 * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
 	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
 	 */
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
@@ -112,6 +121,7 @@ public class BlockQuicksand extends BlockFalling
 	 * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
 	 * cleared to be reused)
 	 */
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		return null;
@@ -120,6 +130,7 @@ public class BlockQuicksand extends BlockFalling
 	/**
 	 * The type of render function that is called for this block
 	 */
+	@Override
 	public int getRenderType()
 	{
 		return 0;
@@ -128,11 +139,13 @@ public class BlockQuicksand extends BlockFalling
 	/**
 	 * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
 	 */
+	@Override
 	public boolean renderAsNormalBlock()
 	{
 		return true;
 	}
 
+	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
 	{
 		return super.getItemDropped(p_149650_1_, p_149650_2_, p_149650_3_);
@@ -141,11 +154,13 @@ public class BlockQuicksand extends BlockFalling
 	/**
 	 * Return true if a player with Silk Touch can harvest this block directly, and not its normal drops.
 	 */
+	@Override
 	protected boolean canSilkHarvest()
 	{
 		return true;
 	}
 
+	@Override
 	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z)
 	{
 		return false;

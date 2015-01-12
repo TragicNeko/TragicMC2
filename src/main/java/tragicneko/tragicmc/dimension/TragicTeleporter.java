@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.dimension;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -16,7 +14,6 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 
 public class TragicTeleporter extends Teleporter {
@@ -87,7 +84,7 @@ public class TragicTeleporter extends Teleporter {
 				}
 			}
 
-			par1Entity.setLocationAndAngles((double)i, (double)j + 1, (double)k, par1Entity.rotationYaw, par1Entity.rotationPitch);
+			par1Entity.setLocationAndAngles(i, (double)j + 1, k, par1Entity.rotationYaw, par1Entity.rotationPitch);
 			par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
 			par1Entity.fallDistance = 0.0F;
 		}
@@ -104,11 +101,11 @@ public class TragicTeleporter extends Teleporter {
 
 				if (cc != null)
 				{
-					player.setLocationAndAngles((double)cc.posX, (double)cc.posY + 1.5D, (double)cc.posZ, player.rotationYaw, player.rotationPitch);
+					player.setLocationAndAngles(cc.posX, cc.posY + 1.5D, cc.posZ, player.rotationYaw, player.rotationPitch);
 				}
 				else
 				{
-					player.setLocationAndAngles((double)i, (double)j, (double)k, player.rotationYaw, player.rotationPitch);
+					player.setLocationAndAngles(i, j, k, player.rotationYaw, player.rotationPitch);
 				}
 				
 				player.motionX = player.motionY = player.motionZ = 0.0D;
@@ -116,7 +113,7 @@ public class TragicTeleporter extends Teleporter {
 			}
 			else
 			{				
-				par1Entity.setLocationAndAngles((double)i, (double)j, (double)k, par1Entity.rotationYaw, par1Entity.rotationPitch);
+				par1Entity.setLocationAndAngles(i, j, k, par1Entity.rotationYaw, par1Entity.rotationPitch);
 				par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
 				par1Entity.fallDistance = 0.0F;
 			}

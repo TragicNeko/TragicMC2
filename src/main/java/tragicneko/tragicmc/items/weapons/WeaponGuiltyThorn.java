@@ -30,6 +30,7 @@ public class WeaponGuiltyThorn extends TragicWeapon {
 		this.epicLevels = new int[] {5, 3, 3};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);

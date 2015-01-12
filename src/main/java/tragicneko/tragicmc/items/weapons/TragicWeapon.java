@@ -62,6 +62,7 @@ public class TragicWeapon extends ItemSword {
 		return this.doomsday.doomsdayType;
 	}
 
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{		
 		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)

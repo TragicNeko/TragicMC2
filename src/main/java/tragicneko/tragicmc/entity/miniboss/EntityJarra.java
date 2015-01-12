@@ -1,12 +1,10 @@
 package tragicneko.tragicmc.entity.miniboss;
 
 import static tragicneko.tragicmc.TragicNewConfig.jarraStats;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
@@ -24,27 +22,32 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		this.isImmuneToFire = false;
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return false;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return this.isBurning();
@@ -74,6 +77,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		return (int) jarraStats[5];
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (!this.worldObj.isRemote && this.isPotionActive(Potion.poison.id))
@@ -96,9 +100,9 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		for (int l = 0; l < 3; ++l)
 		{
 			this.worldObj.spawnParticle("witchMagic",
-					this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
-					this.posY + this.rand.nextDouble() * (double)this.height,
-					this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
+					this.posY + this.rand.nextDouble() * this.height,
+					this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D,
 					this.rand.nextDouble() * 0.1D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -110,14 +114,14 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + (double)(entity.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 		double d2 = entity.posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;
 
 		for (int i = 0; i < 5; ++i)
 		{
-			EntityPoisonBarb poisonbarb = new EntityPoisonBarb(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+			EntityPoisonBarb poisonbarb = new EntityPoisonBarb(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			poisonbarb.posX = this.posX + d0 * 0.115D;
 			poisonbarb.posY = this.posY + 0.435D;
 			poisonbarb.posZ = this.posZ + d0 * 0.115D;

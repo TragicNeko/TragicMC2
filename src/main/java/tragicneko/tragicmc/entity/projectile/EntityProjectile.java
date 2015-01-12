@@ -37,14 +37,17 @@ public abstract class EntityProjectile extends Entity
 		this.setSize(1.0F, 1.0F);
 	}
 
+	@Override
 	public void setInWeb() {}
 
+	@Override
 	protected void entityInit() {}
 
 	/**
 	 * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge
 	 * length * 64 * renderDistanceWeight Args: distance
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isInRangeToRenderDist(double par1)
 	{
@@ -59,7 +62,7 @@ public abstract class EntityProjectile extends Entity
 		this.setSize(1.0F, 1.0F);
 		this.setLocationAndAngles(par2, par4, par6, this.rotationYaw, this.rotationPitch);
 		this.setPosition(par2, par4, par6);
-		double d6 = (double)MathHelper.sqrt_double(par8 * par8 + par10 * par10 + par12 * par12);
+		double d6 = MathHelper.sqrt_double(par8 * par8 + par10 * par10 + par12 * par12);
 		this.accelerationX = par8 / d6 * 0.1D;
 		this.accelerationY = par10 / d6 * 0.1D;
 		this.accelerationZ = par12 / d6 * 0.1D;
@@ -77,7 +80,7 @@ public abstract class EntityProjectile extends Entity
 		par3 += this.rand.nextGaussian() * 0.4D;
 		par5 += this.rand.nextGaussian() * 0.4D;
 		par7 += this.rand.nextGaussian() * 0.4D;
-		double d3 = (double)MathHelper.sqrt_double(par3 * par3 + par5 * par5 + par7 * par7);
+		double d3 = MathHelper.sqrt_double(par3 * par3 + par5 * par5 + par7 * par7);
 		this.accelerationX = par3 / d3 * 0.1D;
 		this.accelerationY = par5 / d3 * 0.1D;
 		this.accelerationZ = par7 / d3 * 0.1D;
@@ -86,6 +89,7 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	@Override
 	public void onUpdate()
 	{
 		if (!this.worldObj.isRemote && (this.shootingEntity != null && this.shootingEntity.isDead || !this.worldObj.blockExists((int)this.posX, (int)this.posY, (int)this.posZ) || !this.worldObj.getChunkProvider().chunkExists((int) this.posX / 16, (int) this.posZ / 16)))
@@ -111,9 +115,9 @@ public abstract class EntityProjectile extends Entity
 				}
 
 				this.inGround = false;
-				this.motionX *= (double)(this.rand.nextFloat() * 0.2F);
-				this.motionY *= (double)(this.rand.nextFloat() * 0.2F);
-				this.motionZ *= (double)(this.rand.nextFloat() * 0.2F);
+				this.motionX *= this.rand.nextFloat() * 0.2F;
+				this.motionY *= this.rand.nextFloat() * 0.2F;
+				this.motionZ *= this.rand.nextFloat() * 0.2F;
 				this.ticksAlive = 0;
 				this.ticksInAir = 0;
 			}
@@ -144,7 +148,7 @@ public abstract class EntityProjectile extends Entity
 				if (entity1.canBeCollidedWith() && (!entity1.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25))
 				{
 					float f = 0.3F;
-					AxisAlignedBB axisalignedbb = entity1.boundingBox.expand((double)f, (double)f, (double)f);
+					AxisAlignedBB axisalignedbb = entity1.boundingBox.expand(f, f, f);
 					MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
 
 					if (movingobjectposition1 != null)
@@ -176,7 +180,7 @@ public abstract class EntityProjectile extends Entity
 			float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.rotationYaw = (float)(Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) + 90.0F;
 
-			for (this.rotationPitch = (float)(Math.atan2((double)f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+			for (this.rotationPitch = (float)(Math.atan2(f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
 			{
 				;
 			}
@@ -205,7 +209,7 @@ public abstract class EntityProjectile extends Entity
 				for (int j = 0; j < 4; ++j)
 				{
 					float f3 = 0.25F;
-					this.worldObj.spawnParticle("bubble", this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ);
+					this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
 				}
 
 				f2 = 0.8F;
@@ -214,9 +218,9 @@ public abstract class EntityProjectile extends Entity
 			this.motionX += this.accelerationX;
 			this.motionY += this.accelerationY;
 			this.motionZ += this.accelerationZ;
-			this.motionX *= (double)f2;
-			this.motionY *= (double)f2;
-			this.motionZ *= (double)f2;
+			this.motionX *= f2;
+			this.motionY *= f2;
+			this.motionZ *= f2;
 			this.worldObj.spawnParticle(this.getParticleString(), this.posX, this.posY + 0.25D, this.posZ, 0.0D, 0.0D, 0.0D);
 			this.setPosition(this.posX, this.posY, this.posZ);
 		}
@@ -242,6 +246,7 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
+	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		par1NBTTagCompound.setShort("xTile", (short)this.xTile);
@@ -255,6 +260,7 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
+	@Override
 	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		this.xTile = par1NBTTagCompound.getShort("xTile");
@@ -279,11 +285,13 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * Returns true if other Entities should be prevented from moving through this Entity.
 	 */
+	@Override
 	public boolean canBeCollidedWith()
 	{
 		return true;
 	}
 
+	@Override
 	public float getCollisionBorderSize()
 	{
 		return 1.0F;
@@ -292,6 +300,7 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * Called when the entity is attacked.
 	 */
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.isEntityInvulnerable() || this.worldObj.isRemote)
@@ -339,6 +348,7 @@ public abstract class EntityProjectile extends Entity
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize()
 	{
@@ -348,11 +358,13 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * Gets how bright this entity is.
 	 */
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{

@@ -11,22 +11,26 @@ public class EnchantmentRange extends Enchantment {
 		this.setName("reach");
 	}
 	
+	@Override
 	public int getMinEnchantability(int par1)
     {
         return 5 + (par1 * 5);
     }
 
-    public int getMaxEnchantability(int par1)
+    @Override
+	public int getMaxEnchantability(int par1)
     {
         return super.getMinEnchantability(par1) + 50;
     }
 
-    public int getMaxLevel()
+    @Override
+	public int getMaxLevel()
     {
         return 5;
     }
     
-    public boolean canApplyTogether(Enchantment par1Enchantment)
+    @Override
+	public boolean canApplyTogether(Enchantment par1Enchantment)
     {
         return super.canApplyTogether(par1Enchantment);
     }

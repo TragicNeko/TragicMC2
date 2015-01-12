@@ -184,10 +184,10 @@ public class EnchantmentEvents {
 			EntityPlayer player = event.entityPlayer;
 			World world = player.worldObj;
 
-			float f = (float)event.charge / 20.0F;
+			float f = event.charge / 20.0F;
 			f = (f * f + f * 2.0F) / 3.0F;
 
-			if ((double)f < 0.5D)
+			if (f < 0.5D)
 			{
 				return;
 			}
@@ -216,8 +216,8 @@ public class EnchantmentEvents {
 
 				if (k > 0)
 				{
-					entityarrow.setDamage(entityarrow.getDamage() + (double)k * 0.5D);
-					entityarrow2.setDamage(entityarrow.getDamage() + (double)k * 0.5D);
+					entityarrow.setDamage(entityarrow.getDamage() + k * 0.5D);
+					entityarrow2.setDamage(entityarrow.getDamage() + k * 0.5D);
 				}
 
 				int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, event.bow);

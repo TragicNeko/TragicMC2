@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +25,7 @@ public class ItemNekoWand extends Item {
 
 	private int cooldown = 0;
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add(EnumChatFormatting.DARK_RED + "Make mobs fight with neko mind control!");
@@ -36,6 +36,7 @@ public class ItemNekoWand extends Item {
 		par2List.add("R-Click to reset all selections"); 
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote) return false; 
@@ -123,6 +124,7 @@ public class ItemNekoWand extends Item {
 		return true;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer par3EntityPlayer)
 	{
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
@@ -146,6 +148,7 @@ public class ItemNekoWand extends Item {
 		return stack;
 	}
 
+	@Override
 	public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
 	{
 		if (this.cooldown > 0)

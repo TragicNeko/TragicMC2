@@ -26,6 +26,7 @@ private String[] variantNames = new String[]{"Crying", "Bleeding", "Dying"};
 		this.setBlockName("tragicmc.tragicObsidian");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -36,6 +37,7 @@ private String[] variantNames = new String[]{"Crying", "Bleeding", "Dying"};
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -45,11 +47,13 @@ private String[] variantNames = new String[]{"Crying", "Bleeding", "Dying"};
 		}
 	}
 	
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
@@ -59,6 +63,7 @@ private String[] variantNames = new String[]{"Crying", "Bleeding", "Dying"};
 		}
 	}
 	
+	@Override
 	public int getMobilityFlag()
 	{
 		return 2;

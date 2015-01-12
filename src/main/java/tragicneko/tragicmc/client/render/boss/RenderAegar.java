@@ -22,6 +22,7 @@ public class RenderAegar extends RenderLiving {
 		this.scale = 1.745F;
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		GL11.glScalef(scale, scale, scale);

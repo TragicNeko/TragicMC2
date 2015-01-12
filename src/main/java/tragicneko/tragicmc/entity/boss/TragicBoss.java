@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.boss;
 
 import java.util.ArrayList;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -108,7 +109,6 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		{
 			ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
 			if (drop != null) this.entityDropItem(drop, 0.4F);
-			total++;
 		}
 	}
 
@@ -223,5 +223,26 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	public int getPlayersNearby(double range, int min, int max)
 	{
 		return MathHelper.clamp_int(getPlayersNearby(range), min, max);
+	}
+	
+	public void healByFactor(float factor)
+	{
+		int i = this.getPlayersNearby();
+		this.heal(factor * i);
+	}
+	
+	public void healByFactorRanged(float factor, float min, float max)
+	{
+		int i = this.getPlayersNearby();
+		float f = MathHelper.clamp_float(factor * i, min, max);
+		this.heal(f);
+	}
+	
+	public int getHighestSolidBlock(int posX, int posY, int posZ) {
+		while(this.worldObj.getBlock(posX, posY, posZ).getMaterial() == Material.air && posY > 0)
+		{
+			--posY;
+		}
+		return posY;
 	}
 }

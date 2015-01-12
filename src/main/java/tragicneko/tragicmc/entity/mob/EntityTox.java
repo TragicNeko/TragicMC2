@@ -46,6 +46,7 @@ public class EntityTox extends TragicMob {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return this.getToxType() == 1;
@@ -133,27 +134,32 @@ public class EntityTox extends TragicMob {
 		this.setWiggleTime(--pow);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return this.getToxType() == 1 ? 15728880 : super.getBrightnessForRender(par1);
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return this.getToxType() == 1 ? 1.0F : super.getBrightness(par1);
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -165,6 +171,7 @@ public class EntityTox extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? toxStats[4] : poxStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (!this.worldObj.isRemote)
@@ -186,9 +193,9 @@ public class EntityTox extends TragicMob {
 				if ((this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0) && !this.isImmuneToFire())
 				{
 					this.worldObj.spawnParticle("mobSpellAmbient",
-							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
-							this.posY + this.rand.nextDouble() * (double)this.height,
-							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D,
 							this.rand.nextDouble() * 0.1D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -201,9 +208,9 @@ public class EntityTox extends TragicMob {
 				if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 				{
 					this.worldObj.spawnParticle("slime",
-							this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
-							this.posY + this.rand.nextDouble() * (double)this.height,
-							this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D,
 							this.rand.nextDouble() * 0.1D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -243,14 +250,14 @@ public class EntityTox extends TragicMob {
 	protected void shootProjectiles()
 	{
 		double d0 = this.getAttackTarget().posX - this.posX;
-		double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
 
 		for (int i = 0; i < 3; i++)
 		{
-			EntitySpore spore = new EntitySpore(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+			EntitySpore spore = new EntitySpore(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			spore.posX = this.posX + d0 * 0.115D;
 			spore.posY = this.posY + (this.height * 2 / 3);
 			spore.posZ = this.posZ + d2 * 0.115D;
@@ -258,6 +265,7 @@ public class EntityTox extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -284,6 +292,7 @@ public class EntityTox extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -298,6 +307,7 @@ public class EntityTox extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return this.isFiring() ? 0 : (this.getToxType() == 0 ? (int) toxStats[5] : (int) poxStats[5]);

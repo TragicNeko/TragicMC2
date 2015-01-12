@@ -2,18 +2,14 @@ package tragicneko.tragicmc.items.weapons;
 
 import java.util.UUID;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -26,12 +22,14 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 		super(p_i45356_1_, dday);
 	}
 
+	@Override
 	public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player)
 	{
 		player.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
 		return super.onDroppedByPlayer(item, player);
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
@@ -69,6 +67,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 		return super.onLeftClickEntity(stack, player, entity);
 	} 
 
+	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
 		super.onUpdate(stack, world, entity, par4, par5);

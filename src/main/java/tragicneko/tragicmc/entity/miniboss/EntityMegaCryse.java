@@ -6,33 +6,14 @@ import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
-import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.util.DamageHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
@@ -44,6 +25,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		this.experienceValue = 12;
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return false;
@@ -132,6 +114,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		}
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -142,6 +125,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(megaCryseStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -160,6 +144,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -187,11 +172,13 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) megaCryseStats[5];
 	}
 
+	@Override
 	public void collideWithEntity(Entity entity)
 	{
 		super.collideWithEntity(entity);

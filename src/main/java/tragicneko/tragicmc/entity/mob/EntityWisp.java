@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 
 import com.google.common.collect.Sets;
@@ -91,34 +90,41 @@ public class EntityWisp extends TragicMob {
 		;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float p_70070_1_)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public float getBrightness(float p_70013_1_)
 	{
 		return 1.0F;
 	}
 
+	@Override
 	protected void fall(float p_70069_1_) {}
 
+	@Override
 	public boolean isBurning()
 	{
 		return false;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -135,6 +141,7 @@ public class EntityWisp extends TragicMob {
 		return (int) wispStats[5];
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -219,6 +226,7 @@ public class EntityWisp extends TragicMob {
 		}
 	}
 
+	@Override
 	protected boolean isValidLightLevel()
 	{
 		return true;

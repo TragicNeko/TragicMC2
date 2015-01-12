@@ -23,11 +23,13 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		this.stepHeight = 1.5F;
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return false;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -84,6 +86,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	@Override
 	public void setChild() {}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.isCharging() && this.getChargeTicks() > 170) this.motionX = this.motionZ = 0.0D;
@@ -139,8 +142,8 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().posZ - this.posZ;
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-					this.motionX += d0 / (double)f2 * 0.13D * 0.1100000011920929D + this.motionX * 0.1000000298023224D;
-					this.motionZ += d1 / (double)f2 * 0.13D * 0.1100000011920929D + this.motionZ * 0.1000000298023224D;
+					this.motionX += d0 / f2 * 0.13D * 0.1100000011920929D + this.motionX * 0.1000000298023224D;
+					this.motionZ += d1 / f2 * 0.13D * 0.1100000011920929D + this.motionZ * 0.1000000298023224D;
 					this.motionY = -0.1D;
 				}
 			}
@@ -151,6 +154,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -159,6 +163,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.isCharging() && this.getChargeTicks() > 170) return false;

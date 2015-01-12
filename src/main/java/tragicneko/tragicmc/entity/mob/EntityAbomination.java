@@ -75,16 +75,19 @@ public class EntityAbomination extends TragicMob {
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -95,6 +98,7 @@ public class EntityAbomination extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(abominationStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -109,6 +113,7 @@ public class EntityAbomination extends TragicMob {
 		if (this.isCelebrating() && this.getCelebrationTicks() % 20 == 0) this.jump();
 	}
 
+	@Override
 	public void moveEntity(double d0, double d1, double d2)
 	{
 		if (this.isCelebrating())
@@ -158,6 +163,7 @@ public class EntityAbomination extends TragicMob {
 		this.dataWatcher.updateObject(16, i);
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -197,6 +203,7 @@ public class EntityAbomination extends TragicMob {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote || this.isCelebrating()) return false;
@@ -214,6 +221,7 @@ public class EntityAbomination extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) abominationStats[5];

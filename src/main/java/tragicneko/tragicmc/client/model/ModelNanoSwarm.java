@@ -69,6 +69,7 @@ public class ModelNanoSwarm extends ModelBase
 		this.shapeArray = new ModelRenderer[] {shape, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10};
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -85,6 +86,7 @@ public class ModelNanoSwarm extends ModelBase
 		shape10.render(f5);
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -95,9 +97,9 @@ public class ModelNanoSwarm extends ModelBase
 		for (int i = 0; i < this.boxList.size(); i++)
 		{
 			meow = (0.65F + (i * 0.25F)) * (float) Math.PI;
-			shapeArray[i].rotateAngleX = meow * this.simplifyAngle((float)j, 180.0F);
-			shapeArray[i].rotateAngleY = meow * this.simplifyAngle((float)j, 180.0F);
-			shapeArray[i].rotateAngleZ = meow * this.simplifyAngle((float)j, 180.0F);
+			shapeArray[i].rotateAngleX = meow * this.simplifyAngle(j, 180.0F);
+			shapeArray[i].rotateAngleY = meow * this.simplifyAngle(j, 180.0F);
+			shapeArray[i].rotateAngleZ = meow * this.simplifyAngle(j, 180.0F);
 		}
 	}
 	

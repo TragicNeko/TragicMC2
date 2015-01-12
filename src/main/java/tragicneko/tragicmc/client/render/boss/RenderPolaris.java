@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.client.render.boss;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -38,7 +37,7 @@ public class RenderPolaris extends RenderBoss {
 		
 		if (par2 == 0 && !polar.getDaytime())
 		{
-			float f1 = (float)boss.ticksExisted;
+			float f1 = boss.ticksExisted;
 			this.bindTexture(texture);
 			GL11.glMatrixMode(GL11.GL_TEXTURE);
 			GL11.glLoadIdentity();
@@ -64,16 +63,19 @@ public class RenderPolaris extends RenderBoss {
 		return -1;
 	}
 
+	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return this.shouldRenderPass((TragicBoss)par1EntityLivingBase, par2, par3);
 	}
 
+	@Override
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
 	}	
 
+	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{	
 		return texture;

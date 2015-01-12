@@ -3,12 +3,12 @@ package tragicneko.tragicmc.blocks.tileentity;
 import java.util.Random;
 
 import tragicneko.tragicmc.TragicNewConfig;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.storage.WorldInfo;
 
 public class TileEntityTimeDisruptor extends TileEntity {
 
+	@Override
 	public void updateEntity()
 	{
 		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord) && TragicNewConfig.allowItemTimeAltering)

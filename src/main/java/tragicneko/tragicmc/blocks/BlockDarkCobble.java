@@ -30,6 +30,7 @@ public class BlockDarkCobble extends Block {
 		this.setBlockName("tragicmc.darkCobblestone");
 	}
 	
+	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
     {
         if (side == ForgeDirection.UP && world.getBlockMetadata(x, y, z) == 1)
@@ -39,6 +40,7 @@ public class BlockDarkCobble extends Block {
         return false;
     }
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -50,6 +52,7 @@ public class BlockDarkCobble extends Block {
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -59,11 +62,13 @@ public class BlockDarkCobble extends Block {
 		}
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.oreNames.length; i++)

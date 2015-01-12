@@ -11,22 +11,26 @@ public class EnchantmentStomp extends Enchantment {
 		this.setName("stomp");
 	}
 	
+	@Override
 	public int getMinEnchantability(int par1)
     {
         return 10 + (par1 * 4);
     }
 
-    public int getMaxEnchantability(int par1)
+    @Override
+	public int getMaxEnchantability(int par1)
     {
         return super.getMinEnchantability(par1) + 50;
     }
 
-    public int getMaxLevel()
+    @Override
+	public int getMaxLevel()
     {
         return 2;
     }
     
-    public boolean canApplyTogether(Enchantment par1Enchantment)
+    @Override
+	public boolean canApplyTogether(Enchantment par1Enchantment)
     {
         return super.canApplyTogether(par1Enchantment);
     }

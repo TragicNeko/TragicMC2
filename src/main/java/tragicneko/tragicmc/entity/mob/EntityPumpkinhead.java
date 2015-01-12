@@ -66,7 +66,7 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public float getModValue()
 	{
-		return (float) this.dataWatcher.getWatchableObjectFloat(16);
+		return this.dataWatcher.getWatchableObjectFloat(16);
 	}
 
 	private void setModValue(float f)
@@ -119,16 +119,19 @@ public class EntityPumpkinhead extends TragicMob {
 		return this.getAngerTicks() > 0;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -139,6 +142,7 @@ public class EntityPumpkinhead extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(pumpkinheadStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -275,6 +279,7 @@ public class EntityPumpkinhead extends TragicMob {
 		}
 	}
 	
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -300,6 +305,7 @@ public class EntityPumpkinhead extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		if (!this.isPumpkinNearby())
@@ -336,6 +342,7 @@ public class EntityPumpkinhead extends TragicMob {
 		return false;
 	}
 	
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 1;

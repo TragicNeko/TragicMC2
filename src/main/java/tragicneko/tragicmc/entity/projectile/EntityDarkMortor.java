@@ -24,6 +24,7 @@ public class EntityDarkMortor extends EntityProjectile {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
 	
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.869F;
@@ -77,6 +78,7 @@ public class EntityDarkMortor extends EntityProjectile {
 		return "smoke";
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

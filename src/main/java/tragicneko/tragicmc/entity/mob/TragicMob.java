@@ -50,6 +50,7 @@ public abstract class TragicMob extends EntityMob
 		return this.superiorForm != null && TragicNewConfig.allowMobTransformation;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -72,6 +73,7 @@ public abstract class TragicMob extends EntityMob
 		this.setCorruptionTicks(++pow);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -179,6 +181,7 @@ public abstract class TragicMob extends EntityMob
 		return this.getCorruptionTicks() > 0;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote || TragicNewConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false; 
@@ -208,12 +211,14 @@ public abstract class TragicMob extends EntityMob
 		return result;
 	}
 
+	@Override
 	public void readEntityFromNBT(NBTTagCompound tag)
 	{
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("corruptionTicks")) this.setCorruptionTicks(tag.getInteger("corruptionTicks"));
 	}
 
+	@Override
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
@@ -230,6 +235,7 @@ public abstract class TragicMob extends EntityMob
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
 	}
 
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{		
 		super.onDeath(par1DamageSource);

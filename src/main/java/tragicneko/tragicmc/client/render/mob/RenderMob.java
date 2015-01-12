@@ -25,6 +25,7 @@ public class RenderMob extends RenderLiving {
 		this(model, shadowSize, path, 1.0F);
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		GL11.glScalef(scale, scale, scale);

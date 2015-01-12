@@ -32,6 +32,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		"It's just trying to show you some affection!", "Just pretend it's Dinnerbone and hug!", "I think you should get that checked out by a Doctor", "Is that the TARDIS I hear?",
 		"Knock knock", "Did you see how he turned the Summon Block?", "I'm distracting you!", "I am Groot", "We are Groot"};
 
+	@Override
 	public void updateEntity()
 	{
 		if (this.worldObj.getTotalWorldTime() % 20L == 0L)
@@ -47,7 +48,7 @@ public class TileEntitySummonBlock extends TileEntity {
 	{
 		double d0 = 12.0;
 
-		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 1), (double)(this.yCoord + 1), (double)(this.zCoord + 1)).expand(d0, d0, d0);
+		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(this.xCoord, this.yCoord, this.zCoord, this.xCoord + 1, this.yCoord + 1, this.zCoord + 1).expand(d0, d0, d0);
 		List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
 		int meta = this.getBlockMetadata();

@@ -20,6 +20,7 @@ public class EntityStinKing extends EntityGreaterStin {
 		this.superiorForm = null;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -58,6 +59,7 @@ public class EntityStinKing extends EntityGreaterStin {
 		return this.getFiringTicks() > 0;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{				
 		super.onLivingUpdate();
@@ -97,11 +99,11 @@ public class EntityStinKing extends EntityGreaterStin {
 	private void doMortorFire() {
 
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
-		double d1 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 3.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
 
-		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 		mortor.posY = this.posY + this.height + 0.5D;
 		mortor.posX += d0 * 0.04335D;
 		mortor.posZ += d2 * 0.04335D;
@@ -115,6 +117,7 @@ public class EntityStinKing extends EntityGreaterStin {
 		return (int) stinKingStats[5];
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote || rand.nextInt(32) == 0) return false;

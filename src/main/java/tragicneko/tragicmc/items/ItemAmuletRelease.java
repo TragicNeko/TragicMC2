@@ -15,12 +15,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAmuletRelease extends Item {
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("Unlocks an Amulet slot for use");
@@ -28,6 +30,7 @@ public class ItemAmuletRelease extends Item {
 		par2List.add("Amulet's charge to max.");
 	}
 	
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote && TragicNewConfig.shouldUnlockAmuletSlots)

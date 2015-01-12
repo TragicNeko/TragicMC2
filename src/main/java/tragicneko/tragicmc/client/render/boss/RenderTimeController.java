@@ -22,6 +22,7 @@ public class RenderTimeController extends RenderBoss {
 		super(new ModelTimeController(), 0.415F);
 	}
 
+	@Override
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
 		this.bindEntityTexture(par1EntityLivingBase);
@@ -54,11 +55,13 @@ public class RenderTimeController extends RenderBoss {
 		}
 	}
 
+	@Override
 	protected int shouldRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return this.shouldRenderPass((TragicBoss)par1EntityLivingBase, par2, par3);
 	}
 
+	@Override
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
@@ -91,7 +94,7 @@ public class RenderTimeController extends RenderBoss {
 		{
 			if (par2 == 1)
 			{
-				float f1 = (float)boss.ticksExisted + par3;
+				float f1 = boss.ticksExisted + par3;
 				this.bindTexture(texture);
 				GL11.glMatrixMode(GL11.GL_TEXTURE);
 				GL11.glLoadIdentity();

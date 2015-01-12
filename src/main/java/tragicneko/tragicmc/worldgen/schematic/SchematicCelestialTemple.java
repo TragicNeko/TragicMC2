@@ -28,6 +28,7 @@ public class SchematicCelestialTemple extends Schematic {
 		super(variant, world, rand, x, y, z);
 	}
 
+	@Override
 	public void generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		switch(variant)
@@ -41,6 +42,7 @@ public class SchematicCelestialTemple extends Schematic {
 		}
 	}
 
+	@Override
 	public void generateWithoutVariation(World world, Random rand, int x, int y, int z)
 	{
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 12.0D, x + 4, y + 3, z + 4);
@@ -1052,6 +1054,7 @@ public class SchematicCelestialTemple extends Schematic {
 		world.setBlock(x + 10, y, z + 9, brick, 1, 2);
 	}
 
+	@Override
 	public void applyChestContents(World world, Random rand, int x, int y, int z) 
 	{
 		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
@@ -1066,6 +1069,7 @@ public class SchematicCelestialTemple extends Schematic {
 		}
 	}
 
+	@Override
 	public void generateVariant(World world, Random rand, int x, int y, int z)
 	{
 	}

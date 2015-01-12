@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
@@ -33,6 +32,7 @@ public class DoomsdayCoomand extends CommandBase {
 		return "Usage: /doomsday <player> <doomsday id>";
 	}
 
+	@Override
 	public void processCommand(ICommandSender var1, String[] var2) {
 		if (var2.length != 2)
 		{
@@ -111,11 +111,13 @@ public class DoomsdayCoomand extends CommandBase {
 		DoomsdayManager.registerDoomsdayEffect(mp.getCommandSenderName(), effect);
 	}
 
+	@Override
 	public int getRequiredPermissionLevel()
 	{
 		return 2;
 	}
 
+	@Override
 	public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
 	{
 		return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getAllUsernames()) : (par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, Doomsday.doomsdayNames) :null);
@@ -126,6 +128,7 @@ public class DoomsdayCoomand extends CommandBase {
 		return MinecraftServer.getServer().getAllUsernames();
 	}
 
+	@Override
 	public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
 	{
 		return par2 == 0;

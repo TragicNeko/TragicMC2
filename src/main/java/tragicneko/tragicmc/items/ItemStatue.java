@@ -81,6 +81,7 @@ public class ItemStatue extends Item {
 		return getUnlocalizedName() + "." + subNames[var];
 	}
 	
+	@Override
 	public String getItemStackDisplayName(ItemStack stack)
     {
 		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
@@ -146,11 +147,13 @@ public class ItemStatue extends Item {
 		return 0;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add(EnumChatFormatting.GOLD + "A trophy for your triumphs!");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		Random random = TragicMC.rand;

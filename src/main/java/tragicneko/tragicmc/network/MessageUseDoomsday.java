@@ -1,11 +1,7 @@
 package tragicneko.tragicmc.network;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import tragicneko.tragicmc.properties.PropertyAmulets;
-import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 

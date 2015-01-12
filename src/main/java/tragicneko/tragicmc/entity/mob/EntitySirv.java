@@ -64,11 +64,13 @@ public class EntitySirv extends TragicMob {
 		return false;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -92,6 +94,7 @@ public class EntitySirv extends TragicMob {
 		if (!this.worldObj.isRemote && this.getAttackTime() > 0) this.decrementAttackTime();
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
@@ -114,6 +117,7 @@ public class EntitySirv extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);

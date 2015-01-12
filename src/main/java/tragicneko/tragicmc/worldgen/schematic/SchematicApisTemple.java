@@ -34,6 +34,7 @@ public class SchematicApisTemple extends Schematic {
 		super(variant, world, rand, x, y, z);
 	}
 
+	@Override
 	public void generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		switch(variant)
@@ -47,6 +48,7 @@ public class SchematicApisTemple extends Schematic {
 		}
 	}
 
+	@Override
 	public void generateWithoutVariation(World world, Random rand, int x, int y, int z)
 	{
 		for (int y1 = 0; y1 < 10; y1++)
@@ -1019,6 +1021,7 @@ public class SchematicApisTemple extends Schematic {
 		world.setBlock(x + 10, y, z + 9, brick, 3, 2);
 	}
 
+	@Override
 	public void applyChestContents(World world, Random rand, int x, int y, int z) 
 	{
 		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
@@ -1033,6 +1036,7 @@ public class SchematicApisTemple extends Schematic {
 		}
 	}
 
+	@Override
 	public void generateVariant(World world, Random rand, int x, int y, int z)
 	{
 	}

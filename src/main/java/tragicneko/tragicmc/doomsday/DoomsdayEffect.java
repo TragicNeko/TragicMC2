@@ -39,7 +39,7 @@ public class DoomsdayEffect {
 	public DoomsdayEffect(int id, PropertyDoom doom, boolean commandActive)
 	{
 		this.dday = Doomsday.getDoomsdayFromId(id);
-		this.rand = dday.rand;
+		this.rand = Doomsday.rand;
 		this.doom = doom;
 		this.isInstant = dday instanceof IExtendedDoomsday ? false : true;
 		this.timeBetweenUpdates = dday.getWaitTime();

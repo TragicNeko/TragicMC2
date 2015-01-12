@@ -26,12 +26,14 @@ public class BlockDarkSand extends BlockSand {
 		list.add(new ItemStack(item));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
 		return this.blockIcon;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister regi)
 	{

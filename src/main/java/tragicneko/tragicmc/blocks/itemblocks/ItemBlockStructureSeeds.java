@@ -1,12 +1,9 @@
 package tragicneko.tragicmc.blocks.itemblocks;
 
-import java.awt.Color;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ItemBlockStructureSeeds extends TragicItemBlock {
@@ -20,6 +17,7 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 		this.setUnlocalizedName("tragicmc.structureSeed");
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
 	{
@@ -72,6 +70,7 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 		return color;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{

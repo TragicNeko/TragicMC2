@@ -3,7 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityGuardianShield;
 import tragicneko.tragicmc.properties.PropertyDoom;

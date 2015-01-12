@@ -14,6 +14,7 @@ public class ItemBanana extends ItemFood {
 		this.setPotionEffect(Potion.jump.id, 15, 1, 1.0F);
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		player.worldObj.spawnEntityInWorld(new EntityBanana(player.worldObj, player));

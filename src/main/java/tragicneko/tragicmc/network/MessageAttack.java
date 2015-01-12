@@ -1,11 +1,7 @@
 package tragicneko.tragicmc.network;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import tragicneko.tragicmc.properties.PropertyDoom;
 import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageAttack implements IMessage {

@@ -53,6 +53,7 @@ public class BlockLuminescence extends Block {
 		world.setBlockToAir(x, y, z);
 	}
 
+	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		if (!world.isRemote)
@@ -61,6 +62,7 @@ public class BlockLuminescence extends Block {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -76,6 +78,7 @@ public class BlockLuminescence extends Block {
 	/**
 	 * The type of render function that is called for this block
 	 */
+	@Override
 	public int getRenderType()
 	{
 		return -1;
@@ -85,6 +88,7 @@ public class BlockLuminescence extends Block {
 	 * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
 	 * cleared to be reused)
 	 */
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
 	{
 		return null;
@@ -94,6 +98,7 @@ public class BlockLuminescence extends Block {
 	 * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
 	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
 	 */
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
@@ -103,6 +108,7 @@ public class BlockLuminescence extends Block {
 	 * Returns whether this block is collideable based on the arguments passed in n@param par1 block metaData n@param
 	 * par2 whether the player right-clicked while holding a boat
 	 */
+	@Override
 	public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_)
 	{
 		return false;
@@ -111,5 +117,6 @@ public class BlockLuminescence extends Block {
 	/**
 	 * Drops the block items with a specified chance of dropping the specified items
 	 */
+	@Override
 	public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
 }

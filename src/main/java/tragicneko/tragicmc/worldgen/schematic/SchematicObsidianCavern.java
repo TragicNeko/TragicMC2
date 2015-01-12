@@ -33,7 +33,7 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public SchematicObsidianCavern(int variant, int variant2, World world, Random rand, int x, int y, int z) {
 		super(variant, world, rand, x, y, z);
-		this.variant2 = variant2;
+		SchematicObsidianCavern.variant2 = variant2;
 	}
 
 	public SchematicObsidianCavern(int variant, World world, Random rand, int x, int y, int z) {

@@ -1,11 +1,8 @@
 package tragicneko.tragicmc.items.food;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World;
 
 public class ItemTentacle extends ItemFood {
 
@@ -14,6 +11,7 @@ public class ItemTentacle extends ItemFood {
 		this.setPotionEffect(Potion.waterBreathing.id, 20, 0, 1.0F);
 	}
 	
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 32;

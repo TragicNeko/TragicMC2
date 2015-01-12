@@ -55,6 +55,7 @@ public class RenderStatue extends Render {
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
 			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelNanoSwarm()};
 
+	@Override
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
 	{
 		this.doRender((EntityStatue)par1Entity, par2, par4, par6, par8, par9);

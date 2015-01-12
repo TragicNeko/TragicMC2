@@ -29,6 +29,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 		this.epicLevels = new int[] {5, 3, 1};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
@@ -46,6 +47,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 		return true;
 	}
 
+	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
 		super.onUpdate(stack, world, entity, par4, par5);

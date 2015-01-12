@@ -9,7 +9,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenDimensionLakes extends WorldGenerator {
@@ -19,6 +18,7 @@ public class WorldGenDimensionLakes extends WorldGenerator {
 	public WorldGenDimensionLakes() {
 	}
 
+	@Override
 	public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
 	{
 		p_76484_3_ -= 8;
@@ -54,9 +54,9 @@ public class WorldGenDimensionLakes extends WorldGenerator {
 					{
 						for (int i2 = 1; i2 < 7; ++i2)
 						{
-							double d6 = ((double)k1 - d3) / (d0 / 2.0D);
-							double d7 = ((double)i2 - d4) / (d1 / 2.0D);
-							double d8 = ((double)l1 - d5) / (d2 / 2.0D);
+							double d6 = (k1 - d3) / (d0 / 2.0D);
+							double d7 = (i2 - d4) / (d1 / 2.0D);
+							double d8 = (l1 - d5) / (d2 / 2.0D);
 							double d9 = d6 * d6 + d7 * d7 + d8 * d8;
 
 							if (d9 < 1.0D)

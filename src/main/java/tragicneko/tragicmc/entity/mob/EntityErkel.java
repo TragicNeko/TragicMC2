@@ -35,12 +35,14 @@ public class EntityErkel extends TragicMob {
 		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
 	}
 	
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.getDataWatcher().addObject(16, Integer.valueOf((int) 0));
+		this.getDataWatcher().addObject(16, Integer.valueOf(0));
 	}
 	
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -57,6 +59,7 @@ public class EntityErkel extends TragicMob {
 		return (int) erkelStats[5];
 	}
 	
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
 		if (source.getEntity() != null && source.getEntity() instanceof EntityLivingBase && !source.isProjectile() && rand.nextBoolean() && !this.worldObj.isRemote)
@@ -75,16 +78,19 @@ public class EntityErkel extends TragicMob {
 		return super.attackEntityFrom(source, damage);
 	}
 	
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -115,11 +121,13 @@ public class EntityErkel extends TragicMob {
 		}
 	}
 	
+	@Override
 	protected boolean isValidLightLevel()
     {
         return true;
     }
 	
+	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);

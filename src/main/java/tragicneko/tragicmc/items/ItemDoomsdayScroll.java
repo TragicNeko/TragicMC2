@@ -29,12 +29,14 @@ public class ItemDoomsdayScroll extends Item {
 		this.setUnlocalizedName("tragicmc.doomsdayScroll");
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		Doomsday dday = Doomsday.getDoomsdayFromId(par1ItemStack.getItemDamage() + 1);
@@ -51,6 +53,7 @@ public class ItemDoomsdayScroll extends Item {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
 	{
@@ -100,6 +103,7 @@ public class ItemDoomsdayScroll extends Item {
 		return Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1).getLocalizedName() + " " + s;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		if (world.isRemote || !TragicNewConfig.allowDoomsdays) return stack;
@@ -114,6 +118,7 @@ public class ItemDoomsdayScroll extends Item {
 		return stack;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list)
 	{

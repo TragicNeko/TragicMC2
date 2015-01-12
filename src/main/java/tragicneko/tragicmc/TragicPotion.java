@@ -54,7 +54,7 @@ public class TragicPotion extends Potion {
 		if (TragicNewConfig.allowInvulnerability) Invulnerability = (new TragicPotion(TragicNewConfig.idInvulnerability, false, 0xD5ECFF).setPotionName("potion.invulnerability").func_111184_a(SharedMonsterAttributes.movementSpeed, "43d74ab6-d058-40e4-9761-70b0b80b8743", -0.2D, 2));
 		if (TragicNewConfig.allowClarity) Clarity = (new TragicPotion(TragicNewConfig.idClarity, false, 0xFFFFFF).setPotionName("potion.clarity"));
 		if (TragicNewConfig.allowConvergence) Convergence = (new TragicPotion(TragicNewConfig.idConvergence, false, 0x9B2525).setPotionName("potion.convergence"));
-		if (TragicNewConfig.allowDivinity) Divinity = (new TragicPotion(TragicNewConfig.idDivinity, false, 0xFFFFFF).setPotionName("potion.divination"));
+		if (TragicNewConfig.allowDivinity) Divinity = (new TragicPotion(TragicNewConfig.idDivinity, false, 0xFFFFFF).setPotionName("potion.divinity"));
 	}
 	
 	public static void setPotionIcons()

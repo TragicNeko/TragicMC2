@@ -33,12 +33,14 @@ public class ItemDimensionalKey extends Item {
 		this.setMaxStackSize(1);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		String s = this.targetDimension == 1 ? "the End" : (this.targetDimension == 2 ? "the Collision" : (this.targetDimension == -1 ? "the Nether" : "the Synapse"));
@@ -52,16 +54,19 @@ public class ItemDimensionalKey extends Item {
 		return EnumAction.bow;
 	}
 
+	@Override
 	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		return par1ItemStack;
 	}
 
+	@Override
 	public int getMaxItemUseDuration(ItemStack par1ItemStack)
 	{
 		return 72000;
 	}
 
+	@Override
 	public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5)
 	{
 		if (par5)
@@ -79,6 +84,7 @@ public class ItemDimensionalKey extends Item {
 
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
@@ -86,6 +92,7 @@ public class ItemDimensionalKey extends Item {
 		return par1ItemStack;
 	}
 
+	@Override
 	public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;

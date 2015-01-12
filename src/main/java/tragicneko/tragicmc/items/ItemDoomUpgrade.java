@@ -15,12 +15,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDoomUpgrade extends Item {
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("Increases your Max Doom limit");
@@ -28,6 +30,7 @@ public class ItemDoomUpgrade extends Item {
 		par2List.add("Does not affect cooldown");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;

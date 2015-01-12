@@ -14,20 +14,24 @@ public abstract class Schematic implements IStructureSchematic {
 	/**
 	 * Main class called upon by the constructor, you need to tell the schematic which method to generate the structure from in here based on variant (if any)
 	 */
+	@Override
 	public abstract void generateStructure(int variant, World world, Random rand, int x, int y, int z);
 
 	/**
 	 * This is the basic structure without variation
 	 */
+	@Override
 	public abstract void generateWithoutVariation(World world, Random rand, int x, int y, int z);
 
 	/**
 	 * This is one variant of the main structure meant as an example method, more can be added and called from the generateStructure method
 	 */
+	@Override
 	public abstract void generateVariant(World world, Random rand, int x, int y, int z);
 
 	/**
 	 * Use this to apply chest contents to generated chests
 	 */
+	@Override
 	public abstract void applyChestContents(World world, Random rand, int x, int y, int z);
 }

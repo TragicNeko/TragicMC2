@@ -50,6 +50,7 @@ public class EntityNorVox extends TragicMob {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return this.getNorVoxType() == 1;
@@ -61,12 +62,14 @@ public class EntityNorVox extends TragicMob {
 		return this.getNorVoxType() == 1;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return this.getNorVoxType() == 0 ? super.getBrightnessForRender(par1) : 15728880;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return this.getNorVoxType() == 0 ? super.getBrightness(par1) : 1.0F;
@@ -89,6 +92,7 @@ public class EntityNorVox extends TragicMob {
 		return false;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
@@ -176,6 +180,7 @@ public class EntityNorVox extends TragicMob {
 		this.setNodTicks(--pow);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -187,6 +192,7 @@ public class EntityNorVox extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? norVoxStats[4] : starVoxStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (!this.worldObj.isRemote && this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
@@ -248,7 +254,7 @@ public class EntityNorVox extends TragicMob {
 
 			for (int i = 0; i < 2 + rand.nextInt(2); i++)
 			{
-				EntityWitherSkull skull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+				EntityWitherSkull skull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 				skull.posX = this.posX + 0.115D * d0;
 				skull.posY = this.posY + (this.height * 2 / 3);
 				skull.posZ = this.posZ + 0.115D * d2;
@@ -266,7 +272,7 @@ public class EntityNorVox extends TragicMob {
 
 			for (int i = 0; i < 2; i++)
 			{
-				EntityStarShard shard = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+				EntityStarShard shard = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 				shard.posX = this.posX + 0.115D * d0;
 				shard.posY = this.posY + (this.height * 2 / 3);
 				shard.posZ = this.posZ + 0.115D + d2;
@@ -275,6 +281,7 @@ public class EntityNorVox extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote || par1DamageSource.isExplosion() || par1DamageSource == DamageSource.wither) return false;
@@ -297,6 +304,7 @@ public class EntityNorVox extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean flag = super.attackEntityAsMob(par1Entity);
@@ -308,14 +316,18 @@ public class EntityNorVox extends TragicMob {
 		return flag;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) (this.getNorVoxType() == 0 ? norVoxStats[5] : starVoxStats[5]);
 	}
 
+	@Override
 	protected void fall(float par1) {}
+	@Override
 	public void setInWeb() {}
 
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor_double(this.boundingBox.minY);

@@ -21,6 +21,7 @@ public class EntityStarShard extends EntityProjectile {
 		super(par1World, entity, par2, par4, par6);
 	}
 	
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.925F;
@@ -43,6 +44,7 @@ public class EntityStarShard extends EntityProjectile {
 		return "crit";
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

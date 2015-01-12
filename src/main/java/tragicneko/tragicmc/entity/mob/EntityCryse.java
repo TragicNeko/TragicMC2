@@ -25,7 +25,6 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -50,32 +49,38 @@ public class EntityCryse extends TragicMob {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return this.getCryseType() == 1;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -173,6 +178,7 @@ public class EntityCryse extends TragicMob {
 		return this.getFlutterTicks() > 0;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -184,6 +190,7 @@ public class EntityCryse extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? cryseStats[4] : starCryseStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -220,6 +227,7 @@ public class EntityCryse extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -255,6 +263,7 @@ public class EntityCryse extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -315,6 +324,7 @@ public class EntityCryse extends TragicMob {
 		tag.setInteger("flutterTicks", this.getFlutterTicks());
 	}
 
+	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		if (!this.worldObj.isRemote)

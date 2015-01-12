@@ -33,6 +33,7 @@ public class WeaponThardus extends EpicWeapon {
 		this.epicLevels = new int[] {10, 3, 5, 3, 1};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0) return super.onLeftClickEntity(stack, player, entity);
@@ -48,6 +49,7 @@ public class WeaponThardus extends EpicWeapon {
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
@@ -60,7 +62,7 @@ public class WeaponThardus extends EpicWeapon {
 		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[30]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[30])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
-			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 			
 			for (int i = 0; i < 7; i++)

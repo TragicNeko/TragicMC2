@@ -30,6 +30,7 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 		this.setStepSound(soundTypeGrass);
 	}
 	
+	@Override
 	protected boolean canPlaceBlockOn(Block p_149854_1_)
     {
         return p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.BrushedGrass || p_149854_1_ == TragicBlocks.DeadDirt;

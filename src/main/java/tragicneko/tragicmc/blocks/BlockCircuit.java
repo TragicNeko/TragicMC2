@@ -51,6 +51,7 @@ public class BlockCircuit extends Block {
 		return meta == 0 ? 12 : (meta == 1 ? 8 : (meta == 2 ? 4 : 0));
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -61,6 +62,7 @@ public class BlockCircuit extends Block {
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -70,11 +72,13 @@ public class BlockCircuit extends Block {
 		}
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.variantNames.length; i++)

@@ -36,6 +36,7 @@ public class ArmorTungsten extends TragicArmor {
 		this.epicLevels = new int[][] {{5, 3}, {5, 5, 3}, {5, 3}};
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
@@ -56,6 +57,7 @@ public class ArmorTungsten extends TragicArmor {
 		} 
 	}
 
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 2)

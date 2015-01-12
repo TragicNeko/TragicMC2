@@ -370,8 +370,8 @@ public class PotionEvents {
 					}
 				}
 
-				entity.motionX = -d1 / (double)f2 * d3 * rate + target.motionX * 0.60000000298023224D;
-				entity.motionZ = -d2 / (double)f2 * d3 * rate + target.motionZ * 0.60000000298023224D;
+				entity.motionX = -d1 / f2 * d3 * rate + target.motionX * 0.60000000298023224D;
+				entity.motionZ = -d2 / f2 * d3 * rate + target.motionZ * 0.60000000298023224D;
 				entity.moveEntity(entity.motionX, 0.0, entity.motionZ);
 				entity.isSwingInProgress = true;
 			}
@@ -381,7 +381,7 @@ public class PotionEvents {
 				{
 					if (list.get(i) instanceof EntityLivingBase)
 					{
-						EntityLivingBase entity2 = (EntityLivingBase) list.get(i);
+						EntityLivingBase entity2 = list.get(i);
 
 						if (entity.canEntityBeSeen(entity2))
 						{
@@ -400,8 +400,8 @@ public class PotionEvents {
 								}
 							}
 
-							entity.motionX = -d1 / (double)f2 * d3 * rate + entity.motionX * 0.60000000298023224D;
-							entity.motionZ = -d2 / (double)f2 * d3 * rate + entity.motionZ * 0.60000000298023224D;
+							entity.motionX = -d1 / f2 * d3 * rate + entity.motionX * 0.60000000298023224D;
+							entity.motionZ = -d2 / f2 * d3 * rate + entity.motionZ * 0.60000000298023224D;
 							entity.moveEntity(entity.motionX, 0.0, entity.motionZ);
 							entity.isSwingInProgress = true;
 							break;
@@ -613,14 +613,14 @@ public class PotionEvents {
 					event.setCanceled(true);
 				}
 
-				float amp = (float)player.getActivePotionEffect(TragicPotion.Resurrection).getAmplifier();
+				float amp = player.getActivePotionEffect(TragicPotion.Resurrection).getAmplifier();
 
 				if (amp > 3.0F)
 				{
 					amp = 3.0F;
 				}
 
-				float percent = (float)((amp + 1) / 4);
+				float percent = (amp + 1) / 4;
 				player.setHealth((player.getMaxHealth() * percent));
 
 				for (int i = 0; i < 50; i++)

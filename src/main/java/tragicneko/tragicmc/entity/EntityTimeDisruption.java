@@ -41,6 +41,7 @@ public class EntityTimeDisruption extends Entity {
 		return true;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		this.motionX = this.motionY = this.motionZ = 0.0D;
@@ -62,9 +63,9 @@ public class EntityTimeDisruption extends Entity {
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
 				double d3 = 0.5D;
 
-				double d4 = d0 / (double)f2 * d3 * 0.200000011920929D + d7 * 0.20000000298023224D;
-				double d5 = d1 / (double)f2 * d3 * 0.200000011920929D + d8 * 0.20000000298023224D;
-				double d6 = d2 / (double)f2 * d3 * 0.200000011920929D + d9 * 0.20000000298023224D;
+				double d4 = d0 / f2 * d3 * 0.200000011920929D + d7 * 0.20000000298023224D;
+				double d5 = d1 / f2 * d3 * 0.200000011920929D + d8 * 0.20000000298023224D;
+				double d6 = d2 / f2 * d3 * 0.200000011920929D + d9 * 0.20000000298023224D;
 
 				this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
 			}

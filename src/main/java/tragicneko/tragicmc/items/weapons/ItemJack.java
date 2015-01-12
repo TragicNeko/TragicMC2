@@ -62,6 +62,7 @@ public class ItemJack extends ItemTool {
 		this.setCreativeTab(TragicMC.Survival);
 	}
 
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{		
 		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
@@ -90,6 +91,7 @@ public class ItemJack extends ItemTool {
 		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 	
+	@Override
 	public float func_150893_a(ItemStack stack, Block block)
 	{
 		return this.toolMaterial.getEfficiencyOnProperMaterial();

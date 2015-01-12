@@ -56,27 +56,32 @@ public class EntityPolaris extends TragicBoss {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return super.canRenderOnFire() && !this.isInvisible();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return !getDaytime() ? 15728880 : super.getBrightnessForRender(par1);
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return !getDaytime() ? 1.0F : super.getBrightness(par1);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -87,6 +92,7 @@ public class EntityPolaris extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(polarisStats[4]);
 	}
 
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
@@ -143,6 +149,7 @@ public class EntityPolaris extends TragicBoss {
 		this.dataWatcher.updateObject(18, 1);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{		
 		if (!this.worldObj.isRemote)
@@ -255,28 +262,30 @@ public class EntityPolaris extends TragicBoss {
 		return flag;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return this.worldObj.isDaytime() ? 0 : (int) polarisStats[5];
 	}
 
+	@Override
 	public void fall(float par1){}
 
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		double d1 = this.posY + (double)(this.rand.nextInt(48) - 24);
+		double d1 = this.posY + (this.rand.nextInt(48) - 24);
 		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
 		return this.teleportTo(d0, d1, d2);
 	}
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - par1Entity.posY + (double)par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (double)(this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
+		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
 		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
 		return this.teleportTo(d1, d2, d3);
 	}
@@ -338,14 +347,14 @@ public class EntityPolaris extends TragicBoss {
 
 			for (int l = 0; l < short1; ++l)
 			{
-				double d6 = (double)l / ((double)short1 - 1.0D);
+				double d6 = l / (short1 - 1.0D);
 				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.enderdragon.wings", 1.0F, 1.0F);
 			this.playSound("mob.enderdragon.wings", 1.0F, 1.0F);

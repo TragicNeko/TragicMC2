@@ -76,16 +76,19 @@ public class EntityMinotaur extends TragicMob {
 		return false;
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -96,6 +99,7 @@ public class EntityMinotaur extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(minotaurStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -119,13 +123,14 @@ public class EntityMinotaur extends TragicMob {
 			double d1 = this.getAttackTarget().posZ - this.posZ;
 			double d2 = this.getAttackTarget().posY - this.posY;
 			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-			this.motionX = d0 / (double)f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
-			this.motionZ = d1 / (double)f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
-			this.motionY = d1 / (double)f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
+			this.motionX = d0 / f2 * 2.5D * 0.600000011920929D + this.motionX * 0.40000000298023224D;
+			this.motionZ = d1 / f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
+			this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 			this.setChargeTicks(20);
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -153,6 +158,7 @@ public class EntityMinotaur extends TragicMob {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
@@ -187,6 +193,7 @@ public class EntityMinotaur extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) minotaurStats[5];

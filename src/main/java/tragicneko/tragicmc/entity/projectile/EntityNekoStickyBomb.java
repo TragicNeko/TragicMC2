@@ -58,6 +58,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 		this.inGround = true;
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

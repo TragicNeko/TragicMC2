@@ -57,6 +57,7 @@ public class BlockDisappearing extends Block
 		}
 	}
 
+	@Override
 	public MovingObjectPosition collisionRayTrace(World world, int par2, int par3, int par4, Vec3 vec, Vec3 vec2)
 	{
 		if (this.isPowered)
@@ -70,11 +71,13 @@ public class BlockDisappearing extends Block
 	}
 
 
+	@Override
 	public int getMobilityFlag()
 	{
 		return 0;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register)
 	{
@@ -88,16 +91,19 @@ public class BlockDisappearing extends Block
 		}
 	}
 
+	@Override
 	public boolean isBlockNormalCube()
 	{
 		return !this.isPowered;
 	}
 
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return isBlockNormalCube();
 	}
 
+	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
 		if (this.isPowered)
@@ -114,6 +120,7 @@ public class BlockDisappearing extends Block
 		}
 	}
 
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int par2, int par3, int par4)
 	{
 		if (!this.isPowered)
@@ -129,6 +136,7 @@ public class BlockDisappearing extends Block
 	/**
 	 * Called whenever the block is added into the world. Args: world, x, y, z
 	 */
+	@Override
 	public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
 	{
 		if (!p_149726_1_.isRemote)
@@ -148,6 +156,7 @@ public class BlockDisappearing extends Block
 	 * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
 	 * their own) Args: x, y, z, neighbor Block
 	 */
+	@Override
 	public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
 	{
 		if (!p_149695_1_.isRemote)
@@ -166,6 +175,7 @@ public class BlockDisappearing extends Block
 	/**
 	 * Ticks the block if it's been scheduled
 	 */
+	@Override
 	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
 	{
 		if (!p_149674_1_.isRemote && this.isPowered && !p_149674_1_.isBlockIndirectlyGettingPowered(p_149674_2_, p_149674_3_, p_149674_4_))
@@ -174,6 +184,7 @@ public class BlockDisappearing extends Block
 		}
 	}
 
+	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
 	{
 		return null;
@@ -182,12 +193,14 @@ public class BlockDisappearing extends Block
 	/**
 	 * Gets an item for the block being called on. Args: world, x, y, z
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
 	{
 		return Item.getItemFromBlock(TragicBlocks.DisappearingBlock);
 	}
 
+	@Override
 	protected boolean canSilkHarvest()
 	{
 		return true;
@@ -197,16 +210,19 @@ public class BlockDisappearing extends Block
 	 * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
 	 * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
 	 */
+	@Override
 	protected ItemStack createStackedBlock(int p_149644_1_)
 	{
 		return new ItemStack(TragicBlocks.DisappearingBlock);
 	}
 
+	@Override
 	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z)
 	{
 		return false;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
     {

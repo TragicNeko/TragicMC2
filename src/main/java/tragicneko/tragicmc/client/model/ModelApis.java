@@ -114,6 +114,7 @@ public class ModelApis extends ModelBase
 		leftShin.addChild(leftFoot);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -126,6 +127,7 @@ public class ModelApis extends ModelBase
 		leftLeg.render(f5);
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		if (!(entity instanceof EntityApis) && !(entity instanceof EntityClaymation)) return;

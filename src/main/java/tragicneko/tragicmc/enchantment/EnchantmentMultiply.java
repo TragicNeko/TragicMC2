@@ -11,22 +11,26 @@ public class EnchantmentMultiply extends Enchantment {
 		this.setName("multiply");
 	}
 	
+	@Override
 	public int getMinEnchantability(int par1)
     {
         return 20;
     }
 
-    public int getMaxEnchantability(int par1)
+    @Override
+	public int getMaxEnchantability(int par1)
     {
         return super.getMinEnchantability(par1) + 50;
     }
 
-    public int getMaxLevel()
+    @Override
+	public int getMaxLevel()
     {
         return 1;
     }
     
-    public boolean canApplyTogether(Enchantment par1Enchantment)
+    @Override
+	public boolean canApplyTogether(Enchantment par1Enchantment)
     {
         return super.canApplyTogether(par1Enchantment) && par1Enchantment.effectId != Enchantment.infinity.effectId;
     }

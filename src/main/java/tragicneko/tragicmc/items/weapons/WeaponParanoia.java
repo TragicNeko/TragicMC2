@@ -34,6 +34,7 @@ public class WeaponParanoia extends EpicWeapon {
 		this.epicLevels = new int[] {10, 3, 5, 3, 3};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
@@ -49,6 +50,7 @@ public class WeaponParanoia extends EpicWeapon {
 		return super.onLeftClickEntity(stack, player, entity);
 	} 
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
@@ -84,7 +86,7 @@ public class WeaponParanoia extends EpicWeapon {
 					if (vec == null) return par1ItemStack;
 					
 					double d4 = vec.xCoord - par3EntityPlayer.posX;
-					double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+					double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 					double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 					EntityDarkEnergy rocket = new EntityDarkEnergy(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);

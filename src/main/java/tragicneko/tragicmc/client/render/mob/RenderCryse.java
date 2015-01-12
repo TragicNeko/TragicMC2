@@ -20,6 +20,7 @@ public class RenderCryse extends RenderLiving {
 		super(new ModelCryse(), 0.335F);
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		EntityCryse cryse = (EntityCryse) entity;
@@ -27,6 +28,7 @@ public class RenderCryse extends RenderLiving {
 		GL11.glScalef(scale, scale, scale);
 	}
 
+	@Override
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
     {
 		this.bindEntityTexture(par1EntityLivingBase);
@@ -55,6 +57,7 @@ public class RenderCryse extends RenderLiving {
         }
     }
 	
+	@Override
 	protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
     {
         if (p_77032_1_.isInvisible())

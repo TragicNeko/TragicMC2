@@ -3,7 +3,6 @@ package tragicneko.tragicmc.client.model;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import net.minecraft.client.model.ModelIronGolem;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityIronGolem;
 
 public class ModelCustomGolem extends ModelIronGolem {
 
@@ -15,8 +14,8 @@ public class ModelCustomGolem extends ModelIronGolem {
 
         if (i > 0)
         {
-            this.ironGolemRightArm.rotateAngleX = -2.0F + 1.5F * this.func_78172_a((float)i - p_78086_4_, 10.0F);
-            this.ironGolemLeftArm.rotateAngleX = -2.0F + 1.5F * this.func_78172_a((float)i - p_78086_4_, 10.0F);
+            this.ironGolemRightArm.rotateAngleX = -2.0F + 1.5F * this.func_78172_a(i - p_78086_4_, 10.0F);
+            this.ironGolemLeftArm.rotateAngleX = -2.0F + 1.5F * this.func_78172_a(i - p_78086_4_, 10.0F);
         }
     }
 	

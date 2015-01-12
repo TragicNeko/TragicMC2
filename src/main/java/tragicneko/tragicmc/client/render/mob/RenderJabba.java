@@ -18,6 +18,7 @@ public class RenderJabba extends RenderLiving{
 		super(new ModelJabba(), 0.655F);
 	}
 	
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		EntityJabba jab = (EntityJabba) entity;

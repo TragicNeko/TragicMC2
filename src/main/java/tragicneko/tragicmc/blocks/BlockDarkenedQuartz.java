@@ -28,6 +28,7 @@ private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
 		this.setHarvestLevel("pickaxe", 0);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -38,11 +39,13 @@ private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
 		}
 	}
 	
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1 >= 2 ? 2 : par1;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{

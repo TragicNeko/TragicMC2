@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
@@ -21,11 +20,13 @@ public class EntityTimeBomb extends EntityProjectile {
 		this.setSize(0.335F, 0.335F);
 	}
 
+	@Override
 	protected float getMotionFactor()
 	{
 		return 0.766736F;
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

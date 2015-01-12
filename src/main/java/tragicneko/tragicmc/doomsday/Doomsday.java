@@ -155,7 +155,7 @@ public abstract class Doomsday {
 
 		if (dif == EnumDifficulty.HARD)
 		{
-			return (short) (reqDoom);
+			return (reqDoom);
 		}
 
 		return (short) (reqDoom * 2 / 3);
@@ -227,7 +227,7 @@ public abstract class Doomsday {
 	 */
 	public void doDoomsday(PropertyDoom doom, EntityPlayer player)
 	{
-		short backlash = (short) this.getScaledBacklash(TragicNewConfig.backlashChance, player, this.doomsdayType);
+		short backlash = this.getScaledBacklash(TragicNewConfig.backlashChance, player, this.doomsdayType);
 
 		if (rand.nextInt(100) <= backlash && TragicNewConfig.allowBacklash)
 		{
@@ -349,9 +349,9 @@ public abstract class Doomsday {
 
 		String s = null;
 
-		if (a < this.doomsdayNames.length && a > 0)
+		if (a < Doomsday.doomsdayNames.length && a > 0)
 		{
-			s = this.doomsdayNames[a];
+			s = Doomsday.doomsdayNames[a];
 		}
 
 		return "doomsday." + s + ".name";

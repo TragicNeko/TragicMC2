@@ -19,8 +19,6 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
-import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.LoreHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -54,6 +52,7 @@ public class WeaponHuntersBow extends ItemBow {
 		this.setFull3D();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) 
 	{
@@ -79,6 +78,7 @@ public class WeaponHuntersBow extends ItemBow {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
@@ -91,12 +91,14 @@ public class WeaponHuntersBow extends ItemBow {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getItemIconForUseDuration(int par1)
 	{
 		return this.iconArray[par1];
 	}
 
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
@@ -119,11 +121,13 @@ public class WeaponHuntersBow extends ItemBow {
 		}
 	}
 
+	@Override
 	public int getItemEnchantability() 
 	{
 		return 5;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -138,6 +142,7 @@ public class WeaponHuntersBow extends ItemBow {
 		return par1ItemStack;
 	}
 
+	@Override
 	public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
@@ -150,11 +155,11 @@ public class WeaponHuntersBow extends ItemBow {
 
 		if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow))
 		{
-			float f = (float)j / 20.0F;
+			float f = j / 20.0F;
 	        f = (f * f + f * 2.0F) / 3.0F;
 			f *= 1.275F;	
 			
-			if ((double)f < 0.2D) return;
+			if (f < 0.2D) return;
 			if (f > 1.0F) f = 1.0F;
 
 			EntityArrow arrow = new EntityArrow(par2World, par3EntityPlayer, f);
@@ -164,7 +169,7 @@ public class WeaponHuntersBow extends ItemBow {
 			if (f >= 1.0F) arrow.setIsCritical(true);
 
 			int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
-			if (k > 0) arrow.setDamage(arrow.getDamage() + (double)k * 0.5D + 0.5D); 
+			if (k > 0) arrow.setDamage(arrow.getDamage() + k * 0.5D + 0.5D); 
 
 			k = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);
 			if (k > 0) arrow.setKnockbackStrength(k);

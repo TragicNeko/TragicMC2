@@ -36,6 +36,7 @@ public class WeaponButcher extends EpicWeapon {
 		this.epicLevels = new int[] {10, 5, 3, 3, 3};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);

@@ -41,6 +41,7 @@ public class BlockTragicOres extends Block {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -75,6 +76,7 @@ public class BlockTragicOres extends Block {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -84,11 +86,13 @@ public class BlockTragicOres extends Block {
 		}
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.oreNames.length; i++)

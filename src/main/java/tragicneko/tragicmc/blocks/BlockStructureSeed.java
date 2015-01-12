@@ -29,17 +29,20 @@ public class BlockStructureSeed extends BlockContainer {
 		this.setBlockName("tragicmc.structureSeed");
 	}
 	
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon("tragicmc:StructureSeed_lowRes");
 	}
 
+	@Override
 	public int getRenderType()
 	{
 		return 1;
@@ -50,11 +53,13 @@ public class BlockStructureSeed extends BlockContainer {
 		return new TileEntityStructureSeed();
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.structureNames.length; i++)

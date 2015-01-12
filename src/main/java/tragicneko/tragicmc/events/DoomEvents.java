@@ -105,7 +105,7 @@ public class DoomEvents {
 		if (event.entityLiving instanceof EntityPlayerMP && !event.wasDeath)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
-			TragicMC.net.sendTo(new MessageDoom(player), (EntityPlayerMP) player);
+			TragicMC.net.sendTo(new MessageDoom(player), player);
 		}
 	}
 }

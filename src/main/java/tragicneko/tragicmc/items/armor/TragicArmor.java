@@ -65,18 +65,21 @@ public class TragicArmor extends ItemArmor {
 		return lores[itemRand.nextInt(lores.length)];
 	} */
 
+	@Override
 	public void registerIcons(IIconRegister register)
 	{
 		super.registerIcons(register);
 		this.damagedIcon = register.registerIcon(this.iconString + "2");
 	}
 
+	@Override
 	public IIcon getIconFromDamage(int damage)
 	{
 		if (damage >= this.getMaxDamage() * 2 / 3) return this.damagedIcon;
 		return this.itemIcon;
 	}
 
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		/*
@@ -100,6 +103,7 @@ public class TragicArmor extends ItemArmor {
 		}
 	}
 
+	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) 
 	{
 		if (!world.isRemote)

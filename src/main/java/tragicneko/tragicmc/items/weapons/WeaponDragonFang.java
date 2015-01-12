@@ -33,6 +33,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		this.epicLevels = new int[] {10, 3, 5, 3, 3, 3};
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote || itemRand.nextInt(4) != 0) return super.onLeftClickEntity(stack, player, entity);
@@ -48,6 +49,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;
@@ -59,7 +61,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		if (vec == null) return par1ItemStack;
 
 		double d4 = vec.xCoord - par3EntityPlayer.posX;
-		double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+		double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 		if (canUseAbility(doom,  TragicNewConfig.nonDoomsdayAbilityCosts[10]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[10])
@@ -79,6 +81,7 @@ public class WeaponDragonFang extends EpicWeapon {
 		return par1ItemStack;
 	}
 
+	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
 	{
 		super.onUpdate(stack, world, entity, par4, par5);

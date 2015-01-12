@@ -2,7 +2,6 @@ package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -75,6 +74,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 		}
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		if (this.isInWater())

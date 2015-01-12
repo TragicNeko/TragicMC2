@@ -1,6 +1,6 @@
 ﻿
-itemGroup.tragicMCMain=Tragic MC - Survival
-itemGroup.tragicMCMobs=Tragic MC - Creative
+itemGroup.tragicMCSurvival=Tragic MC - Survival
+itemGroup.tragicMCCreative=Tragic MC - Creative
 
 death.attack.suffocation=%1$s had the air removed from their lungs by %2$s
 death.attack.modMagic=%1$s was murdered with magic by %2$s
@@ -308,6 +308,7 @@ item.tragicmc.thardus.name=The Thardus
 item.tragicmc.dragonFang.name=Dragon Fang
 
 item.tragicmc.sentinel.name=The Sentinel
+item.tragicmc.password.name=The Password
 
 item.tragicmc.gravitySpike.name=Gravity Spike
 item.tragicmc.mourningStar.name=Mourning Star
@@ -806,7 +807,7 @@ entity.TragicMC.Locobot.name=Locobot
 entity.TragicMC.NanoSwarm.name=Nano Swarm
 entity.TragicMC.Aegar.name=Aegar
 entity.TragicMC.CircuitGolem.name=Circuit Golem
-entity.TragicMC.Overlord.name=The Overlord (Core)
+entity.TragicMC.OverlordCore.name=The Overlord (Core)
 entity.TragicMC.OverlordCombat.name=The Overlord (Combat)
 entity.TragicMC.OverlordCocoon.name=The Overlord (Cocoon)
 
@@ -851,6 +852,7 @@ potion.clarity=Clarity
 potion.leadFoot=Lead Foot
 potion.hacked=Hacked
 potion.convergence=Convergence
+potion.divinity=Divinity
 
 doomsday.influence.type=Influence
 doomsday.overflow.type=Overflow

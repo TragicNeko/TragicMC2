@@ -1,10 +1,6 @@
 package tragicneko.tragicmc.items.weapons;
 
-import java.util.List;
-
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +9,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -32,23 +27,27 @@ public class WeaponBowOfJustice extends ItemBow {
 		this.setCreativeTab(TragicMC.Creative);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack par1ItemStack, int passes)
 	{
 		return true;
 	}
 
+	@Override
 	public int getItemEnchantability() 
 	{
 		return 100;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -66,6 +65,7 @@ public class WeaponBowOfJustice extends ItemBow {
 		return par1ItemStack;
 	}
 
+	@Override
 	public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;

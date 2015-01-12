@@ -33,11 +33,13 @@ public class BlockSummon extends BlockContainer {
 		this.setBlockName("tragicmc.summonBlock");
 	}
 	
+	@Override
 	protected boolean canSilkHarvest()
     {
 		return false;
     }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -48,6 +50,7 @@ public class BlockSummon extends BlockContainer {
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -68,11 +71,13 @@ public class BlockSummon extends BlockContainer {
 		return null;
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.bossNames.length; i++)

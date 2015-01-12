@@ -16,10 +16,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.DamageSource;
@@ -70,16 +67,19 @@ public class EntityInkling extends TragicMob {
 		this.setVisibleTicks(--pow);
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -90,6 +90,7 @@ public class EntityInkling extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(inklingStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -97,9 +98,9 @@ public class EntityInkling extends TragicMob {
 		if (this.worldObj.isRemote && this.getVisibleTicks() == 0 && rand.nextBoolean())
 		{
 			this.worldObj.spawnParticle("smoke",
-					this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
-					this.posY + this.rand.nextDouble() * (double)this.height - 0.5D,
-					this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+					this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
+					this.posY + this.rand.nextDouble() * this.height - 0.5D,
+					this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D,
 					this.rand.nextDouble() * 0.1D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -200,6 +201,7 @@ public class EntityInkling extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -210,6 +212,7 @@ public class EntityInkling extends TragicMob {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
@@ -218,6 +221,7 @@ public class EntityInkling extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		if (this.isBurning()) return 0; 
@@ -227,18 +231,18 @@ public class EntityInkling extends TragicMob {
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 24.0D;
-		double d1 = this.posY + (double)(this.rand.nextInt(64) - 32);
+		double d1 = this.posY + (this.rand.nextInt(64) - 32);
 		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 24.0D;
 		return this.teleportTo(d0, d1, d2);
 	}
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - par1Entity.posY + (double)par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (double)(this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
+		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
 		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
 		return this.teleportTo(d1, d2, d3);
 	}
@@ -304,14 +308,14 @@ public class EntityInkling extends TragicMob {
 
 			for (int l = 0; l < short1; ++l)
 			{
-				double d6 = (double)l / ((double)short1 - 1.0D);
+				double d6 = l / (short1 - 1.0D);
 				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				this.worldObj.spawnParticle("smoke", d7, d8, d9, (double)f, (double)f1, (double)f2);
+				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle("smoke", d7, d8, d9, f, f1, f2);
 			}
 
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);

@@ -20,6 +20,7 @@ public class ItemEnchantedSushi extends ItemFood {
 		this.setAlwaysEdible();
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
@@ -32,12 +33,14 @@ public class ItemEnchantedSushi extends ItemFood {
 		return 16;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack)
 	{
 		return true;
 	}
 
+	@Override
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{
 		player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 2400, 4));

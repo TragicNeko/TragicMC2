@@ -44,6 +44,7 @@ public class EntityPsygote extends TragicMob {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
@@ -103,6 +104,7 @@ public class EntityPsygote extends TragicMob {
 		this.setHurtTime(this.getHurtTime() - 1);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -113,6 +115,7 @@ public class EntityPsygote extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(psygoteStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (!this.worldObj.isRemote && this.isPotionActive(Potion.wither.id)) this.removePotionEffect(Potion.wither.id);
@@ -127,9 +130,9 @@ public class EntityPsygote extends TragicMob {
 			for (int l = 0; l < 2; ++l)
 			{
 				this.worldObj.spawnParticle("smoke",
-						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
-						this.posY + this.rand.nextDouble() * (double)this.height,
-						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
+						this.posY + this.rand.nextDouble() * this.height,
+						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -137,9 +140,9 @@ public class EntityPsygote extends TragicMob {
 				if (this.getSwitchTicks() > 0)
 				{
 					this.worldObj.spawnParticle("portal",
-							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
-							this.posY + this.rand.nextDouble() + (double)this.height,
-							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
+							this.posY + this.rand.nextDouble() + this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D,
 							this.rand.nextDouble() * -0.8D - 2.4D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -211,14 +214,14 @@ public class EntityPsygote extends TragicMob {
 
 				for (int l = 0; l < short1; ++l)
 				{
-					double d6 = (double)l / ((double)short1 - 1.0D);
+					double d6 = l / (short1 - 1.0D);
 					float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 					float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 					float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-					double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-					double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-					double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-					this.worldObj.spawnParticle("smoke", d7, d8, d9, (double)f, (double)f1, (double)f2);
+					double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+					double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
+					double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+					this.worldObj.spawnParticle("smoke", d7, d8, d9, f, f1, f2);
 				}
 				mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 				mp.fallDistance = 0.0F;
@@ -234,14 +237,14 @@ public class EntityPsygote extends TragicMob {
 
 			for (int l = 0; l < short1; ++l)
 			{
-				double d6 = (double)l / ((double)short1 - 1.0D);
+				double d6 = l / (short1 - 1.0D);
 				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+				double d7 = x + ((x2) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = y + ((y2) - y) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = z + ((z2) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 			}
 
 			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "mob.endermen.portal", 0.4F, 0.4F);
@@ -258,7 +261,7 @@ public class EntityPsygote extends TragicMob {
 		double d2 = rand.nextInt(2) - rand.nextInt(2);
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.975F;
 
-		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 		mortor.posY = this.posY + this.height + 0.5D;
 		mortor.posX += d0 * 0.04335D;
 		mortor.posZ += d2 * 0.04335D;
@@ -273,15 +276,17 @@ public class EntityPsygote extends TragicMob {
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.25F;
 
-		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+		EntityDarkMortor mortor = new EntityDarkMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 		mortor.posX = this.posX + 0.115D * d0;
 		mortor.posY = this.posY + (this.height * 2 / 3);
 		mortor.posZ = this.posZ + 0.115D * d2;
 		this.worldObj.spawnEntityInWorld(mortor);
 	}
 
+	@Override
 	protected void fall(float f) {}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;

@@ -14,6 +14,7 @@ public class ItemBoneMarrow extends ItemFood {
 		this.setContainerItem(Items.bowl);
 	}
 	
+	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
 		return EnumAction.drink;

@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -108,6 +107,7 @@ public class EntityPumpkinbomb extends EntityThrowable {
 
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

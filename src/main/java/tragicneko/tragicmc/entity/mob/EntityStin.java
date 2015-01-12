@@ -55,16 +55,19 @@ public class EntityStin extends TragicMob {
 		this.targetTasks.addTask(3, targetPlayer);
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return !this.isAdult();
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
@@ -171,6 +174,7 @@ public class EntityStin extends TragicMob {
 		this.setGallopTicks(--pow);
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -190,6 +194,7 @@ public class EntityStin extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[4] : stinBabyStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.isGalloping() && this.onGround) this.motionX = this.motionZ = 0.0D;
@@ -269,8 +274,8 @@ public class EntityStin extends TragicMob {
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().posZ - this.posZ;
 			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-			this.motionX = d0 / (double)f2 * 0.23D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
-			this.motionZ = d1 / (double)f2 * 0.23D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
+			this.motionX = d0 / f2 * 0.23D * 0.200000011920929D + this.motionX * 0.10000000298023224D;
+			this.motionZ = d1 / f2 * 0.23D * 0.200000011920929D + this.motionZ * 0.10000000298023224D;
 			if (this.isCollidedHorizontally) this.motionY = 0.15D;
 		}
 
@@ -283,12 +288,14 @@ public class EntityStin extends TragicMob {
 		return (int) (this.isAdult() ? stinStats[5] : stinBabyStats[5]);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.isGalloping() && this.getAttackTarget() == null || this.worldObj.isRemote) return false;
 		return super.attackEntityAsMob(par1Entity);
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -358,14 +365,14 @@ public class EntityStin extends TragicMob {
 
 									for (int l = 0; l < short1; ++l)
 									{
-										double d6 = (double)l / ((double)short1 - 1.0D);
+										double d6 = l / (short1 - 1.0D);
 										float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 										float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 										float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
+										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+										this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 									}
 									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 									mp.fallDistance = 0.0F;
@@ -386,14 +393,14 @@ public class EntityStin extends TragicMob {
 
 								for (int l = 0; l < short1; ++l)
 								{
-									double d6 = (double)l / ((double)short1 - 1.0D);
+									double d6 = l / (short1 - 1.0D);
 									float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 									float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 									float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-									this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
+									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 								}
 
 								this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
@@ -413,6 +420,7 @@ public class EntityStin extends TragicMob {
 		return flag;
 	}
 
+	@Override
 	protected void fall(float f)
 	{
 		super.fall(f);

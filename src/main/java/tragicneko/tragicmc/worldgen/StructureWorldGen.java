@@ -10,7 +10,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 
@@ -158,7 +157,7 @@ public class StructureWorldGen implements IWorldGenerator {
 
 	public boolean areCoordinatesValidForStructureStart(World world, int x, int y, int z)
 	{
-		if (this.validBlocks.contains(world.getBlock(x, y, z)) && !(world.getBlock(x, y, z) instanceof BlockLeaves) && !(world.getBlock(x, y, z) == Blocks.air))
+		if (StructureWorldGen.validBlocks.contains(world.getBlock(x, y, z)) && !(world.getBlock(x, y, z) instanceof BlockLeaves) && !(world.getBlock(x, y, z) == Blocks.air))
 		{
 			return true;
 		}

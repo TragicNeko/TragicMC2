@@ -1,14 +1,11 @@
 package tragicneko.tragicmc.blocks.tileentity;
 
-import java.util.Random;
-
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.worldgen.Structure;
-import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityStructureSeed extends TileEntity {
 
+	@Override
 	public void updateEntity()
 	{
 		if (this.worldObj.getTotalWorldTime() % 20L == 0L)

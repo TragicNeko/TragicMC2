@@ -1,8 +1,6 @@
 package tragicneko.tragicmc.network;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
-import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageFlight implements IMessage {

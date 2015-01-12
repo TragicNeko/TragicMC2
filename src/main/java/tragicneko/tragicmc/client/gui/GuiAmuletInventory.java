@@ -6,8 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import org.lwjgl.opengl.GL11;
-
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
@@ -39,6 +37,7 @@ public class GuiAmuletInventory extends GuiContainer
 		this.amulets = PropertyAmulets.get(player);
 	}
 
+	@Override
 	protected void keyTyped(char c, int keyCode) {
 		super.keyTyped(c, keyCode);
 		if (c == 1 || keyCode == ClientProxy.openAmuletGui.getKeyCode()) {
@@ -49,6 +48,7 @@ public class GuiAmuletInventory extends GuiContainer
 	/**
 	 * Draws the screen and all the components in it.
 	 */
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float f) {
 		super.drawScreen(mouseX, mouseY, f);
 		xSize_lo = mouseX;
@@ -58,6 +58,7 @@ public class GuiAmuletInventory extends GuiContainer
 	/**
 	 * Draw the foreground layer for the GuiContainer (everything in front of the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 
 		String s = inventory.hasCustomInventoryName() ? inventory.getInventoryName() : I18n.format(inventory.getInventoryName());
@@ -68,6 +69,7 @@ public class GuiAmuletInventory extends GuiContainer
 	/**
 	 * Draw the background layer for the GuiContainer (everything behind the items)
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		mc.getTextureManager().bindTexture(getTextureFromConfig());
 		drawTexturedModalRect(guiLeft + 16, guiTop - 2, 0, 0, xSize, ySize + 24);

@@ -63,6 +63,7 @@ public class ModelSirv extends ModelBase
 		legLeft.addChild(legLeftFoot);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -75,6 +76,7 @@ public class ModelSirv extends ModelBase
 		legLeft.render(f5);
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
@@ -83,6 +85,7 @@ public class ModelSirv extends ModelBase
 		legRight.rotateAngleX = 0.85F * this.simplifyAngle(f, 10.0F) * f1;
 	}
 	
+	@Override
 	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
 	{
 		EntitySirv sirv = (EntitySirv)entity;
@@ -90,8 +93,8 @@ public class ModelSirv extends ModelBase
 
 		if (i > 0)
 		{
-			armRight.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle((float)i - par4, 10.0F);
-			armLeft.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle((float)i - par4, 10.0F);
+			armRight.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle(i - par4, 10.0F);
+			armLeft.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle(i - par4, 10.0F);
 		}
 		else
 		{

@@ -20,6 +20,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 		super(p_i45356_1_, dday);
 	}
 
+	@Override
 	public boolean onLeftClickEntity(ItemStack itemstack, EntityPlayer player, Entity entity)
 	{
 		Boolean result = super.onLeftClickEntity(itemstack, player, entity);
@@ -49,6 +50,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 		return result;
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;
@@ -61,7 +63,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 			if (vec == null) return par1ItemStack;
 
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
-			double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 			EntitySolarBomb rocket = new EntitySolarBomb(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);

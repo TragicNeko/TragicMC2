@@ -3,7 +3,6 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicNewConfig.jabbaStats;
 import static tragicneko.tragicmc.TragicNewConfig.jannaStats;
 
-import java.util.List;
 import java.util.UUID;
 
 import net.minecraft.entity.Entity;
@@ -30,7 +29,6 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -63,6 +61,7 @@ public class EntityJabba extends TragicMob {
 		return false;
 	}
 	
+	@Override
 	public boolean isMobVariant()
 	{
 		return this.getJabbaType() == 1;
@@ -152,32 +151,38 @@ public class EntityJabba extends TragicMob {
 		this.setWormTicks(--pow);
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Natural;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -195,6 +200,7 @@ public class EntityJabba extends TragicMob {
 		return (int) (this.getJabbaType() == 0 ? jabbaStats[5] : jannaStats[5]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		if (this.getWormTicks() > 0) this.motionX = this.motionZ = 0.0D;
@@ -282,9 +288,9 @@ public class EntityJabba extends TragicMob {
 		for (int k = 0; k < 3; ++k)
 		{
 			this.worldObj.spawnParticle(s1,
-					this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 0.95D,
+					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.95D,
 					this.posY + (rand.nextDouble() * 0.15D),
-					this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 0.95D,
+					this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.95D,
 					0.0, 0.0, 0.0);
 		}
 
@@ -296,9 +302,9 @@ public class EntityJabba extends TragicMob {
 		for (int l = 0; l < 3; ++l)
 		{
 			this.worldObj.spawnParticle(s,
-					this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
-					this.posY + this.rand.nextDouble() * (double)this.height,
-					this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.5D,
+					this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
+					this.posY + this.rand.nextDouble() * this.height,
+					this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 2.5D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D,
 					this.rand.nextDouble() * 0.1D,
 					(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -309,20 +315,21 @@ public class EntityJabba extends TragicMob {
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
-		double d1 = entity.boundingBox.minY + (double)(entity.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
+		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);
 		double d2 = entity.posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(entity)) * 0.5F;
 
 		for (int i = 0; i < 5; ++i)
 		{
-			EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
+			EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 			entitysmallfireball.posY = this.posY + 0.5D;
 			this.worldObj.spawnEntityInWorld(entitysmallfireball);
 			if (this.getAngerTicks() >= 50) this.setAngerTicks(this.getAngerTicks() - 50);
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -361,6 +368,7 @@ public class EntityJabba extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);

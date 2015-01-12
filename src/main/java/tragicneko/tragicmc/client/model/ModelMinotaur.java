@@ -3,7 +3,6 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 
@@ -94,6 +93,7 @@ public class ModelMinotaur extends ModelBase
 		leftLeg.addChild(leftHoof);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -106,6 +106,7 @@ public class ModelMinotaur extends ModelBase
 		leftLeg.render(f5);
 	}
 
+	@Override
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 		if (!(entity instanceof EntityMinotaur) && !(entity instanceof EntityClaymation)) return;

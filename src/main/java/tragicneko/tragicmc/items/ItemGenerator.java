@@ -59,12 +59,14 @@ public class ItemGenerator extends Item {
 		this.setUnlocalizedName("tragicmc.worldGen");
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add("Generate some of the WorldGen features!");
 		par2List.add("Some of this is really CPU intensive.");
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
 		if (world.isRemote) return stack;

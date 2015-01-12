@@ -438,7 +438,7 @@ public class NewAmuletEvents {
 
 				double d0 = 8.0D;
 				double d1 = (mp.posX + rand.nextDouble() - rand.nextDouble() - item.posX) / d0;
-				double d2 = (mp.posY + (double)mp.getEyeHeight() - item.posY) / d0;
+				double d2 = (mp.posY + mp.getEyeHeight() - item.posY) / d0;
 				double d3 = (mp.posZ + rand.nextDouble() - rand.nextDouble() - item.posZ) / d0;
 				double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
 				double d5 = 1.0D - d4;

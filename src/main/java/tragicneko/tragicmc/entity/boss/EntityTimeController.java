@@ -224,22 +224,26 @@ public class EntityTimeController extends TragicBoss {
 		this.setSpazTicks(--pow);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
 	{
 		return 15728880;
 	}
 
+	@Override
 	public float getBrightness(float par1)
 	{
 		return 1.0F;
 	}
 
+	@Override
 	public boolean canRenderOnFire()
 	{
 		return false;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -250,12 +254,14 @@ public class EntityTimeController extends TragicBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(timeControllerStats[4]);
 	}
 
+	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 3), 0.4F);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		this.fallDistance = 0.0F;
@@ -290,9 +296,9 @@ public class EntityTimeController extends TragicBoss {
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
 					double d3 = 0.5D;
 
-					double d4 = d0 / (double)f2 * d3 * 0.100000011920929D + d7 * 0.10000000298023224D;
-					double d5 = d1 / (double)f2 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
-					double d6 = d2 / (double)f2 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
+					double d4 = d0 / f2 * d3 * 0.100000011920929D + d7 * 0.10000000298023224D;
+					double d5 = d1 / f2 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
+					double d6 = d2 / f2 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
 
 					this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
 				}
@@ -505,9 +511,9 @@ public class EntityTimeController extends TragicBoss {
 						float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
 						double d4 = 0.25D;
 
-						entity.motionX = -d1 / (double)f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
-						entity.motionZ = -d2 / (double)f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
-						entity.motionY = -d3 / (double)f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
+						entity.motionX = -d1 / f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
+						entity.motionZ = -d2 / f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
+						entity.motionY = -d3 / f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
 						entity.moveEntity(entity.motionX, entity.motionY, entity.motionZ);
 					}
 				}
@@ -519,14 +525,15 @@ public class EntityTimeController extends TragicBoss {
 					float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
 					double d4 = 0.5D;
 
-					entity.motionX = -d1 / (double)f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
-					entity.motionZ = -d2 / (double)f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
-					entity.motionY = -d3 / (double)f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
+					entity.motionX = -d1 / f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
+					entity.motionZ = -d2 / f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
+					entity.motionY = -d3 / f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
 				}
 			}
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
@@ -548,6 +555,7 @@ public class EntityTimeController extends TragicBoss {
 		return result;
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote || this.getFluxTicks() > 0 || this.getLeapTicks() > 0 || this.getSpazTicks() > 0) return false;
@@ -562,11 +570,13 @@ public class EntityTimeController extends TragicBoss {
 		return result;
 	}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) timeControllerStats[5];
 	}
 
+	@Override
 	public void collideWithEntity(Entity entity)
 	{
 		super.collideWithEntity(entity);
@@ -578,18 +588,18 @@ public class EntityTimeController extends TragicBoss {
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 16.0D;
-		double d1 = this.posY + (double)(this.rand.nextInt(48) - 24);
+		double d1 = this.posY + (this.rand.nextInt(48) - 24);
 		double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 16.0D;
 		return this.teleportTo(d0, d1, d2);
 	}
 
 	protected boolean teleportToEntity(Entity par1Entity)
 	{
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - par1Entity.posY + (double)par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
+		Vec3 vec3 = Vec3.createVectorHelper(this.posX - par1Entity.posX, this.boundingBox.minY + this.height / 2.0F - par1Entity.posY + par1Entity.getEyeHeight(), this.posZ - par1Entity.posZ);
 		vec3 = vec3.normalize();
 		double d0 = 16.0D;
 		double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-		double d2 = this.posY + (double)(this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
+		double d2 = this.posY + (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
 		double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
 		return this.teleportTo(d1, d2, d3);
 	}
@@ -648,14 +658,14 @@ public class EntityTimeController extends TragicBoss {
 
 			for (int l = 0; l < short1; ++l)
 			{
-				double d6 = (double)l / ((double)short1 - 1.0D);
+				double d6 = l / (short1 - 1.0D);
 				float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 				float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * (double)this.height;
-				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-				this.worldObj.spawnParticle("happyVillager", d7, d8, d9, (double)f, (double)f1, (double)f2);
+				double d7 = d3 + (this.posX - d3) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				double d8 = d4 + (this.posY - d4) * d6 + this.rand.nextDouble() * this.height;
+				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+				this.worldObj.spawnParticle("happyVillager", d7, d8, d9, f, f1, f2);
 			}
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound("mob.endermen.portal", 1.0F, 1.0F);
@@ -697,14 +707,14 @@ public class EntityTimeController extends TragicBoss {
 
 									for (int l = 0; l < short1; ++l)
 									{
-										double d6 = (double)l / ((double)short1 - 1.0D);
+										double d6 = l / (short1 - 1.0D);
 										float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 										float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 										float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-										this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+										double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+										double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
+										double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+										this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 									}
 									mp.fallDistance = 0.0F;
 									this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
@@ -724,14 +734,14 @@ public class EntityTimeController extends TragicBoss {
 
 								for (int l = 0; l < short1; ++l)
 								{
-									double d6 = (double)l / ((double)short1 - 1.0D);
+									double d6 = l / (short1 - 1.0D);
 									float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
 									float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
 									float f2 = (this.rand.nextFloat() - 0.5F) * 0.2F;
-									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * (double)this.height;
-									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * (double)this.width * 2.0D;
-									this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+									double d7 = x + ((x + x1) - x) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+									double d8 = y + ((y + y1) - y) * d6 + this.rand.nextDouble() * this.height;
+									double d9 = z + ((z + z1) - z) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
+									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 								}
 
 								this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);

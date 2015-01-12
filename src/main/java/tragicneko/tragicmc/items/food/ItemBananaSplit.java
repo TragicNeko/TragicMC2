@@ -14,6 +14,7 @@ public class ItemBananaSplit extends ItemFood {
 		this.setPotionEffect(Potion.jump.id, 30, 1, 1.0F);
 	}
 	
+	@Override
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 0));

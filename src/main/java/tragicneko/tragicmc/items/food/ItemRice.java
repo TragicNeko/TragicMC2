@@ -11,6 +11,7 @@ public class ItemRice extends ItemFood {
 		this.setContainerItem(Items.bowl);
 	}
 	
+	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
 		return 16;

@@ -29,6 +29,7 @@ public class WeaponNekoLauncher extends TragicWeapon {
 		this.epicLevels = new int[] {10, 5, 3};
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
@@ -39,7 +40,7 @@ public class WeaponNekoLauncher extends TragicWeapon {
 		if (vec == null) return par1ItemStack;
 
 		double d4 = vec.xCoord - par3EntityPlayer.posX;
-		double d5 = vec.yCoord - (par3EntityPlayer.posY + (double)(par3EntityPlayer.height / 2.0F));
+		double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 		EntityNekoRocket rocket = new EntityNekoRocket(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);

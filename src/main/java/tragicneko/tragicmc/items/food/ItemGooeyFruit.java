@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.items.food;
 
 import net.minecraft.item.ItemFood;
-import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotion;
 

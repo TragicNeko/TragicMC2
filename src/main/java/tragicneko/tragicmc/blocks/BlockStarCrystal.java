@@ -62,6 +62,7 @@ public class BlockStarCrystal extends Block {
 		return Items.dye;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -72,6 +73,7 @@ public class BlockStarCrystal extends Block {
 		return this.iconArray[meta];
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
@@ -81,11 +83,13 @@ public class BlockStarCrystal extends Block {
 		}
 	}
 
+	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
 
+	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
 		for (int i = 0; i < this.subNames.length; i++)
@@ -94,17 +98,20 @@ public class BlockStarCrystal extends Block {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
 	{
 		return 1;
 	}
 
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
 	{

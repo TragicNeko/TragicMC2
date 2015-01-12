@@ -1,15 +1,8 @@
 package tragicneko.tragicmc.items.weapons;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponGravitySpike extends TragicWeapon {
 	

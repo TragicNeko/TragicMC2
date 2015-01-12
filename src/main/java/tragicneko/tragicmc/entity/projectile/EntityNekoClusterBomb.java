@@ -42,6 +42,7 @@ public class EntityNekoClusterBomb extends EntityThrowable {
 		}
 	}
 
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.dimension;
 
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
 
@@ -14,7 +13,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkPosition;
-import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -26,14 +24,10 @@ import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.structure.MapGenScatteredFeature;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
-import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class TragicChunkProvider implements IChunkProvider
 {
@@ -85,7 +79,7 @@ public class TragicChunkProvider implements IChunkProvider
 		{
 			for (int k = -2; k <= 2; ++k)
 			{
-				float f = 10.0F / MathHelper.sqrt_float((float)(j * j + k * k) + 0.2F);
+				float f = 10.0F / MathHelper.sqrt_float(j * j + k * k + 0.2F);
 				this.parabolicField[j + 2 + (k + 2) * 5] = f;
 			}
 		}
@@ -181,7 +175,7 @@ public class TragicChunkProvider implements IChunkProvider
 	public void replaceBlocksForBiome(int p_147422_1_, int p_147422_2_, Block[] p_147422_3_, byte[] p_147422_4_, BiomeGenBase[] p_147422_5_)
 	{
 		double d0 = 0.03125D;
-		this.stoneNoise = this.noiseGen4.func_151599_a(this.stoneNoise, (double)(p_147422_1_ * 16), (double)(p_147422_2_ * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+		this.stoneNoise = this.noiseGen4.func_151599_a(this.stoneNoise, p_147422_1_ * 16, p_147422_2_ * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
 		for (int k = 0; k < 16; ++k)
 		{
@@ -196,7 +190,8 @@ public class TragicChunkProvider implements IChunkProvider
 	/**
 	 * loads or generates the chunk at the chunk location specified
 	 */
-	 public Chunk loadChunk(int par1, int par2)
+	 @Override
+	public Chunk loadChunk(int par1, int par2)
 	{
 		return this.provideChunk(par1, par2);
 	}
@@ -205,9 +200,10 @@ public class TragicChunkProvider implements IChunkProvider
 	 * Will return back a chunk, if it doesn't exist and its not a MP client it will generate all the blocks for the
 	 * specified chunk from the map seed and chunk seed
 	 */
-	 public Chunk provideChunk(int par1, int par2)
+	 @Override
+	public Chunk provideChunk(int par1, int par2)
 	{
-		 this.rand.setSeed((long)par1 * 341873128712L + (long)par2 * 132897987541L);
+		 this.rand.setSeed(par1 * 341873128712L + par2 * 132897987541L);
 		 Block[] ablock = new Block[65536];
 		 byte[] abyte = new byte[65536];
 		 this.func_147424_a(par1, par2, ablock);
@@ -311,15 +307,15 @@ public class TragicChunkProvider implements IChunkProvider
 				}
 
 				++i1;
-				double d13 = (double)f1;
-				double d14 = (double)f;
+				double d13 = f1;
+				double d14 = f;
 				d13 += d12 * 0.2D;
 				d13 = d13 * 8.5D / 8.0D;
 				double d5 = 8.5D + d13 * 4.0D;
 
 				for (int j2 = 0; j2 < 33; ++j2)
 				{
-					double d6 = ((double)j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
+					double d6 = (j2 - d5) * 12.0D * 128.0D / 256.0D / d14;
 
 					if (d6 < 0.0D)
 					{
@@ -333,7 +329,7 @@ public class TragicChunkProvider implements IChunkProvider
 
 					if (j2 > 29)
 					{
-						double d11 = (double)((float)(j2 - 29) / 3.0F);
+						double d11 = (j2 - 29) / 3.0F;
 						d10 = d10 * (1.0D - d11) + -10.0D * d11;
 					}
 
@@ -347,7 +343,8 @@ public class TragicChunkProvider implements IChunkProvider
 	/**
 	 * Checks to see if a chunk exists at x, y
 	 */
-	 public boolean chunkExists(int par1, int par2)
+	 @Override
+	public boolean chunkExists(int par1, int par2)
 	{
 		 return true;
 	}
@@ -355,7 +352,8 @@ public class TragicChunkProvider implements IChunkProvider
 	/**
 	 * Populates chunk with ores etc etc
 	 */
-	 public void populate(IChunkProvider par1IChunkProvider, int par2, int par3)
+	 @Override
+	public void populate(IChunkProvider par1IChunkProvider, int par2, int par3)
 	{
 		BlockFalling.fallInstantly = true;
 		int k = par2 * 16;
@@ -364,7 +362,7 @@ public class TragicChunkProvider implements IChunkProvider
 		this.rand.setSeed(this.worldObj.getSeed());
 		long i1 = this.rand.nextLong() / 2L * 2L + 1L;
 		long j1 = this.rand.nextLong() / 2L * 2L + 1L;
-		this.rand.setSeed((long)par2 * i1 + (long)par3 * j1 ^ this.worldObj.getSeed());
+		this.rand.setSeed(par2 * i1 + par3 * j1 ^ this.worldObj.getSeed());
 		boolean flag = false;
 
 		int k1;
@@ -408,7 +406,8 @@ public class TragicChunkProvider implements IChunkProvider
 	  * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
 	  * Return true if all chunks have been saved.
 	  */
-	 public boolean saveChunks(boolean par1, IProgressUpdate par2IProgressUpdate)
+	 @Override
+	public boolean saveChunks(boolean par1, IProgressUpdate par2IProgressUpdate)
 	 {
 		 return true;
 	 }
@@ -417,12 +416,14 @@ public class TragicChunkProvider implements IChunkProvider
 	  * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
 	  * unimplemented.
 	  */
-	 public void saveExtraData() {}
+	 @Override
+	public void saveExtraData() {}
 
 	 /**
 	  * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
 	  */
-	 public boolean unloadQueuedChunks()
+	 @Override
+	public boolean unloadQueuedChunks()
 	 {
 		 return false;
 	 }
@@ -430,7 +431,8 @@ public class TragicChunkProvider implements IChunkProvider
 	 /**
 	  * Returns if the IChunkProvider supports saving.
 	  */
-	 public boolean canSave()
+	 @Override
+	public boolean canSave()
 	 {
 		 return true;
 	 }
@@ -438,7 +440,8 @@ public class TragicChunkProvider implements IChunkProvider
 	 /**
 	  * Converts the instance data to a readable string.
 	  */
-	 public String makeString()
+	 @Override
+	public String makeString()
 	 {
 		 return "TragicDimensionRandomLevelSource";
 	 }
@@ -446,23 +449,27 @@ public class TragicChunkProvider implements IChunkProvider
 	 /**
 	  * Returns a list of creatures of the specified type that can spawn at the given location.
 	  */
-	 public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
+	 @Override
+	public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
 	 {
 		 BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(par2, par4);
 		 return biomegenbase.getSpawnableList(par1EnumCreatureType);
 	 }
 
-	 public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_)
+	 @Override
+	public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_)
 	 {
 		 return null;
 	 }
 
-	 public int getLoadedChunkCount()
+	 @Override
+	public int getLoadedChunkCount()
 	 {
 		 return 0;
 	 }
 
-	 public void recreateStructures(int par1, int par2)
+	 @Override
+	public void recreateStructures(int par1, int par2)
 	 {
 
 	 }

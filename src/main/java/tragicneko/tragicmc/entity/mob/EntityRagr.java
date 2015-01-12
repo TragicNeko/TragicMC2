@@ -85,16 +85,19 @@ public class EntityRagr extends TragicMob {
 		this.setAngerTicks(--pow);
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Beast;
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
 	}
 
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -105,6 +108,7 @@ public class EntityRagr extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(ragrStats[4]);
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -120,8 +124,8 @@ public class EntityRagr extends TragicMob {
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().posZ - this.posZ;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-				this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 				this.motionY = 0.745D;
 			}
 			else if (this.getAngerTicks() >= 600)
@@ -131,8 +135,8 @@ public class EntityRagr extends TragicMob {
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().posZ - this.posZ;
 					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-					this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-					this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+					this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+					this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 					this.motionY = (rand.nextDouble() * 1.055) + 0.445;
 				}
 
@@ -143,8 +147,8 @@ public class EntityRagr extends TragicMob {
 				double d0 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
 				double d1 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-				this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 				this.motionY = 0.545D;
 			}
 		}
@@ -157,8 +161,8 @@ public class EntityRagr extends TragicMob {
 				double d0 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
 				double d1 = rand.nextDouble() * 1.45D - rand.nextDouble() * 1.45D;
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-				this.motionX = d0 / (double)f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-				this.motionZ = d1 / (double)f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
+				this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
+				this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 				this.motionY = 0.545D;
 			}
 		}
@@ -202,6 +206,7 @@ public class EntityRagr extends TragicMob {
 		}
 	}
 
+	@Override
 	protected void fall(float par1) 
 	{
 		if (this.worldObj.isRemote) return;
@@ -239,7 +244,7 @@ public class EntityRagr extends TragicMob {
 			z = coords[2];
 			block = this.worldObj.getBlock(x, y, z);
 
-			if (this.crushableBlocks.contains(block))
+			if (EntityRagr.crushableBlocks.contains(block))
 			{
 				this.worldObj.setBlockToAir(x, y, z);
 			}
@@ -262,18 +267,22 @@ public class EntityRagr extends TragicMob {
 		}
 	}
 
+	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 1;
 	}
 
+	@Override
 	public void setInWeb() {}
 
+	@Override
 	public int getTotalArmorValue()
 	{
 		return this.isBurning() ? 0 : (int) ragrStats[5];
 	}
 
+	@Override
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor_double(this.boundingBox.minY);
@@ -310,6 +319,7 @@ public class EntityRagr extends TragicMob {
 		}
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
@@ -334,6 +344,7 @@ public class EntityRagr extends TragicMob {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
