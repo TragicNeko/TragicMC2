@@ -10,6 +10,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
+import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityGuardianShield;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -18,9 +19,9 @@ import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -64,6 +65,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
+import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 import tragicneko.tragicmc.entity.projectile.EntityPitchBlack;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
@@ -729,18 +731,18 @@ public class TragicEntities {
 		}
 
 
-		//Big bosses
+		//Alphas
 
 		if (TragicNewConfig.allowOverlord)
 		{
 			EntityRegistry.registerModEntity(EntityOverlordCocoon.class, "OverlordCocoon", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
+			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x49F3B1, 0x434343, EnumEggType.ALPHA);
 
 			EntityRegistry.registerModEntity(EntityOverlordCombat.class, "OverlordCombat", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
+			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x434343, EnumEggType.ALPHA);
 
-			EntityRegistry.registerModEntity(EntityOverlordCore.class, "Overlord", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityOverlordCore.class, "TragicMC.Overlord", id++, 0x49F3B1, 0x434343, EnumEggType.BIGBOSS);
+			EntityRegistry.registerModEntity(EntityOverlordCore.class, "OverlordCore", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityOverlordCore.class, "TragicMC.OverlordCore", id++, 0x49F3B1, 0x434343, EnumEggType.ALPHA);
 		}
 
 		EntityRegistry.registerModEntity(EntityThrowingRock.class, "ThrowingRock", listid++, TragicMC.getInstance(), 80, 3, true);
@@ -769,5 +771,7 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityWebBomb.class, "WebBomb", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityCrystalMortor.class, "CrystalMortor", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityGuardianShield.class, "GuardianShield", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityOverlordMortor.class, "OverlordMortor", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityDimensionalAnomaly.class, "DimensionalAnomaly", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }

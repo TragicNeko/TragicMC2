@@ -16,6 +16,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 
 public class EntityNanoSwarm extends TragicMob {
 
@@ -31,6 +34,7 @@ public class EntityNanoSwarm extends TragicMob {
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 	
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -47,6 +51,7 @@ public class EntityNanoSwarm extends TragicMob {
 		return (int) nanoSwarmStats[5];
 	}
 
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
@@ -57,6 +62,7 @@ public class EntityNanoSwarm extends TragicMob {
 		return false;
 	}
 	
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -66,9 +72,9 @@ public class EntityNanoSwarm extends TragicMob {
 			for (int l = 0; l < 2; ++l)
 			{
 				this.worldObj.spawnParticle("enchantmenttable",
-						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
-						this.posY + this.rand.nextDouble() * (double)this.height + 0.15D,
-						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * (double)this.width * 1.5D,
+						this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
+						this.posY + this.rand.nextDouble() * this.height + 0.15D,
+						this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.5D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
@@ -78,6 +84,7 @@ public class EntityNanoSwarm extends TragicMob {
 		if (this.motionY < 0 && !this.onGround) this.motionY *= 0.65D;
 	}
 	
+	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
@@ -106,13 +113,14 @@ public class EntityNanoSwarm extends TragicMob {
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 	
+	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
 		
 		boolean result = super.attackEntityAsMob(par1Entity);
 		
-		if (result && par1Entity instanceof EntityLivingBase)
+		if (result && par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityOverlordCore) && !(par1Entity instanceof EntityOverlordCocoon) && !(par1Entity instanceof EntityOverlordCombat))
 		{
 			this.setDead();
 			if (TragicNewConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 240 + rand.nextInt(160)));
@@ -121,7 +129,15 @@ public class EntityNanoSwarm extends TragicMob {
 		return result;
 	}
 
+	@Override
 	public void fall(float par1){}
 
+	@Override
 	public void updateFallState(double par1, boolean par2) {}
+	
+	@Override
+	public boolean canAttackClass(Class oclass)
+	{
+		return super.canAttackClass(oclass) && oclass != EntityOverlordCombat.class && oclass != EntityOverlordCocoon.class && oclass != EntityOverlordCore.class;
+	}
 }

@@ -8,27 +8,23 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 
-public class EntityCrystalMortor extends EntityProjectile {
-
+public class EntityOverlordMortor extends EntityProjectile {
+	
 	protected EntityLivingBase target = null;
 	protected int ticksWithTarget;
 
-	public EntityCrystalMortor(World par1World) {
+	public EntityOverlordMortor(World par1World) {
 		super(par1World);
 		this.setSize(1.0F, 1.0F);
 	}
 
-	public EntityCrystalMortor(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
+	public EntityOverlordMortor(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
-	}
-
-	@Override
-	protected float getMotionFactor()
-	{
-		return 0.65F;
 	}
 
 	@Override
@@ -38,11 +34,17 @@ public class EntityCrystalMortor extends EntityProjectile {
 		if (mop.entityHit != null) 
 		{			
 			if (mop.entityHit == this.shootingEntity && this.shootingEntity != null) return;
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
-		}
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 10.0F);
 
-		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-		this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
+			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
+		}
+		else
+		{
+			EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
+			anomoly.setPosition(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
+			this.worldObj.spawnEntityInWorld(anomoly);
+		}
 
 		this.setDead();
 	}
@@ -62,11 +64,15 @@ public class EntityCrystalMortor extends EntityProjectile {
 
 		if (this.ticksWithTarget > 60)
 		{
-			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-
 			if (!this.worldObj.isRemote)
 			{
-				this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+				TragicMC.logInfo("Time's up!");
+				if (rand.nextInt(4) == 0)
+				{
+					EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
+					anomoly.setPosition(this.posX, this.posY, this.posZ);
+					this.worldObj.spawnEntityInWorld(anomoly);
+				}
 				this.setDead();
 			}			
 		}
@@ -105,5 +111,4 @@ public class EntityCrystalMortor extends EntityProjectile {
 	{
 		return "crit";
 	}
-
 }

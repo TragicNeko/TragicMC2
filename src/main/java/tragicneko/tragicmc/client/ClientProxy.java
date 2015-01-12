@@ -3,9 +3,6 @@ package tragicneko.tragicmc.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -17,7 +14,6 @@ import tragicneko.tragicmc.TragicNewConfig;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
-import tragicneko.tragicmc.client.model.ModelApis;
 import tragicneko.tragicmc.client.model.ModelDeathReaper;
 import tragicneko.tragicmc.client.model.ModelGragul;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
@@ -37,6 +33,7 @@ import tragicneko.tragicmc.client.model.ModelStinQueen;
 import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
+import tragicneko.tragicmc.client.render.RenderDimensionalAnomaly;
 import tragicneko.tragicmc.client.render.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
@@ -49,6 +46,7 @@ import tragicneko.tragicmc.client.render.boss.RenderDeathReaper;
 import tragicneko.tragicmc.client.render.boss.RenderEnyvil;
 import tragicneko.tragicmc.client.render.boss.RenderKitsune;
 import tragicneko.tragicmc.client.render.boss.RenderMegaCryse;
+import tragicneko.tragicmc.client.render.boss.RenderOverlordCore;
 import tragicneko.tragicmc.client.render.boss.RenderPolaris;
 import tragicneko.tragicmc.client.render.boss.RenderTimeController;
 import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
@@ -63,6 +61,7 @@ import tragicneko.tragicmc.client.render.mob.RenderStin;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
+import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -70,9 +69,9 @@ import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -116,6 +115,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
+import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 import tragicneko.tragicmc.entity.projectile.EntityPitchBlack;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
@@ -190,11 +190,13 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkMortor.class, new RenderProjectile(20));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWebBomb.class, new RenderProjectile(21));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCrystalMortor.class, new RenderProjectile(22));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordMortor.class, new RenderProjectile(23));
 
 		//Non projectile renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDimensionalAnomaly.class, new RenderDimensionalAnomaly()); //TODO update this to an actual model for it
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderJabba());
@@ -236,8 +238,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 
-		//Big Boss renders TODO change these to their proper models, these are placeholders
-		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderMob(new ModelApis(), 0.885F, "ApisCombat2_lowRes", 2.556F));
+		//Alpha renders TODO change these to their proper models, these are placeholders
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelDeathReaper(), 0.885F, "DeathReaper_lowRes", 2.556F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelKitsune2(), 0.885F, "Kitsune2_lowRes", 2.556F));
 	}

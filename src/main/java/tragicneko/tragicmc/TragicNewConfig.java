@@ -104,7 +104,7 @@ public class TragicNewConfig {
 	private static double[][] miniBossStats = new double[16][];
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats;
 	private static double[][] bossStats = new double[12][];
-	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordStats;
+	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats;
 
 	private static boolean[] blanketPotion = new boolean[2];
 	public static boolean allowPositivePotions, allowNegativePotions;
@@ -135,7 +135,6 @@ public class TragicNewConfig {
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
 	public static boolean[] griefConfigs = new boolean[8];
-	//everything that isn't a mob will check this to see if it is allowed instead of using mobGriefing, this includes things like Doomsdays and items
 
 	public static void initialize()
 	{
@@ -743,7 +742,7 @@ public class TragicNewConfig {
 		bossStats[mapping++] = (config.get(catMobs, "timeControllerStats", new double[] {350.0, 0.386, 6.0, 64.0, 0.5, 16}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "enyvilStats", new double[] {450.0, 0.276, 24.0, 48.0, 1.0, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "claymationStats", new double[] {150.0, 0.220, 12.0, 32.0, 1.0, 18}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "overlordStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "overlordCoreStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed or disable certain groups like Mini-Bosses or Bosses. Stats are: Health, Movement Speed, Attack Damage, Follow Range, Knockback Resistance, Armor Value.");
 
@@ -1443,7 +1442,7 @@ public class TragicNewConfig {
 		timeControllerStats = bossStats[mapping++];
 		enyvilStats = bossStats[mapping++];
 		claymationStats = bossStats[mapping++];
-		overlordStats = bossStats[mapping++];
+		overlordCoreStats = bossStats[mapping++];
 
 		allowPositivePotions = blanketPotion[0];
 		allowNegativePotions = blanketPotion[1];

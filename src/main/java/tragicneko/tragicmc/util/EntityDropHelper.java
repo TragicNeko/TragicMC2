@@ -20,6 +20,7 @@ import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
+import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -205,6 +206,11 @@ public class EntityDropHelper {
 		
 		addToDropList(EntityClaymation.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LivingClay)}, {new EntityDrop(5, TragicItems.Talisman), new EntityDrop(10, TragicBlocks.Wax),
 			new EntityDrop(5, TragicItems.LifeWater), new EntityDrop(15, Items.clay_ball), new EntityDrop(5, Blocks.clay)}});
+		
+		//Alpha Drops
+		
+		addToDropList(EntityOverlordCore.class, new EntityDrop[][]{{new EntityDrop(25, TragicItems.OverlordEye)}, {new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(5, TragicItems.CelestialSteel),
+			new EntityDrop(25, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink)}});
 	}
 
 	public static void addToDropList(DropEntry entry)

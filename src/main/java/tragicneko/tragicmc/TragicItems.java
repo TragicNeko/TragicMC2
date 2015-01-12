@@ -115,7 +115,7 @@ public class TragicItems {
 	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
 
-	//Big boss drops, from the Overlord and the Administrator (way future boss)
+	//Alpha drops, from the Overlord and the Administrator (way future boss)
 	public static Item Sentinel, Password;
 
 	//Weather/Time items
