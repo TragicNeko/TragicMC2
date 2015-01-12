@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.jabbaStats;
-import static tragicneko.tragicmc.TragicNewConfig.jannaStats;
+import static tragicneko.tragicmc.TragicConfig.jabbaStats;
+import static tragicneko.tragicmc.TragicConfig.jannaStats;
 
 import java.util.UUID;
 
@@ -29,7 +29,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
@@ -38,7 +38,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityJabba extends TragicMob {
 
-	private static AttributeModifier lowHealthDamageBoost = new AttributeModifier(UUID.fromString("8c159dc4-aacf-461f-b3e9-66dc9fbf6e99"), "jabbaLowHealthDamageBoost", TragicNewConfig.modifierAmts[6], 0);
+	private static AttributeModifier lowHealthDamageBoost = new AttributeModifier(UUID.fromString("8c159dc4-aacf-461f-b3e9-66dc9fbf6e99"), "jabbaLowHealthDamageBoost", TragicConfig.modifierAmts[6], 0);
 
 	public EntityJabba(World par1World) {
 		super(par1World);
@@ -257,7 +257,7 @@ public class EntityJabba extends TragicMob {
 			{
 				EntityPlayer player = this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0);
 
-				if (player != null && TragicNewConfig.allowDoom && this.canEntityBeSeen(player))
+				if (player != null && TragicConfig.allowDoom && this.canEntityBeSeen(player))
 				{
 					PropertyDoom doom = PropertyDoom.get(player);
 					int i = this.worldObj.difficultySetting.getDifficultyId();
@@ -438,7 +438,7 @@ public class EntityJabba extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicNewConfig.allowJarra;
+		return TragicConfig.allowJarra;
 	}
 	/*
 	@Override

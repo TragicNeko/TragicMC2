@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,7 +33,7 @@ public class ItemAmuletRelease extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.shouldUnlockAmuletSlots)
+		if (!par2World.isRemote && TragicConfig.shouldUnlockAmuletSlots)
 		{
 			PropertyAmulets amulets = PropertyAmulets.get(par3EntityPlayer);
 			

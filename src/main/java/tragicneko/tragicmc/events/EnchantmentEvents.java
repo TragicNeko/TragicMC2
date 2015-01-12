@@ -24,7 +24,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -40,7 +40,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onLuminescence(LivingUpdateEvent event)
 	{
-		if (!event.entityLiving.worldObj.isRemote && TragicNewConfig.allowLuminescence)
+		if (!event.entityLiving.worldObj.isRemote && TragicConfig.allowLuminescence)
 		{
 			boolean flag = false;
 
@@ -70,7 +70,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
 	{
-		if (event.harvester != null && !event.isSilkTouching && TragicNewConfig.allowCombustion)
+		if (event.harvester != null && !event.isSilkTouching && TragicConfig.allowCombustion)
 		{			
 			if (event.harvester.getEquipmentInSlot(0) != null)
 			{
@@ -179,7 +179,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void multiplyArrow(ArrowLooseEvent event)
 	{
-		if (TragicNewConfig.allowMultiply)
+		if (TragicConfig.allowMultiply)
 		{
 			EntityPlayer player = event.entityPlayer;
 			World world = player.worldObj;
@@ -249,7 +249,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void withAgility(LivingHurtEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && TragicNewConfig.allowAgility && !event.source.isMagicDamage())
+		if (event.entityLiving instanceof EntityPlayer && TragicConfig.allowAgility && !event.source.isMagicDamage())
 		{
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (!event.source.canHarmInCreative())
@@ -281,7 +281,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onExtraWeaponEnchantUse(LivingHurtEvent event)
 	{
-		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && TragicNewConfig.allowWeaponEnchants)
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && TragicConfig.allowWeaponEnchants)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
@@ -289,7 +289,7 @@ public class EnchantmentEvents {
 			{
 				float f = event.ammount / 10;
 
-				if (TragicNewConfig.allowVampirism)
+				if (TragicConfig.allowVampirism)
 				{
 					int vamp = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Vampirism.effectId, player.getCurrentEquippedItem());
 
@@ -297,7 +297,7 @@ public class EnchantmentEvents {
 					{
 						player.heal(f * vamp);
 
-						if (TragicNewConfig.allowCripple)
+						if (TragicConfig.allowCripple)
 						{
 							event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 60 * vamp, vamp * 2));
 						}
@@ -309,7 +309,7 @@ public class EnchantmentEvents {
 					}
 				}
 
-				if (TragicNewConfig.allowLeech)
+				if (TragicConfig.allowLeech)
 				{
 					int leech = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Leech.effectId, player.getCurrentEquippedItem());
 
@@ -335,7 +335,7 @@ public class EnchantmentEvents {
 					}
 				}
 
-				if (TragicNewConfig.allowConsume)
+				if (TragicConfig.allowConsume)
 				{
 					int consume = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Consume.effectId, player.getCurrentEquippedItem());
 
@@ -343,7 +343,7 @@ public class EnchantmentEvents {
 					{
 						PropertyDoom property1 = PropertyDoom.get(player);
 
-						if (property1 != null && TragicNewConfig.allowDoom)
+						if (property1 != null && TragicConfig.allowDoom)
 						{
 							property1.increaseDoom(consume);
 							if (event.entityLiving instanceof EntityPlayer)
@@ -361,7 +361,7 @@ public class EnchantmentEvents {
 					}
 				}
 
-				if (TragicNewConfig.allowRuneBreak)
+				if (TragicConfig.allowRuneBreak)
 				{
 					int runeBreak = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.RuneBreak.effectId, player.getCurrentEquippedItem());
 

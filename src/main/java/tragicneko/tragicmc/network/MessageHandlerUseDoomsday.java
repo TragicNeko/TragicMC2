@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.items.armor.TragicArmor;
@@ -100,17 +100,17 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 
 		if (doomsday == null) return null;
 
-		if (doomsday.getDoomsdayType() == EnumDoomType.INFLUENCE && !TragicNewConfig.allowInfluenceDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.CRISIS && !TragicNewConfig.allowCrisisDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW && !TragicNewConfig.allowOverflowDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER && !TragicNewConfig.allowWorldShaperDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.COMBINATION && !TragicNewConfig.allowCombinationDoomsday)
+		if (doomsday.getDoomsdayType() == EnumDoomType.INFLUENCE && !TragicConfig.allowInfluenceDoomsday ||
+				doomsday.getDoomsdayType() == EnumDoomType.CRISIS && !TragicConfig.allowCrisisDoomsday ||
+				doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW && !TragicConfig.allowOverflowDoomsday ||
+				doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER && !TragicConfig.allowWorldShaperDoomsday ||
+				doomsday.getDoomsdayType() == EnumDoomType.COMBINATION && !TragicConfig.allowCombinationDoomsday)
 		{
 			player.addChatComponentMessage(new ChatComponentText("The Doomsday of that type is disabled, enable in config."));
 			return null;
 		}
 		
-		if (!TragicNewConfig.doomsdayAllow[doomsday.doomID])
+		if (!TragicConfig.doomsdayAllow[doomsday.doomID])
 		{
 			player.addChatComponentMessage(new ChatComponentText("That particular Doomsday is disabled, enable in config."));
 			return null;

@@ -10,7 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -41,7 +41,7 @@ public class WeaponTitan extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[31]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[31])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[31]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[31])
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -49,9 +49,9 @@ public class WeaponTitan extends EpicWeapon {
 						entity.posZ + itemRand.nextDouble() - itemRand.nextDouble()));
 			}
 
-			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicNewConfig.griefConfigs[4]);
+			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicConfig.griefConfigs[4]);
 
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[31]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[31]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -68,7 +68,7 @@ public class WeaponTitan extends EpicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 50.0);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[32]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[32])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[32]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[32])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
@@ -117,7 +117,7 @@ public class WeaponTitan extends EpicWeapon {
 					}
 				}
 				
-				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[32]);
+				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[32]);
 				setStackCooldown(par1ItemStack, 5);
 			}
 		}

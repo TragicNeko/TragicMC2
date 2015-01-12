@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -45,7 +45,7 @@ public class DoomsdayDecay extends Doomsday {
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(120) + 120));
 				entity.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(240) + 160, rand.nextInt(2)));
-				if (crucMoment && TragicNewConfig.allowCripple) entity.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(240) + 120, rand.nextInt(6)));
+				if (crucMoment && TragicConfig.allowCripple) entity.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, rand.nextInt(240) + 120, rand.nextInt(6)));
 			}
 		}
 	}

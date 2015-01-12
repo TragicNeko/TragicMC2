@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.psygoteStats;
+import static tragicneko.tragicmc.TragicConfig.psygoteStats;
 
 import java.util.UUID;
 
@@ -22,13 +22,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 
 public class EntityPsygote extends TragicMob {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("1e8bc939-443c-46b6-8158-0d53513a47e6"), "psygoteSpeedDebuff", TragicNewConfig.modifierAmts[8], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("1e8bc939-443c-46b6-8158-0d53513a47e6"), "psygoteSpeedDebuff", TragicConfig.modifierAmts[8], 0);
 
 	public EntityPsygote(World par1World) {
 		super(par1World);
@@ -186,7 +186,7 @@ public class EntityPsygote extends TragicMob {
 
 		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(3.0F);
 
-		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicNewConfig.allowInhibit) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
+		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicConfig.allowInhibit) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
 		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(32) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F) this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
 	}
 

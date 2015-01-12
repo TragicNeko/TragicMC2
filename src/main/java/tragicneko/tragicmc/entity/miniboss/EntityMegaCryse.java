@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.megaCryseStats;
+import static tragicneko.tragicmc.TragicConfig.megaCryseStats;
 
 import java.util.UUID;
 
@@ -11,13 +11,13 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9"), "megaCryseNoShieldAttackBuff", TragicNewConfig.modifierAmts[5], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9"), "megaCryseNoShieldAttackBuff", TragicConfig.modifierAmts[5], 0);
 	private int timeSinceFirstBreak;
 
 	public EntityMegaCryse(World par1World) {

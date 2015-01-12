@@ -1,13 +1,13 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.stinKingStats;
+import static tragicneko.tragicmc.TragicConfig.stinKingStats;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 
@@ -78,7 +78,7 @@ public class EntityStinKing extends EntityGreaterStin {
 				if (this.getAttackTarget() == null) this.setFiringTicks(0);
 			}
 
-			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicNewConfig.allowFear)
+			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicConfig.allowFear)
 			{
 				this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
 			}

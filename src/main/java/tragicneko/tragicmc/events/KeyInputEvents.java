@@ -18,7 +18,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.network.MessageGui;
@@ -39,12 +39,12 @@ public class KeyInputEvents extends Gui {
 
 			if (player == null) return;
 
-			if (ClientProxy.openAmuletGui.getIsKeyPressed() && TragicNewConfig.allowAmulets)
+			if (ClientProxy.openAmuletGui.getIsKeyPressed() && TragicConfig.allowAmulets)
 			{
 				TragicMC.net.sendToServer(new MessageGui(TragicMC.idAmuletGui));
 			}
 
-			if (ClientProxy.useSpecial.getIsKeyPressed() && TragicNewConfig.allowDoomsdays)
+			if (ClientProxy.useSpecial.getIsKeyPressed() && TragicConfig.allowDoomsdays)
 			{
 				TragicMC.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
 			}
@@ -58,7 +58,7 @@ public class KeyInputEvents extends Gui {
 
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 
-		if (player != null && TragicNewConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotion.Flight.id) && player.ticksExisted % 2 == 0)
+		if (player != null && TragicConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotion.Flight.id) && player.ticksExisted % 2 == 0)
 		{
 			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
 
@@ -81,7 +81,7 @@ public class KeyInputEvents extends Gui {
 				}
 			}
 		}
-		else if (player != null && TragicNewConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
+		else if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
 		{
 			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Hacked);
 
@@ -103,14 +103,14 @@ public class KeyInputEvents extends Gui {
 			}
 		}
 		
-		boolean flag = TragicNewConfig.allowHacked ? player != null && player.isPotionActive(TragicPotion.Hacked) : false;
+		boolean flag = TragicConfig.allowHacked ? player != null && player.isPotionActive(TragicPotion.Hacked) : false;
 		if (!flag && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 	}
 	
 	@SubscribeEvent
 	public void renderHackedEffects(RenderGameOverlayEvent event)
 	{
-		if (event.type != ElementType.PORTAL || !TragicNewConfig.allowHacked) return;
+		if (event.type != ElementType.PORTAL || !TragicConfig.allowHacked) return;
 		
 		Minecraft mc = Minecraft.getMinecraft();
 		

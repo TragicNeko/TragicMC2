@@ -17,7 +17,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.EntityDropHelper;
@@ -67,7 +67,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		
 		int amt = 0;
 
-		if (TragicNewConfig.allowExtraBossLoot)
+		if (TragicConfig.allowExtraBossLoot)
 		{
 			int amount = rand.nextInt(6) + 4 * x;
 
@@ -88,14 +88,14 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		for (int i = 0; i < x + 3; i++)
 		{
-			if (rand.nextInt(100) <= TragicNewConfig.commonDropRate + (x * 4))
+			if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
 			{
 				ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), true);
 				if (drop != null) this.entityDropItem(drop, 0.4F);
 				total += 1;
 			}
 
-			if (this.recentlyHit > 0 && rand.nextInt(25) <= TragicNewConfig.rareDropRate + x)
+			if (this.recentlyHit > 0 && rand.nextInt(25) <= TragicConfig.rareDropRate + x)
 			{
 				ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
 				if (drop != null) this.entityDropItem(drop, 0.4F);
@@ -115,7 +115,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	public void onLivingUpdate()
 	{
-		if (TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
+		if (TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY) this.setDead();
@@ -153,7 +153,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
+		if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
 		return super.attackEntityAsMob(par1Entity);
 	}
 

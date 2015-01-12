@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.items.Challenge;
 import tragicneko.tragicmc.items.ItemChallenge;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -67,7 +67,7 @@ public class ChallengeItemEvents {
 				}
 			}
 
-			if (TragicMC.rand.nextInt(1000) <= TragicNewConfig.challengeScrollDropChance && event.entityLiving instanceof EntityMob)
+			if (TragicMC.rand.nextInt(1000) <= TragicConfig.challengeScrollDropChance && event.entityLiving instanceof EntityMob)
 			{
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.ChallengeScroll, 1, 0), 0.4F);
 			}

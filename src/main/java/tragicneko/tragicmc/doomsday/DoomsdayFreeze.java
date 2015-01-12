@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -46,7 +46,7 @@ public class DoomsdayFreeze extends Doomsday {
 				entity.motionY = 0;
 				entity.motionZ = 0;
 				entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, rand.nextInt(120) + 120));
-				if (crucMoment && TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(240) + 120, rand.nextInt(6)));
+				if (crucMoment && TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(240) + 120, rand.nextInt(6)));
 			}
 		}
 	}

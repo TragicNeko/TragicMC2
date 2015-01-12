@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.network.MessageDoom;
 
 public class PropertyDoom implements IExtendedEntityProperties {
@@ -29,7 +29,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		this.thePlayer = player;
 		this.doomCooldown = 0;
-		this.maxDoom = TragicNewConfig.maxDoomMinimum;
+		this.maxDoom = TragicConfig.maxDoomMinimum;
 		this.currentDoom = 0;
 	}
 
@@ -110,7 +110,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			if (this.shouldRecoverNaturally())
 			{
 				int doom = this.getCurrentDoom();
-				int increment = TragicNewConfig.doomRechargeRate;
+				int increment = TragicConfig.doomRechargeRate;
 
 				if (doom > this.getMaxDoom()) return;
 
@@ -153,7 +153,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	public void setCooldown(int cooldown)
 	{
-		if (TragicNewConfig.allowCooldown)
+		if (TragicConfig.allowCooldown)
 		{
 			this.doomCooldown = cooldown;
 		}
@@ -165,7 +165,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	public void increaseCooldown(int cooldown)
 	{
-		if (TragicNewConfig.allowCooldown)
+		if (TragicConfig.allowCooldown)
 		{
 			this.doomCooldown += cooldown;
 		}
@@ -213,13 +213,13 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 */
 	public void increaseConsumptionLevel()
 	{
-		if (this.getMaxDoom() + TragicNewConfig.doomConsumeAmount <= TragicNewConfig.maxDoomAmount)
+		if (this.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
 		{
-			this.setMaxDoom(this.getMaxDoom() + TragicNewConfig.doomConsumeAmount);
+			this.setMaxDoom(this.getMaxDoom() + TragicConfig.doomConsumeAmount);
 		}
 		else
 		{
-			this.setMaxDoom(TragicNewConfig.maxDoomAmount);
+			this.setMaxDoom(TragicConfig.maxDoomAmount);
 		}
 
 		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
@@ -289,7 +289,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	protected boolean shouldRecoverWithDamage()
 	{
-		if (TragicNewConfig.allowDoomPainRecharge && this.getCurrentDoom() < this.getMaxDoom())
+		if (TragicConfig.allowDoomPainRecharge && this.getCurrentDoom() < this.getMaxDoom())
 		{
 			return true;
 		}
@@ -305,7 +305,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 		tick++;
 
-		if (TragicNewConfig.allowNaturalRecharge && this.getCurrentDoom() < this.getMaxDoom() && this.tick >= 100 / TragicNewConfig.doomRechargeRate)
+		if (TragicConfig.allowNaturalRecharge && this.getCurrentDoom() < this.getMaxDoom() && this.tick >= 100 / TragicConfig.doomRechargeRate)
 		{
 			tick = 0;
 			return true;

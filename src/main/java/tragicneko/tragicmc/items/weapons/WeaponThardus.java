@@ -10,7 +10,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -40,10 +40,10 @@ public class WeaponThardus extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[29]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[29])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[29]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[29])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1200, 6));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[29]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[29]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -54,12 +54,12 @@ public class WeaponThardus extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
+		if (doom == null || !TragicConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
 		
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[30]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[30])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[30]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[30])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
@@ -75,7 +75,7 @@ public class WeaponThardus extends EpicWeapon {
 				par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 			}
 			
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[30]);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[30]);
 			setStackCooldown(par1ItemStack, 5);
 		}
 		

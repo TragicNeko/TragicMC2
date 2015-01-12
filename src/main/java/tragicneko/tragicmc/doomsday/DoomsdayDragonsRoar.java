@@ -9,7 +9,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -31,7 +31,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		if (TragicNewConfig.allowFlight)
+		if (TragicConfig.allowFlight)
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 6000, 0));
 		}
@@ -50,7 +50,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 				if (list.get(i) instanceof EntityLivingBase)
 				{
 					entity = (EntityLivingBase) list.get(i);
-					if (TragicNewConfig.allowStun && crucMoment)
+					if (TragicConfig.allowStun && crucMoment)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
 					}

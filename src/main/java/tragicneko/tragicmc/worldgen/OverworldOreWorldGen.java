@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class OverworldOreWorldGen implements IWorldGenerator {
@@ -20,7 +20,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 			int Ycoord;
 			int Zcoord;
 						
-			for (int i = 0; i < TragicNewConfig.mercuryOreRarity; i++)
+			for (int i = 0; i < TragicConfig.mercuryOreRarity; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(48) + 5;
@@ -28,7 +28,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 				new WorldGenMinable(TragicBlocks.MercuryOre, 0, 4, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 			
-			for (int i = 0; i < TragicNewConfig.tungstenOreRarity; i++)
+			for (int i = 0; i < TragicConfig.tungstenOreRarity; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(24) + 5;
@@ -36,7 +36,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 				new WorldGenMinable(TragicBlocks.TungstenOre, 0, 3, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 			
-			for (int i = 0; i < TragicNewConfig.silverfishGenRarity && TragicNewConfig.allowOverworldSilverfishGen; i++)
+			for (int i = 0; i < TragicConfig.silverfishGenRarity && TragicConfig.allowOverworldSilverfishGen; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(6);

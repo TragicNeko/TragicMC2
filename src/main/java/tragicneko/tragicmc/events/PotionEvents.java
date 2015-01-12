@@ -43,7 +43,7 @@ import net.minecraftforge.event.entity.player.PlayerUseItemEvent.Tick;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
@@ -62,7 +62,7 @@ public class PotionEvents {
 	{
 		if (event.entity instanceof EntityPlayerMP)
 		{
-			TragicMC.net.sendTo(new MessageFlight(TragicNewConfig.allowFlight), (EntityPlayerMP) event.entity);
+			TragicMC.net.sendTo(new MessageFlight(TragicConfig.allowFlight), (EntityPlayerMP) event.entity);
 		}
 	}
 
@@ -74,9 +74,9 @@ public class PotionEvents {
 
 		if (world.isRemote || entity.getActivePotionEffects().isEmpty()) return;
 
-		if (TragicNewConfig.allowClarity && entity.isPotionActive(TragicPotion.Clarity.id))
+		if (TragicConfig.allowClarity && entity.isPotionActive(TragicPotion.Clarity.id))
 		{
-			if (TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
+			if (TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Disorientation.id);
 			}
@@ -92,14 +92,14 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowImmunity && event.entityLiving.isPotionActive(TragicPotion.Immunity))
+		if (TragicConfig.allowImmunity && event.entityLiving.isPotionActive(TragicPotion.Immunity))
 		{
-			if (TragicNewConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotion.Inhibit))
+			if (TragicConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotion.Inhibit))
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Immunity.id);
 			}
 
-			if (TragicNewConfig.allowStun && event.entityLiving.isPotionActive(TragicPotion.Stun))
+			if (TragicConfig.allowStun && event.entityLiving.isPotionActive(TragicPotion.Stun))
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Stun.id);
 			}
@@ -114,13 +114,13 @@ public class PotionEvents {
 				event.entityLiving.removePotionEffect(Potion.wither.id);
 			}
 
-			if (TragicNewConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption)) 
+			if (TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption)) 
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Corruption.id);
 			} 
 		}
 
-		if (TragicNewConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotion.Inhibit))
+		if (TragicConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotion.Inhibit))
 		{
 			if (event.entityLiving.isPotionActive(Potion.regeneration))
 			{
@@ -143,24 +143,24 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowMalnourish && event.entityLiving.isPotionActive(TragicPotion.Malnourish))
+		if (TragicConfig.allowMalnourish && event.entityLiving.isPotionActive(TragicPotion.Malnourish))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76443_y)) event.entityLiving.removePotionEffect(TragicPotion.Malnourish.id);
 		}
 
-		if (TragicNewConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotion.Cripple))
+		if (TragicConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotion.Cripple))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotion.Cripple.id);
 		}
 
-		if (TragicNewConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotion.Submission))
+		if (TragicConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotion.Submission))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotion.Submission.id);
 		}
 
-		if (TragicNewConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption))
+		if (TragicConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption))
 		{
-			if (TragicNewConfig.allowCorruptionDamage)
+			if (TragicConfig.allowCorruptionDamage)
 			{
 				if (entity instanceof EntityPlayer && entity.ticksExisted % 40 == 0 && rand.nextBoolean())
 				{
@@ -241,13 +241,13 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotion.Invulnerability))
+		if (TragicConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotion.Invulnerability))
 		{
 			if (event.entityLiving instanceof EntityPlayer)
 			{
 				if (!((EntityPlayer)event.entityLiving).capabilities.isCreativeMode)
 				{
-					if (TragicNewConfig.allowFlight && ((EntityPlayer)event.entityLiving).isPotionActive(TragicPotion.Flight))
+					if (TragicConfig.allowFlight && ((EntityPlayer)event.entityLiving).isPotionActive(TragicPotion.Flight))
 					{
 						event.entityLiving.removePotionEffect(TragicPotion.Flight.id);
 					}
@@ -255,7 +255,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowFlight && entity.isPotionActive(TragicPotion.Flight.id))
+		if (TragicConfig.allowFlight && entity.isPotionActive(TragicPotion.Flight.id))
 		{
 			int a = entity.getActivePotionEffect(TragicPotion.Flight).getDuration();
 
@@ -306,7 +306,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowAquaSuperiority && entity.isPotionActive(TragicPotion.AquaSuperiority.id))
+		if (TragicConfig.allowAquaSuperiority && entity.isPotionActive(TragicPotion.AquaSuperiority.id))
 		{
 			if (entity instanceof EntityPlayer && entity.isInWater())
 			{
@@ -333,7 +333,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowFear && entity.isPotionActive(TragicPotion.Fear.id) && entity.ticksExisted % 2 == 0)
+		if (TragicConfig.allowFear && entity.isPotionActive(TragicPotion.Fear.id) && entity.ticksExisted % 2 == 0)
 		{
 			EntityLivingBase target = null;
 
@@ -411,7 +411,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowHarmony && event.entityLiving.isPotionActive(TragicPotion.Harmony))
+		if (TragicConfig.allowHarmony && event.entityLiving.isPotionActive(TragicPotion.Harmony))
 		{
 			if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityDragon 
 					|| event.entityLiving instanceof EntityWither || event.entityLiving instanceof TragicBoss)
@@ -420,7 +420,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowHarmony && entity.isPotionActive(TragicPotion.Harmony.id))
+		if (TragicConfig.allowHarmony && entity.isPotionActive(TragicPotion.Harmony.id))
 		{
 			if (entity instanceof EntityMob)
 			{
@@ -436,7 +436,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowMalnourish && entity.isPotionActive(TragicPotion.Malnourish.id))
+		if (TragicConfig.allowMalnourish && entity.isPotionActive(TragicPotion.Malnourish.id))
 		{
 			if (entity instanceof EntityPlayerMP)
 			{
@@ -472,7 +472,7 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotion.Cripple))
+		if (TragicConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotion.Cripple))
 		{
 			if (event.entityLiving.getHealth() > event.entityLiving.getMaxHealth())
 			{
@@ -480,13 +480,13 @@ public class PotionEvents {
 			}
 		}
 		
-		if (TragicNewConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotion.LeadFoot))
+		if (TragicConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotion.LeadFoot))
 		{
 			event.entityLiving.motionY = -0.1D;
-			if (TragicNewConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotion.Flight)) event.entityLiving.removePotionEffect(TragicPotion.Flight.id); 
+			if (TragicConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotion.Flight)) event.entityLiving.removePotionEffect(TragicPotion.Flight.id); 
 		}
 		
-		if (TragicNewConfig.allowConvergence && event.entityLiving.isPotionActive(TragicPotion.Convergence) && event.entityLiving instanceof EntityPlayerMP && TragicNewConfig.allowDoom)
+		if (TragicConfig.allowConvergence && event.entityLiving.isPotionActive(TragicPotion.Convergence) && event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowDoom)
 		{
 			PropertyDoom doom = PropertyDoom.get((EntityPlayer) event.entityLiving);
 			if (doom != null && event.entityLiving.ticksExisted % 5 == 0 && rand.nextBoolean())
@@ -495,7 +495,7 @@ public class PotionEvents {
 			}
 		}
 		
-		if (!TragicNewConfig.allowAnimalGolemCorruption && TragicNewConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption) && (event.entityLiving instanceof EntityGolem || event.entityLiving instanceof EntityAnimal))
+		if (!TragicConfig.allowAnimalGolemCorruption && TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption) && (event.entityLiving instanceof EntityGolem || event.entityLiving instanceof EntityAnimal))
 		{
 			event.entityLiving.removePotionEffect(TragicPotion.Corruption.id);
 		}
@@ -504,7 +504,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void denyJump(LivingJumpEvent event)
 	{
-		if (TragicNewConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotion.LeadFoot)) event.entityLiving.motionY = -0.1D;
+		if (TragicConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotion.LeadFoot)) event.entityLiving.motionY = -0.1D;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -514,7 +514,7 @@ public class PotionEvents {
 		EntityLivingBase entity = event.entityLiving;
 		World world = event.entityLiving.worldObj;
 
-		if (world.isRemote && TragicNewConfig.allowClarity && entity.isPotionActive(TragicPotion.Clarity))
+		if (world.isRemote && TragicConfig.allowClarity && entity.isPotionActive(TragicPotion.Clarity))
 		{
 			double d0 = 16.0D + (8.0D * entity.getActivePotionEffect(TragicPotion.Clarity).getAmplifier());
 
@@ -542,7 +542,7 @@ public class PotionEvents {
 			}
 		} 
 		
-		if (world.isRemote && TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
+		if (world.isRemote && TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
 		{
 			float strafe = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
 			float forward = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
@@ -566,12 +566,12 @@ public class PotionEvents {
 		Boolean flag1 = false;
 		Boolean flag2 = false;
 
-		if (TragicNewConfig.allowStun)
+		if (TragicConfig.allowStun)
 		{
 			flag1 = event.entityLiving.isPotionActive(TragicPotion.Stun.id);
 		}
 
-		if (TragicNewConfig.allowCripple)
+		if (TragicConfig.allowCripple)
 		{
 			flag2 = event.entityLiving.isPotionActive(TragicPotion.Cripple.id);
 		}
@@ -592,7 +592,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void potionFallEvent(LivingFallEvent event)
 	{
-		if (TragicNewConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotion.Flight.id))
+		if (TragicConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotion.Flight.id))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -603,7 +603,7 @@ public class PotionEvents {
 	{
 		if (event.entity.worldObj.isRemote) return;
 
-		if (event.entityLiving instanceof EntityPlayer && TragicNewConfig.allowResurrection)
+		if (event.entityLiving instanceof EntityPlayer && TragicConfig.allowResurrection)
 		{
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (player.isPotionActive(TragicPotion.Resurrection.id))
@@ -632,7 +632,7 @@ public class PotionEvents {
 				}
 			}
 		}
-		else if (TragicNewConfig.allowCorruption)
+		else if (TragicConfig.allowCorruption)
 		{
 			if (CommonProxy.extendedEntityData.containsKey(event.entityLiving.getCommandSenderName()))
 			{
@@ -644,7 +644,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onItemUsed(Start event)
 	{
-		if (TragicNewConfig.allowMalnourish && event.entityPlayer.isPotionActive(TragicPotion.Malnourish) && event.item.getItem() instanceof ItemFood)
+		if (TragicConfig.allowMalnourish && event.entityPlayer.isPotionActive(TragicPotion.Malnourish) && event.item.getItem() instanceof ItemFood)
 		{
 			int amp = event.entityPlayer.getActivePotionEffect(TragicPotion.Malnourish).getAmplifier() * 2;
 
@@ -664,8 +664,8 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
-				TragicNewConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
+		if (TragicConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
+				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -674,8 +674,8 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void whileUsingItem(Tick event)
 	{
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
-				TragicNewConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
+		if (TragicConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
+				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -684,8 +684,8 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onDig(BreakEvent event)
 	{
-		if (event.getPlayer() != null && TragicNewConfig.allowStun && event.getPlayer().isPotionActive(TragicPotion.Stun) || TragicNewConfig.allowFear && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Fear) ||
-				TragicNewConfig.allowHacked && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Hacked))
+		if (event.getPlayer() != null && TragicConfig.allowStun && event.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Fear) ||
+				TragicConfig.allowHacked && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Hacked))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -694,8 +694,8 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onBreaking(BreakSpeed event)
 	{
-		if (TragicNewConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicNewConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
-				TragicNewConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
+		if (TragicConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
+				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -706,12 +706,12 @@ public class PotionEvents {
 	{
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase)
 		{
-			if (TragicNewConfig.allowHarmony && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotion.Harmony))
+			if (TragicConfig.allowHarmony && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotion.Harmony))
 			{
 				if (event.isCancelable()) event.setCanceled(true);
 			}
 
-			if (TragicNewConfig.allowStun && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotion.Stun))
+			if (TragicConfig.allowStun && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotion.Stun))
 			{
 				if (event.isCancelable()) event.setCanceled(true);
 			}
@@ -721,7 +721,7 @@ public class PotionEvents {
 	@SubscribeEvent(priority=EventPriority.LOW)
 	public void submissiveHurt(LivingHurtEvent event)
 	{
-		if (TragicNewConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotion.Submission))
+		if (TragicConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotion.Submission))
 		{
 			double x = (event.entityLiving.getActivePotionEffect(TragicPotion.Submission).getAmplifier() + 2) / 3;
 
@@ -745,8 +745,8 @@ public class PotionEvents {
 		if (!(event.entityLiving instanceof EntityPlayer))
 		{
 			if (event.entityLiving.isPotionActive(Potion.confusion) || event.entityLiving.isPotionActive(Potion.blindness)
-					|| TragicNewConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation)
-					|| TragicNewConfig.allowFear && event.entityLiving.isPotionActive(TragicPotion.Fear))
+					|| TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation)
+					|| TragicConfig.allowFear && event.entityLiving.isPotionActive(TragicPotion.Fear))
 			{
 				event.ammount *= 1.05;
 			}
@@ -756,7 +756,7 @@ public class PotionEvents {
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void invulnerableHurt(LivingHurtEvent event)
 	{
-		if (TragicNewConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotion.Invulnerability) && !event.source.canHarmInCreative())
+		if (TragicConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotion.Invulnerability) && !event.source.canHarmInCreative())
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 			if (event.source.getSourceOfDamage() != null) event.entityLiving.applyEntityCollision(event.source.getSourceOfDamage());
@@ -767,7 +767,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void renderHandWhileStunned(RenderHandEvent event)
 	{
-		if (TragicNewConfig.allowStun && Minecraft.getMinecraft().thePlayer.isPotionActive(TragicPotion.Stun))
+		if (TragicConfig.allowStun && Minecraft.getMinecraft().thePlayer.isPotionActive(TragicPotion.Stun))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -776,7 +776,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void ignoreTargetsWithHarmony(LivingSetAttackTargetEvent event)
 	{
-		if (!event.entityLiving.worldObj.isRemote && event.target != null && TragicNewConfig.allowHarmony && event.entityLiving.isPotionActive(TragicPotion.Harmony))
+		if (!event.entityLiving.worldObj.isRemote && event.target != null && TragicConfig.allowHarmony && event.entityLiving.isPotionActive(TragicPotion.Harmony))
 		{
 			if (event.entityLiving instanceof EntityCreature && !(event.entityLiving instanceof EntityWither) && !(event.entityLiving instanceof EntityDragon)
 					&& !(event.entityLiving instanceof TragicBoss))
@@ -790,7 +790,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onCorruptedAttack(LivingAttackEvent event)
 	{
-		if (event.entityLiving.worldObj.isRemote || !TragicNewConfig.allowCorruption) return;
+		if (event.entityLiving.worldObj.isRemote || !TragicConfig.allowCorruption) return;
 
 		if (!event.entityLiving.isPotionActive(TragicPotion.Corruption))
 		{
@@ -810,7 +810,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void onCorruptedInteract(EntityInteractEvent event)
 	{
-		if (event.entityPlayer.worldObj.isRemote || !(event.target instanceof EntityLivingBase) || !TragicNewConfig.allowCorruption) return;
+		if (event.entityPlayer.worldObj.isRemote || !(event.target instanceof EntityLivingBase) || !TragicConfig.allowCorruption) return;
 
 		EntityLivingBase target = (EntityLivingBase) event.target;
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
@@ -819,18 +819,18 @@ public class PotionEvents {
 			if (stack.getItem() == TragicItems.NastyFruit)
 			{
 				target.removePotionEffect(TragicPotion.Corruption.id);
-				if (TragicNewConfig.allowImmunity) target.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 6000));
+				if (TragicConfig.allowImmunity) target.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 6000));
 				--stack.stackSize;
 			}
 			else if (stack.getItem() == TragicItems.GoldenSushi)
 			{
 				target.removePotionEffect(TragicPotion.Corruption.id);
-				if (TragicNewConfig.allowImmunity) target.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 6000));
+				if (TragicConfig.allowImmunity) target.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 6000));
 				target.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 2400, 4));
 				target.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 1200, 1));
 				target.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400, 1));
 				target.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 1));
-				if (TragicNewConfig.allowClarity) target.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
+				if (TragicConfig.allowClarity) target.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
 				--stack.stackSize;
 			}
 		}

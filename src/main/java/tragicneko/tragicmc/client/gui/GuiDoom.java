@@ -13,7 +13,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.ItemJack;
@@ -56,15 +56,15 @@ public class GuiDoom extends Gui
 			return; 
 		}
 
-		int xPos = TragicNewConfig.guiX;
-		int yPos = TragicNewConfig.guiY;
+		int xPos = TragicConfig.guiX;
+		int yPos = TragicConfig.guiY;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		float trans = TragicNewConfig.guiTransparency / 100.0F;
+		float trans = TragicConfig.guiTransparency / 100.0F;
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
@@ -77,7 +77,7 @@ public class GuiDoom extends Gui
 			width = 0;
 		}
 
-		if (!TragicNewConfig.allowAnimatedGui) width = 0;
+		if (!TragicConfig.allowAnimatedGui) width = 0;
 
 		if (props.getCurrentCooldown() > 0)
 		{
@@ -96,7 +96,7 @@ public class GuiDoom extends Gui
 		else
 		{
 			buffer++;
-			if (!TragicNewConfig.allowAnimatedGui) buffer = 0;
+			if (!TragicConfig.allowAnimatedGui) buffer = 0;
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
 
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
@@ -233,7 +233,7 @@ public class GuiDoom extends Gui
 
 	public static ResourceLocation getTextureFromConfig()
 	{
-		switch(TragicNewConfig.guiTexture)
+		switch(TragicConfig.guiTexture)
 		{
 		case 0:
 			return texturepath3;

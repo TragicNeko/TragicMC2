@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.kragulStats;
+import static tragicneko.tragicmc.TragicConfig.kragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -11,7 +11,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
@@ -116,7 +116,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 				}
 				else if (rand.nextInt(16) == 0)
 				{
-					if (TragicNewConfig.allowStun) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
+					if (TragicConfig.allowStun) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
 				}
 			}
 		}

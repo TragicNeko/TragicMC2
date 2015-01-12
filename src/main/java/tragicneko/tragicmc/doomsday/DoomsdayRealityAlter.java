@@ -15,7 +15,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -68,7 +68,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 					}
 				}
 			}
-			if (list2.get(i) instanceof EntityMob && TragicNewConfig.allowStun) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60));
+			if (list2.get(i) instanceof EntityMob && TragicConfig.allowStun) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60));
 		}
 
 		Block block;
@@ -153,7 +153,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (TragicNewConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120, 0));
+		if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120, 0));
 	}
 
 }

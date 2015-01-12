@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 
 public class SchematicKitsuneDen extends Schematic {
 
@@ -96,7 +96,7 @@ public class SchematicKitsuneDen extends Schematic {
 		if (tile != null && tile instanceof TileEntityMobSpawner) //sets up the spawner to be a Kitsune spawner
 		{
 			TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile;
-			String s = TragicNewConfig.allowKitsune ? "TragicMC.Kitsune" : "Blaze"; //sets it to a blaze spawner if kitsune is disabled
+			String s = TragicConfig.allowKitsune ? "TragicMC.Kitsune" : "Blaze"; //sets it to a blaze spawner if kitsune is disabled
 			spawner.func_145881_a().setEntityName(s);
 		}
 
@@ -359,7 +359,7 @@ public class SchematicKitsuneDen extends Schematic {
 		if (tile != null && tile instanceof TileEntityMobSpawner) //sets up the spawner to be a Jabba spawner
 		{
 			TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile;
-			String s = TragicNewConfig.allowJabba ? "TragicMC.Jabba" : "Blaze"; //if Jabba is disabled, sets them as blaze spawners instead
+			String s = TragicConfig.allowJabba ? "TragicMC.Jabba" : "Blaze"; //if Jabba is disabled, sets them as blaze spawners instead
 			spawner.func_145881_a().setEntityName(s);
 		}
 

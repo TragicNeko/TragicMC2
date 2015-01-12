@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
@@ -27,21 +27,21 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!result && doom != null && getStackCooldown(itemstack) == 0 && TragicNewConfig.nonDoomsdayAbilities[2])
+		if (!result && doom != null && getStackCooldown(itemstack) == 0 && TragicConfig.nonDoomsdayAbilities[2])
 		{
-			if (entity instanceof EntityLivingBase && itemRand.nextInt(16) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[2]))
+			if (entity instanceof EntityLivingBase && itemRand.nextInt(16) == 0 && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[2]))
 			{
 				int x = itemRand.nextInt(6) + 10;
 
 				if (entity.worldObj.getBlockLightValue(MathHelper.ceiling_double_int(entity.posX), MathHelper.ceiling_double_int(entity.posY), MathHelper.ceiling_double_int(entity.posZ)) <= 6)
 				{
 					entity.setFire(x);
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[2]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[2]);
 					setStackCooldown(itemstack, 5);
 				}
 			}
 
-			if (entity instanceof EntityLivingBase && TragicNewConfig.allowCorruption && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Corruption))
+			if (entity instanceof EntityLivingBase && TragicConfig.allowCorruption && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Corruption))
 			{
 				((EntityLivingBase) entity).removePotionEffect(TragicPotion.Corruption.id);
 			}
@@ -57,7 +57,7 @@ public class WeaponBlindingLight extends TragicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[1]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[1])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[1]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[1])
 		{
 			Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 			if (vec == null) return par1ItemStack;

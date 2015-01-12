@@ -11,7 +11,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EnchantmentArmorExtra extends Enchantment {
@@ -76,7 +76,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 						if (rand.nextInt(2) == 0) entity.setFire(8 * par1);
 						break;
 					case 1:
-						if (rand.nextInt(4) == 0 && TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 * par1));
+						if (rand.nextInt(4) == 0 && TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 * par1));
 						break;
 					case 2:
 						if (rand.nextInt(3) == 0) entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120 * par1, par1));

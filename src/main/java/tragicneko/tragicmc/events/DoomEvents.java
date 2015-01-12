@@ -11,7 +11,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -64,7 +64,7 @@ public class DoomEvents {
 	@SubscribeEvent
 	public void onLivingDeathEvent(PlayerEvent.Clone event) 
 	{
-		if (!event.entity.worldObj.isRemote && TragicNewConfig.allowDoom) {
+		if (!event.entity.worldObj.isRemote && TragicConfig.allowDoom) {
 			if (PropertyDoom.get(event.original) != null)
 			{
 				NBTTagCompound tag = new NBTTagCompound();
@@ -77,7 +77,7 @@ public class DoomEvents {
 	@SubscribeEvent(priority=EventPriority.LOWEST)
 	public void onAttack(LivingHurtEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && TragicNewConfig.allowDoomPainRecharge)
+		if (event.entityLiving instanceof EntityPlayer && TragicConfig.allowDoomPainRecharge)
 		{
 			if (!event.entityLiving.worldObj.isRemote)
 			{
@@ -86,7 +86,7 @@ public class DoomEvents {
 			}
 		}
 
-		if (event.entityLiving instanceof EntityMob && TragicNewConfig.allowDoomPainRecharge)
+		if (event.entityLiving instanceof EntityMob && TragicConfig.allowDoomPainRecharge)
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity() instanceof EntityPlayer)
 			{

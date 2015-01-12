@@ -11,7 +11,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -27,7 +27,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1200, 2));
-		if (TragicNewConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 1200, 0));
+		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 1200, 0));
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Lightning Rush!"));
 	}
 
@@ -58,7 +58,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, f * rand.nextFloat(), false);
 				player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, entity.posX, entity.posY, entity.posZ));
 				
-				if (TragicNewConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1)); 
+				if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1)); 
 			}
 		}
 	}

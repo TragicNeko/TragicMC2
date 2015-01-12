@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -32,7 +32,7 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 		for (int i = 0; i < 4; i++)
 		{			
-			if (random.nextInt(100) <= TragicNewConfig.starCrystalRarity)
+			if (random.nextInt(100) <= TragicConfig.starCrystalRarity)
 			{
 				Xcoord += random.nextInt(8) - random.nextInt(8);
 				Zcoord += random.nextInt(8) - random.nextInt(8);

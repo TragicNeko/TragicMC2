@@ -13,13 +13,13 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponButcher extends EpicWeapon {
 	
-	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherKnockbackResistanceBuff", TragicNewConfig.modifierAmts[23], 0);
+	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherKnockbackResistanceBuff", TragicConfig.modifierAmts[23], 0);
 	
 	//private final Lore[] uniqueLores = new Lore[] {new Lore("Time to Eat!", EnumRarity.epic), new Lore("Can we eat now?", EnumRarity.uncommon), new Lore("Dinner Time!", EnumRarity.rare),
 	//		new Lore("I'm hungry...", EnumRarity.uncommon), new Lore("That looks delicious!", EnumRarity.uncommon), new Lore("I need food..."), new Lore("My stomach won't stop growling!", EnumRarity.rare),
@@ -41,10 +41,10 @@ public class WeaponButcher extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[6]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[6])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[6]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[6])
 		{
 			if (itemRand.nextBoolean()) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 1));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[6]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[6]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -61,10 +61,10 @@ public class WeaponButcher extends EpicWeapon {
 		
 		player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).removeModifier(mod);
 		
-		if (flag && doom != null && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[5]) && TragicNewConfig.nonDoomsdayAbilities[5])
+		if (flag && doom != null && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[5]) && TragicConfig.nonDoomsdayAbilities[5])
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(mod);
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[5]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[5]);
 		}
 	}
 }

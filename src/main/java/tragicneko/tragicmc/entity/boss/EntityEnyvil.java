@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.enyvilStats;
+import static tragicneko.tragicmc.TragicConfig.enyvilStats;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,7 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -287,7 +287,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
 
 		if (!this.worldObj.isRemote)
 		{
@@ -761,7 +761,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			if (entity instanceof EntityLivingBase)
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 12.0F);
-				if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), 1)); 
+				if (TragicConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), 1)); 
 
 				entity.motionX *= 3.225D;
 				entity.motionZ *= 3.225D;

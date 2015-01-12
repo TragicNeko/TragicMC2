@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,24 +35,24 @@ public class ItemDoomUpgrade extends Item {
 	{
 		if (par2World.isRemote) return par1ItemStack;
 		
-		if (TragicNewConfig.shouldDoomLimitIncrease)
+		if (TragicConfig.shouldDoomLimitIncrease)
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 
-			if (property.getMaxDoom() + TragicNewConfig.doomConsumeAmount <= TragicNewConfig.maxDoomAmount)
+			if (property.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
 			{
 				property.increaseConsumptionLevel();
 
-				if (TragicNewConfig.allowConsumeRefill)
+				if (TragicConfig.allowConsumeRefill)
 				{
-					if (TragicNewConfig.consumeRefillAmount >= 100)
+					if (TragicConfig.consumeRefillAmount >= 100)
 					{
 						property.fillDoom();
 					}
 					else
 					{
 						int total = property.getMaxDoom();
-						float percent = (TragicNewConfig.consumeRefillAmount / 100);
+						float percent = (TragicConfig.consumeRefillAmount / 100);
 
 						if (property.getCurrentDoom() + (total * percent) < property.getMaxDoom())
 						{
@@ -74,16 +74,16 @@ public class ItemDoomUpgrade extends Item {
 			}
 			else if (property.getCurrentDoom() < property.getMaxDoom())
 			{
-				if (TragicNewConfig.allowConsumeRefill)
+				if (TragicConfig.allowConsumeRefill)
 				{
-					if (TragicNewConfig.consumeRefillAmount >= 100)
+					if (TragicConfig.consumeRefillAmount >= 100)
 					{
 						property.fillDoom();
 					}
 					else
 					{
 						int total = property.getMaxDoom();
-						float percent = (TragicNewConfig.consumeRefillAmount / 100);
+						float percent = (TragicConfig.consumeRefillAmount / 100);
 
 						if (property.getCurrentDoom() + (total*percent) < property.getMaxDoom())
 						{

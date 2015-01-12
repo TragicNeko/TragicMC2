@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -39,10 +39,10 @@ public class WeaponWitheringAxe extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[34]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[34])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[34]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[34])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.wither.id, 60, itemRand.nextInt(4)));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[34]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[34]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -57,9 +57,9 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[35]) && TragicNewConfig.nonDoomsdayAbilities[35])
+				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[35]) && TragicConfig.nonDoomsdayAbilities[35])
 				{
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[35]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[35]);
 					setStackCooldown(par1ItemStack, 5);
 
 					EntityWitherSkull skull = new EntityWitherSkull(par2World);
@@ -69,9 +69,9 @@ public class WeaponWitheringAxe extends TragicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[36]) && TragicNewConfig.nonDoomsdayAbilities[36])
+				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[36]) && TragicConfig.nonDoomsdayAbilities[36])
 				{
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[36]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[36]);
 					setStackCooldown(par1ItemStack, 5);
 
 					EntityWitherSkull skull = new EntityWitherSkull(par2World);

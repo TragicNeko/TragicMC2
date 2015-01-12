@@ -8,7 +8,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -20,9 +20,9 @@ public class BiomeGenAshenHills extends TragicBiome {
 	public BiomeGenAshenHills(int par1) {
 		super(par1);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
-		if (TragicNewConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicNewConfig.inklingSC, 0, 2));
-		if (TragicNewConfig.allowGragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicNewConfig.gragulSC, 0, 2));
-		if (TragicNewConfig.allowNorVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicNewConfig.norVoxSC, 0, 2));
+		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, 0, 2));
+		if (TragicConfig.allowGragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicConfig.gragulSC, 0, 2));
+		if (TragicConfig.allowNorVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.norVoxSC, 0, 2));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 1.6F;

@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
@@ -44,8 +44,8 @@ public class BlockTimeDisruptor extends BlockContainer {
 		if (flag)
 		{
 			TragicBoss boss = null;
-			if (block == Blocks.quartz_block && TragicNewConfig.allowTimeController) boss = new EntityTimeController(world);
-			else if (block == TragicBlocks.DarkenedQuartz && TragicNewConfig.allowEnyvil) boss = new EntityEnyvil(world);
+			if (block == Blocks.quartz_block && TragicConfig.allowTimeController) boss = new EntityTimeController(world);
+			else if (block == TragicBlocks.DarkenedQuartz && TragicConfig.allowEnyvil) boss = new EntityEnyvil(world);
 			
 			if (boss == null) return;
 			

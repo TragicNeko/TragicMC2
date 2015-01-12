@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -34,7 +34,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[0]) && TragicNewConfig.nonDoomsdayAbilities[0])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[0]) && TragicConfig.nonDoomsdayAbilities[0])
 		{
 			if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && stack.hasTagCompound())
 			{
@@ -54,7 +54,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 					}
 
 					if (cooldown > 5 && cooldown < 20) stack.stackTagCompound.setInteger("comboCooldown", cooldown + 5);
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[0]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[0]);
 
 				}
 				else

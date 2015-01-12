@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.kitsuneStats;
+import static tragicneko.tragicmc.TragicConfig.kitsuneStats;
 
 import java.util.UUID;
 
@@ -30,12 +30,12 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityKitsune extends TragicBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicNewConfig.modifierAmts[1], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifierAmts[1], 0);
 
 	public EntityKitsune(World par1World) {
 		super(par1World);
@@ -85,7 +85,7 @@ public class EntityKitsune extends TragicBoss {
 	{
 		super.onDeath(par1DamageSource);
 
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 1), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 1), 0.4F);
 	}
 
 	@Override
@@ -241,7 +241,7 @@ public class EntityKitsune extends TragicBoss {
 							entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300 + rand.nextInt(320), 0));
 						}
 
-						if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
+						if (rand.nextInt(72) == 0 && TragicConfig.allowDisorientation)
 						{
 							entity.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 						}
@@ -361,7 +361,7 @@ public class EntityKitsune extends TragicBoss {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 					break;
 				case 2:
-					if (TragicNewConfig.allowDisorientation)
+					if (TragicConfig.allowDisorientation)
 					{
 						((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 					}

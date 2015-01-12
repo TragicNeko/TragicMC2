@@ -7,7 +7,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
-public class TragicNewConfig {
+public class TragicConfig {
 
 	public static boolean mobsOnly;
 	private static int resolution;

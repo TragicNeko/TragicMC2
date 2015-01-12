@@ -4,7 +4,7 @@ import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 
 public class BiomeGenDecayingWasteland extends TragicBiome {
@@ -12,7 +12,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	public BiomeGenDecayingWasteland(int par1) {
 		super(par1);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
-		if (TragicNewConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicNewConfig.sirvSC, 4, 6));
+		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, 4, 6));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 0.6F;

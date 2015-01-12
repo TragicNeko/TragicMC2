@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -65,7 +65,7 @@ public class TragicWeapon extends ItemSword {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{		
-		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
+		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
@@ -77,7 +77,7 @@ public class TragicWeapon extends ItemSword {
 			}
 		}
 
-		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
@@ -115,7 +115,7 @@ public class TragicWeapon extends ItemSword {
 		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
 		if (getStackCooldown(stack) > 0) setStackCooldown(stack, getStackCooldown(stack) - 1);
 
-		if (!TragicNewConfig.allowRandomWeaponLore) return;
+		if (!TragicConfig.allowRandomWeaponLore) return;
 
 		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
 		if (entry == null) return;
@@ -142,7 +142,7 @@ public class TragicWeapon extends ItemSword {
 
 	public static boolean canUseAbility(PropertyDoom doom, int rq)
 	{
-		return doom != null && TragicNewConfig.allowNonDoomsdayAbilities && doom.getCurrentCooldown() == 0 && doom.getCurrentDoom() >= rq;
+		return doom != null && TragicConfig.allowNonDoomsdayAbilities && doom.getCurrentCooldown() == 0 && doom.getCurrentDoom() >= rq;
 	}
 
 	public static void setStackCooldown(ItemStack stack, int i)

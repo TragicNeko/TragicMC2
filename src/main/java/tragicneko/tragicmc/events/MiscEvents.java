@@ -18,7 +18,7 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
@@ -40,7 +40,7 @@ public class MiscEvents {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void whileHoldingSpecialWeapon(LivingHurtEvent event)
 	{
-		if (!TragicNewConfig.allowNonDoomsdayAbilities) return;
+		if (!TragicConfig.allowNonDoomsdayAbilities) return;
 
 		if (event.entityLiving instanceof EntityPlayer)
 		{
@@ -51,11 +51,11 @@ public class MiscEvents {
 			{
 				Item weapon = player.getCurrentEquippedItem().getItem();
 
-				if (weapon == TragicItems.BlindingLight && event.source.isProjectile() && TragicNewConfig.nonDoomsdayAbilities[3])
+				if (weapon == TragicItems.BlindingLight && event.source.isProjectile() && TragicConfig.nonDoomsdayAbilities[3])
 				{
-					if (event.isCancelable() && TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[3]))
+					if (event.isCancelable() && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[3]))
 					{
-						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[3]);
+						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[3]);
 						event.setCanceled(true);
 					}
 				}
@@ -65,10 +65,10 @@ public class MiscEvents {
 					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
 				} */
 
-				if (weapon == TragicItems.CelestialAegis && TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[7]) && TragicNewConfig.nonDoomsdayAbilities[7])
+				if (weapon == TragicItems.CelestialAegis && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[7]) && TragicConfig.nonDoomsdayAbilities[7])
 				{
 					event.ammount *= 0.825F;
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[7]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[7]);
 				}
 			}
 		}
@@ -82,7 +82,7 @@ public class MiscEvents {
 			{
 				Item weapon = stack.getItem();
 
-				if (weapon == TragicItems.Butcher && TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[4]) && TragicNewConfig.nonDoomsdayAbilities[4])
+				if (weapon == TragicItems.Butcher && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[4]) && TragicConfig.nonDoomsdayAbilities[4])
 				{
 					event.entity.motionX = event.entity.posX - player.posX;
 					event.entity.motionY = event.entity.posY - player.posY;
@@ -95,19 +95,19 @@ public class MiscEvents {
 						event.entity.motionZ *= 1.2D;
 					}
 					
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[4]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[4]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
-				else if (weapon == TragicItems.Splinter && TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[27]) && player.worldObj.rand.nextInt(4) == 0 && TragicNewConfig.nonDoomsdayAbilities[27])
+				else if (weapon == TragicItems.Splinter && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[27]) && player.worldObj.rand.nextInt(4) == 0 && TragicConfig.nonDoomsdayAbilities[27])
 				{
 					event.entity.motionX = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 					event.entity.motionY = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 					event.entity.motionZ = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[27]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[27]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
-				else if (weapon == TragicItems.GravitySpike && TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[15]) && TragicNewConfig.nonDoomsdayAbilities[15])
+				else if (weapon == TragicItems.GravitySpike && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[15]) && TragicConfig.nonDoomsdayAbilities[15])
 				{
 					double d0 = 16.0D;
 					double d1 = event.entity.posX - player.posX;
@@ -119,7 +119,7 @@ public class MiscEvents {
 					event.entity.motionZ = d2 / f2 * d3 * 0.800000011920929D + event.entity.motionZ * 0.60000000298023224D;
 					event.entity.motionY += 1.45;
 					
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[15]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[15]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
 			}
@@ -130,18 +130,18 @@ public class MiscEvents {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onLightningHurt(EntityStruckByLightningEvent event)
 	{
-		if (event.entity instanceof EntityPlayerMP && TragicNewConfig.allowNonDoomsdayAbilities)
+		if (event.entity instanceof EntityPlayerMP && TragicConfig.allowNonDoomsdayAbilities)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
 			PropertyDoom doom = PropertyDoom.get(mp);
 
-			if (mp.getCurrentEquippedItem() != null && TragicWeapon.canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[33]) && TragicNewConfig.nonDoomsdayAbilities[33])
+			if (mp.getCurrentEquippedItem() != null && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[33]) && TragicConfig.nonDoomsdayAbilities[33])
 			{
 				if (mp.getCurrentEquippedItem().getItem() == TragicItems.Titan)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					if (mp.getHealth() <= mp.getMaxHealth()) mp.heal(mp.getMaxHealth() * 0.25F);
-					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[33]);
+					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[33]);
 				}
 			}
 		}

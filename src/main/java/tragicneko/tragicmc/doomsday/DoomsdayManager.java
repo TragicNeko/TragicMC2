@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -174,7 +174,7 @@ public class DoomsdayManager {
 						break;
 					}
 
-					if (TragicNewConfig.allowCombinationDoomsday)
+					if (TragicConfig.allowCombinationDoomsday)
 					{
 						if (flag && combinations.containsValue(effect.dday))
 						{

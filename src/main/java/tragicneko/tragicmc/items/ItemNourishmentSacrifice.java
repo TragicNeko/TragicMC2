@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
@@ -33,7 +33,7 @@ public class ItemNourishmentSacrifice extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.allowDoom)
+		if (!par2World.isRemote && TragicConfig.allowDoom)
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 			float amount = par3EntityPlayer.getFoodStats().getFoodLevel() - 1;
@@ -51,8 +51,8 @@ public class ItemNourishmentSacrifice extends Item {
 				}
 				
 				par3EntityPlayer.getFoodStats().addStats(-par3EntityPlayer.getFoodStats().getFoodLevel() + 1, 0.0F);
-				if (TragicNewConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 600, 0));
-				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
+				if (TragicConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 600, 0));
+				if (TragicConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
 				
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 				

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityPitchBlack;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -39,7 +39,7 @@ public class WeaponPitchBlack extends TragicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[24]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[24])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[24]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[24])
 		{
 			setStackCooldown(par1ItemStack, 5);
 
@@ -48,7 +48,7 @@ public class WeaponPitchBlack extends TragicWeapon {
 			rocket.setStack(par1ItemStack);
 			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[24]);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[24]);
 			par1ItemStack.stackSize--;
 
 			return par1ItemStack;

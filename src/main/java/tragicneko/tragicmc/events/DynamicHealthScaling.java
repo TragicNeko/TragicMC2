@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.events;
 
-import static tragicneko.tragicmc.TragicNewConfig.modifierAmts;
+import static tragicneko.tragicmc.TragicConfig.modifierAmts;
 
 import java.util.UUID;
 
@@ -11,7 +11,7 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingPackSizeEvent;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -27,7 +27,7 @@ public class DynamicHealthScaling {
 	@SubscribeEvent
 	public void onJoinWorld(EntityJoinWorldEvent event)
 	{
-		if (!TragicNewConfig.allowDynamicHealthScaling) return;
+		if (!TragicConfig.allowDynamicHealthScaling) return;
 		
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.EASY)
 		{

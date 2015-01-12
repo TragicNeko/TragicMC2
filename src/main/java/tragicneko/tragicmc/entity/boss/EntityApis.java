@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.apisStats;
+import static tragicneko.tragicmc.TragicConfig.apisStats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -79,7 +79,7 @@ public class EntityApis extends TragicBoss {
 	public void onDeath(DamageSource par1)
 	{
 		super.onDeath(par1);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 0), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 0), 0.4F);
 	}
 
 	@Override

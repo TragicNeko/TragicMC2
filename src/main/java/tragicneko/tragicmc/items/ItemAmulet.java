@@ -20,7 +20,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.AmuletHelper;
 
 import com.google.common.collect.Sets;
@@ -178,7 +178,7 @@ public class ItemAmulet extends Item {
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setInteger("amuletLevel", getDefaultLevels(this.amuletID));
-		if (TragicNewConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
+		if (TragicConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
 	}
 	
 	public void applyModifiersToItemStack(ItemStack stack)
@@ -189,7 +189,7 @@ public class ItemAmulet extends Item {
 		IAttribute atr = AmuletHelper.getRandomAttribute();
 		AttributeModifier mod = AmuletHelper.getRandomModifier(atr);
 		
-		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied no modifiers");
@@ -205,7 +205,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 		
-		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance2)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance2)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied 1 modifier");
@@ -221,7 +221,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 		
-		if (itemRand.nextInt(100) <= TragicNewConfig.amuletModifierChance3)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance3)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			TragicMC.logInfo("Applied 2 modifiers");

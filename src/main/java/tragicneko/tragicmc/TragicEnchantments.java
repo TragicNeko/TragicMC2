@@ -20,27 +20,27 @@ public class TragicEnchantments {
 
 	public static void load()
 	{
-		if (TragicNewConfig.allowDecay) Decay = (new EnchantmentDamageBoost(TragicNewConfig.idDecay, 8, 0));
-		if (TragicNewConfig.allowAbsolve) Absolve = (new EnchantmentDamageBoost(TragicNewConfig.idAbsolve, 1, 1));
-		if (TragicNewConfig.allowSlay) Slay = (new EnchantmentDamageBoost(TragicNewConfig.idSlay, 8, 2));
-		if (TragicNewConfig.allowVampirism) Vampirism = (new EnchantmentWeaponExtra(TragicNewConfig.idVampirism, 1, 0));
-		if (TragicNewConfig.allowLeech) Leech = (new EnchantmentWeaponExtra(TragicNewConfig.idLeech, 1, 1));
-		if (TragicNewConfig.allowConsume) Consume = (new EnchantmentWeaponExtra(TragicNewConfig.idConsume, 1, 2));
-		if (TragicNewConfig.allowDistract) Distract = (new EnchantmentWeaponExtra(TragicNewConfig.idDistract, 8, 3));
-		if (TragicNewConfig.allowCombustion) Combustion = (new EnchantmentCombustion(TragicNewConfig.idCombustion, 1, EnumEnchantmentType.digger));
-		if (TragicNewConfig.allowMultiply) Multiply = (new EnchantmentMultiply(TragicNewConfig.idMultiply, 1, EnumEnchantmentType.bow));
-		if (TragicNewConfig.allowRuneBreak) RuneBreak = (new EnchantmentDamageBoost(TragicNewConfig.idRuneBreak, 4, 3));
-		if (TragicNewConfig.allowReach) Reach = (new EnchantmentRange(TragicNewConfig.idReach, 6, EnumEnchantmentType.weapon));
-		if (TragicNewConfig.allowUnbreakable) Unbreakable = (new EnchantmentUnbreakable(TragicNewConfig.idUnbreakable, 1, EnumEnchantmentType.breakable));
-		if (TragicNewConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicNewConfig.idRust, 6, 4));
+		if (TragicConfig.allowDecay) Decay = (new EnchantmentDamageBoost(TragicConfig.idDecay, 8, 0));
+		if (TragicConfig.allowAbsolve) Absolve = (new EnchantmentDamageBoost(TragicConfig.idAbsolve, 1, 1));
+		if (TragicConfig.allowSlay) Slay = (new EnchantmentDamageBoost(TragicConfig.idSlay, 8, 2));
+		if (TragicConfig.allowVampirism) Vampirism = (new EnchantmentWeaponExtra(TragicConfig.idVampirism, 1, 0));
+		if (TragicConfig.allowLeech) Leech = (new EnchantmentWeaponExtra(TragicConfig.idLeech, 1, 1));
+		if (TragicConfig.allowConsume) Consume = (new EnchantmentWeaponExtra(TragicConfig.idConsume, 1, 2));
+		if (TragicConfig.allowDistract) Distract = (new EnchantmentWeaponExtra(TragicConfig.idDistract, 8, 3));
+		if (TragicConfig.allowCombustion) Combustion = (new EnchantmentCombustion(TragicConfig.idCombustion, 1, EnumEnchantmentType.digger));
+		if (TragicConfig.allowMultiply) Multiply = (new EnchantmentMultiply(TragicConfig.idMultiply, 1, EnumEnchantmentType.bow));
+		if (TragicConfig.allowRuneBreak) RuneBreak = (new EnchantmentDamageBoost(TragicConfig.idRuneBreak, 4, 3));
+		if (TragicConfig.allowReach) Reach = (new EnchantmentRange(TragicConfig.idReach, 6, EnumEnchantmentType.weapon));
+		if (TragicConfig.allowUnbreakable) Unbreakable = (new EnchantmentUnbreakable(TragicConfig.idUnbreakable, 1, EnumEnchantmentType.breakable));
+		if (TragicConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicConfig.idRust, 6, 4));
 
-		if (TragicNewConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicNewConfig.idIgnition, 6, 0));
-		if (TragicNewConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicNewConfig.idParalysis, 1, 1));
-		if (TragicNewConfig.allowToxicity)Toxicity = (new EnchantmentArmorExtra(TragicNewConfig.idToxicity, 4, 2));
-		if (TragicNewConfig.allowElasticity)Elasticity = (new EnchantmentArmorExtra(TragicNewConfig.idElasticity, 10, 3));
-		if (TragicNewConfig.allowDeathTouch)DeathTouch = (new EnchantmentArmorExtra(TragicNewConfig.idDeathTouch, 1, 4));
-		if (TragicNewConfig.allowAgility) Agility = (new EnchantmentAgility(TragicNewConfig.idAgility, 2, EnumEnchantmentType.armor));
-		if (TragicNewConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicNewConfig.idRuneWalker, 2, EnumEnchantmentType.armor));
-		if (TragicNewConfig.allowLuminescence) Luminescence = (new EnchantmentLuminescence(TragicNewConfig.idLuminescence, 1, EnumEnchantmentType.all));
+		if (TragicConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicConfig.idIgnition, 6, 0));
+		if (TragicConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicConfig.idParalysis, 1, 1));
+		if (TragicConfig.allowToxicity)Toxicity = (new EnchantmentArmorExtra(TragicConfig.idToxicity, 4, 2));
+		if (TragicConfig.allowElasticity)Elasticity = (new EnchantmentArmorExtra(TragicConfig.idElasticity, 10, 3));
+		if (TragicConfig.allowDeathTouch)DeathTouch = (new EnchantmentArmorExtra(TragicConfig.idDeathTouch, 1, 4));
+		if (TragicConfig.allowAgility) Agility = (new EnchantmentAgility(TragicConfig.idAgility, 2, EnumEnchantmentType.armor));
+		if (TragicConfig.allowRuneWalker) RuneWalker = (new EnchantmentRuneWalker(TragicConfig.idRuneWalker, 2, EnumEnchantmentType.armor));
+		if (TragicConfig.allowLuminescence) Luminescence = (new EnchantmentLuminescence(TragicConfig.idLuminescence, 1, EnumEnchantmentType.all));
 	}
 }

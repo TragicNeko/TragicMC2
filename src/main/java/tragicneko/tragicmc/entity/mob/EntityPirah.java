@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.goldenPirahStats;
-import static tragicneko.tragicmc.TragicNewConfig.pirahStats;
+import static tragicneko.tragicmc.TragicConfig.goldenPirahStats;
+import static tragicneko.tragicmc.TragicConfig.pirahStats;
 
 import tragicneko.tragicmc.TragicEntities;
 import net.minecraft.block.material.Material;

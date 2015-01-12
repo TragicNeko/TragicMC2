@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.timeControllerStats;
+import static tragicneko.tragicmc.TragicConfig.timeControllerStats;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -36,7 +36,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -48,7 +48,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTimeController extends TragicBoss {
 
-	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicNewConfig.modifierAmts[2], 0);
+	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicConfig.modifierAmts[2], 0);
 	private Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 
 	private HashMap<Integer, double[]> tracker = new HashMap();
@@ -258,7 +258,7 @@ public class EntityTimeController extends TragicBoss {
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 3), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 3), 0.4F);
 	}
 
 	@Override
@@ -345,7 +345,7 @@ public class EntityTimeController extends TragicBoss {
 		if (this.getLeapTicks() > 0)
 		{
 			this.decrementLeapTicks();
-			if (TragicNewConfig.allowLeadFoot) this.weighDownEntities();
+			if (TragicConfig.allowLeadFoot) this.weighDownEntities();
 		}
 		
 		if (this.getFluxTicks() > 0)

@@ -11,7 +11,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
@@ -22,7 +22,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (!(world.provider instanceof TragicWorldProvider) || random.nextInt(100) >= TragicNewConfig.largeSpikeRarity) return;
+		if (!(world.provider instanceof TragicWorldProvider) || random.nextInt(100) >= TragicConfig.largeSpikeRarity) return;
 
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
@@ -40,7 +40,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		}
 		else
 		{
-			if (!TragicNewConfig.allowLargeSpikeGen) return;
+			if (!TragicConfig.allowLargeSpikeGen) return;
 		}
 
 		int relays = biome instanceof BiomeGenDecayingWasteland ? 4 : 8;

@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.deathReaperStats;
+import static tragicneko.tragicmc.TragicConfig.deathReaperStats;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -190,7 +190,7 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		if (this.getReaperType() == 1) return;
 		super.onDeath(par1DamageSource);
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
 		
 		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.boundingBox.expand(32.0, 32.0, 32.0));
 		for (EntityDeathReaper reaper : list)
@@ -279,22 +279,22 @@ public class EntityDeathReaper extends TragicBoss {
 						entity.addPotionEffect(new PotionEffect(Potion.wither.id, 300 + rand.nextInt(320), 0));
 					}
 
-					if (rand.nextInt(128) == 0 && TragicNewConfig.allowInhibit)
+					if (rand.nextInt(128) == 0 && TragicConfig.allowInhibit)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 300 + rand.nextInt(320), 0));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicNewConfig.allowCripple)
+					if (rand.nextInt(72) == 0 && TragicConfig.allowCripple)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
+					if (rand.nextInt(72) == 0 && TragicConfig.allowDisorientation)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
 
-					if (rand.nextInt(72) == 0 && TragicNewConfig.allowMalnourish)
+					if (rand.nextInt(72) == 0 && TragicConfig.allowMalnourish)
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 					}
@@ -472,13 +472,13 @@ public class EntityDeathReaper extends TragicBoss {
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 					break;
 				case 4:
-					if (TragicNewConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
+					if (TragicConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 					break;
 				case 5:
-					if (TragicNewConfig.allowFear) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, rand.nextInt(200) + 320));
+					if (TragicConfig.allowFear) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, rand.nextInt(200) + 320));
 					break;
 				default:
-					if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
+					if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
 					break;
 				}
 			}

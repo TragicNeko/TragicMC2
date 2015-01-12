@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
@@ -77,7 +77,7 @@ public class GuiAmuletInventory extends GuiContainer
 
 	public static ResourceLocation getTextureFromConfig()
 	{
-		switch(TragicNewConfig.guiTexture)
+		switch(TragicConfig.guiTexture)
 		{
 		case 0:
 			return iconLocation;

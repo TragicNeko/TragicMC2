@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -38,12 +38,12 @@ public class WeaponSplinter extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (doom == null || !TragicNewConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
+		if (doom == null || !TragicConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
 		
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[28]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[28])
+		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[28]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[28])
 		{
 			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D).offset(vec.xCoord, vec.yCoord, vec.zCoord));
 			EntityLivingBase entity;
@@ -60,7 +60,7 @@ public class WeaponSplinter extends EpicWeapon {
 				}
 			}
 			
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[28]);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[28]);
 			setStackCooldown(par1ItemStack, 5);
 		}
 		

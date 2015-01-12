@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -80,7 +80,7 @@ public class DoomsdaySkullCrusher extends Doomsday {
 				entity.motionY += 0.4D + (d0 * 0.25D);
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 600, 4));
-				if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
+				if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120));
 			}
 		}
 	}

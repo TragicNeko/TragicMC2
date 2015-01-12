@@ -11,7 +11,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -112,8 +112,8 @@ public abstract class Doomsday {
 	{
 		this.doomsdayType = doomType;
 		this.doomID = (byte)id;
-		this.cooldown = (short) TragicNewConfig.doomsdayCooldowns[id];
-		this.requiredDoom = (short) TragicNewConfig.doomsdayCosts[id];
+		this.cooldown = (short) TragicConfig.doomsdayCooldowns[id];
+		this.requiredDoom = (short) TragicConfig.doomsdayCosts[id];
 		this.waitTime = 0;
 		this.maxIterations = 1;
 		doomsdayList[id] = this;
@@ -197,18 +197,18 @@ public abstract class Doomsday {
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You are dead and cannot use Doomsdays."));
 			return;
 		}
-		else if (!TragicNewConfig.allowDoom)
+		else if (!TragicConfig.allowDoom)
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have Doom disabled... this shouldn't have been called, report this"));
 			return;
 		}
-		else if (TragicNewConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicNewConfig.allowHarmony &&
-				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicNewConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
+		else if (TragicConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowHarmony &&
+				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You can't use a Doomsday with that effect active..."));
 			return;
 		}
-		else if (!TragicNewConfig.doomsdayAllow[this.doomID])
+		else if (!TragicConfig.doomsdayAllow[this.doomID])
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have that particular Doomsday disabled, enable in config."));
 			return;
@@ -227,9 +227,9 @@ public abstract class Doomsday {
 	 */
 	public void doDoomsday(PropertyDoom doom, EntityPlayer player)
 	{
-		short backlash = this.getScaledBacklash(TragicNewConfig.backlashChance, player, this.doomsdayType);
+		short backlash = this.getScaledBacklash(TragicConfig.backlashChance, player, this.doomsdayType);
 
-		if (rand.nextInt(100) <= backlash && TragicNewConfig.allowBacklash)
+		if (rand.nextInt(100) <= backlash && TragicConfig.allowBacklash)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Doomsday backlashed..."));
 

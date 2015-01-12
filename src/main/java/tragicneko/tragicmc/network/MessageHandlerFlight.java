@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.network;
 
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -9,7 +9,7 @@ public class MessageHandlerFlight implements IMessageHandler<MessageFlight, IMes
 
 	@Override
 	public IMessage onMessage(MessageFlight message, MessageContext ctx) {
-		TragicNewConfig.allowFlight = message.flightEnabled == 1;
+		TragicConfig.allowFlight = message.flightEnabled == 1;
 		return null;
 	}
 

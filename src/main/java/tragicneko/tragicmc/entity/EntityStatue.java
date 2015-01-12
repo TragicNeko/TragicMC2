@@ -13,7 +13,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -166,55 +166,55 @@ public class EntityStatue extends Entity {
 				switch(id)
 				{
 				case 0:
-					if (TragicNewConfig.allowApis) entity = new EntityApis(this.worldObj);
+					if (TragicConfig.allowApis) entity = new EntityApis(this.worldObj);
 					break;
 				case 1:
-					if (TragicNewConfig.allowKitsune) entity = new EntityKitsune(this.worldObj);
+					if (TragicConfig.allowKitsune) entity = new EntityKitsune(this.worldObj);
 					break;
 				case 2:
-					if (TragicNewConfig.allowDeathReaper) entity = new EntityDeathReaper(this.worldObj);
+					if (TragicConfig.allowDeathReaper) entity = new EntityDeathReaper(this.worldObj);
 					break;
 				case 3:
-					if (TragicNewConfig.allowTimeController) entity = new EntityTimeController(this.worldObj);
+					if (TragicConfig.allowTimeController) entity = new EntityTimeController(this.worldObj);
 					break;
 				case 4:
-					if (TragicNewConfig.allowYeti) entity = new EntityYeti(this.worldObj);
+					if (TragicConfig.allowYeti) entity = new EntityYeti(this.worldObj);
 					break;
 				case 5:
-					if (TragicNewConfig.allowPolaris) entity = new EntityPolaris(this.worldObj);
+					if (TragicConfig.allowPolaris) entity = new EntityPolaris(this.worldObj);
 					break;
 				case 6:
-					if (TragicNewConfig.allowJarra) entity = new EntityJarra(this.worldObj);
+					if (TragicConfig.allowJarra) entity = new EntityJarra(this.worldObj);
 					break;
 				case 7:
-					if (TragicNewConfig.allowKragul) entity = new EntityKragul(this.worldObj);
+					if (TragicConfig.allowKragul) entity = new EntityKragul(this.worldObj);
 					break;
 				case 8:
-					if (TragicNewConfig.allowMagmox) entity = new EntityMagmox(this.worldObj);
+					if (TragicConfig.allowMagmox) entity = new EntityMagmox(this.worldObj);
 					break;
 				case 9:
-					if (TragicNewConfig.allowMegaCryse) entity = new EntityMegaCryse(this.worldObj);
+					if (TragicConfig.allowMegaCryse) entity = new EntityMegaCryse(this.worldObj);
 					break;
 				case 10:
-					if (TragicNewConfig.allowStinKing) entity = new EntityStinKing(this.worldObj);
+					if (TragicConfig.allowStinKing) entity = new EntityStinKing(this.worldObj);
 					break;
 				case 11:
-					if (TragicNewConfig.allowStinQueen) entity = new EntityStinQueen(this.worldObj);
+					if (TragicConfig.allowStinQueen) entity = new EntityStinQueen(this.worldObj);
 					break;
 				case 12:
-					if (TragicNewConfig.allowGreaterStin) entity = new EntityGreaterStin(this.worldObj);
+					if (TragicConfig.allowGreaterStin) entity = new EntityGreaterStin(this.worldObj);
 					break;
 				case 13:
-					if (TragicNewConfig.allowVoxStellarum) entity = new EntityVoxStellarum(this.worldObj);
+					if (TragicConfig.allowVoxStellarum) entity = new EntityVoxStellarum(this.worldObj);
 					break;
 				case 14:
-					if (TragicNewConfig.allowEnyvil) entity = new EntityEnyvil(this.worldObj);
+					if (TragicConfig.allowEnyvil) entity = new EntityEnyvil(this.worldObj);
 					break;
 				case 15:
-					if (TragicNewConfig.allowClaymation) entity = new EntityClaymation(this.worldObj);
+					if (TragicConfig.allowClaymation) entity = new EntityClaymation(this.worldObj);
 					break;
 				case 16:
-					if (TragicNewConfig.allowAegar) entity = new EntityAegar(this.worldObj);
+					if (TragicConfig.allowAegar) entity = new EntityAegar(this.worldObj);
 					break;
 				case 17: break;
 				}

@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.util.LoreHelper;
 import cpw.mods.fml.relauncher.Side;
@@ -101,7 +101,7 @@ public class WeaponHuntersBow extends ItemBow {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		if (TragicNewConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
+		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
@@ -113,7 +113,7 @@ public class WeaponHuntersBow extends ItemBow {
 			}
 		}
 		
-		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());

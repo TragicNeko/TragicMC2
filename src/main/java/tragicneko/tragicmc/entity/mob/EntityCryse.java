@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.cryseStats;
-import static tragicneko.tragicmc.TragicNewConfig.starCryseStats;
+import static tragicneko.tragicmc.TragicConfig.cryseStats;
+import static tragicneko.tragicmc.TragicConfig.starCryseStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -25,7 +25,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
@@ -338,7 +338,7 @@ public class EntityCryse extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicNewConfig.allowMegaCryse;
+		return TragicConfig.allowMegaCryse;
 	}
 
 }

@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -54,7 +54,7 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 				if (entity.getMaxHealth() >= 40.0F) continue;
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 2400, 4));
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 2400, 10));
-				if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 240));
+				if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 240));
 				entity.tasks.taskEntries.clear();
 				entity.targetTasks.taskEntries.clear();
 				entity.motionX = 0.0;

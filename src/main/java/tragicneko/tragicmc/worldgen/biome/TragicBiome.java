@@ -9,7 +9,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
@@ -31,14 +31,14 @@ public class TragicBiome extends BiomeGenBase {
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.bigMushroomsPerChunk = -999;
 		this.theBiomeDecorator.grassPerChunk = -999;
-		if (TragicNewConfig.allowLavaPirah) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPirah.class, TragicNewConfig.lavaPirahSC, 0, 3));
-		if (TragicNewConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicNewConfig.plagueSC, 1, 4));
-		if (TragicNewConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicNewConfig.tragicNekoSC, 0, 1));
-		if (TragicNewConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.stinSC, 0, 2));
-		if (TragicNewConfig.allowGreaterStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicNewConfig.greaterStinSC, 0, 1));
-		if (TragicNewConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicNewConfig.timeControllerSC, 0, 1));
-		if (TragicNewConfig.allowErkel) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicNewConfig.erkelSC, 0, 3));
-		if (TragicNewConfig.allowWisp) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicNewConfig.wispSC, 1, 3));
+		if (TragicConfig.allowLavaPirah) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPirah.class, TragicConfig.lavaPirahSC, 0, 3));
+		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, 1, 4));
+		if (TragicConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.tragicNekoSC, 0, 1));
+		if (TragicConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.stinSC, 0, 2));
+		if (TragicConfig.allowGreaterStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.greaterStinSC, 0, 1));
+		if (TragicConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 1));
+		if (TragicConfig.allowErkel) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicConfig.erkelSC, 0, 3));
+		if (TragicConfig.allowWisp) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.wispSC, 1, 3));
 	}
 
 	@Override

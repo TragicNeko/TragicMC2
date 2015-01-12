@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.stinBabyStats;
-import static tragicneko.tragicmc.TragicNewConfig.stinStats;
+import static tragicneko.tragicmc.TragicConfig.stinBabyStats;
+import static tragicneko.tragicmc.TragicConfig.stinStats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -454,14 +454,14 @@ public class EntityStin extends TragicMob {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			if (TragicNewConfig.allowStinBaby && rand.nextInt(6) == 0) this.setChild();
+			if (TragicConfig.allowStinBaby && rand.nextInt(6) == 0) this.setChild();
 		}
 		return super.onSpawnWithEgg(data);
 	}
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicNewConfig.allowGreaterStin && this.getAgeTicks() >= 600;
+		return TragicConfig.allowGreaterStin && this.getAgeTicks() >= 600;
 	}
 
 }

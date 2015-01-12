@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -34,12 +34,12 @@ public class WeaponHarmonyBell extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicNewConfig.allowHarmony && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[17]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[17])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && TragicConfig.allowHarmony && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[17]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[17])
 		{
 			if (doom != null && doom.getCurrentDoom() >= 3)
 			{
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 60, 0));
-				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[17]);
+				if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[17]);
 				setStackCooldown(stack, 5);
 			}
 		}
@@ -54,16 +54,16 @@ public class WeaponHarmonyBell extends TragicWeapon {
 		
 		if (entity instanceof EntityLivingBase)
 		{
-			if (par5 && entity.ticksExisted % 120 == 0 && ((EntityLivingBase) entity).getHealth() < ((EntityLivingBase) entity).getMaxHealth() && TragicNewConfig.nonDoomsdayAbilities[18])
+			if (par5 && entity.ticksExisted % 120 == 0 && ((EntityLivingBase) entity).getHealth() < ((EntityLivingBase) entity).getMaxHealth() && TragicConfig.nonDoomsdayAbilities[18])
 			{
 				if (entity instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer) entity;
 					PropertyDoom doom = PropertyDoom.get(player);
 
-					if (doom != null && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[18]))
+					if (doom != null && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[18]))
 					{
-						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[18]);
+						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[18]);
 						player.heal(1.0F);
 					}
 				}

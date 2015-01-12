@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.yetiStats;
+import static tragicneko.tragicmc.TragicConfig.yetiStats;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +29,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
@@ -37,7 +37,7 @@ import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 
 public class EntityYeti extends TragicBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", TragicNewConfig.modifierAmts[3], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", TragicConfig.modifierAmts[3], 0);
 	private int hitTime = 0;
 
 	public EntityYeti(World par1World) {
@@ -78,7 +78,7 @@ public class EntityYeti extends TragicBoss {
 	{
 		super.onDeath(par1DamageSource);
 
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 4), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 4), 0.4F);
 	}
 
 	@Override
@@ -356,7 +356,7 @@ public class EntityYeti extends TragicBoss {
 
 			if (this.getRoarTicks() > 0 && this.getRoarTicks() == 18)
 			{
-				if (TragicNewConfig.allowAbomination) this.attemptToSummonHelp();
+				if (TragicConfig.allowAbomination) this.attemptToSummonHelp();
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0D, 12.0D, 12.0D));
 				EntityLivingBase entity;
 				for (int i = 0; i < list.size(); i++)
@@ -367,7 +367,7 @@ public class EntityYeti extends TragicBoss {
 						if (!(entity instanceof EntityAbomination) && !(entity instanceof EntityYeti))
 						{
 							entity.attackEntityFrom(DamageSource.causeMobDamage(this), 1.0F);
-							if (TragicNewConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 30));
+							if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 30));
 						}
 						else
 						{

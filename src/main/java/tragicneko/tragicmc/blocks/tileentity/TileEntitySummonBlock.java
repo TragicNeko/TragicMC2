@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -55,7 +55,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		EntityLivingBase boss = null;
 
 
-		if (meta == 2 && TragicNewConfig.allowApis)
+		if (meta == 2 && TragicConfig.allowApis)
 		{
 			boss = new EntityApis(this.worldObj);
 		}
@@ -67,31 +67,31 @@ public class TileEntitySummonBlock extends TileEntity {
 		{
 			boss = new EntityDragon(this.worldObj);
 		}
-		else if (meta == 3 && TragicNewConfig.allowDeathReaper)
+		else if (meta == 3 && TragicConfig.allowDeathReaper)
 		{
 			boss = new EntityDeathReaper(this.worldObj);
 		}
-		else if (meta == 4 && TragicNewConfig.allowKitsune)
+		else if (meta == 4 && TragicConfig.allowKitsune)
 		{
 			boss = new EntityKitsune(this.worldObj);
 		}
-		else if (meta == 5 && TragicNewConfig.allowPolaris)
+		else if (meta == 5 && TragicConfig.allowPolaris)
 		{
 			boss = new EntityPolaris(this.worldObj);
 		}
-		else if (meta == 6 && TragicNewConfig.allowYeti)
+		else if (meta == 6 && TragicConfig.allowYeti)
 		{
 			boss = new EntityYeti(this.worldObj);
 		}
-		else if (meta == 7 && TragicNewConfig.allowTimeController)
+		else if (meta == 7 && TragicConfig.allowTimeController)
 		{
 			boss = new EntityTimeController(this.worldObj);
 		}
-		else if (meta == 8 && TragicNewConfig.allowEnyvil)
+		else if (meta == 8 && TragicConfig.allowEnyvil)
 		{
 			boss =  new EntityEnyvil(this.worldObj);
 		}
-		else if (meta == 9 && TragicNewConfig.allowClaymation)
+		else if (meta == 9 && TragicConfig.allowClaymation)
 		{
 			boss = new EntityClaymation(this.worldObj);
 		}

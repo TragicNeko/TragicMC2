@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.poxStats;
-import static tragicneko.tragicmc.TragicNewConfig.toxStats;
+import static tragicneko.tragicmc.TragicConfig.poxStats;
+import static tragicneko.tragicmc.TragicConfig.toxStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -23,7 +23,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
@@ -342,7 +342,7 @@ public class EntityTox extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicNewConfig.allowMagmox;
+		return TragicConfig.allowMagmox;
 	}
 
 }

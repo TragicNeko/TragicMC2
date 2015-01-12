@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -19,14 +19,14 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (!(world.provider instanceof TragicWorldProvider) || random.nextInt(100) >= TragicNewConfig.largeSpikeRarity || random.nextInt(6) == 0) return;
+		if (!(world.provider instanceof TragicWorldProvider) || random.nextInt(100) >= TragicConfig.largeSpikeRarity || random.nextInt(6) == 0) return;
 
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		if (biome != TragicBiomes.TaintedScarlands || !TragicNewConfig.allowLargeSpikeGen) return;
+		if (biome != TragicBiomes.TaintedScarlands || !TragicConfig.allowLargeSpikeGen) return;
 
 		int relays = 4;
 		ArrayList<int[]> list;

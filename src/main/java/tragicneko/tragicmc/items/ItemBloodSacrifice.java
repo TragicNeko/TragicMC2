@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
@@ -33,7 +33,7 @@ public class ItemBloodSacrifice extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.allowDoom)
+		if (!par2World.isRemote && TragicConfig.allowDoom)
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 			float amount = par3EntityPlayer.getHealth() - 1.0F;
@@ -55,8 +55,8 @@ public class ItemBloodSacrifice extends Item {
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Health sacrificed!"));
-				if (TragicNewConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 600, 0));
-				if (TragicNewConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
+				if (TragicConfig.allowInhibit) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 600, 0));
+				if (TragicConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
 			}
 		}
 

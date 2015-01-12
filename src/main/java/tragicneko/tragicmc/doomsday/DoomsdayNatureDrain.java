@@ -19,7 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -37,7 +37,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		double radius = crucMoment ? 12.0D : 7.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
-		boolean griefCheck = TragicNewConfig.griefConfigs[0];
+		boolean griefCheck = TragicConfig.griefConfigs[0];
 		double plantCount = 0.0D;
 		int[] coords;
 
@@ -118,7 +118,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		double radius = crucMoment ? 12.0D : 7.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
-		boolean griefCheck = TragicNewConfig.griefConfigs[0];
+		boolean griefCheck = TragicConfig.griefConfigs[0];
 		double plantCount = 0.0D;
 		int[] coords;
 

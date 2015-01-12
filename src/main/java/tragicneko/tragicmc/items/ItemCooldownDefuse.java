@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,19 +31,19 @@ public class ItemCooldownDefuse extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicNewConfig.allowCooldownDefuse)
+		if (!par2World.isRemote && TragicConfig.allowCooldownDefuse)
 		{
 			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
 
 			if (property.getCurrentCooldown() > 0)
 			{
-				if (TragicNewConfig.defuseRefillAmount >= property.getCurrentCooldown())
+				if (TragicConfig.defuseRefillAmount >= property.getCurrentCooldown())
 				{
 					property.setCooldown(0);
 				}
 				else
 				{
-					int cooldown = TragicNewConfig.defuseRefillAmount;
+					int cooldown = TragicConfig.defuseRefillAmount;
 					
 					if (cooldown < property.getCurrentCooldown())
 					{

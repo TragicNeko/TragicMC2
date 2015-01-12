@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 
 public class TragicArmor extends ItemArmor {
@@ -95,7 +95,7 @@ public class TragicArmor extends ItemArmor {
 			}
 		} */
 
-		if (TragicNewConfig.allowDoomsdays && this.doomsday != null)
+		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());

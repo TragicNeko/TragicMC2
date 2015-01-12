@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayRavage extends Doomsday {
@@ -38,19 +38,19 @@ public class DoomsdayRavage extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
-				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicNewConfig.griefConfigs[1]);
+				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
 			}
 		}
 
 		for (int x = 0; x < rand.nextInt(8) + 4 + meow; x++)
 		{
-			player.worldObj.createExplosion(player, player.posX + (rand.nextInt(9) - 4), player.posY + (rand.nextInt(3) - 1), player.posZ + (rand.nextInt(9) - 4), rand.nextFloat() * f, TragicNewConfig.griefConfigs[1]);
+			player.worldObj.createExplosion(player, player.posX + (rand.nextInt(9) - 4), player.posY + (rand.nextInt(3) - 1), player.posZ + (rand.nextInt(9) - 4), rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
 		}
 	}
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		player.worldObj.createExplosion(null, player.posX, player.posY, player.posZ, rand.nextFloat() * 1.5F, TragicNewConfig.griefConfigs[1]);
+		player.worldObj.createExplosion(null, player.posX, player.posY, player.posZ, rand.nextFloat() * 1.5F, TragicConfig.griefConfigs[1]);
 	}
 
 }

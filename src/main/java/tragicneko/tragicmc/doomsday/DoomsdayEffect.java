@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.Entity;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -75,7 +75,7 @@ public class DoomsdayEffect {
 
 		if (this.timeBetweenUpdates == 0)
 		{
-			if (TragicNewConfig.allowCrucialMoments) crucMoment = rand.nextInt(100) <= TragicNewConfig.crucialMomentChance;
+			if (TragicConfig.allowCrucialMoments) crucMoment = rand.nextInt(100) <= TragicConfig.crucialMomentChance;
 			
 			try
 			{

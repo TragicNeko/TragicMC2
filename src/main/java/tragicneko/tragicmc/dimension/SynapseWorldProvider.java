@@ -8,7 +8,7 @@ import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 import tragicneko.tragicmc.TragicBiomes;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,7 +18,7 @@ public class SynapseWorldProvider extends WorldProvider
 
 	public SynapseWorldProvider()
 	{
-		this.dimensionId = TragicNewConfig.synapseID;
+		this.dimensionId = TragicConfig.synapseID;
 		this.hasNoSky = true;
 	}
 

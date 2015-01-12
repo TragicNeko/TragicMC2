@@ -10,7 +10,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -51,7 +51,7 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
 			if (effect.utilityEntity != null && effect.utilityEntity instanceof EntityLivingBase)
 			{
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) effect.utilityEntity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 200, 10));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase) effect.utilityEntity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 200, 10));
 
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Marionette!"));
 

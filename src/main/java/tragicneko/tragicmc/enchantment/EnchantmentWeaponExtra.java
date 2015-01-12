@@ -11,7 +11,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 
@@ -78,22 +78,22 @@ public class EnchantmentWeaponExtra extends Enchantment {
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.blindness.id, 120 * par1, par1));
 					break;
 				case 3:
-					if (TragicNewConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
+					if (TragicConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
 					break;
 				case 4:
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.confusion.id, 120 * par1, par1));
 				case 5:
-					if (TragicNewConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
+					if (TragicConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
 					break;
 				case 6:
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.blindness.id, 120 * par1, par1));
 				case 7:
-					if (TragicNewConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
+					if (TragicConfig.allowDisorientation) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120 * par1, par1));
 				case 8:
 					par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.confusion.id, 120 * par1, par1));
 					break;
 				case 9:
-					if (TragicNewConfig.allowStun) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120 * par1, par1));
+					if (TragicConfig.allowStun) par2EntityLivingBase.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120 * par1, par1));
 					break;
 				}
 			}

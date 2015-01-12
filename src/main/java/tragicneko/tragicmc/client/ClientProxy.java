@@ -10,7 +10,7 @@ import org.lwjgl.input.Keyboard;
 
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
@@ -35,6 +35,7 @@ import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
 import tragicneko.tragicmc.client.render.RenderDimensionalAnomaly;
 import tragicneko.tragicmc.client.render.RenderEpicWeapon;
+import tragicneko.tragicmc.client.render.RenderGuardianShield;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
@@ -62,6 +63,7 @@ import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
+import tragicneko.tragicmc.entity.EntityGuardianShield;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -144,8 +146,8 @@ public class ClientProxy extends CommonProxy {
 		Minecraft mc = Minecraft.getMinecraft();
 
 		//Gui event registration
-		if (TragicNewConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(mc));
-		if (TragicNewConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(mc));
+		if (TragicConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(mc));
+		if (TragicConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(mc));
 
 		//Keybinding registrations
 		ClientRegistry.registerKeyBinding(useSpecial);
@@ -155,7 +157,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
 
-		if (TragicNewConfig.allowWeaponModels)
+		if (TragicConfig.allowWeaponModels)
 		{
 			MinecraftForgeClient.registerItemRenderer(TragicItems.ReaperScythe, new RenderEpicWeapon(0, mc));
 			MinecraftForgeClient.registerItemRenderer(TragicItems.Butcher, new RenderEpicWeapon(1, mc));
@@ -196,6 +198,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
+		RenderingRegistry.registerEntityRenderingHandler(EntityGuardianShield.class, new RenderGuardianShield()); //TODO update this to it's own actual model
 		RenderingRegistry.registerEntityRenderingHandler(EntityDimensionalAnomaly.class, new RenderDimensionalAnomaly()); //TODO update this to an actual model for it
 
 		//Mob renders
@@ -238,7 +241,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 
-		//Alpha renders TODO change these to their proper models, these are placeholders
+		//Alpha renders TODO change these to their proper models
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelDeathReaper(), 0.885F, "DeathReaper_lowRes", 2.556F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelKitsune2(), 0.885F, "Kitsune2_lowRes", 2.556F));

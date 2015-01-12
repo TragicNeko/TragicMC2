@@ -12,7 +12,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 
@@ -87,7 +87,7 @@ public class ArmorLight extends TragicArmor {
 					if (flag1 && flag2 && flag3 && flag4)
 					{
 						player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 600));
-						if (TragicNewConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 600));
+						if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 600));
 					}
 				}
 			}

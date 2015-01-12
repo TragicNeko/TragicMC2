@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.plagueStats;
+import static tragicneko.tragicmc.TragicConfig.plagueStats;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -108,7 +108,7 @@ public class EntityPlague extends TragicMob {
 		}
 		else
 		{
-			if (this.ticksExisted % 120 == 0 && TragicNewConfig.allowCorruption)
+			if (this.ticksExisted % 120 == 0 && TragicConfig.allowCorruption)
 			{
 				this.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200, 0));
 			}
@@ -126,7 +126,7 @@ public class EntityPlague extends TragicMob {
 				this.motionZ = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 			}
 
-			if (TragicNewConfig.allowCorruption && this.ticksExisted % 60 == 0)
+			if (TragicConfig.allowCorruption && this.ticksExisted % 60 == 0)
 			{
 				int dif = this.worldObj.difficultySetting.getDifficultyId();
 				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 16.0 : 10.0);
@@ -160,11 +160,11 @@ public class EntityPlague extends TragicMob {
 							{
 								((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
 							}
-							else if (TragicNewConfig.allowSubmission && this.rand.nextInt(32) == 0)
+							else if (TragicConfig.allowSubmission && this.rand.nextInt(32) == 0)
 							{
 								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 160 + rand.nextInt(160)));
 							}
-							else if (TragicNewConfig.allowDisorientation && this.rand.nextInt(16) == 0)
+							else if (TragicConfig.allowDisorientation && this.rand.nextInt(16) == 0)
 							{
 								((EntityPlayer) entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 60 + rand.nextInt(80)));
 							}

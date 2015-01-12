@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -50,7 +50,7 @@ public class DoomsdayHarmonizer extends Doomsday {
 
 				int dur = crucMoment ? 600 : 300;
 
-				if (TragicNewConfig.allowHarmony)
+				if (TragicConfig.allowHarmony)
 				{
 					entity.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, dur));
 				}
@@ -71,7 +71,7 @@ public class DoomsdayHarmonizer extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (TragicNewConfig.allowHarmony)
+		if (TragicConfig.allowHarmony)
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 240)); 
 		}

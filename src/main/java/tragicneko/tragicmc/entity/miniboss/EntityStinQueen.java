@@ -1,7 +1,7 @@
 
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.stinQueenStats;
+import static tragicneko.tragicmc.TragicConfig.stinQueenStats;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
@@ -86,7 +86,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		
 		if (this.worldObj.isRemote) return;
 
-		if (TragicNewConfig.allowStinBaby)
+		if (TragicConfig.allowStinBaby)
 		{
 			int la = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 8;
 
@@ -204,7 +204,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 		if (flag && rand.nextInt(8) == 0 && par1Entity instanceof EntityLivingBase)
 		{
-			if (TragicNewConfig.allowStun) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 0));
+			if (TragicConfig.allowStun) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 0));
 		}
 
 		return flag;

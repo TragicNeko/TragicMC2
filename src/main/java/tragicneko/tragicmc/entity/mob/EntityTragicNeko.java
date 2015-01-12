@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.tragicNekoStats;
+import static tragicneko.tragicmc.TragicConfig.tragicNekoStats;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -23,7 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoMiniBomb;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
@@ -31,7 +31,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 
 public class EntityTragicNeko extends TragicMob {
 	
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicNewConfig.modifierAmts[9], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifierAmts[9], 0);
 
 	public EntityTragicNeko(World par1World) {
 		super(par1World);

@@ -121,12 +121,12 @@ public class TragicMC
 
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
-		TragicNewConfig.initialize();
-		MinecraftForge.EVENT_BUS.register(new TragicNewConfig());
+		TragicConfig.initialize();
+		MinecraftForge.EVENT_BUS.register(new TragicConfig());
 
 		logDuration("Configuration");
 
-		if (TragicNewConfig.allowPotions)
+		if (TragicConfig.allowPotions)
 		{
 			if (Potion.potionTypes.length >= 64)
 			{
@@ -136,12 +136,12 @@ public class TragicMC
 			else
 			{
 				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent a crash.");
-				TragicNewConfig.disablePotions();
+				TragicConfig.disablePotions();
 			}
 		}
 
-		if (TragicNewConfig.allowEnchantments) TragicEnchantments.load();
-		if (TragicNewConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
+		if (TragicConfig.allowEnchantments) TragicEnchantments.load();
+		if (TragicConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
 
 		logDuration("Potions and Enchantments");
 		
@@ -163,21 +163,21 @@ public class TragicMC
 		logDuration("Blocks");
 		TragicItems.load();
 		logDuration("Items");
-		if (TragicNewConfig.allowPotions) TragicPotion.setPotionIcons();
-		if (!TragicNewConfig.mobsOnly) TragicRecipes.load();
+		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
+		if (!TragicConfig.mobsOnly) TragicRecipes.load();
 
-		if (TragicNewConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
+		if (TragicConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new MiscEvents());
 		MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
 
-		if (TragicNewConfig.allowDoom)
+		if (TragicConfig.allowDoom)
 		{
 			MinecraftForge.EVENT_BUS.register(new DoomEvents());
 			FMLCommonHandler.instance().bus().register(new RespawnDoomEvents());
 		}
 		logDuration("Events 1");
 
-		if (TragicNewConfig.allowMobs)
+		if (TragicConfig.allowMobs)
 		{
 			TragicEntities.load();
 			MinecraftForge.EVENT_BUS.register(new DynamicHealthScaling());
@@ -185,7 +185,7 @@ public class TragicMC
 
 		logDuration("Entities");
 
-		if (TragicNewConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
+		if (TragicConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
 
 		MinecraftForge.EVENT_BUS.register(new DropEvents());
 		logDuration("Events 2");
@@ -204,34 +204,34 @@ public class TragicMC
 
 		logDuration("Network Handlers");
 
-		if (TragicNewConfig.allowDimension)
+		if (TragicConfig.allowDimension)
 		{
-			if (!DimensionManager.isDimensionRegistered(TragicNewConfig.dimensionID))
+			if (!DimensionManager.isDimensionRegistered(TragicConfig.dimensionID))
 			{
-				DimensionManager.registerProviderType(TragicNewConfig.providerID, TragicWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
-				DimensionManager.registerDimension(TragicNewConfig.dimensionID, TragicNewConfig.providerID);
+				DimensionManager.registerProviderType(TragicConfig.providerID, TragicWorldProvider.class, TragicConfig.keepDimensionLoaded);
+				DimensionManager.registerDimension(TragicConfig.dimensionID, TragicConfig.providerID);
 			}
 			else
 			{
 				int id = DimensionManager.getNextFreeDimId();
-				TragicNewConfig.dimensionID = id;
-				TragicNewConfig.providerID = id;
-				DimensionManager.registerProviderType(TragicNewConfig.providerID, TragicWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
-				DimensionManager.registerDimension(TragicNewConfig.dimensionID, TragicNewConfig.providerID);
+				TragicConfig.dimensionID = id;
+				TragicConfig.providerID = id;
+				DimensionManager.registerProviderType(TragicConfig.providerID, TragicWorldProvider.class, TragicConfig.keepDimensionLoaded);
+				DimensionManager.registerDimension(TragicConfig.dimensionID, TragicConfig.providerID);
 			}
 
-			if (!DimensionManager.isDimensionRegistered(TragicNewConfig.synapseID))
+			if (!DimensionManager.isDimensionRegistered(TragicConfig.synapseID))
 			{
-				DimensionManager.registerProviderType(TragicNewConfig.synapseProviderID, SynapseWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
-				DimensionManager.registerDimension(TragicNewConfig.synapseID, TragicNewConfig.synapseProviderID);
+				DimensionManager.registerProviderType(TragicConfig.synapseProviderID, SynapseWorldProvider.class, TragicConfig.keepDimensionLoaded);
+				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 			}
 			else
 			{
 				int id = DimensionManager.getNextFreeDimId();
-				TragicNewConfig.synapseID = id;
-				TragicNewConfig.synapseProviderID = id;
-				DimensionManager.registerProviderType(TragicNewConfig.synapseProviderID, SynapseWorldProvider.class, TragicNewConfig.keepDimensionLoaded);
-				DimensionManager.registerDimension(TragicNewConfig.synapseID, TragicNewConfig.synapseProviderID);
+				TragicConfig.synapseID = id;
+				TragicConfig.synapseProviderID = id;
+				DimensionManager.registerProviderType(TragicConfig.synapseProviderID, SynapseWorldProvider.class, TragicConfig.keepDimensionLoaded);
+				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 			}
 
 			TragicBiomes.load();
@@ -241,7 +241,7 @@ public class TragicMC
 		logDuration("Dimension Registrations");
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-		if (TragicNewConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
+		if (TragicConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
 
 		logDuration("Events 3");
@@ -252,18 +252,18 @@ public class TragicMC
 	{
 		logTime();
 
-		if (TragicNewConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
-		if (TragicNewConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
-		if (TragicNewConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
+		if (TragicConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
+		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
+		if (TragicConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
 		GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
 
-		if (TragicNewConfig.allowDimension)
+		if (TragicConfig.allowDimension)
 		{
 			FlowerWorldGen.allowedBiomes.addAll(TragicBiomes.paintedBiomes);
 			FlowerWorldGen.allowedBiomes.addAll(TragicBiomes.ashenBiomes);
 
-			if (TragicNewConfig.allowVoidPitGen) GameRegistry.registerWorldGenerator(new VoidPitWorldGen(), 4);
-			if (TragicNewConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new DimensionLayerWorldGen(), 5);
+			if (TragicConfig.allowVoidPitGen) GameRegistry.registerWorldGenerator(new VoidPitWorldGen(), 4);
+			if (TragicConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new DimensionLayerWorldGen(), 5);
 			GameRegistry.registerWorldGenerator(new StarCrystalWorldGen(), 6); //for the starlit prarie
 			GameRegistry.registerWorldGenerator(new CustomSpikesWorldGen(), 7); //for the decaying wasteland and tainted spikes
 			GameRegistry.registerWorldGenerator(new RuggedTerrainWorldGen(), 8); //for the ashen badlands and tainted scarlands
@@ -273,7 +273,7 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new DimensionOreWorldGen(), 19);
 		}
 
-		if (TragicNewConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);
+		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);
 
 		logDuration("WorldGen registration");
 	}
@@ -281,12 +281,12 @@ public class TragicMC
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
-		if (TragicNewConfig.allowDoom) event.registerServerCommand(new DoomCommand());
-		if (TragicNewConfig.allowDoomsdays) event.registerServerCommand(new DoomsdayCoomand());
+		if (TragicConfig.allowDoom) event.registerServerCommand(new DoomCommand());
+		if (TragicConfig.allowDoomsdays) event.registerServerCommand(new DoomsdayCoomand());
 
 		if (!event.getServer().isFlightAllowed())
 		{
-			TragicNewConfig.allowFlight = false;
+			TragicConfig.allowFlight = false;
 			logWarning("Flight potion effect is disabled due to the server not allowing it. Change the option in your server.properties file if you want it enabled.");
 		}
 	}

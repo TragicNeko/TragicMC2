@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.erkelStats;
+import static tragicneko.tragicmc.TragicConfig.erkelStats;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;

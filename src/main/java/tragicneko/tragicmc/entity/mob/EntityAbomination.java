@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.abominationStats;
+import static tragicneko.tragicmc.TragicConfig.abominationStats;
 
 import java.util.List;
 

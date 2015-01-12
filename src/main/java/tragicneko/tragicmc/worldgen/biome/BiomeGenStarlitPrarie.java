@@ -7,7 +7,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
@@ -18,10 +18,10 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 
 	public BiomeGenStarlitPrarie(int par1) {
 		super(par1);
-		if (TragicNewConfig.allowStarCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicNewConfig.starCryseSC, 0, 2));
-		if (TragicNewConfig.allowStarVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicNewConfig.starVoxSC, 0, 1));
-		if (TragicNewConfig.allowVoxStellarum) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityVoxStellarum.class, TragicNewConfig.voxStellarumSC, 0, 1));
-		if (TragicNewConfig.allowPolaris) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPolaris.class, TragicNewConfig.polarisSC, 0, 0));
+		if (TragicConfig.allowStarCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.starCryseSC, 0, 2));
+		if (TragicConfig.allowStarVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.starVoxSC, 0, 1));
+		if (TragicConfig.allowVoxStellarum) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityVoxStellarum.class, TragicConfig.voxStellarumSC, 0, 1));
+		if (TragicConfig.allowPolaris) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPolaris.class, TragicConfig.polarisSC, 0, 0));
 		this.enableSnow = false;
 		this.temperature = 1.8F;
 		this.rainfall = 0.6F;

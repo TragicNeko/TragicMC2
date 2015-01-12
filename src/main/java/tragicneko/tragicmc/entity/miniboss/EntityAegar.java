@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.aegarStats;
+import static tragicneko.tragicmc.TragicConfig.aegarStats;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.EntityPart;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
@@ -42,7 +42,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	public EntityPart aegarCannon;
 	public EntityPart aegarHead;
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8771eb81-724e-4d6b-91a4-d7e2cd17f82c"), "aegarSpeedBuff", TragicNewConfig.modifierAmts[4], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8771eb81-724e-4d6b-91a4-d7e2cd17f82c"), "aegarSpeedBuff", TragicConfig.modifierAmts[4], 0);
 
 	public EntityAegar(World par1World) {
 		super(par1World);
@@ -495,7 +495,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			this.setAttackTime(20);
 			par1Entity.motionX *= 2.35D;
 			par1Entity.motionZ *= 2.35D;
-			if (par1Entity instanceof EntityPlayer && TragicNewConfig.allowHacked && rand.nextInt(6) == 0) ((EntityPlayer) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
+			if (par1Entity instanceof EntityPlayer && TragicConfig.allowHacked && rand.nextInt(6) == 0) ((EntityPlayer) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
 		}
 		return result;
 	}
@@ -509,7 +509,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			if (entity instanceof EntityLivingBase)
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 16.0F);
-				if (entity instanceof EntityPlayer && TragicNewConfig.allowHacked && rand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
+				if (entity instanceof EntityPlayer && TragicConfig.allowHacked && rand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));
 
 				entity.motionX *= 3.225D;
 				entity.motionZ *= 3.225D;

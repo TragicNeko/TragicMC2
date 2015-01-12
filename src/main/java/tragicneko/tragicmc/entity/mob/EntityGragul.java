@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.gragulStats;
+import static tragicneko.tragicmc.TragicConfig.gragulStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -18,7 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
@@ -89,7 +89,7 @@ public class EntityGragul extends TragicMob {
 
 		if (this.getAttackTarget() != null && this.ticksExisted % 120 == 0)
 		{
-			if (this.getAttackTarget() instanceof EntityPlayer && TragicNewConfig.allowInhibit && this.canEntityBeSeen(this.getAttackTarget()))
+			if (this.getAttackTarget() instanceof EntityPlayer && TragicConfig.allowInhibit && this.canEntityBeSeen(this.getAttackTarget()))
 			{
 				((EntityPlayer) this.getAttackTarget()).addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 200));
 			}
@@ -143,7 +143,7 @@ public class EntityGragul extends TragicMob {
 			{
 				if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
 				{
-					if (rand.nextInt(4) == 0 && TragicNewConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
+					if (rand.nextInt(4) == 0 && TragicConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 					
 				}
 			}
@@ -158,7 +158,7 @@ public class EntityGragul extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicNewConfig.allowKragul;
+		return TragicConfig.allowKragul;
 	}
 
 	@Override

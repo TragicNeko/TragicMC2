@@ -6,7 +6,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,7 +17,7 @@ public class TragicWorldProvider extends WorldProvider
 
 	public TragicWorldProvider()
 	{
-		this.dimensionId = TragicNewConfig.dimensionID;
+		this.dimensionId = TragicConfig.dimensionID;
 	}
 
 	@Override

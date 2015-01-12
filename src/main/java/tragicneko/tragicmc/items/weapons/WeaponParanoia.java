@@ -10,7 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
@@ -39,12 +39,12 @@ public class WeaponParanoia extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[21]) && getStackCooldown(stack) == 0 && TragicNewConfig.nonDoomsdayAbilities[21])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[21]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[21])
 		{
-			if (TragicNewConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 240, itemRand.nextInt(2)));
-			if (TragicNewConfig.allowSubmission && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 320, itemRand.nextInt(4)));
+			if (TragicConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 240, itemRand.nextInt(2)));
+			if (TragicConfig.allowSubmission && itemRand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 320, itemRand.nextInt(4)));
 			
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[21]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[21]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -59,7 +59,7 @@ public class WeaponParanoia extends EpicWeapon {
 
 			if (par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[22]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[22])
+				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[22]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[22])
 				{
 					for (int l = 0; l < 5; l++)
 					{
@@ -72,7 +72,7 @@ public class WeaponParanoia extends EpicWeapon {
 						par3EntityPlayer.worldObj.spawnEntityInWorld(fireball);
 					}
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode)doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[22]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode)doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[22]);
 					setStackCooldown(par1ItemStack, 5);
 					
 					return par1ItemStack;
@@ -80,7 +80,7 @@ public class WeaponParanoia extends EpicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, TragicNewConfig.nonDoomsdayAbilityCosts[23]) && getStackCooldown(par1ItemStack) == 0 && TragicNewConfig.nonDoomsdayAbilities[23])
+				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[23]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[23])
 				{
 					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 					if (vec == null) return par1ItemStack;
@@ -95,7 +95,7 @@ public class WeaponParanoia extends EpicWeapon {
 					rocket.posZ = par3EntityPlayer.posZ + d6 * 0.15D;
 					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicNewConfig.nonDoomsdayAbilityCosts[23]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[23]);
 					setStackCooldown(par1ItemStack, 5);
 
 					return par1ItemStack;

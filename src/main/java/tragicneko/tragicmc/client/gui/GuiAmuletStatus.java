@@ -12,7 +12,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -45,8 +45,8 @@ public class GuiAmuletStatus extends Gui
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
 		if (amu == null || amu.getSlotsOpen() <= 0) return; 
 
-		int xPos = TragicNewConfig.guiX + 1;
-		int yPos = TragicNewConfig.guiY + 11;
+		int xPos = TragicConfig.guiX + 1;
+		int yPos = TragicConfig.guiY + 11;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());
 		int length = 0;
 		if (amu.getSlotsOpen() == 1) length = 20;
@@ -57,7 +57,7 @@ public class GuiAmuletStatus extends Gui
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		float trans = TragicNewConfig.guiTransparency / 100.0F;
+		float trans = TragicConfig.guiTransparency / 100.0F;
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
@@ -75,7 +75,7 @@ public class GuiAmuletStatus extends Gui
 				itemRender.renderItemOverlayIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, xPos + 2 + (20 * i), yPos + 4);
 				GL11.glDisable(GL11.GL_LIGHTING);
 			}
-			else if (amu.getSlotsOpen() < i + 1 && TragicNewConfig.maxAmuletSlots >= i + 1)
+			else if (amu.getSlotsOpen() < i + 1 && TragicConfig.maxAmuletSlots >= i + 1)
 			{
 				String s = "X";
 				Color color = new Color(0x23, 0x23, 0x23);
@@ -90,7 +90,7 @@ public class GuiAmuletStatus extends Gui
 
 	public static ResourceLocation getTextureFromConfig()
 	{
-		switch(TragicNewConfig.guiTexture)
+		switch(TragicConfig.guiTexture)
 		{
 		case 0:
 			return texturepath3;

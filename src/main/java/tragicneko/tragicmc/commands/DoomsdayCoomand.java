@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.DoomsdayEffect;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
@@ -99,14 +99,14 @@ public class DoomsdayCoomand extends CommandBase {
 			return;
 		}
 		
-		if (!TragicNewConfig.doomsdayAllow[doomsday.doomID])
+		if (!TragicConfig.doomsdayAllow[doomsday.doomID])
 		{
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "That particular Doomsday is disabled, enable in config."));
 			return;
 		}
 
 		boolean crucMoment = false;
-		if (TragicNewConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicNewConfig.crucialMomentChance) crucMoment = true;
+		if (TragicConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicConfig.crucialMomentChance) crucMoment = true;
 		DoomsdayEffect effect = new DoomsdayEffect(doomsday.getDoomId(), doom, true);
 		DoomsdayManager.registerDoomsdayEffect(mp.getCommandSenderName(), effect);
 	}

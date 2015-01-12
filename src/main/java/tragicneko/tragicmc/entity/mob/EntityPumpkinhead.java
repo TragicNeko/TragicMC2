@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.pumpkinheadStats;
+import static tragicneko.tragicmc.TragicConfig.pumpkinheadStats;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,14 +1,14 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.apisStats;
-import static tragicneko.tragicmc.TragicNewConfig.claymationStats;
-import static tragicneko.tragicmc.TragicNewConfig.deathReaperStats;
-import static tragicneko.tragicmc.TragicNewConfig.jabbaStats;
-import static tragicneko.tragicmc.TragicNewConfig.kitsuneStats;
-import static tragicneko.tragicmc.TragicNewConfig.minotaurStats;
-import static tragicneko.tragicmc.TragicNewConfig.norVoxStats;
-import static tragicneko.tragicmc.TragicNewConfig.ragrStats;
-import static tragicneko.tragicmc.TragicNewConfig.stinKingStats;
+import static tragicneko.tragicmc.TragicConfig.apisStats;
+import static tragicneko.tragicmc.TragicConfig.claymationStats;
+import static tragicneko.tragicmc.TragicConfig.deathReaperStats;
+import static tragicneko.tragicmc.TragicConfig.jabbaStats;
+import static tragicneko.tragicmc.TragicConfig.kitsuneStats;
+import static tragicneko.tragicmc.TragicConfig.minotaurStats;
+import static tragicneko.tragicmc.TragicConfig.norVoxStats;
+import static tragicneko.tragicmc.TragicConfig.ragrStats;
+import static tragicneko.tragicmc.TragicConfig.stinKingStats;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
 import static tragicneko.tragicmc.events.NewAmuletEvents.badPotions;
 
@@ -46,7 +46,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
@@ -72,7 +72,7 @@ public class EntityClaymation extends TragicBoss {
 			{0.7F, 2.1F}, {0.745F, 1.745F}, {1.4F, 2.9F}};
 
 	private int formTicks;
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8b42b35e-f870-40ca-ae74-95a38879bed0"), "claymationUtilitySpeedDebuff", TragicNewConfig.modifierAmts[0], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8b42b35e-f870-40ca-ae74-95a38879bed0"), "claymationUtilitySpeedDebuff", TragicConfig.modifierAmts[0], 0);
 
 	public EntityClaymation(World par1World) {
 		super(par1World);
@@ -100,10 +100,10 @@ public class EntityClaymation extends TragicBoss {
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(claymationStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(TragicNewConfig.claymationStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(TragicNewConfig.claymationStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(TragicNewConfig.claymationStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(TragicNewConfig.claymationStats[4]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(TragicConfig.claymationStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(TragicConfig.claymationStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(TragicConfig.claymationStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(TragicConfig.claymationStats[4]);
 	}
 
 	@Override
@@ -548,7 +548,7 @@ public class EntityClaymation extends TragicBoss {
 			if (this.getUtilityInt() > 0) this.setUtilityInt(0);
 		}
 
-		if (this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicNewConfig.allowFear) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
+		if (this.ticksExisted % 10 == 0 && rand.nextInt(256) == 0 && TragicConfig.allowFear) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), rand.nextInt(4)));
 
 
 		if (this.getUtilityInt2() == 0 && this.getUtilityInt3() == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0F &&
@@ -627,7 +627,7 @@ public class EntityClaymation extends TragicBoss {
 		{
 			EntityPlayer player = this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0);
 
-			if (player != null && TragicNewConfig.allowDoom && this.canEntityBeSeen(player))
+			if (player != null && TragicConfig.allowDoom && this.canEntityBeSeen(player))
 			{
 				PropertyDoom doom = PropertyDoom.get(player);
 				int i = this.worldObj.difficultySetting.getDifficultyId();
@@ -776,22 +776,22 @@ public class EntityClaymation extends TragicBoss {
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, 300 + rand.nextInt(320), 0));
 			}
 
-			if (rand.nextInt(128) == 0 && TragicNewConfig.allowInhibit)
+			if (rand.nextInt(128) == 0 && TragicConfig.allowInhibit)
 			{
 				entity.addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 300 + rand.nextInt(320), 0));
 			}
 
-			if (rand.nextInt(72) == 0 && TragicNewConfig.allowCripple)
+			if (rand.nextInt(72) == 0 && TragicConfig.allowCripple)
 			{
 				entity.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 			}
 
-			if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
+			if (rand.nextInt(72) == 0 && TragicConfig.allowDisorientation)
 			{
 				entity.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 			}
 
-			if (rand.nextInt(72) == 0 && TragicNewConfig.allowMalnourish)
+			if (rand.nextInt(72) == 0 && TragicConfig.allowMalnourish)
 			{
 				entity.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 			}
@@ -926,7 +926,7 @@ public class EntityClaymation extends TragicBoss {
 					entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300 + rand.nextInt(320), 0));
 				}
 
-				if (rand.nextInt(72) == 0 && TragicNewConfig.allowDisorientation)
+				if (rand.nextInt(72) == 0 && TragicConfig.allowDisorientation)
 				{
 					entity.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 300 + rand.nextInt(320), rand.nextInt(3)));
 				}
@@ -1602,7 +1602,7 @@ public class EntityClaymation extends TragicBoss {
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200)));
 				break;
 			case 2:
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
 				break;
 			}
 		}
@@ -1638,7 +1638,7 @@ public class EntityClaymation extends TragicBoss {
 			if (rand.nextBoolean() && par1Entity instanceof EntityLivingBase)
 			{
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 300, 0));
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 1 + rand.nextInt(3)));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 1 + rand.nextInt(3)));
 			}
 
 			par1Entity.motionY += 1.222543D;
@@ -1649,7 +1649,7 @@ public class EntityClaymation extends TragicBoss {
 
 	private void attackEntityAsNorVox(Entity par1Entity)
 	{
-		if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0 && TragicNewConfig.allowSubmission)
+		if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0 && TragicConfig.allowSubmission)
 		{
 			((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(120) + 60, rand.nextInt(2)));
 		}
@@ -1687,7 +1687,7 @@ public class EntityClaymation extends TragicBoss {
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.weakness.id, rand.nextInt(200)));
 				break;
 			case 2:
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200)));
 				break;
 			}
 		}
@@ -1719,13 +1719,13 @@ public class EntityClaymation extends TragicBoss {
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 				break;
 			case 4:
-				if (TragicNewConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
+				if (TragicConfig.allowDisorientation) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 				break;
 			case 5:
-				if (TragicNewConfig.allowFear) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, rand.nextInt(200) + 320));
+				if (TragicConfig.allowFear) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, rand.nextInt(200) + 320));
 				break;
 			default:
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(200) + 320, rand.nextInt(2) + 1));
 				break;
 			}
 		}
@@ -1754,7 +1754,7 @@ public class EntityClaymation extends TragicBoss {
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, rand.nextInt(200) + 320));
 				break;
 			case 2:
-				if (TragicNewConfig.allowDisorientation)
+				if (TragicConfig.allowDisorientation)
 				{
 					((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, rand.nextInt(200) + 320));
 				}

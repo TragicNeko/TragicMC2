@@ -2,7 +2,7 @@ package tragicneko.tragicmc.items.weapons;
 
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -52,7 +52,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 		
 		if (!stack.isItemEnchanted())
 		{
-			if (TragicNewConfig.allowReach) stack.addEnchantment(TragicEnchantments.Reach, 5);
+			if (TragicConfig.allowReach) stack.addEnchantment(TragicEnchantments.Reach, 5);
 			stack.addEnchantment(Enchantment.looting, 10);
 		}
 	}

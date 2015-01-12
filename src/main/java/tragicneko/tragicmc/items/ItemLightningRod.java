@@ -2,7 +2,7 @@ package tragicneko.tragicmc.items;
 
 import java.util.UUID;
 
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ItemLightningRod extends ItemTalisman {
 	
-	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicNewConfig.modifierAmts[20], 0);
+	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifierAmts[20], 0);
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

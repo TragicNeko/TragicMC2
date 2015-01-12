@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.greaterStinStats;
+import static tragicneko.tragicmc.TragicConfig.greaterStinStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -10,7 +10,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 
@@ -106,7 +106,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 		if (this.worldObj.isRemote) return;
 		
-		if (this.superiorForm == null && this.isChangeAllowed()) this.superiorForm = this.rand.nextBoolean() && TragicNewConfig.allowStinKing ? new EntityStinKing(this.worldObj) : (TragicNewConfig.allowStinQueen ? new EntityStinQueen(this.worldObj) : null);
+		if (this.superiorForm == null && this.isChangeAllowed()) this.superiorForm = this.rand.nextBoolean() && TragicConfig.allowStinKing ? new EntityStinKing(this.worldObj) : (TragicConfig.allowStinQueen ? new EntityStinQueen(this.worldObj) : null);
 
 		if (this.isCharging())
 		{
@@ -174,7 +174,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 			if (rand.nextBoolean() && par1Entity instanceof EntityLivingBase)
 			{
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 300, 0));
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 1 + rand.nextInt(3)));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 1 + rand.nextInt(3)));
 			}
 
 			par1Entity.motionY += 1.222543D;
@@ -200,7 +200,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return this.superiorForm instanceof EntityStinKing ? TragicNewConfig.allowStinKing : TragicNewConfig.allowStinQueen;
+		return this.superiorForm instanceof EntityStinKing ? TragicConfig.allowStinKing : TragicConfig.allowStinQueen;
 	}
 
 	@Override

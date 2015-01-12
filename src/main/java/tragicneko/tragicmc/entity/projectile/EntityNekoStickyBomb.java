@@ -10,7 +10,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityNekoStickyBomb extends EntityThrowable {
@@ -49,7 +49,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 				this.mountEntity(mop.entityHit);
 			}
 			
-			if (mop.entityHit instanceof EntityLivingBase && TragicNewConfig.allowStun)
+			if (mop.entityHit instanceof EntityLivingBase && TragicConfig.allowStun)
 			{
 				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 10, 0));
 			}

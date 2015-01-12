@@ -18,7 +18,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -47,7 +47,7 @@ public abstract class TragicMob extends EntityMob
 
 	protected boolean canChange()
 	{
-		return this.superiorForm != null && TragicNewConfig.allowMobTransformation;
+		return this.superiorForm != null && TragicConfig.allowMobTransformation;
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public abstract class TragicMob extends EntityMob
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 
-		if (this.getAttackTarget() == null && this.canCorrupt() && TragicNewConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
+		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
 		{
 			EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
 
@@ -130,7 +130,7 @@ public abstract class TragicMob extends EntityMob
 			}
 		}
 
-		if (TragicNewConfig.allowCorruption)
+		if (TragicConfig.allowCorruption)
 		{
 			if (this.isPotionActive(TragicPotion.Corruption))
 			{
@@ -141,12 +141,12 @@ public abstract class TragicMob extends EntityMob
 				this.setCorruptionTicks(0);
 			}
 
-			if (this.canChange() && this.getCorruptionTicks() >= 600 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
+			if (this.canChange() && this.getCorruptionTicks() >= 600 && this.rand.nextInt(100) <= TragicConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
 			{
 				this.change();
 			}
 		}
-		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicNewConfig.mobTransformationChance)
+		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicConfig.mobTransformationChance)
 		{
 			this.change();
 		}
@@ -184,11 +184,11 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.worldObj.isRemote || TragicNewConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false; 
+		if (this.worldObj.isRemote || TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false; 
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
-		if (result && TragicNewConfig.allowCorruption && this.canCorrupt() && rand.nextInt(4) == 0)
+		if (result && TragicConfig.allowCorruption && this.canCorrupt() && rand.nextInt(4) == 0)
 		{
 			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).canCorrupt())
 			{
@@ -259,14 +259,14 @@ public abstract class TragicMob extends EntityMob
 
 			for (int i = 0; i < x; i++)
 			{
-				if (rand.nextInt(100) <= TragicNewConfig.commonDropRate + (x * 4))
+				if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
 				{
 					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), true) : EntityDropHelper.getDropFromEntity(this.getClass(), true);
 					if (drop != null) this.entityDropItem(drop, 0.4F);
 					drops++;
 				}
 
-				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicNewConfig.rareDropRate + x)
+				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicConfig.rareDropRate + x)
 				{
 					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), false) : EntityDropHelper.getDropFromEntity(this.getClass(), false);
 					if (drop != null) this.entityDropItem(drop, 0.4F);
@@ -276,7 +276,7 @@ public abstract class TragicMob extends EntityMob
 				if (drops > x * 2.5) break;
 			}
 
-			if (!TragicNewConfig.allowMobStatueDrops) return;
+			if (!TragicConfig.allowMobStatueDrops) return;
 
 			int id = 0;
 
@@ -313,7 +313,7 @@ public abstract class TragicMob extends EntityMob
 				id = 13;
 			}
 
-			if (id != 0 && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
+			if (id != 0 && rand.nextInt(100) <= TragicConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 		}		
 	}
 	

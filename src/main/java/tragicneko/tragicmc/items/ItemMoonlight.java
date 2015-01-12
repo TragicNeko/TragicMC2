@@ -2,7 +2,7 @@ package tragicneko.tragicmc.items;
 
 import java.util.UUID;
 
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ItemMoonlight extends ItemTalisman {
 	
-	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicNewConfig.modifierAmts[21], 0);
+	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicConfig.modifierAmts[21], 0);
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

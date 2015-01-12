@@ -12,7 +12,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
@@ -44,7 +44,7 @@ public class ItemDoomsdayScroll extends Item {
 		par2List.add(EnumChatFormatting.WHITE + "This is a one-time use, regardless of if");
 		par2List.add(EnumChatFormatting.WHITE + "the effect is successful or not.");
 
-		if (TragicNewConfig.allowDoomsdays && dday != null)
+		if (TragicConfig.allowDoomsdays && dday != null)
 		{
 			par2List.add(""); //extra space in between
 			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
@@ -106,7 +106,7 @@ public class ItemDoomsdayScroll extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
-		if (world.isRemote || !TragicNewConfig.allowDoomsdays) return stack;
+		if (world.isRemote || !TragicConfig.allowDoomsdays) return stack;
 
 		PropertyDoom doom = PropertyDoom.get(player);
 		if (doom != null)

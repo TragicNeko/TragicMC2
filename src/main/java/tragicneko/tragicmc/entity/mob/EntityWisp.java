@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.wispStats;
+import static tragicneko.tragicmc.TragicConfig.wispStats;
 
 import java.util.Set;
 
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 
 import com.google.common.collect.Sets;
 
@@ -150,9 +150,9 @@ public class EntityWisp extends TragicMob {
 		{
 			String s = "flame";
 
-			if (TragicNewConfig.allowDimension && TragicBiomes.starlitBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "witchMagic";
-			if (TragicNewConfig.allowDimension && TragicBiomes.ashenBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "smoke";
-			if (TragicNewConfig.allowDimension && TragicBiomes.paintedBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "magicCrit";
+			if (TragicConfig.allowDimension && TragicBiomes.starlitBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "witchMagic";
+			if (TragicConfig.allowDimension && TragicBiomes.ashenBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "smoke";
+			if (TragicConfig.allowDimension && TragicBiomes.paintedBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "magicCrit";
 
 			for (int i = 0; i < 2 && this.getIdleTicks() == 0; i++)
 			{

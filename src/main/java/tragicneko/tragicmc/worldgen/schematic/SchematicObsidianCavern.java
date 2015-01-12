@@ -15,7 +15,7 @@ import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.StructureWorldGen;
 
@@ -1073,36 +1073,36 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public String getRandomEntityNameForSpawner(int i)
 	{
-		String s = TragicNewConfig.allowPlague ? "TragicMC.Plague" : "Blaze";
+		String s = TragicConfig.allowPlague ? "TragicMC.Plague" : "Blaze";
 
 		switch(i)
 		{
 		case 0:
-			s = TragicNewConfig.allowMinotaur ? "TragicMC.Minotaur" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowMinotaur ? "TragicMC.Minotaur" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 1:
-			s = TragicNewConfig.allowInkling ? "TragicMC.Inkling" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowInkling ? "TragicMC.Inkling" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 2:
-			s = TragicNewConfig.allowJabba ? "TragicMC.Jabba" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowJabba ? "TragicMC.Jabba" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 3:
-			s = TragicNewConfig.allowNorVox ? "TragicMC.NorVox" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowNorVox ? "TragicMC.NorVox" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 4:
-			s = TragicNewConfig.allowRagr ? "TragicMC.Ragr" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowRagr ? "TragicMC.Ragr" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 5:
-			s = TragicNewConfig.allowTox ? "TragicMC.Tox" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowTox ? "TragicMC.Tox" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 6:
-			s = TragicNewConfig.allowGragul ? "TragicMC.Gragul" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowGragul ? "TragicMC.Gragul" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 7:
-			s = TragicNewConfig.allowJarra ? "TragicMC.Jarra" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowJarra ? "TragicMC.Jarra" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		case 8:
-			s = TragicNewConfig.allowKragul ? "TragicMC.Kragul" : this.getRandomVanillaEntityNameForSpawner(i);
+			s = TragicConfig.allowKragul ? "TragicMC.Kragul" : this.getRandomVanillaEntityNameForSpawner(i);
 			break;
 		default:
 			break;
@@ -1142,17 +1142,17 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public String getRandomBossNameForSpawner(int i)
 	{
-		String s = TragicNewConfig.allowApis ? "TragicMC.Apis" : "Enderman";
+		String s = TragicConfig.allowApis ? "TragicMC.Apis" : "Enderman";
 		switch(i)
 		{
 		case 0:
-			s = TragicNewConfig.allowYeti ? "TragicMC.Yeti" : "Enderman";
+			s = TragicConfig.allowYeti ? "TragicMC.Yeti" : "Enderman";
 			break;
 		case 1:
-			s = TragicNewConfig.allowKitsune ? "TragicMC.Kitsune" : "Enderman";
+			s = TragicConfig.allowKitsune ? "TragicMC.Kitsune" : "Enderman";
 			break;
 		case 2:
-			s = TragicNewConfig.allowPolaris ? "TragicMC.Polaris" : "Enderman";
+			s = TragicConfig.allowPolaris ? "TragicMC.Polaris" : "Enderman";
 			break;
 		default:
 			break;

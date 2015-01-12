@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.miniboss;
 
-import static tragicneko.tragicmc.TragicNewConfig.voxStellarumStats;
+import static tragicneko.tragicmc.TragicConfig.voxStellarumStats;
 
 import java.util.UUID;
 
@@ -15,7 +15,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
@@ -155,7 +155,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				if (this.isFiring()) this.setFiringTicks(0);
 			}
 			if (this.isHealing()) this.decrementHealingTicks();
-			if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotion.Stun.id) || this.getAttackTarget() == null) this.setSpinTicks(0);
+			if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun.id) || this.getAttackTarget() == null) this.setSpinTicks(0);
 
 
 			double modifier = (Math.sin((2.115D / (Math.PI * 2)) * (this.getSpinTicks() / 100.0D) - 0.125D)) * 0.235D;

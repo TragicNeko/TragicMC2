@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicNewConfig.norVoxStats;
-import static tragicneko.tragicmc.TragicNewConfig.starVoxStats;
+import static tragicneko.tragicmc.TragicConfig.norVoxStats;
+import static tragicneko.tragicmc.TragicConfig.starVoxStats;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -26,7 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.projectile.EntityStarShard;
@@ -36,7 +36,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityNorVox extends TragicMob {
 
-	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", TragicNewConfig.modifierAmts[7], 0);
+	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", TragicConfig.modifierAmts[7], 0);
 
 	public EntityNorVox(World par1World) {
 		super(par1World);
@@ -216,7 +216,7 @@ public class EntityNorVox extends TragicMob {
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 			if (this.getNodTicks() > 0) this.decrementNodTicks();
 			if (this.getAttackTarget() == null) this.setFiringTicks(0);
-			if (TragicNewConfig.allowStun && this.isPotionActive(TragicPotion.Stun))
+			if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun))
 			{
 				if (this.isFiring()) this.setFiringTicks(0);
 				if (this.getAttackTime() == 0) this.setAttackTime(10);
@@ -227,7 +227,7 @@ public class EntityNorVox extends TragicMob {
 
 			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && rand.nextInt(64) == 0 && !this.isFiring())
 			{
-				boolean flag = !TragicNewConfig.allowStun ? true : (this.isPotionActive(TragicPotion.Stun.id) ? false : true);
+				boolean flag = !TragicConfig.allowStun ? true : (this.isPotionActive(TragicPotion.Stun.id) ? false : true);
 				if (flag) this.setFiringTicks(120);
 			}
 
@@ -297,7 +297,7 @@ public class EntityNorVox extends TragicMob {
 			if (this.isFiring() && par1DamageSource.getEntity() != null && rand.nextInt(8) == 0 && this.getFiringTicks() >= 40)
 			{
 				this.setFiringTicks(0);
-				if (TragicNewConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 + rand.nextInt(40)));
+				if (TragicConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 + rand.nextInt(40)));
 			}
 		}
 
@@ -311,7 +311,7 @@ public class EntityNorVox extends TragicMob {
 
 		if (flag && par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0)
 		{
-			if (TragicNewConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(120) + 60, rand.nextInt(2)));
+			if (TragicConfig.allowSubmission) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, rand.nextInt(120) + 60, rand.nextInt(2)));
 		}
 		return flag;
 	}
@@ -404,6 +404,6 @@ public class EntityNorVox extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return TragicNewConfig.allowVoxStellarum;
+		return TragicConfig.allowVoxStellarum;
 	}
 }

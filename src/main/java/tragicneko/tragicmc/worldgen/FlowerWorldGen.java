@@ -14,7 +14,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
@@ -34,7 +34,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (world.provider.dimensionId == 0 && !TragicNewConfig.allowExtraOverworldFlowers || world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider)) return;
+		if (world.provider.dimensionId == 0 && !TragicConfig.allowExtraOverworldFlowers || world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider)) return;
 
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);

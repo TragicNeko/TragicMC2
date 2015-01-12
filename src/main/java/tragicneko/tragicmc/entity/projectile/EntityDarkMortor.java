@@ -8,7 +8,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityDarkMortor extends EntityProjectile {
@@ -37,7 +37,7 @@ public class EntityDarkMortor extends EntityProjectile {
 			if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase && !this.worldObj.isRemote)
 			{
 				((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
-				if (TragicNewConfig.allowSubmission) ((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(80), rand.nextInt(4)));
+				if (TragicConfig.allowSubmission) ((EntityLivingBase)var1.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(80), rand.nextInt(4)));
 			}
 			else if (var1.entityHit != null && !this.worldObj.isRemote)
 			{
@@ -63,7 +63,7 @@ public class EntityDarkMortor extends EntityProjectile {
 					{
 						target.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.5F);
 						target.addPotionEffect(new PotionEffect(Potion.blindness.id, 80 + rand.nextInt(60)));
-						if (TragicNewConfig.allowSubmission) target.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(80), rand.nextInt(4)));
+						if (TragicConfig.allowSubmission) target.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 120 + rand.nextInt(80), rand.nextInt(4)));
 					}
 				}
 			}

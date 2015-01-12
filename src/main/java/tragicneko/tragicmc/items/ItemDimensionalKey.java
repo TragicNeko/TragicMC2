@@ -15,7 +15,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicTeleporter;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -97,7 +97,7 @@ public class ItemDimensionalKey extends Item {
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
-		if (!TragicNewConfig.allowDimension && this.targetDimension > 2)
+		if (!TragicConfig.allowDimension && this.targetDimension > 2)
 		{
 			par3EntityPlayer.addChatMessage(new ChatComponentText("TragicMC Dimensions are disabled, enable in config."));
 			return;
