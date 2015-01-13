@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -204,7 +205,7 @@ public class DoomsdayManager {
 
 					if (!effect.isActive)
 					{
-						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated)
+						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated && !mp.isPotionActive(TragicPotion.Convergence))
 						{
 							if (effect.dday.doomsdayType == EnumDoomType.COMBINATION)
 							{
