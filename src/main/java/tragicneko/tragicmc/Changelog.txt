@@ -3202,6 +3202,14 @@ Changed Divination to Divinity
 Fixed arbitrary variables in Gooey Fruit's item class
 Actually updated part of the mod to 1.8, but the whole thing won't be updated for a while, for now I'm just messing with it to get the hang of the new block and item rendering
 stuff, as well as the entity changes and blockstate/pos things
+Updated Overlord Core's movement, literally just copied parts of the code from the Ender Dragon, but I'm going to add in a hovering ability, which it'll spawn crystal mortors and
+be immune to damage, it'll be "hurt" from any hit but will only take damage from entities that have the Divinity effect active, which will be gained from crystal mortors that
+do not directly impact their target (it'll spawn a dimensional tear/atrophy which grants the effect upon collision with other entities)
+The Overlord Core now "sheds" Nano Swarms when it actually takes damage, updated Nano Swarm entity to not attack or damage the Overlord
+Massive code cleanup from an automated task in Eclipse, this was mostly to override everything that needed to be overridden within the code (and cleanup imports) so that updating
+to 1.8 would be easier
+Added aggregate ability to the Overlord, in which if it gets aggravated enough from non damaging attacks, it targets the entity that attacked it last and hovers
+If it gets damaged while hovering, it'll break out of hovering
 Adding more of the Lores as I do other random stuff
 
 TODO still
