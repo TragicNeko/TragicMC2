@@ -8,12 +8,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 
 public class EntityOverlordMortor extends EntityProjectile {
-	
+
 	protected EntityLivingBase target = null;
 	protected int ticksWithTarget;
 
@@ -39,7 +38,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
 		}
-		else
+		else if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8)
 		{
 			EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
 			anomoly.setPosition(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
@@ -62,19 +61,16 @@ public class EntityOverlordMortor extends EntityProjectile {
 			this.ticksWithTarget++;
 		}
 
-		if (this.ticksWithTarget > 60)
+		if (this.ticksWithTarget > 60 && !this.worldObj.isRemote)
 		{
-			if (!this.worldObj.isRemote)
+			if (rand.nextInt(4) == 0 && this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8)
 			{
-				TragicMC.logInfo("Time's up!");
-				if (rand.nextInt(4) == 0)
-				{
-					EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
-					anomoly.setPosition(this.posX, this.posY, this.posZ);
-					this.worldObj.spawnEntityInWorld(anomoly);
-				}
-				this.setDead();
-			}			
+				EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
+				anomoly.setPosition(this.posX, this.posY, this.posZ);
+				this.worldObj.spawnEntityInWorld(anomoly);
+			}
+			
+			this.setDead();
 		}
 
 		super.onUpdate();
@@ -105,7 +101,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 			this.posZ -= this.motionZ / f2 * 0.0000000074505806D; 
 		}
 	}
-	
+
 	@Override
 	protected String getParticleString()
 	{

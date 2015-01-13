@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicNewConfig.overlordCoreStats;
+import static tragicneko.tragicmc.TragicConfig.overlordCoreStats;
 
 import java.util.List;
 import java.util.Set;
@@ -9,9 +9,11 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -20,7 +22,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicNewConfig;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
@@ -39,6 +41,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 	private int hoverTicks;
 	private int hoverBuffer;
+	private int aggregate;
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
 
@@ -88,21 +91,22 @@ public class EntityOverlordCore extends TragicBoss {
 		double d2;
 		double d10;
 		float f12;
-		
+
 		if (this.worldObj.isRemote)
 		{
 			if (this.newPosRotationIncrements > 0)
-            {
-                d10 = this.posX + (this.newPosX - this.posX) / this.newPosRotationIncrements;
-                d0 = this.posY + (this.newPosY - this.posY) / this.newPosRotationIncrements;
-                d1 = this.posZ + (this.newPosZ - this.posZ) / this.newPosRotationIncrements;
-                d2 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - this.rotationYaw);
-                this.rotationYaw = (float)(this.rotationYaw + d2 / this.newPosRotationIncrements);
-                this.rotationPitch = (float)(this.rotationPitch + (this.newRotationPitch - this.rotationPitch) / this.newPosRotationIncrements);
-                --this.newPosRotationIncrements;
-                this.setPosition(d10, d0, d1);
-                this.setRotation(this.rotationYaw, this.rotationPitch);
-            }
+			{
+				d10 = this.posX + (this.newPosX - this.posX) / this.newPosRotationIncrements;
+				d0 = this.posY + (this.newPosY - this.posY) / this.newPosRotationIncrements;
+				d1 = this.posZ + (this.newPosZ - this.posZ) / this.newPosRotationIncrements;
+				d2 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - this.rotationYaw);
+				this.rotationYaw = (float)(this.rotationYaw + d2 / this.newPosRotationIncrements);
+				this.rotationPitch = (float)(this.rotationPitch + (this.newRotationPitch - this.rotationPitch) / this.newPosRotationIncrements);
+				--this.newPosRotationIncrements;
+				this.setPosition(d10, d0, d1);
+				this.setRotation(this.rotationYaw, this.rotationPitch);
+			}
+			
 			return;
 		}
 
@@ -127,7 +131,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			this.targetY = this.target.boundingBox.minY + d8;
 
-			if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0) this.hoverTicks = 300 + rand.nextInt(120);
+			if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.hoverTicks = 300 + rand.nextInt(120);
 		}
 		else
 		{
@@ -207,7 +211,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.motionX *= f9;
 		this.motionZ *= f9;
 		this.motionY *= 0.9100000262260437D;
-		
+
 		if (this.hoverBuffer > 0) --this.hoverBuffer;
 
 		if (this.hoverTicks > 0) 
@@ -217,16 +221,14 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (this.target != null && this.hoverTicks > 60 && this.hoverTicks % 10 == 0) this.createMortors();
 			if (this.ticksExisted % 5 == 0 && this.getHealth() < this.getMaxHealth()) this.healByFactorRanged(5.0F, 5.0F, 30.0F);
-			
-			if (this.hoverTicks == 0) this.hoverBuffer = 100;
+
+			if (this.hoverTicks == 0) this.hoverBuffer = 200;
+			this.aggregate = 0;
 		}
 
-		if (this.hurtTime == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
+		if (this.hurtTime == 0 && this.hoverTicks == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
 		this.slowed = this.destroyBlocksInAABB(this.boundingBox);
-		
-		TragicMC.logInfo("Hover ticks: " + this.hoverTicks);
-		TragicMC.logInfo("Hover buffer: " + this.hoverBuffer);
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -279,7 +281,7 @@ public class EntityOverlordCore extends TragicBoss {
 		for (int i = 0; i < list.size(); ++i)
 		{
 			Entity entity = (Entity)list.get(i);
-			if (entity instanceof EntityLivingBase)  entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+			if (entity instanceof EntityLivingBase && !(entity instanceof EntityNanoSwarm)) entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		}
 	}
 
@@ -338,29 +340,53 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
+		tag.setDouble("targetX", this.targetX);
+		tag.setDouble("targetY", this.targetY);
+		tag.setDouble("targetZ", this.targetZ);
+		tag.setInteger("hoverTicks", this.hoverTicks);
+		tag.setInteger("hoverBuffer", this.hoverBuffer);
+		tag.setInteger("aggregate", this.aggregate);
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
+		if (tag.hasKey("targetX")) this.targetX = tag.getDouble("targetX");
+		if (tag.hasKey("targetY")) this.targetY = tag.getDouble("targetY");
+		if (tag.hasKey("targetZ")) this.targetZ = tag.getDouble("targetZ");
+		if (tag.hasKey("hoverTicks")) this.hoverTicks = tag.getInteger("hoverTicks");
+		if (tag.hasKey("hoverBuffer")) this.hoverBuffer = tag.getInteger("hoverBuffer");
+		if (tag.hasKey("aggregate")) this.aggregate = tag.getInteger("aggregate");
 	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
-		if (src.getEntity() instanceof EntityLivingBase)
+		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
-			
-			if (!this.worldObj.isRemote && rand.nextBoolean())
+			++aggregate;
+			if (aggregate >= 10) this.target = entity;
+
+			if (entity.isPotionActive(TragicPotion.Divinity) || !TragicConfig.allowDivinity && !(entity instanceof EntityNanoSwarm))
 			{
-				EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
-				swarm.setPosition(this.posX, this.posY, this.posZ);
-				this.worldObj.spawnEntityInWorld(swarm);
+				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
+				{
+					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
+					swarm.setPosition(this.posX, this.posY, this.posZ);
+					this.worldObj.spawnEntityInWorld(swarm);
+				}
+				
+				if (this.hoverTicks > 0)
+				{
+					this.hoverTicks = 0;
+					this.forceNewTarget = true;
+					this.hoverBuffer = 100;
+				}
+
+				return super.attackEntityFrom(src, dmg);
 			}
-			
-			if (entity.isPotionActive(TragicPotion.Divinity)) return super.attackEntityFrom(src, dmg * 10.0F);
 		}
 
 		return true;
@@ -371,7 +397,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		super.onDeath(par1DamageSource);
 
-		if (!this.worldObj.isRemote && TragicNewConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicNewConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 15), 0.4F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 15), 0.4F);
 		if (!this.worldObj.isRemote && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.Sentinel), 0.4F);
 	}
 }

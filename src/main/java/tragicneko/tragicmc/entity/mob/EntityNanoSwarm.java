@@ -130,7 +130,7 @@ public class EntityNanoSwarm extends TragicMob {
 	}
 
 	@Override
-	public void fall(float par1){}
+	public void fall(float par1) {}
 
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
