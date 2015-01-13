@@ -19,6 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
@@ -99,7 +100,19 @@ public class EntityGragul extends TragicMob {
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
-		if (this.worldObj.isRemote ||par1DamageSource.isProjectile() || par1DamageSource.isFireDamage()) return false;
+		if (this.worldObj.isRemote) return false;
+		
+		boolean flag = false;
+
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
+			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
+		}
+		
+		if (flag) return super.attackEntityFrom(par1DamageSource, par2);
+		
+		if (par1DamageSource.isProjectile() || par1DamageSource.isFireDamage()) return false;
 
 		int dif = this.worldObj.difficultySetting.getDifficultyId();
 
