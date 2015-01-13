@@ -229,6 +229,13 @@ public class EntityOverlordCore extends TragicBoss {
 		if (this.hurtTime == 0 && this.hoverTicks == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
 		this.slowed = this.destroyBlocksInAABB(this.boundingBox);
+		
+		if (this.getHealth() <= this.getMaxHealth() / 4 && this.ticksExisted % 20 == 0 && rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
+		{
+			EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
+			swarm.setPosition(this.posX, this.posY, this.posZ);
+			this.worldObj.spawnEntityInWorld(swarm);
+		}
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
