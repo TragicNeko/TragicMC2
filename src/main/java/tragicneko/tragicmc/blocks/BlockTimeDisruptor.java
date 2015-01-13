@@ -9,11 +9,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
+import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.EntityClaymation;
+import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
+import tragicneko.tragicmc.entity.boss.EntityKitsune;
+import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class BlockTimeDisruptor extends BlockContainer {
@@ -36,7 +42,13 @@ public class BlockTimeDisruptor extends BlockContainer {
 
 		Block block = null;
 		if (world.getBlock(x, y - 1, z) == Blocks.quartz_block && world.getBlock(x, y - 2, z) == Blocks.quartz_block) block = Blocks.quartz_block;
-		if (world.getBlock(x, y - 1, z) == TragicBlocks.DarkenedQuartz && world.getBlock(x, y - 2, z) == TragicBlocks.DarkenedQuartz) block = TragicBlocks.DarkenedQuartz;
+		else if (world.getBlock(x, y - 1, z) == TragicBlocks.DarkenedQuartz && world.getBlock(x, y - 2, z) == TragicBlocks.DarkenedQuartz) block = TragicBlocks.DarkenedQuartz;
+		else if (world.getBlock(x, y - 1, z) == Blocks.hardened_clay && world.getBlock(x, y - 2, z) == Blocks.hardened_clay) block = Blocks.hardened_clay;
+		else if (world.getBlock(x, y - 1, z) == Blocks.sandstone && world.getBlock(x, y - 2, z) == Blocks.sandstone) block = Blocks.sandstone;
+		else if (world.getBlock(x, y - 1, z) == Blocks.ice && world.getBlock(x, y - 2, z) == Blocks.ice) block = Blocks.ice;
+		else if (world.getBlock(x, y - 1, z) == TragicBlocks.StarCrystal && world.getBlock(x, y - 2, z) == TragicBlocks.StarCrystal) block = TragicBlocks.StarCrystal;
+		else if (world.getBlock(x, y - 1, z) == TragicBlocks.BoneBlock && world.getBlock(x, y - 2, z) == TragicBlocks.BoneBlock) block = TragicBlocks.BoneBlock;
+		else if (world.getBlock(x, y - 1, z) == Blocks.nether_brick && world.getBlock(x, y - 2, z) == Blocks.nether_brick) block = Blocks.nether_brick;
 		
 		if (block == null) return;
 		boolean flag = world.getBlock(x - 1, y - 1, z) == block && world.getBlock(x + 1, y - 1, z) == block && world.getBlock(x, y - 1, z - 1) == block && world.getBlock(x, y - 1, z + 1) == block;
@@ -46,6 +58,12 @@ public class BlockTimeDisruptor extends BlockContainer {
 			TragicBoss boss = null;
 			if (block == Blocks.quartz_block && TragicConfig.allowTimeController) boss = new EntityTimeController(world);
 			else if (block == TragicBlocks.DarkenedQuartz && TragicConfig.allowEnyvil) boss = new EntityEnyvil(world);
+			else if (block == Blocks.hardened_clay && TragicConfig.allowClaymation) boss = new EntityClaymation(world);
+			else if (block == Blocks.sandstone && TragicConfig.allowApis) boss = new EntityApis(world);
+			else if (block == Blocks.ice && TragicConfig.allowYeti) boss = new EntityYeti(world);
+			else if (block == TragicBlocks.StarCrystal && TragicConfig.allowPolaris) boss = new EntityPolaris(world);
+			else if (block == TragicBlocks.BoneBlock && TragicConfig.allowDeathReaper) boss = new EntityDeathReaper(world);
+			else if (block == Blocks.nether_brick && TragicConfig.allowKitsune) boss = new EntityKitsune(world);
 			
 			if (boss == null) return;
 			
