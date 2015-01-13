@@ -3210,24 +3210,25 @@ Massive code cleanup from an automated task in Eclipse, this was mostly to overr
 to 1.8 would be easier
 Added aggregate ability to the Overlord, in which if it gets aggravated enough from non damaging attacks, it targets the entity that attacked it last and hovers
 If it gets damaged while hovering, it'll break out of hovering
+Allow Gragul/Kragul to be killed by the Sword/Bow of Justice
+Added other spawning structures for the other 6 bosses with various other blocks, all of them require a time disruption cube though
+The Overlord Core will now "shed" nano swarms while it's health is low, regardless of being damaged, from current testing the Overlord Core is very difficult to kill, however, I
+need more testing and with more "preparation" in order to accurately determine if the Overlord is not only killable but very difficult to kill as well
+Adding a screen overlay for the divinity effect to more easily let the player know that the effect is active for them
+Applied the same screen overlay for the Convergence effect only with a red tint, convergence now also prevents the player from having global cooldown on doomsday use
 Adding more of the Lores as I do other random stuff
 
 TODO still
-Add the render/model for the Guardian Shields
-Work on the Overlord
-Add the Dimensional Tear entity in order to grant the player the new effect, Divinity, in order to damage the Core
-Add armor models
-Add the Overlord armor set
+Add the model for the Guardian Shields and Dimensional Anomaly
+Add the model and finish up the Overlord Core's abilities
+Add armor models for the higher tiered armors and fix the damaged textures for other armors
+Add the Overlord armor set, along with it's model, add it's health boost abilities
 
-Note for Bosses:
-Some Bosses don't have structures or are random spawns, for each one I want an Iron Golem-like spawning ability in which you create a structure with a particular block and it is summoned
-there (like I did for the Enyvil and Time Controller)
-
---Overlord plan, may fit in other random small things in between doing this--
-Finish up the Overlord's motion and attack patterns, as well as create it's model
-After all of that is finished, I'll work on it's combat form, which will be pretty much like a normal boss, since it attacks on the ground, it'll be able to create platforms
-wherever it goes, made of dimensional fabric (a semi-transparent slab-like block), which will appear whenever it's motion is below 0 and it's not on the ground, it'll only activate
-whenever it's target is above it to avoid it continously doing it
+FOR THE OVERLORD
+Create the Core's model
+The Combat Form will be worked on next, it'll work like the Apis in that it charges it's target relentlessly, but i'll also randomly pause and spawn in hunters
+The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
+The Cocoon form will cause major durability damage to attacking entity's weapons, as well, harvesters and nano swarms will constantly spawn around it
 After all of the details of it's attack pattern and AI are done, I'll then work on it's model and animations
 After that, I will set up the Cocoon form, which should be the easiest of all of the forms, it won't move and won't rotate, it'll be completely stationary, it will be the easiest
 to animate and create AI for, as well as the easiest to create a model for, overall just the easiest
