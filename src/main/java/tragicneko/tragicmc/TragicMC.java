@@ -44,7 +44,7 @@ import tragicneko.tragicmc.events.DropEvents;
 import tragicneko.tragicmc.events.DynamicHealthScaling;
 import tragicneko.tragicmc.events.EnchantmentEvents;
 import tragicneko.tragicmc.events.MiscEvents;
-import tragicneko.tragicmc.events.NewAmuletEvents;
+import tragicneko.tragicmc.events.AmuletEvents;
 import tragicneko.tragicmc.events.PotionEvents;
 import tragicneko.tragicmc.events.RespawnDoomEvents;
 import tragicneko.tragicmc.events.VanillaChangingEvents;
@@ -166,7 +166,7 @@ public class TragicMC
 		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
 		if (!TragicConfig.mobsOnly) TragicRecipes.load();
 
-		if (TragicConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new NewAmuletEvents());
+		if (TragicConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new AmuletEvents());
 		MinecraftForge.EVENT_BUS.register(new MiscEvents());
 		MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
 

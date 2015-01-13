@@ -49,7 +49,7 @@ import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class NewAmuletEvents {
+public class AmuletEvents {
 
 	public static Set badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
 			Potion.poison, Potion.weakness, Potion.wither, TragicPotion.Corruption, TragicPotion.Cripple, TragicPotion.Disorientation, TragicPotion.Fear,

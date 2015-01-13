@@ -10,7 +10,7 @@ import static tragicneko.tragicmc.TragicConfig.norVoxStats;
 import static tragicneko.tragicmc.TragicConfig.ragrStats;
 import static tragicneko.tragicmc.TragicConfig.stinKingStats;
 import static tragicneko.tragicmc.entity.mob.EntityRagr.crushableBlocks;
-import static tragicneko.tragicmc.events.NewAmuletEvents.badPotions;
+import static tragicneko.tragicmc.events.AmuletEvents.badPotions;
 
 import java.util.ArrayList;
 import java.util.List;
