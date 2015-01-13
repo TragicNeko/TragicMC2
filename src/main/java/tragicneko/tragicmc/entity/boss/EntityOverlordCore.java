@@ -366,8 +366,6 @@ public class EntityOverlordCore extends TragicBoss {
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
-			++aggregate;
-			if (aggregate >= 10) this.target = entity;
 
 			if (entity.isPotionActive(TragicPotion.Divinity) || !TragicConfig.allowDivinity && !(entity instanceof EntityNanoSwarm))
 			{
@@ -387,6 +385,9 @@ public class EntityOverlordCore extends TragicBoss {
 
 				return super.attackEntityFrom(src, dmg);
 			}
+			
+			++aggregate;
+			if (aggregate >= 10) this.target = entity;
 		}
 
 		return true;
