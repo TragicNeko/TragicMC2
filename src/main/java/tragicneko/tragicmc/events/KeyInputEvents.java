@@ -29,6 +29,7 @@ import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 public class KeyInputEvents extends Gui {
 	
 	private static ResourceLocation hackedTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky.png");
+	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity.png");
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
@@ -114,16 +115,21 @@ public class KeyInputEvents extends Gui {
 		
 		Minecraft mc = Minecraft.getMinecraft();
 		
-		if (!mc.thePlayer.isPotionActive(TragicPotion.Hacked)) return;
+		boolean flag = mc.thePlayer.isPotionActive(TragicPotion.Hacked);
+		boolean flag2 = mc.thePlayer.isPotionActive(TragicPotion.Divinity);
+		boolean flag3 = mc.thePlayer.isPotionActive(TragicPotion.Convergence);
 		
-		mc.renderEngine.bindTexture(hackedTexture);
+		if (!flag && !flag2 && !flag3) return;
+		
+		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
 		
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		float trans = MathHelper.cos(event.partialTicks / 2.25F) * 2.625F - 2.25F;
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
+		float f = 2.25F;
+		float trans = flag ? MathHelper.cos(event.partialTicks / f) * 2.625F - f : 0.0725F;
+		GL11.glColor4f(1.0F, flag3 ? 0.0F : 1.0F, flag3 ? 0.0F : 1.0F, trans);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		
 		drawTexturedModalRect(0, 0, 0, 0, mc.displayWidth, mc.displayHeight);
