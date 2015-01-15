@@ -87,12 +87,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = TragicMC.ACCEPTED_VERSION)
 public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
 	public static final String VERSION = "2.40.1857 Beta";
+	public static final String ACCEPTED_VERSION = "[1.7.10]";
 
 	@Instance(TragicMC.MODID)
 	private static TragicMC instance;
@@ -110,7 +111,7 @@ public class TragicMC
 
 	private static long time = 0L;
 	private static boolean DEBUG = true;
-	
+
 	public static CreativeTabs Survival;
 	public static CreativeTabs Creative;
 
@@ -144,21 +145,21 @@ public class TragicMC
 		if (TragicConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
 
 		logDuration("Potions and Enchantments");
-		
+
 		Survival = (new CreativeTabs("tragicMCSurvival") {
 			@Override
 			public Item getTabIconItem() {
 				return TragicItems.AwakeningStone;
 			}
 		});
-		
+
 		Creative = (new CreativeTabs("tragicMCCreative") {
 			@Override
 			public Item getTabIconItem() {
 				return TragicItems.NekoNekoWand;
 			}
 		});
-		
+
 		TragicBlocks.load();
 		logDuration("Blocks");
 		TragicItems.load();
@@ -189,20 +190,6 @@ public class TragicMC
 
 		MinecraftForge.EVENT_BUS.register(new DropEvents());
 		logDuration("Events 2");
-
-		proxy.registerRenders();
-		
-		logDuration("Proxy Registrations");
-
-		net = new SimpleNetworkWrapper(TragicMC.MODID);
-		net.registerMessage(MessageHandlerDoom.class, MessageDoom.class, 0, Side.CLIENT);
-		net.registerMessage(MessageHandlerAmulet.class, MessageAmulet.class, 1, Side.CLIENT);
-		net.registerMessage(MessageHandlerGui.class, MessageGui.class, 2, Side.SERVER);
-		net.registerMessage(MessageHandlerUseDoomsday.class, MessageUseDoomsday.class, 3, Side.SERVER);
-		net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
-		net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
-
-		logDuration("Network Handlers");
 
 		if (TragicConfig.allowDimension)
 		{
@@ -245,13 +232,7 @@ public class TragicMC
 		DoomsdayManager.clearRegistry();
 
 		logDuration("Events 3");
-	}
-
-	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		logTime();
-
+		
 		if (TragicConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
 		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
 		if (TragicConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
@@ -276,6 +257,25 @@ public class TragicMC
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);
 
 		logDuration("WorldGen registration");
+		
+		net = new SimpleNetworkWrapper(TragicMC.MODID);
+		net.registerMessage(MessageHandlerDoom.class, MessageDoom.class, 0, Side.CLIENT);
+		net.registerMessage(MessageHandlerAmulet.class, MessageAmulet.class, 1, Side.CLIENT);
+		net.registerMessage(MessageHandlerGui.class, MessageGui.class, 2, Side.SERVER);
+		net.registerMessage(MessageHandlerUseDoomsday.class, MessageUseDoomsday.class, 3, Side.SERVER);
+		net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
+		net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
+
+		logDuration("Network Handlers");
+	}
+
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		logTime();
+
+		proxy.registerRenders();
+		logDuration("Proxy Registrations");
 	}
 
 	@EventHandler
