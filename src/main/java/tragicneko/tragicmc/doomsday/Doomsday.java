@@ -227,7 +227,7 @@ public abstract class Doomsday {
 	 */
 	public void doDoomsday(PropertyDoom doom, EntityPlayer player)
 	{
-		short backlash = this.getScaledBacklash(TragicConfig.backlashChance, player, this.doomsdayType);
+		int backlash = this.getScaledBacklash(TragicConfig.backlashChance, player, this.doomsdayType);
 
 		if (rand.nextInt(100) <= backlash && TragicConfig.allowBacklash)
 		{
@@ -299,9 +299,9 @@ public abstract class Doomsday {
 	 * @param player
 	 * @return
 	 */
-	protected short getScaledBacklash(int backlashChance, EntityPlayer player, EnumDoomType doomType) {
+	protected int getScaledBacklash(int backlashChance, EntityPlayer player, EnumDoomType doomType) {
 		EnumDifficulty dif = player.worldObj.difficultySetting;
-		short x = 1;
+		int x = 1;
 
 		switch(doomType)
 		{
@@ -322,20 +322,20 @@ public abstract class Doomsday {
 
 		if (dif == EnumDifficulty.PEACEFUL)
 		{
-			return (short) (backlashChance * 4 * x);
+			return backlashChance * 4 * x;
 		}
 
 		if (dif == EnumDifficulty.EASY)
 		{
-			return (short) (backlashChance * 2 * x);
+			return backlashChance * 2 * x;
 		}
 
 		if (dif == EnumDifficulty.HARD)
 		{
-			return (short) (backlashChance / 2 * x);
+			return backlashChance / 2 * x;
 		}
 
-		return (short) (backlashChance * x);
+		return backlashChance * x;
 	}
 
 
