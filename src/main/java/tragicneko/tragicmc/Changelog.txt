@@ -3187,7 +3187,7 @@ Update the Claymation's Skultar form to fire the correct projectiles
 Added Sharpen/Harden Doomsdays, Sharpen serves as the first Doomsday for the Sentinel weapon, Guardian's Call is it's second but they do not form a Combination Doomsday together
 Added localizations for the new Doomsdays and the new weapon
 
-2.40.1880++ <185> (January 8, 2015)
+2.40.1904 <185> (January 8, 2015)
 Removed unnecessary object arrays in recipes
 Adjusted methods inside of the Time Disruption Cube's block class in order to simplify it and to allow for it to be easily modifiable in the case that I want to add another boss
 spawn with it
@@ -3217,23 +3217,35 @@ need more testing and with more "preparation" in order to accurately determine i
 Adding a screen overlay for the divinity effect to more easily let the player know that the effect is active for them
 Applied the same screen overlay for the Convergence effect only with a red tint, convergence now also prevents the player from having global cooldown on doomsday use
 Adding more of the Lores as I do other random stuff
+Moved proxy registrations into the init due to how 1.8 is currently setup regarding item/block renders
+Rearranged the registration cycle of the mod, this shouldn't affect anything
+
+2.40.1904++ <186> (January 14, 2015)
+Removed all of the short and byte specifications in the main doomsday class, this should clean up some code
 
 TODO still
 Add the model for the Guardian Shields and Dimensional Anomaly
 Add the model and finish up the Overlord Core's abilities
+Finish the other two forms of the Overlord
 Add armor models for the higher tiered armors and fix the damaged textures for other armors
 Add the Overlord armor set, along with it's model, add it's health boost abilities
+Create particles and add mob sounds
+Add the new biome sets, these shouldn't take very much to do, just new blocks
+Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
 Create the Core's model
 The Combat Form will be worked on next, it'll work like the Apis in that it charges it's target relentlessly, but i'll also randomly pause and spawn in hunters
 The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
-The Cocoon form will cause major durability damage to attacking entity's weapons, as well, harvesters and nano swarms will constantly spawn around it
-After all of the details of it's attack pattern and AI are done, I'll then work on it's model and animations
-After that, I will set up the Cocoon form, which should be the easiest of all of the forms, it won't move and won't rotate, it'll be completely stationary, it will be the easiest
-to animate and create AI for, as well as the easiest to create a model for, overall just the easiest
+When the Cocoon form has become aggitated, it'll spawn a bunch of poisonous gas around it for a few seconds, it can only be hurt by melee/magic/armor piercing hits, however,
+melee hits inflict extra durability damage to the attacking entity's weapons, harvesters and nano swarms will constantly spawn around it
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
+Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it
+Hunter = Aggressive mob that actively tracks nearby entities and "latches" onto them, inflicting armor piercing damage per tick
+Seeker = Passive mob that "spots" nearby enemies for other entities to attack, make a loud shrieking sound while tracking a target, if the entity is tracked for a really long
+time, the seeker can actually kill the target with it's gaze by slowly building up armor piercing damage done to it, in other words, these must be killed when they spawn and see
+a target, otherwise they will kill it, these work like the Oracles in Destiny
 
 Note: The Sentinel will only have one rarity, but it will have different lore that it can be, same goes for the Sentinel armor set
 Note: After the frozen biomes are added, make that the only place that the Ragr spawns
@@ -3243,40 +3255,9 @@ Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add 
 --Reminders-
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
 Add client-side effects for the Doomsdays (other than the vanilla stuff)
-Start making particles for my entities
-Finish making the actual rendered armor textures, only need the lowRes ones at this point
 Make it so that corrupted mob's textures darken the longer they are corrupted
-Make the Doom and Amulet Status Gui configurable, dragging and dropping them is an option, though that'd probably take more time for me to implement and I'd need to set up
-a keybinding and gui screen in order to do this
-Add the Harvester and the Hunter for the Overlord, the Harvester will be passive, but spawns Nano Swarms randomly, it'll hover around and randomly destroy circuit blocks
-The Hunter will actively track nearby non-Synapse entities and will "laser" them slowing them down and will also latch onto them hacking them directly
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
-
---More Reminders--
 The Sentinel armor's Doomsday will be Harden, it'll give you a quick Resistance 10 buff and heal you 3 hearts, it will give you a 10 heart buff when you have the full set on
 and will also give you Convergence
 The armor will look kinda scaly like the celled blocks, and have trim that matches the Overlord's design, it'll require nano-bots which will drop from Harvesters and the Overlord
 itself, and each armor piece will require Overlord Essence, which it will drop as it's boss drop
-The final boss will be the Overlord, it'll have a ton of health and actually have a similar appearance to Orespawn's Kraken, however, it isn't a squid/octopus thing, it's a large
-"metroid"-like creature, probably most similar to metroid prime in it's final boss stage, but with a few differences of course, it'll most likely utilize the multipart entity
-thing as well as have a helper creature/underling
-Regardless, it'll have a "cocoon" form in which it doesn't move, but shoots projectiles and can only be hurt with pickaxes/jacks, it'll spawn in Seekers which will 
-latch onto the player, doing damage per few ticks, only unlatching when killed
-It could have a "poison gas" attack which attacks all entities that are near it for a short period of time
-Afterwards, it'll evolve into a "Combat" form which will charge around and attack like the Apis shooting projectiles, spawning Adult Seekers which will attach to the
-player with more health and do more damage per few ticks, it'll also have very high armor, it will also spawn Harvesters which basically act like autonomous cleaner bots that
-spawn nano swarms to "clean" up problems
-Each of these forms will have 500 health
-After the "Combat" form is defeated, it'll turn into a "Core" form, which will be the aforementioned giant squid/metroid prime looking creature, it'll shoot slow moving projectiles
-that do massive damage and create a massive explosion, as well as faster moving ones that do less damage, it'll be able to latch onto targets with it's tentacles and pull them
-towards it, in order to do a massive hit, it'll also spawn in Seekers (in addition to the other variants) which will fire projectiles at their target and can spawn in
-other smaller ones, this is the final form and has 1000 health, it will be a very, very tough fight
-
---Reminders for later--
-Add the custom mob sounds
-Add new particle effects
-Add the achievements, which will have a set questline leading up to the overlord but won't be enforced like Twilight Forest
-
-IDEA:
-Random modifiers applied to mobs that give them random buffs, like more health than normal or more attack damage than normal, this would be like species exclusive buffs or maybe
-a better description would be like the infernal mobs mod, except instead of adding a ton of random effects it's just a group that spawns at a time has a chance for modifiers
