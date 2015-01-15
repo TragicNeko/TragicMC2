@@ -100,6 +100,7 @@ tile.tragicmc.structureSeed.obsidianCavern.lootStash.name=Loot Stash Obsidian Ca
 tile.tragicmc.structureSeed.kitsuneDen.name=Kitsunakuma Den Seed
 tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple Seed
 tile.tragicmc.structureSeed.timeAltar.name=Time Altar Seed
+tile.tragicmc.structureseed.aegarTower.name=Aegar Tower
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt
@@ -243,6 +244,8 @@ tile.tragicmc.darkSandstone.rough.name=Rough Dark Sandstone
 tile.tragicmc.darkSandstone.beveled.name=Beveled Dark Sandstone
 tile.tragicmc.darkSandstone.chiseled.name=Chiseled Dark Sandstone
 tile.tragicmc.darkSandstone.carved.name=Carved Dark Sandstone
+
+tile.tragicmc.gas.name=Gas
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
@@ -536,6 +539,7 @@ item.tragicmc.projectile.darkEnergy.name=Dark Energy
 item.tragicmc.projectile.darkMortor.name=Dark Mortor
 item.tragicmc.projectile.webBomb.name=Web Bomb
 item.tragicmc.projectile.crystalMortor.name=Crystal Mortor
+item.tragicmc.projectile.overlordMortor.name=Overlord Mortor
 
 item.tragicmc.challengeItem.inactive.name=Challenge Scroll (Inactive)
 item.tragicmc.challengeItem.inProgress.name=Challenge Scroll (Active)
