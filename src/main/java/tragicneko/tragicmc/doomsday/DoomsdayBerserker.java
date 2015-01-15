@@ -29,7 +29,7 @@ public class DoomsdayBerserker extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		short overflow = this.getOverflow(doom);
+		int overflow = this.getOverflow(doom);
 		int a = MathHelper.ceiling_double_int(overflow / 10);
 
 		MathHelper.clamp_int(a, 1, 10);
@@ -46,7 +46,7 @@ public class DoomsdayBerserker extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		short overflow = this.getOverflow(doom);
+		int overflow = this.getOverflow(doom);
 		int a = MathHelper.ceiling_double_int(overflow / 10);
 
 		MathHelper.clamp_int(a, 1, 10);

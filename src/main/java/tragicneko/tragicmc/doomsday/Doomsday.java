@@ -95,10 +95,10 @@ public abstract class Doomsday {
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
 
-	public final byte doomID;
+	public final int doomID;
 	public final EnumDoomType doomsdayType;
-	public final short requiredDoom;
-	public final short cooldown;
+	public final int requiredDoom;
+	public final int cooldown;
 
 	public int waitTime;
 	public int maxIterations;
@@ -111,9 +111,9 @@ public abstract class Doomsday {
 	public Doomsday(int id, EnumDoomType doomType)
 	{
 		this.doomsdayType = doomType;
-		this.doomID = (byte)id;
-		this.cooldown = (short) TragicConfig.doomsdayCooldowns[id];
-		this.requiredDoom = (short) TragicConfig.doomsdayCosts[id];
+		this.doomID = id;
+		this.cooldown = TragicConfig.doomsdayCooldowns[id];
+		this.requiredDoom = TragicConfig.doomsdayCosts[id];
 		this.waitTime = 0;
 		this.maxIterations = 1;
 		doomsdayList[id] = this;
@@ -139,34 +139,34 @@ public abstract class Doomsday {
 	 * @param doom
 	 * @return
 	 */
-	public short getScaledDoomRequirement(EnumDifficulty dif)
+	public int getScaledDoomRequirement(EnumDifficulty dif)
 	{
-		Short reqDoom = this.requiredDoom;
+		int reqDoom = this.requiredDoom;
 
 		if (dif == EnumDifficulty.PEACEFUL)
 		{
-			return (short) (1);
+			return 1;
 		}
 
 		if (dif == EnumDifficulty.EASY)
 		{
-			return (short) (reqDoom / 2);
+			return reqDoom / 2;
 		}
 
 		if (dif == EnumDifficulty.HARD)
 		{
-			return (reqDoom);
+			return reqDoom;
 		}
 
-		return (short) (reqDoom * 2 / 3);
+		return reqDoom * 2 / 3;
 	}
 	
-	public short getScaledDoomRequirement(World world)
+	public int getScaledDoomRequirement(World world)
 	{
 		return getScaledDoomRequirement(world.difficultySetting);
 	}
 	
-	public short getScaledDoomRequirement(PropertyDoom doom)
+	public int getScaledDoomRequirement(PropertyDoom doom)
 	{
 		return getScaledDoomRequirement(doom.getPlayer().worldObj);
 	}
@@ -345,7 +345,7 @@ public abstract class Doomsday {
 	 */
 	public String getUnlocalizedName()
 	{
-		byte a = this.doomID;
+		int a = this.doomID;
 
 		String s = null;
 
@@ -405,12 +405,12 @@ public abstract class Doomsday {
 	 * @param doom
 	 * @return
 	 */
-	private short getOverflowAmount(PropertyDoom doom) 
+	private int getOverflowAmount(PropertyDoom doom) 
 	{
 		int currentDoom = doom.getCurrentDoom();
-		short reqDoom = this.getScaledDoomRequirement(doom);
+		int reqDoom = this.getScaledDoomRequirement(doom);
 
-		return (short) (currentDoom - reqDoom);
+		return currentDoom - reqDoom;
 	}
 
 	/**
@@ -431,7 +431,7 @@ public abstract class Doomsday {
 	 * @param id
 	 * @return
 	 */
-	public static EnumDoomType getDoomsdayTypeFromId(byte id)
+	public static EnumDoomType getDoomsdayTypeFromId(int id)
 	{
 		return doomsdayList[id].doomsdayType;
 	}
@@ -441,20 +441,20 @@ public abstract class Doomsday {
 	 * @param cooldown2
 	 * @return
 	 */
-	public short getScaledCooldown(EnumDifficulty dif) {
+	public int getScaledCooldown(EnumDifficulty dif) {
 		if (dif == EnumDifficulty.HARD)
 		{
-			return (byte) (this.cooldown);
+			return this.cooldown;
 		}
 
 		if (dif == EnumDifficulty.NORMAL)
 		{
-			return (byte) (this.cooldown * 2 / 3);
+			return this.cooldown * 2 / 3;
 		}
 
 		if (dif == EnumDifficulty.EASY)
 		{
-			return (byte) (this.cooldown / 2);
+			return this.cooldown / 2;
 		}
 		return 0;
 	}
@@ -503,9 +503,9 @@ public abstract class Doomsday {
 		return getDoomsdayFromId(stringToIDMapping.get(s));
 	}
 
-	public short getOverflow(PropertyDoom doom)
+	public int getOverflow(PropertyDoom doom)
 	{
-		return (short) (doom.getMaxDoom() - doom.getCurrentDoom());
+		return doom.getMaxDoom() - doom.getCurrentDoom();
 	}
 
 	public float getCrisis(EntityPlayer player)
