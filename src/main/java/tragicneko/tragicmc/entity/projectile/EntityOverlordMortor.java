@@ -20,6 +20,12 @@ public class EntityOverlordMortor extends EntityProjectile {
 		super(par1World);
 		this.setSize(1.0F, 1.0F);
 	}
+	
+	@Override
+	protected float getMotionFactor()
+	{
+		return 0.75F;
+	}
 
 	public EntityOverlordMortor(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
 	{
