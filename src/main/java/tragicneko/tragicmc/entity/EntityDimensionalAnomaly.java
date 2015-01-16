@@ -58,6 +58,8 @@ public class EntityDimensionalAnomaly extends Entity {
 				this.setDead();
 			}
 		}
+		
+		super.applyEntityCollision(entity);
 	}
 
 	@Override
@@ -81,8 +83,6 @@ public class EntityDimensionalAnomaly extends Entity {
 	@Override
 	public void onUpdate()
 	{
-		this.motionX = this.motionY = this.motionZ = 0.0D;
-
 		super.onUpdate();
 
 		if (this.worldObj.isRemote)
@@ -123,7 +123,12 @@ public class EntityDimensionalAnomaly extends Entity {
 			}
 			return;
 		}
-		else if (this.ticksExisted >= 200 + timeToLive) this.setDead();
+		else
+		{
+			if (this.ticksExisted >= 200 + timeToLive) this.setDead();
+		}
+		
+		if (!this.onGround) this.moveEntity(0.0, -0.065, 0.0);
 	}
 
 	@Override
