@@ -3222,6 +3222,8 @@ Rearranged the registration cycle of the mod, this shouldn't affect anything
 
 2.40.1904++ <186> (January 14, 2015)
 Removed all of the short and byte specifications in the main doomsday class, this should clean up some code
+Did some more experimentation with updating to 1.8, added a couple of new (commented out) things to prep for that
+Slowed down speed of Overlord Mortors, allow Dimensional Anomalies to fall to the ground slowly so that they don't hang up in the air if they are spawned there
 
 TODO still
 Add the model for the Guardian Shields and Dimensional Anomaly
@@ -3230,7 +3232,7 @@ Finish the other two forms of the Overlord
 Add armor models for the higher tiered armors and fix the damaged textures for other armors
 Add the Overlord armor set, along with it's model, add it's health boost abilities
 Create particles and add mob sounds
-Add the new biome sets, these shouldn't take very much to do, just new blocks
+Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
