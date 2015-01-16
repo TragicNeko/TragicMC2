@@ -7,7 +7,7 @@ import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 
 public class RenderOverlordCore extends RenderBoss {
 	
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Kragul_lowRes");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Kragul_lowRes.png");
 
 	public RenderOverlordCore() {
 		super(new ModelKragul(), 0.556F, 14.5F);
