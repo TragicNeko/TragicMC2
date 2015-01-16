@@ -137,6 +137,11 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
 
+	//public static final String[] multicolors = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "lightGray", "darkGray", "pink", "lime", "yellow", "lightBlue",
+	//	"magenta", "orange", "white"};
+
+	//public static final String moddir = "tragicmc:";
+
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);	
 
@@ -144,6 +149,10 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		Minecraft mc = Minecraft.getMinecraft();
+		//ItemModelMesher mesher = mc.getRenderItem().getItemModelMesher();
+		//Item ib; //Itemblock for block registrations, for 1.8 stuff
+		//Block/Item icon registrations for inventories will be put here since all of that is only client-side, may create a separate method for registering those
+		//if this gets too cluttered due to that
 
 		//Gui event registration
 		if (TragicConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(mc));
@@ -253,23 +262,33 @@ public class ClientProxy extends CommonProxy {
 		return Minecraft.getMinecraft().thePlayer;
 	}
 
-	/*//These are just being kept here until I update to 1.8, assuming there is no changes to forge until then, if you're wondering, these are for the new block/item rendering
-	
+	/*//These are just being kept here until I update to 1.8, assuming there is no changes to forge until then, if you're wondering, these are for the new block/item rendering	
+	public static String[] getColoredVariantsForBlock(Item ib)
+	{
+		String[] colors = new String[16];
+		for (int i = 0; i < 16; i++)
+		{
+			colors[i] = moddir + ib.getUnlocalizedName() + multicolors[i];
+		}
+
+		return colors;
+	}
+
 	public static void registerItemToMesher(Item item, int meta, String location)
 	{
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation("tragicmc:" + location, "inventory"));
 	}
-	
+
 	public static void registerBlockToMesher(Block block, int meta, String location)
 	{
 		registerItemToMesher(Item.getItemFromBlock(block), meta, location);
 	}
-	
+
 	public static void registerBlockToBakery(Block block, String... names)
 	{
 		registerItemToBakery(Item.getItemFromBlock(block), names);
 	}
-	
+
 	public static void registerItemToBakery(Item item, String... names)
 	{
 		ModelBakery.registerVariantNames(item, names);
