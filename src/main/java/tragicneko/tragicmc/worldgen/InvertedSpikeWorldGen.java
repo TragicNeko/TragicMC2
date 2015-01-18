@@ -30,7 +30,6 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 
 		int relays = 4;
 		ArrayList<int[]> list;
-		int[] coords;
 		Block block;
 		double regression = 0.94977745D;
 		double cutoff = 0.46943755D;
@@ -99,15 +98,10 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 					
 					list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-					for (int j = 0; j < list.size(); j++)
+					for (int[] coords : list)
 					{
-						coords = list.get(j);
 						block = world.getBlock(coords[0], coords[1], coords[2]);
-
-						if (StructureWorldGen.validBlocks.contains(block))
-						{
-							world.setBlockToAir(coords[0], coords[1], coords[2]);
-						}
+						if (StructureWorldGen.validBlocks.contains(block)) world.setBlockToAir(coords[0], coords[1], coords[2]);
 					}
 				}
 
@@ -120,7 +114,6 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 	public static void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord)
 	{
 		ArrayList<int[]> list;
-		int[] coords;
 		Block block;
 
 		for (int y1 = 0; y1 < 64; y1++)
@@ -140,15 +133,10 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-			for (int j = 0; j < list.size(); j++)
+			for (int[] coords : list)
 			{
-				coords = list.get(j);
 				block = world.getBlock(coords[0], coords[1], coords[2]);
-
-				if (StructureWorldGen.validBlocks.contains(block))
-				{
-					world.setBlockToAir(coords[0], coords[1], coords[2]);
-				}
+				if (StructureWorldGen.validBlocks.contains(block)) world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 		}
 	}

@@ -26,7 +26,6 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 		ArrayList<int[]> list;
 		double size;
-		int[] coords;
 		Block block;
 		int meta;
 
@@ -52,10 +51,8 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 						list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1 + (size * 0.5D), Zcoord);
 
-						for (int j = 0; j < list.size(); j++)
+						for (int[] coords : list)
 						{
-							coords = list.get(j);
-
 							if (StructureWorldGen.validBlocks.contains(world.getBlock(coords[0], coords[1], coords[2])))
 							{
 								world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.StarCrystal, meta, 2);

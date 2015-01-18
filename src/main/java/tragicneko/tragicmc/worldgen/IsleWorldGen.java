@@ -26,11 +26,9 @@ public class IsleWorldGen implements IWorldGenerator {
 		y += 32 + random.nextInt(48) - random.nextInt(16);
 
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 8.0D, x + 4, y + 3, z + 4);
-		int[] coords;
 
-		for (int i = 0; i < list.size(); i++)
+		for (int[] coords : list)
 		{
-			coords = list.get(i);
 			if (coords[1] < y - 1.5D)
 			{
 				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
@@ -52,9 +50,8 @@ public class IsleWorldGen implements IWorldGenerator {
 			int yDif = -2 - random.nextInt(4) + random.nextInt(4);
 			list = WorldHelper.getBlocksInSphericalRange(world, 4.0D, x + random.nextInt(26) - random.nextInt(26), y + yDif, z + random.nextInt(26) - random.nextInt(26));
 
-			for (int i = 0; i < list.size(); i++)
+			for (int[] coords : list)
 			{
-				coords = list.get(i);
 				if (coords[1] < y + yDif)
 				{
 					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);

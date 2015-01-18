@@ -426,15 +426,13 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	private void destroyBlocks() {
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, this.width - 0.725D, this.posX, this.posY + this.height / 2.0D + 1.2D, this.posZ);
-		int[] coords;
 		Block block;
 
-		for (int i = 0; i < list.size(); i++)
+		for (int[] coords : list)
 		{
-			coords = list.get(i);
 			block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
-			if (!block.isAir(this.worldObj, coords[0], coords[1], coords[2]) && block.canEntityDestroy(this.worldObj, coords[0], coords[1], coords[2], new EntityDragon(this.worldObj)))
+			if (!block.isAir(this.worldObj, coords[0], coords[1], coords[2]) && block.canEntityDestroy(this.worldObj, coords[0], coords[1], coords[2], this))
 			{
 				this.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}

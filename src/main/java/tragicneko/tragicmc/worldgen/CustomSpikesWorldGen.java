@@ -47,7 +47,6 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		Block spike = biome instanceof BiomeGenDecayingWasteland ? TragicBlocks.BoneBlock : TragicBlocks.DarkStone;
 		int meta = biome instanceof BiomeGenDecayingWasteland ? random.nextInt(2) : 14;
 		ArrayList<int[]> list;
-		int[] coords;
 		Block block;		
 		double regression = 0.95977745D;
 		double cutoff = 0.36943755D;
@@ -130,9 +129,8 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 					list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-					for (int j = 0; j < list.size(); j++)
+					for (int[] coords : list)
 					{
-						coords = list.get(j);
 						block = world.getBlock(coords[0], coords[1], coords[2]);
 
 						if (StructureWorldGen.validBlocks.contains(block))
@@ -149,7 +147,6 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 	public static void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord, Block spike, int meta)
 	{
 		ArrayList<int[]> list;
-		int[] coords;
 		Block block;
 
 		for (int y1 = 0; y1 < 128; y1++)
@@ -169,15 +166,10 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
-			for (int j = 0; j < list.size(); j++)
+			for (int[] coords : list)
 			{
-				coords = list.get(j);
 				block = world.getBlock(coords[0], coords[1], coords[2]);
-
-				if (StructureWorldGen.validBlocks.contains(block))
-				{
-					world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
-				}
+				if (StructureWorldGen.validBlocks.contains(block)) world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
 			}
 		}
 	}
