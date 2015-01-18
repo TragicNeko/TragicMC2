@@ -6,7 +6,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenJungle;
@@ -366,17 +365,6 @@ public class TragicBlocks {
 			public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
 			{
 				Block block = world.getBlock(x, y, z);
-
-				if (world.getBlockMetadata(x, y, z) != world.getBlockMetadata(x - Facing.offsetsXForSide[side], y - Facing.offsetsYForSide[side], z - Facing.offsetsZForSide[side]))
-				{
-					return true;
-				}
-
-				if (block == this)
-				{
-					return false;
-				}
-
 				return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
 			}
 		}.setBlockName("tragicmc.conduit").setBlockTextureName("tragicmc:Conduit_lowRes").setHardness(12.0F).setResistance(100.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setLightOpacity(0));
