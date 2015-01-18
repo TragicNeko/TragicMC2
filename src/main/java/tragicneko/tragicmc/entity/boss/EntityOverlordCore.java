@@ -8,6 +8,7 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -20,6 +21,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
@@ -42,13 +44,21 @@ public class EntityOverlordCore extends TragicBoss {
 	private int hoverTicks;
 	private int hoverBuffer;
 	private int aggregate;
+	private int vulnerableTicks;
 
-	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence});
+	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
+			TragicBlocks.Conduit});
 
 	public EntityOverlordCore(World par1World) {
 		super(par1World);
 		this.setSize(6.0F, 6.0F);
-		this.targetY = 100.0D;
+		this.targetY = 50.0D;
+	}
+	
+	@Override
+	public EnumCreatureAttribute getCreatureAttribute()
+	{
+		return TragicEntities.Synapse;
 	}
 
 	@Override
@@ -225,6 +235,7 @@ public class EntityOverlordCore extends TragicBoss {
 			if (this.hoverTicks == 0) this.hoverBuffer = 200;
 			this.aggregate = 0;
 		}
+		if (this.vulnerableTicks > 0) --this.vulnerableTicks;
 
 		if (this.hurtTime == 0 && this.hoverTicks == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
@@ -288,7 +299,7 @@ public class EntityOverlordCore extends TragicBoss {
 		for (int i = 0; i < list.size(); ++i)
 		{
 			Entity entity = (Entity)list.get(i);
-			if (entity instanceof EntityLivingBase && !(entity instanceof EntityNanoSwarm)) entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse) entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		}
 	}
 
@@ -340,6 +351,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 	@Override
 	protected void despawnEntity() {}
+	
+	@Override
+	protected boolean canDespawn()
+    {
+        return false;
+    }
 
 	@Override
 	public void fall(float f) {}
@@ -373,8 +390,9 @@ public class EntityOverlordCore extends TragicBoss {
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
+			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
 
-			if (entity.isPotionActive(TragicPotion.Divinity) || !TragicConfig.allowDivinity && !(entity instanceof EntityNanoSwarm))
+			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || this.vulnerableTicks > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
 				{
@@ -389,6 +407,8 @@ public class EntityOverlordCore extends TragicBoss {
 					this.forceNewTarget = true;
 					this.hoverBuffer = 100;
 				}
+				
+				if (flag && this.vulnerableTicks == 0) this.vulnerableTicks = 200;
 
 				return super.attackEntityFrom(src, dmg);
 			}

@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicConfig.nanoSwarmStats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -15,6 +16,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
@@ -32,6 +34,12 @@ public class EntityNanoSwarm extends TragicMob {
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+	}
+	
+	@Override
+	public EnumCreatureAttribute getCreatureAttribute()
+	{
+		return TragicEntities.Synapse;
 	}
 	
 	@Override
@@ -92,6 +100,8 @@ public class EntityNanoSwarm extends TragicMob {
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && !par1DamageSource.isProjectile() && !par1DamageSource.isMagicDamage())
 		{
 			EntityLivingBase entity = (EntityLivingBase) par1DamageSource.getEntity();
+			
+			if (entity.getCreatureAttribute() == TragicEntities.Synapse) return false;
 
 			if (entity.getEquipmentInSlot(0) != null)
 			{
@@ -120,7 +130,7 @@ public class EntityNanoSwarm extends TragicMob {
 		
 		boolean result = super.attackEntityAsMob(par1Entity);
 		
-		if (result && par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityOverlordCore) && !(par1Entity instanceof EntityOverlordCocoon) && !(par1Entity instanceof EntityOverlordCombat))
+		if (result && par1Entity instanceof EntityLivingBase && ((EntityLivingBase) par1Entity).getCreatureAttribute() != TragicEntities.Synapse)
 		{
 			this.setDead();
 			if (TragicConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 240 + rand.nextInt(160)));

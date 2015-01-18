@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -23,6 +24,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
@@ -60,6 +62,12 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.isImmuneToFire = true;
+	}
+	
+	@Override
+	public EnumCreatureAttribute getCreatureAttribute()
+	{
+		return TragicEntities.Synapse;
 	}
 
 	@Override
@@ -480,7 +488,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		}
 
 		TragicMC.logInfo("Damage done to Aegar was " + damage);
-		if (source.getEntity() instanceof EntityLivingBase) super.attackEntityFrom(source, damage);
+		if (source.getEntity() instanceof EntityLivingBase && ((EntityLivingBase) source.getEntity()).getCreatureAttribute() != TragicEntities.Synapse) super.attackEntityFrom(source, damage);
 
 		return true;
 	}
@@ -506,7 +514,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		{
 			Entity entity = (Entity)list.get(i);
 
-			if (entity instanceof EntityLivingBase)
+			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 16.0F);
 				if (entity instanceof EntityPlayer && TragicConfig.allowHacked && rand.nextInt(6) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120, 0));

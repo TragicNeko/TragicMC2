@@ -84,6 +84,7 @@ public class TragicEntities {
 
 	public static final EnumCreatureAttribute Natural = EnumHelper.addCreatureAttribute("NATURAL");
 	public static final EnumCreatureAttribute Beast = EnumHelper.addCreatureAttribute("BEAST");
+	public static final EnumCreatureAttribute Synapse = EnumHelper.addCreatureAttribute("SYNAPSE");
 
 	public static void load()
 	{

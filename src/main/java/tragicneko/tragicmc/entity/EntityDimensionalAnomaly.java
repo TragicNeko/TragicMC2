@@ -16,7 +16,7 @@ public class EntityDimensionalAnomaly extends Entity {
 	public EntityDimensionalAnomaly(World par1World) {
 		super(par1World);
 		this.setSize(0.475F, 0.825F);
-		this.timeToLive = rand.nextInt(800);
+		this.timeToLive = rand.nextInt(100);
 		this.preventEntitySpawning = true;
 		this.isImmuneToFire = true;
 	}
@@ -128,7 +128,7 @@ public class EntityDimensionalAnomaly extends Entity {
 			if (this.ticksExisted >= 200 + timeToLive) this.setDead();
 		}
 		
-		if (!this.onGround) this.moveEntity(0.0, -0.065, 0.0);
+		if (!this.onGround) this.moveEntity(0.0, -0.055, 0.0);
 	}
 
 	@Override
