@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.dimension;
 
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.GLOWSTONE;
+
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +22,9 @@ import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.worldgen.ConduitWorldGen1;
+import tragicneko.tragicmc.worldgen.ConduitWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenDeadCircuit;
 
 public class SynapseChunkProvider implements IChunkProvider
@@ -225,7 +230,7 @@ public class SynapseChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        p_147418_3_[l1] = Blocks.air;
+                        p_147418_3_[l1] = this.synapseRNG.nextInt(6) == 0 ? Blocks.air : TragicBlocks.DigitalSea;
                     }
                 }
             }
@@ -425,23 +430,43 @@ public class SynapseChunkProvider implements IChunkProvider
      */
     @Override
 	public void populate(IChunkProvider p_73153_1_, int x, int z)
-    {
-        BlockFalling.fallInstantly = true;
-        
+    {        
         int k = x * 16;
         int l = z * 16;
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(k + 16, l + 16);
         biomegenbase.decorate(this.worldObj, this.worldObj.rand, k, l);
-        
-        for (int i = 0; i < 4; i++)
+        int a;
+        int b;
+        int c;
+        TragicMC.logTime();
+        for (int i = 0; i < 8; i++)
 		{
-			int a = x * 16 + this.worldObj.rand.nextInt(16);
-			int b = z * 16 + this.worldObj.rand.nextInt(16);
-			int c = this.worldObj.rand.nextInt(100) + 10;
-			new WorldGenDeadCircuit(8).generate(worldObj, synapseRNG, a, c, b);
+			a = x * 16 + this.worldObj.rand.nextInt(16);
+			b = z * 16 + this.worldObj.rand.nextInt(16);
+			c = this.worldObj.rand.nextInt(100) + 10;
+			new WorldGenDeadCircuit(4).generate(worldObj, synapseRNG, a, c, b);
 		}
+        TragicMC.logDuration("Dead Circuit Gen");
+
+        boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, synapseRNG, x, z, false, GLOWSTONE);
+        for (int i = 0; i < 7; i++)
+        {
+            a = k + this.synapseRNG.nextInt(16) + 8;
+            c = this.synapseRNG.nextInt(100) + 10;
+            b = l + this.synapseRNG.nextInt(16) + 8;
+            (new ConduitWorldGen1()).generate(this.worldObj, this.synapseRNG, a, c, b);
+        }
+        TragicMC.logDuration("Conduit WorldGen 1");
         
-        BlockFalling.fallInstantly = false;
+        for (int i = 0; i < 10; ++i)
+        {
+            a = k + this.synapseRNG.nextInt(16) + 8;
+            c = this.synapseRNG.nextInt(100) + 10;
+            b = l + this.synapseRNG.nextInt(16) + 8;
+            (new ConduitWorldGen2()).generate(this.worldObj, this.synapseRNG, a, c, b);
+        }
+        TragicMC.logDuration("Conduit WorldGen 2");
+        
     }
 
     /**
