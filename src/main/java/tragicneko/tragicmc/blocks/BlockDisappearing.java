@@ -37,7 +37,7 @@ public class BlockDisappearing extends Block
 
 	public BlockDisappearing(boolean powered)
 	{
-		super(Material.sponge);
+		super(Material.glass);
 		this.isPowered = powered;
 		this.setHardness(0.5F);
 		this.setResistance(5.0F);
@@ -100,7 +100,7 @@ public class BlockDisappearing extends Block
 	@Override
 	public boolean isOpaqueCube()
 	{
-		return isBlockNormalCube();
+		return !this.isPowered;
 	}
 
 	@Override

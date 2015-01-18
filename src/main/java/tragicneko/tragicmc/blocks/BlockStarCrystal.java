@@ -7,9 +7,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import tragicneko.tragicmc.TragicMC;
@@ -49,7 +51,7 @@ public class BlockStarCrystal extends Block {
 			return this.quantityDropped(rand);
 		}
 	}
-	
+
 	@Override
 	public int quantityDropped(Random rand)
 	{
@@ -113,9 +115,10 @@ public class BlockStarCrystal extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
+	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
 	{
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, 1 - p_149646_5_);
+		Block block = world.getBlock(x, y, z);
+		return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
 	}
 
 }
