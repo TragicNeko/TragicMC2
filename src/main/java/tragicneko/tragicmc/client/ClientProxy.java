@@ -276,7 +276,7 @@ public class ClientProxy extends CommonProxy {
 
 	public static void registerItemToMesher(Item item, int meta, String location)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation("tragicmc:" + location, "inventory"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(moddir + location, "inventory"));
 	}
 
 	public static void registerBlockToMesher(Block block, int meta, String location)
