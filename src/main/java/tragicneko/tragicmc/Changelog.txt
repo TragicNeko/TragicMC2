@@ -3224,6 +3224,18 @@ Rearranged the registration cycle of the mod, this shouldn't affect anything
 Removed all of the short and byte specifications in the main doomsday class, this should clean up some code
 Did some more experimentation with updating to 1.8, added a couple of new (commented out) things to prep for that
 Slowed down speed of Overlord Mortors, allow Dimensional Anomalies to fall to the ground slowly so that they don't hang up in the air if they are spawned there
+Added a Synapse creature attribute to prevent them from targetting each other
+Reduced the time the Dimensional Anomalies stay "alive", allow Overlord Core to be hit by any entities after being initially hit by an entity with Divinity for a certain amount
+of time
+Added a semi-transparent Digital Sea block that generates in the upper and lower sections of the Synapse, it's meant to give it a moodier look, although it may be removed if it
+causes too much lag, originally I wanted it to sorta "spark" to life in waves when touched but in large amounts this generates a huge amount of lag
+Added conduit block, which may get the digital sea's "spark" aspect since the digital sea generates in too large of chunks
+Added world gen for the conduits, which generate using the glowstone's worldgen, although it uses two variants of it for the two that it uses
+Improved rendering for Star Crystals and the Disappearing Block to better render sides
+Added debug for synapse worldgen, to see what is taking the longest
+Improved Dead Circuit worldgen in Synapse, it no longer causes huge hangs (there are some minimal hangs but that's normal for generating new chunks anyway)
+Improved worldgen in various spots by switching the way the WorldHelper method for getting spherical areas is looped
+
 
 TODO still
 Add the model for the Guardian Shields and Dimensional Anomaly
