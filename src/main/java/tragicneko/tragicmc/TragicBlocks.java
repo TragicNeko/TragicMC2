@@ -1,12 +1,20 @@
 package tragicneko.tragicmc;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenJungle;
 import net.minecraft.world.biome.BiomeGenPlains;
@@ -63,6 +71,7 @@ import tragicneko.tragicmc.blocks.itemblocks.TragicItemBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
+import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -156,7 +165,7 @@ public class TragicBlocks {
 	public static Block SynapseCore;
 	public static Block OverlordBarrier;
 
-	public static Block Gas;
+	public static Block WitheringGas, CorruptedGas;
 
 	public static Block Conduit;
 	public static Block DigitalSea;
@@ -349,17 +358,45 @@ public class TragicBlocks {
 		OverlordBarrier = (new BlockOverlordBarrier());
 		GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
 
-		Gas = (new BlockGas().setBlockName("tragicmc.gas"));
-		GameRegistry.registerBlock(Gas, ItemBlock.class, "gas");
+		WitheringGas = (new BlockGas().setBlockName("tragicmc.witheringGas"));
+		GameRegistry.registerBlock(WitheringGas, ItemBlock.class, "witheringGas");
+
+		CorruptedGas = (new BlockGas() {
+			@Override
+			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			{
+				if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
+				{
+					if (TragicConfig.allowCorruption) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200, 0));
+					entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob((EntityLivingBase) entity), 1.0F);
+				}
+			}
+			
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					world.spawnParticle("smoke", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.0F, 0.0F, 0.0F);
+					world.spawnParticle("smoke", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.0F, 0.0F, 0.0F);
+					world.spawnParticle("witchMagic", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.0F, 0.0F, 0.0F);
+				}
+			}
+		}.setBlockName("tragicmc.corruptedGas"));
+		GameRegistry.registerBlock(CorruptedGas, ItemBlock.class, "corruptedGas");
 
 		Conduit = (new BlockGeneric(Material.iron, "pickaxe", 0) {
-			
+
 			@Override
 			public boolean isOpaqueCube()
 			{
 				return false;
 			}
-			
+
 			@Override
 			@SideOnly(Side.CLIENT)
 			public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)

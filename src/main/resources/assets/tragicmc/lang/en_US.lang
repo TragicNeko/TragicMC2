@@ -245,7 +245,8 @@ tile.tragicmc.darkSandstone.beveled.name=Beveled Dark Sandstone
 tile.tragicmc.darkSandstone.chiseled.name=Chiseled Dark Sandstone
 tile.tragicmc.darkSandstone.carved.name=Carved Dark Sandstone
 
-tile.tragicmc.gas.name=Gas
+tile.tragicmc.witheringGas.name=Withering Gas
+tile.tragicmc.corruptedGas.name=Corrupted Gas
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet

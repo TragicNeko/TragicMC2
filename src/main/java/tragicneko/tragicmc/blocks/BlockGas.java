@@ -11,6 +11,8 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
@@ -114,7 +116,11 @@ public class BlockGas extends Block {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD) entity.attackEntityFrom(DamageSource.wither, 1.0F);
+		if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD)
+		{
+			entity.attackEntityFrom(DamageSource.wither, 1.0F);
+			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.wither.id, 200, 0));
+		}
 	}
 
 	@Override
@@ -122,8 +128,14 @@ public class BlockGas extends Block {
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
 		for (int i = 0; i < 10; i++)
+		{
 			world.spawnParticle("smoke", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-					0.0, 0.0, 0.0);
+					0.0F, 0.0F, 0.0F);
+			world.spawnParticle("smoke", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					0.0F, 0.0F, 0.0F);
+			world.spawnParticle("mobSpellAmbient", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+					0.0F, 0.0F, 0.0F);
+		}
 	}
 
 	@Override

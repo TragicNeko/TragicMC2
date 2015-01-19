@@ -369,7 +369,7 @@ public class EntityDeathReaper extends TragicBoss {
 					for (int[] coords : list)
 					{
 						Block block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
-						if ((block == Blocks.air || block == TragicBlocks.Gas) && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.Gas);
+						if ((block == Blocks.air || block == TragicBlocks.WitheringGas) && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.WitheringGas);
 					}
 
 				}
