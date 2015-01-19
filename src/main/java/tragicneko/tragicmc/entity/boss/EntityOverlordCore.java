@@ -53,6 +53,7 @@ public class EntityOverlordCore extends TragicBoss {
 		super(par1World);
 		this.setSize(6.0F, 6.0F);
 		this.targetY = 50.0D;
+		this.noClip = true;
 	}
 	
 	@Override
@@ -281,14 +282,6 @@ public class EntityOverlordCore extends TragicBoss {
 					}
 				}
 			}
-		}
-
-		if (flag1)
-		{
-			double d1 = bb.minX + (bb.maxX - bb.minX) * this.rand.nextFloat();
-			double d2 = bb.minY + (bb.maxY - bb.minY) * this.rand.nextFloat();
-			double d0 = bb.minZ + (bb.maxZ - bb.minZ) * this.rand.nextFloat();
-			this.worldObj.spawnParticle("largeexplode", d1, d2, d0, 0.0D, 0.0D, 0.0D);
 		}
 
 		return flag;
