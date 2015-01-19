@@ -108,14 +108,14 @@ public class EntityNanoSwarm extends TragicMob {
 				if (!(entity.getEquipmentInSlot(0).getItem() instanceof ItemBow) && this.getDistanceToEntity(entity) <= 2.0F)
 				{
 					entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
-					if (TragicConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(180)));
+					if (TragicConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(60)));
 					return super.attackEntityFrom(par1DamageSource, Float.MAX_VALUE);
 				}
 			}
 			else
 			{
 				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
-				if (TragicConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(80)));
+				if (TragicConfig.allowHacked) entity.addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(60)));
 				return super.attackEntityFrom(par1DamageSource, Float.MAX_VALUE);
 			}
 		}
@@ -133,7 +133,7 @@ public class EntityNanoSwarm extends TragicMob {
 		if (result && par1Entity instanceof EntityLivingBase && ((EntityLivingBase) par1Entity).getCreatureAttribute() != TragicEntities.Synapse)
 		{
 			this.setDead();
-			if (TragicConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 240 + rand.nextInt(160)));
+			if (TragicConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(80)));
 		}
 		
 		return result;
