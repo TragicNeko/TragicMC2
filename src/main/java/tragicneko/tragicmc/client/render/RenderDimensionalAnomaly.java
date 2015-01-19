@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import tragicneko.tragicmc.client.model.ModelDarkCrystal;
+import tragicneko.tragicmc.client.model.ModelBlock;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 
 public class RenderDimensionalAnomaly extends Render {
@@ -20,7 +20,7 @@ public class RenderDimensionalAnomaly extends Render {
 	public RenderDimensionalAnomaly()
 	{
 		super();
-		this.model = new ModelDarkCrystal();
+		this.model = new ModelBlock();
 	}
 
 	@Override

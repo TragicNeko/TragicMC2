@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -58,8 +60,21 @@ public class EntityDimensionalAnomaly extends Entity {
 				this.setDead();
 			}
 		}
-		
+
 		super.applyEntityCollision(entity);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBrightnessForRender(float par1)
+	{
+		return 15728880;
+	}
+
+	@Override
+	public float getBrightness(float par1)
+	{
+		return 1.0F;
 	}
 
 	@Override
@@ -87,38 +102,31 @@ public class EntityDimensionalAnomaly extends Entity {
 
 		if (this.worldObj.isRemote)
 		{
-			for (int i = 0; i < 3; i++)
+			double d7 = rand.nextDouble() - rand.nextDouble();
+			double d8 = rand.nextDouble() - rand.nextDouble();
+			double d9 = rand.nextDouble() - rand.nextDouble();
+
+			double d0 = d7 + this.posX;
+			double d1 = d8 + this.posY + this.height / 2.0D;
+			double d2 = d9 + this.posZ;
+
+			float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+			double d3 = 0.5D;
+
+			double d4 = d0 / f2 * d3 * 0.200000011920929D + d7 * 0.20000000298023224D;
+			double d5 = d1 / f2 * d3 * 0.200000011920929D + d8 * 0.20000000298023224D;
+			double d6 = d2 / f2 * d3 * 0.200000011920929D + d9 * 0.20000000298023224D;
+			
+			for (int i = 0; i < 8; i++)
 			{
-				double d7 = (rand.nextDouble() * 3.0D - rand.nextDouble() * 3.0D);
-				double d8 = (rand.nextDouble() * 3.0D - rand.nextDouble() * 3.0D);
-				double d9 = (rand.nextDouble() * 3.0D - rand.nextDouble() * 3.0D);
-
-				double d0 = d7 + this.posX;
-				double d1 = d8 + this.posY + this.height / 2.0D;
-				double d2 = d9 + this.posZ;
-
-				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-				double d3 = 0.5D;
-
-				double d4 = d0 / f2 * d3 * 0.200000011920929D + d7 * 0.20000000298023224D;
-				double d5 = d1 / f2 * d3 * 0.200000011920929D + d8 * 0.20000000298023224D;
-				double d6 = d2 / f2 * d3 * 0.200000011920929D + d9 * 0.20000000298023224D;
-
-				this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
+				this.worldObj.spawnParticle("reddust", d0, d1, d2, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F);
 			}
 
-			for (int l = 0; l < 2; ++l)
-			{
-				this.worldObj.spawnParticle("portal", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 2.25D + rand.nextDouble() * 0.375F,
-						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), 0.0, -2.155F, 0.0);
-			}
-
-			if (rand.nextInt(64) == 0)
-			{
-				for (int l = 0; l < 6; ++l)
+			if (rand.nextInt(16) == 0)
+			{				
+				for (int i = 0; i < 4; i++)
 				{
-					this.worldObj.spawnParticle("instantSpell", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 0.115D + rand.nextDouble(),
-							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat());
+					this.worldObj.spawnParticle("cloud", d0, d1, d2, d4 * -0.5, d5 * -0.5, d6 * -0.5);
 				}
 			}
 			return;
@@ -127,8 +135,8 @@ public class EntityDimensionalAnomaly extends Entity {
 		{
 			if (this.ticksExisted >= 200 + timeToLive) this.setDead();
 		}
-		
-		if (!this.onGround) this.moveEntity(0.0, -0.055, 0.0);
+
+		if (!this.onGround) this.moveEntity(0.0, -0.035, 0.0);
 	}
 
 	@Override

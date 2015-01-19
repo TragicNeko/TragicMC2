@@ -207,7 +207,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTimeDisruption.class, new RenderTimeDisruption());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
-		RenderingRegistry.registerEntityRenderingHandler(EntityGuardianShield.class, new RenderGuardianShield()); //TODO update this to it's own actual model
+		RenderingRegistry.registerEntityRenderingHandler(EntityGuardianShield.class, new RenderGuardianShield());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDimensionalAnomaly.class, new RenderDimensionalAnomaly()); //TODO update this to an actual model for it
 
 		//Mob renders

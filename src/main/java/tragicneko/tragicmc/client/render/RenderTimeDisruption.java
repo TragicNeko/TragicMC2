@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import tragicneko.tragicmc.client.model.ModelLargeRock;
+import tragicneko.tragicmc.client.model.ModelGuardianShield;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
 
 public class RenderTimeDisruption extends Render {
@@ -21,7 +21,7 @@ public class RenderTimeDisruption extends Render {
 	public RenderTimeDisruption()
 	{
 		super();
-		this.model = new ModelLargeRock();
+		this.model = new ModelGuardianShield();
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class RenderTimeDisruption extends Render {
 	}
 
 	public void doRender(EntityTimeDisruption entity, double par2, double par3, double par4, float par5, float par6) {
-		float f = -0.225F;		
+		float f = -0.125F;
 		float f1 = 0.025F;
 		GL11.glPushMatrix();
 		

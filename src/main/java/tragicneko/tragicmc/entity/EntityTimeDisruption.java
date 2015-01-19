@@ -3,6 +3,8 @@ package tragicneko.tragicmc.entity;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +15,7 @@ import tragicneko.tragicmc.entity.boss.EntityTimeController;
 
 public class EntityTimeDisruption extends Entity {
 
-	private int timeToLive;
+	public int timeToLive;
 
 	public EntityTimeDisruption(World par1World) {
 		super(par1World);
@@ -21,6 +23,19 @@ public class EntityTimeDisruption extends Entity {
 		this.timeToLive = rand.nextInt(800);
 		this.preventEntitySpawning = true;
 		this.isImmuneToFire = true;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBrightnessForRender(float par1)
+	{
+		return 15728880;
+	}
+
+	@Override
+	public float getBrightness(float par1)
+	{
+		return 1.0F;
 	}
 	
 	@Override
@@ -70,17 +85,17 @@ public class EntityTimeDisruption extends Entity {
 				this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
 			}
 			
-			for (int l = 0; l < 2; ++l)
+			if (rand.nextBoolean())
 			{
-				this.worldObj.spawnParticle("portal", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 2.25D + rand.nextDouble() * 0.375F,
-						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), 0.0, -2.155F, 0.0);
+				this.worldObj.spawnParticle("witchMagic", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.255D), this.posY + 0.0625D + rand.nextDouble() * 0.275D,
+						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.255D), rand.nextFloat() - rand.nextFloat(), 0.0, rand.nextFloat() - rand.nextFloat());
 			}
 
 			if (rand.nextInt(64) == 0)
 			{
 				for (int l = 0; l < 6; ++l)
 				{
-					this.worldObj.spawnParticle("instantSpell", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + 0.115D + rand.nextDouble(),
+					this.worldObj.spawnParticle("instantSpell", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), this.posY + rand.nextDouble(),
 							this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat(), 0.155F * this.rand.nextFloat());
 				}
 			}

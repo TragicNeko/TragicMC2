@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class EntityGuardianShield extends EntityProjectile {
 
-	private boolean motionFlag;
+	public boolean motionFlag;
 
 	private double xOffset;
 	private double zOffset;
@@ -160,7 +160,20 @@ public class EntityGuardianShield extends EntityProjectile {
 			super.onUpdate();
 		}
 
-		if (this.ticksExisted > 600)  this.setDead();
+		if (this.ticksExisted > 600 && !this.worldObj.isRemote)  this.setDead();
+		
+		if (this.worldObj.isRemote)
+		{
+			String s = "crit";
+			if (Math.abs(this.motionX) > 0 && Math.abs(this.motionY) > 0 && Math.abs(this.motionZ) > 0) s = "smoke";
+			
+			for (int l = 0; l < 6; ++l)
+			{
+				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.855D), this.posY + rand.nextDouble() - rand.nextDouble() + 0.235D,
+						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.855D), 0.155F * (this.rand.nextFloat() - this.rand.nextFloat()),
+						0.155F * (this.rand.nextFloat() - this.rand.nextFloat()), 0.155F * (this.rand.nextFloat() - this.rand.nextFloat()));
+			}
+		}
 	}
 
 	@Override

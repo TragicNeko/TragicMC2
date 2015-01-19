@@ -9,18 +9,18 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import tragicneko.tragicmc.client.model.ModelLargeRock;
+import tragicneko.tragicmc.client.model.ModelGuardianShield;
 import tragicneko.tragicmc.entity.EntityGuardianShield;
 
 public class RenderGuardianShield extends Render {
 
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/LargeRock_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/GuardianShield_lowRes.png");
 	public ModelBase model;
 	
 	public RenderGuardianShield()
 	{
 		super();
-		this.model = new ModelLargeRock();
+		this.model = new ModelGuardianShield();
 	}
 
 	@Override
@@ -35,7 +35,8 @@ public class RenderGuardianShield extends Render {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		GL11.glScalef(2.25F, 2.25F, 2.25F);
+		float f2 = (float) Math.cos((entity.ticksExisted % 1000) * 0.35) + 3.65F;
+		GL11.glScalef(f2, f2, f2);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		this.bindTexture(this.getEntityTexture(entity));
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f1);
