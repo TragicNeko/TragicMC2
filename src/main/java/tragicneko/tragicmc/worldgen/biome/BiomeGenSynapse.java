@@ -12,7 +12,7 @@ public class BiomeGenSynapse extends TragicBiome {
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityNanoSwarm.class, 5, 0, 1));
+        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNanoSwarm.class, 5, 0, 1));
 		this.fillerBlock = TragicBlocks.CircuitBlock;
 		this.topBlock = TragicBlocks.CircuitBlock;
 		this.theBiomeDecorator = new BiomeDecoratorSynapse();
