@@ -223,6 +223,8 @@ public abstract class EntityProjectile extends Entity
 			this.motionZ *= f2;
 			this.worldObj.spawnParticle(this.getParticleString(), this.posX, this.posY + 0.25D, this.posZ, 0.0D, 0.0D, 0.0D);
 			this.setPosition(this.posX, this.posY, this.posZ);
+			
+			if (this.ticksExisted > 600) this.setDead();
 		}
 	}
 
