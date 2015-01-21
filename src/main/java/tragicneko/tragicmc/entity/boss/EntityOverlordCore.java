@@ -53,7 +53,6 @@ public class EntityOverlordCore extends TragicBoss {
 		super(par1World);
 		this.setSize(6.0F, 6.0F);
 		this.targetY = 50.0D;
-		this.noClip = true;
 	}
 	
 	@Override
@@ -268,10 +267,11 @@ public class EntityOverlordCore extends TragicBoss {
 				for (int i2 = k; i2 <= j1; ++i2)
 				{
 					Block block = this.worldObj.getBlock(k1, l1, i2);
+					float f = block.getBlockHardness(this.worldObj, k1, l1, i2);
 
 					if (!block.isAir(worldObj, k1, l1, i2))
 					{
-						if (this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") && !EntityOverlordCore.ignoredBlocks.contains(block))
+						if (this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") && !EntityOverlordCore.ignoredBlocks.contains(block) && f > 0F && f < 10F)
 						{
 							flag1 = this.worldObj.setBlockToAir(k1, l1, i2) || flag1;
 						}
