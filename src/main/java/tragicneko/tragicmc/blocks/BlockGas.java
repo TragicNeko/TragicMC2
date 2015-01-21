@@ -143,4 +143,9 @@ public class BlockGas extends Block {
 	{
 		return null;
 	}
+	
+	public boolean isAir(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
 }
