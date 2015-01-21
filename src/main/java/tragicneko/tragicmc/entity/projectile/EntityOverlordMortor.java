@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -8,8 +9,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordMortor extends EntityProjectile {
 
@@ -20,7 +23,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 		super(par1World);
 		this.setSize(1.0F, 1.0F);
 	}
-	
+
 	@Override
 	protected float getMotionFactor()
 	{
@@ -44,11 +47,25 @@ public class EntityOverlordMortor extends EntityProjectile {
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 			this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
 		}
-		else if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8)
+		else
 		{
-			EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
-			anomoly.setPosition(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
-			this.worldObj.spawnEntityInWorld(anomoly);
+			if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8 && rand.nextBoolean())
+			{
+				EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
+				anomoly.setPosition(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
+				this.worldObj.spawnEntityInWorld(anomoly);
+			}
+			else
+			{
+				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 2.5, this.posX, this.posY, this.posZ);
+				for (int[] coords : list)
+				{
+					if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2]) && this.worldObj.getBlock(coords[0], coords[1],coords[2]).isAir(this.worldObj, coords[0], coords[1], coords[2]))
+					{
+						this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CorruptedGas);
+					}
+				}
+			}
 		}
 
 		this.setDead();
@@ -75,7 +92,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 				anomoly.setPosition(this.posX, this.posY, this.posZ);
 				this.worldObj.spawnEntityInWorld(anomoly);
 			}
-			
+
 			this.setDead();
 		}
 
