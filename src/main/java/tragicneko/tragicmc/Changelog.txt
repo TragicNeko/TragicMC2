@@ -3242,6 +3242,14 @@ add a conduit-like model for it with high brightness (that twitches randomly) to
 Added Corrupted Gas for the Overlord's first two forms
 Reduced amount of the Hacked effect inflicted from the Nano Swarms so that it isn't an instant death when you get inflicted once, however, it'll still be difficult if there are a lot
 of them surrounding you inflicting the effect
+Updated Eclipse and this updated a bunch of files in it
+Change Gas block to identify as an air block
+Updated the DoomsdayManager, since there was a bug that allowed any combination of any allowed doomsday combinations to be activated, it now checks for specific combinations and also
+uses less hashmaps and such, so this should speed up functionality of it too
+Fixed initial concurrency bug with the update to the DoomsdayManager
+Added sneak ticks to Doomsday effects, this is due to the fact that some combination doomsdays require the same weapon (which requires a sneak+special use to activate), this would
+cancel the extended one immediately and prevent the combination from being activated
+It now takes a second of sneaking to cancel an extended one, but the effect is stalled while sneaking to prevent extra doom use
 
 TODO still
 Add the model and finish up the Overlord Core's abilities
@@ -3254,7 +3262,7 @@ Add the Achievements, which will flow in a set questline, also add side achievem
 
 FOR THE OVERLORD
 Create the Core's model
-The Combat Form will be worked on next, it'll work like the Apis in that it charges it's target relentlessly, but i'll also randomly pause and spawn in hunters
+The Combat Form will be worked on next, it'll work like the Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
 The Combat form will always generate Corrupted gas around itself, which will probably inflict corruption on mobs
 The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
 When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
