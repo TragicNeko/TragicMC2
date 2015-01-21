@@ -40,4 +40,9 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 		
 	}
 
+	@Override
+	public Doomsday getCombination()
+	{
+		return Doomsday.FlightOfTheValkyries;
+	}
 }

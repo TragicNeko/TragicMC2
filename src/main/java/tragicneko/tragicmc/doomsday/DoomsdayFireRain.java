@@ -49,4 +49,7 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.DragonsRoar;
+	}
 }

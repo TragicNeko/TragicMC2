@@ -14,11 +14,14 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
+
+import com.google.common.collect.Sets;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
@@ -28,38 +31,18 @@ public class DoomsdayManager {
 
 	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/Doomsday Manager");
 	private static Map<String, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
-	private Map<Doomsday, Doomsday> combinations = new HashMap();
-	private Map<Doomsday, Doomsday> combinationMap = new HashMap();
 
-	public DoomsdayManager()
+	private static Set<Doomsday> combinations = Sets.newConcurrentHashSet();
+
+	static
 	{
-		this.combinations.put(Doomsday.Purge, Doomsday.MoonlightSonata);
-		this.combinationMap.put(Doomsday.MoonlightSonata, Doomsday.FlightOfTheValkyries);
-		this.combinationMap.put(Doomsday.Purge, Doomsday.FlightOfTheValkyries);
-
-		this.combinations.put(Doomsday.Titanfall, Doomsday.Ravage);
-		this.combinationMap.put(Doomsday.Titanfall, Doomsday.LightningRush);
-		this.combinationMap.put(Doomsday.Ravage, Doomsday.LightningRush);
-
-		this.combinations.put(Doomsday.Marionette, Doomsday.Torment);
-		this.combinationMap.put(Doomsday.Marionette, Doomsday.Mindcrack);
-		this.combinationMap.put(Doomsday.Torment, Doomsday.Mindcrack);
-
-		this.combinations.put(Doomsday.NatureDrain, Doomsday.RealityAlter);
-		this.combinationMap.put(Doomsday.RealityAlter, Doomsday.GrowthSpurt);
-		this.combinationMap.put(Doomsday.NatureDrain, Doomsday.GrowthSpurt);
-
-		this.combinations.put(Doomsday.Permafrost, Doomsday.Freeze);
-		this.combinationMap.put(Doomsday.Permafrost, Doomsday.Blizzard);
-		this.combinationMap.put(Doomsday.Freeze, Doomsday.Blizzard);
-
-		this.combinations.put(Doomsday.FireRain, Doomsday.DragonsRoar);
-		this.combinationMap.put(Doomsday.FireRain, Doomsday.Firestorm);
-		this.combinationMap.put(Doomsday.DragonsRoar, Doomsday.Firestorm);
-
-		this.combinations.put(Doomsday.RapidFire, Doomsday.Snipe);
-		this.combinationMap.put(Doomsday.RapidFire, Doomsday.Shotgun);
-		this.combinationMap.put(Doomsday.Snipe, Doomsday.Shotgun);
+		combinations.add(Doomsday.Purge);
+		combinations.add(Doomsday.Titanfall);
+		combinations.add(Doomsday.Marionette);
+		combinations.add(Doomsday.NatureDrain);
+		combinations.add(Doomsday.Permafrost);
+		combinations.add(Doomsday.FireRain);
+		combinations.add(Doomsday.RapidFire);
 	}
 
 	public synchronized static void registerDoomsdayEffect(String playerName, DoomsdayEffect effect)
@@ -153,20 +136,18 @@ public class DoomsdayManager {
 			{
 				EntityPlayerMP mp = MinecraftServer.getServer().getConfigurationManager().func_152612_a(ite.next());
 				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getCommandSenderName());
-				DoomsdayEffect effect;
+				DoomsdayEffect effect = null;
 				DoomsdayEffect temp = null;
-				boolean flag = false;
 				reason = null;
 
-				if (list.size() == 0)
-				{
-					reason = "No Doomsday effects registered.";
-				}
+				boolean flag = false;
+
+				if (list.size() == 0) reason = "No Doomsday effects registered.";
 
 				for (int i = 0; i < list.size(); i++)
 				{
 					effect = list.get(i);
-
+					
 					if (effect == null)
 					{
 						logger.error("Player had a null registration somehow! To prevent any problems, the player's registrations were cleared!");
@@ -177,19 +158,27 @@ public class DoomsdayManager {
 
 					if (TragicConfig.allowCombinationDoomsday)
 					{
-						if (flag && combinations.containsValue(effect.dday))
+						if (flag && temp != null && temp.dday.getCombination() == effect.dday)
 						{
-							if (temp != null && temp.isActive && !temp.isInstant)
+							if (temp.isActive && !temp.isInstant)
 							{
 								if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
 								TragicMC.logInfo("Instant Dday used for the Combination should've applied doom cost on use");
-							} 
+							}
 							list.clear();
-							list.add(new DoomsdayEffect(combinationMap.get(effect.dday).getDoomId(), effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
+							try
+							{
+								list.add(new DoomsdayEffect(effect.dday.getCombination().doomID, effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
+							}
+							catch(NullPointerException e)
+							{
+								e.printStackTrace();
+								logger.error("Combination doomsdays had a null Combination, report this!");
+							}
 							break;
 						}
 
-						if (combinations.containsKey(effect.dday))
+						if (combinations.contains(effect.dday))
 						{
 							flag = true;
 							temp = effect;
@@ -200,7 +189,7 @@ public class DoomsdayManager {
 
 					if (!effect.isActive && effect.isInstant || effect.dday instanceof IExtendedDoomsday && effect.timeBetweenUpdates == effect.dday.waitTime)
 					{
-						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) effect.dday.applyDoomCost(effect.doom);
+						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated && effect.sneakTicks == 0) effect.dday.applyDoomCost(effect.doom);
 					}
 
 					if (!effect.isActive)

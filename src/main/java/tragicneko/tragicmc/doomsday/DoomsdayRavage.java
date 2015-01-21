@@ -53,4 +53,7 @@ public class DoomsdayRavage extends Doomsday {
 		player.worldObj.createExplosion(null, player.posX, player.posY, player.posZ, rand.nextFloat() * 1.5F, TragicConfig.griefConfigs[1]);
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.LightningRush;
+	}
 }

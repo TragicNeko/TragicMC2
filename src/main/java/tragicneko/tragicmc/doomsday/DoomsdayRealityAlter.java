@@ -156,4 +156,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 		if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120, 0));
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.GrowthSpurt;
+	}
 }

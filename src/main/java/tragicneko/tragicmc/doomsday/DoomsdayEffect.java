@@ -30,6 +30,8 @@ public class DoomsdayEffect {
 	public Entity utilityEntity;
 	public boolean utilityFlag;
 	public int utilityInt;
+	
+	public int sneakTicks;
 
 	public DoomsdayEffect(int id, PropertyDoom doom)
 	{
@@ -62,11 +64,21 @@ public class DoomsdayEffect {
 
 	public void onDoomsdayUpdate()
 	{		
-		if (this.iterations >= dday.getMaxIterations() || doom.getPlayer().isSneaking() && !this.isInstant)
+		if (this.iterations >= dday.getMaxIterations())
 		{
 			this.isActive = false;
 			return;
 		}
+		
+		if (this.sneakTicks >= 10) this.isActive = false;
+		
+		if (doom.getPlayer().isSneaking() && !this.isInstant)
+		{
+			this.sneakTicks++;
+			return;
+		}
+		
+		if (this.sneakTicks > 0) this.sneakTicks = 0;
 
 		if (this.timeBetweenUpdates > 0 && !this.isInstant)
 		{

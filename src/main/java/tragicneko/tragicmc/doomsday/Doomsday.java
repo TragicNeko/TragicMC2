@@ -512,6 +512,14 @@ public abstract class Doomsday {
 	{
 		return player.getHealth() / player.getMaxHealth();
 	}
+	
+	/**
+	 * Extended Doomsdays return the instant one they combine with, Instant ones return the combination that they form
+	 * @return
+	 */
+	public Doomsday getCombination() {
+		return null;
+	}
 
 	public enum EnumDoomType
 	{
@@ -545,5 +553,4 @@ public abstract class Doomsday {
 			stringToIDMapping.put(doomsdayNames[i], i);
 		}
 	}
-
 }

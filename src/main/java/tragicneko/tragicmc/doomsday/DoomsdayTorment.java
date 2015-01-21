@@ -62,4 +62,7 @@ public class DoomsdayTorment extends Doomsday {
 		if (TragicConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 200, 2 + rand.nextInt(2)));
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.Mindcrack;
+	}
 }

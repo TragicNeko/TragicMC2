@@ -66,4 +66,7 @@ public class DoomsdayDragonsRoar extends Doomsday {
 
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.Firestorm;
+	}
 }

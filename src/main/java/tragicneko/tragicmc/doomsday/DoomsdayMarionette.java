@@ -105,4 +105,7 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.Torment;
+	}
 }

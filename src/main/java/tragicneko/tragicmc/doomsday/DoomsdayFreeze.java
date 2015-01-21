@@ -56,4 +56,7 @@ public class DoomsdayFreeze extends Doomsday {
 		
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.Blizzard;
+	}
 }

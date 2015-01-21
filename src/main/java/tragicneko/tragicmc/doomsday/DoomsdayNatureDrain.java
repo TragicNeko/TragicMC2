@@ -197,4 +197,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		player.addExhaustion(f);
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.RealityAlter;
+	}
 }

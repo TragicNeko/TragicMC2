@@ -78,4 +78,9 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 		}
 	}
 
+	@Override
+	public Doomsday getCombination()
+	{
+		return Doomsday.Snipe;
+	}
 }

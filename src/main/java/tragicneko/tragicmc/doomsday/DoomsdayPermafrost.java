@@ -128,4 +128,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 		player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.Freeze;
+	}
 }
