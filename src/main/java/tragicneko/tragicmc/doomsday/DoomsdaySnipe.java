@@ -79,4 +79,10 @@ public class DoomsdaySnipe extends Doomsday {
 			player.inventory.consumeInventoryItem(Items.arrow);
 		}
 	}
+	
+	@Override
+	public Doomsday getCombination()
+	{
+		return Doomsday.Shotgun;
+	}
 }
