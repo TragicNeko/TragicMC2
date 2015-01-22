@@ -3249,7 +3249,8 @@ uses less hashmaps and such, so this should speed up functionality of it too
 Fixed initial concurrency bug with the update to the DoomsdayManager
 Added sneak ticks to Doomsday effects, this is due to the fact that some combination doomsdays require the same weapon (which requires a sneak+special use to activate), this would
 cancel the extended one immediately and prevent the combination from being activated
-It now takes a second of sneaking to cancel an extended one, but the effect is stalled while sneaking to prevent extra doom use
+It now takes about a second of sneaking to cancel an extended one, but the effect is stalled while sneaking to prevent extra doom use
+Lifewater renamed to Enchanted Tears, since it is technically tears (ghast tears), it now has an "enchanted" glow to match the name
 
 TODO still
 Add the model and finish up the Overlord Core's abilities
