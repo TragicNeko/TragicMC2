@@ -165,15 +165,18 @@ public class DoomsdayManager {
 								if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
 								TragicMC.logInfo("Instant Dday used for the Combination should've applied doom cost on use");
 							}
+							
 							list.clear();
+							
 							try
 							{
 								list.add(new DoomsdayEffect(effect.dday.getCombination().doomID, effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
 							}
-							catch(NullPointerException e)
+							catch (NullPointerException e)
 							{
 								e.printStackTrace();
 								logger.error("Combination doomsdays had a null Combination, report this!");
+								break;
 							}
 							break;
 						}
