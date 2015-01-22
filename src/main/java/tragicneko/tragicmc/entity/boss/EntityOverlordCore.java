@@ -45,16 +45,18 @@ public class EntityOverlordCore extends TragicBoss {
 	private int hoverBuffer;
 	private int aggregate;
 	private int vulnerableTicks;
+	private int burstTicks;
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
 			TragicBlocks.Conduit});
 
 	public EntityOverlordCore(World par1World) {
 		super(par1World);
-		this.setSize(6.0F, 6.0F);
+		this.setSize(5.0F, 5.0F);
 		this.targetY = 50.0D;
+		this.noClip = true;
 	}
-	
+
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
@@ -247,6 +249,16 @@ public class EntityOverlordCore extends TragicBoss {
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
+		/*
+		if (this.burstTicks > 5 && this.vulnerableTicks > 50)
+		{
+			this.motionX *= 0.62;
+			this.motionZ *= 0.62;
+			
+			if (burstTicks > 40) burstTicks = 0;
+		}
+		
+		burstTicks++; */
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -344,12 +356,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 	@Override
 	protected void despawnEntity() {}
-	
+
 	@Override
 	protected boolean canDespawn()
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 
 	@Override
 	public void fall(float f) {}
@@ -400,7 +412,7 @@ public class EntityOverlordCore extends TragicBoss {
 					this.forceNewTarget = true;
 					this.hoverBuffer = 100;
 				}
-				
+
 				if (flag && this.vulnerableTicks == 0) this.vulnerableTicks = 200;
 
 				return super.attackEntityFrom(src, dmg);
