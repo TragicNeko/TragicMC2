@@ -88,6 +88,8 @@ import tragicneko.tragicmc.items.weapons.WeaponTitan;
 import tragicneko.tragicmc.items.weapons.WeaponTungstenJack;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicItems {
 
@@ -163,7 +165,7 @@ public class TragicItems {
 	//Normal items
 	public static Item Ectoplasm;
 	public static Item Ash;
-	public static Item LifeWater;
+	public static Item EnchantedTears;
 	public static Item ToughLeather;
 	public static Item WovenSilk;
 	public static Item CrushedIce;
@@ -449,8 +451,15 @@ public class TragicItems {
 		Ash = (new ItemGeneric().setUnlocalizedName("tragicmc.ash").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ash" + textureRes));
 		GameRegistry.registerItem(Ash, "ash");
 
-		LifeWater = (new ItemGeneric().setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LifeWater" + textureRes));
-		GameRegistry.registerItem(LifeWater, "lifeWater");
+		EnchantedTears = (new ItemGeneric() {
+			@SideOnly(Side.CLIENT)
+			@Override
+			public boolean hasEffect(ItemStack stack, int pass)
+			{
+				return true;
+			}
+		}.setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LifeWater" + textureRes));
+		GameRegistry.registerItem(EnchantedTears, "enchantedTears");
 
 		ToughLeather = (new ItemGeneric().setUnlocalizedName("tragicmc.toughLeather").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ToughLeather" + textureRes));
 		GameRegistry.registerItem(ToughLeather, "toughLeather");

@@ -71,7 +71,7 @@ public class TragicPotion extends Potion {
 		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.OverlordBarrier));
 		
 		if (Flight != null) ((TragicPotion) Flight).setIcon(new ItemStack(Items.feather));
-		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.LifeWater));
+		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.EnchantedTears));
 		if (Immunity != null) ((TragicPotion) Immunity).setIcon(new ItemStack(Items.milk_bucket));
 		if (Resurrection != null) ((TragicPotion) Resurrection).setIcon(new ItemStack(TragicItems.BoneMarrow));
 		if (Harmony != null) ((TragicPotion) Harmony).setIcon(new ItemStack(TragicItems.Sushi));

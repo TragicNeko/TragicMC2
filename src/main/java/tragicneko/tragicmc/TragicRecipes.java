@@ -243,7 +243,7 @@ public class TragicRecipes {
 				"xyx",
 				"xxx",
 				'x', TragicBlocks.TimeDisruptionCube,
-				'y', TragicItems.LifeWater
+				'y', TragicItems.EnchantedTears
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Talisman, 1), 
@@ -310,7 +310,7 @@ public class TragicRecipes {
 				'w', TragicItems.Talisman,
 				'x', Blocks.diamond_block,
 				'y', TragicItems.LunarPowder,
-				'z', TragicItems.LifeWater
+				'z', TragicItems.EnchantedTears
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LightningRodTalisman, 1), 
@@ -462,60 +462,60 @@ public class TragicRecipes {
 
 		//Skeleton spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 51),
-				TragicItems.LifeWater, TragicItems.Ash, Items.bone
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.bone
 				);
 
 		//Creeper spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 50), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.gunpowder
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.gunpowder
 				);
 
 		//Zombie spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 54), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.rotten_flesh
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.rotten_flesh
 				);
 
 		//Slime spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 55), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.slime_ball
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.slime_ball
 				);
 
 		//Spider spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 52), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.spider_eye
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.spider_eye
 				);
 
 		//Cow spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 92), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.leather
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.leather
 				);
 
 		//Pig spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 90), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.carrot
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.carrot
 				);
 
 		//Chicken spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 93),
-				TragicItems.LifeWater, TragicItems.Ash, Items.egg
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.egg
 				);
 
 		//Mooshroom spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 96), 
-				TragicItems.LifeWater, TragicItems.Ash, Blocks.red_mushroom
+				TragicItems.EnchantedTears, TragicItems.Ash, Blocks.red_mushroom
 				);
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 96), 
-				TragicItems.LifeWater, TragicItems.Ash, Blocks.brown_mushroom
+				TragicItems.EnchantedTears, TragicItems.Ash, Blocks.brown_mushroom
 				);
 
 		//Villager spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 120),
-				TragicItems.LifeWater, TragicItems.Ash, Items.emerald
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.emerald
 				);
 
 		//Horse spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 100), 
-				TragicItems.LifeWater, TragicItems.Ash, Items.saddle
+				TragicItems.EnchantedTears, TragicItems.Ash, Items.saddle
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ToughLeather, 1), 
@@ -780,7 +780,7 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Ectoplasm, 1), 
-				TragicItems.WispParticles, TragicItems.LifeWater
+				TragicItems.WispParticles, TragicItems.EnchantedTears
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.ender_chest, 1),
@@ -791,7 +791,7 @@ public class TragicRecipes {
 				'y', TragicItems.PureDarkness
 				);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LifeWater, 3),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EnchantedTears, 3),
 				" x ",
 				"xzx",
 				'x', Items.ghast_tear,
@@ -802,7 +802,7 @@ public class TragicRecipes {
 				" x ",
 				"xyx",
 				" x ",
-				'x', TragicItems.LifeWater,
+				'x', TragicItems.EnchantedTears,
 				'y', Items.glass_bottle
 				);
 
@@ -907,7 +907,7 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Wax, 1),
-				TragicItems.LifeWater, TragicItems.LifeWater, Items.clay_ball, Items.clay_ball
+				TragicItems.EnchantedTears, TragicItems.EnchantedTears, Items.clay_ball, Items.clay_ball
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Projectile, 3),
@@ -925,7 +925,7 @@ public class TragicRecipes {
 				"xyx",
 				" x ",
 				'x', Blocks.gravel,
-				'y', TragicItems.LifeWater
+				'y', TragicItems.EnchantedTears
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.cobblestone, 1),
@@ -1197,15 +1197,15 @@ public class TragicRecipes {
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 0),
-			Blocks.sand, TragicItems.LifeWater, TragicItems.LivingClay
+			Blocks.sand, TragicItems.EnchantedTears, TragicItems.LivingClay
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 1),
-			Blocks.dirt, TragicItems.LifeWater, TragicItems.LivingClay
+			Blocks.dirt, TragicItems.EnchantedTears, TragicItems.LivingClay
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 2),
-			Blocks.netherrack, TragicItems.LifeWater, TragicItems.LivingClay
+			Blocks.netherrack, TragicItems.EnchantedTears, TragicItems.LivingClay
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.lit_pumpkin, 1),
@@ -1300,7 +1300,7 @@ public class TragicRecipes {
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CelestialDiamond, 1),
-			TragicItems.LifeWater, TragicItems.LunarPowder, TragicItems.TimeEssence, Items.diamond
+			TragicItems.EnchantedTears, TragicItems.LunarPowder, TragicItems.TimeEssence, Items.diamond
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DimensionalKey), 

@@ -110,8 +110,8 @@ public class EntityDropHelper {
 				true);
 		
 		addToDropList(EntityPirah.class, new EntityDrop[][] {{new EntityDrop(25, new ItemStack(Items.fish, 1, 0), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.fish, 1, 2),
-				new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.LifeWater), new EntityDrop(15, TragicItems.Tentacle)},
-			{new EntityDrop(5, TragicItems.LifeWater)},
+				new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.EnchantedTears), new EntityDrop(15, TragicItems.Tentacle)},
+			{new EntityDrop(5, TragicItems.EnchantedTears)},
 			{new EntityDrop(25, new ItemStack(Items.fish, 1, 0), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.fish, 1, 2),
 				new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(25, TragicItems.Tentacle)},
 			{new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(10, Items.fire_charge)}},
@@ -205,7 +205,7 @@ public class EntityDropHelper {
 				new EntityDrop(10, TragicItems.CelestialSteel), new EntityDrop(10, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.LightningOrb)}});
 		
 		addToDropList(EntityClaymation.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LivingClay)}, {new EntityDrop(5, TragicItems.Talisman), new EntityDrop(10, TragicBlocks.Wax),
-			new EntityDrop(5, TragicItems.LifeWater), new EntityDrop(15, Items.clay_ball), new EntityDrop(5, Blocks.clay)}});
+			new EntityDrop(5, TragicItems.EnchantedTears), new EntityDrop(15, Items.clay_ball), new EntityDrop(5, Blocks.clay)}});
 		
 		//Alpha Drops
 		
