@@ -27,9 +27,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 public class KeyInputEvents extends Gui {
-	
+
 	private static ResourceLocation hackedTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky.png");
 	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity.png");
+
+	private static final float[][] rgb = new float[][] {{1F, 1F, 1F}, {1F, 0.3F, 0.3F}, {0.3F, 0.9F, 0.9F}, {0F, 0.8F, 0F}, {1F, 0.3F, 1F}, {0.8F, 0F, 0F}, {0F, 0F, 0.8F},
+		{0.8F, 0.3F, 0.5F}, {0.6F, 0.3F, 0.9F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.9F}, {0F, 0F, 0F}};
+	private static int counter;
+	private static int color;
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
@@ -103,39 +108,50 @@ public class KeyInputEvents extends Gui {
 				player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 			}
 		}
-		
+
 		boolean flag = TragicConfig.allowHacked ? player != null && player.isPotionActive(TragicPotion.Hacked) : false;
 		if (!flag && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 	}
-	
+
 	@SubscribeEvent
 	public void renderHackedEffects(RenderGameOverlayEvent event)
 	{
 		if (event.type != ElementType.PORTAL || !TragicConfig.allowHacked) return;
-		
+
 		Minecraft mc = Minecraft.getMinecraft();
-		
+
 		boolean flag = mc.thePlayer.isPotionActive(TragicPotion.Hacked);
 		boolean flag2 = mc.thePlayer.isPotionActive(TragicPotion.Divinity);
 		boolean flag3 = mc.thePlayer.isPotionActive(TragicPotion.Convergence);
-		
+
 		if (!flag && !flag2 && !flag3) return;
-		
+
 		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
-		
+
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		float f = 2.25F;
 		float trans = flag ? MathHelper.cos(event.partialTicks / f) * 2.625F - f : 0.0725F;
-		GL11.glColor4f(1.0F, flag3 ? 0.0F : 1.0F, flag3 ? 0.0F : 1.0F, trans);
+
+		float r = rgb[color][0];
+		float g = flag3 ? 0F : rgb[color][1];
+		float b = flag3 ? 0F : rgb[color][2];
+		GL11.glColor4f(r, g, b, trans);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		
+
 		drawTexturedModalRect(0, 0, 0, 0, mc.displayWidth, mc.displayHeight);
-		
+
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);
+
+		counter++;
+		if (counter > 60 + rand.nextInt(20))
+		{
+			counter = 0;
+			color = 0; //rand.nextInt(12);
+		}
 	}
 }
