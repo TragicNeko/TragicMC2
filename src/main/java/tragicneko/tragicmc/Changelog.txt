@@ -3220,7 +3220,7 @@ Adding more of the Lores as I do other random stuff
 Moved proxy registrations into the init due to how 1.8 is currently setup regarding item/block renders
 Rearranged the registration cycle of the mod, this shouldn't affect anything
 
-2.40.1904++ <186> (January 14, 2015)
+2.40.1929 <186> (January 14, 2015)
 Removed all of the short and byte specifications in the main doomsday class, this should clean up some code
 Did some more experimentation with updating to 1.8, added a couple of new (commented out) things to prep for that
 Slowed down speed of Overlord Mortors, allow Dimensional Anomalies to fall to the ground slowly so that they don't hang up in the air if they are spawned there
@@ -3251,14 +3251,19 @@ Added sneak ticks to Doomsday effects, this is due to the fact that some combina
 cancel the extended one immediately and prevent the combination from being activated
 It now takes about a second of sneaking to cancel an extended one, but the effect is stalled while sneaking to prevent extra doom use
 Lifewater renamed to Enchanted Tears, since it is technically tears (ghast tears), it now has an "enchanted" glow to match the name
+I just reviewed all of the armor textures, along with their damaged ones and they all work fine, so this is possibly another build glitch with textures
+
+2.40.1929++ <187> (January 22, 2015)
+Working on the Overlord Core model, fixed initial issue with the model being rotated 180 degrees from the overlord's actual rotation
+Experimented with a rainbow effect for the Divinity effect, this will probably not be used due to other reasons
 
 TODO still
-Add the model and finish up the Overlord Core's abilities
 Finish the other two forms of the Overlord
-Add armor models for the higher tiered armors and fix the damaged textures for other armors
+Add armor models for the higher tiered armors
 Add the Overlord armor set, along with it's model, add it's health boost abilities
 Create particles and add mob sounds
 Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
+Add new specific mobs for some of the more "special" biome sets
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
