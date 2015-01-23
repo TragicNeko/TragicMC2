@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.network;
 
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -11,7 +12,7 @@ public class MessageHandlerAmulet implements IMessageHandler<MessageAmulet, IMes
 	@Override
 	public MessageAmulet onMessage(MessageAmulet message, MessageContext ctx) {
 		PropertyAmulets amulets = PropertyAmulets.get(TragicMC.proxy.getPlayerFromMessageCtx(ctx));
-		if (amulets != null) amulets.loadNBTData(message.tag);
+		if (amulets != null && TragicConfig.allowAmulets) amulets.loadNBTData(message.tag);
 		
 		return null;
 	}

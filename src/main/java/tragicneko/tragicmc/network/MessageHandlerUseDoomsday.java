@@ -28,7 +28,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 		if (player == null) return null;
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (doom == null) return null;
+		if (doom == null || !TragicConfig.allowDoom || !TragicConfig.allowDoomsdays) return null;
 
 		ItemStack stack = message.stack;
 		Doomsday doomsday = null;
