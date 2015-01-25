@@ -1,5 +1,10 @@
 package tragicneko.tragicmc.events;
 
+import java.util.UUID;
+
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -13,12 +18,13 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
@@ -30,7 +36,7 @@ import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class MiscEvents {
-	
+
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
 	{
@@ -94,7 +100,7 @@ public class MiscEvents {
 						event.entity.motionY *= 1.15D;
 						event.entity.motionZ *= 1.2D;
 					}
-					
+
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[4]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
@@ -118,7 +124,7 @@ public class MiscEvents {
 					event.entity.motionX = d1 / f2 * d3 * 0.800000011920929D + event.entity.motionX * 0.60000000298023224D;
 					event.entity.motionZ = d2 / f2 * d3 * 0.800000011920929D + event.entity.motionZ * 0.60000000298023224D;
 					event.entity.motionY += 1.45;
-					
+
 					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[15]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
@@ -146,7 +152,7 @@ public class MiscEvents {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onMagicAttack(LivingAttackEvent event)
 	{
@@ -154,7 +160,7 @@ public class MiscEvents {
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			ItemStack stack = player.getEquipmentInSlot(0);
-			
+
 			if (stack != null && (stack.getItem() == TragicItems.Thardus || stack.getItem() == TragicItems.FrozenLightning) && !event.source.isMagicDamage())
 			{
 				if (event.isCancelable()) event.setCanceled(true);
@@ -325,7 +331,7 @@ public class MiscEvents {
 			event.cost = 5 + extra;
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void denyDimensionVanillaGen(OreGenEvent.GenerateMinable event)
 	{
@@ -334,4 +340,35 @@ public class MiscEvents {
 			if (event.hasResult()) event.setResult(Result.DENY);
 		}
 	}
+
+	@SubscribeEvent
+	public void onOverlordArmorUpdate(LivingUpdateEvent event)
+	{
+		if (event.entityLiving.worldObj.isRemote) return;
+
+		if (event.entityLiving instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			int i = 0;
+
+			for (int a = 1; a < 5; a++)
+			{				
+				if (player.getEquipmentInSlot(a) != null)
+				{
+					Item armor = player.getEquipmentInSlot(a).getItem();
+
+					if (armor == TragicItems.OverlordHelm || 
+							armor == TragicItems.OverlordPlate ||
+							armor == TragicItems.OverlordLegs ||
+							armor == TragicItems.OverlordBoots) i++;
+				}
+			}
+			
+			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", 5.0 * i, 0);
+			IAttributeInstance ins = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
+			if (ins != null) ins.removeModifier(mod);
+			if (i > 0 && ins != null) ins.applyModifier(mod);
+		}
+	}
+
 }

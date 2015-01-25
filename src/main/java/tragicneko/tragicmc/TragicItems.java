@@ -44,6 +44,7 @@ import tragicneko.tragicmc.items.armor.ArmorDark;
 import tragicneko.tragicmc.items.armor.ArmorHunter;
 import tragicneko.tragicmc.items.armor.ArmorLight;
 import tragicneko.tragicmc.items.armor.ArmorMercury;
+import tragicneko.tragicmc.items.armor.ArmorOverlord;
 import tragicneko.tragicmc.items.armor.ArmorSkull;
 import tragicneko.tragicmc.items.armor.ArmorTungsten;
 import tragicneko.tragicmc.items.food.ItemBanana;
@@ -107,26 +108,20 @@ public class TragicItems {
 	public static Item DarkIngot, DarkHelm, DarkPlate, DarkLegs, DarkBoots, PitchBlack;
 	public static Item LightIngot, LightHelm, LightPlate, LightLegs, LightBoots, BlindingLight, EverlastingLight;
 
-	//Uncraftable weapon/armor set, found only in the Tragic Dimension
-	public static Item TragicHelm, TragicPlate, TragicLegs, TragicBoots, TragicHellraiser;
+	public static Item OverlordHelm, OverlordPlate, OverlordLegs, OverlordBoots;
 
-	//Can be found in random boss structures, can also be crafted from drops from the Time Controller
 	public static Item CelestialAegis, CelestialLongbow, CelestialJack, CelestialSteel;
 	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, WitheringAxe;
 
-	//The "Epic" Weapons, uncraftable super rare weapons in the Tragic Dimension
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
 
-	//Alpha drops, from the Overlord and the Administrator (way future boss)
 	public static Item Sentinel, Password;
 
-	//Weather/Time items
 	public static Item RainDanceTalisman, SunnyDayTalisman, ThunderstormTalisman, TimeManipulatorTalisman;
 	public static Item Talisman, MoonlightTalisman, SynthesisTalisman, HydrationTalisman, LightningRodTalisman;
 
 	public static Item Ruby, Sapphire, RubyCharm, SapphireCharm, DiamondCharm, EmeraldCharm, AwakeningStone, ObsidianOrb, CryingObsidianOrb, BleedingObsidianOrb, DyingObsidianOrb;
 
-	//Boss drops
 	public static Item LightParticles; //Apis
 	public static Item EmpariahClaw; //Empariah
 	public static Item DeathlyHallow; //Skultar
@@ -258,7 +253,7 @@ public class TragicItems {
 	private static final ArmorMaterial armorTungsten = EnumHelper.addArmorMaterial("TUNGSTEN", 22, new int[] {3, 6, 4, 2}, 10); //15
 	private static final ArmorMaterial armorDark = EnumHelper.addArmorMaterial("DARK", 18, new int[] {3, 7, 5, 3}, 6); //18
 	private static final ArmorMaterial armorLight = EnumHelper.addArmorMaterial("LIGHT", 26, new int[] {5, 7, 6, 4}, 18); //22
-	private static final ArmorMaterial armorTragic = EnumHelper.addArmorMaterial("TRAGIC", 35, new int[] {5, 8, 7, 4}, 26); //24
+	private static final ArmorMaterial armorOverlord = EnumHelper.addArmorMaterial("OVERLORD", 35, new int[] {5, 8, 7, 4}, 26); //24
 
 	public static void load()
 	{
@@ -358,6 +353,19 @@ public class TragicItems {
 
 		DarkBoots = (new ArmorDark(armorDark, 3, Doomsday.Fear).setUnlocalizedName("tragicmc.darkBoots").setTextureName("tragicmc:DarkBoots" + textureRes));
 		GameRegistry.registerItem(DarkBoots, "darkBoots");
+		
+		
+		OverlordHelm = (new ArmorOverlord(armorOverlord, 0, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordHelm").setTextureName("tragicmc:OverlordHelm" + textureRes));
+		GameRegistry.registerItem(OverlordHelm, "overlordHelm");
+		
+		OverlordPlate = (new ArmorOverlord(armorOverlord, 1, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordPlate").setTextureName("tragicmc:OverlordPlate" + textureRes));
+		GameRegistry.registerItem(OverlordPlate, "overlordPlate");
+		
+		OverlordLegs = (new ArmorOverlord(armorOverlord, 2, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordLegs").setTextureName("tragicmc:OverlordLegs" + textureRes));
+		GameRegistry.registerItem(OverlordLegs, "overlordLegs");
+		
+		OverlordBoots = (new ArmorOverlord(armorOverlord, 3, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordBoots").setTextureName("tragicmc:OverlordBoots" + textureRes));
+		GameRegistry.registerItem(OverlordBoots, "overlordBoots");
 
 		//Weapon Registrations
 		MercuryDagger = (new TragicWeapon(toolMercury, Doomsday.PoisonBreak).setUnlocalizedName("tragicmc.mercuryDagger").setTextureName("tragicmc:MercuryDagger" + textureRes));
