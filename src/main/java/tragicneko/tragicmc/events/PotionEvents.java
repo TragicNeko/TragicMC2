@@ -157,6 +157,12 @@ public class PotionEvents {
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76434_w)) event.entityLiving.removePotionEffect(TragicPotion.Submission.id);
 		}
+		
+		if (TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity))
+		{
+			if (entity.getHealth() < entity.getMaxHealth() && rand.nextBoolean() && entity.ticksExisted % 10 == 0) entity.heal(1.0F);
+			if (TragicConfig.allowHacked && entity.isPotionActive(TragicPotion.Hacked)) entity.removePotionEffect(TragicPotion.Hacked.id);
+		}
 
 		if (TragicConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption))
 		{
