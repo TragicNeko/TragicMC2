@@ -14,40 +14,18 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.common.FMLLog;
 
 public class TragicEntityList
-{
-    private static final Logger logger = LogManager.getLogger();
-    /**
-     * Provides a mapping between entity classes and a string
-     */
+{    
     public static Map<String, Class> stringToClassMapping = new HashMap();
-    /**
-     * Provides a mapping between a string and an entity classes
-     */
     public static Map<Class, String> classToStringMapping = new HashMap();
-    /**
-     * provides a mapping between an entityID and an Entity Class
-     */
     public static Map<Integer, Class> IDtoClassMapping = new HashMap();
-    /**
-     * provides a mapping between an Entity Class and an entity ID
-     */
     private static Map<Class, Integer> classToIDMapping = new HashMap();
-    /**
-     * Maps entity names to their numeric identifiers
-     */
     public static Map<String, Integer> stringToIDMapping = new HashMap();
-    /**
-     * This is a HashMap of the Creative Entity Eggs/Spawners.
-     */
     public static HashMap entityEggs = new LinkedHashMap();
-    private static final String __OBFID = "CL_00001538";
 
-    /**
-     * adds a mapping between Entity classes and both a string representation and an ID
-     */
     public static void addMapping(Class par0Class, String par1Str, int par2)
     {
         if (stringToClassMapping.containsKey(par1Str))
@@ -68,9 +46,6 @@ public class TragicEntityList
         }
     }
 
-    /**
-     * Adds a entity mapping with egg info.
-     */
     public static void addMapping(Class par0Class, String par1Str, int par2, int par3, int par4)
     {
         addMapping(par0Class, par1Str, par2);
@@ -83,9 +58,6 @@ public class TragicEntityList
         entityEggs.put(Integer.valueOf(par2), new TragicEntityList.EntityEggInfo(par2, par3, par4, eggType));
     }
 
-    /**
-     * Create a new instance of an entity in the world by using the entity name.
-     */
     public static Entity createEntityByName(String par0Str, World par1World)
     {
         Entity entity = null;
@@ -107,9 +79,6 @@ public class TragicEntityList
         return entity;
     }
 
-    /**
-     * create a new instance of an entity from NBT store
-     */
     public static Entity createEntityFromNBT(NBTTagCompound par0NBTTagCompound, World par1World)
     {
         Entity entity = null;
@@ -154,23 +123,18 @@ public class TragicEntityList
             }
             catch (Exception e)
             {
-                FMLLog.log(Level.ERROR, e,
-                        "An Entity %s(%s) has thrown an exception during loading, its state cannot be restored. Report this to the mod author",
-                        par0NBTTagCompound.getString("id"), oclass.getName());
+                TragicMC.logError("An Entity " + par0NBTTagCompound.getString("id") + "(" + oclass.getName() + ") has thrown an exception during loading, its state cannot be restored. Report this.");
                 entity = null;
             }
         }
         else
         {
-            logger.warn("Skipping Entity with id " + par0NBTTagCompound.getString("id"));
+            TragicMC.logWarning("Skipping Entity with id " + par0NBTTagCompound.getString("id"));
         }
 
         return entity;
     }
 
-    /**
-     * Create a new instance of an entity in the world by using an entity ID.
-     */
     public static Entity createEntityByID(int par0, World par1World)
     {
         Entity entity = null;
@@ -191,7 +155,7 @@ public class TragicEntityList
 
         if (entity == null)
         {
-            logger.warn("Skipping Entity with id " + par0);
+            TragicMC.logWarning("Skipping Entity with id " + par0);
         }
 
         return entity;
@@ -238,24 +202,10 @@ public class TragicEntityList
         return Collections.unmodifiableSet(stringToIDMapping.keySet());
     }
 
-    static
-    {
-    	
-    }
-
     public static class EntityEggInfo
         {
-            /**
-             * The entityID of the spawned mob
-             */
             public final int spawnedID;
-            /**
-             * Base color of the egg
-             */
             public final int primaryColor;
-            /**
-             * Color of the egg spots
-             */
             public final int secondaryColor;
             
             public final EnumEggType eggType;

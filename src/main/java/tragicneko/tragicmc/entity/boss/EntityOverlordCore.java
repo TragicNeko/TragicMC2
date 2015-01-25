@@ -97,7 +97,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 	@Override
 	public void onLivingUpdate()
-	{		
+	{
 		double d0;
 		double d1;
 		double d2;
