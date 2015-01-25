@@ -3256,26 +3256,32 @@ I just reviewed all of the armor textures, along with their damaged ones and the
 2.40.1929++ <187> (January 22, 2015)
 Working on the Overlord Core model, fixed initial issue with the model being rotated 180 degrees from the overlord's actual rotation
 Experimented with a rainbow effect for the Divinity effect, this will probably not be used due to other reasons
+Added the Overlord Armor, each piece gives you 5 extra health (2.5 hearts), allowing you to have up to 20 hearts of health
+Allow Divinity to heal you some randomly, as well, make it remove the Hacked effect from you
+Overlord armor now prevents you from getting weakness/cripple, essentially stopping the respawn debuffs, although they will still affect you for a tick so you
+will have the debuffed health amount
+Updated some code in the EntityList I use for my spawn eggs
+
 
 TODO still
 Finish the other two forms of the Overlord
 Add armor models for the higher tiered armors
-Add the Overlord armor set, along with it's model, add it's health boost abilities
+Add the Overlord armor model
 Create particles and add mob sounds
 Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
-Add new specific mobs for some of the more "special" biome sets
+Add new specific mobs for some of the more "special" biome sets, change some mobs to have variants for different biomes and such
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
-Create the Core's model
-The Combat Form will be worked on next, it'll work like the Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
+Finish up the Core's model, update entity class to use datawatchers for animations
+The Combat Form will be worked on next, it'll work like the Stin in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
 The Combat form will always generate Corrupted gas around itself, which will probably inflict corruption on mobs
 The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
 When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
 melee hits inflict extra durability damage to the attacking entity's weapons, harvesters and nano swarms will constantly spawn around it
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
-Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it
+Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it, it stays at a constant y level
 Hunter = Aggressive mob that actively tracks nearby entities and "latches" onto them, inflicting armor piercing damage per tick
 Seeker = Passive mob that "spots" nearby enemies for other entities to attack, make a loud shrieking sound while tracking a target, if the entity is tracked for a really long
 time, the seeker can actually kill the target with it's gaze by slowly building up armor piercing damage done to it, in other words, these must be killed when they spawn and see
