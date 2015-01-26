@@ -62,30 +62,6 @@ public abstract class Doomsday {
 	public static final Doomsday GuardiansCall = (new DoomsdayGuardian(39));
 	public static final Doomsday Harden = (new DoomsdayHarden(40));
 	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
-	
-	//Scroll only Doomsdays
-	//Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
-	//Life Share, Influence, gets the average percentage of health each mob has around you and sets all to the average (includes your health in both calculations)
-	//Death Mark, Overflow, a nearby enemy is inflicted with Submission X and gets damaged randomly for a few minutes
-	//Paradigm Shift, Influence, activates a random Doomsday effect
-	//Adrenaline, Crisis, gives you a Speed Boost V for like 5 seconds, higher amplifier for lower health that you have
-	//Escape, World Shaper, creates multiple explosive particles around the user and inflicts blindness on all nearby mobs
-	//Gift of the Gods, World Shaper, makes it rain random luxury drops, like diamond, ruby, sapphire, etc. may also do stuff like coal, cake or sushi
-	//Gambler, Influence, gives you a random Potion Effect for a random duration and random amplifier
-	//Soulstealer, Influence, steals health from the mob closest to you and gives it to you
-	//Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
-	//Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
-	//Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
-	//Magnetizer, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
-	//Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
-	//Dimentia, Influence, mobs around you start attacking each other
-	//Delete, World Shaper, fires a single "Drill" projectile that instantly mines blocks that it goes through
-	//Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
-	//Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except non instantaneous mining
-	//Twilight Zone, Influence, any mobs near you get inflicted with Weakness XGHVWRBOA and pretty much do no damage at all to anything, meanwhile you get Strength XGIAHR and can oneshot most things
-	//Danger Zone, Crisis, any mobs in the area get exploded and get stunned
-	//Support, Overflow, increase nearby player's doom at the cost of yours
-	//Hacker, Influence, clear all potion effects on all entities nearby
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
