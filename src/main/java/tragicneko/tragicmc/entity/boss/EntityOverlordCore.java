@@ -55,6 +55,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.setSize(5.0F, 5.0F);
 		this.targetY = 50.0D;
 		this.noClip = true;
+		this.ignoreFrustumCheck = true;
 	}
 
 	@Override
