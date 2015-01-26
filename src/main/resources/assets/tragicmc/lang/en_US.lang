@@ -304,6 +304,8 @@ item.tragicmc.celestialAegis.name=Celestial Aegis
 item.tragicmc.celestialLongbow.name=Celestial Longbow
 item.tragicmc.celestialJack.name=Celestial Jack
 
+item.tragicmc.silentHellraiser.name=Silent Hellraiser
+
 item.tragicmc.titan.name=The Titan
 item.tragicmc.paranoia.name=The Paranoia
 item.tragicmc.splinter.name=The Splinter
@@ -311,7 +313,12 @@ item.tragicmc.butcher.name=The Butcher
 item.tragicmc.thardus.name=The Thardus
 item.tragicmc.dragonFang.name=Dragon Fang
 
+item.tragicmc.overlordHelm.name=Overlord Helm
+item.tragicmc.overlordPlate.name=Overlord Plate
+item.tragicmc.overlordLegs.name=Overlord Legs
+item.tragicmc.overlordBoots.name=Overlord Boots
 item.tragicmc.sentinel.name=The Sentinel
+
 item.tragicmc.password.name=The Password
 
 item.tragicmc.gravitySpike.name=Gravity Spike

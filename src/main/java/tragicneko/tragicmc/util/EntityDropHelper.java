@@ -63,7 +63,7 @@ public class EntityDropHelper {
 		new EntityDrop(1, TragicItems.Splinter), new EntityDrop(1, TragicItems.Butcher), new EntityDrop(1, TragicItems.Thardus), new EntityDrop(3, TragicItems.DragonFang),
 		new EntityDrop(8, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1), new ItemStack(TragicBlocks.CompactOre, 1, 2),
 				new ItemStack(TragicBlocks.CompactOre, 1, 3), new ItemStack(TragicBlocks.CompactOre, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
-		new EntityDrop(15, getDoomsdayScrollStacks())};
+		new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(1, new ItemStack(TragicItems.SilentHellraiser))};
 
 	static
 	{
@@ -208,9 +208,9 @@ public class EntityDropHelper {
 			new EntityDrop(5, TragicItems.EnchantedTears), new EntityDrop(15, Items.clay_ball), new EntityDrop(5, Blocks.clay)}});
 		
 		//Alpha Drops
-		
 		addToDropList(EntityOverlordCore.class, new EntityDrop[][]{{new EntityDrop(25, TragicItems.OverlordEye)}, {new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(5, TragicItems.CelestialSteel),
-			new EntityDrop(25, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink)}});
+			new EntityDrop(25, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink), new EntityDrop(5, new ItemStack[] {new ItemStack(TragicItems.OverlordBoots), new ItemStack(TragicItems.OverlordPlate),
+					new ItemStack(TragicItems.OverlordHelm), new ItemStack(TragicItems.OverlordLegs)})}});
 	}
 
 	public static void addToDropList(DropEntry entry)

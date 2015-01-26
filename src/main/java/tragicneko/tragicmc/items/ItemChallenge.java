@@ -41,7 +41,8 @@ public class ItemChallenge extends Item {
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen")),
 		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Aegar") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Aegar"))
+		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Aegar") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Aegar")),
+		new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.SkyFruit), new ItemStack(TragicItems.GooeyFruit)
 	};
 
 	private static final ItemStack[] rewards = new ItemStack[] {new ItemStack(Items.diamond, itemRand.nextInt(3) + 1), new ItemStack(Items.emerald, itemRand.nextInt(3) + 1),
@@ -62,7 +63,8 @@ public class ItemChallenge extends Item {
 		new ItemStack(TragicItems.ChickenAmulet), new ItemStack(TragicItems.ClaymationAmulet), new ItemStack(TragicItems.YetiAmulet), new ItemStack(TragicItems.MartyrAmulet),
 		new ItemStack(TragicItems.GoldenSushi, 1 + itemRand.nextInt(3)), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Butcher),
 		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.EndermanAmulet),
-		new ItemStack(TragicItems.BloodSacrifice), new ItemStack(TragicItems.NourishmentSacrifice),
+		new ItemStack(TragicItems.BloodSacrifice), new ItemStack(TragicItems.NourishmentSacrifice), new ItemStack(TragicItems.SilentHellraiser),
+		new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.SkyFruit), new ItemStack(TragicItems.GooeyFruit)
 	};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};

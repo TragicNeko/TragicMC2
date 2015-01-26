@@ -113,7 +113,7 @@ public class TragicItems {
 	public static Item CelestialAegis, CelestialLongbow, CelestialJack, CelestialSteel;
 	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, WitheringAxe;
 
-	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang;
+	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang, SilentHellraiser;
 
 	public static Item Sentinel, Password;
 
@@ -412,6 +412,10 @@ public class TragicItems {
 
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
+		
+		SilentHellraiser = (new TragicWeapon(toolTragic, null) {
+		}.setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" + textureRes));
+		GameRegistry.registerItem(SilentHellraiser, "silentHellraiser");
 
 		//Epic weapons
 		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" + textureRes));
@@ -430,7 +434,7 @@ public class TragicItems {
 		GameRegistry.registerItem(Paranoia, "paranoia");
 
 		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
-		GameRegistry.registerItem(DragonFang, "dragonFang");
+		GameRegistry.registerItem(DragonFang, "dragonFang");		
 		
 		//Big boss weapons
 		Sentinel = (new WeaponSentinel(toolSentinel, Doomsday.Sharpen).setUnlocalizedName("tragicmc.sentinel").setTextureName("tragicmc:Sentinel" + textureRes));
