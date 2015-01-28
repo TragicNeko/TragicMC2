@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import tragicneko.tragicmc.client.model.ModelGuardianShield;
-import tragicneko.tragicmc.entity.EntityGuardianShield;
+import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 
 public class RenderGuardianShield extends Render {
 

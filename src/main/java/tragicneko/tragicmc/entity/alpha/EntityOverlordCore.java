@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.entity.boss;
+package tragicneko.tragicmc.entity.alpha;
 
 import static tragicneko.tragicmc.TragicConfig.overlordCoreStats;
 
@@ -26,6 +26,7 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 

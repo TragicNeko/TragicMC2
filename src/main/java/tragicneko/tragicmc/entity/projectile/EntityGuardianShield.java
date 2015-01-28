@@ -1,7 +1,6 @@
-package tragicneko.tragicmc.entity;
+package tragicneko.tragicmc.entity.projectile;
 
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 import net.minecraft.entity.Entity;

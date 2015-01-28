@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.EntityGuardianShield;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
+import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCocoon;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCombat;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 
 public class EntityNanoSwarm extends TragicMob {
 

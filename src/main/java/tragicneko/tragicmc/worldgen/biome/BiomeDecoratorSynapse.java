@@ -3,7 +3,7 @@ package tragicneko.tragicmc.worldgen.biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 
 public class BiomeDecoratorSynapse extends BiomeDecorator {
 

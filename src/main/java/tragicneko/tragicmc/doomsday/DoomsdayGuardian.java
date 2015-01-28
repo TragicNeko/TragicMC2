@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.EntityGuardianShield;
+import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayGuardian extends Doomsday {

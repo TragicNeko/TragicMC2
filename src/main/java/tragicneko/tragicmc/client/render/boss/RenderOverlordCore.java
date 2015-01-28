@@ -7,8 +7,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelOverlordCore;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
-import tragicneko.tragicmc.entity.boss.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderOverlordCore extends RenderBoss {
