@@ -450,8 +450,8 @@ public class TragicConfig {
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "titan-LightningAbsorb", true).getBoolean(true)); //33
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "witheringAxe-WitherHit", true).getBoolean(true));
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "witheringAxe-WitherSkull", true).getBoolean(true));
-		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "WitheringAxe-BlueWitherSkull", true).getBoolean(true));
-		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "witheringAxe-BlueWitherSkull", true).getBoolean(true));
+		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "dragonFang-Flamethrower", true).getBoolean(true)); //37
 		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
 		
 		mapping = 0;
@@ -492,7 +492,7 @@ public class TragicConfig {
 		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "witheringAxe-WitherHitCost", 5).getInt(5));
 		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "witheringAxe-WitherSkullCost", 5).getInt(5));
 		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "witheringAxe-BlueWitherSkullCost", 15).getInt(15));
-		//nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "", 0).getInt(0));
+		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "dragonFang-FlamethrowerCost", 3).getInt(3));
 		//nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "", 0).getInt(0));
 
 		config.addCustomCategoryComment(catDoom, "Set various aspects of Doom and Doomsdays, refill amounts scale to total doom amount. Set each Doomsday and weapon ability's cost and allowances.");

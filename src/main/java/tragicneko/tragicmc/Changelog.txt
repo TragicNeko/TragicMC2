@@ -3262,6 +3262,10 @@ Overlord armor now prevents you from getting weakness/cripple, essentially stopp
 will have the debuffed health amount
 Updated some code in the EntityList I use for my spawn eggs
 Added the Silent Hellraiser, it'll have no preset enchantment tiers, it'll be a boss drop and challenge reward, it is stronger than epic weapons but has no doomsday
+Added Flamethrower ability to Dragon Fang
+Invulnerability no longer negates Flight
+Clarity now renders the particles instead of boxes, though it's harder to see in some instances it has the same effect
+
 
 TODO still
 Convert the rewards from the challenge items to use a weighed system instead of a completely random system, this should mean better rewards

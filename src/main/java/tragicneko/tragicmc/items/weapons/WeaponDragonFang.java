@@ -6,11 +6,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -61,22 +62,45 @@ public class WeaponDragonFang extends EpicWeapon {
 		if (vec == null) return par1ItemStack;
 
 		double d4 = vec.xCoord - par3EntityPlayer.posX;
-		double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
+		double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight());
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
-		if (canUseAbility(doom,  TragicConfig.nonDoomsdayAbilityCosts[10]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[10])
+		if (getStackCooldown(par1ItemStack) == 0)
 		{
-			EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
-					d6 + itemRand.nextDouble() - itemRand.nextDouble());
-			rocket.posX += d4 * 0.115D;
-			rocket.posY = par3EntityPlayer.posY + 0.6D;
-			rocket.posZ += d6 * 0.115D;
-			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+			if (par3EntityPlayer.isSneaking())
+			{
+				if (canUseAbility(doom,  TragicConfig.nonDoomsdayAbilityCosts[10]) && TragicConfig.nonDoomsdayAbilities[10])
+				{
+					EntityLargeFireball rocket = new EntityLargeFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
+							d6 + itemRand.nextDouble() - itemRand.nextDouble());
+					rocket.posX += d4 * 0.115D;
+					rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
+					rocket.posZ += d6 * 0.115D;
+					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(- TragicConfig.nonDoomsdayAbilityCosts[10]);
-			setStackCooldown(par1ItemStack, 5);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(- TragicConfig.nonDoomsdayAbilityCosts[10]);
+					setStackCooldown(par1ItemStack, 5);
+				}
+			}
+			else
+			{
+				if (canUseAbility(doom,  TragicConfig.nonDoomsdayAbilityCosts[37]) && TragicConfig.nonDoomsdayAbilities[37])
+				{
+					for (int i = 0; i < 7; i++)
+					{
+						EntitySmallFireball rocket = new EntitySmallFireball(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
+								d6 + itemRand.nextDouble() - itemRand.nextDouble());
+						rocket.posX += d4 * 0.115D;
+						rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
+						rocket.posZ += d6 * 0.115D;
+						par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+					}
+
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(- TragicConfig.nonDoomsdayAbilityCosts[37]);
+					setStackCooldown(par1ItemStack, 5);
+				}
+			}
 		}
-
 
 		return par1ItemStack;
 	}
@@ -92,7 +116,7 @@ public class WeaponDragonFang extends EpicWeapon {
 			{
 				EntityPlayerMP mp = (EntityPlayerMP) entity;
 				PropertyDoom doom = PropertyDoom.get(mp);
-				
+
 				if (doom != null && !mp.capabilities.isCreativeMode) doom.increaseDoom(TragicConfig.nonDoomsdayAbilityCosts[11]);
 			}
 		}
