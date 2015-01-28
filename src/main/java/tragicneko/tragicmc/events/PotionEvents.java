@@ -247,20 +247,6 @@ public class PotionEvents {
 			}
 		}
 
-		if (TragicConfig.allowInvulnerability && event.entityLiving.isPotionActive(TragicPotion.Invulnerability))
-		{
-			if (event.entityLiving instanceof EntityPlayer)
-			{
-				if (!((EntityPlayer)event.entityLiving).capabilities.isCreativeMode)
-				{
-					if (TragicConfig.allowFlight && ((EntityPlayer)event.entityLiving).isPotionActive(TragicPotion.Flight))
-					{
-						event.entityLiving.removePotionEffect(TragicPotion.Flight.id);
-					}
-				}
-			}
-		}
-
 		if (TragicConfig.allowFlight && entity.isPotionActive(TragicPotion.Flight.id))
 		{
 			int a = entity.getActivePotionEffect(TragicPotion.Flight).getDuration();
@@ -541,7 +527,7 @@ public class PotionEvents {
 							double d3 = target.width * (rand.nextDouble() - rand.nextDouble());
 							EntityPortalFX fx = new EntityPortalFX(target.worldObj, target.posX + d1, target.posY + d2, target.posZ + d3, 0.0, 0.0, 0.0);
 							fx.setRBGColorF(1.0F, 1.0F, 1.0F);
-							target.worldObj.spawnEntityInWorld(fx);
+							Minecraft.getMinecraft().effectRenderer.addEffect(fx);
 						}
 					}
 				}
