@@ -390,7 +390,7 @@ public class TragicChunkProvider implements IChunkProvider
 		}
 
 		boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
-		for (k1 = 0; doGen && k1 < 16; ++k1)
+		for (k1 = 0; doGen && k1 < 32; ++k1)
 		{
 			l1 = k + this.rand.nextInt(16) + 8;
 			i2 = this.rand.nextInt(256);

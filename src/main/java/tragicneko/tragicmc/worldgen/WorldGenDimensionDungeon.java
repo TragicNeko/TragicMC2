@@ -15,39 +15,28 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DungeonHooks;
 
 public class WorldGenDimensionDungeon extends WorldGenerator {
-
-	public static final ChestGenHooks chestHook = TragicItems.NetherStructureHook;
 	
 	@Override
-	public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 		byte b0 = 3;
-		int l = p_76484_2_.nextInt(2) + 2;
-		int i1 = p_76484_2_.nextInt(2) + 2;
+		int l = rand.nextInt(2) + 2;
+		int i1 = rand.nextInt(2) + 2;
 		int j1 = 0;
 		int k1;
 		int l1;
 		int i2;
 
-		for (k1 = p_76484_3_ - l - 1; k1 <= p_76484_3_ + l + 1; ++k1)
+		for (k1 = x - l - 1; k1 <= x + l + 1; ++k1)
 		{
-			for (l1 = p_76484_4_ - 1; l1 <= p_76484_4_ + b0 + 1; ++l1)
+			for (l1 = y - 1; l1 <= y + b0 + 1; ++l1)
 			{
-				for (i2 = p_76484_5_ - i1 - 1; i2 <= p_76484_5_ + i1 + 1; ++i2)
+				for (i2 = z - i1 - 1; i2 <= z + i1 + 1; ++i2)
 				{
-					Material material = p_76484_1_.getBlock(k1, l1, i2).getMaterial();
+					Material material = world.getBlock(k1, l1, i2).getMaterial();
+					if (l1 == y - 1 && !material.isSolid() || l1 == y + b0 + 1 && !material.isSolid()) return false;
 
-					if (l1 == p_76484_4_ - 1 && !material.isSolid())
-					{
-						return false;
-					}
-
-					if (l1 == p_76484_4_ + b0 + 1 && !material.isSolid())
-					{
-						return false;
-					}
-
-					if ((k1 == p_76484_3_ - l - 1 || k1 == p_76484_3_ + l + 1 || i2 == p_76484_5_ - i1 - 1 || i2 == p_76484_5_ + i1 + 1) && l1 == p_76484_4_ && p_76484_1_.isAirBlock(k1, l1, i2) && p_76484_1_.isAirBlock(k1, l1 + 1, i2))
+					if ((k1 == x - l - 1 || k1 == x + l + 1 || i2 == z - i1 - 1 || i2 == z + i1 + 1) && l1 == y && world.isAirBlock(k1, l1, i2) && world.isAirBlock(k1, l1 + 1, i2))
 					{
 						++j1;
 					}
@@ -57,29 +46,29 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 
 		if (j1 >= 1 && j1 <= 5)
 		{
-			for (k1 = p_76484_3_ - l - 1; k1 <= p_76484_3_ + l + 1; ++k1)
+			for (k1 = x - l - 1; k1 <= x + l + 1; ++k1)
 			{
-				for (l1 = p_76484_4_ + b0; l1 >= p_76484_4_ - 1; --l1)
+				for (l1 = y + b0; l1 >= y - 1; --l1)
 				{
-					for (i2 = p_76484_5_ - i1 - 1; i2 <= p_76484_5_ + i1 + 1; ++i2)
+					for (i2 = z - i1 - 1; i2 <= z + i1 + 1; ++i2)
 					{
-						if (k1 != p_76484_3_ - l - 1 && l1 != p_76484_4_ - 1 && i2 != p_76484_5_ - i1 - 1 && k1 != p_76484_3_ + l + 1 && l1 != p_76484_4_ + b0 + 1 && i2 != p_76484_5_ + i1 + 1)
+						if (k1 != x - l - 1 && l1 != y - 1 && i2 != z - i1 - 1 && k1 != x + l + 1 && l1 != y + b0 + 1 && i2 != z + i1 + 1)
 						{
-							p_76484_1_.setBlockToAir(k1, l1, i2);
+							world.setBlockToAir(k1, l1, i2);
 						}
-						else if (l1 >= 0 && !p_76484_1_.getBlock(k1, l1 - 1, i2).getMaterial().isSolid())
+						else if (l1 >= 0 && !world.getBlock(k1, l1 - 1, i2).getMaterial().isSolid())
 						{
-							p_76484_1_.setBlockToAir(k1, l1, i2);
+							world.setBlockToAir(k1, l1, i2);
 						}
-						else if (p_76484_1_.getBlock(k1, l1, i2).getMaterial().isSolid())
+						else if (world.getBlock(k1, l1, i2).getMaterial().isSolid())
 						{
-							if (l1 == p_76484_4_ - 1 && p_76484_2_.nextInt(4) != 0)
+							if (l1 == y - 1)
 							{
-								p_76484_1_.setBlock(k1, l1, i2, TragicBlocks.DarkCobblestone, p_76484_2_.nextInt(3) + 1, 2);
+								world.setBlock(k1, l1, i2, TragicBlocks.DarkCobblestone, 3, 2);
 							}
 							else
 							{
-								p_76484_1_.setBlock(k1, l1, i2, TragicBlocks.DarkCobblestone, 0, 2);
+								world.setBlock(k1, l1, i2, TragicBlocks.DarkCobblestone, 0, 2);
 							}
 						}
 					}
@@ -98,41 +87,41 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 					{
 						label101:
 						{
-						i2 = p_76484_3_ + p_76484_2_.nextInt(l * 2 + 1) - l;
-						int j2 = p_76484_5_ + p_76484_2_.nextInt(i1 * 2 + 1) - i1;
+						i2 = x + rand.nextInt(l * 2 + 1) - l;
+						int j2 = z + rand.nextInt(i1 * 2 + 1) - i1;
 
-						if (p_76484_1_.isAirBlock(i2, p_76484_4_, j2))
+						if (world.isAirBlock(i2, y, j2))
 						{
 							int k2 = 0;
 
-							if (p_76484_1_.getBlock(i2 - 1, p_76484_4_, j2).getMaterial().isSolid())
+							if (world.getBlock(i2 - 1, y, j2).getMaterial().isSolid())
 							{
 								++k2;
 							}
 
-							if (p_76484_1_.getBlock(i2 + 1, p_76484_4_, j2).getMaterial().isSolid())
+							if (world.getBlock(i2 + 1, y, j2).getMaterial().isSolid())
 							{
 								++k2;
 							}
 
-							if (p_76484_1_.getBlock(i2, p_76484_4_, j2 - 1).getMaterial().isSolid())
+							if (world.getBlock(i2, y, j2 - 1).getMaterial().isSolid())
 							{
 								++k2;
 							}
 
-							if (p_76484_1_.getBlock(i2, p_76484_4_, j2 + 1).getMaterial().isSolid())
+							if (world.getBlock(i2, y, j2 + 1).getMaterial().isSolid())
 							{
 								++k2;
 							}
 
 							if (k2 == 1)
 							{
-								p_76484_1_.setBlock(i2, p_76484_4_, j2, Blocks.chest, 0, 2);
-								TileEntityChest tileentitychest = (TileEntityChest)p_76484_1_.getTileEntity(i2, p_76484_4_, j2);
+								world.setBlock(i2, y, j2, Blocks.chest, 0, 2);
+								TileEntityChest tileentitychest = (TileEntityChest)world.getTileEntity(i2, y, j2);
 
 								if (tileentitychest != null)
 								{
-									WeightedRandomChestContent.generateChestContents(p_76484_2_, WorldGenDimensionDungeon.chestHook.getItems(p_76484_2_), tileentitychest, WorldGenDimensionDungeon.chestHook.getCount(p_76484_2_));
+									WeightedRandomChestContent.generateChestContents(rand, TragicItems.NetherStructureHook.getItems(rand), tileentitychest, TragicItems.NetherStructureHook.getCount(rand));
 								}
 
 								break label101;
@@ -149,16 +138,16 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 				}
 			}
 
-			p_76484_1_.setBlock(p_76484_3_, p_76484_4_, p_76484_5_, Blocks.mob_spawner, 0, 2);
-			TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)p_76484_1_.getTileEntity(p_76484_3_, p_76484_4_, p_76484_5_);
+			world.setBlock(x, y, z, Blocks.mob_spawner, 0, 2);
+			TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(x, y, z);
 
 			if (tileentitymobspawner != null)
 			{
-				tileentitymobspawner.func_145881_a().setEntityName(this.pickMobSpawner(p_76484_2_));
+				tileentitymobspawner.func_145881_a().setEntityName(this.pickMobSpawner(rand));
 			}
 			else
 			{
-				System.err.println("Failed to fetch mob spawner entity at (" + p_76484_3_ + ", " + p_76484_4_ + ", " + p_76484_5_ + ")");
+				System.err.println("Failed to fetch mob spawner entity at (" + x + ", " + y + ", " + z + ")");
 			}
 
 			return true;
