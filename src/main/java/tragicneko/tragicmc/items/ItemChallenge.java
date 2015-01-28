@@ -15,57 +15,36 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.TragicEntityList;
 
 public class ItemChallenge extends Item {
 
 	private IIcon scrollIcon, completeIcon;
-	
-	private static final ItemStack[] badRewards = new ItemStack[] {new ItemStack(Items.coal), new ItemStack(Items.flint_and_steel), new ItemStack(Items.string), new ItemStack(Items.stick),
-		new ItemStack(Items.bone), new ItemStack(Items.bread), new ItemStack(Items.book), new ItemStack(Items.bowl), new ItemStack(TragicItems.Ash), new ItemStack(TragicItems.Banana),
-		new ItemStack(TragicItems.Sushi), new ItemStack(TragicItems.BoneMarrow)
-	};
-	
-	private static final ItemStack[] cheapRewards = new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(Items.apple), new ItemStack(Items.iron_ingot),
-		new ItemStack(Items.gold_ingot), new ItemStack(TragicItems.Tungsten), new ItemStack(TragicItems.BloodSacrifice), new ItemStack(TragicItems.NourishmentSacrifice),
-		new ItemStack(TragicItems.RedMercury), new ItemStack(TragicItems.Quicksilver), new ItemStack(TragicItems.QuicksilverIngot), new ItemStack(Blocks.obsidian),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Jarra") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Jarra")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Magmox") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Magmox")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kragul") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kragul")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinKing") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinKing")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Aegar") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Aegar")),
-		new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.SkyFruit), new ItemStack(TragicItems.GooeyFruit)
-	};
 
-	private static final ItemStack[] rewards = new ItemStack[] {new ItemStack(Items.diamond, itemRand.nextInt(3) + 1), new ItemStack(Items.emerald, itemRand.nextInt(3) + 1),
-		new ItemStack(TragicItems.AwakeningStone, 1), new ItemStack(TragicItems.AmuletRelease, 1), new ItemStack(TragicItems.DoomConsume, 1),
-		new ItemStack(TragicItems.CooldownDefuse, 1 + itemRand.nextInt(8)), new ItemStack(TragicItems.Ruby, 1 + itemRand.nextInt(3)), new ItemStack(Items.iron_ingot, itemRand.nextInt(3) + 1),
-		new ItemStack(TragicItems.Sapphire, itemRand.nextInt(3) + 1), new ItemStack(Items.gold_ingot, itemRand.nextInt(3) + 1), new ItemStack(Items.golden_apple, itemRand.nextInt(3) + 1, itemRand.nextInt(2)),
-		new ItemStack(TragicItems.CryingObsidianOrb), new ItemStack(TragicItems.BleedingObsidianOrb), new ItemStack(TragicItems.DyingObsidianOrb), new ItemStack(TragicItems.ObsidianOrb, 1 + itemRand.nextInt(3)),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Apis") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Apis")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Polaris") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Polaris")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Yeti") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Yeti")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.TimeController") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.TimeController")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.DeathReaper") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
-		new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Claymation") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Claymation")),
-		new ItemStack(TragicItems.ApisAmulet), new ItemStack(TragicItems.CreeperAmulet), new ItemStack(TragicItems.BlacksmithAmulet), new ItemStack(TragicItems.KitsuneAmulet),
-		new ItemStack(TragicItems.ZombieAmulet), new ItemStack(TragicItems.SkeletonAmulet), new ItemStack(TragicItems.SunkenAmulet), new ItemStack(TragicItems.PeaceAmulet),
-		new ItemStack(TragicItems.ChickenAmulet), new ItemStack(TragicItems.ClaymationAmulet), new ItemStack(TragicItems.YetiAmulet), new ItemStack(TragicItems.MartyrAmulet),
-		new ItemStack(TragicItems.GoldenSushi, 1 + itemRand.nextInt(3)), new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Butcher),
-		new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter), new ItemStack(TragicItems.Talisman), new ItemStack(TragicItems.EndermanAmulet),
-		new ItemStack(TragicItems.BloodSacrifice), new ItemStack(TragicItems.NourishmentSacrifice), new ItemStack(TragicItems.SilentHellraiser),
-		new ItemStack(TragicItems.NastyFruit), new ItemStack(TragicItems.ExoticFruit), new ItemStack(TragicItems.SkyFruit), new ItemStack(TragicItems.GooeyFruit)
-	};
+	private static final EntityDrop[] badRewards = new EntityDrop[] {new EntityDrop(15, Items.coal), new EntityDrop(5, Items.flint_and_steel), new EntityDrop(5, Items.string), new EntityDrop(5, Items.stick),
+		new EntityDrop(5, Items.bone), new EntityDrop(15, Items.bread), new EntityDrop(3, Items.book), new EntityDrop(5, Items.bowl), new EntityDrop(5, TragicItems.Ash), new EntityDrop(15, TragicItems.Banana),
+		new EntityDrop(3, TragicItems.Sushi), new EntityDrop(5, TragicItems.BoneMarrow), new EntityDrop(10, TragicItems.ChallengeScroll)};
+
+	private static final EntityDrop[] cheapRewards = new EntityDrop[] {new EntityDrop(5, Items.diamond), new EntityDrop(3, Items.emerald), new EntityDrop(15, Items.apple), new EntityDrop(25, Items.iron_ingot),
+		new EntityDrop(10, Items.gold_ingot), new EntityDrop(15, TragicItems.Tungsten), new EntityDrop(15, TragicItems.BloodSacrifice), new EntityDrop(15, TragicItems.NourishmentSacrifice),
+		new EntityDrop(15, TragicItems.RedMercury), new EntityDrop(10, TragicItems.Quicksilver), new EntityDrop(5, TragicItems.QuicksilverIngot), new EntityDrop(15, Blocks.obsidian),
+		new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(5, TragicItems.ExoticFruit), new EntityDrop(3, TragicItems.SkyFruit), new EntityDrop(3, TragicItems.GooeyFruit),
+		new EntityDrop(1, getSpawnEggsMiniBoss()), new EntityDrop(5, TragicItems.ChallengeScroll)};
+
+	private static final EntityDrop[] rewards = new EntityDrop[] {new EntityDrop(25, Items.diamond), new EntityDrop(25, Items.emerald),
+		new EntityDrop(5, TragicItems.AwakeningStone), new EntityDrop(10, TragicItems.AmuletRelease), new EntityDrop(5, TragicItems.DoomConsume),
+		new EntityDrop(10, TragicItems.CooldownDefuse), new EntityDrop(25, TragicItems.Ruby), new EntityDrop(5, Items.iron_ingot),
+		new EntityDrop(25, TragicItems.Sapphire), new EntityDrop(5, Items.gold_ingot), new EntityDrop(3, new ItemStack(Items.golden_apple, 1, 0),new ItemStack(Items.golden_apple, 1, 1)),
+		new EntityDrop(15, TragicItems.CryingObsidianOrb), new EntityDrop(15, TragicItems.BleedingObsidianOrb), new EntityDrop(15, TragicItems.DyingObsidianOrb), new EntityDrop(25, TragicItems.ObsidianOrb),
+		new EntityDrop(3, TragicItems.GoldenSushi),  new EntityDrop(30, TragicItems.Talisman), new EntityDrop(15, TragicItems.BloodSacrifice), new EntityDrop(15, TragicItems.NourishmentSacrifice),
+		new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(10, TragicItems.SkyFruit), new EntityDrop(5, TragicItems.GooeyFruit),
+		new EntityDrop(1, getSpawnEggsBoss()), new EntityDrop(3, getSpawnEggsMiniBoss()), new EntityDrop(1, getEpicWeapons()), new EntityDrop(1, getEpicWeapons())};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};
 
@@ -143,14 +122,25 @@ public class ItemChallenge extends Item {
 			Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 			int extra = itemRand.nextInt((challenge.difficulty + 1) * 2) + 1;
 			ItemStack reward = null;
-			
+
 			for (int i = 0; i < extra && i < 5; i++)
 			{
 				EntityItem item = new EntityItem(world);
-				reward = challenge.difficulty > 2 ? rewards[itemRand.nextInt(rewards.length)] : (challenge.difficulty > 0 ? cheapRewards[itemRand.nextInt(cheapRewards.length)] : badRewards[itemRand.nextInt(badRewards.length)]);
-				item.setEntityItemStack(reward.copy());
-				item.setPosition(player.posX + itemRand.nextDouble() - itemRand.nextDouble(), player.posY + 0.6D, player.posZ  + itemRand.nextDouble() - itemRand.nextDouble());
-				world.spawnEntityInWorld(item);
+				
+				try
+				{
+					reward = challenge.difficulty > 2 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, rewards)).getStack():
+						(challenge.difficulty > 0 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, cheapRewards)).getStack() :
+							((EntityDrop) WeightedRandom.getRandomItem(itemRand, badRewards)).getStack());
+					item.setEntityItemStack(reward.copy());
+					item.setPosition(player.posX + itemRand.nextDouble() - itemRand.nextDouble(), player.posY + 0.6D, player.posZ  + itemRand.nextDouble() - itemRand.nextDouble());
+					world.spawnEntityInWorld(item);
+				}
+				catch (Exception e)
+				{
+					TragicMC.logError("Challenge errored while rewarding, silently catching error and continuing", e);
+					continue;
+				}
 				if (i > 3 && itemRand.nextInt(4) == 0) break;
 			}
 			stack.stackSize--;
@@ -198,7 +188,7 @@ public class ItemChallenge extends Item {
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("challengeID")) stack.stackTagCompound.setInteger("challengeID", stack.getItemDamage());
-		
+
 		Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 
 		if (entity instanceof EntityPlayer && challenge != null)
@@ -263,5 +253,53 @@ public class ItemChallenge extends Item {
 				stack.setItemDamage(250);
 			}
 		}
+	}
+
+	public static ItemStack[] getSpawnEggsMiniBoss()
+	{
+		ItemStack[] stacks = new ItemStack[] {
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Jarra") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Jarra")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Magmox") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Magmox")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kragul") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kragul")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.MegaCryse")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinKing") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinKing")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Aegar") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Aegar"))};
+		return stacks;
+	}
+
+	public static ItemStack[] getSpawnEggsBoss()
+	{
+		ItemStack[] stacks = new ItemStack[] {
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Apis") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Apis")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Polaris") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Polaris")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Yeti") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Yeti")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.TimeController") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.TimeController")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.DeathReaper") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Enyvil") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Kitsune")),
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Claymation") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Claymation"))};
+		return stacks;
+	}
+
+	public static ItemStack[] getAmulets()
+	{
+		ItemStack[] stacks = new ItemStack[] {
+				new ItemStack(TragicItems.ApisAmulet), new ItemStack(TragicItems.CreeperAmulet), new ItemStack(TragicItems.BlacksmithAmulet), new ItemStack(TragicItems.KitsuneAmulet),
+				new ItemStack(TragicItems.ZombieAmulet), new ItemStack(TragicItems.SkeletonAmulet), new ItemStack(TragicItems.SunkenAmulet), new ItemStack(TragicItems.PeaceAmulet),
+				new ItemStack(TragicItems.ChickenAmulet), new ItemStack(TragicItems.ClaymationAmulet), new ItemStack(TragicItems.YetiAmulet), new ItemStack(TragicItems.MartyrAmulet),
+				new ItemStack(TragicItems.EndermanAmulet)};
+		return stacks;
+	}
+
+	public static ItemStack[] getEpicWeapons()
+	{
+		ItemStack[] stacks = new ItemStack[] {
+				new ItemStack(TragicItems.Titan), new ItemStack(TragicItems.Paranoia), new ItemStack(TragicItems.Butcher),
+				new ItemStack(TragicItems.Thardus), new ItemStack(TragicItems.DragonFang), new ItemStack(TragicItems.Splinter),
+				new ItemStack(TragicItems.SilentHellraiser)};
+		return stacks;
 	}
 }
