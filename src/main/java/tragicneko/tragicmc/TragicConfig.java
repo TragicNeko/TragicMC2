@@ -707,7 +707,7 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "toxStats", new double[] {40.0, 0.050, 8.0, 64.0, 1.0, 16}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "poxStats", new double[] {30.0, 0.050, 4.0, 64.0, 0.7, 10}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "cryseStats", new double[] {35.0, 0.285, 4.0, 48.0, 0.0, 4}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "starCryseStats", new double[] {55.0, 0.315, 4.0, 48.0, 4}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "starCryseStats", new double[] {55.0, 0.315, 4.0, 48.0, 0.0, 4}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "norVoxStats", new double[] {30.0, 0.390, 4.0, 32.0, 0.25, 8}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "starVoxStats", new double[] {40.0, 0.390, 4.0, 32.0, 0.25, 16}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "goldenPirahStats", new double[] {25.0, 0.450, 7.5, 16.0, 0.0, 0}).getDoubleList());
