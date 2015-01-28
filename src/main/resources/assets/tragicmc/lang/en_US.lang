@@ -76,6 +76,8 @@ tile.tragicmc.lightCobblestone.normal.name=Light Cobblestone
 tile.tragicmc.lightCobblestone.frozen.name=Frozen Light Cobblestone
 tile.tragicmc.lightCobblestone.glowing.name=Glowing Light Cobblestone
 
+tile.tragicmc.frozenNetherrack.name=Frozen Netherrack
+
 tile.tragicmc.tragicObsidian.crying.name=Crying Obsidian
 tile.tragicmc.tragicObsidian.dying.name=Dying Obsidian
 tile.tragicmc.tragicObsidian.bleeding.name=Bleeding Obsidian

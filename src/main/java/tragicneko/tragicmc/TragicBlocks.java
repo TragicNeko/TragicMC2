@@ -109,6 +109,8 @@ public class TragicBlocks {
 	public static Block DarkCobblestone;
 	public static Block LightCobblestone;
 	public static Block LightStone;
+	
+	public static Block FrozenNetherrack;
 
 	public static Block DeadDirt;
 	public static Block DarkSand;
@@ -412,6 +414,9 @@ public class TragicBlocks {
 
 		DigitalSeaPowered = (new BlockDigitalSea(true));
 		GameRegistry.registerBlock(DigitalSeaPowered, null, "digitalSeaPowered");
+		
+		FrozenNetherrack = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:FrozenNetherrack_lowRes").setBlockName("tragicmc.frozenNetherrack").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
+		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");
 
 		for (int i = 0; i < 3; i++)
 		{

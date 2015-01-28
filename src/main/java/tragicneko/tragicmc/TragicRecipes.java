@@ -932,13 +932,13 @@ public class TragicRecipes {
 				"xxx",
 				"xxx",
 				"xxx",
-				'x', TragicItems.Projectile
+				'x', new ItemStack(TragicItems.Projectile, 1, 0)
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.gravel, 1),
 				"xx",
 				"xx",
-				'x', TragicItems.Projectile
+				'x', new ItemStack(TragicItems.Projectile, 1, 0)
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.netherrack, 1),
@@ -946,6 +946,14 @@ public class TragicRecipes {
 				"xxx",
 				"xxx",
 				'x', new ItemStack(TragicItems.Projectile, 1, 1)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.FrozenNetherrack, 8),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', Blocks.netherrack,
+				'y', TragicItems.IceOrb
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.NetherBrickPressurePlate, 1),
