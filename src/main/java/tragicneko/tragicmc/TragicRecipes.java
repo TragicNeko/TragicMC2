@@ -1488,7 +1488,7 @@ public class TragicRecipes {
 			"xyx",
 			"xxx",
 			'x', TragicBlocks.LightCobblestone,
-			'y', TragicItems.IceOrb
+			'y', TragicItems.LightningOrb
 		);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 2),
