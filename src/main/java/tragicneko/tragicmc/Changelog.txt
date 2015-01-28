@@ -3265,10 +3265,12 @@ Added the Silent Hellraiser, it'll have no preset enchantment tiers, it'll be a 
 Added Flamethrower ability to Dragon Fang
 Invulnerability no longer negates Flight
 Clarity now renders the particles instead of boxes, though it's harder to see in some instances it has the same effect
+Challenge rewards now use EntityDrops from the DropHelper to give weighted rewards, so now some rewards are more common than others, added a few new rewards and
+reduced chance of getting some rewards by consolidating them into a single instance rather than having them skew the rewards by having multiple (amulets, epic weapons, spawn eggs, etc.)
+
 
 
 TODO still
-Convert the rewards from the challenge items to use a weighed system instead of a completely random system, this should mean better rewards
 Finish the other two forms of the Overlord
 Add armor models for the higher tiered armors
 Add the Overlord armor model
