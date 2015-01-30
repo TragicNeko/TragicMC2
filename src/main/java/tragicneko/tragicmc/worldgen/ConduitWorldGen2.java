@@ -1,8 +1,10 @@
 package tragicneko.tragicmc.worldgen;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.util.WorldHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -11,76 +13,38 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class ConduitWorldGen2 extends WorldGenerator
 {
-    public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
+    public boolean generate(World world, Random rand, int x, int y, int z)
     {
-        if (!p_76484_1_.isAirBlock(p_76484_3_, p_76484_4_, p_76484_5_))
+        if (!world.isAirBlock(x, y, z))
         {
             return false;
         }
-        else if (p_76484_1_.getBlock(p_76484_3_, p_76484_4_ + 1, p_76484_5_) != TragicBlocks.CircuitBlock)
+        else if (world.getBlock(x, y + 1, z) != TragicBlocks.CircuitBlock)
         {
             return false;
         }
         else
         {
-            p_76484_1_.setBlock(p_76484_3_, p_76484_4_, p_76484_5_, TragicBlocks.Conduit, 0, 2);
+            world.setBlock(x, y, z, TragicBlocks.Conduit, 0, 2);
 
             for (int l = 0; l < 1000; ++l)
-            {
-                int i1 = p_76484_3_ + p_76484_2_.nextInt(4) - p_76484_2_.nextInt(4);
-                int j1 = p_76484_4_ - p_76484_2_.nextInt(8);
-                int k1 = p_76484_5_ + p_76484_2_.nextInt(4) - p_76484_2_.nextInt(4);
+			{
+				int i1 = x + rand.nextInt(3) - rand.nextInt(3);
+				int j1 = y - rand.nextInt(12);
+				int k1 = z + rand.nextInt(3) - rand.nextInt(3);
 
-                if (p_76484_1_.getBlock(i1, j1, k1).getMaterial() == Material.air)
-                {
-                    int l1 = 0;
+				if (world.getBlock(i1, j1, k1).getMaterial() == Material.air)
+				{
+					byte b = 0;
+					ArrayList<int[]> list = WorldHelper.getBlocksAdjacent(new int[] {i1, j1, k1});
+					for (int[] coords : list)
+					{
+						if (world.getBlock(coords[0], coords[1], coords[2]) == TragicBlocks.Conduit) b++;
+					}
 
-                    for (int i2 = 0; i2 < 6; ++i2)
-                    {
-                        Block block = null;
-
-                        if (i2 == 0)
-                        {
-                            block = p_76484_1_.getBlock(i1 - 1, j1, k1);
-                        }
-
-                        if (i2 == 1)
-                        {
-                            block = p_76484_1_.getBlock(i1 + 1, j1, k1);
-                        }
-
-                        if (i2 == 2)
-                        {
-                            block = p_76484_1_.getBlock(i1, j1 - 1, k1);
-                        }
-
-                        if (i2 == 3)
-                        {
-                            block = p_76484_1_.getBlock(i1, j1 + 1, k1);
-                        }
-
-                        if (i2 == 4)
-                        {
-                            block = p_76484_1_.getBlock(i1, j1, k1 - 1);
-                        }
-
-                        if (i2 == 5)
-                        {
-                            block = p_76484_1_.getBlock(i1, j1, k1 + 1);
-                        }
-
-                        if (block == TragicBlocks.Conduit)
-                        {
-                            ++l1;
-                        }
-                    }
-
-                    if (l1 == 1)
-                    {
-                        p_76484_1_.setBlock(i1, j1, k1, TragicBlocks.Conduit, 0, 2);
-                    }
-                }
-            }
+					if (b == 1) world.setBlock(i1, j1, k1, TragicBlocks.Conduit, 0, 2);
+				}
+			}
 
             return true;
         }

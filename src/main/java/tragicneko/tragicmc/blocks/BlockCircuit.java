@@ -20,7 +20,7 @@ public class BlockCircuit extends Block {
 	private IIcon[] iconArray = new IIcon[variantNames.length];
 
 	public BlockCircuit() {
-		super(Material.circuits);
+		super(Material.rock);
 		this.setCreativeTab(TragicMC.Survival);
 		this.setHarvestLevel("pickaxe", 1);
 		this.setResistance(27.0F);

@@ -342,4 +342,15 @@ public class WorldHelper {
 	{
 		return getTransportPositionFromSide(sideHit, 0.0, 0.0, z)[2];
 	}
+
+	public static ArrayList<int[]> getBlocksAdjacent(int[] start) {
+		ArrayList<int[]> list = new ArrayList();
+		list.add(new int[] {start[0] + 1, start[1], start[2]});
+		list.add(new int[] {start[0] - 1, start[1], start[2]});
+		list.add(new int[] {start[0], start[1] + 1, start[2]});
+		list.add(new int[] {start[0], start[1] - 1, start[2]});
+		list.add(new int[] {start[0], start[1], start[2] + 1});
+		list.add(new int[] {start[0], start[1], start[2] - 1});
+		return list;
+	}
 }

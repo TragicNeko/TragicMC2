@@ -441,10 +441,10 @@ public class SynapseChunkProvider implements IChunkProvider
         TragicMC.logTime();
         for (int i = 0; i < 8; i++)
 		{
-			a = x * 16 + this.worldObj.rand.nextInt(16);
-			b = z * 16 + this.worldObj.rand.nextInt(16);
+			a = k + this.worldObj.rand.nextInt(16);
+			b = l + this.worldObj.rand.nextInt(16);
 			c = this.worldObj.rand.nextInt(100) + 10;
-			new WorldGenDeadCircuit(4).generate(worldObj, synapseRNG, a, c, b);
+			new WorldGenDeadCircuit(6).generate(worldObj, synapseRNG, a, c, b);
 		}
         TragicMC.logDuration("Dead Circuit Gen");
 
