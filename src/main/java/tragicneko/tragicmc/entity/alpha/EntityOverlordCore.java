@@ -283,9 +283,9 @@ public class EntityOverlordCore extends TragicBoss {
 					Block block = this.worldObj.getBlock(k1, l1, i2);
 					float f = block.getBlockHardness(this.worldObj, k1, l1, i2);
 
-					if (!block.isAir(worldObj, k1, l1, i2))
+					if (block.getMaterial().blocksMovement())
 					{
-						if (this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") && !EntityOverlordCore.ignoredBlocks.contains(block) && f > 0F && f < 10F)
+						if (this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") && !ignoredBlocks.contains(block) && f > 0F && f < 16F)
 						{
 							flag1 = this.worldObj.setBlockToAir(k1, l1, i2) || flag1;
 						}
@@ -314,7 +314,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		this.forceNewTarget = false;
 
-		if (this.rand.nextInt(2) == 0 && !this.worldObj.playerEntities.isEmpty())
+		if (this.rand.nextBoolean() && !this.worldObj.playerEntities.isEmpty())
 		{
 			this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
 		}
