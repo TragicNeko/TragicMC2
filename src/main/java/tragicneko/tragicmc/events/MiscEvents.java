@@ -364,7 +364,7 @@ public class MiscEvents {
 				}
 			}
 			
-			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", 5.0 * i, 0);
+			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", TragicConfig.modifierAmts[24] * i, 0);
 			IAttributeInstance ins = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
 			if (ins != null) ins.removeModifier(mod);
 			if (i > 0 && ins != null) ins.applyModifier(mod);

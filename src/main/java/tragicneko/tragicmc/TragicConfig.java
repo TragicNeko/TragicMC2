@@ -910,6 +910,7 @@ public class TragicConfig {
 		modifierAmts[mapping++] = config.get(catMod, "moonlightHealthBuff", 10.0).getDouble(10.0);
 		modifierAmts[mapping++] = config.get(catMod, "synthesisHealthBuff", 10.0).getDouble(10.0); //22
 		modifierAmts[mapping++] = config.get(catMod, "butcherKnockbackResistanceBuff", 1.0).getDouble(1.0);
+		modifierAmts[mapping++] = config.get(catMod, "overlordArmorHealthBuff", 5.0).getDouble(5.0); //24
 		
 		config.addCustomCategoryComment(catMod, "These are here due to the addition of the mob stats, in case these need to be modified to fit with the input stats. These could also be set to 0 if you want to nullify them.");
 
