@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -54,7 +55,7 @@ import tragicneko.tragicmc.entity.mob.EntityWisp;
 
 public class EntityDropHelper {
 
-	private static Map<Class, DropEntry> entityDrops = new HashMap();
+	private static Map<Class<? extends EntityLivingBase>, DropEntry> entityDrops = new HashMap();
 	private static EntityDrop[] luxuryDrops = new EntityDrop[] {new EntityDrop(60, Items.diamond), new EntityDrop(45, Items.emerald), new EntityDrop(75, Items.iron_ingot),
 		new EntityDrop(60, Items.gold_ingot), new EntityDrop(75, Items.gold_nugget), new EntityDrop(20, TragicItems.Sapphire), new EntityDrop(25, TragicItems.Ruby),
 		new EntityDrop(65, TragicItems.Tungsten), new EntityDrop(75, TragicItems.RedMercury), new EntityDrop(10, Blocks.gold_block), new EntityDrop(15, Blocks.iron_block),
@@ -219,13 +220,13 @@ public class EntityDropHelper {
 		entityDrops.put(entry.getEntityClass(), entry);
 	}
 
-	public static void addToDropList(Class clazz, EntityDrop[][] drops)
+	public static void addToDropList(Class<? extends EntityLivingBase> clazz, EntityDrop[][] drops)
 	{
 		if (entityDrops.containsKey(clazz)) TragicMC.logWarning("Duplicate drop mapping for " + clazz);
 		entityDrops.put(clazz, new DropEntry(clazz, drops));
 	}
 
-	public static void addToDropList(Class clazz, EntityDrop[][] drops, boolean variants)
+	public static void addToDropList(Class<? extends EntityLivingBase> clazz, EntityDrop[][] drops, boolean variants)
 	{
 		if (entityDrops.containsKey(clazz)) TragicMC.logWarning("Duplicate drop mapping for " + clazz);
 		entityDrops.put(clazz, new DropEntry(clazz, drops, variants));
@@ -372,7 +373,7 @@ public class EntityDropHelper {
 		private EntityDrop[] variantRare;
 		private EntityDrop[] variantCommon;
 
-		public DropEntry(Class clazz, EntityDrop[][] drops)
+		public DropEntry(Class<? extends EntityLivingBase> clazz, EntityDrop[][] drops)
 		{
 			this.entityClazz = clazz;
 			this.commonDrops = drops[0];

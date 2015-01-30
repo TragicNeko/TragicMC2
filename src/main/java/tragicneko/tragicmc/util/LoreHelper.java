@@ -9,6 +9,7 @@ import java.util.Map;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
@@ -50,7 +51,7 @@ import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 
 public class LoreHelper {
 
-	private static Map<Class, LoreEntry> weaponLores = new HashMap();
+	private static Map<Class<? extends Item>, LoreEntry> weaponLores = new HashMap();
 
 	static
 	{
@@ -138,17 +139,17 @@ public class LoreHelper {
 		addToLoreMap(WeaponTitan.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 	}
 
-	public static void addToLoreMap(Class clazz, LoreEntry entry)
+	public static void addToLoreMap(Class<? extends Item> clazz, LoreEntry entry)
 	{
 		weaponLores.put(clazz, entry);
 	}
 
-	public static void addToLoreMap(Class clazz, Lore[] lores, EnchantEntry[][] enchants)
+	public static void addToLoreMap(Class<? extends Item> clazz, Lore[] lores, EnchantEntry[][] enchants)
 	{
 		addToLoreMap(clazz, new LoreEntry(clazz, lores, enchants));
 	}
 
-	public static LoreEntry getLoreEntry(Class clazz)
+	public static LoreEntry getLoreEntry(Class<? extends Item> clazz)
 	{
 		return weaponLores.containsKey(clazz) ? weaponLores.get(clazz) : null;
 	}
