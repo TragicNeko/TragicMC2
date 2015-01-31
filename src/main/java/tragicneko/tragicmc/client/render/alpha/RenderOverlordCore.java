@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.client.render.boss;
+package tragicneko.tragicmc.client.render.alpha;
 
 import org.lwjgl.opengl.GL11;
 
@@ -7,13 +7,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelOverlordCore;
+import tragicneko.tragicmc.client.render.boss.RenderBoss;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderOverlordCore extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:Meow");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCore_lowRes.png");
+	private static final ResourceLocation damagedTexture = new ResourceLocation("tragicmc:textures/mobs/OverlordCoreDamaged_lowRes.png");
 
 	public RenderOverlordCore() {
 		super(new ModelOverlordCore(), 0.756F, 1.75F);

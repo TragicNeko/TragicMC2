@@ -58,6 +58,12 @@ public class EntityOverlordCore extends TragicBoss {
 		this.noClip = true;
 		this.ignoreFrustumCheck = true;
 	}
+	
+	@Override
+	public boolean canRenderOnFire()
+	{
+		return false;
+	}
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -119,6 +125,24 @@ public class EntityOverlordCore extends TragicBoss {
 				--this.newPosRotationIncrements;
 				this.setPosition(d10, d0, d1);
 				this.setRotation(this.rotationYaw, this.rotationPitch);
+			}
+			
+			double dr = rand.nextDouble() - rand.nextDouble();
+			double dr2 = rand.nextDouble() - rand.nextDouble();
+			double dr3 = rand.nextDouble() - rand.nextDouble();
+
+			double x = dr * 2.25 + this.posX;
+			double y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+			double z = dr3 * 2.25 + this.posZ;
+			
+			for (int i = 0; i < 16; i++)
+			{
+				this.worldObj.spawnParticle("reddust", x, y, z, 0.33F, 0.88F, 0.94F);
+			}
+			
+			for (int i = 0; i < 16; i++)
+			{
+				this.worldObj.spawnParticle("reddust", x + dr3 * 2.25, y + dr2 * 2.25, z + dr * 2.25, 0.1F, 0.1F, 0.1F);
 			}
 
 			return;
@@ -212,7 +236,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (this.slowed)
 		{
-			this.moveEntity(this.motionX * 0.800000011920929D, this.motionY * 0.800000011920929D, this.motionZ * 0.800000011920929D);
+			this.moveEntity(this.motionX * 0.900000011920929D, this.motionY * 0.900000011920929D, this.motionZ * 0.900000011920929D);
 		}
 		else
 		{

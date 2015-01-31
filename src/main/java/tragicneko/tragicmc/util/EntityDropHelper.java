@@ -211,7 +211,7 @@ public class EntityDropHelper {
 		//Alpha Drops
 		addToDropList(EntityOverlordCore.class, new EntityDrop[][]{{new EntityDrop(25, TragicItems.OverlordEye)}, {new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(5, TragicItems.CelestialSteel),
 			new EntityDrop(25, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink), new EntityDrop(5, new ItemStack[] {new ItemStack(TragicItems.OverlordBoots), new ItemStack(TragicItems.OverlordPlate),
-					new ItemStack(TragicItems.OverlordHelm), new ItemStack(TragicItems.OverlordLegs)})}});
+					new ItemStack(TragicItems.OverlordHelm), new ItemStack(TragicItems.OverlordLegs)}), new EntityDrop(20, TragicBlocks.SynapseCore)}});
 	}
 
 	public static void addToDropList(DropEntry entry)
