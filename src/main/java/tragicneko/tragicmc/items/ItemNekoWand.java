@@ -1,22 +1,31 @@
 package tragicneko.tragicmc.items;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import tragicneko.tragicmc.TragicMC;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.BlockGenericOre;
+import tragicneko.tragicmc.blocks.BlockTragicOres;
 
 public class ItemNekoWand extends Item {
-	
+
 	public ItemNekoWand()
 	{
 		super();
@@ -44,7 +53,7 @@ public class ItemNekoWand extends Item {
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
-		
+
 		EnumChatFormatting reset = EnumChatFormatting.RESET;
 		EnumChatFormatting aqua = EnumChatFormatting.AQUA;
 		EnumChatFormatting red = EnumChatFormatting.RED;
@@ -130,21 +139,125 @@ public class ItemNekoWand extends Item {
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 		if (!stack.stackTagCompound.hasKey("entityID")) stack.stackTagCompound.setInteger("entityID", 0);
-		
+
 		EnumChatFormatting green = EnumChatFormatting.GREEN;
-		
+
 		if (stack.stackTagCompound.getIntArray("entityIDs").length > 0)
 		{
 			stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(green + "You have reset the selected group of entities!"));
 		}
-		
+
 		if (stack.stackTagCompound.getInteger("entityID") != 0)
 		{
 			stack.stackTagCompound.setInteger("entityID", 0);
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(green + "You have reset the selected single entity!"));
 		}
-		 
+		
+		if (world.isRemote || !TragicMC.DEBUG) return stack;
+
+		int m = 0;
+		Chunk chk = world.getChunkFromBlockCoords((int) par3EntityPlayer.posX, (int) par3EntityPlayer.posZ);
+		int chunkX = chk.xPosition;
+		int chunkZ = chk.zPosition;
+		ArrayList<Block> list = new ArrayList();
+		ArrayList<Integer> metas = new ArrayList();
+		Block block;
+
+		for (int i = 0; i < 128; i++)
+		{
+			for (int k = 0; k < 16; k++)
+			{
+				for (int j = 0; j < 16; j++)
+				{
+					block = chk.getBlock(k, i, j);
+					if (block instanceof BlockOre || block instanceof BlockGenericOre || block instanceof BlockTragicOres)
+					{
+						m++;
+						list.add(block);
+						metas.add(chk.getBlockMetadata(k, i, j));
+					}
+				}
+			}
+		}
+
+		TragicMC.logInfo("Number of ores in chunk(" + " X:" + chunkX + ", Z:" + chunkZ + ") : " + m);
+		int dim = world.provider.dimensionId;
+
+		if (dim == -1)
+		{
+			int quart = 0;
+			int ruby = 0;
+			int saph = 0;
+
+			for (Block b : list)
+			{
+				if (b == TragicBlocks.RubyOre) ruby++;
+				if (b == TragicBlocks.SapphireOre) saph++;
+				if (b == Blocks.quartz_ore) quart++;
+			}
+
+			TragicMC.logInfo("Ore dist. is Ruby:" + ruby + ", Sapphire:" + saph + ", Quartz:" + quart);
+		}
+		else if (dim == 0)
+		{
+			int diam = 0;
+			int gold = 0;
+			int coal = 0;
+			int lapis = 0;
+			int iron = 0;
+			int tung = 0;
+			int merc = 0;
+			int red = 0;
+			int em = 0;
+
+			for (Block b : list)
+			{
+				if (b == Blocks.gold_ore) gold++;
+				if (b == Blocks.coal_ore) coal++;
+				if (b == Blocks.diamond_ore) diam++;
+				if (b == Blocks.lapis_ore) lapis++;
+				if (b == Blocks.iron_ore) iron++;
+				if (b == TragicBlocks.TungstenOre) tung++;
+				if (b == TragicBlocks.MercuryOre) merc++;
+				if (b == Blocks.redstone_ore) red++;
+				if (b == Blocks.emerald_ore) em++;
+			}
+			
+			TragicMC.logInfo("Ore dist. is Emerald:" + em + ", Diamond:" + diam + ", Gold:" + gold + ", Redstone:" + red + ", Lapis:" + lapis + ", Iron:" + iron + ", Coal:" + coal + ", Tungsten:" + tung + ", Mercury:" + merc);
+		}
+		else if (dim == TragicConfig.dimensionID)
+		{
+			int diam = 0;
+			int gold = 0;
+			int coal = 0;
+			int lapis = 0;
+			int iron = 0;
+			int tung = 0;
+			int merc = 0;
+			int em = 0;
+			int xp = 0;
+			int ruby = 0;
+			int saph = 0;
+
+			for (int meta : metas)
+			{
+				if (meta == 7) gold++;
+				if (meta == 9) coal++;
+				if (meta == 5) diam++;
+				if (meta == 4) lapis++;
+				if (meta == 8) iron++;
+				if (meta == 1) tung++;
+				if (meta == 0) merc++;
+				if (meta == 2) ruby++;
+				if (meta == 3) saph++;
+				if (meta == 10) xp++;
+				if (meta == 6) em++;
+			}
+			
+			TragicMC.logInfo("Ore dist. is Emerald:" + em + ", Diamond:" + diam + ", Gold:" + gold + ", Ruby:" + ruby + ", Sapphire:" + saph + ", Lapis:" + lapis + ", Iron:" + iron + ", Coal:" + coal + ", Tungsten:" + tung + ", Mercury:" + merc + ", XP:" + xp);
+		}
+
 		return stack;
 	}
 
