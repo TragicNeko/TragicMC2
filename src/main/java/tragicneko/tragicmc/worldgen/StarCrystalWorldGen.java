@@ -21,7 +21,6 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
 		if (!WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
-
 		if (!TragicBiomes.starlitBiomes.contains(world.getBiomeGenForCoords(Xcoord, Zcoord))) return;
 
 		ArrayList<int[]> list;

@@ -29,25 +29,16 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		HashSet set = (HashSet) TragicBiomes.decayingBiomes;
-		set.add(TragicBiomes.TaintedSpikes);
+		boolean flag = biome instanceof BiomeGenDecayingWasteland;
 
-		if (!set.contains(biome) || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
+		if (!flag && biome != TragicBiomes.TaintedSpikes || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
+		if (flag && random.nextInt(4) != 0 || !flag && !TragicConfig.allowLargeSpikeGen) return;
 
-		if (biome instanceof BiomeGenDecayingWasteland)
-		{
-			if (random.nextInt(4) != 0) return;
-		}
-		else
-		{
-			if (!TragicConfig.allowLargeSpikeGen) return;
-		}
-
-		int relays = biome instanceof BiomeGenDecayingWasteland ? 4 : 8;
-		Block spike = biome instanceof BiomeGenDecayingWasteland ? TragicBlocks.BoneBlock : TragicBlocks.DarkStone;
-		int meta = biome instanceof BiomeGenDecayingWasteland ? random.nextInt(2) : 14;
+		int relays = flag ? 4 : 8;
+		Block spike = flag ? TragicBlocks.BoneBlock : TragicBlocks.DarkStone;
+		int meta = flag ? random.nextInt(2) : 14;
 		ArrayList<int[]> list;
-		Block block;		
+		Block block;
 		double regression = 0.95977745D;
 		double cutoff = 0.36943755D;
 		double size;
@@ -62,7 +53,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 			if (WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) //this ensures that the randomly selected spot to start a spike is valid
 			{
-				if (TragicBiomes.decayingBiomes.contains(biome)) //faster regression and higher cutoff means the spikes generate shorter and "fatter"
+				if (flag) //faster regression and higher cutoff means the spikes generate shorter and "fatter"
 				{
 					size = 0.35D * random.nextDouble() + 1.0D;
 					regression = 0.89477735D;
@@ -76,7 +67,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 				spikeType = biome instanceof BiomeGenDecayingWasteland? random.nextInt(2) : random.nextInt(6);
 
-				boolean flag = false;
+				boolean flag3 = false;
 				boolean flag2 = false;
 
 				for (int y1 = 0; y1 < 128; y1++)
@@ -91,10 +82,10 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 							Zcoord += random.nextInt(2) - random.nextInt(2);
 						}
 
-						if (spikeType == 1 && !flag && y1 >= 35 && y1 <= 70 && random.nextBoolean() && size <= 0.774446314D) //Type 1 has chance to thicken at a random spot once
+						if (spikeType == 1 && !flag3 && y1 >= 35 && y1 <= 70 && random.nextBoolean() && size <= 0.774446314D) //Type 1 has chance to thicken at a random spot once
 						{
 							size *= 2.86333567D;
-							flag = true;
+							flag3 = true;
 						}
 					}
 					else if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like

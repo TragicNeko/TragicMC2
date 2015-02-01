@@ -36,7 +36,7 @@ public class DimensionOreWorldGen implements IWorldGenerator {
 			for (int i = 0; i < 4; i++) //Ruby
 			{
 				int Xcoord = (chunkX * 16) + random.nextInt(16);
-				int Ycoord = random.nextInt(30) + 5;
+				int Ycoord = random.nextInt(32) + 5;
 				int Zcoord = (chunkZ * 16) + random.nextInt(16);
 				new WorldGenMinable(TragicOres, 2, 3, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
@@ -44,7 +44,7 @@ public class DimensionOreWorldGen implements IWorldGenerator {
 			for (int i = 0; i < 4; i++) //Sapphire
 			{
 				int Xcoord = (chunkX * 16) + random.nextInt(16);
-				int Ycoord = random.nextInt(150) + 116;
+				int Ycoord = random.nextInt(140) + 116;
 				int Zcoord = (chunkZ * 16) + random.nextInt(16);
 				new WorldGenMinable(TragicOres, 3, 3, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
@@ -135,15 +135,15 @@ public class DimensionOreWorldGen implements IWorldGenerator {
 			for (int i = 0; i < 18; i++) //Coal
 			{
 				int Xcoord = (chunkX * 16) + random.nextInt(16);
-				int Ycoord = random.nextInt(251) + 5;
+				int Ycoord = random.nextInt(236) + 10;
 				int Zcoord = (chunkZ * 16) + random.nextInt(16);
 				new WorldGenMinable(TragicOres, 9, 5, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}	
 			
-			for (int i = 0; i < 18; i++) //XP
+			for (int i = 0; i < 16; i++) //XP
 			{
 				int Xcoord = (chunkX * 16) + random.nextInt(16);
-				int Ycoord = random.nextInt(251) + 5;
+				int Ycoord = random.nextInt(236) + 10;
 				int Zcoord = (chunkZ * 16) + random.nextInt(16);
 				new WorldGenMinable(TragicOres, 10, 3, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}

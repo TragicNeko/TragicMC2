@@ -26,7 +26,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		if (biome != TragicBiomes.TaintedScarlands || !TragicConfig.allowLargeSpikeGen) return;
+		if (biome != TragicBiomes.TaintedScarlands) return;
 
 		int relays = 4;
 		ArrayList<int[]> list;
@@ -53,6 +53,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 				for (int y1 = 0; y1 > -128; y1--)
 				{
 					size *= regression; //reduce the radius of the spike randomly
+					if (Ycoord + y1 < 25) break;
 					
 					if (random.nextBoolean())
 					{
