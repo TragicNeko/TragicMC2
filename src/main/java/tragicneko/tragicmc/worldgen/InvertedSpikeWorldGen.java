@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -30,8 +31,8 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 
 		int relays = 4;
 		ArrayList<int[]> list;
-		Block block;
-		double regression = 0.94977745D;
+		Material material;
+		double regression = 0.92977745D;
 		double cutoff = 0.46943755D;
 		double size;
 		int spikeType;
@@ -43,33 +44,34 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1;
 
-			if (world.getBlock(Xcoord, Ycoord, Zcoord) == Blocks.air) //this ensures that the randomly selected spot to start a spike is valid
+			spikeType = random.nextInt(6);
+
+			boolean flag = false;
+			boolean flag2 = false;
+
+			for (int y1 = 0; y1 > -128; y1--)
 			{
-				spikeType = random.nextInt(6);
+				if (Ycoord + y1 < 25 || size < cutoff) break;
+				size *= regression; //reduce the radius of the spike randomly
 
-				boolean flag = false;
-				boolean flag2 = false;
-
-				for (int y1 = 0; y1 > -128; y1--)
+				if (random.nextBoolean())
 				{
-					size *= regression; //reduce the radius of the spike randomly
-					if (Ycoord + y1 < 25) break;
-					
-					if (random.nextBoolean())
+					if (random.nextInt(3) == 0 && size >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
 					{
-						if (random.nextInt(3) == 0 && size >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
-						{
-							Xcoord += random.nextInt(2) - random.nextInt(2);
-							Zcoord += random.nextInt(2) - random.nextInt(2);
-						}
-
-						if (spikeType == 1 && !flag && y1 <= 35 && y1 <= 70 && random.nextBoolean() && size <= 0.774446314D) //Type 1 has chance to thicken at a random spot once
-						{
-							size *= 2.86333567D;
-							flag = true;
-						}
+						Xcoord += random.nextInt(2) - random.nextInt(2);
+						Zcoord += random.nextInt(2) - random.nextInt(2);
 					}
-					else if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like
+
+					if (spikeType == 1 && !flag && y1 <= 35 && y1 <= 70 && random.nextBoolean() && size <= 0.774446314D) //Type 1 has chance to thicken at a random spot once
+					{
+						size *= 2.86333567D;
+						flag = true;
+					}
+				}
+				
+				if (random.nextBoolean())
+				{
+					if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like
 					{
 						Xcoord += random.nextInt(2) - random.nextInt(2);
 						Zcoord += random.nextInt(2) - random.nextInt(2);
@@ -94,28 +96,24 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 							generateChildSpike(world, random, size * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5));
 						}
 					}
-
-					if (size < cutoff || Ycoord + y1 <= 0) break;
-					
-					list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
-
-					for (int[] coords : list)
-					{
-						block = world.getBlock(coords[0], coords[1], coords[2]);
-						if (StructureWorldGen.validBlocks.contains(block)) world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
 				}
 
+				list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
 
+				for (int[] coords : list)
+				{
+					material = world.getBlock(coords[0], coords[1], coords[2]).getMaterial();
+					if (!material.isLiquid() && material != Material.air) world.setBlockToAir(coords[0], coords[1], coords[2]);
+				}
 			}
 		}
 
 	}
 
-	public static void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord)
+	public void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord)
 	{
 		ArrayList<int[]> list;
-		Block block;
+		Material material;
 
 		for (int y1 = 0; y1 < 64; y1++)
 		{
@@ -136,8 +134,8 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 
 			for (int[] coords : list)
 			{
-				block = world.getBlock(coords[0], coords[1], coords[2]);
-				if (StructureWorldGen.validBlocks.contains(block)) world.setBlockToAir(coords[0], coords[1], coords[2]);
+				material = world.getBlock(coords[0], coords[1], coords[2]).getMaterial();
+				if (!material.isLiquid() && material != Material.air) world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 		}
 	}

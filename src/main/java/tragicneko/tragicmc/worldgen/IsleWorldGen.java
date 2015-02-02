@@ -18,12 +18,12 @@ public class IsleWorldGen implements IWorldGenerator {
 
 		int x = (chunkX * 16) + random.nextInt(16);
 		int z = (chunkZ * 16) + random.nextInt(16);
-		int y = world.getTopSolidOrLiquidBlock(x, z) + 6;
+		int y = world.getTopSolidOrLiquidBlock(x, z);
 
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome != TragicBiomes.TaintedIsles || random.nextInt(6) == 0) return;
 
-		y += 32 + random.nextInt(48) - random.nextInt(16);
+		y += 38 + random.nextInt(48) - random.nextInt(16);
 
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 8.0D, x + 4, y + 3, z + 4);
 
@@ -31,7 +31,10 @@ public class IsleWorldGen implements IWorldGenerator {
 		{
 			if (coords[1] < y - 1.5D)
 			{
-				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
+				if (Math.abs(coords[0] - x) > 2 || Math.abs(coords[1] - x) > 2 || Math.abs(coords[2] - x) > 2)
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
+				else
+					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DarkStone, 0, 2);
 			}
 			else if (coords[1] <= y - 0.5D)
 			{
@@ -43,7 +46,7 @@ public class IsleWorldGen implements IWorldGenerator {
 			}
 		}
 
-		int r = random.nextInt(3) + 3;
+		int r = random.nextInt(3) - random.nextInt(3);
 
 		for (int potato = 0; potato < r; potato++)
 		{
@@ -54,7 +57,10 @@ public class IsleWorldGen implements IWorldGenerator {
 			{
 				if (coords[1] < y + yDif)
 				{
-					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
+					if (Math.abs(coords[0] - x) > 2 || Math.abs(coords[1] - x) > 2 || Math.abs(coords[2] - x) > 2)
+						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
+					else
+						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DarkStone, 0, 2);
 				}
 				else if (coords[1] <= y + yDif + 1.0D)
 				{

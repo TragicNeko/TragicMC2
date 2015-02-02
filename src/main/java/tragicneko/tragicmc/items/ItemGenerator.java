@@ -276,7 +276,7 @@ public class ItemGenerator extends Item {
 						size *= 2.86333567D;
 						flag = true;
 					}
-				}
+				} /*
 				else if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like
 				{
 					Xcoord += random.nextInt(2) - random.nextInt(2);
@@ -301,7 +301,7 @@ public class ItemGenerator extends Item {
 					{
 						CustomSpikesWorldGen.generateChildSpike(world, random, size * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, blockMeta);
 					}
-				}
+				} */
 
 				if (size < 0.36943755D || Ycoord + y1 > 256) break;
 

@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.worldgen;
 
+import static tragicneko.tragicmc.TragicBlocks.CircuitBlock;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,6 +11,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
@@ -26,7 +29,7 @@ public class DarkShieldWorldGen implements IWorldGenerator {
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		double radius;
 		ArrayList<int[]> list;
-		int[] coords;
+		int[] coords = new int[] {x, y, z};
 		Block block;
 
 		if (biome == TragicBiomes.AshenBadlands)
@@ -49,24 +52,20 @@ public class DarkShieldWorldGen implements IWorldGenerator {
 				}
 			}
 		}
-		else if (biome instanceof BiomeGenDecayingWasteland && random.nextBoolean())
+		else if (biome instanceof BiomeGenDecayingWasteland)
 		{
-			radius = (2.0D * random.nextDouble()) + 2.0D;
-
-			for (int y1 = -2; y1 < 5; y1++)
+			for (int k = 0; k < 24 + random.nextInt(8); k++)
 			{
-				list = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
+				block = world.getBlock(coords[0], coords[1], coords[2]);
+				list = WorldHelper.getBlocksAdjacent(coords);
 
-				for (int i = 0; i < list.size(); i++)
+				for (int[] cand2 : list)
 				{
-					coords = list.get(i);
-					block = world.getBlock(coords[0], coords[1], coords[2]);
-
-					if (block == TragicBlocks.DarkStone || block == TragicBlocks.DeadDirt)
-					{
-						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 2, 2);
-					}
+					block = world.getBlock(cand2[0], cand2[1], cand2[2]);
+					if (block == TragicBlocks.DeadDirt && random.nextBoolean()) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.DeadDirt, 2, 2);
 				}
+
+				coords = list.get(random.nextInt(list.size()));
 			}
 		}
 	}
