@@ -107,15 +107,15 @@ public class EntityErkel extends TragicMob {
 		}
 		else
 		{
-			if (this.rand.nextInt(64) == 0 && this.onGround && this.getMobGriefing())
+			if (this.rand.nextInt(32) == 0 && this.onGround && this.getMobGriefing() && this.ticksExisted % 20 == 0)
 			{
-				int x = (int) (this.posX + rand.nextInt(4) - rand.nextInt(4));
+				int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
-				int z = (int) (this.posZ + rand.nextInt(4) - rand.nextInt(4));
+				int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 				
 				if (this.worldObj.isAirBlock(x, y, z) || this.worldObj.getBlock(x, y, z) instanceof BlockTallGrass)
 				{
-					if (World.doesBlockHaveSolidTopSurface(this.worldObj, x, y - 1, z)) this.worldObj.setBlock(x, y, z, rand.nextBoolean() ? Blocks.brown_mushroom : Blocks.red_mushroom);
+					if (Blocks.brown_mushroom.canBlockStay(this.worldObj, x, y, z)) this.worldObj.setBlock(x, y, z, rand.nextBoolean() ? Blocks.brown_mushroom : Blocks.red_mushroom);
 				}
 			}
 		}
