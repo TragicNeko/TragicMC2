@@ -94,7 +94,7 @@ public class KeyInputEvents extends Gui {
 			if (effect.getDuration() >= 40)
 			{
 				ItemStack current = player.getCurrentEquippedItem();
-				if (current != null && rand.nextInt(128) == 0) player.dropOneItem(true);
+				if (current != null && rand.nextInt(1048) == 0) player.dropOneItem(true);
 				if (player.swingProgress == 1.0F) player.swingProgress = 0.0F;
 				MovementInput input = new MovementInput();
 				if (rand.nextInt(16) == 0) input.jump = true;
