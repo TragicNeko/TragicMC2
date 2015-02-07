@@ -829,14 +829,6 @@ public class TragicRecipes {
 				'x', TragicItems.CrushedIce
 				);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Glue, 3), 
-				TragicItems.Sap, Items.magma_cream, Items.milk_bucket, Items.sugar
-				);
-
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.SuperGlue, 1),
-				TragicItems.Glue, TragicItems.Sap, Items.clay_ball, Items.nether_wart
-				);
-
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CompactOre, 1, 3),
 				"xxx",
 				"xxx",

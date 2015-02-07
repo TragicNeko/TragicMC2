@@ -170,8 +170,6 @@ public class TragicItems {
 	public static Item Thorns;
 	public static Item BoneMarrow;
 	public static Item Horn;
-	public static Item Glue;
-	public static Item SuperGlue;
 	public static Item LunarPowder;
 	public static Item CelestialDiamond;
 
@@ -517,12 +515,6 @@ public class TragicItems {
 
 		BoneMarrow = (new ItemBoneMarrow(2, false).setUnlocalizedName("tragicmc.boneMarrow").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BoneMarrow" + textureRes));
 		GameRegistry.registerItem(BoneMarrow, "boneMarrow");
-
-		Glue = (new ItemGeneric().setUnlocalizedName("tragicmc.glue").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Glue" + textureRes));
-		GameRegistry.registerItem(Glue, "glue");
-
-		SuperGlue = (new ItemGeneric().setUnlocalizedName("tragicmc.superGlue").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SuperGlue" + textureRes));
-		GameRegistry.registerItem(SuperGlue, "superGlue");
 
 		LightIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.lightIngot").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightIngot" + textureRes));
 		GameRegistry.registerItem(LightIngot, "lightIngot");
@@ -1012,7 +1004,8 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 2, 5, 100),
 				new WeightedRandomChestContent(new ItemStack(Items.string), 2, 4, 75),
 				new WeightedRandomChestContent(new ItemStack(Items.bone), 0, 2, 25),
-				new WeightedRandomChestContent(new ItemStack(Spore), 0, 3, 10)
+				new WeightedRandomChestContent(new ItemStack(Spore), 0, 3, 10),
+				new WeightedRandomChestContent(new ItemStack(Sap), 0, 3, 10)
 		};
 
 		WeightedRandomChestContent[] awesomeChestContent = new WeightedRandomChestContent[] {
