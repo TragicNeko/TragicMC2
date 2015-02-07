@@ -104,7 +104,7 @@ public class EntityOverlordCore extends TragicBoss {
 	}
 
 	@Override
-	public void onLivingUpdate()
+	public void onLivingUpdate() //TODO rewrite overlord core ai to use datawatchers intead of just doing server-side updates
 	{
 		double d0;
 		double d1;

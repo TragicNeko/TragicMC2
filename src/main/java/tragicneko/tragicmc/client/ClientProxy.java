@@ -250,7 +250,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnyvil.class, new RenderEnyvil());
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 
-		//Alpha renders TODO change these to their proper models
+		//Alpha renders TODO update the two first forms when I finish their models and initial AI
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelDeathReaper(), 0.885F, "DeathReaper_lowRes", 2.556F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelKitsune2(), 0.885F, "Kitsune2_lowRes", 2.556F));

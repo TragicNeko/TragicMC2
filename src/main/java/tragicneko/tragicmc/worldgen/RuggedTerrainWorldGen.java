@@ -60,7 +60,6 @@ public class RuggedTerrainWorldGen implements IWorldGenerator {
 							{
 								if (block == TragicBlocks.AshenGrass || block == Blocks.air && !flag || block instanceof BlockGenericTallGrass || block == TragicBlocks.ErodedStone)
 								{
-									
 									world.setBlock(coords[0], coords[1], coords[2], flag ? TragicBlocks.DeadDirt : TragicBlocks.ErodedStone, flag ? 1 : 2, 2);
 								}
 							}
