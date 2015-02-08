@@ -3253,7 +3253,7 @@ It now takes about a second of sneaking to cancel an extended one, but the effec
 Lifewater renamed to Enchanted Tears, since it is technically tears (ghast tears), it now has an "enchanted" glow to match the name
 I just reviewed all of the armor textures, along with their damaged ones and they all work fine, so this is possibly another build glitch with textures
 
-2.40.1929++ <187> (January 22, 2015)
+2.40.1964 <187> (January 22, 2015)
 Working on the Overlord Core model, fixed initial issue with the model being rotated 180 degrees from the overlord's actual rotation
 Experimented with a rainbow effect for the Divinity effect, this will probably not be used due to other reasons
 Added the Overlord Armor, each piece gives you 5 extra health (2.5 hearts), allowing you to have up to 20 hearts of health
@@ -3267,7 +3267,49 @@ Invulnerability no longer negates Flight
 Clarity now renders the particles instead of boxes, though it's harder to see in some instances it has the same effect
 Challenge rewards now use EntityDrops from the DropHelper to give weighted rewards, so now some rewards are more common than others, added a few new rewards and
 reduced chance of getting some rewards by consolidating them into a single instance rather than having them skew the rewards by having multiple (amulets, epic weapons, spawn eggs, etc.)
+Added Frozen Netherrack block, changed Light Cobblestone to require Lightning Orbs instead of Ice Orbs to craft in survival
+Frozen Netherrack requires Ice Orbs and Netherrack
+Created new package for Alphas (endboss caliber bosses), moved Overlord classes to it, moved Guardian Shield to the Projectile package since it is technically a projectile
+Updated code for Mob Dungeons in the dimension, they had the wrong blocks as the base and cleaned up some other code for it as well
+Increased chance for Mob Dungeons to generate in the Dimension
+Fix bug with Star Cryse (missed one double in it's stat configurations)
+Added AttributeModifier of the Overlord Armor to the config file
+Specify class extensions for the LoreHelper and DropHelper
+The Overlord Core model is probably the highest detailed model I've ever made (and probably will ever make, it's taking so long omg)
+Updated code for the Synapse dimension, sped up Conduit generation and modified Dead Circuit generation
+Modified Circuit blocks to allow mobs to spawn naturally on them, Nano Swarms may now spawn in the Dimension
+Added textures for the Overlord Core, got more work done on it's model but it's not quite done yet
+Increased speed in which it flies through and destroys blocks
+Fixed WorldGen for Sapphire/Ruby in Nether
+Added Debug option for the Neko Neko Wand that allows you to see all of the ore distribution in a specific chunk, only does my ores and vanilla as thats
+all I care about
+Fixed WorldGen for Stone Layers
+Optimized WorldGen for the Collision again, mostly involving the stone layers and the spikes generation
+Fixed bug with Spike generation that didn't actually generate the spike variants the proper way, this created some more lag for their generation but some
+other optimizations were done to alleviate that some
+Prevent dirt from generating in spikes, ores will still generate since they would be difficult to get to anyway (without creative mode flight anyway)
+Change how mixed dirt is generated in Decaying biomes
+Reduced chance of Erkel placing mushrooms, improved circumstance recognition for the mushroom placement, reduced range for placement
+Removed Glue/Super Glue, not much use, could possibly break stuff with balance regarding durability and such for tools or armor for other mods and for my
+own, note to self: find another way to use sap in a recipe for something
+Finished up the Overlord Core's model and textures, may add two more "low health" textures for it
+Fixed a few offset issues with the core's model
+Added datawatchers to the Overlord Core, I'm going to add one more attack that makes it pick up it's target and drop it from a high place, draining energy
+from them while doing so
+Deprecated the texture string for resolutions that the mod uses, 1.8 doesn't use these anyway, but there's way too many extraneous textures so I'll remove
+all of the ones that aren't used (such as the higher resolution versions)
 
+2.40.1964 <188> (February 8, 2015)
+Added "drop" attack to the Overlord Core, it now picks up players and damages them while healing itself slowly
+
+Notes for Overlord Core animation/texture (so I don't forget)
+Brains will "pulsate" slowly
+Brain sac will be semi-transparent, in other words, parts of it's texture will be opaque and the rest transparent
+The legs will kinda hang down lifelessly until it uses it's mortors, then they'll move erratically like with the Enyvil
+I want the legs to move erratically and the mouth to open and close when it gets near a target
+It's lower jaw will move up and down randomly, along with it's pincers opening and closing randomly, they'll also open when it gets actually hurt
+Possibly modify the damaged texture to have transparency on all of the black parts of it, so that when I render it damaged, those parts appear semi-transparent
+and the rest is solid
 
 
 TODO still
@@ -3300,6 +3342,10 @@ Note: For the Magma biomes, add a geyser block that will randomly shoot steam up
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
 
 --Reminders-
+Change the Spike generation to get a list while iterating through y levels and add onto that list, ensuring not to add duplicates, then fill in the entire
+list with the spike block in order to avoid setting the same block multiple levels
+Update the Isles generation to use a modified version of the inverted spike generation, using the previous method, I'll then go back and change the top
+two or three layers to fit the biome (replace dark stone with dirt or eroded stone)
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
 Add client-side effects for the Doomsdays (other than the vanilla stuff)
 Make it so that corrupted mob's textures darken the longer they are corrupted
