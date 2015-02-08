@@ -94,8 +94,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicItems {
 
-	//Texture resolution String
-	public static String textureRes = "_lowRes";
+	@Deprecated
+	public static final String textureRes = "_lowRes";
 
 	//Item variables
 	public static Item RedMercury, Quicksilver, QuicksilverIngot, Jack;

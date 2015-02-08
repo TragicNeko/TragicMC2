@@ -6,11 +6,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 public class TragicConfig {
 
 	public static boolean mobsOnly;
-	private static int resolution;
 
 	private static final String catMaster = "Master Configs";
 	private static final String catBlanket = "Blanket Configs";
@@ -140,9 +140,12 @@ public class TragicConfig {
 	{
 		Configuration config = TragicMC.getConfig();
 		config.load();
-
-		mobsOnly = config.get(catMaster, "isMobsOnly", false).getBoolean(false);
-		resolution = config.get(catMaster, "textureResolution", 16).getInt(16);
+		
+		Property prop;
+		prop = config.get(catMaster, "isMobsOnly", false);
+		prop.comment = "Is the mod in mob only mode?";
+		prop.setLanguageKey("tragicmc.mobsOnly");
+		mobsOnly = prop.getBoolean(mobsOnly);
 
 		config.addCustomCategoryComment(catMaster, "These change all other options and may even set specific variables, items are never disabled at any point");
 
@@ -920,13 +923,6 @@ public class TragicConfig {
 
 	public static void postProcessConfigs()
 	{
-		TragicItems.textureRes = "_lowRes";
-		//if (resolution < 32) textureRes = "_lowRes";
-		//if (resolution >=32 && resolution < 64) textureRes = "_midRes";
-		//if (resolution >= 64 && resolution < 128) textureRes = "_highRes"; 
-		//if (resolution >= 128 && resolution < 256) textureRes = "_superRes";
-		//if (resolution >= 256) textureRes = "_ultraRes";
-
 		int i;
 
 		if (mobsOnly)
