@@ -39,7 +39,7 @@ public class RenderOverlordCore extends RenderBoss {
 			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
 		}
 		else if (!core.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
-		{			
+		{
 			float trans = 1.0F;
 
 			GL11.glPushMatrix();
@@ -96,7 +96,7 @@ public class RenderOverlordCore extends RenderBoss {
 
 	public ResourceLocation getEntityTexture(EntityOverlordCore core)
 	{
-		return texture;
+		return core.getVulnerableTicks() > 0 ? damagedTexture : texture;
 	}
 
 }

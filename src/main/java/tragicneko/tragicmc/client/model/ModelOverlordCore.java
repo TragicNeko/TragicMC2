@@ -17,22 +17,21 @@ public class ModelOverlordCore extends ModelBase
 	private ModelRenderer neck;
 	private ModelRenderer brainSac;
 	private ModelRenderer brain;
-	private ModelRenderer[] brains;
 	
 	private ModelRenderer body;
 	
-	ModelRenderer upperLegFR;
-	ModelRenderer lowerLegFR;
-	ModelRenderer upperLegFL;
-	ModelRenderer lowerLegFL;
-	ModelRenderer upperLegFMR;
-	ModelRenderer lowerLegFMR;
-	ModelRenderer upperLegFML;
-	ModelRenderer lowerLegFML;
-	ModelRenderer legBMR;
-	ModelRenderer legBML;
-	ModelRenderer legBR;
-	ModelRenderer legBL;
+	private ModelRenderer upperLegFR;
+	private ModelRenderer lowerLegFR;
+	private ModelRenderer upperLegFL;
+	private ModelRenderer lowerLegFL;
+	private ModelRenderer upperLegFMR;
+	private ModelRenderer lowerLegFMR;
+	private ModelRenderer upperLegFML;
+	private ModelRenderer lowerLegFML;
+	private ModelRenderer legBMR;
+	private ModelRenderer legBML;
+	private ModelRenderer legBR;
+	private ModelRenderer legBL;
 
 	public ModelOverlordCore()
 	{
@@ -904,75 +903,70 @@ public class ModelOverlordCore extends ModelBase
 		upperLegFR = new ModelRenderer(this, 60, 90);
 		upperLegFR.addBox(0F, -1F, -1F, 1, 3, 1);
 		upperLegFR.setRotationPoint(-6F, 13F, -2F);
-		upperLegFR.setTextureSize(128, 128);
-		upperLegFR.mirror = true;
-		setRotation(upperLegFR, -0.4833219F, 0F, 0.4833219F);
+		upperLegFR.rotateAngleX = -0.4833219F;
+		upperLegFR.rotateAngleZ = 0.4833219F;
+		
 		lowerLegFR = new ModelRenderer(this, 60, 90);
 		lowerLegFR.addBox(-1F, 2F, -1F, 1, 3, 1);
-		lowerLegFR.setRotationPoint(-6F, 13F, -2F);
-		lowerLegFR.setTextureSize(128, 128);
-		lowerLegFR.mirror = true;
-		setRotation(lowerLegFR, -0.5205006F, 0F, 0F);
+		lowerLegFR.rotateAngleX = -0.0371787F;
+		upperLegFR.addChild(lowerLegFR);
+		
 		upperLegFL = new ModelRenderer(this, 60, 90);
 		upperLegFL.addBox(-1F, -1F, -1F, 1, 3, 1);
 		upperLegFL.setRotationPoint(6F, 13F, -2F);
-		upperLegFL.setTextureSize(128, 128);
-		upperLegFL.mirror = true;
-		setRotation(upperLegFL, -0.4833219F, 0F, -0.4833219F);
+		upperLegFL.rotateAngleX = -0.4833219F;
+		upperLegFL.rotateAngleZ = -0.4833219F;
+		
 		lowerLegFL = new ModelRenderer(this, 60, 90);
 		lowerLegFL.addBox(0F, 2F, -1F, 1, 3, 1);
-		lowerLegFL.setRotationPoint(6F, 13F, -2F);
-		lowerLegFL.setTextureSize(128, 128);
-		lowerLegFL.mirror = true;
-		setRotation(lowerLegFL, -0.5205006F, 0F, 0F);
+		lowerLegFL.rotateAngleX = -0.0371787F;
+		upperLegFL.addChild(lowerLegFL);
+		
 		upperLegFMR = new ModelRenderer(this, 60, 90);
 		upperLegFMR.addBox(0F, -1F, 0F, 1, 3, 1);
 		upperLegFMR.setRotationPoint(-6F, 13F, 1F);
-		upperLegFMR.setTextureSize(128, 128);
-		upperLegFMR.mirror = true;
-		setRotation(upperLegFMR, -0.2602503F, 0F, 0.2974289F);
+		upperLegFMR.rotateAngleX = -0.2602503F;
+		upperLegFMR.rotateAngleZ = -0.2974289F;
+
 		lowerLegFMR = new ModelRenderer(this, 60, 90);
 		lowerLegFMR.addBox(-1F, 2F, 0F, 1, 3, 1);
-		lowerLegFMR.setRotationPoint(-6F, 13F, 1F);
-		lowerLegFMR.setTextureSize(128, 128);
-		lowerLegFMR.mirror = true;
-		setRotation(lowerLegFMR, -0.2602503F, 0F, 0F);
+		lowerLegFMR.rotateAngleX = 0.2602503F;
+		upperLegFMR.addChild(lowerLegFMR);
+		
 		upperLegFML = new ModelRenderer(this, 60, 90);
 		upperLegFML.addBox(-1F, -1F, 0F, 1, 3, 1);
 		upperLegFML.setRotationPoint(6F, 13F, 1F);
-		upperLegFML.setTextureSize(128, 128);
-		upperLegFML.mirror = true;
-		setRotation(upperLegFML, -0.2602503F, 0F, -0.2974289F);
+		upperLegFML.rotateAngleX = -0.2602503F;
+		upperLegFML.rotateAngleZ = -0.2974289F;
+		
 		lowerLegFML = new ModelRenderer(this, 60, 90);
 		lowerLegFML.addBox(0F, 2F, 0F, 1, 3, 1);
-		lowerLegFML.setRotationPoint(6F, 13F, 1F);
-		lowerLegFML.setTextureSize(128, 128);
-		lowerLegFML.mirror = true;
-		setRotation(lowerLegFML, -0.2602503F, 0F, 0F);
+		lowerLegFML.rotateAngleX = 0.2602503F;
+		upperLegFML.addChild(lowerLegFML);
+		
 		legBMR = new ModelRenderer(this, 60, 90);
 		legBMR.addBox(0F, 0F, 0F, 1, 3, 1);
 		legBMR.setRotationPoint(-6F, 10F, 5F);
-		legBMR.setTextureSize(128, 128);
-		legBMR.mirror = true;
-		setRotation(legBMR, -0.3346075F, 0F, 0.1487144F);
+		legBMR.rotateAngleX = -0.3346075F;
+		legBMR.rotateAngleZ = 0.1487144F;
+		
 		legBML = new ModelRenderer(this, 60, 90);
 		legBML.addBox(-1F, 0F, 0F, 1, 3, 1);
 		legBML.setRotationPoint(6F, 10F, 5F);
-		legBML.setTextureSize(128, 128);
-		legBML.mirror = true;
-		setRotation(legBML, -0.3346075F, 0F, -0.1487144F);
+		legBML.rotateAngleX = -0.3346075F;
+		legBML.rotateAngleZ = -0.1487144F;
+		
 		legBR = new ModelRenderer(this, 60, 90);
 		legBR.addBox(0F, 0F, 0F, 1, 3, 1);
 		legBR.setRotationPoint(-5F, 7F, 6F);
-		legBR.setTextureSize(128, 128);
-		legBR.mirror = true;
-		setRotation(legBR, 0.4461433F, 0F, 0.2230717F);
+		legBR.rotateAngleX = 0.4461433F;
+		legBR.rotateAngleZ = 0.2230717F;
+		
 		legBL = new ModelRenderer(this, 60, 90);
 		legBL.addBox(-1F, 0F, 0F, 1, 3, 1);
 		legBL.setRotationPoint(5F, 7F, 6F);
-		legBL.setTextureSize(128, 128);
-		legBL.mirror = true;
-		setRotation(legBL, 0.4461433F, 0F, -0.2230717F);
+		legBL.rotateAngleX = 0.4461433F;
+		legBL.rotateAngleZ = -0.2230717F;
 	}
 
 	@Override
@@ -989,24 +983,14 @@ public class ModelOverlordCore extends ModelBase
 		body.render(f5);
 		
 		upperLegFR.render(f5);
-		lowerLegFR.render(f5);
 		upperLegFL.render(f5);
-		lowerLegFL.render(f5);
 		upperLegFMR.render(f5);
-		lowerLegFMR.render(f5);
 		upperLegFML.render(f5);
-		lowerLegFML.render(f5);
+		
 		legBMR.render(f5);
 		legBML.render(f5);
 		legBR.render(f5);
 		legBL.render(f5);
-	}
-
-	private void setRotation(ModelRenderer model, float x, float y, float z)
-	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
 	}
 
 	@Override
@@ -1014,7 +998,8 @@ public class ModelOverlordCore extends ModelBase
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		
-		List brains = brain.childModels;
+		List<ModelRenderer> brains = brain.childModels;
+		
 		
 	}
 

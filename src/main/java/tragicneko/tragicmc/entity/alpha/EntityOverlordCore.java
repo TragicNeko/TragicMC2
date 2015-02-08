@@ -29,6 +29,7 @@ import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
+import tragicneko.tragicmc.util.DamageHelper;
 
 import com.google.common.collect.Sets;
 
@@ -55,7 +56,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.noClip = true;
 		this.ignoreFrustumCheck = true;
 	}
-	
+
 	@Override
 	public boolean canRenderOnFire()
 	{
@@ -93,7 +94,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		return (int) overlordCoreStats[5];
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
@@ -102,36 +103,77 @@ public class EntityOverlordCore extends TragicBoss {
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(20, Integer.valueOf(0));
 	}
-	
+
 	public int getHoverTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
 	}
-	
+
 	private void setHoverTicks(int i)
 	{
 		this.dataWatcher.updateObject(16, i);
 	}
-	
+
 	private void decrementHoverTicks()
 	{
 		this.setHoverTicks(this.getHoverTicks() - 1);
 	}
-	
+
 	public int getVulnerableTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(17);
 	}
-	
+
 	private void setVulnerableTicks(int i)
 	{
 		this.dataWatcher.updateObject(17, i);
 	}
-	
+
 	private void decrementVulnerableTicks()
 	{
 		this.setVulnerableTicks(this.getVulnerableTicks() - 1);
+	}
+
+	public int getHurtTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(18);
+	}
+
+	private void setHurtTicks(int i)
+	{
+		this.dataWatcher.updateObject(18, i);
+	}
+
+	private void decrementHurtTicks()
+	{
+		this.setHurtTicks(this.getHurtTicks() - 1);
+	}
+
+	public boolean isNearTarget()
+	{
+		return this.dataWatcher.getWatchableObjectInt(19) == 0;
+	}
+
+	private void setNearTarget(boolean flag)
+	{
+		this.dataWatcher.updateObject(19, flag ? 0 : 1);
+	}
+
+	public int getDropTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
+
+	private void setDropTicks(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+	}
+
+	private void decrementDropTicks()
+	{
+		this.setDropTicks(this.getDropTicks() - 1);
 	}
 
 	@Override
@@ -157,27 +199,42 @@ public class EntityOverlordCore extends TragicBoss {
 				this.setPosition(d10, d0, d1);
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 			}
-			
-			double dr = rand.nextDouble() - rand.nextDouble();
-			double dr2 = rand.nextDouble() - rand.nextDouble();
-			double dr3 = rand.nextDouble() - rand.nextDouble();
 
-			double x = dr * 2.25 + this.posX;
-			double y = dr2 * 2.25 + this.posY + this.height / 2.0D;
-			double z = dr3 * 2.25 + this.posZ;
-			
-			for (int i = 0; i < 16; i++)
+			double dr;
+			double dr2;
+			double dr3;
+			double x;
+			double y;
+			double z;
+
+			int j = this.getHoverTicks() > 0 ? 6 : 16;
+
+			for (int i = 0; i < j; i++)
 			{
+				dr = rand.nextDouble() - rand.nextDouble();
+				dr2 = rand.nextDouble() - rand.nextDouble();
+				dr3 = rand.nextDouble() - rand.nextDouble();
+				x = dr * 2.25 + this.posX;
+				y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+				z = dr3 * 2.25 + this.posZ;
 				this.worldObj.spawnParticle("reddust", x, y, z, 0.33F, 0.88F, 0.94F);
 			}
-			
-			for (int i = 0; i < 16; i++)
+
+			for (int i = 0; i < 4 && this.getHoverTicks() == 0; i++)
 			{
+				dr = rand.nextDouble() - rand.nextDouble();
+				dr2 = rand.nextDouble() - rand.nextDouble();
+				dr3 = rand.nextDouble() - rand.nextDouble();
+				x = dr * 2.25 + this.posX;
+				y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+				z = dr3 * 2.25 + this.posZ;
 				this.worldObj.spawnParticle("reddust", x + dr3 * 2.25, y + dr2 * 2.25, z + dr * 2.25, 0.1F, 0.1F, 0.1F);
 			}
 
 			return;
 		}
+
+		if (this.worldObj.difficultySetting.getDifficultyId() == 0) this.setDead();
 
 		d10 = this.targetX - this.posX;
 		d0 = this.targetY - this.posY;
@@ -200,12 +257,26 @@ public class EntityOverlordCore extends TragicBoss {
 
 			this.targetY = this.target.boundingBox.minY + d8;
 
-			if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.setHoverTicks(300 + rand.nextInt(120));
+			if (this.getDropTicks() == 0)
+			{
+				if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.setHoverTicks(300 + rand.nextInt(120));
+			}
 		}
 		else
 		{
 			this.targetX += this.rand.nextGaussian() * 2.0D;
 			this.targetZ += this.rand.nextGaussian() * 2.0D;
+		}
+
+		if (this.isNearTarget()) this.setNearTarget(false);
+		if (this.worldObj.getClosestPlayerToEntity(this, 10.0) != null)
+		{
+			this.setNearTarget(true);
+			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0)
+			{
+				this.setDropTicks(120 + rand.nextInt(60));
+				this.mountEntity(this.worldObj.getClosestPlayerToEntity(this, 10.0));
+			}
 		}
 
 		if (this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically)
@@ -294,10 +365,56 @@ public class EntityOverlordCore extends TragicBoss {
 			if (this.getHoverTicks() == 0) this.hoverBuffer = 200;
 			this.aggregate = 0;
 		}
-		
-		if (this.getVulnerableTicks() > 0) this.decrementVulnerableTicks();
 
-		if (this.hurtTime == 0 && this.getHoverTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
+		if (this.getDropTicks() > 0)
+		{
+			this.decrementDropTicks();
+			this.motionX = this.motionZ = 0.0F;
+			this.motionY = 0.1F;
+
+			if (this.worldObj.getClosestPlayerToEntity(this, 10.0) != null)
+			{
+				this.setNearTarget(true);
+				if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0)
+				{
+					this.setDropTicks(120 + rand.nextInt(60));
+					this.mountEntity(this.worldObj.getClosestPlayerToEntity(this, 10.0));
+				}
+			}
+
+			if (this.ridingEntity != null && this.getDropTicks() > 10)
+			{
+				if (this.getDropTicks() % 10 == 0) 
+				{
+					this.attackEntityAsMob(this.ridingEntity);
+					this.heal(1.0F);
+				}
+
+				this.ridingEntity.motionY = 0.2D;
+				this.ridingEntity.velocityChanged = true;
+				this.ridingEntity.fallDistance = 0.0F;
+
+			}
+
+			if (this.getDropTicks() <= 10) this.mountEntity(null);
+			if (this.getDropTicks() > 80 && this.ridingEntity == null)
+			{
+				this.mountEntity(null);
+				this.setDropTicks(0);
+				this.aggregate++;
+			}
+
+			if (this.getDropTicks() == 0) this.hoverBuffer = 200;
+		}
+		else if (this.ridingEntity != null)
+		{
+			this.mountEntity(null);
+		}
+
+		if (this.getVulnerableTicks() > 0) this.decrementVulnerableTicks();
+		if (this.getHurtTicks() > 0) this.decrementHurtTicks();
+
+		if (this.getHurtTicks() == 0 && this.getHoverTicks() == 0 && this.getDropTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
 		this.slowed = this.destroyBlocksInAABB(this.boundingBox);
 
@@ -307,6 +424,13 @@ public class EntityOverlordCore extends TragicBoss {
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
+
+		TragicMC.logInfo("VulnerableTicks: " + this.getVulnerableTicks());
+		TragicMC.logInfo("HurtTicks: " + this.getHurtTicks());
+		TragicMC.logInfo("HoverTicks: " + this.getHoverTicks());
+		TragicMC.logInfo("HoverBuffer: " + this.hoverBuffer);
+		TragicMC.logInfo("DropTicks: " + this.getDropTicks());
+		TragicMC.logInfo("NearTarget: " + this.isNearTarget());
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -352,7 +476,7 @@ public class EntityOverlordCore extends TragicBoss {
 		for (int i = 0; i < list.size(); ++i)
 		{
 			Entity entity = (Entity)list.get(i);
-			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse) entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse && !entity.equals(this.ridingEntity)) entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		}
 	}
 
@@ -360,7 +484,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		this.forceNewTarget = false;
 
-		if (this.rand.nextBoolean() && !this.worldObj.playerEntities.isEmpty())
+		if (!this.worldObj.playerEntities.isEmpty())
 		{
 			this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
 		}
@@ -423,6 +547,9 @@ public class EntityOverlordCore extends TragicBoss {
 		tag.setInteger("hoverTicks", this.getHoverTicks());
 		tag.setInteger("hoverBuffer", this.hoverBuffer);
 		tag.setInteger("aggregate", this.aggregate);
+		tag.setInteger("hurtTicks", this.getHurtTicks());
+		tag.setInteger("vulnerableTicks", this.getVulnerableTicks());
+		tag.setInteger("dropTicks", this.getDropTicks());
 	}
 
 	@Override
@@ -435,6 +562,9 @@ public class EntityOverlordCore extends TragicBoss {
 		if (tag.hasKey("hoverTicks")) this.setHoverTicks(tag.getInteger("hoverTicks"));
 		if (tag.hasKey("hoverBuffer")) this.hoverBuffer = tag.getInteger("hoverBuffer");
 		if (tag.hasKey("aggregate")) this.aggregate = tag.getInteger("aggregate");
+		if (tag.hasKey("hurtTicks")) this.setHurtTicks(tag.getInteger("hurtTicks"));
+		if (tag.hasKey("vulnerableTicks")) this.setVulnerableTicks(tag.getInteger("vulnerableTicks"));
+		if (tag.hasKey("dropTicks")) this.setDropTicks(tag.getInteger("dropTicks"));
 	}
 
 	@Override
@@ -461,13 +591,25 @@ public class EntityOverlordCore extends TragicBoss {
 					this.hoverBuffer = 100;
 				}
 
+				if (this.getDropTicks() > 0)
+				{
+					this.setDropTicks(0);
+					this.forceNewTarget = true;
+					this.hoverBuffer = 100;
+				}
+
 				if (flag && this.getVulnerableTicks() == 0) this.setVulnerableTicks(200);
+				if (this.getHurtTicks() == 0) this.setHurtTicks(60);
 
 				return super.attackEntityFrom(src, dmg);
 			}
 
 			++aggregate;
-			if (aggregate >= 10) this.forceNewTarget = true;
+			if (aggregate >= 10)
+			{
+				this.forceNewTarget = true;
+				if (this.getDropTicks() > 0) this.setDropTicks(0);
+			}
 		}
 
 		return true;
