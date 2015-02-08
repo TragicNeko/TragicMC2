@@ -90,11 +90,10 @@ public class ModelNanoSwarm extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		Random rand = entity.worldObj.rand;
 		int j = entity.ticksExisted;
 		float meow;
 		
-		for (int i = 0; i < this.boxList.size(); i++)
+		for (int i = 0; i < this.shapeArray.length; i++)
 		{
 			meow = (0.65F + (i * 0.25F)) * (float) Math.PI;
 			shapeArray[i].rotateAngleX = meow * this.simplifyAngle(j, 180.0F);

@@ -42,18 +42,15 @@ public class EntityOverlordCore extends TragicBoss {
 	public boolean slowed;
 	private Entity target;
 
-	private int hoverTicks;
 	private int hoverBuffer;
 	private int aggregate;
-	private int vulnerableTicks;
-	private int burstTicks;
 
 	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
 			TragicBlocks.Conduit});
 
 	public EntityOverlordCore(World par1World) {
 		super(par1World);
-		this.setSize(5.0F, 5.0F);
+		this.setSize(4.2F, 3.8F);
 		this.targetY = 50.0D;
 		this.noClip = true;
 		this.ignoreFrustumCheck = true;
@@ -81,12 +78,6 @@ public class EntityOverlordCore extends TragicBoss {
 	public void setAir(int i){}
 
 	@Override
-	protected void entityInit()
-	{
-		super.entityInit();
-	}
-
-	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -101,6 +92,46 @@ public class EntityOverlordCore extends TragicBoss {
 	public int getTotalArmorValue()
 	{
 		return (int) overlordCoreStats[5];
+	}
+	
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(19, Integer.valueOf(0));
+	}
+	
+	public int getHoverTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+	
+	private void setHoverTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+	
+	private void decrementHoverTicks()
+	{
+		this.setHoverTicks(this.getHoverTicks() - 1);
+	}
+	
+	public int getVulnerableTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+	
+	private void setVulnerableTicks(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+	
+	private void decrementVulnerableTicks()
+	{
+		this.setVulnerableTicks(this.getVulnerableTicks() - 1);
 	}
 
 	@Override
@@ -169,7 +200,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			this.targetY = this.target.boundingBox.minY + d8;
 
-			if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.hoverTicks = 300 + rand.nextInt(120);
+			if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.setHoverTicks(300 + rand.nextInt(120));
 		}
 		else
 		{
@@ -252,20 +283,21 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (this.hoverBuffer > 0) --this.hoverBuffer;
 
-		if (this.hoverTicks > 0) 
+		if (this.getHoverTicks() > 0) 
 		{
-			--this.hoverTicks;
+			this.decrementHoverTicks();
 			this.motionX = this.motionZ = this.motionY = 0.0F;
 
-			if (this.target != null && this.hoverTicks > 60 && this.hoverTicks % 10 == 0) this.createMortors();
+			if (this.target != null && this.getHoverTicks() > 60 && this.getHoverTicks() % 10 == 0) this.createMortors();
 			if (this.ticksExisted % 5 == 0 && this.getHealth() < this.getMaxHealth()) this.healByFactorRanged(5.0F, 5.0F, 30.0F);
 
-			if (this.hoverTicks == 0) this.hoverBuffer = 200;
+			if (this.getHoverTicks() == 0) this.hoverBuffer = 200;
 			this.aggregate = 0;
 		}
-		if (this.vulnerableTicks > 0) --this.vulnerableTicks;
+		
+		if (this.getVulnerableTicks() > 0) this.decrementVulnerableTicks();
 
-		if (this.hurtTime == 0 && this.hoverTicks == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
+		if (this.hurtTime == 0 && this.getHoverTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
 		this.slowed = this.destroyBlocksInAABB(this.boundingBox);
 
@@ -275,16 +307,6 @@ public class EntityOverlordCore extends TragicBoss {
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
-		/*
-		if (this.burstTicks > 5 && this.vulnerableTicks > 50)
-		{
-			this.motionX *= 0.62;
-			this.motionZ *= 0.62;
-			
-			if (burstTicks > 40) burstTicks = 0;
-		}
-		
-		burstTicks++; */
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -398,7 +420,7 @@ public class EntityOverlordCore extends TragicBoss {
 		tag.setDouble("targetX", this.targetX);
 		tag.setDouble("targetY", this.targetY);
 		tag.setDouble("targetZ", this.targetZ);
-		tag.setInteger("hoverTicks", this.hoverTicks);
+		tag.setInteger("hoverTicks", this.getHoverTicks());
 		tag.setInteger("hoverBuffer", this.hoverBuffer);
 		tag.setInteger("aggregate", this.aggregate);
 	}
@@ -410,7 +432,7 @@ public class EntityOverlordCore extends TragicBoss {
 		if (tag.hasKey("targetX")) this.targetX = tag.getDouble("targetX");
 		if (tag.hasKey("targetY")) this.targetY = tag.getDouble("targetY");
 		if (tag.hasKey("targetZ")) this.targetZ = tag.getDouble("targetZ");
-		if (tag.hasKey("hoverTicks")) this.hoverTicks = tag.getInteger("hoverTicks");
+		if (tag.hasKey("hoverTicks")) this.setHoverTicks(tag.getInteger("hoverTicks"));
 		if (tag.hasKey("hoverBuffer")) this.hoverBuffer = tag.getInteger("hoverBuffer");
 		if (tag.hasKey("aggregate")) this.aggregate = tag.getInteger("aggregate");
 	}
@@ -423,7 +445,7 @@ public class EntityOverlordCore extends TragicBoss {
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
 			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || this.vulnerableTicks > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
 				{
@@ -432,14 +454,14 @@ public class EntityOverlordCore extends TragicBoss {
 					this.worldObj.spawnEntityInWorld(swarm);
 				}
 
-				if (this.hoverTicks > 0)
+				if (this.getHoverTicks() > 0)
 				{
-					this.hoverTicks = 0;
+					this.setHoverTicks(0);
 					this.forceNewTarget = true;
 					this.hoverBuffer = 100;
 				}
 
-				if (flag && this.vulnerableTicks == 0) this.vulnerableTicks = 200;
+				if (flag && this.getVulnerableTicks() == 0) this.setVulnerableTicks(200);
 
 				return super.attackEntityFrom(src, dmg);
 			}
