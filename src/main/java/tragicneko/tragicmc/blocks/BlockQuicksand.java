@@ -81,8 +81,9 @@ public class BlockQuicksand extends BlockFalling
 	{				
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
-		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.0125;
+		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.125;
 		entity.onGround = true;
+		entity.velocityChanged = true;
 		entity.fallDistance = 0.0F;
 	}
 
@@ -91,6 +92,7 @@ public class BlockQuicksand extends BlockFalling
 	{
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
+		entity.velocityChanged = true;
 	}
 
 	@Override
