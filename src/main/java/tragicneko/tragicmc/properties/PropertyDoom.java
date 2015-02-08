@@ -73,10 +73,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		{
 			PropertyDoom doom =	PropertyDoom.get((EntityPlayer) entity);
 
-			if (doom != null)
-			{
-				doom.loadNBTData(new NBTTagCompound());
-			}
+			if (doom != null) doom.loadNBTData(new NBTTagCompound());
 		}
 	}
 
@@ -86,20 +83,9 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 */
 	public void onUpdate()
 	{
-		if (this.getCurrentDoom() < 0)
-		{
-			this.setCurrentDoom(0);
-		}
-
-		if (this.getCurrentDoom() > this.getMaxDoom())
-		{
-			this.setCurrentDoom(this.getMaxDoom());
-		}
-
-		if (this.getCurrentCooldown() < 0)
-		{
-			this.setCooldown(0);
-		}
+		if (this.getCurrentDoom() < 0) this.setCurrentDoom(0);
+		if (this.getCurrentDoom() > this.getMaxDoom()) this.setCurrentDoom(this.getMaxDoom());
+		if (this.getCurrentCooldown() < 0) this.setCooldown(0);
 
 		if (this.shouldDecrementCooldown())
 		{

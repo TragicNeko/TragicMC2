@@ -91,10 +91,10 @@ public class KeyInputEvents extends Gui {
 		{
 			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Hacked);
 
-			if (effect.getDuration() >= 40)
+			if (effect.getDuration() >= 5)
 			{
 				ItemStack current = player.getCurrentEquippedItem();
-				if (current != null && rand.nextInt(1048) == 0) player.dropOneItem(true);
+				if (current != null && rand.nextInt(1048) == 0 && rand.nextInt(1048) == 42) player.dropOneItem(true);
 				if (player.swingProgress == 1.0F) player.swingProgress = 0.0F;
 				MovementInput input = new MovementInput();
 				if (rand.nextInt(16) == 0) input.jump = true;
@@ -108,9 +108,6 @@ public class KeyInputEvents extends Gui {
 				player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 			}
 		}
-
-		boolean flag = TragicConfig.allowHacked ? player != null && player.isPotionActive(TragicPotion.Hacked) : false;
-		if (!flag && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 	}
 
 	@SubscribeEvent

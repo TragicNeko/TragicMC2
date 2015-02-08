@@ -40,7 +40,7 @@ public class MiscEvents {
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
 	{
-		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlock((int) event.entityLiving.posX, (int) event.entityLiving.posY, (int) event.entityLiving.posZ) instanceof BlockQuicksand) event.entityLiving.motionY *= 0.725D;
+		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlock((int) event.entityLiving.posX, (int) event.entityLiving.posY, (int) event.entityLiving.posZ) instanceof BlockQuicksand) event.entityLiving.motionY *= 0.625D;
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
