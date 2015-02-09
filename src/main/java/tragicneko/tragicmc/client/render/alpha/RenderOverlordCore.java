@@ -34,7 +34,7 @@ public class RenderOverlordCore extends RenderBoss {
 		this.bindEntityTexture(par1EntityLivingBase);
 		EntityOverlordCore core = (EntityOverlordCore) par1EntityLivingBase;
 		
-		if (!core.isInvisible() || core.getVulnerableTicks() == 0)
+		if (!core.isInvisible() && core.getVulnerableTicks() == 0)
 		{
 			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
 		}
@@ -47,7 +47,7 @@ public class RenderOverlordCore extends RenderBoss {
 			GL11.glDepthMask(false);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
+			GL11.glAlphaFunc(GL11.GL_GREATER, 0.03921569F);
 			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);

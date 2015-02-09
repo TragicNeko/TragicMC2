@@ -46,8 +46,9 @@ public class EntityOverlordCore extends TragicBoss {
 	private int hoverBuffer;
 	private int aggregate;
 
-	private static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
-			TragicBlocks.Conduit});
+	public static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
+			TragicBlocks.Conduit, TragicBlocks.WitheringGas, TragicBlocks.CorruptedGas});
+	public static final Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 
 	public EntityOverlordCore(World par1World) {
 		super(par1World);
@@ -177,8 +178,8 @@ public class EntityOverlordCore extends TragicBoss {
 	}
 
 	@Override
-	public void onLivingUpdate() //TODO rewrite overlord core ai to use datawatchers intead of just doing server-side updates
-	{
+	public void onLivingUpdate()
+	{		
 		double d0;
 		double d1;
 		double d2;
@@ -207,7 +208,12 @@ public class EntityOverlordCore extends TragicBoss {
 			double y;
 			double z;
 
-			int j = this.getHoverTicks() > 0 ? 6 : 16;
+			int j = this.getHoverTicks() > 0 ? 24 : 12;
+			boolean flag = this.getVulnerableTicks() > 0;
+			
+			float f = flag ? 0.0F : 0.33F;
+			float f1 = flag ? 0.0F : 0.88F;
+			float f2 = flag ? 0.0F : 0.94F;
 
 			for (int i = 0; i < j; i++)
 			{
@@ -217,10 +223,10 @@ public class EntityOverlordCore extends TragicBoss {
 				x = dr * 2.25 + this.posX;
 				y = dr2 * 2.25 + this.posY + this.height / 2.0D;
 				z = dr3 * 2.25 + this.posZ;
-				this.worldObj.spawnParticle("reddust", x, y, z, 0.33F, 0.88F, 0.94F);
+				this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
 			}
 
-			for (int i = 0; i < 4 && this.getHoverTicks() == 0; i++)
+			for (int i = 0; i < 6 && this.getHoverTicks() == 0; i++)
 			{
 				dr = rand.nextDouble() - rand.nextDouble();
 				dr2 = rand.nextDouble() - rand.nextDouble();
@@ -232,9 +238,10 @@ public class EntityOverlordCore extends TragicBoss {
 			}
 
 			return;
-		}
+		} 
 
 		if (this.worldObj.difficultySetting.getDifficultyId() == 0) this.setDead();
+		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
 
 		d10 = this.targetX - this.posX;
 		d0 = this.targetY - this.posY;
@@ -250,14 +257,11 @@ public class EntityOverlordCore extends TragicBoss {
 			double d7 = Math.sqrt(d3 * d3 + d5 * d5);
 			double d8 = 0.4000000059604645D + d7 / 80.0D - 1.0D;
 
-			if (d8 > 10.0D)
-			{
-				d8 = 10.0D;
-			}
+			if (d8 > 10.0D) d8 = 10.0D;
 
 			this.targetY = this.target.boundingBox.minY + d8;
 
-			if (this.getDropTicks() == 0)
+			if (this.getDropTicks() == 0 && this.getVulnerableTicks() == 0)
 			{
 				if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.setHoverTicks(300 + rand.nextInt(120));
 			}
@@ -269,10 +273,10 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 
 		if (this.isNearTarget()) this.setNearTarget(false);
-		if (this.worldObj.getClosestPlayerToEntity(this, 10.0) != null)
+		if (this.worldObj.getClosestPlayerToEntity(this, 5.0) != null)
 		{
 			this.setNearTarget(true);
-			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0)
+			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0)
 			{
 				this.setDropTicks(120 + rand.nextInt(60));
 				this.mountEntity(this.worldObj.getClosestPlayerToEntity(this, 10.0));
@@ -283,7 +287,7 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			this.setNewTarget();
 		}
-
+		
 		d0 /= MathHelper.sqrt_double(d10 * d10 + d1 * d1);
 		f12 = 0.6F;
 
@@ -302,33 +306,18 @@ public class EntityOverlordCore extends TragicBoss {
 		double d4 = 180.0D - Math.atan2(d10, d1) * 180.0D / Math.PI;
 		double d6 = MathHelper.wrapAngleTo180_double(d4 - this.rotationYaw);
 
-		if (d6 > 50.0D)
-		{
-			d6 = 50.0D;
-		}
-
-		if (d6 < -50.0D)
-		{
-			d6 = -50.0D;
-		}
+		if (d6 > 50.0D) d6 = 50.0D;
+		if (d6 < -50.0D) d6 = -50.0D;
 
 		Vec3 vec3 = Vec3.createVectorHelper(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
 		Vec3 vec32 = Vec3.createVectorHelper(MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, (-MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F))).normalize();
 		float f5 = (float)(vec32.dotProduct(vec3) + 0.5D) / 1.5F;
-
-		if (f5 < 0.0F)
-		{
-			f5 = 0.0F;
-		}
+		if (f5 < 0.0F) f5 = 0.0F;
 
 		this.randomYawVelocity *= 0.8F;
 		float f6 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
 		double d9 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D;
-
-		if (d9 > 40.0D)
-		{
-			d9 = 40.0D;
-		}
+		if (d9 > 40.0D) d9 = 40.0D;
 
 		this.randomYawVelocity = (float)(this.randomYawVelocity + d6 * (0.699999988079071D / d9 / f6));
 		this.rotationYaw += this.randomYawVelocity * 0.1F;
@@ -354,7 +343,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (this.hoverBuffer > 0) --this.hoverBuffer;
 
-		if (this.getHoverTicks() > 0) 
+		if (this.getHoverTicks() > 0)
 		{
 			this.decrementHoverTicks();
 			this.motionX = this.motionZ = this.motionY = 0.0F;
@@ -372,7 +361,7 @@ public class EntityOverlordCore extends TragicBoss {
 			this.motionX = this.motionZ = 0.0F;
 			this.motionY = 0.1F;
 
-			if (this.worldObj.getClosestPlayerToEntity(this, 10.0) != null)
+			if (this.worldObj.getClosestPlayerToEntity(this, 5.0) != null)
 			{
 				this.setNearTarget(true);
 				if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0)
@@ -386,14 +375,13 @@ public class EntityOverlordCore extends TragicBoss {
 			{
 				if (this.getDropTicks() % 10 == 0) 
 				{
-					this.attackEntityAsMob(this.ridingEntity);
+					this.ridingEntity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) overlordCoreStats[2] / 2);
 					this.heal(1.0F);
 				}
 
 				this.ridingEntity.motionY = 0.2D;
 				this.ridingEntity.velocityChanged = true;
 				this.ridingEntity.fallDistance = 0.0F;
-
 			}
 
 			if (this.getDropTicks() <= 10) this.mountEntity(null);
@@ -431,6 +419,11 @@ public class EntityOverlordCore extends TragicBoss {
 		TragicMC.logInfo("HoverBuffer: " + this.hoverBuffer);
 		TragicMC.logInfo("DropTicks: " + this.getDropTicks());
 		TragicMC.logInfo("NearTarget: " + this.isNearTarget());
+		
+		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+		if (replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -484,7 +477,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		this.forceNewTarget = false;
 
-		if (!this.worldObj.playerEntities.isEmpty())
+		if (!this.worldObj.playerEntities.isEmpty() && this.getVulnerableTicks() == 0)
 		{
 			this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
 		}
@@ -495,7 +488,7 @@ public class EntityOverlordCore extends TragicBoss {
 			do
 			{
 				this.targetX = 0.0D;
-				this.targetY = 70.0F + this.rand.nextFloat() * 50.0F;
+				this.targetY = 50.0F + this.rand.nextFloat() * 50.0F;
 				this.targetZ = 0.0D;
 				this.targetX += this.rand.nextFloat() * 120.0F - 60.0F;
 				this.targetZ += this.rand.nextFloat() * 120.0F - 60.0F;
@@ -598,8 +591,8 @@ public class EntityOverlordCore extends TragicBoss {
 					this.hoverBuffer = 100;
 				}
 
-				if (flag && this.getVulnerableTicks() == 0) this.setVulnerableTicks(200);
-				if (this.getHurtTicks() == 0) this.setHurtTicks(60);
+				if (flag && this.getVulnerableTicks() == 0) this.setVulnerableTicks(120 + rand.nextInt(40));
+				if (this.getHurtTicks() == 0) this.setHurtTicks(40);
 
 				return super.attackEntityFrom(src, dmg);
 			}
