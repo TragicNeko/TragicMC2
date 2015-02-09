@@ -20,7 +20,7 @@ import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKitsune2;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
-import tragicneko.tragicmc.client.model.ModelNanoSwarm;
+import tragicneko.tragicmc.client.model.ModelOverlordCore;
 import tragicneko.tragicmc.client.model.ModelPolaris;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
@@ -37,13 +37,13 @@ public class RenderStatue extends Render {
 	private static final String mobPath = "tragicmc:textures/mobs/";
 	private static final String textPath = "tragicmc:textures/statue/";
 	
-	private static ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
+	private static final ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
 		new ResourceLocation(mobPath + "DeathReaper_lowRes.png"), new ResourceLocation(mobPath + "TimeController_lowRes.png"), new ResourceLocation(mobPath + "Yeti_lowRes.png"),
 		new ResourceLocation(mobPath + "Polaris2_lowRes.png"), new ResourceLocation(mobPath + "Jarra_lowRes.png"), new ResourceLocation(mobPath + "Kragul_lowRes.png"),
 		new ResourceLocation(mobPath + "Magmox2_lowRes.png"), new ResourceLocation(mobPath + "Cryse_lowRes.png"), new ResourceLocation(mobPath + "StinKing_lowRes.png"),
 		new ResourceLocation(mobPath + "StinQueen_lowRes.png"), new ResourceLocation(mobPath + "GreaterStin_lowRes.png"), new ResourceLocation(mobPath + "VoxStellarum_lowRes.png"),
 		new ResourceLocation(mobPath + "Enyvil_lowRes.png"), new ResourceLocation(mobPath + "Claymation_lowRes.png"), new ResourceLocation(mobPath + "Aegar_lowRes.png"),
-		new ResourceLocation(mobPath + "Overlord_lowRes.png")},
+		new ResourceLocation(mobPath + "OverlordCore_lowRes.png")},
 		{new ResourceLocation(textPath + "IronStatue.png"),
 			new ResourceLocation(textPath + "GoldStatue.png"), new ResourceLocation(textPath + "DiamondStatue.png"), new ResourceLocation(textPath + "StoneStatue.png"),
 			new ResourceLocation(textPath + "WoodStatue.png"), new ResourceLocation(textPath + "EmeraldStatue.png"), new ResourceLocation(textPath + "MercuryStatue.png"),
@@ -53,7 +53,7 @@ public class RenderStatue extends Render {
 	
 	private static ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
-			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelNanoSwarm()};
+			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore()};
 
 	@Override
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
