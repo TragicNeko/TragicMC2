@@ -3300,17 +3300,18 @@ Deprecated the texture string for resolutions that the mod uses, 1.8 doesn't use
 all of the ones that aren't used (such as the higher resolution versions)
 
 2.40.1964 <188> (February 8, 2015)
-Added "drop" attack to the Overlord Core, it now picks up players and damages them while healing itself slowly
-
-Notes for Overlord Core animation/texture (so I don't forget)
-Brains will "pulsate" slowly
-Brain sac will be semi-transparent, in other words, parts of it's texture will be opaque and the rest transparent
-The legs will kinda hang down lifelessly until it uses it's mortors, then they'll move erratically like with the Enyvil
-I want the legs to move erratically and the mouth to open and close when it gets near a target
-It's lower jaw will move up and down randomly, along with it's pincers opening and closing randomly, they'll also open when it gets actually hurt
-Possibly modify the damaged texture to have transparency on all of the black parts of it, so that when I render it damaged, those parts appear semi-transparent
-and the rest is solid
-
+Added "drop" attack to the Overlord Core, it now picks up players and damages them while healing itself slowly, it can be hit in this phase regardless of if
+divinity is active, if it isn't active then it goes straight into hover mode and fires mortors, otherwise it becomes vulnerable like normal
+Also made it more aggressive and go towards a smaller y region, it now doesn't target any players while it is "vulnerable"
+Added transparency to the Damaged Core texture so that it renders the dark portions partially invisible when it is vulnerable
+Added Luminescence to the Overlord Core, modified some particle effects for it
+Added Replaceable block list to the overlord core that other mobs should use to know if luminescence can be placed in a certain spot
+Added animations to the Overlord Core's model, at this point, it is pretty much done so I'll prep for a release with this, going to do textures for the
+Overlord set and then probably try to add the armor models for them and then release
+Added Overlord armor textures, added new tool material for the "awakened" tools in the first expansion, the silent hellraiser will also use this and
+will have a special "limited" lifespan ability, in other words, it'll have unbreakable on it, but it'll lose durability while in the user's hands, requiring
+repair for continued use, it'll be repaired with the ascendent energy or whatever I decide to use as an upgrade material
+Hiding the other two overlord forms while I prep for a release
 
 TODO still
 Finish the other two forms of the Overlord
@@ -3322,7 +3323,6 @@ Add new specific mobs for some of the more "special" biome sets, change some mob
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
-Finish up the Core's model, update entity class to use datawatchers for animations
 The Combat Form will be worked on next, it'll work like the Stin in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
 The Combat form will always generate Corrupted gas around itself, which will probably inflict corruption on mobs
 The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
