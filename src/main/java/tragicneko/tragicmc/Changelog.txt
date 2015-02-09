@@ -3312,6 +3312,16 @@ Added Overlord armor textures, added new tool material for the "awakened" tools 
 will have a special "limited" lifespan ability, in other words, it'll have unbreakable on it, but it'll lose durability while in the user's hands, requiring
 repair for continued use, it'll be repaired with the ascendent energy or whatever I decide to use as an upgrade material
 Hiding the other two overlord forms while I prep for a release
+Added the Overlord Core's model to it's statue
+Added the damaged Overlord armor textures
+Ensure that any item that overrides whether it has an effect to get the glow ensures that the render pass is 0 to avoid opengl blending issues
+Darkened the mercury armor's textures, only rendered armor texture was changed to be less pink and more red
+
+Before release:
+Finish adding the weapon lores and enchantment tiers for each weapon/armor
+Ensure of no initial crashes with any of the entities or projectiles
+Ensure of no crashes with weapons and their doomsdays
+Test all of this on a server environment
 
 TODO still
 Finish the other two forms of the Overlord
