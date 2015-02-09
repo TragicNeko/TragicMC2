@@ -1,9 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.wispStats;
-
-import java.util.Set;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -13,21 +10,16 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicConfig;
-
-import com.google.common.collect.Sets;
-
+import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityWisp extends TragicMob {
-
-	private Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 
 	public EntityWisp(World par1World) {
 		super(par1World);
@@ -212,7 +204,7 @@ public class EntityWisp extends TragicMob {
 			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-			if (replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
 			{
 				this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
 			}

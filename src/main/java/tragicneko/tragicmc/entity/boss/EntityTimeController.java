@@ -5,7 +5,6 @@ import static tragicneko.tragicmc.TragicConfig.timeControllerStats;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -23,7 +22,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -34,22 +32,19 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.util.DamageHelper;
-
-import com.google.common.collect.Sets;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTimeController extends TragicBoss {
 
 	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicConfig.modifierAmts[2], 0);
-	private Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 
 	private HashMap<Integer, double[]> tracker = new HashMap();
 	private float storedDamage;
@@ -393,7 +388,7 @@ public class EntityTimeController extends TragicBoss {
 		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 	}
 
 	private void weighDownEntities() {
