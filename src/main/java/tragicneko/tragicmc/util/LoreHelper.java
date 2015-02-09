@@ -119,7 +119,14 @@ public class LoreHelper {
 				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.power, 5), new EnchantEntry(Enchantment.looting, 5),
 				new EnchantEntry(TragicEnchantments.Multiply, 1), new EnchantEntry(Enchantment.infinity, 1), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
 		
-		addToLoreMap(WeaponFrozenLightning.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponFrozenLightning.class, new Lore[] {new Lore(25, "Was that lightning?", 1), new Lore(15, "Ouch, you zapped me!", 1), new Lore(5, "Used Spark! It's not very effective...", 2),
+				new Lore(25, "Lightning crashes...", 2), new Lore(15, "A storm is brewing!", 2), new Lore(5, "You've been... THUNDERSTRUCK!", 3), new Lore(15, "Static shock!", 2),
+				new Lore(5, "I feel shocked.", 3),	new Lore(25, "Time for a lightning round!", 3), new Lore(5, "Used Volt Tackle! Critical hit!", 3),
+				new Lore(10, "Used Thunder! It's super effective!", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3),
+				new EnchantEntry(TragicEnchantments.RuneBreak, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(TragicEnchantments.Rust, 1),
+				new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
+		
 		addToLoreMap(WeaponGravitySpike.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponGuiltyThorn.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponHarmonyBell.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});

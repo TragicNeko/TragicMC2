@@ -19,19 +19,8 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponFrozenLightning extends TragicWeapon {
 
-	//private Lore[] uniqueLores = new Lore[] {new Lore("Was that lightning?"), new Lore("Sounds like a storm is coming.", EnumRarity.uncommon), new Lore("I feel shocked.", EnumRarity.rare),
-	//		new Lore("Ouch, you zapped me!"), new Lore("Time for a lightning round!", EnumRarity.rare), new Lore("Lightning crashes", EnumRarity.rare), new Lore("Used Thundershock!", EnumRarity.uncommon),
-	//		new Lore("Static shock!", EnumRarity.epic), new Lore("Used Volt Tackle! Critical hit!", EnumRarity.rare), new Lore("Used Thunder! Super effective!", EnumRarity.epic)};
-
 	public WeaponFrozenLightning(ToolMaterial material, Doomsday dday) {
 		super(material, dday);
-		//this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak};
-		this.rareLevels = new int[] {3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.RuneBreak, TragicEnchantments.Rust, TragicEnchantments.Luminescence};
-		this.epicLevels = new int[] {5, 3, 1, 1};
 	}
 
 	@Override
