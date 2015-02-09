@@ -413,6 +413,26 @@ public class TragicItems {
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
 		
 		SilentHellraiser = (new TragicWeapon(toolTragic, null) {
+			
+			@SideOnly(Side.CLIENT)
+			@Override
+			public boolean hasEffect(ItemStack stack, int pass)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean isBookEnchantable(ItemStack stack, ItemStack book)
+		    {
+		        return false;
+		    }
+			
+			@Override
+			public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
+			{
+				super.onUpdate(stack, world, entity, par, flag);
+				stack.stackTagCompound.setTag("ench", new net.minecraft.nbt.NBTTagList());
+			}
 		}.setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" + textureRes));
 		GameRegistry.registerItem(SilentHellraiser, "silentHellraiser");
 
@@ -467,7 +487,7 @@ public class TragicItems {
 			@Override
 			public boolean hasEffect(ItemStack stack, int pass)
 			{
-				return true;
+				return pass == 0;
 			}
 		}.setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LifeWater" + textureRes));
 		GameRegistry.registerItem(EnchantedTears, "enchantedTears");
