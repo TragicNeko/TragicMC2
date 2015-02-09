@@ -509,7 +509,7 @@ public abstract class Doomsday {
 		
 		private EnumDoomType()
 		{
-			this(EnumChatFormatting.WHITE);
+			this(EnumChatFormatting.AQUA);
 		}
 		
 		private EnumDoomType(EnumChatFormatting format)
