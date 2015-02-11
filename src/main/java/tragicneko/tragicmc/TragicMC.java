@@ -38,13 +38,13 @@ import tragicneko.tragicmc.commands.DoomsdayCoomand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
+import tragicneko.tragicmc.events.AmuletEvents;
 import tragicneko.tragicmc.events.ChallengeItemEvents;
 import tragicneko.tragicmc.events.DoomEvents;
 import tragicneko.tragicmc.events.DropEvents;
 import tragicneko.tragicmc.events.DynamicHealthScaling;
 import tragicneko.tragicmc.events.EnchantmentEvents;
 import tragicneko.tragicmc.events.MiscEvents;
-import tragicneko.tragicmc.events.AmuletEvents;
 import tragicneko.tragicmc.events.PotionEvents;
 import tragicneko.tragicmc.events.RespawnDoomEvents;
 import tragicneko.tragicmc.events.VanillaChangingEvents;
@@ -136,7 +136,7 @@ public class TragicMC
 			}
 			else
 			{
-				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent a crash.");
+				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent any crashes.");
 				TragicConfig.disablePotions();
 			}
 		}
@@ -232,7 +232,7 @@ public class TragicMC
 		DoomsdayManager.clearRegistry();
 
 		logDuration("Events 3");
-		
+
 		if (TragicConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
 		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
 		if (TragicConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
@@ -257,7 +257,7 @@ public class TragicMC
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);
 
 		logDuration("WorldGen registration");
-		
+
 		net = new SimpleNetworkWrapper(TragicMC.MODID);
 		net.registerMessage(MessageHandlerDoom.class, MessageDoom.class, 0, Side.CLIENT);
 		net.registerMessage(MessageHandlerAmulet.class, MessageAmulet.class, 1, Side.CLIENT);
