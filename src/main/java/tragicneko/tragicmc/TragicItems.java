@@ -82,6 +82,7 @@ import tragicneko.tragicmc.items.weapons.WeaponParanoia;
 import tragicneko.tragicmc.items.weapons.WeaponPitchBlack;
 import tragicneko.tragicmc.items.weapons.WeaponReaperScythe;
 import tragicneko.tragicmc.items.weapons.WeaponSentinel;
+import tragicneko.tragicmc.items.weapons.WeaponSilentHellraiser;
 import tragicneko.tragicmc.items.weapons.WeaponSplinter;
 import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponThardus;
@@ -223,7 +224,7 @@ public class TragicItems {
 	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 12.0F, 0.0F, 6);
 	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 15.0F, 2.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
-	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, 0F, 5);
+	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, -4F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
 	private static final ToolMaterial toolHunter = EnumHelper.addToolMaterial("HUNTER", 1, 160, 1F, 1F, 4);
 	private static final ToolMaterial toolMercury = EnumHelper.addToolMaterial("MERCURY", 2, 170, 1.5F, 1.5F, 12);
@@ -239,7 +240,6 @@ public class TragicItems {
 	private static final ToolMaterial toolCelesJack = EnumHelper.addToolMaterial("CELESJACK", 3, 1280, 20.0F, 4.0F, 4);
 	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24);
 	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
-	public static final ToolMaterial toolEpic = EnumHelper.addToolMaterial("EPIC", 3, 750, 16.0F, 16.0F, 16);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 400, 21.0F, 21.0F, 28);
 	private static final ToolMaterial toolAwakened = EnumHelper.addToolMaterial("AWAKENED", 3, 1000, 26.0F, 26.0F, 32);
 	private static final ToolMaterial toolSentinel = EnumHelper.addToolMaterial("SENTINEL", 4, 9001, 26.0F, 26.0F, 32);
@@ -412,28 +412,7 @@ public class TragicItems {
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
 		
-		SilentHellraiser = (new TragicWeapon(toolTragic, null) {
-			
-			@SideOnly(Side.CLIENT)
-			@Override
-			public boolean hasEffect(ItemStack stack, int pass)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean isBookEnchantable(ItemStack stack, ItemStack book)
-		    {
-		        return false;
-		    }
-			
-			@Override
-			public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
-			{
-				super.onUpdate(stack, world, entity, par, flag);
-				stack.stackTagCompound.setTag("ench", new net.minecraft.nbt.NBTTagList());
-			}
-		}.setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" + textureRes));
+		SilentHellraiser = (new WeaponSilentHellraiser(toolTragic, null).setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" + textureRes));
 		GameRegistry.registerItem(SilentHellraiser, "silentHellraiser");
 
 		//Epic weapons
