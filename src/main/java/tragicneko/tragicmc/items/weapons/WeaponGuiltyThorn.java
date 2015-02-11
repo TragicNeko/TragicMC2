@@ -14,20 +14,9 @@ import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponGuiltyThorn extends TragicWeapon {
-	
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("Kill...", EnumRarity.uncommon), new Lore("Your pain = <3", EnumRarity.epic), new Lore("Your happiness hurts me.", EnumRarity.epic),
-	//	new Lore("Die.", EnumRarity.epic), new Lore("I love your screams of terror~", EnumRarity.rare), new Lore("Your smiles kill me inside."), new Lore("Killing you softly~", EnumRarity.uncommon),
-	//	new Lore("The voices in my head agree I'm not crazy!")};
 
 	public WeaponGuiltyThorn(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
-		//this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Leech};
-		this.rareLevels = new int[] {3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Leech, Enchantment.sharpness};
-		this.epicLevels = new int[] {5, 3, 3};
 	}
 
 	@Override

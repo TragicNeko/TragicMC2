@@ -14,19 +14,9 @@ import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponHarmonyBell extends TragicWeapon {
-
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("Hell's Bells!", EnumRarity.rare), new Lore("Ding dong.", EnumRarity.uncommon), new Lore("For Whom the Bell Tolls...", EnumRarity.epic),
-	//	new Lore("Fahoo Fores, Dahoo Dores!", EnumRarity.rare), new Lore("Ding ding, dinner's ready!"), new Lore("Ring-a-ding ding", EnumRarity.uncommon), new Lore("Jingle Bells!")};
 	
-	public WeaponHarmonyBell(ToolMaterial p_i45356_1_, Doomsday dday) {
-		super(p_i45356_1_, dday);
-		//this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback};
-		this.rareLevels = new int[] {3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback, TragicEnchantments.Absolve};
-		this.epicLevels = new int[] {5, 3, 1};
+	public WeaponHarmonyBell(ToolMaterial material, Doomsday dday) {
+		super(material, dday);
 	}
 
 	@Override
@@ -44,7 +34,7 @@ public class WeaponHarmonyBell extends TragicWeapon {
 			}
 		}
 
-		return true;
+		return super.onLeftClickEntity(stack, player, entity);
 	}
 
 	@Override
