@@ -3299,7 +3299,7 @@ from them while doing so
 Deprecated the texture string for resolutions that the mod uses, 1.8 doesn't use these anyway, but there's way too many extraneous textures so I'll remove
 all of the ones that aren't used (such as the higher resolution versions)
 
-2.40.1964 <188> (February 8, 2015)
+2.40.1964++ <188> (February 8, 2015)
 Added "drop" attack to the Overlord Core, it now picks up players and damages them while healing itself slowly, it can be hit in this phase regardless of if
 divinity is active, if it isn't active then it goes straight into hover mode and fires mortors, otherwise it becomes vulnerable like normal
 Also made it more aggressive and go towards a smaller y region, it now doesn't target any players while it is "vulnerable"
@@ -3316,6 +3316,11 @@ Added the Overlord Core's model to it's statue
 Added the damaged Overlord armor textures
 Ensure that any item that overrides whether it has an effect to get the glow ensures that the render pass is 0 to avoid opengl blending issues
 Darkened the mercury armor's textures, only rendered armor texture was changed to be less pink and more red
+Moved Silent Hellraiser to it's own class instead of using an anonymous class for it
+Finishing up adding weapon lores to the lore helper
+Modified Harmony Bell to have 0 attack damage, it's enchantments now actually do something since I was able to allow it to actually damage things due to this
+Experimented with creating a lores text file that could be edited by the user for each weapon to add custom lores, initial issues involve reading the file
+correctly but that's mostly due to inexperience with it
 
 Before release:
 Finish adding the weapon lores and enchantment tiers for each weapon/armor
@@ -3324,6 +3329,7 @@ Ensure of no crashes with weapons and their doomsdays
 Test all of this on a server environment
 
 TODO still
+Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop
 Finish the other two forms of the Overlord
 Add armor models for the higher tiered armors
 Add the Overlord armor model
@@ -3354,13 +3360,11 @@ Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add 
 --Reminders-
 Change the Spike generation to get a list while iterating through y levels and add onto that list, ensuring not to add duplicates, then fill in the entire
 list with the spike block in order to avoid setting the same block multiple levels
+Doing this, I'll put the coords into a set, then convert the set into a list when I need to set all of the blocks to avoid duplicates
 Update the Isles generation to use a modified version of the inverted spike generation, using the previous method, I'll then go back and change the top
 two or three layers to fit the biome (replace dark stone with dirt or eroded stone)
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
 Add client-side effects for the Doomsdays (other than the vanilla stuff)
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
-The Sentinel armor's Doomsday will be Harden, it'll give you a quick Resistance 10 buff and heal you 3 hearts, it will give you a 10 heart buff when you have the full set on
-and will also give you Convergence
-The armor will look kinda scaly like the celled blocks, and have trim that matches the Overlord's design, it'll require nano-bots which will drop from Harvesters and the Overlord
-itself, and each armor piece will require Overlord Essence, which it will drop as it's boss drop
+Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
