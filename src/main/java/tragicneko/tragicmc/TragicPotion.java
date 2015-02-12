@@ -30,7 +30,9 @@ public class TragicPotion extends Potion {
 		y += 7;
 		net.minecraft.client.renderer.entity.RenderItem itemRender = new net.minecraft.client.renderer.entity.RenderItem();
 		if (this.icon == null) this.icon = new ItemStack(Items.apple);
-		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.icon, x, y);
+		net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
+		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.icon, x, y, false);
+		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 	}	
 
 	public static void load()
