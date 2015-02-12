@@ -75,6 +75,7 @@ tile.tragicmc.darkCobblestone.ashen.name=Ashen Dark Cobblestone
 tile.tragicmc.lightCobblestone.normal.name=Light Cobblestone
 tile.tragicmc.lightCobblestone.frozen.name=Frozen Light Cobblestone
 tile.tragicmc.lightCobblestone.glowing.name=Glowing Light Cobblestone
+tile.tragicmc.lightStone.name=Light Stone
 
 tile.tragicmc.frozenNetherrack.name=Frozen Netherrack
 
@@ -217,6 +218,8 @@ tile.tragicmc.circuit.dead.name=Dead Circuit
 tile.tragicmc.circuit.aged.name=Aged Circuit
 tile.tragicmc.circuit.damaged.name=Damaged Circuit
 tile.tragicmc.circuit.veryDamaged.name=Very Damaged Circuit
+
+tile.tragicmc.conduit.name=Conduit
 
 tile.tragicmc.celled.name=Celled Block
 tile.tragicmc.celledLamp.white.name=Celled Lamp (White)
