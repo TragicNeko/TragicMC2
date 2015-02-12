@@ -13,20 +13,8 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponNekoLauncher extends TragicWeapon {
 
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("Some days you just can't get rid of a bomb!", EnumRarity.epic), new Lore("I meant to do that!", EnumRarity.uncommon),
-	//		new Lore("That was supposed to happen!"), new Lore("Oops."), new Lore("This is why I can't have nice things!", EnumRarity.rare),
-	//		new Lore("It's just a flesh wound.", EnumRarity.rare), new Lore("Meow~", EnumRarity.epic)}; "Tell me where it hurts!~", "Does it hurt when I do this?"
-
-	public WeaponNekoLauncher(ToolMaterial p_i45356_1_, Doomsday dday) {
-		super(p_i45356_1_, dday);
-		//this.lores = uniqueLores;
-		this.setMaxDamage(250);
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-		this.uncommonLevels = new int[] {1};
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback};
-		this.rareLevels = new int[] {5, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.knockback, TragicEnchantments.Distract};
-		this.epicLevels = new int[] {10, 5, 3};
+	public WeaponNekoLauncher(ToolMaterial material, Doomsday dday) {
+		super(material, dday);
 	}
 
 	@Override

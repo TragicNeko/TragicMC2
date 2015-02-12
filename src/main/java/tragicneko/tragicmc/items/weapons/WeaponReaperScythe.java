@@ -15,19 +15,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponReaperScythe extends ItemScythe {
 
-	//private final Lore[] lores = new Lore[] {new Lore("Bleed for me.", EnumRarity.epic), new Lore("Bleed out.", EnumRarity.uncommon), new Lore("Let's paint this town red!"),
-	//		new Lore("Care for fava beans and a nice chianti?"), new Lore("It's raining blood!", EnumRarity.rare), new Lore("Blood is thicker than water.", EnumRarity.uncommon),
-	//		new Lore("Digging deeper just to throw it away!", EnumRarity.epic), new Lore("We all bleed the same.", EnumRarity.uncommon), new Lore("Blood is flowing!", EnumRarity.rare)};
-
-	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay};
-	private int[] uncommonLevels = new int[] {3, 1};
-
-	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay, TragicEnchantments.Vampirism};
-	private int[] rareLevels = new int[] {5, 3, 1};
-
-	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Decay, TragicEnchantments.Vampirism, Enchantment.looting};
-	private int[] epicLevels = new int[] {10, 5, 3, 3};
-
 	public WeaponReaperScythe(ToolMaterial par2Material, Doomsday dday) {
 		super(par2Material);
 		this.doomsday = dday;

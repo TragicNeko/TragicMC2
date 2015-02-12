@@ -66,10 +66,8 @@ public class LoreHelper {
 		addToLoreMap(ArmorOverlord.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 
 		//Tools
-		addToLoreMap(ItemJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponTungstenJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponCelestialJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ItemScythe.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 
 		//Normal Weapons
 		addToLoreMap(TragicItems.MercuryDagger.getClass(), new Lore[] {new Lore(25, "Boring.", 1), new Lore(15, "Nice.", 1), new Lore(5, "Interesting.", 1), new Lore(15, "Lame", 1), new Lore(25, "Ha.", 2),
@@ -147,18 +145,44 @@ public class LoreHelper {
 			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Distract, 1)},
 				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Distract, 3), new EnchantEntry(TragicEnchantments.Absolve, 1), new EnchantEntry(Enchantment.knockback, 1)}});
 
-		addToLoreMap(WeaponHuntersBow.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponNekoLauncher.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponPitchBlack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponReaperScythe.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponWitheringAxe.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponSilentHellraiser.class, new Lore[] {}, new EnchantEntry[][]{{},{},{},{}});
-
+		addToLoreMap(WeaponHuntersBow.class, new Lore[] {new Lore(15, "On the hunt.", 1), new Lore(5, "Run as fast as you can!", 1), new Lore(10, "Tracking...", 1),
+				new Lore(25, "Let the hunt begin.", 2), new Lore(5, "Time to join the hunting party!", 3), new Lore(5, "Catch me if you can!", 2), new Lore(5, "Conquest!", 2),
+				new Lore(25, "Don't worry, I'm an expert.", 3), new Lore(15, "The Hunter becomes the Hunted.", 3), new Lore(5, "The Most Dangerous Game", 3), new Lore(15, "Night of the Hunter!", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.punch, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3),
+				new EnchantEntry(Enchantment.punch, 2), new EnchantEntry(Enchantment.flame, 1), new EnchantEntry(Enchantment.power, 1)}});
+		
+		addToLoreMap(WeaponNekoLauncher.class, new Lore[] {new Lore(25, "Oops", 1), new Lore(15, "I meant to do that.", 1), new Lore(5, "That was supposed to happen!", 1),
+				new Lore(25, "Tell me where it hurts!", 2), new Lore(15, "It's just a flesh wound.", 2), new Lore(5, "Does it hurt when I do this?", 2),
+				new Lore(25, "This is why I can't have nice things!", 3), new Lore(15, "Some days you just can't get rid of a bomb!", 3), new Lore(5, "Meow~", 3),
+				new Lore(5, "Seriously, all of these mess-ups were on purpose!", 2), new Lore(10, "It's all going to plan, honestly!", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.knockback, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.knockback, 3), new EnchantEntry(TragicEnchantments.Distract, 1)}});
+		
+		addToLoreMap(WeaponPitchBlack.class, new Lore[] {new Lore(25, "Black as my soul!", 1), new Lore(15, "Hide in the shadows.", 1), new Lore(5, "Darkness is my friend.", 1),
+				new Lore(10, "Perfect Dark Zero.", 1), new Lore(25, "Paint it black!", 2), new Lore(15, "Like the black in your eyes.", 2), new Lore(5, "Pitch black!", 2), new Lore(15, "Black Hole Sun!", 3),
+				new Lore(15, "Welcome to the Black Parade!", 3), new Lore(5, "Blackout! Blood in your eyes!", 3), new Lore(5, "I was born in the dark. Molded by it. You merely adopted it.", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1), new EnchantEntry(TragicEnchantments.Decay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3),
+				new EnchantEntry(TragicEnchantments.Decay, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Decay, 5),
+				new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(Enchantment.looting, 1)}});
+		
+		addToLoreMap(WeaponReaperScythe.class, new Lore[] {new Lore(25, "Bleed out.", 1), new Lore(15, "Bleed for me.", 1), new Lore(5, "Blood is flowing now!", 1), new Lore(5, "It's raining blood.", 1),
+				new Lore(25, "Blood is thicker than water.", 2), new Lore(15, "No matter how you discriminate we all bleed the same.", 2), new Lore(5, "Crimson red, like the blood moon.", 2),
+				new Lore(5, "I ate his liver with some fava beans and a nice Chianti.", 3), new Lore(15, "Digging deeper just to throw it away!", 3), new Lore(25, "Let's paint this town red!", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Decay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Decay, 3),
+				new EnchantEntry(TragicEnchantments.Vampirism, 1)}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Decay, 5), new EnchantEntry(TragicEnchantments.Vampirism, 3)}});
+		
+		addToLoreMap(WeaponWitheringAxe.class, new Lore[] {new Lore(5, "Like Paul Bunyan.", 1), new Lore(15, "Lemme axe you a question!", 1), new Lore(15, "Chop chop!", 1), new Lore(25, "Weapon of choice.", 1),
+				new Lore(25, "Plaid is the new black.", 2), new Lore(15, "Tree murderer.", 2), new Lore(10, "Go ahead, axe me how my day went.", 2), new Lore(5, "Your beard looks quite luxurious today.", 2),
+				new Lore(25, "He's a lumberjack and he's okay!", 3), new Lore(15, "Chop Suey!?", 3), new Lore(5, "Taking you right to the chop block!", 3), new Lore(5, "Treetho's Choppa", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.sharpness, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.sharpness, 3), new EnchantEntry(Enchantment.efficiency, 1)}});
+		
 		//Alpha weapons
 		addToLoreMap(WeaponSentinel.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 
 		//Epic weapons
-		addToLoreMap(WeaponButcher.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponButcher.class, new Lore[] {},
+				new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponDragonFang.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponParanoia.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(WeaponSplinter.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});

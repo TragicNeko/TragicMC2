@@ -101,7 +101,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
-
+			
 			if (lore != null)
 			{
 				String[] subs = LoreHelper.splitDesc(lore);
@@ -114,6 +114,7 @@ public class WeaponCelestialLongbow extends ItemBow {
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+			par2List.add(""); //extra space
 		}
 	}
 

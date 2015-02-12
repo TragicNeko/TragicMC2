@@ -31,20 +31,6 @@ public class WeaponHuntersBow extends ItemBow {
 	private IIcon[] iconArray;
 
 	public final Doomsday doomsday = Doomsday.RapidFire;
-	
-	//private final Lore[] lores = new Lore[] {new Lore("Let the hunt begin.", EnumRarity.rare), new Lore("On the hunt."), new Lore("Time to join the Hunting Party!", EnumRarity.rare),
-	//		new Lore("I'm an expert tracker.", EnumRarity.uncommon), new Lore("Catch me if you can.", EnumRarity.rare), new Lore("The Hunter became the Hunted"),
-	//		new Lore("The Hunter became the Prey", EnumRarity.uncommon), new Lore("Conquest!"), new Lore("Night of the Hunter", EnumRarity.uncommon),
-	//		new Lore("The Most Dangerous Game", EnumRarity.epic)};
-
-	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-	private int[] uncommonLevels = new int[] {1, 1};
-
-	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.punch, Enchantment.flame};
-	private int[] rareLevels = new int[] {2, 3, 1};
-
-	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.punch, Enchantment.flame, Enchantment.power};
-	private int[] epicLevels = new int[] {3, 5, 3, 3};
 
 	public WeaponHuntersBow()
 	{
@@ -112,12 +98,13 @@ public class WeaponHuntersBow extends ItemBow {
 				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
 			}
 		}
-		
+
 		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+			par2List.add(""); //extra space
 		}
 	}
 
