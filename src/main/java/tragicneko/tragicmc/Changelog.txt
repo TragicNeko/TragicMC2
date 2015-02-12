@@ -3321,6 +3321,10 @@ Finishing up adding weapon lores to the lore helper
 Modified Harmony Bell to have 0 attack damage, it's enchantments now actually do something since I was able to allow it to actually damage things due to this
 Experimented with creating a lores text file that could be edited by the user for each weapon to add custom lores, initial issues involve reading the file
 correctly but that's mostly due to inexperience with it
+Fixed rendering of blocks in potion effect indicators
+Prep for updating Morph with the new package names, as well as the new entities
+Added missing localizations to lang file
+Added extra space in between a weapon's doomsday and the attack damage/enchantments in the description
 
 Before release:
 Finish adding the weapon lores and enchantment tiers for each weapon/armor
@@ -3368,3 +3372,5 @@ Add client-side effects for the Doomsdays (other than the vanilla stuff)
 Make it so that corrupted mob's textures darken the longer they are corrupted
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
+Update the config to get each actual Property instead of dealing with each of the raw types directly
+Add each of the lores and the property names to the localizations
