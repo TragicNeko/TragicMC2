@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -12,6 +13,7 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 public class DoomsdayEffect {
 
 	public final Doomsday dday;
+	public final EntityPlayer player;
 	public int timeBetweenUpdates;
 
 	public final boolean isInstant;
@@ -43,6 +45,7 @@ public class DoomsdayEffect {
 		this.dday = Doomsday.getDoomsdayFromId(id);
 		this.rand = Doomsday.rand;
 		this.doom = doom;
+		this.player = doom.getPlayer();
 		this.isInstant = dday instanceof IExtendedDoomsday ? false : true;
 		this.timeBetweenUpdates = dday.getWaitTime();
 		this.isActive = true;
@@ -58,7 +61,7 @@ public class DoomsdayEffect {
 
 	public DoomsdayEffect inheritCooldown(DoomsdayEffect ext, DoomsdayEffect ins)
 	{
-		this.inheritedCooldown = (ext.iterations * ext.dday.getScaledCooldown(ext.doom.getPlayer().worldObj.difficultySetting)) + ins.dday.cooldown;
+		this.inheritedCooldown = (ext.iterations * ext.dday.getScaledCooldown(player.worldObj.difficultySetting)) + ins.dday.cooldown;
 		return this;
 	}
 
@@ -91,11 +94,11 @@ public class DoomsdayEffect {
 			
 			try
 			{
-				if (this.iterations == 0) dday.doInitialEffects(this, doom, doom.getPlayer(), crucMoment);
+				if (this.iterations == 0) dday.doInitialEffects(this, doom, player, crucMoment);
 
 				if (this.isCommandActivated)
 				{
-					this.dday.useDoomsday(this, doom, doom.getPlayer(), crucMoment);
+					this.dday.useDoomsday(this, doom, player, crucMoment);
 					iterations++;
 					this.timeBetweenUpdates = dday.getWaitTime();
 				}
@@ -103,7 +106,7 @@ public class DoomsdayEffect {
 				{
 					if (this.dday.doesCurrentDoomMeetRequirement(doom))
 					{
-						this.dday.useDoomsday(this, doom, doom.getPlayer(), crucMoment);
+						this.dday.useDoomsday(this, doom, player, crucMoment);
 						if (this.isInstant) this.isActive = false;
 						iterations++;
 						this.timeBetweenUpdates = dday.getWaitTime();

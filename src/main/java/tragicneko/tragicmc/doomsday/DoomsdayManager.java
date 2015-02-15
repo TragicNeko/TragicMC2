@@ -130,13 +130,12 @@ public class DoomsdayManager {
 		if (event.phase == Phase.END)
 		{
 			Set set = playerMap.keySet();
-			Iterator<String> ite = set.iterator();
+			Iterator<UUID> ite = set.iterator();
 			String reason = null;
 
 			while (ite.hasNext())
 			{
-				EntityPlayerMP mp = MinecraftServer.getServer().getConfigurationManager().func_152612_a(ite.next());
-				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getUniqueID());
+				ArrayList<DoomsdayEffect> list = playerMap.get(ite.next());
 				DoomsdayEffect effect = null;
 				DoomsdayEffect temp = null;
 				reason = null;
@@ -163,7 +162,7 @@ public class DoomsdayManager {
 						{
 							if (temp.isActive && !temp.isInstant)
 							{
-								if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
+								if (!effect.player.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
 								TragicMC.logInfo("Instant Dday used for the Combination should've applied doom cost on use");
 							}
 							
@@ -193,12 +192,12 @@ public class DoomsdayManager {
 
 					if (!effect.isActive && effect.isInstant || effect.dday instanceof IExtendedDoomsday && effect.timeBetweenUpdates == effect.dday.waitTime)
 					{
-						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated && effect.sneakTicks == 0) effect.dday.applyDoomCost(effect.doom);
+						if (!effect.player.capabilities.isCreativeMode && !effect.isCommandActivated && effect.sneakTicks == 0) effect.dday.applyDoomCost(effect.doom);
 					}
 
 					if (!effect.isActive)
 					{
-						if (!mp.capabilities.isCreativeMode && !effect.isCommandActivated && !mp.isPotionActive(TragicPotion.Convergence))
+						if (!effect.player.capabilities.isCreativeMode && !effect.isCommandActivated && !effect.player.isPotionActive(TragicPotion.Convergence))
 						{
 							if (effect.dday.doomsdayType == EnumDoomType.COMBINATION)
 							{
@@ -214,7 +213,7 @@ public class DoomsdayManager {
 					}
 				}
 
-				if (list.isEmpty()) clearPlayerFromRegistry(mp.getUniqueID(), reason);
+				if (list.isEmpty()) clearPlayerFromRegistry(effect.player.getUniqueID(), reason);
 			}
 		}
 	}
