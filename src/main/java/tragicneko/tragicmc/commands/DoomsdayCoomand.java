@@ -108,7 +108,7 @@ public class DoomsdayCoomand extends CommandBase {
 		boolean crucMoment = false;
 		if (TragicConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicConfig.crucialMomentChance) crucMoment = true;
 		DoomsdayEffect effect = new DoomsdayEffect(doomsday.getDoomId(), doom, true);
-		DoomsdayManager.registerDoomsdayEffect(mp.getCommandSenderName(), effect);
+		DoomsdayManager.registerDoomsdayEffect(mp.getUniqueID(), effect);
 	}
 
 	@Override

@@ -219,7 +219,7 @@ public abstract class Doomsday {
 		}
 
 		DoomsdayEffect effect = new DoomsdayEffect(this.doomID, doom);
-		DoomsdayManager.registerDoomsdayEffect(player.getCommandSenderName(), effect);
+		DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect);
 	}
 
 	public abstract void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment);

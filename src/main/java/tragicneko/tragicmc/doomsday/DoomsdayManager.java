@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
@@ -30,7 +31,7 @@ import cpw.mods.fml.common.network.FMLNetworkEvent.ServerDisconnectionFromClient
 public class DoomsdayManager {
 
 	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/Doomsday Manager");
-	private static Map<String, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
+	private static Map<UUID, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
 
 	private static Set<Doomsday> combinations = Sets.newConcurrentHashSet();
 
@@ -45,20 +46,20 @@ public class DoomsdayManager {
 		combinations.add(Doomsday.RapidFire);
 	}
 
-	public synchronized static void registerDoomsdayEffect(String playerName, DoomsdayEffect effect)
+	public synchronized static void registerDoomsdayEffect(UUID playerID, DoomsdayEffect effect)
 	{
-		if (playerMap.containsKey(playerName))
+		if (playerMap.containsKey(playerID))
 		{
 			try
 			{
-				ArrayList<DoomsdayEffect> list = playerMap.get(playerName);
+				ArrayList<DoomsdayEffect> list = playerMap.get(playerID);
 
 				for (int i = 0; i < list.size(); i++)
 				{
 					DoomsdayEffect effect2 = list.get(i);
 					if (effect2.dday == effect.dday) 
 					{
-						logger.warn(playerName + " attempted to register a new Doomsday effect for a Doomsday they already have active, ignoring registration.");
+						logger.warn("User with UUID of " + playerID + " attempted to register a new Doomsday effect for a Doomsday they already have active, ignoring registration.");
 						return;
 					}
 				}
@@ -76,7 +77,7 @@ public class DoomsdayManager {
 			{
 				ArrayList<DoomsdayEffect> list = new ArrayList();
 				list.add(effect);
-				playerMap.put(playerName, list);
+				playerMap.put(playerID, list);
 			}
 			catch (ConcurrentModificationException e)
 			{
@@ -98,16 +99,16 @@ public class DoomsdayManager {
 		}
 	}
 
-	public synchronized static void clearPlayerFromRegistry(String playerName, String reason)
+	public synchronized static void clearPlayerFromRegistry(UUID playerID, String reason)
 	{
 		try
 		{
-			if (playerMap.containsKey(playerName))
+			if (playerMap.containsKey(playerID))
 			{
-				playerMap.remove(playerName);
+				playerMap.remove(playerID);
 				if (reason != null)
 				{
-					logger.info("Registry removed registration for " + playerName + ", reason: " + reason);
+					logger.info("Registry removed registration for " + playerID + ", reason: " + reason);
 				}
 			}
 			else
@@ -135,7 +136,7 @@ public class DoomsdayManager {
 			while (ite.hasNext())
 			{
 				EntityPlayerMP mp = MinecraftServer.getServer().getConfigurationManager().func_152612_a(ite.next());
-				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getCommandSenderName());
+				ArrayList<DoomsdayEffect> list = playerMap.get(mp.getUniqueID());
 				DoomsdayEffect effect = null;
 				DoomsdayEffect temp = null;
 				reason = null;
@@ -213,7 +214,7 @@ public class DoomsdayManager {
 					}
 				}
 
-				if (list.isEmpty()) clearPlayerFromRegistry(mp.getCommandSenderName(), reason);
+				if (list.isEmpty()) clearPlayerFromRegistry(mp.getUniqueID(), reason);
 			}
 		}
 	}
@@ -226,9 +227,9 @@ public class DoomsdayManager {
 			NetHandlerPlayServer net = (NetHandlerPlayServer) event.handler;
 			if (net.playerEntity == null) return;
 
-			if (playerMap.containsKey(net.playerEntity.getCommandSenderName()))
+			if (playerMap.containsKey(net.playerEntity.getUniqueID()))
 			{
-				clearPlayerFromRegistry(net.playerEntity.getCommandSenderName(), "Disconnected from server.");
+				clearPlayerFromRegistry(net.playerEntity.getUniqueID(), "Disconnected from server.");
 			}
 		} 
 	}
