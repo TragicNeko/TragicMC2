@@ -3299,7 +3299,7 @@ from them while doing so
 Deprecated the texture string for resolutions that the mod uses, 1.8 doesn't use these anyway, but there's way too many extraneous textures so I'll remove
 all of the ones that aren't used (such as the higher resolution versions)
 
-2.40.1964++ <188> (February 8, 2015)
+2.40.1984 <188> (February 8, 2015)
 Added "drop" attack to the Overlord Core, it now picks up players and damages them while healing itself slowly, it can be hit in this phase regardless of if
 divinity is active, if it isn't active then it goes straight into hover mode and fires mortors, otherwise it becomes vulnerable like normal
 Also made it more aggressive and go towards a smaller y region, it now doesn't target any players while it is "vulnerable"
@@ -3325,6 +3325,15 @@ Fixed rendering of blocks in potion effect indicators
 Prep for updating Morph with the new package names, as well as the new entities
 Added missing localizations to lang file
 Added extra space in between a weapon's doomsday and the attack damage/enchantments in the description
+Added Sentinel's lore and enchantments, it has normally impossible enchantment combinations (in survival without some enchanting mod)
+
+2.40.1984++ <189> (February 14, 2015)
+This should be the last group of updates before a new release
+Added more of the weapon lores (this is taking a long time to do, omg)
+Cut some lore from the Celestial Aegis because it has so much
+Attempting to fix a bug where if a lore rarity is set for a weapon/armor that doesn't have lore of that rarity (better than common), it just returns the default null lore
+This should allow me to have weapons that only have rarities above a certain rarity, like the Sentinel and Overlord Armor being always highest rarity tier
+Converted DoomsdayManager to use UUIDs rather than player names
 
 Before release:
 Finish adding the weapon lores and enchantment tiers for each weapon/armor
