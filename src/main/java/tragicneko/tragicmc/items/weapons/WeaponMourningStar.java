@@ -20,12 +20,12 @@ public class WeaponMourningStar extends TragicWeapon {
 	public WeaponMourningStar(ToolMaterial p_i45356_1_, Doomsday dday) {
 		super(p_i45356_1_, dday);
 		//this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[] {Enchantment.smite};
-		this.uncommonLevels = new int[] {3};
-		this.rareEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume};
-		this.rareLevels = new int[] {5, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume, Enchantment.looting, Enchantment.unbreaking};
-		this.epicLevels = new int[] {10, 3, 3, 5};
+		//this.uncommonEnchants = new Enchantment[] {Enchantment.smite};
+		//this.uncommonLevels = new int[] {3};
+		//this.rareEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume};
+		//this.rareLevels = new int[] {5, 1};
+		//this.epicEnchants = new Enchantment[] {Enchantment.smite, TragicEnchantments.Consume, Enchantment.looting, Enchantment.unbreaking};
+		//this.epicLevels = new int[] {10, 3, 3, 5};
 	}
 
 	@Override

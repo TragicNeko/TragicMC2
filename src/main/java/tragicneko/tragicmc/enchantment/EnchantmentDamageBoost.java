@@ -86,7 +86,6 @@ public class EnchantmentDamageBoost extends Enchantment {
 			}
 			break;
 		case 3:
-			break;
 		default:
 			return 0F;
 		}

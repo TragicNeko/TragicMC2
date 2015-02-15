@@ -27,10 +27,10 @@ public class WeaponThardus extends EpicWeapon {
 	public WeaponThardus(Doomsday dday) {
 		super(dday);
 		//this.lores = uniqueLores;
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
-		this.rareLevels = new int[] {5, 3, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Rust, TragicEnchantments.Luminescence};
-		this.epicLevels = new int[] {10, 3, 5, 3, 1};
+		//this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
+		//this.rareLevels = new int[] {5, 3, 3};
+		//this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Rust, TragicEnchantments.Luminescence};
+		//this.epicLevels = new int[] {10, 3, 5, 3, 1};
 	}
 
 	@Override

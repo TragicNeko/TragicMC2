@@ -27,19 +27,6 @@ public class TragicWeapon extends ItemSword {
 	protected Doomsday doomsday2;
 	public Item.ToolMaterial material;
 
-	@Deprecated
-	protected Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking};
-	@Deprecated
-	protected int[] uncommonLevels = new int[] {1};
-	@Deprecated
-	protected Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking};
-	@Deprecated
-	protected int[] rareLevels = new int[] {2};
-	@Deprecated
-	protected Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.sharpness};
-	@Deprecated
-	protected int[] epicLevels = new int[] {3, 1};
-
 	public TragicWeapon(ToolMaterial material, Doomsday dday) {
 		super(material);
 		this.doomsday = dday;

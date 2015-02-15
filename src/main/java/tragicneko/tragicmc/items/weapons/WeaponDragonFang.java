@@ -18,20 +18,9 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponDragonFang extends EpicWeapon {
 
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("Here be dragons.", EnumRarity.epic), new Lore("Is that a Centaur?", EnumRarity.uncommon), new Lore("Pegasus!", EnumRarity.rare),
-	//		new Lore("I need some Nymphs...", EnumRarity.uncommon), new Lore("Is that Nessie?", EnumRarity.uncommon), new Lore("Sasquatch!"), new Lore("I found Big Foot!", EnumRarity.rare),
-	//		new Lore("It's obviously a Jackalope.", EnumRarity.rare), new Lore("Someone call the CIA or MIB", EnumRarity.epic), new Lore("UFO!", EnumRarity.rare),
-	//		new Lore("It's a Ghost!", EnumRarity.uncommon), new Lore("There's a cold spot here..."), new Lore("I'm having an old friend for dinner!", EnumRarity.rare),
-	//		new Lore("Can't remember what they said...", EnumRarity.epic), new Lore("Area 51", EnumRarity.rare), new Lore("I've been abducted by aliens!", EnumRarity.uncommon)};
-
 	public WeaponDragonFang(Doomsday dday) {
 		super(dday);
 		this.doomsday2 = Doomsday.FireRain;
-		//this.lores = uniqueLores;
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.fireAspect};
-		this.rareLevels = new int[] {5, 3, 3, 1};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.fireAspect, Enchantment.knockback, Enchantment.looting};
-		this.epicLevels = new int[] {10, 3, 5, 3, 3, 3};
 	}
 
 	@Override

@@ -13,7 +13,5 @@ public class EpicWeapon extends TragicWeapon {
 
 	public EpicWeapon(Doomsday dday) {
 		super(toolEpic, dday);
-		this.uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach};
-		this.uncommonLevels = new int[] {3, 3};
 	}
 }

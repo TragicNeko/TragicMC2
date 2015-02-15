@@ -18,20 +18,9 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponParanoia extends EpicWeapon {
-	
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("They're all out to get me.", EnumRarity.epic), new Lore("Alone.", EnumRarity.uncommon), new Lore("Feeling paranoid...", EnumRarity.rare),
-	//		new Lore("Isolation.", EnumRarity.uncommon), new Lore("Fear of everything", EnumRarity.uncommon), new Lore("So scary."), new Lore("Paranoid Android", EnumRarity.rare),
-	//		new Lore("Fear and Loathing...", EnumRarity.rare), new Lore("Darkness consumes me...", EnumRarity.epic), new Lore("Lost in the Darkness of my mind...", EnumRarity.rare),
-	//		new Lore("I'm afraid.", EnumRarity.uncommon), new Lore("So lonely."), new Lore("Just 'cause you're paranoid, doesn't mean they're not after you.", EnumRarity.rare),
-	//		new Lore("Fragile and alone...", EnumRarity.uncommon), new Lore("I'm so alone...", EnumRarity.rare), new Lore("It's calm", EnumRarity.uncommon)};
 
 	public WeaponParanoia(Doomsday dday) {
 		super(dday);
-		//this.lores = uniqueLores;
-		this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
-		this.rareLevels = new int[] {5, 3, 3};
-		this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Leech, Enchantment.looting};
-		this.epicLevels = new int[] {10, 3, 5, 3, 3};
 	}
 
 	@Override
