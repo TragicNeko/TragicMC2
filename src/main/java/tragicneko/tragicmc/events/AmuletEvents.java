@@ -72,7 +72,7 @@ public class AmuletEvents {
 
 			if (event.entity instanceof EntityPlayerMP && amu != null)
 			{
-				TragicMC.net.sendTo(new MessageAmulet((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
+				TragicMC.net.sendTo(new MessageAmulet((EntityPlayerMP) event.entity), (EntityPlayerMP) event.entity);
 			}
 		}
 	}

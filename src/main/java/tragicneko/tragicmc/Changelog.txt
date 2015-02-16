@@ -3334,6 +3334,7 @@ Cut some lore from the Celestial Aegis because it has so much
 Attempting to fix a bug where if a lore rarity is set for a weapon/armor that doesn't have lore of that rarity (better than common), it just returns the default null lore
 This should allow me to have weapons that only have rarities above a certain rarity, like the Sentinel and Overlord Armor being always highest rarity tier
 Converted DoomsdayManager to use UUIDs rather than player names
+Fixed some issues with this conversion, added player field to the doomsday effect to allow for easier access to it
 
 Before release:
 Finish adding the weapon lores and enchantment tiers for each weapon/armor
