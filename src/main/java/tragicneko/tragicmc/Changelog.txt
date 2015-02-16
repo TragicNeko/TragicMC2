@@ -3335,6 +3335,10 @@ Attempting to fix a bug where if a lore rarity is set for a weapon/armor that do
 This should allow me to have weapons that only have rarities above a certain rarity, like the Sentinel and Overlord Armor being always highest rarity tier
 Converted DoomsdayManager to use UUIDs rather than player names
 Fixed some issues with this conversion, added player field to the doomsday effect to allow for easier access to it
+Converted Dragon Fang's Enchantment tier to have Slay instead of Rune Break
+Added more lore for the Sentinel, changed the enchantment tiers for the Titan, it now has consume instead of knockback
+Modified Splinter's enchantment tiers to have consume instead of rune break and to have higher levels of knockback
+Modified Mourning Star to not have unbreaking in it's enchantment tiers
 
 Before release:
 Finish adding the weapon lores and enchantment tiers for each weapon/armor
@@ -3353,11 +3357,16 @@ Add new specific mobs for some of the more "special" biome sets, change some mob
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
-The Combat Form will be worked on next, it'll work like the Stin in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
+The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
 The Combat form will always generate Corrupted gas around itself, which will probably inflict corruption on mobs
 The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
 When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
 melee hits inflict extra durability damage to the attacking entity's weapons, harvesters and nano swarms will constantly spawn around it
+The Cocoon form will spawn Seekers, these will act as crystals that protect it while they are there, once these are destroyed it can be damaged for a bit
+until it hits a certain amount of health, then it will spawn more, in later rounds of this it will spawn hunters in addition to the seekers
+The Cocoon form will randomly spawn in Harvesters as well
+When the Seekers are destroyed, it'll grant you Divinity for around 15 seconds, which will be removed from you when you hit the certain amount of health
+that is required for the next Seeker phase
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
 Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it, it stays at a constant y level
