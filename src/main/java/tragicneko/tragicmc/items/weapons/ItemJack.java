@@ -46,18 +46,17 @@ public class ItemJack extends ItemTool {
 	//		new Lore("Just keep digging, digging, digging"), new Lore("Can you dig it?", EnumRarity.uncommon), new Lore("The best Blacksmith in Whiterun.", EnumRarity.epic),
 	//		new Lore("The finest weapons and armor!"), new Lore("Forged in the fires of Mount Doom!", EnumRarity.epic)};
 
-	private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency};
-	private int[] uncommonLevels = new int[] {1, 1};
+	//private Enchantment[] uncommonEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency};
+	//private int[] uncommonLevels = new int[] {1, 1};
 
-	private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune};
-	private int[] rareLevels = new int[] {3, 3, 1};
+	//private Enchantment[] rareEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune};
+	//private int[] rareLevels = new int[] {3, 3, 1};
 
-	private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune, TragicEnchantments.Combustion, Enchantment.fireAspect};
-	private int[] epicLevels = new int[] {5, 5, 3, 1, 1};
+	//private Enchantment[] epicEnchants = new Enchantment[] {Enchantment.unbreaking, Enchantment.efficiency, Enchantment.fortune, TragicEnchantments.Combustion, Enchantment.fireAspect};
+	//private int[] epicLevels = new int[] {5, 5, 3, 1, 1};
 
 	public ItemJack(ToolMaterial material) {
 		super(1.0F, material, blocksEffectiveAgainst);
-		
 		this.setHarvestLevel("pickaxe", 3);
 		this.setCreativeTab(TragicMC.Survival);
 	}

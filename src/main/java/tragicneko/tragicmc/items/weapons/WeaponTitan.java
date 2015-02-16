@@ -16,20 +16,9 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponTitan extends EpicWeapon {
-	
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("You are an ant to me, mortal!", EnumRarity.epic), new Lore("Thank the Gods!", EnumRarity.uncommon), new Lore("Puny God.", EnumRarity.epic),
-	//		new Lore("God-like.", EnumRarity.uncommon), new Lore("A God-like aura.", EnumRarity.uncommon), new Lore("Such a Mortal."), new Lore("God-like abilities!", EnumRarity.rare),
-	//		new Lore("Poseidon has nothing on me.", EnumRarity.rare), new Lore("I am a God!", EnumRarity.epic), new Lore("Almost God-like!", EnumRarity.rare),
-	//		new Lore("Mortal tendencies", EnumRarity.uncommon), new Lore("Filthy Mortal"), new Lore("I'm having an old friend for dinner!", EnumRarity.rare),
-	//		new Lore("So epic!", EnumRarity.uncommon), new Lore("As spectacular as Aphrodite!", EnumRarity.epic), new Lore("Faster than Hermes!", EnumRarity.rare)};
 
 	public WeaponTitan(Doomsday dday) {
 		super(dday);
-		//this.lores = uniqueLores;
-		//this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.looting};
-		//this.rareLevels = new int[] {5, 3, 3};
-		//this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, Enchantment.looting, Enchantment.knockback};
-		//this.epicLevels = new int[] {10, 3, 5, 1};
 	}
 
 	@Override

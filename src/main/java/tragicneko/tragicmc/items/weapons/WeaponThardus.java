@@ -17,20 +17,9 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponThardus extends EpicWeapon {
-	
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("Hyper beam!", EnumRarity.epic), new Lore("Zero suit...", EnumRarity.uncommon), new Lore("Grappling Hook!", EnumRarity.rare),
-	//		new Lore("Better than a Stun Gun.", EnumRarity.uncommon), new Lore("That's cool.", EnumRarity.uncommon), new Lore("Spazer Beam!"), new Lore("Phazon Beam!", EnumRarity.rare),
-	//		new Lore("Super Missle!", EnumRarity.rare), new Lore("Screw Attack!", EnumRarity.epic), new Lore("The last Metroid is in captivity.", EnumRarity.rare),
-	//		new Lore("Tasty.", EnumRarity.uncommon), new Lore("Charge Beam!"), new Lore("Plasma Beam!", EnumRarity.rare), new Lore("Heading to Brinstar!", EnumRarity.uncommon),
-	//		new Lore("Onwards to Norfair!", EnumRarity.rare), new Lore("Finally, Tourian!", EnumRarity.epic)};
 
 	public WeaponThardus(Doomsday dday) {
 		super(dday);
-		//this.lores = uniqueLores;
-		//this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
-		//this.rareLevels = new int[] {5, 3, 3};
-		//this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, TragicEnchantments.Rust, TragicEnchantments.Luminescence};
-		//this.epicLevels = new int[] {10, 3, 5, 3, 1};
 	}
 
 	@Override

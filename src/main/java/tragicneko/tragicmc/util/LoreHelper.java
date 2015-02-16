@@ -63,18 +63,17 @@ public class LoreHelper {
 		addToLoreMap(ArmorMercury.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(ArmorSkull.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(ArmorTungsten.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ArmorOverlord.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(ArmorOverlord.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //programming themed possibly
 
 		//Tools
-		addToLoreMap(WeaponTungstenJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponCelestialJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponTungstenJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //uses old lore
+		addToLoreMap(WeaponCelestialJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //uses contemporary pop/rock songs as lore (cuz why not)
 
 		//Normal Weapons
 		addToLoreMap(TragicItems.MercuryDagger.getClass(), new Lore[] {new Lore(25, "Boring.", 1), new Lore(15, "Nice.", 1), new Lore(5, "Interesting.", 1), new Lore(15, "Lame", 1), new Lore(25, "Ha.", 2),
 			new Lore(15, "Awesome.", 2), new Lore(10, "That's fascinating.", 2), new Lore(5, "That's nice.", 2), new Lore(25, "That's amazing!", 3), new Lore(15, "Fantastic!", 3),
 			new Lore(5, "I'm shuddering with excitement!", 3), new Lore(5, "Ama-zuh-zing!", 3)},
-			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)},
-			{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.sharpness, 1)}});
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.sharpness, 1)}});
 
 		addToLoreMap(WeaponBeastlyClaws.class, new Lore[] {new Lore(25, "That's beastly.", 1), new Lore(15, "Epic.", 1), new Lore(5, "Knockout!", 1),
 			new Lore(10, "Roar!", 1), new Lore(15, "Combo!", 1), new Lore(5, "Let's fight!", 1), new Lore(5, "Sucker punch!", 1),
@@ -82,8 +81,7 @@ public class LoreHelper {
 			new Lore(5, "You're gonna hear me roar!", 2), new Lore(10, "Punchout!", 2), new Lore(5, "Fight!", 2), new Lore(5, "TKO!", 2),
 			new Lore(25, "Hit and Run!", 3), new Lore(5, "Falcon Punch!", 3), new Lore(15, "Going Beastmode!", 3), new Lore(2, "C-c-c-combo breaker!", 3),
 			new Lore(10, "Limit break!", 3), new Lore(15, "I'll rip you to pieces!", 3), new Lore(20, "Tear you to pieces, rip you apart!", 3)},
-			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)},
-			{new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(TragicEnchantments.Slay, 1)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(TragicEnchantments.Slay, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Slay, 2), new EnchantEntry(TragicEnchantments.Consume, 1)}});
 
 		addToLoreMap(WeaponBlindingLight.class, new Lore[] {new Lore(25, "You're shining!", 1), new Lore(15, "Shine on!", 1), new Lore(5, "Aw, you're glowing~", 1),
@@ -120,9 +118,9 @@ public class LoreHelper {
 			new Lore(25, "Lightning crashes...", 2), new Lore(15, "A storm is brewing!", 2), new Lore(5, "You've been... THUNDERSTRUCK!", 3), new Lore(15, "Static shock!", 2),
 			new Lore(5, "I feel shocked.", 3),	new Lore(25, "Time for a lightning round!", 3), new Lore(5, "Used Volt Tackle! Critical hit!", 3),
 			new Lore(10, "Used Thunder! It's super effective!", 3)},
-			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3),
-				new EnchantEntry(TragicEnchantments.RuneBreak, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(TragicEnchantments.Rust, 1),
-					new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(TragicEnchantments.Rust, 1),
+				new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
 
 		addToLoreMap(WeaponGravitySpike.class, new Lore[] {new Lore(15, "Time for a demonstration!", 1), new Lore(5, "e=mc^2", 1), new Lore(5, "For Science!", 1),
 			new Lore(15, "The next Einstein!", 2), new Lore(5, "Isn't that a Rube Goldberg?", 2), new Lore(25, "Science rules!", 2), new Lore(10, "I like 3.14.", 2),
@@ -147,10 +145,14 @@ public class LoreHelper {
 		addToLoreMap(WeaponHuntersBow.class, new Lore[] {new Lore(15, "On the hunt.", 1), new Lore(5, "Run as fast as you can!", 1), new Lore(10, "Tracking...", 1),
 			new Lore(25, "Let the hunt begin.", 2), new Lore(5, "Time to join the hunting party!", 3), new Lore(5, "Catch me if you can!", 2), new Lore(5, "Conquest!", 2),
 			new Lore(25, "Don't worry, I'm an expert.", 3), new Lore(15, "The Hunter becomes the Hunted.", 3), new Lore(5, "The Most Dangerous Game", 3), new Lore(15, "Night of the Hunter!", 3)},
-			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.punch, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3),
-				new EnchantEntry(Enchantment.punch, 2), new EnchantEntry(Enchantment.flame, 1), new EnchantEntry(Enchantment.power, 1)}});
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.punch, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.punch, 2), new EnchantEntry(Enchantment.flame, 1), new EnchantEntry(Enchantment.power, 1)}});
 
-		addToLoreMap(WeaponMourningStar.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponMourningStar.class, new Lore[] {new Lore(25, "Sleep is for the weak!", 1), new Lore(15, "Dy-no-mite!", 1), new Lore(5, "Kaboom.", 1), new Lore(5, "Nuke!", 3),
+			new Lore(25, "For SPARTAAAAAA!", 3), new Lore(15, "Just die already!", 2), new Lore(15, "I'm TNT, I'm dynamite!", 3), new Lore(25, "I have an explosive temper.", 2),
+			new Lore(5, "Enemy airstrike inbound!", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.smite, 1)}, {new EnchantEntry(Enchantment.smite, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
+			{new EnchantEntry(Enchantment.smite, 5), new EnchantEntry(TragicEnchantments.Consume, 3), new EnchantEntry(Enchantment.looting, 1)}});
 
 		addToLoreMap(WeaponNekoLauncher.class, new Lore[] {new Lore(25, "Oops", 1), new Lore(15, "I meant to do that.", 1), new Lore(5, "That was supposed to happen!", 1),
 			new Lore(25, "Tell me where it hurts!", 2), new Lore(15, "It's just a flesh wound.", 2), new Lore(5, "Does it hurt when I do this?", 2),
@@ -162,15 +164,14 @@ public class LoreHelper {
 		addToLoreMap(WeaponPitchBlack.class, new Lore[] {new Lore(25, "Black as my soul!", 1), new Lore(15, "Hide in the shadows.", 1), new Lore(5, "Darkness is my friend.", 1),
 			new Lore(10, "Perfect Dark Zero.", 1), new Lore(25, "Paint it black!", 2), new Lore(15, "Like the black in your eyes.", 2), new Lore(5, "Pitch black!", 2), new Lore(15, "Black Hole Sun!", 3),
 			new Lore(15, "Welcome to the Black Parade!", 3), new Lore(5, "Blackout! Blood in your eyes!", 3), new Lore(5, "I was born in the dark. Molded by it. You merely adopted it.", 3)},
-			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1), new EnchantEntry(TragicEnchantments.Decay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3),
-				new EnchantEntry(TragicEnchantments.Decay, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Decay, 5),
-					new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(Enchantment.looting, 1)}});
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1), new EnchantEntry(TragicEnchantments.Decay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Decay, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Decay, 5), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(Enchantment.looting, 1)}});
 
 		addToLoreMap(WeaponReaperScythe.class, new Lore[] {new Lore(25, "Bleed out.", 1), new Lore(15, "Bleed for me.", 1), new Lore(5, "Blood is flowing now!", 1), new Lore(5, "It's raining blood.", 1),
 			new Lore(25, "Blood is thicker than water.", 2), new Lore(15, "No matter how you discriminate we all bleed the same.", 2), new Lore(5, "Crimson red, like the blood moon.", 2),
 			new Lore(5, "I ate his liver with some fava beans and a nice Chianti.", 3), new Lore(15, "Digging deeper just to throw it away!", 3), new Lore(25, "Let's paint this town red!", 3)},
-			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Decay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Decay, 3),
-				new EnchantEntry(TragicEnchantments.Vampirism, 1)}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Decay, 5), new EnchantEntry(TragicEnchantments.Vampirism, 3)}});
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Decay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Decay, 3), new EnchantEntry(TragicEnchantments.Vampirism, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Decay, 5), new EnchantEntry(TragicEnchantments.Vampirism, 3)}});
 
 		addToLoreMap(WeaponWitheringAxe.class, new Lore[] {new Lore(5, "Like Paul Bunyan.", 1), new Lore(15, "Lemme axe you a question!", 1), new Lore(15, "Chop chop!", 1), new Lore(25, "Weapon of choice.", 1),
 			new Lore(25, "Plaid is the new black.", 2), new Lore(15, "Tree murderer.", 2), new Lore(10, "Go ahead, axe me how my day went.", 2), new Lore(5, "Your beard looks quite luxurious today.", 2),
@@ -180,7 +181,9 @@ public class LoreHelper {
 
 		//Alpha weapons
 		addToLoreMap(WeaponSentinel.class, new Lore[] {new Lore(15, "The red pill?", 3), new Lore(25, "White rabbit.", 3), new Lore(5, "The blue pill?", 3), new Lore(20, "How would you know the difference between the dream world and the real world?", 3),
-			new Lore(25, "Tumbling down the rabbit hole...", 3), new Lore(5, "Is this the Matrix?", 3), new Lore(5, "You are the one.", 3), new Lore(15, "There is no spoon.", 3), new Lore(25, "Wonder what's next.", 3)},
+			new Lore(25, "Tumbling down the rabbit hole...", 3), new Lore(5, "Is this the Matrix?", 3), new Lore(5, "You are the one.", 3), new Lore(15, "There is no spoon.", 3), new Lore(25, "Wonder what's next.", 3), new Lore(5, "I'm not the one.", 3),
+			new Lore(5, "You may have spent the last few years looking for me, but I have spent my entire life looking for you.", 3), new Lore(15, "I don't like the idea that I'm not in control of my life.", 3), new Lore(15, "What good is a phone call if you're unable to speak?", 3),
+			new Lore(5, "Mr. Anderson, you disappoint me.", 3), new Lore(15, "Free your mind.", 3)},
 			new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Absolve, 5), new EnchantEntry(Enchantment.baneOfArthropods, 5), new EnchantEntry(TragicEnchantments.Decay, 5),
 				new EnchantEntry(TragicEnchantments.Slay, 5), new EnchantEntry(Enchantment.smite, 5), new EnchantEntry(TragicEnchantments.Reach, 5)}});
 
@@ -190,18 +193,18 @@ public class LoreHelper {
 			new Lore(25, "Preheat oven to 450.", 2), new Lore(15, "Bon apetit!", 2), new Lore(5, "I'm having an old friend for dinner!", 2), new Lore(5, "Just add a pinch of salt.", 2),
 			new Lore(25, "Add a splash of red wine.", 3), new Lore(15, "Bake for twenty minutes or until golden brown.", 3), new Lore(5, "Mmmm... donuts.", 3), new Lore(5, "OMNOMNOMNOMNOM", 3),
 			new Lore(5, "Everything is edible, even me, but that would be cannibalism, children.", 3), new Lore(5, "Add some olive oil and garlic then simmer.", 3)},
-			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3),
-				new EnchantEntry(TragicEnchantments.Slay, 1)}, {new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Slay, 3), new EnchantEntry(Enchantment.sharpness, 1)},
-				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 5), new EnchantEntry(TragicEnchantments.Slay, 5), new EnchantEntry(Enchantment.sharpness, 3)}});
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Slay, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Slay, 3), new EnchantEntry(Enchantment.sharpness, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 5), new EnchantEntry(TragicEnchantments.Slay, 5), new EnchantEntry(Enchantment.sharpness, 3)}});
 
 		addToLoreMap(WeaponDragonFang.class, new Lore[] {new Lore(25, "Sasquatch!", 0), new Lore(15, "Is that a nymph?", 0), new Lore(10, "Sleeping with Sirens.", 0), new Lore(5, "It's really happening!", 0), new Lore(5, "Alrighty then. Picture this if you will.", 0),
 			new Lore(25, "I swear, there was a triangle of lights in the sky moving around!", 1), new Lore(15, "Was that a jackelope?", 1), new Lore(10, "It's obviously a centaur.", 1), new Lore(5, "There's a cold spot here. Ghost?", 1),
 			new Lore(25, "I think I just saw E.T.!", 2), new Lore(15, "Dude, I totally just saw Nessie.", 2), new Lore(10, "Cartman got abducted by aliens last night!", 2), new Lore(10, "Someone call the MIB", 2), new Lore(5, "Can't remember what they said...", 2),
 			new Lore(25, "Return the slab or suffer my curse!", 3), new Lore(5, "The man in gauze, the man in gauze. King RAAAAAMSAYYY!", 3), new Lore(15, "Aliens are nice, they apologized, gave me a nice lollipop and sent me on my way.", 3),
 			new Lore(5, "It's the chupacabra!", 3), new Lore(5, "A Will-o-the-Wisp started that fire, I know how to cook!", 3), new Lore(5, "Probed by alien. Chance of survival: minimal.", 3)},
-			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)},
-			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(Enchantment.fireAspect, 1)}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3),
-				new EnchantEntry(TragicEnchantments.RuneBreak, 5), new EnchantEntry(Enchantment.fireAspect, 2)}});
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Slay, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Slay, 3), new EnchantEntry(Enchantment.fireAspect, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Slay, 5), new EnchantEntry(Enchantment.fireAspect, 2)}});
 
 		addToLoreMap(WeaponParanoia.class, new Lore[] {new Lore(25, "So lonely.", 0), new Lore(15, "Fragile and alone...", 0), new Lore(10, "It's calm.", 0), new Lore(5, "I'm so alone...", 0),
 			new Lore(25, "If only I had friends...", 1), new Lore(15, "So scary.", 1), new Lore(10, "The outside world is so scary.", 1), new Lore(5, "When I wake up, I'm afraid.", 1),
@@ -209,14 +212,37 @@ public class LoreHelper {
 			new Lore(25, "Lost in the dark of my mind...", 3), new Lore(15, "If fear is an animal, I've tamed it.", 3), new Lore(10, "If fear is an animal, it may have just swallowed me whole...", 3),
 			new Lore(5, "Just because you're paranoid, doesn't mean they're not after you.", 3), new Lore(15, "They're all out to get me! Somebody help me!", 3), new Lore(5, "Darkness consume me.", 3)},
 			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)},
-			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(TragicEnchantments.Leech, 1)}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3),
-				new EnchantEntry(TragicEnchantments.RuneBreak, 5), new EnchantEntry(TragicEnchantments.Leech, 3), new EnchantEntry(Enchantment.looting, 1)}});
+			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(TragicEnchantments.Leech, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 5), new EnchantEntry(TragicEnchantments.Leech, 3), new EnchantEntry(Enchantment.looting, 1)}});
 
-		addToLoreMap(WeaponSplinter.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(WeaponThardus.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponSplinter.class, new Lore[] {new Lore(25, "Beating around the bush...", 0), new Lore(15, "I see.", 0), new Lore(5, "I don't get it...", 0), new Lore(5, "Fool's Gold!", 0),
+			new Lore(25, "Beggars can't be choosers!", 1), new Lore(15, "Sorry to burst your bubble!", 1), new Lore(10, "Easy as pie!", 1), new Lore(5, "Piece of cake!", 1), new Lore(10, "Don't cry over spilled milk!", 1),
+			new Lore(25, "Don't count your chickens before they hatch!", 2), new Lore(15, "Jack of all trades!", 2), new Lore(10, "Don't count your chickens before they hatch!", 2), new Lore(5, "On cloud nine!", 2),
+			new Lore(15, "Sorry to rain on your parade!", 1), new Lore(25, "A dime a dozen!", 3), new Lore(15, "Curiosity killed the cat!", 1), new Lore(5, "The nail that sticks out the most gets hammered down!", 3),
+			new Lore(15, "Read'em and weep!", 3), new Lore(5, "Roll with the punches!", 3), new Lore(10, "It's not rocket science!", 3), new Lore(5, "A blessing in disguise!", 3)},
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Consume, 3), new EnchantEntry(Enchantment.knockback, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.Consume, 5), new EnchantEntry(Enchantment.knockback, 3)}});
 
-		addToLoreMap(WeaponTitan.class, new Lore[] {},
-				new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(WeaponThardus.class, new Lore[] {new Lore(25, "Power beam.", 0), new Lore(15, "Charge beam.", 0), new Lore(10, "Morph Ball.", 0), new Lore(5, "Missle.", 0), new Lore(5, "Energy Tank.", 0),
+			new Lore(25, "Better than a stun gun!", 1), new Lore(15, "Spazer beam.", 1), new Lore(10, "Grapple beam.", 1), new Lore(15, "Zero suit.", 1), new Lore(5, "Morph Ball bomb acquired!", 1), new Lore(5, "Speed Booster acquired!", 1),
+			new Lore(25, "You're a girl?", 2), new Lore(15, "Metroids. Metroids everywhere.", 2), new Lore(5, "Why is there always a Space Pirate?", 2), new Lore(5, "Remember me?", 2), new Lore(5, "Space jump acquired!", 2),
+			new Lore(25, "Hyper Beam acquired!", 3), new Lore(15, "Hypermode, activate!", 3), new Lore(10, "Phazon beam acquired!", 3), new Lore(15, "Plasma beam acquired!", 3), new Lore(15, "Wave beam acquired!", 3), new Lore(15, "Screw Attack acquired!", 3),
+			new Lore(5, "Super missle acquired!", 3), new Lore(5, "Power Bomb acquired!", 3), new Lore(5, "Speed Booster acquired!", 3), new Lore(15, "New area discovered: Tourian", 3), new Lore(5, "You have arrived on planet, Tallon IV", 3), new Lore(5, "SR388 has been cleared of all Metroid activity.", 3),
+			new Lore(5, "The last metroid is in captivity.", 3), new Lore(5, "Power Suit acquired.", 1), new Lore(5, "Varia Suit acquired!", 2), new Lore(5, "Gravity Suit acquired!", 2), new Lore(5, "Phazon Suit acquired!", 2), new Lore(5, "Kraid has been defeated!", 1), new Lore(5, "Ridley has been defeated!", 2),
+			new Lore(5, "Mother Brain has been defeated!", 3)},
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 3), new EnchantEntry(TragicEnchantments.Rust, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(TragicEnchantments.RuneBreak, 5), new EnchantEntry(TragicEnchantments.Rust, 3), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
+
+		addToLoreMap(WeaponTitan.class, new Lore[] {new Lore(25, "Filthy mortal.", 0), new Lore(15, "You're such a mortal.", 0), new Lore(10, "Why do you have to be so... mortal?", 0), new Lore(5, "You bore me, mortal.", 0),
+			new Lore(25, "So God-like!", 1), new Lore(15, "It's like the Gods have blessed me!", 1), new Lore(10, "Thank the Gods!", 1), new Lore(5, "Praise the Gods for this gift!", 1), new Lore(5, "Thank God!", 1),
+			new Lore(5, "A God-like aura permeates the air.", 1), new Lore(25, "Such God-like abilities!", 2), new Lore(15, "The Gods have become my equal!", 2), new Lore(5, "I am a God!", 2), new Lore(10, "Who needs a God when you have me?", 2),
+			new Lore(25, "You are an ant to me, mortal.", 3), new Lore(10, "I am no mere mortal!", 2), new Lore(5, "Puny God.", 3), new Lore(15, "Poseidon has nothing on me!", 3), new Lore(15, "Faster than Hermes!", 3), new Lore(10, "The violence of Ares!", 3),
+			new Lore(15, "Wiser than Athena!", 3), new Lore(5, "More creative than Hephaestus!", 3), new Lore(15, "More beautiful than Aphrodite!", 3), new Lore(5, "More spectacular than Zeus!", 3)},
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 5), new EnchantEntry(TragicEnchantments.Consume, 3)}});
 	}
 
 	public static void addToLoreMap(Class<? extends Item> clazz, LoreEntry entry)

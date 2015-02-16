@@ -17,20 +17,8 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponSplinter extends EpicWeapon {
 	
-	//private final Lore[] uniqueLores = new Lore[] {new Lore("A Dime a Dozen", EnumRarity.epic), new Lore("Piece of cake!", EnumRarity.uncommon), new Lore("Beating around the bush!", EnumRarity.rare),
-	//		new Lore("Don't cry over spilled milk!", EnumRarity.uncommon), new Lore("Sorry to burst your bubble!", EnumRarity.uncommon), new Lore("Beggars can't be choosers!"),
-	//		new Lore("Don't count your chickens before they hatch!", EnumRarity.rare), new Lore("Sorry to rain on your parade!", EnumRarity.uncommon),
-	//		new Lore("On cloud nine!", EnumRarity.rare), new Lore("Read 'em and weep!", EnumRarity.epic), new Lore("Curiosity killed the cat!", EnumRarity.rare),
-	//		new Lore("Easy as pie!", EnumRarity.uncommon), new Lore("That was delicious!"), new Lore("Jack of all trades, master of none...", EnumRarity.rare),
-	//		new Lore("Just roll with the punches!", EnumRarity.rare), new Lore("It's not rocket science!", EnumRarity.rare), new Lore("Fool's gold!", EnumRarity.uncommon)};
-
 	public WeaponSplinter(Doomsday dday) {
 		super(dday);
-		//this.lores = uniqueLores;
-		//this.rareEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak};
-		//this.rareLevels = new int[] {5, 3, 3};
-		//this.epicEnchants = new Enchantment[] {Enchantment.unbreaking, TragicEnchantments.Reach, TragicEnchantments.RuneBreak, Enchantment.knockback};
-		//this.epicLevels = new int[] {10, 5, 5, 3};
 	}
 	
 	@Override
