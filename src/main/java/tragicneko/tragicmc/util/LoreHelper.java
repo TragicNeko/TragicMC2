@@ -30,7 +30,6 @@ import tragicneko.tragicmc.items.weapons.WeaponBeastlyClaws;
 import tragicneko.tragicmc.items.weapons.WeaponBlindingLight;
 import tragicneko.tragicmc.items.weapons.WeaponButcher;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
-import tragicneko.tragicmc.items.weapons.WeaponCelestialJack;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponDragonFang;
 import tragicneko.tragicmc.items.weapons.WeaponFrozenLightning;
@@ -47,7 +46,6 @@ import tragicneko.tragicmc.items.weapons.WeaponSentinel;
 import tragicneko.tragicmc.items.weapons.WeaponSplinter;
 import tragicneko.tragicmc.items.weapons.WeaponThardus;
 import tragicneko.tragicmc.items.weapons.WeaponTitan;
-import tragicneko.tragicmc.items.weapons.WeaponTungstenJack;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 
 public class LoreHelper {
@@ -66,8 +64,22 @@ public class LoreHelper {
 		addToLoreMap(ArmorOverlord.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //programming themed possibly
 
 		//Tools
-		addToLoreMap(WeaponTungstenJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //uses old lore
-		addToLoreMap(WeaponCelestialJack.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //uses contemporary pop/rock songs as lore (cuz why not)
+		addToLoreMap(TragicItems.TungstenJack.getClass(), new Lore[] {new Lore(25, "Work, work, work!", 1), new Lore(15, "Time for lunch!", 1), new Lore(15, "Work all day, sleep all night!", 2),
+			new Lore(5, "Off to work we go!", 2), new Lore(10, "Can you dig it?", 1), new Lore(25, "Just keep digging, digging, digging!", 2), new Lore(5, "The finest weapons and armor!", 2),
+			new Lore(25, "Diamonds!", 3), new Lore(15, "Ooh, emeralds!", 3), new Lore(5, "Forged in the fires of Mount Doom!", 3), new Lore(5, "The best blacksmith in Whiterun!", 3),
+			new Lore(10, "Can you pick up what I'm putting down?", 1)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.efficiency, 1), new EnchantEntry(Enchantment.fortune, 1)}, {new EnchantEntry(Enchantment.efficiency, 3), new EnchantEntry(Enchantment.fortune, 2), new EnchantEntry(Enchantment.fireAspect, 1)},
+			{new EnchantEntry(Enchantment.efficiency, 5), new EnchantEntry(Enchantment.fortune, 3), new EnchantEntry(Enchantment.fireAspect, 2), new EnchantEntry(TragicEnchantments.Combustion, 1)}});
+
+		addToLoreMap(TragicItems.CelestialJack.getClass(), new Lore[] {new Lore(25, "Enigmatic.", 0), new Lore(15, "Quite the mystery.", 0), new Lore(10, "It's a mystery to us all.", 0),
+			new Lore(25, "To the Mystery Machine!", 1), new Lore(15, "I would've gotten away with it if it wasn't for you meddling kids!", 1), new Lore(10, "Scooby Snax?", 1), new Lore(5, "Another mystery solved!", 1),
+			new Lore(25, "We've got a mystery on our hands!", 2), new Lore(15, "It's Old Man Withers from the Amusement Park!", 2), new Lore(10, "Jinkies!", 2), new Lore(5, "Whodunit?", 2),
+			new Lore(25, "Let's get out our Handy-Dandy Notebook!", 3), new Lore(15, "Elementary, my dear Watson!", 3), new Lore(5, "Once you eliminate the impossible, whatever remains, no matter how improbable, must be the truth.", 3),
+			new Lore(15, "We just found a clue!", 1), new Lore(5, "I live by Harry's code.", 3), new Lore(5, "I'm not a psychopath, I'm a high functioning sociopath, do your research.", 3),
+			new Lore(5, "Colonel Mustard in the library with a knife!", 3)},
+			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.fortune, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.fortune, 3), new EnchantEntry(TragicEnchantments.Combustion, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.fortune, 5), new EnchantEntry(TragicEnchantments.Combustion, 1), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
 
 		//Normal Weapons
 		addToLoreMap(TragicItems.MercuryDagger.getClass(), new Lore[] {new Lore(25, "Boring.", 1), new Lore(15, "Nice.", 1), new Lore(5, "Interesting.", 1), new Lore(15, "Lame", 1), new Lore(25, "Ha.", 2),
@@ -287,9 +299,9 @@ public class LoreHelper {
 		String s2 = null;
 		String s3 = null;
 
-		if (s.length() > 28)
+		if (s.length() > 32)
 		{
-			for (int i = 28; i < s.length(); i++)
+			for (int i = 32; i < s.length(); i++)
 			{
 				if (s.substring(0, i).endsWith(" "))
 				{
@@ -304,9 +316,9 @@ public class LoreHelper {
 			}
 		}
 
-		if (s2 != null && s2.length() > 28)
+		if (s2 != null && s2.length() > 32)
 		{
-			for (int i = 28; i < s2.length(); i++)
+			for (int i = 32; i < s2.length(); i++)
 			{
 				if (s2.substring(0, i).endsWith(" "))
 				{
@@ -319,9 +331,9 @@ public class LoreHelper {
 				}
 			}
 
-			if (s3 != null && s3.length() > 28)
+			if (s3 != null && s3.length() > 42)
 			{
-				s3 = s3.substring(0, 28).trim();
+				s3 = s3.substring(0, 42).trim();
 			}
 		}
 
@@ -364,10 +376,7 @@ public class LoreHelper {
 					if (l.getRarity() == r) alist.add(l);
 				}
 
-				if (alist.isEmpty())
-				{
-					return this.lores.size() > 0 && r > 0 ? this.lores.get(rand.nextInt(this.lores.size())) : new Lore(1, null, 0);
-				}
+				if (alist.isEmpty()) return this.lores.size() > 0 && r > 0 ? this.lores.get(rand.nextInt(this.lores.size())) : new Lore(1, null, 0);
 
 				return (Lore) WeightedRandom.getRandomItem(rand, alist);
 			}
