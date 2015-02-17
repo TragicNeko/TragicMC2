@@ -8,20 +8,23 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.items.weapons.TragicWeapon;
+import tragicneko.tragicmc.util.LoreHelper;
+import tragicneko.tragicmc.util.LoreHelper.EnchantEntry;
+import tragicneko.tragicmc.util.LoreHelper.Lore;
+import tragicneko.tragicmc.util.LoreHelper.LoreEntry;
 
 public class TragicArmor extends ItemArmor {
 
 	public final Doomsday doomsday;
-	protected int cooldown;
-	protected long tick;
-
 	private IIcon damagedIcon;
 	/*
 	protected Lore[] lores = new Lore[] {new Lore("Move swiftly.", EnumRarity.uncommon), new Lore("Make Haste."), new Lore("Feel the wind on your face!", EnumRarity.uncommon),
@@ -49,21 +52,6 @@ public class TragicArmor extends ItemArmor {
 		this.doomsday = dday;
 		this.setCreativeTab(TragicMC.Survival);
 	}
-	/*
-	@Override
-	public EnumRarity getRarity(ItemStack stack)
-	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? getRarityFromInt(stack.stackTagCompound.getByte("tragicLoreRarity")) : EnumRarity.common;
-	}
-	
-	protected EnumRarity getRarityFromInt(int i) {
-		return i == 1 ? EnumRarity.uncommon : (i == 2 ? EnumRarity.rare : (i == 3 ? EnumRarity.epic : EnumRarity.common));
-	}
-
-	protected Lore getRandomLore()
-	{
-		return lores[itemRand.nextInt(lores.length)];
-	} */
 
 	@Override
 	public void registerIcons(IIconRegister register)
@@ -82,92 +70,63 @@ public class TragicArmor extends ItemArmor {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		/*
-		if (TragicNewConfig.allowRandomWeaponLore)
+		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
 		{
-			String lore = null;
-			EnumChatFormatting loreFormat = EnumChatFormatting.WHITE;
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLore")) lore = stack.stackTagCompound.getString("tragicLore");
-			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity")) loreFormat = getFormatFromRarity(stack.stackTagCompound.getByte("tragicLoreRarity"));
+			String lore = LoreHelper.getDescFromStack(stack);
+			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
+			
 			if (lore != null)
 			{
-				par2List.add(loreFormat + lore);
+				String[] subs = LoreHelper.splitDesc(lore);
+				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
 			}
-		} */
+		}
 
 		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+			par2List.add(""); //extra space
 		}
 	}
 
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) 
 	{
-		if (!world.isRemote)
-		{
-			if (cooldown > 0)
-			{
-				cooldown--;
-			}
-
-			tick++;
-		}
+		
 	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{	
-		/*
-		if (world.isRemote || !TragicNewConfig.allowRandomWeaponLore || !(entity instanceof EntityPlayer)) return; 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		Lore lore = getRandomLore();
-		if (!stack.stackTagCompound.hasKey("tragicLore")) stack.stackTagCompound.setString("tragicLore", lore.lore);
-		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte)getRarityFromEnum(lore)));
 
-		if (!stack.isItemEnchanted() && stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity"))
+		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
+		if (TragicWeapon.getStackCooldown(stack) > 0) TragicWeapon.setStackCooldown(stack, TragicWeapon.getStackCooldown(stack) - 1);
+
+		if (!TragicConfig.allowRandomWeaponLore) return;
+
+		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
+		if (entry == null) return;
+		Lore lore = entry.getRandomLore();
+		if (lore == null) return;
+
+		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte) lore.getRarity()));
+		if (!stack.stackTagCompound.hasKey("tragicLoreDesc")) stack.stackTagCompound.setString("tragicLoreDesc", lore.getDesc() == null ? "" : lore.getDesc());
+
+		int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
+		lore = entry.getLoreOfRarity(rarity);
+
+		if (!stack.isItemEnchanted() && lore != null)
 		{
-			int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
-			if (rarity == 0) return;
+			EnchantEntry[] enchants = entry.getEnchantmentsForRarity(rarity);
+			if (enchants == null) return;
 
-			Enchantment[] enchants;
-			int[] levels;
-			int type = this.armorType == 0 ? 0 :(this.armorType == 3 ? 2 : 1); //0 is helmet, 1 is legs/plate, 2 is boots
-
-			if (rarity == 1)
+			for (EnchantEntry e : enchants)
 			{
-				enchants = this.uncommonEnchants[type];
-				levels = this.uncommonLevels[type];
+				if (e != null && e.getEnchantment() != null) stack.addEnchantment(e.getEnchantment(), e.getEnchantLevel());
 			}
-			else if (rarity == 2)
-			{
-				enchants = this.rareEnchants[type];
-				levels = this.rareLevels[type];
-			}
-			else
-			{
-				enchants = this.epicEnchants[type];
-				levels = this.epicLevels[type];
-			}
-
-			for (int i = 0; i < enchants.length; i++)
-			{
-				if (enchants[i] != null) stack.addEnchantment(enchants[i], levels[i]);
-			}
-		} */
+		}
 	}
-
-	/*
-	protected int getRarityFromEnum(Lore lore)
-	{
-		return lore.rarity == EnumRarity.common ? 0 : (lore.rarity == EnumRarity.uncommon ? 1 : (lore.rarity == EnumRarity.rare ? 2 : 3));
-	}
-
-	protected EnumChatFormatting getFormatFromRarity(int rarity)
-	{
-		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.YELLOW : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.RED));
-	} */
-
 }
