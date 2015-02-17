@@ -59,7 +59,7 @@ public class ArmorDark extends TragicArmor {
 		
 		if (TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear)) player.removePotionEffect(TragicPotion.Fear.id); 
 		
-		if (!world.isRemote && tick % 120 == 0)
+		if (!world.isRemote && player.ticksExisted % 120 == 0)
 		{
 			Boolean flag1 = false;
 			Boolean flag2 = false;

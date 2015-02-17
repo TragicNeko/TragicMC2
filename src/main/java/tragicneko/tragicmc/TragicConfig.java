@@ -147,8 +147,6 @@ public class TragicConfig {
 		prop.setLanguageKey("tragicmc.mobsOnly");
 		mobsOnly = prop.getBoolean(mobsOnly);
 
-		config.addCustomCategoryComment(catMaster, "These change all other options and may even set specific variables, items are never disabled at any point");
-
 		int mapping = 0;
 		int i = 0;
 

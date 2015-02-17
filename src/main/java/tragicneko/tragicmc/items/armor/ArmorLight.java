@@ -61,12 +61,10 @@ public class ArmorLight extends TragicArmor {
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{
-		super.onArmorTick(world, player, itemStack);
-
 		if (player.isPotionActive(Potion.blindness.id)) player.removePotionEffect(Potion.blindness.id);		
 		if (player.isBurning()) player.extinguish();
 
-		if (!world.isRemote && tick % 120 == 0)
+		if (!world.isRemote && player.ticksExisted % 120 == 0)
 		{
 			Boolean flag1 = false;
 			Boolean flag2 = false;
