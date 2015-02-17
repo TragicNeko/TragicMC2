@@ -108,7 +108,7 @@ public class DoomsdayManager {
 				playerMap.remove(playerID);
 				if (reason != null)
 				{
-					logger.info("Registry removed registration for " + playerID + ", reason: " + reason);
+					logger.info("Registry removed registration for player with UUID of " + playerID + ", reason: " + reason);
 				}
 			}
 			else
