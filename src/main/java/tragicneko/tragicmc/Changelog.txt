@@ -3339,6 +3339,14 @@ Converted Dragon Fang's Enchantment tier to have Slay instead of Rune Break
 Added more lore for the Sentinel, changed the enchantment tiers for the Titan, it now has consume instead of knockback
 Modified Splinter's enchantment tiers to have consume instead of rune break and to have higher levels of knockback
 Modified Mourning Star to not have unbreaking in it's enchantment tiers
+Removed unbreaking from Tungsten Jack's enchantment tiers
+Added Celestial Jack's enchantment tiers, it will not have efficiency at all in it's tiers but will have combustion on a lower tier than the tungsten variant, it gains bioluminescence
+at the highest tier, it will have all 4 levels worth of lore and enchantment tiers
+Converted Celestial/Tungsten Jack to use anonymous classes since their classes were empty anyway, anonymous classes aren't required but I don't want there to be any complications differentiating
+them between each other and the normal jack
+Increased the amount of text per line available in the description splitter for lores, the last line has extra available but will still cut off at a certain amount
+Updated the code in TragicArmor to match the other weapons and items, completely forgot about doing that
+Fixed debug messages in DoomsdayManager to refer to the UUIDs correctly
 
 Before release:
 Finish adding the weapon lores and enchantment tiers for each weapon/armor
@@ -3347,7 +3355,7 @@ Ensure of no crashes with weapons and their doomsdays
 Test all of this on a server environment
 
 TODO still
-Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop
+Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop, remove Overlord armor as drops from the Overlord Core
 Finish the other two forms of the Overlord
 Add armor models for the higher tiered armors
 Add the Overlord armor model
