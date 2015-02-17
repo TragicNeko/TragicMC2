@@ -68,7 +68,6 @@ import tragicneko.tragicmc.items.weapons.WeaponBlindingLight;
 import tragicneko.tragicmc.items.weapons.WeaponBowOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponButcher;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialAegis;
-import tragicneko.tragicmc.items.weapons.WeaponCelestialJack;
 import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
 import tragicneko.tragicmc.items.weapons.WeaponDragonFang;
 import tragicneko.tragicmc.items.weapons.WeaponFrozenLightning;
@@ -87,7 +86,6 @@ import tragicneko.tragicmc.items.weapons.WeaponSplinter;
 import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponThardus;
 import tragicneko.tragicmc.items.weapons.WeaponTitan;
-import tragicneko.tragicmc.items.weapons.WeaponTungstenJack;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -445,13 +443,13 @@ public class TragicItems {
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EverlastingLight" + textureRes));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
 
-		Jack = (new ItemJack(toolBasic).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BasicJack_lowRes"));
+		Jack = (new ItemJack(toolBasic, null).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BasicJack_lowRes"));
 		GameRegistry.registerItem(Jack, "jack");
 
-		TungstenJack = (new WeaponTungstenJack(toolJack, Doomsday.MinerSkills).setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
+		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
 		GameRegistry.registerItem(TungstenJack, "tungstenJack");
 
-		CelestialJack = (new WeaponCelestialJack(toolCelesJack, Doomsday.RealityAlter).setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack" + textureRes));
+		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter) {}.setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack" + textureRes));
 		GameRegistry.registerItem(CelestialJack, "celestialJack");
 
 		//Normal Item Registrations
