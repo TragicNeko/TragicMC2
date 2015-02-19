@@ -32,14 +32,14 @@ public class ArmorLight extends TragicArmor {
 	public ArmorLight(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
 		//this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
-		this.uncommonLevels = new int[][] {{3}, {3, 3}, {3}};
-		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity}, {Enchantment.unbreaking, TragicEnchantments.Ignition, TragicEnchantments.RuneWalker},
-				{Enchantment.unbreaking, Enchantment.fireProtection}};
-		this.rareLevels = new int[][] {{5, 3}, {5, 5, 3}, {5, 3}};
-		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity, Enchantment.respiration}, {Enchantment.unbreaking, TragicEnchantments.Ignition,
-			TragicEnchantments.RuneWalker, TragicEnchantments.Agility}, {Enchantment.unbreaking, TragicEnchantments.RuneWalker, Enchantment.featherFalling}};
-		this.epicLevels = new int[][] {{10, 5, 3}, {10, 5, 5, 3}, {5, 5, 1}};
+		//this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
+		//this.uncommonLevels = new int[][] {{3}, {3, 3}, {3}};
+		//this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity}, {Enchantment.unbreaking, TragicEnchantments.Ignition, TragicEnchantments.RuneWalker},
+		//		{Enchantment.unbreaking, Enchantment.fireProtection}};
+		//this.rareLevels = new int[][] {{5, 3}, {5, 5, 3}, {5, 3}};
+		//this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.aquaAffinity, Enchantment.respiration}, {Enchantment.unbreaking, TragicEnchantments.Ignition,
+		//	TragicEnchantments.RuneWalker, TragicEnchantments.Agility}, {Enchantment.unbreaking, TragicEnchantments.RuneWalker, Enchantment.featherFalling}};
+		//this.epicLevels = new int[][] {{10, 5, 3}, {10, 5, 5, 3}, {5, 5, 1}};
 	}
 	
 	@Override
@@ -61,9 +61,6 @@ public class ArmorLight extends TragicArmor {
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{
-		if (player.isPotionActive(Potion.blindness.id)) player.removePotionEffect(Potion.blindness.id);		
-		if (player.isBurning()) player.extinguish();
-
 		if (!world.isRemote && player.ticksExisted % 120 == 0)
 		{
 			Boolean flag1 = false;
@@ -81,13 +78,15 @@ public class ArmorLight extends TragicArmor {
 					if (armor == TragicItems.LightPlate) flag2 = true;
 					if (armor == TragicItems.LightLegs) flag3 = true;
 					if (armor == TragicItems.LightBoots) flag4 = true;
-
-					if (flag1 && flag2 && flag3 && flag4)
-					{
-						player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 600));
-						if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 600));
-					}
 				}
+			}
+			
+			if (flag1 && flag2 && flag3 && flag4)
+			{
+				if (player.isPotionActive(Potion.blindness.id)) player.removePotionEffect(Potion.blindness.id);		
+				if (player.isBurning()) player.extinguish();
+				player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 600));
+				if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 600));
 			}
 		}
 	}

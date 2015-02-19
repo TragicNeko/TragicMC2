@@ -55,7 +55,23 @@ public class LoreHelper {
 	static
 	{
 		//Armor
-		addToLoreMap(ArmorDark.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
+		addToLoreMap(ArmorDark.class, new LoreEntry(new Lore[] {new Lore(25, "It's dark.", 1), new Lore(20, "Dim.", 1), new Lore(15, "Rather dark out!", 1), new Lore(10, "Hold me.", 1), new Lore(10, "I'm so alone.", 1),
+				new Lore(10, "Cold, dark and alone...", 1), new Lore(5, "Darkness all around me.", 1), new Lore(5, "It's quite dark out tonight, isn't it?", 1), new Lore(15, "Lonely...", 1),
+				new Lore(5, "How can you see in this darkness?", 1), new Lore(25, "Scream!", 2), new Lore(15, "Screaming Bloody Mary!", 2), new Lore(15, "Welcome to my nightmare!", 2), new Lore(10, "Just another slasher...", 2),
+				new Lore(10, "I'll rip you a new one!", 2), new Lore(5, "Oh yes, there will be blood.", 2), new Lore(5, "Let's play a game.", 2), new Lore(10, "Fright night!", 2), new Lore(5, "I see dead people.", 2),
+				new Lore(25, "The Boogeyman is real and you found him!", 3), new Lore(20, "You will die in 7 days.", 3), new Lore(5, "If you don't forward this to 10 people by midnight, a psychopath will come to your house and kill you.", 3),
+				new Lore(15, "Come play with us...", 3), new Lore(5, "We all go a little mad sometimes...", 3), new Lore(15, "Victims... aren't we all?", 3), new Lore(20, "Join us... one of us... one of us!", 3),
+				new Lore(10, "One, two, Freddy's coming for you!", 3), new Lore(10, "Three, four, better lock your door!", 3), new Lore(5, "Want to play a game?", 3), new Lore(20, "I know what you did last summer.", 3),
+				new Lore(5, "Jeepers creepers!", 3), new Lore(10, "It rubs the lotion on it's skin.", 3)},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 3)},
+				{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.respiration, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking ,3)}, {new EnchantEntry(Enchantment.unbreaking, 5),  new EnchantEntry(TragicEnchantments.DeathTouch, 3)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(TragicEnchantments.Toxicity, 3), new EnchantEntry(Enchantment.thorns, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking ,3)}, {new EnchantEntry(Enchantment.unbreaking, 5),  new EnchantEntry(TragicEnchantments.DeathTouch, 3)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(TragicEnchantments.Toxicity, 3)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 3)},
+				{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.featherFalling, 1)}}));
+
 		addToLoreMap(ArmorHunter.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(ArmorLight.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
 		addToLoreMap(ArmorMercury.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
@@ -347,6 +363,17 @@ public class LoreHelper {
 
 		private final ArrayList<Lore> lores = new ArrayList<Lore>();
 		private final EnchantEntry[][] enchants;
+		private final ArrayList<EnchantEntry[][]> armorEnchants = new ArrayList<EnchantEntry[][]>();
+
+		public LoreEntry(Lore[] lores, EnchantEntry[][] enchant1, EnchantEntry[][] enchant2, EnchantEntry[][] enchant3, EnchantEntry[][] enchant4)
+		{
+			this.lores.addAll(Arrays.asList(lores));
+			this.enchants = new EnchantEntry[][] {{}, {}, {}, {}};
+			this.armorEnchants.add(0, enchant1);
+			this.armorEnchants.add(1, enchant2);
+			this.armorEnchants.add(2, enchant3);
+			this.armorEnchants.add(3, enchant4);
+		}
 
 		public LoreEntry(Collection<Lore> lores, EnchantEntry[][] enchants)
 		{
@@ -427,6 +454,17 @@ public class LoreHelper {
 				TragicMC.logError("Error getting enchantments for a weapon", e);
 				return null;
 			}
+		}
+
+		private EnchantEntry[][] getEnchantmentsForArmor(int armorType)
+		{
+			return !this.armorEnchants.isEmpty() && this.armorEnchants.size() >= armorType ? this.armorEnchants.get(armorType) : null;
+		}
+
+		public EnchantEntry[] getEnchantmentsForArmor(int rarity, int armorType)
+		{
+			EnchantEntry[][] ench = this.getEnchantmentsForArmor(armorType);
+			return ench != null ? ench[rarity] : null;
 		}
 	}
 

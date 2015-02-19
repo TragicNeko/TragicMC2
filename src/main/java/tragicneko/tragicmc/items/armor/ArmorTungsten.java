@@ -27,13 +27,13 @@ public class ArmorTungsten extends TragicArmor {
 	public ArmorTungsten(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
 		//this.lores = uniqueLores;
-		this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
-		this.uncommonLevels = new int[][] {{1}, {1, 1}, {1}};
-		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
-		this.rareLevels = new int[][] {{3}, {3, 3}, {3}};
-		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.fireProtection}, {Enchantment.unbreaking, TragicEnchantments.Ignition, Enchantment.fireProtection},
-				{Enchantment.unbreaking, Enchantment.fireProtection}};
-		this.epicLevels = new int[][] {{5, 3}, {5, 5, 3}, {5, 3}};
+		//this.uncommonEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
+		//this.uncommonLevels = new int[][] {{1}, {1, 1}, {1}};
+		//this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Ignition}, {Enchantment.unbreaking}};
+		//this.rareLevels = new int[][] {{3}, {3, 3}, {3}};
+		//this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.fireProtection}, {Enchantment.unbreaking, TragicEnchantments.Ignition, Enchantment.fireProtection},
+		//		{Enchantment.unbreaking, Enchantment.fireProtection}};
+		//this.epicLevels = new int[][] {{5, 3}, {5, 5, 3}, {5, 3}};
 	}
 
 	@Override

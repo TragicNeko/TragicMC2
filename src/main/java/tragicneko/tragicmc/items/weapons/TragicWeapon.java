@@ -106,7 +106,7 @@ public class TragicWeapon extends ItemSword {
 		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
 		if (getStackCooldown(stack) > 0) setStackCooldown(stack, getStackCooldown(stack) - 1);
 
-		if (!TragicConfig.allowRandomWeaponLore) return;
+		if (!TragicConfig.allowRandomWeaponLore || stack.getItem() == null) return;
 
 		LoreEntry entry = LoreHelper.getLoreEntry(stack.getItem().getClass());
 		if (entry == null) return;

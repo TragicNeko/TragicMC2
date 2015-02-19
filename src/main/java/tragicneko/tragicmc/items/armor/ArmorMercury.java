@@ -22,11 +22,11 @@ public class ArmorMercury extends TragicArmor {
 	public ArmorMercury(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
 		//this.lores = uniqueLores;
-		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Toxicity}, {Enchantment.unbreaking}};
-		this.rareLevels = new int[][] {{2}, {2, 1}, {2}};
-		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.respiration}, {Enchantment.unbreaking, TragicEnchantments.Toxicity,
-			TragicEnchantments.Paralysis}, {Enchantment.unbreaking}};
-		this.epicLevels = new int[][] {{3, 1}, {3, 3, 1}, {3}};
+		//this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.Toxicity}, {Enchantment.unbreaking}};
+		//this.rareLevels = new int[][] {{2}, {2, 1}, {2}};
+		//this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking, Enchantment.respiration}, {Enchantment.unbreaking, TragicEnchantments.Toxicity,
+		//	TragicEnchantments.Paralysis}, {Enchantment.unbreaking}};
+		//this.epicLevels = new int[][] {{3, 1}, {3, 3, 1}, {3}};
 	}
 
 	@Override

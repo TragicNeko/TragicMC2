@@ -23,10 +23,10 @@ public class ArmorSkull extends TragicArmor {
 	public ArmorSkull(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
 		//this.lores = uniqueLores;
-		this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking}, {Enchantment.unbreaking}};
-		this.rareLevels = new int[][] {{3}, {3}, {3}};
-		this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.DeathTouch}, {Enchantment.unbreaking}};
-		this.epicLevels = new int[][] {{5}, {5, 3}, {5}};
+		//this.rareEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking}, {Enchantment.unbreaking}};
+		//this.rareLevels = new int[][] {{3}, {3}, {3}};
+		//this.epicEnchants = new Enchantment[][] {{Enchantment.unbreaking}, {Enchantment.unbreaking, TragicEnchantments.DeathTouch}, {Enchantment.unbreaking}};
+		//this.epicLevels = new int[][] {{5}, {5, 3}, {5}};
 	}
 
 	@Override
