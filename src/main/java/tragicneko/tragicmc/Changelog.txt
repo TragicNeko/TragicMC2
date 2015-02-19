@@ -3346,12 +3346,15 @@ Converted Celestial/Tungsten Jack to use anonymous classes since their classes w
 them between each other and the normal jack
 Increased the amount of text per line available in the description splitter for lores, the last line has extra available but will still cut off at a certain amount
 Updated the code in TragicArmor to match the other weapons and items, completely forgot about doing that
-Fixed debug messages in DoomsdayManager to refer to the UUIDs correctly
+Fixed debug messages in DoomsdayManager to refer to the UUIDs correctly, in the future I need to change this to get the username from the UUID
+Made it so that all armor abilities require the full set to be on in order to have them active, this excludes the Overlord extra health modifiers
+Modified LoreEntry to allow for different enchantments for armor sets (each piece of armor has it's own separate tier), modified TragicArmor to use that
+Fixed initial issues with the list I use for the armor enchantments
+
 
 Before release:
-Finish adding the weapon lores and enchantment tiers for each weapon/armor
 Ensure of no initial crashes with any of the entities or projectiles
-Ensure of no crashes with weapons and their doomsdays
+Ensure of no crashes with weapons/armor and their doomsdays
 Test all of this on a server environment
 
 TODO still
@@ -3374,7 +3377,8 @@ The Cocoon form will spawn Seekers, these will act as crystals that protect it w
 until it hits a certain amount of health, then it will spawn more, in later rounds of this it will spawn hunters in addition to the seekers
 The Cocoon form will randomly spawn in Harvesters as well
 When the Seekers are destroyed, it'll grant you Divinity for around 15 seconds, which will be removed from you when you hit the certain amount of health
-that is required for the next Seeker phase
+that is required for the next Seeker phase or until it runs out, if you don't do enough damage to get to the next phase then it regenerates it's health
+back up to the previous stage, there will be 5 phases, where 100 damage is required per phase
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
 Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it, it stays at a constant y level
