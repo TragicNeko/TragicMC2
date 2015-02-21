@@ -29,7 +29,7 @@ public class BlockDigitalSea extends Block {
 	public BlockDigitalSea(boolean flag)
 	{
 		super(Material.circuits);
-		this.setBlockName("tragicmc.digitalSea" + (flag ? "active" : "inactive"));
+		this.setBlockName("tragicmc.digitalSea." + (flag ? "active" : "inactive"));
 		this.lit = flag;
 		this.setCreativeTab(TragicMC.Creative);
 		this.setLightLevel(0.0F);
