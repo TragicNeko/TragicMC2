@@ -29,6 +29,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 import tragicneko.tragicmc.entity.projectile.EntityPitchBlack;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
+import tragicneko.tragicmc.entity.projectile.EntityProjectile;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.entity.projectile.EntitySpiritCast;
@@ -83,9 +84,10 @@ public class ItemProjectile extends Item {
 
 		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
 		MovingObjectPosition mop = world.func_147447_a(vec3, vec31, true, false, true);
+		
 
 		double x = mop.hitVec.xCoord - player.posX;
-		double y = mop.hitVec.yCoord - player.posY - player.getEyeHeight();
+		double y = mop.hitVec.yCoord - player.posY;
 		double z = mop.hitVec.zCoord - player.posZ;
 		float f9 = 0.12F * 6.0F * 0.9275F;
 
@@ -173,7 +175,7 @@ public class ItemProjectile extends Item {
 
 		if (entity != null)
 		{
-			entity.posY += player.getEyeHeight();
+			if (entity instanceof EntityProjectile) entity.posY += player.getEyeHeight();
 			world.spawnEntityInWorld(entity);
 		}
 
