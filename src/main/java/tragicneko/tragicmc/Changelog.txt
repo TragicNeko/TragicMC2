@@ -3355,22 +3355,15 @@ Fixed some bugs with armor textures, fixed small bug with Dark Armor not removin
 Modified enchantment tiers of the Light Armor, different pieces have different values for each enchantment, even if they share the same enchants
 Finished all of the lore, Overlord armor uses lore that quotes cyberpunk themed anime, but the majority of the quotes are from ghost in the shell
 As with the Sentinel, Overlord Armor can only have epic rarity
-
-Before release:
-Ensure of no initial crashes with any of the entities or projectiles
-Ensure of no crashes with weapons/armor and their doomsdays
-Test all of this on a server environment
-
-TODO still
-Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop, remove Overlord armor as drops from the Overlord Core
-Finish the other two forms of the Overlord
-Add armor models for the higher tiered armors
-Add the Overlord armor model
-Create particles and add mob sounds
-Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
-Add new specific mobs for some of the more "special" biome sets, change some mobs to have variants for different biomes and such
-New mobs like the Parasmite, the Nuclea, and the Rasmas
-Add the Achievements, which will flow in a set questline, also add side achievements for other random things
+Increased the influence of Elasticity enchantment
+Fix projectile offset for creative projectile items
+Fixed right-click ability of the Withering Axe, it now fires Wither Skulls properly
+Modified Splinter's right-click ability to only use Doom when there are actually entities nearby for it to manipulate
+Upon initial testing on a server environment, there was an issue with the attribute modifiers in the amulet recipes, due to this the amulet modifier static
+method was simplified
+Fixed game crash with Firestorm Doomsday, updated Fire Rain to only fire small fireballs (forgot to do that previously)
+Added Digital Sea localizations
+Testing a built version of the mod now
 
 FOR THE OVERLORD
 The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
@@ -3392,12 +3385,23 @@ Seeker = Passive mob that "spots" nearby enemies for other entities to attack, m
 time, the seeker can actually kill the target with it's gaze by slowly building up armor piercing damage done to it, in other words, these must be killed when they spawn and see
 a target, otherwise they will kill it, these work like the Oracles in Destiny
 
-Note: The Sentinel will only have one rarity, but it will have different lore that it can be, same goes for the Sentinel armor set
 Note: After the frozen biomes are added, make that the only place that the Ragr spawns
 Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
 Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
 
 --Reminders-
+Fix amulet modifiers being applied to the player each tick while they are in the player's inventory
+Fix the mini-bombs and such to actually stop and stay still on the top of the block that they collide with, fix the cluster bomb so that it launches mini-bombs in random directions from it's center
+rather than just spawning mini-bombs in random spots around it
+Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop, remove Overlord armor as drops from the Overlord Core
+Finish the other two forms of the Overlord
+Add armor models for the higher tiered armors
+Add the Overlord armor model
+Create particles and add mob sounds
+Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
+Add new specific mobs for some of the more "special" biome sets, change some mobs to have variants for different biomes and such
+New mobs like the Parasmite, the Nuclea, and the Rasmas
+Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Change the Spike generation to get a list while iterating through y levels and add onto that list, ensuring not to add duplicates, then fill in the entire
 list with the spike block in order to avoid setting the same block multiple levels
 Doing this, I'll put the coords into a set, then convert the set into a list when I need to set all of the blocks to avoid duplicates
