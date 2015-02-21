@@ -30,7 +30,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAmulet extends Item {
 
-	@SideOnly(Side.CLIENT)
 	private IIcon[][] iconArray = new IIcon[4][2];
 
 	private int amuletID;
@@ -70,7 +69,9 @@ public class ItemAmulet extends Item {
 		return true;
 	}
 
+	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int pass)
 	{
 		int i = stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : getDefaultLevels(this.amuletID);
@@ -198,7 +199,7 @@ public class ItemAmulet extends Item {
 
 		if (mod != null)
 		{
-			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
+			tag = AmuletHelper.writeAttributeModifierToNBT(atr.getAttributeUnlocalizedName(), mod);
 			taglist.appendTag(tag);
 		}
 		
@@ -214,7 +215,7 @@ public class ItemAmulet extends Item {
 
 		if (mod != null)
 		{
-			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
+			tag = AmuletHelper.writeAttributeModifierToNBT(atr.getAttributeUnlocalizedName(), mod);
 			taglist.appendTag(tag);
 		}
 		
@@ -230,7 +231,7 @@ public class ItemAmulet extends Item {
 
 		if (mod != null)
 		{
-			tag = AmuletHelper.writeAttributeModifierToNBT(atr, mod);
+			tag = AmuletHelper.writeAttributeModifierToNBT(atr.getAttributeUnlocalizedName(), mod);
 			taglist.appendTag(tag);
 		}
 		

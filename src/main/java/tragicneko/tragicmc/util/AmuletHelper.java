@@ -232,7 +232,7 @@ public class AmuletHelper {
 		return attributes[rand.nextInt(attributes.length)];
 	}
 	
-	public static NBTTagCompound writeAttributeModifierToNBT(IAttribute atr, AttributeModifier modif)
+	public static NBTTagCompound writeAttributeModifierToNBT(String atrName, AttributeModifier modif)
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		nbttagcompound.setString("Name", modif.getName());
@@ -240,7 +240,7 @@ public class AmuletHelper {
 		nbttagcompound.setInteger("Operation", modif.getOperation());
 		nbttagcompound.setLong("UUIDMost", modif.getID().getMostSignificantBits());
 		nbttagcompound.setLong("UUIDLeast", modif.getID().getLeastSignificantBits());
-		nbttagcompound.setString("AttributeName", atr.getAttributeUnlocalizedName());
+		nbttagcompound.setString("AttributeName", atrName);
 		return nbttagcompound;
 	}
 	

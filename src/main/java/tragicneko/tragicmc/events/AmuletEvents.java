@@ -157,7 +157,6 @@ public class AmuletEvents {
 			{
 				amulets[i] = amu.getActiveAmulet(i);
 				levels[i] = AmuletHelper.getAmuletLevel(amu.getActiveAmuletItemStack(i));
-				
 			}
 
 			int same = AmuletHelper.getSameAmulets(amulets[0], amulets[1], amulets[2]);
