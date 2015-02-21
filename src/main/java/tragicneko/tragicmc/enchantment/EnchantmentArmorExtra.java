@@ -110,6 +110,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 								default:
 									break;
 								}
+								entity.velocityChanged = true;
 							}
 						}
 						break;
