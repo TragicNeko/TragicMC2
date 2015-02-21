@@ -20,11 +20,7 @@ public class ArmorOverlord extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (slot == 2)
-		{
-			return "tragicmc:textures/armor/Overlord2_lowRes.png";
-		}
-		return "tragicmc:textures/armor/Overlord1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Overlord2_lowRes.png" : "tragicmc:textures/armor/Overlord1_lowRes.png";
 	}
 
 	@Override
@@ -43,10 +39,10 @@ public class ArmorOverlord extends TragicArmor {
 			{
 				Item armor = player.getEquipmentInSlot(a).getItem();
 
-				if (armor == TragicItems.LightHelm) flag1 = true;
-				if (armor == TragicItems.LightPlate) flag2 = true;
-				if (armor == TragicItems.LightLegs) flag3 = true;
-				if (armor == TragicItems.LightBoots) flag4 = true;
+				if (armor == TragicItems.OverlordHelm) flag1 = true;
+				if (armor == TragicItems.OverlordPlate) flag2 = true;
+				if (armor == TragicItems.OverlordLegs) flag3 = true;
+				if (armor == TragicItems.OverlordBoots) flag4 = true;
 			}
 		}
 

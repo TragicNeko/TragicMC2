@@ -22,18 +22,13 @@ public class ArmorDark extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (slot == 2)
-		{
-			return "tragicmc:textures/armor/Dark2_lowRes.png";
-		}
-		return "tragicmc:textures/armor/Dark1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Dark2_lowRes.png" : "tragicmc:textures/armor/Dark1_lowRes.png";
 	}
-
 
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	{		
-		if (!world.isRemote && player.ticksExisted % 120 == 0)
+		if (!world.isRemote)
 		{
 			Boolean flag1 = false;
 			Boolean flag2 = false;
@@ -55,7 +50,7 @@ public class ArmorDark extends TragicArmor {
 
 			if (flag1 && flag2 && flag2 && flag4)
 			{
-				if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600));
+				if (TragicConfig.allowImmunity && player.ticksExisted % 60 == 0) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600));
 				if (TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear)) player.removePotionEffect(TragicPotion.Fear.id);
 			}
 		}

@@ -72,12 +72,73 @@ public class LoreHelper {
 				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 3)},
 				{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.featherFalling, 1)}}));
 
-		addToLoreMap(ArmorHunter.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ArmorLight.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ArmorMercury.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ArmorSkull.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ArmorTungsten.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}});
-		addToLoreMap(ArmorOverlord.class, new Lore[] {}, new EnchantEntry[][] {{}, {}, {}, {}}); //programming themed possibly
+		addToLoreMap(ArmorHunter.class, new LoreEntry(new Lore[] {new Lore(25, "Move swiftly.", 1), new Lore(15, "Make haste.", 1), new Lore(15, "Feel the wind on your face!", 1), new Lore(10, "Fast as the wind!", 1),
+				new Lore(5, "Too fast, too furious.", 2), new Lore(25, "Windswept.", 1), new Lore(15, "Feverishly fast.", 1), new Lore(5, "Unrelenting speed.", 1), new Lore(5, "Used Gust! It's not very effective.", 1),
+				new Lore(25, "Watch out for windburn!", 1), new Lore(15, "Used Fly! It's super effective!", 2), new Lore(25, "Like a tsunami!", 2), new Lore(15, "I'm like a bird.", 2), new Lore(15, "I can go the distance!", 2),
+				new Lore(5, "In the eye of the hurricane.", 2), new Lore(15, "Feel the full force of the unburdened wind!", 2), new Lore(5, "Watch as the cold wind slices through you!", 2), new Lore(5, "Wind chill of -40 tonight!", 2),
+				new Lore(25, "Used Sky Attack! Critical Hit! It's super effective!", 3), new Lore(10, "Like the howling wind.", 1), new Lore(5, "Used Whirlwind. The enemy fled.", 1), new Lore(15, "All the force of a great typhoon!", 3),
+				new Lore(25, "Swift as the coursing river!", 3), new Lore(5, "Won't you find me, free bird?", 3), new Lore(5, "He crawls like a worm from a bird!", 3), new Lore(15, "Fly like the wind, Bullseye!", 3),
+				new Lore(10, "Here comes the rooster, no he ain't gonna die!", 3), new Lore(5, "In the eye of the storm.", 3), new Lore(5, "Fly back to school now little starling, fly, fly, fly...", 3)},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.projectileProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.projectileProtection, 3)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.projectileProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.projectileProtection, 3), new EnchantEntry(TragicEnchantments.Agility, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.projectileProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.projectileProtection, 3), new EnchantEntry(TragicEnchantments.Agility, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.projectileProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.projectileProtection, 3), new EnchantEntry(Enchantment.featherFalling, 1)}}));
+
+		addToLoreMap(ArmorLight.class, new LoreEntry(new Lore[] {new Lore(25, "Don't give up.", 1), new Lore(15, "Overcome.", 1), new Lore(10, "Rise above.", 1), new Lore(5, "Inspire others.", 1), new Lore(15, "Don't ever give up.", 1),
+				new Lore(15, "Brighten your day!", 1), new Lore(10, "Be positive.", 1), new Lore(5, "It's not that bad.", 1), new Lore(10, "Get up, stand up!", 1), new Lore(5, "The night is always darkest just before the dawn.", 3),
+				new Lore(25, "Don't stop believing!", 2), new Lore(15, "Rise above this!", 2), new Lore(15, "Don't worry, it gets better.", 2), new Lore(10, "Live to rise!", 2), new Lore(15, "Seize the day!", 2),
+				new Lore(5, "Carpe diem.", 2), new Lore(10, "Keep your faith.", 1), new Lore(5, "Never give up hope.", 1), new Lore(10, "Everything in it's right place.", 2), new Lore(10, "Everything zen.", 2), new Lore(15, "Inspire and electrify.", 2),
+				new Lore(25, "Let your light shine down!", 3), new Lore(15, "Beacon of hope!", 3), new Lore(10, "Live and let die.", 3), new Lore(5, "Even when your hope is gone, move along, move along just to make it through!", 3),
+				new Lore(5, "Always look on the bright side of life!", 3), new Lore(15, "Dig me out from under what is covering!", 3), new Lore(10, "It's not too late, it's never too late.", 3), new Lore(15, "I can feel you all around me, thickening the air I'm breathing.", 3),
+				new Lore(15, "Turn around, bright eyes!", 3), new Lore(5, "Open up my eager eyes, cuz I'm Mr. Brightside!", 3), new Lore(5, "Welcome to this place, I'll show you everything with arms wide open!", 3)},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.respiration, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.respiration, 3), new EnchantEntry(Enchantment.aquaAffinity, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.RuneWalker, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 3)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Ignition, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.RuneWalker, 3), new EnchantEntry(TragicEnchantments.Ignition, 3)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.RuneWalker, 3), new EnchantEntry(Enchantment.featherFalling, 1)}}));
+
+		addToLoreMap(ArmorMercury.class, new LoreEntry(new Lore[] {new Lore(25, "Don't touch me.", 1), new Lore(15, "Get away from me.", 1), new Lore(10, "Don't touch!", 1), new Lore(5, "No touchy!", 1), new Lore(15, "Does anyone have disinfectant?", 1),
+				new Lore(15, "Germs!", 1), new Lore(5, "Don't breathe on me!", 1), new Lore(15, "There's germs everywhere...", 2), new Lore(25, "Time for the 4th daily shower!", 2), new Lore(15, "Anyone here ever heard of soap?", 2),
+				new Lore(10, "Just block out all of the filth...", 2), new Lore(15, "Time for the 3rd disinfectant layer!", 2), new Lore(5, "Why is it so dirty outside?", 2), new Lore(15, "Eww, it touched me!", 2), new Lore(5, "I can feel the germs crawling their way into the nape of my neck!", 3),
+				new Lore(25, "Ever heard of hygeine?", 3), new Lore(15, "Too many things in close proximity!", 3), new Lore(5, "Eww don't touch me with your germs!", 3), new Lore(5, "Don't touch me you filthy casual!", 3), new Lore(10, "Die you infectious disease!", 3),
+				new Lore(5, "I despise personal interaction!", 3), new Lore(15, "Quick, give me a wipey!", 3), new Lore(5, "It's a gift... and a curse.", 3), new Lore(15, "Stay away from me with your disease ridden hands!", 2), new Lore(5, "Disgusting.", 1), new Lore(10, "Gross.", 1)},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.respiration, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.protection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.protection, 2), new EnchantEntry(TragicEnchantments.Elasticity, 2)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(TragicEnchantments.Elasticity, 1)},
+				{new EnchantEntry(Enchantment.unbreaking ,3), new EnchantEntry(TragicEnchantments.Elasticity, 2), new EnchantEntry(TragicEnchantments.Paralysis, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking ,2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Elasticity, 1)}}));
+
+		addToLoreMap(ArmorSkull.class, new LoreEntry(new Lore[] {new Lore(25, "What's that smell?", 1), new Lore(15, "Is that smell... you?", 1), new Lore(15, "Sniff, sniff...", 1), new Lore(10, "You smell that?", 1), new Lore(5, "Smells like rotten eggs...", 1),
+				new Lore(5, "Something smells raunchy...", 1), new Lore(15, "The nose knows!", 1), new Lore(15, "Are you a hobo or something?", 1), new Lore(10, "Why do you smell like you live in a sewer?", 1), new Lore(5, "Something smells fishy.", 1),
+				new Lore(25, "We don't deliver to sewers.", 2), new Lore(15, "Anyone have an air freshener?", 2), new Lore(10, "Let me guess, you're a garbage man.", 2), new Lore(15, "At least it's a minty garbage smell now.", 2), new Lore(5, "There's a faint smell of filth in the air.", 2),
+				new Lore(5, "Well, this stinks.", 2), new Lore(5, "He who smelt it.", 2), new Lore(25, "Smells like Nirvana.", 3), new Lore(5, "Smells like teen spirit.", 3), new Lore(15, "My stench strong.", 3), new Lore(5, "Everyone likes their own product.", 3),
+				new Lore(10, "I put Oscar the Grouch to shame!", 3), new Lore(5, "They call me a garbage player, how did they know?", 3), new Lore(10, "Love is in the air, no wait that's just me.", 3)},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.DeathTouch, 1)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 3)}, {new EnchantEntry(Enchantment.unbreaking, 4), new EnchantEntry(TragicEnchantments.DeathTouch, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 3)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(TragicEnchantments.DeathTouch, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.DeathTouch, 5)}},
+				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.DeathTouch, 1)}}));
+
+		addToLoreMap(ArmorTungsten.class, new LoreEntry(new Lore[] {},
+				new EnchantEntry[][] {{}, {}, {}, {}},
+				new EnchantEntry[][] {{}, {}, {}, {}},
+				new EnchantEntry[][] {{}, {}, {}, {}},
+				new EnchantEntry[][] {{}, {}, {}, {}}));
+
+		addToLoreMap(ArmorOverlord.class, new LoreEntry(new Lore[] {}, //programming themed possibly, only epic rarity level required
+				new EnchantEntry[][] {{}, {}, {}, {}},
+				new EnchantEntry[][] {{}, {}, {}, {}},
+				new EnchantEntry[][] {{}, {}, {}, {}},
+				new EnchantEntry[][] {{}, {}, {}, {}}));
 
 		//Tools
 		addToLoreMap(TragicItems.TungstenJack.getClass(), new Lore[] {new Lore(25, "Work, work, work!", 1), new Lore(15, "Time for lunch!", 1), new Lore(15, "Work all day, sleep all night!", 2),
@@ -99,8 +160,8 @@ public class LoreHelper {
 
 		//Normal Weapons
 		addToLoreMap(TragicItems.MercuryDagger.getClass(), new Lore[] {new Lore(25, "Boring.", 1), new Lore(15, "Nice.", 1), new Lore(5, "Interesting.", 1), new Lore(15, "Lame", 1), new Lore(25, "Ha.", 2),
-			new Lore(15, "Awesome.", 2), new Lore(10, "That's fascinating.", 2), new Lore(5, "That's nice.", 2), new Lore(25, "That's amazing!", 3), new Lore(15, "Fantastic!", 3),
-			new Lore(5, "I'm shuddering with excitement!", 3), new Lore(5, "Ama-zuh-zing!", 3)},
+			new Lore(15, "Awesome.", 2), new Lore(10, "That's fascinating.", 2), new Lore(5, "That's nice.", 2), new Lore(25, "That's amazing!", 3), new Lore(15, "Fantastic!", 3), new Lore(5, "Okay.", 1),
+			new Lore(5, "I'm shuddering with excitement!", 3), new Lore(5, "Ama-zuh-zing!", 3), new Lore(5, "So awesome!", 3)},
 			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.sharpness, 1)}});
 
 		addToLoreMap(WeaponBeastlyClaws.class, new Lore[] {new Lore(25, "That's beastly.", 1), new Lore(15, "Epic.", 1), new Lore(5, "Knockout!", 1),
@@ -365,14 +426,14 @@ public class LoreHelper {
 		private final EnchantEntry[][] enchants;
 		private final ArrayList<EnchantEntry[][]> armorEnchants = new ArrayList<EnchantEntry[][]>();
 
-		public LoreEntry(Lore[] lores, EnchantEntry[][] enchant1, EnchantEntry[][] enchant2, EnchantEntry[][] enchant3, EnchantEntry[][] enchant4)
+		public LoreEntry(Lore[] lores, EnchantEntry[][] armor, EnchantEntry[][] armor2, EnchantEntry[][] armor3, EnchantEntry[][] armor4)
 		{
 			this.lores.addAll(Arrays.asList(lores));
 			this.enchants = new EnchantEntry[][] {{}, {}, {}, {}};
-			this.armorEnchants.add(0, enchant1);
-			this.armorEnchants.add(1, enchant2);
-			this.armorEnchants.add(2, enchant3);
-			this.armorEnchants.add(3, enchant4);
+			this.armorEnchants.add(0, armor);
+			this.armorEnchants.add(1, armor2);
+			this.armorEnchants.add(2, armor3);
+			this.armorEnchants.add(3, armor4);
 		}
 
 		public LoreEntry(Collection<Lore> lores, EnchantEntry[][] enchants)
@@ -487,7 +548,7 @@ public class LoreHelper {
 		public Lore(int weight, String desc, int rarity) {
 			super(weight);
 			this.desc = desc;
-			this.rarity = net.minecraft.util.MathHelper.clamp_int(rarity, 0, 3);
+			this.rarity = MathHelper.clamp_int(rarity, 0, 3);
 		}
 
 		public String getDesc() { return this.desc; }

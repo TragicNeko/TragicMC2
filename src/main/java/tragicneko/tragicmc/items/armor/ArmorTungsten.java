@@ -1,10 +1,8 @@
 package tragicneko.tragicmc.items.armor;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -60,11 +58,7 @@ public class ArmorTungsten extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (slot == 2)
-		{
-			return "tragicmc:textures/armor/Tungsten2_lowRes.png";
-		}
-		return "tragicmc:textures/armor/Tungsten1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Tungsten2_lowRes.png" : "tragicmc:textures/armor/Tungsten1_lowRes.png";
 	}
 }
 

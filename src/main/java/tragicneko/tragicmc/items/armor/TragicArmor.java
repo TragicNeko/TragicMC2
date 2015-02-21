@@ -49,7 +49,7 @@ public class TragicArmor extends ItemArmor {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) > 0)
+		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
 			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
