@@ -10,7 +10,7 @@ import tragicneko.tragicmc.entity.mob.EntityStin;
 
 public class RenderStin extends RenderLiving {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:/textures/mobs/Stin_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Stin_lowRes.png");
 
 	public RenderStin() {
 		super(new ModelStin(), 0.755F);

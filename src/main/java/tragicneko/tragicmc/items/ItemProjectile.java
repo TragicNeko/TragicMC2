@@ -47,7 +47,7 @@ public class ItemProjectile extends Item {
 
 	private String[] textureNames = new String[] {"Rock", "LavaRock", "Pumpkinbomb", "LargePumpkinbomb", "PoisonBarb", "NekoRocket", "NekoStickyBomb", "NekoClusterBomb",
 			"NekoMiniBomb", "SolarBomb", "SpiritCast", "Spore", "Banana", "LargeRock", "Icicle", "TimeBomb", "StarShard", "DarkLightning", "PitchBlack", "DarkEnergy", 
-			"DarkMortor", "WebBomb", "CrystalMortor", "overlordMortor"};
+			"DarkMortor", "WebBomb", "CrystalMortor", "OverlordMortor"};
 
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
