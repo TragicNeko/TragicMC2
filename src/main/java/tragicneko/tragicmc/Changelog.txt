@@ -3364,6 +3364,7 @@ method was simplified
 Fixed game crash with Firestorm Doomsday, updated Fire Rain to only fire small fireballs (forgot to do that previously)
 Added Digital Sea localizations
 Testing a built version of the mod now, disabled debugging, bumped version number
+Fixed Stin, Generator items and Overlord Mortor textures
 
 FOR THE OVERLORD
 The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
