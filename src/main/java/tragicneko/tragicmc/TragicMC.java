@@ -92,7 +92,7 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "2.40.1857 Beta";
+	public static final String VERSION = "2.40.2012 Beta";
 	public static final String ACCEPTED_VERSION = "[1.7.10]";
 
 	@Instance(TragicMC.MODID)

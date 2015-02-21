@@ -3327,7 +3327,7 @@ Added missing localizations to lang file
 Added extra space in between a weapon's doomsday and the attack damage/enchantments in the description
 Added Sentinel's lore and enchantments, it has normally impossible enchantment combinations (in survival without some enchanting mod)
 
-2.40.1984++ <189> (February 14, 2015)
+2.40.2012 <189> (February 14, 2015)
 This should be the last group of updates before a new release
 Added more of the weapon lores (this is taking a long time to do, omg)
 Cut some lore from the Celestial Aegis because it has so much
@@ -3363,7 +3363,7 @@ Upon initial testing on a server environment, there was an issue with the attrib
 method was simplified
 Fixed game crash with Firestorm Doomsday, updated Fire Rain to only fire small fireballs (forgot to do that previously)
 Added Digital Sea localizations
-Testing a built version of the mod now
+Testing a built version of the mod now, disabled debugging, bumped version number
 
 FOR THE OVERLORD
 The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
