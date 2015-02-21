@@ -10,10 +10,12 @@ import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class WeaponWitheringAxe extends TragicWeapon {
 
@@ -40,9 +42,16 @@ public class WeaponWitheringAxe extends TragicWeapon {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
+		
+		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
+		if (vec == null) return par1ItemStack;
 
 		if (doom != null && !par2World.isRemote && getStackCooldown(par1ItemStack) == 0)
 		{
+			double d4 = vec.xCoord - par3EntityPlayer.posX;
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
+			double d6 = vec.zCoord - par3EntityPlayer.posZ;
+			
 			if (!par3EntityPlayer.isSneaking())
 			{
 				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[35]) && TragicConfig.nonDoomsdayAbilities[35])
@@ -50,7 +59,8 @@ public class WeaponWitheringAxe extends TragicWeapon {
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[35]);
 					setStackCooldown(par1ItemStack, 5);
 
-					EntityWitherSkull skull = new EntityWitherSkull(par2World);
+					EntityWitherSkull skull = new EntityWitherSkull(par2World, par3EntityPlayer, d4, d5, d6);
+					skull.posY += par3EntityPlayer.getEyeHeight();
 					par2World.spawnEntityInWorld(skull);
 					return par1ItemStack;
 				}
@@ -62,7 +72,8 @@ public class WeaponWitheringAxe extends TragicWeapon {
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[36]);
 					setStackCooldown(par1ItemStack, 5);
 
-					EntityWitherSkull skull = new EntityWitherSkull(par2World);
+					EntityWitherSkull skull = new EntityWitherSkull(par2World, par3EntityPlayer, d4, d5, d6);
+					skull.posY += par3EntityPlayer.getEyeHeight();
 					skull.setInvulnerable(true);
 					par2World.spawnEntityInWorld(skull);
 					return par1ItemStack;

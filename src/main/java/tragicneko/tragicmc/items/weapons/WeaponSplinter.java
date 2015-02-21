@@ -36,6 +36,8 @@ public class WeaponSplinter extends EpicWeapon {
 			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D).offset(vec.xCoord, vec.yCoord, vec.zCoord));
 			EntityLivingBase entity;
 			
+			if (list.isEmpty()) return par1ItemStack;
+			
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) instanceof EntityLivingBase)
