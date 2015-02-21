@@ -128,17 +128,38 @@ public class LoreHelper {
 				{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.DeathTouch, 5)}},
 				new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.DeathTouch, 1)}}));
 
-		addToLoreMap(ArmorTungsten.class, new LoreEntry(new Lore[] {},
-				new EnchantEntry[][] {{}, {}, {}, {}},
-				new EnchantEntry[][] {{}, {}, {}, {}},
-				new EnchantEntry[][] {{}, {}, {}, {}},
-				new EnchantEntry[][] {{}, {}, {}, {}}));
+		addToLoreMap(ArmorTungsten.class, new LoreEntry(new Lore[] {new Lore(25, "Hot stuff.", 0), new Lore(15, "Feels lukewarm.", 0), new Lore(10, "Pretty hot.", 0), new Lore(15, "Warm.", 0), new Lore(10, "Warmer.", 0), new Lore(10, "Hot.", 0), new Lore(5, "Hotter.", 0),
+				new Lore(10, "It's a bit stuffy out.", 0), new Lore(5, "In heat.", 0), new Lore(5, "Do I look hot in this?", 0), new Lore(25, "Just warming up!", 1), new Lore(15, "I look pretty hot in this.", 1), new Lore(10, "I'm on fire!", 1), new Lore(5, "Hot stuff, coming through!", 1),
+				new Lore(15, "I'm pretty heated right now.", 1), new Lore(5, "Spontaneous combustion.", 1), new Lore(10, "First-degree burn.", 1), new Lore(5, "You got burned!", 1), new Lore(25, "Burn it all down to the ground!", 2), new Lore(15, "Things are heating up quickly!", 2),
+				new Lore(10, "It's getting hot in here.", 2), new Lore(15, "Burn baby, burn.", 2), new Lore(10, "Too hot to handle!", 2), new Lore(15, "Second-degree burn.", 2), new Lore(10, "Slow burn...", 2), new Lore(5, "Burnt to ashes.", 2), new Lore(10, "Original fire.", 2),
+				new Lore(5, "Light my fire!", 2), new Lore(10, "Bridges are burning now...", 2), new Lore(25, "I'm hot-blooded! Check it and see, I got a fever of a hundred and three!", 3), new Lore(15, "Third-degree burn.", 3), new Lore(15, "Need some water for that burn?", 3),
+				new Lore(15, "I'm burning, I'm burning, I'm burning for you!", 3), new Lore(5, "Caution: Contents may be hot.", 3), new Lore(5, "Warning: Contents may explode under pressure.", 3), new Lore(15, "I fell in to a burning ring of fire, I went down, down, down, and the flames went higher!", 3),
+				new Lore(15, "Through the fire and flames...", 3), new Lore(10, "Shepherd of fire!", 3), new Lore(15, "Scream, aim, fire!", 3), new Lore(5, "We can't wait to burn it to the ground!", 3), new Lore(5, "I don't want to set the world on fire, I just want to start a flame in your heart.", 3)},
+				new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.fireProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.fireProtection, 2)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.fireProtection, 3), new EnchantEntry(TragicEnchantments.Ignition, 1)}},
+				new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.fireProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.fireProtection, 3), new EnchantEntry(TragicEnchantments.Ignition, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(Enchantment.fireProtection, 5), new EnchantEntry(TragicEnchantments.Ignition, 3)}},
+				new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(TragicEnchantments.Ignition, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Ignition, 3), new EnchantEntry(Enchantment.fireProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 4), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(Enchantment.fireProtection, 3)}},
+				new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.fireProtection, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.fireProtection, 2), new EnchantEntry(TragicEnchantments.Ignition, 1)},
+				{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.fireProtection, 3), new EnchantEntry(TragicEnchantments.Ignition, 3)}}));
 
-		addToLoreMap(ArmorOverlord.class, new LoreEntry(new Lore[] {}, //programming themed possibly, only epic rarity level required
-				new EnchantEntry[][] {{}, {}, {}, {}},
-				new EnchantEntry[][] {{}, {}, {}, {}},
-				new EnchantEntry[][] {{}, {}, {}, {}},
-				new EnchantEntry[][] {{}, {}, {}, {}}));
+		addToLoreMap(ArmorOverlord.class, new LoreEntry(new Lore[] {new Lore(15, "And can you offer me proof of your existence? How can you, when neither modern science nor philosophy can explain what life is?", 3), new Lore(15, " If we all reacted the same way, we'd be predictable, and there's always more than one way to view a situation.", 3),
+				new Lore(25, "There's nothing sadder than a puppet without a ghost, especially the kind with red blood running through them.", 3), new Lore(5, "Even a simulated experience or a dream is simultaneous reality and fantasy.", 3), new Lore(15, "If you've got a problem with the world, change yourself.", 3),
+				new Lore(5, "I feel confined, only free to expand myself within boundaries.", 3), new Lore(5, "Your effort to remain what you are is what limits you.", 3), new Lore(15, "I mean, who knows what's inside your head. Have you ever seen your own brain?", 3), new Lore(5, "I thought what I'd do is pretend I was one of those deaf-mutes.", 3),
+				new Lore(15, "Stand alone complex.", 3), new Lore(5, "The law doesn't protect people. People protect the law.", 3), new Lore(15, "The time when our connections to others was the basis of ourselves is long gone.", 3), new Lore(5, "The future is not a straight line. It is filled with many crossroads.", 3),
+				new Lore(25, "When you leave behind your body, what remains is your ghost.", 3), new Lore(5, "KANEDAAAAAAAAA!", 3), new Lore(5, "TESTSUOOOOOOOO!", 3), new Lore(15, "Human curiosity.", 3)},
+				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.aquaAffinity, 5), new EnchantEntry(Enchantment.respiration, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5),
+				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
+				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.thorns, 5),
+				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
+				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.thorns, 5),
+				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
+				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(Enchantment.featherFalling, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5),
+				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}}));
 
 		//Tools
 		addToLoreMap(TragicItems.TungstenJack.getClass(), new Lore[] {new Lore(25, "Work, work, work!", 1), new Lore(15, "Time for lunch!", 1), new Lore(15, "Work all day, sleep all night!", 2),

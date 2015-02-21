@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
@@ -21,6 +22,14 @@ public class ArmorOverlord extends TragicArmor {
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return slot == 2 ? "tragicmc:textures/armor/Overlord2_lowRes.png" : "tragicmc:textures/armor/Overlord1_lowRes.png";
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
+	{
+		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setInteger("tragicLoreRarity", 3);
+		super.onUpdate(stack, world, entity, par, flag);
 	}
 
 	@Override
