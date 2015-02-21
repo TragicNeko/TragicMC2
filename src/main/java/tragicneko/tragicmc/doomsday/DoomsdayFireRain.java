@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.doomsday;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
@@ -38,7 +38,7 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 		
 		for (int l = 0; l < 16; l++)
 		{
-			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
+			EntitySmallFireball fireball = new EntitySmallFireball(player.worldObj, player, -d1, -d2, -d3);
 			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);

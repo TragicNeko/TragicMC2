@@ -67,9 +67,6 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
-		player.worldObj.setRainStrength(1.0F);
-		player.worldObj.setThunderStrength(1.0F);
-		
 		double d1 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
 		double d2 = (MathHelper.getRandomIntegerInRange(rand, 4, 10) + player.posY) - player.posY;
 		double d3 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ;
