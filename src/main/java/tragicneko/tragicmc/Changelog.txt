@@ -3350,7 +3350,11 @@ Fixed debug messages in DoomsdayManager to refer to the UUIDs correctly, in the 
 Made it so that all armor abilities require the full set to be on in order to have them active, this excludes the Overlord extra health modifiers
 Modified LoreEntry to allow for different enchantments for armor sets (each piece of armor has it's own separate tier), modified TragicArmor to use that
 Fixed initial issues with the list I use for the armor enchantments
-
+Hunter Armor now prioritizes projectile protection and agility as the main component of their enchantment tiers
+Fixed some bugs with armor textures, fixed small bug with Dark Armor not removing Fear immediately, fixed bug with Light Armor not immediately extinguishing burning players or removing blindness
+Modified enchantment tiers of the Light Armor, different pieces have different values for each enchantment, even if they share the same enchants
+Finished all of the lore, Overlord armor uses lore that quotes cyberpunk themed anime, but the majority of the quotes are from ghost in the shell
+As with the Sentinel, Overlord Armor can only have epic rarity
 
 Before release:
 Ensure of no initial crashes with any of the entities or projectiles
@@ -3365,6 +3369,7 @@ Add the Overlord armor model
 Create particles and add mob sounds
 Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
 Add new specific mobs for some of the more "special" biome sets, change some mobs to have variants for different biomes and such
+New mobs like the Parasmite, the Nuclea, and the Rasmas
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 
 FOR THE OVERLORD
