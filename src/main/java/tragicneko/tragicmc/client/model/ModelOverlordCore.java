@@ -1012,6 +1012,35 @@ public class ModelOverlordCore extends ModelBase
 
 		upperLegFR.rotateAngleY = upperLegFL.rotateAngleY = upperLegFMR.rotateAngleY = upperLegFML.rotateAngleY = legBMR.rotateAngleY = legBML.rotateAngleY = legBR.rotateAngleY = legBL.rotateAngleY = (f3 / (180F / (float) Math.PI));
 		upperLegFR.rotateAngleZ = upperLegFL.rotateAngleZ = upperLegFMR.rotateAngleZ = upperLegFML.rotateAngleZ = legBMR.rotateAngleZ = legBML.rotateAngleZ = legBR.rotateAngleZ = legBL.rotateAngleZ = (f4 / (180F / (float) Math.PI));
+		
+		if (core.getTransformationTicks() > 0)
+		{
+			upperLegFL.rotateAngleZ = this.simplifyAngle(core.ticksExisted, 10.0F) * 0.38F - 0.38F;
+			upperLegFR.rotateAngleZ = this.simplifyAngle(core.ticksExisted - 7, 10.0F) * -0.38F + 0.38F;
+			upperLegFML.rotateAngleZ = this.simplifyAngle(core.ticksExisted + 4, 10.0F) * 0.21F - 0.21F;
+			upperLegFMR.rotateAngleZ = this.simplifyAngle(core.ticksExisted - 2, 10.0F) * -0.21F + 0.21F;
+			legBML.rotateAngleZ = this.simplifyAngle(core.ticksExisted + 4, 6.0F) * 0.22F - 0.22F;
+			legBMR.rotateAngleZ = this.simplifyAngle(core.ticksExisted + 2, 6.0F) * -0.22F + 0.22F;
+			legBR.rotateAngleZ = this.simplifyAngle(core.ticksExisted, 6.0F) * -0.22F + 0.22F;
+			legBL.rotateAngleZ = this.simplifyAngle(core.ticksExisted - 3, 6.0F) * 0.22F - 0.22F;
+			
+			head.rotateAngleX = -0.23F;
+			
+			if (core.getTransformationTicks() >= 20)
+			{
+				pincerLeft.rotateAngleY = 0.57F - this.simplifyAngle(core.ticksExisted, 3F) * 0.125F;
+				pincerRight.rotateAngleY = -0.57F + this.simplifyAngle(core.ticksExisted, 3F) * 0.125F;
+
+				lowerJaw.rotateAngleX = 0.35F + this.simplifyAngle(core.ticksExisted, 5F) * 0.0125F;
+			}
+			else
+			{
+				pincerRight.rotateAngleY = -0.47F;
+				pincerLeft.rotateAngleY = 0.47F;
+				lowerJaw.rotateAngleX = -0.13F;
+			}
+			return;
+		}
 
 		if (core.getHoverTicks() > 0)
 		{

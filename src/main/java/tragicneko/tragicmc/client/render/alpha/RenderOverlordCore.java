@@ -34,7 +34,7 @@ public class RenderOverlordCore extends RenderBoss {
 		this.bindEntityTexture(par1EntityLivingBase);
 		EntityOverlordCore core = (EntityOverlordCore) par1EntityLivingBase;
 		
-		if (!core.isInvisible() && core.getVulnerableTicks() == 0)
+		if (!core.isInvisible() && core.getVulnerableTicks() == 0 && core.getTransformationTicks() <= 60 && core.getTransformationTicks() >= 20)
 		{
 			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
 		}
@@ -96,7 +96,7 @@ public class RenderOverlordCore extends RenderBoss {
 
 	public ResourceLocation getEntityTexture(EntityOverlordCore core)
 	{
-		return core.getVulnerableTicks() > 0 ? damagedTexture : texture;
+		return core.getVulnerableTicks() > 0 || core.getTransformationTicks() <= 60 && core.getTransformationTicks() >= 20 ? damagedTexture : texture;
 	}
 
 }

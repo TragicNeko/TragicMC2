@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -77,6 +78,12 @@ public class EntityOverlordCore extends TragicBoss {
 	}
 
 	@Override
+	public boolean isInvisible()
+	{
+		return this.getTransformationTicks() > 60 ? true : super.isInvisible();
+	}
+
+	@Override
 	public void setAir(int i){}
 
 	@Override
@@ -105,6 +112,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 		this.dataWatcher.addObject(20, Integer.valueOf(0));
+		this.dataWatcher.addObject(21, Integer.valueOf(0));
 	}
 
 	public int getHoverTicks()
@@ -177,6 +185,21 @@ public class EntityOverlordCore extends TragicBoss {
 		this.setDropTicks(this.getDropTicks() - 1);
 	}
 
+	private void setTransformationTicks(int i)
+	{
+		this.dataWatcher.updateObject(21, i);
+	}
+
+	public int getTransformationTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(21);
+	}
+
+	private void decrementTransformationTicks()
+	{
+		this.setTransformationTicks(this.getTransformationTicks() - 1);
+	}
+
 	@Override
 	public void onLivingUpdate()
 	{		
@@ -207,10 +230,129 @@ public class EntityOverlordCore extends TragicBoss {
 			double x;
 			double y;
 			double z;
+			
+			int t = this.getTransformationTicks();
 
+			if (t > 0)
+			{
+				boolean flag = this.getTransformationTicks() % 2 == 0;
+
+				float f = 0.33F;
+				float f1 = 0.88F;
+				float f2 = 0.94F;
+
+				if (t <= 60)
+				{
+					for (int i = 0; i < 12; i++)
+					{
+						dr = rand.nextDouble() - rand.nextDouble();
+						dr2 = rand.nextDouble() - rand.nextDouble();
+						dr3 = rand.nextDouble() - rand.nextDouble();
+						x = dr * 2.25 + this.posX;
+						y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+						z = dr3 * 2.25 + this.posZ;
+						this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
+					}
+
+					if (t >= 56)
+					{
+						for (int i = 0; i < 24; i++)
+						{
+							dr = rand.nextDouble() - rand.nextDouble();
+							dr2 = rand.nextDouble() - rand.nextDouble();
+							dr3 = rand.nextDouble() - rand.nextDouble();
+							x = dr * 6.25 + this.posX;
+							y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+							z = dr3 * 6.25 + this.posZ;
+							this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
+						}
+					}
+					
+					if (t <= 10)
+					{
+						for (int i = 0; i < 24; i++)
+						{
+							dr = rand.nextDouble() - rand.nextDouble();
+							dr2 = rand.nextDouble() - rand.nextDouble();
+							dr3 = rand.nextDouble() - rand.nextDouble();
+							x = dr * 6.25 + this.posX;
+							y = dr2 * 3.25 + this.posY + this.height / 2.0D;
+							z = dr3 * 6.25 + this.posZ;
+							this.worldObj.spawnParticle("reddust", x, y, z, rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
+						}
+					}
+					
+					if (t > 55)
+					{
+						for (int i = 0; i < 4; i++)
+						{
+							dr = rand.nextDouble() - rand.nextDouble();
+							dr2 = rand.nextDouble() - rand.nextDouble();
+							dr3 = rand.nextDouble() - rand.nextDouble();
+							x = dr * 4.25 + this.posX;
+							y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+							z = dr3 * 4.25 + this.posZ;
+							this.worldObj.spawnParticle("hugeexplosion", x, y, z, rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
+						}
+					}
+				}
+				else
+				{
+					float r = (t - 60F) / 60F;
+					float r2 = 0.33F - (r * 0.22F);
+					float r3 = 0.88F - (r * 0.77F);
+					float r4 = 0.94F - (r * 0.83F);
+
+					for (int i = 0; i < 32; i++)
+					{
+						dr = rand.nextDouble() - rand.nextDouble();
+						dr2 = rand.nextDouble() - rand.nextDouble();
+						dr3 = rand.nextDouble() - rand.nextDouble();
+						x = dr * 2.25 + this.posX;
+						y = dr2 * 2.25 + this.posY + rand.nextInt(6);
+						z = dr3 * 2.25 + this.posZ;
+						this.worldObj.spawnParticle("reddust", x, y, z, r2, r3, r4);
+					}
+
+					if (t >= 80)
+					{
+						for (int i = 0; i < 32; i++)
+						{
+							double d7 = (rand.nextDouble() * 10.0D - rand.nextDouble() * 10.0D);
+							double d8 = (rand.nextDouble() * 10.0D - rand.nextDouble() * 10.0D);
+							double d9 = (rand.nextDouble() * 10.0D - rand.nextDouble() * 10.0D);
+
+							d0 = d7 + this.posX;
+							d1 = d8 + this.posY + rand.nextInt(4);
+							d2 = d9 + this.posZ;
+
+							f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+							double d3 = 0.5D;
+
+							double d4 = d0 / f2 * d3 * 0.100000011920929D + d7 * 0.10000000298023224D;
+							double d5 = d1 / f2 * d3 * 0.100000011920929D + d8 * 0.10000000298023224D;
+							double d6 = d2 / f2 * d3 * 0.100000011920929D + d9 * 0.10000000298023224D;
+
+							this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
+						}
+					}
+				}
+				boolean flag2 = t <= 60 && t >= 20;
+				for (int i = 0; i < 16; i++)
+				{
+					dr = rand.nextDouble() - rand.nextDouble();
+					dr2 = rand.nextDouble() - rand.nextDouble();
+					dr3 = rand.nextDouble() - rand.nextDouble();
+					x = dr * 3.25 + this.posX;
+					y = dr2 * 3.25 + this.posY + rand.nextInt(6);
+					z = dr3 * 3.25 + this.posZ;
+					this.worldObj.spawnParticle("reddust", x, y, z, flag2 ? 0F : 0.99F, flag2 ? 0F : 0.99F, flag2 ? 0F : 0.99F);
+				}
+				return;
+			}
 			int j = this.getHoverTicks() > 0 ? 24 : 12;
 			boolean flag = this.getVulnerableTicks() > 0;
-			
+
 			float f = flag ? 0.0F : 0.33F;
 			float f1 = flag ? 0.0F : 0.88F;
 			float f2 = flag ? 0.0F : 0.94F;
@@ -241,6 +383,17 @@ public class EntityOverlordCore extends TragicBoss {
 		} 
 
 		if (this.worldObj.difficultySetting.getDifficultyId() == 0) this.setDead();
+		if (this.getTransformationTicks() > 0)
+		{
+			this.decrementTransformationTicks();
+			this.setHoverTicks(0);
+			this.setVulnerableTicks(0);
+			this.setHurtTicks(0);
+			this.setNearTarget(false);
+			this.setDropTicks(0);
+			TragicMC.logInfo("Transformation ticks: " + this.getTransformationTicks());
+			return;
+		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
 
 		d10 = this.targetX - this.posX;
@@ -287,7 +440,7 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			this.setNewTarget();
 		}
-		
+
 		d0 /= MathHelper.sqrt_double(d10 * d10 + d1 * d1);
 		f12 = 0.6F;
 
@@ -402,7 +555,7 @@ public class EntityOverlordCore extends TragicBoss {
 		if (this.getVulnerableTicks() > 0) this.decrementVulnerableTicks();
 		if (this.getHurtTicks() > 0) this.decrementHurtTicks();
 
-		if (this.getHurtTicks() == 0 && this.getHoverTicks() == 0 && this.getDropTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
+		if (this.getHurtTicks() == 0 && this.getHoverTicks() == 0 && this.getDropTicks() == 0 && this.getTransformationTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
 		this.slowed = this.destroyBlocksInAABB(this.boundingBox);
 
@@ -419,7 +572,7 @@ public class EntityOverlordCore extends TragicBoss {
 		TragicMC.logInfo("HoverBuffer: " + this.hoverBuffer);
 		TragicMC.logInfo("DropTicks: " + this.getDropTicks());
 		TragicMC.logInfo("NearTarget: " + this.isNearTarget());
-		
+
 		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
@@ -543,6 +696,7 @@ public class EntityOverlordCore extends TragicBoss {
 		tag.setInteger("hurtTicks", this.getHurtTicks());
 		tag.setInteger("vulnerableTicks", this.getVulnerableTicks());
 		tag.setInteger("dropTicks", this.getDropTicks());
+		tag.setInteger("transformationTicks", this.getTransformationTicks());
 	}
 
 	@Override
@@ -558,11 +712,14 @@ public class EntityOverlordCore extends TragicBoss {
 		if (tag.hasKey("hurtTicks")) this.setHurtTicks(tag.getInteger("hurtTicks"));
 		if (tag.hasKey("vulnerableTicks")) this.setVulnerableTicks(tag.getInteger("vulnerableTicks"));
 		if (tag.hasKey("dropTicks")) this.setDropTicks(tag.getInteger("dropTicks"));
+		if (tag.hasKey("transformationTicks")) this.setTransformationTicks(tag.getInteger("transformationTicks"));
 	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
+		if (this.getTransformationTicks() > 0) return false;
+
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
@@ -615,5 +772,17 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 17), 0.4F);
 		if (!this.worldObj.isRemote && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.Sentinel), 0.4F);
+	}
+
+	public void setStartTransform()
+	{
+		this.setTransformationTicks(200);
+	}
+	
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		this.setStartTransform();
+		return super.onSpawnWithEgg(data);
 	}
 }
