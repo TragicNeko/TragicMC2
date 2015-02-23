@@ -87,7 +87,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = TragicMC.ACCEPTED_VERSION)
+@Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = TragicMC.ACCEPTED_VERSION, dependencies="required-after:Forge")
 public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
@@ -110,7 +110,7 @@ public class TragicMC
 	private static Configuration config;
 
 	private static long time = 0L;
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 
 	public static CreativeTabs Survival;
 	public static CreativeTabs Creative;
