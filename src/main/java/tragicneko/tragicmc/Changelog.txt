@@ -3366,6 +3366,12 @@ Added Digital Sea localizations
 Testing a built version of the mod now, disabled debugging, bumped version number
 Fixed Stin, Generator items and Overlord Mortor textures
 
+2.40.2012++ <190> (February 21, 2015)
+Added transformation ticks to the Overlord Core, this is to prep for adding the first two forms (which are gonna take a while to create, again)
+Added transformation animation to the Core, particles ftw lol
+Fixed typo in repairing for tools that used the wrong material for the tungsten jack
+Removed unused Tungsten toolmaterial
+
 FOR THE OVERLORD
 The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
 The Combat form will always generate Corrupted gas around itself, which will probably inflict corruption on mobs
