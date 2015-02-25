@@ -41,7 +41,7 @@ public class TragicConfig {
 	private static boolean[] epicAmuletConfigs = new boolean[6];
 	public static boolean amuTime, amuWither;
 
-	public static boolean keepDimensionLoaded;
+	public static boolean keepDimensionLoaded, allowDimensionRespawn;
 	private static int[] dimensionIDs = new int[4];
 	public static int dimensionID, providerID, synapseID, synapseProviderID;
 	private static int[] biomeIDs = new int[48];
@@ -229,6 +229,7 @@ public class TragicConfig {
 		keepDimensionLoaded = (config.get(catDimension, "keepDimensionLoaded", false).getBoolean(false));
 		dimensionIDs[0] = (config.get(catDimension, "dimensionID", DimensionManager.getNextFreeDimId()).getInt(DimensionManager.getNextFreeDimId()));
 		dimensionIDs[1] = (config.get(catDimension, "providerID", dimensionIDs[0]).getInt(dimensionIDs[0]));
+		allowDimensionRespawn = (config.get(catDimension, "allowCollisionRespawn", false).getBoolean(false));
 
 		mapping = 0;
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDecayingHillsID", getOpenIDForBiome(90)).getInt(getOpenIDForBiome(90)));

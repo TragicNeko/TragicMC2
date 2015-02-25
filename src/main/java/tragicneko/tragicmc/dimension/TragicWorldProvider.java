@@ -55,7 +55,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public boolean canRespawnHere()
 	{
-		return false;
+		return TragicConfig.allowDimensionRespawn;
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
     {
-        return false;
+        return this.worldObj.getTopBlock(par1, par2).isOpaqueCube();
     } 
 	
 	@Override
