@@ -22,7 +22,7 @@ public class BlockOverlordBarrier extends Block {
 		this.setResistance(6000000.0F);
 		this.setCreativeTab(TragicMC.Creative);
 		this.setStepSound(soundTypeStone);
-		this.setBlockTextureName("tragicmc:OverlordBarrier_lowRes");
+		this.setBlockTextureName("tragicmc:OverlordBarrier");
 		this.setLightLevel(10.0F);
 		this.setLightOpacity(0);
 	}

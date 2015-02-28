@@ -39,7 +39,7 @@ public class BlockStructureSeed extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:StructureSeed_lowRes");
+		this.blockIcon = par1IconRegister.registerIcon("tragicmc:StructureSeed");
 	}
 
 	@Override

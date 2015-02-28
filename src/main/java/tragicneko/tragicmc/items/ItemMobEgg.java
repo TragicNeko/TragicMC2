@@ -48,7 +48,7 @@ public class ItemMobEgg extends Item
 		this.setHasSubtypes(true);
 		this.setCreativeTab(TragicMC.Creative);
 		this.setUnlocalizedName("tragicmc.mobEgg");
-		this.setTextureName("tragicmc:SpawnEgg_lowRes");
+		this.setTextureName("tragicmc:SpawnEgg");
 	}
 
 	@Override

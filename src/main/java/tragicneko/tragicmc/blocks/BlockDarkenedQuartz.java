@@ -34,8 +34,8 @@ private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
 	{
 		for (int i = 0; i < this.variantNames.length; i++)
 		{
-			this.topIconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "DarkenedQuartz_lowRes"); //top
-			this.sideIconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "DarkenedQuartzSide_lowRes"); //side
+			this.topIconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "DarkenedQuartz"); //top
+			this.sideIconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "DarkenedQuartzSide"); //side
 		}
 	}
 	

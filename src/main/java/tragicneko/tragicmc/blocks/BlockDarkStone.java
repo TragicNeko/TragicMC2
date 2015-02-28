@@ -56,10 +56,10 @@ public class BlockDarkStone extends Block {
 	{
 		for (int i = 0; i < this.oreNames.length - 1; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DarkStone_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DarkStone");
 		}
-		this.spikeTexture[0] = par1IconRegister.registerIcon("tragicmc:SpikeTopDarkStone_lowRes");
-		this.spikeTexture[1] = par1IconRegister.registerIcon("tragicmc:SpikeSideDarkStone_lowRes");
+		this.spikeTexture[0] = par1IconRegister.registerIcon("tragicmc:SpikeTopDarkStone");
+		this.spikeTexture[1] = par1IconRegister.registerIcon("tragicmc:SpikeSideDarkStone");
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class BlockDarkSandstone extends Block {
 	{
 		for (int i = 0; i < this.stoneNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.stoneNames[i] + "DarkSandstone_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.stoneNames[i] + "DarkSandstone");
 		}
 	}
 	

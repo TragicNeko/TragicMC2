@@ -7,8 +7,8 @@ import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 
 public class RenderDeathReaper extends RenderBoss {
 	
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/DeathReaper_lowRes.png");
-	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/DeathReaper2_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/DeathReaper.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/DeathReaper2.png");
 
 	public RenderDeathReaper() {
 		super(new ModelDeathReaper(), 0.475F);

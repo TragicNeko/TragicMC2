@@ -13,7 +13,7 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderPolaris extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Polaris2_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Polaris2.png");
 
 	private boolean isInCombat;
 

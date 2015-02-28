@@ -28,7 +28,7 @@ public class BlockLight extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:Light_lowRes");
+		this.blockIcon = par1IconRegister.registerIcon("tragicmc:Light");
 	}
 	
 	@Override

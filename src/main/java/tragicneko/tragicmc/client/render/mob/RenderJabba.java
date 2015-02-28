@@ -11,8 +11,8 @@ import tragicneko.tragicmc.entity.mob.EntityJabba;
 
 public class RenderJabba extends RenderLiving{
 
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Jabba_lowRes.png");
-	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Janna_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Jabba.png");
+	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Janna.png");
 	
 	public RenderJabba() {
 		super(new ModelJabba(), 0.655F);

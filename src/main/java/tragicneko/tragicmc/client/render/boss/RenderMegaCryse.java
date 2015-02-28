@@ -12,7 +12,7 @@ import tragicneko.tragicmc.client.model.ModelMegaCryse;
 
 public class RenderMegaCryse extends RenderLiving {
 	
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Cryse_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Cryse.png");
 	private static final float scale = 1.5F;
 	
 	public RenderMegaCryse() {

@@ -75,8 +75,8 @@ public class BlockDigitalSea extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		if (this.lit) this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaActive_lowRes"); 
-		else this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaInactive_lowRes");
+		if (this.lit) this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaActive"); 
+		else this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaInactive");
 	}
 
 	@Override

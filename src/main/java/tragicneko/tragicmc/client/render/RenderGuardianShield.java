@@ -14,7 +14,7 @@ import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 
 public class RenderGuardianShield extends Render {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/GuardianShield_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/GuardianShield.png");
 	public ModelBase model;
 	
 	public RenderGuardianShield()

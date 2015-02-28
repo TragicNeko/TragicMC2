@@ -46,7 +46,7 @@ public class BlockLightCobble extends Block {
 	{
 		for (int i = 0; i < this.oreNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "BrightCobble_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "BrightCobble");
 		}
 	}
 

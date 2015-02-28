@@ -25,7 +25,7 @@ public class ArmorLight extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Light2_lowRes.png" : "tragicmc:textures/armor/Light1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png";
 	}
 
 	@Override

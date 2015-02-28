@@ -95,8 +95,8 @@ public class ItemChallenge extends Item {
 	public void registerIcons(IIconRegister register)
 	{
 		super.registerIcons(register);
-		this.scrollIcon = register.registerIcon("tragicmc:ChallengeScroll_lowRes");
-		this.completeIcon = register.registerIcon("tragicmc:ChallengeComplete_lowRes");
+		this.scrollIcon = register.registerIcon("tragicmc:ChallengeScroll");
+		this.completeIcon = register.registerIcon("tragicmc:ChallengeComplete");
 	}
 
 	@Override

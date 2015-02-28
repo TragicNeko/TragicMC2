@@ -142,8 +142,8 @@ public class ItemAmulet extends Item {
 	{		
 		for (int i = 0; i < 4; i++)
 		{
-			this.iconArray[i][0] = regi.registerIcon("tragicmc:Amulet" + (i + 1) + "_lowRes");
-			this.iconArray[i][1] = regi.registerIcon("tragicmc:Amulet" + (i + 1) + "_lowRes_overlay");
+			this.iconArray[i][0] = regi.registerIcon("tragicmc:Amulet" + (i + 1));
+			this.iconArray[i][1] = regi.registerIcon("tragicmc:Amulet" + (i + 1) + "_overlay");
 		}
 	}
 

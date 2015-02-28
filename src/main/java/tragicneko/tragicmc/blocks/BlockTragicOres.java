@@ -82,7 +82,7 @@ public class BlockTragicOres extends Block {
 	{
 		for (int i = 0; i < oreNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:Ore" + oreNames[i] + "_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:Ore" + oreNames[i]);
 		}
 	}
 

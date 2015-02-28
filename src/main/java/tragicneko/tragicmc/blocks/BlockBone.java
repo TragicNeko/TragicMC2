@@ -56,7 +56,7 @@ public class BlockBone extends Block {
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + oreNames[i] + "BoneBlock_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + oreNames[i] + "BoneBlock");
 		}
 	}
 

@@ -33,8 +33,8 @@ public class BlockGenericLog extends BlockRotatedPillar {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.field_150164_N = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "LogTop_lowRes");
-		this.sideIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "LogSide_lowRes");
+		this.field_150164_N = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "LogTop");
+		this.sideIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "LogSide");
 	}
 
 	@Override

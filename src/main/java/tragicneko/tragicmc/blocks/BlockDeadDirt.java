@@ -44,7 +44,7 @@ public class BlockDeadDirt extends Block {
 	{
 		for (int i = 0; i < this.oreNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DeadDirt_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DeadDirt");
 		}
 	}
 

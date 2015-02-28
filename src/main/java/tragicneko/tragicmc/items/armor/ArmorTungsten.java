@@ -20,16 +20,16 @@ public class ArmorTungsten extends TragicArmor {
 		switch (armorType)
 		{
 		case 0:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenHelm_lowRes");
+			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenHelm");
 			break;
 		case 1:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenPlate_lowRes");
+			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenPlate");
 			break;
 		case 2:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenLegs_lowRes");
+			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenLegs");
 			break;
 		case 3:
-			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenBoots_lowRes");
+			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenBoots");
 			break;
 		} 
 	}
@@ -37,7 +37,7 @@ public class ArmorTungsten extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Tungsten2_lowRes.png" : "tragicmc:textures/armor/Tungsten1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Tungsten2.png" : "tragicmc:textures/armor/Tungsten1.png";
 	}
 }
 

@@ -22,7 +22,7 @@ public class ArmorDark extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Dark2_lowRes.png" : "tragicmc:textures/armor/Dark1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png";
 	}
 
 	@Override

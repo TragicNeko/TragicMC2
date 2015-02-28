@@ -211,32 +211,32 @@ public class ClientProxy extends CommonProxy {
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderJabba());
-		RenderingRegistry.registerEntityRenderingHandler(EntityJarra.class, new RenderMob(new ModelJarra(), 0.655F, "Jarra_lowRes", 1.585F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPlague.class, new RenderMob(new ModelPlague(), 0.115F, "Plague_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityGragul.class, new RenderMob(new ModelGragul(), 0.115F, "Gragul_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityKragul.class, new RenderMob(new ModelKragul(), 0.115F, "Kragul_lowRes", 2.115F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, new RenderMob(new ModelMinotaur(), 0.337F, "Minotaur_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityRagr.class, new RenderMob(new ModelRagr(), 0.435F, "Ragr_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityInkling.class, new RenderMob(new ModelInkling(), 0.175F, "Inkling_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinhead.class, new RenderMob(new ModelPumpkinhead(), 0.375F, "Pumpkinhead_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityJarra.class, new RenderMob(new ModelJarra(), 0.655F, "Jarra", 1.585F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPlague.class, new RenderMob(new ModelPlague(), 0.115F, "Plague"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityGragul.class, new RenderMob(new ModelGragul(), 0.115F, "Gragul"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityKragul.class, new RenderMob(new ModelKragul(), 0.115F, "Kragul", 2.115F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, new RenderMob(new ModelMinotaur(), 0.337F, "Minotaur"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityRagr.class, new RenderMob(new ModelRagr(), 0.435F, "Ragr"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityInkling.class, new RenderMob(new ModelInkling(), 0.175F, "Inkling"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinhead.class, new RenderMob(new ModelPumpkinhead(), 0.375F, "Pumpkinhead"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderTox());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox2_lowRes", 1.625F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox2", 1.625F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCryse.class, new RenderCryse());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaCryse.class, new RenderMegaCryse());
 		RenderingRegistry.registerEntityRenderingHandler(EntityNorVox.class, new RenderNorVox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityVoxStellarum.class, new RenderVoxStellarum());
 		RenderingRegistry.registerEntityRenderingHandler(EntityPirah.class, new RenderPirah());
 		RenderingRegistry.registerEntityRenderingHandler(EntityStin.class, new RenderStin());
-		RenderingRegistry.registerEntityRenderingHandler(EntityGreaterStin.class, new RenderMob(new ModelGreaterStin(), 0.675F, "GreaterStin_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStinKing.class, new RenderMob(new ModelStinKing(), 0.675F, "StinKing_lowRes", 1.625F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStinQueen.class, new RenderMob(new ModelStinQueen(), 0.675F, "StinQueen_lowRes", 1.225F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityGreaterStin.class, new RenderMob(new ModelGreaterStin(), 0.675F, "GreaterStin"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStinKing.class, new RenderMob(new ModelStinKing(), 0.675F, "StinKing", 1.625F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStinQueen.class, new RenderMob(new ModelStinQueen(), 0.675F, "StinQueen", 1.225F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityWisp.class, new RenderWisp());
-		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.475F, "Abomination_lowRes"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityAbomination.class, new RenderMob(new ModelAbomination(), 0.475F, "Abomination"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityErkel.class, new RenderErkel());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(new ModelSirv(), 0.245F, "Sirv_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPsygote.class, new RenderMob(new ModelPsygote(), 0.565F, "Psygote_lowRes"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityNanoSwarm.class, new RenderMob(new ModelNanoSwarm(), 0.215F, "NanoSwarm_lowRes", 1.545F));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySirv.class, new RenderMob(new ModelSirv(), 0.245F, "Sirv"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPsygote.class, new RenderMob(new ModelPsygote(), 0.565F, "Psygote"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNanoSwarm.class, new RenderMob(new ModelNanoSwarm(), 0.215F, "NanoSwarm", 1.545F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityAegar.class, new RenderAegar());
 
 		//Boss renders
@@ -251,8 +251,8 @@ public class ClientProxy extends CommonProxy {
 
 		//Alpha renders TODO update the two first forms when I finish their models and initial AI
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
-		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelOverlordCore(), 0.885F, "OverlordCore_lowRes", 2.556F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelOverlordCore(), 0.885F, "OverlordCore_lowRes", 2.556F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderMob(new ModelOverlordCore(), 0.885F, "OverlordCore", 2.556F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderMob(new ModelOverlordCore(), 0.885F, "OverlordCore", 2.556F));
 	}
 
 	@Override

@@ -13,8 +13,8 @@ import tragicneko.tragicmc.entity.mob.EntityCryse;
 
 public class RenderCryse extends RenderLiving {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Cryse_lowRes.png");
-	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarCryse_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Cryse.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarCryse.png");
 
 	public RenderCryse() {
 		super(new ModelCryse(), 0.335F);

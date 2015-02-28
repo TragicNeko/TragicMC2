@@ -6,7 +6,7 @@ import tragicneko.tragicmc.client.model.ModelKitsune2;
 
 public class RenderKitsune extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Kitsune2_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Kitsune2.png");
 
 	public RenderKitsune() {
 		super(new ModelKitsune2(), 0.375F);

@@ -23,7 +23,7 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderClaymation extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Claymation_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Claymation.png");
 	
 	private static final ModelBase[] models = new ModelBase[] {new ModelClaymation(), new ModelMinotaur(), new ModelApis(), new ModelStinKing(), new ModelNorVox(), new ModelJabba(),
 		new ModelRagr(), new ModelDeathReaper(), new ModelKitsune2(), new ModelCustomGolem()};

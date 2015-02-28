@@ -13,8 +13,8 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderApis extends RenderBoss
 {
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat2_lowRes.png");
-	private static final ResourceLocation combatTexture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat3_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat2.png");
+	private static final ResourceLocation combatTexture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat3.png");
 
 	private boolean isInCombat;
 

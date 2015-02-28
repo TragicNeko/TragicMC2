@@ -14,7 +14,7 @@ import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 
 public class RenderLargeRock extends Render {
 
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/LargeRock_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/LargeRock.png");
 	public ModelBase model;
 	
 	public RenderLargeRock()

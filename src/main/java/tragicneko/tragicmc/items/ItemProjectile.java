@@ -205,7 +205,7 @@ public class ItemProjectile extends Item {
 	{
 		for (int i = 0; i < subNames.length; i++)
 		{
-			this.iconArray[i] = register.registerIcon("tragicmc:Projectile" + textureNames[i] + "_lowRes");
+			this.iconArray[i] = register.registerIcon("tragicmc:Projectile" + textureNames[i]);
 		}
 	}
 

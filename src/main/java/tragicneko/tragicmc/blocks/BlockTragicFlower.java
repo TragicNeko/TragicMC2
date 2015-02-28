@@ -51,7 +51,7 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	{
 		for (int i = 0; i < this.plantNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.plantNames[i] + "_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.plantNames[i]);
 		}
 	}
 	

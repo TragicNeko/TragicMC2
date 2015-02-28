@@ -6,7 +6,7 @@ import tragicneko.tragicmc.client.model.ModelYeti2;
 
 public class RenderYeti extends RenderBoss {
 	
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Yeti2_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Yeti2.png");
 
 	public RenderYeti() {
 		super(new ModelYeti2(), 0.485F);

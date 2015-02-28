@@ -371,7 +371,7 @@ public class ItemGenerator extends Item {
 	{
 		for (int i = 0; i < subNames.length; i++)
 		{
-			this.iconArray[i] = register.registerIcon("tragicmc:" + subNames[i] + "_lowRes");
+			this.iconArray[i] = register.registerIcon("tragicmc:" + subNames[i]);
 		}
 	}
 

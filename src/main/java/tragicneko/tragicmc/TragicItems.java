@@ -93,9 +93,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicItems {
 
-	@Deprecated
-	public static final String textureRes = "_lowRes";
-
 	//Item variables
 	public static Item RedMercury, Quicksilver, QuicksilverIngot, Jack;
 	public static Item MercuryDagger, MercuryHelm, MercuryPlate, MercuryLegs, MercuryBoots;
@@ -254,208 +251,208 @@ public class TragicItems {
 	public static void load()
 	{
 		//Ore Registrations
-		RedMercury = (new ItemGeneric().setUnlocalizedName("tragicmc.redMercury").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RedMercury" + textureRes));
+		RedMercury = (new ItemGeneric().setUnlocalizedName("tragicmc.redMercury").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RedMercury" ));
 		GameRegistry.registerItem(RedMercury, "redMercury");
 
-		Quicksilver = (new ItemGeneric().setUnlocalizedName("tragicmc.quicksilver").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Quicksilver" + textureRes));
+		Quicksilver = (new ItemGeneric().setUnlocalizedName("tragicmc.quicksilver").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Quicksilver" ));
 		GameRegistry.registerItem(Quicksilver, "quicksilver");
 
-		QuicksilverIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.quicksilverIngot").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:QuicksilverIngot" + textureRes));
+		QuicksilverIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.quicksilverIngot").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:QuicksilverIngot" ));
 		GameRegistry.registerItem(QuicksilverIngot, "quicksilverIngot");
 
-		Tungsten = (new ItemGeneric().setUnlocalizedName("tragicmc.tungsten").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Tungsten" + textureRes));
+		Tungsten = (new ItemGeneric().setUnlocalizedName("tragicmc.tungsten").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Tungsten" ));
 		GameRegistry.registerItem(Tungsten, "tungsten");
 
-		Ruby = (new ItemGeneric().setUnlocalizedName("tragicmc.ruby").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ruby" + textureRes));
+		Ruby = (new ItemGeneric().setUnlocalizedName("tragicmc.ruby").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ruby" ));
 		GameRegistry.registerItem(Ruby, "ruby");
 
-		Sapphire = (new ItemGeneric().setUnlocalizedName("tragicmc.sapphire").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sapphire" + textureRes));
+		Sapphire = (new ItemGeneric().setUnlocalizedName("tragicmc.sapphire").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sapphire" ));
 		GameRegistry.registerItem(Sapphire, "sapphire");
 
 		//Armor Registrations
-		SkullHelmet = (new ArmorSkull(armorSkull, 0, Doomsday.Decay).setUnlocalizedName("tragicmc.skullHelmet").setTextureName("tragicmc:SkullHelmet" + textureRes));
+		SkullHelmet = (new ArmorSkull(armorSkull, 0, Doomsday.Decay).setUnlocalizedName("tragicmc.skullHelmet").setTextureName("tragicmc:SkullHelmet" ));
 		GameRegistry.registerItem(SkullHelmet, "skullHelmet");
 
-		SkullPlate = (new ArmorSkull(armorSkull, 1, Doomsday.Decay).setUnlocalizedName("tragicmc.skullPlate").setTextureName("tragicmc:SkullPlate" + textureRes));
+		SkullPlate = (new ArmorSkull(armorSkull, 1, Doomsday.Decay).setUnlocalizedName("tragicmc.skullPlate").setTextureName("tragicmc:SkullPlate" ));
 		GameRegistry.registerItem(SkullPlate, "skullPlate");
 
-		SkullLegs = (new ArmorSkull(armorSkull, 2, Doomsday.Decay).setUnlocalizedName("tragicmc.skullLegs").setTextureName("tragicmc:SkullLegs" + textureRes));
+		SkullLegs = (new ArmorSkull(armorSkull, 2, Doomsday.Decay).setUnlocalizedName("tragicmc.skullLegs").setTextureName("tragicmc:SkullLegs" ));
 		GameRegistry.registerItem(SkullLegs, "skullLegs");
 
-		SkullBoots = (new ArmorSkull(armorSkull, 3, Doomsday.Decay).setUnlocalizedName("tragicmc.skullBoots").setTextureName("tragicmc:SkullBoots" + textureRes));
+		SkullBoots = (new ArmorSkull(armorSkull, 3, Doomsday.Decay).setUnlocalizedName("tragicmc.skullBoots").setTextureName("tragicmc:SkullBoots" ));
 		GameRegistry.registerItem(SkullBoots, "skullBoots");
 
 
-		HuntersCap = (new ArmorHunter(armorHunter, 0, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersCap").setTextureName("tragicmc:HuntersCap" + textureRes));
+		HuntersCap = (new ArmorHunter(armorHunter, 0, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersCap").setTextureName("tragicmc:HuntersCap" ));
 		GameRegistry.registerItem(HuntersCap, "huntersCap");
 
-		HuntersTunic = (new ArmorHunter(armorHunter, 1, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersTunic").setTextureName("tragicmc:HuntersTunic" + textureRes));
+		HuntersTunic = (new ArmorHunter(armorHunter, 1, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersTunic").setTextureName("tragicmc:HuntersTunic" ));
 		GameRegistry.registerItem(HuntersTunic, "huntersTunic");
 
-		HuntersLegs = (new ArmorHunter(armorHunter, 2, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersLegs").setTextureName("tragicmc:HuntersLegs" + textureRes));
+		HuntersLegs = (new ArmorHunter(armorHunter, 2, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersLegs").setTextureName("tragicmc:HuntersLegs" ));
 		GameRegistry.registerItem(HuntersLegs, "huntersLegs");
 
-		HuntersBoots = (new ArmorHunter(armorHunter, 3, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersBoots").setTextureName("tragicmc:HuntersBoots" + textureRes));
+		HuntersBoots = (new ArmorHunter(armorHunter, 3, Doomsday.HuntersInstinct).setUnlocalizedName("tragicmc.huntersBoots").setTextureName("tragicmc:HuntersBoots" ));
 		GameRegistry.registerItem(HuntersBoots, "huntersBoots");
 
 
-		MercuryHelm = (new ArmorMercury(armorMercury, 0, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryHelm").setTextureName("tragicmc:MercuryHelm" + textureRes));
+		MercuryHelm = (new ArmorMercury(armorMercury, 0, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryHelm").setTextureName("tragicmc:MercuryHelm" ));
 		GameRegistry.registerItem(MercuryHelm, "mercuryHelm");
 
-		MercuryPlate = (new ArmorMercury(armorMercury, 1, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryPlate").setTextureName("tragicmc:MercuryPlate" + textureRes));
+		MercuryPlate = (new ArmorMercury(armorMercury, 1, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryPlate").setTextureName("tragicmc:MercuryPlate" ));
 		GameRegistry.registerItem(MercuryPlate, "mercuryPlate");
 
-		MercuryLegs = (new ArmorMercury(armorMercury, 2, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryLegs").setTextureName("tragicmc:MercuryLegs" + textureRes));
+		MercuryLegs = (new ArmorMercury(armorMercury, 2, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryLegs").setTextureName("tragicmc:MercuryLegs" ));
 		GameRegistry.registerItem(MercuryLegs, "mercuryLegs");
 
-		MercuryBoots = (new ArmorMercury(armorMercury, 3, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryBoots").setTextureName("tragicmc:MercuryBoots" + textureRes));
+		MercuryBoots = (new ArmorMercury(armorMercury, 3, Doomsday.Toxicity).setUnlocalizedName("tragicmc.mercuryBoots").setTextureName("tragicmc:MercuryBoots" ));
 		GameRegistry.registerItem(MercuryBoots, "mercuryBoots");
 
 
-		TungstenHelm = (new ArmorTungsten(armorTungsten, 0, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenHelm").setTextureName("tragicmc:TungstenHelm" + textureRes));
+		TungstenHelm = (new ArmorTungsten(armorTungsten, 0, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenHelm").setTextureName("tragicmc:TungstenHelm" ));
 		GameRegistry.registerItem(TungstenHelm, "tungstenHelm");
 
-		TungstenPlate = (new ArmorTungsten(armorTungsten, 1, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenPlate").setTextureName("tragicmc:TungstenPlate" + textureRes));
+		TungstenPlate = (new ArmorTungsten(armorTungsten, 1, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenPlate").setTextureName("tragicmc:TungstenPlate" ));
 		GameRegistry.registerItem(TungstenPlate, "tungstenPlate");
 
-		TungstenLegs = (new ArmorTungsten(armorTungsten, 2, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenLegs").setTextureName("tragicmc:TungstenLegs" + textureRes));
+		TungstenLegs = (new ArmorTungsten(armorTungsten, 2, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenLegs").setTextureName("tragicmc:TungstenLegs" ));
 		GameRegistry.registerItem(TungstenLegs, "tungstenLegs");
 
-		TungstenBoots = (new ArmorTungsten(armorTungsten, 3, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenBoots").setTextureName("tragicmc:TungstenBoots" + textureRes));
+		TungstenBoots = (new ArmorTungsten(armorTungsten, 3, Doomsday.Berserker).setUnlocalizedName("tragicmc.tungstenBoots").setTextureName("tragicmc:TungstenBoots" ));
 		GameRegistry.registerItem(TungstenBoots, "tungstenBoots");
 
 
-		LightHelm = (new ArmorLight(armorLight, 0, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightHelm").setTextureName("tragicmc:LightHelm" + textureRes));
+		LightHelm = (new ArmorLight(armorLight, 0, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightHelm").setTextureName("tragicmc:LightHelm" ));
 		GameRegistry.registerItem(LightHelm, "lightHelm");
 
-		LightPlate = (new ArmorLight(armorLight, 1, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightPlate").setTextureName("tragicmc:LightPlate" + textureRes));
+		LightPlate = (new ArmorLight(armorLight, 1, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightPlate").setTextureName("tragicmc:LightPlate" ));
 		GameRegistry.registerItem(LightPlate, "lightPlate");
 
-		LightLegs = (new ArmorLight(armorLight, 2, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightLegs").setTextureName("tragicmc:LightLegs" + textureRes));
+		LightLegs = (new ArmorLight(armorLight, 2, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightLegs").setTextureName("tragicmc:LightLegs" ));
 		GameRegistry.registerItem(LightLegs, "lightLegs");
 
-		LightBoots = (new ArmorLight(armorLight, 3, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightBoots").setTextureName("tragicmc:LightBoots" + textureRes));
+		LightBoots = (new ArmorLight(armorLight, 3, Doomsday.LightShove).setUnlocalizedName("tragicmc.lightBoots").setTextureName("tragicmc:LightBoots" ));
 		GameRegistry.registerItem(LightBoots, "lightBoots");
 
 
-		DarkHelm = (new ArmorDark(armorDark, 0, Doomsday.Fear).setUnlocalizedName("tragicmc.darkHelm").setTextureName("tragicmc:DarkHelm" + textureRes));
+		DarkHelm = (new ArmorDark(armorDark, 0, Doomsday.Fear).setUnlocalizedName("tragicmc.darkHelm").setTextureName("tragicmc:DarkHelm" ));
 		GameRegistry.registerItem(DarkHelm, "darkHelm");
 
-		DarkPlate = (new ArmorDark(armorDark, 1, Doomsday.Fear).setUnlocalizedName("tragicmc.darkPlate").setTextureName("tragicmc:DarkPlate" + textureRes));
+		DarkPlate = (new ArmorDark(armorDark, 1, Doomsday.Fear).setUnlocalizedName("tragicmc.darkPlate").setTextureName("tragicmc:DarkPlate" ));
 		GameRegistry.registerItem(DarkPlate, "darkPlate");
 
-		DarkLegs = (new ArmorDark(armorDark, 2, Doomsday.Fear).setUnlocalizedName("tragicmc.darkLegs").setTextureName("tragicmc:DarkLegs" + textureRes));
+		DarkLegs = (new ArmorDark(armorDark, 2, Doomsday.Fear).setUnlocalizedName("tragicmc.darkLegs").setTextureName("tragicmc:DarkLegs" ));
 		GameRegistry.registerItem(DarkLegs, "darkLegs");
 
-		DarkBoots = (new ArmorDark(armorDark, 3, Doomsday.Fear).setUnlocalizedName("tragicmc.darkBoots").setTextureName("tragicmc:DarkBoots" + textureRes));
+		DarkBoots = (new ArmorDark(armorDark, 3, Doomsday.Fear).setUnlocalizedName("tragicmc.darkBoots").setTextureName("tragicmc:DarkBoots" ));
 		GameRegistry.registerItem(DarkBoots, "darkBoots");
 		
 		
-		OverlordHelm = (new ArmorOverlord(armorOverlord, 0, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordHelm").setTextureName("tragicmc:OverlordHelm" + textureRes));
+		OverlordHelm = (new ArmorOverlord(armorOverlord, 0, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordHelm").setTextureName("tragicmc:OverlordHelm" ));
 		GameRegistry.registerItem(OverlordHelm, "overlordHelm");
 		
-		OverlordPlate = (new ArmorOverlord(armorOverlord, 1, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordPlate").setTextureName("tragicmc:OverlordPlate" + textureRes));
+		OverlordPlate = (new ArmorOverlord(armorOverlord, 1, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordPlate").setTextureName("tragicmc:OverlordPlate" ));
 		GameRegistry.registerItem(OverlordPlate, "overlordPlate");
 		
-		OverlordLegs = (new ArmorOverlord(armorOverlord, 2, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordLegs").setTextureName("tragicmc:OverlordLegs" + textureRes));
+		OverlordLegs = (new ArmorOverlord(armorOverlord, 2, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordLegs").setTextureName("tragicmc:OverlordLegs" ));
 		GameRegistry.registerItem(OverlordLegs, "overlordLegs");
 		
-		OverlordBoots = (new ArmorOverlord(armorOverlord, 3, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordBoots").setTextureName("tragicmc:OverlordBoots" + textureRes));
+		OverlordBoots = (new ArmorOverlord(armorOverlord, 3, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordBoots").setTextureName("tragicmc:OverlordBoots" ));
 		GameRegistry.registerItem(OverlordBoots, "overlordBoots");
 
 		//Weapon Registrations
-		MercuryDagger = (new TragicWeapon(toolMercury, Doomsday.PoisonBreak).setUnlocalizedName("tragicmc.mercuryDagger").setTextureName("tragicmc:MercuryDagger" + textureRes));
+		MercuryDagger = (new TragicWeapon(toolMercury, Doomsday.PoisonBreak).setUnlocalizedName("tragicmc.mercuryDagger").setTextureName("tragicmc:MercuryDagger" ));
 		GameRegistry.registerItem(MercuryDagger, "mercuryDagger");
 
-		HuntersBow = (new WeaponHuntersBow().setUnlocalizedName("tragicmc.huntersBow").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:HuntersBow" + textureRes));
+		HuntersBow = (new WeaponHuntersBow().setUnlocalizedName("tragicmc.huntersBow").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:HuntersBow" ));
 		GameRegistry.registerItem(HuntersBow, "huntersBow");
 
-		PitchBlack = (new WeaponPitchBlack(toolDarkness, Doomsday.NatureDrain).setUnlocalizedName("tragicmc.pitchBlack").setTextureName("tragicmc:PitchBlack" + textureRes));
+		PitchBlack = (new WeaponPitchBlack(toolDarkness, Doomsday.NatureDrain).setUnlocalizedName("tragicmc.pitchBlack").setTextureName("tragicmc:PitchBlack" ));
 		GameRegistry.registerItem(PitchBlack, "pitchBlack");
 
-		BlindingLight = (new WeaponBlindingLight(toolLight, Doomsday.PiercingLight).setUnlocalizedName("tragicmc.blindingLight").setTextureName("tragicmc:BlindingLight" + textureRes));
+		BlindingLight = (new WeaponBlindingLight(toolLight, Doomsday.PiercingLight).setUnlocalizedName("tragicmc.blindingLight").setTextureName("tragicmc:BlindingLight" ));
 		GameRegistry.registerItem(BlindingLight, "blindingLight");
 
-		GravitySpike = (new WeaponGravitySpike(toolGravity, Doomsday.Pulse).setUnlocalizedName("tragicmc.gravitySpike").setTextureName("tragicmc:GravitySpike" + textureRes));
+		GravitySpike = (new WeaponGravitySpike(toolGravity, Doomsday.Pulse).setUnlocalizedName("tragicmc.gravitySpike").setTextureName("tragicmc:GravitySpike" ));
 		GameRegistry.registerItem(GravitySpike, "gravitySpike");
 
-		HarmonyBell = (new WeaponHarmonyBell(toolHarmony, Doomsday.Harmonizer).setUnlocalizedName("tragicmc.harmonyBell").setTextureName("tragicmc:HarmonyBell" + textureRes));
+		HarmonyBell = (new WeaponHarmonyBell(toolHarmony, Doomsday.Harmonizer).setUnlocalizedName("tragicmc.harmonyBell").setTextureName("tragicmc:HarmonyBell" ));
 		GameRegistry.registerItem(HarmonyBell, "harmonyBell");
 
-		MourningStar = (new WeaponMourningStar(toolMourning, Doomsday.Ravage).setUnlocalizedName("tragicmc.mourningStar").setTextureName("tragicmc:MourningStar" + textureRes));
+		MourningStar = (new WeaponMourningStar(toolMourning, Doomsday.Ravage).setUnlocalizedName("tragicmc.mourningStar").setTextureName("tragicmc:MourningStar" ));
 		GameRegistry.registerItem(MourningStar, "mourningStar");
 
-		BeastlyClaws = (new WeaponBeastlyClaws(toolClaws, Doomsday.BeastlyImpulses).setUnlocalizedName("tragicmc.beastlyClaws").setTextureName("tragicmc:BeastlyClaws" + textureRes));
+		BeastlyClaws = (new WeaponBeastlyClaws(toolClaws, Doomsday.BeastlyImpulses).setUnlocalizedName("tragicmc.beastlyClaws").setTextureName("tragicmc:BeastlyClaws" ));
 		GameRegistry.registerItem(BeastlyClaws, "beastlyClaws");
 
-		GuiltyThorn = (new WeaponGuiltyThorn(toolThorn, Doomsday.Torment).setUnlocalizedName("tragicmc.guiltyThorn").setTextureName("tragicmc:GuiltyThorn" + textureRes));
+		GuiltyThorn = (new WeaponGuiltyThorn(toolThorn, Doomsday.Torment).setUnlocalizedName("tragicmc.guiltyThorn").setTextureName("tragicmc:GuiltyThorn" ));
 		GameRegistry.registerItem(GuiltyThorn, "guiltyThorn");
 
-		NekoLauncher = (new WeaponNekoLauncher(toolLauncher, Doomsday.SuicidalTendencies).setUnlocalizedName("tragicmc.nekoLauncher").setTextureName("tragicmc:NekoLauncher" + textureRes));
+		NekoLauncher = (new WeaponNekoLauncher(toolLauncher, Doomsday.SuicidalTendencies).setUnlocalizedName("tragicmc.nekoLauncher").setTextureName("tragicmc:NekoLauncher" ));
 		GameRegistry.registerItem(NekoLauncher, "nekoLauncher");
 
-		ReaperScythe = (new WeaponReaperScythe(toolReaper, Doomsday.ReaperLaugh).setUnlocalizedName("tragicmc.reaperScythe").setTextureName("tragicmc:ReaperScythe" + textureRes));
+		ReaperScythe = (new WeaponReaperScythe(toolReaper, Doomsday.ReaperLaugh).setUnlocalizedName("tragicmc.reaperScythe").setTextureName("tragicmc:ReaperScythe" ));
 		GameRegistry.registerItem(ReaperScythe, "reaperScythe");
 
-		WitheringAxe = (new WeaponWitheringAxe(toolWithering, Doomsday.SkullCrusher).setUnlocalizedName("tragicmc.witheringAxe").setTextureName("tragicmc:WitheringAxe" + textureRes));
+		WitheringAxe = (new WeaponWitheringAxe(toolWithering, Doomsday.SkullCrusher).setUnlocalizedName("tragicmc.witheringAxe").setTextureName("tragicmc:WitheringAxe" ));
 		GameRegistry.registerItem(WitheringAxe, "witheringAxe");
 
-		FrozenLightning = (new WeaponFrozenLightning(toolFrozen, Doomsday.Freeze).setUnlocalizedName("tragicmc.frozenLightning").setTextureName("tragicmc:FrozenLightning" + textureRes));
+		FrozenLightning = (new WeaponFrozenLightning(toolFrozen, Doomsday.Freeze).setUnlocalizedName("tragicmc.frozenLightning").setTextureName("tragicmc:FrozenLightning" ));
 		GameRegistry.registerItem(FrozenLightning, "frozenLightning");
 
-		CelestialAegis = (new WeaponCelestialAegis(toolCelestial, Doomsday.MoonlightSonata).setUnlocalizedName("tragicmc.celestialAegis").setTextureName("tragicmc:CelestialAegis" + textureRes));
+		CelestialAegis = (new WeaponCelestialAegis(toolCelestial, Doomsday.MoonlightSonata).setUnlocalizedName("tragicmc.celestialAegis").setTextureName("tragicmc:CelestialAegis" ));
 		GameRegistry.registerItem(CelestialAegis, "celestialAegis");
 
-		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" + textureRes));
+		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" ));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
 		
-		SilentHellraiser = (new WeaponSilentHellraiser(toolTragic, null).setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" + textureRes));
+		SilentHellraiser = (new WeaponSilentHellraiser(toolTragic, null).setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" ));
 		GameRegistry.registerItem(SilentHellraiser, "silentHellraiser");
 
 		//Epic weapons
-		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" + textureRes));
+		Titan = (new WeaponTitan(Doomsday.Titanfall).setUnlocalizedName("tragicmc.titan").setTextureName("tragicmc:Titan" ));
 		GameRegistry.registerItem(Titan, "titan");
 
-		Splinter = (new WeaponSplinter(Doomsday.Marionette).setUnlocalizedName("tragicmc.splinter").setTextureName("tragicmc:Splinter" + textureRes));
+		Splinter = (new WeaponSplinter(Doomsday.Marionette).setUnlocalizedName("tragicmc.splinter").setTextureName("tragicmc:Splinter" ));
 		GameRegistry.registerItem(Splinter, "splinter");
 
-		Butcher = (new WeaponButcher(Doomsday.Bloodlust).setUnlocalizedName("tragicmc.butcher").setTextureName("tragicmc:Butcher" + textureRes));
+		Butcher = (new WeaponButcher(Doomsday.Bloodlust).setUnlocalizedName("tragicmc.butcher").setTextureName("tragicmc:Butcher" ));
 		GameRegistry.registerItem(Butcher, "butcher");
 
-		Thardus = (new WeaponThardus(Doomsday.Permafrost).setUnlocalizedName("tragicmc.thardus").setTextureName("tragicmc:Thardus" + textureRes));
+		Thardus = (new WeaponThardus(Doomsday.Permafrost).setUnlocalizedName("tragicmc.thardus").setTextureName("tragicmc:Thardus" ));
 		GameRegistry.registerItem(Thardus, "thardus");
 
-		Paranoia = (new WeaponParanoia(Doomsday.Asphyxiate).setUnlocalizedName("tragicmc.paranoia").setTextureName("tragicmc:Paranoia" + textureRes));
+		Paranoia = (new WeaponParanoia(Doomsday.Asphyxiate).setUnlocalizedName("tragicmc.paranoia").setTextureName("tragicmc:Paranoia" ));
 		GameRegistry.registerItem(Paranoia, "paranoia");
 
-		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" + textureRes));
+		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" ));
 		GameRegistry.registerItem(DragonFang, "dragonFang");		
 		
 		//Big boss weapons
-		Sentinel = (new WeaponSentinel(toolSentinel, Doomsday.Sharpen).setUnlocalizedName("tragicmc.sentinel").setTextureName("tragicmc:Sentinel" + textureRes));
+		Sentinel = (new WeaponSentinel(toolSentinel, Doomsday.Sharpen).setUnlocalizedName("tragicmc.sentinel").setTextureName("tragicmc:Sentinel" ));
 		GameRegistry.registerItem(Sentinel, "sentinel");
 
 		//Tool Registrations
-		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" + textureRes));
+		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" ));
 		GameRegistry.registerItem(Scythe, "scythe");
 
-		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EverlastingLight" + textureRes));
+		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EverlastingLight" ));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
 
-		Jack = (new ItemJack(toolBasic, null).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BasicJack_lowRes"));
+		Jack = (new ItemJack(toolBasic, null).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BasicJack"));
 		GameRegistry.registerItem(Jack, "jack");
 
-		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TungstenJack_lowRes"));
+		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TungstenJack"));
 		GameRegistry.registerItem(TungstenJack, "tungstenJack");
 
-		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter) {}.setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack" + textureRes));
+		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter) {}.setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack"));
 		GameRegistry.registerItem(CelestialJack, "celestialJack");
 
 		//Normal Item Registrations
-		Ectoplasm = (new ItemGeneric().setUnlocalizedName("tragicmc.ectoplasm").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ectoplasm" + textureRes));
+		Ectoplasm = (new ItemGeneric().setUnlocalizedName("tragicmc.ectoplasm").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ectoplasm"));
 		GameRegistry.registerItem(Ectoplasm, "ectoplasm");
 
-		Ash = (new ItemGeneric().setUnlocalizedName("tragicmc.ash").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ash" + textureRes));
+		Ash = (new ItemGeneric().setUnlocalizedName("tragicmc.ash").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Ash"));
 		GameRegistry.registerItem(Ash, "ash");
 
 		EnchantedTears = (new ItemGeneric() {
@@ -465,163 +462,163 @@ public class TragicItems {
 			{
 				return pass == 0;
 			}
-		}.setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LifeWater" + textureRes));
+		}.setUnlocalizedName("tragicmc.lifeWater").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LifeWater"));
 		GameRegistry.registerItem(EnchantedTears, "enchantedTears");
 
-		ToughLeather = (new ItemGeneric().setUnlocalizedName("tragicmc.toughLeather").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ToughLeather" + textureRes));
+		ToughLeather = (new ItemGeneric().setUnlocalizedName("tragicmc.toughLeather").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ToughLeather"));
 		GameRegistry.registerItem(ToughLeather, "toughLeather");
 
-		WovenSilk = (new ItemGeneric().setUnlocalizedName("tragicmc.wovenSilk").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WovenSilk" + textureRes));
+		WovenSilk = (new ItemGeneric().setUnlocalizedName("tragicmc.wovenSilk").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WovenSilk"));
 		GameRegistry.registerItem(WovenSilk, "wovenSilk");
 
-		CrushedIce = (new ItemGeneric().setUnlocalizedName("tragicmc.crushedIce").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CrushedIce" + textureRes));
+		CrushedIce = (new ItemGeneric().setUnlocalizedName("tragicmc.crushedIce").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CrushedIce"));
 		GameRegistry.registerItem(CrushedIce, "crushedIce");
 
-		LightParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.lightParticles").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightParticles" + textureRes));
+		LightParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.lightParticles").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightParticles"));
 		GameRegistry.registerItem(LightParticles, "lightParticles");
 
-		DarkParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.darkParticles").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DarkParticles" + textureRes));
+		DarkParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.darkParticles").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DarkParticles"));
 		GameRegistry.registerItem(DarkParticles, "darkParticles");
 
-		IceOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.iceOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceOrb" + textureRes));
+		IceOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.iceOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceOrb"));
 		GameRegistry.registerItem(IceOrb, "iceOrb");
 
-		GravityOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.gravityOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GravityOrb" + textureRes));
+		GravityOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.gravityOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GravityOrb"));
 		GameRegistry.registerItem(GravityOrb, "gravityOrb");
 
-		FireOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.fireOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:FireOrb" + textureRes));
+		FireOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.fireOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:FireOrb"));
 		GameRegistry.registerItem(FireOrb, "fireOrb");
 
-		LightningOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.lightningOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightningOrb" + textureRes));
+		LightningOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.lightningOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightningOrb"));
 		GameRegistry.registerItem(LightningOrb, "lightningOrb");
 
-		AquaOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.aquaOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AquaOrb" + textureRes));
+		AquaOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.aquaOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AquaOrb"));
 		GameRegistry.registerItem(AquaOrb, "aquaOrb");
 
-		Spore = (new ItemGeneric().setUnlocalizedName("tragicmc.spore").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ProjectileSpore" + textureRes));
+		Spore = (new ItemGeneric().setUnlocalizedName("tragicmc.spore").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ProjectileSpore"));
 		GameRegistry.registerItem(Spore, "spore");
 
-		Thorns = (new ItemGeneric().setUnlocalizedName("tragicmc.thorns").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Thorns" + textureRes));
+		Thorns = (new ItemGeneric().setUnlocalizedName("tragicmc.thorns").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Thorns"));
 		GameRegistry.registerItem(Thorns, "thorns");
 
-		Sap = (new ItemGeneric().setUnlocalizedName("tragicmc.sap").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sap" + textureRes));
+		Sap = (new ItemGeneric().setUnlocalizedName("tragicmc.sap").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sap"));
 		GameRegistry.registerItem(Sap, "sap");
 
-		Horn = (new ItemGeneric().setUnlocalizedName("tragicmc.horn").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Horn" + textureRes));
+		Horn = (new ItemGeneric().setUnlocalizedName("tragicmc.horn").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Horn"));
 		GameRegistry.registerItem(Horn, "horn");
 
-		BoneMarrow = (new ItemBoneMarrow(2, false).setUnlocalizedName("tragicmc.boneMarrow").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BoneMarrow" + textureRes));
+		BoneMarrow = (new ItemBoneMarrow(2, false).setUnlocalizedName("tragicmc.boneMarrow").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BoneMarrow"));
 		GameRegistry.registerItem(BoneMarrow, "boneMarrow");
 
-		LightIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.lightIngot").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightIngot" + textureRes));
+		LightIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.lightIngot").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LightIngot"));
 		GameRegistry.registerItem(LightIngot, "lightIngot");
 
-		DarkIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.darkIngot").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DarkIngot" + textureRes));
+		DarkIngot = (new ItemGeneric().setUnlocalizedName("tragicmc.darkIngot").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DarkIngot"));
 		GameRegistry.registerItem(DarkIngot, "darkIngot");
 
-		KitsuneTail = (new ItemGeneric().setUnlocalizedName("tragicmc.kitsuneTail").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:KitsuneTail" + textureRes));
+		KitsuneTail = (new ItemGeneric().setUnlocalizedName("tragicmc.kitsuneTail").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:KitsuneTail"));
 		GameRegistry.registerItem(KitsuneTail, "kitsuneTail");
 
-		DeathlyHallow = (new ItemGeneric().setUnlocalizedName("tragicmc.reaperSkull").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DeathlyHallow" + textureRes));
+		DeathlyHallow = (new ItemGeneric().setUnlocalizedName("tragicmc.reaperSkull").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DeathlyHallow"));
 		GameRegistry.registerItem(DeathlyHallow, "deathlyHallow");
 
-		EmpariahClaw = (new ItemGeneric().setUnlocalizedName("tragicmc.yetiClaw").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:YetiClaw" + textureRes));
+		EmpariahClaw = (new ItemGeneric().setUnlocalizedName("tragicmc.yetiClaw").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:YetiClaw"));
 		GameRegistry.registerItem(EmpariahClaw, "yetiClaw");
 
-		StarPieces = (new ItemGeneric().setUnlocalizedName("tragicmc.starPieces").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:StarPieces" + textureRes));
+		StarPieces = (new ItemGeneric().setUnlocalizedName("tragicmc.starPieces").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:StarPieces"));
 		GameRegistry.registerItem(StarPieces, "starPieces");
 
-		TimeEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.timeEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TimeEssence" + textureRes));
+		TimeEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.timeEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TimeEssence"));
 		GameRegistry.registerItem(TimeEssence, "timeEssence");
 
-		LunarPowder = (new ItemGeneric().setUnlocalizedName("tragicmc.lunarPowder").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LunarPowder" + textureRes));
+		LunarPowder = (new ItemGeneric().setUnlocalizedName("tragicmc.lunarPowder").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LunarPowder"));
 		GameRegistry.registerItem(LunarPowder, "lunarPowder");
 
-		CelestialDiamond = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialDiamond").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialDiamond" + textureRes));
+		CelestialDiamond = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialDiamond").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialDiamond"));
 		GameRegistry.registerItem(CelestialDiamond, "celestialDiamond");
 
-		StinHorn = (new ItemGeneric().setUnlocalizedName("tragicmc.stinHorn").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:StinHorn" + textureRes));
+		StinHorn = (new ItemGeneric().setUnlocalizedName("tragicmc.stinHorn").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:StinHorn"));
 		GameRegistry.registerItem(StinHorn, "stinHorn");
 
-		WispParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.wispParticles").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WispParticles" + textureRes));
+		WispParticles = (new ItemGeneric().setUnlocalizedName("tragicmc.wispParticles").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WispParticles"));
 		GameRegistry.registerItem(WispParticles, "wispParticles");
 
-		IcyFur = (new ItemGeneric().setUnlocalizedName("tragicmc.icyFur").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IcyFur" + textureRes));
+		IcyFur = (new ItemGeneric().setUnlocalizedName("tragicmc.icyFur").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IcyFur"));
 		GameRegistry.registerItem(IcyFur, "icyFur");
 
-		PureDarkness = (new ItemGeneric().setUnlocalizedName("tragicmc.pureDarkness").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:PureDarkness" + textureRes));
+		PureDarkness = (new ItemGeneric().setUnlocalizedName("tragicmc.pureDarkness").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:PureDarkness"));
 		GameRegistry.registerItem(PureDarkness, "pureDarkness");
 
-		LivingClay = (new ItemGeneric().setUnlocalizedName("tragicmc.livingClay").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LivingClay" + textureRes));
+		LivingClay = (new ItemGeneric().setUnlocalizedName("tragicmc.livingClay").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LivingClay"));
 		GameRegistry.registerItem(LivingClay, "livingClay");
 
-		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialSteel" + textureRes));
+		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialSteel"));
 		GameRegistry.registerItem(CelestialSteel, "celestialSteel");
 
 		//Food Registrations
-		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream" + textureRes));
+		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
 		GameRegistry.registerItem(IceCream, "iceCream");
 
-		ExoticFruit = (new ItemExoticFruit(9, false).setUnlocalizedName("tragicmc.exoticFruit").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ExoticFruit" + textureRes));
+		ExoticFruit = (new ItemExoticFruit(9, false).setUnlocalizedName("tragicmc.exoticFruit").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ExoticFruit"));
 		GameRegistry.registerItem(ExoticFruit, "exoticFruit");
 
-		GooeyFruit = (new ItemGooeyFruit(6, false).setUnlocalizedName("tragicmc.gooeyFruit").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GooeyFruit" + textureRes));
+		GooeyFruit = (new ItemGooeyFruit(6, false).setUnlocalizedName("tragicmc.gooeyFruit").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GooeyFruit"));
 		GameRegistry.registerItem(GooeyFruit, "gooeyFruit");
 
-		NastyFruit = (new ItemNastyFruit(4, false).setUnlocalizedName("tragicmc.nastyFruit").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NastyFruit" + textureRes));
+		NastyFruit = (new ItemNastyFruit(4, false).setUnlocalizedName("tragicmc.nastyFruit").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NastyFruit"));
 		GameRegistry.registerItem(NastyFruit, "nastyFruit");
 
-		Rice = (new ItemRice(2, false).setUnlocalizedName("tragicmc.rice").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Rice" + textureRes));
+		Rice = (new ItemRice(2, false).setUnlocalizedName("tragicmc.rice").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Rice"));
 		GameRegistry.registerItem(Rice, "rice");
 
-		Sushi = (new ItemSushi(4, true).setUnlocalizedName("tragicmc.sushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sushi" + textureRes)); 
+		Sushi = (new ItemSushi(4, true).setUnlocalizedName("tragicmc.sushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sushi")); 
 		GameRegistry.registerItem(Sushi, "sushi");
 
-		GoldenSushi = (new ItemEnchantedSushi(8, true).setUnlocalizedName("tragicmc.goldenSushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GoldenSushi" + textureRes));
+		GoldenSushi = (new ItemEnchantedSushi(8, true).setUnlocalizedName("tragicmc.goldenSushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GoldenSushi"));
 		GameRegistry.registerItem(GoldenSushi, "goldenSushi");
 
-		Banana = (new ItemBanana(1, false).setUnlocalizedName("tragicmc.banana").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ProjectileBanana" + textureRes));
+		Banana = (new ItemBanana(1, false).setUnlocalizedName("tragicmc.banana").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ProjectileBanana"));
 		GameRegistry.registerItem(Banana, "banana");
 
-		BananaSplit = (new ItemBananaSplit(8, false).setUnlocalizedName("tragicmc.bananaSplit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BananaSplit" + textureRes));
+		BananaSplit = (new ItemBananaSplit(8, false).setUnlocalizedName("tragicmc.bananaSplit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BananaSplit"));
 		GameRegistry.registerItem(BananaSplit, "bananaSplit");
 
-		SkyFruit = (new ItemSkyFruit(4, false).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SkyFruit" + textureRes));
+		SkyFruit = (new ItemSkyFruit(4, false).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SkyFruit"));
 		GameRegistry.registerItem(SkyFruit, "skyFruit");
 
-		Tentacle = (new ItemTentacle(3, true).setUnlocalizedName("tragicmc.tentacle").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Tentacle" + textureRes));
+		Tentacle = (new ItemTentacle(3, true).setUnlocalizedName("tragicmc.tentacle").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Tentacle"));
 		GameRegistry.registerItem(Tentacle, "tentacle");
 
 		//Special Item Registrations
-		RubyCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.rubyCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RubyCharm" + textureRes));
+		RubyCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.rubyCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RubyCharm"));
 		GameRegistry.registerItem(RubyCharm, "rubyCharm");
 
-		SapphireCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.sapphireCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SapphireCharm" + textureRes));
+		SapphireCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.sapphireCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SapphireCharm"));
 		GameRegistry.registerItem(SapphireCharm, "sapphireCharm");
 
-		DiamondCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.diamondCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DiamondCharm" + textureRes));
+		DiamondCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.diamondCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DiamondCharm"));
 		GameRegistry.registerItem(DiamondCharm, "diamondCharm");
 
-		EmeraldCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.emeraldCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EmeraldCharm" + textureRes));
+		EmeraldCharm = (new ItemGeneric().setUnlocalizedName("tragicmc.emeraldCharm").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EmeraldCharm"));
 		GameRegistry.registerItem(EmeraldCharm, "emeraldCharm");
 
-		AwakeningStone = (new ItemGeneric().setUnlocalizedName("tragicmc.awakeningStone").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AwakeningStone" + textureRes));
+		AwakeningStone = (new ItemGeneric().setUnlocalizedName("tragicmc.awakeningStone").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AwakeningStone"));
 		GameRegistry.registerItem(AwakeningStone, "awakeningStone");
 
-		ObsidianOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.obsidianOrb").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ObsidianOrb" + textureRes));
+		ObsidianOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.obsidianOrb").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ObsidianOrb"));
 		GameRegistry.registerItem(ObsidianOrb, "obsidianOrb");
 
-		CryingObsidianOrb = (new ItemCryingObsidianOrb().setUnlocalizedName("tragicmc.cryingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CryingObsidianOrb" + textureRes));
+		CryingObsidianOrb = (new ItemCryingObsidianOrb().setUnlocalizedName("tragicmc.cryingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CryingObsidianOrb"));
 		GameRegistry.registerItem(CryingObsidianOrb, "cryingObsidianOrb");
 
-		BleedingObsidianOrb = (new ItemBleedingObsidianOrb().setUnlocalizedName("tragicmc.bleedingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BleedingObsidianOrb" + textureRes));
+		BleedingObsidianOrb = (new ItemBleedingObsidianOrb().setUnlocalizedName("tragicmc.bleedingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BleedingObsidianOrb"));
 		GameRegistry.registerItem(BleedingObsidianOrb, "bleedingObsidianOrb");
 
-		DyingObsidianOrb = (new ItemDyingObsidianOrb().setUnlocalizedName("tragicmc.dyingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DyingObsidianOrb" + textureRes));
+		DyingObsidianOrb = (new ItemDyingObsidianOrb().setUnlocalizedName("tragicmc.dyingObsidianOrb").setMaxStackSize(8).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DyingObsidianOrb"));
 		GameRegistry.registerItem(DyingObsidianOrb, "dyingObsidianOrb");
 
 		//Weather/Time Talismans
-		Talisman = (new ItemGeneric().setUnlocalizedName("tragicmc.talisman").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Talisman" + textureRes));
+		Talisman = (new ItemGeneric().setUnlocalizedName("tragicmc.talisman").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Talisman"));
 		GameRegistry.registerItem(Talisman, "talisman");
 
 		RainDanceTalisman = (new ItemTalisman()
@@ -634,7 +631,7 @@ public class TragicItems {
 				EntityPlayer player = (EntityPlayer) entity;
 				if (!world.isRaining()) world.rainingStrength = 1.0F;
 			}
-		}.setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman" + textureRes));
+		}.setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman"));
 		GameRegistry.registerItem(RainDanceTalisman, "rainDanceTalisman");
 
 		SunnyDayTalisman = (new ItemTalisman()
@@ -649,7 +646,7 @@ public class TragicItems {
 				if (world.isThundering()) world.thunderingStrength = 0.0F;
 				if (world.isRaining()) world.rainingStrength = 0.0F;
 			}
-		}).setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman" + textureRes);
+		}).setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman");
 		GameRegistry.registerItem(SunnyDayTalisman, "sunnyDayTalisman");
 
 		ThunderstormTalisman = (new ItemTalisman()
@@ -662,7 +659,7 @@ public class TragicItems {
 				EntityPlayer player = (EntityPlayer) entity;
 				if (!world.isThundering()) world.thunderingStrength = 1.0F;
 			}
-		}).setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman" + textureRes);
+		}).setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman");
 		GameRegistry.registerItem(ThunderstormTalisman, "thunderstormTalisman");
 
 		TimeManipulatorTalisman = (new ItemTalisman()
@@ -677,19 +674,19 @@ public class TragicItems {
 				int a = flag ? -5 : 5;
 				world.setWorldTime(world.getWorldTime() + a);
 			}
-		}.setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman" + textureRes));
+		}.setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman"));
 		GameRegistry.registerItem(TimeManipulatorTalisman, "timeManipulatorTalisman");
 
-		MoonlightTalisman = (new ItemMoonlight().setUnlocalizedName("tragicmc.moonlightTalisman").setTextureName("tragicmc:MoonlightTalisman" + textureRes));
+		MoonlightTalisman = (new ItemMoonlight().setUnlocalizedName("tragicmc.moonlightTalisman").setTextureName("tragicmc:MoonlightTalisman"));
 		GameRegistry.registerItem(MoonlightTalisman, "moonlightTalisman");
 
-		SynthesisTalisman = (new ItemSynthesis().setUnlocalizedName("tragicmc.synthesisTalisman").setTextureName("tragicmc:SynthesisTalisman" + textureRes));
+		SynthesisTalisman = (new ItemSynthesis().setUnlocalizedName("tragicmc.synthesisTalisman").setTextureName("tragicmc:SynthesisTalisman"));
 		GameRegistry.registerItem(SynthesisTalisman, "synthesisTalisman");
 
-		HydrationTalisman = (new ItemHydration().setUnlocalizedName("tragicmc.hydrationTalisman").setTextureName("tragicmc:HydrationTalisman" + textureRes));
+		HydrationTalisman = (new ItemHydration().setUnlocalizedName("tragicmc.hydrationTalisman").setTextureName("tragicmc:HydrationTalisman"));
 		GameRegistry.registerItem(HydrationTalisman, "hydrationTalisman");
 
-		LightningRodTalisman = (new ItemLightningRod().setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman" + textureRes));
+		LightningRodTalisman = (new ItemLightningRod().setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman"));
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
 
 		//Amulet Registrations
@@ -787,40 +784,40 @@ public class TragicItems {
 		MobStatue = (new ItemStatue());
 		GameRegistry.registerItem(MobStatue, "mobStatue");
 
-		DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DoomConsume" + textureRes));
+		DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DoomConsume"));
 		GameRegistry.registerItem(DoomConsume, "doomConsume");
 
-		CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CooldownDefuse" + textureRes));
+		CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CooldownDefuse"));
 		GameRegistry.registerItem(CooldownDefuse, "cooldownDefuse");
 
-		AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AmuletRelease" + textureRes));
+		AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AmuletRelease"));
 		GameRegistry.registerItem(AmuletRelease, "amuletRelease");
 
-		BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BloodSacrifice" + textureRes));
+		BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BloodSacrifice"));
 		GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
 
-		NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NourishmentSacrifice" + textureRes));
+		NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NourishmentSacrifice"));
 		GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
 
-		DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey" + textureRes));
+		DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey"));
 		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 
-		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyEnd" + textureRes));
+		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyEnd"));
 		GameRegistry.registerItem(DimensionalKeyEnd, "dimensionalKeyEnd");
 
-		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyNether" + textureRes));
+		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyNether"));
 		GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
 
-		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeySynapse" + textureRes));
+		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeySynapse"));
 		GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
 
-		SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:SynapseLink" + textureRes));
+		SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:SynapseLink"));
 		GameRegistry.registerItem(SynapseLink, "synapseLink");
 
-		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseCrystal" + textureRes));
+		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseCrystal"));
 		GameRegistry.registerItem(SynapseCrystal, "synapseCrystal");
 
-		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll_lowRes"));
+		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
 
 		//Creative only items
@@ -836,7 +833,7 @@ public class TragicItems {
 			GameRegistry.registerItem(Generator, "generator");
 		}
 
-		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand_lowRes"));
+		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand"));
 		GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
 
 		if (TragicConfig.allowMobs)
@@ -1110,7 +1107,7 @@ public class TragicItems {
 	public static void initializeChallengeItem()
 	{
 		//Challenge item registration
-		ChallengeScroll = (new ItemChallenge().setTextureName("tragicmc:ChallengeInProgress_lowRes"));
+		ChallengeScroll = (new ItemChallenge().setTextureName("tragicmc:ChallengeInProgress"));
 		GameRegistry.registerItem(ChallengeScroll, "challengeScroll");
 
 		BossStructureHook.addItem(new WeightedRandomChestContent(new ItemStack(ChallengeScroll), 0, 1, 5));

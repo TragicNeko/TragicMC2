@@ -14,7 +14,7 @@ import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 
 public class RenderDimensionalAnomaly extends Render {
 	
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/DarkCrystal_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/DarkCrystal.png");
 	public ModelBase model;
 	
 	public RenderDimensionalAnomaly()

@@ -14,7 +14,7 @@ import tragicneko.tragicmc.entity.EntityDarkCrystal;
 
 public class RenderDarkCrystal extends Render {
 	
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/DarkCrystal_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/DarkCrystal.png");
 	public ModelBase model;
 	
 	public RenderDarkCrystal()

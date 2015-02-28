@@ -12,8 +12,8 @@ import tragicneko.tragicmc.entity.mob.EntityTox;
 
 public class RenderTox extends RenderLiving {
 
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Tox_lowRes.png");
-	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Pox_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Tox.png");
+	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Pox.png");
 	
 	public RenderTox() {
 		super(new ModelTox(), 0.855F);

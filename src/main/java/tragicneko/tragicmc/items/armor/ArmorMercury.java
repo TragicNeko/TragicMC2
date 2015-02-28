@@ -16,6 +16,6 @@ public class ArmorMercury extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Mercury2_lowRes.png" : "tragicmc:textures/armor/Mercury1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Mercury2.png" : "tragicmc:textures/armor/Mercury1.png";
 	}
 }

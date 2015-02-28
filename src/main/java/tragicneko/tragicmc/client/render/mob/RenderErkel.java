@@ -8,11 +8,11 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 
 public class RenderErkel extends RenderLiving {
 	
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Erkel_lowRes.png");
-	private ResourceLocation ashenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelAshen_lowRes.png");
-	private ResourceLocation paintedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelPainted_lowRes.png");
-	private ResourceLocation starlitTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelStarlit_lowRes.png");
-	private ResourceLocation decayingTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelDecaying_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Erkel.png");
+	private ResourceLocation ashenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelAshen.png");
+	private ResourceLocation paintedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelPainted.png");
+	private ResourceLocation starlitTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelStarlit.png");
+	private ResourceLocation decayingTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelDecaying.png");
 
 	public RenderErkel() {
 		super(new ModelErkel(), 0.625F);

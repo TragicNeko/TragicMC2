@@ -12,14 +12,14 @@ import tragicneko.tragicmc.entity.mob.EntityPirah;
 
 public class RenderPirah extends RenderLiving {
 
-	private ResourceLocation[] textures = new ResourceLocation[] {new ResourceLocation("tragicmc:textures/mobs/Pirah_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah2_lowRes.png"),
-			new ResourceLocation("tragicmc:textures/mobs/Pirah3_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah4_lowRes.png"),
-			new ResourceLocation("tragicmc:textures/mobs/Pirah5_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah6_lowRes.png"),
-			new ResourceLocation("tragicmc:textures/mobs/Pirah7_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah8_lowRes.png")};
-	private ResourceLocation[] textures2 = new ResourceLocation[] {new ResourceLocation("tragicmc:textures/mobs/LavaPirah_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah2_lowRes.png"),
-			new ResourceLocation("tragicmc:textures/mobs/LavaPirah3_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah4_lowRes.png"),
-			new ResourceLocation("tragicmc:textures/mobs/LavaPirah5_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah6_lowRes.png"),
-			new ResourceLocation("tragicmc:textures/mobs/LavaPirah7_lowRes.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah8_lowRes.png")};
+	private ResourceLocation[] textures = new ResourceLocation[] {new ResourceLocation("tragicmc:textures/mobs/Pirah.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah2.png"),
+			new ResourceLocation("tragicmc:textures/mobs/Pirah3.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah4.png"),
+			new ResourceLocation("tragicmc:textures/mobs/Pirah5.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah6.png"),
+			new ResourceLocation("tragicmc:textures/mobs/Pirah7.png"), new ResourceLocation("tragicmc:textures/mobs/Pirah8.png")};
+	private ResourceLocation[] textures2 = new ResourceLocation[] {new ResourceLocation("tragicmc:textures/mobs/LavaPirah.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah2.png"),
+			new ResourceLocation("tragicmc:textures/mobs/LavaPirah3.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah4.png"),
+			new ResourceLocation("tragicmc:textures/mobs/LavaPirah5.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah6.png"),
+			new ResourceLocation("tragicmc:textures/mobs/LavaPirah7.png"), new ResourceLocation("tragicmc:textures/mobs/LavaPirah8.png")};
 
 	public RenderPirah() {
 		super(new ModelPirah(), 0.255F);

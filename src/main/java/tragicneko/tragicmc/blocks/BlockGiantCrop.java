@@ -49,12 +49,12 @@ public class BlockGiantCrop extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName + "_lowRes");
+		this.blockIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName);
 		
 		if (this == TragicBlocks.CarrotBlock)
 		{
-			this.topIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName + "_Top_lowRes");
-			this.bottomIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName + "_Bottom_lowRes");
+			this.topIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName + "_Top");
+			this.bottomIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName + "_Bottom");
 		}
 	}
 

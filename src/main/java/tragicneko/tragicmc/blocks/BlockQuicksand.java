@@ -54,7 +54,7 @@ public class BlockQuicksand extends BlockFalling
 	{
 		for (int i = 0; i < this.variantNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i]);
 		}
 	}
 

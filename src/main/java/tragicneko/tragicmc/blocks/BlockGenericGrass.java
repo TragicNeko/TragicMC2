@@ -74,8 +74,8 @@ public class BlockGenericGrass extends BlockGrass {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.topIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassTop_lowRes");
-		this.sideIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassSide_lowRes");
+		this.topIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassTop");
+		this.sideIcon = par1IconRegister.registerIcon("tragicmc:" + this.texturePrefix + "GrassSide");
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class BlockCandle extends BlockTorch {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("tragicmc:Candle_lowRes");
+		this.blockIcon = par1IconRegister.registerIcon("tragicmc:Candle");
 	}
 	
 	@Override

@@ -175,22 +175,22 @@ public class TragicBlocks {
 
 	public static void load()
 	{		
-		MercuryOre = (new BlockGenericOre(1, true).setBlockTextureName("tragicmc:MercuryOre_lowRes").setBlockName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
+		MercuryOre = (new BlockGenericOre(1, true).setBlockTextureName("tragicmc:MercuryOre").setBlockName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
 		GameRegistry.registerBlock(MercuryOre, ItemBlock.class, "mercuryOre");
 
-		TungstenOre = (new BlockGenericOre(2, true).setBlockTextureName("tragicmc:TungstenOre_lowRes").setBlockName("tragicmc.tungstenOre").setHardness(4.0F).setResistance(5.0F));
+		TungstenOre = (new BlockGenericOre(2, true).setBlockTextureName("tragicmc:TungstenOre").setBlockName("tragicmc.tungstenOre").setHardness(4.0F).setResistance(5.0F));
 		GameRegistry.registerBlock(TungstenOre, ItemBlock.class, "tungstenOre");
 
-		RubyOre = (new BlockGenericOre(3, false).setBlockTextureName("tragicmc:RubyNetherOre_lowRes").setBlockName("tragicmc.rubyOre").setHardness(6.0F).setResistance(7.0F));
+		RubyOre = (new BlockGenericOre(3, false).setBlockTextureName("tragicmc:RubyNetherOre").setBlockName("tragicmc.rubyOre").setHardness(6.0F).setResistance(7.0F));
 		GameRegistry.registerBlock(RubyOre, ItemBlock.class, "rubyOre");
 
-		SapphireOre = (new BlockGenericOre(3, false).setBlockTextureName("tragicmc:SapphireNetherOre_lowRes").setBlockName("tragicmc.sapphireOre").setHardness(6.0F).setResistance(7.0F));
+		SapphireOre = (new BlockGenericOre(3, false).setBlockTextureName("tragicmc:SapphireNetherOre").setBlockName("tragicmc.sapphireOre").setHardness(6.0F).setResistance(7.0F));
 		GameRegistry.registerBlock(SapphireOre, ItemBlock.class, "sapphireOre");
 
 		CompactOre = (new BlockStorage());
 		GameRegistry.registerBlock(CompactOre, TragicItemBlock.class, "compactOre", new Object[] {new String[] {"ruby", "sapphire", "tungsten", "mercury", "quicksilver"}, "compactOre"});
 
-		Wax = (((BlockGeneric) (new BlockGeneric(Material.clay, "spade", 0).setBlockTextureName("tragicmc:Wax_lowRes").setBlockName("tragicmc.wax").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone).setLightOpacity(5))).setRenderPass(1));
+		Wax = (((BlockGeneric) (new BlockGeneric(Material.clay, "spade", 0).setBlockTextureName("tragicmc:Wax").setBlockName("tragicmc.wax").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone).setLightOpacity(5))).setRenderPass(1));
 		GameRegistry.registerBlock(Wax, ItemBlock.class, "wax");
 
 		Light = (new BlockLight().setBlockName("tragicmc.light").setStepSound(Block.soundTypeGlass));
@@ -241,22 +241,22 @@ public class TragicBlocks {
 		LightCobblestone = (new BlockLightCobble());
 		GameRegistry.registerBlock(LightCobblestone, TragicItemBlock.class, "lightCobblestone", new Object[] {new String[] {"normal", "frozen", "glowing"}, "lightCobblestone"});
 
-		LightStone = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:SmoothLightStone_lowRes").setBlockName("tragicmc.lightStone").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
+		LightStone = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:SmoothLightStone").setBlockName("tragicmc.lightStone").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(LightStone, ItemBlock.class, "lightStone");
 
 		TragicObsidian = (new BlockObsidianVariant());
 		GameRegistry.registerBlock(TragicObsidian, TragicItemBlock.class, "obsidian", new Object[] {new String[] {"crying", "bleeding", "dying"}, "obsidian"});
 
-		DeadDirt = (new BlockDeadDirt().setBlockName("tragicmc.deadDirt").setBlockTextureName("tragicmc:DeadDirt_lowRes"));
+		DeadDirt = (new BlockDeadDirt().setBlockName("tragicmc.deadDirt").setBlockTextureName("tragicmc:DeadDirt"));
 		GameRegistry.registerBlock(DeadDirt, TragicItemBlock.class, "deadDirt", new Object[] {new String[] {"normal", "rugged", "mixed"}, "deadDirt"});
 
-		DarkSand = (new BlockDarkSand().setBlockName("tragicmc.darkSand").setBlockTextureName("tragicmc:DarkSand_lowRes"));
+		DarkSand = (new BlockDarkSand().setBlockName("tragicmc.darkSand").setBlockTextureName("tragicmc:DarkSand"));
 		GameRegistry.registerBlock(DarkSand, ItemBlock.class, "darkSand");
 
 		DarkSandstone = new BlockDarkSandstone();
 		GameRegistry.registerBlock(DarkSandstone, TragicItemBlock.class, "darkSandstone", new Object[] {new String[] {"rough", "smooth", "bricked", "chiseled", "gridded", "carved"}, "darkSandstone"});
 
-		TimeDisruptionCube = (new BlockTimeDisruptor().setBlockName("tragicmc.timeDisruptor").setBlockTextureName("tragicmc:DimensionBlock_lowRes"));
+		TimeDisruptionCube = (new BlockTimeDisruptor().setBlockName("tragicmc.timeDisruptor").setBlockTextureName("tragicmc:DimensionBlock"));
 		GameRegistry.registerBlock(TimeDisruptionCube, ItemBlock.class, "timeDisruptor");
 
 		GameRegistry.registerTileEntity(TileEntityTimeDisruptor.class, "timeDisruptor");
@@ -276,13 +276,13 @@ public class TragicBlocks {
 		PaintedWood = (new BlockGenericLog("Painted").setBlockName("tragicmc.paintedWood"));
 		GameRegistry.registerBlock(PaintedWood, ItemBlock.class, "paintedWood");
 
-		PaintedLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.paintedLeaves").setBlockTextureName("PaintedLeaves_lowRes"));
+		PaintedLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.paintedLeaves").setBlockTextureName("PaintedLeaves"));
 		GameRegistry.registerBlock(PaintedLeaves, ItemBlock.class, "paintedLeaves");
 
-		PaintedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.paintedPlanks").setBlockTextureName("tragicmc:PaintedPlanks_lowRes"));
+		PaintedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.paintedPlanks").setBlockTextureName("tragicmc:PaintedPlanks"));
 		GameRegistry.registerBlock(PaintedPlanks, ItemBlock.class, "paintedPlanks");
 
-		GlowVine = (new BlockGlowvine().setBlockName("tragicmc.glowvine").setBlockTextureName("tragicmc:GlowVine_lowRes"));
+		GlowVine = (new BlockGlowvine().setBlockName("tragicmc.glowvine").setBlockTextureName("tragicmc:GlowVine"));
 		GameRegistry.registerBlock(GlowVine, ItemBlock.class, "glowvine");
 
 		PaintedTallGrass = (new BlockGenericTallGrass("Painted").setBlockName("tragicmc.paintedTallGrass"));
@@ -297,16 +297,16 @@ public class TragicBlocks {
 		AshenLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.ashenLeaves").setBlockTextureName("AshenLeaves"));
 		GameRegistry.registerBlock(AshenLeaves, ItemBlock.class, "ashenLeaves");
 
-		AshenPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.ashenPlanks").setBlockTextureName("tragicmc:AshenPlanks_lowRes"));
+		AshenPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.ashenPlanks").setBlockTextureName("tragicmc:AshenPlanks"));
 		GameRegistry.registerBlock(AshenPlanks, ItemBlock.class, "ashenPlanks");
 
 		BleachedWood = (new BlockGenericLog("Bleached").setBlockName("tragicmc.bleachedWood"));
 		GameRegistry.registerBlock(BleachedWood, ItemBlock.class, "bleachedWood");
 
-		BleachedLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.bleachedLeaves").setBlockTextureName("BleachedLeaves_lowRes"));
+		BleachedLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.bleachedLeaves").setBlockTextureName("BleachedLeaves"));
 		GameRegistry.registerBlock(BleachedLeaves, ItemBlock.class, "bleachedLeaves");
 
-		BleachedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.bleachedPlanks").setBlockTextureName("tragicmc:BleachedPlanks_lowRes"));
+		BleachedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.bleachedPlanks").setBlockTextureName("tragicmc:BleachedPlanks"));
 		GameRegistry.registerBlock(BleachedPlanks, ItemBlock.class, "bleachedPlanks");
 
 		TragicSapling = (new BlockTragicSapling());
@@ -315,10 +315,10 @@ public class TragicBlocks {
 		TragicFlower = (new BlockTragicFlower());
 		GameRegistry.registerBlock(TragicFlower, ItemBlockTragicFlower.class, "tragicFlower");
 
-		AshenBush = (new BlockGenericBush().setBlockName("tragicmc.ashenBush").setBlockTextureName("tragicmc:AshenBush_lowRes"));
+		AshenBush = (new BlockGenericBush().setBlockName("tragicmc.ashenBush").setBlockTextureName("tragicmc:AshenBush"));
 		GameRegistry.registerBlock(AshenBush, ItemBlock.class, "ashenBush");
 
-		DeadBush = (new BlockGenericBush().setBlockName("tragicmc.deadBush").setBlockTextureName("tragicmc:DeadBush_lowRes"));
+		DeadBush = (new BlockGenericBush().setBlockName("tragicmc.deadBush").setBlockTextureName("tragicmc:DeadBush"));
 		GameRegistry.registerBlock(DeadBush, ItemBlock.class, "deadBush");
 
 		DriedGrass = (new BlockGenericTallGrass("Dried").setBlockName("tragicmc.driedTallGrass"));
@@ -348,13 +348,13 @@ public class TragicBlocks {
 		CircuitBlock = (new BlockCircuit().setBlockName("tragicmc.circuit").setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(CircuitBlock, TragicItemBlock.class, "circuit", new Object[] {new String[] {"live", "damaged", "veryDamaged", "dead", "aged"}, "circuit"});
 
-		CelledBlock = (new BlockGeneric(Material.rock, "pickaxe", 1).setBlockName("tragicmc.celled").setBlockTextureName("tragicmc:CelledBlock_lowRes").setHardness(6.0F).setResistance(35.0F).setStepSound(Block.soundTypeMetal));
+		CelledBlock = (new BlockGeneric(Material.rock, "pickaxe", 1).setBlockName("tragicmc.celled").setBlockTextureName("tragicmc:CelledBlock").setHardness(6.0F).setResistance(35.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(CelledBlock, ItemBlock.class, "celled");
 
 		CelledLamp = (new BlockCelledLamp().setBlockName("tragicmc.celledLamp"));
 		GameRegistry.registerBlock(CelledLamp, ItemBlockCelledLamp.class, "celledLamp");
 
-		SynapseCore = (new BlockGeneric(Material.iron, "pickaxe", 0).setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore_lowRes").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
+		SynapseCore = (new BlockGeneric(Material.iron, "pickaxe", 0).setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
 
 		OverlordBarrier = (new BlockOverlordBarrier());
@@ -406,7 +406,7 @@ public class TragicBlocks {
 				Block block = world.getBlock(x, y, z);
 				return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
 			}
-		}.setBlockName("tragicmc.conduit").setBlockTextureName("tragicmc:Conduit_lowRes").setHardness(12.0F).setResistance(100.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setLightOpacity(0));
+		}.setBlockName("tragicmc.conduit").setBlockTextureName("tragicmc:Conduit").setHardness(12.0F).setResistance(100.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setLightOpacity(0));
 		GameRegistry.registerBlock(Conduit, ItemBlock.class, "conduit");
 
 		DigitalSea = (new BlockDigitalSea(false));
@@ -415,7 +415,7 @@ public class TragicBlocks {
 		DigitalSeaPowered = (new BlockDigitalSea(true));
 		GameRegistry.registerBlock(DigitalSeaPowered, null, "digitalSeaPowered");
 		
-		FrozenNetherrack = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:FrozenNetherrack_lowRes").setBlockName("tragicmc.frozenNetherrack").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
+		FrozenNetherrack = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:FrozenNetherrack").setBlockName("tragicmc.frozenNetherrack").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");
 
 		for (int i = 0; i < 3; i++)

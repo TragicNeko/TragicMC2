@@ -36,13 +36,13 @@ public class BlockGenericLeaves extends BlockLeaves {
 	{
 		if (this == TragicBlocks.AshenLeaves)
 		{
-			this.ashenIcons[0] = par1IconRegister.registerIcon("tragicmc:AshenLeaves_lowRes");
-			this.ashenIcons[1] = par1IconRegister.registerIcon("tragicmc:AshenLeavesTop_lowRes");
-			this.ashenIcons[2] = par1IconRegister.registerIcon("tragicmc:AshenLeavesSide_lowRes");
+			this.ashenIcons[0] = par1IconRegister.registerIcon("tragicmc:AshenLeaves");
+			this.ashenIcons[1] = par1IconRegister.registerIcon("tragicmc:AshenLeavesTop");
+			this.ashenIcons[2] = par1IconRegister.registerIcon("tragicmc:AshenLeavesSide");
 
-			this.ashenIcons[3] = par1IconRegister.registerIcon("tragicmc:OpaqueAshenLeaves_lowRes");
-			this.ashenIcons[4] = par1IconRegister.registerIcon("tragicmc:OpaqueAshenLeavesTop_lowRes");
-			this.ashenIcons[5] = par1IconRegister.registerIcon("tragicmc:OpaqueAshenLeavesSide_lowRes");
+			this.ashenIcons[3] = par1IconRegister.registerIcon("tragicmc:OpaqueAshenLeaves");
+			this.ashenIcons[4] = par1IconRegister.registerIcon("tragicmc:OpaqueAshenLeavesTop");
+			this.ashenIcons[5] = par1IconRegister.registerIcon("tragicmc:OpaqueAshenLeavesSide");
 		}
 		else
 		{

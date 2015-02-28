@@ -13,8 +13,8 @@ import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 
 public class RenderOverlordCore extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCore_lowRes.png");
-	private static final ResourceLocation damagedTexture = new ResourceLocation("tragicmc:textures/mobs/OverlordCoreDamaged_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCore.png");
+	private static final ResourceLocation damagedTexture = new ResourceLocation("tragicmc:textures/mobs/OverlordCoreDamaged.png");
 
 	public RenderOverlordCore() {
 		super(new ModelOverlordCore(), 0.756F, 2.25F);

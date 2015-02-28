@@ -37,7 +37,7 @@ public class BlockDarkSand extends BlockSand {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister regi)
 	{
-		this.blockIcon = regi.registerIcon("tragicmc:DarkSand_lowRes");
+		this.blockIcon = regi.registerIcon("tragicmc:DarkSand");
 	}
 
 }

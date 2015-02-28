@@ -12,8 +12,8 @@ import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 
 public class RenderAegar extends RenderLiving {
 	
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Aegar_lowRes.png");
-	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/AegarDamaged_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Aegar.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/AegarDamaged.png");
 	
 	protected float scale;
 

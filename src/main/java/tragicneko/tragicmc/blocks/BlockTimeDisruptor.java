@@ -27,7 +27,7 @@ public class BlockTimeDisruptor extends BlockContainer {
 	public BlockTimeDisruptor() {
 		super(Material.iron);
 		this.setCreativeTab(TragicMC.Survival);
-		this.setBlockTextureName("tragicmc:TimeDisruptor_lowRes");
+		this.setBlockTextureName("tragicmc:TimeDisruptor");
 	}
 
 	@Override

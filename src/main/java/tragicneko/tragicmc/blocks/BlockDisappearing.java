@@ -83,7 +83,7 @@ public class BlockDisappearing extends Block
 	{
 		if (!this.isPowered)
 		{
-			this.blockIcon = register.registerIcon("tragicmc:DisappearingBlock_lowRes");
+			this.blockIcon = register.registerIcon("tragicmc:DisappearingBlock");
 		}
 		else
 		{

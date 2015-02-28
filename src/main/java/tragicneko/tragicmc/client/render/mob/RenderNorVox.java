@@ -13,8 +13,8 @@ import tragicneko.tragicmc.entity.mob.EntityNorVox;
 
 public class RenderNorVox extends RenderLiving {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/NorVox_lowRes.png");
-	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarVox_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/NorVox.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/StarVox.png");
 
 	public RenderNorVox() {
 		super(new ModelNorVox(), 0.835F);

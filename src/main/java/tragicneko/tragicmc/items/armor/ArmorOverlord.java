@@ -21,7 +21,7 @@ public class ArmorOverlord extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Overlord2_lowRes.png" : "tragicmc:textures/armor/Overlord1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Overlord2.png" : "tragicmc:textures/armor/Overlord1.png";
 	}
 	
 	@Override

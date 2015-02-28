@@ -16,7 +16,7 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderTimeController extends RenderBoss {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/TimeController_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/TimeController.png");
 
 	public RenderTimeController() {
 		super(new ModelTimeController(), 0.415F);

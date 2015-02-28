@@ -16,6 +16,6 @@ public class ArmorSkull extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Skull2_lowRes.png" : "tragicmc:textures/armor/Skull1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Skull2.png" : "tragicmc:textures/armor/Skull1.png";
 	}
 }

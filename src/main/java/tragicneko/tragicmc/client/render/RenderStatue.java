@@ -37,13 +37,13 @@ public class RenderStatue extends Render {
 	private static final String mobPath = "tragicmc:textures/mobs/";
 	private static final String textPath = "tragicmc:textures/statue/";
 	
-	private static final ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2_lowRes.png"), new ResourceLocation(mobPath + "Kitsune2_lowRes.png"),
-		new ResourceLocation(mobPath + "DeathReaper_lowRes.png"), new ResourceLocation(mobPath + "TimeController_lowRes.png"), new ResourceLocation(mobPath + "Yeti_lowRes.png"),
-		new ResourceLocation(mobPath + "Polaris2_lowRes.png"), new ResourceLocation(mobPath + "Jarra_lowRes.png"), new ResourceLocation(mobPath + "Kragul_lowRes.png"),
-		new ResourceLocation(mobPath + "Magmox2_lowRes.png"), new ResourceLocation(mobPath + "Cryse_lowRes.png"), new ResourceLocation(mobPath + "StinKing_lowRes.png"),
-		new ResourceLocation(mobPath + "StinQueen_lowRes.png"), new ResourceLocation(mobPath + "GreaterStin_lowRes.png"), new ResourceLocation(mobPath + "VoxStellarum_lowRes.png"),
-		new ResourceLocation(mobPath + "Enyvil_lowRes.png"), new ResourceLocation(mobPath + "Claymation_lowRes.png"), new ResourceLocation(mobPath + "Aegar_lowRes.png"),
-		new ResourceLocation(mobPath + "OverlordCore_lowRes.png")},
+	private static final ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2.png"), new ResourceLocation(mobPath + "Kitsune2.png"),
+		new ResourceLocation(mobPath + "DeathReaper.png"), new ResourceLocation(mobPath + "TimeController.png"), new ResourceLocation(mobPath + "Yeti.png"),
+		new ResourceLocation(mobPath + "Polaris2.png"), new ResourceLocation(mobPath + "Jarra.png"), new ResourceLocation(mobPath + "Kragul.png"),
+		new ResourceLocation(mobPath + "Magmox2.png"), new ResourceLocation(mobPath + "Cryse.png"), new ResourceLocation(mobPath + "StinKing.png"),
+		new ResourceLocation(mobPath + "StinQueen.png"), new ResourceLocation(mobPath + "GreaterStin.png"), new ResourceLocation(mobPath + "VoxStellarum.png"),
+		new ResourceLocation(mobPath + "Enyvil.png"), new ResourceLocation(mobPath + "Claymation.png"), new ResourceLocation(mobPath + "Aegar.png"),
+		new ResourceLocation(mobPath + "OverlordCore.png")},
 		{new ResourceLocation(textPath + "IronStatue.png"),
 			new ResourceLocation(textPath + "GoldStatue.png"), new ResourceLocation(textPath + "DiamondStatue.png"), new ResourceLocation(textPath + "StoneStatue.png"),
 			new ResourceLocation(textPath + "WoodStatue.png"), new ResourceLocation(textPath + "EmeraldStatue.png"), new ResourceLocation(textPath + "MercuryStatue.png"),

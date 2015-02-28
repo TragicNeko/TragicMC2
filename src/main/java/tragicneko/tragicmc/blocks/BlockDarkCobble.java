@@ -58,7 +58,7 @@ public class BlockDarkCobble extends Block {
 	{
 		for (int i = 0; i < this.oreNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DarkCobble_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "DarkCobble");
 		}
 	}
 

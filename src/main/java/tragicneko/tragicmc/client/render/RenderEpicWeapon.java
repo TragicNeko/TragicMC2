@@ -29,10 +29,10 @@ public class RenderEpicWeapon implements IItemRenderer {
 	public ModelBase[] models = new ModelBase[] {new ModelReaperScythe(), new ModelButcher(), new ModelDragonFang(), new ModelThardus(), new ModelSplinter(), new ModelParanoia(),
 		new ModelCelestialAegis(), new ModelTitan(), new ModelBlock(), new ModelBlock()};
 	
-	public ResourceLocation[] textures = new ResourceLocation[] {new ResourceLocation(path + "ReaperScythe_lowRes.png"), new ResourceLocation(path + "Butcher_lowRes.png"),
-		new ResourceLocation(path + "DragonFang_lowRes.png"), new ResourceLocation(path + "Thardus_lowRes.png"), new ResourceLocation(path + "Splinter_lowRes.png"),
-		new ResourceLocation(path + "Paranoia_lowRes.png"), new ResourceLocation(path + "CelestialAegis_lowRes.png"), new ResourceLocation(path + "Titan_lowRes.png"),
-		new ResourceLocation(path + "TragicHellraiser_lowRes.png"), new ResourceLocation(path + "Sentinel_lowRes.png")};
+	public ResourceLocation[] textures = new ResourceLocation[] {new ResourceLocation(path + "ReaperScythe.png"), new ResourceLocation(path + "Butcher.png"),
+		new ResourceLocation(path + "DragonFang.png"), new ResourceLocation(path + "Thardus.png"), new ResourceLocation(path + "Splinter.png"),
+		new ResourceLocation(path + "Paranoia.png"), new ResourceLocation(path + "CelestialAegis.png"), new ResourceLocation(path + "Titan.png"),
+		new ResourceLocation(path + "TragicHellraiser.png"), new ResourceLocation(path + "Sentinel.png")};
 	
 	private final ResourceLocation itemGlint = new ResourceLocation("textures/misc/enchanted_item_glint.png");
 

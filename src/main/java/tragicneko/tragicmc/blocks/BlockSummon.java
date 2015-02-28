@@ -56,7 +56,7 @@ public class BlockSummon extends BlockContainer {
 	{
 		for (int i = 0; i < bossNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:SummonBlock" + bossNames[i] + "_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:SummonBlock" + bossNames[i]);
 		}
 	}
 

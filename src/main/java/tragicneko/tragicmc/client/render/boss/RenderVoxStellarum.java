@@ -14,7 +14,7 @@ import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 
 public class RenderVoxStellarum extends RenderLiving {
 
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/VoxStellarum_lowRes.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/VoxStellarum.png");
 	private static final float scale = 2.25F;
 
 	public RenderVoxStellarum() {

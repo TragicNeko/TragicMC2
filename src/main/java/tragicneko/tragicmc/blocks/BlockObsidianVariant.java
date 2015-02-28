@@ -43,7 +43,7 @@ private String[] variantNames = new String[]{"Crying", "Bleeding", "Dying"};
 	{
 		for (int i = 0; i < this.variantNames.length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "Obsidian_lowRes");
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "Obsidian");
 		}
 	}
 	

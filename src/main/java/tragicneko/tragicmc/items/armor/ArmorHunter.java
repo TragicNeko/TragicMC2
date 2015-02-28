@@ -16,6 +16,6 @@ public class ArmorHunter extends TragicArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return slot == 2 ? "tragicmc:textures/armor/Hunter2_lowRes.png" : "tragicmc:textures/armor/Hunter1_lowRes.png";
+		return slot == 2 ? "tragicmc:textures/armor/Hunter2.png" : "tragicmc:textures/armor/Hunter1.png";
 	}
 }

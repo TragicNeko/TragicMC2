@@ -15,7 +15,7 @@ import tragicneko.tragicmc.entity.EntityTimeDisruption;
 
 public class RenderTimeDisruption extends Render {
 
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/TimeBomb_lowRes.png");
+	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/TimeBomb.png");
 	public ModelBase model;
 	
 	public RenderTimeDisruption()
