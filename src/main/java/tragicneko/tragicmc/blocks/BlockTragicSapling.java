@@ -19,7 +19,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
-import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
+import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
 import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 import cpw.mods.fml.relauncher.Side;
@@ -27,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 
-	private String[] treeNames = new String[] {"Painted", "Bleached", "Ancient", "Lackered", "Ashen", "CherryBlossom", "Toxic", "Dead", "Corroded"};
+	private String[] treeNames = new String[] {"Painted", "Bleached", "Ashen"};
 	private IIcon[] iconArray = new IIcon[treeNames.length];
 
 	public BlockTragicSapling()
@@ -74,13 +74,10 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{		
-		par3.add(new ItemStack(par1, 1, 0));
-		par3.add(new ItemStack(par1, 1, 4));
-		/*
 		for (int i = 0; i < this.treeNames.length; i++)
 		{
 			par3.add(new ItemStack(par1, 1, i));
-		}*/
+		}
 	}
 
 	@Override
@@ -89,7 +86,7 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 	{
 		for (int i = 0; i < treeNames.length; i++)
 		{
-			iconArray[i] = p_149651_1_.registerIcon("tragicmc:" + treeNames[i] + "Sapling_lowRes");
+			iconArray[i] = p_149651_1_.registerIcon("tragicmc:" + treeNames[i] + "Sapling");
 		}
 	}
 
@@ -133,9 +130,9 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 			}
 			break;
 		case 1:
-			object = new WorldGenBleachedTree(true, true);
+			object = new WorldGenBleachedOakTree(true, true);
 			break;
-		case 4:
+		case 2:
 			object = new WorldGenAshenTree(true);
 			break;
 		default:
