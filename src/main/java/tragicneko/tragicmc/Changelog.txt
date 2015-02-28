@@ -3371,6 +3371,28 @@ Added transformation ticks to the Overlord Core, this is to prep for adding the 
 Added transformation animation to the Core, particles ftw lol
 Fixed typo in repairing for tools that used the wrong material for the tungsten jack
 Removed unused Tungsten toolmaterial
+Allow configuration of respawning in the Collision, change spawn point check
+Refactored all textures and texture paths that used the _lowRes suffix, removed unused textures from the assets directories, removed external files from
+build path (techne files, gimp project files)
+Removed unused saplings from TragicSapling
+Fixed bug with Bleached Sapling using the old tree generator
+Fixed some bugs with the newer Bleached Tree generator, they should now generate more properly
+
+New Mobs:
+Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
+increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague
+Fusea - a volatile creature that explodes when threatened, it takes no damage from the explosion and as such can explode multiple times, it floats
+slowly through the air
+NucleaFusea - Multi-layered Fusea, when attacked enough it's outermost shell "breaks" allowing it to move faster and cause greater explosions
+Ranmas - A Snowflake-like being that is made of a nearly unbreakable material, it can only be damaged on impact with something at high speed or by being
+hit by other Ranmas. It attacks by charging up and shooting itself at it's target.
+Ire - A small creature of pure light, it has low health and attacks with magic, it does more damage the more nearby Ire that it is "linked" to
+
+New biome sets:
+Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes
+Scorched biomes, Geysers, Steam vents, Lava pits, Jabba
+Hallowed biomes, Ire, Pure Light (Disappearing blocks)
+Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Ranmas
 
 FOR THE OVERLORD
 The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
@@ -3387,14 +3409,10 @@ back up to the previous stage, there will be 5 phases, where 100 damage is requi
 When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
 Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
 Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it, it stays at a constant y level
-Hunter = Aggressive mob that actively tracks nearby entities and "latches" onto them, inflicting armor piercing damage per tick
+Hunter = Aggressive mob that actively tracks nearby entities and "latches" onto them from a distance, inflicting armor piercing damage per tick
 Seeker = Passive mob that "spots" nearby enemies for other entities to attack, make a loud shrieking sound while tracking a target, if the entity is tracked for a really long
 time, the seeker can actually kill the target with it's gaze by slowly building up armor piercing damage done to it, in other words, these must be killed when they spawn and see
 a target, otherwise they will kill it, these work like the Oracles in Destiny
-
-Note: After the frozen biomes are added, make that the only place that the Ragr spawns
-Note: For the Magma biomes, add a geyser block that will randomly shoot steam up pushing any mobs on it up into the air and possibly lighting them on fire
-Note: For the Tainted biomes, add more stuff for the Isles and Archipelago, add the Wicked Vines to them
 
 --Reminders-
 Fix amulet modifiers being applied to the player each tick while they are in the player's inventory
