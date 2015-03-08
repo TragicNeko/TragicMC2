@@ -3366,7 +3366,7 @@ Added Digital Sea localizations
 Testing a built version of the mod now, disabled debugging, bumped version number
 Fixed Stin, Generator items and Overlord Mortor textures
 
-2.40.2012++ <190> (February 21, 2015)
+2.41.2012++ <190> (February 21, 2015) [Working on the Overlord Combat form]
 Added transformation ticks to the Overlord Core, this is to prep for adding the first two forms (which are gonna take a while to create, again)
 Added transformation animation to the Core, particles ftw lol
 Fixed typo in repairing for tools that used the wrong material for the tungsten jack
@@ -3377,6 +3377,51 @@ build path (techne files, gimp project files)
 Removed unused saplings from TragicSapling
 Fixed bug with Bleached Sapling using the old tree generator
 Fixed some bugs with the newer Bleached Tree generator, they should now generate more properly
+Started work on the Overlord Combat form, which will basically be like a suped up version of one of the normal bosses
+Added Leap attack to the Combat form, it jumps up high and when it lands knocks all nearby entities far away from it
+Changed how the Dimensional Anomaly applies it's Divinity effect to nearby entities, fixed intial issues with spawning it from the Combat form (such derps, wow)
+Added an anomaly aggregate (unstable) phase to the Combat form, this will be the only opportunity the player will get to retaliate against the Combat form
+Added Hacked effect application when the Combat form does it's leap attack
+Added a buffer for the unstable phase of the Combat form to ensure it doesn't do it immediately after finishing one, reduced amount of time it stays in it's
+unstable phase (Iron Golems could kill it relatively easily in that form)
+Made it so that when an Anomaly applies Divinity to anything, it dies, rather than only dying when players are in it, this should prevent ppl from using
+passive creatures or golems to do the heavy lifting (though that still is entirely possible, at least on the combat and cocoon forms)
+Added hurt time and started work on the charging attack that it borrows from the Stin
+Modified attack selector to attack all nearby living entities that it can see, that aren't synapse creatures
+Allow Combat form to change targets when hit (so that it doesnt focus on one target while it's being attacked by others)
+Added an AoE to it's normal attack, which will be like a slam attack
+Ensure the aggregate doesn't increment whenever the Combat form is in it's unstable phase
+Added a grapple laser attack, reduced chance for it to switch targets when hit by a non-target
+Modified entity selector that the combat form uses to determine what to attack to allow for other entities to use it
+Added reflection phase for the Combat form, it deflects all incoming damage as armor piercing (at a reduced rate) and attempts to maintain it's current
+y level with barrier blocks, this phase should only activate while it's in the air
+Ensure that none of the Overlord forms allow potion effects to be added to them
+Added Mortor attack to the reflection phase of the Combat form, this only occurs if it is a certain distance away from it's target
+Added more mortor fire to the Core form when it is vulnerable, it fires while it is fleeing
+Improved parameters for the Overlord Mortors to find targets, added variable to determine whether or not they sometimes generate anomalies
+I need to add the supplementary mobs to finish up it's AI (and I need to convert it's variables to datawatchers), then I need to work on it's model/rendering
+Started work on the Hunter
+Added config options for the harvester, hunter and seeker
+Created the Hunter's AI, it acts as a more aggressive Plague mob, swarming it's target like an angered wasp
+Fixed bug with the Combat form attacking while charging, added Hunter spawns while it is in Reflection mode and when it's health is lower in unstable mode
+Moved mortor fire in reflection mode to when it's firing it's grapple beam, but only when it's health is lower
+Fixed bug with spawning too many entities during the Combat form's reflection form, this pushed it in random directions (which admittedly looked cool) but also created a
+huge amount of lag
+Added Hunter to the Synapse's normal spawns, fixed nano swarm's config spawns never being added to it
+Starting work on the Lockbot now
+Made it so that they attach a "lock" on you if you get near them, and if you go outside of that range you get the Leadfoot effect inflicted on you as well
+as a huge speed debuff
+Added Lockbot to the Synapse spawns, it has the lowest chance to spawn out of all the synapse entities (as it's the most annoying)
+Added Harvester entity, it moves in singular directions until it can't move anymore (or until a random amount of time passes) then it changes directions,
+it basically is completely neutral but has passive effects to nearby mobs and randomly may spawn in Nano Swarms
+Fixed typo in Mob Rush challenge (game crash fix)
+Added Harvester to Synapse spawns
+Converted Combat form to use datawatchers, added hasLeaped to nbt tags
+Added some particle effects to the Combat form, need to start working on it's model since that is what took the longest with the Core form
+Added Corrupted Essence and Corrupted Eye items in order to craft the Overlord Armor set (and for future stuff)
+Removed the Spore item and set all things that used it to the projectile, in other words, the item was basically converted to it's projectile form
+Added recipes for the Overlord Armor set and for the Corrupted Essence
+Removed Mortor attack from the Combat form, added a buffer to it's reflection phase so that it doesn't go back into it repeatedly
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3395,9 +3440,6 @@ Hallowed biomes, Ire, Pure Light (Disappearing blocks)
 Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Ranmas
 
 FOR THE OVERLORD
-The Combat Form will be worked on next, it'll work like the Stin/Apis in that it charges it's target relentlessly, but it'll also randomly pause and spawn in hunters
-The Combat form will always generate Corrupted gas around itself, which will probably inflict corruption on mobs
-The Combat form will inflict high horizontal knockback onto whatever it hits, it'll have no regeneration but will have high armor
 When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
 melee hits inflict extra durability damage to the attacking entity's weapons, harvesters and nano swarms will constantly spawn around it
 The Cocoon form will spawn Seekers, these will act as crystals that protect it while they are there, once these are destroyed it can be damaged for a bit
@@ -3406,20 +3448,20 @@ The Cocoon form will randomly spawn in Harvesters as well
 When the Seekers are destroyed, it'll grant you Divinity for around 15 seconds, which will be removed from you when you hit the certain amount of health
 that is required for the next Seeker phase or until it runs out, if you don't do enough damage to get to the next phase then it regenerates it's health
 back up to the previous stage, there will be 5 phases, where 100 damage is required per phase
-When each form is "defeated" it'll go through a transformation period which it then turns into it's next form
-Create the Harvester and Hunter for it, these will basically be the underlings that attack you while you're fighting it to annoy you
-Harvester = Passive mob that inflicts weakness on nearby entities and spawns nano swarms to attack them, it'll randomly "delete" blocks around it, it stays at a constant y level
-Hunter = Aggressive mob that actively tracks nearby entities and "latches" onto them from a distance, inflicting armor piercing damage per tick
 Seeker = Passive mob that "spots" nearby enemies for other entities to attack, make a loud shrieking sound while tracking a target, if the entity is tracked for a really long
 time, the seeker can actually kill the target with it's gaze by slowly building up armor piercing damage done to it, in other words, these must be killed when they spawn and see
 a target, otherwise they will kill it, these work like the Oracles in Destiny
 
 --Reminders-
+Add some sort of hard to craft item that spawns a random mob (based on biome), sort of like a randomized spawn egg except it's biome based
 Fix amulet modifiers being applied to the player each tick while they are in the player's inventory
 Fix the mini-bombs and such to actually stop and stay still on the top of the block that they collide with, fix the cluster bomb so that it launches mini-bombs in random directions from it's center
 rather than just spawning mini-bombs in random spots around it
 Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop, remove Overlord armor as drops from the Overlord Core
 Finish the other two forms of the Overlord
+Add some packet stuff for doomsdays, this will be for things like applying Doomsday effect stuff client-side (particles, overlays)
+I also want to add something that shows how much your Doom is incrementing/decrementing, i.e. if you regen one doom, it shows a +1 next to it for a second
+If there are multiple changes done quickly, they'll override the previous (it'll be a static class/variable)
 Add armor models for the higher tiered armors
 Add the Overlord armor model
 Create particles and add mob sounds
