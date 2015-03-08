@@ -18,6 +18,7 @@ public class TragicWorldProvider extends WorldProvider
 	public TragicWorldProvider()
 	{
 		this.dimensionId = TragicConfig.dimensionID;
+		this.setSkyRenderer(skyRenderer);
 	}
 
 	@Override
@@ -168,11 +169,4 @@ public class TragicWorldProvider extends WorldProvider
 	public String getDimensionName() {
 		return "The Collision";
 	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer()
-    {
-        return this.skyRenderer;
-    }
 }

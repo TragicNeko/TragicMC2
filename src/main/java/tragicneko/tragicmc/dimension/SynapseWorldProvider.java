@@ -20,6 +20,7 @@ public class SynapseWorldProvider extends WorldProvider
 	{
 		this.dimensionId = TragicConfig.synapseID;
 		this.hasNoSky = true;
+		this.setSkyRenderer(this.skyRenderer);
 	}
 
 	@Override
@@ -127,13 +128,6 @@ public class SynapseWorldProvider extends WorldProvider
 	@Override
 	public String getDimensionName() {
 		return "Synapse";
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer()
-	{
-		return this.skyRenderer;
 	}
 	
 	@Override
