@@ -1,80 +1,27 @@
 package tragicneko.tragicmc.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityDimensionalAnomaly extends Entity {
 
-	private int timeToLive;
-
 	public EntityDimensionalAnomaly(World par1World) {
 		super(par1World);
-		this.setSize(0.475F, 0.825F);
-		this.timeToLive = rand.nextInt(100);
+		this.setSize(0.675F, 0.825F);
+		if (!par1World.isRemote) this.setTimeToLive(150 + rand.nextInt(100));
 		this.preventEntitySpawning = true;
 		this.isImmuneToFire = true;
-	}
-
-	@Override
-	public void applyEntityCollision(Entity entity)
-	{
-		if (entity.riddenByEntity != this && entity.ridingEntity != this)
-		{
-			double d0 = entity.posX - this.posX;
-			double d1 = entity.posZ - this.posZ;
-			double d2 = MathHelper.abs_max(d0, d1);
-
-			if (d2 >= 0.009999999776482582D)
-			{
-				d2 = MathHelper.sqrt_double(d2);
-				d0 /= d2;
-				d1 /= d2;
-				double d3 = 1.0D / d2;
-
-				if (d3 > 1.0D)
-				{
-					d3 = 1.0D;
-				}
-
-				d0 *= d3;
-				d1 *= d3;
-				d0 *= 0.05000000074505806D;
-				d1 *= 0.05000000074505806D;
-				d0 *= 1.0F - this.entityCollisionReduction;
-				d1 *= 1.0F - this.entityCollisionReduction;
-				this.addVelocity(-d0, 0.0D, -d1);
-				entity.addVelocity(d0, 0.0D, d1);
-			}
-
-			if (entity instanceof EntityLivingBase && !this.worldObj.isRemote)
-			{
-				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Divinity.id, 200 + rand.nextInt(200), 0)); 
-				this.setDead();
-			}
-		}
-
-		super.applyEntityCollision(entity);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getBrightnessForRender(float par1)
-	{
-		return 15728880;
-	}
-
-	@Override
-	public float getBrightness(float par1)
-	{
-		return 1.0F;
 	}
 
 	@Override
@@ -96,9 +43,9 @@ public class EntityDimensionalAnomaly extends Entity {
 	}
 
 	@Override
-	public void onUpdate()
+	public void onEntityUpdate()
 	{
-		super.onUpdate();
+		super.onEntityUpdate();
 
 		if (this.worldObj.isRemote)
 		{
@@ -116,7 +63,7 @@ public class EntityDimensionalAnomaly extends Entity {
 			double d4 = d0 / f2 * d3 * 0.200000011920929D + d7 * 0.20000000298023224D;
 			double d5 = d1 / f2 * d3 * 0.200000011920929D + d8 * 0.20000000298023224D;
 			double d6 = d2 / f2 * d3 * 0.200000011920929D + d9 * 0.20000000298023224D;
-			
+
 			for (int i = 0; i < 8; i++)
 			{
 				this.worldObj.spawnParticle("reddust", d0, d1, d2, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F, rand.nextFloat() * 2.25F);
@@ -129,14 +76,30 @@ public class EntityDimensionalAnomaly extends Entity {
 					this.worldObj.spawnParticle("cloud", d0, d1, d2, d4 * -0.5, d5 * -0.5, d6 * -0.5);
 				}
 			}
+			
+			if (this.ticksExisted >= this.getTimeToLive()) this.worldObj.spawnParticle("cloud", this.posX, this.posY, this.posZ, 0D, 0D, 0D);
 			return;
 		}
-		else
+		
+		if (this.ticksExisted >= this.getTimeToLive()) this.setDead();
+		if (!this.onGround)
 		{
-			if (this.ticksExisted >= 200 + timeToLive) this.setDead();
+			this.motionY = -0.035D;
+			this.moveEntity(0.0, -0.035, 0.0);
 		}
 
-		if (!this.onGround) this.moveEntity(0.0, -0.035, 0.0);
+		if (TragicConfig.allowDivinity && this.ticksExisted % 5 == 0)
+		{
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox);
+			for (EntityLivingBase e : list)
+			{
+				if (e.getCreatureAttribute() != TragicEntities.Synapse || e instanceof EntityPlayer)
+				{
+					e.addPotionEffect(new PotionEffect(TragicPotion.Divinity.id, 200 + rand.nextInt(200)));
+					this.setDead();
+				}
+			}
+		}
 	}
 
 	@Override
@@ -147,17 +110,26 @@ public class EntityDimensionalAnomaly extends Entity {
 
 	@Override
 	protected void entityInit() {
-
+		this.dataWatcher.addObject(2, Integer.valueOf(0));
+	}
+	
+	public int getTimeToLive()
+	{
+		return this.dataWatcher.getWatchableObjectInt(2);
+	}
+	
+	public void setTimeToLive(int i)
+	{
+		this.dataWatcher.updateObject(2, i);
 	}
 
 	@Override
-	protected void readEntityFromNBT(NBTTagCompound var1) {
-
+	public void readEntityFromNBT(NBTTagCompound var1) {
+		if (var1.hasKey("timeToLive")) this.setTimeToLive(var1.getInteger("timeToLive"));
 	}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound var1) {
-
+	public void writeEntityToNBT(NBTTagCompound var1) {
+		var1.setInteger("timeToLive", this.getTimeToLive());
 	}
-
 }
