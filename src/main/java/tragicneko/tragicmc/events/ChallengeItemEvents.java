@@ -98,7 +98,7 @@ public class ChallengeItemEvents {
 
 						for (int j = 0; j < list.size(); j++)
 						{
-							list.get(i).setAttackTarget(player);
+							list.get(j).setAttackTarget(player);
 						}
 
 						player.worldObj.getChunkFromBlockCoords((int) player.posX, (int) player.posZ).inhabitedTime += 10000L;
