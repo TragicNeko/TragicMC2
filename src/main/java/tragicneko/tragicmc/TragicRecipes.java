@@ -68,6 +68,38 @@ public class TragicRecipes {
 				"x x",
 				'x', Items.bone
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordHelm, 1), 
+				" x ",
+				"x x",
+				'x', TragicItems.CorruptedEssence
+				);
+
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordPlate, 1), 
+				"x x",
+				"xxx",
+				'x', TragicItems.CorruptedEssence
+				);
+
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordLegs, 1), 
+				"xxx",
+				"x x",
+				'x', TragicItems.CorruptedEssence
+				);
+
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordBoots, 1),
+				"x x",
+				"x x",
+				'x', TragicItems.CorruptedEssence
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEssence, 3),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicItems.EnchantedTears,
+				'y', TragicItems.CorruptedEye
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Scythe, 1), 
 				"xxx",
@@ -135,7 +167,7 @@ public class TragicRecipes {
 				"yzy",
 				"xyx",
 				'x', TragicItems.LivingClay,
-				'y', TragicItems.Spore,
+				'y', new ItemStack(TragicItems.Projectile, 1, 10),
 				'z', Blocks.redstone_block
 				);
 
@@ -300,7 +332,7 @@ public class TragicRecipes {
 				'w', TragicItems.Talisman,
 				'x', Blocks.emerald_block,
 				'y', TragicItems.LunarPowder,
-				'z', TragicItems.Spore
+				'z', new ItemStack(TragicItems.Projectile, 1, 10)
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HydrationTalisman, 1), 
@@ -963,7 +995,7 @@ public class TragicRecipes {
 				'x', TragicItems.Thorns,
 				'y', "materialVine",
 				'z', TragicItems.QuicksilverIngot,
-				'w', TragicItems.Spore
+				'w', new ItemStack(TragicItems.Projectile, 1, 10)
 				));
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.GlowVine, 1),
@@ -972,7 +1004,7 @@ public class TragicRecipes {
 				"xyx",
 				'x', Items.glowstone_dust,
 				'y', Blocks.vine,
-				'z', TragicItems.Spore
+				'z', new ItemStack(TragicItems.Projectile, 1, 10)
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.FrozenLightning, 1),
@@ -1448,7 +1480,7 @@ public class TragicRecipes {
 			"xyx",
 			"xxx",
 			'x', TragicBlocks.DarkCobblestone,
-			'y', TragicItems.Spore
+			'y', new ItemStack(TragicItems.Projectile, 1, 10)
 		);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 3), 

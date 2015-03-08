@@ -127,7 +127,7 @@ public class TragicItems {
 	public static Item LivingClay; //Claymation
 	public static Item StarPieces; //Polaris
 	//public static Item PhoenixFeather; //Phoenix
-	public static Item OverlordEye; //The Overlord
+	public static Item CorruptedEye; //The Overlord
 
 	//Doom items
 	public static Item DoomConsume, CooldownDefuse, AmuletRelease;
@@ -161,13 +161,13 @@ public class TragicItems {
 	public static Item WovenSilk;
 	public static Item CrushedIce;
 	public static Item DarkParticles;
-	public static Item Spore;
 	public static Item Sap;
 	public static Item Thorns;
 	public static Item BoneMarrow;
 	public static Item Horn;
 	public static Item LunarPowder;
 	public static Item CelestialDiamond;
+	public static Item CorruptedEssence;
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
 
@@ -495,9 +495,6 @@ public class TragicItems {
 		AquaOrb = (new ItemGeneric().setUnlocalizedName("tragicmc.aquaOrb").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AquaOrb"));
 		GameRegistry.registerItem(AquaOrb, "aquaOrb");
 
-		Spore = (new ItemGeneric().setUnlocalizedName("tragicmc.spore").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ProjectileSpore"));
-		GameRegistry.registerItem(Spore, "spore");
-
 		Thorns = (new ItemGeneric().setUnlocalizedName("tragicmc.thorns").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Thorns"));
 		GameRegistry.registerItem(Thorns, "thorns");
 
@@ -554,6 +551,12 @@ public class TragicItems {
 
 		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialSteel"));
 		GameRegistry.registerItem(CelestialSteel, "celestialSteel");
+		
+		CorruptedEye = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEye").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEye"));
+		GameRegistry.registerItem(CorruptedEye, "corruptedEye");
+		
+		CorruptedEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc.CorruptedEssence"));
+		GameRegistry.registerItem(CorruptedEssence, "corruptedEssence");
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
@@ -998,7 +1001,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 2, 5, 100),
 				new WeightedRandomChestContent(new ItemStack(Items.string), 2, 4, 75),
 				new WeightedRandomChestContent(new ItemStack(Items.bone), 0, 2, 25),
-				new WeightedRandomChestContent(new ItemStack(Spore), 0, 3, 10),
+				new WeightedRandomChestContent(new ItemStack(Projectile, 1, 10), 0, 3, 10),
 				new WeightedRandomChestContent(new ItemStack(Sap), 0, 3, 10)
 		};
 

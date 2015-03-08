@@ -41,7 +41,7 @@ public class DropEvents {
 
 		if (event.block instanceof BlockGrass && rand.nextInt(64) == 0)
 		{
-			event.drops.add(new ItemStack(TragicItems.Spore));
+			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 10));
 		}
 		else if (event.block == Blocks.dirt && event.y <= 32 && rand.nextInt(8) == 0)
 		{
@@ -120,13 +120,13 @@ public class DropEvents {
 		}
 		else if (event.block instanceof BlockFlower || event.block instanceof BlockMushroom || event.block instanceof BlockTallGrass)
 		{
-			if (rand.nextInt(16) == 0) event.drops.add(new ItemStack(TragicItems.Spore));
+			if (rand.nextInt(16) == 0) event.drops.add(new ItemStack(TragicItems.Projectile, 1, 10));
 		}
 		else if (event.block == Blocks.double_plant && rand.nextInt(4) == 0)
 		{
 			if (event.blockMetadata != 4)
 			{
-				event.drops.add(new ItemStack(TragicItems.Spore));
+				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 10));
 			}
 			else
 			{
@@ -292,7 +292,7 @@ public class DropEvents {
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1), rand.nextFloat());
 				break;
 			case 3:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Spore, rand.nextInt(3) + 1), rand.nextFloat());
+				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 10), rand.nextFloat());
 				break;
 			case 4:
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1), rand.nextFloat());
