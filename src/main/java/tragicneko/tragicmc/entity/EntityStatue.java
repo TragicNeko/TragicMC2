@@ -217,6 +217,7 @@ public class EntityStatue extends Entity {
 					if (TragicConfig.allowAegar) entity = new EntityAegar(this.worldObj);
 					break;
 				case 17: break;
+				default: break;
 				}
 
 				if (entity != null)

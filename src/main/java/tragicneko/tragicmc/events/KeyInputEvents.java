@@ -17,8 +17,8 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.network.MessageGui;

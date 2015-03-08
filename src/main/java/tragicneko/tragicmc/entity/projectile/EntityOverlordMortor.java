@@ -10,6 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -18,6 +19,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 
 	protected EntityLivingBase target = null;
 	protected int ticksWithTarget;
+	public boolean spawnsAnomalies = true;
 
 	public EntityOverlordMortor(World par1World) {
 		super(par1World);
@@ -49,7 +51,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 		}
 		else
 		{
-			if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8 && rand.nextBoolean())
+			if (this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8 && rand.nextBoolean() && this.spawnsAnomalies)
 			{
 				EntityDimensionalAnomaly anomoly = new EntityDimensionalAnomaly(this.worldObj);
 				anomoly.setPosition(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord);
@@ -100,13 +102,13 @@ public class EntityOverlordMortor extends EntityProjectile {
 
 		if (this.target == null && this.ticksInAir > 5)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(16.0, 16.0, 16.0));
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(16.0, 16.0, 16.0));
 
-			for (int i = 0; i < list.size(); i++)
+			for (EntityLivingBase e : list)
 			{
-				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)) && !(list.get(i) instanceof EntityAegar))
+				if (e != this.shootingEntity && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(e) && e.getCreatureAttribute() != TragicEntities.Synapse)
 				{
-					this.target = (EntityLivingBase) list.get(i);
+					this.target = e;
 					break;
 				}
 			}
