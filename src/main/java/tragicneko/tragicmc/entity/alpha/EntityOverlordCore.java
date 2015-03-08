@@ -11,7 +11,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,15 +21,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
-import tragicneko.tragicmc.util.DamageHelper;
 
 import com.google.common.collect.Sets;
 
@@ -565,6 +563,11 @@ public class EntityOverlordCore extends TragicBoss {
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
+		
+		if (this.getHealth() <= this.getMaxHealth() / 4 && this.ticksExisted % 10 == 0 && rand.nextInt(16) == 0 && this.getVulnerableTicks() > 0)
+		{
+			this.createMortors();
+		}
 
 		TragicMC.logInfo("VulnerableTicks: " + this.getVulnerableTicks());
 		TragicMC.logInfo("HurtTicks: " + this.getHurtTicks());
@@ -657,6 +660,8 @@ public class EntityOverlordCore extends TragicBoss {
 	}
 
 	private void createMortors() {
+		if (this.target == null || this.getHealth() <= 0) return;
+		
 		double d0 = this.target.posX - this.posX;
 		double d1 = rand.nextInt(4);
 		double d2 = this.target.posZ - this.posZ;
@@ -785,4 +790,7 @@ public class EntityOverlordCore extends TragicBoss {
 		this.setStartTransform();
 		return super.onSpawnWithEgg(data);
 	}
+	
+	@Override
+	public void addPotionEffect(PotionEffect pe) {}
 }
