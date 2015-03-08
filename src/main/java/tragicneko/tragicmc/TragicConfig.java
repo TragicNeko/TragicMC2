@@ -83,10 +83,11 @@ public class TragicConfig {
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
-	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem;
+	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem, allowHunter, allowHarvester;
 	private static int[] mobsSC = new int[32];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC, snowGolemSC;
+	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC, snowGolemSC, hunterSC;
+	public static int harvesterSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
 	private static int[] miniBossSC = new int[16];
@@ -100,11 +101,11 @@ public class TragicConfig {
 	private static double[][] mobStats = new double[32][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats;
+	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats, hunterStats, harvesterStats, seekerStats;
 	private static double[][] miniBossStats = new double[16][];
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats;
 	private static double[][] bossStats = new double[12][];
-	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats;
+	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats, overlordCombatStats, overlordCocoonStats;
 
 	private static boolean[] blanketPotion = new boolean[2];
 	public static boolean allowPositivePotions, allowNegativePotions;
@@ -627,14 +628,18 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "sirvAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "psygoteSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "psygoteAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "lockbotSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = (config.get(catMobs, "lockbotSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "lockbotAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "nanoSwarmSpawnChance", 5).getInt(5));
+		mobsSC[mapping] = (config.get(catMobs, "nanoSwarmSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "nanoSwarmAllow", true).getBoolean(true));
 		mobsSC[mapping] = (config.get(catMobs, "circuitGolemSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "circuitGolemAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "snowGolemSpawnChance",40).getInt(40));
+		mobsSC[mapping] = (config.get(catMobs, "snowGolemSpawnChance", 40).getInt(40));
 		mobConfigs[mapping++] = (config.get(catMobs, "snowGolemAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "hunterChance", 15).getInt(15));
+		mobConfigs[mapping++] = (config.get(catMobs, "hunterAllow", true).getBoolean(true));
+		mobsSC[mapping] = (config.get(catMobs, "harvesterSpawnChance", 10).getInt(10));
+		mobConfigs[mapping++] = (config.get(catMobs, "harveseterAllow", true).getBoolean(true));
 
 		for (i = 0; i + mapping < mobConfigs.length; i++) //sets all unused slots in the array to false
 		{
@@ -722,8 +727,12 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "erkelStats", new double[] {16.0, 0.476, 1.0, 16.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "sirvStats", new double[] {8.0, 0.375, 14.0, 64.0, 0.5, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "psygoteStats", new double[] {64.0, 0.290, 8.0, 32.0, 0.65, 16}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "lockbotStats", new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "lockbotStats", new double[] {22.0, 0.0, 1.0, 8.0, 100.0, 8}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "nanoSwarmStats", new double[] {6.0, 0.335, 2.0, 64.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "circuitGolemStats", new double[] {0, 0, 0, 0, 0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "hunterStats", new double[] {16.0, 0.236, 4.0, 32.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "harvesterStats", new double[] {72.0, 0.145, 0.0, 16.0, 100.0, 24}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {50.0, 0.0, 1.0, 48.0, 96.0, 24}).getDoubleList());
 		
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
@@ -745,6 +754,8 @@ public class TragicConfig {
 		bossStats[mapping++] = (config.get(catMobs, "enyvilStats", new double[] {450.0, 0.276, 24.0, 48.0, 1.0, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "claymationStats", new double[] {150.0, 0.220, 12.0, 32.0, 1.0, 18}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCoreStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "overlordCombatStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "overlordCocoonStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed or disable certain groups like Mini-Bosses or Bosses. Stats are: Health, Movement Speed, Attack Damage, Follow Range, Knockback Resistance, Armor Value.");
 
@@ -1351,6 +1362,10 @@ public class TragicConfig {
 		allowCircuitGolem = mobConfigs[mapping++];
 		snowGolemSC = mobsSC[mapping];
 		allowSnowGolem = mobConfigs[mapping++];
+		hunterSC = mobsSC[mapping];
+		allowHunter = mobConfigs[mapping++];
+		harvesterSC = mobsSC[mapping];
+		allowHarvester = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1418,6 +1433,10 @@ public class TragicConfig {
 		psygoteStats = mobStats[mapping++];
 		lockbotStats = mobStats[mapping++];
 		nanoSwarmStats = mobStats[mapping++];
+		circuitGolemStats = mobStats[mapping++];
+		hunterStats = mobStats[mapping++];
+		harvesterStats = mobStats[mapping++];
+		seekerStats = mobStats[mapping++];
 		
 		mapping = 0;
 		jarraStats = miniBossStats[mapping++];
@@ -1439,6 +1458,8 @@ public class TragicConfig {
 		enyvilStats = bossStats[mapping++];
 		claymationStats = bossStats[mapping++];
 		overlordCoreStats = bossStats[mapping++];
+		overlordCombatStats = bossStats[mapping++];
+		overlordCocoonStats = bossStats[mapping++];
 
 		allowPositivePotions = blanketPotion[0];
 		allowNegativePotions = blanketPotion[1];

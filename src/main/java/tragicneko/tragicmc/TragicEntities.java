@@ -11,9 +11,9 @@ import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
+import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -37,8 +37,11 @@ import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
+import tragicneko.tragicmc.entity.mob.EntityHarvester;
+import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -412,18 +415,34 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityPsygote.class, "Psygote", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityPsygote.class, "TragicMC.Psygote", id++, 0x8965A4, 0x000000);
 		}
+		
+		if (TragicConfig.allowLockbot)
+		{
+			EntityRegistry.registerModEntity(EntityLockbot.class, "Lockbot", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityLockbot.class, "TragicMC.Lockbot", id++, 0xFFFFFF, 0xAAAAAA);
+		}
 
 		if (TragicConfig.allowNanoSwarm)
 		{
 			EntityRegistry.registerModEntity(EntityNanoSwarm.class, "NanoSwarm", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
 		}
-
-		//TODO add Harvester/Hunter
-
+		
 		if (TragicConfig.allowCircuitGolem)
 		{
 			//TODO add Circuit Golem
+		}
+
+		if (TragicConfig.allowHunter)
+		{
+			EntityRegistry.registerModEntity(EntityHunter.class, "Hunter", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityHunter.class, "TragicMC.Hunter", id++, 0xFFFFFF, 0xAAAAAA);
+		}
+		
+		if (TragicConfig.allowHarvester)
+		{
+			EntityRegistry.registerModEntity(EntityHarvester.class, "Harvester", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityHarvester.class, "TragicMC.Harvester", id++, 0xFFFFFF, 0xAAAAAA);
 		}
 
 		//Iron Golem
@@ -738,10 +757,10 @@ public class TragicEntities {
 		{/*
 			EntityRegistry.registerModEntity(EntityOverlordCocoon.class, "OverlordCocoon", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x00CD7D, 0x787878, EnumEggType.ALPHA);
-
+	*/
 			EntityRegistry.registerModEntity(EntityOverlordCombat.class, "OverlordCombat", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x555555, EnumEggType.ALPHA);
-*/
+
 			EntityRegistry.registerModEntity(EntityOverlordCore.class, "OverlordCore", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCore.class, "TragicMC.OverlordCore", id++, 0x92F9D1, 0x212121, EnumEggType.ALPHA);
 		}
@@ -774,5 +793,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityGuardianShield.class, "GuardianShield", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityOverlordMortor.class, "OverlordMortor", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDimensionalAnomaly.class, "DimensionalAnomaly", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityLock.class, "Lock", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }
