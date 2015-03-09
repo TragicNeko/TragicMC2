@@ -3422,6 +3422,7 @@ Added Corrupted Essence and Corrupted Eye items in order to craft the Overlord A
 Removed the Spore item and set all things that used it to the projectile, in other words, the item was basically converted to it's projectile form
 Added recipes for the Overlord Armor set and for the Corrupted Essence
 Removed Mortor attack from the Combat form, added a buffer to it's reflection phase so that it doesn't go back into it repeatedly
+Added corrupted egg and added recipe for it, need to add functionality to it
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3453,7 +3454,6 @@ time, the seeker can actually kill the target with it's gaze by slowly building 
 a target, otherwise they will kill it, these work like the Oracles in Destiny
 
 --Reminders-
-Add some sort of hard to craft item that spawns a random mob (based on biome), sort of like a randomized spawn egg except it's biome based
 Fix amulet modifiers being applied to the player each tick while they are in the player's inventory
 Fix the mini-bombs and such to actually stop and stay still on the top of the block that they collide with, fix the cluster bomb so that it launches mini-bombs in random directions from it's center
 rather than just spawning mini-bombs in random spots around it
