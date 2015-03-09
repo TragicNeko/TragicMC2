@@ -100,6 +100,14 @@ public class TragicRecipes {
 				'x', TragicItems.EnchantedTears,
 				'y', TragicItems.CorruptedEye
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEgg, 3),
+				" x ",
+				"xyx",
+				" x ",
+				'x', TragicItems.CorruptedEssence,
+				'y', Items.egg
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Scythe, 1), 
 				"xxx",

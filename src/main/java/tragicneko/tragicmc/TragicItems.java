@@ -168,6 +168,7 @@ public class TragicItems {
 	public static Item LunarPowder;
 	public static Item CelestialDiamond;
 	public static Item CorruptedEssence;
+	public static Item CorruptedEgg; //random spawn egg item
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
 
@@ -557,6 +558,9 @@ public class TragicItems {
 		
 		CorruptedEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc.CorruptedEssence"));
 		GameRegistry.registerItem(CorruptedEssence, "corruptedEssence");
+		
+		CorruptedEgg = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEgg").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEgg"));
+		GameRegistry.registerItem(CorruptedEgg, "corruptedEgg"); //TODO add biome-based random spawn egg class, for now it is treated as a generic item that does nothing
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
