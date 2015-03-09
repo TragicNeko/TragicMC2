@@ -434,23 +434,12 @@ public class EntityOverlordCore extends TragicBoss {
 			}
 		}
 
-		if (this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically)
-		{
-			this.setNewTarget();
-		}
-
+		if (this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically) this.setNewTarget();
 		d0 /= MathHelper.sqrt_double(d10 * d10 + d1 * d1);
 		f12 = 0.6F;
 
-		if (d0 < (-f12))
-		{
-			d0 = (-f12);
-		}
-
-		if (d0 > f12)
-		{
-			d0 = f12;
-		}
+		if (d0 < (-f12)) d0 = (-f12);
+		if (d0 > f12) d0 = f12;
 
 		this.motionY += d0 * 0.10000000149011612D;
 		this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw);
