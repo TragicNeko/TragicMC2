@@ -3366,7 +3366,7 @@ Added Digital Sea localizations
 Testing a built version of the mod now, disabled debugging, bumped version number
 Fixed Stin, Generator items and Overlord Mortor textures
 
-2.41.2012++ <190> (February 21, 2015) [Working on the Overlord Combat form]
+2.41.2059 <190> (February 21, 2015) [Working on the Overlord Combat form]
 Added transformation ticks to the Overlord Core, this is to prep for adding the first two forms (which are gonna take a while to create, again)
 Added transformation animation to the Core, particles ftw lol
 Fixed typo in repairing for tools that used the wrong material for the tungsten jack
@@ -3424,6 +3424,21 @@ Added recipes for the Overlord Armor set and for the Corrupted Essence
 Removed Mortor attack from the Combat form, added a buffer to it's reflection phase so that it doesn't go back into it repeatedly
 Added corrupted egg and added recipe for it, need to add functionality to it
 
+2.41.2059++ <191> (March 9, 2015)
+Added Nano Bots, added them to the Overlord Armor recipes, added a celled block recipe that uses them
+Added Synapse Core recipe that uses one Synapse crystal and 8 nano bots
+Added functionality to Synapse Core block, it can now be used to summon another Overlord (only Combat form to Core for now, until the Cocoon form is done)
+It'll also be used as the base for the Ascendent Stone recipe when that is implemented instead of an Obsidian Orb
+Instead of having the Overlord spawn in when you get to the Synapse, I'm going to make the player instead craft a Synapse Core and summon one in themselves,
+since you can get the things for it by killing mobs (Synapse Crystals are from the Aegar, but it'll be a rare drop for most Synapse mobs)
+Added drops for all of the current Synapse mobs, all of them can drop nano bots but each one (except for the Nano Swarm) have other additional drops
+Added textures for the new items, Nano Bots and Corrupted Egg
+Added fuctionality to Corrupted Egg, uses a modified version of the spawn egg
+Fixed sky renderers for the Dimensions, this improved memory use in the Synapse greatly
+Changed Lock entity to apply slowness X intead of using an attribute modifier, it's less work and it makes sure that after the lock is gone that the effect
+doesn't stay without using an update event
+Modified Lock constructor some
+
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
 increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague
@@ -3454,20 +3469,19 @@ time, the seeker can actually kill the target with it's gaze by slowly building 
 a target, otherwise they will kill it, these work like the Oracles in Destiny
 
 --Reminders-
+Add a allowPvP option in the config, this will be a blanket for other config options such as allowing doomsdays to target players and allowing weapons to
+hit other players
+Add a Chainbot as a mini-boss form of the lockbot, it'll basically be a mobile version of the lockbot that actually moves to it's trapped target and attacks them,
+the target may break the chain after enough hits to it and it'll have to reattach
 Fix amulet modifiers being applied to the player each tick while they are in the player's inventory
 Fix the mini-bombs and such to actually stop and stay still on the top of the block that they collide with, fix the cluster bomb so that it launches mini-bombs in random directions from it's center
 rather than just spawning mini-bombs in random spots around it
-Change the Overlord armor to require the Corrupted Essence the Overlord should drop, along with Nano Bots that synapse mobs should drop, remove Overlord armor as drops from the Overlord Core
 Finish the other two forms of the Overlord
 Add some packet stuff for doomsdays, this will be for things like applying Doomsday effect stuff client-side (particles, overlays)
 I also want to add something that shows how much your Doom is incrementing/decrementing, i.e. if you regen one doom, it shows a +1 next to it for a second
 If there are multiple changes done quickly, they'll override the previous (it'll be a static class/variable)
 Add armor models for the higher tiered armors
-Add the Overlord armor model
 Create particles and add mob sounds
-Add the new biome sets, these shouldn't take very much to do, just new blocks and a few worldgen things
-Add new specific mobs for some of the more "special" biome sets, change some mobs to have variants for different biomes and such
-New mobs like the Parasmite, the Nuclea, and the Rasmas
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Change the Spike generation to get a list while iterating through y levels and add onto that list, ensuring not to add duplicates, then fill in the entire
 list with the spike block in order to avoid setting the same block multiple levels
