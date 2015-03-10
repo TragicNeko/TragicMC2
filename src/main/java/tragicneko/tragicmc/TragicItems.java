@@ -23,6 +23,7 @@ import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
 import tragicneko.tragicmc.items.ItemBloodSacrifice;
 import tragicneko.tragicmc.items.ItemChallenge;
 import tragicneko.tragicmc.items.ItemCooldownDefuse;
+import tragicneko.tragicmc.items.ItemCorruptedEgg;
 import tragicneko.tragicmc.items.ItemCryingObsidianOrb;
 import tragicneko.tragicmc.items.ItemDimensionalKey;
 import tragicneko.tragicmc.items.ItemDoomUpgrade;
@@ -169,6 +170,7 @@ public class TragicItems {
 	public static Item CelestialDiamond;
 	public static Item CorruptedEssence;
 	public static Item CorruptedEgg; //random spawn egg item
+	public static Item NanoBots;
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
 
@@ -556,12 +558,15 @@ public class TragicItems {
 		CorruptedEye = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEye").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEye"));
 		GameRegistry.registerItem(CorruptedEye, "corruptedEye");
 		
-		CorruptedEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc.CorruptedEssence"));
+		CorruptedEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEssence"));
 		GameRegistry.registerItem(CorruptedEssence, "corruptedEssence");
 		
-		CorruptedEgg = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEgg").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEgg"));
+		CorruptedEgg = (new ItemCorruptedEgg());
 		GameRegistry.registerItem(CorruptedEgg, "corruptedEgg"); //TODO add biome-based random spawn egg class, for now it is treated as a generic item that does nothing
 
+		NanoBots = (new ItemGeneric().setUnlocalizedName("tragicmc.nanoBots").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NanoBots"));
+		GameRegistry.registerItem(NanoBots, "nanoBots");
+		
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
 		GameRegistry.registerItem(IceCream, "iceCream");

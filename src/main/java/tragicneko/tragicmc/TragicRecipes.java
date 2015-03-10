@@ -70,27 +70,33 @@ public class TragicRecipes {
 				);
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordHelm, 1), 
-				" x ",
+				"yxy",
 				"x x",
-				'x', TragicItems.CorruptedEssence
+				'x', TragicItems.CorruptedEssence,
+				'y', TragicItems.NanoBots
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordPlate, 1), 
 				"x x",
-				"xxx",
-				'x', TragicItems.CorruptedEssence
+				"yxy",
+				"xyx",
+				'x', TragicItems.CorruptedEssence,
+				'y', TragicItems.NanoBots
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordLegs, 1), 
-				"xxx",
+				"xyx",
+				"yxy",
 				"x x",
-				'x', TragicItems.CorruptedEssence
+				'x', TragicItems.CorruptedEssence,
+				'y', TragicItems.NanoBots
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordBoots, 1),
-				"x x",
-				"x x",
-				'x', TragicItems.CorruptedEssence
+				"xyx",
+				"yxy",
+				'x', TragicItems.CorruptedEssence,
+				'y', TragicItems.NanoBots
 				);
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEssence, 3),
@@ -101,12 +107,21 @@ public class TragicRecipes {
 				'y', TragicItems.CorruptedEye
 				);
 		
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEgg, 3),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEgg, 9),
 				" x ",
 				"xyx",
 				" x ",
 				'x', TragicItems.CorruptedEssence,
 				'y', Items.egg
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SynapseCore, 1),
+				"zxz",
+				"xyx",
+				"zxz",
+				'y', TragicItems.SynapseCrystal,
+				'z', Blocks.iron_block,
+				'x', TragicItems.NanoBots
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Scythe, 1), 
@@ -268,15 +283,15 @@ public class TragicRecipes {
 				'y', TragicItems.SynapseCrystal,
 				'z', Blocks.redstone_block
 				);
-		/*
+		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 17), 
 			"xyx",
 			"yzy",
 			"xyx",
 			'x', TragicItems.LivingClay,
-			'y', TragicItems.OverlordEye,
+			'y', TragicItems.CorruptedEye,
 			'z', Blocks.redstone_block
-		); */
+			); 
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
 				"xxx",
@@ -1473,6 +1488,13 @@ public class TragicRecipes {
 			"xx",
 			'x', TragicBlocks.ErodedStone
 		);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CelledBlock, 6),
+				"xxx",
+				"xxx",
+				"xxx",
+				'x', TragicItems.NanoBots
+			);
 
 		//Cobblestone recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 1),
