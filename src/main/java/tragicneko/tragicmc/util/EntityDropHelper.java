@@ -38,9 +38,13 @@ import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
+import tragicneko.tragicmc.entity.mob.EntityHarvester;
+import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
+import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
@@ -147,6 +151,18 @@ public class EntityDropHelper {
 		
 		addToDropList(EntityPsygote.class, new EntityDrop[][] {{new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, Items.ender_pearl)},
 			{new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(25, Items.ender_eye), new EntityDrop(5, TragicItems.DimensionalKey)}});
+		
+		addToDropList(EntityNanoSwarm.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NanoBots)},
+			{new EntityDrop(25, TragicItems.NanoBots)}});
+		
+		addToDropList(EntityHunter.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NanoBots)},
+			{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(5, Items.iron_ingot)}});
+		
+		addToDropList(EntityHarvester.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(5, TragicItems.SynapseCrystal), new EntityDrop(10, Items.iron_ingot), new EntityDrop(5, Items.diamond)},
+			{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(5, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink), new EntityDrop(5, Items.diamond)}});
+		
+		addToDropList(EntityLockbot.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(10, TragicItems.GravityOrb)},
+			{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(5, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.GravityOrb)}});
 		
 		
 		//Mini-Boss drops
