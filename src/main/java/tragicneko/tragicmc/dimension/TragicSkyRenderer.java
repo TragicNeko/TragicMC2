@@ -57,10 +57,10 @@ public class TragicSkyRenderer extends IRenderHandler {
 
             tessellator.startDrawingQuads();
             tessellator.setColorOpaque_I(0x444444);
-            tessellator.addVertexWithUV(-100.0D, -100.0D, -100.0D, 0.0D, 0.0D);
-            tessellator.addVertexWithUV(-100.0D, -100.0D, 100.0D, 0.0D, 64.0D);
-            tessellator.addVertexWithUV(100.0D, -100.0D, 100.0D, 64.0D, 64.0D);
-            tessellator.addVertexWithUV(100.0D, -100.0D, -100.0D, 64.0D, 0.0D);
+            tessellator.addVertexWithUV(-64.0D, -64.0D, -64.0D, 0.0D, 0.0D);
+            tessellator.addVertexWithUV(-64.0D, -64.0D, 64.0D, 0.0D, 64.0D);
+            tessellator.addVertexWithUV(64.0D, -64.0D, 64.0D, 64.0D, 64.0D);
+            tessellator.addVertexWithUV(64.0D, -64.0D, -64.0D, 64.0D, 0.0D);
             tessellator.draw();
             GL11.glPopMatrix();
         }

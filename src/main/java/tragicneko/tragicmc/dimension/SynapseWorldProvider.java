@@ -6,7 +6,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.client.IRenderHandler;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicConfig;
 import cpw.mods.fml.relauncher.Side;
@@ -14,13 +13,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SynapseWorldProvider extends WorldProvider
 {	
-	private IRenderHandler skyRenderer = new SynapseSkyRenderer();
-
 	public SynapseWorldProvider()
 	{
 		this.dimensionId = TragicConfig.synapseID;
 		this.hasNoSky = true;
-		this.setSkyRenderer(this.skyRenderer);
+		this.setSkyRenderer(new SynapseSkyRenderer());
 	}
 
 	@Override
