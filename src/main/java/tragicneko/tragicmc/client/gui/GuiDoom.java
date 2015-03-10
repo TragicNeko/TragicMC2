@@ -33,6 +33,7 @@ public class GuiDoom extends Gui
 	private Minecraft mc;
 	private int buffer;
 	private int width;
+	private int prevDoom;
 
 	private FontRenderer fontRenderer;
 
@@ -100,7 +101,7 @@ public class GuiDoom extends Gui
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
 
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
-
+			prevDoom = props.getCurrentDoom();
 			String s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();
 			yPos += 6;
 			Color color = new Color(0x96, 0x30, 0x30);

@@ -535,7 +535,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityVoxStellarum.class, "TragicMC.VoxStellarum", id++, 0xFDC169, 0xFD3C69, EnumEggType.MINIBOSS);
 		}
 
-
 		if (TragicConfig.allowAegar)
 		{
 			EntityRegistry.registerModEntity(EntityAegar.class, "Aegar", listid++, TragicMC.getInstance(), 80, 1, true);
