@@ -377,6 +377,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (this.reflectionBuffer > 0) this.reflectionBuffer--;
 		if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 		if (this.getLeapTicks() > 0) this.setLeapTicks(this.getLeapTicks() - 1);
+		if (this.hasLeaped && !this.onGround) this.motionY = -1D; 
 
 		if (this.getLeapTicks() > 0 && this.getLeapTicks() <= 20)
 		{
@@ -464,6 +465,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 					if (this.isCollidedHorizontally && f >= 2.0F)
 					{
+						if (f > 10.0F) f = 10.0F;
 						this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (f / 2) * rand.nextFloat() + (f / 2), this.getMobGriefing());
 						this.setChargeTicks(0);
 					}
