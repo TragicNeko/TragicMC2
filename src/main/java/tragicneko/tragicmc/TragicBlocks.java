@@ -7,12 +7,10 @@ import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -55,6 +53,7 @@ import tragicneko.tragicmc.blocks.BlockStarCrystal;
 import tragicneko.tragicmc.blocks.BlockStorage;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
 import tragicneko.tragicmc.blocks.BlockSummon;
+import tragicneko.tragicmc.blocks.BlockSynapseCore;
 import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
@@ -354,7 +353,7 @@ public class TragicBlocks {
 		CelledLamp = (new BlockCelledLamp().setBlockName("tragicmc.celledLamp"));
 		GameRegistry.registerBlock(CelledLamp, ItemBlockCelledLamp.class, "celledLamp");
 
-		SynapseCore = (new BlockGeneric(Material.iron, "pickaxe", 0).setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
+		SynapseCore = (new BlockSynapseCore().setBlockName("tragicmc.synapseCore").setBlockTextureName("tragicmc:SynapseCore").setHardness(20.0F).setResistance(45.0F).setStepSound(Block.soundTypeMetal));
 		GameRegistry.registerBlock(SynapseCore, ItemBlock.class, "synapseCore");
 
 		OverlordBarrier = (new BlockOverlordBarrier());

@@ -91,7 +91,6 @@ public class BlockTimeDisruptor extends BlockContainer {
 			world.notifyBlockChange(x + 1, y - 1, z, air);
 			world.notifyBlockChange(x, y - 1, z - 1, air);
 			world.notifyBlockChange(x, y - 1, z + 1, air);
-
 		}
 	}
 }
