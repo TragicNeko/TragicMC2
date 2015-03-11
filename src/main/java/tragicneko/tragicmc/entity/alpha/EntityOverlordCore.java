@@ -228,7 +228,7 @@ public class EntityOverlordCore extends TragicBoss {
 			double x;
 			double y;
 			double z;
-			
+
 			int t = this.getTransformationTicks();
 
 			if (t > 0)
@@ -265,7 +265,7 @@ public class EntityOverlordCore extends TragicBoss {
 							this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
 						}
 					}
-					
+
 					if (t <= 10)
 					{
 						for (int i = 0; i < 24; i++)
@@ -279,7 +279,7 @@ public class EntityOverlordCore extends TragicBoss {
 							this.worldObj.spawnParticle("reddust", x, y, z, rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 						}
 					}
-					
+
 					if (t > 55)
 					{
 						for (int i = 0; i < 4; i++)
@@ -465,14 +465,25 @@ public class EntityOverlordCore extends TragicBoss {
 		float f8 = 0.06F;
 		this.moveFlying(0.0F, -1.0F, f8 * (f5 * f7 + (1.0F - f7)));
 
+		double m = this.motionX;
+		double m2 = this.motionY;
+		double m3 = this.motionZ;
+
 		if (this.slowed)
 		{
-			this.moveEntity(this.motionX * 0.900000011920929D, this.motionY * 0.900000011920929D, this.motionZ * 0.900000011920929D);
+			m *= 0.800000011920929D;
+			m2 *= 0.800000011920929D;
+			m3 *= 0.800000011920929D;
 		}
-		else
+		
+		if (this.getVulnerableTicks() > 0)
 		{
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
+			m *= 0.655D;
+			m2 *= 0.655D;
+			m3 *= 0.655D;
 		}
+
+		this.moveEntity(m, m2, m3);
 
 		Vec3 vec31 = Vec3.createVectorHelper(this.motionX, this.motionY, this.motionZ).normalize();
 		float f9 = (float)(vec31.dotProduct(vec32) + 1.0D) / 2.0F;
@@ -552,7 +563,7 @@ public class EntityOverlordCore extends TragicBoss {
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
-		
+
 		if (this.getHealth() <= this.getMaxHealth() / 4 && this.ticksExisted % 10 == 0 && rand.nextInt(16) == 0 && this.getVulnerableTicks() > 0)
 		{
 			this.createMortors();
@@ -650,7 +661,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 	private void createMortors() {
 		if (this.target == null || this.getHealth() <= 0) return;
-		
+
 		double d0 = this.target.posX - this.posX;
 		double d1 = rand.nextInt(4);
 		double d2 = this.target.posZ - this.posZ;
@@ -772,14 +783,14 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		this.setTransformationTicks(200);
 	}
-	
+
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		this.setStartTransform();
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	@Override
 	public void addPotionEffect(PotionEffect pe) {}
 }
