@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.alpha;
 
 import static tragicneko.tragicmc.TragicConfig.overlordCoreStats;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
+import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;
 
@@ -471,12 +473,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (this.slowed)
 		{
-			m *= 0.800000011920929D;
-			m2 *= 0.800000011920929D;
-			m3 *= 0.800000011920929D;
+			m *= 0.900000011920929D;
+			m2 *= 0.900000011920929D;
+			m3 *= 0.900000011920929D;
 		}
 		
-		if (this.getVulnerableTicks() > 0)
+		if (this.getVulnerableTicks() > 0 && !this.slowed)
 		{
 			m *= 0.655D;
 			m2 *= 0.655D;
@@ -500,7 +502,7 @@ public class EntityOverlordCore extends TragicBoss {
 			this.motionX = this.motionZ = this.motionY = 0.0F;
 
 			if (this.target != null && this.getHoverTicks() > 60 && this.getHoverTicks() % 10 == 0) this.createMortors();
-			if (this.ticksExisted % 5 == 0 && this.getHealth() < this.getMaxHealth()) this.healByFactorRanged(5.0F, 5.0F, 30.0F);
+			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.healByFactorRanged(5.0F, 5.0F, 30.0F);
 
 			if (this.getHoverTicks() == 0) this.hoverBuffer = 200;
 			this.aggregate = 0;
@@ -773,6 +775,15 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
+		ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
+		for (int[] coords : list)
+		{
+			if (replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+			{
+				this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CelledBlock, 0, 2);
+			}
+		}
+		
 		super.onDeath(par1DamageSource);
 
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 17), 0.4F);

@@ -90,7 +90,7 @@ public class EntityDimensionalAnomaly extends Entity {
 
 		if (TragicConfig.allowDivinity && this.ticksExisted % 5 == 0)
 		{
-			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox);
+			List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(1.0, 1.0, 1.0));
 			for (EntityLivingBase e : list)
 			{
 				if (e.getCreatureAttribute() != TragicEntities.Synapse || e instanceof EntityPlayer)
