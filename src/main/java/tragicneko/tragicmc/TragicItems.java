@@ -562,7 +562,7 @@ public class TragicItems {
 		GameRegistry.registerItem(CorruptedEssence, "corruptedEssence");
 		
 		CorruptedEgg = (new ItemCorruptedEgg());
-		GameRegistry.registerItem(CorruptedEgg, "corruptedEgg"); //TODO add biome-based random spawn egg class, for now it is treated as a generic item that does nothing
+		GameRegistry.registerItem(CorruptedEgg, "corruptedEgg");
 
 		NanoBots = (new ItemGeneric().setUnlocalizedName("tragicmc.nanoBots").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NanoBots"));
 		GameRegistry.registerItem(NanoBots, "nanoBots");
