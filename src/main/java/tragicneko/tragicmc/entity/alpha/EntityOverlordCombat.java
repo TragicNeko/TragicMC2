@@ -238,10 +238,26 @@ public class EntityOverlordCombat extends TragicBoss {
 	{
 		return this.dataWatcher.getWatchableObjectInt(22);
 	}
+	
+	private void setTransformationTicks(int i)
+	{
+		this.dataWatcher.updateObject(23, i);
+	}
+	
+	public int getTransformationTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(23);
+	}
+	
+	public EntityOverlordCombat setTransforming()
+	{
+		this.setTransformationTicks(120);
+		return this;
+	}
 
 	private boolean canUseAbility()
 	{
-		return this.getUnstableTicks() == 0 && !this.hasLeaped && this.getLeapTicks() == 0 && this.getChargeTicks() == 0 && this.getGrappleTicks() == 0 && this.getReflectionTicks() == 0;
+		return this.getUnstableTicks() == 0 && !this.hasLeaped && this.getLeapTicks() == 0 && this.getChargeTicks() == 0 && this.getGrappleTicks() == 0 && this.getReflectionTicks() == 0 && this.getTransformationTicks() == 0;
 	}
 
 	@Override
@@ -253,10 +269,9 @@ public class EntityOverlordCombat extends TragicBoss {
 			this.motionY = -1D;
 		}
 
-		if (this.getReflectionTicks() > 0)
+		if (this.getReflectionTicks() > 0 || this.getTransformationTicks() > 0)
 		{
-			this.motionX = this.motionZ = 0D;
-			this.motionY = 0D;
+			this.motionX = this.motionZ = this.motionY = 0D;
 		}
 
 		if (this.getUnstableTicks() > 0)
@@ -377,6 +392,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (this.reflectionBuffer > 0) this.reflectionBuffer--;
 		if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 		if (this.getLeapTicks() > 0) this.setLeapTicks(this.getLeapTicks() - 1);
+		if (this.getTransformationTicks() > 0) this.setTransformationTicks(this.getTransformationTicks() - 1);
 		if (this.hasLeaped && !this.onGround) this.motionY = -1D; 
 
 		if (this.getLeapTicks() > 0 && this.getLeapTicks() <= 20)
@@ -585,7 +601,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
-		//if (this.getTransformationTicks() > 0) return false;
+		if (this.getTransformationTicks() > 0) return false;
 
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
@@ -662,7 +678,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		tag.setInteger("grappleTicks", this.getGrappleTicks());
 		tag.setInteger("reflectionTicks", this.getReflectionTicks());
 		tag.setInteger("reflectionBuffer", this.reflectionBuffer);
-		//tag.setInteger("transformationTicks", this.getTransformationTicks());
+		tag.setInteger("transformationTicks", this.getTransformationTicks());
 	}
 
 	@Override
@@ -679,7 +695,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (tag.hasKey("grappleTicks")) this.setGrappleTicks(tag.getInteger("grappleTicks"));
 		if (tag.hasKey("reflectionTicks")) this.setReflectionTicks(tag.getInteger("reflectionTicks"));
 		if (tag.hasKey("reflectionBuffer")) this.reflectionBuffer = tag.getInteger("reflectionBuffer");
-		//if (tag.hasKey("transformationTicks")) this.setTransformationTicks(tag.getInteger("transformationTicks"));
+		if (tag.hasKey("transformationTicks")) this.setTransformationTicks(tag.getInteger("transformationTicks"));
 	}
 
 	@Override
