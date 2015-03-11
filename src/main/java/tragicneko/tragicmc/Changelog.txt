@@ -3440,6 +3440,12 @@ doesn't stay without using an update event
 Modified Lock constructor some
 Added transformation ticks to the Combat form, going to set up some particle effects for that but I really need to start on all of the new entity models
 Added some missing attribute modifiers from the config, this was just a derp
+Increased range in which an anomaly can give it's Divinity effect, since the Overlord instance requires you to do this fairly quickly to attack it's a
+bit annoying in it's current state to get Divinity during the fight since you need to stand right on it to get the effect
+Decreased rate in which the Core form heals, fixed bug that made it almost not move if moving through terrain and vulnerable at the same time (resulting
+in an easy kill)
+Added a celled block platform that generates when the Core form dies, to make sure none of the drops fall into the void (if it's killed at a low or high
+spot it may not generate the platform)
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
