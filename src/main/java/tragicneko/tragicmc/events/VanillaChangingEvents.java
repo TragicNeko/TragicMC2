@@ -1,7 +1,7 @@
 package tragicneko.tragicmc.events;
 
-import static tragicneko.tragicmc.TragicMC.rand;
 import static tragicneko.tragicmc.TragicConfig.modifierAmts;
+import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.util.List;
 import java.util.UUID;
@@ -44,8 +44,9 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -172,7 +173,7 @@ public class VanillaChangingEvents {
 	{
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD && !event.entity.worldObj.isRemote)
 		{
-			if (TragicConfig.allowVanillaMobBuffs)
+			if (TragicConfig.allowVanillaMobBuffs && event.entity.ticksExisted == 0)
 			{
 				if (event.entity instanceof EntityGhast)
 				{
@@ -354,7 +355,7 @@ public class VanillaChangingEvents {
 	public void onEntityAttack(LivingAttackEvent event)
 	{		
 		if (event.entityLiving.worldObj.isRemote) return;
-
+		
 		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
 		{
 			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
