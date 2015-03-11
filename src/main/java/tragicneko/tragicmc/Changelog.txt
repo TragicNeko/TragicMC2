@@ -3438,6 +3438,8 @@ Fixed sky renderers for the Dimensions, this improved memory use in the Synapse 
 Changed Lock entity to apply slowness X intead of using an attribute modifier, it's less work and it makes sure that after the lock is gone that the effect
 doesn't stay without using an update event
 Modified Lock constructor some
+Added transformation ticks to the Combat form, going to set up some particle effects for that but I really need to start on all of the new entity models
+Added some missing attribute modifiers from the config, this was just a derp
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
