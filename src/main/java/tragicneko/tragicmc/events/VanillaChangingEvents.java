@@ -56,9 +56,9 @@ public class VanillaChangingEvents {
 
 	private static AttributeModifier ghastHealthBuff = new AttributeModifier(UUID.fromString("cb92285c-f0b5-44b5-b500-3ddd7e08ceae"), "ghastHealthBuff", modifierAmts[14], 0);
 	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("d72b0471-d23a-4a9a-a7f8-e2a54018a4ee"), "zombieSkeletonCreeperHealthBuff", modifierAmts[15], 0);
-	private static AttributeModifier endermanHealthBuff = new AttributeModifier(UUID.fromString("883e8a02-2f76-43d0-b7ee-de412b0c352d"), "endermanHealthBuff", 20.0, 0);
-	private static AttributeModifier spiderHealthBuff = new AttributeModifier(UUID.fromString("e4cec251-fce7-4cbb-9784-eba58a140c30"), "spiderHealthBuff", 8.0, 0);
-	private static AttributeModifier mobBlindnessDebuff = new AttributeModifier(UUID.fromString("6a73b2cb-c791-4b10-849c-6817ec3eab22"), "mobBlindnessFollowRangeDebuff", -16.0, 0);
+	private static AttributeModifier endermanHealthBuff = new AttributeModifier(UUID.fromString("883e8a02-2f76-43d0-b7ee-de412b0c352d"), "endermanHealthBuff", modifierAmts[16], 0);
+	private static AttributeModifier spiderHealthBuff = new AttributeModifier(UUID.fromString("e4cec251-fce7-4cbb-9784-eba58a140c30"), "spiderHealthBuff", modifierAmts[17], 0);
+	private static AttributeModifier mobBlindnessDebuff = new AttributeModifier(UUID.fromString("6a73b2cb-c791-4b10-849c-6817ec3eab22"), "mobBlindnessFollowRangeDebuff", modifierAmts[18], 0);
 
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
@@ -170,7 +170,7 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
 	{
-		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD)
+		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD && !event.entity.worldObj.isRemote)
 		{
 			if (TragicConfig.allowVanillaMobBuffs)
 			{
