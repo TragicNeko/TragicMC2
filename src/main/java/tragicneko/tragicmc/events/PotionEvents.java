@@ -50,6 +50,7 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.network.MessageFlight;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.DamageHelper;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -164,7 +165,7 @@ public class PotionEvents {
 			if (TragicConfig.allowHacked && entity.isPotionActive(TragicPotion.Hacked)) entity.removePotionEffect(TragicPotion.Hacked.id);
 		}
 
-		if (TragicConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption))
+		if (TragicConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption.id))
 		{
 			if (TragicConfig.allowCorruptionDamage)
 			{
@@ -184,19 +185,17 @@ public class PotionEvents {
 			if (entity.ticksExisted % 4 == 0)
 			{
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(4.0D, 4.0D, 4.0D));
-				EntityLivingBase target;
-				boolean flag = false;
+				boolean flag = list.isEmpty();
+				PotionEffect temp = entity.getActivePotionEffect(TragicPotion.Corruption);
 
-				for (int i = 0; i < list.size(); i++)
+				for (Entity target : list)
 				{
-					if (list.get(i) instanceof EntityLivingBase)
+					if (target instanceof EntityLivingBase)
 					{
-						target = (EntityLivingBase) list.get(i);
 						if (entity.getDistanceToEntity(target) <= 4.0D && entity.canEntityBeSeen(target))
 						{
 							flag = true;
-							PotionEffect temp = entity.getActivePotionEffect(TragicPotion.Corruption);
-							if (rand.nextBoolean() && target.isPotionActive(TragicPotion.Corruption)) target.addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, temp.getDuration() / 2, temp.getAmplifier()));
+							if (rand.nextBoolean() && !((EntityLivingBase) target).isPotionActive(TragicPotion.Corruption.id)) ((EntityLivingBase) target).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, temp.getDuration() / 2, temp.getAmplifier()));
 						}
 					}
 				}
@@ -216,7 +215,7 @@ public class PotionEvents {
 						}
 					}
 
-					tag = CommonProxy.getEntityData("" + entity.getUniqueID());
+					tag = CommonProxy.getEntityData(entity.getUniqueID());
 					if (tag == null) tag = new NBTTagCompound();
 
 					if (!flag2)
@@ -229,20 +228,20 @@ public class PotionEvents {
 							tag.setInteger("recoveryTicks", 0);	
 						}
 
-						CommonProxy.storeEntityData("" + entity.getUniqueID(), tag);
+						CommonProxy.storeEntityData(entity.getUniqueID(), tag);
 					}
 					else
 					{
 						tag.setInteger("recoveryTicks", 0);
-						CommonProxy.storeEntityData("" + entity.getUniqueID(), tag);
+						CommonProxy.storeEntityData(entity.getUniqueID(), tag);
 					}
 				}
 				else if (flag && !(entity instanceof TragicMob))
 				{
-					tag = CommonProxy.getEntityData("" + entity.getUniqueID());
+					tag = CommonProxy.getEntityData(entity.getUniqueID());
 					if (tag == null) tag = new NBTTagCompound();
 					tag.setInteger("recoveryTicks", 0);
-					CommonProxy.storeEntityData("" + entity.getUniqueID(), tag);
+					CommonProxy.storeEntityData(entity.getUniqueID(), tag);
 				}
 			}
 		}
@@ -487,7 +486,7 @@ public class PotionEvents {
 			}
 		}
 		
-		if (!TragicConfig.allowAnimalGolemCorruption && TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption) && (event.entityLiving instanceof EntityGolem || event.entityLiving instanceof EntityAnimal))
+		if (!TragicConfig.allowAnimalGolemCorruption && TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption.id) && (event.entityLiving instanceof EntityGolem || event.entityLiving instanceof EntityAnimal))
 		{
 			event.entityLiving.removePotionEffect(TragicPotion.Corruption.id);
 		}
@@ -626,9 +625,9 @@ public class PotionEvents {
 		}
 		else if (TragicConfig.allowCorruption)
 		{
-			if (CommonProxy.extendedEntityData.containsKey(event.entityLiving.getCommandSenderName()))
+			if (CommonProxy.extendedEntityData.containsKey(event.entityLiving.getUniqueID()))
 			{
-				CommonProxy.extendedEntityData.remove(event.entityLiving.getCommandSenderName());
+				CommonProxy.extendedEntityData.remove(event.entityLiving.getUniqueID());
 			}
 		}
 	}
@@ -784,7 +783,7 @@ public class PotionEvents {
 	{
 		if (event.entityLiving.worldObj.isRemote || !TragicConfig.allowCorruption) return;
 
-		if (!event.entityLiving.isPotionActive(TragicPotion.Corruption))
+		if (!event.entityLiving.isPotionActive(TragicPotion.Corruption.id))
 		{
 			if (event.source.getEntity() instanceof EntityLivingBase)
 			{
