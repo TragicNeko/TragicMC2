@@ -5,6 +5,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 
 public class BiomeGenDecayingWasteland extends TragicBiome {
@@ -13,6 +14,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		super(par1);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
 		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, 4, 6));
+		if (TragicConfig.allowDeathReaper) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityDeathReaper.class, TragicConfig.deathReaperSC, 0, 1));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 0.6F;
