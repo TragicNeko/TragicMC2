@@ -89,7 +89,7 @@ public class EntityPumpkinhead extends TragicMob {
 		this.dataWatcher.updateObject(17, coords[0]);
 		this.dataWatcher.updateObject(18, coords[1]);
 		this.dataWatcher.updateObject(19, coords[2]);
-		this.setHomeArea(coords[0], coords[1], coords[2], 32);
+		this.setHomeArea(coords[0], coords[1], coords[2], 12);
 	}
 
 	public boolean hasHomePumpkin()
@@ -170,9 +170,8 @@ public class EntityPumpkinhead extends TragicMob {
 							0.0, rand.nextDouble() * 0.175D, 0.0);
 				}
 			}
+			return;
 		}
-
-		if (this.worldObj.isRemote) return;	
 
 		if (!this.hasHomePumpkin() && this.ticksExisted % 120 == 0)
 		{
