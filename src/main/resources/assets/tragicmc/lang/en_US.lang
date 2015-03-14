@@ -326,6 +326,10 @@ item.tragicmc.overlordPlate.name=Overlord Plate
 item.tragicmc.overlordLegs.name=Overlord Legs
 item.tragicmc.overlordBoots.name=Overlord Boots
 item.tragicmc.sentinel.name=The Sentinel
+item.tragicmc.corruptedEye.name=Corrupted Eye
+item.tragicmc.corruptedEssence.name=Corrupted Essence
+item.tragicmc.nanoBots.name=Nano Bots
+item.tragicmc.corruptedEgg.name=Corrupted Egg
 
 item.tragicmc.password.name=The Password
 
@@ -823,8 +827,10 @@ entity.TragicMC.Pox.name=Pox
 entity.TragicMC.Enyvil.name=Enyvil
 entity.TragicMC.Claymation.name=Claymation
 entity.TragicMC.Lockbot.name=Lockbot
-entity.TragicMC.Locobot.name=Locobot
+entity.TragicMC.Chainbot.name=Chainbot
 entity.TragicMC.NanoSwarm.name=Nano Swarm
+entity.TragicMC.Harvester.name=Harvester
+entity.TragicMC.Hunter.name=Hunter
 entity.TragicMC.Aegar.name=Aegar
 entity.TragicMC.CircuitGolem.name=Circuit Golem
 entity.TragicMC.OverlordCore.name=The Overlord (Core)
