@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
@@ -22,7 +23,7 @@ public class EntityHarvester extends TragicMob {
 
 	public EntityHarvester(World par1World) {
 		super(par1World);
-		this.setSize(0.625F, 0.725F);
+		this.setSize(0.925F, 1.525F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
@@ -63,30 +64,84 @@ public class EntityHarvester extends TragicMob {
 	}
 
 	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0)); //should release
+		this.dataWatcher.addObject(17, Integer.valueOf(0)); //direction
+	}
+
+	private void setReleaseTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	public int getReleaseTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
+
+	private void setDirection(int i)
+	{
+		this.dataWatcher.updateObject(17, i);
+	}
+
+	public int getDirection()
+	{
+		return this.dataWatcher.getWatchableObjectInt(17);
+	}
+
+	@Override
 	public void onLivingUpdate()
-	{				
-		super.onLivingUpdate();
+	{			
 		this.motionY = 0D;
-		if (this.worldObj.isRemote) return;
+		this.rotationPitch = this.rotationYaw = 0;
+		super.onLivingUpdate();
+
+		if (this.worldObj.isRemote)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				this.worldObj.spawnParticle("mobSpellAmbient",
+						this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
+						this.posY + (rand.nextDouble() * 0.115D) + 0.545D,
+						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
+						0.0, rand.nextDouble() * 0.5556, 0.0);
+			}
+			return;
+		}
 
 		if (this.isCollidedHorizontally || this.motionX == 0D && this.motionZ == 0D || this.directionTicks == 0)
 		{
-			if (rand.nextBoolean())
-			{
-				this.motionX = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() * (rand.nextBoolean() ? 1 : -1);
-				this.motionZ = 0D;
-			}
-			else
-			{
-				this.motionZ = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() * (rand.nextBoolean() ? 1 : -1);
-				this.motionX = 0D;
-			}
-			this.directionTicks = 200 + rand.nextInt(120);
-			//TragicMC.logInfo("Direction changed.");
+			this.directionTicks = 200 + rand.nextInt(80);
+			this.setDirection(rand.nextInt(4));
 		}
-		//this.moveEntity(this.motionX, this.motionY, this.motionZ);
 
-		if (this.directionTicks > 0) this.directionTicks--;
+		if (this.directionTicks > 0)
+		{
+			this.directionTicks--;
+			double d0 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
+			
+			switch(this.getDirection())
+			{
+			case 0:
+				this.motionX = -d0;
+				this.motionZ = 0;
+				break;
+			case 1:
+				this.motionX = d0;
+				this.motionZ = 0;
+				break;
+			case 2:
+				this.motionX = 0;
+				this.motionZ = d0;
+				break;
+			case 3:
+				this.motionX = 0;
+				this.motionZ = -d0;
+				break;
+			}
+		}
 
 		if (this.ticksExisted % 20 == 0)
 		{
@@ -102,21 +157,35 @@ public class EntityHarvester extends TragicMob {
 					{
 						((EntityLivingBase) e).addPotionEffect(new PotionEffect(Potion.damageBoost.id, 120, 0));
 					}
-					else
+					else if (!(e instanceof EntityPlayer))
 					{
 						((EntityLivingBase) e).addPotionEffect(new PotionEffect(Potion.weakness.id, 120, 0));
 						flag = true;
 					}
+					else
+					{
+						EntityPlayer player = (EntityPlayer) e;
+						if (!player.capabilities.isCreativeMode)
+						{
+							((EntityLivingBase) e).addPotionEffect(new PotionEffect(Potion.weakness.id, 120, 0));
+							flag = true;
+						}
+					}
 				}
 			}
 
-			if (flag && rand.nextInt(32) == 0)
-			{
-				EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
-				swarm.setPosition(this.posX, this.posY, this.posZ);
-				this.worldObj.spawnEntityInWorld(swarm);
-			}
+			if (flag && rand.nextInt(32) == 0 && this.getReleaseTicks() == 0) this.setReleaseTicks(20);
 		}
+
+		if (this.getReleaseTicks() > 0) this.setReleaseTicks(this.getReleaseTicks() - 1);
+		if (this.getReleaseTicks() == 10)
+		{
+			EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
+			swarm.setPosition(this.posX, this.posY, this.posZ);
+			this.worldObj.spawnEntityInWorld(swarm);
+		}
+		
+		TragicMC.logInfo("Release ticks: " + this.getReleaseTicks());
 	}
 
 	@Override
