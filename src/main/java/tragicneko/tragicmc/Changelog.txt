@@ -3446,6 +3446,8 @@ Decreased rate in which the Core form heals, fixed bug that made it almost not m
 in an easy kill)
 Added a celled block platform that generates when the Core form dies, to make sure none of the drops fall into the void (if it's killed at a low or high
 spot it may not generate the platform)
+Fixed small bugs with Corrupted radiation (corruption affecting entities near a corrupted one)
+Converted Corruption handler to use UUIDs instead of names
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
