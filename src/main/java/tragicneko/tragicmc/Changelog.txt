@@ -3448,6 +3448,16 @@ Added a celled block platform that generates when the Core form dies, to make su
 spot it may not generate the platform)
 Fixed small bugs with Corrupted radiation (corruption affecting entities near a corrupted one)
 Converted Corruption handler to use UUIDs instead of names
+Added model for the Harvester, added directional rotation for when it moves/changes directions, added rotator animation, added small panel animation for
+when it spawns a nano swarm
+Removed Pirah from the Collision spawns, modified Stins to only spawn in Tainted biomes
+Added Skultar spawn to Decaying biomes
+Added Kragul to Ashen biome spawns
+Added particle effect to Harvester, improved it's motion
+Slight fix to Vox Stellarum rotation
+Reduced distance Pumpkinheads will wander from their home pumpkin (if they have one), this will reduce the chance of seeing random pumpkins underground with
+no Pumpkinhead near them
+Added localizations of new entity names and new items
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
