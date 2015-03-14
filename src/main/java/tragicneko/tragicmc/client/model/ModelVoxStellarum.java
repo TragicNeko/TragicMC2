@@ -316,7 +316,7 @@ public class ModelVoxStellarum extends ModelNorVox
 		}
 		else if (vox.getAttackTime() > 0)
 		{
-			this.head.rotateAngleY += 1.0F;
+			this.head.rotateAngleY -= 1.5F;
 		}
 	}
 
