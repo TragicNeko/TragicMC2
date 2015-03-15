@@ -17,9 +17,11 @@ import tragicneko.tragicmc.client.model.ModelAbomination;
 import tragicneko.tragicmc.client.model.ModelGragul;
 import tragicneko.tragicmc.client.model.ModelGreaterStin;
 import tragicneko.tragicmc.client.model.ModelHarvester;
+import tragicneko.tragicmc.client.model.ModelHunter;
 import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKragul;
+import tragicneko.tragicmc.client.model.ModelLockbot;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
 import tragicneko.tragicmc.client.model.ModelPlague;
@@ -36,6 +38,7 @@ import tragicneko.tragicmc.client.render.RenderDimensionalAnomaly;
 import tragicneko.tragicmc.client.render.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.RenderGuardianShield;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
+import tragicneko.tragicmc.client.render.RenderLock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.RenderTimeDisruption;
@@ -62,6 +65,7 @@ import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
+import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -87,8 +91,10 @@ import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
+import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
+import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
@@ -207,7 +213,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkCrystal.class, new RenderDarkCrystal());
 		RenderingRegistry.registerEntityRenderingHandler(EntityGuardianShield.class, new RenderGuardianShield());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDimensionalAnomaly.class, new RenderDimensionalAnomaly());
-		//RenderingRegistry.registerEntityRenderingHandler(EntityLock.class, new RenderLock());
+		RenderingRegistry.registerEntityRenderingHandler(EntityLock.class, new RenderLock());
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderJabba());
@@ -238,9 +244,9 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityPsygote.class, new RenderMob(new ModelPsygote(), 0.565F, "Psygote"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityNanoSwarm.class, new RenderMob(new ModelNanoSwarm(), 0.215F, "NanoSwarm", 1.545F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityAegar.class, new RenderAegar());
-		//RenderingRegistry.registerEntityRenderingHandler(EntityHunter.class, new RenderMob(new ModelHunter(), 0.565F, "Hunter"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityHunter.class, new RenderMob(new ModelHunter(), 0.565F, "Hunter"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHarvester.class, new RenderMob(new ModelHarvester(), 0.785F, "Harvester", 1.555F));
-		//RenderingRegistry.registerEntityRenderingHandler(EntityLockbot.class, new RenderMob(new ModelLockbot(), 0.335F, "Lockbot"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLockbot.class, new RenderMob(new ModelLockbot(), 0.335F, "Lockbot"));
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
