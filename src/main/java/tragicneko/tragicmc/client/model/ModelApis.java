@@ -189,13 +189,13 @@ public class ModelApis extends ModelBase
 
 			if (attack > 0)
 			{			
-				head.rotateAngleX = 0.235F * simplifyAngle(attack, 10.0F);
+				head.rotateAngleX = 0.235F * simplifyAngle(attack, 10.0F) - 0.235F;
 
-				rightArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) + 0.2115358F;
-				leftArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) + 0.2115358F;
+				rightArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) - 0.745F;
+				leftArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) - 0.745F;
 
-				rightArm.rotateAngleZ = -0.225F * simplifyAngle(attack, 10.0F) + 0.21115358F;
-				leftArm.rotateAngleZ = 0.225F * simplifyAngle(attack, 10.0F) + -0.21115358F;
+				rightArm.rotateAngleZ = -0.225F * simplifyAngle(attack, 10.0F) + 0.225F;
+				leftArm.rotateAngleZ = 0.225F * simplifyAngle(attack, 10.0F) + -0.225F;
 			}
 			else
 			{
