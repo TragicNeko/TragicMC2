@@ -121,7 +121,7 @@ public class ItemGenerator extends Item {
 
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Void pit generated with size of " + size));
 			break;
-		case 1:
+		case 3:
 			size = 5.0D * random.nextDouble() + 2.5D;
 			Block ablock;
 			list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord, Zcoord);
@@ -154,7 +154,7 @@ public class ItemGenerator extends Item {
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Sphere generated with size of " + size + " made of " + StatCollector.translateToLocal(s + ".name")));
 			}
 			break;
-		case 2:
+		case 4:
 			list = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
 
 			for (int i = 0; i < list.size(); i++)
@@ -168,7 +168,7 @@ public class ItemGenerator extends Item {
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area erased."));
 			}
 			break;
-		case 3:
+		case 5:
 			list = WorldHelper.getBlocksInSphericalRange(world, 6.5D, Xcoord, Ycoord, Zcoord);
 
 			for (int i = 0; i < list.size(); i++)
@@ -184,7 +184,7 @@ public class ItemGenerator extends Item {
 			if (!list.isEmpty()) player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spherical area of liquid removed."));
 
 			break;
-		case 4:
+		case 6:
 			WorldGenerator object;
 
 			switch (random.nextInt(14))
@@ -247,12 +247,10 @@ public class ItemGenerator extends Item {
 				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Tree generation failed."));
 			}
 			break;
-		case 5:
+		case 1:
 			size = random.nextDouble() + 1.5D;
-			Block spike = random.nextBoolean() ? TragicBlocks.BoneBlock : (random.nextBoolean() ? TragicBlocks.DarkCobblestone : TragicBlocks.DarkStone);
-			int blockMeta = spike == TragicBlocks.BoneBlock ? random.nextInt(2) : (spike == TragicBlocks.DarkStone ? 14 : (random.nextBoolean() ? 0 : 2));
-			spike = TragicBlocks.DarkStone;
-			blockMeta = 14;
+			Block spike = TragicBlocks.DarkStone;
+			int blockMeta = 14;
 			int spikeType = random.nextInt(6);
 			boolean flag = false;
 			boolean flag2 = false;
@@ -310,11 +308,11 @@ public class ItemGenerator extends Item {
 				for (int j = 0; j < list.size(); j++)
 				{
 					coords = list.get(j);
-					world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
+					world.setBlock(coords[0], coords[1], coords[2], spike, blockMeta, 2);
 				}
 			}
 			break;
-		case 6:
+		case 2:
 			size = 0.35D * random.nextDouble() + 0.75D;
 			int blockMeta2 = random.nextInt(16);
 			Block block;
