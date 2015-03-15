@@ -42,18 +42,18 @@ public class TragicBiomes {
 	
 	public static TragicBiome Synapse;
 	
-	public static Set decayingBiomes;
-	public static Set paintedBiomes;
-	public static Set ashenBiomes;
-	public static Set starlitBiomes;
-	public static Set taintedBiomes;
+	public static Set<BiomeGenBase> decayingBiomes;
+	public static Set<BiomeGenBase> paintedBiomes;
+	public static Set<BiomeGenBase> ashenBiomes;
+	public static Set<BiomeGenBase> starlitBiomes;
+	public static Set<BiomeGenBase> taintedBiomes;
 	
-	public static Set magmaBiomes;
-	public static Set frozenBiomes; //will be based off of the ice plains biome, frozen spikes will take from the ice spikes biome, but using my spike generator
-	public static Set jungleBiomes; //will be based off of the vanilla jungle biome, but altered some, mostly aesthetic-wise and worldgen wise to reduce lag
-	public static Set desertBiomes; //will be based off of the vanilla desert, etc.
-	public static Set darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
-	public static Set crystalBiomes; //will be a biome made of really tough, hard to mine blocks
+	public static Set<BiomeGenBase> scorchedBiomes;
+	public static Set<BiomeGenBase> frozenBiomes;
+	public static Set<BiomeGenBase> hallowedBiomes;
+	public static Set<BiomeGenBase> corrodedBiomes;
+	public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
+	public static Set<BiomeGenBase> crystalBiomes; //will be a biome made of really tough, hard to mine blocks
 
 	public static void load()
 	{
