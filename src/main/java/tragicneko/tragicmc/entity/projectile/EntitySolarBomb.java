@@ -23,7 +23,7 @@ public class EntitySolarBomb extends EntityProjectile {
 	@Override
 	public boolean canRenderOnFire()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
