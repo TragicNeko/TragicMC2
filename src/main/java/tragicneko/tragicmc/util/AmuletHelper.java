@@ -19,6 +19,10 @@ public class AmuletHelper {
 	
 	private static IAttribute[] attributes = new IAttribute[] {AmuletModifier.jumpHeight, AmuletModifier.luck, AmuletModifier.reach, AmuletModifier.resistance,
 		AmuletModifier.knockbackResistance, AmuletModifier.attackDamage, AmuletModifier.maxHealth, AmuletModifier.movementSpeed};
+	
+	public static UUID[] uuids = new UUID[] {UUID.fromString("8d325bc1-9b36-457f-a984-50cfed8331ed"), UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540"),
+		UUID.fromString("829ea197-31bf-4360-912e-93f6775fedc1"), UUID.fromString("f1695e8a-87f1-4491-bc02-90f3671d299e"), UUID.fromString("b41f1b8d-a0e7-42ee-acb4-a0f9c198626f"),
+		UUID.fromString("237ab9b5-459c-4dcb-bcb8-4e8068ce9135"), UUID.fromString("b06dedf7-fd45-442c-93b4-8fa70bc64d51"), UUID.fromString("1ab86156-baf5-4906-bb07-314a0e7faa59")};
 
 	/**
 	 * Gets the highest amulet level of the 3 integers passed in, if par3 is 0, only checks for the first two integers passed in
@@ -184,42 +188,42 @@ public class AmuletHelper {
 		if (attr == SharedMonsterAttributes.attackDamage)
 		{
 			d0 = rand.nextInt(20);
-			uuid = UUID.fromString("237ab9b5-459c-4dcb-bcb8-4e8068ce9135");
+			uuid = uuids[5];
 		}
 		else if (attr == SharedMonsterAttributes.knockbackResistance)
 		{
 			d0 = rand.nextInt(20) * 0.2;
-			uuid = UUID.fromString("b41f1b8d-a0e7-42ee-acb4-a0f9c198626f");
+			uuid = uuids[4];
 		}
 		else if (attr == SharedMonsterAttributes.maxHealth)
 		{
 			d0 = rand.nextInt(20);
-			uuid = UUID.fromString("b06dedf7-fd45-442c-93b4-8fa70bc64d51");
+			uuid = uuids[6];
 		}
 		else if (attr == SharedMonsterAttributes.movementSpeed)
 		{
 			d0 = rand.nextInt(20) * 0.02;
-			uuid = UUID.fromString("1ab86156-baf5-4906-bb07-314a0e7faa59");
+			uuid = uuids[7];
 		}
 		else if (attr == AmuletModifier.reach)
 		{
 			d0 = rand.nextInt(20) * 0.05;
-			uuid = UUID.fromString("829ea197-31bf-4360-912e-93f6775fedc1");
+			uuid = uuids[2];
 		}
 		else if (attr == AmuletModifier.jumpHeight)
 		{
 			d0 = rand.nextInt(10) * 0.25;
-			uuid = UUID.fromString("8d325bc1-9b36-457f-a984-50cfed8331ed");
+			uuid = uuids[0];
 		}
 		else if (attr == AmuletModifier.resistance)
 		{
 			d0 = rand.nextInt(10);
-			uuid = UUID.fromString("f1695e8a-87f1-4491-bc02-90f3671d299e");
+			uuid = uuids[3];
 		}
 		else if (attr == AmuletModifier.luck)
 		{
 			d0 = rand.nextInt(100) * 0.01;
-			uuid = UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540");
+			uuid = uuids[1];
 		}
 		
 		d0 = attr.clampValue(d0);

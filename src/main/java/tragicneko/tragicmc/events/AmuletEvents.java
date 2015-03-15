@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
@@ -34,8 +35,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
@@ -45,13 +46,15 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.AmuletHelper;
 import tragicneko.tragicmc.util.DamageHelper;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class AmuletEvents {
 
-	public static Set badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
+	public static Set<Potion> badPotions = Sets.newHashSet(new Potion[] {Potion.blindness, Potion.confusion, Potion.digSlowdown, Potion.harm, Potion.hunger, Potion.moveSlowdown,
 			Potion.poison, Potion.weakness, Potion.wither, TragicPotion.Corruption, TragicPotion.Cripple, TragicPotion.Disorientation, TragicPotion.Fear,
 			TragicPotion.Inhibit, TragicPotion.Malnourish, TragicPotion.Stun, TragicPotion.Submission, TragicPotion.Hacked, TragicPotion.LeadFoot});
 
@@ -97,7 +100,7 @@ public class AmuletEvents {
 
 		EntityPlayer player = (EntityPlayer) event.entity;
 		BaseAttributeMap map = player.getAttributeMap();
-		
+
 		map.registerAttribute(AmuletModifier.jumpHeight);
 		map.registerAttribute(AmuletModifier.reach);
 		map.registerAttribute(AmuletModifier.resistance);
@@ -146,11 +149,38 @@ public class AmuletEvents {
 			if (amu == null) return;
 			TragicMC.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
 			
-			if (mp.ticksExisted % 2 != 0) return;
+			BaseAttributeMap map = mp.getAttributeMap();
+			Multimap mm;
+			
+			IAttributeInstance ia;
+			for (Object o : map.getAllAttributes())
+			{
+				if (o instanceof IAttributeInstance)
+				{
+					ia = (IAttributeInstance) o;
+					for (int i = 0; i < AmuletHelper.uuids.length; i++)
+					{
+						ia.removeModifier(new AttributeModifier(AmuletHelper.uuids[i], ia.getAttribute().getAttributeUnlocalizedName(), 0, 0));
+					}
+				}
+			}
+			
+			for (int meow = 0; meow < 3; meow++)
+			{
+				ItemStack stack = amu.getActiveAmuletItemStack(meow);
+				if (stack != null)
+				{
+					mm = stack.getAttributeModifiers();
+					map.removeAttributeModifiers(mm);
+					map.applyAttributeModifiers(mm);
+				}
+			}
 
+			if (mp.ticksExisted % 2 != 0) return;
+			
 			int[] levels = new int[3];
 			ItemAmulet[] amulets = new ItemAmulet[3];
-			
+
 			int i;
 
 			for (i = 0; i < 3; i++)
