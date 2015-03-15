@@ -3458,6 +3458,15 @@ Slight fix to Vox Stellarum rotation
 Reduced distance Pumpkinheads will wander from their home pumpkin (if they have one), this will reduce the chance of seeing random pumpkins underground with
 no Pumpkinhead near them
 Added localizations of new entity names and new items
+Added model for the Hunter, added animations, it has no special animation other than it's normal living one
+Hunter can now attack mobs other than players
+Fixed Apis's attack/hurt animations, updated Apis texture to not be as flat looking
+Added model for Lockbot, using the same model scaled down for the lock, it has no animations as it doesn't move, it acts as a sentry
+Allow the lockbot to damage non-player entities that it is near
+Added textures for the Lockbot, Lock, Hunter and Harvester
+Fixed improper meta checking for generator items, fixed spike generator metadata
+Fixed bug with throwable entities not staying on the block they land on
+Added small particle effect when a Harvester releases a Nano Swarm
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
