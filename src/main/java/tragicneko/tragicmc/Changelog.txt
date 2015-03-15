@@ -3467,6 +3467,7 @@ Added textures for the Lockbot, Lock, Hunter and Harvester
 Fixed improper meta checking for generator items, fixed spike generator metadata
 Fixed bug with throwable entities not staying on the block they land on
 Added small particle effect when a Harvester releases a Nano Swarm
+Fixed amulet modifiers not being applied while in amulet inventory and not in hand, fixed bug with them never being removed after being applied
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3479,10 +3480,13 @@ hit by other Ranmas. It attacks by charging up and shooting itself at it's targe
 Ire - A small creature of pure light, it has low health and attacks with magic, it does more damage the more nearby Ire that it is "linked" to
 
 New biome sets:
-Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes
-Scorched biomes, Geysers, Steam vents, Lava pits, Jabba
-Hallowed biomes, Ire, Pure Light (Disappearing blocks)
-Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Ranmas
+Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
+Scorched biomes, Geysers, Steam vents, steep pits with lava at the bottom, Jabba
+Hallowed biomes, Ire, Fragile Light (Blocks that get destroyed when an entity gets near them), Pure Light, floating light orbs, Light strings, randomly
+generated strings of light in the air, like silly string
+Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Ranmas, toxic waste
+Dark Forest biomes, dark mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves
+Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees
 
 FOR THE OVERLORD
 When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
