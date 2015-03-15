@@ -7,8 +7,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityLock;
@@ -25,8 +23,7 @@ public class EntityLockbot extends TragicMob {
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
-		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, true));
-		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
 	}
@@ -68,6 +65,9 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public void onLivingUpdate()
 	{		
+		this.rotationYaw = this.rotationPitch = this.rotationYawHead = 0;
+		this.motionX *= 0.1D;
+		this.motionZ *= 0.1D;
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) return;
