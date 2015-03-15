@@ -63,7 +63,7 @@ public class EntityPitchBlack extends EntityThrowable {
 				this.entityDropItem(stack, 0.4F);
 			}
 			
-			if (mop != null) this.setDead();
+			this.setDead();
 		}
 	}
 	

@@ -47,7 +47,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 		{
 			if (mop.entityHit != null) 
 			{			
-				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 5.0F);
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5.0F);
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
 					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 200 + rand.nextInt(160)));
@@ -70,7 +70,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 			}
 			
-			if (mop != null) this.setDead();
+			this.setDead();
 		}
 	}
 

@@ -54,8 +54,12 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 10, 0));
 			}
 		}
-
-		this.inGround = true;
+		else
+		{
+			this.motionX = this.motionZ = this.motionY = 0D;
+			this.onGround = true;
+			this.inGround = true;
+		}
 	}
 
 	@Override

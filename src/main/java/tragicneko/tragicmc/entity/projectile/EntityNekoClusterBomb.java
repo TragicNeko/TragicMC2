@@ -38,7 +38,28 @@ public class EntityNekoClusterBomb extends EntityThrowable {
 		}
 		else 
 		{
-			this.inGround = true;
+			for (int l = 0; l < 15; l++)
+			{
+				double d0 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX; 
+				double d1 = MathHelper.getRandomIntegerInRange(rand, 0, 3) + this.posY;
+				double d2 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ; 
+
+				if (this.getThrower() != null && !this.worldObj.isRemote)
+				{
+					EntityNekoMiniBomb bomb = new EntityNekoMiniBomb(this.worldObj, this.getThrower());
+
+					bomb.setPosition(this.posX, this.posY, this.posZ);
+					bomb.motionX = (rand.nextDouble() - rand.nextDouble()) * 0.85;
+					bomb.motionY = (rand.nextDouble() - rand.nextDouble()) * 0.75;
+					bomb.motionZ = (rand.nextDouble() - rand.nextDouble()) * 0.85;
+					this.worldObj.spawnEntityInWorld(bomb);
+				}
+			}
+
+			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+
+			this.setDead();
 		}
 	}
 

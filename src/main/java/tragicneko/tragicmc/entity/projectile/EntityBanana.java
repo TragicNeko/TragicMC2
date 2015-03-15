@@ -37,12 +37,18 @@ public class EntityBanana extends EntityThrowable {
 		}
 		else
 		{
-			if (mop.entityHit != null && !inGround) 
+			if (mop.entityHit != null) 
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 			}
+			else
+			{
+				this.motionX = this.motionZ = this.motionY = 0D;
+				this.onGround = true;
+				this.inGround = true;
+			}
 			
-			if (mop != null) this.setDead();
+			this.setDead();
 		}
 	}
 

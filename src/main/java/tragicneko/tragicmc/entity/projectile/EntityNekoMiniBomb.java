@@ -35,6 +35,8 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 		}
 		else
 		{
+			this.motionX = this.motionZ = this.motionY = 0D;
+			this.onGround = true;
 			this.inGround = true;
 		}
 	}

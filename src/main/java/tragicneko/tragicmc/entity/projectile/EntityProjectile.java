@@ -106,7 +106,7 @@ public abstract class EntityProjectile extends Entity
 				{
 					++this.ticksAlive;
 
-					if (this.ticksAlive == 600)
+					if (this.ticksAlive >= 600)
 					{
 						this.setDead();
 					}
