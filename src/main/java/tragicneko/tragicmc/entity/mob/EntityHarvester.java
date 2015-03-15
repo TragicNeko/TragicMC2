@@ -108,6 +108,18 @@ public class EntityHarvester extends TragicMob {
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
+			
+			if (this.getReleaseTicks() == 10)
+			{
+				for (int i = 0; i < 24; i++)
+				{
+					this.worldObj.spawnParticle("smoke",
+							this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
+							this.posY + (rand.nextDouble() * 0.115D) + 0.545D,
+							this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
+							(rand.nextDouble() - rand.nextDouble()) * 0.125, rand.nextDouble() * 0.2556, (rand.nextDouble() - rand.nextDouble()) * 0.125);
+				}
+			}
 			return;
 		}
 
