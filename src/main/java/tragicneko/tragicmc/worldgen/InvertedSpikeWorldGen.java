@@ -36,6 +36,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 		double cutoff = 0.46943755D;
 		double size;
 		int spikeType;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
 
 		for (int buzza = 0; buzza < relays; buzza++)
 		{
@@ -103,8 +104,13 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 				for (int[] coords : list)
 				{
 					material = world.getBlock(coords[0], coords[1], coords[2]).getMaterial();
-					if (!material.isLiquid() && material != Material.air) world.setBlockToAir(coords[0], coords[1], coords[2]);
+					if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 				}
+			}
+			
+			for (int[] coords : cands)
+			{
+				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 		}
 
@@ -113,6 +119,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 	public void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord)
 	{
 		ArrayList<int[]> list;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
 		Material material;
 
 		for (int y1 = 0; y1 < 64; y1++)
@@ -135,8 +142,13 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 			for (int[] coords : list)
 			{
 				material = world.getBlock(coords[0], coords[1], coords[2]).getMaterial();
-				if (!material.isLiquid() && material != Material.air) world.setBlockToAir(coords[0], coords[1], coords[2]);
+				if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 			}
+		}
+		
+		for (int[] coords : cands)
+		{
+			world.setBlockToAir(coords[0], coords[1], coords[2]);
 		}
 	}
 }

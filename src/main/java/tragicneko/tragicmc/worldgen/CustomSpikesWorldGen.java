@@ -43,6 +43,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		double cutoff = 0.36943755D;
 		double size;
 		int spikeType;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
 
 		for (int buzza = 0; buzza < relays; buzza++)
 		{
@@ -126,8 +127,13 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 					for (int[] coords : list)
 					{
 						block = world.getBlock(coords[0], coords[1], coords[2]);
-						if (StructureWorldGen.validBlocks.contains(block) && block != TragicBlocks.DarkStone) world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
+						if (StructureWorldGen.validBlocks.contains(block) && block != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
+				}
+				
+				for (int[] coords : cands)
+				{
+					world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
 				}
 			}
 		}
@@ -137,6 +143,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 	public void generateChildSpike(World world, Random rand, double size, double Xcoord, double Ycoord, double Zcoord, Block spike, int meta)
 	{
 		ArrayList<int[]> list;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
 		Block block;
 
 		for (int y1 = 0; y1 < 128; y1++)
@@ -159,8 +166,13 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 			for (int[] coords : list)
 			{
 				block = world.getBlock(coords[0], coords[1], coords[2]);
-				if (StructureWorldGen.validBlocks.contains(block)) world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
+				if (StructureWorldGen.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
 			}
+		}
+		
+		for (int[] coords : cands)
+		{
+			world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
 		}
 	}
 }
