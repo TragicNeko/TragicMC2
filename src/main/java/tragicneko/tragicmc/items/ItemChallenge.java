@@ -28,23 +28,23 @@ public class ItemChallenge extends Item {
 	private IIcon scrollIcon, completeIcon;
 
 	private static final EntityDrop[] badRewards = new EntityDrop[] {new EntityDrop(15, Items.coal), new EntityDrop(5, Items.flint_and_steel), new EntityDrop(5, Items.string), new EntityDrop(5, Items.stick),
-		new EntityDrop(5, Items.bone), new EntityDrop(15, Items.bread), new EntityDrop(3, Items.book), new EntityDrop(5, Items.bowl), new EntityDrop(5, TragicItems.Ash), new EntityDrop(15, TragicItems.Banana),
-		new EntityDrop(3, TragicItems.Sushi), new EntityDrop(5, TragicItems.BoneMarrow), new EntityDrop(10, TragicItems.ChallengeScroll)};
+		new EntityDrop(5, Items.bone), new EntityDrop(15, Items.bread), new EntityDrop(5, Items.book), new EntityDrop(5, Items.bowl), new EntityDrop(5, TragicItems.Ash), new EntityDrop(15, TragicItems.Banana),
+		new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.BoneMarrow), new EntityDrop(30, TragicItems.ChallengeScroll)};
 
-	private static final EntityDrop[] cheapRewards = new EntityDrop[] {new EntityDrop(5, Items.diamond), new EntityDrop(3, Items.emerald), new EntityDrop(15, Items.apple), new EntityDrop(25, Items.iron_ingot),
-		new EntityDrop(10, Items.gold_ingot), new EntityDrop(15, TragicItems.Tungsten), new EntityDrop(15, TragicItems.BloodSacrifice), new EntityDrop(15, TragicItems.NourishmentSacrifice),
-		new EntityDrop(15, TragicItems.RedMercury), new EntityDrop(10, TragicItems.Quicksilver), new EntityDrop(5, TragicItems.QuicksilverIngot), new EntityDrop(15, Blocks.obsidian),
-		new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(5, TragicItems.ExoticFruit), new EntityDrop(3, TragicItems.SkyFruit), new EntityDrop(3, TragicItems.GooeyFruit),
-		new EntityDrop(1, getSpawnEggsMiniBoss()), new EntityDrop(5, TragicItems.ChallengeScroll)};
+	private static final EntityDrop[] cheapRewards = new EntityDrop[] {new EntityDrop(1, Items.diamond), new EntityDrop(1, Items.emerald), new EntityDrop(5, Items.apple), new EntityDrop(10, Items.iron_ingot),
+		new EntityDrop(5, Items.gold_ingot), new EntityDrop(15, TragicItems.Tungsten), new EntityDrop(25, TragicItems.BloodSacrifice), new EntityDrop(25, TragicItems.NourishmentSacrifice),
+		new EntityDrop(15, TragicItems.RedMercury), new EntityDrop(20, TragicItems.Quicksilver), new EntityDrop(5, TragicItems.QuicksilverIngot), new EntityDrop(5, Blocks.obsidian),
+		new EntityDrop(15, TragicItems.NastyFruit), new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(10, TragicItems.SkyFruit), new EntityDrop(5, TragicItems.GooeyFruit),
+		new EntityDrop(1, getSpawnEggsMiniBoss()), new EntityDrop(15, TragicItems.ChallengeScroll)};
 
-	private static final EntityDrop[] rewards = new EntityDrop[] {new EntityDrop(25, Items.diamond), new EntityDrop(25, Items.emerald),
-		new EntityDrop(5, TragicItems.AwakeningStone), new EntityDrop(10, TragicItems.AmuletRelease), new EntityDrop(5, TragicItems.DoomConsume),
-		new EntityDrop(10, TragicItems.CooldownDefuse), new EntityDrop(25, TragicItems.Ruby), new EntityDrop(5, Items.iron_ingot),
-		new EntityDrop(25, TragicItems.Sapphire), new EntityDrop(5, Items.gold_ingot), new EntityDrop(3, new ItemStack(Items.golden_apple, 1, 0),new ItemStack(Items.golden_apple, 1, 1)),
-		new EntityDrop(15, TragicItems.CryingObsidianOrb), new EntityDrop(15, TragicItems.BleedingObsidianOrb), new EntityDrop(15, TragicItems.DyingObsidianOrb), new EntityDrop(25, TragicItems.ObsidianOrb),
-		new EntityDrop(3, TragicItems.GoldenSushi),  new EntityDrop(30, TragicItems.Talisman), new EntityDrop(15, TragicItems.BloodSacrifice), new EntityDrop(15, TragicItems.NourishmentSacrifice),
-		new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(10, TragicItems.SkyFruit), new EntityDrop(5, TragicItems.GooeyFruit),
-		new EntityDrop(1, getSpawnEggsBoss()), new EntityDrop(3, getSpawnEggsMiniBoss()), new EntityDrop(1, getEpicWeapons()), new EntityDrop(1, getEpicWeapons())};
+	private static final EntityDrop[] rewards = new EntityDrop[] {new EntityDrop(10, Items.diamond), new EntityDrop(5, Items.emerald),
+		new EntityDrop(15, TragicItems.AwakeningStone), new EntityDrop(30, TragicItems.AmuletRelease), new EntityDrop(25, TragicItems.DoomConsume),
+		new EntityDrop(20, TragicItems.CooldownDefuse), new EntityDrop(25, TragicItems.Ruby), new EntityDrop(5, Items.iron_ingot),
+		new EntityDrop(25, TragicItems.Sapphire), new EntityDrop(5, Items.gold_ingot), new EntityDrop(20, new ItemStack(Items.golden_apple, 1, 0), new ItemStack(Items.golden_apple, 1, 1)),
+		new EntityDrop(5, TragicItems.CryingObsidianOrb), new EntityDrop(5, TragicItems.BleedingObsidianOrb), new EntityDrop(5, TragicItems.DyingObsidianOrb), new EntityDrop(5, TragicItems.ObsidianOrb),
+		new EntityDrop(15, TragicItems.GoldenSushi),  new EntityDrop(10, TragicItems.Talisman), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice),
+		new EntityDrop(15, TragicItems.NastyFruit), new EntityDrop(35, TragicItems.ExoticFruit), new EntityDrop(20, TragicItems.SkyFruit), new EntityDrop(10, TragicItems.GooeyFruit),
+		new EntityDrop(1, getSpawnEggsBoss()), new EntityDrop(3, getSpawnEggsMiniBoss()), new EntityDrop(3, getEpicWeapons()), new EntityDrop(3, getEpicWeapons())};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};
 
