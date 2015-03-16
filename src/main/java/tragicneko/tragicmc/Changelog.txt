@@ -3474,8 +3474,10 @@ Ensure that the dimension is the Synapse when summoning the Overlord with a Core
 Set up the Combat form's transformation phase properly
 Added error handling for retrieving a challenge for a fresh challenge scroll
 Changed chances of drops on harder difficulties for Challenges, making the better items more common
-Added more nullchecks for Challenges
+Added more null checks for Challenges
 Fixed Titan weapon model texture
+Modified WorldGen for various things in the Collision, altered Isle generation to use a modified version of the inverted spike gen, this makes the isles
+look way better and they also generate with less lag
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3514,19 +3516,12 @@ Add a allowPvP option in the config, this will be a blanket for other config opt
 hit other players
 Add a Chainbot as a mini-boss form of the lockbot, it'll basically be a mobile version of the lockbot that actually moves to it's trapped target and attacks them,
 the target may break the chain after enough hits to it and it'll have to reattach
-Fix amulet modifiers being applied to the player each tick while they are in the player's inventory
-Fix the mini-bombs and such to actually stop and stay still on the top of the block that they collide with, fix the cluster bomb so that it launches mini-bombs in random directions from it's center
-rather than just spawning mini-bombs in random spots around it
-Finish the other two forms of the Overlord
 Add some packet stuff for doomsdays, this will be for things like applying Doomsday effect stuff client-side (particles, overlays)
 I also want to add something that shows how much your Doom is incrementing/decrementing, i.e. if you regen one doom, it shows a +1 next to it for a second
 If there are multiple changes done quickly, they'll override the previous (it'll be a static class/variable)
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Change the Spike generation to get a list while iterating through y levels and add onto that list, ensuring not to add duplicates, then fill in the entire
-list with the spike block in order to avoid setting the same block multiple levels
-Doing this, I'll put the coords into a set, then convert the set into a list when I need to set all of the blocks to avoid duplicates
 Update the Isles generation to use a modified version of the inverted spike generation, using the previous method, I'll then go back and change the top
 two or three layers to fit the biome (replace dark stone with dirt or eroded stone)
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
