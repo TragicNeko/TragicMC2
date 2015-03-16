@@ -37,6 +37,7 @@ public class ChallengeItemEvents {
 				if (inv[i] != null && inv[i].hasTagCompound() && inv[i].getItem() instanceof ItemChallenge && inv[i].getItemDamage() != 0 && inv[i].getItemDamage() != 250)
 				{
 					stack = inv[i];
+					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 					challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.savesProgress) stack.stackTagCompound.setInteger("challengeProgress", 0);
 				}
@@ -54,6 +55,7 @@ public class ChallengeItemEvents {
 				if (inv[i] != null && inv[i].hasTagCompound() && inv[i].getItem() instanceof ItemChallenge && inv[i].getItemDamage() != 0 && inv[i].getItemDamage() != 250)
 				{
 					stack = inv[i];
+					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 					challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge)
 					{
@@ -88,6 +90,7 @@ public class ChallengeItemEvents {
 			if (inv[i] != null && inv[i].hasTagCompound() && inv[i].getItem() instanceof ItemChallenge && inv[i].getItemDamage() != 0 && inv[i].getItemDamage() != 250)
 			{
 				stack = inv[i];
+				if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 				challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 
 				if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null)
