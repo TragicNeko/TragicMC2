@@ -12,6 +12,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.StructureWorldGen;
 
 public class SchematicCelestialTemple extends Schematic {
 
@@ -45,41 +46,79 @@ public class SchematicCelestialTemple extends Schematic {
 	@Override
 	public void generateWithoutVariation(World world, Random rand, int x, int y, int z)
 	{
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 12.0D, x + 4, y + 3, z + 4);
-		int[] coords;
+		ArrayList<int[]> list;
+		int relays = 16 + rand.nextInt(4);
+		Block block;
+		double regression = 0.88977745D;
+		double cutoff = 0.48943755D;
+		double size;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
+		int yMax;
+		int Xcoord;
+		int Zcoord;
+		int Ycoord;
 
-		for (int i = 0; i < list.size(); i++)
+		for (int buzza = 0; buzza < relays; buzza++)
 		{
-			coords = list.get(i);
-			if (coords[1] < y - 1.5D)
+			if (buzza == 0)
 			{
-				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
-			}
-			else if (coords[1] <= y - 0.5D)
-			{
-				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.AshenGrass, 0, 2);
+				size = 15.0D;
+				Xcoord = x;
+				Zcoord = z;
+				Ycoord = y;
+				cutoff = 0.6278D;
+				regression = 0.8876D;
 			}
 			else
 			{
-				world.setBlockToAir(coords[0], coords[1], coords[2]);
+				size = rand.nextDouble() * 6.5D + 4.5D;
+				Xcoord = x + rand.nextInt(12) - rand.nextInt(12);
+				Zcoord = z + rand.nextInt(12) - rand.nextInt(12);
+				Ycoord = y + rand.nextInt(2) - rand.nextInt(2);
+				regression = 0.88977745D;
+				cutoff = 0.58943755D;
 			}
-		}
+			yMax = Ycoord;
 
-		for (int potato = 0; potato < rand.nextInt(8) + 8; potato++)
-		{
-			int yDif = -2 - rand.nextInt(4);
-			list = WorldHelper.getBlocksInSphericalRange(world, 5.0D, x + rand.nextInt(20) - rand.nextInt(16), y + yDif, z + rand.nextInt(20) - rand.nextInt(16));
-
-			for (int i = 0; i < list.size(); i++)
+			for (int y1 = 0; y1 > -32; y1--)
 			{
-				coords = list.get(i);
-				if (coords[1] < y + yDif)
+				if (size < cutoff) break;
+				size *= regression;
+
+				if (rand.nextInt(12) == 0)
 				{
-					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.DeadDirt, 0, 2);
+					Xcoord += rand.nextInt(2) - rand.nextInt(2);
+					Zcoord += rand.nextInt(2) - rand.nextInt(2);
 				}
-				else if (coords[1] <= y + yDif + 1.0D)
+
+				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + y1, Zcoord);
+
+				for (int[] coords2 : list)
 				{
-					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.AshenGrass, 0, 2);
+					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
+					if (StructureWorldGen.validBlocks.contains(block) && !cands.contains(coords2))
+					{
+						if (yMax < coords2[1]) yMax = coords2[1];
+						cands.add(coords2);
+					}
+				}
+			}
+
+			int rnd = rand.nextInt(3) + 1;
+
+			for (int[] coords2 : cands)
+			{
+				if (coords2[1] >= yMax)
+				{
+					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.AshenGrass, 0, 2);
+				}
+				else if (coords2[1] >= yMax - rnd - rand.nextInt(2))
+				{
+					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DeadDirt, 0, 2);
+				}
+				else
+				{
+					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
 				}
 			}
 		}
