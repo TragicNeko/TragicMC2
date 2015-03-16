@@ -30,6 +30,7 @@ public class BlockSynapseCore extends Block {
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		super.onBlockAdded(world, x, y, z);
+		if (world.provider.dimensionId != TragicConfig.synapseID) return;
 
 		Block block = TragicBlocks.CircuitBlock;
 		boolean flag = world.getBlock(x, y - 1, z) == block && world.getBlock(x, y - 2, z) == block &&
@@ -38,7 +39,7 @@ public class BlockSynapseCore extends Block {
 
 		if (flag)
 		{
-			TragicBoss boss = new EntityOverlordCombat(world);
+			EntityOverlordCombat boss = new EntityOverlordCombat(world);
 			
 			world.setBlock(x, y, z, air, 0, 2);
 			world.setBlock(x, y - 1, z, air, 0, 2);
@@ -51,6 +52,7 @@ public class BlockSynapseCore extends Block {
 			boss.setLocationAndAngles(x + 0.5D, y - 1.95D, z + 0.5D, 0.0F, 0.0F);
 			EntityPlayer player = boss.worldObj.getClosestVulnerablePlayerToEntity(boss, 16.0D);
 			if (player != null) boss.setTarget(player);
+			boss.setTransforming();
 			world.spawnEntityInWorld(boss);
 
 			for (int l = 0; l < 120; ++l) 
