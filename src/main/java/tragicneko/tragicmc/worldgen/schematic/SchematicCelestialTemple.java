@@ -47,7 +47,7 @@ public class SchematicCelestialTemple extends Schematic {
 	public void generateWithoutVariation(World world, Random rand, int x, int y, int z)
 	{
 		ArrayList<int[]> list;
-		int relays = 16 + rand.nextInt(4);
+		int relays = 8 + rand.nextInt(4);
 		Block block;
 		double regression = 0.88977745D;
 		double cutoff = 0.48943755D;
@@ -63,20 +63,20 @@ public class SchematicCelestialTemple extends Schematic {
 			if (buzza == 0)
 			{
 				size = 15.0D;
-				Xcoord = x;
-				Zcoord = z;
+				Xcoord = x + 4;
+				Zcoord = z + 4;
 				Ycoord = y;
 				cutoff = 0.6278D;
 				regression = 0.8876D;
 			}
 			else
 			{
-				size = rand.nextDouble() * 6.5D + 4.5D;
-				Xcoord = x + rand.nextInt(12) - rand.nextInt(12);
-				Zcoord = z + rand.nextInt(12) - rand.nextInt(12);
-				Ycoord = y + rand.nextInt(2) - rand.nextInt(2);
+				size = rand.nextDouble() * 5.5D + 4.5D;
+				Xcoord = x + 4 + rand.nextInt(10) - rand.nextInt(10);
+				Zcoord = z + 4 + rand.nextInt(10) - rand.nextInt(10);
+				Ycoord = y - rand.nextInt(2);
 				regression = 0.88977745D;
-				cutoff = 0.58943755D;
+				cutoff = 0.68943755D;
 			}
 			yMax = Ycoord;
 
