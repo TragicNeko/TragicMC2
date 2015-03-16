@@ -30,10 +30,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiDoom extends Gui
 {
-	private Minecraft mc;
-	private int buffer;
-	private int width;
-	private int prevDoom;
+	private final Minecraft mc;
+	private static int buffer;
+	private static int width;
+	private static int prevDoom;
+	private static int difference = 0;
+	private static int difTick = 0;
 
 	private FontRenderer fontRenderer;
 
@@ -71,14 +73,15 @@ public class GuiDoom extends Gui
 
 		drawTexturedModalRect(xPos, yPos, 0, 0, 56, 9);
 
-		width++;
-
-		if (width > 30)
+		if (TragicConfig.allowAnimatedGui)
+		{
+			width++;
+			if (width > 30) width = 0;
+		}
+		else
 		{
 			width = 0;
 		}
-
-		if (!TragicConfig.allowAnimatedGui) width = 0;
 
 		if (props.getCurrentCooldown() > 0)
 		{
@@ -101,6 +104,21 @@ public class GuiDoom extends Gui
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
 
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 9, manabarwidth, 3);
+			if (difTick == 0)
+			{
+				difference = props.getCurrentDoom() - prevDoom;
+			}
+
+			if (difference != 0)
+			{
+				difTick++;
+				if (difTick > 20) difTick = 0;
+			}
+			else
+			{
+				difTick = 0;
+			}
+
 			prevDoom = props.getCurrentDoom();
 			String s = "Doom: " + props.getCurrentDoom() + "/" + props.getMaxDoom();
 			yPos += 6;
@@ -225,6 +243,14 @@ public class GuiDoom extends Gui
 			this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
 			this.mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
 			this.mc.fontRenderer.drawString(s, xPos, yPos, color.getRGB());
+
+			if (difference != 0 && difTick > 0) 
+			{
+				boolean flg = difference > 0;
+				String s2 = (flg ? "+" : "") + difference;
+				int y = yPos - 2 + (TragicConfig.allowAnimatedGui ? (difTick / 2) : 0);
+				this.mc.fontRenderer.drawString(s2, xPos + 64, y, flg ? 0x00FF00 : 0xFF0000);
+			}
 		}
 
 		GL11.glDisable(GL11.GL_BLEND);
