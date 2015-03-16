@@ -106,15 +106,23 @@ public class ItemChallenge extends Item {
 
 		if (stack.getItemDamage() == 0)
 		{
-			player.addChatMessage(new ChatComponentText("Challenge accepted!"));
-			Challenge challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length) + 1);
-			while (challenge == null)
+			try
 			{
-				challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length) + 1);
+				Challenge challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length - 1) + 1);
+				while (challenge == null)
+				{
+					challenge = Challenge.getChallengeFromID(itemRand.nextInt(Challenge.challengeList.length - 1) + 1);
+				}
+				stack.setItemDamage(challenge.challengeID);
+				if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+				stack.stackTagCompound.setInteger("challengeID", challenge.challengeID);
+				player.addChatMessage(new ChatComponentText("Challenge accepted!"));
 			}
-			stack.setItemDamage(challenge.challengeID);
-			if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-			stack.stackTagCompound.setInteger("challengeID", challenge.challengeID);
+			catch (Exception e)
+			{
+				TragicMC.logError("Challenge item errored while retreiving a Challenge. Report this! ItemStack was " + stack, e);
+				return stack;
+			}
 		}
 		else if (stack.getItemDamage() == 250)
 		{
@@ -126,7 +134,7 @@ public class ItemChallenge extends Item {
 			for (int i = 0; i < extra && i < 5; i++)
 			{
 				EntityItem item = new EntityItem(world);
-				
+
 				try
 				{
 					reward = challenge.difficulty > 2 ? ((EntityDrop) WeightedRandom.getRandomItem(itemRand, rewards)).getStack():
