@@ -3469,7 +3469,7 @@ Fixed bug with throwable entities not staying on the block they land on
 Added small particle effect when a Harvester releases a Nano Swarm
 Fixed amulet modifiers not being applied while in amulet inventory and not in hand, fixed bug with them never being removed after being applied
 
-2.41.1094++ <192> (March 15, 2015)
+2.41.2094++ <192> (March 15, 2015)
 Ensure that the dimension is the Synapse when summoning the Overlord with a Core, summon the Overlord with Transformation active
 Set up the Combat form's transformation phase properly
 Added error handling for retrieving a challenge for a fresh challenge scroll
