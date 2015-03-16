@@ -3478,6 +3478,7 @@ Added more null checks for Challenges
 Fixed Titan weapon model texture
 Modified WorldGen for various things in the Collision, altered Isle generation to use a modified version of the inverted spike gen, this makes the isles
 look way better and they also generate with less lag
+Added altered IsleGen to the Celestial Temple schematic, it hangs for a second or so but ultimately looks way better and is worth the extra load time
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
