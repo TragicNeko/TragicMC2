@@ -238,17 +238,17 @@ public class EntityOverlordCombat extends TragicBoss {
 	{
 		return this.dataWatcher.getWatchableObjectInt(22);
 	}
-	
+
 	private void setTransformationTicks(int i)
 	{
 		this.dataWatcher.updateObject(23, i);
 	}
-	
+
 	public int getTransformationTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(23);
 	}
-	
+
 	public EntityOverlordCombat setTransforming()
 	{
 		this.setTransformationTicks(120);
@@ -387,12 +387,27 @@ public class EntityOverlordCombat extends TragicBoss {
 
 			return;
 		}
+		
+		if (this.getTransformationTicks() > 0)
+		{
+			this.setTransformationTicks(this.getTransformationTicks() - 1);
+			
+			this.reflectionBuffer = 0;
+			this.unstableBuffer = 0;
+			this.setHurtTime(0);
+			this.setLeapTicks(0);
+			this.setReflectionTicks(0);
+			this.setUnstableTicks(0);
+			this.setAttackTime(0);
+			this.setGrappleTicks(0);
+			this.hasLeaped = false;
+			return;
+		}
 
 		if (this.unstableBuffer > 0) this.unstableBuffer--;
 		if (this.reflectionBuffer > 0) this.reflectionBuffer--;
 		if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 		if (this.getLeapTicks() > 0) this.setLeapTicks(this.getLeapTicks() - 1);
-		if (this.getTransformationTicks() > 0) this.setTransformationTicks(this.getTransformationTicks() - 1);
 		if (this.hasLeaped && !this.onGround) this.motionY = -1D; 
 
 		if (this.getLeapTicks() > 0 && this.getLeapTicks() <= 20)
@@ -561,7 +576,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 		}
 		if (this.onGround && this.hasLeaped) this.hasLeaped = false;
-		
+
 		if (this.posY <= 1 && this.motionY < 0 && !this.onGround && this.getReflectionTicks() == 0)
 		{
 			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
@@ -638,7 +653,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	@Override
 	public boolean attackEntityAsMob(Entity entity)
 	{
-		if (this.worldObj.isRemote) return false;
+		if (this.worldObj.isRemote || this.getTransformationTicks() > 0) return false;
 		if (this.getChargeTicks() == 0 && this.attackTime == 0) this.attackTime = 20;
 		if (this.getGrappleTicks() > 0) this.setGrappleTicks(0);
 
