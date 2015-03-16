@@ -3473,6 +3473,9 @@ Fixed amulet modifiers not being applied while in amulet inventory and not in ha
 Ensure that the dimension is the Synapse when summoning the Overlord with a Core, summon the Overlord with Transformation active
 Set up the Combat form's transformation phase properly
 Added error handling for retrieving a challenge for a fresh challenge scroll
+Changed chances of drops on harder difficulties for Challenges, making the better items more common
+Added more nullchecks for Challenges
+Fixed Titan weapon model texture
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3490,7 +3493,7 @@ Scorched biomes, Geysers, Steam vents, steep pits with lava at the bottom, Jabba
 Hallowed biomes, Ire, Fragile Light (Blocks that get destroyed when an entity gets near them), Pure Light, floating light orbs, Light strings, randomly
 generated strings of light in the air, like silly string
 Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Ranmas, toxic waste
-Dark Forest biomes, dark mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves
+Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves
 Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees
 
 FOR THE OVERLORD
