@@ -35,6 +35,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
+import tragicneko.tragicmc.worldgen.StructureWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
 import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
@@ -43,10 +44,10 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 public class ItemGenerator extends Item {
 
 	private String[] subNames = new String[] {"VoidPitGenerator", "SpikeGenerator", "StarCrystalGenerator", "SphereGenerator", "SphereEraser", "LiquidRemover", "TreeGenerator",
-			"LightningSummoner", "ExplosionGenerator"};
+			"LightningSummoner", "ExplosionGenerator", "IsleGenerator"};
 
 	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
-			"lightningSummoner", "explosionGenerator"};
+			"lightningSummoner", "explosionGenerator", "isleGenerator"};
 
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
@@ -342,6 +343,65 @@ public class ItemGenerator extends Item {
 			float f = 3.0F + (7.0F * itemRand.nextFloat());
 			world.createExplosion(player, Xcoord, Ycoord, Zcoord, f, WorldHelper.getMobGriefing(world));
 			player.addChatMessage(new ChatComponentText("Explosion created with size of " + f));
+			break;
+		case 9:
+			double regression = 0.88977745D;
+			double cutoff = 0.48943755D;
+			ArrayList<int[]> cands = new ArrayList<int[]>();
+			
+			size = random.nextDouble() * 3.5D + 1.5D;
+			Xcoord += random.nextInt(8) - random.nextInt(8);
+			Zcoord += random.nextInt(8) - random.nextInt(8);
+			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1 + random.nextInt(18) + 10;
+			int yMax = Ycoord;
+			TragicMC.logInfo("Size was " + size);
+
+			for (int y1 = 0; y1 > -32; y1--)
+			{
+				if (size < cutoff) break;
+				size *= regression; //reduce the radius of the spike randomly
+
+				if (random.nextBoolean())
+				{
+					if (random.nextInt(6) == 0) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
+					{
+						Xcoord += random.nextInt(2) - random.nextInt(2);
+						Zcoord += random.nextInt(2) - random.nextInt(2);
+					}
+				}
+
+				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + y1, Zcoord);
+
+				for (int[] coords2 : list)
+				{
+					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
+					if (StructureWorldGen.validBlocks.contains(block) && !cands.contains(coords2))
+					{
+						if (yMax < coords2[1]) yMax = coords2[1];
+						cands.add(coords2);
+					}
+				}
+			}
+
+			int rand = random.nextInt(4) + 2;
+			
+			for (int[] coords2 : cands)
+			{
+				if (coords2[1] >= yMax)
+				{
+					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.ErodedStone, 0, 2);
+				}
+				else if (coords2[1] >= yMax - rand - random.nextInt(2))
+				{
+					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DeadDirt, 0, 2);
+				}
+				else
+				{
+					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
+				}
+			}
+			TragicMC.logInfo("Ymax was " + yMax);
+			
 			break;
 		}
 
