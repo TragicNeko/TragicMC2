@@ -3424,7 +3424,7 @@ Added recipes for the Overlord Armor set and for the Corrupted Essence
 Removed Mortor attack from the Combat form, added a buffer to it's reflection phase so that it doesn't go back into it repeatedly
 Added corrupted egg and added recipe for it, need to add functionality to it
 
-2.41.2059++ <191> (March 9, 2015)
+2.41.2094 <191> (March 9, 2015)
 Added Nano Bots, added them to the Overlord Armor recipes, added a celled block recipe that uses them
 Added Synapse Core recipe that uses one Synapse crystal and 8 nano bots
 Added functionality to Synapse Core block, it can now be used to summon another Overlord (only Combat form to Core for now, until the Cocoon form is done)
@@ -3468,6 +3468,11 @@ Fixed improper meta checking for generator items, fixed spike generator metadata
 Fixed bug with throwable entities not staying on the block they land on
 Added small particle effect when a Harvester releases a Nano Swarm
 Fixed amulet modifiers not being applied while in amulet inventory and not in hand, fixed bug with them never being removed after being applied
+
+2.41.1094++ <192> (March 15, 2015)
+Ensure that the dimension is the Synapse when summoning the Overlord with a Core, summon the Overlord with Transformation active
+Set up the Combat form's transformation phase properly
+Added error handling for retrieving a challenge for a fresh challenge scroll
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
