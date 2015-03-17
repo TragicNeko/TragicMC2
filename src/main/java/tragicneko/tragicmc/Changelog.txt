@@ -3479,6 +3479,10 @@ Fixed Titan weapon model texture
 Modified WorldGen for various things in the Collision, altered Isle generation to use a modified version of the inverted spike gen, this makes the isles
 look way better and they also generate with less lag
 Added altered IsleGen to the Celestial Temple schematic, it hangs for a second or so but ultimately looks way better and is worth the extra load time
+Added small animated numbers that indicate your difference in Doom
+Increased range of incrementation for Doom when attacking or being attacked, it can now give you up to 6 Doom for a massive hit taken or done, but lower
+damage has an even lower chance to regenerate Doom
+Ensure that Bosses that are immune to normal damage still get removed when they fall into the void or get hit too high up
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3516,10 +3520,9 @@ a target, otherwise they will kill it, these work like the Oracles in Destiny
 Add a allowPvP option in the config, this will be a blanket for other config options such as allowing doomsdays to target players and allowing weapons to
 hit other players
 Add a Chainbot as a mini-boss form of the lockbot, it'll basically be a mobile version of the lockbot that actually moves to it's trapped target and attacks them,
-the target may break the chain after enough hits to it and it'll have to reattach
+the target may break the chain after enough hits to it and it'll have to reattach, what it'll do is with lower health is generate a weaker lockbot, that attaches a lock to it's target and
+then the Chainbot will go after the targetted player while it is locked, knocking it back and aggressively attacking it
 Add some packet stuff for doomsdays, this will be for things like applying Doomsday effect stuff client-side (particles, overlays)
-I also want to add something that shows how much your Doom is incrementing/decrementing, i.e. if you regen one doom, it shows a +1 next to it for a second
-If there are multiple changes done quickly, they'll override the previous (it'll be a static class/variable)
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
