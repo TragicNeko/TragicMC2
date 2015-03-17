@@ -1,11 +1,11 @@
 package tragicneko.tragicmc.properties;
 
 import static tragicneko.tragicmc.TragicMC.rand;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import tragicneko.tragicmc.TragicMC;
@@ -308,28 +308,18 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		if (this.shouldRecoverWithDamage())
 		{
-			if (source / 7.0F > 3.0F)
-			{
-				source = 3.0F;
-			}
-
-			if (source / 7.0F < 0.5F)
-			{
-				source = 0.5F;
-			}
-
-			source /= 7.0F;
+			source = MathHelper.clamp_float(source / 10.0F, 0.0F, 6.0F);
 
 			if (source < 1.0F)
 			{
-				if (rand.nextInt(4) == 0)
+				if (rand.nextFloat() < source)
 				{
 					this.increaseDoom(1);
 				}
 			}
 			else if (source < 2.0F)
 			{
-				if (rand.nextInt(2) == 0)
+				if (rand.nextFloat() * 2.0F < source)
 				{
 					this.increaseDoom(1);
 				}
@@ -338,9 +328,17 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			{
 				this.increaseDoom(2);
 			}
-			else
+			else if (source < 4.0F)
 			{
 				this.increaseDoom(3);
+			}
+			else if (source < 5.0F)
+			{
+				this.increaseDoom(5);
+			}
+			else
+			{
+				this.increaseDoom(6);
 			}
 
 			if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP) this.thePlayer);
