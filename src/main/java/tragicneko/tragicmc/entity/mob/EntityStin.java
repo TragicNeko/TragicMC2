@@ -291,7 +291,7 @@ public class EntityStin extends TragicMob {
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.isGalloping() && this.getAttackTarget() == null || this.worldObj.isRemote) return false;
+		if (this.worldObj.isRemote) return false;
 		return super.attackEntityAsMob(par1Entity);
 	}
 
