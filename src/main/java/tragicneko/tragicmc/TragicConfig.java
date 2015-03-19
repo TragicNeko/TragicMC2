@@ -230,6 +230,8 @@ public class TragicConfig {
 		keepDimensionLoaded = (config.get(catDimension, "keepDimensionLoaded", false).getBoolean(false));
 		dimensionIDs[0] = (config.get(catDimension, "dimensionID", DimensionManager.getNextFreeDimId()).getInt(DimensionManager.getNextFreeDimId()));
 		dimensionIDs[1] = (config.get(catDimension, "providerID", dimensionIDs[0]).getInt(dimensionIDs[0]));
+		dimensionIDs[2] = (config.get(catDimension, "synapseID", DimensionManager.getNextFreeDimId()).getInt(DimensionManager.getNextFreeDimId()));
+		dimensionIDs[3] = (config.get(catDimension, "synapseProviderID", dimensionIDs[2]).getInt(dimensionIDs[2]));
 		allowDimensionRespawn = (config.get(catDimension, "allowCollisionRespawn", false).getBoolean(false));
 
 		mapping = 0;
@@ -1568,6 +1570,11 @@ public class TragicConfig {
 		guiTexture = miscInts[mapping++];
 		guiX = miscInts[mapping++];
 		guiY = miscInts[mapping++];
+		
+		dimensionID = dimensionIDs[0];
+		providerID = dimensionIDs[1];
+		synapseID = dimensionIDs[2];
+		synapseProviderID = dimensionIDs[3];
 	}
 
 	public static void disablePotions()
