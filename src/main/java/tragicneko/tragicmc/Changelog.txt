@@ -3483,13 +3483,17 @@ Added small animated numbers that indicate your difference in Doom
 Increased range of incrementation for Doom when attacking or being attacked, it can now give you up to 6 Doom for a massive hit taken or done, but lower
 damage has an even lower chance to regenerate Doom
 Ensure that Bosses that are immune to normal damage still get removed when they fall into the void or get hit too high up
+Added a new method for 1.8 textures
+Fixed derp up with setting Dimension IDs in the config, blah
+Fixed metadata derp with mob drops for Spores
+Allow Stin to attack while galloping
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
 increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague
 Fusea - a volatile creature that explodes when threatened, it takes no damage from the explosion and as such can explode multiple times, it floats
 slowly through the air
-NucleaFusea - Multi-layered Fusea, when attacked enough it's outermost shell "breaks" allowing it to move faster and cause greater explosions
+Volatile Fusea - Multi-layered Fusea, when attacked enough it's outermost shell "breaks" allowing it to move faster and cause greater explosions
 Ranmas - A Snowflake-like being that is made of a nearly unbreakable material, it can only be damaged on impact with something at high speed or by being
 hit by other Ranmas. It attacks by charging up and shooting itself at it's target.
 Ire - A small creature of pure light, it has low health and attacks with magic, it does more damage the more nearby Ire that it is "linked" to
@@ -3499,9 +3503,10 @@ Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pi
 Scorched biomes, Geysers, Steam vents, steep pits with lava at the bottom, Jabba
 Hallowed biomes, Ire, Fragile Light (Blocks that get destroyed when an entity gets near them), Pure Light, floating light orbs, Light strings, randomly
 generated strings of light in the air, like silly string
-Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Ranmas, toxic waste
-Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves
-Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees
+Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Erkel, Jarra, toxic waste
+Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves, Parasmite
+Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
+Ranmas
 
 FOR THE OVERLORD
 When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
