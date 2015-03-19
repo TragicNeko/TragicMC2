@@ -154,9 +154,7 @@ public class ClientProxy extends CommonProxy {
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		//ItemModelMesher mesher = mc.getRenderItem().getItemModelMesher();
-		//Item ib; //Itemblock for block registrations, for 1.8 stuff
-		//Block/Item icon registrations for inventories will be put here since all of that is only client-side, may create a separate method for registering those
-		//if this gets too cluttered due to that
+		//this.registerItemBlockRenders(mesher);
 
 		//Gui event registration
 		if (TragicConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(mc));
@@ -263,6 +261,11 @@ public class ClientProxy extends CommonProxy {
 		//RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderOverlordCombat());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
 	}
+	/*
+	public void registerItemBlockRenders(ItemModelMesher mesher)
+	{
+		Item ib; //Itemblock for block registrations
+	} */
 
 	@Override
 	public EntityPlayer getPlayerFromMessageCtx(MessageContext ctx)
