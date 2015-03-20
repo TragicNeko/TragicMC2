@@ -416,7 +416,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (this.getDropTicks() == 0 && this.getVulnerableTicks() == 0)
 			{
-				if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0) this.setHoverTicks(300 + rand.nextInt(120));
+				if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0 && rand.nextInt(10) == 0 && this.getDistanceToEntity(this.target) <= 32.0 && this.canEntityBeSeen(this.target)) this.setHoverTicks(300 + rand.nextInt(120));
 			}
 		}
 		else
@@ -426,13 +426,13 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 
 		if (this.isNearTarget()) this.setNearTarget(false);
-		if (this.worldObj.getClosestPlayerToEntity(this, 5.0) != null)
+		if (this.target != null && this.getDistanceToEntity(this.target) <= 5.0)
 		{
 			this.setNearTarget(true);
-			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0)
+			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0 && this.getDistanceToEntity(this.target) <= 10.0)
 			{
 				this.setDropTicks(120 + rand.nextInt(60));
-				this.mountEntity(this.worldObj.getClosestPlayerToEntity(this, 10.0));
+				this.mountEntity(this.target);
 			}
 		}
 
@@ -480,9 +480,9 @@ public class EntityOverlordCore extends TragicBoss {
 		
 		if (this.getVulnerableTicks() > 0 && !this.slowed)
 		{
-			m *= 0.655D;
-			m2 *= 0.655D;
-			m3 *= 0.655D;
+			m *= 0.355D;
+			m2 *= 0.355D;
+			m3 *= 0.355D;
 		}
 
 		this.moveEntity(m, m2, m3);
@@ -514,13 +514,13 @@ public class EntityOverlordCore extends TragicBoss {
 			this.motionX = this.motionZ = 0.0F;
 			this.motionY = 0.1F;
 
-			if (this.worldObj.getClosestPlayerToEntity(this, 5.0) != null)
+			if (this.target != null && this.getDistanceToEntity(this.target) <= 5.0)
 			{
 				this.setNearTarget(true);
-				if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0)
+				if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0 && this.getDistanceToEntity(this.target) <= 10.0)
 				{
 					this.setDropTicks(120 + rand.nextInt(60));
-					this.mountEntity(this.worldObj.getClosestPlayerToEntity(this, 10.0));
+					this.mountEntity(this.target);
 				}
 			}
 
@@ -566,7 +566,7 @@ public class EntityOverlordCore extends TragicBoss {
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
 
-		if (this.getHealth() <= this.getMaxHealth() / 4 && this.ticksExisted % 10 == 0 && rand.nextInt(16) == 0 && this.getVulnerableTicks() > 0)
+		if (this.getHealth() <= this.getMaxHealth() / 2 && this.ticksExisted % 10 == 0 && rand.nextInt(16) == 0 && this.getVulnerableTicks() > 0)
 		{
 			this.createMortors();
 		}
@@ -767,6 +767,8 @@ public class EntityOverlordCore extends TragicBoss {
 				this.forceNewTarget = true;
 				if (this.getDropTicks() > 0) this.setDropTicks(0);
 			}
+			
+			if (rand.nextInt(4) == 0 && this.target != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.target = entity;
 		}
 
 		return true;

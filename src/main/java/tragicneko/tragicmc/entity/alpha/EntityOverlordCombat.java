@@ -644,7 +644,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				return super.attackEntityFrom(src, dmg);
 			}
 
-			if (rand.nextInt(4) == 0 && this.getAttackTarget() != src.getEntity()) this.setAttackTarget((EntityLivingBase) src.getEntity());
+			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 			if (aggregate < 100) aggregate++;
 		}
 		return true;
