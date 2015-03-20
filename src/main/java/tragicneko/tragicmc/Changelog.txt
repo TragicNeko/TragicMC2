@@ -3469,7 +3469,7 @@ Fixed bug with throwable entities not staying on the block they land on
 Added small particle effect when a Harvester releases a Nano Swarm
 Fixed amulet modifiers not being applied while in amulet inventory and not in hand, fixed bug with them never being removed after being applied
 
-2.41.2094++ <192> (March 15, 2015)
+2.41.2118 <192> (March 15, 2015)
 Ensure that the dimension is the Synapse when summoning the Overlord with a Core, summon the Overlord with Transformation active
 Set up the Combat form's transformation phase properly
 Added error handling for retrieving a challenge for a fresh challenge scroll
@@ -3487,6 +3487,20 @@ Added a new method for 1.8 textures
 Fixed derp up with setting Dimension IDs in the config, blah
 Fixed metadata derp with mob drops for Spores
 Allow Stin to attack while galloping
+Started work on the Overlord Cocoon form while I'm creating the model for the Combat form, I also need to make the Seeker entities as that is a key part
+of the Cocoon form's AI
+Allow Core form to target non-player non-synapse living entities
+Improved Core AI to allow for more target variety on attacks, only allow Core to hover/fire mortors if within 32 blocks of visible target so that it doesn't heal
+outside of player render view/range
+Fixed render of Overlord Core
+Updated Statue textures to make them look better and keep them up to date with my other updated textures
+Changed sizes of various statues to keep them more consistent with their mob's actual size compared to the other statues
+Fixed texture bug with Empariah statue
+Fixed Apis moving while doing it's Stomp attack, improved it's animations for being hurt and attacking, added new hurt datawatcher to it
+Added chat message to players explaining why a Boss that is spawned disappears immediately
+
+2.41.2118++ <193> (March 20, 2015)
+
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3497,6 +3511,11 @@ Volatile Fusea - Multi-layered Fusea, when attacked enough it's outermost shell 
 Ranmas - A Snowflake-like being that is made of a nearly unbreakable material, it can only be damaged on impact with something at high speed or by being
 hit by other Ranmas. It attacks by charging up and shooting itself at it's target.
 Ire - A small creature of pure light, it has low health and attacks with magic, it does more damage the more nearby Ire that it is "linked" to
+Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
+AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
+to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
+("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
+use the same drop rates and items from that actually
 
 New biome sets:
 Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
