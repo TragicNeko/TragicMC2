@@ -12,8 +12,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -21,6 +23,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.util.TragicEntityList;
 import tragicneko.tragicmc.util.TragicEntityList.EnumEggType;
 import cpw.mods.fml.relauncher.Side;
@@ -30,16 +33,16 @@ public class ItemMobEgg extends Item
 {
 	@SideOnly(Side.CLIENT)
 	private IIcon theIcon;
-	
+
 	private IIcon normalMobIcon;
 	private IIcon normalMobIconOverlay;
-	
+
 	private IIcon petMobIcon;
 	private IIcon petMobIconOverlay;
-	
+
 	private IIcon miniBossIcon;
 	private IIcon miniBossIconOverlay;
-	
+
 	private IIcon bigBossIcon;
 	private IIcon bigBossIconOverlay;
 
@@ -104,6 +107,11 @@ public class ItemMobEgg extends Item
 				if (entity instanceof EntityLivingBase && par1ItemStack.hasDisplayName())
 				{
 					((EntityLiving)entity).setCustomNameTag(par1ItemStack.getDisplayName());
+				}
+				
+				if (par3World.difficultySetting.getDifficultyId() < 2 && par2EntityPlayer instanceof EntityPlayerMP && entity instanceof TragicBoss)
+				{
+					par2EntityPlayer.addChatMessage(new ChatComponentText("Boss was spawned on too low of a difficulty. Raise difficulty level to fight it."));
 				}
 
 				if (!par2EntityPlayer.capabilities.isCreativeMode)
@@ -225,27 +233,27 @@ public class ItemMobEgg extends Item
 	public IIcon getIconFromDamageForRenderPass(int par1, int par2)
 	{
 		TragicEntityList.EntityEggInfo entityegginfo = (TragicEntityList.EntityEggInfo)TragicEntityList.entityEggs.get(Integer.valueOf(par1));
-		
+
 		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.BOSS)
 		{
 			return par2 > 0 ? this.theIcon : super.getIconFromDamageForRenderPass(par1, par2);
 		}
-		
+
 		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.PET)
 		{
 			return par2 > 0 ? this.petMobIcon : this.petMobIconOverlay;
 		}
-		
+
 		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.MINIBOSS)
 		{
 			return par2 > 0 ? this.miniBossIcon : this.miniBossIconOverlay;
 		}
-		
+
 		if (entityegginfo != null && entityegginfo.eggType == EnumEggType.ALPHA)
 		{
 			return par2 > 0 ? this.bigBossIcon : this.bigBossIconOverlay;
 		}
-		
+
 		return par2 > 0 ? this.normalMobIconOverlay : this.normalMobIcon;
 	}
 
