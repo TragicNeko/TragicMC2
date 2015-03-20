@@ -65,13 +65,17 @@ public class RenderOverlordCore extends RenderBoss {
 	{
 		EntityOverlordCore core = (EntityOverlordCore) entity;
 		
-		if (core.getVulnerableTicks() == 0) return -1;
-		
 		if (core.isInvisible())
 		{
-			return -1;
+			GL11.glDepthMask(false);
+			return 0;
 		}
-		else if (pass == 0)
+		else
+		{
+			GL11.glDepthMask(true);
+		}
+		
+		if (pass == 0)
 		{
 			this.setRenderPassModel(this.mainModel);
 			GL11.glEnable(GL11.GL_NORMALIZE);
@@ -79,8 +83,10 @@ public class RenderOverlordCore extends RenderBoss {
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			return 1;
 		}
-		else if (pass == 1)
+		
+		if (pass == 1)
 		{
+			if (core.getVulnerableTicks() == 0 || core.getTransformationTicks() >= 20 && core.getTransformationTicks() <= 60) return -1;
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
