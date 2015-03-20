@@ -38,7 +38,7 @@ public class RenderStatue extends Render {
 	private static final String textPath = "tragicmc:textures/statue/";
 	
 	private static final ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2.png"), new ResourceLocation(mobPath + "Kitsune2.png"),
-		new ResourceLocation(mobPath + "DeathReaper.png"), new ResourceLocation(mobPath + "TimeController.png"), new ResourceLocation(mobPath + "Yeti.png"),
+		new ResourceLocation(mobPath + "DeathReaper.png"), new ResourceLocation(mobPath + "TimeController.png"), new ResourceLocation(mobPath + "Yeti2.png"),
 		new ResourceLocation(mobPath + "Polaris2.png"), new ResourceLocation(mobPath + "Jarra.png"), new ResourceLocation(mobPath + "Kragul.png"),
 		new ResourceLocation(mobPath + "Magmox2.png"), new ResourceLocation(mobPath + "Cryse.png"), new ResourceLocation(mobPath + "StinKing.png"),
 		new ResourceLocation(mobPath + "StinQueen.png"), new ResourceLocation(mobPath + "GreaterStin.png"), new ResourceLocation(mobPath + "VoxStellarum.png"),
@@ -51,7 +51,7 @@ public class RenderStatue extends Render {
 			new ResourceLocation(textPath + "RedstoneStatue.png"), new ResourceLocation(textPath + "CoalStatue.png"), new ResourceLocation(textPath + "LapisStatue.png"),
 			new ResourceLocation(textPath + "NetherrackStatue.png")}};
 	
-	private static ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
+	private static final ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
 			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore()};
 
@@ -65,11 +65,13 @@ public class RenderStatue extends Render {
 	{
 		if (model != models[statue.getMobID()]) model = models[statue.getMobID()];
 
-		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController || model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen || model instanceof ModelEnyvil;
-		boolean flag2 = model instanceof ModelKragul;
+		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController; //much smaller
+		boolean flag2 = model instanceof ModelKragul; //much larger
+		boolean flag3 = model instanceof ModelJarra || model instanceof ModelMegaCryse || model instanceof ModelClaymation || model instanceof ModelVoxStellarum; //slightly larger
+		boolean flag4 = model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen; //slightly smaller
 		
-		float f = flag ? 0.505F : (flag2 ? 1.825F : 0.725F);		
-		float f1 = flag ? 0.01725F : (flag2 ? 0.0825F : 0.03F);
+		float f = flag ? 0.505F : (flag2 ? 1.825F : (flag3 ? 0.925F : (flag4 ? 0.625F : 0.725F)));
+		float f1 = flag ? 0.01725F : (flag2 ? 0.0825F : (flag3 ? 0.04F : (flag4 ? 0.02F : 0.03F)));
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);
