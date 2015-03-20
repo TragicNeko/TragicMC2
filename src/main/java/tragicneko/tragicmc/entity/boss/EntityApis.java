@@ -90,6 +90,7 @@ public class EntityApis extends TragicBoss {
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
+		this.dataWatcher.addObject(20, Integer.valueOf(0));
 	}
 
 	public int getChargeTicks()
@@ -170,6 +171,16 @@ public class EntityApis extends TragicBoss {
 		int pow = this.getAttackTime();
 		this.setAttackTime(--pow);
 	}
+	
+	private void setHurtTime(int i)
+	{
+		this.dataWatcher.updateObject(20, i);
+	}
+	
+	public int getHurtTime()
+	{
+		return this.dataWatcher.getWatchableObjectInt(20);
+	}
 
 	@Override
 	public void onLivingUpdate()
@@ -224,10 +235,6 @@ public class EntityApis extends TragicBoss {
 				this.decrementStompTicks();
 				if (this.isCharging()) this.setChargeTicks(0);
 				if (this.getAttackTime() > 0) this.setAttackTime(0);
-				this.setSprinting(true);
-			}
-			else
-			{
 				this.setSprinting(false);
 			}
 
@@ -253,6 +260,7 @@ public class EntityApis extends TragicBoss {
 			}
 
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
+			if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 
 			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 2.0F, 8.0F) 
 					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()))
@@ -322,7 +330,7 @@ public class EntityApis extends TragicBoss {
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 1.225F + 4.0F, this.getMobGriefing());
 			}
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(8) == 0 && !this.isCharging())
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping())
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -403,7 +411,7 @@ public class EntityApis extends TragicBoss {
 
 		if (!par1DamageSource.isProjectile()) par2 *= 0.425F;
 
-		if (this.getAttackTime() == 0 && !this.isCharging() && !this.isStomping()) this.setAttackTime(10);
+		if (this.getHurtTime() == 0 && !this.isCharging() && !this.isStomping()) this.setHurtTime(10);
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
