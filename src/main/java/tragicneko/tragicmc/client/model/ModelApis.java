@@ -134,25 +134,27 @@ public class ModelApis extends ModelBase
 
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		leftLeg.rotateAngleX = -1.5F * this.simplifyAngle(f, 13.0F) * f1;
 		rightLeg.rotateAngleX = 1.5F * this.simplifyAngle(f, 13.0F) * f1;
 		leftArm.rotateAngleX = 0.55F * this.simplifyAngle(f, 13.0F) * f1;
 		rightArm.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
-		
+
 		rightLeg.offsetY = -0.1F;
 		leftLeg.offsetY = -0.1F;
-		
+
 		int stomp = 0;
 		int charge = 0;
 		int attack = 0;
-		
+		int hurt = 0;
+
 		if (entity instanceof EntityApis)
 		{
 			EntityApis apis = (EntityApis) entity;
 			stomp = apis.getStompTicks();
 			charge = apis.getChargeTicks();
 			attack = apis.getAttackTime();
+			hurt = apis.getHurtTime();
 		}
 		else
 		{
@@ -160,12 +162,13 @@ public class ModelApis extends ModelBase
 			stomp = clay.getUtilityInt();
 			charge = clay.getUtilityInt2();
 			attack = clay.getUtilityInt3();
+			hurt = clay.getUtilityInt3();
 		}
-		
+
 		if (stomp > 0)
 		{
 			head.rotateAngleX = rightArm.rotateAngleX = leftArm.rotateAngleX = rightArm.rotateAngleZ = leftArm.rotateAngleZ = leftLeg.rotateAngleX = rightLeg.rotateAngleX = 0.0F;
-			
+
 			head.rotateAngleX = 0.435F * simplifyAngle(stomp, 40.0F);
 
 			rightArm.rotateAngleX = 0.645F * simplifyAngle(stomp, 40.0F) + 0.2115358F;
@@ -189,16 +192,11 @@ public class ModelApis extends ModelBase
 
 			if (attack > 0)
 			{			
-				head.rotateAngleX = 0.235F * simplifyAngle(attack, 10.0F) - 0.235F;
-
 				rightArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) - 0.745F;
-				leftArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) - 0.745F;
-
-				rightArm.rotateAngleZ = -0.225F * simplifyAngle(attack, 10.0F) + 0.225F;
-				leftArm.rotateAngleZ = 0.225F * simplifyAngle(attack, 10.0F) + -0.225F;
+				rightArm.rotateAngleZ = -0.425F * simplifyAngle(attack, 10.0F) + 0.425F;
 			}
 			else
-			{
+			{		
 				if (charge > 0)
 				{
 					rightArm.rotateAngleX = -0.556F;
@@ -224,7 +222,19 @@ public class ModelApis extends ModelBase
 					rightLeg.rotateAngleX = 1.5F * this.simplifyAngle(f, 13.0F) * f1;
 					leftArm.rotateAngleX = 0.55F * this.simplifyAngle(f, 13.0F) * f1;
 					rightArm.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
+
+					if (hurt > 0)
+					{
+						head.rotateAngleX = 0.135F * simplifyAngle(hurt, 10.0F) - 0.135F;
+
+						rightArm.rotateAngleX = 0.145F * simplifyAngle(hurt, 10.0F) - 0.145F;
+						leftArm.rotateAngleX = 0.145F * simplifyAngle(hurt, 10.0F) - 0.145F;
+
+						rightArm.rotateAngleZ = -0.125F * simplifyAngle(hurt, 10.0F) + 0.125F;
+						leftArm.rotateAngleZ = 0.125F * simplifyAngle(hurt, 10.0F) + -0.125F;
+					}
 				}
+
 			}
 		} 
 	}
