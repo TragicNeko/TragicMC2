@@ -147,6 +147,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 						this.heal(this.phaseDamage);
 						//remove divinity from all nearby entities
 					}
+					
+					//spawn corrupted gas around itself until phase ends
 				}
 			}
 		}

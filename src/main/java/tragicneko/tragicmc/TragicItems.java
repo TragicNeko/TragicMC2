@@ -555,6 +555,9 @@ public class TragicItems {
 		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialSteel"));
 		GameRegistry.registerItem(CelestialSteel, "celestialSteel");
 		
+		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseCrystal"));
+		GameRegistry.registerItem(SynapseCrystal, "synapseCrystal");
+		
 		CorruptedEye = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEye").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEye"));
 		GameRegistry.registerItem(CorruptedEye, "corruptedEye");
 		
@@ -825,9 +828,6 @@ public class TragicItems {
 
 		SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:SynapseLink"));
 		GameRegistry.registerItem(SynapseLink, "synapseLink");
-
-		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseCrystal"));
-		GameRegistry.registerItem(SynapseCrystal, "synapseCrystal");
 
 		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll"));
 		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
