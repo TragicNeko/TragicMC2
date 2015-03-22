@@ -3500,7 +3500,16 @@ Fixed Apis moving while doing it's Stomp attack, improved it's animations for be
 Added chat message to players explaining why a Boss that is spawned disappears immediately
 
 2.41.2118++ <193> (March 20, 2015)
-
+Fixed statue interaction, blaze powder is the only thing that can reset a statue's texture now, previously any other item would do it and be removed but
+now it ensures that blaze powder is the only thing that works, this is more to prevent ppl from losing important items than forcing them to use blaze powder
+to reset the texture, made it so that Synapse Crystals are required to animate it
+Moved registration of Synapse Crystal higher up to make it easier to find in the Creative tab
+Improved rendering of statues, they can now be animated and have a different texture at the same time, added Leaf texture to replace Red Mercury
+Added nbt tag to statue itemstack to ensure they remember that they were animated, added new textures to localization
+Added Seeker entity, gave it it's basic AI, it kills when it sees an entity for 300 ticks, which is about 15 seconds, the player (if they have a weapon that
+does more than 25 damage) should be able to kill them if they bum rush it right when it sees them, otherwise they'll need to do some hide and seek with it
+until they kill it
+Added ability for it to "spot" targets for nearby synapse mobs
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3536,9 +3545,6 @@ The Cocoon form will randomly spawn in Harvesters as well
 When the Seekers are destroyed, it'll grant you Divinity for around 15 seconds, which will be removed from you when you hit the certain amount of health
 that is required for the next Seeker phase or until it runs out, if you don't do enough damage to get to the next phase then it regenerates it's health
 back up to the previous stage, there will be 5 phases, where 100 damage is required per phase
-Seeker = Passive mob that "spots" nearby enemies for other entities to attack, make a loud shrieking sound while tracking a target, if the entity is tracked for a really long
-time, the seeker can actually kill the target with it's gaze by slowly building up armor piercing damage done to it, in other words, these must be killed when they spawn and see
-a target, otherwise they will kill it, these work like the Oracles in Destiny
 
 --Reminders-
 Add a allowPvP option in the config, this will be a blanket for other config options such as allowing doomsdays to target players and allowing weapons to
