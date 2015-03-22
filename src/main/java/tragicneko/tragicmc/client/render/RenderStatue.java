@@ -46,10 +46,10 @@ public class RenderStatue extends Render {
 		new ResourceLocation(mobPath + "OverlordCore.png")},
 		{new ResourceLocation(textPath + "IronStatue.png"),
 			new ResourceLocation(textPath + "GoldStatue.png"), new ResourceLocation(textPath + "DiamondStatue.png"), new ResourceLocation(textPath + "StoneStatue.png"),
-			new ResourceLocation(textPath + "WoodStatue.png"), new ResourceLocation(textPath + "EmeraldStatue.png"), new ResourceLocation(textPath + "MercuryStatue.png"),
+			new ResourceLocation(textPath + "WoodStatue.png"), new ResourceLocation(textPath + "EmeraldStatue.png"), new ResourceLocation(textPath + "LeafStatue.png"),
 			new ResourceLocation(textPath + "TungstenStatue.png"), new ResourceLocation(textPath + "RubyStatue.png"), new ResourceLocation(textPath + "SapphireStatue.png"),
 			new ResourceLocation(textPath + "RedstoneStatue.png"), new ResourceLocation(textPath + "CoalStatue.png"), new ResourceLocation(textPath + "LapisStatue.png"),
-			new ResourceLocation(textPath + "NetherrackStatue.png")}};
+			new ResourceLocation(textPath + "NetherrackStatue.png"), new ResourceLocation(textPath + "EnderStatue.png")}};
 	
 	private static final ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
@@ -77,7 +77,7 @@ public class RenderStatue extends Render {
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
-		float f0 = statue.getTextureID() == 15 ? (statue.ticksExisted * 2) % 360.0F : statue.getRotation();
+		float f0 = statue.getAnimated() ? ((statue.ticksExisted * 2) % 360.0F) + statue.getEntityId() % 100 : statue.getRotation();
 		GL11.glRotatef(f0, 0.0F, 1.0F, 0.0F);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		this.bindTexture(this.getEntityTexture(statue));
@@ -110,7 +110,7 @@ public class RenderStatue extends Render {
 
 	private ResourceLocation getEntityTexture(EntityStatue statue)
 	{
-		if (statue.getTextureID() == 0 || statue.getTextureID() == 15) return textures[0][statue.getMobID()];
+		if (statue.getTextureID() == 0) return textures[0][statue.getMobID()];
 		return textures[1][statue.getTextureID() - 1];
 	}
 
