@@ -50,6 +50,7 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -443,6 +444,12 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityHarvester.class, "Harvester", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityHarvester.class, "TragicMC.Harvester", id++, 0xFFFFFF, 0xAAAAAA);
+		}
+		
+		if (TragicConfig.allowOverlord)
+		{
+			EntityRegistry.registerModEntity(EntitySeeker.class, "Seeker", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntitySeeker.class, "TragicMC.Seeker", id++, 0xFFFFFF, 0xAAAAAA);
 		}
 
 		//Iron Golem
