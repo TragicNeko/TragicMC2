@@ -40,12 +40,12 @@ public class EntityStatue extends Entity {
 		this.setSize(0.425F, 0.865F);
 		this.isImmuneToFire = true;
 	}
-	
+
 	@Override
 	protected boolean canTriggerWalking()
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 
 	@Override
 	public boolean canBeCollidedWith()
@@ -57,38 +57,44 @@ public class EntityStatue extends Entity {
 	public boolean attackEntityFrom(DamageSource source, float par2)
 	{
 		if (this.worldObj.isRemote || this.isEntityInvulnerable() || source.isExplosion()) return false;
-		
+
 		this.setDead();
 		this.setBeenAttacked();
-		
+
 		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
-		
+
 		int id = this.getMobID();
-		
+
 		for (int i = 0; i < this.getTextureID(); i++)
 		{
 			id += 18;
 		}		
+		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, id);
+		if (this.getAnimated())
+		{
+			stack.stackTagCompound = new NBTTagCompound();
+			stack.stackTagCompound.setInteger("isAnimated", this.getAnimated() ? 1 : 0);
+		}
 
-		this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
+		this.entityDropItem(stack, 0.4F);
 		return true;
 	}
-	
+
 	public int getMobID()
 	{
 		return this.dataWatcher.getWatchableObjectInt(2);
 	}
-	
+
 	public void setMobID(int i)
 	{
 		this.dataWatcher.updateObject(2, i);
 	}
-	
+
 	public int getTextureID()
 	{
 		return this.dataWatcher.getWatchableObjectInt(3);
 	}
-	
+
 	public void setTextureID(int i)
 	{
 		this.dataWatcher.updateObject(3, i);
@@ -99,26 +105,36 @@ public class EntityStatue extends Entity {
 		float pow = this.dataWatcher.getWatchableObjectFloat(4) + 45.0F;
 		this.setRotation(pow);
 	}
-	
+
 	public void setRotation(float f)
 	{
 		this.dataWatcher.updateObject(4, f % 360.0F);
 	}
-	
+
 	public float getRotation()
 	{
 		return this.dataWatcher.getWatchableObjectFloat(4);
 	}
-	
+
+	public void setAnimated(boolean flag)
+	{
+		this.dataWatcher.updateObject(5, flag ? 1 : 0);
+	}
+
+	public boolean getAnimated()
+	{
+		return this.dataWatcher.getWatchableObjectInt(5) == 1;
+	}
+
 	@Override
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		
+
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		
+
 		if (!this.worldObj.isRemote && this.getRotation() > 360.0F) this.setRotation(this.getRotation() - 360.0F);
 	}
 
@@ -133,6 +149,7 @@ public class EntityStatue extends Entity {
 		this.dataWatcher.addObject(2, Integer.valueOf(0));
 		this.dataWatcher.addObject(3, Integer.valueOf(0));
 		this.dataWatcher.addObject(4, Float.valueOf(0));
+		this.dataWatcher.addObject(5, Integer.valueOf(0));
 	}
 
 	@Override
@@ -140,6 +157,7 @@ public class EntityStatue extends Entity {
 		if (tag.hasKey("mobID")) this.setMobID(tag.getInteger("mobID"));
 		if (tag.hasKey("rotation")) this.setRotation(tag.getFloat("rotation"));
 		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
+		if (tag.hasKey("animated")) this.setAnimated(tag.getInteger("animated") == 1);
 	}
 
 	@Override
@@ -147,13 +165,14 @@ public class EntityStatue extends Entity {
 		tag.setInteger("mobID", this.getMobID());
 		tag.setFloat("rotation", this.getRotation());
 		tag.setInteger("textureID",  this.getTextureID());
+		tag.setBoolean("animated", this.getAnimated());
 	}
-	
+
 	@Override
 	public boolean interactFirst(EntityPlayer player)
 	{
 		if (player.worldObj.isRemote) return false;
-		
+
 		if (player.getCurrentEquippedItem() != null)
 		{
 			ItemStack item = player.getCurrentEquippedItem();
@@ -216,7 +235,7 @@ public class EntityStatue extends Entity {
 				case 16:
 					if (TragicConfig.allowAegar) entity = new EntityAegar(this.worldObj);
 					break;
-				case 17: break;
+				case 17: return false;
 				default: break;
 				}
 
@@ -249,7 +268,7 @@ public class EntityStatue extends Entity {
 				{
 					b0 = 4;
 				}
-				else if (item.getItem() == Item.getItemFromBlock(Blocks.log))
+				else if (item.getItem() == Item.getItemFromBlock(Blocks.log) || item.getItem() == Item.getItemFromBlock(Blocks.log2))
 				{
 					b0 = 5;
 				}
@@ -257,7 +276,7 @@ public class EntityStatue extends Entity {
 				{
 					b0 = 6;
 				}
-				else if (item.getItem() == TragicItems.RedMercury)
+				else if (item.getItem() == Item.getItemFromBlock(Blocks.leaves) || item.getItem() == Item.getItemFromBlock(Blocks.leaves2))
 				{
 					b0 = 7;
 				}
@@ -289,16 +308,18 @@ public class EntityStatue extends Entity {
 				{
 					b0 = 14;
 				}
-				else if (item.getItem() == TragicItems.CelestialDiamond) //allows the statue to rotate by itself
+				else if (item.getItem() == Items.ender_pearl)
 				{
 					b0 = 15;
 				}
-				else if (item.getItem() == Items.blaze_powder) //to reset the texture
+
+				if (item.getItem() == TragicItems.SynapseCrystal)
 				{
-					b0 = 0;
+					this.setAnimated(!this.getAnimated());
+					if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, null);
 				}
 
-				if (b0 != this.getTextureID())
+				if (b0 == 0 && item.getItem() == Items.blaze_powder && this.getTextureID() != 0 || b0 != this.getTextureID() && b0 > 0)
 				{
 					this.setTextureID(b0);
 					if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, null);
@@ -309,7 +330,7 @@ public class EntityStatue extends Entity {
 		{
 			this.incrementRotationAngle();
 		}
-		
+
 		return false;
 	}
 

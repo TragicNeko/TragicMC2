@@ -86,7 +86,7 @@ public class ItemStatue extends Item {
     {
 		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
 		if (stack.getItemDamage() < subNames.length) return s;
-        return s + " " + StatCollector.translateToLocal(this.getExtraStringName(stack.getItemDamage()));
+        return s + " " + StatCollector.translateToLocal(this.getExtraStringName(stack.getItemDamage())) + (this.getAnimated(stack) ? StatCollector.translateToLocal("tragicmc.mobTexture.animated") : "");
     }
 
 	private String getExtraStringName(int damage) {
@@ -115,7 +115,7 @@ public class ItemStatue extends Item {
 		case 6:
 			return "tragicmc.mobTexture.emerald";
 		case 7:
-			return "tragicmc.mobTexture.redMercury";
+			return "tragicmc.mobTexture.leaf";
 		case 8:
 			return "tragicmc.mobTexture.tungsten";
 		case 9:
@@ -131,7 +131,7 @@ public class ItemStatue extends Item {
 		case 14:
 			return "tragicmc.mobTexture.netherrack";
 		case 15:
-			return "tragicmc.mobTexture.checkered";
+			return "tragicmc.mobTexture.ender";
 		default:
 			return "";
 		}
@@ -201,10 +201,16 @@ public class ItemStatue extends Item {
 			if (!world.getCollidingBoundingBoxes(statue, statue.boundingBox).isEmpty() || world.isAnyLiquid(statue.boundingBox)) return stack;
 			statue.setMobID(stack.getItemDamage() % subNames.length);
 			statue.setTextureID(this.getTextureIDFromDamage(stack.getItemDamage()));
+			statue.setAnimated(this.getAnimated(stack));
 			world.spawnEntityInWorld(statue);
 			if (!player.capabilities.isCreativeMode) stack.stackSize--;
 		}
 
 		return stack;
+	}
+	
+	private boolean getAnimated(ItemStack stack)
+	{
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("isAnimated") ? stack.getTagCompound().getInteger("isAnimated") == 1 : false;
 	}
 }
