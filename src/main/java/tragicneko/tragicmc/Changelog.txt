@@ -3510,6 +3510,16 @@ Added Seeker entity, gave it it's basic AI, it kills when it sees an entity for 
 does more than 25 damage) should be able to kill them if they bum rush it right when it sees them, otherwise they'll need to do some hide and seek with it
 until they kill it
 Added ability for it to "spot" targets for nearby synapse mobs
+Make Cocoon immune to projectile attacks
+Allow Seekers to relocate themselves if they are not in a good position, this should only be done on initial spawn and should not be done any other time
+Added basic stuff to the Cocoon form's AI, fixed some initial phase change bugs, fixed some health setting bugs
+Improved Seekers AI to allow for them to automatically relocate to a more valid location, added relocation counter in the case that a Seeker teleports too many times
+and can't find a suitable position, it now teleports to it's owner or gets set dead if it has none
+Each form of the Overlord has Luxury drops, this may get changed by release but I'll see for now if it's that big of a deal
+Fixed nbt tags of the Overlord forms, they were reversed (reading instead of writing)
+Added nbt tags to the Cocoon form and to the Seekers, also to the Harvester
+Continuing work on the Combat form's model, the Cocoon form should be really easy to do, but I may split it into fourths to make the transformation animation
+of the Combat form make more sense
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3536,16 +3546,6 @@ Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms
 Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
 Ranmas
 
-FOR THE OVERLORD
-When the Cocoon form has become aggitated, it'll spawn a bunch of Corrupted gas around it for a few seconds, it can only be hurt by melee hits, however,
-melee hits inflict extra durability damage to the attacking entity's weapons, harvesters and nano swarms will constantly spawn around it
-The Cocoon form will spawn Seekers, these will act as crystals that protect it while they are there, once these are destroyed it can be damaged for a bit
-until it hits a certain amount of health, then it will spawn more, in later rounds of this it will spawn hunters in addition to the seekers
-The Cocoon form will randomly spawn in Harvesters as well
-When the Seekers are destroyed, it'll grant you Divinity for around 15 seconds, which will be removed from you when you hit the certain amount of health
-that is required for the next Seeker phase or until it runs out, if you don't do enough damage to get to the next phase then it regenerates it's health
-back up to the previous stage, there will be 5 phases, where 100 damage is required per phase
-
 --Reminders-
 Add a allowPvP option in the config, this will be a blanket for other config options such as allowing doomsdays to target players and allowing weapons to
 hit other players
@@ -3556,11 +3556,8 @@ Add some packet stuff for doomsdays, this will be for things like applying Dooms
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Update the Isles generation to use a modified version of the inverted spike generation, using the previous method, I'll then go back and change the top
-two or three layers to fit the biome (replace dark stone with dirt or eroded stone)
 Make "Directed" Lightning, as an alternative to using the vanilla lightning
 Add client-side effects for the Doomsdays (other than the vanilla stuff)
-Make it so that corrupted mob's textures darken the longer they are corrupted
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
 Update the config to get each actual Property instead of dealing with each of the raw types directly
