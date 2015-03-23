@@ -694,22 +694,6 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		tag.setDouble("targetX", this.targetX);
-		tag.setDouble("targetY", this.targetY);
-		tag.setDouble("targetZ", this.targetZ);
-		tag.setInteger("hoverTicks", this.getHoverTicks());
-		tag.setInteger("hoverBuffer", this.hoverBuffer);
-		tag.setInteger("aggregate", this.aggregate);
-		tag.setInteger("hurtTicks", this.getHurtTicks());
-		tag.setInteger("vulnerableTicks", this.getVulnerableTicks());
-		tag.setInteger("dropTicks", this.getDropTicks());
-		tag.setInteger("transformationTicks", this.getTransformationTicks());
-	}
-
-	@Override
-	public void writeEntityToNBT(NBTTagCompound tag)
-	{
-		super.writeEntityToNBT(tag);
 		if (tag.hasKey("targetX")) this.targetX = tag.getDouble("targetX");
 		if (tag.hasKey("targetY")) this.targetY = tag.getDouble("targetY");
 		if (tag.hasKey("targetZ")) this.targetZ = tag.getDouble("targetZ");
@@ -720,6 +704,22 @@ public class EntityOverlordCore extends TragicBoss {
 		if (tag.hasKey("vulnerableTicks")) this.setVulnerableTicks(tag.getInteger("vulnerableTicks"));
 		if (tag.hasKey("dropTicks")) this.setDropTicks(tag.getInteger("dropTicks"));
 		if (tag.hasKey("transformationTicks")) this.setTransformationTicks(tag.getInteger("transformationTicks"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setDouble("targetX", this.targetX);
+		tag.setDouble("targetY", this.targetY);
+		tag.setDouble("targetZ", this.targetZ);
+		tag.setInteger("hoverTicks", this.getHoverTicks());
+		tag.setInteger("hoverBuffer", this.hoverBuffer);
+		tag.setInteger("aggregate", this.aggregate);
+		tag.setInteger("hurtTicks", this.getHurtTicks());
+		tag.setInteger("vulnerableTicks", this.getVulnerableTicks());
+		tag.setInteger("dropTicks", this.getDropTicks());
+		tag.setInteger("transformationTicks", this.getTransformationTicks());
 	}
 
 	@Override

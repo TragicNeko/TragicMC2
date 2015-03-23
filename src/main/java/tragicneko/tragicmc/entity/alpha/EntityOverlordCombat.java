@@ -9,6 +9,7 @@ import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -588,6 +589,11 @@ public class EntityOverlordCombat extends TragicBoss {
 				}
 			}
 		}
+		
+		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 
 		TragicMC.logInfo("Reflection time: " + this.getReflectionTicks());
 		TragicMC.logInfo("Attack time: " + this.getAttackTime());
@@ -683,23 +689,6 @@ public class EntityOverlordCombat extends TragicBoss {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		tag.setInteger("unstableTicks", this.getUnstableTicks());
-		tag.setInteger("unstableBuffer", this.unstableBuffer);
-		tag.setInteger("aggregate", this.aggregate);
-		tag.setInteger("hurtTicks", this.getHurtTime());
-		tag.setInteger("leapTicks", this.getLeapTicks());
-		tag.setBoolean("hasLeaped", this.hasLeaped);
-		tag.setInteger("chargeTicks", this.getChargeTicks());
-		tag.setInteger("grappleTicks", this.getGrappleTicks());
-		tag.setInteger("reflectionTicks", this.getReflectionTicks());
-		tag.setInteger("reflectionBuffer", this.reflectionBuffer);
-		tag.setInteger("transformationTicks", this.getTransformationTicks());
-	}
-
-	@Override
-	public void writeEntityToNBT(NBTTagCompound tag)
-	{
-		super.writeEntityToNBT(tag);
 		if (tag.hasKey("unstableTicks")) this.setUnstableTicks(tag.getInteger("unstableTicks"));
 		if (tag.hasKey("unstableBuffer")) this.unstableBuffer = tag.getInteger("unstableBuffer");
 		if (tag.hasKey("aggregate")) this.aggregate = tag.getInteger("aggregate");
@@ -714,5 +703,29 @@ public class EntityOverlordCombat extends TragicBoss {
 	}
 
 	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("unstableTicks", this.getUnstableTicks());
+		tag.setInteger("unstableBuffer", this.unstableBuffer);
+		tag.setInteger("aggregate", this.aggregate);
+		tag.setInteger("hurtTicks", this.getHurtTime());
+		tag.setInteger("leapTicks", this.getLeapTicks());
+		tag.setBoolean("hasLeaped", this.hasLeaped);
+		tag.setInteger("chargeTicks", this.getChargeTicks());
+		tag.setInteger("grappleTicks", this.getGrappleTicks());
+		tag.setInteger("reflectionTicks", this.getReflectionTicks());
+		tag.setInteger("reflectionBuffer", this.reflectionBuffer);
+		tag.setInteger("transformationTicks", this.getTransformationTicks());
+	}
+
+	@Override
 	public void addPotionEffect(PotionEffect pe) {}
+	
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		this.setTransforming();
+		return super.onSpawnWithEgg(data);
+	}
 }
