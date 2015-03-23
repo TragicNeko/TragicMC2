@@ -9,30 +9,30 @@ import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
-import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.entity.mob.EntitySeeker;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordCocoon extends TragicBoss {
 
-	private int phaseTicks; //ticks until phase resets
 	private boolean phaseChange = false; //if enough damage has been taken to go to the next phase
 	private float phaseDamage; //damage taken during that phase, heal this amount if time runs out
-	private ArrayList<Entity> seekers = new ArrayList<Entity>(); //list of currently active seekers, if empty and target is alive then grant Divinity and start timer
+	private ArrayList<EntitySeeker> seekers = new ArrayList<EntitySeeker>(); //list of currently active seekers, if empty and target is alive then grant Divinity and start timer
 
 	public static final IEntitySelector selec = new IEntitySelector() {
 		@Override
@@ -46,11 +46,6 @@ public class EntityOverlordCocoon extends TragicBoss {
 		this.setSize(2.385F, 3.325F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 0;
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 48.0F));
-		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, selec));
 		this.isImmuneToFire = true;
@@ -83,10 +78,12 @@ public class EntityOverlordCocoon extends TragicBoss {
 		super.onDeath(par1DamageSource);
 		if (!this.worldObj.isRemote)
 		{
-			EntityOverlordCore core = new EntityOverlordCore(this.worldObj);
-			core.setPosition(this.posX, this.posY, this.posZ);
-			core.setStartTransform();
-			this.worldObj.spawnEntityInWorld(core);
+			for (EntitySeeker sk : this.seekers) sk.setDead();
+
+			EntityOverlordCombat combat = new EntityOverlordCombat(this.worldObj);
+			combat.setPosition(this.posX, this.posY, this.posZ);
+			combat.setTransforming();
+			this.worldObj.spawnEntityInWorld(combat);
 		}
 	}
 
@@ -111,47 +108,171 @@ public class EntityOverlordCocoon extends TragicBoss {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(16, Integer.valueOf(0)); //phaseTicks
+	}
+
+	private void setPhaseTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+
+	public int getPhaseTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
 	}
 
 	@Override
 	public void onLivingUpdate()
 	{
+		this.rotationYaw = this.rotationPitch = 0;
+		this.motionX = this.motionZ = 0D;
+		this.motionY = -1D;
 		super.onLivingUpdate();
 
-		if (this.getAttackTarget() == null)
+		if (this.worldObj.isRemote) return;
+
+		EntitySeeker seek;
+		for (int i = 0; i < this.seekers.size(); i++)
 		{
-			//kill all seekers nearby
-			//Remove Divinity from all nearby mobs
+			seek = this.seekers.get(i);
+			if (seek.isDead || seek.getHealth() <= 0 || this.getDistanceToEntity(seek) >= 32.0) this.seekers.remove(seek);
 		}
-		else
+
+		List<EntitySeeker> lst = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+
+		for (EntitySeeker sk : lst)
 		{
-			if (seekers.isEmpty())
+			if (sk.getOwner() == null)
 			{
-				this.phaseTicks = 200;
-				
-				if (this.phaseChange)
-				{
-					//spawn seekers based on phase
-					//remove divinity from nearby entities
-				}
-				else
-				{
-					if (this.phaseTicks == 200)
-					{
-						//grant Divinity to nearby entities
-					}
-					
-					if (this.phaseTicks == 0)
-					{
-						this.heal(this.phaseDamage);
-						//remove divinity from all nearby entities
-					}
-					
-					//spawn corrupted gas around itself until phase ends
-				}
+				sk.setOwner(this);
+				this.seekers.add(sk);
+			}
+			else if (sk.getOwner() == this && !this.seekers.contains(sk))
+			{
+				this.seekers.add(sk);
 			}
 		}
+
+		if (this.seekers.isEmpty() && this.getPhaseTicks() == 0) this.setPhaseTicks(200);
+
+		if (this.getPhaseTicks() > 0)
+		{
+			this.setPhaseTicks(this.getPhaseTicks() - 1);
+
+			List<int[]> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
+			for (int[] coords : lst2)
+			{
+				if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2]) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+				{
+					this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CorruptedGas);
+				}
+			}
+
+			if (this.phaseChange)
+			{
+				this.phaseChange = false;
+				this.setPhaseTicks(0);
+				for (EntitySeeker sk : this.seekers) sk.setDead();
+				this.spawnSeekers();
+				this.phaseDamage = 0F;
+
+				if (this.getHealth() > 0F)
+				{
+					float f = this.getMaxHealth() / 5;
+					switch (this.getCurrentPhase())
+					{
+					case 0:
+						f *= 4;
+						break;
+					case 1:
+						f *= 3;
+						break;
+					case 2:
+						f *= 2;
+						break;
+					case 3:
+						break;
+					case 4:
+						f = 0;
+						break;
+					default:
+						break;
+					}
+					this.setHealth(f);
+				}
+
+				if (TragicConfig.allowDivinity)
+				{
+					List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+					for (Entity e : list)
+					{
+						if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
+					}
+				}
+			}
+			else
+			{
+				if (this.getPhaseTicks() == 199)
+				{
+					if (TragicConfig.allowDivinity)
+					{
+						List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+						for (Entity e : list)
+						{
+							if (e instanceof EntityLivingBase && !((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Divinity.id, 200));
+						}
+					}
+				}
+
+				if (this.getPhaseTicks() == 0)
+				{
+					if (this.getHealth() > 0F)
+					{
+						float f = this.getMaxHealth() / 5;
+						switch (this.getCurrentPhase())
+						{
+						case 0:
+							f *= 5;
+							break;
+						case 1:
+							f *= 4;
+							break;
+						case 2:
+							f *= 3;
+							break;
+						case 3:
+							f *= 2;
+							break;
+						case 4:
+						default:
+							break;
+						}
+						this.setHealth(f);
+					}
+					this.phaseDamage = 0F;
+
+					for (EntitySeeker sk : this.seekers) sk.setDead();
+					this.spawnSeekers();
+
+					if (TragicConfig.allowDivinity)
+					{
+						List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
+						for (Entity e : list)
+						{
+							if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
+						}
+					}
+				}
+			}
+
+		}
+
+		TragicMC.logInfo("Health: " + this.getHealth());
+		TragicMC.logInfo("Phase: " + this.getCurrentPhase());
+		TragicMC.logInfo("Phase ticks: " + this.getPhaseTicks());
+		TragicMC.logInfo("Phase damage: " + this.phaseDamage);
+		TragicMC.logInfo("Has seekers? " + !this.seekers.isEmpty());
+		if (!this.seekers.isEmpty()) TragicMC.logInfo("How many? " + this.seekers.size());
 	}
 
 	@Override
@@ -170,42 +291,91 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 	public void spawnSeekers()
 	{
+		int i;
+
 		switch(this.getCurrentPhase())
 		{
 		case 0:
+			i = 2 + rand.nextInt(2);
 			break;
 		case 1:
+			i = 2 + rand.nextInt(2);
 			break;
 		case 2:
+			i = 3 + rand.nextInt(3);
 			break;
 		case 3:
+			i = 3 + rand.nextInt(3);
 			break;
 		case 4:
+			i = 4 + rand.nextInt(4);
 			break;
 		default:
+			i = 1;
 			break;
 		}
+
+		for (int x = 0; x < i; x++)
+		{
+			EntitySeeker seeker = new EntitySeeker(this.worldObj);
+			seeker.setPosition(this.posX + rand.nextInt(12) - rand.nextInt(12), this.posY + rand.nextInt(12), this.posZ + rand.nextInt(12) - rand.nextInt(12));
+			seeker.setOwner(this);
+			this.worldObj.spawnEntityInWorld(seeker);
+			this.seekers.add(seeker);
+		}
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
-		//if (this.getTransformationTicks() > 0) return false;
+		if (src.isProjectile()) return false;
 
 		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
 			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
+				this.phaseDamage += dmg - this.getTotalArmorValue();
+
+				if (this.getCurrentPhase() < 4)
+				{
+					float f = this.getMaxHealth() / 5;
+					switch (this.getCurrentPhase())
+					{
+					case 0:
+						f *= 4;
+						break;
+					case 1:
+						f *= 3;
+						break;
+					case 2:
+						f *= 2;
+						break;
+					case 3:
+						break;
+					case 4:
+						f = 0;
+						break;
+					default:
+						break;
+					}
+					
+					if (this.getHealth() - (dmg - this.getTotalArmorValue()) <= f && f > 0 || this.phaseDamage >= this.getMaxHealth() / 5)
+					{
+						this.phaseChange = true;
+						dmg = 0;
+					}
+				}
+				
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
-					swarm.setPosition(this.posX, this.posY, this.posZ);
+					swarm.setPosition(this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
 					this.worldObj.spawnEntityInWorld(swarm);
 				}
-
+				
 				return super.attackEntityFrom(src, dmg);
 			}
 
@@ -217,14 +387,78 @@ public class EntityOverlordCocoon extends TragicBoss {
 	@Override
 	public boolean attackEntityAsMob(Entity entity)
 	{
-		if (this.worldObj.isRemote) return false; // || this.getTransformationTicks() > 0) return false;
-		
+		if (this.worldObj.isRemote) return false;
+
 		boolean flag = super.attackEntityAsMob(entity);
-		if (flag)
-		{
-			//create corrupted gas around itself and inflict high knockback hit on entity
-		}
-		
 		return flag;
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		if (!this.worldObj.isRemote)
+		{
+			List<int[]> lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 5.5, this.posX, this.posY - 1, this.posZ);
+			for (int[] coords : lst)
+			{
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CelledBlock);
+			}
+
+			this.spawnSeekers();
+			List<EntitySeeker> list = this.worldObj.getEntitiesWithinAABB(EntitySeeker.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+
+			for (EntitySeeker sk : list)
+			{
+				if (sk.getOwner() == null)
+				{
+					sk.setOwner(this);
+					this.seekers.add(sk);
+				}
+				else if (sk.getOwner() == this && !this.seekers.contains(sk))
+				{
+					this.seekers.add(sk);
+				}
+			}
+		}
+		return super.onSpawnWithEgg(data);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("phase") && tag.hasKey("phaseDamage"))
+		{
+			float f = this.getMaxHealth() / 5;
+			switch (tag.getInteger("phase"))
+			{
+			case 0:
+				f *= 5;
+				break;
+			case 1:
+				f *= 4;
+				break;
+			case 2:
+				f *= 3;
+				break;
+			case 3:
+				f *= 2;
+				break;
+			case 4:
+			default:
+				break;
+			}
+			this.setHealth(f - tag.getFloat("phaseDamage"));
+		}
+		if (tag.hasKey("phaseTicks")) this.setPhaseTicks(tag.getInteger("phaseTicks"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("phase", this.getCurrentPhase());
+		tag.setBoolean("phaseChange", this.phaseChange);
+		tag.setFloat("phaseDamage", this.phaseDamage);
+		tag.setInteger("phaseTicks", this.getPhaseTicks());
 	}
 }
