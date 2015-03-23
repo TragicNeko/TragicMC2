@@ -9,9 +9,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
@@ -19,7 +19,6 @@ import tragicneko.tragicmc.TragicMC;
 public class EntityHarvester extends TragicMob {
 
 	private int directionTicks;
-	private boolean heightChange = false;
 
 	public EntityHarvester(World par1World) {
 		super(par1World);
@@ -205,4 +204,17 @@ public class EntityHarvester extends TragicMob {
 
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("directionTicks")) this.directionTicks = 0;
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("directionTicks", this.directionTicks);
+	}
 }
