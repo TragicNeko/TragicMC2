@@ -12,14 +12,13 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -36,7 +35,7 @@ public class EntitySeeker extends TragicMob {
 		this.setSize(0.625F, 0.725F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 64.0F));
+		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
 	}

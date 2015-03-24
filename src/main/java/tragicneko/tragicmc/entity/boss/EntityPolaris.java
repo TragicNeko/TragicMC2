@@ -33,6 +33,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -49,7 +50,7 @@ public class EntityPolaris extends TragicBoss {
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
+		this.tasks.addTask(8, new EntityAIWatchTarget(this, 48.0F));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.75D, 32.0F));
 		this.tasks.addTask(1, fearGolems);
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
