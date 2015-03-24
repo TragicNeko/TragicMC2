@@ -5,6 +5,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.client.IRenderHandler;
 import tragicneko.tragicmc.TragicConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,7 +15,13 @@ public class TragicWorldProvider extends WorldProvider
 	public TragicWorldProvider()
 	{
 		this.dimensionId = TragicConfig.dimensionID;
-		this.setSkyRenderer(new TragicSkyRenderer());
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IRenderHandler getSkyRenderer()
+	{
+		return new TragicSkyRenderer();
 	}
 
 	@Override
