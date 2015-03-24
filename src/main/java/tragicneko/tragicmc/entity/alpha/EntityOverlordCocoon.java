@@ -30,16 +30,9 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordCocoon extends TragicBoss {
 
-	private boolean phaseChange = false; //if enough damage has been taken to go to the next phase
-	private float phaseDamage; //damage taken during that phase, heal this amount if time runs out
-	private ArrayList<EntitySeeker> seekers = new ArrayList<EntitySeeker>(); //list of currently active seekers, if empty and target is alive then grant Divinity and start timer
-
-	public static final IEntitySelector selec = new IEntitySelector() {
-		@Override
-		public boolean isEntityApplicable(Entity entity) {
-			return entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse;
-		}
-	};
+	private boolean phaseChange = false;
+	private float phaseDamage;
+	private ArrayList<EntitySeeker> seekers = new ArrayList<EntitySeeker>();
 
 	public EntityOverlordCocoon(World par1World) {
 		super(par1World);
@@ -47,7 +40,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		this.stepHeight = 2.0F;
 		this.experienceValue = 0;
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, selec));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
 		this.isImmuneToFire = true;
 	}
 
