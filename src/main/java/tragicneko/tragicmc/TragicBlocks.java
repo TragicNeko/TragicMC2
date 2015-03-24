@@ -1,16 +1,21 @@
 package tragicneko.tragicmc;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -171,6 +176,8 @@ public class TragicBlocks {
 	public static Block Conduit;
 	public static Block DigitalSea;
 	public static Block DigitalSeaPowered;
+	
+	public static Block Aeris;
 
 	public static void load()
 	{		
@@ -416,6 +423,31 @@ public class TragicBlocks {
 		
 		FrozenNetherrack = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:FrozenNetherrack").setBlockName("tragicmc.frozenNetherrack").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");
+		
+		Aeris = (new BlockTragicFlower(){
+			@Override
+			public IIcon getIcon(int side, int meta)
+			{
+				return this.blockIcon;
+			}
+
+			@Override
+			public void registerBlockIcons(IIconRegister par1IconRegister)
+			{
+				this.blockIcon = par1IconRegister.registerIcon(this.textureName);
+			}
+			
+			@Override
+			public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
+			{
+				par3.add(new ItemStack(par1, 1, 0));
+			}
+			
+			@Override
+			public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_) {}
+			
+		}.setBlockTextureName("tragicmc:PureAeris").setBlockName("tragicmc.aeris"));
+		GameRegistry.registerBlock(Aeris, ItemBlock.class, "aeris"); //TODO add Aeris block class in order to implement intended functionality, this is a placeholder
 
 		for (int i = 0; i < 3; i++)
 		{
