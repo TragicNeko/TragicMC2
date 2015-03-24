@@ -465,24 +465,15 @@ public class AmuletEvents {
 			{
 				item = (EntityItem) ite.next();
 
-				double d0 = 8.0D;
-				double d1 = (mp.posX + rand.nextDouble() - rand.nextDouble() - item.posX) / d0;
-				double d2 = (mp.posY + mp.getEyeHeight() - item.posY) / d0;
-				double d3 = (mp.posZ + rand.nextDouble() - rand.nextDouble() - item.posZ) / d0;
-				double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
-				double d5 = 1.0D - d4;
+				double d1 = item.posX - mp.posX;
+				double d2 = item.posZ - mp.posZ;
+				double d3 = item.posY - mp.posY + mp.getEyeHeight();
+				float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
+				double d4 = 0.65D;
 
-				if (d5 > 0.0D)
-				{
-					d5 *= d5;
-					item.motionX += d1 / d4 * d5 * 0.05D;
-					item.motionY += d2 / d4 * d5 * 0.05D;
-					item.motionZ += d3 / d4 * d5 * 0.05D;
-
-					if (rand.nextInt(16) == 0) item.motionY += rand.nextDouble() * 0.28D;
-
-					item.moveEntity(item.motionX, item.motionY, item.motionZ);
-				}
+				item.motionX = -d1 / f2 * d4 * 0.300000011920929D + item.motionX * 0.90000000298023224D;
+				item.motionZ = -d2 / f2 * d4 * 0.300000011920929D + item.motionZ * 0.90000000298023224D;
+				item.motionY = -d3 / f2 * d4 * 0.300000011920929D + item.motionZ * 0.90000000298023224D;
 			}
 		}
 		else if (id == 15 && TragicConfig.amuSnowGolem)
