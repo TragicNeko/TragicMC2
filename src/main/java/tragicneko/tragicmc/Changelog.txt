@@ -3520,6 +3520,12 @@ Fixed nbt tags of the Overlord forms, they were reversed (reading instead of wri
 Added nbt tags to the Cocoon form and to the Seekers, also to the Harvester
 Continuing work on the Combat form's model, the Cocoon form should be really easy to do, but I may split it into fourths to make the transformation animation
 of the Combat form make more sense
+Improved Time Amulet's effectiveness
+Created new entity AI that makes an entity keep it's gaze focused on it's target, this will be used for Bosses and the Seeker entity
+Did some work on the Aegar Battletower, it'll probably be renamed Corrupted Spire since it uses darker blocks from the Collision biomes
+Created a new flower called the Pure Aeris, which is a crystal-like semi-transparent flower, but if placed in the Collision it'll become corrupted and
+will generate the spire (if at a low enough y level), this has a placeholder currently and needs it's own class and tile entity for intended function
+Added ability to the Sword of Justice to kill all nearby entities, it requires the player to be an operator on servers though to do so
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
