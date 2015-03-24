@@ -25,7 +25,7 @@ public class BlockCelledLamp extends Block {
 		this.setHarvestLevel("pickaxe", 1);
 		this.setResistance(30.0F);
 		this.setHardness(7.6F);
-		this.setLightLevel(1.0F);
+		this.setLightLevel(0.8F);
 		this.setStepSound(soundTypeMetal);
 	}
 	
