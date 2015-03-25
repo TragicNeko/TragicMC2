@@ -480,6 +480,7 @@ public class PotionEvents {
 		if (TragicConfig.allowConvergence && event.entityLiving.isPotionActive(TragicPotion.Convergence) && event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowDoom)
 		{
 			PropertyDoom doom = PropertyDoom.get((EntityPlayer) event.entityLiving);
+			if (doom != null && doom.getCurrentCooldown() > 0) doom.setCooldown(0);
 			if (doom != null && event.entityLiving.ticksExisted % 5 == 0 && rand.nextBoolean())
 			{
 				doom.increaseDoom(rand.nextInt(4));
