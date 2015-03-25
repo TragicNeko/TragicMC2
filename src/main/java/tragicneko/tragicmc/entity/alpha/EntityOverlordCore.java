@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -230,6 +231,21 @@ public class EntityOverlordCore extends TragicBoss {
 			double x;
 			double y;
 			double z;
+			
+			if (this.deathTime > 0)
+			{
+				for (int i = 0; i < 16; i++)
+				{
+					dr = rand.nextDouble() - rand.nextDouble();
+					dr2 = rand.nextDouble() - rand.nextDouble();
+					dr3 = rand.nextDouble() - rand.nextDouble();
+					x = dr * 12.25 + this.posX;
+					y = dr2 * 12.25 + this.posY + this.height / 2.0D;
+					z = dr3 * 12.25 + this.posZ;
+					this.worldObj.spawnParticle("reddust", x, y, z, 0, 0, 0);
+				}
+				return;
+			}
 
 			int t = this.getTransformationTicks();
 
@@ -383,6 +399,7 @@ public class EntityOverlordCore extends TragicBoss {
 		} 
 
 		if (this.worldObj.difficultySetting.getDifficultyId() == 0) this.setDead();
+		if (this.deathTime > 0) return;
 		if (this.getTransformationTicks() > 0)
 		{
 			this.decrementTransformationTicks();
@@ -477,7 +494,7 @@ public class EntityOverlordCore extends TragicBoss {
 			m2 *= 0.900000011920929D;
 			m3 *= 0.900000011920929D;
 		}
-		
+
 		if (this.getVulnerableTicks() > 0 && !this.slowed)
 		{
 			m *= 0.355D;
@@ -757,6 +774,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 				if (flag && this.getVulnerableTicks() == 0) this.setVulnerableTicks(120 + rand.nextInt(40));
 				if (this.getHurtTicks() == 0) this.setHurtTicks(40);
+				if (this.ridingEntity != null) this.mountEntity(null);
 
 				return super.attackEntityFrom(src, dmg);
 			}
@@ -767,7 +785,7 @@ public class EntityOverlordCore extends TragicBoss {
 				this.forceNewTarget = true;
 				if (this.getDropTicks() > 0) this.setDropTicks(0);
 			}
-			
+
 			if (rand.nextInt(4) == 0 && this.target != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.target = entity;
 		}
 
@@ -785,7 +803,7 @@ public class EntityOverlordCore extends TragicBoss {
 				this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CelledBlock, 0, 2);
 			}
 		}
-		
+
 		super.onDeath(par1DamageSource);
 
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 17), 0.4F);
@@ -806,4 +824,33 @@ public class EntityOverlordCore extends TragicBoss {
 
 	@Override
 	public void addPotionEffect(PotionEffect pe) {}
+
+	protected void onDeathUpdate()
+	{
+		++this.deathTime;
+
+		if (this.deathTime >= 200)
+		{
+			int i;
+
+			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			{
+				i = this.getExperiencePoints(this.attackingPlayer);
+
+				while (i > 0)
+				{
+					int j = EntityXPOrb.getXPSplit(i);
+					i -= j;
+					this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+				}
+			}
+
+			this.setDead();
+
+			for (i = 0; i < 40; ++i)
+			{
+				this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
+			}
+		}
+	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -234,6 +235,38 @@ public abstract class TragicMob extends EntityMob
 	{
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
 	}
+	@Override
+	protected void onDeathUpdate()
+    {
+        ++this.deathTime;
+
+        if (this.deathTime == 20)
+        {
+            int i;
+
+            if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+            {
+                i = this.getExperiencePoints(this.attackingPlayer);
+
+                while (i > 0)
+                {
+                    int j = EntityXPOrb.getXPSplit(i);
+                    i -= j;
+                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                }
+            }
+
+            this.setDead();
+
+            for (i = 0; i < 20; ++i)
+            {
+                double d2 = this.rand.nextGaussian() * 0.02D;
+                double d0 = this.rand.nextGaussian() * 0.02D;
+                double d1 = this.rand.nextGaussian() * 0.02D;
+                this.worldObj.spawnParticle("explode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d2, d0, d1);
+            }
+        }
+    }
 
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
