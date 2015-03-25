@@ -28,7 +28,6 @@ public class BiomeGenSynapse extends TragicBiome {
         if (TragicConfig.allowHarvester) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.harvesterSC, 0, 1));
 		this.fillerBlock = TragicBlocks.CircuitBlock;
 		this.topBlock = TragicBlocks.CircuitBlock;
-		this.theBiomeDecorator = new BiomeDecoratorSynapse();
 	}
 	
 	public List getSpawnableList(EnumCreatureType p_76747_1_)
