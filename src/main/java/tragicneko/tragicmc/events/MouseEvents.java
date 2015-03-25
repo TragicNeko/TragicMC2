@@ -71,13 +71,14 @@ public class MouseEvents {
 			double d3 = ins == null ? 0.0 : ins.getAttributeValue();
 			enchantLimit += d3;
 			//TragicMC.logInfo("Reach modifier was applied to the player. Amount was " + d3);
+			double box = 0.135D;
 			
 			AxisAlignedBB bb;
 
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
 			{				
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
-				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord - 0.675, vec31.yCoord - 0.675, vec31.zCoord - 0.675).expand(1.35, 1.35, 1.35);
+				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord, vec31.yCoord, vec31.zCoord).expand(box, box, box);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
 				Entity entity;
 				
@@ -104,12 +105,14 @@ public class MouseEvents {
 					
 					if (entity instanceof IMultiPart)
 					{
+						TragicMC.logInfo("Entity attacked with reach at a distance of " + d);
 						TragicMC.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
 						break meow;
 					}
 
 					if (!(entity instanceof EntityItem) && !(entity instanceof EntityXPOrb) && !(entity instanceof EntityArrow) && entity != player)
 					{
+						TragicMC.logInfo("Entity attacked with reach at a distance of " + d);
 						TragicMC.net.sendToServer(new MessageAttack(entity));
 						break meow;
 					}
