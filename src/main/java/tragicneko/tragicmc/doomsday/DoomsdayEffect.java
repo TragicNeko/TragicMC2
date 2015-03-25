@@ -67,7 +67,7 @@ public class DoomsdayEffect {
 
 	public void onDoomsdayUpdate()
 	{		
-		if (this.iterations >= dday.getMaxIterations())
+		if (this.iterations >= dday.getMaxIterations() || this.player == null || this.player.getHealth() <= 0F)
 		{
 			this.isActive = false;
 			return;

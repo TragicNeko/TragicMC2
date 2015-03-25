@@ -8,9 +8,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +61,7 @@ public class DoomsdayManager {
 					DoomsdayEffect effect2 = list.get(i);
 					if (effect2.dday == effect.dday) 
 					{
-						logger.warn("User with UUID of " + playerID + " attempted to register a new Doomsday effect for a Doomsday they already have active, ignoring registration.");
+						logger.warn("" + getUsernameFromUUID(playerID) + " attempted to register a new Doomsday effect for a Doomsday they already have active, ignoring registration.");
 						return;
 					}
 				}
@@ -108,7 +110,7 @@ public class DoomsdayManager {
 				playerMap.remove(playerID);
 				if (reason != null)
 				{
-					logger.info("Registry removed registration for player with UUID of " + playerID + ", reason: " + reason);
+					logger.info("Registry removed registration for " + getUsernameFromUUID(playerID) + ", reason: " + reason);
 				}
 			}
 			else
@@ -120,6 +122,23 @@ public class DoomsdayManager {
 		{
 			logger.error("Error caught while attempting to remove a player from the playerMap", e);
 		}
+	}
+
+	public static String getUsernameFromUUID(UUID uuid)
+	{
+		try
+		{
+			for (int i = 0; i < MinecraftServer.getServer().getConfigurationManager().playerEntityList.size(); i++)
+			{
+				EntityPlayer player = (EntityPlayer) MinecraftServer.getServer().getConfigurationManager().playerEntityList.get(i);
+				if (player.getUniqueID() == uuid) return player.getCommandSenderName();
+			}
+		}
+		catch (Exception e)
+		{
+			logger.error("There was an error while retrieving a username from a UUID", e);
+		}
+		return uuid.toString();
 	}
 
 	@SubscribeEvent
@@ -147,7 +166,7 @@ public class DoomsdayManager {
 				for (int i = 0; i < list.size(); i++)
 				{
 					effect = list.get(i);
-					
+
 					if (effect == null)
 					{
 						logger.error("Player had a null registration somehow! To prevent any problems, the player's registrations were cleared!");
@@ -165,9 +184,9 @@ public class DoomsdayManager {
 								if (!effect.player.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
 								TragicMC.logInfo("Instant Dday used for the Combination should've applied doom cost on use");
 							}
-							
+
 							list.clear();
-							
+
 							try
 							{
 								list.add(new DoomsdayEffect(effect.dday.getCombination().doomID, effect.doom, effect.isCommandActivated).inheritCooldown(temp, effect));
@@ -212,8 +231,9 @@ public class DoomsdayManager {
 						reason = "No more Doomsday effects.";
 					}
 				}
-
-				if (list.isEmpty()) clearPlayerFromRegistry(effect.player.getUniqueID(), reason);
+				
+				if (effect.player.getHealth() <= 0F) reason = "Player is dead.";
+				if (list.isEmpty() || effect.player.getHealth() <= 0F) clearPlayerFromRegistry(effect.player.getUniqueID(), reason);
 			}
 		}
 	}
@@ -231,5 +251,14 @@ public class DoomsdayManager {
 				clearPlayerFromRegistry(net.playerEntity.getUniqueID(), "Disconnected from server.");
 			}
 		} 
+	}
+	
+	@SubscribeEvent
+	public void onPlayerDeath(LivingDeathEvent event)
+	{
+		if (event.entityLiving instanceof EntityPlayer && playerMap.containsKey(event.entityLiving.getUniqueID()))
+		{
+			clearPlayerFromRegistry(event.entityLiving.getUniqueID(), "Player died during use.");
+		}
 	}
 }
