@@ -3499,7 +3499,7 @@ Fixed texture bug with Empariah statue
 Fixed Apis moving while doing it's Stomp attack, improved it's animations for being hurt and attacking, added new hurt datawatcher to it
 Added chat message to players explaining why a Boss that is spawned disappears immediately
 
-2.41.2118++ <193> (March 20, 2015)
+2.41.2140 <193> (March 20, 2015)
 Fixed statue interaction, blaze powder is the only thing that can reset a statue's texture now, previously any other item would do it and be removed but
 now it ensures that blaze powder is the only thing that works, this is more to prevent ppl from losing important items than forcing them to use blaze powder
 to reset the texture, made it so that Synapse Crystals are required to animate it
@@ -3526,6 +3526,17 @@ Did some work on the Aegar Battletower, it'll probably be renamed Corrupted Spir
 Created a new flower called the Pure Aeris, which is a crystal-like semi-transparent flower, but if placed in the Collision it'll become corrupted and
 will generate the spire (if at a low enough y level), this has a placeholder currently and needs it's own class and tile entity for intended function
 Added ability to the Sword of Justice to kill all nearby entities, it requires the player to be an operator on servers though to do so
+
+2.41.2140++ <194> (March 25, 2015)
+Ensure that players that are dead do not continue using their Doomsdays that they have active, also change debug message to convert player uuids to their
+username
+Fixed Doom Consumes not properly refilling Doom on use (they still increased Max Doom fine), this is due to a weird math bug, assumingly with Java 8
+Reduced radius that Reach affects entities that you attack, in other words, made it fit closer with vanilla so that you actually need to target entity's bounding boxes
+in order to hit them, fixed offset bug as well
+Added minor death animation for the Overlord Core, uses a modified version of the Ender Dragon's (like everything else involved with the Core)
+Added offsets to the death animation of the Core
+Allow Convergence to remove Cooldown
+Removed Synapse Biome decorator, since I forgot to do so before, deleted it completely in favor of making the player summon the Overlord themselves
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
