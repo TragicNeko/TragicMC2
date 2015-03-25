@@ -3,18 +3,20 @@ package tragicneko.tragicmc.items;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDoomUpgrade extends Item {
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
@@ -33,77 +35,66 @@ public class ItemDoomUpgrade extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (par2World.isRemote) return par1ItemStack;
-		
-		if (TragicConfig.shouldDoomLimitIncrease)
+		if (par2World.isRemote || !TragicConfig.allowDoom) return par1ItemStack;
+
+		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
+		if (doom == null) return par1ItemStack;
+
+		if (TragicConfig.shouldDoomLimitIncrease && doom.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
 		{
-			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
+			doom.increaseConsumptionLevel();
 
-			if (property.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
+			if (TragicConfig.allowConsumeRefill)
 			{
-				property.increaseConsumptionLevel();
-
-				if (TragicConfig.allowConsumeRefill)
+				if (TragicConfig.consumeRefillAmount >= 100)
 				{
-					if (TragicConfig.consumeRefillAmount >= 100)
+					doom.fillDoom();
+				}
+				else
+				{
+					double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
+
+					if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
 					{
-						property.fillDoom();
+						doom.increaseDoom((int) refill);
 					}
 					else
 					{
-						int total = property.getMaxDoom();
-						float percent = (TragicConfig.consumeRefillAmount / 100);
-
-						if (property.getCurrentDoom() + (total * percent) < property.getMaxDoom())
-						{
-							property.increaseDoom((int) (total * percent));
-						}
-						else
-						{
-							property.fillDoom();
-						}
+						doom.fillDoom();
 					}
 				}
-
-				if (!par3EntityPlayer.capabilities.isCreativeMode)
-				{
-					par1ItemStack.stackSize--;
-				}
-				
-				par3EntityPlayer.addChatMessage(new ChatComponentText("Doom max limit increased!"));
 			}
-			else if (property.getCurrentDoom() < property.getMaxDoom())
-			{
-				if (TragicConfig.allowConsumeRefill)
-				{
-					if (TragicConfig.consumeRefillAmount >= 100)
-					{
-						property.fillDoom();
-					}
-					else
-					{
-						int total = property.getMaxDoom();
-						float percent = (TragicConfig.consumeRefillAmount / 100);
 
-						if (property.getCurrentDoom() + (total*percent) < property.getMaxDoom())
-						{
-							property.increaseDoom((int) (total * percent));
-						}
-						else
-						{
-							property.fillDoom();
-						}
-					}
-				}
-
-				if (!par3EntityPlayer.capabilities.isCreativeMode)
-				{
-					par1ItemStack.stackSize--;
-				}
-				
-				par3EntityPlayer.addChatMessage(new ChatComponentText("Doom was refilled!"));
-			}
+			if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
+			par3EntityPlayer.addChatMessage(new ChatComponentText("Doom max limit increased!"));
 		}
+		else if (doom.getCurrentDoom() < doom.getMaxDoom())
+		{
+			if (TragicConfig.allowConsumeRefill)
+			{
+				if (TragicConfig.consumeRefillAmount >= 100)
+				{
+					doom.fillDoom();
+				}
+				else
+				{
+					double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
+
+					if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
+					{
+						doom.increaseDoom((int) refill);
+					}
+					else
+					{
+						doom.fillDoom();
+					}
+				}
+			}
+
+			if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
+			par3EntityPlayer.addChatMessage(new ChatComponentText("Doom was refilled!"));
+		}
+
 		return par1ItemStack;
 	}
 }

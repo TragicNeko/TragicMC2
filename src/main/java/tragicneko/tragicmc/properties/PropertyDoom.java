@@ -178,7 +178,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 */
 	public void increaseDoom(int amount)
 	{
-		if (this.getCurrentDoom() + amount > this.getMaxDoom())
+		if (this.getCurrentDoom() + amount >= this.getMaxDoom())
 		{
 			this.fillDoom();
 		}
