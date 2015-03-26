@@ -1,36 +1,33 @@
 package tragicneko.tragicmc.blocks;
 
 import static net.minecraft.init.Blocks.air;
+
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
-import tragicneko.tragicmc.entity.boss.EntityApis;
-import tragicneko.tragicmc.entity.boss.EntityClaymation;
-import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
-import tragicneko.tragicmc.entity.boss.EntityEnyvil;
-import tragicneko.tragicmc.entity.boss.EntityKitsune;
-import tragicneko.tragicmc.entity.boss.EntityPolaris;
-import tragicneko.tragicmc.entity.boss.EntityTimeController;
-import tragicneko.tragicmc.entity.boss.EntityYeti;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
 
 public class BlockSynapseCore extends Block {
 
 	public BlockSynapseCore() {
 		super(Material.iron);
 		this.setHarvestLevel("pickaxe", 3);
+		this.setCreativeTab(TragicMC.Survival);
 	}
 	
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		super.onBlockAdded(world, x, y, z);
-		if (world.provider.dimensionId != TragicConfig.synapseID) return;
 
 		Block block = TragicBlocks.CircuitBlock;
 		boolean flag = world.getBlock(x, y - 1, z) == block && world.getBlock(x, y - 2, z) == block &&
@@ -39,7 +36,16 @@ public class BlockSynapseCore extends Block {
 
 		if (flag)
 		{
-			EntityOverlordCombat boss = new EntityOverlordCombat(world);
+			if (world.provider.dimensionId != TragicConfig.synapseID && !world.isRemote)
+			{
+				List<EntityPlayerMP> list = world.getEntitiesWithinAABB(EntityPlayerMP.class, AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0).expand(4.0, 4.0, 4.0).offset(x, y, z));
+				for (EntityPlayerMP mp : list)
+				{
+					mp.addChatMessage(new ChatComponentText("Not the right dimension to summon the Overlord!"));
+				}
+				return;
+			}
+			EntityOverlordCocoon boss = new EntityOverlordCocoon(world);
 			
 			world.setBlock(x, y, z, air, 0, 2);
 			world.setBlock(x, y - 1, z, air, 0, 2);
@@ -52,7 +58,7 @@ public class BlockSynapseCore extends Block {
 			boss.setLocationAndAngles(x + 0.5D, y - 1.95D, z + 0.5D, 0.0F, 0.0F);
 			EntityPlayer player = boss.worldObj.getClosestVulnerablePlayerToEntity(boss, 16.0D);
 			if (player != null) boss.setTarget(player);
-			boss.setTransforming();
+			boss.onSpawnWithEgg(null);
 			world.spawnEntityInWorld(boss);
 
 			for (int l = 0; l < 120; ++l) 
