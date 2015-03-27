@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.events;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -31,6 +32,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class MouseEvents {
 
 	public final Minecraft mc;
+	private static final Random rand = new Random();
 
 	public MouseEvents(Minecraft mc)
 	{

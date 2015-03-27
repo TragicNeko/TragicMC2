@@ -62,6 +62,7 @@ public class KeyInputEvents extends Gui {
 	{
 		if (!Minecraft.getMinecraft().inGameHasFocus) return;
 
+		Minecraft mc = Minecraft.getMinecraft();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 
 		if (player != null && TragicConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotion.Flight.id) && player.ticksExisted % 2 == 0)
@@ -87,7 +88,8 @@ public class KeyInputEvents extends Gui {
 				}
 			}
 		}
-		else if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
+
+		if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
 		{
 			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Hacked);
 
@@ -108,18 +110,36 @@ public class KeyInputEvents extends Gui {
 				player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 			}
 		}
+
+		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation) && player.ticksExisted % 2 == 0)
+		{
+			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
+			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
+		}
+
+		if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
+		{
+			String[] sounds = new String[] {"mob.enderdragon.growl", "random.fizz", "mob.enderdragon.wings", "mob.endermen.portal", "mob.zombie.hurt",
+					"mob.skeleton.hurt", "random.bow", "random.explode", "random.click", "mob.wither.hurt", "mob.wither.idle", "random.door",
+					"game.hostile.hurt", "game.hostile.hurt.small"};
+			if (player.ticksExisted % 240 == 0 && rand.nextInt(16) == 0)
+			{
+				player.playSound(sounds[rand.nextInt(sounds.length)], (float) rand.nextGaussian(), 1.0F);
+			}
+			player.swingItem();
+		}
 	}
 
 	@SubscribeEvent
 	public void renderHackedEffects(RenderGameOverlayEvent event)
 	{
-		if (event.type != ElementType.PORTAL || !TragicConfig.allowHacked) return;
+		if (event.type != ElementType.PORTAL) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
 
-		boolean flag = mc.thePlayer.isPotionActive(TragicPotion.Hacked);
-		boolean flag2 = mc.thePlayer.isPotionActive(TragicPotion.Divinity);
-		boolean flag3 = mc.thePlayer.isPotionActive(TragicPotion.Convergence);
+		boolean flag = TragicConfig.allowHacked && mc.thePlayer.isPotionActive(TragicPotion.Hacked);
+		boolean flag2 = TragicConfig.allowDivinity && mc.thePlayer.isPotionActive(TragicPotion.Divinity);
+		boolean flag3 = TragicConfig.allowConvergence && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
 
 		if (!flag && !flag2 && !flag3) return;
 

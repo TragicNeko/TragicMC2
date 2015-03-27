@@ -506,7 +506,7 @@ public class PotionEvents {
 		EntityLivingBase entity = event.entityLiving;
 		World world = event.entityLiving.worldObj;
 
-		if (world.isRemote && TragicConfig.allowClarity && entity.isPotionActive(TragicPotion.Clarity))
+		if (TragicConfig.allowClarity && entity.isPotionActive(TragicPotion.Clarity))
 		{
 			double d0 = 16.0D + (8.0D * entity.getActivePotionEffect(TragicPotion.Clarity).getAmplifier());
 
@@ -534,20 +534,19 @@ public class PotionEvents {
 			}
 		} 
 		
-		if (world.isRemote && TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
+		if (TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
 		{
-			float strafe = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
-			float forward = (float)rand.nextDouble() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
-
 			if (event.entityLiving.ticksExisted % 60 == 0)
 			{
+				float strafe = rand.nextFloat() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
+				float forward = rand.nextFloat() * MathHelper.getRandomIntegerInRange(rand, -2, 2);
 				event.entityLiving.moveEntityWithHeading(strafe, forward);
 			}
 
 			if (event.entityLiving instanceof EntityPlayer)
 			{
-				((EntityPlayer)event.entityLiving).cameraYaw = rand.nextFloat() - rand.nextFloat();
-				((EntityPlayer)event.entityLiving).cameraPitch = rand.nextFloat() - rand.nextFloat();
+				((EntityPlayer)event.entityLiving).cameraYaw = (rand.nextFloat() - rand.nextFloat()) * 2.25F;
+				((EntityPlayer)event.entityLiving).cameraPitch = (rand.nextFloat() - rand.nextFloat()) * 2.25F;
 			}
 		}
 	}
