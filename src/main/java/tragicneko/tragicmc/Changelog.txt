@@ -3538,7 +3538,8 @@ Added offsets to the death animation of the Core
 Allow Convergence to remove Cooldown
 Removed Synapse Biome decorator, since I forgot to do so before, deleted it completely in favor of making the player summon the Overlord themselves
 Fixed spawning the wrong form with the Synapse Core in the Synapse, added message to all nearby players saying if the summoning attempt is in the wrong dimesion
-
+Fixed Disorientation (again) and added some random sound effects to Fear since otherwise it doesn't really do much to players
+Did some improvements to rendering of certain overlays for effects
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
