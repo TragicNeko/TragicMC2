@@ -3540,6 +3540,12 @@ Removed Synapse Biome decorator, since I forgot to do so before, deleted it comp
 Fixed spawning the wrong form with the Synapse Core in the Synapse, added message to all nearby players saying if the summoning attempt is in the wrong dimesion
 Fixed Disorientation (again) and added some random sound effects to Fear since otherwise it doesn't really do much to players
 Did some improvements to rendering of certain overlays for effects
+Improved death animation of the Overlord Core some
+Adding new blocks for new biomes now, added Geyser blocks, added Molten rocks and added Hallowed Grass
+The Geyser block can push entities up that walk on it, but don't do it constantly, they also don't launch the entity too high but you will take fall damage
+from it
+Added a steam vent block, it works similarly to the Geyser except it always has steam coming out of it
+Added String Light and Fragile Light, Fragile Light disappears when entities get near it but reappear later on
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
