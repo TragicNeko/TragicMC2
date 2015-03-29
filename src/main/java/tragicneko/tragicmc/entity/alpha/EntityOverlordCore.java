@@ -829,7 +829,7 @@ public class EntityOverlordCore extends TragicBoss {
 	{
 		++this.deathTime;
 
-		if (this.deathTime >= 200)
+		if (this.deathTime >= 300)
 		{
 			int i;
 
@@ -846,10 +846,33 @@ public class EntityOverlordCore extends TragicBoss {
 			}
 
 			this.setDead();
-
-			for (i = 0; i < 40; ++i)
+			
+			for (int ji = 0; ji < 20; ++ji)
 			{
-				this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
+				this.worldObj.spawnParticle("hugeexplosion", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
+			}
+			
+			for (int j = 0; j < 120; ++j)
+			{
+				this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 3.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 3.0F) - (double)this.width, 0, 0, 0);
+			}
+		}
+		
+		for (int j = 0; j < 40; ++j)
+		{
+			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
+		}
+		
+		for (int ji = 0; ji < 40; ++ji)
+		{
+			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0.1, 0.1, 0.1);
+		}
+		
+		if (this.deathTime % 5 == 0)
+		{
+			for (int ji = 0; ji < 20; ++ji)
+			{
+				this.worldObj.spawnParticle("largeexplode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
 			}
 		}
 	}

@@ -757,7 +757,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityClaymation.class, "TragicMC.Claymation", id++, 0xFF8100, 0xFFB800, EnumEggType.BOSS);
 		}
 
-
 		//Alphas
 
 		if (TragicConfig.allowOverlord)

@@ -75,7 +75,6 @@ public class RenderApis extends RenderBoss
 				GL11.glMatrixMode(GL11.GL_MODELVIEW);
 				GL11.glEnable(GL11.GL_LIGHTING);
 				GL11.glDisable(GL11.GL_BLEND);
-
 				return -1;
 			}
 		}

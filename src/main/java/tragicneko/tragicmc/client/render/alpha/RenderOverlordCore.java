@@ -1,8 +1,11 @@
 package tragicneko.tragicmc.client.render.alpha;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -42,12 +45,12 @@ public class RenderOverlordCore extends RenderBoss {
 		
 		if (core.deathTime > 0)
         {
-            float f6 = (float)core.deathTime / 200.0F;
+            float f6 = (float)core.deathTime / 300.0F;
             GL11.glDepthFunc(GL11.GL_LEQUAL);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
             GL11.glAlphaFunc(GL11.GL_GREATER, f6);
             this.bindTexture(enderDragonExplodingTextures);
-            GL11.glTranslated(entity.getRNG().nextGaussian() * 0.2, entity.getRNG().nextGaussian() * 0.2, entity.getRNG().nextGaussian() * 0.2);
+            GL11.glTranslated(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
             this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
             GL11.glDepthFunc(GL11.GL_EQUAL);
@@ -105,6 +108,41 @@ public class RenderOverlordCore extends RenderBoss {
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			return 1;
 		}
+		/*
+		if (core.deathTime > 0)
+		{
+			Random rand = core.getRNG();
+			if (pass == 1)
+			{
+				float f1 = core.deathTime + partialTick;
+				this.bindTexture(texture);
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glLoadIdentity();
+				float f2 = MathHelper.cos(f1 * 0.02F) * 3.0F;
+				float f3 = f1 * 0.01F;
+				GL11.glTranslatef(f2, f3, 0.0F);
+				this.setRenderPassModel(this.mainModel);
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_BLEND);
+				float f4 = 1.0F;
+				GL11.glColor4f(f4, f4, f4, 1.0F);
+				GL11.glDisable(GL11.GL_LIGHTING);
+				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+				GL11.glTranslatef(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
+				GL11.glScalef(1.1F + rand.nextFloat(), 1.1F + rand.nextFloat(), 1.1F + rand.nextFloat());
+				return 1;
+			}
+
+			if (pass == 2)
+			{
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glLoadIdentity();
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_LIGHTING);
+				GL11.glDisable(GL11.GL_BLEND);
+				return -1;
+			}
+		}	*/
 		
 		if (pass == 1)
 		{
