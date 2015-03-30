@@ -46,6 +46,7 @@ import tragicneko.tragicmc.blocks.BlockGenericTallGrass;
 import tragicneko.tragicmc.blocks.BlockGeyser;
 import tragicneko.tragicmc.blocks.BlockGiantCrop;
 import tragicneko.tragicmc.blocks.BlockGlowvine;
+import tragicneko.tragicmc.blocks.BlockLeafTrim;
 import tragicneko.tragicmc.blocks.BlockLight;
 import tragicneko.tragicmc.blocks.BlockLightCobble;
 import tragicneko.tragicmc.blocks.BlockLuminescence;
@@ -191,6 +192,10 @@ public class TragicBlocks {
 	public static Block StringLight;
 	public static Block FragileLight;
 	public static Block FragileLightInvis;
+	public static Block HallowedLeaves;
+	public static Block HallowedLeafTrim;
+	public static Block HallowedWood;
+	public static Block HallowedPlanks;
 
 	public static void load()
 	{		
@@ -456,7 +461,7 @@ public class TragicBlocks {
 		SteamVent = (new BlockSteamVent());
 		GameRegistry.registerBlock(SteamVent, ItemBlock.class, "steamVent");
 		
-		HallowedGrass = (new BlockGenericGrass("Hallowed").setBlockName("tragicmc.hallowedGrass").setLightLevel(1.0F));
+		HallowedGrass = (new BlockGenericGrass("Hallowed").setBlockName("tragicmc.hallowedGrass").setLightLevel(0.25F));
 		GameRegistry.registerBlock(HallowedGrass, ItemBlock.class, "hallowedGrass");
 		
 		StringLight = (new BlockStringLight().setBlockName("tragicmc.stringLight"));
@@ -467,6 +472,18 @@ public class TragicBlocks {
 		
 		FragileLightInvis = (new BlockFragileLight(false));
 		GameRegistry.registerBlock(FragileLightInvis, null, "fragileLightInvis");
+		
+		HallowedLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.hallowedLeaves").setBlockTextureName("HallowedLeaves"));
+		GameRegistry.registerBlock(HallowedLeaves, ItemBlock.class, "hallowedLeaves");
+		
+		HallowedLeafTrim = (new BlockLeafTrim("Hallowed").setBlockName("tragicmc.hallowedLeafTrim"));
+		GameRegistry.registerBlock(HallowedLeafTrim, ItemBlock.class, "hallowedLeafTrim");
+		
+		HallowedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.hallowedPlanks").setBlockTextureName("tragicmc:HallowedPlanks"));
+		GameRegistry.registerBlock(HallowedPlanks, ItemBlock.class, "hallowedPlanks");
+		
+		HallowedWood = (new BlockGenericLog("Hallowed").setBlockName("tragicmc.hallowedWood"));
+		GameRegistry.registerBlock(HallowedWood, ItemBlock.class, "hallowedWood");
 		
 		for (int i = 0; i < 3; i++)
 		{
@@ -497,6 +514,8 @@ public class TragicBlocks {
 		OreDictionary.registerOre("plankWood", AshenPlanks);
 		OreDictionary.registerOre("logWood", BleachedWood);
 		OreDictionary.registerOre("plankWood", BleachedPlanks);
+		OreDictionary.registerOre("logWood", HallowedWood);
+		OreDictionary.registerOre("plankWood", HallowedPlanks);
 
 		java.util.Set<BiomeGenBase> set = FlowerWorldGen.allowedBiomes;
 		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);

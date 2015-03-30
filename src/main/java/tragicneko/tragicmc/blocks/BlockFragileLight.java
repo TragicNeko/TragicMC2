@@ -20,7 +20,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockFragileLight extends Block {
 
 	private final boolean isVisible;
-	private IIcon invis;
 
 	public BlockFragileLight(boolean flag) {
 		super(Material.glass);
@@ -31,7 +30,7 @@ public class BlockFragileLight extends Block {
 		this.setResistance(0.5F);
 		this.setStepSound(Block.soundTypeGlass);
 		this.setLightOpacity(0);
-		this.setLightLevel(!flag ? 0F : 0.6F);
+		this.setLightLevel(!flag ? 0.2F : 0.6F);
 		this.isVisible = flag;
 		this.setTickRandomly(true);
 	}
@@ -41,20 +40,19 @@ public class BlockFragileLight extends Block {
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		super.registerBlockIcons(par1IconRegister);
-		this.invis = par1IconRegister.registerIcon("tragicmc:Transparency");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2)
 	{
-		return !isVisible ? invis : super.getIcon(par1, par2);
+		return super.getIcon(par1, par2);
 	}
 
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
 	{
-		return null;
+		return Item.getItemFromBlock(TragicBlocks.FragileLight);
 	}
 
 	@Override
@@ -117,5 +115,12 @@ public class BlockFragileLight extends Block {
 	public boolean renderAsNormalBlock()
 	{
 		return false;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderBlockPass()
+	{
+		return isVisible ? 0 : 1;
 	}
 }

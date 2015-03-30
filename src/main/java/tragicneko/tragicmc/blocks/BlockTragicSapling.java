@@ -20,6 +20,7 @@ import net.minecraftforge.common.IPlantable;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
+import tragicneko.tragicmc.worldgen.WorldGenHallowedTree;
 import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 import cpw.mods.fml.relauncher.Side;
@@ -27,7 +28,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 
-	private String[] treeNames = new String[] {"Painted", "Bleached", "Ashen"};
+	private String[] treeNames = new String[] {"Painted", "Bleached", "Ashen", "Hallowed"};
 	private IIcon[] iconArray = new IIcon[treeNames.length];
 
 	public BlockTragicSapling()
@@ -134,6 +135,9 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 			break;
 		case 2:
 			object = new WorldGenAshenTree(true);
+			break;
+		case 3:
+			object = new WorldGenHallowedTree(true);
 			break;
 		default:
 			return;
