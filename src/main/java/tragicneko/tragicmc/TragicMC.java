@@ -60,6 +60,7 @@ import tragicneko.tragicmc.network.MessageHandlerFlight;
 import tragicneko.tragicmc.network.MessageHandlerGui;
 import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.worldgen.BoulderWorldGen;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.DarkShieldWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
@@ -258,10 +259,11 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new RuggedTerrainWorldGen(), 8); //for the ashen badlands and tainted scarlands
 			GameRegistry.registerWorldGenerator(new DarkShieldWorldGen(), 9); //for the ashen badlands and decaying wasteland
 			GameRegistry.registerWorldGenerator(new IsleWorldGen(), 10); //for the tainted isles
-			GameRegistry.registerWorldGenerator(new InvertedSpikeWorldGen(), 11); //For the tainted scarlands
 			GameRegistry.registerWorldGenerator(new StringLightWorldGen(), 12); //For Hallowed biomes
 			GameRegistry.registerWorldGenerator(new GeyserWorldGen(), 13); //For the Scorched biomes
 			GameRegistry.registerWorldGenerator(new SteamVentWorldGen(), 14); //For Scorched biomes
+			GameRegistry.registerWorldGenerator(new BoulderWorldGen(), 15); //For Scorched biomes
+			GameRegistry.registerWorldGenerator(new InvertedSpikeWorldGen(), 18); //For the tainted scarlands
 			GameRegistry.registerWorldGenerator(new DimensionOreWorldGen(), 19);
 		}
 
