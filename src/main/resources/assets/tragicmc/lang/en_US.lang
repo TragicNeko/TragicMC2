@@ -103,7 +103,7 @@ tile.tragicmc.structureSeed.obsidianCavern.lootStash.name=Loot Stash Obsidian Ca
 tile.tragicmc.structureSeed.kitsuneDen.name=Kitsunakuma Den Seed
 tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple Seed
 tile.tragicmc.structureSeed.timeAltar.name=Time Altar Seed
-tile.tragicmc.structureseed.aegarTower.name=Aegar Tower
+tile.tragicmc.structureSeed.aegarTower.name=Corrupted Spire Seed
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt
@@ -166,6 +166,7 @@ tile.tragicmc.sapling.cherryBlossom.name=Cherry Blossom Sapling
 tile.tragicmc.sapling.toxic.name=Toxic Tree Sapling
 tile.tragicmc.sapling.dead.name=Dead Tree Sapling
 tile.tragicmc.sapling.corroded.name=Corroded Tree Sapling
+tile.tragicmc.sapling.hallowed.name=Hallowed Tree Sapling
 
 tile.tragicmc.flower.blueSpiranthes.name=Blue Spiranthes
 tile.tragicmc.flower.pinkSpiranthes.name=Pink Spiranthes
@@ -255,6 +256,23 @@ tile.tragicmc.darkSandstone.carved.name=Carved Dark Sandstone
 
 tile.tragicmc.witheringGas.name=Withering Gas
 tile.tragicmc.corruptedGas.name=Corrupted Gas
+
+tile.tragicmc.aeris.pureAeris.name=Aeris (Pure)
+tile.tragicmc.aeris.partiallyCorruptedAeris.name=Aeris (Partially Corrupted)
+tile.tragicmc.aeris.fullyCorruptedAeris.name=Aeris (Corrupted)
+
+tile.tragicmc.geyserNormal.name=Geyser
+tile.tragicmc.steamVent.name=Steam Vent
+tile.tragicmc.moltenRock.name=Molten Rock
+tile.tragicmc.scorchedRock.name=Scorched Rock
+
+tile.tragicmc.stringLight.name=String Light
+tile.tragicmc.fragileLight.name=Fragile Light
+tile.tragicmc.hallowedGrass.name=Hallowed Grass
+tile.tragicmc.hallowedLeaves.name=Hallowed Leaves
+tile.tragicmc.hallowedLeafTrim.name=Hallowed Leaf Trim
+tile.tragicmc.hallowedWood.name=Hallowed Wood
+tile.tragicmc.hallowedPlanks.name=Hallowed Planks
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
@@ -511,6 +529,7 @@ item.tragicmc.worldGen.starCrystalGenerator.name=Star Crystal Generator
 item.tragicmc.worldGen.spikeGenerator.name=Spike Generator
 item.tragicmc.worldGen.lightningSummoner.name=Lightning Summoner
 item.tragicmc.worldGen.explosionGenerator.name=Explosion Generator
+item.tragicmc.worldGen.isleGenerator.name=Tainted Isle Generator
 
 item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 
@@ -956,10 +975,14 @@ tragicmc.taintedIsles=Tainted Isles
 tragicmc.taintedRises=Tainted Rises
 tragicmc.taintedScarlands=Tainted Scarlands
 
-tragicmc.magmaSprings=Magma Springs
-tragicmc.magmaCliffs=Magma Cliffs
-tragicmc.magmaBarrens=Magma Barrens
-tragicmc.magmaVolcano=Volcano
+tragicmc.scorchedWastelands=Scorched Wastelands
+tragicmc.scorchedValley=Scorched Valley
+tragicmc.scorchedScarlands=Scorched Scarlands
+
+tragicmc.hallowedHills=Hallowed Hills
+tragicmc.hallowedForest=Hallowed Forest
+tragicmc.hallowedPrarie=Hallowed Prarie
+tragicmc.hallowedCliffs=Hallowed Cliffs
 
 tragicmc.frozenOcean=Frozen Ocean
 tragicmc.frozenRises=Frozen Rises
