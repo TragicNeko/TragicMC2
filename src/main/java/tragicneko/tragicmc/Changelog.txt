@@ -3546,6 +3546,20 @@ The Geyser block can push entities up that walk on it, but don't do it constantl
 from it
 Added a steam vent block, it works similarly to the Geyser except it always has steam coming out of it
 Added String Light and Fragile Light, Fragile Light disappears when entities get near it but reappear later on
+Adding the Hallowed biome set since I have the most blocks done for that, added String Light and Fragile/Normal Light gen as well
+Added a modified Hallow Tree Generation, added Leaf trim for the trees, these generate on top of the leaves
+Added the Scorched biome set since I had a lot of blocks finished for it, it'll only have a couple biomes but they'll each have lots of worldgen
+Added Geyser WorldGen and increased lava lake generation in the Scorched biomes, particularly the valley
+Added Steam Vent WorldGen
+Added config option to disable non-Dimension spawns for my mobs, since this most likely won't be used much (if at all), it's only going to be a blanket
+option for all of the mobs, like the Boss ones
+Modified how the biome list for the Collision is stored and used, this will probably break some stuff, removed sets from the biome setup class since they
+weren't used much and aren't necessary since all biomes in a set extend one class each
+Reorganized WorldGen so that inverted spikes generate after everything else, since they are destructive, fixed Steam Vent and Geyser WorldGen
+Added Jabba, Wisp and Kitsunakuma to the Scorched biome spawns
+Added new Erkel texture for Hallowed biomes and added Hallowed Sapling texture
+Added Apis to the Hallowed biome spawns
+Added new blocks and biomes to localizations
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3564,9 +3578,8 @@ use the same drop rates and items from that actually
 
 New biome sets:
 Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
-Scorched biomes, Geysers, Steam vents, steep pits with lava at the bottom, Jabba
 Hallowed biomes, Ire, Fragile Light (Blocks that get destroyed when an entity gets near them), Pure Light, floating light orbs, Light strings, randomly
-generated strings of light in the air, like silly string
+generated strings of light in the air, like silly string, Archangel (possibly, it'd have a new model though and better AI)
 Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Erkel, Jarra, toxic waste
 Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves, Parasmite
 Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
