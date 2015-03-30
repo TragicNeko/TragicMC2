@@ -99,98 +99,111 @@ public class TragicEntities {
 		if (TragicConfig.allowJabba)
 		{
 			EntityRegistry.registerModEntity(EntityJabba.class, "Jabba", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityJabba.class, TragicConfig.jabbaSC, 0, 2, EnumCreatureType.monster, BiomeGenBase.hell,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F
-					);
+
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityJabba.class, TragicConfig.jabbaSC, 0, 2, EnumCreatureType.monster, BiomeGenBase.hell,
+						BiomeGenBase.desert,
+						BiomeGenBase.desertHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F
+						);
+			}
 			TragicEntityList.addMapping(EntityJabba.class, "TragicMC.Jabba", id++, 0xDA3600, 0xFF961D);
 		}
 
 		if (TragicConfig.allowPlague)
 		{
 			EntityRegistry.registerModEntity(EntityPlague.class, "Plague", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityPlague.class, TragicConfig.plagueSC, 2, 3, EnumCreatureType.monster, BiomeGenBase.beach,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.coldBeach,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills,
-					BiomeGenBase.deepOcean,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsEdge,
-					BiomeGenBase.extremeHillsPlus,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.frozenOcean,
-					BiomeGenBase.frozenRiver,
-					BiomeGenBase.hell,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.icePlains,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleEdge,
-					BiomeGenBase.jungleHills,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore,
-					BiomeGenBase.ocean,
-					BiomeGenBase.plains,
-					BiomeGenBase.river,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.savanna,
-					BiomeGenBase.savannaPlateau,
-					BiomeGenBase.sky,
-					BiomeGenBase.stoneBeach,
-					BiomeGenBase.swampland,
-					BiomeGenBase.taiga,
-					BiomeGenBase.taigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityPlague.class, TragicConfig.plagueSC, 2, 3, EnumCreatureType.monster, BiomeGenBase.beach,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.coldBeach,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills,
+						BiomeGenBase.deepOcean,
+						BiomeGenBase.desert,
+						BiomeGenBase.desertHills,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.frozenOcean,
+						BiomeGenBase.frozenRiver,
+						BiomeGenBase.hell,
+						BiomeGenBase.iceMountains,
+						BiomeGenBase.icePlains,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleEdge,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.ocean,
+						BiomeGenBase.plains,
+						BiomeGenBase.river,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.sky,
+						BiomeGenBase.stoneBeach,
+						BiomeGenBase.swampland,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityPlague.class, "TragicMC.Plague", id++, 0x121212, 0x121212);
 		}
 
 		if (TragicConfig.allowGragul)
 		{
 			EntityRegistry.registerModEntity(EntityGragul.class, "Gragul", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityGragul.class, TragicConfig.gragulSC, 0, 2, EnumCreatureType.monster, BiomeGenBase.desertHills,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsPlus,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.swampland,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityGragul.class, TragicConfig.gragulSC, 0, 2, EnumCreatureType.monster, BiomeGenBase.desertHills,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.swampland,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore
+						);
+			}
 			TragicEntityList.addMapping(EntityGragul.class, "TragicMC.Gragul", id++, 0x777777, 0xAAAAAA);
 		}
 
 		if (TragicConfig.allowMinotaur)
 		{
 			EntityRegistry.registerModEntity(EntityMinotaur.class, "Minotaur", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityMinotaur.class, TragicConfig.minotaurSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.plains,
-					BiomeGenBase.savanna,
-					BiomeGenBase.savannaPlateau,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsEdge,
-					BiomeGenBase.extremeHillsPlus
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityMinotaur.class, TragicConfig.minotaurSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.plains,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus
+						);
+			}
 			TragicEntityList.addMapping(EntityMinotaur.class, "TragicMC.Minotaur", id++, 0x683C1F, 0x351F10);
 			DungeonHooks.addDungeonMob("Minotaur", 50);
 		}
@@ -198,61 +211,67 @@ public class TragicEntities {
 		if (TragicConfig.allowInkling)
 		{
 			EntityRegistry.registerModEntity(EntityInkling.class, "Inkling", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityInkling.class, TragicConfig.inklingSC, 2, 5, EnumCreatureType.monster, BiomeGenBase.beach,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.coldBeach,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills,
-					BiomeGenBase.deepOcean,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsEdge,
-					BiomeGenBase.extremeHillsPlus,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.frozenOcean,
-					BiomeGenBase.frozenRiver,
-					BiomeGenBase.hell,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.icePlains,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleEdge,
-					BiomeGenBase.jungleHills,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore,
-					BiomeGenBase.ocean,
-					BiomeGenBase.plains,
-					BiomeGenBase.river,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.savanna,
-					BiomeGenBase.savannaPlateau,
-					BiomeGenBase.sky,
-					BiomeGenBase.stoneBeach,
-					BiomeGenBase.swampland,
-					BiomeGenBase.taiga,
-					BiomeGenBase.taigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityInkling.class, TragicConfig.inklingSC, 2, 5, EnumCreatureType.monster, BiomeGenBase.beach,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.coldBeach,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills,
+						BiomeGenBase.deepOcean,
+						BiomeGenBase.desert,
+						BiomeGenBase.desertHills,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.frozenOcean,
+						BiomeGenBase.frozenRiver,
+						BiomeGenBase.hell,
+						BiomeGenBase.iceMountains,
+						BiomeGenBase.icePlains,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleEdge,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.ocean,
+						BiomeGenBase.plains,
+						BiomeGenBase.river,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.sky,
+						BiomeGenBase.stoneBeach,
+						BiomeGenBase.swampland,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityInkling.class, "TragicMC.Inkling", id++, 0x222222, 0x333333);
 		}
 
 		if (TragicConfig.allowRagr)
 		{
 			EntityRegistry.registerModEntity(EntityRagr.class, "Ragr", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, 0, 1, EnumCreatureType.monster, 
-					BiomeGenBase.taiga,
-					BiomeGenBase.taigaHills,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills,
-					BiomeGenBase.icePlains,
-					BiomeGenBase.iceMountains
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, 0, 1, EnumCreatureType.monster, 
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills,
+						BiomeGenBase.icePlains,
+						BiomeGenBase.iceMountains
+						);
+			}
 			TragicEntityList.addMapping(EntityRagr.class, "TragicMC.Ragr", id++, 0x94C3D9, 0x406779);
 			DungeonHooks.addDungeonMob("Ragr", 25);
 		}
@@ -260,22 +279,25 @@ public class TragicEntities {
 		if (TragicConfig.allowPumpkinhead)
 		{
 			EntityRegistry.registerModEntity(EntityPumpkinhead.class, "Pumpkinhead", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicConfig.pumpkinheadSC, 2, 5, EnumCreatureType.monster,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore,
-					BiomeGenBase.plains,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.savanna,
-					BiomeGenBase.savannaPlateau,
-					BiomeGenBase.taiga,
-					BiomeGenBase.taigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityPumpkinhead.class, TragicConfig.pumpkinheadSC, 2, 5, EnumCreatureType.monster,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.plains,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityPumpkinhead.class, "TragicMC.Pumpkinhead", id++, 0xFD9229, 0x333333);
 		}
 
@@ -288,70 +310,82 @@ public class TragicEntities {
 		if (TragicConfig.allowTox)
 		{
 			EntityRegistry.registerModEntity(EntityTox.class, "Tox", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleHills
+						);
+			}
 			TragicEntityList.addMapping(EntityTox.class, "TragicMC.Tox", id++, 0xDACF18, 0x15A915);
 		}
 
 		if (TragicConfig.allowCryse)
 		{
 			EntityRegistry.registerModEntity(EntityCryse.class, "Cryse", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityCryse.class, TragicConfig.cryseSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.icePlains,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityCryse.class, TragicConfig.cryseSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.icePlains,
+						BiomeGenBase.iceMountains,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityCryse.class, "TragicMC.Cryse", id++, 0xCEE3E3, 0xFFFFFF);
 		}
 
 		if (TragicConfig.allowNorVox)
 		{
 			EntityRegistry.registerModEntity(EntityNorVox.class, "NorVox", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityNorVox.class, TragicConfig.norVoxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.deepOcean,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsEdge,
-					BiomeGenBase.extremeHillsPlus,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleEdge,
-					BiomeGenBase.jungleHills,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore,
-					BiomeGenBase.ocean,
-					BiomeGenBase.plains,
-					BiomeGenBase.river,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.savanna,
-					BiomeGenBase.savannaPlateau,
-					BiomeGenBase.stoneBeach,
-					BiomeGenBase.swampland,
-					BiomeGenBase.taiga,
-					BiomeGenBase.taigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityNorVox.class, TragicConfig.norVoxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.deepOcean,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsEdge,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleEdge,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore,
+						BiomeGenBase.ocean,
+						BiomeGenBase.plains,
+						BiomeGenBase.river,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.savanna,
+						BiomeGenBase.savannaPlateau,
+						BiomeGenBase.stoneBeach,
+						BiomeGenBase.swampland,
+						BiomeGenBase.taiga,
+						BiomeGenBase.taigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityNorVox.class, "TragicMC.NorVox", id++, 0x000000, 0x565656);
 		}
 
 		if (TragicConfig.allowPirah)
 		{
 			EntityRegistry.registerModEntity(EntityPirah.class, "Pirah", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityPirah.class, TragicConfig.pirahSC, 2, 6, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean,
-					BiomeGenBase.ocean,
-					BiomeGenBase.river
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityPirah.class, TragicConfig.pirahSC, 2, 6, EnumCreatureType.waterCreature, BiomeGenBase.deepOcean,
+						BiomeGenBase.ocean,
+						BiomeGenBase.river
+						);
+			}
 			TragicEntityList.addMapping(EntityPirah.class, "TragicMC.Pirah", id++, 0x69A2FF, 0xFF6666);
 		}
 
@@ -364,45 +398,54 @@ public class TragicEntities {
 		if (TragicConfig.allowWisp)
 		{
 			EntityRegistry.registerModEntity(EntityWisp.class, "Wisp", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.wispSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleHills,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.mesa
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.wispSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleHills,
+						BiomeGenBase.desert,
+						BiomeGenBase.desertHills,
+						BiomeGenBase.mesa
+						);
+			}
 			TragicEntityList.addMapping(EntityWisp.class, "TragicMC.Wisp", id++, 0xFF2323, 0xCB6B4B);
 		}
 
 		if (TragicConfig.allowAbomination)
 		{
 			EntityRegistry.registerModEntity(EntityAbomination.class, "Abomination", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityAbomination.class, TragicConfig.abominationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.frozenOcean,
-					BiomeGenBase.frozenRiver,
-					BiomeGenBase.coldBeach,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityAbomination.class, TragicConfig.abominationSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
+						BiomeGenBase.iceMountains,
+						BiomeGenBase.frozenOcean,
+						BiomeGenBase.frozenRiver,
+						BiomeGenBase.coldBeach,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityAbomination.class, "TragicMC.Abomination", id++, 0xCDCDCD, 0xA9AFB7);
 		}
 
 		if (TragicConfig.allowErkel)
 		{
 			EntityRegistry.registerModEntity(EntityErkel.class, "Erkel", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
-					BiomeGenBase.forest,
-					BiomeGenBase.forestHills,
-					BiomeGenBase.birchForest,
-					BiomeGenBase.birchForestHills,
-					BiomeGenBase.jungle,
-					BiomeGenBase.jungleHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityTox.class, TragicConfig.toxSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
+						BiomeGenBase.forest,
+						BiomeGenBase.forestHills,
+						BiomeGenBase.birchForest,
+						BiomeGenBase.birchForestHills,
+						BiomeGenBase.jungle,
+						BiomeGenBase.jungleHills
+						);
+			}
 			TragicEntityList.addMapping(EntityErkel.class, "TragicMC.Erkel", id++, 0x43BD43, 0x30663D);
 		}
 
@@ -417,7 +460,7 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityPsygote.class, "Psygote", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityPsygote.class, "TragicMC.Psygote", id++, 0x8965A4, 0x000000);
 		}
-		
+
 		if (TragicConfig.allowLockbot)
 		{
 			EntityRegistry.registerModEntity(EntityLockbot.class, "Lockbot", listid++, TragicMC.getInstance(), 80, 1, true);
@@ -429,7 +472,7 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityNanoSwarm.class, "NanoSwarm", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
 		}
-		
+
 		if (TragicConfig.allowCircuitGolem)
 		{
 			//TODO add Circuit Golem
@@ -440,13 +483,13 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityHunter.class, "Hunter", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityHunter.class, "TragicMC.Hunter", id++, 0xFFFFFF, 0xAAAAAA);
 		}
-		
+
 		if (TragicConfig.allowHarvester)
 		{
 			EntityRegistry.registerModEntity(EntityHarvester.class, "Harvester", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityHarvester.class, "TragicMC.Harvester", id++, 0xFFFFFF, 0xAAAAAA);
 		}
-		
+
 		if (TragicConfig.allowOverlord)
 		{
 			EntityRegistry.registerModEntity(EntitySeeker.class, "Seeker", listid++, TragicMC.getInstance(), 80, 1, true);
@@ -473,31 +516,37 @@ public class TragicEntities {
 		if (TragicConfig.allowJarra)
 		{
 			EntityRegistry.registerModEntity(EntityJarra.class, "Jarra", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityJarra.class, TragicConfig.jarraSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell,
-					BiomeGenBase.desert,
-					BiomeGenBase.desertHills,
-					BiomeGenBase.mesa,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityJarra.class, TragicConfig.jarraSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.hell,
+						BiomeGenBase.desert,
+						BiomeGenBase.desertHills,
+						BiomeGenBase.mesa,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F
+						);
+			}
 			TragicEntityList.addMapping(EntityJarra.class, "TragicMC.Jarra", id++, 0x77329B, 0xC457FD, EnumEggType.MINIBOSS);
 		}
 
 		if (TragicConfig.allowKragul)
 		{
 			EntityRegistry.registerModEntity(EntityKragul.class, "Kragul", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityKragul.class, TragicConfig.kragulSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.desertHills,
-					BiomeGenBase.mesaPlateau,
-					BiomeGenBase.mesaPlateau_F,
-					BiomeGenBase.extremeHills,
-					BiomeGenBase.extremeHillsPlus,
-					BiomeGenBase.megaTaiga,
-					BiomeGenBase.megaTaigaHills,
-					BiomeGenBase.roofedForest,
-					BiomeGenBase.swampland,
-					BiomeGenBase.mushroomIsland,
-					BiomeGenBase.mushroomIslandShore
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityKragul.class, TragicConfig.kragulSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.desertHills,
+						BiomeGenBase.mesaPlateau,
+						BiomeGenBase.mesaPlateau_F,
+						BiomeGenBase.extremeHills,
+						BiomeGenBase.extremeHillsPlus,
+						BiomeGenBase.megaTaiga,
+						BiomeGenBase.megaTaigaHills,
+						BiomeGenBase.roofedForest,
+						BiomeGenBase.swampland,
+						BiomeGenBase.mushroomIsland,
+						BiomeGenBase.mushroomIslandShore
+						);
+			}
 			TragicEntityList.addMapping(EntityKragul.class, "TragicMC.Kragul", id++, 0xDE3C31, 0x747474, EnumEggType.MINIBOSS);
 		}
 
@@ -511,11 +560,14 @@ public class TragicEntities {
 		if (TragicConfig.allowMegaCryse)
 		{
 			EntityRegistry.registerModEntity(EntityMegaCryse.class, "MegaCryse", listid++, TragicMC.getInstance(), 80, 1, true);
-			EntityRegistry.addSpawn(EntityMegaCryse.class, TragicConfig.megaCryseSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.icePlains,
-					BiomeGenBase.iceMountains,
-					BiomeGenBase.coldTaiga,
-					BiomeGenBase.coldTaigaHills
-					);
+			if (TragicConfig.allowNonDimensionMobSpawns)
+			{
+				EntityRegistry.addSpawn(EntityMegaCryse.class, TragicConfig.megaCryseSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.icePlains,
+						BiomeGenBase.iceMountains,
+						BiomeGenBase.coldTaiga,
+						BiomeGenBase.coldTaigaHills
+						);
+			}
 			TragicEntityList.addMapping(EntityMegaCryse.class, "TragicMC.MegaCryse", id++, 0xDADADA, 0xB9BFC7, EnumEggType.MINIBOSS);
 		}
 
@@ -763,7 +815,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityOverlordCocoon.class, "OverlordCocoon", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x00CD7D, 0x787878, EnumEggType.ALPHA);
-	
+
 			EntityRegistry.registerModEntity(EntityOverlordCombat.class, "OverlordCombat", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x555555, EnumEggType.ALPHA);
 

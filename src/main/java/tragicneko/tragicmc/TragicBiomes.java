@@ -5,7 +5,9 @@ import java.util.Set;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenSynapse;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
@@ -42,15 +44,16 @@ public class TragicBiomes {
 	
 	public static TragicBiome Synapse;
 	
-	public static Set<BiomeGenBase> decayingBiomes;
-	public static Set<BiomeGenBase> paintedBiomes;
-	public static Set<BiomeGenBase> ashenBiomes;
-	public static Set<BiomeGenBase> starlitBiomes;
-	public static Set<BiomeGenBase> taintedBiomes;
+	public static TragicBiome HallowedHills;
+	public static TragicBiome HallowedForest;
+	public static TragicBiome HallowedPrarie;
+	public static TragicBiome HallowedCliffs;
 	
-	public static Set<BiomeGenBase> scorchedBiomes;
+	public static TragicBiome ScorchedWastelands;
+	public static TragicBiome ScorchedValley; //deep terrain, will have lots of lava pools
+	public static TragicBiome ScorchedScarlands; //will have geysers and steam vents aplenty, also will use inverted spike gen
+	
 	public static Set<BiomeGenBase> frozenBiomes;
-	public static Set<BiomeGenBase> hallowedBiomes;
 	public static Set<BiomeGenBase> corrodedBiomes;
 	public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
 	public static Set<BiomeGenBase> crystalBiomes; //will be a biome made of really tough, hard to mine blocks
@@ -84,15 +87,13 @@ public class TragicBiomes {
 		
 		Synapse = (TragicBiome) (new BiomeGenSynapse(TragicConfig.idSynapse).setBiomeName("tragicmc.synapse").setDisableRain());
 		
-		createSets();
-	}
-	
-	public static void createSets()
-	{
-		decayingBiomes = Sets.newHashSet(new BiomeGenBase[] {DecayingWasteland, DecayingHills, DecayingMountains, DecayingValley});
-		paintedBiomes = Sets.newHashSet(new BiomeGenBase[] {PaintedForest, PaintedPlains, PaintedHills, PaintedClearing});
-		ashenBiomes = Sets.newHashSet(new BiomeGenBase[] {AshenMountains, AshenHills, AshenBadlands});
-		starlitBiomes = Sets.newHashSet(new BiomeGenBase[] {StarlitPrarie, StarlitPlateaus, StarlitCliffs, StarlitLowlands});
-		taintedBiomes = Sets.newHashSet(new BiomeGenBase[] {TaintedSpikes, TaintedLowlands, TaintedRises, TaintedScarlands, TaintedIsles});
+		HallowedHills = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedHills).setBiomeName("tragicmc.hallowedHills"))).setHeightVariation(0.35F).setRootHeight(0.6F).setFlowersPerChunk(4).setTreesPerChunk(4);
+		HallowedForest = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedForest).setBiomeName("tragicmc.hallowedForest"))).setHeightVariation(0.15F).setRootHeight(0.55F).setFlowersPerChunk(8).setTreesPerChunk(16);
+		HallowedPrarie = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedPrarie).setBiomeName("tragicmc.hallowedPrarie"))).setHeightVariation(0.05F).setRootHeight(0.65F).setFlowersPerChunk(16).setTreesPerChunk(8);
+		HallowedCliffs = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedCliffs).setBiomeName("tragicmc.hallowedCliffs"))).setHeightVariation(1.55F).setRootHeight(0.85F).setFlowersPerChunk(4).setTreesPerChunk(0);
+		
+		ScorchedWastelands = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedWastelands).setBiomeName("tragicmc.scorchedWastelands"))).setHeightVariation(0.2F).setRootHeight(0.15F);
+		ScorchedValley = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedValley).setBiomeName("tragicmc.scorchedValley"))).setHeightVariation(0.05F).setRootHeight(-0.35F);
+		ScorchedScarlands = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedScarlands).setBiomeName("tragicmc.scorchedScarlands"))).setHeightVariation(0.05F).setRootHeight(0.65F);
 	}
 }

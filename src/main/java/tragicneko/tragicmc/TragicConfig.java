@@ -47,9 +47,8 @@ public class TragicConfig {
 	private static int[] biomeIDs = new int[48];
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
-	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles;
-	public static int idMagmaSprings, idMagmaMountains, idMagmaSinkholes, idMagmaScarlands;
-	public static int idFrozenValley, idFrozenForest, idFrozenTundra, idFrozenSwamps;
+	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles, idHallowedHills, idHallowedForest, idHallowedPrarie, idHallowedCliffs;
+	public static int idScorchedWastelands, idScorchedValley, idScorchedScarlands;
 	public static int idSynapse;
 
 	private static boolean[] blanketDoom = new boolean[17];
@@ -79,7 +78,7 @@ public class TragicConfig {
 
 	private static boolean[] blanketMob = new boolean[12];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
-	public static boolean allowDynamicHealthScaling;
+	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns;
 	private static boolean[] mobConfigs = new boolean[32];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
@@ -256,6 +255,13 @@ public class TragicConfig {
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedIslesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeSynapseID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedForestID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedPrarieID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedCliffsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedWastelandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedValleyID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		
 		config.addCustomCategoryComment(catDimension, "Set the various biome IDs in the Dimension, including the Dimension's own ID, also set if the Dimension should stay loaded.");
 
@@ -574,6 +580,7 @@ public class TragicConfig {
 		blanketMob[6] = (config.get(catMobs, "allowCorruptionDamage", true).getBoolean(true));
 		blanketMob[7] = (config.get(catMobs, "allowMobTransformation", true).getBoolean(true));
 		blanketMob[8] = (config.get(catMobs, "allowMobHealthScaling", true).getBoolean(true));
+		blanketMob[9] = (config.get(catMobs, "allowMobVanillaDimensionSpawns", true).getBoolean(true));
 
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
@@ -1211,6 +1218,14 @@ public class TragicConfig {
 		idTaintedRises = biomeIDs[mapping++];
 		idTaintedScarlands = biomeIDs[mapping++];
 		idTaintedIsles = biomeIDs[mapping++];
+		idSynapse = biomeIDs[mapping++];
+		idHallowedHills = biomeIDs[mapping++];
+		idHallowedForest = biomeIDs[mapping++];
+		idHallowedPrarie = biomeIDs[mapping++];
+		idHallowedCliffs = biomeIDs[mapping++];
+		idScorchedWastelands = biomeIDs[mapping++];
+		idScorchedValley = biomeIDs[mapping++];
+		idScorchedScarlands = biomeIDs[mapping++];
 
 		mapping = 0;
 		allowDoomsdays = blanketDoom[mapping++];
@@ -1300,6 +1315,7 @@ public class TragicConfig {
 		allowCorruptionDamage = blanketMob[6];
 		allowMobTransformation = blanketMob[7];
 		allowDynamicHealthScaling = blanketMob[8];
+		allowNonDimensionMobSpawns = blanketMob[9];
 
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
