@@ -8,11 +8,12 @@ import tragicneko.tragicmc.entity.mob.EntityErkel;
 
 public class RenderErkel extends RenderLiving {
 	
-	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Erkel.png");
-	private ResourceLocation ashenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelAshen.png");
-	private ResourceLocation paintedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelPainted.png");
-	private ResourceLocation starlitTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelStarlit.png");
-	private ResourceLocation decayingTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelDecaying.png");
+	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Erkel.png");
+	private static final ResourceLocation ashenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelAshen.png");
+	private static final ResourceLocation paintedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelPainted.png");
+	private static final ResourceLocation starlitTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelStarlit.png");
+	private static final ResourceLocation decayingTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelDecaying.png");
+	private static final ResourceLocation hallowedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelHallowed.png");
 
 	public RenderErkel() {
 		super(new ModelErkel(), 0.625F);
@@ -37,6 +38,8 @@ public class RenderErkel extends RenderLiving {
 			return starlitTexture;
 		case 4:
 			return decayingTexture;
+		case 5:
+			return hallowedTexture;
 		}
 	}
 
