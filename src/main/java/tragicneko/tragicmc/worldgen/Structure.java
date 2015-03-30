@@ -14,10 +14,10 @@ import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenSavanna;
 import net.minecraft.world.biome.BiomeGenSnow;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.schematic.SchematicApisTemple;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDeathCircle;
@@ -210,7 +210,7 @@ public class Structure extends WorldGenerator {
 		case 2: //Death Circle structure
 			if (!this.grownBySeed)
 			{
-				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenHell || TragicBiomes.decayingBiomes.contains(world.getBiomeGenForCoords(x, z)))
+				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenHell || world.getBiomeGenForCoords(x, z) instanceof BiomeGenDecayingWasteland)
 				{
 					new SchematicDeathCircle(variant, world, rand, x, y, z);
 					TragicMC.logInfo("Death Circle successfully generated at coords: " + x + ", " + y + ", " + z);

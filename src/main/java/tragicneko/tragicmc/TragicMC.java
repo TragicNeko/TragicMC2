@@ -65,12 +65,15 @@ import tragicneko.tragicmc.worldgen.DarkShieldWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
+import tragicneko.tragicmc.worldgen.GeyserWorldGen;
 import tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen;
 import tragicneko.tragicmc.worldgen.IsleWorldGen;
 import tragicneko.tragicmc.worldgen.NetherOreWorldGen;
 import tragicneko.tragicmc.worldgen.OverworldOreWorldGen;
 import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 import tragicneko.tragicmc.worldgen.StarCrystalWorldGen;
+import tragicneko.tragicmc.worldgen.SteamVentWorldGen;
+import tragicneko.tragicmc.worldgen.StringLightWorldGen;
 import tragicneko.tragicmc.worldgen.StructureWorldGen;
 import tragicneko.tragicmc.worldgen.VoidPitWorldGen;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -240,8 +243,13 @@ public class TragicMC
 
 		if (TragicConfig.allowDimension)
 		{
-			FlowerWorldGen.allowedBiomes.addAll(TragicBiomes.paintedBiomes);
-			FlowerWorldGen.allowedBiomes.addAll(TragicBiomes.ashenBiomes);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedClearing);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedForest);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedHills);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedPlains);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenBadlands);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenHills);
+			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenMountains);
 
 			if (TragicConfig.allowVoidPitGen) GameRegistry.registerWorldGenerator(new VoidPitWorldGen(), 4);
 			if (TragicConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new DimensionLayerWorldGen(), 5);
@@ -251,6 +259,9 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new DarkShieldWorldGen(), 9); //for the ashen badlands and decaying wasteland
 			GameRegistry.registerWorldGenerator(new IsleWorldGen(), 10); //for the tainted isles
 			GameRegistry.registerWorldGenerator(new InvertedSpikeWorldGen(), 11); //For the tainted scarlands
+			GameRegistry.registerWorldGenerator(new StringLightWorldGen(), 12); //For Hallowed biomes
+			GameRegistry.registerWorldGenerator(new GeyserWorldGen(), 13); //For the Scorched biomes
+			GameRegistry.registerWorldGenerator(new SteamVentWorldGen(), 14); //For Scorched biomes
 			GameRegistry.registerWorldGenerator(new DimensionOreWorldGen(), 19);
 		}
 

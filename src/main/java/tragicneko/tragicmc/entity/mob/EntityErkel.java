@@ -17,9 +17,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
 
 public class EntityErkel extends TragicMob {
 
@@ -132,21 +137,25 @@ public class EntityErkel extends TragicMob {
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
 		int i = 0;
-		if (TragicBiomes.ashenBiomes.contains(biome) || TragicBiomes.taintedBiomes.contains(biome))
+		if (biome instanceof BiomeGenAshenHills || biome instanceof BiomeGenTaintedSpikes)
 		{
 			i = 1;
 		}
-		else if (TragicBiomes.paintedBiomes.contains(biome))
+		else if (biome instanceof BiomeGenPaintedForest)
 		{
 			i = 2;
 		}
-		else if (TragicBiomes.starlitBiomes.contains(biome))
+		else if (biome instanceof BiomeGenStarlitPrarie)
 		{
 			i = 3;
 		}
-		else if (TragicBiomes.decayingBiomes.contains(biome))
+		else if (biome instanceof BiomeGenDecayingWasteland)
 		{
 			i = 4;
+		}
+		else if (biome instanceof BiomeGenHallowedHills)
+		{
+			i = 5;
 		}
 		
 		this.setTextureId(i);

@@ -11,11 +11,15 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBiomes;
+import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -141,10 +145,11 @@ public class EntityWisp extends TragicMob {
 		if (this.worldObj.isRemote)
 		{
 			String s = "flame";
-
-			if (TragicConfig.allowDimension && TragicBiomes.starlitBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "witchMagic";
-			if (TragicConfig.allowDimension && TragicBiomes.ashenBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "smoke";
-			if (TragicConfig.allowDimension && TragicBiomes.paintedBiomes.contains(this.worldObj.getBiomeGenForCoords((int)this.posX, (int)this.posZ))) s = "magicCrit";
+			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+			if (TragicConfig.allowDimension && biome instanceof BiomeGenStarlitPrarie) s = "witchMagic";
+			if (TragicConfig.allowDimension && biome instanceof BiomeGenAshenHills) s = "smoke";
+			if (TragicConfig.allowDimension && biome instanceof BiomeGenPaintedForest) s = "magicCrit";
+			if (TragicConfig.allowDimension && biome instanceof BiomeGenHallowedHills) s = "crit";
 
 			for (int i = 0; i < 2 && this.getIdleTicks() == 0; i++)
 			{

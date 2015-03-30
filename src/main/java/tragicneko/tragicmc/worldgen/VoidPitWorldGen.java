@@ -9,6 +9,7 @@ import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class VoidPitWorldGen implements IWorldGenerator {
@@ -23,7 +24,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 			int Ycoord = random.nextInt(35) + 60;
 			int Zcoord = (chunkZ * 16) + random.nextInt(16);
 
-			if (!TragicBiomes.decayingBiomes.contains(world.getBiomeGenForCoords(Xcoord, Zcoord))) return;
+			if (!(world.getBiomeGenForCoords(Xcoord, Zcoord) instanceof BiomeGenDecayingWasteland)) return;
 
 			double size;
 			int[] coords;

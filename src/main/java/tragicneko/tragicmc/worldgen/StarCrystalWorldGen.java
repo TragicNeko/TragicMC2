@@ -6,10 +6,10 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class StarCrystalWorldGen implements IWorldGenerator {
@@ -21,7 +21,7 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
 		if (!WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
-		if (!TragicBiomes.starlitBiomes.contains(world.getBiomeGenForCoords(Xcoord, Zcoord))) return;
+		if (!(world.getBiomeGenForCoords(Xcoord, Zcoord) instanceof BiomeGenStarlitPrarie)) return;
 
 		ArrayList<int[]> list;
 		double size;

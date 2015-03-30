@@ -19,6 +19,7 @@ import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.TragicBiome;
 
 import com.google.common.collect.Sets;
@@ -51,7 +52,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		boolean flag2 = !(biome instanceof BiomeGenTaiga); 
 		boolean flag3 = !(biome instanceof BiomeGenPlains);
 		boolean flag4 = biome != BiomeGenBase.roofedForest && biome != BiomeGenBase.swampland;
-		boolean flag5 = TragicBiomes.paintedBiomes.contains(biome) && world.provider instanceof TragicWorldProvider;
+		boolean flag5 = biome instanceof BiomeGenPaintedForest && world.provider instanceof TragicWorldProvider;
 
 		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
 		{

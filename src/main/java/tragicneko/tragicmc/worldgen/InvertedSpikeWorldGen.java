@@ -27,7 +27,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		if (biome != TragicBiomes.TaintedScarlands) return;
+		if (biome != TragicBiomes.TaintedScarlands && biome != TragicBiomes.ScorchedScarlands) return;
 
 		int relays = 4;
 		ArrayList<int[]> list;
