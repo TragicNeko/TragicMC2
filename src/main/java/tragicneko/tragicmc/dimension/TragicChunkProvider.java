@@ -190,7 +190,7 @@ public class TragicChunkProvider implements IChunkProvider
 	/**
 	 * loads or generates the chunk at the chunk location specified
 	 */
-	 @Override
+	@Override
 	public Chunk loadChunk(int par1, int par2)
 	{
 		return this.provideChunk(par1, par2);
@@ -200,28 +200,28 @@ public class TragicChunkProvider implements IChunkProvider
 	 * Will return back a chunk, if it doesn't exist and its not a MP client it will generate all the blocks for the
 	 * specified chunk from the map seed and chunk seed
 	 */
-	 @Override
+	@Override
 	public Chunk provideChunk(int par1, int par2)
 	{
-		 this.rand.setSeed(par1 * 341873128712L + par2 * 132897987541L);
-		 Block[] ablock = new Block[65536];
-		 byte[] abyte = new byte[65536];
-		 this.func_147424_a(par1, par2, ablock);
-		 this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
-		 this.replaceBlocksForBiome(par1, par2, ablock, abyte, this.biomesForGeneration);
-		 this.caveGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
-		 this.ravineGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
+		this.rand.setSeed(par1 * 341873128712L + par2 * 132897987541L);
+		Block[] ablock = new Block[65536];
+		byte[] abyte = new byte[65536];
+		this.func_147424_a(par1, par2, ablock);
+		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
+		this.replaceBlocksForBiome(par1, par2, ablock, abyte, this.biomesForGeneration);
+		this.caveGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
+		this.ravineGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
 
-		 Chunk chunk = new Chunk(this.worldObj, ablock, abyte, par1, par2);
-		 byte[] abyte1 = chunk.getBiomeArray();
+		Chunk chunk = new Chunk(this.worldObj, ablock, abyte, par1, par2);
+		byte[] abyte1 = chunk.getBiomeArray();
 
-		 for (int k = 0; k < abyte1.length; ++k)
-		 {
-			 abyte1[k] = (byte)this.biomesForGeneration[k].biomeID;
-		 }
+		for (int k = 0; k < abyte1.length; ++k)
+		{
+			abyte1[k] = (byte)this.biomesForGeneration[k].biomeID;
+		}
 
-		 chunk.generateSkylightMap();
-		 return chunk;
+		chunk.generateSkylightMap();
+		return chunk;
 	}
 
 	private void func_147423_a(int p_147423_1_, int p_147423_2_, int p_147423_3_)
@@ -343,16 +343,16 @@ public class TragicChunkProvider implements IChunkProvider
 	/**
 	 * Checks to see if a chunk exists at x, y
 	 */
-	 @Override
+	@Override
 	public boolean chunkExists(int par1, int par2)
 	{
-		 return true;
+		return true;
 	}
 
 	/**
 	 * Populates chunk with ores etc etc
 	 */
-	 @Override
+	@Override
 	public void populate(IChunkProvider par1IChunkProvider, int par2, int par3)
 	{
 		BlockFalling.fallInstantly = true;
@@ -367,8 +367,9 @@ public class TragicChunkProvider implements IChunkProvider
 
 		int k1;
 		int l1;
-		int i2;
-		
+		int i2; 
+		//TODO add Dimension specific generators directly here to speed up generation, or better yet put them directly into their biome classes under decorate
+
 		if (!flag && this.rand.nextInt(4) == 0 && TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA))
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
@@ -382,11 +383,7 @@ public class TragicChunkProvider implements IChunkProvider
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(this.rand.nextInt(248) + 8);
 			i2 = l + this.rand.nextInt(16) + 8;
-
-			if (this.rand.nextInt(10) == 0)
-			{
-				(new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, k1, l1, i2);
-			}
+			if (this.rand.nextInt(10) == 0) (new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
 
 		boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
@@ -402,75 +399,75 @@ public class TragicChunkProvider implements IChunkProvider
 		BlockFalling.fallInstantly = false;
 	}
 
-	 /**
-	  * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
-	  * Return true if all chunks have been saved.
-	  */
-	 @Override
+	/**
+	 * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
+	 * Return true if all chunks have been saved.
+	 */
+	@Override
 	public boolean saveChunks(boolean par1, IProgressUpdate par2IProgressUpdate)
-	 {
-		 return true;
-	 }
+	{
+		return true;
+	}
 
-	 /**
-	  * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
-	  * unimplemented.
-	  */
-	 @Override
+	/**
+	 * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
+	 * unimplemented.
+	 */
+	@Override
 	public void saveExtraData() {}
 
-	 /**
-	  * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
-	  */
-	 @Override
+	/**
+	 * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
+	 */
+	@Override
 	public boolean unloadQueuedChunks()
-	 {
-		 return false;
-	 }
+	{
+		return false;
+	}
 
-	 /**
-	  * Returns if the IChunkProvider supports saving.
-	  */
-	 @Override
+	/**
+	 * Returns if the IChunkProvider supports saving.
+	 */
+	@Override
 	public boolean canSave()
-	 {
-		 return true;
-	 }
+	{
+		return true;
+	}
 
-	 /**
-	  * Converts the instance data to a readable string.
-	  */
-	 @Override
+	/**
+	 * Converts the instance data to a readable string.
+	 */
+	@Override
 	public String makeString()
-	 {
-		 return "TragicDimensionRandomLevelSource";
-	 }
+	{
+		return "TragicDimensionRandomLevelSource";
+	}
 
-	 /**
-	  * Returns a list of creatures of the specified type that can spawn at the given location.
-	  */
-	 @Override
+	/**
+	 * Returns a list of creatures of the specified type that can spawn at the given location.
+	 */
+	@Override
 	public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
-	 {
-		 BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(par2, par4);
-		 return biomegenbase.getSpawnableList(par1EnumCreatureType);
-	 }
+	{
+		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(par2, par4);
+		return biomegenbase.getSpawnableList(par1EnumCreatureType);
+	}
 
-	 @Override
+	@Override
 	public ChunkPosition func_147416_a(World p_147416_1_, String p_147416_2_, int p_147416_3_, int p_147416_4_, int p_147416_5_)
-	 {
-		 return null;
-	 }
+	{
+		return null;
+	}
 
-	 @Override
+	@Override
 	public int getLoadedChunkCount()
-	 {
-		 return 0;
-	 }
+	{
+		return 0;
+	}
 
-	 @Override
+	@Override
 	public void recreateStructures(int par1, int par2)
-	 {
+	{
 
-	 }
+	}
 }

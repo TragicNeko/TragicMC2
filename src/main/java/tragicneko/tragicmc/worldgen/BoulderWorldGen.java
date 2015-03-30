@@ -16,7 +16,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class SteamVentWorldGen implements IWorldGenerator {
+public class BoulderWorldGen implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -28,25 +28,35 @@ public class SteamVentWorldGen implements IWorldGenerator {
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
 		if (!(biome instanceof BiomeGenScorchedWasteland)) return;
-
-		int mew = 5;
-		if (biome == TragicBiomes.ScorchedScarlands) mew = 10;
+		
+		int mew = 2;
+		if (biome == TragicBiomes.ScorchedWastelands) mew = 8;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
 		Block block;
-
+		
 		for (int i = 0; i < mew; i++)
 		{
 			Xcoord = (chunkX * 16) + random.nextInt(16);
 			Zcoord = (chunkZ * 16) + random.nextInt(16);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
-
+			
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			
 			if (block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
 			{
-				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
-				TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
+				cands.clear();
+				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, (random.nextDouble() * 1.25) + 1.0, Xcoord, Ycoord - 2, Zcoord));
+				
+				for (int[] coords : cands)
+				{
+					block = world.getBlock(coords[0], coords[1], coords[2]);
+					if (block.isReplaceable(world, coords[0], coords[1], coords[2]))
+					{
+						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ScorchedRock);
+					}
+				}
 			}
 		}
-
 	}
 
 }

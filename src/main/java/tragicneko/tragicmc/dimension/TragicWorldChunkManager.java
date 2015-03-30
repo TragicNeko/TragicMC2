@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicBiomes;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
@@ -16,19 +15,20 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+import tragicneko.tragicmc.TragicBiomes;
 
 public class TragicWorldChunkManager extends WorldChunkManager
 {
-	private GenLayer	genLayerBiomes;
-	private GenLayer	genLayerBiomeIndex;
-	private BiomeCache	biomeCache;
-	private List<BiomeGenBase>	biomesToSpawnIn;
+	private GenLayer genLayerBiomes;
+	private GenLayer genLayerBiomeIndex;
+	private BiomeCache biomeCache;
+	private List<BiomeGenBase> spawnBiomes;
 
 	public TragicWorldChunkManager(long seed, WorldType worldType)
 	{
 		this.biomeCache = new BiomeCache(this);
-		this.biomesToSpawnIn = new ArrayList();
-		this.addBiomes(this.biomesToSpawnIn);
+		this.spawnBiomes = new ArrayList<BiomeGenBase>();
+		this.addBiomes(this.spawnBiomes);
 
 		GenLayer[] genLayers = this.getGenLayers(seed, worldType);
 		this.genLayerBiomes = genLayers[0];
@@ -48,6 +48,8 @@ public class TragicWorldChunkManager extends WorldChunkManager
 		list.add(TragicBiomes.PaintedPlains);
 		list.add(TragicBiomes.AshenBadlands);
 		list.add(TragicBiomes.StarlitPrarie);
+		list.add(TragicBiomes.HallowedPrarie);
+		list.add(TragicBiomes.ScorchedWastelands);
 	}
 
 	public GenLayer[] getGenLayers(long seed, WorldType worldType)
@@ -58,7 +60,7 @@ public class TragicWorldChunkManager extends WorldChunkManager
 	@Override
 	public final List getBiomesToSpawnIn()
 	{
-		return this.biomesToSpawnIn;
+		return this.spawnBiomes;
 	}
 
 	@Override

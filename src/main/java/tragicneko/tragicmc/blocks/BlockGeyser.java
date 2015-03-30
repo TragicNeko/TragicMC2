@@ -55,7 +55,7 @@ public class BlockGeyser extends Block {
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
 		int i = 4 + (isSteaming ? 4 : 0);
-		TragicMC.logInfo("Geyser updated.");
+		///TragicMC.logInfo("Geyser updated.");
 		if (isSteaming && !world.getBlock(x, y + 1, z).isOpaqueCube() && !world.getBlock(x, y + 2, z).isOpaqueCube())
 		{
 			for (int j = 0; j < 16; j++)
@@ -67,7 +67,7 @@ public class BlockGeyser extends Block {
 		if (rand.nextInt(i) == 0)
 		{
 			world.setBlock(x, y, z, isSteaming ? TragicBlocks.Geyser : TragicBlocks.GeyserSteaming);
-			TragicMC.logInfo("Geyser block swapped out.");
+			//TragicMC.logInfo("Geyser block swapped out.");
 		}
 		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 	}

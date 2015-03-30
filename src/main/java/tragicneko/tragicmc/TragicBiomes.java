@@ -53,10 +53,10 @@ public class TragicBiomes {
 	public static TragicBiome ScorchedValley; //deep terrain, will have lots of lava pools
 	public static TragicBiome ScorchedScarlands; //will have geysers and steam vents aplenty, also will use inverted spike gen
 	
-	public static Set<BiomeGenBase> frozenBiomes;
-	public static Set<BiomeGenBase> corrodedBiomes;
-	public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
-	public static Set<BiomeGenBase> crystalBiomes; //will be a biome made of really tough, hard to mine blocks
+	//public static Set<BiomeGenBase> frozenBiomes;
+	//public static Set<BiomeGenBase> corrodedBiomes;
+	//public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
+	//public static Set<BiomeGenBase> crystalBiomes; //will be a biome made of really tough, hard to mine blocks
 
 	public static void load()
 	{

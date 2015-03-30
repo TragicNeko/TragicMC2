@@ -10,6 +10,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
@@ -28,8 +29,8 @@ public class GeyserWorldGen implements IWorldGenerator {
 
 		if (!(biome instanceof BiomeGenScorchedWasteland)) return;
 		
-		int mew = 3;
-		if (biome == TragicBiomes.ScorchedScarlands) mew = 8;
+		int mew = 6;
+		if (biome == TragicBiomes.ScorchedScarlands) mew = 12;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 		Block block;
 		
@@ -41,17 +42,17 @@ public class GeyserWorldGen implements IWorldGenerator {
 			
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 			
-			if (block == TragicBlocks.MoltenRock && random.nextInt(4) == 0)
+			if (block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
 			{
 				cands.clear();
-				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, 2.25, Xcoord, Ycoord, Zcoord));
+				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, 2.25, Xcoord, Ycoord - 2, Zcoord));
 				
 				for (int[] coords : cands)
 				{
 					block = world.getBlock(coords[0], coords[1], coords[2]);
 					if (block.isReplaceable(world, coords[0], coords[1], coords[2]))
 					{
-						if (coords[1] <= Ycoord)
+						if (coords[1] <= Ycoord - 2)
 						{
 							world.setBlock(coords[0], coords[1], coords[2], Blocks.lava);
 						}
@@ -62,7 +63,8 @@ public class GeyserWorldGen implements IWorldGenerator {
 					}
 				}
 				
-				world.setBlock(Xcoord, Ycoord + 2, Zcoord, TragicBlocks.Geyser);
+				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Geyser);
+				TragicMC.logInfo("Geyser generated at coords " + Xcoord + ", " + (Ycoord + 2) + ", " + Zcoord);
 			}
 		}
 	}
