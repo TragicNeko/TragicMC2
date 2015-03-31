@@ -73,7 +73,7 @@ public class EntitySeeker extends TragicMob {
 	{
 		return TragicEntities.Synapse;
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
@@ -81,22 +81,22 @@ public class EntitySeeker extends TragicMob {
 		this.dataWatcher.addObject(16, Integer.valueOf(0)); //kill ticks
 		this.dataWatcher.addObject(17, Integer.valueOf(0)); //target id
 	}
-	
+
 	private void setKillTicks(int i)
 	{
 		this.dataWatcher.updateObject(16, i);
 	}
-	
+
 	public int getKillTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
 	}
-	
+
 	private void setTargetId(int i)
 	{
 		this.dataWatcher.updateObject(17, i);
 	}
-	
+
 	public int getTargetId()
 	{
 		return this.dataWatcher.getWatchableObjectInt(17);
@@ -108,7 +108,33 @@ public class EntitySeeker extends TragicMob {
 		this.motionX = this.motionY = this.motionZ = 0D;
 		super.onLivingUpdate();
 
-		if (this.worldObj.isRemote) return;
+		if (this.worldObj.isRemote)
+		{
+			Entity entity = this.worldObj.getEntityByID(this.getTargetId());
+			if (entity != null && this.getKillTicks() > 0)
+			{
+				double d0 = entity.posX - this.posX;
+				double d1 = entity.posY - this.posY;
+				double d2 = entity.posZ - this.posZ;
+				
+				for (int l = 0; l < 4; l++)
+				{
+					double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
+					this.worldObj.spawnParticle("reddust", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					if (this.getKillTicks() >= 300) this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
+				}
+				
+				if (this.getKillTicks() >= 300)
+				{
+					for (int i = 0; i < 4; i++)
+					{
+						this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(),
+								this.posY + 0.25 + rand.nextDouble() * 0.5, this.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, 0.0, 0.0);
+					}
+				}
+			}
+			return;
+		}
 
 		if (this.getAttackTarget() != null)
 		{
@@ -126,6 +152,7 @@ public class EntitySeeker extends TragicMob {
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
 				for (Entity e : list)
 				{
+					if (this.getAttackTarget() == null) break;
 					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && ((EntityLiving) e).getAttackTarget() == null)
 					{
 						((EntityLiving) e).setAttackTarget(this.getAttackTarget());
@@ -135,6 +162,13 @@ public class EntitySeeker extends TragicMob {
 			else
 			{
 				if (this.ticksExisted % 2 == 0 && this.getKillTicks() > 0) this.setKillTicks(this.getKillTicks() - 1);
+				if (this.getKillTicks() == 0) this.setAttackTarget(null);
+			}
+			
+			if (this.getAttackTarget() == null || this.getDistanceToEntity(this.getAttackTarget()) >= 64.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F)
+			{
+				this.setKillTicks(0);
+				this.setAttackTarget(null);
 			}
 		}
 		else
@@ -260,7 +294,7 @@ public class EntitySeeker extends TragicMob {
 	{
 		return this.owner;
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);

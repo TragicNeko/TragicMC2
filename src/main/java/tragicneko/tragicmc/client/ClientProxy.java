@@ -28,6 +28,7 @@ import tragicneko.tragicmc.client.model.ModelPlague;
 import tragicneko.tragicmc.client.model.ModelPsygote;
 import tragicneko.tragicmc.client.model.ModelPumpkinhead;
 import tragicneko.tragicmc.client.model.ModelRagr;
+import tragicneko.tragicmc.client.model.ModelSeeker;
 import tragicneko.tragicmc.client.model.ModelSirv;
 import tragicneko.tragicmc.client.model.ModelStinKing;
 import tragicneko.tragicmc.client.model.ModelStinQueen;
@@ -105,6 +106,7 @@ import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -248,6 +250,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityHunter.class, new RenderMob(new ModelHunter(), 0.565F, "Hunter"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityHarvester.class, new RenderMob(new ModelHarvester(), 0.785F, "Harvester", 1.555F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLockbot.class, new RenderMob(new ModelLockbot(), 0.335F, "Lockbot"));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySeeker.class, new RenderMob(new ModelSeeker(), 0.475F, "Seeker"));
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
