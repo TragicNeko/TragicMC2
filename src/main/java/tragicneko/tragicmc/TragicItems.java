@@ -172,6 +172,7 @@ public class TragicItems {
 	public static Item CorruptedEssence;
 	public static Item CorruptedEgg; //random spawn egg item
 	public static Item NanoBots;
+	public static Item UnstableIsotope; //drop for Fusea, to be used as an alternative way to craft TNT, possibly for some other technological items
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
 
@@ -573,6 +574,9 @@ public class TragicItems {
 
 		NanoBots = (new ItemGeneric().setUnlocalizedName("tragicmc.nanoBots").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NanoBots"));
 		GameRegistry.registerItem(NanoBots, "nanoBots");
+		
+		UnstableIsotope = (new ItemGeneric().setUnlocalizedName("tragicmc.unstableIsotope").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:UnstableIsotope"));
+		GameRegistry.registerItem(UnstableIsotope, "unstableIsotope");
 		
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));

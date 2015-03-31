@@ -47,7 +47,7 @@ public class ItemGenerator extends Item {
 			"LightningSummoner", "ExplosionGenerator", "IsleGenerator", "DirectedLightningSummoner"};
 
 	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
-			"lightningSummoner", "explosionGenerator", "isleGenerator", "DirectedLightningSummoner"};
+			"lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner"};
 
 	private IIcon[] iconArray = new IIcon[subNames.length];
 

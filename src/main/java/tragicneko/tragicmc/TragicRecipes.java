@@ -1467,9 +1467,21 @@ public class TragicRecipes {
 			'x', TragicItems.LightParticles,
 			'y', TragicItems.KitsuneTail
 		);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles, 8),
+			TragicItems.PureDarkness
+		);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LightParticles, 8),
+			TragicItems.PureLight
+		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_eye, 1),
 			TragicItems.PureDarkness, TragicItems.ObsidianOrb
+		);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.nether_star, 1),
+			TragicItems.PureLight, Items.emerald
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.PaintedPlanks, 4),

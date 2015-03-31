@@ -472,6 +472,8 @@ item.tragicmc.icyFur.name=Icy Fur
 item.tragicmc.stinHorn.name=Stin Horn
 item.tragicmc.livingClay.name=Living Clay
 item.tragicmc.pureDarkness.name=Pure Darkness
+item.tragicmc.pureLight.name=Pure Light
+item.tragicmc.unstableIsotope.name=Unstable Isotope
 
 item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
 item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
@@ -528,6 +530,7 @@ item.tragicmc.worldGen.treeGenerator.name=Tree Generator
 item.tragicmc.worldGen.starCrystalGenerator.name=Star Crystal Generator
 item.tragicmc.worldGen.spikeGenerator.name=Spike Generator
 item.tragicmc.worldGen.lightningSummoner.name=Lightning Summoner
+item.tragicmc.worldGen.directedLightningSummoner.name=Directed Lightning Summoner
 item.tragicmc.worldGen.explosionGenerator.name=Explosion Generator
 item.tragicmc.worldGen.isleGenerator.name=Tainted Isle Generator
 
