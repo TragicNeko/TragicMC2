@@ -3567,6 +3567,10 @@ Changed some things that used Vanilla lightning bolts to use my new directed lig
 Made it so that directed lightning doesn't damage it's user, it also doesn't light up the sky like normal lightning
 Reduced height in which string lights start generating, reduced amount of pure/fragile light that generates as well
 Reduced amount of isles that generate in Tainted Isles biomes, this is to stop it from hanging as much when generating them
+Modified crafting trees a bit, Light Particles are downgraded to a normal mob drop, Pure Light is added as a Boss drop for the Apis
+This was done for balancing as well as for giving newer mobs a drop without creating a new item branch
+Added recipes to allow for conversion from pure versions to their particle counterparts, allow creation of nether stars with pure light and emeralds
+Added Seeker model and texture, also added particle effects for it's gaze attack
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
