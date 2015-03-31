@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.worldgen;
+package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
 
@@ -17,6 +17,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.worldgen.StructureWorldGen;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.schematic.SchematicApisTemple;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;

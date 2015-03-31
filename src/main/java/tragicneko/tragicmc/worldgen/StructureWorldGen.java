@@ -12,6 +12,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 import com.google.common.collect.Sets;
 
@@ -37,6 +38,18 @@ public class StructureWorldGen implements IWorldGenerator {
 		
 		boolean flag = TragicConfig.allowNonBossStructureGen;
 		boolean flag2 = TragicConfig.allowBossStructureGen;
+		/* TODO rewrite how Structures are generated, so that this mess looks cleaner and less complex
+		Structure[] structureList = new Structure[16];
+		for (Structure s : structureList)
+		{ //canGenerate will check if config option allows the structure, if proper biome and does rarity check at this point
+		//biomes will be another method within the structure class for each one to override, it'll be a set of biomes to check
+		//rarity will also be an integer value that is returned, though set by each one's config option
+		//allowed dimensions will be returned from the method but will not have a variable to save the allowed dimensions
+			if (s.isValidDimension(world.provider.dimensionId) && s.areCoordsValidForStructure(world, Xcoord, Ycoord, Zcoord) && s.canGenerate(world))
+			{
+				s.generate(world, random, Xcoord, Ycoord, Zcoord);
+			}
+		} */
 
 		switch(world.provider.dimensionId)
 		{

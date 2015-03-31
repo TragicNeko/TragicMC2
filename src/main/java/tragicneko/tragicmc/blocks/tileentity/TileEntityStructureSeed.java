@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.blocks.tileentity;
 
-import tragicneko.tragicmc.worldgen.Structure;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityStructureSeed extends TileEntity {
