@@ -32,7 +32,7 @@ public class EntitySeeker extends TragicMob {
 
 	public EntitySeeker(World par1World) {
 		super(par1World);
-		this.setSize(0.625F, 0.725F);
+		this.setSize(0.625F, 1.225F);
 		this.stepHeight = 1.0F;
 		this.experienceValue = 5;
 		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
@@ -165,7 +165,7 @@ public class EntitySeeker extends TragicMob {
 				if (this.getKillTicks() == 0) this.setAttackTarget(null);
 			}
 			
-			if (this.getAttackTarget() == null || this.getDistanceToEntity(this.getAttackTarget()) >= 64.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F)
+			if (this.getAttackTarget() == null || this.getDistanceToEntity(this.getAttackTarget()) >= 64.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
 			{
 				this.setKillTicks(0);
 				this.setAttackTarget(null);
