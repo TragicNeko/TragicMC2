@@ -24,7 +24,7 @@ public class IsleWorldGen implements IWorldGenerator {
 		if (biome != TragicBiomes.TaintedIsles || random.nextInt(6) == 0) return;
 
 		ArrayList<int[]> list;
-		int relays = 3 + random.nextInt(2);
+		int relays = 2 + random.nextInt(2);
 		Block block;
 		double regression = 0.88977745D;
 		double cutoff = 0.48943755D;

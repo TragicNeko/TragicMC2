@@ -20,7 +20,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + random.nextInt(32) + 8;
+		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + random.nextInt(8) + 4;
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
 		if (!(biome instanceof BiomeGenHallowedHills)) return;
@@ -51,11 +51,11 @@ public class StringLightWorldGen implements IWorldGenerator {
 		Zcoord = (chunkZ * 16) + random.nextInt(16);
 		Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + random.nextInt(8) + 4;
 		
-		for (int i = 0; i < 16; i++)
+		for (int i = 0; i < 6; i++)
 		{
 			Xcoord += random.nextInt(4) - random.nextInt(4);
 			Zcoord += random.nextInt(4) - random.nextInt(4);
-			Ycoord += random.nextInt(4);
+			Ycoord += random.nextInt(8);
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 
 			if (StructureWorldGen.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
@@ -69,7 +69,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 		Zcoord = (chunkZ * 16) + random.nextInt(16);
 		Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		
-		for (int i = 0; i < 16; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			Xcoord += random.nextInt(4) - random.nextInt(4);
 			Zcoord += random.nextInt(4) - random.nextInt(4);
