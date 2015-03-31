@@ -3565,6 +3565,8 @@ Currently have it working to reduce sound but the rendering isn't quite working 
 and some calculations that I don't know how to do yet, but I'll look over some other renders and try to modify the code for it
 Changed some things that used Vanilla lightning bolts to use my new directed lightning, since it has quieter sounds anyway
 Made it so that directed lightning doesn't damage it's user, it also doesn't light up the sky like normal lightning
+Reduced height in which string lights start generating, reduced amount of pure/fragile light that generates as well
+Reduced amount of isles that generate in Tainted Isles biomes, this is to stop it from hanging as much when generating them
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
