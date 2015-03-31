@@ -33,8 +33,8 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.StructureWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
@@ -44,10 +44,10 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 public class ItemGenerator extends Item {
 
 	private String[] subNames = new String[] {"VoidPitGenerator", "SpikeGenerator", "StarCrystalGenerator", "SphereGenerator", "SphereEraser", "LiquidRemover", "TreeGenerator",
-			"LightningSummoner", "ExplosionGenerator", "IsleGenerator"};
+			"LightningSummoner", "ExplosionGenerator", "IsleGenerator", "DirectedLightningSummoner"};
 
 	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
-			"lightningSummoner", "explosionGenerator", "isleGenerator"};
+			"lightningSummoner", "explosionGenerator", "isleGenerator", "DirectedLightningSummoner"};
 
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
@@ -402,6 +402,12 @@ public class ItemGenerator extends Item {
 			}
 			TragicMC.logInfo("Ymax was " + yMax);
 			
+			break;
+		case 10:
+			EntityDirectedLightning lightning = new EntityDirectedLightning(world, Xcoord, Ycoord, Zcoord, player);
+			lightning.setPosition(Xcoord, Ycoord, Zcoord);
+			world.spawnEntityInWorld(lightning);
+			player.addChatMessage(new ChatComponentText("Directed Lightning created!"));
 			break;
 		}
 

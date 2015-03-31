@@ -35,6 +35,7 @@ import tragicneko.tragicmc.client.model.ModelTox;
 import tragicneko.tragicmc.client.model.ModelTragicNeko;
 import tragicneko.tragicmc.client.render.RenderDarkCrystal;
 import tragicneko.tragicmc.client.render.RenderDimensionalAnomaly;
+import tragicneko.tragicmc.client.render.RenderDirectedLightning;
 import tragicneko.tragicmc.client.render.RenderEpicWeapon;
 import tragicneko.tragicmc.client.render.RenderGuardianShield;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
@@ -65,6 +66,7 @@ import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -212,6 +214,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityGuardianShield.class, new RenderGuardianShield());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDimensionalAnomaly.class, new RenderDimensionalAnomaly());
 		RenderingRegistry.registerEntityRenderingHandler(EntityLock.class, new RenderLock());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDirectedLightning.class, new RenderDirectedLightning());
 
 		//Mob renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityJabba.class, new RenderJabba());

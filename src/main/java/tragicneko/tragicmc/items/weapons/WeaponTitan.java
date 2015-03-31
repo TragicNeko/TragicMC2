@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -9,9 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -34,8 +33,8 @@ public class WeaponTitan extends EpicWeapon {
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, entity.posX + itemRand.nextDouble() - itemRand.nextDouble(), entity.posY,
-						entity.posZ + itemRand.nextDouble() - itemRand.nextDouble()));
+				player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX + itemRand.nextDouble() - itemRand.nextDouble(), entity.posY,
+						entity.posZ + itemRand.nextDouble() - itemRand.nextDouble(), player));
 			}
 
 			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicConfig.griefConfigs[4]);

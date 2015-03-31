@@ -111,7 +111,7 @@ public class VanillaChangingEvents {
 								double z = entity.posZ;
 
 								EntityLightningBolt lightning = new EntityLightningBolt(entity.worldObj, x, y, z);
-								entity.worldObj.spawnEntityInWorld(lightning);
+								entity.worldObj.addWeatherEffect(lightning);
 							}
 						}
 					}
@@ -135,7 +135,7 @@ public class VanillaChangingEvents {
 								double z = entity.posZ;
 
 								EntityLightningBolt lightning = new EntityLightningBolt(entity.worldObj, x, y, z);
-								entity.worldObj.spawnEntityInWorld(lightning);
+								entity.worldObj.addWeatherEffect(lightning);
 							}
 						}
 					}
@@ -159,7 +159,7 @@ public class VanillaChangingEvents {
 								double z = entity.posZ;
 
 								EntityLightningBolt lightning = new EntityLightningBolt(entity.worldObj, x, y, z);
-								entity.worldObj.spawnEntityInWorld(lightning);
+								entity.worldObj.addWeatherEffect(lightning);
 							}
 						}
 					}
@@ -553,7 +553,7 @@ public class VanillaChangingEvents {
 			if (TragicConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
 		}
 
-		if (rand.nextInt(4) == 0 && !event.lightning.worldObj.isRemote)
+		if (rand.nextInt(4) == 0 && event.lightning != null && !event.lightning.worldObj.isRemote)
 		{
 			event.lightning.entityDropItem(new ItemStack(TragicItems.LightningOrb, 1), rand.nextFloat() - rand.nextFloat());
 		}

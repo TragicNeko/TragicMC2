@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -14,6 +13,7 @@ import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday {
@@ -56,7 +56,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 				float f = crucMoment ? 3.0F : 1.0F;
 				entity.attackEntityFrom(DamageSource.causePlayerDamage(player), f);
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, f * rand.nextFloat(), false);
-				player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, entity.posX, entity.posY, entity.posZ));
+				player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
 				
 				if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1)); 
 			}

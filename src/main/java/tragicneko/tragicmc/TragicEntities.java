@@ -11,6 +11,7 @@ import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -852,5 +853,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityOverlordMortor.class, "OverlordMortor", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDimensionalAnomaly.class, "DimensionalAnomaly", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityLock.class, "Lock", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityDirectedLightning.class, "DirectedLightning", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }

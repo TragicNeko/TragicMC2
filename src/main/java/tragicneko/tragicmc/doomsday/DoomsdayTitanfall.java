@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.doomsday;
 
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
@@ -9,6 +8,7 @@ import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
@@ -47,24 +47,24 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 
 		if (rand.nextBoolean())
 		{
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x + base + effect.utilityInt, y, z));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x + base + effect.utilityInt, y, z, player));
 			player.worldObj.createExplosion(player, x + base + effect.utilityInt, y, z, f * rand.nextFloat(), false);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x, y, z + base + effect.utilityInt));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x, y, z + base + effect.utilityInt, player));
 			player.worldObj.createExplosion(player, x, y, z + base + effect.utilityInt, f * rand.nextFloat(), false);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x - base - effect.utilityInt, y, z));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x - base - effect.utilityInt, y, z, player));
 			player.worldObj.createExplosion(player, x - base - effect.utilityInt, y, z, f * rand.nextFloat(), false);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x, y, z - base - effect.utilityInt));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x, y, z - base - effect.utilityInt, player));
 			player.worldObj.createExplosion(player, x, y, z - base - effect.utilityInt, f * rand.nextFloat(), false);
 		}
 		else
 		{
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x + base + effect.utilityInt, y, z + base + effect.utilityInt));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x + base + effect.utilityInt, y, z + base + effect.utilityInt, player));
 			player.worldObj.createExplosion(player, x + base + effect.utilityInt, y, z + base + effect.utilityInt, f * rand.nextFloat(), false);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x - base - effect.utilityInt, y, z + base + effect.utilityInt));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x - base - effect.utilityInt, y, z + base + effect.utilityInt, player));
 			player.worldObj.createExplosion(player, x - base - effect.utilityInt, y, z + base + effect.utilityInt, f * rand.nextFloat(), false);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x + base + effect.utilityInt, y, z - base - effect.utilityInt));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x + base + effect.utilityInt, y, z - base - effect.utilityInt, player));
 			player.worldObj.createExplosion(player, x + base + effect.utilityInt, y, z - base - effect.utilityInt, f * rand.nextFloat(), false);
-			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, x - base - effect.utilityInt, y, z - base - effect.utilityInt));
+			player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, x - base - effect.utilityInt, y, z - base - effect.utilityInt, player));
 			player.worldObj.createExplosion(player, x - base - effect.utilityInt, y, z - base - effect.utilityInt, f * rand.nextFloat(), false);
 		}
 	}

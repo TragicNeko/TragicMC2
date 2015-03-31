@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
@@ -10,6 +9,7 @@ import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedDoomsday {
@@ -65,7 +65,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 					
 					if (rand.nextInt(16) == 0)
 					{
-						player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, entity.posX, entity.posY, entity.posZ));
+						player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
 						player.heal(amt);
 					}
 				}

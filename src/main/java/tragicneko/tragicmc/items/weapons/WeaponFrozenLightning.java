@@ -1,18 +1,16 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -57,8 +55,8 @@ public class WeaponFrozenLightning extends TragicWeapon {
 				{
 					for (int i = 0; i < 3; i++)
 					{
-						par3EntityPlayer.worldObj.addWeatherEffect(new EntityLightningBolt(par3EntityPlayer.worldObj, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
-								d6 + itemRand.nextDouble() - itemRand.nextDouble()));
+						par3EntityPlayer.worldObj.spawnEntityInWorld(new EntityDirectedLightning(par3EntityPlayer.worldObj, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
+								d6 + itemRand.nextDouble() - itemRand.nextDouble(), par3EntityPlayer));
 					}
 
 					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, itemRand.nextFloat() * 2.0F, TragicConfig.griefConfigs[2]);

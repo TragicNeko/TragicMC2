@@ -7,6 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 
 public class EntityDarkLightning extends EntityProjectile {
@@ -41,7 +42,7 @@ public class EntityDarkLightning extends EntityProjectile {
 				if (var1.entityHit instanceof EntityDarkLightning) return;
 				
 				var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
-				this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, var1.entityHit.posX, var1.entityHit.posY, var1.entityHit.posZ));
+				this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, var1.entityHit.posX, var1.entityHit.posY, var1.entityHit.posZ, this));
 				if (var1.entityHit instanceof EntityLivingBase) ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
 			}
 			if (var1 != null) this.setDead();

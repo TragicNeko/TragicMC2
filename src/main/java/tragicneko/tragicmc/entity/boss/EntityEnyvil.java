@@ -19,8 +19,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,11 +28,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
+import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -416,7 +415,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 					double d0 = this.posX + getIntegerInRange(6, 22);
 					double d1 = this.posZ + getIntegerInRange(6, 22);
 					double d2 = this.worldObj.getTopSolidOrLiquidBlock((int) d0, (int) d1);
-					this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
+					this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, d0, d2, d1, this));
 					this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 3.0F + 1.5F, this.getMobGriefing());
 				}
 			} 
