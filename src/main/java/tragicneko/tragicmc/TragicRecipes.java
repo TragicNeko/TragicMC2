@@ -705,18 +705,19 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BlindingLight, 1), 
-				"x x",
+				"xzx",
 				"xyx",
 				" x ",
 				'x', TragicItems.LightIngot,
-				'y', Items.diamond
+				'y', Items.diamond,
+				'z', TragicItems.PureLight
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EverlastingLight, 1), 
 				"xyx",
 				"yzy",
 				"xyx",
-				'x', TragicItems.LightParticles,
+				'x', TragicItems.PureLight,
 				'y', Blocks.glass,
 				'z', Items.nether_star
 				);
@@ -1325,7 +1326,7 @@ public class TragicRecipes {
 			TragicItems.StarPieces, TragicItems.WispParticles, TragicItems.StarPieces, TragicItems.WispParticles
 		);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 32),
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 16),
 			TragicItems.StarPieces, TragicItems.WispParticles
 		);
 

@@ -119,7 +119,7 @@ public class TragicItems {
 
 	public static Item Ruby, Sapphire, RubyCharm, SapphireCharm, DiamondCharm, EmeraldCharm, AwakeningStone, ObsidianOrb, CryingObsidianOrb, BleedingObsidianOrb, DyingObsidianOrb;
 
-	public static Item LightParticles; //Apis
+	public static Item PureLight; //Apis
 	public static Item EmpariahClaw; //Empariah
 	public static Item DeathlyHallow; //Skultar
 	public static Item TimeEssence; //Time Controller
@@ -162,6 +162,7 @@ public class TragicItems {
 	public static Item WovenSilk;
 	public static Item CrushedIce;
 	public static Item DarkParticles;
+	public static Item LightParticles;
 	public static Item Sap;
 	public static Item Thorns;
 	public static Item BoneMarrow;
@@ -530,6 +531,9 @@ public class TragicItems {
 
 		TimeEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.timeEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TimeEssence"));
 		GameRegistry.registerItem(TimeEssence, "timeEssence");
+		
+		PureLight = (new ItemGeneric().setUnlocalizedName("tragicmc.pureLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:PureLight"));
+		GameRegistry.registerItem(PureLight, "pureLight");
 
 		LunarPowder = (new ItemGeneric().setUnlocalizedName("tragicmc.lunarPowder").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:LunarPowder"));
 		GameRegistry.registerItem(LunarPowder, "lunarPowder");
@@ -1108,7 +1112,7 @@ public class TragicItems {
 
 		OreDictionary.registerOre("celestialSteelDrops", TimeEssence);
 		OreDictionary.registerOre("celestialSteelDrops", LivingClay);
-		OreDictionary.registerOre("celestialSteelDrops", LightParticles);
+		OreDictionary.registerOre("celestialSteelDrops", PureLight);
 		OreDictionary.registerOre("celestialSteelDrops", StarPieces);
 		OreDictionary.registerOre("celestialSteelDrops", PureDarkness);
 		OreDictionary.registerOre("celestialSteelDrops", EmpariahClaw);

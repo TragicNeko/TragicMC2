@@ -200,8 +200,8 @@ public class EntityDropHelper {
 		
 		
 		//Boss Drops
-		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.LightParticles)}, {new EntityDrop(25, TragicItems.LightParticles), new EntityDrop(20, TragicItems.Horn),
-				new EntityDrop(15, Items.leather), new EntityDrop(5, TragicItems.ToughLeather)}});
+		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.PureLight)}, {new EntityDrop(25, TragicItems.PureLight), new EntityDrop(20, TragicItems.Horn),
+				new EntityDrop(15, Items.leather), new EntityDrop(5, TragicItems.ToughLeather), new EntityDrop(20, TragicItems.LightParticles)}});
 		
 		addToDropList(EntityDeathReaper.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DeathlyHallow)}, {new EntityDrop(25, TragicItems.DeathlyHallow), new EntityDrop(15, TragicItems.BoneMarrow),
 				new EntityDrop(15, TragicItems.DarkParticles), new EntityDrop(3, TragicItems.FireOrb), new EntityDrop(20, Items.bone), new EntityDrop(5, Items.blaze_rod), new EntityDrop(5, Items.blaze_powder)}});
