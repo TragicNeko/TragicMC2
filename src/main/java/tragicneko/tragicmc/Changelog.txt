@@ -3560,8 +3560,16 @@ Added Jabba, Wisp and Kitsunakuma to the Scorched biome spawns
 Added new Erkel texture for Hallowed biomes and added Hallowed Sapling texture
 Added Apis to the Hallowed biome spawns
 Added new blocks and biomes to localizations
+Working on directed lightning currently, it'll be a more localized version of vanilla lightning
+Currently have it working to reduce sound but the rendering isn't quite working out how I want it to, unfortunately this will probably require some geometry
+and some calculations that I don't know how to do yet, but I'll look over some other renders and try to modify the code for it
+Changed some things that used Vanilla lightning bolts to use my new directed lightning, since it has quieter sounds anyway
+Made it so that directed lightning doesn't damage it's user, it also doesn't light up the sky like normal lightning
 
 New Mobs:
+Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
+version of the Ghast's movement since I don't want it to go through walls like the Ender Dragon or Overlord, it'll have relatively low health and no
+armor but it's beam attack will do armor piercing damage (it'll be a rapidly damaging effect)
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
 increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague
 Fusea - a volatile creature that explodes when threatened, it takes no damage from the explosion and as such can explode multiple times, it floats
@@ -3578,8 +3586,6 @@ use the same drop rates and items from that actually
 
 New biome sets:
 Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
-Hallowed biomes, Ire, Fragile Light (Blocks that get destroyed when an entity gets near them), Pure Light, floating light orbs, Light strings, randomly
-generated strings of light in the air, like silly string, Archangel (possibly, it'd have a new model though and better AI)
 Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Erkel, Jarra, toxic waste
 Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves, Parasmite
 Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
