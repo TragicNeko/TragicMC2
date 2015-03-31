@@ -164,12 +164,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (par1DamageSource.getEntity() != null)
 		{
-			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= 30.0F)
+			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= (float)TragicConfig.bossDamageCap)
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 				boolean flag = player.getCurrentEquippedItem() == null ? false : (player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice);
 
-				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, 30.0F);
+				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, (float)TragicConfig.bossDamageCap);
 			}
 
 			if (rand.nextBoolean() && this.getAttackTarget() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && this.getAttackTarget() != par1DamageSource.getEntity()) this.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());

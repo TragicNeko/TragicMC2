@@ -95,8 +95,8 @@ public class TragicConfig {
 	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
 	private static int[] bossSC = new int[12];
 	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
-	private static int[] mobInts = new int[3];
-	public static int commonDropRate, rareDropRate, mobTransformationChance;
+	private static int[] mobInts = new int[6];
+	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap;
 	private static double[][] mobStats = new double[32][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
@@ -585,6 +585,7 @@ public class TragicConfig {
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
 		mobInts[2] = MathHelper.clamp_int(config.get(catMobs, "mobTransformationChance", 3).getInt(3), 1, 100);
+		mobInts[3] = clampPositive(config.get(catMobs, "bossDamageCap", 30).getInt(30));
 
 		mapping = 0;
 		mobsSC[mapping] = (config.get(catMobs, "jabbaSpawnChance", 75).getInt(75));
@@ -1320,6 +1321,7 @@ public class TragicConfig {
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
 		mobTransformationChance = mobInts[2];
+		bossDamageCap = mobInts[3];
 
 		mapping = 0;
 		jabbaSC = mobsSC[mapping];

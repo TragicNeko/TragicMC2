@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -327,10 +328,12 @@ public class EntityOverlordCocoon extends TragicBoss {
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
 			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
+			
+			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 
 			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
-				this.phaseDamage += dmg - this.getTotalArmorValue();
+				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, (float) TragicConfig.bossDamageCap);
 
 				if (this.getCurrentPhase() < 4)
 				{
@@ -355,10 +358,11 @@ public class EntityOverlordCocoon extends TragicBoss {
 						break;
 					}
 					
-					if (this.getHealth() - (dmg - this.getTotalArmorValue()) <= f && f > 0 || this.phaseDamage >= this.getMaxHealth() / 5)
+					if (this.getHealth() - MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, (float) TragicConfig.bossDamageCap) <= f && f > 0 || this.phaseDamage >= this.getMaxHealth() / 5)
 					{
 						this.phaseChange = true;
 						dmg = 0;
+						this.phaseDamage = 0F;
 					}
 				}
 				
@@ -371,8 +375,6 @@ public class EntityOverlordCocoon extends TragicBoss {
 				
 				return super.attackEntityFrom(src, dmg);
 			}
-
-			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 		}
 		return true;
 	}
