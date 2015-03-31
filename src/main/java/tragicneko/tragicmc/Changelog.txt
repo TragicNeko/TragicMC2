@@ -3571,6 +3571,8 @@ Modified crafting trees a bit, Light Particles are downgraded to a normal mob dr
 This was done for balancing as well as for giving newer mobs a drop without creating a new item branch
 Added recipes to allow for conversion from pure versions to their particle counterparts, allow creation of nether stars with pure light and emeralds
 Added Seeker model and texture, also added particle effects for it's gaze attack, updated Seeker bounding box to fit the model better
+Added config option to change the damage cap on Bosses
+Fixed Challenges that required Mini-Boss kills or finding
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
@@ -3607,7 +3609,6 @@ Add some packet stuff for doomsdays, this will be for things like applying Dooms
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Make "Directed" Lightning, as an alternative to using the vanilla lightning
 Add client-side effects for the Doomsdays (other than the vanilla stuff)
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
