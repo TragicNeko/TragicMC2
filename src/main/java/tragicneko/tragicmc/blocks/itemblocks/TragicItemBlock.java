@@ -33,7 +33,7 @@ public class TragicItemBlock extends ItemBlock {
 	}
 
 	@Override
-	public int getMetadata (int damageValue) {
+	public int getMetadata(int damageValue) {
 		return damageValue;
 	}
 }

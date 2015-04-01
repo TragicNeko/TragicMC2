@@ -60,6 +60,7 @@ import tragicneko.tragicmc.network.MessageHandlerFlight;
 import tragicneko.tragicmc.network.MessageHandlerGui;
 import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.worldgen.AerisWorldGen;
 import tragicneko.tragicmc.worldgen.BoulderWorldGen;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.DarkShieldWorldGen;
@@ -265,6 +266,7 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new BoulderWorldGen(), 15); //For Scorched biomes
 			GameRegistry.registerWorldGenerator(new InvertedSpikeWorldGen(), 18); //For the tainted scarlands
 			GameRegistry.registerWorldGenerator(new DimensionOreWorldGen(), 19);
+			GameRegistry.registerWorldGenerator(new AerisWorldGen(), 25);
 		}
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new StructureWorldGen(), 20);

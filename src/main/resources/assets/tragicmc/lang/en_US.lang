@@ -259,7 +259,7 @@ tile.tragicmc.corruptedGas.name=Corrupted Gas
 
 tile.tragicmc.aeris.pureAeris.name=Aeris (Pure)
 tile.tragicmc.aeris.partiallyCorruptedAeris.name=Aeris (Partially Corrupted)
-tile.tragicmc.aeris.fullyCorruptedAeris.name=Aeris (Corrupted)
+tile.tragicmc.aeris.corruptedAeris.name=Aeris (Corrupted)
 
 tile.tragicmc.geyserNormal.name=Geyser
 tile.tragicmc.steamVent.name=Steam Vent

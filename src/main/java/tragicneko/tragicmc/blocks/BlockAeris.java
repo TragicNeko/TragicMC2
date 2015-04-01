@@ -14,11 +14,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityAeris;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAeris extends BlockTragicFlower implements ITileEntityProvider
 {
-	private IIcon corruptingTexture;
-	private IIcon corruptedTexture;
+	@SideOnly(Side.CLIENT)
+	private IIcon corruptingTexture, corruptedTexture;
 	
 	public BlockAeris()
 	{
@@ -26,7 +28,9 @@ public class BlockAeris extends BlockTragicFlower implements ITileEntityProvider
 		this.setBlockName("tragicmc.aeris");
 		this.setCreativeTab(TragicMC.Survival);
 	}
+	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
 		if (meta == 1) return this.corruptingTexture;
@@ -74,14 +78,5 @@ public class BlockAeris extends BlockTragicFlower implements ITileEntityProvider
 	public int damageDropped(int par1)
 	{
 		return par1;
-	}
-	
-	@Override
-	public void onBlockAdded(World world, int x, int y, int z)
-	{
-		if (!world.isRemote && world.getBlockMetadata(x, y, z) >= 2 && world.getBlock(x, y, z) == this)
-		{
-			TragicMC.logInfo("Corrupted Spire would be generated!"); //TODO add corrupted spire schematic
-		}
 	}
 }

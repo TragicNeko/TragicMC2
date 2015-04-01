@@ -65,6 +65,7 @@ import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockAeris;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
@@ -443,7 +444,7 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");
 		
 		Aeris = (new BlockAeris());
-		GameRegistry.registerBlock(Aeris, TragicItemBlock.class, "aeris", new Object[] {new String[] {"pureAeris", "partiallyCorruptedAeris", "corruptedAeris"}, "aeris"});
+		GameRegistry.registerBlock(Aeris, ItemBlockAeris.class, "aeris");
 		GameRegistry.registerTileEntity(TileEntityAeris.class, "aeris");
 
 		MoltenRock = (new BlockMoltenRock());
