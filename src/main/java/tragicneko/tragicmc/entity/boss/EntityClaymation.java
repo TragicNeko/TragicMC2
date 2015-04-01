@@ -1200,7 +1200,7 @@ public class EntityClaymation extends TragicBoss {
 				break;
 			}
 
-			if (this.getHealth() - damage <= 0.0F)
+			if (this.getHealth() - MathHelper.clamp_float(damage - this.getTotalArmorValue(), 0F, (float) TragicConfig.bossDamageCap) <= 0.0F)
 			{
 				this.setEntityForm(0);
 				return true;
