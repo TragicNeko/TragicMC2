@@ -3573,6 +3573,8 @@ Added recipes to allow for conversion from pure versions to their particle count
 Added Seeker model and texture, also added particle effects for it's gaze attack, updated Seeker bounding box to fit the model better
 Added config option to change the damage cap on Bosses
 Fixed Challenges that required Mini-Boss kills or finding
+Did a minor fix to Claymation's health tracking
+Added recipe for creating the Corrupted Spire structure seed, fixed Aeris item textures to fit the block textures
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
