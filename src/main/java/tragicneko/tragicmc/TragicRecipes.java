@@ -431,6 +431,21 @@ public class TragicRecipes {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1), 
 				"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", TragicItems.CelestialDiamond
 				));
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
+				"abc",
+				"dye",
+				"fgh",
+				'a', TragicItems.PureLight,
+				'b', TragicItems.LivingClay,
+				'c', TragicItems.PureDarkness,
+				'd', TragicItems.KitsuneTail,
+				'e', TragicItems.DeathlyHallow,
+				'f', TragicItems.TimeEssence,
+				'g', TragicItems.EmpariahClaw,
+				'h', TragicItems.StarPieces,
+				'y', new ItemStack(TragicBlocks.Aeris, 0, 2)
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CelestialAegis, 1), 
 				" x ",
