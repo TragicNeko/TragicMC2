@@ -3578,6 +3578,9 @@ Added recipe for creating the Corrupted Spire structure seed, fixed Aeris item t
 
 2.42.2178++ <195> (March 31, 2015)
 Added Wicked Vines and two new types of Gas, these won't be temporary Gases though like the others, they'll be persistant worldgen features
+Reworked some higher level item tiers again, Ectoplasm is now more prominent as a crafting component
+Fixed crafting recipe of an Apis statue, used it's previous boss drop on accident
+Allow Explosive Gas to create an explosive chain, add Wicked Vine texture
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
