@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -540,9 +541,9 @@ public class TragicBlocks {
 				for (int i = 0; i < 10; i++)
 				{
 					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-							0.4F, 0.4F, 0.4F);
+							0.6F, 0.6F, 0.6F);
 					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-							0.1F, 0.1F, 0.1F);
+							0.8F, 0.8F, 0.8F);
 				}
 			}
 			
@@ -557,6 +558,11 @@ public class TragicBlocks {
 				}
 				world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 			}
+			
+			public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion explosion)
+		    {
+		        if (!world.isRemote)  world.createExplosion(null, x, y, z, 1.5F + world.rand.nextFloat(), WorldHelper.getMobGriefing(world));
+		    }
 		}.setBlockName("tragicmc.explosiveGas");
 		GameRegistry.registerBlock(ExplosiveGas, ItemBlock.class, "explosiveGas");
 		
