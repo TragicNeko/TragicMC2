@@ -136,7 +136,7 @@ public class TragicRecipes {
 				"yzy",
 				"xyx",
 				'x', TragicItems.LivingClay,
-				'y', TragicItems.LightParticles,
+				'y', TragicItems.PureLight,
 				'z', Blocks.redstone_block
 				);
 
@@ -1337,8 +1337,13 @@ public class TragicRecipes {
 			TragicItems.IcyFur, TragicItems.WovenSilk, TragicItems.IcyFur
 		);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LunarPowder, 1), 
-			TragicItems.StarPieces, TragicItems.WispParticles, TragicItems.StarPieces, TragicItems.WispParticles
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LunarPowder, 1), 
+				"xyx",
+				"yzy",
+				"xyx",
+				'x', TragicItems.StarPieces,
+				'y', TragicItems.WispParticles,
+				'z', TragicItems.Ectoplasm
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 16),
@@ -1371,7 +1376,7 @@ public class TragicRecipes {
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CelestialDiamond, 1),
-			TragicItems.EnchantedTears, TragicItems.LunarPowder, TragicItems.TimeEssence, Items.diamond
+			TragicItems.EnchantedTears, TragicItems.LunarPowder, TragicItems.Ectoplasm, Items.diamond
 		);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DimensionalKey), 
