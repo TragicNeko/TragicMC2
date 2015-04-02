@@ -3527,7 +3527,7 @@ Created a new flower called the Pure Aeris, which is a crystal-like semi-transpa
 will generate the spire (if at a low enough y level), this has a placeholder currently and needs it's own class and tile entity for intended function
 Added ability to the Sword of Justice to kill all nearby entities, it requires the player to be an operator on servers though to do so
 
-2.41.2140++ <194> (March 25, 2015)
+2.42.2178 <194> (March 25, 2015) [Lot of new blocks and new biome sets added]
 Ensure that players that are dead do not continue using their Doomsdays that they have active, also change debug message to convert player uuids to their
 username
 Fixed Doom Consumes not properly refilling Doom on use (they still increased Max Doom fine), this is due to a weird math bug, assumingly with Java 8
@@ -3575,6 +3575,9 @@ Added config option to change the damage cap on Bosses
 Fixed Challenges that required Mini-Boss kills or finding
 Did a minor fix to Claymation's health tracking
 Added recipe for creating the Corrupted Spire structure seed, fixed Aeris item textures to fit the block textures
+
+2.42.2178++ <195> (March 31, 2015)
+Added Wicked Vines and two new types of Gas, these won't be temporary Gases though like the others, they'll be persistant worldgen features
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
