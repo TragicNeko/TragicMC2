@@ -274,6 +274,11 @@ tile.tragicmc.hallowedLeafTrim.name=Hallowed Leaf Trim
 tile.tragicmc.hallowedWood.name=Hallowed Wood
 tile.tragicmc.hallowedPlanks.name=Hallowed Planks
 
+tile.tragicmc.radiatedGas.name=Radiated Gas
+tile.tragicmc.explosiveGas.name=Explosive Gas
+tile.tragicmc.wickedVine.name=Wicked Vine
+tile.tragicmc.corrodedStone.name=Corroded Stone
+
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
 item.tragicmc.mercuryPlate.name=Red Mercury Chestplate
