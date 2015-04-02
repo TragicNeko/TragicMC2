@@ -22,6 +22,7 @@ public class BlockWickedVine extends BlockVine {
         this.setLightLevel(0.4F);
         this.setLightOpacity(0);
         this.setTickRandomly(true);
+        this.setBlockTextureName("tragicmc:WickedVine");
     }
 	
 	@Override
