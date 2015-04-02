@@ -3,6 +3,7 @@ package tragicneko.tragicmc;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -10,7 +11,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -65,6 +68,7 @@ import tragicneko.tragicmc.blocks.BlockTimeDisruptor;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
+import tragicneko.tragicmc.blocks.BlockWickedVine;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockAeris;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
@@ -80,6 +84,7 @@ import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
 import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -175,7 +180,7 @@ public class TragicBlocks {
 	public static Block SynapseCore;
 	public static Block OverlordBarrier;
 
-	public static Block WitheringGas, CorruptedGas;
+	public static Block WitheringGas, CorruptedGas, ExplosiveGas, RadiatedGas;
 
 	public static Block Conduit;
 	public static Block DigitalSea;
@@ -485,6 +490,75 @@ public class TragicBlocks {
 		
 		HallowedWood = (new BlockGenericLog("Hallowed").setBlockName("tragicmc.hallowedWood"));
 		GameRegistry.registerBlock(HallowedWood, ItemBlock.class, "hallowedWood");
+		
+		WickedVine = (new BlockWickedVine().setBlockName("tragicmc.wickedVine"));
+		GameRegistry.registerBlock(WickedVine, ItemBlock.class, "wickedVine");
+		
+		RadiatedGas = new BlockGas() {
+			@Override
+			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			{
+				if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
+				{
+					entity.attackEntityFrom(DamageSource.cactus, 1.0F);
+					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0));
+				}
+			}
+			
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.4F, 1.0F, 0.4F);
+					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.1F, 1.0F, 0.1F);
+				}
+			}
+			
+			@Override
+			public void updateTick(World world, int x, int y, int z, Random rand)
+			{
+				
+			}
+		}.setBlockName("tragicmc.radiatedGas");
+		GameRegistry.registerBlock(RadiatedGas, ItemBlock.class, "radiatedGas");
+		
+		ExplosiveGas = new BlockGas() {
+			@Override
+			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			{
+				
+			}
+			
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.4F, 0.4F, 0.4F);
+					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.1F, 0.1F, 0.1F);
+				}
+			}
+			
+			@Override
+			public void updateTick(World world, int x, int y, int z, Random rand)
+			{
+				Block[] block = new Block[] {world.getBlock(x, y, z), world.getBlock(x + 1, y, z), world.getBlock(x - 1, y, z),
+						world.getBlock(x, y, z + 1), world.getBlock(x, y, z - 1), world.getBlock(x, y + 1, z), world.getBlock(x, y - 1, z)};
+				for (Block b : block)
+				{
+					if (b instanceof BlockFire) world.createExplosion(null, x, y, z, 1.5F + rand.nextFloat(), WorldHelper.getMobGriefing(world));
+				}
+				world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
+			}
+		}.setBlockName("tragicmc.explosiveGas");
+		GameRegistry.registerBlock(ExplosiveGas, ItemBlock.class, "explosiveGas");
 		
 		for (int i = 0; i < 3; i++)
 		{

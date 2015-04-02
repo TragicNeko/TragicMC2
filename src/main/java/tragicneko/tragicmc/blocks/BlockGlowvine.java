@@ -24,20 +24,13 @@ public class BlockGlowvine extends BlockVine {
         return -1;
     }
 
-    /**
-     * Returns the color this block should be rendered. Used by leaves.
-     */
     @Override
 	@SideOnly(Side.CLIENT)
     public int getRenderColor(int p_149741_1_)
     {
         return -1;
     }
-
-    /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
-     * when first determining what to render.
-     */
+    
     @Override
 	@SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
