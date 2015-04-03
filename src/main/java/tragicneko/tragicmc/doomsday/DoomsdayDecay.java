@@ -42,6 +42,7 @@ public class DoomsdayDecay extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, rand.nextInt(120) + 120));
 				entity.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(240) + 160, rand.nextInt(2)));

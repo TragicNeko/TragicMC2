@@ -44,6 +44,7 @@ public class DoomsdayTorment extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				int f = crucMoment ? 2000 : 200;
 				
 				entity.addPotionEffect(new PotionEffect(Potion.wither.id, f, 2 + rand.nextInt(2)));

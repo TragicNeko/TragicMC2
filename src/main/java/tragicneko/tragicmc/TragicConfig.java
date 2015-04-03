@@ -131,6 +131,7 @@ public class TragicConfig {
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
+	public static boolean allowPvP;
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
@@ -888,6 +889,7 @@ public class TragicConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowGeneratorItems", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowItemTimeAltering", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowWeaponModels", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowPvP", true).getBoolean(true));
 
 		for (i = 0; i + mapping < miscConfigs.length; i++) miscConfigs[mapping + i] = false;
 		
@@ -1580,6 +1582,7 @@ public class TragicConfig {
 		allowGeneratorItems = miscConfigs[mapping++];
 		allowItemTimeAltering = miscConfigs[mapping++];
 		allowWeaponModels = miscConfigs[mapping++];
+		allowPvP = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];

@@ -52,6 +52,7 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 		{
 			if (list.get(j) instanceof EntityLivingBase && player.canEntityBeSeen((Entity) list.get(j)))
 			{
+				if (list.get(j) instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				if (effect.utilityFlag)
 				{
 					((Entity) list.get(j)).motionY = 1.0;

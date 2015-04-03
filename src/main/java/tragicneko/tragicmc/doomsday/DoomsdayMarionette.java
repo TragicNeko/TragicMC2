@@ -39,6 +39,7 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 			{
 				if (list.get(i) instanceof EntityLivingBase)
 				{
+					if (list.get(i) instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 					if (entity != null)
 					{
 						if (player.getDistanceToEntity(entity) > player.getDistanceToEntity(list.get(i))) entity = (EntityLivingBase) list.get(i);

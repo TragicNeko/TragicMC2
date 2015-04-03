@@ -46,6 +46,8 @@ public class DoomsdayFear extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				
 				entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300));
 				if (TragicConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 300, crucMoment ? 1 + rand.nextInt(3) : 0));
 				if (crucMoment && TragicConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 5));

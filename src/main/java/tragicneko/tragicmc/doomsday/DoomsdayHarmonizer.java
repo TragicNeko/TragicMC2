@@ -47,6 +47,7 @@ public class DoomsdayHarmonizer extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
 				int dur = crucMoment ? 600 : 300;
 

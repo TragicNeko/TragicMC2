@@ -47,6 +47,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 			if (list.get(i) instanceof EntityLivingBase)
 			{
 				entity = (EntityLivingBase) list.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				entity.applyEntityCollision(player);
 				
 				entity.motionX *= 1.8;

@@ -74,6 +74,8 @@ public class DoomsdaySkullCrusher extends Doomsday {
 			if (effect.utilityList.get(x) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(x);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+				
 				entity.applyEntityCollision(player);
 				entity.motionX *= 1.25D * d0;
 				entity.motionZ *= 1.25D * d0;

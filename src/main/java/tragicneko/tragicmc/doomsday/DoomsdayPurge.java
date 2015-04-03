@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -41,6 +42,7 @@ public class DoomsdayPurge extends Doomsday implements IExtendedDoomsday {
 			if (list.get(i) instanceof EntityLivingBase)
 			{
 				entity = (EntityLivingBase) list.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				entity.applyEntityCollision(player);
 				
 				entity.motionX *= 1.8;

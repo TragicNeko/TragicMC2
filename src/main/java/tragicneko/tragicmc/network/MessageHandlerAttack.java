@@ -3,6 +3,7 @@ package tragicneko.tragicmc.network;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -16,7 +17,11 @@ public class MessageHandlerAttack implements IMessageHandler<MessageAttack, IMes
 		if (player != null)
 		{
 			Entity entity = player.worldObj.getEntityByID(message.entityID);
-			if (entity != null) player.attackTargetEntityWithCurrentItem(entity);
+			if (entity != null)
+			{
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return null; 
+				player.attackTargetEntityWithCurrentItem(entity);
+			}
 		}
 		return null;
 	}

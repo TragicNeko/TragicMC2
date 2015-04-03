@@ -54,6 +54,7 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				
 				entity.motionX = rand.nextDouble() - rand.nextDouble();
 				entity.motionY = 0.75 - rand.nextDouble();

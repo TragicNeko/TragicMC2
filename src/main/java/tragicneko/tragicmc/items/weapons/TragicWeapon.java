@@ -4,11 +4,13 @@ import java.util.List;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
@@ -151,4 +153,11 @@ public class TragicWeapon extends ItemSword {
 	{
 		return this.doomsday2;
 	}
+	
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
+    {
+		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
+		return super.hitEntity(stack, entity, entity2);
+    }
 }

@@ -42,9 +42,11 @@ public class DoomsdayFreeze extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				entity.motionX = 0;
 				entity.motionY = 0;
 				entity.motionZ = 0;
+				entity.velocityChanged = false;
 				entity.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, rand.nextInt(120) + 120));
 				if (crucMoment && TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, rand.nextInt(240) + 120, rand.nextInt(6)));
 			}

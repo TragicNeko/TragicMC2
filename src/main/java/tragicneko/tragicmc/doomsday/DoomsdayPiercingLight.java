@@ -6,6 +6,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayPiercingLight extends Doomsday {
@@ -72,6 +73,7 @@ public class DoomsdayPiercingLight extends Doomsday {
 			if (effect.utilityList.get(x) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(x);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
 				float f = entity.worldObj.getLightBrightness((int)entity.posX, (int)entity.posY, (int)entity.posZ);
 

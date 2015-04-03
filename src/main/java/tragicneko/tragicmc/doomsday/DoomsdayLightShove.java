@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayLightShove extends Doomsday {
@@ -43,6 +44,7 @@ public class DoomsdayLightShove extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
 				entity.applyEntityCollision(player);
 				if (crucMoment)

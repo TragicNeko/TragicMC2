@@ -38,6 +38,7 @@ public class DoomsdayRavage extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
 			}
 		}

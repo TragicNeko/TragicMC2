@@ -6,6 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -49,6 +50,7 @@ public class DoomsdayToxicity extends Doomsday {
 			if (effect.utilityList.get(i) instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
 				for (int j = 0; j < 4; j ++)
 				{
