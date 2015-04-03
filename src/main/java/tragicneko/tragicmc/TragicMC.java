@@ -58,7 +58,9 @@ import tragicneko.tragicmc.network.MessageHandlerAttack;
 import tragicneko.tragicmc.network.MessageHandlerDoom;
 import tragicneko.tragicmc.network.MessageHandlerFlight;
 import tragicneko.tragicmc.network.MessageHandlerGui;
+import tragicneko.tragicmc.network.MessageHandlerSpawnParticle;
 import tragicneko.tragicmc.network.MessageHandlerUseDoomsday;
+import tragicneko.tragicmc.network.MessageParticle;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
 import tragicneko.tragicmc.worldgen.AerisWorldGen;
 import tragicneko.tragicmc.worldgen.BoulderWorldGen;
@@ -280,6 +282,7 @@ public class TragicMC
 		net.registerMessage(MessageHandlerUseDoomsday.class, MessageUseDoomsday.class, 3, Side.SERVER);
 		net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
 		net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
+		net.registerMessage(MessageHandlerSpawnParticle.class, MessageParticle.class, 6, Side.CLIENT);
 
 		logDuration("Network Handlers");
 	}
