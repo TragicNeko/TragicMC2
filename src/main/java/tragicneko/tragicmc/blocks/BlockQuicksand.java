@@ -8,11 +8,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -23,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockQuicksand extends BlockFalling
 {
-	private String[] variantNames = new String[]{"Quicksand", "Mud", "NetherDrudge"};
+	private String[] variantNames = new String[]{"Quicksand", "Mud", "NetherDrudge", "ToxicSludge"};
 	private IIcon[] iconArray = new IIcon[variantNames.length];
 
 	public BlockQuicksand()
@@ -85,6 +88,7 @@ public class BlockQuicksand extends BlockFalling
 		entity.onGround = true;
 		entity.velocityChanged = true;
 		entity.fallDistance = 0.0F;
+		if (world.getBlockMetadata(x, y, z) == 3 && entity instanceof EntityLivingBase && world.rand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60 + world.rand.nextInt(40)));
 	}
 
 	@Override
