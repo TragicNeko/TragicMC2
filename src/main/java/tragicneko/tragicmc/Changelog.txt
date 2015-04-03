@@ -3581,6 +3581,17 @@ Added Wicked Vines and two new types of Gas, these won't be temporary Gases thou
 Reworked some higher level item tiers again, Ectoplasm is now more prominent as a crafting component
 Fixed crafting recipe of an Apis statue, used it's previous boss drop on accident
 Allow Explosive Gas to create an explosive chain, add Wicked Vine texture
+Added Toxic Sludge, a new Quicksand variant for the Corroded biomes
+Finishing up the Overlord Combat form's model, then I'm going to switch over to using Tabula instead of Techne since it is more feature-robust (and updated
+for newer MC versions)
+Added allowPvP option to the config, defaults to true, this only affects doomsdays and weapons affecting other players since other things like enchantments
+may be used by hostile mobs that wear armor and there's no way to tell that from just the enchantment class
+Added particle spawn message, there may be a vanilla one but I prefer using the net system that I have anyway, this should allow for more flexibility with things
+like using particles on attack targets without having to save the target in a datawatcher
+
+For Structure rewrite:
+The Structures themselves are going to be static variables, which can be easily cycled through and decided upon which should generate at a given time,
+then the Schematic will be instantiated based on the seed and biome location
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
@@ -3608,16 +3619,12 @@ Crystal biomes, huge jagged crystal generation (lots of short spike gen), very h
 Ranmas
 
 --Reminders-
-Add a allowPvP option in the config, this will be a blanket for other config options such as allowing doomsdays to target players and allowing weapons to
-hit other players
 Add a Chainbot as a mini-boss form of the lockbot, it'll basically be a mobile version of the lockbot that actually moves to it's trapped target and attacks them,
 the target may break the chain after enough hits to it and it'll have to reattach, what it'll do is with lower health is generate a weaker lockbot, that attaches a lock to it's target and
 then the Chainbot will go after the targetted player while it is locked, knocking it back and aggressively attacking it
-Add some packet stuff for doomsdays, this will be for things like applying Doomsday effect stuff client-side (particles, overlays)
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Add client-side effects for the Doomsdays (other than the vanilla stuff)
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
 Update the config to get each actual Property instead of dealing with each of the raw types directly
