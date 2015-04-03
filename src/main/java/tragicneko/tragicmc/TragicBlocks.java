@@ -261,7 +261,7 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(DisappearingBlockInvis, null, "disappearingBlockInvis");
 
 		Quicksand = (new BlockQuicksand());
-		GameRegistry.registerBlock(Quicksand, TragicItemBlock.class, "quicksand", new Object[] {new String[] {"quicksand", "mud", "netherDrudge"}, "quicksand"});
+		GameRegistry.registerBlock(Quicksand, TragicItemBlock.class, "quicksand", new Object[] {new String[] {"quicksand", "mud", "netherDrudge", "toxicSludge"}, "quicksand"});
 
 		DarkStone = (new BlockDarkStone());
 		GameRegistry.registerBlock(DarkStone, ItemBlockDarkStone.class, "darkStone");
