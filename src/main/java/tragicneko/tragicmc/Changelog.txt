@@ -3588,6 +3588,12 @@ Added allowPvP option to the config, defaults to true, this only affects doomsda
 may be used by hostile mobs that wear armor and there's no way to tell that from just the enchantment class
 Added particle spawn message, there may be a vanilla one but I prefer using the net system that I have anyway, this should allow for more flexibility with things
 like using particles on attack targets without having to save the target in a datawatcher
+Added Corroded biome set, added more biomes to spawn biomes (at least one from each set, up to two from ones with more than 3 variants)
+Due to the increase in amount of biomes, biome sizes were increased
+Still need to add their various biome generators for the Gases and for the Sludge, as well as for the Wicked Vines, also need to add void pit gen to the
+fallout variant
+There will be mostly poisonous gases & sludge on the surface, explosive gases will be in pockets underground (they'll generate in spherical pockets where they are
+completely surrounded by stone to reduce chance of random mobs exploding them)
 
 For Structure rewrite:
 The Structures themselves are going to be static variables, which can be easily cycled through and decided upon which should generate at a given time,
@@ -3614,7 +3620,7 @@ use the same drop rates and items from that actually
 New biome sets:
 Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
 Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Erkel, Jarra, toxic waste
-Dark Forest biomes, dark large mushrooms, poisonous gas, glowing small mushrooms, thorny tree leaves, Parasmite
+Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite
 Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
 Ranmas
 
