@@ -1,10 +1,15 @@
 package tragicneko.tragicmc.worldgen.biome;
 
+import java.util.Random;
+
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.entity.mob.EntityTox;
+import tragicneko.tragicmc.worldgen.WorldGenWickedVine;
 
 public class BiomeGenCorrodedSteppe extends TragicBiome {
 
@@ -20,6 +25,26 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, 0, 1));
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
+	}
+	
+	@Override
+	public void decorate(World world, Random rand, int x, int z)
+	{
+		super.decorate(world, rand, x, z);
+		
+		int k = x + rand.nextInt(16) + 8;
+		int l = z + rand.nextInt(16) + 8;
+		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(8) - rand.nextInt(8);
+		
+		WorldGenWickedVine worldgenvines = new WorldGenWickedVine();
+		int mew = this == TragicBiomes.CorrodedSteppe || this == TragicBiomes.CorrodedHeights ? 4 : (this == TragicBiomes.CorrodedVeld ? 22 :10);
+
+		for (l = 0; l < mew; ++l)
+		{
+			i1 = x + rand.nextInt(16) + 8;
+			int j1 = z + rand.nextInt(16) + 8;
+			worldgenvines.generate(world, rand, i1, 128, j1);
+		}
 	}
 
 }

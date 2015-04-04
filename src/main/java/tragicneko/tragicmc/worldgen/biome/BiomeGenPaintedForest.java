@@ -74,22 +74,21 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	}
 
 	@Override
-	public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)
+	public void decorate(World world, Random rand, int x, int z)
 	{
-		super.decorate(p_76728_1_, p_76728_2_, p_76728_3_, p_76728_4_);
+		super.decorate(world, rand, x, z);
 		
-		int k = p_76728_3_ + p_76728_2_.nextInt(16) + 8;
-		int l = p_76728_4_ + p_76728_2_.nextInt(16) + 8;
-		int i1 = p_76728_1_.getTopSolidOrLiquidBlock(k, l) + p_76728_2_.nextInt(24) - p_76728_2_.nextInt(24);
+		int k = x + rand.nextInt(16) + 8;
+		int l = z + rand.nextInt(16) + 8;
+		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(24) - rand.nextInt(24);
 		
 		WorldGenGlowvine worldgenvines = new WorldGenGlowvine();
 
 		for (l = 0; l < 20; ++l)
 		{
-			i1 = p_76728_3_ + p_76728_2_.nextInt(16) + 8;
-			short short1 = 128;
-			int j1 = p_76728_4_ + p_76728_2_.nextInt(16) + 8;
-			worldgenvines.generate(p_76728_1_, p_76728_2_, i1, short1, j1);
+			i1 = x + rand.nextInt(16) + 8;
+			int j1 = z + rand.nextInt(16) + 8;
+			worldgenvines.generate(world, rand, i1, 128, j1);
 		}
 	}
 

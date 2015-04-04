@@ -2,13 +2,13 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicBlocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenVines;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBlocks;
 
-public class WorldGenGlowvine extends WorldGenVines {
+public class WorldGenWickedVine extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z)
@@ -21,9 +21,9 @@ public class WorldGenGlowvine extends WorldGenVines {
             {
                 for (int j1 = 2; j1 <= 5; ++j1)
                 {
-                    if (TragicBlocks.GlowVine.canPlaceBlockOnSide(world, x, y, z, j1))
+                    if (TragicBlocks.WickedVine.canPlaceBlockOnSide(world, x, y, z, j1))
                     {
-                        world.setBlock(x, y, z, TragicBlocks.GlowVine, 1 << Direction.facingToDirection[Facing.oppositeSide[j1]], 2);
+                        world.setBlock(x, y, z, TragicBlocks.WickedVine, 1 << Direction.facingToDirection[Facing.oppositeSide[j1]], 2);
                         break;
                     }
                 }
