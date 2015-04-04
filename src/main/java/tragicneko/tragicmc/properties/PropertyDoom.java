@@ -98,7 +98,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 				int doom = this.getCurrentDoom();
 				int increment = TragicConfig.doomRechargeRate;
 
-				if (doom > this.getMaxDoom()) return;
+				if (doom >= this.getMaxDoom()) return;
 
 				if (increment + doom >= this.getMaxDoom())
 				{
