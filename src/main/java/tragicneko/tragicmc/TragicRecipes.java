@@ -68,7 +68,7 @@ public class TragicRecipes {
 				"x x",
 				'x', Items.bone
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordHelm, 1), 
 				"yxy",
 				"x x",
@@ -98,7 +98,7 @@ public class TragicRecipes {
 				'x', TragicItems.CorruptedEssence,
 				'y', TragicItems.NanoBots
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEssence, 3),
 				"xxx",
 				"xyx",
@@ -106,7 +106,7 @@ public class TragicRecipes {
 				'x', TragicItems.EnchantedTears,
 				'y', TragicItems.CorruptedEye
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEgg, 9),
 				" x ",
 				"xyx",
@@ -114,7 +114,7 @@ public class TragicRecipes {
 				'x', TragicItems.CorruptedEssence,
 				'y', Items.egg
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SynapseCore, 1),
 				"zxz",
 				"xyx",
@@ -283,15 +283,15 @@ public class TragicRecipes {
 				'y', TragicItems.SynapseCrystal,
 				'z', Blocks.redstone_block
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MobStatue, 1, 17), 
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.LivingClay,
-			'y', TragicItems.CorruptedEye,
-			'z', Blocks.redstone_block
-			); 
+				"xyx",
+				"yzy",
+				"xyx",
+				'x', TragicItems.LivingClay,
+				'y', TragicItems.CorruptedEye,
+				'z', Blocks.redstone_block
+				); 
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
 				"xxx",
@@ -431,7 +431,7 @@ public class TragicRecipes {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.CelestialSteel, 1), 
 				"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", TragicItems.CelestialDiamond
 				));
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
 				"abc",
 				"dye",
@@ -1010,7 +1010,7 @@ public class TragicRecipes {
 				"xxx",
 				'x', new ItemStack(TragicItems.Projectile, 1, 1)
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.FrozenNetherrack, 8),
 				"xxx",
 				"xyx",
@@ -1096,246 +1096,249 @@ public class TragicRecipes {
 				);
 
 		//Amulets
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ChickenAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', Items.feather,
-				'z', TragicItems.AwakeningStone
-				);
+		if (TragicConfig.allowAmuletCrafting)
+		{
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ChickenAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.feather,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PeaceAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.Sushi,
-				'z', TragicItems.AwakeningStone
-				);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PeaceAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.Sushi,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ClaymationAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.LivingClay,
-				'z', TragicItems.AwakeningStone
-				);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ClaymationAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.LivingClay,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CreeperAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', Items.gunpowder,
-				'z', TragicItems.AwakeningStone
-				); 
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CreeperAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.gunpowder,
+					'z', TragicItems.AwakeningStone
+					); 
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SkeletonAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.BoneMarrow,
-				'z', TragicItems.AwakeningStone
-				); 
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SkeletonAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.BoneMarrow,
+					'z', TragicItems.AwakeningStone
+					); 
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ZombieAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', Items.rotten_flesh,
-				'z', TragicItems.AwakeningStone
-				); 
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ZombieAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.rotten_flesh,
+					'z', TragicItems.AwakeningStone
+					); 
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ApisAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.LightParticles,
-				'z', TragicItems.AwakeningStone
-				);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ApisAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.LightParticles,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.KitsuneAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.KitsuneTail,
-				'z', TragicItems.AwakeningStone
-				);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.KitsuneAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.KitsuneTail,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SunkenAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.AquaOrb,
-				'z', TragicItems.AwakeningStone
-				);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SunkenAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.AquaOrb,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PiercingAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', TragicItems.Thorns,
-				'z', TragicItems.AwakeningStone
-				);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PiercingAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.Thorns,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BlacksmithAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', Items.flint,
-				'z', TragicItems.AwakeningStone
-				); 
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BlacksmithAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.flint,
+					'z', TragicItems.AwakeningStone
+					); 
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MartyrAmulet, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.Tungsten,
-				'y', Items.ghast_tear,
-				'z', TragicItems.AwakeningStone
-				); 
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MartyrAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.ghast_tear,
+					'z', TragicItems.AwakeningStone
+					); 
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.YetiAmulet, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', TragicItems.EmpariahClaw,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.YetiAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.EmpariahClaw,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.TimeAmulet, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', TragicItems.TimeEssence,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.TimeAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.TimeEssence,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceAmulet, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', TragicItems.IceOrb,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.IceOrb,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SnowGolemAmulet, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', Items.snowball,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SnowGolemAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.snowball,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IronGolemAmulet, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', Blocks.iron_block,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IronGolemAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Blocks.iron_block,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EndermanAmulet, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', Items.ender_pearl,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EndermanAmulet, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.ender_pearl,
+					'z', TragicItems.AwakeningStone
+					);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WitherAmulet, 1), 
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.Tungsten,
-			'y', Items.nether_star,
-			'z', TragicItems.AwakeningStone
-		);
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WitherAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.nether_star,
+					'z', TragicItems.AwakeningStone
+					);
+		}
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 0),
-			Blocks.sand, TragicItems.EnchantedTears, TragicItems.LivingClay
-		);
+				Blocks.sand, TragicItems.EnchantedTears, TragicItems.LivingClay
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 1),
-			Blocks.dirt, TragicItems.EnchantedTears, TragicItems.LivingClay
-		);
+				Blocks.dirt, TragicItems.EnchantedTears, TragicItems.LivingClay
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 2),
-			Blocks.netherrack, TragicItems.EnchantedTears, TragicItems.LivingClay
-		);
+				Blocks.netherrack, TragicItems.EnchantedTears, TragicItems.LivingClay
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.lit_pumpkin, 1),
-			TragicBlocks.Candle, Blocks.pumpkin
-		);
+				TragicBlocks.Candle, Blocks.pumpkin
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.TungstenJack, 1),
-			"xxx",
-			" xx",
-			"x x",
-			'x', TragicItems.Tungsten
-		);
+				"xxx",
+				" xx",
+				"x x",
+				'x', TragicItems.Tungsten
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WitheringAxe, 1),
-			"xx ",
-			" yx",
-			"x x",
-			'x', TragicItems.DarkIngot,
-			'y', Items.nether_star
-		);
+				"xx ",
+				" yx",
+				"x x",
+				'x', TragicItems.DarkIngot,
+				'y', Items.nether_star
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ReaperScythe, 1),
-			"xxz",
-			" y ",
-			"y  ",
-			'x', TragicItems.DarkIngot,
-			'y', TragicItems.StinHorn,
-			'z', TragicItems.DeathlyHallow
-		);
+				"xxz",
+				" y ",
+				"y  ",
+				'x', TragicItems.DarkIngot,
+				'y', TragicItems.StinHorn,
+				'z', TragicItems.DeathlyHallow
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 3, 15),
-			TragicItems.Horn
-		);
+				TragicItems.Horn
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MourningStar, 1),
-			"xxx",
-			"xyx",
-			"zxx",
-			'x', TragicItems.StinHorn,
-			'y', TragicItems.DeathlyHallow,
-			'z', TragicItems.DarkIngot
-		);
+				"xxx",
+				"xyx",
+				"zxx",
+				'x', TragicItems.StinHorn,
+				'y', TragicItems.DeathlyHallow,
+				'z', TragicItems.DarkIngot
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BeastlyClaws, 1),
-			"xxx",
-			"xyx",
-			"zyz",
-			'x', TragicItems.EmpariahClaw,
-			'y', TragicItems.Tungsten,
-			'z', TragicItems.IcyFur
-		);
+				"xxx",
+				"xyx",
+				"zyz",
+				'x', TragicItems.EmpariahClaw,
+				'y', TragicItems.Tungsten,
+				'z', TragicItems.IcyFur
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 9), 
-			TragicItems.IcyFur, Items.shears
-		);
+				TragicItems.IcyFur, Items.shears
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ToughLeather, 3),
-			TragicItems.IcyFur, TragicItems.WovenSilk, TragicItems.IcyFur
-		);
+				TragicItems.IcyFur, TragicItems.WovenSilk, TragicItems.IcyFur
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LunarPowder, 1), 
 				"xyx",
@@ -1344,447 +1347,450 @@ public class TragicRecipes {
 				'x', TragicItems.StarPieces,
 				'y', TragicItems.WispParticles,
 				'z', TragicItems.Ectoplasm
-		);
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 16),
-			TragicItems.StarPieces, TragicItems.WispParticles
-		);
+				TragicItems.StarPieces, TragicItems.WispParticles
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.redstone, 3),
-			TragicItems.WispParticles
-		);
+				TragicItems.WispParticles
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Items.experience_bottle, 3),
-			" x ",
-			"xyx",
-			" x ",
-			'x', Blocks.glass,
-			'y', TragicItems.WispParticles
-		);
+				" x ",
+				"xyx",
+				" x ",
+				'x', Blocks.glass,
+				'y', TragicItems.WispParticles
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles, 3),
-			TragicItems.StinHorn
-		);
+				TragicItems.StinHorn
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TimeDisruptionCube, 1),
-			"xyx",
-			"yzy",
-			"xyx",
-			'x', TragicItems.CelestialSteel,
-			'y', TragicItems.LunarPowder,
-			'z', TragicItems.ObsidianOrb
-		);
+				"xyx",
+				"yzy",
+				"xyx",
+				'x', TragicItems.CelestialSteel,
+				'y', TragicItems.LunarPowder,
+				'z', TragicItems.ObsidianOrb
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CelestialDiamond, 1),
-			TragicItems.EnchantedTears, TragicItems.LunarPowder, TragicItems.Ectoplasm, Items.diamond
-		);
+				TragicItems.EnchantedTears, TragicItems.LunarPowder, TragicItems.Ectoplasm, Items.diamond
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DimensionalKey), 
-			TragicItems.DyingObsidianOrb, TragicItems.CryingObsidianOrb, TragicItems.BleedingObsidianOrb, Items.nether_star
-		);
+				TragicItems.DyingObsidianOrb, TragicItems.CryingObsidianOrb, TragicItems.BleedingObsidianOrb, Items.nether_star
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TragicObsidian, 3, 0),
-			"xx",
-			"xx",
-			'x', TragicItems.CryingObsidianOrb
-		);
+				"xx",
+				"xx",
+				'x', TragicItems.CryingObsidianOrb
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TragicObsidian, 3, 1),
-			"xx",
-			"xx",
-			'x', TragicItems.BleedingObsidianOrb
-		);
+				"xx",
+				"xx",
+				'x', TragicItems.BleedingObsidianOrb
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.TragicObsidian, 3, 2), 
-			"xx",
-			"xx",
-			'x', TragicItems.DyingObsidianOrb
-		);
+				"xx",
+				"xx",
+				'x', TragicItems.DyingObsidianOrb
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 0),
-			"xx",
-			"xx",
-			'x', Blocks.netherrack
-		);
+				"xx",
+				"xx",
+				'x', Blocks.netherrack
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 2),
-			"xx",
-			"xx",
-			'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 0)
-	);
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 0)
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 1),
-			"xx",
-			"xx",
-			'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 2)
-		);
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 2)
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 3, 3),
-			"x x",
-			" x ",
-			"x x",
-			'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 1)
-		);
+				"x x",
+				" x ",
+				"x x",
+				'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 1)
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 4),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 0),
-			'y', TragicItems.KitsuneTail
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 0),
+				'y', TragicItems.KitsuneTail
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 5),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 0),
-			'y', Items.lava_bucket
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', new ItemStack(TragicBlocks.SmoothNetherrack, 1, 0),
+				'y', Items.lava_bucket
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkenedQuartz, 4, 0),
-			"xyx",
-			"yxy",
-			"xyx",
-			'x', Items.quartz,
-			'y', TragicItems.DarkParticles
-		);
+				"xyx",
+				"yxy",
+				"xyx",
+				'x', Items.quartz,
+				'y', TragicItems.DarkParticles
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkenedQuartz, 4, 1),
-			"xx",
-			"xx",
-			'x', TragicBlocks.DarkenedQuartz
-		);
+				"xx",
+				"xx",
+				'x', TragicBlocks.DarkenedQuartz
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkenedQuartz, 2, 2),
-			"x",
-			"x",
-			"x",
-			'x', new ItemStack(TragicBlocks.DarkenedQuartz, 1, 1)
-		);
+				"x",
+				"x",
+				"x",
+				'x', new ItemStack(TragicBlocks.DarkenedQuartz, 1, 1)
+				);
 
 		for (int i = 0; i < 8; i++)
 		{
 			GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkStone, 4, i + 7),
-				"xx",
-				"xx",
-				'x', new ItemStack(TragicBlocks.DarkStone, 1, i)
-			);
+					"xx",
+					"xx",
+					'x', new ItemStack(TragicBlocks.DarkStone, 1, i)
+					);
 		}
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.GravitySpike, 1),
-			"xyx",
-			" x ",
-			" x ",
-			'x', TragicItems.DarkIngot,
-			'y', TragicItems.GravityOrb
-		);
+				"xyx",
+				" x ",
+				" x ",
+				'x', TragicItems.DarkIngot,
+				'y', TragicItems.GravityOrb
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HarmonyBell, 1),
-			" y ",
-			"xxx",
-			"xxx",
-			'x', TragicItems.LightParticles,
-			'y', TragicItems.KitsuneTail
-		);
-		
+				" y ",
+				"xxx",
+				"xxx",
+				'x', TragicItems.LightParticles,
+				'y', TragicItems.KitsuneTail
+				);
+
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles, 8),
-			TragicItems.PureDarkness
-		);
-		
+				TragicItems.PureDarkness
+				);
+
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LightParticles, 8),
-			TragicItems.PureLight
-		);
+				TragicItems.PureLight
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.ender_eye, 1),
-			TragicItems.PureDarkness, TragicItems.ObsidianOrb
-		);
-		
+				TragicItems.PureDarkness, TragicItems.ObsidianOrb
+				);
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.nether_star, 1),
-			TragicItems.PureLight, Items.emerald
-		);
+				TragicItems.PureLight, Items.emerald
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.PaintedPlanks, 4),
-			TragicBlocks.PaintedWood
-		);
+				TragicBlocks.PaintedWood
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BleachedPlanks, 4),
-			TragicBlocks.BleachedWood
-		);
+				TragicBlocks.BleachedWood
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.AshenPlanks, 4),
-			TragicBlocks.AshenWood
-		);
+				TragicBlocks.AshenWood
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CelledBlock, 6),
-			"xx",
-			"xx",
-			'x', TragicBlocks.ErodedStone
-		);
-		
+				"xx",
+				"xx",
+				'x', TragicBlocks.ErodedStone
+				);
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CelledBlock, 6),
 				"xxx",
 				"xxx",
 				"xxx",
 				'x', TragicItems.NanoBots
-			);
+				);
 
 		//Cobblestone recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 1),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.DarkCobblestone,
-			'y', Items.redstone
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.DarkCobblestone,
+				'y', Items.redstone
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 2),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.DarkCobblestone,
-			'y', new ItemStack(TragicItems.Projectile, 1, 10)
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.DarkCobblestone,
+				'y', new ItemStack(TragicItems.Projectile, 1, 10)
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 3), 
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.DarkCobblestone,
-			'y', TragicItems.DarkParticles
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.DarkCobblestone,
+				'y', TragicItems.DarkParticles
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.DarkCobblestone,
-			'y', TragicItems.WispParticles
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.DarkCobblestone,
+				'y', TragicItems.WispParticles
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.DarkCobblestone,
-			'y', TragicItems.LightParticles
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.DarkCobblestone,
+				'y', TragicItems.LightParticles
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 1),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.LightCobblestone,
-			'y', TragicItems.LightningOrb
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.LightCobblestone,
+				'y', TragicItems.LightningOrb
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 2),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.LightCobblestone,
-			'y', TragicItems.WispParticles
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.LightCobblestone,
+				'y', TragicItems.WispParticles
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.LightCobblestone, 8, 2),
-			"xxx",
-			"xyx",
-			"xxx",
-			'x', TragicBlocks.LightCobblestone,
-			'y', TragicItems.LightParticles
-		);
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', TragicBlocks.LightCobblestone,
+				'y', TragicItems.LightParticles
+				);
 
 		//Flower-to-Dye recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 0)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 0)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 9),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 1)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 1)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 1),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 2)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 2)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 7),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 3)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 3)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 4)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 4)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 1),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 5)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 5)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 9),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 6)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 6)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 1),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 7)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 7)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 8)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 8)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 9)
-	);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 9)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 9),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 10)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 10)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 7),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 11)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 11)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 14),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 12)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 12)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 6),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 13)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 13)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 1),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 14)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 14)
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 4),
-			new ItemStack(TragicBlocks.TragicFlower, 1, 15)
-		);
+				new ItemStack(TragicBlocks.TragicFlower, 1, 15)
+				);
 
 		//Star Crystal dye recipes
 		for (int i = 0; i < 15; i++)
 		{
 			GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StarCrystal, 4, i),
-				"xyx",
-				"yxy",
-				"xyx",
-				'x', new ItemStack(Items.dye, 1, i),
-				'y', new ItemStack(TragicBlocks.StarCrystal, 1, 15)
-			);
+					"xyx",
+					"yxy",
+					"xyx",
+					'x', new ItemStack(Items.dye, 1, i),
+					'y', new ItemStack(TragicBlocks.StarCrystal, 1, 15)
+					);
 
 			GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StarCrystal, 4, i),
-				"xxx",
-				"xyx",
-				"xxx",
-				'x', new ItemStack(Items.dye, 1, i),
-				'y', TragicItems.WispParticles
-			);
+					"xxx",
+					"xyx",
+					"xxx",
+					'x', new ItemStack(Items.dye, 1, i),
+					'y', TragicItems.WispParticles
+					);
 		}
 
 		//Celled Lamp dye recipes
 		for (int i = 0; i < 15; i++)
 		{
 			GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.CelledLamp, 8, i),
-				"yyy",
-				"yxy",
-				"yyy",
-				'x', new ItemStack(Items.dye, 1, i),
-				'y', TragicBlocks.CelledBlock
-			);
+					"yyy",
+					"yxy",
+					"yyy",
+					'x', new ItemStack(Items.dye, 1, i),
+					'y', TragicBlocks.CelledBlock
+					);
 		}
 
 		//Amulet level-up recipes
-		RecipeSorter.register("tragicmc:amuletleveling", RecipeAmulets.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
+		if (TragicConfig.allowAmuletLeveling)
+		{
+			RecipeSorter.register("tragicmc:amuletleveling", RecipeAmulets.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
-			TragicItems.BlacksmithAmulet, TragicItems.BlacksmithAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
+					TragicItems.BlacksmithAmulet, TragicItems.BlacksmithAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
-			TragicItems.BlacksmithAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
+					TragicItems.BlacksmithAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.CreeperAmulet, 1),
-			TragicItems.CreeperAmulet, TragicItems.CreeperAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.CreeperAmulet, 1),
+					TragicItems.CreeperAmulet, TragicItems.CreeperAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.CreeperAmulet, 1),
-			TragicItems.CreeperAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.CreeperAmulet, 1),
+					TragicItems.CreeperAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ClaymationAmulet, 1), 
-			TragicItems.ClaymationAmulet, TragicItems.ClaymationAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ClaymationAmulet, 1), 
+					TragicItems.ClaymationAmulet, TragicItems.ClaymationAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ClaymationAmulet, 1),
-			TragicItems.ClaymationAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ClaymationAmulet, 1),
+					TragicItems.ClaymationAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SkeletonAmulet, 1),
-			TragicItems.SkeletonAmulet, TragicItems.SkeletonAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SkeletonAmulet, 1),
+					TragicItems.SkeletonAmulet, TragicItems.SkeletonAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SkeletonAmulet, 1),
-			TragicItems.SkeletonAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SkeletonAmulet, 1),
+					TragicItems.SkeletonAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ChickenAmulet, 1),
-			TragicItems.ChickenAmulet, TragicItems.ChickenAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ChickenAmulet, 1),
+					TragicItems.ChickenAmulet, TragicItems.ChickenAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ChickenAmulet, 1),
-			TragicItems.ChickenAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ChickenAmulet, 1),
+					TragicItems.ChickenAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.PeaceAmulet, 1),
-			TragicItems.PeaceAmulet, TragicItems.PeaceAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.PeaceAmulet, 1),
+					TragicItems.PeaceAmulet, TragicItems.PeaceAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.PeaceAmulet, 1),
-			TragicItems.PeaceAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.PeaceAmulet, 1),
+					TragicItems.PeaceAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.YetiAmulet, 1),
-			TragicItems.YetiAmulet, TragicItems.YetiAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.YetiAmulet, 1),
+					TragicItems.YetiAmulet, TragicItems.YetiAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.YetiAmulet, 1),
-			TragicItems.YetiAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.YetiAmulet, 1),
+					TragicItems.YetiAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
-			TragicItems.BlacksmithAmulet, TragicItems.BlacksmithAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
+					TragicItems.BlacksmithAmulet, TragicItems.BlacksmithAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ZombieAmulet, 1),
-			TragicItems.ZombieAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ZombieAmulet, 1),
+					TragicItems.ZombieAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IceAmulet, 1),
-			TragicItems.IceAmulet, TragicItems.IceAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IceAmulet, 1),
+					TragicItems.IceAmulet, TragicItems.IceAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IceAmulet, 1),
-			TragicItems.IceAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IceAmulet, 1),
+					TragicItems.IceAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SnowGolemAmulet, 1),
-			TragicItems.SnowGolemAmulet, TragicItems.SnowGolemAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SnowGolemAmulet, 1),
+					TragicItems.SnowGolemAmulet, TragicItems.SnowGolemAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SnowGolemAmulet, 1),
-			TragicItems.SnowGolemAmulet, TragicItems.AmuletRelease
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SnowGolemAmulet, 1),
+					TragicItems.SnowGolemAmulet, TragicItems.AmuletRelease
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IronGolemAmulet, 1),
-			TragicItems.IronGolemAmulet, TragicItems.IronGolemAmulet, "oreCharms"
-		));
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IronGolemAmulet, 1),
+					TragicItems.IronGolemAmulet, TragicItems.IronGolemAmulet, "oreCharms"
+					));
 
-		GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IronGolemAmulet, 1),
-			TragicItems.IronGolemAmulet, TragicItems.AmuletRelease
-		));
-
-		RecipeSorter.register("tragicmc:weaponcombining", RecipeWeapons.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IronGolemAmulet, 1),
+					TragicItems.IronGolemAmulet, TragicItems.AmuletRelease
+					));
+		}
 
 		//Weapon fusing recipes
+		RecipeSorter.register("tragicmc:weaponcombining", RecipeWeapons.class, RecipeSorter.Category.SHAPELESS, "after:forge:shapelessore");
+
 		GameRegistry.addRecipe(new RecipeWeapons(new ItemStack(TragicItems.MercuryDagger),
 				new ItemStack(TragicItems.MercuryDagger), new ItemStack(TragicItems.MercuryDagger), "oreCharms"));
 

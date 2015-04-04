@@ -47,7 +47,6 @@ import tragicneko.tragicmc.util.AmuletHelper;
 import tragicneko.tragicmc.util.DamageHelper;
 
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -233,7 +232,7 @@ public class AmuletEvents {
 	}
 
 	public static void doAmuletEffect(int id, PropertyAmulets amu, ItemAmulet amulet, EntityPlayerMP mp, World world, int slot, int level)
-	{		
+	{				
 		if (id == 0 && TragicConfig.amuKitsune && mp.ticksExisted % 60 == 0)
 		{
 			if (mp.isBurning()) mp.extinguish();
