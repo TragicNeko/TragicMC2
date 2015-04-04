@@ -3589,9 +3589,13 @@ may be used by hostile mobs that wear armor and there's no way to tell that from
 Added particle spawn message, there may be a vanilla one but I prefer using the net system that I have anyway, this should allow for more flexibility with things
 like using particles on attack targets without having to save the target in a datawatcher
 Added Corroded biome set, added more biomes to spawn biomes (at least one from each set, up to two from ones with more than 3 variants)
-Due to the increase in amount of biomes, biome sizes were increased
-Still need to add their various biome generators for the Gases and for the Sludge, as well as for the Wicked Vines, also need to add void pit gen to the
-fallout variant
+Due to the increase in amount of biomes, biome sizes were increased, added void pit gen to the Fallout variant
+Added Wicked vine generation, reduced size of tainted spike generation to account for the increased biome sizes
+Fixed variant of the Obsidian Cavern that generated nothing in it, it's supposed to have a single difficult to get chest
+Removed the structure seeds for the Obsidian Cavern presets, it'll only have the randomized one now
+Going through the configuration file and ensuring that each option is set up properly or used
+
+Still need to add the various biome generators for the Gases and for the Sludge
 There will be mostly poisonous gases & sludge on the surface, explosive gases will be in pockets underground (they'll generate in spherical pockets where they are
 completely surrounded by stone to reduce chance of random mobs exploding them)
 
