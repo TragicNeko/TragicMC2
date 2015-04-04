@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiAmuletStatus extends Gui
 {
-	private Minecraft mc;
+	private final Minecraft mc;
 	private int buffer;
 	private int width;
 	private static final RenderItem itemRender = new RenderItem();
