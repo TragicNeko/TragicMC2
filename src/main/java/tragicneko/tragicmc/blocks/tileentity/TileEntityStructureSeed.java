@@ -8,10 +8,7 @@ public class TileEntityStructureSeed extends TileEntity {
 	@Override
 	public void updateEntity()
 	{
-		if (this.worldObj.getTotalWorldTime() % 20L == 0L)
-		{
-			this.growStructure();
-		}
+		if (this.worldObj.getTotalWorldTime() % 20L == 0L) this.growStructure();
 	}
 
 	public void growStructure()
@@ -35,45 +32,28 @@ public class TileEntityStructureSeed extends TileEntity {
 			id = 2;
 		}
 
-		if (meta >= 7 && meta <= 11)
+		if (meta == 7)
 		{
 			id = 3;
-
-			switch(meta)
-			{
-			case 8:
-				variant2 = 1;
-				break;
-			case 9:
-				variant2 = 2;
-				break;
-			case 10:
-				variant2 = 5;
-				break;
-			case 11:
-				variant2 = 7;
-				break;
-			case 7:
-			default:
-				variant2 = 20;
-				break;
-			}
+			variant2 = this.worldObj.rand.nextInt(20);
 		}
 		
-		if (meta == 12)
+		if (meta == 8)
 		{
 			id = 4;
 		}
 		
-		if (meta == 13)
+		if (meta == 9)
 		{
 			id = 5;
 		}
 		
-		if (meta == 14)
+		if (meta == 10)
 		{
 			id = 6;
 		}
+		
+		if (meta == 11) return;
 
 		Structure structure = null;
 

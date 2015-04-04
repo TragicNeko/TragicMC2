@@ -669,6 +669,8 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 			break;
 		}
+		
+		if (world.getBlock(x, y, z) != Blocks.ladder && world.getBlock(x, y, z) != Blocks.air) world.setBlockToAir(x, y, z);
 
 	}
 
@@ -676,13 +678,16 @@ public class SchematicObsidianCavern extends Schematic {
 		switch(variant)
 		{
 		case 0:
-			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(world, 2.5D, x, y, z);
+			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(world, 3.0D, x, 0, z);
 			int[] coords;
 			for (int i = 0; i < list.size(); i++)
 			{
 				coords = list.get(i);
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
+			world.setBlock(x, 0, z, bedrock);
+			world.setBlock(x, 1, z, chest);
+			this.generateChestGoodies(world, rand, x, 2, z, 1);
 			break;
 		case 1:
 			world.setBlock(x, 1, z, bedrock);
