@@ -48,8 +48,13 @@ public class TragicWorldChunkManager extends WorldChunkManager
 		list.add(TragicBiomes.PaintedPlains);
 		list.add(TragicBiomes.AshenBadlands);
 		list.add(TragicBiomes.StarlitPrarie);
+		list.add(TragicBiomes.StarlitPlateaus);
+		list.add(TragicBiomes.TaintedLowlands);
 		list.add(TragicBiomes.HallowedPrarie);
+		list.add(TragicBiomes.HallowedForest);
 		list.add(TragicBiomes.ScorchedWastelands);
+		list.add(TragicBiomes.CorrodedHeights);
+		list.add(TragicBiomes.CorrodedSteppe);
 	}
 
 	public GenLayer[] getGenLayers(long seed, WorldType worldType)

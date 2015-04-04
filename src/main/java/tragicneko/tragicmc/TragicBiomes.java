@@ -1,9 +1,7 @@
 package tragicneko.tragicmc;
 
-import java.util.Set;
-
-import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
@@ -12,8 +10,6 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenSynapse;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
 import tragicneko.tragicmc.worldgen.biome.TragicBiome;
-
-import com.google.common.collect.Sets;
 
 public class TragicBiomes {
 
@@ -50,11 +46,16 @@ public class TragicBiomes {
 	public static TragicBiome HallowedCliffs;
 	
 	public static TragicBiome ScorchedWastelands;
-	public static TragicBiome ScorchedValley; //deep terrain, will have lots of lava pools
-	public static TragicBiome ScorchedScarlands; //will have geysers and steam vents aplenty, also will use inverted spike gen
+	public static TragicBiome ScorchedValley;
+	public static TragicBiome ScorchedScarlands;
+	
+	public static TragicBiome CorrodedSteppe; //lots of gas generation, very little vines
+	public static TragicBiome CorrodedHeights; //plateau like generation (hopefully), very little of any of the worldgen
+	public static TragicBiome CorrodedVeld; //lots of vines, very little gas generation
+	public static TragicBiome CorrodedRunoff; //lots of sludge generation, little of the others
+	public static TragicBiome CorrodedFallout; //Deep scarred terrain, with all of the heavy worldgen of this biome set, also will have void pits
 	
 	//public static Set<BiomeGenBase> frozenBiomes;
-	//public static Set<BiomeGenBase> corrodedBiomes;
 	//public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
 	//public static Set<BiomeGenBase> crystalBiomes; //will be a biome made of really tough, hard to mine blocks
 
@@ -95,5 +96,11 @@ public class TragicBiomes {
 		ScorchedWastelands = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedWastelands).setBiomeName("tragicmc.scorchedWastelands"))).setHeightVariation(0.2F).setRootHeight(0.15F);
 		ScorchedValley = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedValley).setBiomeName("tragicmc.scorchedValley"))).setHeightVariation(0.05F).setRootHeight(-0.35F);
 		ScorchedScarlands = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedScarlands).setBiomeName("tragicmc.scorchedScarlands"))).setHeightVariation(0.05F).setRootHeight(0.65F);
+		
+		CorrodedSteppe = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedSteppe).setBiomeName("tragicmc.corrodedSteppe"))).setHeightVariation(0.15F).setRootHeight(0.1F);
+		CorrodedHeights = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedHeights).setBiomeName("tragicmc.corrodedHeights"))).setHeightVariation(0.02F).setRootHeight(0.8F);
+		CorrodedVeld = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedVeld).setBiomeName("tragicmc.corrodedVeld"))).setHeightVariation(0.01F).setRootHeight(0.0F);
+		CorrodedRunoff = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedRunoff).setBiomeName("tragicmc.corrodedRunoff"))).setHeightVariation(0.06F).setRootHeight(-0.65F);
+		CorrodedFallout = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout).setBiomeName("tragicmc.corrodedFallout"))).setHeightVariation(0.4F).setRootHeight(-0.65F);
 	}
 }

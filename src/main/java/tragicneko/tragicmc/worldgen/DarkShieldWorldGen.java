@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.worldgen;
 
-import static tragicneko.tragicmc.TragicBlocks.CircuitBlock;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,9 +9,9 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -63,6 +61,38 @@ public class DarkShieldWorldGen implements IWorldGenerator {
 				{
 					block = world.getBlock(cand2[0], cand2[1], cand2[2]);
 					if (block == TragicBlocks.DeadDirt && random.nextBoolean()) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.DeadDirt, 2, 2);
+				}
+
+				coords = list.get(random.nextInt(list.size()));
+			}
+		}
+		else if (biome instanceof BiomeGenCorrodedSteppe)
+		{
+			radius = (4.0D * random.nextDouble()) + 3.0D;
+
+			for (int y1 = -1; y1 < 2; y1++)
+			{
+				x += random.nextInt(4) - random.nextInt(4);
+				z += random.nextInt(4) - random.nextInt(4);
+				list = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
+
+				for (int i = 0; i < list.size(); i++)
+				{
+					coords = list.get(i);
+					block = world.getBlock(coords[0], coords[1], coords[2]);
+					if (block == TragicBlocks.DarkCobblestone && random.nextBoolean()) world.setBlockMetadataWithNotify(coords[0], coords[1], coords[2], 2, 2);
+				}
+			}
+			
+			for (int k = 0; k < 24 + random.nextInt(8); k++)
+			{
+				block = world.getBlock(coords[0], coords[1], coords[2]);
+				list = WorldHelper.getBlocksAdjacent(coords);
+
+				for (int[] cand2 : list)
+				{
+					block = world.getBlock(cand2[0], cand2[1], cand2[2]);
+					if (block == TragicBlocks.DarkCobblestone && random.nextBoolean()) world.setBlockMetadataWithNotify(cand2[0], cand2[1], cand2[2], 2, 2);
 				}
 
 				coords = list.get(random.nextInt(list.size()));

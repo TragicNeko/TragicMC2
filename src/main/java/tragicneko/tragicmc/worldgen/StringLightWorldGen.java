@@ -78,7 +78,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 
 			if (StructureWorldGen.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
 			{
-				if (world.doesBlockHaveSolidTopSurface(world, Xcoord, Ycoord - 1, Zcoord)) world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Light);
+				if (world.doesBlockHaveSolidTopSurface(world, Xcoord, Ycoord - 1, Zcoord) && !block.getMaterial().isLiquid()) world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Light);
 			}
 		}
 	}

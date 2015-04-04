@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -23,8 +25,9 @@ public class VoidPitWorldGen implements IWorldGenerator {
 			int Xcoord = (chunkX * 16) + random.nextInt(16);
 			int Ycoord = random.nextInt(35) + 60;
 			int Zcoord = (chunkZ * 16) + random.nextInt(16);
+			BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-			if (!(world.getBiomeGenForCoords(Xcoord, Zcoord) instanceof BiomeGenDecayingWasteland)) return;
+			if (!(biome instanceof BiomeGenDecayingWasteland) && biome != TragicBiomes.CorrodedFallout) return;
 
 			double size;
 			int[] coords;

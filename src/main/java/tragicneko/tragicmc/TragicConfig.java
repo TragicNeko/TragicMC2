@@ -48,7 +48,7 @@ public class TragicConfig {
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
 	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles, idHallowedHills, idHallowedForest, idHallowedPrarie, idHallowedCliffs;
-	public static int idScorchedWastelands, idScorchedValley, idScorchedScarlands;
+	public static int idScorchedWastelands, idScorchedValley, idScorchedScarlands, idCorrodedSteppe, idCorrodedHeights, idCorrodedVeld, idCorrodedRunoff, idCorrodedFallout;
 	public static int idSynapse;
 
 	private static boolean[] blanketDoom = new boolean[17];
@@ -263,6 +263,11 @@ public class TragicConfig {
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedWastelandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedValleyID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedSteppeID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedHeightsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedVeldID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedRunoffID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedFalloutID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		
 		config.addCustomCategoryComment(catDimension, "Set the various biome IDs in the Dimension, including the Dimension's own ID, also set if the Dimension should stay loaded.");
 
@@ -1229,6 +1234,11 @@ public class TragicConfig {
 		idScorchedWastelands = biomeIDs[mapping++];
 		idScorchedValley = biomeIDs[mapping++];
 		idScorchedScarlands = biomeIDs[mapping++];
+		idCorrodedSteppe = biomeIDs[mapping++];
+		idCorrodedHeights = biomeIDs[mapping++];
+		idCorrodedVeld = biomeIDs[mapping++];
+		idCorrodedRunoff = biomeIDs[mapping++];
+		idCorrodedFallout = biomeIDs[mapping++];
 
 		mapping = 0;
 		allowDoomsdays = blanketDoom[mapping++];

@@ -23,7 +23,7 @@ public class TragicBiomeGenLayer extends GenLayer {
 	public TragicBiomeGenLayer(long seed)
 	{
 		super(seed);
-		biomeList = new ArrayList[7];
+		biomeList = new ArrayList[8];
 
 		ArrayList<BiomeEntry> decayingBiomes = new ArrayList<BiomeEntry>();
 		decayingBiomes.add(new BiomeEntry(TragicBiomes.DecayingWasteland, 20));
@@ -65,6 +65,13 @@ public class TragicBiomeGenLayer extends GenLayer {
 		scorchedBiomes.add(new BiomeEntry(TragicBiomes.ScorchedWastelands, 10));
 		scorchedBiomes.add(new BiomeEntry(TragicBiomes.ScorchedValley, 10));
 		scorchedBiomes.add(new BiomeEntry(TragicBiomes.ScorchedScarlands, 10));
+		
+		ArrayList<BiomeEntry> corrodedBiomes = new ArrayList<BiomeEntry>();
+		corrodedBiomes.add(new BiomeEntry(TragicBiomes.CorrodedSteppe, 25));
+		corrodedBiomes.add(new BiomeEntry(TragicBiomes.CorrodedHeights, 15));
+		corrodedBiomes.add(new BiomeEntry(TragicBiomes.CorrodedVeld, 10));
+		corrodedBiomes.add(new BiomeEntry(TragicBiomes.CorrodedRunoff, 10));
+		corrodedBiomes.add(new BiomeEntry(TragicBiomes.CorrodedFallout, 5));
 
 		biomeList[0] = decayingBiomes;
 		biomeList[1] = paintedBiomes;
@@ -73,6 +80,7 @@ public class TragicBiomeGenLayer extends GenLayer {
 		biomeList[4] = taintedBiomes;
 		biomeList[5] = hallowedBiomes;
 		biomeList[6] = scorchedBiomes;
+		biomeList[7] = corrodedBiomes;
 	}
 
 	@Override

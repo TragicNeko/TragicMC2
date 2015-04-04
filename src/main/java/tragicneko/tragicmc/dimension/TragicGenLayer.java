@@ -7,7 +7,7 @@ import net.minecraft.world.gen.layer.GenLayerZoom;
 
 public class TragicGenLayer {
 	
-	private static final int biomeSize = 5;
+	private static final int biomeSize = 6;
 
 	public GenLayer[] createWorld(long seed, WorldType worldType)
 	{

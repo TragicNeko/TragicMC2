@@ -39,13 +39,15 @@ public class GeyserWorldGen implements IWorldGenerator {
 			Xcoord = (chunkX * 16) + random.nextInt(16);
 			Zcoord = (chunkZ * 16) + random.nextInt(16);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
+			biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
+			if (!(biome instanceof BiomeGenScorchedWasteland)) continue;
 			
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 			
 			if (block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
 			{
 				cands.clear();
-				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, 2.25, Xcoord, Ycoord - 2, Zcoord));
+				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, 2.75, Xcoord, Ycoord - 2, Zcoord));
 				
 				for (int[] coords : cands)
 				{
