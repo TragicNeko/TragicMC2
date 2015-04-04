@@ -39,8 +39,8 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		int meta = flag ? random.nextInt(2) : 14;
 		ArrayList<int[]> list;
 		Block block;
-		double regression = 0.93977745D;
-		double cutoff = 0.36943755D;
+		double regression = 0.92977745D;
+		double cutoff = 0.38943755D;
 		double size;
 		int spikeType;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
