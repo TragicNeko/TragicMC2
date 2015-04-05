@@ -8,10 +8,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.util.DamageHelper;
 
@@ -148,8 +150,16 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{ 
 		if (this.worldObj.isRemote) return false;
+		
+		boolean flag = false;
 
-		if (this.getShields() > 0 && par2 >= 1.0F)
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
+			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
+		}
+
+		if (this.getShields() > 0 && par2 >= 1.0F && !flag)
 		{
 			if (this.getShields() == 4)
 			{
