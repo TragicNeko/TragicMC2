@@ -18,10 +18,10 @@ import tragicneko.tragicmc.entity.EntityStatue;
 
 public class ItemStatue extends Item {
 
-	private String[] subNames = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul", "magmox", "megaCryse", "stinKing",
-			"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord"};
-	private String[] textureNames = new String[] {"Apis", "Kitsune", "DeathReaper", "TimeController", "Yeti", "Polaris", "Jarra", "Kragul", "Magmox", "MegaCryse", "StinKing",
-			"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation", "Aegar", "Overlord"};
+	public static String[] subNames = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul", "magmox", "megaCryse", "stinKing",
+			"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord", "overlordCombat", "overlordCocoon"};
+	private static String[] textureNames = new String[] {"Apis", "Kitsune", "DeathReaper", "TimeController", "Yeti", "Polaris", "Jarra", "Kragul", "Magmox", "MegaCryse", "StinKing",
+			"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation", "Aegar", "Overlord", "OverlordCombat", "OverlordCocoon"};
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemStatue()

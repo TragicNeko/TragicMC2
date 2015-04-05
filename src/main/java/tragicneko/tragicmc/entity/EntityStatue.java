@@ -31,6 +31,7 @@ import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
+import tragicneko.tragicmc.items.ItemStatue;
 
 public class EntityStatue extends Entity {
 
@@ -65,10 +66,7 @@ public class EntityStatue extends Entity {
 
 		int id = this.getMobID();
 
-		for (int i = 0; i < this.getTextureID(); i++)
-		{
-			id += 18;
-		}		
+		for (int i = 0; i < this.getTextureID(); i++) id += ItemStatue.subNames.length;
 		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, id);
 		if (this.getAnimated())
 		{
@@ -235,7 +233,10 @@ public class EntityStatue extends Entity {
 				case 16:
 					if (TragicConfig.allowAegar) entity = new EntityAegar(this.worldObj);
 					break;
-				case 17: return false;
+				case 17:
+				case 18:
+				case 19:
+					return false;
 				default: break;
 				}
 

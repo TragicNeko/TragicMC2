@@ -800,7 +800,7 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			if (replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
 			{
-				this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CelledBlock, 0, 2);
+				this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicConfig.mobsOnly ? Blocks.obsidian : TragicBlocks.CelledBlock, 0, 2);
 			}
 		}
 

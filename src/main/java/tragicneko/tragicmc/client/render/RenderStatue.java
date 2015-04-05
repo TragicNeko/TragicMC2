@@ -20,6 +20,7 @@ import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKitsune2;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
+import tragicneko.tragicmc.client.model.ModelOverlordCombat;
 import tragicneko.tragicmc.client.model.ModelOverlordCore;
 import tragicneko.tragicmc.client.model.ModelPolaris;
 import tragicneko.tragicmc.client.model.ModelStinKing;
@@ -43,7 +44,7 @@ public class RenderStatue extends Render {
 		new ResourceLocation(mobPath + "Magmox2.png"), new ResourceLocation(mobPath + "Cryse.png"), new ResourceLocation(mobPath + "StinKing.png"),
 		new ResourceLocation(mobPath + "StinQueen.png"), new ResourceLocation(mobPath + "GreaterStin.png"), new ResourceLocation(mobPath + "VoxStellarum.png"),
 		new ResourceLocation(mobPath + "Enyvil.png"), new ResourceLocation(mobPath + "Claymation.png"), new ResourceLocation(mobPath + "Aegar.png"),
-		new ResourceLocation(mobPath + "OverlordCore.png")},
+		new ResourceLocation(mobPath + "OverlordCore.png"), new ResourceLocation(mobPath + "OverlordCombat.png"), new ResourceLocation(mobPath + "OverlordCocoon.png")},
 		{new ResourceLocation(textPath + "IronStatue.png"),
 			new ResourceLocation(textPath + "GoldStatue.png"), new ResourceLocation(textPath + "DiamondStatue.png"), new ResourceLocation(textPath + "StoneStatue.png"),
 			new ResourceLocation(textPath + "WoodStatue.png"), new ResourceLocation(textPath + "EmeraldStatue.png"), new ResourceLocation(textPath + "LeafStatue.png"),
@@ -53,7 +54,7 @@ public class RenderStatue extends Render {
 	
 	private static final ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
-			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore()};
+			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore(), new ModelOverlordCombat(), new ModelBlock()};
 
 	@Override
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)

@@ -52,7 +52,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 	public EntityOverlordCombat(World par1World) {
 		super(par1World);
-		this.setSize(2.385F, 3.325F);
+		this.setSize(4.385F, 5.325F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 0;
 		this.tasks.addTask(0, new EntityAISwimming(this));
