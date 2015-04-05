@@ -96,7 +96,6 @@ public class DoomEvents {
 				properties.applyDoomPainRecharge(event.ammount);
 			}
 		}
-
 	} 
 
 	@SubscribeEvent(priority=EventPriority.HIGHEST)

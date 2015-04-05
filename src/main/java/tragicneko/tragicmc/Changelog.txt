@@ -3593,9 +3593,24 @@ Due to the increase in amount of biomes, biome sizes were increased, added void 
 Added Wicked vine generation, reduced size of tainted spike generation to account for the increased biome sizes
 Fixed variant of the Obsidian Cavern that generated nothing in it, it's supposed to have a single difficult to get chest
 Removed the structure seeds for the Obsidian Cavern presets, it'll only have the randomized one now
+Finished up the Combat form model, I wanted to add more detailing to it, but it has around 180 parts already
+Added Amulet repair from a tough kill, repair amount is based on amulet level and if the amulet is a normal amulet or not
+Allow Mega Cryse to be one shot with the Sword and Bow of Justice
+Added new statues for the Overlord's other two forms since there was so much work put into their models, the player can switch between them with Overlord Essence
+but they won't maintain their texture/animation (I'm not making a custom recipe type just for this)
+Added Bone Marrow to the Bone block conversion recipe from Deathly Hallows
+Fix NPE with Reach when attacking when it is disabled
+Fix game crash caused by using mobsOnly mode (AIOOB exception from recent additions to the config)
+Modified mobsOnly mode to never register most of the blocks & items, previously I'd avoid this but if someone is using this option, they probably wouldn't
+care about having their blocks or items saved anyway
+Fixed NPE when mobsOnly mode is enabled for certain entities (ones that use Luminescence mostly)
+Added ability for Summon Blocks to be activated via redstone, added NPE protection in that case
+Fixed NPE from projectiles when mobsOnly mode is enabled
+Modified Overlord Core to generate an obsidian platform instead of a Celled block one in the case of mobsOnly mode being enabled
 Going through the configuration file and ensuring that each option is set up properly or used
 
 Still need to add the various biome generators for the Gases and for the Sludge
+Need to update the Combat form's model code to use the child parts effectively, then I need to animate it
 There will be mostly poisonous gases & sludge on the surface, explosive gases will be in pockets underground (they'll generate in spherical pockets where they are
 completely surrounded by stone to reduce chance of random mobs exploding them)
 
@@ -3623,7 +3638,6 @@ use the same drop rates and items from that actually
 
 New biome sets:
 Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
-Corroded biomes, Wicked Vines, Explosive gas, Toxic fumes, Fusea, Erkel, Jarra, toxic waste
 Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite
 Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
 Ranmas
