@@ -28,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -38,6 +39,7 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAmulet;
@@ -772,6 +774,38 @@ public class AmuletEvents {
 					mp.worldObj.spawnEntityInWorld(item);
 					if (event.isCancelable()) event.setCanceled(true);
 					break;
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void doomRechargeDeath(LivingDeathEvent event)
+	{
+		if (event.entityLiving.worldObj.isRemote || !TragicConfig.allowAmuletKillRecharge) return;
+		
+		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving.getMaxHealth() >= 100F))
+		{
+			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
+			PropertyAmulets amu = PropertyAmulets.get(player);
+			
+			if (amu == null) return;
+
+			ItemStack[] amulets = new ItemStack[3];
+			int i;
+
+			for (i = 0; i < 3; i++)
+			{
+				amulets[i] = amu.getActiveAmuletItemStack(i);
+			}
+			
+			for (i = 0; i < 3; i++)
+			{
+				if (amulets[i] != null && amulets[i].getItemDamage() > 0)
+				{
+					int yo = AmuletHelper.getAmuletLevel(amulets[i]);
+					int repair = (yo * 2 + (rand.nextInt(yo + 1) + rand.nextInt(yo + 1)) * 2) * (int) (10 * rand.nextDouble());
+					amu.repairStackInSlot(i, MathHelper.clamp_int(repair, 1, amulets[i].getItemDamage()));
 				}
 			}
 		}
