@@ -25,7 +25,7 @@ import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 
 public class TileEntitySummonBlock extends TileEntity {
-	
+
 	private static final String[] taunts = new String[] {"The choice is made, the Traveller has come!", "They're here...", "Ready? ... FIGHT!", "Mortal Kombat!",
 		"Begin.", "Let's get ready to RUMBLE!", "Come now, make up and hug it out", "Come play with us, forever and ever and ever and ever...", "Oh no!", "Kissy kissy~",
 		"Run away!", "Retreat!", "Requesting permission to GTFO of here!", "Come on, it only wants a hug!", "It doesn't bite! ... much...", 
@@ -35,25 +35,44 @@ public class TileEntitySummonBlock extends TileEntity {
 	@Override
 	public void updateEntity()
 	{
-		if (this.worldObj.getTotalWorldTime() % 20L == 0L)
+		if (this.worldObj.isRemote) return;
+		
+		if (this.worldObj.getTotalWorldTime() % 20L == 0L) this.updateState();
+		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord))
 		{
-			this.checkForNearbyPlayers();
+			this.spawnBoss(null);
 		}
 	}
 
 	/**
 	 * Checks for nearby players, if there is at least 1 that is not in creative mode, summons a boss and removes the block and tile entity
 	 */
-	private void checkForNearbyPlayers() 
+	private void updateState() 
 	{
 		double d0 = 12.0;
 
 		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(this.xCoord, this.yCoord, this.zCoord, this.xCoord + 1, this.yCoord + 1, this.zCoord + 1).expand(d0, d0, d0);
 		List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
+		if (!list.isEmpty())
+		{
+			for (int i = 0; i < list.size(); i++)
+			{
+				EntityPlayer player = list.get(i);			
+
+				if (!player.isPotionActive(Potion.invisibility) && !player.capabilities.isCreativeMode && !this.worldObj.isRemote)
+				{
+					this.spawnBoss(player);
+					break;
+				}
+			}
+		}
+	}
+
+	private void spawnBoss(EntityPlayer player)
+	{
 		int meta = this.getBlockMetadata();
 		EntityLivingBase boss = null;
-
 
 		if (meta == 2 && TragicConfig.allowApis)
 		{
@@ -96,33 +115,23 @@ public class TileEntitySummonBlock extends TileEntity {
 			boss = new EntityClaymation(this.worldObj);
 		}
 
-		if (list.size() > 0)
-		{
-			for (int i = 0; i < list.size(); i++)
-			{
-				EntityPlayer player = list.get(i);			
+		if (boss == null) return;
 
-				if (!player.isPotionActive(Potion.invisibility) && !player.capabilities.isCreativeMode && boss != null && !this.worldObj.isRemote)
-				{
-					boss.setLocationAndAngles(this.xCoord, this.yCoord, this.zCoord, this.worldObj.rand.nextFloat(), this.worldObj.rand.nextFloat());
-					if (boss instanceof EntityLiving) ((EntityLiving) boss).onSpawnWithEgg((IEntityLivingData)null);
-					this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
-					this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
-					this.worldObj.spawnEntityInWorld(boss);
-					if (boss instanceof EntityLiving) ((EntityLiving) boss).setAttackTarget(player);
-
-					this.tauntPlayer(player, this.worldObj.rand);
-					break;
-				}
-			}
-		}
+		boss.setLocationAndAngles(this.xCoord, this.yCoord, this.zCoord, this.worldObj.rand.nextFloat(), this.worldObj.rand.nextFloat());
+		if (boss instanceof EntityLiving) ((EntityLiving) boss).onSpawnWithEgg((IEntityLivingData)null);
+		this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
+		this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+		this.worldObj.spawnEntityInWorld(boss);
+		
+		if (boss instanceof EntityLiving && player != null) ((EntityLiving) boss).setAttackTarget(player);
+		if (player != null) this.tauntPlayer(player, this.worldObj.rand);
 	}
 
 	private void tauntPlayer(EntityPlayer player, Random rand) {
 
 		EnumChatFormatting format = EnumChatFormatting.DARK_RED;
 		ChatComponentText chat = null;
-		
+
 		if (rand.nextBoolean())
 		{
 			chat = new ChatComponentText(format + "A Boss has been summoned!");
@@ -131,7 +140,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		{
 			chat = new ChatComponentText(format + taunts[rand.nextInt(taunts.length)]);
 		}
-		
+
 		player.addChatMessage(chat);
 	}
 }
