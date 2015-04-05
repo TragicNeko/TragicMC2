@@ -293,6 +293,19 @@ public class TragicRecipes {
 				'z', Blocks.redstone_block
 				); 
 
+		//To switch between the Overlord forms
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.MobStatue, 1, 18), 
+				new ItemStack(TragicItems.MobStatue, 1, 17), TragicItems.LivingClay, TragicItems.CorruptedEssence
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.MobStatue, 1, 19), 
+				new ItemStack(TragicItems.MobStatue, 1, 18), TragicItems.LivingClay, TragicItems.CorruptedEssence
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.MobStatue, 1, 17), 
+				new ItemStack(TragicItems.MobStatue, 1, 19), TragicItems.LivingClay, TragicItems.CorruptedEssence
+				);
+		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
 				"xxx",
 				"xyx",
@@ -474,11 +487,11 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16), 
-				TragicItems.DeathlyHallow
+				TragicItems.DeathlyHallow, TragicItems.BoneMarrow
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.BoneBlock, 16, 1), 
-				TragicItems.DeathlyHallow, Items.rotten_flesh
+				TragicItems.DeathlyHallow, TragicItems.BoneMarrow, Items.rotten_flesh
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StarCrystal, 16, 15), 
