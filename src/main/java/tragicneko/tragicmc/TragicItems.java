@@ -255,6 +255,24 @@ public class TragicItems {
 
 	public static void load()
 	{
+		if (TragicConfig.mobsOnly)
+		{
+			SpawnEgg = (new ItemMobEgg());
+			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
+			
+			BowOfJustice = (new WeaponBowOfJustice().setUnlocalizedName("tragicmc.bowOfJustice").setTextureName("bow"));
+			GameRegistry.registerItem(BowOfJustice, "bowOfJustice");
+
+			SwordOfJustice = (new WeaponSwordOfJustice(toolJustice).setUnlocalizedName("tragicmc.swordOfJustice").setTextureName("gold_sword"));
+			GameRegistry.registerItem(SwordOfJustice, "swordOfJustice");
+			
+			NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand"));
+			GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
+			
+			Projectile = (new ItemProjectile());
+			GameRegistry.registerItem(Projectile, "projectile");
+			return;
+		}
 		//Ore Registrations
 		RedMercury = (new ItemGeneric().setUnlocalizedName("tragicmc.redMercury").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RedMercury" ));
 		GameRegistry.registerItem(RedMercury, "redMercury");

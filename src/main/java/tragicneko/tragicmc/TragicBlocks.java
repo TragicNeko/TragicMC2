@@ -206,6 +206,20 @@ public class TragicBlocks {
 
 	public static void load()
 	{		
+		if (TragicConfig.mobsOnly)
+		{
+			SummonBlock = (new BlockSummon());
+			GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");
+
+			GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "summonBlock");
+			
+			Luminescence = (new BlockLuminescence().setBlockName("tragicmc.luminescence"));
+			GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
+			
+			OverlordBarrier = (new BlockOverlordBarrier());
+			GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
+			return;
+		}
 		MercuryOre = (new BlockGenericOre(1, true).setBlockTextureName("tragicmc:MercuryOre").setBlockName("tragicmc.mercuryOre").setHardness(4.0F).setResistance(5.0F));
 		GameRegistry.registerBlock(MercuryOre, ItemBlock.class, "mercuryOre");
 

@@ -146,7 +146,7 @@ public class TragicConfig {
 		prop = config.get(catMaster, "isMobsOnly", false);
 		prop.comment = "Is the mod in mob only mode?";
 		prop.setLanguageKey("tragicmc.mobsOnly");
-		mobsOnly = prop.getBoolean(mobsOnly);
+		mobsOnly = true; //prop.getBoolean(mobsOnly);
 
 		int mapping = 0;
 		int i = 0;
@@ -1033,7 +1033,7 @@ public class TragicConfig {
 			for (i = 0; i < weaponEnchantConfigs.length; i++)
 			{
 				weaponEnchantConfigs[i] = false;
-				armorEnchantConfigs[i] = false;
+				if (i < armorEnchantConfigs.length) armorEnchantConfigs[i] = false;
 				if (i < blanketEnchant.length) blanketEnchant[i] = false;
 			}
 		}
@@ -1099,7 +1099,7 @@ public class TragicConfig {
 			for (i = 0; i < positivePotionConfigs.length; i++)
 			{
 				positivePotionConfigs[i] = false;
-				negativePotionConfigs[i] = false;
+				if (i < negativePotionConfigs.length) negativePotionConfigs[i] = false;
 				if (i < blanketPotion.length) blanketPotion[i] = false; 
 			}
 		}

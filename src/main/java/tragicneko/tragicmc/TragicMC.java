@@ -23,6 +23,7 @@ import java.lang.reflect.Modifier;
 import java.util.Random;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.DimensionManager;
@@ -152,13 +153,15 @@ public class TragicMC
 		if (TragicConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new EnchantmentEvents());
 
 		logDuration("Potions and Enchantments");
-
-		Survival = (new CreativeTabs("tragicMCSurvival") {
-			@Override
-			public Item getTabIconItem() {
-				return TragicItems.AwakeningStone;
-			}
-		});
+		if (!TragicConfig.mobsOnly)
+		{
+			Survival = (new CreativeTabs("tragicMCSurvival") {
+				@Override
+				public Item getTabIconItem() {
+					return TragicItems.AwakeningStone;
+				}
+			});
+		}
 
 		Creative = (new CreativeTabs("tragicMCCreative") {
 			@Override
@@ -175,8 +178,11 @@ public class TragicMC
 		if (!TragicConfig.mobsOnly) TragicRecipes.load();
 
 		if (TragicConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new AmuletEvents());
-		MinecraftForge.EVENT_BUS.register(new MiscEvents());
-		MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
+		if (!TragicConfig.mobsOnly) 
+		{
+			MinecraftForge.EVENT_BUS.register(new MiscEvents());
+			MinecraftForge.EVENT_BUS.register(new ChallengeItemEvents());
+		}
 
 		if (TragicConfig.allowDoom)
 		{
@@ -193,9 +199,9 @@ public class TragicMC
 
 		logDuration("Entities");
 
-		if (TragicConfig.allowChallengeScrolls) TragicItems.initializeChallengeItem();
+		if (TragicConfig.allowChallengeScrolls && !TragicConfig.mobsOnly) TragicItems.initializeChallengeItem();
 
-		MinecraftForge.EVENT_BUS.register(new DropEvents());
+		if (!TragicConfig.mobsOnly) MinecraftForge.EVENT_BUS.register(new DropEvents());
 		logDuration("Events 2");
 
 		if (TragicConfig.allowDimension)
@@ -234,7 +240,7 @@ public class TragicMC
 
 		logDuration("Dimension Registrations");
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
+		if (!TragicConfig.mobsOnly) NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		if (TragicConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
 
@@ -243,7 +249,7 @@ public class TragicMC
 		if (TragicConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new VanillaChangingEvents());
 		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new OverworldOreWorldGen(), 1);
 		if (TragicConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new NetherOreWorldGen(), 2);
-		GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
+		if (!TragicConfig.mobsOnly) GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
 
 		if (TragicConfig.allowDimension)
 		{
