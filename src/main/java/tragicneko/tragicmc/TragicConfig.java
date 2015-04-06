@@ -146,7 +146,7 @@ public class TragicConfig {
 		prop = config.get(catMaster, "isMobsOnly", false);
 		prop.comment = "Is the mod in mob only mode?";
 		prop.setLanguageKey("tragicmc.mobsOnly");
-		mobsOnly = true; //prop.getBoolean(mobsOnly);
+		mobsOnly = prop.getBoolean(mobsOnly);
 
 		int mapping = 0;
 		int i = 0;
@@ -197,11 +197,6 @@ public class TragicConfig {
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSnowGolem", true).getBoolean(true));
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectIronGolem", true).getBoolean(true));
 
-		for (i = 0; i + mapping < normalAmuletConfigs.length; i++)
-		{
-			normalAmuletConfigs[i + mapping] = false;
-		}
-
 		mapping = 0;
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectKitsune", true).getBoolean(true));
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectMartyr", true).getBoolean(true));
@@ -210,19 +205,9 @@ public class TragicConfig {
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSunken", true).getBoolean(true));
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectEnderman", true).getBoolean(true));
 
-		for (i = 0; i + mapping < cursedAmuletConfigs.length; i++)
-		{
-			cursedAmuletConfigs[i + mapping] = false;
-		}
-
 		mapping = 0;
 		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectTime", true).getBoolean(true));
 		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectWither", true).getBoolean(true));
-
-		for (i = 0; i + mapping < epicAmuletConfigs.length; i++)
-		{
-			epicAmuletConfigs[i + mapping] = false;
-		}
 
 		config.addCustomCategoryComment(catAmulet, "Disable specific amulet effects, does not remove the Amulets from the game.");
 
@@ -547,11 +532,6 @@ public class TragicConfig {
 
 		int temp = mapping - 1;
 
-		for (i = 0; i + mapping < weaponEnchantConfigs.length; i++)
-		{
-			weaponEnchantConfigs[i + mapping] = false;
-		}
-
 		mapping = 0;
 		armorEnchantIDs[mapping] = (config.get(catEnchant, "deathTouchID", getOpenIDForEnchant(weaponEnchantIDs[temp] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[temp] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "deathTouchAllow", true).getBoolean(true));
@@ -569,11 +549,6 @@ public class TragicConfig {
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "runeWalkerAllow", true).getBoolean(true));
 		armorEnchantIDs[mapping] = (config.get(catEnchant, "luminescenceID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "luminescenceAllow", true).getBoolean(true));
-
-		for (i = 0; i + mapping < armorEnchantConfigs.length; i++)
-		{
-			armorEnchantConfigs[i + mapping] = false;
-		}
 
 		config.addCustomCategoryComment(catEnchant, "Set whether specific Enchantments are allowed, also can choose whether an enchantment type is allowed, set their IDs as well.");
 
@@ -594,128 +569,106 @@ public class TragicConfig {
 		mobInts[3] = clampPositive(config.get(catMobs, "bossDamageCap", 30).getInt(30));
 
 		mapping = 0;
-		mobsSC[mapping] = (config.get(catMobs, "jabbaSpawnChance", 75).getInt(75));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "jabbaSpawnChance", 75).getInt(75));
 		mobConfigs[mapping++] = (config.get(catMobs, "jabbaAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "jannaSpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "jannaSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "jannaAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "plagueSpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "plagueSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "plagueAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "gragulSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "gragulSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "gragulAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "minotaurSpawnChance", 75).getInt(75));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "minotaurSpawnChance", 75).getInt(75));
 		mobConfigs[mapping++] = (config.get(catMobs, "minotaurAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "inklingSpawnChance", 75).getInt(75));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "inklingSpawnChance", 75).getInt(75));
 		mobConfigs[mapping++] = (config.get(catMobs, "inklingAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "ragrSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "ragrSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "ragrAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "pumpkinheadSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "pumpkinheadSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "pumpkinheadAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "tragicNekoSpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "tragicNekoSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "tragicNekoAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "toxSpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "toxSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "toxAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "poxSpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "poxSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "poxAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "cryseSpawnChance", 75).getInt(75));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "cryseSpawnChance", 75).getInt(75));
 		mobConfigs[mapping++] = (config.get(catMobs, "cryseAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "starCryseSpawnChance", 75).getInt(75));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "starCryseSpawnChance", 75).getInt(75));
 		mobConfigs[mapping++] = (config.get(catMobs, "starCryseAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "norVoxSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "norVoxSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "norVoxAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "starVoxSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "starVoxSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "starVoxAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "pirahSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "pirahSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "pirahAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "lavaPirahSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "lavaPirahSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "lavaPirahAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "stinSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "stinSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "stinAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "stinBabySpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "stinBabySpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "stinBabyAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "greaterStinSpawnChance", 5).getInt(5));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "greaterStinSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "greaterStinAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "wispSpawnChance", 15).getInt(15));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "wispSpawnChance", 15).getInt(15));
 		mobConfigs[mapping++] = (config.get(catMobs, "wispAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "abominationSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "abominationSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "abominationAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "erkelSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "erkelSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "erkelAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "sirvSpawnChance", 50).getInt(50));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "sirvSpawnChance", 50).getInt(50));
 		mobConfigs[mapping++] = (config.get(catMobs, "sirvAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "psygoteSpawnChance", 5).getInt(5));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "psygoteSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "psygoteAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "lockbotSpawnChance", 5).getInt(5));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "lockbotSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "lockbotAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "nanoSwarmSpawnChance", 25).getInt(25));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "nanoSwarmSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "nanoSwarmAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "circuitGolemSpawnChance", 5).getInt(5));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "circuitGolemSpawnChance", 5).getInt(5));
 		mobConfigs[mapping++] = (config.get(catMobs, "circuitGolemAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "snowGolemSpawnChance", 40).getInt(40));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "snowGolemSpawnChance", 40).getInt(40));
 		mobConfigs[mapping++] = (config.get(catMobs, "snowGolemAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "hunterChance", 15).getInt(15));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "hunterChance", 15).getInt(15));
 		mobConfigs[mapping++] = (config.get(catMobs, "hunterAllow", true).getBoolean(true));
-		mobsSC[mapping] = (config.get(catMobs, "harvesterSpawnChance", 10).getInt(10));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "harvesterSpawnChance", 10).getInt(10));
 		mobConfigs[mapping++] = (config.get(catMobs, "harveseterAllow", true).getBoolean(true));
 
-		for (i = 0; i + mapping < mobConfigs.length; i++) //sets all unused slots in the array to false
-		{
-			mobConfigs[mapping + i] = false;
-		}
-
 		mapping = 0;
-		miniBossSC[mapping] = (config.get(catMobs, "jarraSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "jarraSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "jarraAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "kragulSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "kragulSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "kragulAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "magmoxSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "magmoxSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "magmoxAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "megaCryseChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "megaCryseChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "megaCryseAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "voxStellarumSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "voxStellarumSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "voxStellarumAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "stinKingSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "stinKingSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "stinKingAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "stinQueenSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "stinQueenSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "stinQueenAllow", true).getBoolean(true));
-		miniBossSC[mapping] = (config.get(catMobs, "aegarSpawnChance", 5).getInt(5));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "aegarSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "aegarAllow", true).getBoolean(true));
 
-		for (i = 0; i + mapping < miniBossConfigs.length; i++) //sets all unused slots in the array to false
-		{
-			miniBossConfigs[mapping + i] = false;
-		}
-
 		mapping = 0;
-		bossSC[mapping] = (config.get(catMobs, "apisSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "apisSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "apisAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "deathReaperSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "deathReaperSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "deathReaperAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "kitsuneSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "kitsuneSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "kitsuneAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "polarisSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "polarisSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "polarisAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "yetiSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "yetiSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "yetiAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "timeControllerSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "timeControllerSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "timeControllerAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "enyvilSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "enyvilSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "enyvilAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "claymationSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "claymationSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "claymationAllow", true).getBoolean(true));
-		bossSC[mapping] = (config.get(catMobs, "overlordSpawnChance", 5).getInt(5));
+		bossSC[mapping] = clampPositive(config.get(catMobs, "overlordSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "overlordAllow", true).getBoolean(true));
-
-		for (i = 0; i + mapping < bossConfigs.length; i++) //sets all unused slots in the array to false
-		{
-			bossConfigs[mapping + i] = false;
-		}
-
-		for (i = 0; i < mobsSC.length; i++) //clamps all of the spawn chances positive
-		{
-			mobsSC[i] = clampPositive(mobsSC[i]);
-			if (i < miniBossSC.length) miniBossSC[i] = clampPositive(miniBossSC[i]);
-			if (i < bossSC.length) bossSC[i] = clampPositive(bossSC[i]);
-		}
 		
 		mapping = 0;
 		mobStats[mapping++] = (config.get(catMobs, "jabbaStats", new double[] {40.0, 0.275, 5.5, 32.0, 0.0, 0}).getDoubleList());
@@ -802,11 +755,6 @@ public class TragicConfig {
 		
 		temp = mapping - 1;
 
-		for (i = 0; i + mapping < positivePotionConfigs.length; i++) //sets all unused slots in the array to false
-		{
-			positivePotionConfigs[mapping + i] = false;
-		}
-
 		mapping = 0;
 		negativePotionIDs[mapping] = (config.get(catPotion, "corruptionID", getOpenIDForPotion(positivePotionIDs[temp] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[temp] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "corruptionAllow", true).getBoolean(true));
@@ -828,11 +776,6 @@ public class TragicConfig {
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "leadFootAllow", true).getBoolean(true));
 		negativePotionIDs[mapping] = (config.get(catPotion, "hackedID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "hackedAllow", true).getBoolean(true));
-
-		for (i = 0; i + mapping < negativePotionConfigs.length; i++) //sets all unused slots in the array to false
-		{
-			negativePotionConfigs[mapping + i] = false;
-		}
 
 		config.addCustomCategoryComment(catPotion, "Set whether specific Potion Effects are allowed, or disable all good or all bad effects, also set their IDs");
 
