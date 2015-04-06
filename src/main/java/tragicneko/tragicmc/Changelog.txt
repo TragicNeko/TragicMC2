@@ -3607,6 +3607,7 @@ Fixed NPE when mobsOnly mode is enabled for certain entities (ones that use Lumi
 Added ability for Summon Blocks to be activated via redstone, added NPE protection in that case
 Fixed NPE from projectiles when mobsOnly mode is enabled
 Modified Overlord Core to generate an obsidian platform instead of a Celled block one in the case of mobsOnly mode being enabled
+Removed some unnecessary loops from the config, this should speed up loading some
 Going through the configuration file and ensuring that each option is set up properly or used
 
 Still need to add the various biome generators for the Gases and for the Sludge
