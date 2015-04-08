@@ -23,7 +23,8 @@ public class TragicTeleporter extends Teleporter {
 	
 	public static Set spawnBlocks = Sets.newHashSet(new Block[] {TragicBlocks.DeadDirt, TragicBlocks.DarkSand, TragicBlocks.BrushedGrass, TragicBlocks.AshenGrass,
 			TragicBlocks.StarlitGrass, TragicBlocks.ErodedStone, TragicBlocks.CircuitBlock, Blocks.end_stone, Blocks.netherrack, Blocks.soul_sand, Blocks.nether_brick,
-			Blocks.obsidian, TragicBlocks.AshenTallGrass, TragicBlocks.StarlitTallGrass});
+			Blocks.obsidian, TragicBlocks.AshenTallGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.ScorchedRock, TragicBlocks.MoltenRock, TragicBlocks.HallowedGrass,
+			TragicBlocks.ErodedStone, TragicBlocks.DarkCobblestone});
 
 	public TragicTeleporter(WorldServer par1WorldServer)
 	{
