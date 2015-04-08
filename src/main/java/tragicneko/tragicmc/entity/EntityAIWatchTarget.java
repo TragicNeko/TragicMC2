@@ -22,14 +22,17 @@ public class EntityAIWatchTarget extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.theWatcher.getAttackTarget() == null) return false;
+		if (this.theWatcher.getAttackTarget() == null)
+		{
+			return false;
+		}
 		else
 		{
 			this.targetEntity = this.theWatcher.getAttackTarget();
 			return true;
 		}        
 	}
-	
+
 	@Override
 	public boolean continueExecuting()
 	{
@@ -39,7 +42,7 @@ public class EntityAIWatchTarget extends EntityAIBase
 	@Override
 	public void startExecuting()
 	{
-		this.lookTime = 40 + this.theWatcher.getRNG().nextInt(40);
+		this.lookTime = 120 + this.theWatcher.getRNG().nextInt(40);
 	}
 
 	@Override
