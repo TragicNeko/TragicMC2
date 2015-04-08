@@ -3,1611 +3,1044 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 
 public class ModelOverlordCombat extends ModelBase
 {
-    ModelRenderer body;
-    ModelRenderer bodyUnder;
-    ModelRenderer bodyBottom;
-    ModelRenderer bodyLegPanelRight;
-    ModelRenderer bodyLegPanelLeft;
-    ModelRenderer legFR;
-    ModelRenderer legFMR;
-    ModelRenderer legBMR;
-    ModelRenderer legBR;
-    ModelRenderer legJointFMR;
-    ModelRenderer legJointFR;
-    ModelRenderer legJointBMR;
-    ModelRenderer legJointBR;
-    ModelRenderer legMidBMR;
-    ModelRenderer legMidFMR;
-    ModelRenderer legMidFR;
-    ModelRenderer legMidBR;
-    ModelRenderer legThickFMR;
-    ModelRenderer legThickBMR;
-    ModelRenderer legThickFR;
-    ModelRenderer legThickBR;
-    ModelRenderer legTipBMR;
-    ModelRenderer legTipFMR;
-    ModelRenderer legTipFR;
-    ModelRenderer legTipBR;
-    ModelRenderer bodyTop;
-    ModelRenderer bodyTop2;
-    ModelRenderer head;
-    ModelRenderer eye;
-    ModelRenderer headTop;
-    ModelRenderer headTop2;
-    ModelRenderer headTop3;
-    ModelRenderer bodyFrontPanel;
-    ModelRenderer bodyBackPanel;
-    ModelRenderer legFL;
-    ModelRenderer legFML;
-    ModelRenderer legBML;
-    ModelRenderer legBL;
-    ModelRenderer legJointFL;
-    ModelRenderer legJointFML;
-    ModelRenderer legJointBML;
-    ModelRenderer legJointBL;
-    ModelRenderer legMidFL;
-    ModelRenderer legMidFML;
-    ModelRenderer legMidBML;
-    ModelRenderer legMidBL;
-    ModelRenderer legThickFL;
-    ModelRenderer legThickFML;
-    ModelRenderer legThickBML;
-    ModelRenderer legThickBL;
-    ModelRenderer legTipFL;
-    ModelRenderer legTipFML;
-    ModelRenderer legTipBML;
-    ModelRenderer legTipBL;
-    ModelRenderer armRightNob;
-    ModelRenderer armLeftNob;
-    ModelRenderer armLeft;
-    ModelRenderer armLeftThick;
-    ModelRenderer armLeftUpperBit;
-    ModelRenderer armLeftLowerBit;
-    ModelRenderer armRight;
-    ModelRenderer armRightThick;
-    ModelRenderer armRightUpperBit;
-    ModelRenderer armRightLowerBit;
-    ModelRenderer saberRight;
-    ModelRenderer saberRightUpper;
-    ModelRenderer saberRightLower;
-    ModelRenderer saberLeft;
-    ModelRenderer saberLeftUpper;
-    ModelRenderer saberLeftLower;
-    ModelRenderer Shape1;
-    ModelRenderer Shape2;
-    ModelRenderer Shape3;
-    ModelRenderer Shape4;
-    ModelRenderer Shape5;
-    ModelRenderer Shape6;
-    ModelRenderer Shape7;
-    ModelRenderer Shape8;
-    ModelRenderer Shape9;
-    ModelRenderer Shape10;
-    ModelRenderer Shape11;
-    ModelRenderer Shape12;
-    ModelRenderer Shape13;
-    ModelRenderer Shape14;
-    ModelRenderer Shape15;
-    ModelRenderer Shape16;
-    ModelRenderer Shape17;
-    ModelRenderer Shape18;
-    ModelRenderer Shape19;
-    ModelRenderer Shape20;
-    ModelRenderer Shape21;
-    ModelRenderer Shape22;
-    ModelRenderer Shape23;
-    ModelRenderer Shape24;
-    ModelRenderer Shape25;
-    ModelRenderer Shape26;
-    ModelRenderer Shape27;
-    ModelRenderer Shape28;
-    ModelRenderer Shape29;
-    ModelRenderer Shape30;
-    ModelRenderer Shape31;
-    ModelRenderer Shape32;
-    ModelRenderer Shape33;
-    ModelRenderer Shape34;
-    ModelRenderer Shape35;
-    ModelRenderer Shape36;
-    ModelRenderer Shape37;
-    ModelRenderer Shape38;
-    ModelRenderer Shape39;
-    ModelRenderer Shape40;
-    ModelRenderer Shape41;
-    ModelRenderer Shape42;
-    ModelRenderer Shape43;
-    ModelRenderer Shape44;
-    ModelRenderer Shape45;
-    ModelRenderer Shape46;
-    ModelRenderer Shape47;
-    ModelRenderer Shape48;
-    ModelRenderer Shape49;
-    ModelRenderer Shape50;
-    ModelRenderer Shape51;
-    ModelRenderer Shape52;
-    ModelRenderer Shape53;
-    ModelRenderer Shape54;
-    ModelRenderer Shape55;
-    ModelRenderer Shape56;
-    ModelRenderer Shape57;
-    ModelRenderer Shape58;
-    ModelRenderer Shape59;
-    ModelRenderer Shape60;
-    ModelRenderer Shape61;
-    ModelRenderer Shape62;
-    ModelRenderer Shape63;
-    ModelRenderer Shape64;
-    ModelRenderer Shape65;
-    ModelRenderer Shape66;
-    ModelRenderer Shape67;
-    ModelRenderer Shape68;
-    ModelRenderer Shape69;
-    ModelRenderer Shape70;
-    ModelRenderer Shape71;
-    ModelRenderer Shape72;
-    ModelRenderer Shape73;
-    ModelRenderer Shape74;
-    ModelRenderer Shape75;
-    ModelRenderer Shape76;
-    ModelRenderer Shape77;
-    ModelRenderer Shape78;
-    ModelRenderer Shape79;
-    ModelRenderer Shape80;
-    ModelRenderer Shape81;
-    ModelRenderer Shape82;
-    ModelRenderer Shape83;
-    ModelRenderer Shape84;
-    ModelRenderer Shape85;
-    ModelRenderer Shape86;
-    ModelRenderer Shape87;
-    ModelRenderer Shape88;
-    ModelRenderer Shape89;
-    ModelRenderer Shape90;
-    ModelRenderer Shape91;
-    ModelRenderer Shape92;
-    ModelRenderer Shape93;
-    ModelRenderer Shape94;
-    ModelRenderer Shape95;
-    ModelRenderer Shape96;
-    ModelRenderer Shape97;
-    ModelRenderer Shape98;
-    ModelRenderer Shape99;
-    ModelRenderer Shape100;
-    ModelRenderer Shape101;
-    ModelRenderer Shape102;
-    ModelRenderer Shape103;
-    ModelRenderer Shape104;
-    ModelRenderer Shape105;
-    ModelRenderer Shape106;
-    ModelRenderer Shape107;
-    ModelRenderer Shape108;
-    ModelRenderer Shape109;
-    ModelRenderer Shape110;
-    ModelRenderer Shape111;
-    ModelRenderer Shape112;
-    ModelRenderer Shape113;
-    ModelRenderer Shape114;
-    ModelRenderer Shape115;
-    ModelRenderer Shape116;
-    ModelRenderer Shape117;
-    ModelRenderer Shape118;
-    ModelRenderer Shape119;
-    ModelRenderer Shape120;
-    ModelRenderer Shape121;
-    ModelRenderer Shape122;
-    ModelRenderer Shape123;
-    ModelRenderer Shape124;
-    ModelRenderer Shape125;
-    ModelRenderer Shape126;
-    ModelRenderer Shape127;
-  
-  public ModelOverlordCombat()
-  {
-    textureWidth = 128;
-    textureHeight = 128;
-    
-      body = new ModelRenderer(this, 0, 64);
-      body.addBox(-11F, -6F, -11F, 22, 12, 22);
-      body.setRotationPoint(0F, -6F, 0F);
-      body.setTextureSize(64, 32);
-      body.mirror = true;
-      setRotation(body, 0F, 0F, 0F);
-      bodyUnder = new ModelRenderer(this, 4, 0);
-      bodyUnder.addBox(-7F, 6F, -7F, 14, 3, 14);
-      bodyUnder.setRotationPoint(0F, -6F, 0F);
-      bodyUnder.setTextureSize(64, 32);
-      bodyUnder.mirror = true;
-      setRotation(bodyUnder, 0F, 0F, 0F);
-      bodyBottom = new ModelRenderer(this, 38, 24);
-      bodyBottom.addBox(-3F, 9F, -3F, 6, 3, 6);
-      bodyBottom.setRotationPoint(0F, -6F, 0F);
-      bodyBottom.setTextureSize(64, 32);
-      bodyBottom.mirror = true;
-      setRotation(bodyBottom, 0F, 0F, 0F);
-      bodyLegPanelRight = new ModelRenderer(this, 74, 32);
-      bodyLegPanelRight.addBox(-12F, -5F, -8F, 1, 10, 16);
-      bodyLegPanelRight.setRotationPoint(0F, -6F, 0F);
-      bodyLegPanelRight.setTextureSize(64, 32);
-      bodyLegPanelRight.mirror = true;
-      setRotation(bodyLegPanelRight, 0F, 0F, 0F);
-      bodyLegPanelLeft = new ModelRenderer(this, 74, 32);
-      bodyLegPanelLeft.addBox(11F, -5F, -8F, 1, 10, 16);
-      bodyLegPanelLeft.setRotationPoint(0F, -6F, 0F);
-      bodyLegPanelLeft.setTextureSize(64, 32);
-      bodyLegPanelLeft.mirror = true;
-      setRotation(bodyLegPanelLeft, 0F, 0F, 0F);
-      legFR = new ModelRenderer(this, 92, 86);
-      legFR.addBox(-18F, 0F, 0F, 6, 2, 2);
-      legFR.setRotationPoint(0F, -6F, 0F);
-      legFR.setTextureSize(64, 32);
-      legFR.mirror = true;
-      setRotation(legFR, 0F, -0.4089647F, 0.1115358F);
-      legFMR = new ModelRenderer(this, 92, 86);
-      legFMR.addBox(-18F, 0F, 0F, 6, 2, 2);
-      legFMR.setRotationPoint(0F, -6F, 0F);
-      legFMR.setTextureSize(64, 32);
-      legFMR.mirror = true;
-      setRotation(legFMR, 0F, -0.1115358F, 0.1115358F);
-      legBMR = new ModelRenderer(this, 92, 86);
-      legBMR.addBox(-18F, 0F, 0F, 6, 2, 2);
-      legBMR.setRotationPoint(0F, -6F, 0F);
-      legBMR.setTextureSize(64, 32);
-      legBMR.mirror = true;
-      setRotation(legBMR, 0F, 0.1487144F, 0.1115358F);
-      legBR = new ModelRenderer(this, 92, 86);
-      legBR.addBox(-19F, 0F, 0F, 6, 2, 2);
-      legBR.setRotationPoint(0F, -6F, 0F);
-      legBR.setTextureSize(64, 32);
-      legBR.mirror = true;
-      setRotation(legBR, 0F, 0.4089647F, 0.0371786F);
-      legJointFMR = new ModelRenderer(this, 92, 92);
-      legJointFMR.addBox(-22F, -3F, -1F, 4, 6, 4);
-      legJointFMR.setRotationPoint(0F, -6F, 0F);
-      legJointFMR.setTextureSize(64, 32);
-      legJointFMR.mirror = true;
-      setRotation(legJointFMR, 0F, -0.1115358F, 0.1115358F);
-      legJointFR = new ModelRenderer(this, 92, 92);
-      legJointFR.addBox(-22F, -3F, -1F, 4, 6, 4);
-      legJointFR.setRotationPoint(0F, -6F, 0F);
-      legJointFR.setTextureSize(64, 32);
-      legJointFR.mirror = true;
-      setRotation(legJointFR, 0F, -0.4089647F, 0.1115358F);
-      legJointBMR = new ModelRenderer(this, 92, 92);
-      legJointBMR.addBox(-22F, -3F, -1F, 4, 6, 4);
-      legJointBMR.setRotationPoint(0F, -6F, 0F);
-      legJointBMR.setTextureSize(64, 32);
-      legJointBMR.mirror = true;
-      setRotation(legJointBMR, 0F, 0.1487144F, 0.1115358F);
-      legJointBR = new ModelRenderer(this, 92, 92);
-      legJointBR.addBox(-23F, -3F, -1F, 4, 6, 4);
-      legJointBR.setRotationPoint(0F, -6F, 0F);
-      legJointBR.setTextureSize(64, 32);
-      legJointBR.mirror = true;
-      setRotation(legJointBR, 0F, 0.4089647F, 0.0371786F);
-      legMidBMR = new ModelRenderer(this, 72, 100);
-      legMidBMR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
-      legMidBMR.setRotationPoint(0F, -6F, 0F);
-      legMidBMR.setTextureSize(64, 32);
-      legMidBMR.mirror = true;
-      setRotation(legMidBMR, 0F, 0.1487144F, 0.1115358F);
-      legMidFMR = new ModelRenderer(this, 72, 100);
-      legMidFMR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
-      legMidFMR.setRotationPoint(0F, -6F, 0F);
-      legMidFMR.setTextureSize(64, 32);
-      legMidFMR.mirror = true;
-      setRotation(legMidFMR, 0F, -0.1115358F, 0.1115358F);
-      legMidFR = new ModelRenderer(this, 72, 100);
-      legMidFR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
-      legMidFR.setRotationPoint(0F, -6F, 0F);
-      legMidFR.setTextureSize(64, 32);
-      legMidFR.mirror = true;
-      setRotation(legMidFR, 0F, -0.4089647F, 0.1115358F);
-      legMidBR = new ModelRenderer(this, 72, 100);
-      legMidBR.addBox(-22.5F, 3F, -0.5F, 3, 7, 3);
-      legMidBR.setRotationPoint(0F, -6F, 0F);
-      legMidBR.setTextureSize(64, 32);
-      legMidBR.mirror = true;
-      setRotation(legMidBR, 0F, 0.4089647F, 0.0371786F);
-      legThickFMR = new ModelRenderer(this, 92, 104);
-      legThickFMR.addBox(-24F, 10F, -2F, 6, 16, 6);
-      legThickFMR.setRotationPoint(0F, -6F, 0F);
-      legThickFMR.setTextureSize(64, 32);
-      legThickFMR.mirror = true;
-      setRotation(legThickFMR, 0F, -0.1115358F, 0.1115358F);
-      legThickBMR = new ModelRenderer(this, 92, 104);
-      legThickBMR.addBox(-24F, 10F, -2F, 6, 16, 6);
-      legThickBMR.setRotationPoint(0F, -6F, 0F);
-      legThickBMR.setTextureSize(64, 32);
-      legThickBMR.mirror = true;
-      setRotation(legThickBMR, 0F, 0.1487144F, 0.1115358F);
-      legThickFR = new ModelRenderer(this, 92, 104);
-      legThickFR.addBox(-24F, 10F, -2F, 6, 16, 6);
-      legThickFR.setRotationPoint(0F, -6F, 0F);
-      legThickFR.setTextureSize(64, 32);
-      legThickFR.mirror = true;
-      setRotation(legThickFR, 0F, -0.4089647F, 0.1115358F);
-      legThickBR = new ModelRenderer(this, 92, 104);
-      legThickBR.addBox(-23F, 10F, -2F, 6, 16, 6);
-      legThickBR.setRotationPoint(0F, -6F, 0F);
-      legThickBR.setTextureSize(64, 32);
-      legThickBR.mirror = true;
-      setRotation(legThickBR, 0F, 0.4089647F, 0.0371786F);
-      legTipBMR = new ModelRenderer(this, 72, 112);
-      legTipBMR.addBox(-22F, 26F, 0F, 2, 4, 2);
-      legTipBMR.setRotationPoint(0F, -6F, 0F);
-      legTipBMR.setTextureSize(64, 32);
-      legTipBMR.mirror = true;
-      setRotation(legTipBMR, 0F, 0.1487144F, 0.1115358F);
-      legTipFMR = new ModelRenderer(this, 72, 112);
-      legTipFMR.addBox(-22F, 26F, 0F, 2, 4, 2);
-      legTipFMR.setRotationPoint(0F, -6F, 0F);
-      legTipFMR.setTextureSize(64, 32);
-      legTipFMR.mirror = true;
-      setRotation(legTipFMR, 0F, -0.1115358F, 0.1115358F);
-      legTipFR = new ModelRenderer(this, 72, 112);
-      legTipFR.addBox(-22F, 26F, 0F, 2, 4, 2);
-      legTipFR.setRotationPoint(0F, -6F, 0F);
-      legTipFR.setTextureSize(64, 32);
-      legTipFR.mirror = true;
-      setRotation(legTipFR, 0F, -0.4089647F, 0.1115358F);
-      legTipBR = new ModelRenderer(this, 72, 112);
-      legTipBR.addBox(-22F, 26F, 0F, 2, 4, 2);
-      legTipBR.setRotationPoint(0F, -6F, 0F);
-      legTipBR.setTextureSize(64, 32);
-      legTipBR.mirror = true;
-      setRotation(legTipBR, 0F, 0.4089647F, 0.0371786F);
-      bodyTop = new ModelRenderer(this, 0, 40);
-      bodyTop.addBox(-9F, -9F, -9F, 18, 3, 18);
-      bodyTop.setRotationPoint(0F, -6F, 0F);
-      bodyTop.setTextureSize(64, 32);
-      bodyTop.mirror = true;
-      setRotation(bodyTop, 0F, 0F, 0F);
-      bodyTop2 = new ModelRenderer(this, 0, 24);
-      bodyTop2.addBox(-6F, -11F, -6F, 12, 2, 12);
-      bodyTop2.setRotationPoint(0F, -6F, 0F);
-      bodyTop2.setTextureSize(64, 32);
-      bodyTop2.mirror = true;
-      setRotation(bodyTop2, 0F, 0F, 0F);
-      head = new ModelRenderer(this, 60, 16);
-      head.addBox(-4F, -15F, -4F, 8, 4, 8);
-      head.setRotationPoint(0F, -6F, 0F);
-      head.setTextureSize(64, 32);
-      head.mirror = true;
-      setRotation(head, 0F, 0F, 0F);
-      eye = new ModelRenderer(this, 94, 24);
-      eye.addBox(-1F, -14F, -5F, 2, 2, 1);
-      eye.setRotationPoint(0F, -6F, 0F);
-      eye.setTextureSize(64, 32);
-      eye.mirror = true;
-      setRotation(eye, 0F, 0F, 0F);
-      headTop = new ModelRenderer(this, 60, 0);
-      headTop.addBox(-5F, -17F, -5F, 10, 2, 10);
-      headTop.setRotationPoint(0F, -6F, 0F);
-      headTop.setTextureSize(64, 32);
-      headTop.mirror = true;
-      setRotation(headTop, 0F, 0F, 0F);
-      headTop2 = new ModelRenderer(this, 94, 0);
-      headTop2.addBox(-4F, -19F, -4F, 8, 2, 7);
-      headTop2.setRotationPoint(0F, -6F, 0F);
-      headTop2.setTextureSize(64, 32);
-      headTop2.mirror = true;
-      setRotation(headTop2, 0F, 0F, 0F);
-      headTop3 = new ModelRenderer(this, 94, 16);
-      headTop3.addBox(-2F, -21F, -2F, 4, 2, 4);
-      headTop3.setRotationPoint(0F, -6F, 0F);
-      headTop3.setTextureSize(64, 32);
-      headTop3.mirror = true;
-      setRotation(headTop3, 0F, 0F, 0F);
-      bodyFrontPanel = new ModelRenderer(this, 74, 72);
-      bodyFrontPanel.addBox(-8F, -4F, -14F, 16, 8, 3);
-      bodyFrontPanel.setRotationPoint(0F, -6F, 0F);
-      bodyFrontPanel.setTextureSize(64, 32);
-      bodyFrontPanel.mirror = true;
-      setRotation(bodyFrontPanel, 0F, 0F, 0F);
-      bodyBackPanel = new ModelRenderer(this, 74, 72);
-      bodyBackPanel.addBox(-8F, -4F, 11F, 16, 8, 2);
-      bodyBackPanel.setRotationPoint(0F, -6F, 0F);
-      bodyBackPanel.setTextureSize(64, 32);
-      bodyBackPanel.mirror = true;
-      setRotation(bodyBackPanel, 0F, 0F, 0F);
-      legFL = new ModelRenderer(this, 92, 86);
-      legFL.addBox(12F, 0F, 0F, 6, 2, 2);
-      legFL.setRotationPoint(0F, -6F, 0F);
-      legFL.setTextureSize(64, 32);
-      legFL.mirror = true;
-      setRotation(legFL, 0F, 0.4089647F, -0.1115358F);
-      legFML = new ModelRenderer(this, 92, 86);
-      legFML.addBox(12F, 0F, 0F, 6, 2, 2);
-      legFML.setRotationPoint(0F, -6F, 0F);
-      legFML.setTextureSize(64, 32);
-      legFML.mirror = true;
-      setRotation(legFML, 0F, 0.1115358F, -0.1115358F);
-      legBML = new ModelRenderer(this, 92, 86);
-      legBML.addBox(12F, 0F, 0F, 6, 2, 2);
-      legBML.setRotationPoint(0F, -6F, 0F);
-      legBML.setTextureSize(64, 32);
-      legBML.mirror = true;
-      setRotation(legBML, 0F, -0.1487144F, -0.1115358F);
-      legBL = new ModelRenderer(this, 92, 86);
-      legBL.addBox(12F, 0F, 0F, 6, 2, 2);
-      legBL.setRotationPoint(0F, -6F, 0F);
-      legBL.setTextureSize(64, 32);
-      legBL.mirror = true;
-      setRotation(legBL, 0F, -0.4089647F, -0.0371786F);
-      legJointFL = new ModelRenderer(this, 92, 92);
-      legJointFL.addBox(18F, -3F, -1F, 4, 6, 4);
-      legJointFL.setRotationPoint(0F, -6F, 0F);
-      legJointFL.setTextureSize(64, 32);
-      legJointFL.mirror = true;
-      setRotation(legJointFL, 0F, 0.4089647F, -0.1115358F);
-      legJointFML = new ModelRenderer(this, 92, 92);
-      legJointFML.addBox(18F, -3F, -1F, 4, 6, 4);
-      legJointFML.setRotationPoint(0F, -6F, 0F);
-      legJointFML.setTextureSize(64, 32);
-      legJointFML.mirror = true;
-      setRotation(legJointFML, 0F, 0.1115358F, -0.1115358F);
-      legJointBML = new ModelRenderer(this, 92, 92);
-      legJointBML.addBox(18F, -3F, -1F, 4, 6, 4);
-      legJointBML.setRotationPoint(0F, -6F, 0F);
-      legJointBML.setTextureSize(64, 32);
-      legJointBML.mirror = true;
-      setRotation(legJointBML, 0F, -0.1487144F, -0.1115358F);
-      legJointBL = new ModelRenderer(this, 92, 92);
-      legJointBL.addBox(18F, -3F, -1F, 4, 6, 4);
-      legJointBL.setRotationPoint(0F, -6F, 0F);
-      legJointBL.setTextureSize(64, 32);
-      legJointBL.mirror = true;
-      setRotation(legJointBL, 0F, -0.4089647F, -0.0371786F);
-      legMidFL = new ModelRenderer(this, 72, 100);
-      legMidFL.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
-      legMidFL.setRotationPoint(0F, -6F, 0F);
-      legMidFL.setTextureSize(64, 32);
-      legMidFL.mirror = true;
-      setRotation(legMidFL, 0F, 0.4089647F, -0.1115358F);
-      legMidFML = new ModelRenderer(this, 72, 100);
-      legMidFML.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
-      legMidFML.setRotationPoint(0F, -6F, 0F);
-      legMidFML.setTextureSize(64, 32);
-      legMidFML.mirror = true;
-      setRotation(legMidFML, 0F, 0.1115358F, -0.1115358F);
-      legMidBML = new ModelRenderer(this, 72, 100);
-      legMidBML.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
-      legMidBML.setRotationPoint(0F, -6F, 0F);
-      legMidBML.setTextureSize(64, 32);
-      legMidBML.mirror = true;
-      setRotation(legMidBML, 0F, -0.1487144F, -0.1115358F);
-      legMidBL = new ModelRenderer(this, 72, 100);
-      legMidBL.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
-      legMidBL.setRotationPoint(0F, -6F, 0F);
-      legMidBL.setTextureSize(64, 32);
-      legMidBL.mirror = true;
-      setRotation(legMidBL, 0F, -0.4089647F, -0.0371786F);
-      legThickFL = new ModelRenderer(this, 92, 104);
-      legThickFL.addBox(18F, 10F, -2F, 6, 16, 6);
-      legThickFL.setRotationPoint(0F, -6F, 0F);
-      legThickFL.setTextureSize(64, 32);
-      legThickFL.mirror = true;
-      setRotation(legThickFL, 0F, 0.4089647F, -0.1115358F);
-      legThickFML = new ModelRenderer(this, 92, 104);
-      legThickFML.addBox(18F, 10F, -2F, 6, 16, 6);
-      legThickFML.setRotationPoint(0F, -6F, 0F);
-      legThickFML.setTextureSize(64, 32);
-      legThickFML.mirror = true;
-      setRotation(legThickFML, 0F, 0.1115358F, -0.1115358F);
-      legThickBML = new ModelRenderer(this, 92, 104);
-      legThickBML.addBox(18F, 10F, -2F, 6, 16, 6);
-      legThickBML.setRotationPoint(0F, -6F, 0F);
-      legThickBML.setTextureSize(64, 32);
-      legThickBML.mirror = true;
-      setRotation(legThickBML, 0F, -0.1487144F, -0.1115358F);
-      legThickBL = new ModelRenderer(this, 92, 104);
-      legThickBL.addBox(18F, 10F, -2F, 6, 16, 6);
-      legThickBL.setRotationPoint(0F, -6F, 0F);
-      legThickBL.setTextureSize(64, 32);
-      legThickBL.mirror = true;
-      setRotation(legThickBL, 0F, -0.4089647F, -0.0371786F);
-      legTipFL = new ModelRenderer(this, 72, 112);
-      legTipFL.addBox(20F, 26F, 0F, 2, 4, 2);
-      legTipFL.setRotationPoint(0F, -6F, 0F);
-      legTipFL.setTextureSize(64, 32);
-      legTipFL.mirror = true;
-      setRotation(legTipFL, 0F, 0.4089647F, -0.1115358F);
-      legTipFML = new ModelRenderer(this, 72, 111);
-      legTipFML.addBox(20F, 26F, 0F, 2, 4, 2);
-      legTipFML.setRotationPoint(0F, -6F, 0F);
-      legTipFML.setTextureSize(64, 32);
-      legTipFML.mirror = true;
-      setRotation(legTipFML, 0F, 0.1115358F, -0.1115358F);
-      legTipBML = new ModelRenderer(this, 72, 112);
-      legTipBML.addBox(20F, 26F, 0F, 2, 4, 2);
-      legTipBML.setRotationPoint(0F, -6F, 0F);
-      legTipBML.setTextureSize(64, 32);
-      legTipBML.mirror = true;
-      setRotation(legTipBML, 0F, -0.1487144F, -0.1115358F);
-      legTipBL = new ModelRenderer(this, 72, 112);
-      legTipBL.addBox(20F, 26F, 0F, 2, 4, 2);
-      legTipBL.setRotationPoint(0F, -6F, 0F);
-      legTipBL.setTextureSize(64, 32);
-      legTipBL.mirror = true;
-      setRotation(legTipBL, 0F, -0.4089647F, -0.0371786F);
-      armRightNob = new ModelRenderer(this, 0, 48);
-      armRightNob.addBox(-9F, 4F, -14F, 3, 3, 3);
-      armRightNob.setRotationPoint(0F, -6F, 0F);
-      armRightNob.setTextureSize(64, 32);
-      armRightNob.mirror = true;
-      setRotation(armRightNob, 0F, 0F, 0F);
-      armLeftNob = new ModelRenderer(this, 0, 48);
-      armLeftNob.addBox(7F, 4F, -14F, 3, 3, 3);
-      armLeftNob.setRotationPoint(0F, -6F, 0F);
-      armLeftNob.setTextureSize(64, 32);
-      armLeftNob.mirror = true;
-      setRotation(armLeftNob, 0F, 0F, 0F);
-      armLeft = new ModelRenderer(this, 0, 64);
-      armLeft.addBox(8F, 5F, -19F, 1, 1, 5);
-      armLeft.setRotationPoint(0F, -6F, 0F);
-      armLeft.setTextureSize(64, 32);
-      armLeft.mirror = true;
-      setRotation(armLeft, 0F, 0F, 0F);
-      armLeftThick = new ModelRenderer(this, 0, 100);
-      armLeftThick.addBox(7F, 4F, -28F, 3, 3, 9);
-      armLeftThick.setRotationPoint(0F, -6F, 0F);
-      armLeftThick.setTextureSize(64, 32);
-      armLeftThick.mirror = true;
-      setRotation(armLeftThick, 0F, 0F, 0F);
-      armLeftUpperBit = new ModelRenderer(this, 0, 74);
-      armLeftUpperBit.addBox(8F, -3F, -28F, 1, 1, 2);
-      armLeftUpperBit.setRotationPoint(0F, 0F, 0F);
-      armLeftUpperBit.setTextureSize(64, 32);
-      armLeftUpperBit.mirror = true;
-      setRotation(armLeftUpperBit, 0F, 0F, 0F);
-      armLeftLowerBit = new ModelRenderer(this, 0, 74);
-      armLeftLowerBit.addBox(8F, 0F, -28F, 1, 1, 2);
-      armLeftLowerBit.setRotationPoint(0F, 1F, 0F);
-      armLeftLowerBit.setTextureSize(64, 32);
-      armLeftLowerBit.mirror = true;
-      setRotation(armLeftLowerBit, 0F, 0F, 0F);
-      armRight = new ModelRenderer(this, 0, 64);
-      armRight.addBox(-8F, 5F, -19F, 1, 1, 5);
-      armRight.setRotationPoint(0F, -6F, 0F);
-      armRight.setTextureSize(64, 32);
-      armRight.mirror = true;
-      setRotation(armRight, 0F, 0F, 0F);
-      armRightThick = new ModelRenderer(this, 0, 100);
-      armRightThick.addBox(-9F, -2F, -28F, 3, 3, 9);
-      armRightThick.setRotationPoint(0F, 0F, 0F);
-      armRightThick.setTextureSize(64, 32);
-      armRightThick.mirror = true;
-      setRotation(armRightThick, 0F, 0F, 0F);
-      armRightUpperBit = new ModelRenderer(this, 0, 74);
-      armRightUpperBit.addBox(-8F, 3F, -28F, 1, 1, 2);
-      armRightUpperBit.setRotationPoint(0F, -6F, 0F);
-      armRightUpperBit.setTextureSize(64, 32);
-      armRightUpperBit.mirror = true;
-      setRotation(armRightUpperBit, 0F, 0F, 0F);
-      armRightLowerBit = new ModelRenderer(this, 0, 74);
-      armRightLowerBit.addBox(-8F, 7F, -28F, 1, 1, 2);
-      armRightLowerBit.setRotationPoint(0F, -6F, 0F);
-      armRightLowerBit.setTextureSize(64, 32);
-      armRightLowerBit.mirror = true;
-      setRotation(armRightLowerBit, 0F, 0F, 0F);
-      saberRight = new ModelRenderer(this, 12, 110);
-      saberRight.addBox(-8F, 4F, -42F, 1, 3, 14);
-      saberRight.setRotationPoint(0F, -6F, 0F);
-      saberRight.setTextureSize(64, 32);
-      saberRight.mirror = true;
-      setRotation(saberRight, 0F, 0F, 0F);
-      saberRightUpper = new ModelRenderer(this, 30, 102);
-      saberRightUpper.addBox(-8F, 3F, -54F, 1, 1, 18);
-      saberRightUpper.setRotationPoint(0F, -6F, 0F);
-      saberRightUpper.setTextureSize(64, 32);
-      saberRightUpper.mirror = true;
-      setRotation(saberRightUpper, 0F, 0F, 0F);
-      saberRightLower = new ModelRenderer(this, 32, 100);
-      saberRightLower.addBox(-8F, 5F, -48F, 1, 1, 6);
-      saberRightLower.setRotationPoint(0F, -6F, 0F);
-      saberRightLower.setTextureSize(64, 32);
-      saberRightLower.mirror = true;
-      setRotation(saberRightLower, 0F, 0F, 0F);
-      saberLeft = new ModelRenderer(this, 12, 110);
-      saberLeft.addBox(8F, 4F, -42F, 1, 3, 14);
-      saberLeft.setRotationPoint(0F, -6F, 0F);
-      saberLeft.setTextureSize(64, 32);
-      saberLeft.mirror = true;
-      setRotation(saberLeft, 0F, 0F, 0F);
-      saberLeftUpper = new ModelRenderer(this, 30, 102);
-      saberLeftUpper.addBox(8F, 3F, -54F, 1, 1, 18);
-      saberLeftUpper.setRotationPoint(0F, -6F, 0F);
-      saberLeftUpper.setTextureSize(64, 32);
-      saberLeftUpper.mirror = true;
-      setRotation(saberLeftUpper, 0F, 0F, 0F);
-      saberLeftLower = new ModelRenderer(this, 32, 100);
-      saberLeftLower.addBox(8F, 5F, -48F, 1, 1, 6);
-      saberLeftLower.setRotationPoint(0F, -6F, 0F);
-      saberLeftLower.setTextureSize(64, 32);
-      saberLeftLower.mirror = true;
-      setRotation(saberLeftLower, 0F, 0F, 0F);
-      Shape1 = new ModelRenderer(this, 0, 0);
-      Shape1.addBox(0F, -7F, -12F, 1, 3, 1);
-      Shape1.setRotationPoint(0F, -6F, 0F);
-      Shape1.setTextureSize(128, 128);
-      Shape1.mirror = true;
-      setRotation(Shape1, 0F, 0F, 0F);
-      Shape2 = new ModelRenderer(this, 0, 0);
-      Shape2.addBox(-1F, -7F, -12F, 1, 1, 3);
-      Shape2.setRotationPoint(0F, -6F, 0F);
-      Shape2.setTextureSize(128, 128);
-      Shape2.mirror = true;
-      setRotation(Shape2, 0F, 0F, 0F);
-      Shape3 = new ModelRenderer(this, 0, 0);
-      Shape3.addBox(0F, -10F, -10F, 1, 4, 1);
-      Shape3.setRotationPoint(0F, -6F, 0F);
-      Shape3.setTextureSize(128, 128);
-      Shape3.mirror = true;
-      setRotation(Shape3, 0F, 0F, 0F);
-      Shape4 = new ModelRenderer(this, 0, 0);
-      Shape4.addBox(-4F, -10F, -10F, 4, 1, 1);
-      Shape4.setRotationPoint(0F, -6F, 0F);
-      Shape4.setTextureSize(128, 128);
-      Shape4.mirror = true;
-      setRotation(Shape4, 0F, 0F, 0F);
-      Shape5 = new ModelRenderer(this, 0, 0);
-      Shape5.addBox(-4F, -10F, -9F, 1, 1, 3);
-      Shape5.setRotationPoint(0F, -6F, 0F);
-      Shape5.setTextureSize(128, 128);
-      Shape5.mirror = true;
-      setRotation(Shape5, 0F, 0F, 0F);
-      Shape6 = new ModelRenderer(this, 0, 0);
-      Shape6.addBox(-3F, -12F, -7F, 1, 3, 1);
-      Shape6.setRotationPoint(0F, -6F, 0F);
-      Shape6.setTextureSize(128, 128);
-      Shape6.mirror = true;
-      setRotation(Shape6, 0F, 0F, 0F);
-      Shape7 = new ModelRenderer(this, 0, 0);
-      Shape7.addBox(-3F, -16F, -6F, 2, 1, 1);
-      Shape7.setRotationPoint(0F, -6F, 0F);
-      Shape7.setTextureSize(128, 128);
-      Shape7.mirror = true;
-      setRotation(Shape7, 0F, 0F, 0F);
-      Shape8 = new ModelRenderer(this, 0, 0);
-      Shape8.addBox(-2F, -18F, -6F, 1, 2, 1);
-      Shape8.setRotationPoint(0F, -6F, 0F);
-      Shape8.setTextureSize(128, 128);
-      Shape8.mirror = true;
-      setRotation(Shape8, 0F, 0F, 0F);
-      Shape9 = new ModelRenderer(this, 0, 0);
-      Shape9.addBox(-2F, -19F, -5F, 1, 2, 1);
-      Shape9.setRotationPoint(0F, -6F, 0F);
-      Shape9.setTextureSize(128, 128);
-      Shape9.mirror = true;
-      setRotation(Shape9, 0F, 0F, 0F);
-      Shape10 = new ModelRenderer(this, 0, 0);
-      Shape10.addBox(-3F, -20F, -5F, 1, 2, 1);
-      Shape10.setRotationPoint(0F, -6F, 0F);
-      Shape10.setTextureSize(128, 128);
-      Shape10.mirror = true;
-      setRotation(Shape10, 0F, 0F, 0F);
-      Shape11 = new ModelRenderer(this, 0, 0);
-      Shape11.addBox(-3F, -20F, -4F, 1, 1, 3);
-      Shape11.setRotationPoint(0F, -6F, 0F);
-      Shape11.setTextureSize(128, 128);
-      Shape11.mirror = true;
-      setRotation(Shape11, 0F, 0F, 0F);
-      Shape12 = new ModelRenderer(this, 0, 0);
-      Shape12.addBox(5F, -5F, -12F, 1, 1, 1);
-      Shape12.setRotationPoint(0F, -6F, 0F);
-      Shape12.setTextureSize(128, 128);
-      Shape12.mirror = true;
-      setRotation(Shape12, 0F, 0F, 0F);
-      Shape13 = new ModelRenderer(this, 0, 0);
-      Shape13.addBox(4F, -6F, -12F, 5, 1, 1);
-      Shape13.setRotationPoint(0F, -6F, 0F);
-      Shape13.setTextureSize(128, 128);
-      Shape13.mirror = true;
-      setRotation(Shape13, 0F, 0F, 0F);
-      Shape14 = new ModelRenderer(this, 0, 0);
-      Shape14.addBox(8F, -7F, -12F, 1, 1, 3);
-      Shape14.setRotationPoint(0F, -6F, 0F);
-      Shape14.setTextureSize(128, 128);
-      Shape14.mirror = true;
-      setRotation(Shape14, 0F, 0F, 0F);
-      Shape15 = new ModelRenderer(this, 0, 0);
-      Shape15.addBox(8F, -8F, -10F, 2, 1, 1);
-      Shape15.setRotationPoint(0F, -6F, 0F);
-      Shape15.setTextureSize(128, 128);
-      Shape15.mirror = true;
-      setRotation(Shape15, 0F, 0F, 0F);
-      Shape16 = new ModelRenderer(this, 0, 0);
-      Shape16.addBox(9F, -8F, -9F, 1, 1, 5);
-      Shape16.setRotationPoint(0F, -6F, 0F);
-      Shape16.setTextureSize(128, 128);
-      Shape16.mirror = true;
-      setRotation(Shape16, 0F, 0F, 0F);
-      Shape17 = new ModelRenderer(this, 0, 0);
-      Shape17.addBox(9F, -10F, -5F, 1, 2, 1);
-      Shape17.setRotationPoint(0F, -6F, 0F);
-      Shape17.setTextureSize(128, 128);
-      Shape17.mirror = true;
-      setRotation(Shape17, 0F, 0F, 0F);
-      Shape18 = new ModelRenderer(this, 0, 0);
-      Shape18.addBox(6F, -10F, -5F, 3, 1, 1);
-      Shape18.setRotationPoint(0F, -6F, 0F);
-      Shape18.setTextureSize(128, 128);
-      Shape18.mirror = true;
-      setRotation(Shape18, 0F, 0F, 0F);
-      Shape19 = new ModelRenderer(this, 0, 0);
-      Shape19.addBox(6F, -12F, -6F, 1, 3, 1);
-      Shape19.setRotationPoint(0F, -6F, 0F);
-      Shape19.setTextureSize(128, 128);
-      Shape19.mirror = true;
-      setRotation(Shape19, 0F, 0F, 0F);
-      Shape20 = new ModelRenderer(this, 0, 0);
-      Shape20.addBox(5F, -12F, -5F, 2, 1, 1);
-      Shape20.setRotationPoint(0F, -6F, 0F);
-      Shape20.setTextureSize(128, 128);
-      Shape20.mirror = true;
-      setRotation(Shape20, 0F, 0F, 0F);
-      Shape21 = new ModelRenderer(this, 0, 0);
-      Shape21.addBox(5F, -18F, -4F, 1, 3, 1);
-      Shape21.setRotationPoint(0F, -6F, 0F);
-      Shape21.setTextureSize(128, 128);
-      Shape21.mirror = true;
-      setRotation(Shape21, 0F, 0F, 0F);
-      Shape22 = new ModelRenderer(this, 0, 0);
-      Shape22.addBox(4F, -20F, -5F, 1, 3, 1);
-      Shape22.setRotationPoint(0F, -6F, 0F);
-      Shape22.setTextureSize(128, 128);
-      Shape22.mirror = true;
-      setRotation(Shape22, 0F, 0F, 0F);
-      Shape23 = new ModelRenderer(this, 0, 0);
-      Shape23.addBox(4F, -18F, -4F, 1, 1, 1);
-      Shape23.setRotationPoint(0F, -6F, 0F);
-      Shape23.setTextureSize(128, 128);
-      Shape23.mirror = true;
-      setRotation(Shape23, 0F, 0F, 0F);
-      Shape24 = new ModelRenderer(this, 0, 0);
-      Shape24.addBox(1F, -20F, -4F, 4, 1, 1);
-      Shape24.setRotationPoint(0F, -6F, 0F);
-      Shape24.setTextureSize(128, 128);
-      Shape24.mirror = true;
-      setRotation(Shape24, 0F, 0F, 0F);
-      Shape25 = new ModelRenderer(this, 0, 0);
-      Shape25.addBox(1F, -22F, -3F, 1, 3, 1);
-      Shape25.setRotationPoint(0F, -6F, 0F);
-      Shape25.setTextureSize(128, 128);
-      Shape25.mirror = true;
-      setRotation(Shape25, 0F, 0F, 0F);
-      Shape26 = new ModelRenderer(this, 0, 0);
-      Shape26.addBox(1F, -9F, -10F, 4, 1, 1);
-      Shape26.setRotationPoint(0F, -6F, 0F);
-      Shape26.setTextureSize(128, 128);
-      Shape26.mirror = true;
-      setRotation(Shape26, 0F, 0F, 0F);
-      Shape27 = new ModelRenderer(this, 0, 0);
-      Shape27.addBox(4F, -8F, -10F, 1, 2, 1);
-      Shape27.setRotationPoint(0F, -6F, 0F);
-      Shape27.setTextureSize(128, 128);
-      Shape27.mirror = true;
-      setRotation(Shape27, 0F, 0F, 0F);
-      Shape28 = new ModelRenderer(this, 0, 0);
-      Shape28.addBox(4F, -7F, -12F, 1, 1, 2);
-      Shape28.setRotationPoint(0F, -6F, 0F);
-      Shape28.setTextureSize(128, 128);
-      Shape28.mirror = true;
-      setRotation(Shape28, 0F, 0F, 0F);
-      Shape29 = new ModelRenderer(this, 0, 0);
-      Shape29.addBox(-1F, -12F, -7F, 1, 3, 1);
-      Shape29.setRotationPoint(0F, -6F, 0F);
-      Shape29.setTextureSize(128, 128);
-      Shape29.mirror = true;
-      setRotation(Shape29, 0F, 0F, 0F);
-      Shape30 = new ModelRenderer(this, 0, 0);
-      Shape30.addBox(-1F, -10F, -9F, 1, 1, 2);
-      Shape30.setRotationPoint(0F, -6F, 0F);
-      Shape30.setTextureSize(128, 128);
-      Shape30.mirror = true;
-      setRotation(Shape30, 0F, 0F, 0F);
-      Shape31 = new ModelRenderer(this, 0, 0);
-      Shape31.addBox(-1F, -16F, -6F, 1, 1, 1);
-      Shape31.setRotationPoint(0F, -6F, 0F);
-      Shape31.setTextureSize(128, 128);
-      Shape31.mirror = true;
-      setRotation(Shape31, 0F, 0F, 0F);
-      Shape32 = new ModelRenderer(this, 0, 0);
-      Shape32.addBox(-9F, -5F, -12F, 1, 3, 1);
-      Shape32.setRotationPoint(0F, -6F, 0F);
-      Shape32.setTextureSize(128, 128);
-      Shape32.mirror = true;
-      setRotation(Shape32, 0F, 0F, 0F);
-      Shape33 = new ModelRenderer(this, 0, 0);
-      Shape33.addBox(-10F, -7F, -12F, 1, 3, 1);
-      Shape33.setRotationPoint(0F, -6F, 0F);
-      Shape33.setTextureSize(128, 128);
-      Shape33.mirror = true;
-      setRotation(Shape33, 0F, 0F, 0F);
-      Shape34 = new ModelRenderer(this, 0, 0);
-      Shape34.addBox(-10F, -7F, -11F, 1, 1, 5);
-      Shape34.setRotationPoint(0F, -6F, 0F);
-      Shape34.setTextureSize(128, 128);
-      Shape34.mirror = true;
-      setRotation(Shape34, 0F, 0F, 0F);
-      Shape35 = new ModelRenderer(this, 0, 0);
-      Shape35.addBox(-7F, -7F, -12F, 1, 3, 1);
-      Shape35.setRotationPoint(0F, -6F, 0F);
-      Shape35.setTextureSize(128, 128);
-      Shape35.mirror = true;
-      setRotation(Shape35, 0F, 0F, 0F);
-      Shape36 = new ModelRenderer(this, 0, 0);
-      Shape36.addBox(-9F, -7F, -11F, 3, 1, 1);
-      Shape36.setRotationPoint(0F, -6F, 0F);
-      Shape36.setTextureSize(128, 128);
-      Shape36.mirror = true;
-      setRotation(Shape36, 0F, 0F, 0F);
-      Shape37 = new ModelRenderer(this, 0, 0);
-      Shape37.addBox(-10F, -9F, -7F, 1, 2, 1);
-      Shape37.setRotationPoint(0F, -6F, 0F);
-      Shape37.setTextureSize(128, 128);
-      Shape37.mirror = true;
-      setRotation(Shape37, 0F, 0F, 0F);
-      Shape38 = new ModelRenderer(this, 0, 0);
-      Shape38.addBox(-10F, -10F, -7F, 1, 1, 4);
-      Shape38.setRotationPoint(0F, -6F, 0F);
-      Shape38.setTextureSize(128, 128);
-      Shape38.mirror = true;
-      setRotation(Shape38, 0F, 0F, 0F);
-      Shape39 = new ModelRenderer(this, 0, 0);
-      Shape39.addBox(-9F, -10F, -4F, 2, 1, 1);
-      Shape39.setRotationPoint(0F, -6F, 0F);
-      Shape39.setTextureSize(128, 128);
-      Shape39.mirror = true;
-      setRotation(Shape39, 0F, 0F, 0F);
-      Shape40 = new ModelRenderer(this, 0, 0);
-      Shape40.addBox(-7F, -10F, -5F, 1, 1, 2);
-      Shape40.setRotationPoint(0F, -6F, 0F);
-      Shape40.setTextureSize(128, 128);
-      Shape40.mirror = true;
-      setRotation(Shape40, 0F, 0F, 0F);
-      Shape41 = new ModelRenderer(this, 0, 0);
-      Shape41.addBox(-7F, -12F, -5F, 1, 2, 1);
-      Shape41.setRotationPoint(0F, -6F, 0F);
-      Shape41.setTextureSize(128, 128);
-      Shape41.mirror = true;
-      setRotation(Shape41, 0F, 0F, 0F);
-      Shape42 = new ModelRenderer(this, 0, 0);
-      Shape42.addBox(-6F, -12F, -5F, 1, 1, 3);
-      Shape42.setRotationPoint(0F, -6F, 0F);
-      Shape42.setTextureSize(128, 128);
-      Shape42.mirror = true;
-      setRotation(Shape42, 0F, 0F, 0F);
-      Shape43 = new ModelRenderer(this, 0, 0);
-      Shape43.addBox(-6F, -18F, -3F, 1, 3, 1);
-      Shape43.setRotationPoint(0F, -6F, 0F);
-      Shape43.setTextureSize(128, 128);
-      Shape43.mirror = true;
-      setRotation(Shape43, 0F, 0F, 0F);
-      Shape44 = new ModelRenderer(this, 0, 0);
-      Shape44.addBox(-5F, -18F, -3F, 1, 1, 5);
-      Shape44.setRotationPoint(0F, -6F, 0F);
-      Shape44.setTextureSize(128, 128);
-      Shape44.mirror = true;
-      setRotation(Shape44, 0F, 0F, 0F);
-      Shape45 = new ModelRenderer(this, 0, 0);
-      Shape45.addBox(-5F, -20F, 1F, 1, 2, 1);
-      Shape45.setRotationPoint(0F, -6F, 0F);
-      Shape45.setTextureSize(128, 128);
-      Shape45.mirror = true;
-      setRotation(Shape45, 0F, 0F, 0F);
-      Shape46 = new ModelRenderer(this, 0, 0);
-      Shape46.addBox(-5F, -20F, 0F, 3, 1, 1);
-      Shape46.setRotationPoint(0F, -6F, 0F);
-      Shape46.setTextureSize(128, 128);
-      Shape46.mirror = true;
-      setRotation(Shape46, 0F, 0F, 0F);
-      Shape47 = new ModelRenderer(this, 0, 0);
-      Shape47.addBox(-12F, -7F, 0F, 1, 2, 1);
-      Shape47.setRotationPoint(0F, -6F, 0F);
-      Shape47.setTextureSize(128, 128);
-      Shape47.mirror = true;
-      setRotation(Shape47, 0F, 0F, 0F);
-      Shape48 = new ModelRenderer(this, 0, 0);
-      Shape48.addBox(-11F, -7F, -2F, 1, 1, 3);
-      Shape48.setRotationPoint(0F, -6F, 0F);
-      Shape48.setTextureSize(128, 128);
-      Shape48.mirror = true;
-      setRotation(Shape48, 0F, 0F, 0F);
-      Shape49 = new ModelRenderer(this, 0, 0);
-      Shape49.addBox(-10F, -10F, -2F, 1, 4, 1);
-      Shape49.setRotationPoint(0F, -6F, 0F);
-      Shape49.setTextureSize(128, 128);
-      Shape49.mirror = true;
-      setRotation(Shape49, 0F, 0F, 0F);
-      Shape50 = new ModelRenderer(this, 0, 0);
-      Shape50.addBox(-10F, -10F, -1F, 3, 1, 1);
-      Shape50.setRotationPoint(0F, -6F, 0F);
-      Shape50.setTextureSize(128, 128);
-      Shape50.mirror = true;
-      setRotation(Shape50, 0F, 0F, 0F);
-      Shape51 = new ModelRenderer(this, 0, 0);
-      Shape51.addBox(-8F, -10F, -3F, 1, 1, 2);
-      Shape51.setRotationPoint(0F, -6F, 0F);
-      Shape51.setTextureSize(128, 128);
-      Shape51.mirror = true;
-      setRotation(Shape51, 0F, 0F, 0F);
-      Shape52 = new ModelRenderer(this, 0, 0);
-      Shape52.addBox(-12F, -6F, 4F, 1, 1, 3);
-      Shape52.setRotationPoint(0F, -6F, 0F);
-      Shape52.setTextureSize(128, 128);
-      Shape52.mirror = true;
-      setRotation(Shape52, 0F, 0F, 0F);
-      Shape53 = new ModelRenderer(this, 0, 0);
-      Shape53.addBox(-12F, -7F, 6F, 3, 1, 1);
-      Shape53.setRotationPoint(0F, -6F, 0F);
-      Shape53.setTextureSize(128, 128);
-      Shape53.mirror = true;
-      setRotation(Shape53, 0F, 0F, 0F);
-      Shape54 = new ModelRenderer(this, 0, 0);
-      Shape54.addBox(-10F, -10F, 5F, 1, 4, 1);
-      Shape54.setRotationPoint(0F, -6F, 0F);
-      Shape54.setTextureSize(128, 128);
-      Shape54.mirror = true;
-      setRotation(Shape54, 0F, 0F, 0F);
-      Shape55 = new ModelRenderer(this, 0, 0);
-      Shape55.addBox(-9F, -10F, 0F, 1, 1, 6);
-      Shape55.setRotationPoint(0F, -6F, 0F);
-      Shape55.setTextureSize(128, 128);
-      Shape55.mirror = true;
-      setRotation(Shape55, 0F, 0F, 0F);
-      Shape56 = new ModelRenderer(this, 0, 0);
-      Shape56.addBox(-8F, -10F, 4F, 1, 1, 1);
-      Shape56.setRotationPoint(0F, -6F, 0F);
-      Shape56.setTextureSize(128, 128);
-      Shape56.mirror = true;
-      setRotation(Shape56, 0F, 0F, 0F);
-      Shape57 = new ModelRenderer(this, 0, 0);
-      Shape57.addBox(-7F, -12F, 4F, 1, 3, 1);
-      Shape57.setRotationPoint(0F, -6F, 0F);
-      Shape57.setTextureSize(128, 128);
-      Shape57.mirror = true;
-      setRotation(Shape57, 0F, 0F, 0F);
-      Shape58 = new ModelRenderer(this, 0, 0);
-      Shape58.addBox(-7F, -12F, 5F, 4, 1, 1);
-      Shape58.setRotationPoint(0F, -6F, 0F);
-      Shape58.setTextureSize(128, 128);
-      Shape58.mirror = true;
-      setRotation(Shape58, 0F, 0F, 0F);
-      Shape59 = new ModelRenderer(this, 0, 0);
-      Shape59.addBox(-3F, -22F, 0F, 1, 2, 1);
-      Shape59.setRotationPoint(0F, -6F, 0F);
-      Shape59.setTextureSize(128, 128);
-      Shape59.mirror = true;
-      setRotation(Shape59, 0F, 0F, 0F);
-      Shape60 = new ModelRenderer(this, 0, 0);
-      Shape60.addBox(-4F, -18F, 5F, 1, 3, 1);
-      Shape60.setRotationPoint(0F, -6F, 0F);
-      Shape60.setTextureSize(128, 128);
-      Shape60.mirror = true;
-      setRotation(Shape60, 0F, 0F, 0F);
-      Shape61 = new ModelRenderer(this, 0, 0);
-      Shape61.addBox(-3F, -18F, 3F, 1, 1, 3);
-      Shape61.setRotationPoint(0F, -6F, 0F);
-      Shape61.setTextureSize(128, 128);
-      Shape61.mirror = true;
-      setRotation(Shape61, 0F, 0F, 0F);
-      Shape62 = new ModelRenderer(this, 0, 0);
-      Shape62.addBox(-5F, -19F, 2F, 1, 1, 2);
-      Shape62.setRotationPoint(0F, -6F, 0F);
-      Shape62.setTextureSize(128, 128);
-      Shape62.mirror = true;
-      setRotation(Shape62, 0F, 0F, 0F);
-      Shape63 = new ModelRenderer(this, 0, 0);
-      Shape63.addBox(-4F, -19F, 3F, 2, 1, 1);
-      Shape63.setRotationPoint(0F, -6F, 0F);
-      Shape63.setTextureSize(128, 128);
-      Shape63.mirror = true;
-      setRotation(Shape63, 0F, 0F, 0F);
-      Shape64 = new ModelRenderer(this, 0, 0);
-      Shape64.addBox(-10F, -2F, 11F, 2, 1, 1);
-      Shape64.setRotationPoint(0F, -6F, 0F);
-      Shape64.setTextureSize(128, 128);
-      Shape64.mirror = true;
-      setRotation(Shape64, 0F, 0F, 0F);
-      Shape65 = new ModelRenderer(this, 0, 0);
-      Shape65.addBox(-12F, -1F, 11F, 3, 1, 1);
-      Shape65.setRotationPoint(0F, -6F, 0F);
-      Shape65.setTextureSize(128, 128);
-      Shape65.mirror = true;
-      setRotation(Shape65, 0F, 0F, 0F);
-      Shape66 = new ModelRenderer(this, 0, 0);
-      Shape66.addBox(-10F, -7F, 11F, 1, 5, 1);
-      Shape66.setRotationPoint(0F, -6F, 0F);
-      Shape66.setTextureSize(128, 128);
-      Shape66.mirror = true;
-      setRotation(Shape66, 0F, 0F, 0F);
-      Shape67 = new ModelRenderer(this, 0, 0);
-      Shape67.addBox(-9F, -7F, 11F, 5, 1, 1);
-      Shape67.setRotationPoint(0F, -6F, 0F);
-      Shape67.setTextureSize(128, 128);
-      Shape67.mirror = true;
-      setRotation(Shape67, 0F, 0F, 0F);
-      Shape68 = new ModelRenderer(this, 0, 0);
-      Shape68.addBox(-5F, -7F, 9F, 1, 1, 2);
-      Shape68.setRotationPoint(0F, -6F, 0F);
-      Shape68.setTextureSize(128, 128);
-      Shape68.mirror = true;
-      setRotation(Shape68, 0F, 0F, 0F);
-      Shape69 = new ModelRenderer(this, 0, 0);
-      Shape69.addBox(-7F, -8F, 9F, 3, 1, 1);
-      Shape69.setRotationPoint(0F, -6F, 0F);
-      Shape69.setTextureSize(128, 128);
-      Shape69.mirror = true;
-      setRotation(Shape69, 0F, 0F, 0F);
-      Shape70 = new ModelRenderer(this, 0, 0);
-      Shape70.addBox(-7F, -10F, 9F, 1, 2, 1);
-      Shape70.setRotationPoint(0F, -6F, 0F);
-      Shape70.setTextureSize(128, 128);
-      Shape70.mirror = true;
-      setRotation(Shape70, 0F, 0F, 0F);
-      Shape71 = new ModelRenderer(this, 0, 0);
-      Shape71.addBox(-5F, -10F, 6F, 1, 1, 3);
-      Shape71.setRotationPoint(0F, -6F, 0F);
-      Shape71.setTextureSize(128, 128);
-      Shape71.mirror = true;
-      setRotation(Shape71, 0F, 0F, 0F);
-      Shape72 = new ModelRenderer(this, 0, 0);
-      Shape72.addBox(-7F, -10F, 8F, 2, 1, 1);
-      Shape72.setRotationPoint(0F, -6F, 0F);
-      Shape72.setTextureSize(128, 128);
-      Shape72.mirror = true;
-      setRotation(Shape72, 0F, 0F, 0F);
-      Shape73 = new ModelRenderer(this, 0, 0);
-      Shape73.addBox(-5F, -12F, 6F, 1, 2, 1);
-      Shape73.setRotationPoint(0F, -6F, 0F);
-      Shape73.setTextureSize(128, 128);
-      Shape73.mirror = true;
-      setRotation(Shape73, 0F, 0F, 0F);
-      Shape74 = new ModelRenderer(this, 0, 0);
-      Shape74.addBox(-12F, -2F, 8F, 1, 1, 4);
-      Shape74.setRotationPoint(0F, -6F, 0F);
-      Shape74.setTextureSize(128, 128);
-      Shape74.mirror = true;
-      setRotation(Shape74, 0F, 0F, 0F);
-      Shape75 = new ModelRenderer(this, 0, 0);
-      Shape75.addBox(-1F, -5F, 11F, 3, 1, 1);
-      Shape75.setRotationPoint(0F, -6F, 0F);
-      Shape75.setTextureSize(128, 128);
-      Shape75.mirror = true;
-      setRotation(Shape75, 0F, 0F, 0F);
-      Shape76 = new ModelRenderer(this, 0, 0);
-      Shape76.addBox(-1F, -7F, 11F, 1, 2, 1);
-      Shape76.setRotationPoint(0F, -6F, 0F);
-      Shape76.setTextureSize(128, 128);
-      Shape76.mirror = true;
-      setRotation(Shape76, 0F, 0F, 0F);
-      Shape77 = new ModelRenderer(this, 0, 0);
-      Shape77.addBox(-4F, -7F, 10F, 5, 1, 1);
-      Shape77.setRotationPoint(0F, -6F, 0F);
-      Shape77.setTextureSize(128, 128);
-      Shape77.mirror = true;
-      setRotation(Shape77, 0F, 0F, 0F);
-      Shape78 = new ModelRenderer(this, 0, 0);
-      Shape78.addBox(0F, -10F, 9F, 1, 4, 1);
-      Shape78.setRotationPoint(0F, -6F, 0F);
-      Shape78.setTextureSize(128, 128);
-      Shape78.mirror = true;
-      setRotation(Shape78, 0F, 0F, 0F);
-      Shape79 = new ModelRenderer(this, 0, 0);
-      Shape79.addBox(0F, -10F, 8F, 3, 1, 1);
-      Shape79.setRotationPoint(0F, -6F, 0F);
-      Shape79.setTextureSize(128, 128);
-      Shape79.mirror = true;
-      setRotation(Shape79, 0F, 0F, 0F);
-      Shape80 = new ModelRenderer(this, 0, 0);
-      Shape80.addBox(2F, -10F, 7F, 6, 1, 1);
-      Shape80.setRotationPoint(0F, -6F, 0F);
-      Shape80.setTextureSize(128, 128);
-      Shape80.mirror = true;
-      setRotation(Shape80, 0F, 0F, 0F);
-      Shape81 = new ModelRenderer(this, 0, 0);
-      Shape81.addBox(7F, -10F, 5F, 1, 1, 2);
-      Shape81.setRotationPoint(0F, -6F, 0F);
-      Shape81.setTextureSize(128, 128);
-      Shape81.mirror = true;
-      setRotation(Shape81, 0F, 0F, 0F);
-      Shape82 = new ModelRenderer(this, 0, 0);
-      Shape82.addBox(6F, -10F, 4F, 2, 1, 1);
-      Shape82.setRotationPoint(0F, -6F, 0F);
-      Shape82.setTextureSize(128, 128);
-      Shape82.mirror = true;
-      setRotation(Shape82, 0F, 0F, 0F);
-      Shape83 = new ModelRenderer(this, 0, 0);
-      Shape83.addBox(6F, -12F, 4F, 1, 2, 1);
-      Shape83.setRotationPoint(0F, -6F, 0F);
-      Shape83.setTextureSize(128, 128);
-      Shape83.mirror = true;
-      setRotation(Shape83, 0F, 0F, 0F);
-      Shape84 = new ModelRenderer(this, 0, 0);
-      Shape84.addBox(3F, -12F, 5F, 4, 1, 1);
-      Shape84.setRotationPoint(0F, -6F, 0F);
-      Shape84.setTextureSize(128, 128);
-      Shape84.mirror = true;
-      setRotation(Shape84, 0F, 0F, 0F);
-      Shape85 = new ModelRenderer(this, 0, 0);
-      Shape85.addBox(3F, -17F, 5F, 1, 2, 1);
-      Shape85.setRotationPoint(0F, -6F, 0F);
-      Shape85.setTextureSize(128, 128);
-      Shape85.mirror = true;
-      setRotation(Shape85, 0F, 0F, 0F);
-      Shape86 = new ModelRenderer(this, 0, 0);
-      Shape86.addBox(4F, -18F, 5F, 1, 2, 1);
-      Shape86.setRotationPoint(0F, -6F, 0F);
-      Shape86.setTextureSize(128, 128);
-      Shape86.mirror = true;
-      setRotation(Shape86, 0F, 0F, 0F);
-      Shape87 = new ModelRenderer(this, 0, 0);
-      Shape87.addBox(2F, -18F, 4F, 3, 1, 1);
-      Shape87.setRotationPoint(0F, -6F, 0F);
-      Shape87.setTextureSize(128, 128);
-      Shape87.mirror = true;
-      setRotation(Shape87, 0F, 0F, 0F);
-      Shape88 = new ModelRenderer(this, 0, 0);
-      Shape88.addBox(2F, -20F, 3F, 1, 3, 1);
-      Shape88.setRotationPoint(0F, -6F, 0F);
-      Shape88.setTextureSize(128, 128);
-      Shape88.mirror = true;
-      setRotation(Shape88, 0F, 0F, 0F);
-      Shape89 = new ModelRenderer(this, 0, 0);
-      Shape89.addBox(0F, -20F, 2F, 3, 1, 1);
-      Shape89.setRotationPoint(0F, -6F, 0F);
-      Shape89.setTextureSize(128, 128);
-      Shape89.mirror = true;
-      setRotation(Shape89, 0F, 0F, 0F);
-      Shape90 = new ModelRenderer(this, 0, 0);
-      Shape90.addBox(0F, -22F, 2F, 1, 2, 1);
-      Shape90.setRotationPoint(0F, -6F, 0F);
-      Shape90.setTextureSize(128, 128);
-      Shape90.mirror = true;
-      setRotation(Shape90, 0F, 0F, 0F);
-      Shape91 = new ModelRenderer(this, 0, 0);
-      Shape91.addBox(11F, -7F, 0F, 1, 1, 6);
-      Shape91.setRotationPoint(0F, -6F, 0F);
-      Shape91.setTextureSize(128, 128);
-      Shape91.mirror = true;
-      setRotation(Shape91, 0F, 0F, 0F);
-      Shape92 = new ModelRenderer(this, 0, 0);
-      Shape92.addBox(11F, -6F, 0F, 1, 1, 1);
-      Shape92.setRotationPoint(0F, -6F, 0F);
-      Shape92.setTextureSize(128, 128);
-      Shape92.mirror = true;
-      setRotation(Shape92, 0F, 0F, 0F);
-      Shape93 = new ModelRenderer(this, 0, 0);
-      Shape93.addBox(11F, -6F, 4F, 1, 1, 1);
-      Shape93.setRotationPoint(0F, -6F, 0F);
-      Shape93.setTextureSize(128, 128);
-      Shape93.mirror = true;
-      setRotation(Shape93, 0F, 0F, 0F);
-      Shape94 = new ModelRenderer(this, 0, 0);
-      Shape94.addBox(9F, -7F, 5F, 2, 1, 1);
-      Shape94.setRotationPoint(0F, -6F, 0F);
-      Shape94.setTextureSize(128, 128);
-      Shape94.mirror = true;
-      setRotation(Shape94, 0F, 0F, 0F);
-      Shape95 = new ModelRenderer(this, 0, 0);
-      Shape95.addBox(9F, -10F, 6F, 1, 4, 1);
-      Shape95.setRotationPoint(0F, -6F, 0F);
-      Shape95.setTextureSize(128, 128);
-      Shape95.mirror = true;
-      setRotation(Shape95, 0F, 0F, 0F);
-      Shape96 = new ModelRenderer(this, 0, 0);
-      Shape96.addBox(8F, -10F, 5F, 2, 1, 1);
-      Shape96.setRotationPoint(0F, -6F, 0F);
-      Shape96.setTextureSize(128, 128);
-      Shape96.mirror = true;
-      setRotation(Shape96, 0F, 0F, 0F);
-      Shape97 = new ModelRenderer(this, 0, 0);
-      Shape97.addBox(11F, -7F, -5F, 1, 2, 1);
-      Shape97.setRotationPoint(0F, -6F, 0F);
-      Shape97.setTextureSize(128, 128);
-      Shape97.mirror = true;
-      setRotation(Shape97, 0F, 0F, 0F);
-      Shape98 = new ModelRenderer(this, 0, 0);
-      Shape98.addBox(10F, -7F, -5F, 1, 1, 4);
-      Shape98.setRotationPoint(0F, -6F, 0F);
-      Shape98.setTextureSize(128, 128);
-      Shape98.mirror = true;
-      setRotation(Shape98, 0F, 0F, 0F);
-      Shape99 = new ModelRenderer(this, 0, 0);
-      Shape99.addBox(9F, -10F, -2F, 1, 4, 1);
-      Shape99.setRotationPoint(0F, -6F, 0F);
-      Shape99.setTextureSize(128, 128);
-      Shape99.mirror = true;
-      setRotation(Shape99, 0F, 0F, 0F);
-      Shape100 = new ModelRenderer(this, 0, 0);
-      Shape100.addBox(8F, -10F, -4F, 1, 1, 5);
-      Shape100.setRotationPoint(0F, -6F, 0F);
-      Shape100.setTextureSize(128, 128);
-      Shape100.mirror = true;
-      setRotation(Shape100, 0F, 0F, 0F);
-      Shape101 = new ModelRenderer(this, 0, 0);
-      Shape101.addBox(6F, -10F, 0F, 2, 1, 1);
-      Shape101.setRotationPoint(0F, -6F, 0F);
-      Shape101.setTextureSize(128, 128);
-      Shape101.mirror = true;
-      setRotation(Shape101, 0F, 0F, 0F);
-      Shape102 = new ModelRenderer(this, 0, 0);
-      Shape102.addBox(6F, -12F, -1F, 1, 3, 1);
-      Shape102.setRotationPoint(0F, -6F, 0F);
-      Shape102.setTextureSize(128, 128);
-      Shape102.mirror = true;
-      setRotation(Shape102, 0F, 0F, 0F);
-      Shape103 = new ModelRenderer(this, 0, 0);
-      Shape103.addBox(5F, -13F, -1F, 1, 2, 1);
-      Shape103.setRotationPoint(0F, -6F, 0F);
-      Shape103.setTextureSize(128, 128);
-      Shape103.mirror = true;
-      setRotation(Shape103, 0F, 0F, 0F);
-      Shape104 = new ModelRenderer(this, 0, 0);
-      Shape104.addBox(4F, -20F, 0F, 1, 3, 1);
-      Shape104.setRotationPoint(0F, -6F, 0F);
-      Shape104.setTextureSize(128, 128);
-      Shape104.mirror = true;
-      setRotation(Shape104, 0F, 0F, 0F);
-      Shape105 = new ModelRenderer(this, 0, 0);
-      Shape105.addBox(5F, -18F, 0F, 1, 2, 1);
-      Shape105.setRotationPoint(0F, -6F, 0F);
-      Shape105.setTextureSize(128, 128);
-      Shape105.mirror = true;
-      setRotation(Shape105, 0F, 0F, 0F);
-      Shape106 = new ModelRenderer(this, 0, 0);
-      Shape106.addBox(2F, -20F, -1F, 3, 1, 1);
-      Shape106.setRotationPoint(0F, -6F, 0F);
-      Shape106.setTextureSize(128, 128);
-      Shape106.mirror = true;
-      setRotation(Shape106, 0F, 0F, 0F);
-      Shape107 = new ModelRenderer(this, 0, 0);
-      Shape107.addBox(2F, -20F, 0F, 1, 1, 2);
-      Shape107.setRotationPoint(0F, -6F, 0F);
-      Shape107.setTextureSize(128, 128);
-      Shape107.mirror = true;
-      setRotation(Shape107, 0F, 0F, 0F);
-      Shape108 = new ModelRenderer(this, 0, 0);
-      Shape108.addBox(8F, -3F, -12F, 2, 1, 1);
-      Shape108.setRotationPoint(0F, -6F, 0F);
-      Shape108.setTextureSize(128, 128);
-      Shape108.mirror = true;
-      setRotation(Shape108, 0F, 0F, 0F);
-      Shape109 = new ModelRenderer(this, 0, 0);
-      Shape109.addBox(9F, -2F, -12F, 1, 4, 1);
-      Shape109.setRotationPoint(0F, -6F, 0F);
-      Shape109.setTextureSize(128, 128);
-      Shape109.mirror = true;
-      setRotation(Shape109, 0F, 0F, 0F);
-      Shape110 = new ModelRenderer(this, 0, 0);
-      Shape110.addBox(8F, 1F, -12F, 1, 1, 1);
-      Shape110.setRotationPoint(0F, -6F, 0F);
-      Shape110.setTextureSize(128, 128);
-      Shape110.mirror = true;
-      setRotation(Shape110, 0F, 0F, 0F);
-      Shape111 = new ModelRenderer(this, 0, 0);
-      Shape111.addBox(10F, -2F, -12F, 2, 1, 1);
-      Shape111.setRotationPoint(0F, -6F, 0F);
-      Shape111.setTextureSize(128, 128);
-      Shape111.mirror = true;
-      setRotation(Shape111, 0F, 0F, 0F);
-      Shape112 = new ModelRenderer(this, 0, 0);
-      Shape112.addBox(11F, -4F, -11F, 1, 3, 1);
-      Shape112.setRotationPoint(0F, -6F, 0F);
-      Shape112.setTextureSize(128, 128);
-      Shape112.mirror = true;
-      setRotation(Shape112, 0F, 0F, 0F);
-      Shape113 = new ModelRenderer(this, 0, 0);
-      Shape113.addBox(11F, -4F, -10F, 1, 1, 2);
-      Shape113.setRotationPoint(0F, -6F, 0F);
-      Shape113.setTextureSize(128, 128);
-      Shape113.mirror = true;
-      setRotation(Shape113, 0F, 0F, 0F);
-      Shape114 = new ModelRenderer(this, 0, 0);
-      Shape114.addBox(-12F, 0F, -12F, 4, 1, 1);
-      Shape114.setRotationPoint(0F, -6F, 0F);
-      Shape114.setTextureSize(128, 128);
-      Shape114.mirror = true;
-      setRotation(Shape114, 0F, 0F, 0F);
-      Shape115 = new ModelRenderer(this, 0, 0);
-      Shape115.addBox(-12F, 0F, -11F, 1, 3, 1);
-      Shape115.setRotationPoint(0F, -6F, 0F);
-      Shape115.setTextureSize(128, 128);
-      Shape115.mirror = true;
-      setRotation(Shape115, 0F, 0F, 0F);
-      Shape116 = new ModelRenderer(this, 0, 0);
-      Shape116.addBox(-12F, 2F, -10F, 1, 1, 2);
-      Shape116.setRotationPoint(0F, -6F, 0F);
-      Shape116.setTextureSize(128, 128);
-      Shape116.mirror = true;
-      setRotation(Shape116, 0F, 0F, 0F);
-      Shape117 = new ModelRenderer(this, 0, 0);
-      Shape117.addBox(6F, -5F, 11F, 1, 1, 1);
-      Shape117.setRotationPoint(0F, -6F, 0F);
-      Shape117.setTextureSize(128, 128);
-      Shape117.mirror = true;
-      setRotation(Shape117, 0F, 0F, 0F);
-      Shape118 = new ModelRenderer(this, 0, 0);
-      Shape118.addBox(6F, -6F, 11F, 4, 1, 1);
-      Shape118.setRotationPoint(0F, -6F, 0F);
-      Shape118.setTextureSize(128, 128);
-      Shape118.mirror = true;
-      setRotation(Shape118, 0F, 0F, 0F);
-      Shape119 = new ModelRenderer(this, 0, 0);
-      Shape119.addBox(9F, -5F, 11F, 1, 3, 1);
-      Shape119.setRotationPoint(0F, -6F, 0F);
-      Shape119.setTextureSize(128, 128);
-      Shape119.mirror = true;
-      setRotation(Shape119, 0F, 0F, 0F);
-      Shape120 = new ModelRenderer(this, 0, 0);
-      Shape120.addBox(10F, -3F, 11F, 1, 4, 1);
-      Shape120.setRotationPoint(0F, -6F, 0F);
-      Shape120.setTextureSize(128, 128);
-      Shape120.mirror = true;
-      setRotation(Shape120, 0F, 0F, 0F);
-      Shape121 = new ModelRenderer(this, 0, 0);
-      Shape121.addBox(8F, 0F, 11F, 2, 1, 1);
-      Shape121.setRotationPoint(0F, -6F, 0F);
-      Shape121.setTextureSize(128, 128);
-      Shape121.mirror = true;
-      setRotation(Shape121, 0F, 0F, 0F);
-      Shape122 = new ModelRenderer(this, 0, 0);
-      Shape122.addBox(11F, -1F, 9F, 1, 1, 3);
-      Shape122.setRotationPoint(0F, -6F, 0F);
-      Shape122.setTextureSize(128, 128);
-      Shape122.mirror = true;
-      setRotation(Shape122, 0F, 0F, 0F);
-      Shape123 = new ModelRenderer(this, 0, 0);
-      Shape123.addBox(11F, -1F, 8F, 1, 2, 1);
-      Shape123.setRotationPoint(0F, -6F, 0F);
-      Shape123.setTextureSize(128, 128);
-      Shape123.mirror = true;
-      setRotation(Shape123, 0F, 0F, 0F);
-      Shape124 = new ModelRenderer(this, 0, 0);
-      Shape124.addBox(7F, -7F, 9F, 1, 1, 3);
-      Shape124.setRotationPoint(0F, -6F, 0F);
-      Shape124.setTextureSize(128, 128);
-      Shape124.mirror = true;
-      setRotation(Shape124, 0F, 0F, 0F);
-      Shape125 = new ModelRenderer(this, 0, 0);
-      Shape125.addBox(6F, -10F, 9F, 1, 3, 1);
-      Shape125.setRotationPoint(0F, -6F, 0F);
-      Shape125.setTextureSize(128, 128);
-      Shape125.mirror = true;
-      setRotation(Shape125, 0F, 0F, 0F);
-      Shape126 = new ModelRenderer(this, 0, 0);
-      Shape126.addBox(7F, -8F, 9F, 1, 1, 1);
-      Shape126.setRotationPoint(0F, -6F, 0F);
-      Shape126.setTextureSize(128, 128);
-      Shape126.mirror = true;
-      setRotation(Shape126, 0F, 0F, 0F);
-      Shape127 = new ModelRenderer(this, 0, 0);
-      Shape127.addBox(6F, -10F, 8F, 1, 1, 1);
-      Shape127.setRotationPoint(0F, -6F, 0F);
-      Shape127.setTextureSize(128, 128);
-      Shape127.mirror = true;
-      setRotation(Shape127, 0F, 0F, 0F);
-  }
-  
-  @Override
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-  {
-    super.render(entity, f, f1, f2, f3, f4, f5);
-    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    body.render(f5);
-    bodyUnder.render(f5);
-    bodyBottom.render(f5);
-    bodyLegPanelRight.render(f5);
-    bodyLegPanelLeft.render(f5);
-    legFR.render(f5);
-    legFMR.render(f5);
-    legBMR.render(f5);
-    legBR.render(f5);
-    legJointFMR.render(f5);
-    legJointFR.render(f5);
-    legJointBMR.render(f5);
-    legJointBR.render(f5);
-    legMidBMR.render(f5);
-    legMidFMR.render(f5);
-    legMidFR.render(f5);
-    legMidBR.render(f5);
-    legThickFMR.render(f5);
-    legThickBMR.render(f5);
-    legThickFR.render(f5);
-    legThickBR.render(f5);
-    legTipBMR.render(f5);
-    legTipFMR.render(f5);
-    legTipFR.render(f5);
-    legTipBR.render(f5);
-    bodyTop.render(f5);
-    bodyTop2.render(f5);
-    head.render(f5);
-    eye.render(f5);
-    headTop.render(f5);
-    headTop2.render(f5);
-    headTop3.render(f5);
-    bodyFrontPanel.render(f5);
-    bodyBackPanel.render(f5);
-    legFL.render(f5);
-    legFML.render(f5);
-    legBML.render(f5);
-    legBL.render(f5);
-    legJointFL.render(f5);
-    legJointFML.render(f5);
-    legJointBML.render(f5);
-    legJointBL.render(f5);
-    legMidFL.render(f5);
-    legMidFML.render(f5);
-    legMidBML.render(f5);
-    legMidBL.render(f5);
-    legThickFL.render(f5);
-    legThickFML.render(f5);
-    legThickBML.render(f5);
-    legThickBL.render(f5);
-    legTipFL.render(f5);
-    legTipFML.render(f5);
-    legTipBML.render(f5);
-    legTipBL.render(f5);
-    armRightNob.render(f5);
-    armLeftNob.render(f5);
-    armLeft.render(f5);
-    armLeftThick.render(f5);
-    armLeftUpperBit.render(f5);
-    armLeftLowerBit.render(f5);
-    armRight.render(f5);
-    armRightThick.render(f5);
-    armRightUpperBit.render(f5);
-    armRightLowerBit.render(f5);
-    saberRight.render(f5);
-    saberRightUpper.render(f5);
-    saberRightLower.render(f5);
-    saberLeft.render(f5);
-    saberLeftUpper.render(f5);
-    saberLeftLower.render(f5);
-    Shape1.render(f5);
-    Shape2.render(f5);
-    Shape3.render(f5);
-    Shape4.render(f5);
-    Shape5.render(f5);
-    Shape6.render(f5);
-    Shape7.render(f5);
-    Shape8.render(f5);
-    Shape9.render(f5);
-    Shape10.render(f5);
-    Shape11.render(f5);
-    Shape12.render(f5);
-    Shape13.render(f5);
-    Shape14.render(f5);
-    Shape15.render(f5);
-    Shape16.render(f5);
-    Shape17.render(f5);
-    Shape18.render(f5);
-    Shape19.render(f5);
-    Shape20.render(f5);
-    Shape21.render(f5);
-    Shape22.render(f5);
-    Shape23.render(f5);
-    Shape24.render(f5);
-    Shape25.render(f5);
-    Shape26.render(f5);
-    Shape27.render(f5);
-    Shape28.render(f5);
-    Shape29.render(f5);
-    Shape30.render(f5);
-    Shape31.render(f5);
-    Shape32.render(f5);
-    Shape33.render(f5);
-    Shape34.render(f5);
-    Shape35.render(f5);
-    Shape36.render(f5);
-    Shape37.render(f5);
-    Shape38.render(f5);
-    Shape39.render(f5);
-    Shape40.render(f5);
-    Shape41.render(f5);
-    Shape42.render(f5);
-    Shape43.render(f5);
-    Shape44.render(f5);
-    Shape45.render(f5);
-    Shape46.render(f5);
-    Shape47.render(f5);
-    Shape48.render(f5);
-    Shape49.render(f5);
-    Shape50.render(f5);
-    Shape51.render(f5);
-    Shape52.render(f5);
-    Shape53.render(f5);
-    Shape54.render(f5);
-    Shape55.render(f5);
-    Shape56.render(f5);
-    Shape57.render(f5);
-    Shape58.render(f5);
-    Shape59.render(f5);
-    Shape60.render(f5);
-    Shape61.render(f5);
-    Shape62.render(f5);
-    Shape63.render(f5);
-    Shape64.render(f5);
-    Shape65.render(f5);
-    Shape66.render(f5);
-    Shape67.render(f5);
-    Shape68.render(f5);
-    Shape69.render(f5);
-    Shape70.render(f5);
-    Shape71.render(f5);
-    Shape72.render(f5);
-    Shape73.render(f5);
-    Shape74.render(f5);
-    Shape75.render(f5);
-    Shape76.render(f5);
-    Shape77.render(f5);
-    Shape78.render(f5);
-    Shape79.render(f5);
-    Shape80.render(f5);
-    Shape81.render(f5);
-    Shape82.render(f5);
-    Shape83.render(f5);
-    Shape84.render(f5);
-    Shape85.render(f5);
-    Shape86.render(f5);
-    Shape87.render(f5);
-    Shape88.render(f5);
-    Shape89.render(f5);
-    Shape90.render(f5);
-    Shape91.render(f5);
-    Shape92.render(f5);
-    Shape93.render(f5);
-    Shape94.render(f5);
-    Shape95.render(f5);
-    Shape96.render(f5);
-    Shape97.render(f5);
-    Shape98.render(f5);
-    Shape99.render(f5);
-    Shape100.render(f5);
-    Shape101.render(f5);
-    Shape102.render(f5);
-    Shape103.render(f5);
-    Shape104.render(f5);
-    Shape105.render(f5);
-    Shape106.render(f5);
-    Shape107.render(f5);
-    Shape108.render(f5);
-    Shape109.render(f5);
-    Shape110.render(f5);
-    Shape111.render(f5);
-    Shape112.render(f5);
-    Shape113.render(f5);
-    Shape114.render(f5);
-    Shape115.render(f5);
-    Shape116.render(f5);
-    Shape117.render(f5);
-    Shape118.render(f5);
-    Shape119.render(f5);
-    Shape120.render(f5);
-    Shape121.render(f5);
-    Shape122.render(f5);
-    Shape123.render(f5);
-    Shape124.render(f5);
-    Shape125.render(f5);
-    Shape126.render(f5);
-    Shape127.render(f5);
-  }
-  
-  private void setRotation(ModelRenderer model, float x, float y, float z)
-  {
-    model.rotateAngleX = x;
-    model.rotateAngleY = y;
-    model.rotateAngleZ = z;
-  }
-  
-  @Override
-  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-  {
-    super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-  }
+	private ModelRenderer body;
+	private ModelRenderer head;
 
+	private ModelRenderer legFR;
+	private ModelRenderer legFMR;
+	private ModelRenderer legBMR;
+	private ModelRenderer legBR;
+	private ModelRenderer legJointFMR;
+	private ModelRenderer legJointFR;
+	private ModelRenderer legJointBMR;
+	private ModelRenderer legJointBR;
+
+	private ModelRenderer legFL;
+	private ModelRenderer legFML;
+	private ModelRenderer legBML;
+	private ModelRenderer legBL;
+	private ModelRenderer legJointFL;
+	private ModelRenderer legJointFML;
+	private ModelRenderer legJointBML;
+	private ModelRenderer legJointBL;
+
+	private ModelRenderer armLeft;
+	private ModelRenderer armRight;
+	private ModelRenderer saberRight;
+	private ModelRenderer saberLeft;
+
+	public ModelOverlordCombat()
+	{
+		textureWidth = 128;
+		textureHeight = 128;
+
+		//Main Body parts
+		body = new ModelRenderer(this, 0, 64);
+		body.addBox(-11F, -6F, -11F, 22, 12, 22);
+		body.setRotationPoint(0F, -4F, 0F);
+
+		ModelRenderer bodyUnder = new ModelRenderer(this, 4, 0);
+		bodyUnder.addBox(-7F, 6F, -7F, 14, 3, 14);
+		body.addChild(bodyUnder);
+
+		ModelRenderer bodyBottom = new ModelRenderer(this, 38, 24);
+		bodyBottom.addBox(-3F, 9F, -3F, 6, 3, 6);
+		body.addChild(bodyBottom);
+
+		ModelRenderer bodyLegPanelRight = new ModelRenderer(this, 74, 32);
+		bodyLegPanelRight.addBox(-12F, -5F, -8F, 1, 10, 16);
+		body.addChild(bodyLegPanelRight);
+
+		ModelRenderer bodyLegPanelLeft = new ModelRenderer(this, 74, 32);
+		bodyLegPanelLeft.addBox(11F, -5F, -8F, 1, 10, 16);
+		body.addChild(bodyLegPanelLeft);
+
+		ModelRenderer bodyTop = new ModelRenderer(this, 0, 40);
+		bodyTop.addBox(-9F, -9F, -9F, 18, 3, 18);
+		body.addChild(bodyTop);
+
+		ModelRenderer bodyTop2 = new ModelRenderer(this, 0, 24);
+		bodyTop2.addBox(-6F, -11F, -6F, 12, 2, 12);
+		body.addChild(bodyTop2);
+
+		ModelRenderer bodyFrontPanel = new ModelRenderer(this, 74, 72);
+		bodyFrontPanel.addBox(-8F, -4F, -14F, 16, 8, 3);
+		body.addChild(bodyFrontPanel);
+
+		ModelRenderer bodyBackPanel = new ModelRenderer(this, 74, 72);
+		bodyBackPanel.addBox(-8F, -4F, 11F, 16, 8, 2);
+		body.addChild(bodyBackPanel);
+
+		//Main head parts
+		head = new ModelRenderer(this, 60, 16);
+		head.addBox(-4F, -15F, -4F, 8, 4, 8);
+		body.addChild(head);
+
+		ModelRenderer eye = new ModelRenderer(this, 94, 24);
+		eye.addBox(-1F, -14F, -5F, 2, 2, 1);
+		head.addChild(eye);
+
+		ModelRenderer headTop = new ModelRenderer(this, 60, 0);
+		headTop.addBox(-5F, -17F, -5F, 10, 2, 10);
+		head.addChild(headTop);
+
+		ModelRenderer headTop2 = new ModelRenderer(this, 94, 0);
+		headTop2.addBox(-4F, -19F, -4F, 8, 2, 7);
+		head.addChild(headTop2);
+
+		ModelRenderer headTop3 = new ModelRenderer(this, 94, 16);
+		headTop3.addBox(-2F, -21F, -2F, 4, 2, 4);
+		head.addChild(headTop3);
+
+		ModelRenderer circuit = new ModelRenderer(this, 0, 0);
+		circuit.addBox(0F, -7F, -12F, 1, 3, 1);
+		body.addChild(circuit);
+
+		ModelRenderer circuit2 = new ModelRenderer(this, 0, 0);
+		circuit2.addBox(-1F, -7F, -12F, 1, 1, 3);
+		body.addChild(circuit2);
+
+		ModelRenderer circuit3 = new ModelRenderer(this, 0, 0);
+		circuit3.addBox(0F, -10F, -10F, 1, 4, 1);
+		body.addChild(circuit3);
+
+		ModelRenderer circuit4 = new ModelRenderer(this, 0, 0);
+		circuit4.addBox(-4F, -10F, -10F, 4, 1, 1);
+		body.addChild(circuit4);
+
+		ModelRenderer circuit5 = new ModelRenderer(this, 0, 0);
+		circuit5.addBox(-4F, -10F, -9F, 1, 1, 3);
+		body.addChild(circuit5);
+
+		ModelRenderer circuit6 = new ModelRenderer(this, 0, 0);
+		circuit6.addBox(-3F, -12F, -7F, 1, 3, 1);
+		body.addChild(circuit6);
+
+		//Part of head
+		ModelRenderer circuit7 = new ModelRenderer(this, 0, 0);
+		circuit7.addBox(-3F, -16F, -6F, 2, 1, 1);
+		head.addChild(circuit7);
+
+		ModelRenderer circuit8 = new ModelRenderer(this, 0, 0);
+		circuit8.addBox(-2F, -18F, -6F, 1, 2, 1);
+		head.addChild(circuit8);
+
+		ModelRenderer circuit9 = new ModelRenderer(this, 0, 0);
+		circuit9.addBox(-2F, -19F, -5F, 1, 2, 1);
+		head.addChild(circuit9);
+
+		ModelRenderer circuit10 = new ModelRenderer(this, 0, 0);
+		circuit10.addBox(-3F, -20F, -5F, 1, 2, 1);
+		head.addChild(circuit10);
+
+		ModelRenderer circuit11 = new ModelRenderer(this, 0, 0);
+		circuit11.addBox(-3F, -20F, -4F, 1, 1, 3);
+		head.addChild(circuit11);
+		//Part of head
+
+		ModelRenderer circuit12 = new ModelRenderer(this, 0, 0);
+		circuit12.addBox(5F, -5F, -12F, 1, 1, 1);
+		body.addChild(circuit12);
+
+		ModelRenderer circuit13 = new ModelRenderer(this, 0, 0);
+		circuit13.addBox(4F, -6F, -12F, 5, 1, 1);
+		body.addChild(circuit13);
+
+		ModelRenderer circuit14 = new ModelRenderer(this, 0, 0);
+		circuit14.addBox(8F, -7F, -12F, 1, 1, 3);
+		body.addChild(circuit14);
+
+		ModelRenderer circuit15 = new ModelRenderer(this, 0, 0);
+		circuit15.addBox(8F, -8F, -10F, 2, 1, 1);
+		body.addChild(circuit15);
+
+		ModelRenderer circuit16 = new ModelRenderer(this, 0, 0);
+		circuit16.addBox(9F, -8F, -9F, 1, 1, 5);
+		body.addChild(circuit16);
+
+		ModelRenderer circuit17 = new ModelRenderer(this, 0, 0);
+		circuit17.addBox(9F, -10F, -5F, 1, 2, 1);
+		body.addChild(circuit17);
+
+		ModelRenderer circuit18 = new ModelRenderer(this, 0, 0);
+		circuit18.addBox(6F, -10F, -5F, 3, 1, 1);
+		body.addChild(circuit18);
+
+		ModelRenderer circuit19 = new ModelRenderer(this, 0, 0);
+		circuit19.addBox(6F, -12F, -6F, 1, 3, 1);
+		body.addChild(circuit19);
+
+		ModelRenderer circuit20 = new ModelRenderer(this, 0, 0);
+		circuit20.addBox(5F, -12F, -5F, 2, 1, 1);
+		body.addChild(circuit20);
+
+		//Part of head
+		ModelRenderer circuit21 = new ModelRenderer(this, 0, 0);
+		circuit21.addBox(5F, -18F, -4F, 1, 3, 1);
+		head.addChild(circuit21);
+
+		ModelRenderer circuit22 = new ModelRenderer(this, 0, 0);
+		circuit22.addBox(4F, -20F, -5F, 1, 3, 1);
+		head.addChild(circuit22);
+
+		ModelRenderer circuit23 = new ModelRenderer(this, 0, 0);
+		circuit23.addBox(4F, -18F, -4F, 1, 1, 1);
+		head.addChild(circuit23);
+
+		ModelRenderer circuit24 = new ModelRenderer(this, 0, 0);
+		circuit24.addBox(1F, -20F, -4F, 4, 1, 1);
+		head.addChild(circuit24);
+
+		ModelRenderer circuit25 = new ModelRenderer(this, 0, 0);
+		circuit25.addBox(1F, -22F, -3F, 1, 3, 1);
+		head.addChild(circuit25);
+		//Part of head
+
+		ModelRenderer circuit26 = new ModelRenderer(this, 0, 0);
+		circuit26.addBox(1F, -9F, -10F, 4, 1, 1);
+		body.addChild(circuit26);
+
+		ModelRenderer circuit27 = new ModelRenderer(this, 0, 0);
+		circuit27.addBox(4F, -8F, -10F, 1, 2, 1);
+		body.addChild(circuit27);
+
+		ModelRenderer circuit28 = new ModelRenderer(this, 0, 0);
+		circuit28.addBox(4F, -7F, -12F, 1, 1, 2);
+		body.addChild(circuit28);
+
+		ModelRenderer circuit29 = new ModelRenderer(this, 0, 0);
+		circuit29.addBox(-1F, -12F, -7F, 1, 3, 1);
+		body.addChild(circuit29);
+
+		ModelRenderer circuit30 = new ModelRenderer(this, 0, 0);
+		circuit30.addBox(-1F, -10F, -9F, 1, 1, 2);
+		body.addChild(circuit30);
+
+		ModelRenderer circuit31 = new ModelRenderer(this, 0, 0);
+		circuit31.addBox(-1F, -16F, -6F, 1, 1, 1);
+		body.addChild(circuit31);
+
+		ModelRenderer circuit32 = new ModelRenderer(this, 0, 0);
+		circuit32.addBox(-9F, -5F, -12F, 1, 3, 1);
+		body.addChild(circuit32);
+
+		ModelRenderer circuit33 = new ModelRenderer(this, 0, 0);
+		circuit33.addBox(-10F, -7F, -12F, 1, 3, 1);
+		body.addChild(circuit33);
+
+		ModelRenderer circuit34 = new ModelRenderer(this, 0, 0);
+		circuit34.addBox(-10F, -7F, -11F, 1, 1, 5);
+		body.addChild(circuit34);
+
+		ModelRenderer circuit35 = new ModelRenderer(this, 0, 0);
+		circuit35.addBox(-7F, -7F, -12F, 1, 3, 1);
+		body.addChild(circuit35);
+
+		ModelRenderer circuit36 = new ModelRenderer(this, 0, 0);
+		circuit36.addBox(-9F, -7F, -11F, 3, 1, 1);
+		body.addChild(circuit36);
+
+		ModelRenderer circuit37 = new ModelRenderer(this, 0, 0);
+		circuit37.addBox(-10F, -9F, -7F, 1, 2, 1);
+		body.addChild(circuit37);
+
+		ModelRenderer circuit38 = new ModelRenderer(this, 0, 0);
+		circuit38.addBox(-10F, -10F, -7F, 1, 1, 4);
+		body.addChild(circuit38);
+
+		ModelRenderer circuit39 = new ModelRenderer(this, 0, 0);
+		circuit39.addBox(-9F, -10F, -4F, 2, 1, 1);
+		body.addChild(circuit39);
+
+		ModelRenderer circuit40 = new ModelRenderer(this, 0, 0);
+		circuit40.addBox(-7F, -10F, -5F, 1, 1, 2);
+		body.addChild(circuit40);
+
+		ModelRenderer circuit41 = new ModelRenderer(this, 0, 0);
+		circuit41.addBox(-7F, -12F, -5F, 1, 2, 1);
+		body.addChild(circuit41);
+
+		ModelRenderer circuit42 = new ModelRenderer(this, 0, 0);
+		circuit42.addBox(-6F, -12F, -5F, 1, 1, 3);
+		body.addChild(circuit42);
+
+		//Part of head
+		ModelRenderer circuit43 = new ModelRenderer(this, 0, 0);
+		circuit43.addBox(-6F, -18F, -3F, 1, 3, 1);
+		head.addChild(circuit43);
+
+		ModelRenderer circuit44 = new ModelRenderer(this, 0, 0);
+		circuit44.addBox(-5F, -18F, -3F, 1, 1, 5);
+		head.addChild(circuit44);
+
+		ModelRenderer circuit45 = new ModelRenderer(this, 0, 0);
+		circuit45.addBox(-5F, -20F, 1F, 1, 2, 1);
+		head.addChild(circuit45);
+
+		ModelRenderer circuit46 = new ModelRenderer(this, 0, 0);
+		circuit46.addBox(-5F, -20F, 0F, 3, 1, 1);
+		head.addChild(circuit46);
+		//Part of head
+
+		ModelRenderer circuit47 = new ModelRenderer(this, 0, 0);
+		circuit47.addBox(-12F, -7F, 0F, 1, 2, 1);
+		body.addChild(circuit47);
+
+		ModelRenderer circuit48 = new ModelRenderer(this, 0, 0);
+		circuit48.addBox(-11F, -7F, -2F, 1, 1, 3);
+		body.addChild(circuit48);
+
+		ModelRenderer circuit49 = new ModelRenderer(this, 0, 0);
+		circuit49.addBox(-10F, -10F, -2F, 1, 4, 1);
+		body.addChild(circuit49);
+
+		ModelRenderer circuit50 = new ModelRenderer(this, 0, 0);
+		circuit50.addBox(-10F, -10F, -1F, 3, 1, 1);
+		body.addChild(circuit50);
+
+		ModelRenderer circuit51 = new ModelRenderer(this, 0, 0);
+		circuit51.addBox(-8F, -10F, -3F, 1, 1, 2);
+		body.addChild(circuit51);
+
+		ModelRenderer circuit52 = new ModelRenderer(this, 0, 0);
+		circuit52.addBox(-12F, -6F, 4F, 1, 1, 3);
+		body.addChild(circuit52);
+
+		ModelRenderer circuit53 = new ModelRenderer(this, 0, 0);
+		circuit53.addBox(-12F, -7F, 6F, 3, 1, 1);
+		body.addChild(circuit53);
+
+		ModelRenderer circuit54 = new ModelRenderer(this, 0, 0);
+		circuit54.addBox(-10F, -10F, 5F, 1, 4, 1);
+		body.addChild(circuit54);
+
+		ModelRenderer circuit55 = new ModelRenderer(this, 0, 0);
+		circuit55.addBox(-9F, -10F, 0F, 1, 1, 6);
+		body.addChild(circuit55);
+
+		ModelRenderer circuit56 = new ModelRenderer(this, 0, 0);
+		circuit56.addBox(-8F, -10F, 4F, 1, 1, 1);
+		body.addChild(circuit56);
+
+		ModelRenderer circuit57 = new ModelRenderer(this, 0, 0);
+		circuit57.addBox(-7F, -12F, 4F, 1, 3, 1);
+		body.addChild(circuit57);
+
+		ModelRenderer circuit58 = new ModelRenderer(this, 0, 0);
+		circuit58.addBox(-7F, -12F, 5F, 4, 1, 1);
+		body.addChild(circuit58);
+
+		//Part of head
+		ModelRenderer circuit59 = new ModelRenderer(this, 0, 0);
+		circuit59.addBox(-3F, -22F, 0F, 1, 2, 1);
+		head.addChild(circuit59);
+
+		ModelRenderer circuit60 = new ModelRenderer(this, 0, 0);
+		circuit60.addBox(-4F, -18F, 5F, 1, 3, 1);
+		head.addChild(circuit60);
+
+		ModelRenderer circuit61 = new ModelRenderer(this, 0, 0);
+		circuit61.addBox(-3F, -18F, 3F, 1, 1, 3);
+		head.addChild(circuit61);
+
+		ModelRenderer circuit62 = new ModelRenderer(this, 0, 0);
+		circuit62.addBox(-5F, -19F, 2F, 1, 1, 2);
+		head.addChild(circuit62);
+
+		ModelRenderer circuit63 = new ModelRenderer(this, 0, 0);
+		circuit63.addBox(-4F, -19F, 3F, 2, 1, 1);
+		head.addChild(circuit63);
+		//Part of head
+
+		ModelRenderer circuit64 = new ModelRenderer(this, 0, 0);
+		circuit64.addBox(-10F, -2F, 11F, 2, 1, 1);
+		body.addChild(circuit64);
+
+		ModelRenderer circuit65 = new ModelRenderer(this, 0, 0);
+		circuit65.addBox(-12F, -1F, 11F, 3, 1, 1);
+		body.addChild(circuit65);
+
+		ModelRenderer circuit66 = new ModelRenderer(this, 0, 0);
+		circuit66.addBox(-10F, -7F, 11F, 1, 5, 1);
+		body.addChild(circuit66);
+
+		ModelRenderer circuit67 = new ModelRenderer(this, 0, 0);
+		circuit67.addBox(-9F, -7F, 11F, 5, 1, 1);
+		body.addChild(circuit67);
+
+		ModelRenderer circuit68 = new ModelRenderer(this, 0, 0);
+		circuit68.addBox(-5F, -7F, 9F, 1, 1, 2);
+		body.addChild(circuit68);
+
+		ModelRenderer circuit69 = new ModelRenderer(this, 0, 0);
+		circuit69.addBox(-7F, -8F, 9F, 3, 1, 1);
+		body.addChild(circuit69);
+
+		ModelRenderer circuit70 = new ModelRenderer(this, 0, 0);
+		circuit70.addBox(-7F, -10F, 9F, 1, 2, 1);
+		body.addChild(circuit70);
+
+		ModelRenderer circuit71 = new ModelRenderer(this, 0, 0);
+		circuit71.addBox(-5F, -10F, 6F, 1, 1, 3);
+		body.addChild(circuit71);
+
+		ModelRenderer circuit72 = new ModelRenderer(this, 0, 0);
+		circuit72.addBox(-7F, -10F, 8F, 2, 1, 1);
+		body.addChild(circuit72);
+
+		ModelRenderer circuit73 = new ModelRenderer(this, 0, 0);
+		circuit73.addBox(-5F, -12F, 6F, 1, 2, 1);
+		body.addChild(circuit73);
+
+		ModelRenderer circuit74 = new ModelRenderer(this, 0, 0);
+		circuit74.addBox(-12F, -2F, 8F, 1, 1, 4);
+		body.addChild(circuit74);
+
+		ModelRenderer circuit75 = new ModelRenderer(this, 0, 0);
+		circuit75.addBox(-1F, -5F, 11F, 3, 1, 1);
+		body.addChild(circuit75);
+
+		ModelRenderer circuit76 = new ModelRenderer(this, 0, 0);
+		circuit76.addBox(-1F, -7F, 11F, 1, 2, 1);
+		body.addChild(circuit76);
+
+		ModelRenderer circuit77 = new ModelRenderer(this, 0, 0);
+		circuit77.addBox(-4F, -7F, 10F, 5, 1, 1);
+		body.addChild(circuit77);
+
+		ModelRenderer circuit78 = new ModelRenderer(this, 0, 0);
+		circuit78.addBox(0F, -10F, 9F, 1, 4, 1);
+		body.addChild(circuit78);
+
+		ModelRenderer circuit79 = new ModelRenderer(this, 0, 0);
+		circuit79.addBox(0F, -10F, 8F, 3, 1, 1);
+		body.addChild(circuit79);
+
+		ModelRenderer circuit80 = new ModelRenderer(this, 0, 0);
+		circuit80.addBox(2F, -10F, 7F, 6, 1, 1);
+		body.addChild(circuit80);
+
+		ModelRenderer circuit81 = new ModelRenderer(this, 0, 0);
+		circuit81.addBox(7F, -10F, 5F, 1, 1, 2);
+		body.addChild(circuit81);
+
+		ModelRenderer circuit82 = new ModelRenderer(this, 0, 0);
+		circuit82.addBox(6F, -10F, 4F, 2, 1, 1);
+		body.addChild(circuit82);
+
+		ModelRenderer circuit83 = new ModelRenderer(this, 0, 0);
+		circuit83.addBox(6F, -12F, 4F, 1, 2, 1);
+		body.addChild(circuit83);
+
+		ModelRenderer circuit84 = new ModelRenderer(this, 0, 0);
+		circuit84.addBox(3F, -12F, 5F, 4, 1, 1);
+		body.addChild(circuit84);
+
+		//Part of head
+		ModelRenderer circuit85 = new ModelRenderer(this, 0, 0);
+		circuit85.addBox(3F, -17F, 5F, 1, 2, 1);
+		head.addChild(circuit85);
+
+		ModelRenderer circuit86 = new ModelRenderer(this, 0, 0);
+		circuit86.addBox(4F, -18F, 5F, 1, 2, 1);
+		head.addChild(circuit86);
+
+		ModelRenderer circuit87 = new ModelRenderer(this, 0, 0);
+		circuit87.addBox(2F, -18F, 4F, 3, 1, 1);
+		head.addChild(circuit87);
+
+		ModelRenderer circuit88 = new ModelRenderer(this, 0, 0);
+		circuit88.addBox(2F, -20F, 3F, 1, 3, 1);
+		head.addChild(circuit88);
+
+		ModelRenderer circuit89 = new ModelRenderer(this, 0, 0);
+		circuit89.addBox(0F, -20F, 2F, 3, 1, 1);
+		head.addChild(circuit89);
+
+		ModelRenderer circuit90 = new ModelRenderer(this, 0, 0);
+		circuit90.addBox(0F, -22F, 2F, 1, 2, 1);
+		head.addChild(circuit90);
+		//Part of head
+
+		ModelRenderer circuit91 = new ModelRenderer(this, 0, 0);
+		circuit91.addBox(11F, -7F, 0F, 1, 1, 6);
+		body.addChild(circuit91);
+
+		ModelRenderer circuit92 = new ModelRenderer(this, 0, 0);
+		circuit92.addBox(11F, -6F, 0F, 1, 1, 1);
+		body.addChild(circuit92);
+
+		ModelRenderer circuit93 = new ModelRenderer(this, 0, 0);
+		circuit93.addBox(11F, -6F, 4F, 1, 1, 1);
+		body.addChild(circuit93);
+
+		ModelRenderer circuit94 = new ModelRenderer(this, 0, 0);
+		circuit94.addBox(9F, -7F, 5F, 2, 1, 1);
+		body.addChild(circuit94);
+
+		ModelRenderer circuit95 = new ModelRenderer(this, 0, 0);
+		circuit95.addBox(9F, -10F, 6F, 1, 4, 1);
+		body.addChild(circuit95);
+
+		ModelRenderer circuit96 = new ModelRenderer(this, 0, 0);
+		circuit96.addBox(8F, -10F, 5F, 2, 1, 1);
+		body.addChild(circuit96);
+
+		ModelRenderer circuit97 = new ModelRenderer(this, 0, 0);
+		circuit97.addBox(11F, -7F, -5F, 1, 2, 1);
+		body.addChild(circuit97);
+
+		ModelRenderer circuit98 = new ModelRenderer(this, 0, 0);
+		circuit98.addBox(10F, -7F, -5F, 1, 1, 4);
+		body.addChild(circuit98);
+
+		ModelRenderer circuit99 = new ModelRenderer(this, 0, 0);
+		circuit99.addBox(9F, -10F, -2F, 1, 4, 1);
+		body.addChild(circuit99);
+
+		ModelRenderer circuit100 = new ModelRenderer(this, 0, 0);
+		circuit100.addBox(8F, -10F, -4F, 1, 1, 5);
+		body.addChild(circuit100);
+
+		ModelRenderer circuit101 = new ModelRenderer(this, 0, 0);
+		circuit101.addBox(6F, -10F, 0F, 2, 1, 1);
+		body.addChild(circuit101);
+
+		ModelRenderer circuit102 = new ModelRenderer(this, 0, 0);
+		circuit102.addBox(6F, -12F, -1F, 1, 3, 1);
+		body.addChild(circuit102);
+
+		ModelRenderer circuit103 = new ModelRenderer(this, 0, 0);
+		circuit103.addBox(5F, -13F, -1F, 1, 2, 1);
+		body.addChild(circuit103);
+
+		//Part of head
+		ModelRenderer circuit104 = new ModelRenderer(this, 0, 0);
+		circuit104.addBox(4F, -20F, 0F, 1, 3, 1);
+		head.addChild(circuit104);
+
+		ModelRenderer circuit105 = new ModelRenderer(this, 0, 0);
+		circuit105.addBox(5F, -18F, 0F, 1, 2, 1);
+		head.addChild(circuit105);
+
+		ModelRenderer circuit106 = new ModelRenderer(this, 0, 0);
+		circuit106.addBox(2F, -20F, -1F, 3, 1, 1);
+		head.addChild(circuit106);
+
+		ModelRenderer circuit107 = new ModelRenderer(this, 0, 0);
+		circuit107.addBox(2F, -20F, 0F, 1, 1, 2);
+		head.addChild(circuit107);
+		//Part of head
+
+		ModelRenderer circuit108 = new ModelRenderer(this, 0, 0);
+		circuit108.addBox(8F, -3F, -12F, 2, 1, 1);
+		body.addChild(circuit108);
+
+		ModelRenderer circuit109 = new ModelRenderer(this, 0, 0);
+		circuit109.addBox(9F, -2F, -12F, 1, 4, 1);
+		body.addChild(circuit109);
+
+		ModelRenderer circuit110 = new ModelRenderer(this, 0, 0);
+		circuit110.addBox(8F, 1F, -12F, 1, 1, 1);
+		body.addChild(circuit110);
+
+		ModelRenderer circuit111 = new ModelRenderer(this, 0, 0);
+		circuit111.addBox(10F, -2F, -12F, 2, 1, 1);
+		body.addChild(circuit111);
+
+		ModelRenderer circuit112 = new ModelRenderer(this, 0, 0);
+		circuit112.addBox(11F, -4F, -11F, 1, 3, 1);
+		body.addChild(circuit112);
+
+		ModelRenderer circuit113 = new ModelRenderer(this, 0, 0);
+		circuit113.addBox(11F, -4F, -10F, 1, 1, 2);
+		body.addChild(circuit113);
+
+		ModelRenderer circuit114 = new ModelRenderer(this, 0, 0);
+		circuit114.addBox(-12F, 0F, -12F, 4, 1, 1);
+		body.addChild(circuit114);
+
+		ModelRenderer circuit115 = new ModelRenderer(this, 0, 0);
+		circuit115.addBox(-12F, 0F, -11F, 1, 3, 1);
+		body.addChild(circuit115);
+
+		ModelRenderer circuit116 = new ModelRenderer(this, 0, 0);
+		circuit116.addBox(-12F, 2F, -10F, 1, 1, 2);
+		body.addChild(circuit116);
+
+		ModelRenderer circuit117 = new ModelRenderer(this, 0, 0);
+		circuit117.addBox(6F, -5F, 11F, 1, 1, 1);
+		body.addChild(circuit117);
+
+		ModelRenderer circuit118 = new ModelRenderer(this, 0, 0);
+		circuit118.addBox(6F, -6F, 11F, 4, 1, 1);
+		body.addChild(circuit118);
+
+		ModelRenderer circuit119 = new ModelRenderer(this, 0, 0);
+		circuit119.addBox(9F, -5F, 11F, 1, 3, 1);
+		body.addChild(circuit119);
+
+		ModelRenderer circuit120 = new ModelRenderer(this, 0, 0);
+		circuit120.addBox(10F, -3F, 11F, 1, 4, 1);
+		body.addChild(circuit120);
+
+		ModelRenderer circuit121 = new ModelRenderer(this, 0, 0);
+		circuit121.addBox(8F, 0F, 11F, 2, 1, 1);
+		body.addChild(circuit121);
+
+		ModelRenderer circuit122 = new ModelRenderer(this, 0, 0);
+		circuit122.addBox(11F, -1F, 9F, 1, 1, 3);
+		body.addChild(circuit122);
+
+		ModelRenderer circuit123 = new ModelRenderer(this, 0, 0);
+		circuit123.addBox(11F, -1F, 8F, 1, 2, 1);
+		body.addChild(circuit123);
+
+		ModelRenderer circuit124 = new ModelRenderer(this, 0, 0);
+		circuit124.addBox(7F, -7F, 9F, 1, 1, 3);
+		body.addChild(circuit124);
+
+		ModelRenderer circuit125 = new ModelRenderer(this, 0, 0);
+		circuit125.addBox(6F, -10F, 9F, 1, 3, 1);
+		body.addChild(circuit125);
+
+		ModelRenderer circuit126 = new ModelRenderer(this, 0, 0);
+		circuit126.addBox(7F, -8F, 9F, 1, 1, 1);
+		body.addChild(circuit126);
+
+		ModelRenderer circuit127 = new ModelRenderer(this, 0, 0);
+		circuit127.addBox(6F, -10F, 8F, 1, 1, 1);
+		body.addChild(circuit127);
+
+		//Legs
+
+		//FR
+		legFR = new ModelRenderer(this, 92, 86);
+		legFR.addBox(-18F, 0F, 0F, 6, 2, 2);
+		legFR.rotateAngleY = -0.5089647F;
+		legFR.rotateAngleZ = 0.1115358F;
+		body.addChild(legFR);
+
+		legJointFR = new ModelRenderer(this, 92, 92);
+		legJointFR.addBox(-22F, -3F, -1F, 4, 6, 4);
+		legFR.addChild(legJointFR);
+
+		ModelRenderer legMidFR = new ModelRenderer(this, 72, 100);
+		legMidFR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
+		legJointFR.addChild(legMidFR);
+
+		ModelRenderer legThickFR = new ModelRenderer(this, 92, 104);
+		legThickFR.addBox(-24F, 10F, -2F, 6, 16, 6);
+		legMidFR.addChild(legThickFR);
+
+		ModelRenderer legTipFR = new ModelRenderer(this, 72, 112);
+		legTipFR.addBox(-22F, 26F, 0F, 2, 4, 2);
+		legThickFR.addChild(legTipFR);
+
+		//FMR
+		legFMR = new ModelRenderer(this, 92, 86);
+		legFMR.addBox(-18F, 0F, 0F, 6, 2, 2);
+		legFMR.rotateAngleY = -0.2115358F;
+		legFMR.rotateAngleZ = 0.1115358F;
+		body.addChild(legFMR);
+
+		legJointFMR = new ModelRenderer(this, 92, 92);
+		legJointFMR.addBox(-22F, -3F, -1F, 4, 6, 4);
+		legFMR.addChild(legJointFMR);
+
+		ModelRenderer legMidFMR = new ModelRenderer(this, 72, 100);
+		legMidFMR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
+		legJointFMR.addChild(legMidFMR);		
+
+		ModelRenderer legThickFMR = new ModelRenderer(this, 92, 104);
+		legThickFMR.addBox(-24F, 10F, -2F, 6, 16, 6);
+		legMidFMR.addChild(legThickFMR);
+
+		ModelRenderer legTipFMR = new ModelRenderer(this, 72, 112);
+		legTipFMR.addBox(-22F, 26F, 0F, 2, 4, 2);
+		legThickFMR.addChild(legTipFMR);
+
+		//BMR
+		legBMR = new ModelRenderer(this, 92, 86);
+		legBMR.addBox(-18F, 0F, 0F, 6, 2, 2);
+		legBMR.rotateAngleY = 0.1487144F;
+		legBMR.rotateAngleZ = 0.1115358F;
+		body.addChild(legBMR);
+
+		legJointBMR = new ModelRenderer(this, 92, 92);
+		legJointBMR.addBox(-22F, -3F, -1F, 4, 6, 4);
+		legBMR.addChild(legJointBMR);
+
+		ModelRenderer legMidBMR = new ModelRenderer(this, 72, 100);
+		legMidBMR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
+		legJointBMR.addChild(legMidBMR);
+
+		ModelRenderer legThickBMR = new ModelRenderer(this, 92, 104);
+		legThickBMR.addBox(-24F, 10F, -2F, 6, 16, 6);
+		legMidBMR.addChild(legThickBMR);
+
+		ModelRenderer legTipBMR = new ModelRenderer(this, 72, 112);
+		legTipBMR.addBox(-22F, 26F, 0F, 2, 4, 2);
+		legThickBMR.addChild(legTipBMR);
+
+		//BR
+		legBR = new ModelRenderer(this, 92, 86);
+		legBR.addBox(-19F, 0F, 0F, 6, 2, 2);
+		legBR.rotateAngleY = 0.5089647F;
+		legBR.rotateAngleZ = 0.0371786F;
+		body.addChild(legBR);
+
+		legJointBR = new ModelRenderer(this, 92, 92);
+		legJointBR.addBox(-23F, -3F, -1F, 4, 6, 4);
+		legBR.addChild(legJointBR);		
+
+		ModelRenderer legMidBR = new ModelRenderer(this, 72, 100);
+		legMidBR.addBox(-22.5F, 3F, -0.5F, 3, 7, 3);
+		legJointBR.addChild(legMidBR);
+
+		ModelRenderer legThickBR = new ModelRenderer(this, 92, 104);
+		legThickBR.addBox(-23F, 10F, -2F, 6, 16, 6);
+		legMidBR.addChild(legThickBR);
+
+		ModelRenderer legTipBR = new ModelRenderer(this, 72, 112);
+		legTipBR.addBox(-22F, 26F, 0F, 2, 4, 2);
+		legThickBR.addChild(legTipBR);
+
+		//FL
+		legFL = new ModelRenderer(this, 92, 86);
+		legFL.addBox(12F, 0F, 0F, 6, 2, 2);
+		legFL.rotateAngleY = 0.5089647F;
+		legFL.rotateAngleZ = -0.1115358F;
+		body.addChild(legFL);
+
+		legJointFL = new ModelRenderer(this, 92, 92);
+		legJointFL.addBox(18F, -3F, -1F, 4, 6, 4);
+		legFL.addChild(legJointFL);
+
+		ModelRenderer legMidFL = new ModelRenderer(this, 72, 100);
+		legMidFL.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
+		legJointFL.addChild(legMidFL);
+
+		ModelRenderer legThickFL = new ModelRenderer(this, 92, 104);
+		legThickFL.addBox(18F, 10F, -2F, 6, 16, 6);
+		legMidFL.addChild(legThickFL);
+
+		ModelRenderer legTipFL = new ModelRenderer(this, 72, 112);
+		legTipFL.addBox(20F, 26F, 0F, 2, 4, 2);
+		legThickFL.addChild(legTipFL);
+
+		//FML
+		legFML = new ModelRenderer(this, 92, 86);
+		legFML.addBox(12F, 0F, 0F, 6, 2, 2);
+		legFML.rotateAngleX = 0.2115358F;
+		legFML.rotateAngleZ = -0.1115358F;
+		body.addChild(legFML);
+
+		legJointFML = new ModelRenderer(this, 92, 92);
+		legJointFML.addBox(18F, -3F, -1F, 4, 6, 4);
+		legFML.addChild(legJointFML);
+
+		ModelRenderer legMidFML = new ModelRenderer(this, 72, 100);
+		legMidFML.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
+		legJointFML.addChild(legMidFML);
+
+		ModelRenderer legThickFML = new ModelRenderer(this, 92, 104);
+		legThickFML.addBox(18F, 10F, -2F, 6, 16, 6);
+		legMidFML.addChild(legThickFML);
+
+		ModelRenderer legTipFML = new ModelRenderer(this, 72, 111);
+		legTipFML.addBox(20F, 26F, 0F, 2, 4, 2);
+		legThickFML.addChild(legTipFML);
+
+		//BML
+		legBML = new ModelRenderer(this, 92, 86);
+		legBML.addBox(12F, 0F, 0F, 6, 2, 2);
+		legBML.rotateAngleY = -0.1487144F;
+		legBML.rotateAngleZ = -0.1115358F;
+		body.addChild(legBML);
+
+		legJointBML = new ModelRenderer(this, 92, 92);
+		legJointBML.addBox(18F, -3F, -1F, 4, 6, 4);
+		legBML.addChild(legJointBML);
+
+		ModelRenderer legMidBML = new ModelRenderer(this, 72, 100);
+		legMidBML.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
+		legJointBML.addChild(legMidBML);
+
+		ModelRenderer legThickBML = new ModelRenderer(this, 92, 104);
+		legThickBML.addBox(18F, 10F, -2F, 6, 16, 6);
+		legMidBML.addChild(legThickBML);
+
+		ModelRenderer legTipBML = new ModelRenderer(this, 72, 112);
+		legTipBML.addBox(20F, 26F, 0F, 2, 4, 2);
+		legThickBML.addChild(legTipBML);
+
+		//BL
+		legBL = new ModelRenderer(this, 92, 86);
+		legBL.addBox(12F, 0F, 0F, 6, 2, 2);
+		legBL.rotateAngleY = -0.5089647F;
+		legBL.rotateAngleZ = -0.0371786F;
+		body.addChild(legBL);
+
+		legJointBL = new ModelRenderer(this, 92, 92);
+		legJointBL.addBox(18F, -3F, -1F, 4, 6, 4);
+		legBL.addChild(legJointBL);	
+
+		ModelRenderer legMidBL = new ModelRenderer(this, 72, 100);
+		legMidBL.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
+		legJointBL.addChild(legMidBL);		
+
+		ModelRenderer legThickBL = new ModelRenderer(this, 92, 104);
+		legThickBL.addBox(18F, 10F, -2F, 6, 16, 6);
+		legMidBL.addChild(legThickBL);
+
+		ModelRenderer legTipBL = new ModelRenderer(this, 72, 112);
+		legTipBL.addBox(20F, 26F, 0F, 2, 4, 2);
+		legThickBL.addChild(legTipBL);
+
+		//Arms
+		ModelRenderer armRightNob = new ModelRenderer(this, 0, 48);
+		armRightNob.addBox(-9F, 4F, -14F, 3, 3, 3);
+		body.addChild(armRightNob);
+
+		armRight = new ModelRenderer(this, 0, 64);
+		armRight.addBox(-8F, 5F, -19F, 1, 1, 5);
+		armRightNob.addChild(armRight);
+
+		ModelRenderer armRightThick = new ModelRenderer(this, 0, 100);
+		armRightThick.addBox(-9F, 4F, -28F, 3, 3, 9);
+		armRight.addChild(armRightThick);
+
+		ModelRenderer armRightUpperBit = new ModelRenderer(this, 0, 74);
+		armRightUpperBit.addBox(-8F, 3F, -28F, 1, 1, 2);
+		armRightThick.addChild(armRightUpperBit);
+
+		ModelRenderer armRightLowerBit = new ModelRenderer(this, 0, 74);
+		armRightLowerBit.addBox(-8F, 7F, -28F, 1, 1, 2);
+		armRightThick.addChild(armRightLowerBit);
+
+		ModelRenderer armLeftNob = new ModelRenderer(this, 0, 48);
+		armLeftNob.addBox(7F, 4F, -14F, 3, 3, 3);
+		body.addChild(armLeftNob);
+
+		armLeft = new ModelRenderer(this, 0, 64);
+		armLeft.addBox(8F, 5F, -19F, 1, 1, 5);
+		armLeftNob.addChild(armLeft);
+
+		ModelRenderer armLeftThick = new ModelRenderer(this, 0, 100);
+		armLeftThick.addBox(7F, 4F, -28F, 3, 3, 9);
+		armLeft.addChild(armLeftThick);
+
+		ModelRenderer armLeftUpperBit = new ModelRenderer(this, 0, 74);
+		armLeftUpperBit.addBox(8F, 3F, -28F, 1, 1, 2);
+		armLeftThick.addChild(armLeftUpperBit);
+
+		ModelRenderer armLeftLowerBit = new ModelRenderer(this, 0, 74);
+		armLeftLowerBit.addBox(8F, 7F, -28F, 1, 1, 2);
+		armLeftThick.addChild(armLeftLowerBit);
+
+		//Sabers
+		saberRight = new ModelRenderer(this, 12, 110);
+		saberRight.addBox(-8F, 4F, -42F, 1, 3, 14);
+		armRight.addChild(saberRight);
+
+		ModelRenderer saberRightUpper = new ModelRenderer(this, 30, 102);
+		saberRightUpper.addBox(-8F, 3F, -54F, 1, 1, 18);
+		saberRight.addChild(saberRightUpper);
+
+		ModelRenderer saberRightLower = new ModelRenderer(this, 32, 100);
+		saberRightLower.addBox(-8F, 5F, -48F, 1, 1, 6);
+		saberRight.addChild(saberRightLower);
+
+		saberLeft = new ModelRenderer(this, 12, 110);
+		saberLeft.addBox(8F, 4F, -42F, 1, 3, 14);
+		armLeft.addChild(saberLeft);
+
+		ModelRenderer saberLeftUpper = new ModelRenderer(this, 30, 102);
+		saberLeftUpper.addBox(8F, 3F, -54F, 1, 1, 18);
+		saberLeft.addChild(saberLeftUpper);
+
+		ModelRenderer saberLeftLower = new ModelRenderer(this, 32, 100);
+		saberLeftLower.addBox(8F, 5F, -48F, 1, 1, 6);
+		saberLeft.addChild(saberLeftLower);
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		super.render(entity, f, f1, f2, f3, f4, f5);
+		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+		if (!(entity instanceof EntityOverlordCombat)) body.render(f5);
+
+		EntityOverlordCombat combat = (EntityOverlordCombat) entity;
+		saberRight.showModel = saberLeft.showModel = combat.getAttackTime() > 0;
+		body.render(f5);
+	}
+
+	@Override
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+	{
+		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+		if (!(entity instanceof EntityOverlordCombat)) return;
+
+		EntityOverlordCombat combat = (EntityOverlordCombat) entity;
+
+		armRight.rotateAngleX = armLeft.rotateAngleX = armRight.rotateAngleZ = armLeft.rotateAngleZ = armRight.rotateAngleY = armLeft.rotateAngleY = 0F;
+		armRight.offsetX = 0F;
+		armLeft.offsetX = 0F;
+
+		if (combat.getHurtTime() > 0 || combat.getReflectionTicks() > 0 || combat.getChargeTicks() > 0)
+		{
+			head.offsetY = 0.3F;
+			head.rotateAngleY = head.rotateAngleX = 0F;
+		}
+		else
+		{
+			head.offsetY = 0F;
+			head.rotateAngleY = f3 / (180F / (float)Math.PI);
+			head.rotateAngleX = f4 / (180F / (float)Math.PI);
+		}
+
+		body.offsetY = 0.02F + this.simplifyAngle(combat.ticksExisted, 45.0F) * -0.02F;
+
+		if (f != 0F)
+		{
+			legFR.rotateAngleX = -0.08F + this.simplifyAngle(f, 20.0F) * 0.08F;
+			legFR.rotateAngleZ = 0.1115358F + 0.15F + this.simplifyAngle(f, 20.0F) * -0.15F;
+
+			legFL.rotateAngleX = -0.08F + this.simplifyAngle(f - 1, 20.0F) * 0.08F;
+			legFL.rotateAngleZ = -0.1115358F - 0.15F + this.simplifyAngle(f - 1, 20.0F) * 0.15F;
+
+			legFMR.rotateAngleX = -0.08F + this.simplifyAngle(f - 10, 20.0F) * 0.08F;
+			legFMR.rotateAngleZ = 0.1115358F + 0.15F + this.simplifyAngle(f - 10, 20.0F) * -0.15F;
+
+			legFML.rotateAngleX = -0.08F + this.simplifyAngle(f - 11, 20.0F) * 0.08F;
+			legFML.rotateAngleZ = -0.1115358F - 0.15F + this.simplifyAngle(f - 11, 20.0F) * 0.15F;
+
+			legBMR.rotateAngleX = -0.08F + this.simplifyAngle(f - 17, 20.0F) * 0.08F;
+			legBMR.rotateAngleZ = 0.1115358F + 0.15F + this.simplifyAngle(f - 17, 20.0F) * -0.15F;
+
+			legBML.rotateAngleX = -0.08F + this.simplifyAngle(f - 18, 20.0F) * 0.08F;
+			legBML.rotateAngleZ = -0.1115358F - 0.15F + this.simplifyAngle(f - 18, 20.0F) * 0.15F;
+
+			legBR.rotateAngleX = -0.08F + this.simplifyAngle(f - 22, 20.0F) * 0.08F;
+			legBR.rotateAngleZ = 0.0371786F + 0.15F + this.simplifyAngle(f - 22, 20.0F) * -0.15F;
+
+			legBL.rotateAngleX = -0.08F + this.simplifyAngle(f - 20, 20.0F) * 0.08F;
+			legBL.rotateAngleZ = -0.0371786F - 0.15F + this.simplifyAngle(f - 20, 20.0F) * 0.15F;
+		}
+		else
+		{
+			legFR.rotateAngleX = legFL.rotateAngleX = legFMR.rotateAngleX = legFML.rotateAngleX = legBML.rotateAngleX = legBMR.rotateAngleX = legBR.rotateAngleX = legBL.rotateAngleX = 0F;
+			legFR.rotateAngleZ = legFMR.rotateAngleZ = legBMR.rotateAngleZ = 0.1115358F;
+			legFL.rotateAngleZ = legFML.rotateAngleZ = legBML.rotateAngleZ = -0.1115358F;
+			legBL.rotateAngleZ = -0.0371786F;
+			legBR.rotateAngleZ = 0.0371786F;
+		}
+		
+		if (!combat.onGround)
+		{
+			legFR.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted, 15.0F) * 0.08F;
+			legFR.rotateAngleZ = 0.1115358F + 0.15F + this.simplifyAngle(combat.ticksExisted, 15.0F) * -0.15F;
+
+			legFL.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 1, 15.0F) * 0.08F;
+			legFL.rotateAngleZ = -0.1115358F - 0.15F + this.simplifyAngle(combat.ticksExisted - 1, 15.0F) * 0.15F;
+
+			legFMR.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 10, 15.0F) * 0.08F;
+			legFMR.rotateAngleZ = 0.1115358F + 0.15F + this.simplifyAngle(combat.ticksExisted - 10, 15.0F) * -0.15F;
+
+			legFML.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 11, 15.0F) * 0.08F;
+			legFML.rotateAngleZ = -0.1115358F - 0.15F + this.simplifyAngle(combat.ticksExisted - 11, 15.0F) * 0.15F;
+
+			legBMR.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 17, 15.0F) * 0.08F;
+			legBMR.rotateAngleZ = 0.1115358F + 0.15F + this.simplifyAngle(combat.ticksExisted - 17, 15.0F) * -0.15F;
+
+			legBML.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 18, 15.0F) * 0.08F;
+			legBML.rotateAngleZ = -0.1115358F - 0.15F + this.simplifyAngle(combat.ticksExisted - 18, 15.0F) * 0.15F;
+
+			legBR.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 22, 15.0F) * 0.08F;
+			legBR.rotateAngleZ = 0.0371786F + 0.15F + this.simplifyAngle(combat.ticksExisted - 22, 15.0F) * -0.15F;
+
+			legBL.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted - 20, 15.0F) * 0.08F;
+			legBL.rotateAngleZ = -0.0371786F - 0.15F + this.simplifyAngle(combat.ticksExisted - 20, 15.0F) * 0.15F;
+		}
+
+		if (combat.getAttackTime() > 0)
+		{
+			armRight.rotateAngleX = -0.125F + this.simplifyAngle(combat.getAttackTime(), 20.0F) * 0.125F;
+			armLeft.rotateAngleX = -0.125F + this.simplifyAngle(combat.getAttackTime(), 20.0F) * 0.125F;
+
+			armRight.rotateAngleY = 0.285F + this.simplifyAngle(combat.getAttackTime(), 10.0F) * -0.285F;
+			armLeft.rotateAngleY = -0.285F + this.simplifyAngle(combat.getAttackTime(), 10.0F) * 0.285F;
+
+			armRight.offsetX = 0.2F + this.simplifyAngle(combat.getAttackTime(), 10.0F) * -0.2F;
+			armLeft.offsetX = -0.2F + this.simplifyAngle(combat.getAttackTime(), 10.0F) * 0.2F;
+		}
+		else
+		{
+			if (combat.getGrappleTicks() > 0)
+			{
+				legFR.rotateAngleX = legFL.rotateAngleX = legFMR.rotateAngleX = legFML.rotateAngleX = legBML.rotateAngleX = legBMR.rotateAngleX = legBR.rotateAngleX = legBL.rotateAngleX = 0F;
+				legFR.rotateAngleZ = legFMR.rotateAngleZ = legBMR.rotateAngleZ = 0.1115358F;
+				legFL.rotateAngleZ = legFML.rotateAngleZ = legBML.rotateAngleZ = -0.1115358F;
+				legBL.rotateAngleZ = -0.0371786F;
+				legBR.rotateAngleZ = 0.0371786F;
+
+				armRight.rotateAngleX = 0.45F;
+				armLeft.rotateAngleX = 0.45F;
+				
+				armRight.offsetY = armLeft.offsetY = -0.3F;
+			}
+			else
+			{
+				armRight.offsetY = armLeft.offsetY = 0F;
+			}
+
+			if (combat.getLeapTicks() > 0)
+			{
+				if (combat.onGround)
+				{
+					body.offsetY = 0.2F;
+
+					legFR.rotateAngleX = legFL.rotateAngleX = legFMR.rotateAngleX = legFML.rotateAngleX = legBML.rotateAngleX = legBMR.rotateAngleX = legBR.rotateAngleX = legBL.rotateAngleX = 0F;
+					legFR.rotateAngleZ = legFMR.rotateAngleZ = legBMR.rotateAngleZ = 0.2115358F;
+					legFL.rotateAngleZ = legFML.rotateAngleZ = legBML.rotateAngleZ = -0.2115358F;
+					legBL.rotateAngleZ = -0.1371786F;
+					legBR.rotateAngleZ = 0.1371786F;
+				}
+			}
+		}
+		
+		if (combat.getUnstableTicks() > 0)
+		{
+			body.offsetX = (combat.getRNG().nextFloat() - combat.getRNG().nextFloat()) * 0.5F;
+			body.offsetY = (combat.getRNG().nextFloat() - combat.getRNG().nextFloat()) * 0.5F;
+			body.offsetZ = (combat.getRNG().nextFloat() - combat.getRNG().nextFloat()) * 0.5F;
+		}
+		else
+		{
+			body.offsetX = body.offsetZ = 0F;
+		}
+		
+		if (combat.getAttackTime() > 0)
+		{
+			armRight.rotateAngleX = -0.085F + this.simplifyAngle(combat.getHurtTime(), 40.0F) * 0.085F;
+			armLeft.rotateAngleX = -0.085F + this.simplifyAngle(combat.getHurtTime(), 40.0F) * 0.085F;
+
+			armRight.rotateAngleZ = 0.15F + this.simplifyAngle(combat.getHurtTime(), 40.0F) * -0.15F;
+			armLeft.rotateAngleZ = -0.15F + this.simplifyAngle(combat.getHurtTime(), 40.0F) * 0.15F;
+		}
+
+	}
+
+	private float simplifyAngle(float par1, float par2)
+	{
+		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
+	}
 }

@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -55,10 +56,10 @@ public class EntityOverlordCombat extends TragicBoss {
 		this.setSize(4.385F, 5.325F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 0;
+		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
-		this.tasks.addTask(7, new EntityAILookIdle(this));
-		this.tasks.addTask(8, new EntityAIWatchTarget(this, 48.0F));
+		this.tasks.addTask(8, new EntityAIWatchTarget(this, 64.0F));
 		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 1.0D, 48.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, selec));
@@ -258,7 +259,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 	private boolean canUseAbility()
 	{
-		return this.getUnstableTicks() == 0 && !this.hasLeaped && this.getLeapTicks() == 0 && this.getChargeTicks() == 0 && this.getGrappleTicks() == 0 && this.getReflectionTicks() == 0 && this.getTransformationTicks() == 0;
+		return this.getUnstableTicks() == 0 && !this.hasLeaped && this.getLeapTicks() == 0 && this.getChargeTicks() == 0 && this.getGrappleTicks() == 0 && this.getReflectionTicks() == 0 && this.getTransformationTicks() == 0 && this.unstableBuffer == 0 && this.reflectionBuffer == 0;
 	}
 
 	@Override
@@ -278,14 +279,14 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (this.getUnstableTicks() > 0)
 		{
 			this.motionY = -1D;
-			this.motionX *= 0.85D;
-			this.motionZ *= 0.85D;
+			this.motionX *= 0.25D;
+			this.motionZ *= 0.25D;
 		}
 
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
-		{
+		{			
 			double x;
 			double y;
 			double z;
@@ -296,10 +297,10 @@ public class EntityOverlordCombat extends TragicBoss {
 			float f1 = 0F;
 			float f2 = 0F;
 
-			//if (this.getTransformationTicks() > 0)
-			//{
-			//	return;
-			//}
+			if (this.getTransformationTicks() > 0)
+			{
+				return;
+			}
 
 			if (this.getGrappleTicks() > 0)
 			{
@@ -308,37 +309,37 @@ public class EntityOverlordCombat extends TragicBoss {
 					dr = rand.nextDouble() - rand.nextDouble();
 					dr2 = rand.nextDouble() - rand.nextDouble();
 					dr3 = rand.nextDouble() - rand.nextDouble();
-					x = dr * 1.25 + this.posX;
-					y = dr2 * 1.25 + this.posY + this.height / 2.0D;
-					z = dr3 * 1.25 + this.posZ;
+					x = dr * 2.25 + this.posX;
+					y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+					z = dr3 * 2.25 + this.posZ;
 					this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
 				}
 			}
 
-			if (this.getLeapTicks() > 20)
+			if (this.getLeapTicks() >= 10 && !this.onGround)
 			{
 				for (int i = 0; i < 22; i++)
 				{
 					dr = rand.nextDouble() - rand.nextDouble();
 					dr2 = rand.nextDouble() - rand.nextDouble();
 					dr3 = rand.nextDouble() - rand.nextDouble();
-					x = dr * 1.25 + this.posX;
-					y = dr2 * 1.25 + this.posY + this.height / 2.0D;
-					z = dr3 * 1.25 + this.posZ;
+					x = dr * 2.25 + this.posX;
+					y = dr2 * 2.25 + this.posY + this.height / 2.0D;
+					z = dr3 * 2.25 + this.posZ;
 					this.worldObj.spawnParticle("cloud", x, y, z, f, f1, f2);
 				}
 			}
 
 			if (this.getChargeTicks() > 0)
 			{
-				for (int i = 0; i < 22; i++)
+				for (int i = 0; i < 32; i++)
 				{
 					dr = rand.nextDouble() - rand.nextDouble();
 					dr2 = rand.nextDouble() - rand.nextDouble();
 					dr3 = rand.nextDouble() - rand.nextDouble();
-					x = dr * 1.25 + this.posX;
-					y = dr2 * 0.65 + this.posY + this.height / 2.0D;
-					z = dr3 * 1.25 + this.posZ;
+					x = dr * 3.25 + this.posX;
+					y = dr2 * 1.25 + this.posY + this.height / 2.0D;
+					z = dr3 * 3.25 + this.posZ;
 					this.worldObj.spawnParticle("crit", x, y, z, f, f1, f2);
 				}
 			}
@@ -364,9 +365,9 @@ public class EntityOverlordCombat extends TragicBoss {
 					dr = rand.nextDouble() - rand.nextDouble();
 					dr2 = rand.nextDouble() - rand.nextDouble();
 					dr3 = rand.nextDouble() - rand.nextDouble();
-					x = dr * 1.25 + this.posX;
-					y = dr2 * 1.25 + this.posY + this.height / 2.0D;
-					z = dr3 * 1.25 + this.posZ;
+					x = dr * 3.25 + this.posX;
+					y = dr2 * 3.25 + this.posY + this.height / 2.0D;
+					z = dr3 * 3.25 + this.posZ;
 					this.worldObj.spawnParticle("enchantmenttable", x, y, z, f, f1, f2);
 				}
 
@@ -379,20 +380,20 @@ public class EntityOverlordCombat extends TragicBoss {
 					dr = rand.nextDouble() - rand.nextDouble();
 					dr2 = rand.nextDouble() - rand.nextDouble();
 					dr3 = rand.nextDouble() - rand.nextDouble();
-					x = dr * 1.25 + this.posX;
-					y = dr2 * 1.25 + this.posY + this.height / 2.0D;
-					z = dr3 * 1.25 + this.posZ;
+					x = dr * 3.25 + this.posX;
+					y = dr2 * 3.25 + this.posY + this.height / 2.0D;
+					z = dr3 * 3.25 + this.posZ;
 					this.worldObj.spawnParticle("reddust", x, y, z, f, f1, f2);
 				}
 			}
 
 			return;
 		}
-		
+
 		if (this.getTransformationTicks() > 0)
 		{
 			this.setTransformationTicks(this.getTransformationTicks() - 1);
-			
+
 			this.reflectionBuffer = 0;
 			this.unstableBuffer = 0;
 			this.setHurtTime(0);
@@ -410,6 +411,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 		if (this.getLeapTicks() > 0) this.setLeapTicks(this.getLeapTicks() - 1);
 		if (this.hasLeaped && !this.onGround) this.motionY = -1D; 
+		if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
 
 		if (this.getLeapTicks() > 0 && this.getLeapTicks() <= 20)
 		{
@@ -480,7 +482,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		TragicMC.logInfo("Unstable Ticks: " + this.getUnstableTicks());
 		TragicMC.logInfo("Aggregate: " + this.aggregate);
 
-		if (this.getAttackTarget() != null && this.canUseAbility() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.onGround) this.setChargeTicks(200);
+		if (this.getAttackTarget() != null && this.canUseAbility() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.onGround && !this.isInWater()) this.setChargeTicks(200);
 
 		this.setSprinting(false);
 		if (this.getChargeTicks() > 0)
@@ -519,9 +521,8 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 		}
 		TragicMC.logInfo("Charge ticks: " + this.getChargeTicks());
-
+		
 		if (this.canUseAbility() && this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(16) == 0 && this.onGround) this.setGrappleTicks(80 + rand.nextInt(40));
-
 		if (this.getGrappleTicks() > 0)
 		{
 			this.setGrappleTicks(this.getGrappleTicks() - 1);
@@ -551,7 +552,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		}
 		TragicMC.logInfo("Grapple ticks: " + this.getGrappleTicks());
 
-		if (this.canUseAbility() && rand.nextInt(16) == 0 && this.ticksExisted % 5 == 0 && !this.onGround && this.motionY <= 0 && this.reflectionBuffer == 0) this.setReflectionTicks(200 + rand.nextInt(100));
+		if (this.canUseAbility() && rand.nextInt(16) == 0 && this.ticksExisted % 5 == 0 && !this.onGround && this.motionY <= 0 && this.reflectionBuffer == 0 && !this.isInWater()) this.setReflectionTicks(200 + rand.nextInt(100));
 		if (this.getReflectionTicks() > 0)
 		{
 			this.setReflectionTicks(this.getReflectionTicks() - 1);
@@ -589,7 +590,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				}
 			}
 		}
-		
+
 		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
@@ -660,7 +661,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	public boolean attackEntityAsMob(Entity entity)
 	{
 		if (this.worldObj.isRemote || this.getTransformationTicks() > 0) return false;
-		if (this.getChargeTicks() == 0 && this.attackTime == 0) this.attackTime = 20;
+		if (this.getChargeTicks() == 0 && this.getAttackTime() == 0) this.setAttackTime(20);
 		if (this.getGrappleTicks() > 0) this.setGrappleTicks(0);
 
 		if (this.getChargeTicks() > 0 || this.canUseAbility())
@@ -721,7 +722,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 	@Override
 	public void addPotionEffect(PotionEffect pe) {}
-	
+
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{

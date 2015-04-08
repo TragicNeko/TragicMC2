@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client.render.alpha;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -10,10 +11,13 @@ import org.lwjgl.opengl.GL11;
 import tragicneko.tragicmc.client.model.ModelOverlordCombat;
 import tragicneko.tragicmc.client.render.boss.RenderBoss;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
+import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderOverlordCombat extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCombat.png");
+	private static final ResourceLocation noiseTexture = new ResourceLocation("tragicmc:textures/mobs/OverlordCombatNoise.png");
 
 	public RenderOverlordCombat() {
 		super(new ModelOverlordCombat(), 0.756F, 2.25F);
@@ -22,7 +26,8 @@ public class RenderOverlordCombat extends RenderBoss {
 	@Override
 	protected void rotateCorpse(EntityLivingBase entity, float par1, float par2, float par3)
 	{
-		
+		if (entity.deathTime > 0) return;
+		super.rotateCorpse(entity, par1, par2, par3);
 	}
 
 	@Override
@@ -34,56 +39,69 @@ public class RenderOverlordCombat extends RenderBoss {
 	@Override
 	protected void renderModel(EntityLivingBase entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
-		EntityOverlordCombat core = (EntityOverlordCombat) entity;
-		
-		if (core.deathTime > 0)
-        {/*
-            float f6 = (float)core.deathTime / 300.0F;
-            GL11.glDepthFunc(GL11.GL_LEQUAL);
-            GL11.glEnable(GL11.GL_ALPHA_TEST);
-            GL11.glAlphaFunc(GL11.GL_GREATER, f6);
-            this.bindTexture(enderDragonExplodingTextures);
-            GL11.glTranslated(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
-            this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
-            GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-            GL11.glDepthFunc(GL11.GL_EQUAL); */
-        }
-		
-		this.bindEntityTexture(core);
-		
-		if (!core.isInvisible())
-		{
-			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
-		}
-		else if (!core.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
-		{
-			float trans = 1.0F;
-
-			GL11.glPushMatrix();
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, trans);
-			GL11.glDepthMask(false);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.03921569F);
-			if (core.deathTime > 0) GL11.glTranslated(entity.getRNG().nextGaussian() * 0.2, entity.getRNG().nextGaussian() * 0.2, entity.getRNG().nextGaussian() * 0.2);
-			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-			GL11.glDepthMask(true);
-			GL11.glPopMatrix();
-		}
-		else
-		{
-			this.mainModel.setRotationAngles(par2, par3, par4, par5, par6, par7, core);
-		}
+		super.renderModel(entity, par2, par3, par4, par5, par6, par7);
 	}
 
 	@Override
-	protected int shouldRenderPass(EntityLivingBase entity, int pass, float partialTick)
+	protected int shouldRenderPass(EntityLivingBase boss, int par2, float par3)
 	{
-		return -1;
+		EntityOverlordCombat combat = (EntityOverlordCombat) boss;
+		
+		if (boss.isInvisible())
+		{
+			GL11.glDepthMask(false);
+			return 0;
+		}
+		else
+		{
+			GL11.glDepthMask(true);
+		}
+		
+		if (par2 == 0)
+		{
+			this.setRenderPassModel(this.mainModel);
+            GL11.glEnable(GL11.GL_NORMALIZE);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            return 1;
+		}
 
-	} 
+		if (combat.getReflectionTicks() > 0)
+		{
+			if (par2 == 1)
+			{
+				float f1 = boss.ticksExisted + par3;
+				this.bindTexture(noiseTexture);
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glLoadIdentity();
+				float f2 = MathHelper.cos(f1 * 0.02F) * 3.0F;
+				float f3 = f1 * 0.01F;
+				GL11.glTranslatef(f2, f3, 0.0F);
+				this.setRenderPassModel(this.mainModel);
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_BLEND);
+				float f4 = 0.5F;
+				GL11.glColor4f(f4, f4, f4, 1.0F);
+				GL11.glDisable(GL11.GL_LIGHTING);
+				GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+				GL11.glTranslatef(0.0F, 0.1F, 0.0F);
+				GL11.glScalef(1.1F, 1.1F, 1.1F);
+				return 1;
+			}
+
+			if (par2 == 2)
+			{
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glLoadIdentity();
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_LIGHTING);
+				GL11.glDisable(GL11.GL_BLEND);
+				return -1;
+			}
+		}
+
+		return -1;
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {

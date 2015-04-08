@@ -27,7 +27,8 @@ public class RenderOverlordCore extends RenderBoss {
 	@Override
 	protected void rotateCorpse(EntityLivingBase entity, float par1, float par2, float par3)
 	{
-		
+		if (entity.deathTime > 0) return;
+		super.rotateCorpse(entity, par1, par2, par3);
 	}
 
 	@Override
