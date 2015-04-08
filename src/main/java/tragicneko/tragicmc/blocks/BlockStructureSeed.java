@@ -17,8 +17,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStructureSeed extends BlockContainer {
 
-	private String[] structureNames = new String[]{"ApisTemple", "DesertTower", "ForestTower", "MesaTower", "NetherTower", "DeathCircle", "IceTower", "ObsidianCavernRandom", 
-			"KitsuneDen", "CelestialTemple", "TimeAltar", "AegarTower"};
+	private String[] structureNames = new String[]{"ApisTemple", "Tower", "DeathCircle", "ObsidianCavernRandom", "KitsuneDen", "CelestialTemple",
+			"TimeAltar", "AegarTower"};
 
 	public BlockStructureSeed() {
 		super(Material.gourd);

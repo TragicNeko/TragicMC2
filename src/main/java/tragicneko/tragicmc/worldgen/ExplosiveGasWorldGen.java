@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -34,7 +35,7 @@ public class ExplosiveGasWorldGen implements IWorldGenerator {
 		for (int[] coords : list)
 		{
 			block = world.getBlock(coords[0], coords[1], coords[2]);
-			if (!block.isOpaqueCube())
+			if (!block.isOpaqueCube() || block.getMaterial() == Material.air || block.getMaterial().isLiquid())
 			{
 				flag = false;
 				break;

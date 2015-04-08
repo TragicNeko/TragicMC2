@@ -14,6 +14,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class GeyserWorldGen implements IWorldGenerator {
@@ -44,7 +45,7 @@ public class GeyserWorldGen implements IWorldGenerator {
 			
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 			
-			if (block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
+			if (Structure.validBlocks.contains(block) && block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
 			{
 				cands.clear();
 				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, 2.75, Xcoord, Ycoord - 2, Zcoord));

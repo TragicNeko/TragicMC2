@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockStructureSeeds extends TragicItemBlock {
 
-	private static String[] subNames = new String[] {"apisTemple", "desertTower", "forestTower", "mesaTower", "netherTower", "deathCircle", "iceTower", "obsidianCavern.random",
-		"kitsuneDen", "celestialTemple", "timeAltar", "aegarTower"};
+	private static String[] subNames = new String[] {"apisTemple", "tower", "deathCircle", "obsidianCavern", "kitsuneDen", "celestialTemple",
+		"timeAltar", "aegarTower"};
 
 	public ItemBlockStructureSeeds(Block p_i45326_1_) {
 		super(p_i45326_1_, subNames);
@@ -27,37 +27,25 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 		case 0: //Apis Temple
 			color = 0xEAD739;
 			break;
-		case 1: //Desert Tower
-			color = 0xEAD2AD;
-			break;
-		case 2: //Forest tower
+		case 1: //Forest tower
 			color = 0xC3E799;
 			break;
-		case 3: //Mesa tower
-			color = 0xEFBC59;
-			break;
-		case 4: //Nether tower
-			color = 0xCD472D;
-			break;
-		case 5: //Death Circle
+		case 2: //Death Circle
 			color = 0x770300;
 			break;
-		case 6: //Ice Tower
-			color = 0xD0FFEF;
-			break;
-		case 7:
+		case 3:
 			color = 0x797979;
 			break;
-		case 8: //Kitsune Den
+		case 4: //Kitsune Den
 			color = 0xAF0000;
 			break;
-		case 9: //Celestial Temple
+		case 5: //Celestial Temple
 			color = 0xAA23AA;
 			break;
-		case 10: //Time Altar
+		case 6: //Time Altar
 			color = 0x23FF23;
 			break;
-		case 11: //Aegar Tower
+		case 7: //Aegar Tower
 			color = 0xFFFFFF;
 		default:
 			break;

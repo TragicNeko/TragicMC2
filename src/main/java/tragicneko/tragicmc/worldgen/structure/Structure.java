@@ -1,146 +1,163 @@
 package tragicneko.tragicmc.worldgen.structure;
 
 import java.util.Random;
+import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBeach;
-import net.minecraft.world.biome.BiomeGenDesert;
-import net.minecraft.world.biome.BiomeGenForest;
-import net.minecraft.world.biome.BiomeGenHell;
-import net.minecraft.world.biome.BiomeGenMesa;
-import net.minecraft.world.biome.BiomeGenPlains;
-import net.minecraft.world.biome.BiomeGenSavanna;
-import net.minecraft.world.biome.BiomeGenSnow;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.blocks.BlockStructureSeed;
-import tragicneko.tragicmc.dimension.TragicWorldProvider;
-import tragicneko.tragicmc.worldgen.StructureWorldGen;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
-import tragicneko.tragicmc.worldgen.schematic.SchematicApisTemple;
-import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;
-import tragicneko.tragicmc.worldgen.schematic.SchematicDeathCircle;
-import tragicneko.tragicmc.worldgen.schematic.SchematicDesertTower;
-import tragicneko.tragicmc.worldgen.schematic.SchematicKitsuneDen;
-import tragicneko.tragicmc.worldgen.schematic.SchematicObsidianCavern;
-import tragicneko.tragicmc.worldgen.schematic.SchematicTimeAltar;
+import tragicneko.tragicmc.worldgen.schematic.Schematic;
+
+import com.google.common.collect.Sets;
 
 public class Structure extends WorldGenerator {
 
-	protected final int structureID;
-	protected final boolean grownBySeed;
-	protected final int variant2;
+	public final Schematic schematic;
+	public final int structureId;
+	protected final int height;
+	protected final int width;
+	
+	public static Structure[] structureList = new Structure[16];
+	public static Structure apisTemple = new StructureApisTemple(0);
+	//public static Structure towerStructure = new StructureTower(1);
+	
+	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
+			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,
+			Blocks.dirt, Blocks.gravel, Blocks.clay, Blocks.hardened_clay, TragicBlocks.DarkStone, TragicBlocks.DarkSand, TragicBlocks.DeadDirt, Blocks.leaves,
+			Blocks.packed_ice, TragicBlocks.AshenGrass, TragicBlocks.BrushedGrass, TragicBlocks.AshenLeaves, TragicBlocks.AshenTallGrass, TragicBlocks.DeadBush,
+			TragicBlocks.AshenBush, TragicBlocks.BleachedLeaves, TragicBlocks.PaintedLeaves, TragicBlocks.GlowVine, TragicBlocks.DriedGrass, TragicBlocks.PaintedTallGrass,
+			TragicBlocks.StarlitGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.StarCrystal, TragicBlocks.ErodedStone, TragicBlocks.DarkCobblestone,
+			TragicBlocks.HallowedGrass, TragicBlocks.HallowedLeaves, TragicBlocks.HallowedLeafTrim, TragicBlocks.MoltenRock, TragicBlocks.ScorchedRock});
 
-	public Structure(int id)
+	public Structure(Schematic sch, int id)
 	{
-		this.structureID = id;
-		this.grownBySeed = false;
-		this.variant2 = 20;
-	}
-
-	public Structure(int id, boolean seedGrown)
-	{
-		this.structureID = id;
-		this.grownBySeed = seedGrown;
-		this.variant2 = 20;
+		this.schematic = sch;
+		structureList[id] = this;
+		this.structureId = id;
+		this.height = sch.height;
+		this.width = sch.width;
 	}
 	
-	public Structure(int id, boolean seedGrown, int variant2)
-	{
-		this.structureID = id;
-		this.grownBySeed = seedGrown;
-		this.variant2 = variant2;
-	}
-
-	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) 
-	{
-		if (this.hasVariants())
-		{
-			return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, x, y, z);
-		}
-		else
-		{
-			return generateStructure(world, rand, x, y, z);
-		}
-	}
-
 	/**
-	 * If the structure spawns a boss (some trap structures may have a boss as part of the trap)
-	 * @return
-	 */
-	public boolean isBossStructure()
-	{
-		switch(this.structureID)
-		{
-		case 0:
-			return true;
-		case 2:
-			return true;
-		case 3:
-			return true;
-		case 4:
-			return true;
-		case 5:
-			return true;
-		default:
-			return false;
-		}
-	}
-
-	/**
-	 * If the structure has variants
-	 * @return
-	 */
-	public boolean hasVariants()
-	{
-		switch(this.structureID)
-		{
-		case 1:
-			return true;
-		case 3:
-			return true;
-		default:
-			return false;
-		}
-	}
-
-	/**
-	 * Gets the total amount of variants the structure has or 1 if there are no variants
+	 * Override to set a variant amount for a particular structure
 	 * @return
 	 */
 	public int getVariantSize()
 	{
-		if (this.hasVariants())
-		{
-			switch(this.structureID)
-			{
-			case 1:
-				return 5;
-			case 3:
-				return 7;
-			default:
-				return 1;
-			}
-		}
 		return 1;
 	}
+	
+	/**
+	 * Whether or not this particular structure should only generate on a solid surface
+	 * @return
+	 */
+	public boolean isSurfaceStructure()
+	{
+		return false;
+	}
+	
+	/**
+	 * Check if the structure is in the correct dimension
+	 * @param dim
+	 * @return
+	 */
+	public boolean isValidDimension(int dim)
+	{
+		return true;
+	}
+	
+	/**
+	 * Check if the starting coords for the structure are valid, may check a larger area as well
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param rand
+	 * @return
+	 */
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int radius, int height)
+	{
+		if (this.isSurfaceStructure() && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) return false;
+		
+		for (int y1 = 0; y1 < radius; y1++)
+		{
+			if (!(world.getBlock(x, y + y1 + 1, z) instanceof BlockAir) && !(world.getBlock(x, y + y1 + 1, z) instanceof BlockStructureSeed))
+			{
+				return false;
+			}
+		}
+
+		for (int y1 = 0; y1 < height; y1++)
+		{
+			if (!validBlocks.contains(world.getBlock(x, y - y1, z)) && !(world.getBlock(x, y - y1, z) instanceof BlockStructureSeed))
+			{
+				return false;
+			}
+
+			if (!validBlocks.contains(world.getBlock(x - y1, y, z)) && !(world.getBlock(x - y1, y, z) instanceof BlockStructureSeed))
+			{
+				return false;
+			}
+
+			if (!validBlocks.contains(world.getBlock(x + y1, y, z)) && !(world.getBlock(x + y1, y, z) instanceof BlockStructureSeed))
+			{
+				return false;
+			}
+
+			if (!validBlocks.contains(world.getBlock(x, y, z + y1)) && !(world.getBlock(x, y, z + y1) instanceof BlockStructureSeed))
+			{
+				return false;
+			}
+
+			if (!validBlocks.contains(world.getBlock(x, y , z - y1)) && !(world.getBlock(x, y, z - y1) instanceof BlockStructureSeed))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Specific checks for particular structures, this should be where to check things like if the structure is allowed in the config or if a valid variant
+	 * id is set, etc.
+	 * @param rand
+	 * @param variantID
+	 * @return
+	 */
+	public boolean canGenerate()
+	{
+		return true;
+	}
+	
+	public int getHeight()
+	{
+		return this.height;
+	}
+	
+	public int getWidth()
+	{
+		return this.width;
+	}
+	
+	@Override
+	public boolean generate(World world, Random rand, int x, int y, int z) 
+	{
+		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, x, y, z);
+	}
+
 
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
-		if (world.isRemote)
-		{
-			return false;
-		}
+		if (world.isRemote || !this.canGenerate()) return false;
+		//this.schematic.generateStructure(variant, world, rand, x, y, z);
+		return true;
+		/*
 
-		if (!this.checkCoordinatesForProperSpace(world, x, y, z, rand) && !this.grownBySeed)
-		{
-			return false;
-		}
-
-		switch(this.structureID)
+		switch(world.rand.nextInt(16))
 		{
 		case 0: //Apis Temple Structure
 			if (!this.grownBySeed)
@@ -165,7 +182,7 @@ public class Structure extends WorldGenerator {
 			if (!this.grownBySeed)
 			{
 				variant = -1;
-				
+
 				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenDesert || world.getBiomeGenForCoords(x, z) instanceof BiomeGenBeach)
 				{
 					variant = 0;
@@ -234,14 +251,14 @@ public class Structure extends WorldGenerator {
 				{
 					return false;
 				}
-				
+
 				new SchematicObsidianCavern(variant, world, rand, x, y, z);
 				TragicMC.logInfo("Obsidian Cavern successfully generated at coords: " + x + ", " + y + ", " + z);
 				return true;
 			}
 			else
 			{
-				new SchematicObsidianCavern(variant, variant2, world, rand, x, y, z);
+				new SchematicObsidianCavern(variant, 0, world, rand, x, y, z);
 				return true;
 			}
 		case 4: //Kitsune Den structure
@@ -304,55 +321,7 @@ public class Structure extends WorldGenerator {
 		case 7: //Yeti Pit
 		default:
 			return false;
-		}
+		} */
 
 	}
-
-	private boolean checkCoordinatesForProperSpace(World world, int x, int y, int z, Random rand) 
-	{
-		for (int y1 = 0; y1 < 6; y1++)
-		{
-			if (!(world.getBlock(x, y + y1 + 1, z) instanceof BlockAir) && !(world.getBlock(x, y + y1 + 1, z) instanceof BlockStructureSeed))
-			{
-				return false;
-			}
-		}
-
-		for (int y1 = 0; y1 < 3; y1++)
-		{
-			if (!StructureWorldGen.validBlocks.contains(world.getBlock(x, y - y1, z)) && !(world.getBlock(x, y - y1, z) instanceof BlockStructureSeed))
-			{
-				return false;
-			}
-
-			if (!StructureWorldGen.validBlocks.contains(world.getBlock(x - y1, y, z)) && !(world.getBlock(x - y1, y, z) instanceof BlockStructureSeed))
-			{
-				return false;
-			}
-
-			if (!StructureWorldGen.validBlocks.contains(world.getBlock(x + y1, y, z)) && !(world.getBlock(x + y1, y, z) instanceof BlockStructureSeed))
-			{
-				return false;
-			}
-
-			if (!StructureWorldGen.validBlocks.contains(world.getBlock(x, y, z + y1)) && !(world.getBlock(x, y, z + y1) instanceof BlockStructureSeed))
-			{
-				return false;
-			}
-
-			if (!StructureWorldGen.validBlocks.contains(world.getBlock(x, y , z - y1)) && !(world.getBlock(x, y, z - y1) instanceof BlockStructureSeed))
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public boolean generateStructure(World world, Random rand, int x, int y, int z)
-	{
-		return generateStructureWithVariant(0, world, rand, x, y, z);
-	}
-
-
-
 }

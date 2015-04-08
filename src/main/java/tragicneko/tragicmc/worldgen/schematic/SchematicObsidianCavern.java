@@ -13,11 +13,11 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.StructureWorldGen;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicObsidianCavern extends Schematic {
 
@@ -29,15 +29,10 @@ public class SchematicObsidianCavern extends Schematic {
 	private static Block glowstone = Blocks.glowstone;
 	private static Block spawner = Blocks.mob_spawner;
 
-	private static int variant2;
-
-	public SchematicObsidianCavern(int variant, int variant2, World world, Random rand, int x, int y, int z) {
-		super(variant, world, rand, x, y, z);
-		SchematicObsidianCavern.variant2 = variant2;
-	}
-
-	public SchematicObsidianCavern(int variant, World world, Random rand, int x, int y, int z) {
-		this(variant, 20, world, rand, x, y, z);
+	private int variant2 = 0;
+	
+	public SchematicObsidianCavern() {
+		super(256, 16, 16);
 	}
 
 	@Override
@@ -270,7 +265,7 @@ public class SchematicObsidianCavern extends Schematic {
 
 	public void generateCaveOpening(int variant, World world, Random rand, int x, int y, int z) {
 
-		Set set = StructureWorldGen.validBlocks;
+		Set set = Structure.validBlocks;
 		Block luxury = SchematicDesertTower.luxuryBlocks[rand.nextInt(SchematicDesertTower.luxuryBlocks.length)];
 		int meta = 0;
 
@@ -1163,5 +1158,11 @@ public class SchematicObsidianCavern extends Schematic {
 			break;
 		}
 		return s;
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 }

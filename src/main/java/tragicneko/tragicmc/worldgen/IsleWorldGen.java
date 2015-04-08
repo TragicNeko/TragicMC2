@@ -10,6 +10,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class IsleWorldGen implements IWorldGenerator {
@@ -56,7 +57,7 @@ public class IsleWorldGen implements IWorldGenerator {
 				for (int[] coords2 : list)
 				{
 					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
-					if (StructureWorldGen.validBlocks.contains(block) && !cands.contains(coords2))
+					if (Structure.validBlocks.contains(block) && !cands.contains(coords2))
 					{
 						if (yMax < coords2[1]) yMax = coords2[1];
 						cands.add(coords2);

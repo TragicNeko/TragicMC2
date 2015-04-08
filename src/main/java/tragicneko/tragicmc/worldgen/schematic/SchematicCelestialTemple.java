@@ -12,9 +12,13 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.StructureWorldGen;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicCelestialTemple extends Schematic {
+
+	public SchematicCelestialTemple() {
+		super(12, 25, 25);
+	}
 
 	private static Block brick = TragicBlocks.DarkenedQuartz;
 
@@ -23,11 +27,6 @@ public class SchematicCelestialTemple extends Schematic {
 	private static Block chest = Blocks.chest;
 	private static Block stone = TragicBlocks.DarkStone;
 	private static Block summon = TragicBlocks.SummonBlock;
-
-	public SchematicCelestialTemple(int variant, World world, Random rand, int x, int y, int z)
-	{
-		super(variant, world, rand, x, y, z);
-	}
 
 	@Override
 	public void generateStructure(int variant, World world, Random rand, int x, int y, int z)
@@ -96,7 +95,7 @@ public class SchematicCelestialTemple extends Schematic {
 				for (int[] coords2 : list)
 				{
 					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
-					if (StructureWorldGen.validBlocks.contains(block) && !cands.contains(coords2))
+					if (Structure.validBlocks.contains(block) && !cands.contains(coords2))
 					{
 						if (yMax < coords2[1]) yMax = coords2[1];
 						cands.add(coords2);
@@ -1111,5 +1110,11 @@ public class SchematicCelestialTemple extends Schematic {
 	@Override
 	public void generateVariant(World world, Random rand, int x, int y, int z)
 	{
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 }

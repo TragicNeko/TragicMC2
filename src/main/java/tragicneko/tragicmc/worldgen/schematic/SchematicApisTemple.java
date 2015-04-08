@@ -13,6 +13,10 @@ import tragicneko.tragicmc.TragicMC;
 
 public class SchematicApisTemple extends Schematic {
 
+	public SchematicApisTemple() {
+		super(10, 25, 25);
+	}
+
 	/**
 	 * Meta 0 is stoneBrick, 1 is mossy, 2 is cracked, 3 is chiseled
 	 */
@@ -28,11 +32,6 @@ public class SchematicApisTemple extends Schematic {
 	 * All of the common blocks that the structure will use, for ease of randomization they are in one array
 	 */
 	public static Block[] commonBlocks = new Block[] {Blocks.cobblestone, Blocks.gravel, Blocks.dirt, Blocks.mossy_cobblestone, Blocks.stone};
-
-	public SchematicApisTemple(int variant, World world, Random rand, int x, int y, int z)
-	{
-		super(variant, world, rand, x, y, z);
-	}
 
 	@Override
 	public void generateStructure(int variant, World world, Random rand, int x, int y, int z)
@@ -123,7 +122,7 @@ public class SchematicApisTemple extends Schematic {
 		{
 			world.setBlock(x + 1, y, z + i, commonBlocks[rand.nextInt(5)], 0, 2);
 		}
-
+		
 		world.setBlock(x + 1, y, z, commonBlocks[rand.nextInt(5)], 3, 2);
 		world.setBlock(x + 1, y, z + 3, obs, 0, 2);
 		world.setBlock(x + 1, y, z + 4, brick, rand.nextInt(3), 2);
@@ -1039,5 +1038,11 @@ public class SchematicApisTemple extends Schematic {
 	@Override
 	public void generateVariant(World world, Random rand, int x, int y, int z)
 	{
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -10,6 +10,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class StarCrystalWorldGen implements IWorldGenerator {
@@ -51,7 +52,7 @@ public class StarCrystalWorldGen implements IWorldGenerator {
 
 						for (int[] coords : list)
 						{
-							if (StructureWorldGen.validBlocks.contains(world.getBlock(coords[0], coords[1], coords[2])))
+							if (Structure.validBlocks.contains(world.getBlock(coords[0], coords[1], coords[2])))
 							{
 								world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.StarCrystal, meta, 2);
 							}

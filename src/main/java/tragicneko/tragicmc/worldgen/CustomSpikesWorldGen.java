@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.worldgen;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -15,6 +14,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class CustomSpikesWorldGen implements IWorldGenerator {
@@ -127,7 +127,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 					for (int[] coords : list)
 					{
 						block = world.getBlock(coords[0], coords[1], coords[2]);
-						if (StructureWorldGen.validBlocks.contains(block) && block != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
+						if (Structure.validBlocks.contains(block) && block != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
 				}
 				
@@ -166,7 +166,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 			for (int[] coords : list)
 			{
 				block = world.getBlock(coords[0], coords[1], coords[2]);
-				if (StructureWorldGen.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
+				if (Structure.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
 			}
 		}
 		

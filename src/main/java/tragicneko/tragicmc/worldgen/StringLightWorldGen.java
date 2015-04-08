@@ -10,6 +10,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class StringLightWorldGen implements IWorldGenerator {
@@ -39,7 +40,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 			if (cands.contains(cand)) continue;
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 
-			if (StructureWorldGen.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord)) cands.add(cand);
+			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord)) cands.add(cand);
 		}
 
 		for (int[] coords : cands)
@@ -58,7 +59,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 			Ycoord += random.nextInt(8);
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 
-			if (StructureWorldGen.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
+			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
 			{
 				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.FragileLight);
 				break;
@@ -76,7 +77,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 
-			if (StructureWorldGen.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
+			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
 			{
 				if (world.doesBlockHaveSolidTopSurface(world, Xcoord, Ycoord - 1, Zcoord) && !block.getMaterial().isLiquid()) world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Light);
 			}

@@ -12,18 +12,18 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.StructureWorldGen;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicTimeAltar extends Schematic {
+
+	public SchematicTimeAltar() {
+		super(10, 10, 10);
+	}
 
 	private static Block quartz = Blocks.quartz_block;
 	private static Block crystal = TragicBlocks.StarCrystal;
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
-
-	public SchematicTimeAltar(int variant, World world, Random rand, int x, int y, int z) {
-		super(variant, world, rand, x, y, z);
-	}
 
 	@Override
 	public void generateStructure(int variant, World world, Random rand, int x, int y, int z) {
@@ -68,7 +68,7 @@ public class SchematicTimeAltar extends Schematic {
 				block = world.getBlock(coords[0], coords[1], coords[2]);
 				flag = rand.nextInt(32) != 0;
 
-				if (StructureWorldGen.validBlocks.contains(block))
+				if (Structure.validBlocks.contains(block))
 				{
 					if (rand.nextInt(8) != 0)
 					{
@@ -139,6 +139,12 @@ public class SchematicTimeAltar extends Schematic {
 			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
 
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -51,11 +51,10 @@ public class SchematicDesertTower extends Schematic {
 	//9 luxury blocks currently
 	public static Block[] luxuryBlocks = new Block[] {Blocks.diamond_block, Blocks.gold_block, Blocks.emerald_block, TragicBlocks.CompactOre, Blocks.iron_block, Blocks.lapis_block};
 
-	public SchematicDesertTower(int variant, World world, Random rand, int x, int y, int z)
-	{
-		super(variant, world, rand, x, y, z);
+	public SchematicDesertTower() {
+		super(25, 9, 9);
 	}
-
+	
 	@Override
 	public void generateStructure(int variant, World world, Random rand, int x,
 			int y, int z) {
@@ -4873,6 +4872,12 @@ public class SchematicDesertTower extends Schematic {
 		{
 			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

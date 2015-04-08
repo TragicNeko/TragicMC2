@@ -13,16 +13,15 @@ import tragicneko.tragicmc.TragicMC;
 
 public class SchematicDeathCircle extends Schematic {
 
+	public SchematicDeathCircle() {
+		super(6, 11, 11);
+	}
+
 	private static Block fire = Blocks.fire;
 	private static Block exCob = TragicBlocks.DarkCobblestone;
 	private static Block darkCob = TragicBlocks.DarkCobblestone;
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
-
-	public SchematicDeathCircle(int variant, World world, Random rand, int x, int y, int z)
-	{
-		super(variant, world, rand, x, y, z);
-	}
 
 	@Override
 	public void generateStructure(int variant, World world, Random rand, int x, int y, int z) 
@@ -454,6 +453,12 @@ public class SchematicDeathCircle extends Schematic {
 		{
 			TragicMC.logWarning("Chest generation failed for some reason.");
 		}
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

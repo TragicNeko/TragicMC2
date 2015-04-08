@@ -9,6 +9,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -40,7 +41,7 @@ public class SteamVentWorldGen implements IWorldGenerator {
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
-			if (block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
+			if (Structure.validBlocks.contains(block) && block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
 			{
 				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
 				TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);

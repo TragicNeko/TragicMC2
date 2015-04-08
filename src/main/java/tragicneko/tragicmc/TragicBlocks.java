@@ -568,7 +568,7 @@ public class TragicBlocks {
 						world.getBlock(x, y, z + 1), world.getBlock(x, y, z - 1), world.getBlock(x, y + 1, z), world.getBlock(x, y - 1, z)};
 				for (Block b : block)
 				{
-					if (b instanceof BlockFire) world.createExplosion(null, x, y, z, 1.5F + rand.nextFloat(), WorldHelper.getMobGriefing(world));
+					if (b instanceof BlockFire || b.getMaterial() == Material.lava) world.createExplosion(null, x, y, z, 1.5F + rand.nextFloat(), WorldHelper.getMobGriefing(world));
 				}
 				world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 			}

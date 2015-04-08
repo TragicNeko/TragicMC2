@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
+import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class CorrodedSurfaceWorldGen implements IWorldGenerator {
@@ -28,34 +31,35 @@ public class CorrodedSurfaceWorldGen implements IWorldGenerator {
 		Block block;		
 		ArrayList<int[]> cands;
 		int[] cand = new int[] {Xcoord, Ycoord, Zcoord};
+		boolean flag = biome == TragicBiomes.CorrodedRunoff || biome == TragicBiomes.CorrodedFallout;
 		
-		for (int i = 0; i < 12; i++)
+		int pow = flag ? 24 : 12;
+		
+		for (int i = 0; i < pow; i++)
 		{
 			Xcoord += random.nextInt(4) - random.nextInt(4);
 			Zcoord += random.nextInt(4) - random.nextInt(4);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 
-			if (StructureWorldGen.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
+			if (Structure.validBlocks.contains(block) || block.canBeReplacedByLeaves(world, Xcoord, Ycoord, Zcoord) || block.isAir(world, Xcoord, Ycoord, Zcoord))
 			{
 				if (world.doesBlockHaveSolidTopSurface(world, Xcoord, Ycoord - 1, Zcoord) && !block.getMaterial().isLiquid()) world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.RadiatedGas);
 			}
 		}
+		
+		pow = flag ? 32 : 16;
 
-		boolean flag = false;
-
-		for (int k = 0; k < 16 + random.nextInt(8); k++)
+		for (int k = 0; k < pow + random.nextInt(8); k++)
 		{
 			block = world.getBlock(cand[0], cand[1], cand[2]);
-			if (block != TragicBlocks.DarkStone) break;
-
 			world.setBlock(cand[0], cand[1], cand[2], TragicBlocks.Quicksand, 3, 2);
 			cands = WorldHelper.getBlocksAdjacent(cand);
 
 			for (int[] cand2 : cands)
 			{
 				block = world.getBlock(cand2[0], cand2[1], cand2[2]);
-				if (block == TragicBlocks.DarkStone && random.nextBoolean()) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.Quicksand, 3, 2);
+				if (block.isReplaceable(world, cand2[0], cand2[1], cand2[2]) && Structure.validBlocks.contains(block) && block.getMaterial() != Material.air && !block.getMaterial().isLiquid() && random.nextBoolean()) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.Quicksand, 3, 2);
 			}
 
 			cand = cands.get(random.nextInt(cands.size()));

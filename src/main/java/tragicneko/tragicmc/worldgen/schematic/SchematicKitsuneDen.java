@@ -10,9 +10,9 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 
 public class SchematicKitsuneDen extends Schematic {
 
@@ -20,9 +20,9 @@ public class SchematicKitsuneDen extends Schematic {
 	private static Block chest = Blocks.chest;
 	private static Block spawner = Blocks.mob_spawner;
 	private static Block summon = TragicBlocks.SummonBlock; //5 is the kitsune
-
-	public SchematicKitsuneDen(int variant, World world, Random rand, int x, int y, int z) {
-		super(variant, world, rand, x, y, z);
+	
+	public SchematicKitsuneDen() {
+		super(12, 9, 9);
 	}
 
 	@Override
@@ -504,6 +504,12 @@ public class SchematicKitsuneDen extends Schematic {
 			WeightedRandomChestContent.generateChestContents(rand, TragicItems.NetherStructureHook.getItems(rand), chest, TragicItems.NetherStructureHook.getCount(rand));
 		}
 
+	}
+
+	@Override
+	public void fillMatrices() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
