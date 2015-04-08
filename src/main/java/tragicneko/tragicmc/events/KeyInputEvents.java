@@ -110,6 +110,8 @@ public class KeyInputEvents extends Gui {
 				player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 			}
 		}
+		
+		if (player != null && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 
 		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation) && player.ticksExisted % 2 == 0)
 		{
