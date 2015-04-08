@@ -505,7 +505,9 @@ item.tragicmc.mobStatue.voxStellarum.name=Vox Stellarum Statue
 item.tragicmc.mobStatue.enyvil.name=Enyvil Statue
 item.tragicmc.mobStatue.claymation.name=Claymation Statue
 item.tragicmc.mobStatue.aegar.name=Aegar Statue
-item.tragicmc.mobStatue.overlord.name=Overlord Statue
+item.tragicmc.mobStatue.overlord.name=Overlord Core Statue
+item.tragicmc.mobStatue.overlordCombat.name=Overlord Combat Statue
+item.tragicmc.mobStatue.overlordCocoon.name=Overlord Cocoon Statue
 
 tragicmc.mobTexture.iron=(Iron)
 tragicmc.mobTexture.gold=(Gold)
