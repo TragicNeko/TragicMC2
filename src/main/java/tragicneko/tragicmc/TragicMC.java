@@ -23,7 +23,6 @@ import java.lang.reflect.Modifier;
 import java.util.Random;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.DimensionManager;
@@ -65,10 +64,12 @@ import tragicneko.tragicmc.network.MessageParticle;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
 import tragicneko.tragicmc.worldgen.AerisWorldGen;
 import tragicneko.tragicmc.worldgen.BoulderWorldGen;
+import tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.DarkShieldWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
+import tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import tragicneko.tragicmc.worldgen.GeyserWorldGen;
 import tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen;
@@ -274,6 +275,8 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new BoulderWorldGen(), 15); //For Scorched biomes
 			GameRegistry.registerWorldGenerator(new InvertedSpikeWorldGen(), 18); //For the tainted scarlands
 			GameRegistry.registerWorldGenerator(new DimensionOreWorldGen(), 19);
+			GameRegistry.registerWorldGenerator(new CorrodedSurfaceWorldGen(), 20);
+			GameRegistry.registerWorldGenerator(new ExplosiveGasWorldGen(), 21);
 			GameRegistry.registerWorldGenerator(new AerisWorldGen(), 25);
 		}
 
