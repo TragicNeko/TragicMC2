@@ -3576,7 +3576,7 @@ Fixed Challenges that required Mini-Boss kills or finding
 Did a minor fix to Claymation's health tracking
 Added recipe for creating the Corrupted Spire structure seed, fixed Aeris item textures to fit the block textures
 
-2.42.2178++ <195> (March 31, 2015)
+2.42.2205 <195> (March 31, 2015)
 Added Wicked Vines and two new types of Gas, these won't be temporary Gases though like the others, they'll be persistant worldgen features
 Reworked some higher level item tiers again, Ectoplasm is now more prominent as a crafting component
 Fixed crafting recipe of an Apis statue, used it's previous boss drop on accident
@@ -3610,8 +3610,18 @@ Modified Overlord Core to generate an obsidian platform instead of a Celled bloc
 Removed some unnecessary loops from the config, this should speed up loading some
 Going through the configuration file and ensuring that each option is set up properly or used
 
+2.42.2205++ <196> (April 8, 2015)
+Updated the Combat form's model, setting up all of the child parts
+Fixed initial issues with the Combat form's model (typoed offsets, typoes in child parts)
+Fixed Combat form's rotation (overriden rotateCorpse apparently affects that)
+Fixed Combat form using certain abilities in situations that are unfit (trying to use charge attack while in water, etc.)
+Fixed particle offsets for certain abilities of the Combat form (due to change in it's hitbox from the one I was testing on)
+Added render effect that the Apis uses for reflection to the Combat form
+Added animations for the Combat form, still need a texture
+Added textures for the Combat and Cocoon form's statues
+Fix Hacked being removed leaving the player with no movement input option (the player can't move unless they relog or die)
+
 Still need to add the various biome generators for the Gases and for the Sludge
-Need to update the Combat form's model code to use the child parts effectively, then I need to animate it
 There will be mostly poisonous gases & sludge on the surface, explosive gases will be in pockets underground (they'll generate in spherical pockets where they are
 completely surrounded by stone to reduce chance of random mobs exploding them)
 
@@ -3647,6 +3657,7 @@ Ranmas
 Add a Chainbot as a mini-boss form of the lockbot, it'll basically be a mobile version of the lockbot that actually moves to it's trapped target and attacks them,
 the target may break the chain after enough hits to it and it'll have to reattach, what it'll do is with lower health is generate a weaker lockbot, that attaches a lock to it's target and
 then the Chainbot will go after the targetted player while it is locked, knocking it back and aggressively attacking it
+Add more smaller structures, including trap structures
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
