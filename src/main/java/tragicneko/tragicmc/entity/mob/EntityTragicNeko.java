@@ -233,7 +233,7 @@ public class EntityTragicNeko extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.deathTime == 20 && rand.nextBoolean())
+		if (this.deathTime == 20 && rand.nextInt(4) == 0)
 		{
 			int x = rand.nextInt(10) == 0 ? 1 : rand.nextInt(3) + 2;
 
