@@ -85,7 +85,6 @@ public class BlockQuicksand extends BlockFalling
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.125;
-		entity.onGround = true;
 		entity.velocityChanged = true;
 		entity.fallDistance = 0.0F;
 		if (world.getBlockMetadata(x, y, z) == 3 && entity instanceof EntityLivingBase && world.rand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60 + world.rand.nextInt(40)));
