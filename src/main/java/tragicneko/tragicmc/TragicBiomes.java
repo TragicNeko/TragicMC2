@@ -97,8 +97,8 @@ public class TragicBiomes {
 		ScorchedValley = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedValley).setBiomeName("tragicmc.scorchedValley"))).setHeightVariation(0.05F).setRootHeight(-0.35F);
 		ScorchedScarlands = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedScarlands).setBiomeName("tragicmc.scorchedScarlands"))).setHeightVariation(0.05F).setRootHeight(0.65F);
 		
-		CorrodedSteppe = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedSteppe).setBiomeName("tragicmc.corrodedSteppe"))).setHeightVariation(0.15F).setRootHeight(0.1F);
-		CorrodedHeights = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedHeights).setBiomeName("tragicmc.corrodedHeights"))).setHeightVariation(0.02F).setRootHeight(0.8F);
+		CorrodedSteppe = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedSteppe).setBiomeName("tragicmc.corrodedSteppe"))).setHeightVariation(0.15F).setRootHeight(0.3F);
+		CorrodedHeights = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedHeights).setBiomeName("tragicmc.corrodedHeights"))).setHeightVariation(0.02F).setRootHeight(1.2F);
 		CorrodedVeld = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedVeld).setBiomeName("tragicmc.corrodedVeld"))).setHeightVariation(0.01F).setRootHeight(0.0F);
 		CorrodedRunoff = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedRunoff).setBiomeName("tragicmc.corrodedRunoff"))).setHeightVariation(0.06F).setRootHeight(-0.65F);
 		CorrodedFallout = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout).setBiomeName("tragicmc.corrodedFallout"))).setHeightVariation(0.4F).setRootHeight(-0.65F);
