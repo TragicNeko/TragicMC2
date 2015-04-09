@@ -21,6 +21,7 @@ public class CorrodedSurfaceWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		if (!(world.provider instanceof TragicWorldProvider) || world.isRemote) return;
+		
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
@@ -32,8 +33,10 @@ public class CorrodedSurfaceWorldGen implements IWorldGenerator {
 		ArrayList<int[]> cands;
 		int[] cand = new int[] {Xcoord, Ycoord, Zcoord};
 		boolean flag = biome == TragicBiomes.CorrodedRunoff || biome == TragicBiomes.CorrodedFallout;
+		boolean flag2 = biome == TragicBiomes.CorrodedSteppe || biome == TragicBiomes.CorrodedFallout;
+		boolean flag3 = biome == TragicBiomes.CorrodedHeights || biome == TragicBiomes.CorrodedVeld;
 		
-		int pow = flag ? 24 : 12;
+		int pow = flag2 ? 32 : (flag ? 16 : 4);
 		
 		for (int i = 0; i < pow; i++)
 		{
@@ -48,23 +51,31 @@ public class CorrodedSurfaceWorldGen implements IWorldGenerator {
 			}
 		}
 		
-		pow = flag ? 32 : 16;
+		pow = flag3 ? 32 : (flag2 ? 4 : 16);
+		
+		for (int l = 0; l < pow + random.nextInt(4); l++)
+		{
+			Xcoord = (chunkX * 16) + random.nextInt(8) - random.nextInt(8);
+			Zcoord = (chunkZ * 16) + random.nextInt(8) - random.nextInt(8);
+			Ycoord = 40 + random.nextInt(100);
+			new WorldGenWickedVine().generate(world, random, Xcoord, Ycoord, Zcoord);
+		}
+		
+		pow = flag ? 32 : (flag2 ? 4 : 16);
 
 		for (int k = 0; k < pow + random.nextInt(8); k++)
 		{
-			block = world.getBlock(cand[0], cand[1], cand[2]);
 			world.setBlock(cand[0], cand[1], cand[2], TragicBlocks.Quicksand, 3, 2);
 			cands = WorldHelper.getBlocksAdjacent(cand);
 
 			for (int[] cand2 : cands)
 			{
 				block = world.getBlock(cand2[0], cand2[1], cand2[2]);
-				if (block.isReplaceable(world, cand2[0], cand2[1], cand2[2]) && Structure.validBlocks.contains(block) && block.getMaterial() != Material.air && !block.getMaterial().isLiquid() && random.nextBoolean()) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.Quicksand, 3, 2);
+				if (block.isReplaceable(world, cand2[0], cand2[1], cand2[2]) && Structure.validBlocks.contains(block) && block.getMaterial() != Material.air && !block.getMaterial().isLiquid() && random.nextBoolean() && World.doesBlockHaveSolidTopSurface(world, cand2[0], cand2[1] - 1, cand2[2])) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.Quicksand, 3, 2);
 			}
 
 			cand = cands.get(random.nextInt(cands.size()));
 		}
-		
 		
 	}
 
