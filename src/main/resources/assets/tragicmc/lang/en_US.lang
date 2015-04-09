@@ -88,18 +88,9 @@ tile.tragicmc.magnetar.name=Magnetar
 tile.tragicmc.timeDisruptor.name=Time Disruption Cube
 
 tile.tragicmc.structureSeed.apisTemple.name=Apis Temple Seed
-tile.tragicmc.structureSeed.desertTower.name=Desert Tower Seed
-tile.tragicmc.structureSeed.netherTower.name=Nether Tower Seed
-tile.tragicmc.structureSeed.forestTower.name=Forest Tower Seed
-tile.tragicmc.structureSeed.mesaTower.name=Clay Tower Seed
-tile.tragicmc.structureSeed.desertRuin.name=Desert Ruin Seed
+tile.tragicmc.structureSeed.tower.name=Random Tower Seed
 tile.tragicmc.structureSeed.deathCircle.name=Death Circle Seed
-tile.tragicmc.structureSeed.iceTower.name=Ice Tower Seed
-tile.tragicmc.structureSeed.obsidianCavern.random.name=Random Obsidian Cavern Seed
-tile.tragicmc.structureSeed.obsidianCavern.mobSpawners.name=Mob Challenge Obsidian Cavern Seed
-tile.tragicmc.structureSeed.obsidianCavern.bossChallenge.name=Boss Challenge Obsidian Cavern Seed
-tile.tragicmc.structureSeed.obsidianCavern.deathTrap.name=Death Trap Obsidian Cavern Seed
-tile.tragicmc.structureSeed.obsidianCavern.lootStash.name=Loot Stash Obsidian Cavern Seed
+tile.tragicmc.structureSeed.obsidianCavern.name=Random Obsidian Cavern Seed
 tile.tragicmc.structureSeed.kitsuneDen.name=Kitsunakuma Den Seed
 tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple Seed
 tile.tragicmc.structureSeed.timeAltar.name=Time Altar Seed
@@ -994,20 +985,16 @@ tragicmc.hallowedForest=Hallowed Forest
 tragicmc.hallowedPrarie=Hallowed Prarie
 tragicmc.hallowedCliffs=Hallowed Cliffs
 
+tragicmc.corrodedSteppe=Corroded Steppe
+tragicmc.corrodedVeld=Corroded Veld
+tragicmc.corrodedHeights=Corroded Heights
+tragicmc.corrodedRunoff=Corroded Runoff
+tragicmc.corrodedFallout=Corroded Fallout
+
 tragicmc.frozenOcean=Frozen Ocean
 tragicmc.frozenRises=Frozen Rises
 tragicmc.frozenTundra=Frozen Tundra
 tragicmc.frozenSpikes=Frozen Spikes
-
-tragicmc.jungleRuins=Jungle Ruins
-tragicmc.jungleHills=Jungle Hills
-tragicmc.jungle=Jungle
-tragicmc.junglePlains=Jungle Plains
-
-tragicmc.desertRuins=Desert Ruins
-tragicmc.desertHills=Desert Hills
-tragicmc.cdesert=Desert
-tragicmc.desertSinkholes=Desert Sinkholes
 
 tragicmc.darkForest=Dark Forest
 tragicmc.darkForestHills=Dark Forest Hills
