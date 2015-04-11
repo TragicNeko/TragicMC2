@@ -755,13 +755,7 @@ public class SchematicObsidianCavern extends Schematic {
 			break;
 		case 4:
 			world.setBlock(x, 1, z, spawner, 0, 2);
-			TileEntity tile = world.getTileEntity(x, 1, z);
-
-			if (tile != null && tile instanceof TileEntityMobSpawner)
-			{
-				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile;
-				spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(rand.nextInt(10)));
-			}
+			this.setSpawnerMob(world, x, 1, z, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			break;
 		case 5:
 			world.setBlock(x, 1, z, bedrock);
@@ -770,13 +764,7 @@ public class SchematicObsidianCavern extends Schematic {
 			int oppa = rand.nextInt(10);
 
 			world.setBlock(x + 5, 1, z + 5, spawner, 0, 2);
-			TileEntity tile2 = world.getTileEntity(x + 5, 1, z + 5);
-
-			if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-			{
-				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-				spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-			}
+			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 			world.setBlock(x + 1, 1, z, chest);
 			this.generateChestGoodies(world, rand, x + 1, 1, z, 0);
 			oppa = rand.nextInt(10);
@@ -785,13 +773,7 @@ public class SchematicObsidianCavern extends Schematic {
 			{
 
 				world.setBlock(x - 5, 1, z + 5, spawner, 0, 2);
-				tile2 = world.getTileEntity(x - 5, 1, z + 5);
-
-				if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-				{
-					TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-					spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-				}
+				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 				world.setBlock(x - 1, 1, z, chest);
 				this.generateChestGoodies(world, rand, x - 1, 1, z, 0);
 				oppa = rand.nextInt(10);
@@ -800,13 +782,7 @@ public class SchematicObsidianCavern extends Schematic {
 				{
 
 					world.setBlock(x - 5, 1, z - 5, spawner, 0, 2);
-					tile2 = world.getTileEntity(x - 5, 1, z - 5);
-
-					if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-					{
-						TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-						spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-					}
+					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					world.setBlock(x, 1, z + 1, chest);
 					this.generateChestGoodies(world, rand, x, 1, z + 1, 0);
 					oppa = rand.nextInt(10);
@@ -814,13 +790,7 @@ public class SchematicObsidianCavern extends Schematic {
 					if (zera > 3)
 					{
 						world.setBlock(x + 5, 1, z - 5, spawner, 0, 2);
-						tile2 = world.getTileEntity(x + 5, 1, z - 5);
-
-						if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-						{
-							TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-							spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-						}
+						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 						world.setBlock(x, 1, z - 1, chest);
 						this.generateChestGoodies(world, rand, x, 1, z - 1, 0);
 					}
@@ -831,13 +801,7 @@ public class SchematicObsidianCavern extends Schematic {
 			world.setBlock(x, 1, z, chest);
 			this.generateChestGoodies(world, rand, x, 1, z, 1);
 			world.setBlock(x, 2, z, spawner, 0, 2);
-			tile2 = world.getTileEntity(x, 2, z);
-
-			if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-			{
-				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-				spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(rand.nextInt(10)));
-			}
+			this.setSpawnerMob(world, x, 2, z, this.getRandomEntityNameForSpawner(rand.nextInt(10)));
 			break;
 		case 7:
 			int mrow = rand.nextInt(10);
@@ -860,51 +824,25 @@ public class SchematicObsidianCavern extends Schematic {
 			oppa = rand.nextInt(10);
 
 			world.setBlock(x + 5, 1, z + 5, spawner, 0, 2);
-			tile2 = world.getTileEntity(x + 5, 1, z + 5);
-
-			if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-			{
-				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-				spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-			}
+			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
-
 				world.setBlock(x - 5, 1, z + 5, spawner, 0, 2);
-				tile2 = world.getTileEntity(x - 5, 1, z + 5);
-
-				if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-				{
-					TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-					spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-				}
+				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
-
 					world.setBlock(x - 5, 1, z - 5, spawner, 0, 2);
-					tile2 = world.getTileEntity(x - 5, 1, z - 5);
-
-					if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-					{
-						TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-						spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-					}
+					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
 						world.setBlock(x + 5, 1, z - 5, spawner, 0, 2);
-						tile2 = world.getTileEntity(x + 5, 1, z - 5);
-
-						if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-						{
-							TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-							spawner.func_145881_a().setEntityName(this.getRandomEntityNameForSpawner(oppa));
-						}
+						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					}
 				}
 			}
@@ -940,51 +878,26 @@ public class SchematicObsidianCavern extends Schematic {
 			oppa = rand.nextInt(10);
 
 			world.setBlock(x + 5, 1, z + 5, spawner, 0, 2);
-			tile2 = world.getTileEntity(x + 5, 1, z + 5);
-
-			if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-			{
-				TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-				spawner.func_145881_a().setEntityName(this.getRandomBossNameForSpawner(oppa));
-			}
+			this.setSpawnerMob(world, x + 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 			oppa = rand.nextInt(10);
 
 			if (zera > 1)
 			{
-
 				world.setBlock(x - 5, 1, z + 5, spawner, 0, 2);
-				tile2 = world.getTileEntity(x - 5, 1, z + 5);
-
-				if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-				{
-					TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-					spawner.func_145881_a().setEntityName(this.getRandomBossNameForSpawner(oppa));
-				}
+				this.setSpawnerMob(world, x - 5, 1, z + 5, this.getRandomEntityNameForSpawner(oppa));
 				oppa = rand.nextInt(10);
 
 				if (zera > 2)
 				{
 
 					world.setBlock(x - 5, 1, z - 5, spawner, 0, 2);
-					tile2 = world.getTileEntity(x - 5, 1, z - 5);
-
-					if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-					{
-						TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-						spawner.func_145881_a().setEntityName(this.getRandomBossNameForSpawner(oppa));
-					}
+					this.setSpawnerMob(world, x - 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					oppa = rand.nextInt(10);
 
 					if (zera > 3)
 					{
 						world.setBlock(x + 5, 1, z - 5, spawner, 0, 2);
-						tile2 = world.getTileEntity(x + 5, 1, z - 5);
-
-						if (tile2 != null && tile2 instanceof TileEntityMobSpawner)
-						{
-							TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile2;
-							spawner.func_145881_a().setEntityName(this.getRandomBossNameForSpawner(oppa));
-						}
+						this.setSpawnerMob(world, x + 5, 1, z - 5, this.getRandomEntityNameForSpawner(oppa));
 					}
 				}
 			}

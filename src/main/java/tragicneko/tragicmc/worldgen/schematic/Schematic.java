@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -144,6 +144,22 @@ public abstract class Schematic {
 			return false;
 		}
 	}
+	
+	public boolean addSignContents(World world, int x, int y, int z, int line, String text) {
+		TileEntitySign sign = (TileEntitySign) world.getTileEntity(x, y, z);
+		if (sign == null || line > 4) return false;
+		sign.signText[line] = text;
+		return true;
+	}
+	
+	public boolean setSpawnerMob(World world, int x, int y, int z, String mobName)
+	{
+		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
+		if (spawner == null || mobName == null) return false;
+		spawner.func_145881_a().setEntityName(mobName);
+		return true;
+	}
+	
 	/*
 	public static class BlockPreset {
 

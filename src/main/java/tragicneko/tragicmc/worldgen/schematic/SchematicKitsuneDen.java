@@ -75,15 +75,7 @@ public class SchematicKitsuneDen extends Schematic {
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x, y + 1, z, spawner, 0, 2);
-
-		TileEntity tile = world.getTileEntity(x, y + 1, z);
-
-		if (tile != null && tile instanceof TileEntityMobSpawner) //sets up the spawner to be a Kitsune spawner
-		{
-			TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile;
-			String s = TragicConfig.allowKitsune ? "TragicMC.Kitsune" : "Blaze"; //sets it to a blaze spawner if kitsune is disabled
-			spawner.func_145881_a().setEntityName(s);
-		}
+		this.setSpawnerMob(world, x, y + 1, z, TragicConfig.allowKitsune ? "TragicMC.Kitsune" : "Blaze");
 
 		for (int z1 = -1; z1 < 2; z1++) //sets the extra sculpted blocks on the 0 layer
 		{
@@ -338,15 +330,7 @@ public class SchematicKitsuneDen extends Schematic {
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x, y + 1, z, spawner, 0, 2);
-
-		TileEntity tile = world.getTileEntity(x, y + 1, z);
-
-		if (tile != null && tile instanceof TileEntityMobSpawner) //sets up the spawner to be a Jabba spawner
-		{
-			TileEntityMobSpawner spawner = (TileEntityMobSpawner) tile;
-			String s = TragicConfig.allowJabba ? "TragicMC.Jabba" : "Blaze"; //if Jabba is disabled, sets them as blaze spawners instead
-			spawner.func_145881_a().setEntityName(s);
-		}
+		this.setSpawnerMob(world, x, y + 1, z, TragicConfig.allowJabba ? "TragicMC.Jabba" : "Blaze");
 
 
 		world.setBlock(x + 1, y, z, fox, 3, 2);
