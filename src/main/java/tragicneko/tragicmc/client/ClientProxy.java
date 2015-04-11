@@ -11,6 +11,7 @@ import org.lwjgl.input.Keyboard;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.tileentity.TileEntitySoulChest;
 import tragicneko.tragicmc.client.gui.GuiAmuletStatus;
 import tragicneko.tragicmc.client.gui.GuiDoom;
 import tragicneko.tragicmc.client.model.ModelAbomination;
@@ -42,6 +43,7 @@ import tragicneko.tragicmc.client.render.RenderGuardianShield;
 import tragicneko.tragicmc.client.render.RenderLargeRock;
 import tragicneko.tragicmc.client.render.RenderLock;
 import tragicneko.tragicmc.client.render.RenderProjectile;
+import tragicneko.tragicmc.client.render.RenderSoulChest;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.RenderTimeDisruption;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCombat;
@@ -173,7 +175,11 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
+		
+		//Tile Entity render registration (shouldn't be used too often)
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());
 
+		//Weapon models
 		if (TragicConfig.allowWeaponModels)
 		{
 			MinecraftForgeClient.registerItemRenderer(TragicItems.ReaperScythe, new RenderEpicWeapon(0, mc));

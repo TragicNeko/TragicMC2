@@ -58,6 +58,7 @@ import tragicneko.tragicmc.blocks.BlockMoltenRock;
 import tragicneko.tragicmc.blocks.BlockObsidianVariant;
 import tragicneko.tragicmc.blocks.BlockOverlordBarrier;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
+import tragicneko.tragicmc.blocks.BlockSoulChest;
 import tragicneko.tragicmc.blocks.BlockStarCrystal;
 import tragicneko.tragicmc.blocks.BlockSteamVent;
 import tragicneko.tragicmc.blocks.BlockStorage;
@@ -81,6 +82,7 @@ import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicSapling;
 import tragicneko.tragicmc.blocks.itemblocks.TragicItemBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityAeris;
+import tragicneko.tragicmc.blocks.tileentity.TileEntitySoulChest;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
@@ -203,6 +205,8 @@ public class TragicBlocks {
 	public static Block HallowedLeafTrim;
 	public static Block HallowedWood;
 	public static Block HallowedPlanks;
+	
+	public static Block SoulChest;
 
 	public static void load()
 	{		
@@ -579,6 +583,10 @@ public class TragicBlocks {
 		    }
 		}.setBlockName("tragicmc.explosiveGas");
 		GameRegistry.registerBlock(ExplosiveGas, ItemBlock.class, "explosiveGas");
+		
+		SoulChest = new BlockSoulChest(0).setBlockName("tragicmc.soulChest").setHardness(100F).setStepSound(Block.soundTypeWood).setResistance(1000F).setBlockTextureName("tragicmc:SoulChest");
+		GameRegistry.registerBlock(SoulChest, ItemBlock.class, "soulChest");
+		GameRegistry.registerTileEntity(TileEntitySoulChest.class, "soulChest");
 		
 		for (int i = 0; i < 3; i++)
 		{
