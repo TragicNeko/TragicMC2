@@ -35,7 +35,7 @@ public class SchematicCorruptedSpire extends Schematic {
 	private int lastHole = 0;
 
 	public SchematicCorruptedSpire() {
-		super(128, 52, 36);
+		super(120, 52, 36);
 	}
 
 	@Override
