@@ -3679,7 +3679,8 @@ I added before was one of the smallest structures I've ever made)
 Added utility methods for adding text to signs and specifying a mob for a spawner in the structure superclass
 Finished up the Corrupted Spire, it doesn't generate completely uniform (the outer blocks don't quite generate properly for each floor type) but that
 doesn't really matter, the tower generates as it should and is actually really tough to do, I decided to put it to 20 floors because there is a lot of
-lag while generating it, and also because it is actually very difficult to get through
+lag while generating it and also because it is actually very difficult to get through
+Changed the Molten Rock textures, they are now less saturated and don't have as much contrast
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
