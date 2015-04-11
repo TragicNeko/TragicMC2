@@ -3610,7 +3610,7 @@ Modified Overlord Core to generate an obsidian platform instead of a Celled bloc
 Removed some unnecessary loops from the config, this should speed up loading some
 Going through the configuration file and ensuring that each option is set up properly or used
 
-2.42.2205++ <196> (April 8, 2015)
+2.43.2244 <196> (April 8, 2015) [Structure generation rewritten]
 Updated the Combat form's model, setting up all of the child parts
 Fixed initial issues with the Combat form's model (typoed offsets, typoes in child parts)
 Fixed Combat form's rotation (overriden rotateCorpse apparently affects that)
@@ -3620,14 +3620,63 @@ Added render effect that the Apis uses for reflection to the Combat form
 Added animations for the Combat form, still need a texture
 Added textures for the Combat and Cocoon form's statues
 Fix Hacked being removed leaving the player with no movement input option (the player can't move unless they relog or die)
+Added worldgen for the explosive/radiated gas as well as for the sludge
+Updating structures and structure schematics currently, this will take up more classes but will not look as complex as the previous generation, it'll
+use static structures with instanced schematics
+Removed variant towers from the Structure seeds, since they are all about the same anyway, they will now be randomized when spawned from the structure
+seeds
+Greatly reduced the amount of code inside the Structure seed class, there is still special casing for the Obsidian Caverns, which I'll hopefully work out
+while I finish rewriting the class
+Removed special casing from generating a structure via structure seed, however, I still need to add the rest of the structures to the structure list
+Experimenting with implementing matrices for the schematics, this would allow me to rotate them for a little variance however, things like stairs would
+require a bit more work to place correctly with meta values (this could be done in the rotate method though, checking if the blockpreset is an instanceof
+stairs)
+Added more block types to the "safe" spawn blocks
+Working on fixing a bug where Toxic Sludge generates with normal Quicksand for some reason
+Made the Aeris instance a bit more difficult, you have to defend it from various mobs in the Collision (mostly Tragic Nekos, since they are most destructive)
+while it is corrupting, added chat messages to notify the player of the Aeris's current status
+Allow the Aeris to destroy blocks around it in order to prevent the instance from being made easier by blocking possible spawns
+Reduced chance for Tragic Neko to drop explosives on death
+Fixed localizations of changed items/blocks
+Added localizations of Corroded biomes
+Fixed Quicksand not properly dropping as a falling block
+More work done on structures and schematics, some changes are needed for the multi-part schematics (Kitsune Den, Obsidian Cavern, etc.)
+Added Wicked Vine generation to the Corroded biomes, also setup their variation in their worldgen aspects, increased root height of the Corroded Heights
+biome since it wasn't generating very plateau-like
+Updated two more of the schematics/structures, commented out all of the matrix stuff so that it doesn't get in the way 
+Fixed initial bug where a tower would always generate based off of biome when generated with a structure seed
+Made it so that if multiple structures can generate in a chosen spot, if one fails due to biome/config restriction another may attempt to generate there
+Updated Kitsune Den, it can now generate with multiple dens as it's variants instead of them being randomized each time, now you can pick how many dens
+but that option won't actually be usable because I don't want there to be too many structure seeds
+Added variants for the Apis and Celestial Temple, these just affect if there are more than one summon blocks generated, added variant size for tower
+Since the second variant part of the Obsidian Cavern now longer needs to be able to be preset it is now randomized when the structure is generating
+Fixed possible bug with using the wrong height value from the schematic
+Added Time Altar to structures, it uses it's variance for determining what color of star crystal generates in it, also made it circular instead of spherical
+to reduce load time of it, also makes it less bulky
+Fixed intial bugs with not overriding the generation method properly to actually generate the schematic
+Fixed more initial worldgen bugs, with things like not checking if the height was a valid amount to start generating and if the starting block was correct to
+start a surface structure
+Fixed another worldgen bug, had the wrong starting coordinates set up
+Reduced spawn rate of Aeris using a configurable value
+Fixed another worldgen bug with surface structures generating underground in caves
+Added cap on FlowerWorldGen to prevent it from causing hangs on worldgen
+Added another cap on worldgen for structures to prevent them trying to generate above the world limit
+Allowed Death Circle to generate in Scorched biomes
+Fixed Molten Netherrack not doing the proper block pick in creative mode, reverted change to it that made it drop as lava rocks
 
-Still need to add the various biome generators for the Gases and for the Sludge
-There will be mostly poisonous gases & sludge on the surface, explosive gases will be in pockets underground (they'll generate in spherical pockets where they are
-completely surrounded by stone to reduce chance of random mobs exploding them)
+2.43.2244++ <197> (April 9, 2015)
+Added a new chest type, it will require mob kills near it to collect souls, this'll generate in a small standalone structure in the Collision, it'll
+have similar generation to the Kitsune Den, except much smaller of course
+It basically uses a retextured chest as it's model but this should be fine
+Added Soul Tomb structure for the soul chest, it won't generate with spawners but it will generate with good items inside, it's very difficult to mine and
+has very high explosive resistance so killing mobs near it should be the best option (may make it unbreakable until it has enough souls)
+Added soul tomb rarity to config, removed yeti ravine since it'll probably not be added anytime soon
+Added variants to the Soul Tomb that just change the block it's made out of, added icon for the soul chest to replace the vanilla rendered one
+Added Aegar summon block along with it's texture
+Fixed recipe for the Corrupted Spire struture seed
+Typing up the Corrupted Spire schematic currently, it uses a LOT of space and is the largest structure I've ever made (ironic since the Soul Tomb that
+I added before was one of the smallest structures I've ever made)
 
-For Structure rewrite:
-The Structures themselves are going to be static variables, which can be easily cycled through and decided upon which should generate at a given time,
-then the Schematic will be instantiated based on the seed and biome location
 
 New Mobs:
 Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
