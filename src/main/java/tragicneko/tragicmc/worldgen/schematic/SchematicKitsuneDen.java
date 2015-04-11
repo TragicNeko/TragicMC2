@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
@@ -26,24 +27,8 @@ public class SchematicKitsuneDen extends Schematic {
 	}
 
 	@Override
-	public void generateStructure(int variant, World world, Random rand, int x,
-			int y, int z) {
-		switch(variant)
-		{
-		case 0:
-			generateWithoutVariation(world, rand, x, y, z);
-			break;
-		default:
-			TragicMC.logError("There was a problem generating a Kitsune Den.");
-			break;
-		}
-
-	}
-
-	@Override
-	public void generateWithoutVariation(World world, Random rand, int x, int y, int z) {
-
-		int dens = rand.nextInt(5); //the extra number of dens to generate in addition to the main one
+	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
+		int dens = MathHelper.clamp_int(variant, 0, 4);
 
 		for (int y1 = 0; y1 < 8; y1++)
 		{
@@ -87,7 +72,7 @@ public class SchematicKitsuneDen extends Schematic {
 		world.setBlock(x - 2, y, z - 2, fox, 3, 2);
 
 		world.setBlock(x, y, z, chest, 0, 2);
-		this.applyChestContents(world, rand, x, y, z);
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x, y + 1, z, spawner, 0, 2);
 
@@ -246,7 +231,7 @@ public class SchematicKitsuneDen extends Schematic {
 
 		if (dens > 0)
 		{
-			this.generateVariant(world, rand, x + 11, y, z);
+			this.generateDen(world, rand, x + 11, y, z);
 
 			for (int y1 = 1; y1 < 3; y1++) //generates the doorway to the extra den
 			{
@@ -260,7 +245,7 @@ public class SchematicKitsuneDen extends Schematic {
 
 			if (dens > 1)
 			{
-				this.generateVariant(world, rand, x - 11, y, z);
+				this.generateDen(world, rand, x - 11, y, z);
 
 				for (int y1 = 1; y1 < 3; y1++) //generates the doorway to the extra den
 				{
@@ -274,7 +259,7 @@ public class SchematicKitsuneDen extends Schematic {
 
 				if (dens > 2)
 				{
-					this.generateVariant(world, rand, x, y, z + 11);
+					this.generateDen(world, rand, x, y, z + 11);
 
 					for (int y1 = 1; y1 < 3; y1++) //generates the doorway to the extra den
 					{
@@ -288,7 +273,7 @@ public class SchematicKitsuneDen extends Schematic {
 
 					if (dens > 3)
 					{
-						this.generateVariant(world, rand, x, y, z - 11);
+						this.generateDen(world, rand, x, y, z - 11);
 
 						for (int y1 = 1; y1 < 3; y1++) //generates the doorway to the extra den
 						{
@@ -303,10 +288,10 @@ public class SchematicKitsuneDen extends Schematic {
 				}
 			}
 		}
+		return true;
 	}
 
-	@Override
-	public void generateVariant(World world, Random rand, int x, int y, int z) {
+	public void generateDen(World world, Random rand, int x, int y, int z) {
 
 		for (int y1 = 0; y1 < 6; y1++)
 		{
@@ -350,7 +335,7 @@ public class SchematicKitsuneDen extends Schematic {
 		world.setBlock(x - 1, y, z - 1, fox, 3, 2);
 
 		world.setBlock(x, y, z, chest, 0, 2);
-		this.applyChestContents(world, rand, x, y, z);
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x, y + 1, z, spawner, 0, 2);
 
@@ -493,23 +478,4 @@ public class SchematicKitsuneDen extends Schematic {
 
 		world.setBlock(x, y + 6, z, fox, 5, 2); //sets the one light block in the middle on top, lights it up just enough to see but not enough to prevent spawning
 	}
-
-	@Override
-	public void applyChestContents(World world, Random rand, int x, int y, int z) {
-		TileEntity tileentity = world.getTileEntity(x, y, z);
-
-		if (tileentity != null && tileentity instanceof TileEntityChest)
-		{
-			TileEntityChest chest = (TileEntityChest) tileentity;
-			WeightedRandomChestContent.generateChestContents(rand, TragicItems.NetherStructureHook.getItems(rand), chest, TragicItems.NetherStructureHook.getCount(rand));
-		}
-
-	}
-
-	@Override
-	public void fillMatrices() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

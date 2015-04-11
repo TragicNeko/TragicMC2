@@ -28,44 +28,21 @@ public class SchematicObsidianCavern extends Schematic {
 	private static Block chest = Blocks.chest;
 	private static Block glowstone = Blocks.glowstone;
 	private static Block spawner = Blocks.mob_spawner;
-
-	private int variant2 = 0;
 	
 	public SchematicObsidianCavern() {
 		super(256, 16, 16);
 	}
 
 	@Override
-	public void generateStructure(int variant, World world, Random rand, int x,	int y, int z) {
-		if (variant >= 15)
-		{
-			variant = rand.nextInt(7);
-		}
-
-		int next = 0;
-
-		if (variant2 >= 15)
-		{
-			next = rand.nextInt(10);
-		}
-		else
-		{
-			next = variant2;
-		}
-
-		generateWithoutVariation(world, rand, x, y, z);
-		generateCavernOfferings(next, world, rand, x, y, z);
+	public boolean generateStructure(int variant, World world, Random rand, int x,	int y, int z) {
+		int variant2 = rand.nextInt(variant + 1);
+		generateTube(world, rand, x, y, z);
+		generateCavernOfferings(variant2, world, rand, x, y, z);
 		generateCaveOpening(variant, world, rand, x, y, z);
-
+		return true;
 	}
 
-	@Override
-	public void generateWithoutVariation(World world, Random rand, int x, int y, int z) {
-
-		if (world.isRemote)
-		{
-			return;
-		}
+	public void generateTube(World world, Random rand, int x, int y, int z) {
 
 		int starty = y;
 		y = 0;
@@ -250,17 +227,6 @@ public class SchematicObsidianCavern extends Schematic {
 		world.setBlock(x + 5, 11, z - 5, glowstone);
 		world.setBlock(x - 5, 11, z + 5, glowstone);
 		world.setBlock(x - 5, 11, z - 5, glowstone);
-
-	}
-
-	@Override
-	public void generateVariant(World world, Random rand, int x, int y, int z) {
-
-	}
-
-	@Override
-	public void applyChestContents(World world, Random rand, int x, int y, int z) {
-
 	}
 
 	public void generateCaveOpening(int variant, World world, Random rand, int x, int y, int z) {
@@ -1158,11 +1124,5 @@ public class SchematicObsidianCavern extends Schematic {
 			break;
 		}
 		return s;
-	}
-
-	@Override
-	public void fillMatrices() {
-		// TODO Auto-generated method stub
-		
 	}
 }

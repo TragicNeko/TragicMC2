@@ -44,7 +44,7 @@ public class SteamVentWorldGen implements IWorldGenerator {
 			if (Structure.validBlocks.contains(block) && block.isReplaceable(world, Xcoord, Ycoord, Zcoord) && random.nextInt(4) == 0)
 			{
 				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
-				TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
+				//TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 			}
 		}
 

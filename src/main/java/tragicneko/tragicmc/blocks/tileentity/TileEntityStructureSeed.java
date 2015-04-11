@@ -1,8 +1,10 @@
 package tragicneko.tragicmc.blocks.tileentity;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.structure.Structure;
-import tragicneko.tragicmc.worldgen.structure.StructureRandom;
 
 public class TileEntityStructureSeed extends TileEntity {
 
@@ -18,10 +20,15 @@ public class TileEntityStructureSeed extends TileEntity {
 
 		Structure structure = Structure.structureList[meta];
 		if (structure == null) return;
-
-		if (structure instanceof StructureRandom) ((StructureRandom) structure).utilityInt = this.worldObj.rand.nextInt(20);
-		structure.generate(this.worldObj, this.worldObj.rand, this.xCoord, this.yCoord, this.zCoord); 
-		//doesn't need a special case to generate from this anymore since this bypasses the checks that the structure worldgen does
+		if (structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.xCoord, this.yCoord, this.zCoord))
+		{
+			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0);
+			if (player != null) player.addChatMessage(new ChatComponentText(structure.structureName + " was generated successfully!"));
+		}
+		else
+		{
+			TragicMC.logError("Something went wrong while generating a " + structure.structureName + " with a structure seed");
+		}
 	}
 
 }

@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockStructureSeeds extends TragicItemBlock {
 
-	private static String[] subNames = new String[] {"apisTemple", "tower", "deathCircle", "obsidianCavern", "kitsuneDen", "celestialTemple",
-		"timeAltar", "aegarTower"};
+	public static String[] subNames = new String[] {"apisTemple", "tower", "deathCircle", "obsidianCavern", "kitsuneDen", "celestialTemple",
+		"timeAltar", "soulTomb", "corruptedSpire"};
 
 	public ItemBlockStructureSeeds(Block p_i45326_1_) {
 		super(p_i45326_1_, subNames);
@@ -33,8 +33,8 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 		case 2: //Death Circle
 			color = 0x770300;
 			break;
-		case 3:
-			color = 0x797979;
+		case 3: //Obsidian Cavern
+			color = 0xAAAAAA;
 			break;
 		case 4: //Kitsune Den
 			color = 0xAF0000;
@@ -45,7 +45,10 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 		case 6: //Time Altar
 			color = 0x23FF23;
 			break;
-		case 7: //Aegar Tower
+		case 7: //Soul Tomb
+			color = 0x333333;
+			break;
+		case 8: //Aegar Tower
 			color = 0xFFFFFF;
 		default:
 			break;

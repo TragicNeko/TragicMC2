@@ -4,8 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
@@ -13,42 +11,21 @@ import tragicneko.tragicmc.TragicMC;
 
 public class SchematicApisTemple extends Schematic {
 
-	public SchematicApisTemple() {
-		super(10, 25, 25);
-	}
-
-	/**
-	 * Meta 0 is stoneBrick, 1 is mossy, 2 is cracked, 3 is chiseled
-	 */
 	private static Block brick = Blocks.stonebrick;
-
 	private static Block obs = Blocks.obsidian;
 	private static Block glow = Blocks.glowstone;
 	private static Block chest = Blocks.chest;
 	private static Block stone = Blocks.stone;
 	private static Block summon = TragicBlocks.SummonBlock;
 
-	/**
-	 * All of the common blocks that the structure will use, for ease of randomization they are in one array
-	 */
 	public static Block[] commonBlocks = new Block[] {Blocks.cobblestone, Blocks.gravel, Blocks.dirt, Blocks.mossy_cobblestone, Blocks.stone};
 
-	@Override
-	public void generateStructure(int variant, World world, Random rand, int x, int y, int z)
-	{
-		switch(variant)
-		{
-		case 0:
-			generateWithoutVariation(world, rand, x, y, z);
-			break;
-		default:
-			TragicMC.logError("There was a problem generating an Apis Temple");
-			break;
-		}
+	public SchematicApisTemple() {
+		super(10, 25, 25);
 	}
 
 	@Override
-	public void generateWithoutVariation(World world, Random rand, int x, int y, int z)
+	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		for (int y1 = 0; y1 < 10; y1++)
 		{
@@ -122,7 +99,7 @@ public class SchematicApisTemple extends Schematic {
 		{
 			world.setBlock(x + 1, y, z + i, commonBlocks[rand.nextInt(5)], 0, 2);
 		}
-		
+
 		world.setBlock(x + 1, y, z, commonBlocks[rand.nextInt(5)], 3, 2);
 		world.setBlock(x + 1, y, z + 3, obs, 0, 2);
 		world.setBlock(x + 1, y, z + 4, brick, rand.nextInt(3), 2);
@@ -272,12 +249,10 @@ public class SchematicApisTemple extends Schematic {
 			world.setBlock(x + 15, y, z + i, commonBlocks[rand.nextInt(5)], 0, 2);
 		}
 
-		if (!world.isRemote)
-		{
-			//First layer chest gen
-			this.applyChestContents(world, rand, x + 4, y, z + 4);
-			this.applyChestContents(world, rand, x + 4, y, z + 5);
-		}
+		//First layer chest gen
+		this.applyChestContents(world, rand, x + 4, y, z + 4, TragicItems.BossStructureHook);
+		this.applyChestContents(world, rand, x + 4, y, z + 5, TragicItems.BossStructureHook);
+		
 		y++;
 		//Second layer
 		x -= 1;
@@ -510,28 +485,20 @@ public class SchematicApisTemple extends Schematic {
 
 		//Twelfth row - middle row
 
-		if (!world.isRemote)
+		if (variant == 1)
 		{
-			int wubwub = rand.nextInt(100);
-
-			if (wubwub > 50)
-			{
-				world.setBlock(x + 5, y, z + 4, summon, 2, 2);
-				world.setBlockToAir(x + 5, y, z + 5);
-			}
-			else
-			{
-				if (wubwub == 0) //1 in 100 chance to create two summon blocks, otherwise it just does one, randomly picking which spot it's in
-				{
-					world.setBlock(x + 5, y, z + 4, summon, 2, 2);
-					world.setBlock(x + 5, y, z + 5, summon, 2, 2);
-				}
-				else
-				{
-					world.setBlockToAir(x + 5, y, z + 4);
-					world.setBlock(x + 5, y, z + 5, summon, 2, 2);
-				}
-			}
+			world.setBlock(x + 5, y, z + 4, summon, 2, 2);
+			world.setBlockToAir(x + 5, y, z + 5);
+		}
+		else if (variant == 2)
+		{
+			world.setBlock(x + 5, y, z + 4, summon, 2, 2);
+			world.setBlock(x + 5, y, z + 5, summon, 2, 2);
+		}
+		else
+		{
+			world.setBlockToAir(x + 5, y, z + 4);
+			world.setBlock(x + 5, y, z + 5, summon, 2, 2);
 		}
 
 		//Thirteenth row
@@ -1018,31 +985,7 @@ public class SchematicApisTemple extends Schematic {
 		world.setBlock(x + 10, y, z + 7, brick, rand.nextInt(3), 2);
 		world.setBlock(x + 10, y, z + 8, brick, rand.nextInt(3), 2);
 		world.setBlock(x + 10, y, z + 9, brick, 3, 2);
-	}
 
-	@Override
-	public void applyChestContents(World world, Random rand, int x, int y, int z) 
-	{
-		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
-
-		if (tileentity != null)
-		{
-			WeightedRandomChestContent.generateChestContents(rand, TragicItems.BossStructureHook.getItems(rand), tileentity, TragicItems.BossStructureHook.getCount(rand));
-		}
-		else
-		{
-			TragicMC.logWarning("Chest generation failed for some reason.");
-		}
-	}
-
-	@Override
-	public void generateVariant(World world, Random rand, int x, int y, int z)
-	{
-	}
-
-	@Override
-	public void fillMatrices() {
-		// TODO Auto-generated method stub
-		
+		return true;
 	}
 }

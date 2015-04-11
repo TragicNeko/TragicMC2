@@ -44,7 +44,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		BlockTragicFlower flower = (BlockTragicFlower) TragicBlocks.TragicFlower;
 		boolean bushType = random.nextBoolean();
 
-		if (!allowedBiomes.contains(biome)) return;
+		if (!allowedBiomes.contains(biome) && !(biome instanceof BiomeGenPaintedForest)) return;
 
 		int meta = random.nextInt(16);
 
@@ -92,12 +92,14 @@ public class FlowerWorldGen implements IWorldGenerator {
 				discrim[15] = false;
 			}
 
-			while (!discrim[meta])
+			int m = 0;
+			while (!discrim[meta] && m < 50)
 			{
 				meta = random.nextInt(16);
+				m++;
 			}
 
-			for (int i = 0; i < biome.theBiomeDecorator.flowersPerChunk * 4; i++)
+			for (int i = 0; i < biome.theBiomeDecorator.flowersPerChunk * 4 && discrim[meta]; i++)
 			{
 				Xcoord += random.nextInt(8) - random.nextInt(8);
 				Zcoord += random.nextInt(8) - random.nextInt(8);

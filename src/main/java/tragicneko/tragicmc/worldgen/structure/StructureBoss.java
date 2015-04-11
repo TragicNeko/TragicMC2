@@ -8,8 +8,8 @@ import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 public class StructureBoss extends Structure {
 
-	public StructureBoss(Schematic sch, int id) {
-		super(sch, id);
+	public StructureBoss(Schematic sch, int id, String name) {
+		super(sch, id, name);
 	}
 
 	@Override

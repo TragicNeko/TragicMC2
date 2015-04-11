@@ -51,7 +51,7 @@ public class CorrodedSurfaceWorldGen implements IWorldGenerator {
 			}
 		}
 		
-		pow = flag3 ? 32 : (flag2 ? 4 : 16);
+		pow = flag3 ? 32 : (flag2 ? 12 : 20);
 		
 		for (int l = 0; l < pow + random.nextInt(4); l++)
 		{

@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -23,7 +24,7 @@ public class AerisWorldGen implements IWorldGenerator {
 			z = (chunkZ * 16) + random.nextInt(16);
 			y = world.getTopSolidOrLiquidBlock(x, z);
 			if (y < 100) continue;
-			if (world.getBlock(x, y, z).isReplaceable(world, x, y, z) && world.getBlock(x, y - 1, z).isOpaqueCube())
+			if (world.getBlock(x, y, z).isReplaceable(world, x, y, z) && world.getBlock(x, y - 1, z).isOpaqueCube() && random.nextInt(200) <= TragicConfig.aerisRarity)
 			{
 				world.setBlock(x, y, z, TragicBlocks.Aeris, 0, 2);
 				TragicMC.logInfo("Aeris flower placed at " + x + ", " + y + ", " + z);

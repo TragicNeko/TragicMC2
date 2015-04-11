@@ -12,37 +12,20 @@ import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 
 public class SchematicDeathCircle extends Schematic {
-
-	public SchematicDeathCircle() {
-		super(6, 11, 11);
-	}
-
+	
 	private static Block fire = Blocks.fire;
 	private static Block exCob = TragicBlocks.DarkCobblestone;
 	private static Block darkCob = TragicBlocks.DarkCobblestone;
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
-
-	@Override
-	public void generateStructure(int variant, World world, Random rand, int x, int y, int z) 
-	{
-		switch(variant)
-		{
-		case 0:
-			generateWithoutVariation(world, rand, x, y, z);
-			break;
-		default:
-			TragicMC.logError("There was a problem generating a Death Circle");
-			break;
-		}
-		
-		this.applyChestContents(world, rand, x, y + 1, z);
+	
+	public SchematicDeathCircle() {
+		super(6, 11, 11);
 	}
 
 	@Override
-	public void generateWithoutVariation(World world, Random rand, int x, int y, int z) 
+	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) 
 	{
-		
 		for (int y1 = 0; y1 < 6; y1++)
 		{
 			for (int x1 = 0; x1 < 11;x1++)
@@ -317,6 +300,8 @@ public class SchematicDeathCircle extends Schematic {
 
 		world.setBlock(x - 8, y, z, darkCob);
 		world.setBlock(x, y, z, chest, 0, 2);
+		
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x - 4, y, z - 1, exCob, 1, 2);
 
@@ -428,37 +413,18 @@ public class SchematicDeathCircle extends Schematic {
 		y++;
 		
 		world.setBlock(x + 2, y, z + 1, fire);
+		
+		return true;
 	}
 
 	@Override
-	public void generateVariant(World world, Random rand, int x, int y, int z) {
-
+	public boolean generateStructure(World world, Random rand, int x, int y, int z)
+	{
+		return generateStructure(0, world, rand, x, y, z);
 	}
 
 	@Override
-	public void applyChestContents(World world, Random rand, int x, int y, int z) {
-		
-		if (world.isRemote)
-		{
-			return;
-		}
-		
-		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
-
-		if (tileentity != null)
-		{
-			WeightedRandomChestContent.generateChestContents(rand, TragicItems.NetherStructureHook.getItems(rand), tileentity, TragicItems.NetherStructureHook.getCount(rand));
-		}
-		else
-		{
-			TragicMC.logWarning("Chest generation failed for some reason.");
-		}
+	public boolean generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z) {
+		return generateStructure(world, rand, x, y, z);
 	}
-
-	@Override
-	public void fillMatrices() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

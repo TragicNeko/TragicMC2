@@ -11,14 +11,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStructureSeed extends BlockContainer {
-
-	private String[] structureNames = new String[]{"ApisTemple", "Tower", "DeathCircle", "ObsidianCavernRandom", "KitsuneDen", "CelestialTemple",
-			"TimeAltar", "AegarTower"};
 
 	public BlockStructureSeed() {
 		super(Material.gourd);
@@ -61,7 +59,7 @@ public class BlockStructureSeed extends BlockContainer {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.structureNames.length; i++)
+		for (int i = 0; i < ItemBlockStructureSeeds.subNames.length; i++)
 		{
 			par3.add(new ItemStack(par1, 1, i));
 		}

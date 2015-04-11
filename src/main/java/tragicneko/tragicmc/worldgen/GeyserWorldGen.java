@@ -67,7 +67,7 @@ public class GeyserWorldGen implements IWorldGenerator {
 				}
 				
 				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Geyser);
-				TragicMC.logInfo("Geyser generated at coords " + Xcoord + ", " + (Ycoord + 2) + ", " + Zcoord);
+				//TragicMC.logInfo("Geyser generated at coords " + Xcoord + ", " + (Ycoord + 2) + ", " + Zcoord);
 			}
 		}
 	}

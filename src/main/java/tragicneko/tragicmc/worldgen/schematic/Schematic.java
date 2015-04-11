@@ -4,34 +4,35 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ChestGenHooks;
+import tragicneko.tragicmc.TragicMC;
 
 public abstract class Schematic {
 
-	public ArrayList<BlockPreset[][]> layers;
+	//public ArrayList<BlockPreset[][]> layers;
 	public int width;
 	public int height;
+	public int structureHeight;
 	
-	public int offsetX;
-	public int offsetY;
-	public int offsetZ;
+	//public int offsetX;
+	//public int offsetY;
+	//public int offsetZ;
 	//may use these to deal with structures that don't have their origin matching the matrix
 
 	public Schematic(int structureHeight, int w, int h)
 	{
-		layers = new ArrayList<BlockPreset[][]>();
-		for (int i = 0; i < structureHeight; i++)
-		{
-			layers.add(new BlockPreset[w][h]);
-		}
+		//layers = new ArrayList<BlockPreset[][]>();
+		//for (int i = 0; i < structureHeight; i++) layers.add(new BlockPreset[w][h]);
 		this.width = w;
 		this.height = h;
-		this.fillMatrices();
+		this.structureHeight = structureHeight;
+		//this.fillMatrices();
 	}
 	
-	/**
-	 * Called in the constructor to fill the matrix, should be overridden by each schematic to fill their particular matrix for generation
-	 */
+	/*
 	public abstract void fillMatrices();
 
 	public void invertMatrix(BlockPreset[][] presets)
@@ -99,28 +100,51 @@ public abstract class Schematic {
 		//invert width and height parameters since these are used to keep track of the matrices assumed width and height
 		this.height = w;
 		this.width = h;
+	} */
+
+	/**
+	 * Main method to generate the particular structure, variants should be decided upon before this method is called, this may split off variants
+	 * into their own methods at the schematic's discretion
+	 */
+	public abstract boolean generateStructure(int variant, World world, Random rand, int x, int y, int z);
+
+	/**
+	 * This tells the schematic to generate as the basic version
+	 */
+	public boolean generateStructure(World world, Random rand, int x, int y, int z)
+	{
+		return this.generateStructure(0, world, rand, x, y, z);
 	}
 
 	/**
-	 * Main class called upon by the constructor, you need to tell the schematic which method to generate the structure from in here based on variant (if any)
+	 * This tells the schematic to generate as a random variant, use the main generation method if you want to pick a particular variant,
+	 * variantSize should be greater than 0, otherwise errors will ensue
 	 */
-	public abstract void generateStructure(int variant, World world, Random rand, int x, int y, int z);
-
-	/**
-	 * This is the basic structure without variation
-	 */
-	public abstract void generateWithoutVariation(World world, Random rand, int x, int y, int z);
-
-	/**
-	 * This is one variant of the main structure meant as an example method, more can be added and called from the generateStructure method
-	 */
-	public abstract void generateVariant(World world, Random rand, int x, int y, int z);
+	public boolean generateWithRandomVariant(int variantSize, World world, Random rand, int x, int y, int z)
+	{
+		return this.generateStructure(rand.nextInt(variantSize), world, rand, x, y, z);
+	}
 
 	/**
 	 * Use this to apply chest contents to generated chests
 	 */
-	public abstract void applyChestContents(World world, Random rand, int x, int y, int z);
-
+	public boolean applyChestContents(World world, Random rand, int x, int y, int z, ChestGenHooks hook)
+	{
+		if (y <= 0 || y >= 256) return false;
+		
+		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
+		if (tileentity != null)
+		{
+			WeightedRandomChestContent.generateChestContents(rand, hook.getItems(rand), tileentity, hook.getCount(rand));
+			return true;
+		}
+		else
+		{
+			TragicMC.logWarning("Chest generation failed. The tile entity was null.");
+			return false;
+		}
+	}
+	/*
 	public static class BlockPreset {
 
 		public final Block block;
@@ -134,5 +158,5 @@ public abstract class Schematic {
 			this.meta = meta;
 			this.forceReplace = replace;
 		}
-	}
+	} */
 }

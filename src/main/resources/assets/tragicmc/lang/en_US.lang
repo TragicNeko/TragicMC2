@@ -83,9 +83,8 @@ tile.tragicmc.tragicObsidian.crying.name=Crying Obsidian
 tile.tragicmc.tragicObsidian.dying.name=Dying Obsidian
 tile.tragicmc.tragicObsidian.bleeding.name=Bleeding Obsidian
 
-tile.tragicmc.pulsar.name=Pulsar
-tile.tragicmc.magnetar.name=Magnetar
 tile.tragicmc.timeDisruptor.name=Time Disruption Cube
+tile.tragicmc.soulChest.name=Soul Chest
 
 tile.tragicmc.structureSeed.apisTemple.name=Apis Temple Seed
 tile.tragicmc.structureSeed.tower.name=Random Tower Seed
@@ -94,7 +93,8 @@ tile.tragicmc.structureSeed.obsidianCavern.name=Random Obsidian Cavern Seed
 tile.tragicmc.structureSeed.kitsuneDen.name=Kitsunakuma Den Seed
 tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple Seed
 tile.tragicmc.structureSeed.timeAltar.name=Time Altar Seed
-tile.tragicmc.structureSeed.aegarTower.name=Corrupted Spire Seed
+tile.tragicmc.structureSeed.soulTomb.name=Soul Tomb
+tile.tragicmc.structureSeed.corruptedSpire.name=Corrupted Spire Seed
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt

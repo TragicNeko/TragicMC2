@@ -23,6 +23,8 @@ import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
+import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 
 public class TileEntitySummonBlock extends TileEntity {
 
@@ -36,9 +38,9 @@ public class TileEntitySummonBlock extends TileEntity {
 	public void updateEntity()
 	{
 		if (this.worldObj.isRemote) return;
-		
+
 		if (this.worldObj.getTotalWorldTime() % 20L == 0L) this.updateState();
-		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord))
+		if (this.worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord) && !this.worldObj.isRemote)
 		{
 			this.spawnBoss(null);
 		}
@@ -114,6 +116,16 @@ public class TileEntitySummonBlock extends TileEntity {
 		{
 			boss = new EntityClaymation(this.worldObj);
 		}
+		else if (meta == 10 && TragicConfig.allowAegar)
+		{
+			boss = new EntityAegar(this.worldObj);
+		}
+
+		if (boss instanceof TragicBoss && this.worldObj.difficultySetting.getDifficultyId() < 2 && player != null)
+		{
+			player.addChatMessage(new ChatComponentText("Difficulty needs to be raised to spawn this boss."));
+			return; 
+		}
 
 		if (boss == null) return;
 
@@ -122,9 +134,12 @@ public class TileEntitySummonBlock extends TileEntity {
 		this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
 		this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
 		this.worldObj.spawnEntityInWorld(boss);
-		
-		if (boss instanceof EntityLiving && player != null) ((EntityLiving) boss).setAttackTarget(player);
-		if (player != null) this.tauntPlayer(player, this.worldObj.rand);
+
+		if (player != null)
+		{
+			((EntityLiving) boss).setAttackTarget(player);
+			this.tauntPlayer(player, this.worldObj.rand);
+		}
 	}
 
 	private void tauntPlayer(EntityPlayer player, Random rand) {
@@ -132,7 +147,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		EnumChatFormatting format = EnumChatFormatting.DARK_RED;
 		ChatComponentText chat = null;
 
-		if (rand.nextBoolean())
+		if (rand.nextInt(8) == 0)
 		{
 			chat = new ChatComponentText(format + "A Boss has been summoned!");
 		}

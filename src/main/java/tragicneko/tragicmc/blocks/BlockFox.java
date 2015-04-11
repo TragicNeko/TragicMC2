@@ -55,10 +55,6 @@ public class BlockFox extends Block {
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
-		if (meta == 5)
-		{
-			return TragicItems.Projectile;
-		}
 		return super.getItemDropped(meta, rand, level);
 	}
 	
@@ -102,10 +98,6 @@ public class BlockFox extends Block {
 	@Override
 	public int damageDropped(int par1)
 	{
-		if (par1 == 5)
-		{
-			return 1;
-		}
 		return par1;
 	}
 

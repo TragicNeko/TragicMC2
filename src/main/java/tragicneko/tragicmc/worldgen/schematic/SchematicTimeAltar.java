@@ -16,31 +16,17 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class SchematicTimeAltar extends Schematic {
 
-	public SchematicTimeAltar() {
-		super(10, 10, 10);
-	}
-
 	private static Block quartz = Blocks.quartz_block;
 	private static Block crystal = TragicBlocks.StarCrystal;
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
 
-	@Override
-	public void generateStructure(int variant, World world, Random rand, int x, int y, int z) {
-		switch(variant)
-		{
-		case 0:
-			generateWithoutVariation(world, rand, x, y, z);
-			break;
-		default:
-			TragicMC.logError("There was a problem generating a Time Altar");
-			break;
-		}
+	public SchematicTimeAltar() {
+		super(5, 10, 10);
 	}
 
 	@Override
-	public void generateWithoutVariation(World world, Random rand, int x, int y, int z) {
-
+	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		for (int y1 = -1; y1 < 10; y1++)
 		{
 			for (int x1 = -7; x1 < 8; x1++)
@@ -55,31 +41,14 @@ public class SchematicTimeAltar extends Schematic {
 		ArrayList<int[]> list;
 		int[] coords;
 		Block block;
-		boolean flag;
 
-		list = WorldHelper.getBlocksInSphericalRange(world, 8.0D, x, y, z);
+		list = WorldHelper.getBlocksInCircularRange(world, 8.0D, x, y, z);
 
-		for (int i = 0; i < list.size(); i++) //creates a giant hemisphere of quartz with star crystal inside of it sparingly
+		for (int i = 0; i < list.size(); i++) //creates a giant circle of quartz with star crystal inside of it sparingly
 		{
 			coords = list.get(i);
-
-			if (coords[1] < y + 1)
-			{
-				block = world.getBlock(coords[0], coords[1], coords[2]);
-				flag = rand.nextInt(32) != 0;
-
-				if (Structure.validBlocks.contains(block))
-				{
-					if (rand.nextInt(8) != 0)
-					{
-						world.setBlock(coords[0], coords[1], coords[2], quartz, 0, 2);
-					}
-					else
-					{
-						world.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-				}
-			}
+			block = world.getBlock(coords[0], coords[1], coords[2]);
+			if (Structure.validBlocks.contains(block)) world.setBlock(coords[0], coords[1], coords[2], quartz, 0, 2);
 		}
 
 		list = WorldHelper.getBlocksInCircularRange(world, 4.446D, x, y, z);
@@ -87,19 +56,8 @@ public class SchematicTimeAltar extends Schematic {
 		for (int i = 0; i < list.size(); i++) //creates a smaller hemisphere of star crystal to provide lighting
 		{
 			coords = list.get(i);
-
-			if (coords[1] < y + 1)
-			{
-				block = world.getBlock(coords[0], coords[1], coords[2]);
-
-				if (block == quartz)
-				{
-					if (rand.nextInt(4) == 0)
-					{
-						world.setBlock(coords[0], coords[1], coords[2], crystal, rand.nextInt(6), 2);
-					}
-				}
-			}
+			block = world.getBlock(coords[0], coords[1], coords[2]);
+			if (block == quartz) world.setBlock(coords[0], coords[1], coords[2], crystal, variant, 2);
 		}
 
 		//Creates a structure in the middle that you can use to create another time controller, it comes with a summon block on top though
@@ -113,38 +71,13 @@ public class SchematicTimeAltar extends Schematic {
 		world.setBlock(x, y + 3, z, summon, 7, 2);
 
 		world.setBlock(x, y, z, chest, 0, 2);
-		this.applyChestContents(world, rand, x, y, z);
+		this.applyChestContents(world, rand, x, y, z, TragicItems.AwesomeChestHook);
 
 		world.setBlock(x + 1, y, z, quartz); //blocks to ensure the chest is concealed
 		world.setBlock(x - 1, y, z, quartz);
 		world.setBlock(x, y, z + 1, quartz);
 		world.setBlock(x, y, z - 1, quartz);
+
+		return true;
 	}
-
-	@Override
-	public void generateVariant(World world, Random rand, int x, int y, int z) {
-
-	}
-
-	@Override
-	public void applyChestContents(World world, Random rand, int x, int y, int z) {
-		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
-
-		if (tileentity != null)
-		{
-			WeightedRandomChestContent.generateChestContents(rand, TragicItems.AwesomeChestHook.getItems(rand), tileentity, TragicItems.AwesomeChestHook.getCount(rand));
-		}
-		else
-		{
-			TragicMC.logWarning("Chest generation failed for some reason.");
-		}
-
-	}
-
-	@Override
-	public void fillMatrices() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

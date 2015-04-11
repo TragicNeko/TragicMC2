@@ -2,14 +2,12 @@ package tragicneko.tragicmc.worldgen.schematic;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.World;
 
 public class SchematicDesertTower extends Schematic {
 
@@ -43,7 +41,7 @@ public class SchematicDesertTower extends Schematic {
 	private static Block netherStair = Blocks.nether_brick_stairs;
 	private static Block plateNether = TragicBlocks.NetherBrickPressurePlate;
 	private static Block netherFence = Blocks.nether_brick_fence;
-	
+
 	//this is for the snow/ice variant
 	private static Block snow = Blocks.snow;
 	private static Block ice = Blocks.packed_ice;
@@ -54,18 +52,18 @@ public class SchematicDesertTower extends Schematic {
 	public SchematicDesertTower() {
 		super(25, 9, 9);
 	}
-	
+
 	@Override
-	public void generateStructure(int variant, World world, Random rand, int x,
-			int y, int z) {
+	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) {
 		switch(variant)
 		{
 		case 0: //Desert tower
-			generateWithoutVariation(world, rand, x, y, z);
+			generateVariant0(world, rand, x, y, z);
 			break;
 		case 1: //Mesa tower
-			generateVariant(world, rand, x, y, z);
+			generateVariant1(world, rand, x, y, z);
 			break;
+		default:
 		case 2: //Plains/Forest tower
 			generateVariant2(world, rand, x, y, z);
 			break;
@@ -75,17 +73,11 @@ public class SchematicDesertTower extends Schematic {
 		case 4: //Ice tower
 			generateVariant4(world, rand, x, y, z);
 			break;
-		default:
-			TragicMC.logError("There was a problem generating a Tower");
-			break;
 		}
-		this.applyChestContents(world, rand, x, y + 17, z);
-
+		return true;
 	}
 
-	@Override
-	public void generateWithoutVariation(World world, Random rand, int x, int y, int z) {
-
+	public void generateVariant0(World world, Random rand, int x, int y, int z) {
 		//First layer
 
 		//First row
@@ -928,6 +920,8 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, sandstone, 2, 2);
+		
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		world.setBlock(x + 1, y, z - 2, sandstone, 1, 2);
@@ -1093,8 +1087,7 @@ public class SchematicDesertTower extends Schematic {
 
 	}
 
-	@Override
-	public void generateVariant(World world, Random rand, int x, int y, int z) {
+	public void generateVariant1(World world, Random rand, int x, int y, int z) {
 		//First layer
 
 		//Second row
@@ -1741,6 +1734,8 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, hardClay, 2, 2);
+		
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		world.setBlock(x + 1, y, z - 2, hardClay, 1, 2);
@@ -2724,6 +2719,8 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, brick, 1, 2);
+		
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		world.setBlock(x + 1, y, z - 2, brick, 0, 2);
@@ -3731,6 +3728,8 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
+		
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		world.setBlock(x + 1, y, z - 2, netherBrick, 1, 2);
@@ -3894,7 +3893,7 @@ public class SchematicDesertTower extends Schematic {
 		//Fourth row
 		world.setBlock(x, y, z, slab, 6, 2);
 	}
-	
+
 	public void generateVariant4(World world, Random rand, int x, int y, int z) {
 
 		//First layer
@@ -4723,6 +4722,8 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, ice, 2, 2);
+		
+		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
 		world.setBlock(x + 1, y, z - 2, ice, 1, 2);
@@ -4853,31 +4854,4 @@ public class SchematicDesertTower extends Schematic {
 		y++;
 
 	}
-
-	@Override
-	public void applyChestContents(World world, Random rand, int x, int y, int z) {
-
-		if (world.isRemote)
-		{
-			return;
-		}
-		
-		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
-
-		if (tileentity != null)
-		{
-			WeightedRandomChestContent.generateChestContents(rand, TragicItems.LameChestHook.getItems(rand), tileentity, TragicItems.LameChestHook.getCount(rand));
-		}
-		else
-		{
-			TragicMC.logWarning("Chest generation failed for some reason.");
-		}
-	}
-
-	@Override
-	public void fillMatrices() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
