@@ -305,14 +305,6 @@ public class TragicRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.MobStatue, 1, 17), 
 				new ItemStack(TragicItems.MobStatue, 1, 19), TragicItems.LivingClay, TragicItems.CorruptedEssence
 				);
-		
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
-				"xxx",
-				"xyx",
-				"xxx",
-				'x', TragicBlocks.TimeDisruptionCube,
-				'y', TragicItems.EnchantedTears
-				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Talisman, 1), 
 				" x ",
@@ -445,7 +437,7 @@ public class TragicRecipes {
 				"celestialSteelDrops", "celestialSteelDrops", "celestialSteelDrops", TragicItems.CelestialDiamond
 				));
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 15),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.StructureSeed, 1, 8),
 				"abc",
 				"dye",
 				"fgh",
