@@ -271,6 +271,17 @@ tile.tragicmc.explosiveGas.name=Explosive Gas
 tile.tragicmc.wickedVine.name=Wicked Vine
 tile.tragicmc.corrodedStone.name=Corroded Stone
 
+tile.tragicmc.icedDirt.name=Iced Dirt
+tile.tragicmc.permafrost.normal.name=Permafrost
+tile.tragicmc.permafrost.cracked.name=Cracked Permafrost
+tile.tragicmc.permafrost.mossy.name=Mossy Permafrost
+tile.tragicmc.lichen.name=Lichen
+tile.tragicmc.moss.name=Moss
+tile.tragicmc.iceSpike.name=Ice Stalagmite
+tile.tragicmc.iceSpikeHanging.name=Ice Stalactite
+
+tile.tragicmc.crystal.name=Crystal
+
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
 item.tragicmc.mercuryPlate.name=Red Mercury Chestplate
@@ -532,6 +543,7 @@ item.tragicmc.worldGen.lightningSummoner.name=Lightning Summoner
 item.tragicmc.worldGen.directedLightningSummoner.name=Directed Lightning Summoner
 item.tragicmc.worldGen.explosionGenerator.name=Explosion Generator
 item.tragicmc.worldGen.isleGenerator.name=Tainted Isle Generator
+item.tragicmc.worldGen.pitGenerator.name=Pit Generator
 
 item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 
@@ -992,19 +1004,15 @@ tragicmc.corrodedHeights=Corroded Heights
 tragicmc.corrodedRunoff=Corroded Runoff
 tragicmc.corrodedFallout=Corroded Fallout
 
-tragicmc.frozenOcean=Frozen Ocean
-tragicmc.frozenRises=Frozen Rises
 tragicmc.frozenTundra=Frozen Tundra
-tragicmc.frozenSpikes=Frozen Spikes
+tragicmc.frozenDepths=Frozen Depths
+tragicmc.frozenHills=Frozen Hills
 
 tragicmc.darkForest=Dark Forest
 tragicmc.darkForestHills=Dark Forest Hills
 tragicmc.darkForestValley=Dark Forest Valley
 tragicmc.darkForestClearing=Dark Forest Clearing
 
-tragicmc.crystalShield=Crystal Shield
-tragicmc.crystalSpikes=Crystal Spikes
-tragicmc.crystalCliffs=Crystal Cliffs
-tragicmc.crystalDives=Crystal Dives
+tragicmc.crystal=Crystal
 
 tragicmc.synapse=Synapse
