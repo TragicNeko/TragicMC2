@@ -188,7 +188,9 @@ public class ChallengeItemEvents {
 						}
 						else
 						{
-							flag = MathHelper.sqrt_double(player.posX * player.posX + player.posZ * player.posZ) >= challenge.challengeRange;
+							double x = Math.abs(player.posX);
+							double z = Math.abs(player.posZ);
+							flag = MathHelper.sqrt_double(x * x + z * z) >= challenge.challengeRange;
 						}
 						stack.stackTagCompound.setBoolean("challengeLocation", flag);
 					}
