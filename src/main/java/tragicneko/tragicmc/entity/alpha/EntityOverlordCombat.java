@@ -592,7 +592,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		}
 
 		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 
