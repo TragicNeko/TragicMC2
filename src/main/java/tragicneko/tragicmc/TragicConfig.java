@@ -49,7 +49,14 @@ public class TragicConfig {
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
 	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles, idHallowedHills, idHallowedForest, idHallowedPrarie, idHallowedCliffs;
 	public static int idScorchedWastelands, idScorchedValley, idScorchedScarlands, idCorrodedSteppe, idCorrodedHeights, idCorrodedVeld, idCorrodedRunoff, idCorrodedFallout;
+	public static int idFrozenTundra, idFrozenHills, idFrozenDepths, idCrystal;
 	public static int idSynapse;
+	private static int[] biomeWeights = new int[48];
+	public static int decayingHillsW, decayingValleyW, decayingWastelandW, decayingMountainsW, paintedForestW, paintedPlainsW, paintedHillsW, paintedClearingW;
+	public static int ashenMountainsW, ashenHillsW, ashenBadlandsW, starlitPrarieW, starlitPlateausW, starlitCliffsW, starlitLowlandsW, taintedSpikesW, taintedLowlandsW;
+	public static int taintedRisesW, taintedScarlandsW, taintedIslesW, hallowedHillsW, hallowedForestW, hallowedPrarieW, hallowedCliffsW, scorchedWastelandsW, scorchedValleyW;
+	public static int scorchedScarlandsW, corrodedSteppeW, corrodedHeightsW, corrodedVeldW, corrodedRunoffW, corrodedFalloutW, frozenTundraW, frozenHillsW, frozenDepthsW;
+	public static int synapseW, crystalW;
 
 	private static boolean[] blanketDoom = new boolean[17];
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
@@ -154,7 +161,7 @@ public class TragicConfig {
 		//Blanket options
 		blanketConfigs[mapping++] = false; //(config.get(catBlanket, "allowAchievements", true).getBoolean(true)); //these aren't set up yet
 		blanketConfigs[mapping++] = (config.get(catBlanket, "allowAmulets", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowDimension", true).getBoolean(true));
+		blanketConfigs[mapping++] = (config.get(catBlanket, "allowDimensions", true).getBoolean(true));
 		blanketConfigs[mapping++] = (config.get(catBlanket, "allowDoom", true).getBoolean(true));
 		blanketConfigs[mapping++] = (config.get(catBlanket, "allowEnchantments", true).getBoolean(true));
 		blanketConfigs[mapping++] = (config.get(catBlanket, "allowMobs", true).getBoolean(true));
@@ -220,39 +227,80 @@ public class TragicConfig {
 		allowDimensionRespawn = (config.get(catDimension, "allowCollisionRespawn", false).getBoolean(false));
 
 		mapping = 0;
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDecayingHillsWeight", 20).getInt(20));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDecayingHillsID", getOpenIDForBiome(90)).getInt(getOpenIDForBiome(90)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDecayingValleyWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDecayingValleyID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDecayingWastelandWeight", 20).getInt(20));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDecayingWastelandID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDecayingMountainsWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDecayingMountainsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomePaintedForestWeight", 30).getInt(30));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomePaintedForestID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomePaintedPlainsWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomePaintedPlainsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomePaintedHillsWeight", 20).getInt(20));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomePaintedHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomePaintedClearingWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomePaintedClearingID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeAshenMountainsWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeAshenMountainsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeAshenHillsWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeAshenHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeAshenBadlandsWeight", 20).getInt(20));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeAshenBadlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeStarlitPrarieWeight", 25).getInt(25));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeStarlitPrarieID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeStarlitPlateausWeight", 15).getInt(15));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeStarlitPlateausID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeStarlitCliffsWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeStarlitCliffsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeStarlitLowlandsWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeStarlitLowlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeTaintedSpikesWeight", 25).getInt(25));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedSpikesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeTaintedLowlandsWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedLowlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeTaintedRisesWeight", 15).getInt(15));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedRisesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeTaintedScarlandsWeight", 15).getInt(15));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeTaintedIslesWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeTaintedIslesID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeSynapseWeight", 0).getInt(0));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeSynapseID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeHallowedHillsWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeHallowedForestWeight", 25).getInt(25));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedForestID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeHallowedPrarieWeight", 20).getInt(20));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedPrarieID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeHallowedCliffsWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeHallowedCliffsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeScorchedWastelandsWeight", 15).getInt(15));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedWastelandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeScorchedValleyWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedValleyID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeScorchedScarlandsWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeScorchedScarlandsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCorrodedSteppeWeight", 25).getInt(25));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedSteppeID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCorrodedHeightsWeight", 15).getInt(15));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedHeightsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCorrodedVeldWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedVeldID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCorrodedRunoffWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedRunoffID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCorrodedFalloutWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeCorrodedFalloutID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeFrozenTundraWeight", 25).getInt(25));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeFrozenTundraID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeFrozenHillsWeight", 15).getInt(15));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeFrozenHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeFrozenDepthsWeight", 5).getInt(5));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeFrozenDepthsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCrystalWeight", 5).getInt(5));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeCrystalID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		
 		config.addCustomCategoryComment(catDimension, "Set the various biome IDs in the Dimension, including the Dimension's own ID, also set if the Dimension should stay loaded.");
 
@@ -814,19 +862,19 @@ public class TragicConfig {
 		blanketWorldGen[mapping++] = (config.get(catWorldGen, "allowBossStructureGen", true).getBoolean(true));
 
 		mapping = 0;
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "voidPitRarity", 5).getInt(5), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "largeSpikeRarity", 95).getInt(95), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "starCrystalRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 5).getInt(5), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "apisTempleRarity", 5).getInt(5), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "desertTowerRarity", 15).getInt(15), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "deathCircleRarity", 5).getInt(5), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "obsidianCavernRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "kitsuneDenRarity", 5).getInt(5), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "celestialTempleRarity", 3).getInt(3), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 5).getInt(5), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "soulTombRarity", 10).getInt(10), 1, 100);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "aerisRarity", 5).getInt(5), 1, 100);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "voidPitRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "largeSpikeRarity", 95).getInt(95), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "starCrystalRarity", 10).getInt(10), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "apisTempleRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "desertTowerRarity", 15).getInt(15), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "deathCircleRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "obsidianCavernRarity", 10).getInt(10), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "kitsuneDenRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "celestialTempleRarity", 3).getInt(3), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "soulTombRarity", 10).getInt(10), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "aerisRarity", 5).getInt(5), 1, 200);
 
 		config.addCustomCategoryComment(catWorldGen, "These toggle specific WorldGen features, meant to help with lag reduction if your CPU cannot handle it during WorldGen, also toggle rarities of structures");
 
@@ -1087,6 +1135,19 @@ public class TragicConfig {
 				blanketWorldGen[5] = false;
 			}
 		}
+		
+		boolean flag = false;
+		
+		for (int w : biomeWeights) //if all biome weights are set to 0, the dimensions are disabled
+		{
+			if (flag) break;
+			if (w > 0) flag = true;
+		}
+		
+		if (!flag)
+		{
+			TragicConfig.allowDimension = false;
+		}
 
 		initializeAllVariables();
 	}
@@ -1148,39 +1209,80 @@ public class TragicConfig {
 		amuWither = epicAmuletConfigs[1];
 
 		mapping = 0;
+		decayingHillsW = biomeWeights[mapping];
 		idDecayingHills = biomeIDs[mapping++];
+		decayingValleyW = biomeWeights[mapping];
 		idDecayingValley = biomeIDs[mapping++];
+		decayingWastelandW = biomeWeights[mapping];
 		idDecayingWasteland = biomeIDs[mapping++];
+		decayingMountainsW = biomeWeights[mapping];
 		idDecayingMountains = biomeIDs[mapping++];
+		paintedForestW = biomeWeights[mapping];
 		idPaintedForest = biomeIDs[mapping++];
+		paintedPlainsW = biomeWeights[mapping];
 		idPaintedPlains = biomeIDs[mapping++];
+		paintedHillsW = biomeWeights[mapping];
 		idPaintedHills = biomeIDs[mapping++];
+		paintedClearingW = biomeWeights[mapping];
 		idPaintedClearing = biomeIDs[mapping++];
+		ashenMountainsW = biomeWeights[mapping];
 		idAshenMountains = biomeIDs[mapping++];
+		ashenHillsW = biomeWeights[mapping];
 		idAshenHills = biomeIDs[mapping++];
+		ashenBadlandsW = biomeWeights[mapping];
 		idAshenBadlands = biomeIDs[mapping++];
+		starlitPrarieW = biomeWeights[mapping];
 		idStarlitPrarie = biomeIDs[mapping++];
+		starlitPlateausW = biomeWeights[mapping];
 		idStarlitPlateaus = biomeIDs[mapping++];
+		starlitCliffsW = biomeWeights[mapping];
 		idStarlitCliffs = biomeIDs[mapping++];
+		starlitLowlandsW = biomeWeights[mapping];
 		idStarlitLowlands = biomeIDs[mapping++];
+		taintedSpikesW = biomeWeights[mapping];
 		idTaintedSpikes = biomeIDs[mapping++];
+		taintedLowlandsW = biomeWeights[mapping];
 		idTaintedLowlands = biomeIDs[mapping++];
+		taintedRisesW = biomeWeights[mapping];
 		idTaintedRises = biomeIDs[mapping++];
+		taintedScarlandsW = biomeWeights[mapping];
 		idTaintedScarlands = biomeIDs[mapping++];
+		taintedIslesW = biomeWeights[mapping];
 		idTaintedIsles = biomeIDs[mapping++];
+		synapseW = biomeWeights[mapping];
 		idSynapse = biomeIDs[mapping++];
+		hallowedHillsW = biomeWeights[mapping];
 		idHallowedHills = biomeIDs[mapping++];
+		hallowedForestW = biomeWeights[mapping];
 		idHallowedForest = biomeIDs[mapping++];
+		hallowedPrarieW = biomeWeights[mapping];
 		idHallowedPrarie = biomeIDs[mapping++];
+		hallowedCliffsW = biomeWeights[mapping];
 		idHallowedCliffs = biomeIDs[mapping++];
+		scorchedWastelandsW = biomeWeights[mapping];
 		idScorchedWastelands = biomeIDs[mapping++];
+		scorchedValleyW = biomeWeights[mapping];
 		idScorchedValley = biomeIDs[mapping++];
+		scorchedScarlandsW = biomeWeights[mapping];
 		idScorchedScarlands = biomeIDs[mapping++];
+		corrodedSteppeW = biomeWeights[mapping];
 		idCorrodedSteppe = biomeIDs[mapping++];
+		corrodedHeightsW = biomeWeights[mapping];
 		idCorrodedHeights = biomeIDs[mapping++];
+		corrodedVeldW = biomeWeights[mapping];
 		idCorrodedVeld = biomeIDs[mapping++];
+		corrodedRunoffW = biomeWeights[mapping];
 		idCorrodedRunoff = biomeIDs[mapping++];
+		corrodedFalloutW = biomeWeights[mapping];
 		idCorrodedFallout = biomeIDs[mapping++];
+		frozenTundraW = biomeWeights[mapping];
+		idFrozenTundra = biomeIDs[mapping++];
+		frozenHillsW = biomeWeights[mapping];
+		idFrozenHills = biomeIDs[mapping++];
+		frozenDepthsW = biomeWeights[mapping];
+		idFrozenDepths = biomeIDs[mapping++];
+		crystalW = biomeWeights[mapping];
+		idCrystal = biomeIDs[mapping++];
 
 		mapping = 0;
 		allowDoomsdays = blanketDoom[mapping++];
