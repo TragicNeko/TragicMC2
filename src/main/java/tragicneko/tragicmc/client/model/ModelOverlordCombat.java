@@ -221,7 +221,7 @@ public class ModelOverlordCombat extends ModelBase
 		body.addChild(circuit30);
 
 		ModelRenderer circuit31 = new ModelRenderer(this, 0, 0);
-		circuit31.addBox(-1F, -16F, -6F, 1, 1, 1);
+		circuit31.addBox(-1F, -12F, -6F, 1, 1, 1);
 		body.addChild(circuit31);
 
 		ModelRenderer circuit32 = new ModelRenderer(this, 0, 0);
