@@ -226,7 +226,7 @@ public class EntitySeeker extends TragicMob {
 	protected boolean teleportRandomly()
 	{
 		double d0 = this.posX + (this.rand.nextDouble() * 8.0D);
-		double d1 = this.posY + (this.rand.nextInt(8) - 8);
+		double d1 = this.posY + (this.rand.nextInt(8) - 8) + 4;
 		double d2 = this.posZ + (this.rand.nextDouble() * 8.0D);
 		return this.teleportTo(d0, d1, d2);
 	}
