@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -56,7 +55,7 @@ public class EntityDarkLightning extends EntityProjectile {
 		
 		if (this.ticksInAir % 20 == 0 && this.ticksInAir > 10 && this.ticksInAir <= 120 && !this.isDead && !this.worldObj.isRemote)
 		{
-			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.posX, this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ), this.posZ));
+			this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, this.posX, this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ), this.posZ, this));
 		}
 		
 		if (!this.worldObj.isRemote && this.ticksExisted >= 120) this.setDead();
