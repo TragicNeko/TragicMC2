@@ -14,6 +14,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -37,7 +38,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 	public EntityOverlordCocoon(World par1World) {
 		super(par1World);
-		this.setSize(2.385F, 3.325F);
+		this.setSize(5.385F, 5.325F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 0;
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
@@ -70,15 +71,6 @@ public class EntityOverlordCocoon extends TragicBoss {
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
-		if (!this.worldObj.isRemote)
-		{
-			for (EntitySeeker sk : this.seekers) sk.setDead();
-
-			EntityOverlordCombat combat = new EntityOverlordCombat(this.worldObj);
-			combat.setPosition(this.posX, this.posY, this.posZ);
-			combat.setTransforming();
-			this.worldObj.spawnEntityInWorld(combat);
-		}
 	}
 
 	@Override
@@ -118,7 +110,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{
-		this.rotationYaw = this.rotationPitch = 0;
+		this.rotationYaw = this.rotationPitch = this.prevRotationPitch = this.prevRotationYaw = 0;
 		this.motionX = this.motionZ = 0D;
 		this.motionY = -1D;
 		super.onLivingUpdate();
@@ -147,7 +139,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 			}
 		}
 
-		if (this.seekers.isEmpty() && this.getPhaseTicks() == 0) this.setPhaseTicks(200);
+		if (this.seekers.isEmpty() && this.getPhaseTicks() == 0 && this.deathTime == 0) this.setPhaseTicks(200);
 
 		if (this.getPhaseTicks() > 0)
 		{
@@ -455,5 +447,56 @@ public class EntityOverlordCocoon extends TragicBoss {
 		tag.setBoolean("phaseChange", this.phaseChange);
 		tag.setFloat("phaseDamage", this.phaseDamage);
 		tag.setInteger("phaseTicks", this.getPhaseTicks());
+	}
+	
+	@Override
+	protected void onDeathUpdate()
+	{
+		++this.deathTime;
+
+		if (this.deathTime >= 200)
+		{
+			this.deathTime = 1;
+			
+			int i;
+			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			{
+				i = this.getExperiencePoints(this.attackingPlayer);
+
+				while (i > 0)
+				{
+					int j = EntityXPOrb.getXPSplit(i);
+					i -= j;
+					this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+				}
+			}
+			
+			this.setDead(); 
+			
+			for (int ji = 0; ji < 20; ++ji)
+			{
+				this.worldObj.spawnParticle("hugeexplosion", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
+			} 
+			
+			if (!this.worldObj.isRemote)
+			{				
+				EntityOverlordCombat combat = new EntityOverlordCombat(this.worldObj);
+				combat.setPosition(this.posX, this.posY, this.posZ);
+				combat.setTransforming();
+				this.worldObj.spawnEntityInWorld(combat); 
+			} 
+		}
+		
+		if (!this.worldObj.isRemote) for (EntitySeeker sk : this.seekers) sk.setDead();
+		
+		for (int j = 0; j < 40; ++j)
+		{
+			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
+		}
+		
+		for (int ji = 0; ji < 40; ++ji)
+		{
+			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0.1, 0.1, 0.1);
+		}
 	}
 }
