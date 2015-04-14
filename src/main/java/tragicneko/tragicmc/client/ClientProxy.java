@@ -46,6 +46,7 @@ import tragicneko.tragicmc.client.render.RenderProjectile;
 import tragicneko.tragicmc.client.render.RenderSoulChest;
 import tragicneko.tragicmc.client.render.RenderStatue;
 import tragicneko.tragicmc.client.render.RenderTimeDisruption;
+import tragicneko.tragicmc.client.render.alpha.RenderOverlordCocoon;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCombat;
 import tragicneko.tragicmc.client.render.alpha.RenderOverlordCore;
 import tragicneko.tragicmc.client.render.boss.RenderAegar;
@@ -74,6 +75,7 @@ import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -271,7 +273,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityClaymation.class, new RenderClaymation());
 
 		//Alpha renders TODO update the first form when I finish the model
-		//RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderOverlordCocoon());
+		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCocoon.class, new RenderOverlordCocoon());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderOverlordCombat());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
 	}
