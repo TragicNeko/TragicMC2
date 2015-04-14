@@ -204,6 +204,8 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{		
+		if (this.getTransformationTicks() > 0) this.motionX = this.motionY = this.motionZ = 0;
+		
 		double d0;
 		double d1;
 		double d2;
@@ -231,7 +233,7 @@ public class EntityOverlordCore extends TragicBoss {
 			double x;
 			double y;
 			double z;
-			
+
 			if (this.deathTime > 0)
 			{
 				for (int i = 0; i < 16; i++)
@@ -795,12 +797,15 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
-		ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, this.posX, this.posY - 1, this.posZ);
-		for (int[] coords : list)
+		if (!this.worldObj.isRemote)
 		{
-			if (replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+			ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(this.worldObj, 2.5, ((int) this.posX) + 0.5, ((int) this.posY) - 0.5, ((int) this.posZ) + 0.5);
+			for (int[] coords : list)
 			{
-				this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicConfig.mobsOnly ? Blocks.obsidian : TragicBlocks.CelledBlock, 0, 2);
+				if (replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
+				{
+					this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicConfig.mobsOnly ? Blocks.obsidian : TragicBlocks.CelledBlock, 0, 2);
+				}
 			}
 		}
 
@@ -825,6 +830,7 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void addPotionEffect(PotionEffect pe) {}
 
+	@Override
 	protected void onDeathUpdate()
 	{
 		++this.deathTime;
@@ -846,28 +852,28 @@ public class EntityOverlordCore extends TragicBoss {
 			}
 
 			this.setDead();
-			
+
 			for (int ji = 0; ji < 20; ++ji)
 			{
 				this.worldObj.spawnParticle("hugeexplosion", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
 			}
-			
+
 			for (int j = 0; j < 120; ++j)
 			{
 				this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 3.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 3.0F) - (double)this.width, 0, 0, 0);
 			}
 		}
-		
+
 		for (int j = 0; j < 40; ++j)
 		{
 			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
 		}
-		
+
 		for (int ji = 0; ji < 40; ++ji)
 		{
 			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0.1, 0.1, 0.1);
 		}
-		
+
 		if (this.deathTime % 5 == 0)
 		{
 			for (int ji = 0; ji < 20; ++ji)
