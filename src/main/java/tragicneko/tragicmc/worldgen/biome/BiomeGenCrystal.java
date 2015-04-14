@@ -8,6 +8,12 @@ public class BiomeGenCrystal extends TragicBiome {
 		this.spawnableMonsterList.clear();
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
+		this.enableRain = false;
+		this.enableSnow = false;
+		this.rainfall = 0F;
+		this.temperature = 1F;
+		this.theBiomeDecorator.flowersPerChunk = 0;
+		this.theBiomeDecorator.treesPerChunk = 0;
 	}
 
 }
