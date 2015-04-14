@@ -9,7 +9,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.entity.mob.EntityTox;
-import tragicneko.tragicmc.worldgen.WorldGenWickedVine;
+import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
 public class BiomeGenCorrodedSteppe extends TragicBiome {
 
@@ -36,7 +36,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		int l = z + rand.nextInt(16) + 8;
 		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(8) - rand.nextInt(8);
 		
-		WorldGenWickedVine worldgenvines = new WorldGenWickedVine();
+		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.WickedVine);
 		int mew = this == TragicBiomes.CorrodedSteppe || this == TragicBiomes.CorrodedHeights ? 4 : (this == TragicBiomes.CorrodedVeld ? 22 :10);
 
 		for (l = 0; l < mew; ++l)

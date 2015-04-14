@@ -12,7 +12,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityTox;
-import tragicneko.tragicmc.worldgen.WorldGenGlowvine;
+import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedShrubs;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
@@ -82,7 +82,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		int l = z + rand.nextInt(16) + 8;
 		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(24) - rand.nextInt(24);
 		
-		WorldGenGlowvine worldgenvines = new WorldGenGlowvine();
+		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.GlowVine);
 
 		for (l = 0; l < 20; ++l)
 		{

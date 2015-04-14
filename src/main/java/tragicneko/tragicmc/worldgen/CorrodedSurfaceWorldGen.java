@@ -51,16 +51,6 @@ public class CorrodedSurfaceWorldGen implements IWorldGenerator {
 			}
 		}
 		
-		pow = flag3 ? 32 : (flag2 ? 12 : 20);
-		
-		for (int l = 0; l < pow + random.nextInt(4); l++)
-		{
-			Xcoord = (chunkX * 16) + random.nextInt(8) - random.nextInt(8);
-			Zcoord = (chunkZ * 16) + random.nextInt(8) - random.nextInt(8);
-			Ycoord = 40 + random.nextInt(100);
-			new WorldGenWickedVine().generate(world, random, Xcoord, Ycoord, Zcoord);
-		}
-		
 		pow = flag ? 32 : (flag2 ? 4 : 16);
 
 		for (int k = 0; k < pow + random.nextInt(8); k++)
