@@ -21,6 +21,7 @@ import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
@@ -156,6 +157,10 @@ public class EntityErkel extends TragicMob {
 		else if (biome instanceof BiomeGenHallowedHills)
 		{
 			i = 5;
+		}
+		else if (biome instanceof BiomeGenFrozenTundra)
+		{
+			i = 6;
 		}
 		
 		this.setTextureId(i);

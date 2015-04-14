@@ -14,6 +14,7 @@ public class RenderErkel extends RenderLiving {
 	private static final ResourceLocation starlitTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelStarlit.png");
 	private static final ResourceLocation decayingTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelDecaying.png");
 	private static final ResourceLocation hallowedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelHallowed.png");
+	private static final ResourceLocation frozenTexture = new ResourceLocation("tragcicmc:textures/mobs/ErkelFrozen.png");
 
 	public RenderErkel() {
 		super(new ModelErkel(), 0.625F);
@@ -40,6 +41,8 @@ public class RenderErkel extends RenderLiving {
 			return decayingTexture;
 		case 5:
 			return hallowedTexture;
+		case 6:
+			return frozenTexture;
 		}
 	}
 

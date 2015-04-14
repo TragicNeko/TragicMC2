@@ -2,7 +2,9 @@ package tragicneko.tragicmc;
 
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenCrystal;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
@@ -49,15 +51,19 @@ public class TragicBiomes {
 	public static TragicBiome ScorchedValley;
 	public static TragicBiome ScorchedScarlands;
 	
-	public static TragicBiome CorrodedSteppe; //lots of gas generation, very little vines
-	public static TragicBiome CorrodedHeights; //plateau like generation (hopefully), very little of any of the worldgen
-	public static TragicBiome CorrodedVeld; //lots of vines, very little gas generation
-	public static TragicBiome CorrodedRunoff; //lots of sludge generation, little of the others
-	public static TragicBiome CorrodedFallout; //Deep scarred terrain, with all of the heavy worldgen of this biome set, also will have void pits
+	public static TragicBiome CorrodedSteppe;
+	public static TragicBiome CorrodedHeights;
+	public static TragicBiome CorrodedVeld;
+	public static TragicBiome CorrodedRunoff;
+	public static TragicBiome CorrodedFallout;
 	
-	//public static Set<BiomeGenBase> frozenBiomes;
+	public static TragicBiome FrozenTundra;
+	public static TragicBiome FrozenHills;
+	public static TragicBiome FrozenDepths;
+	
+	public static TragicBiome Crystal;
+	
 	//public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
-	//public static Set<BiomeGenBase> crystalBiomes; //will be a biome made of really tough, hard to mine blocks
 
 	public static void load()
 	{
@@ -102,5 +108,11 @@ public class TragicBiomes {
 		CorrodedVeld = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedVeld).setBiomeName("tragicmc.corrodedVeld"))).setHeightVariation(0.01F).setRootHeight(0.0F);
 		CorrodedRunoff = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedRunoff).setBiomeName("tragicmc.corrodedRunoff"))).setHeightVariation(0.06F).setRootHeight(-0.65F);
 		CorrodedFallout = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout).setBiomeName("tragicmc.corrodedFallout"))).setHeightVariation(0.4F).setRootHeight(-0.65F);
+		
+		FrozenTundra = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenTundra).setBiomeName("tragicmc.frozenTundra"))).setHeightVariation(0.01F).setRootHeight(0.15F).setGrassPerChunk(32);
+		FrozenHills = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenHills).setBiomeName("tragcmc.frozenHills"))).setHeightVariation(0.35F).setRootHeight(0.25F).setGrassPerChunk(16);
+		FrozenDepths = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenDepths).setBiomeName("tragicmc.frozenDepths"))).setHeightVariation(0.65F).setRootHeight(-0.65F).setGrassPerChunk(0).setTreesPerChunk(0);
+		
+		Crystal = ((TragicBiome) (new BiomeGenCrystal(TragicConfig.idCrystal).setBiomeName("tragicmc.crystal"))).setHeightVariation(1.25F).setRootHeight(1.0F);
 	}
 }

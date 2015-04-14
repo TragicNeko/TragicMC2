@@ -39,15 +39,17 @@ import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
 import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ItemGenerator extends Item {
 
 	private String[] subNames = new String[] {"VoidPitGenerator", "SpikeGenerator", "StarCrystalGenerator", "SphereGenerator", "SphereEraser", "LiquidRemover", "TreeGenerator",
-			"LightningSummoner", "ExplosionGenerator", "IsleGenerator", "DirectedLightningSummoner"};
+			"LightningSummoner", "ExplosionGenerator", "IsleGenerator", "DirectedLightningSummoner", "PitGenerator"};
 
 	private String[] textureNames = new String[] {"voidPitGenerator", "spikeGenerator", "starCrystalGenerator", "sphereGenerator", "sphereEraser", "liquidRemover", "treeGenerator",
-			"lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner"};
+			"lightningSummoner", "explosionGenerator", "isleGenerator", "directedLightningSummoner", "PitGenerator"};
 
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
@@ -408,6 +410,53 @@ public class ItemGenerator extends Item {
 			lightning.setPosition(Xcoord, Ycoord, Zcoord);
 			world.spawnEntityInWorld(lightning);
 			player.addChatMessage(new ChatComponentText("Directed Lightning created!"));
+			break;
+		case 11:
+			int depth = Ycoord - 10 - random.nextInt(10);
+			size = 3.0D * random.nextDouble() + 3.0D;
+			cands = new ArrayList<int[]>();
+			
+			for (int pow = 0; pow + Ycoord >= depth && pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
+			{
+				if (size >= 5.5D)
+				{
+					list = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
+
+					for (int mapping = 0; mapping < list.size(); mapping++)
+					{
+						coords = list.get(mapping);
+						if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+					} 
+				}
+
+				list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
+
+				for (int mapping = 0; mapping < list.size(); mapping++)
+				{
+					coords = list.get(mapping);
+					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+				} 
+
+				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
+
+				for (int mapping = 0; mapping < list.size(); mapping++)
+				{
+					coords = list.get(mapping);
+					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
+				}
+				
+				if (size >= 3.0D && random.nextInt(4) == 0) size *= 0.987425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
+			}
+			
+			block = random.nextBoolean() ? TragicBlocks.IceSpike : (random.nextBoolean() ? Blocks.flowing_lava : (random.nextBoolean() ? TragicBlocks.RadiatedGas : TragicBlocks.Quicksand));
+			int m = block == TragicBlocks.Quicksand && random.nextBoolean() ? 3 : 0;
+			
+			for (int[] coords2 : cands)
+			{
+				if (coords2[1] > depth + 1) world.setBlockToAir(coords2[0], coords2[1], coords2[2]);
+				else world.setBlock(coords2[0], coords2[1], coords2[2], block, m, 3);
+			}
+			player.addChatMessage(new ChatComponentText("Pit generated using " + block.getUnlocalizedName() + " as the bottom."));
 			break;
 		}
 

@@ -3,7 +3,6 @@ package tragicneko.tragicmc;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -11,10 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -36,6 +32,7 @@ import tragicneko.tragicmc.blocks.BlockDeadDirt;
 import tragicneko.tragicmc.blocks.BlockDigitalSea;
 import tragicneko.tragicmc.blocks.BlockDisappearing;
 import tragicneko.tragicmc.blocks.BlockErodedStone;
+import tragicneko.tragicmc.blocks.BlockExplosiveGas;
 import tragicneko.tragicmc.blocks.BlockFox;
 import tragicneko.tragicmc.blocks.BlockFragileLight;
 import tragicneko.tragicmc.blocks.BlockGas;
@@ -50,14 +47,18 @@ import tragicneko.tragicmc.blocks.BlockGenericTallGrass;
 import tragicneko.tragicmc.blocks.BlockGeyser;
 import tragicneko.tragicmc.blocks.BlockGiantCrop;
 import tragicneko.tragicmc.blocks.BlockGlowvine;
+import tragicneko.tragicmc.blocks.BlockIceSpike;
 import tragicneko.tragicmc.blocks.BlockLeafTrim;
 import tragicneko.tragicmc.blocks.BlockLight;
 import tragicneko.tragicmc.blocks.BlockLightCobble;
 import tragicneko.tragicmc.blocks.BlockLuminescence;
 import tragicneko.tragicmc.blocks.BlockMoltenRock;
+import tragicneko.tragicmc.blocks.BlockMoss;
 import tragicneko.tragicmc.blocks.BlockObsidianVariant;
 import tragicneko.tragicmc.blocks.BlockOverlordBarrier;
+import tragicneko.tragicmc.blocks.BlockPermafrost;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
+import tragicneko.tragicmc.blocks.BlockRadiatedGas;
 import tragicneko.tragicmc.blocks.BlockSoulChest;
 import tragicneko.tragicmc.blocks.BlockStarCrystal;
 import tragicneko.tragicmc.blocks.BlockSteamVent;
@@ -87,7 +88,6 @@ import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySummonBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityTimeDisruptor;
 import tragicneko.tragicmc.util.DamageHelper;
-import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -207,6 +207,15 @@ public class TragicBlocks {
 	public static Block HallowedPlanks;
 	
 	public static Block SoulChest;
+	
+	public static Block IcedDirt; //filler
+	public static Block Permafrost; //top block, will have a meta variant, cracked permafrost, mossy permafrost
+	public static Block IceSpike; //trap block, only damages when you land on it, may make it a double block
+	public static Block IceSpikeHanging;
+	public static Block Moss; //will be able to be placed on all sides of a block, if placed on top of permafrost will convert it to mossy permafrost
+	public static Block Lichen; //will work like a bush, a small mossy bush basically
+	
+	public static Block Crystal;
 
 	public static void load()
 	{		
@@ -513,80 +522,36 @@ public class TragicBlocks {
 		WickedVine = (new BlockWickedVine().setBlockName("tragicmc.wickedVine"));
 		GameRegistry.registerBlock(WickedVine, ItemBlock.class, "wickedVine");
 		
-		RadiatedGas = new BlockGas() {
-			@Override
-			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
-			{
-				if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
-				{
-					entity.attackEntityFrom(DamageSource.cactus, 1.0F);
-					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0));
-				}
-			}
-			
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
-			{
-				for (int i = 0; i < 10; i++)
-				{
-					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-							0.4F, 1.0F, 0.4F);
-					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-							0.1F, 1.0F, 0.1F);
-				}
-			}
-			
-			@Override
-			public void updateTick(World world, int x, int y, int z, Random rand)
-			{
-				
-			}
-		}.setBlockName("tragicmc.radiatedGas");
+		RadiatedGas = new BlockRadiatedGas().setBlockName("tragicmc.radiatedGas");
 		GameRegistry.registerBlock(RadiatedGas, ItemBlock.class, "radiatedGas");
 		
-		ExplosiveGas = new BlockGas() {
-			@Override
-			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
-			{
-				
-			}
-			
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
-			{
-				for (int i = 0; i < 10; i++)
-				{
-					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-							0.6F, 0.6F, 0.6F);
-					world.spawnParticle("reddust", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
-							0.8F, 0.8F, 0.8F);
-				}
-			}
-			
-			@Override
-			public void updateTick(World world, int x, int y, int z, Random rand)
-			{
-				Block[] block = new Block[] {world.getBlock(x, y, z), world.getBlock(x + 1, y, z), world.getBlock(x - 1, y, z),
-						world.getBlock(x, y, z + 1), world.getBlock(x, y, z - 1), world.getBlock(x, y + 1, z), world.getBlock(x, y - 1, z)};
-				for (Block b : block)
-				{
-					if (b instanceof BlockFire || b.getMaterial() == Material.lava) world.createExplosion(null, x, y, z, 1.5F + rand.nextFloat(), WorldHelper.getMobGriefing(world));
-				}
-				world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
-			}
-			
-			public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion explosion)
-		    {
-		        if (!world.isRemote)  world.createExplosion(null, x, y, z, 1.5F + world.rand.nextFloat(), WorldHelper.getMobGriefing(world));
-		    }
-		}.setBlockName("tragicmc.explosiveGas");
+		ExplosiveGas = new BlockExplosiveGas().setBlockName("tragicmc.explosiveGas");
 		GameRegistry.registerBlock(ExplosiveGas, ItemBlock.class, "explosiveGas");
 		
 		SoulChest = new BlockSoulChest(0).setBlockName("tragicmc.soulChest").setHardness(100F).setStepSound(Block.soundTypeWood).setResistance(1000F).setBlockTextureName("tragicmc:SoulChest");
 		GameRegistry.registerBlock(SoulChest, ItemBlock.class, "soulChest");
 		GameRegistry.registerTileEntity(TileEntitySoulChest.class, "soulChest");
+		
+		IcedDirt = new BlockGeneric(Material.ground, "shovel", 0).setBlockName("tragicmc.icedDirt").setHardness(1.0F).setHardness(0.5F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tragicmc:IcedDirt");
+		GameRegistry.registerBlock(IcedDirt, ItemBlock.class, "icedDirt");
+		
+		Permafrost = new BlockPermafrost().setBlockName("tragicmc.permafrost");
+		GameRegistry.registerBlock(Permafrost, TragicItemBlock.class, "permafrost", new Object[] {new String[] {"normal", "cracked", "mossy"}, "permafrost"});
+		
+		Moss = new BlockMoss().setBlockName("tragicmc.moss").setBlockTextureName("tragicmc:Moss");
+		GameRegistry.registerBlock(Moss, ItemBlock.class, "moss");
+		
+		Lichen = new BlockGenericBush().setBlockName("tragicmc.lichen").setBlockTextureName("tragicmc:Lichen");
+		GameRegistry.registerBlock(Lichen, ItemBlock.class, "lichen");
+		
+		IceSpike = new BlockIceSpike(true).setBlockName("tragicmc.iceSpike").setBlockTextureName("tragicmc:IceSpike");
+		GameRegistry.registerBlock(IceSpike, ItemBlock.class, "iceSpike");
+		
+		IceSpikeHanging = new BlockIceSpike(false).setBlockName("tragicmc.iceSpikeHanging").setBlockTextureName("tragicmc:IceSpikeHanging");
+		GameRegistry.registerBlock(IceSpikeHanging, null, "iceSpikeHanging");
+		
+		Crystal = new BlockGeneric(Material.iron, "pickaxe", 3).setBlockTextureName("tragicmc:Crystal").setBlockName("tragicmc.crystal").setHardness(100.0F).setResistance(1000F);
+		GameRegistry.registerBlock(Crystal, ItemBlock.class, "crystal");
 		
 		for (int i = 0; i < 3; i++)
 		{

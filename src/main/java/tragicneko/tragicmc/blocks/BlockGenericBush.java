@@ -2,8 +2,9 @@ package tragicneko.tragicmc.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.init.Blocks;
-import tragicneko.tragicmc.TragicBlocks;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockGrass;
+import net.minecraft.block.material.Material;
 import tragicneko.tragicmc.TragicMC;
 
 public class BlockGenericBush extends BlockBush {
@@ -16,8 +17,8 @@ public class BlockGenericBush extends BlockBush {
 	}
 	
 	@Override
-	protected boolean canPlaceBlockOn(Block p_149854_1_)
+	protected boolean canPlaceBlockOn(Block block)
     {
-		return this == TragicBlocks.DeadBush ? (p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.DeadDirt) : (p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.AshenGrass);
+		return block instanceof BlockDirt || block instanceof BlockGrass || block.getMaterial() == Material.grass || block.getMaterial() == Material.ground;
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -14,6 +15,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -29,14 +31,14 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		boolean flag = biome instanceof BiomeGenDecayingWasteland;
+		boolean flag = biome instanceof BiomeGenDecayingWasteland || biome instanceof BiomeGenFrozenTundra;
 
 		if (!flag && biome != TragicBiomes.TaintedSpikes || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
 		if (flag && random.nextInt(4) != 0 || !flag && !TragicConfig.allowLargeSpikeGen) return;
 
 		int relays = flag ? 4 : 6;
-		Block spike = flag ? TragicBlocks.BoneBlock : TragicBlocks.DarkStone;
-		int meta = flag ? random.nextInt(2) : 14;
+		Block spike = flag ? (biome instanceof BiomeGenFrozenTundra ? Blocks.packed_ice : TragicBlocks.BoneBlock ): TragicBlocks.DarkStone;
+		int meta = flag ? (biome instanceof BiomeGenFrozenTundra ? 0 : random.nextInt(2)) : 14;
 		ArrayList<int[]> list;
 		Block block;
 		double regression = 0.92977745D;
