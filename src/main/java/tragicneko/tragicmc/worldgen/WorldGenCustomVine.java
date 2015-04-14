@@ -2,13 +2,21 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
 
-public class WorldGenWickedVine extends WorldGenerator {
+public class WorldGenCustomVine extends WorldGenerator {
+	
+	public final Block theBlock;
+	
+	public WorldGenCustomVine(Block block)
+	{
+		this.theBlock = block;
+	}
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z)
