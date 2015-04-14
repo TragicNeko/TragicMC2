@@ -465,7 +465,7 @@ public class TragicEntities {
 		if (TragicConfig.allowLockbot)
 		{
 			EntityRegistry.registerModEntity(EntityLockbot.class, "Lockbot", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityLockbot.class, "TragicMC.Lockbot", id++, 0xFFFFFF, 0xAAAAAA);
+			TragicEntityList.addMapping(EntityLockbot.class, "TragicMC.Lockbot", id++, 0x121212, 0x60D6D7);
 		}
 
 		if (TragicConfig.allowNanoSwarm)
@@ -482,19 +482,19 @@ public class TragicEntities {
 		if (TragicConfig.allowHunter)
 		{
 			EntityRegistry.registerModEntity(EntityHunter.class, "Hunter", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityHunter.class, "TragicMC.Hunter", id++, 0xFFFFFF, 0xAAAAAA);
+			TragicEntityList.addMapping(EntityHunter.class, "TragicMC.Hunter", id++, 0x60D6D7, 0x888888);
 		}
 
 		if (TragicConfig.allowHarvester)
 		{
 			EntityRegistry.registerModEntity(EntityHarvester.class, "Harvester", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityHarvester.class, "TragicMC.Harvester", id++, 0xFFFFFF, 0xAAAAAA);
+			TragicEntityList.addMapping(EntityHarvester.class, "TragicMC.Harvester", id++, 0x555555, 0x53BBBC);
 		}
 
 		if (TragicConfig.allowOverlord)
 		{
 			EntityRegistry.registerModEntity(EntitySeeker.class, "Seeker", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntitySeeker.class, "TragicMC.Seeker", id++, 0xFFFFFF, 0xAAAAAA);
+			TragicEntityList.addMapping(EntitySeeker.class, "TragicMC.Seeker", id++, 0x53BBBC, 0x464646);
 		}
 
 		//Iron Golem
