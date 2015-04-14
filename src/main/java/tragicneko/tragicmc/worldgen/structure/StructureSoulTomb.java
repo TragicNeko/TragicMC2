@@ -33,7 +33,7 @@ public class StructureSoulTomb extends Structure {
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
 	{		
-		if (y >= 62) return false;
+		if (y >= 62 || rand.nextInt(8) != 0) return false;
 		return super.areCoordsValidForGeneration(world, x, y, z, rand, 8) && rand.nextInt(200) <= TragicConfig.soulTombRarity; //checks smaller radius due to the nature of the obsidian cavern schematic
 	}
 	

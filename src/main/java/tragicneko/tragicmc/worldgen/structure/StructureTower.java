@@ -10,6 +10,7 @@ import net.minecraft.world.biome.BiomeGenMesa;
 import net.minecraft.world.biome.BiomeGenSnow;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.schematic.SchematicDesertTower;
 
@@ -40,7 +41,7 @@ public class StructureTower extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == 0 || dim == -1 || dim == TragicConfig.dimensionID;
+		return dim != -1;
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class StructureTower extends Structure {
 		else if (biome instanceof BiomeGenDesert) return 0; //sandstone tower
 		else if (biome instanceof BiomeGenHell || biome instanceof BiomeGenScorchedWasteland || biome instanceof BiomeGenCorrodedSteppe) return 3; //netherbrick tower
 		else if (biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.coldBeach ||
-				biome instanceof BiomeGenSnow) return 4; //ice tower
+				biome instanceof BiomeGenSnow || biome instanceof BiomeGenFrozenTundra) return 4; //ice tower
 		return 2; //stone tower
 	}
 

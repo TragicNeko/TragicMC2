@@ -31,7 +31,7 @@ public class StructureCelestialTemple extends StructureBoss {
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
 	{
-		if (y < 128 || rand.nextInt(20) != 0) return false; //enforced due to how much open space there is for it to generate normally
+		if (y < 128 || rand.nextInt(50) != 0) return false; //enforced due to how much open space there is for it to generate normally
 		return super.areCoordsValidForGeneration(world, x, y, z, rand, height) && rand.nextInt(200) <= TragicConfig.celestialTempleRarity;
 	}
 

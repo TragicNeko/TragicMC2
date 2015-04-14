@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 import com.google.common.collect.Sets;
@@ -89,7 +90,9 @@ public class Structure extends WorldGenerator {
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
 	{
 		if (y + height >= 256 || !validBlocks.contains(world.getBlock(x, y, z))) return false;
-		if (this.isSurfaceStructure() && (y <= 50 || !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) || !world.getBlock(x, y, z).isOpaqueCube() || !world.canBlockSeeTheSky(x, y, z))) return false;
+		
+		if (this.isSurfaceStructure() && (y <= 50 || !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) ||
+				!world.getBlock(x, y, z).isOpaqueCube() || !world.canBlockSeeTheSky(x, y, z))) return false;
 
 		for (int y1 = 0; y1 < height; y1++)
 		{
