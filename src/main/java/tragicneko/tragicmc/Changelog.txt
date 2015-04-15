@@ -3713,6 +3713,10 @@ Added ability to use any of the Jacks as hoes, this should've been added before 
 Added hover buffer and light value cap to the Archangel's light ray attack, need to add it's model and rendering now
 Adding the Ire, it will use static variables to have a true hive-mind AI
 The Ire's tick will be controlled by a server update event, I'll use this event for other things in the future (possibly) that require server tick updates
+Added Archangel Feathers and the Wings of Liberation from the first version of the mod, it uses the Flight abilities from the Flight potion effect but doesn't
+actually give you Flight (due to complications involved in doing that per tick), I'll eventually add a sort of phantom item that lets you move through walls
+and also fly through them, it'll probably involve the Wings of Liberation in the recipe along with Ectoplasm and one other drop (either a new drop or an old
+underused one)
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
