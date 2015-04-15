@@ -85,7 +85,6 @@ public class EntityGragul extends TragicMob {
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) return;
-
 		if (this.superiorForm == null && !(this instanceof TragicMiniBoss)) this.superiorForm = new EntityKragul(this.worldObj);
 
 		if (this.getAttackTarget() != null && this.ticksExisted % 120 == 0)

@@ -8,6 +8,7 @@ import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
+import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
@@ -23,6 +24,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		this.topBlock = TragicBlocks.DarkCobblestone;
 		if (TragicConfig.allowJarra) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.jarraSC, 0, 1));
 		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, 0, 1));
+		if (TragicConfig.allowFusea) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.fuseaSC, 2, 4)); 
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 	}

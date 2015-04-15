@@ -90,14 +90,16 @@ public class TragicConfig {
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
 	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
+	public static boolean allowFusea;
 	private static int[] mobsSC = new int[48];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
 	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC, snowGolemSC, hunterSC;
-	public static int harvesterSC, archangelSC, ireSC;
+	public static int harvesterSC, archangelSC, ireSC, fuseaSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
+	public static boolean allowVolatileFusea;
 	private static int[] miniBossSC = new int[16];
-	public static int jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, stinKingSC, stinQueenSC, locobotSC, aegarSC;
+	public static int jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, stinKingSC, stinQueenSC, locobotSC, aegarSC, volatileFuseaSC;
 	private static boolean[] bossConfigs = new boolean[12];
 	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
 	private static int[] bossSC = new int[12];
@@ -107,9 +109,9 @@ public class TragicConfig {
 	private static double[][] mobStats = new double[48][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats;
+	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats;
 	private static double[][] miniBossStats = new double[16][];
-	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats;
+	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats, volatileFuseaStats;
 	private static double[][] bossStats = new double[12][];
 	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats, overlordCombatStats, overlordCocoonStats;
 
@@ -683,6 +685,8 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "archangelAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "ireSpawnChance", 45).getInt(45));
 		mobConfigs[mapping++] = (config.get(catMobs, "ireAllow", true).getBoolean(true));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "fuseaSpawnChance", 45).getInt(45));
+		mobConfigs[mapping++] = (config.get(catMobs, "fuseaAllow", true).getBoolean(true));
 
 		mapping = 0;
 		miniBossSC[mapping] = clampPositive(config.get(catMobs, "jarraSpawnChance", 5).getInt(5));
@@ -701,6 +705,8 @@ public class TragicConfig {
 		miniBossConfigs[mapping++] = (config.get(catMobs, "stinQueenAllow", true).getBoolean(true));
 		miniBossSC[mapping] = clampPositive(config.get(catMobs, "aegarSpawnChance", 5).getInt(5));
 		miniBossConfigs[mapping++] = (config.get(catMobs, "aegarAllow", true).getBoolean(true));
+		miniBossSC[mapping] = clampPositive(config.get(catMobs, "volatileFuseaSpawnChance", 5).getInt(5));
+		miniBossConfigs[mapping++] = (config.get(catMobs, "volatileFuseaAllow", true).getBoolean(true));
 
 		mapping = 0;
 		bossSC[mapping] = clampPositive(config.get(catMobs, "apisSpawnChance", 5).getInt(5));
@@ -756,6 +762,7 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {50.0, 0.0, 1.0, 48.0, 100.0, 24}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "archangelStats", new double[] {45.0, 0.0, 1.0, 32.0, 0.5, 12}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "ireStats", new double[] {25.0, 0.0, 1.0, 16.0, 100.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "fuseaStats", new double[] {10.0, 0.0, 0.0, 16.0, 100.0, 0}).getDoubleList());
 		
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
@@ -766,6 +773,7 @@ public class TragicConfig {
 		miniBossStats[mapping++] = (config.get(catMobs, "stinKingStats", new double[] {100.0, 0.226, 20.0, 32.0, 2.0, 20}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "stinQueenStats", new double[] {160.0, 0.186, 12.0, 24, 2.0, 10}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "volatileFuseaStats", new double[] {18.0, 0.0, 0.0, 32.0, 100.0, 0}).getDoubleList());
 		
 		mapping = 0;
 		bossStats[mapping++] = (config.get(catMobs, "apisStats", new double[] {160.0, 0.325, 8.0, 32.0, 1.0, 15}).getDoubleList());
@@ -1452,6 +1460,8 @@ public class TragicConfig {
 		allowArchangel = mobConfigs[mapping++];
 		ireSC = mobsSC[mapping];
 		allowIre = mobConfigs[mapping++];
+		fuseaSC = mobsSC[mapping];
+		allowFusea = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1470,6 +1480,8 @@ public class TragicConfig {
 		allowStinQueen = miniBossConfigs[mapping++];
 		aegarSC = miniBossSC[mapping];
 		allowAegar = miniBossConfigs[mapping++];
+		volatileFuseaSC = miniBossSC[mapping];
+		allowVolatileFusea = miniBossConfigs[mapping++];
 
 		mapping = 0;
 		apisSC = bossSC[mapping];
@@ -1525,6 +1537,7 @@ public class TragicConfig {
 		seekerStats = mobStats[mapping++];
 		archangelStats = mobStats[mapping++];
 		ireStats = mobStats[mapping++];
+		fuseaStats = mobStats[mapping++];
 		
 		mapping = 0;
 		jarraStats = miniBossStats[mapping++];
@@ -1535,6 +1548,7 @@ public class TragicConfig {
 		stinKingStats = miniBossStats[mapping++];
 		stinQueenStats = miniBossStats[mapping++];
 		aegarStats = miniBossStats[mapping++];
+		volatileFuseaStats = miniBossStats[mapping++];
 		
 		mapping = 0;
 		apisStats = bossStats[mapping++];

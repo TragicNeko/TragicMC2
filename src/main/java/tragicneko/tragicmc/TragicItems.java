@@ -613,7 +613,7 @@ public class TragicItems {
 					entity.fallDistance = 0F;
 				}
 			}
-		}.setUnlocalizedName("tragicmc.wingsOfLiberaton").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
+		}.setUnlocalizedName("tragicmc.wingsOfLiberation").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
 		GameRegistry.registerItem(WingsOfLiberation, "wingsOfLiberation");
 
 		//Food Registrations

@@ -33,11 +33,13 @@ import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
+import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
+import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
@@ -172,6 +174,9 @@ public class EntityDropHelper {
 		addToDropList(EntityArchangel.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(5, TragicItems.Tungsten)}, {new EntityDrop(25, TragicItems.LightParticles),
 			new EntityDrop(10, new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(TragicItems.Ruby), new ItemStack(TragicItems.Sapphire)}), new EntityDrop(5, TragicItems.ArchangelFeather)}});
 		
+		addToDropList(EntityFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(5, Items.redstone)}, {new EntityDrop(15, Items.gunpowder), new EntityDrop(5, TragicItems.UnstableIsotope),
+			new EntityDrop(5, Items.redstone)}});
+		
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream)},
 			{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(10, TragicItems.Ectoplasm), new EntityDrop(5, TragicItems.GooeyFruit)}});
@@ -205,6 +210,8 @@ public class EntityDropHelper {
 				new EntityDrop(15, TragicItems.Ruby), new EntityDrop(15, TragicItems.Sapphire), new EntityDrop(5, getOreCharms())},
 			{new EntityDrop(10, getLuxuryBlocks(true)), new EntityDrop(5, getOreCharms()), new EntityDrop(25, TragicItems.SynapseCrystal)}});
 		
+		addToDropList(EntityVolatileFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(15, Items.redstone), new EntityDrop(25, TragicItems.UnstableIsotope)}, {new EntityDrop(5, Items.gunpowder), new EntityDrop(15, TragicItems.UnstableIsotope),
+			new EntityDrop(10, Items.redstone), new EntityDrop(3, Blocks.redstone_block)}});
 		
 		//Boss Drops
 		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.PureLight)}, {new EntityDrop(25, TragicItems.PureLight), new EntityDrop(20, TragicItems.Horn),

@@ -108,6 +108,22 @@ public class TragicRecipes {
 				'w', TragicItems.UnstableIsotope,
 				'z', Blocks.dragon_egg
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.tnt, 8),
+				"yxy",
+				"xyx",
+				"yxy",
+				'x', Items.gunpowder,
+				'y', TragicItems.UnstableIsotope
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.tnt, 16),
+				"xyx",
+				"yxy",
+				"xyx",
+				'x', TragicItems.UnstableIsotope,
+				'y', TragicItems.LunarPowder
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEssence, 3),
 				"xxx",
