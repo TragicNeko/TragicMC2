@@ -14,6 +14,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenCrystal;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.structure.Structure;
@@ -34,11 +35,11 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		boolean flag = biome instanceof BiomeGenDecayingWasteland || biome instanceof BiomeGenFrozenTundra;
 
 		if (!flag && biome != TragicBiomes.TaintedSpikes || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
-		if (flag && random.nextInt(4) != 0 || !flag && !TragicConfig.allowLargeSpikeGen) return;
+		if (flag && random.nextInt(4) != 0 && !(biome instanceof BiomeGenCrystal)|| !flag && !TragicConfig.allowLargeSpikeGen && !(biome instanceof BiomeGenCrystal)) return;
 
-		int relays = flag ? 4 : 6;
-		Block spike = flag ? (biome instanceof BiomeGenFrozenTundra ? Blocks.packed_ice : TragicBlocks.BoneBlock ): TragicBlocks.DarkStone;
-		int meta = flag ? (biome instanceof BiomeGenFrozenTundra ? 0 : random.nextInt(2)) : 14;
+		int relays = flag ? 4 : (biome instanceof BiomeGenCrystal ? 8 : 6);
+		Block spike = flag ? (biome instanceof BiomeGenFrozenTundra ? Blocks.packed_ice : TragicBlocks.BoneBlock ): (biome instanceof BiomeGenCrystal ? TragicBlocks.Crystal : TragicBlocks.DarkStone);
+		int meta = flag ? (biome instanceof BiomeGenFrozenTundra ? 0 : random.nextInt(2)) : (biome instanceof BiomeGenCrystal ? 0 : 14);
 		ArrayList<int[]> list;
 		Block block;
 		double regression = 0.92977745D;
@@ -56,7 +57,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 			if (WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) //this ensures that the randomly selected spot to start a spike is valid
 			{
-				if (flag) //faster regression and higher cutoff means the spikes generate shorter and "fatter"
+				if (flag || biome instanceof BiomeGenCrystal) //faster regression and higher cutoff means the spikes generate shorter and "fatter"
 				{
 					size = 0.35D * random.nextDouble() + 1.0D;
 					regression = 0.89477735D;
