@@ -482,6 +482,8 @@ item.tragicmc.livingClay.name=Living Clay
 item.tragicmc.pureDarkness.name=Pure Darkness
 item.tragicmc.pureLight.name=Pure Light
 item.tragicmc.unstableIsotope.name=Unstable Isotope
+item.tragicmc.archangelFeather.name=Archangel Feather
+item.tragicmc.wingsOfLiberation.name=Wings of Liberation
 
 item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
 item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
@@ -594,6 +596,7 @@ item.tragicmc.projectile.darkMortor.name=Dark Mortor
 item.tragicmc.projectile.webBomb.name=Web Bomb
 item.tragicmc.projectile.crystalMortor.name=Crystal Mortor
 item.tragicmc.projectile.overlordMortor.name=Overlord Mortor
+item.tragicmc.projectile.ireEnergy.name=Ire Energy
 
 item.tragicmc.challengeItem.inactive.name=Challenge Scroll (Inactive)
 item.tragicmc.challengeItem.inProgress.name=Challenge Scroll (Active)

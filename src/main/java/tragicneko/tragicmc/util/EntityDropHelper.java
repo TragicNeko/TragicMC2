@@ -170,7 +170,7 @@ public class EntityDropHelper {
 			new EntityDrop(3, TragicItems.WispParticles)}});
 		
 		addToDropList(EntityArchangel.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(5, TragicItems.Tungsten)}, {new EntityDrop(25, TragicItems.LightParticles),
-			new EntityDrop(5, new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(TragicItems.Ruby), new ItemStack(TragicItems.Sapphire)}), new EntityDrop(10, Items.feather)}});
+			new EntityDrop(10, new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(TragicItems.Ruby), new ItemStack(TragicItems.Sapphire)}), new EntityDrop(5, TragicItems.ArchangelFeather)}});
 		
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream)},

@@ -98,6 +98,15 @@ public class TragicRecipes {
 				'x', TragicItems.CorruptedEssence,
 				'y', TragicItems.NanoBots
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WingsOfLiberation, 1),
+				"xyx",
+				"xzx",
+				"xyx",
+				'x', TragicItems.ArchangelFeather,
+				'y', TragicItems.WispParticles,
+				'z', TragicItems.UnstableIsotope
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEssence, 3),
 				"xxx",

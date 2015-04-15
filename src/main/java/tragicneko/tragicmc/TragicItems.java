@@ -1,6 +1,7 @@
 package tragicneko.tragicmc;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -181,6 +182,7 @@ public class TragicItems {
 	public static Item IcyFur;
 	public static Item ArchangelFeather; //can be used to brew flight potions possibly, ore dictionary replacement for feathers
 	public static Item WingsOfLiberation; //while in your hands, you can fly as if you have Flight active, uses durability while you are in air and doesn't negate fall damage
+	public static Item ParanormalBox; //while in your hands, you can fly through blocks & entities like a ghost
 
 	public static Item FrozenLightning;
 
@@ -261,16 +263,16 @@ public class TragicItems {
 		{
 			SpawnEgg = (new ItemMobEgg());
 			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
-			
+
 			BowOfJustice = (new WeaponBowOfJustice().setUnlocalizedName("tragicmc.bowOfJustice").setTextureName("bow"));
 			GameRegistry.registerItem(BowOfJustice, "bowOfJustice");
 
 			SwordOfJustice = (new WeaponSwordOfJustice(toolJustice).setUnlocalizedName("tragicmc.swordOfJustice").setTextureName("gold_sword"));
 			GameRegistry.registerItem(SwordOfJustice, "swordOfJustice");
-			
+
 			NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand"));
 			GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
-			
+
 			Projectile = (new ItemProjectile());
 			GameRegistry.registerItem(Projectile, "projectile");
 			return;
@@ -371,17 +373,17 @@ public class TragicItems {
 
 		DarkBoots = (new ArmorDark(armorDark, 3, Doomsday.Fear).setUnlocalizedName("tragicmc.darkBoots").setTextureName("tragicmc:DarkBoots" ));
 		GameRegistry.registerItem(DarkBoots, "darkBoots");
-		
-		
+
+
 		OverlordHelm = (new ArmorOverlord(armorOverlord, 0, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordHelm").setTextureName("tragicmc:OverlordHelm" ));
 		GameRegistry.registerItem(OverlordHelm, "overlordHelm");
-		
+
 		OverlordPlate = (new ArmorOverlord(armorOverlord, 1, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordPlate").setTextureName("tragicmc:OverlordPlate" ));
 		GameRegistry.registerItem(OverlordPlate, "overlordPlate");
-		
+
 		OverlordLegs = (new ArmorOverlord(armorOverlord, 2, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordLegs").setTextureName("tragicmc:OverlordLegs" ));
 		GameRegistry.registerItem(OverlordLegs, "overlordLegs");
-		
+
 		OverlordBoots = (new ArmorOverlord(armorOverlord, 3, Doomsday.Harden).setUnlocalizedName("tragicmc.overlordBoots").setTextureName("tragicmc:OverlordBoots" ));
 		GameRegistry.registerItem(OverlordBoots, "overlordBoots");
 
@@ -430,7 +432,7 @@ public class TragicItems {
 
 		CelestialLongbow = (new WeaponCelestialLongbow().setUnlocalizedName("tragicmc.celestialLongbow").setTextureName("tragicmc:CelestialLongbow" ));
 		GameRegistry.registerItem(CelestialLongbow, "celestialLongbow");
-		
+
 		SilentHellraiser = (new WeaponSilentHellraiser(toolTragic, null).setUnlocalizedName("tragicmc.silentHellraiser").setTextureName("tragicmc:TragicHellraiser" ));
 		GameRegistry.registerItem(SilentHellraiser, "silentHellraiser");
 
@@ -452,7 +454,7 @@ public class TragicItems {
 
 		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" ));
 		GameRegistry.registerItem(DragonFang, "dragonFang");		
-		
+
 		//Big boss weapons
 		Sentinel = (new WeaponSentinel(toolSentinel, Doomsday.Sharpen).setUnlocalizedName("tragicmc.sentinel").setTextureName("tragicmc:Sentinel" ));
 		GameRegistry.registerItem(Sentinel, "sentinel");
@@ -552,7 +554,7 @@ public class TragicItems {
 
 		TimeEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.timeEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TimeEssence"));
 		GameRegistry.registerItem(TimeEssence, "timeEssence");
-		
+
 		PureLight = (new ItemGeneric().setUnlocalizedName("tragicmc.pureLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:PureLight"));
 		GameRegistry.registerItem(PureLight, "pureLight");
 
@@ -579,25 +581,41 @@ public class TragicItems {
 
 		CelestialSteel = (new ItemGeneric().setUnlocalizedName("tragicmc.celestialSteel").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CelestialSteel"));
 		GameRegistry.registerItem(CelestialSteel, "celestialSteel");
-		
+
 		SynapseCrystal = (new ItemGeneric().setUnlocalizedName("tragicmc.synapseCrystal").setMaxStackSize(64).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseCrystal"));
 		GameRegistry.registerItem(SynapseCrystal, "synapseCrystal");
-		
+
 		CorruptedEye = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEye").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEye"));
 		GameRegistry.registerItem(CorruptedEye, "corruptedEye");
-		
+
 		CorruptedEssence = (new ItemGeneric().setUnlocalizedName("tragicmc.corruptedEssence").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CorruptedEssence"));
 		GameRegistry.registerItem(CorruptedEssence, "corruptedEssence");
-		
+
 		CorruptedEgg = (new ItemCorruptedEgg());
 		GameRegistry.registerItem(CorruptedEgg, "corruptedEgg");
 
 		NanoBots = (new ItemGeneric().setUnlocalizedName("tragicmc.nanoBots").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NanoBots"));
 		GameRegistry.registerItem(NanoBots, "nanoBots");
-		
+
 		UnstableIsotope = (new ItemGeneric().setUnlocalizedName("tragicmc.unstableIsotope").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:UnstableIsotope"));
 		GameRegistry.registerItem(UnstableIsotope, "unstableIsotope");
-		
+
+		ArchangelFeather = (new ItemGeneric().setUnlocalizedName("tragicmc.archangelFeather").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:ArchangelFeather"));
+		GameRegistry.registerItem(ArchangelFeather, "archangelFeather");
+
+		WingsOfLiberation = (new ItemGeneric() {
+			@Override
+			public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
+			{
+				if (!world.isRemote && par5 && entity instanceof EntityPlayer)
+				{
+					if (!entity.onGround && entity.ticksExisted % 20 == 0) itemstack.damageItem(1, (EntityPlayer) entity);
+					entity.fallDistance = 0F;
+				}
+			}
+		}.setUnlocalizedName("tragicmc.wingsOfLiberaton").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
+		GameRegistry.registerItem(WingsOfLiberation, "wingsOfLiberation");
+
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
 		GameRegistry.registerItem(IceCream, "iceCream");

@@ -18,6 +18,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.client.ClientProxy;
@@ -64,27 +65,43 @@ public class KeyInputEvents extends Gui {
 
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-
-		if (player != null && TragicConfig.allowFlight && Keyboard.isCreated() && player.isPotionActive(TragicPotion.Flight.id) && player.ticksExisted % 2 == 0)
+		if (TragicConfig.allowFlight)
 		{
-			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
+			boolean flag = player.isPotionActive(TragicPotion.Flight.id);
 
-			if (effect.getDuration() >= 40)
+			if (player != null && Keyboard.isCreated() && (flag || player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TragicItems.WingsOfLiberation)
+					&& player.ticksExisted % 2 == 0)
 			{
-				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE))
+				int dur;
+
+				if (flag)
 				{
-					if (player.isSprinting())
-					{
-						player.motionY = 0.215D;
-					}
-					else
-					{
-						player.motionY = 0.135D;
-					}
+					PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
+					dur = effect.getDuration();
 				}
-				else if (player.isSneaking())
+				else
 				{
-					player.motionY = -0.455D;
+					dur = player.getCurrentEquippedItem().getItemDamage() <= 500 ? 100 : 0;
+					//player.getCurrentEquippedItem().attemptDamageItem(1, player.worldObj.rand);
+				}
+
+				if (dur >= 40)
+				{
+					if (Keyboard.isKeyDown(Keyboard.KEY_SPACE))
+					{
+						if (player.isSprinting())
+						{
+							player.motionY = 0.215D;
+						}
+						else
+						{
+							player.motionY = 0.135D;
+						}
+					}
+					else if (player.isSneaking())
+					{
+						player.motionY = -0.455D;
+					}
 				}
 			}
 		}
@@ -110,7 +127,7 @@ public class KeyInputEvents extends Gui {
 				player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 			}
 		}
-		
+
 		if (player != null && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
 
 		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation) && player.ticksExisted % 2 == 0)
