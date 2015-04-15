@@ -3717,6 +3717,7 @@ Added Archangel Feathers and the Wings of Liberation from the first version of t
 actually give you Flight (due to complications involved in doing that per tick), I'll eventually add a sort of phantom item that lets you move through walls
 and also fly through them, it'll probably involve the Wings of Liberation in the recipe along with Ectoplasm and one other drop (either a new drop or an old
 underused one)
+Added recipe for the Wings of Liberation that uses a couple of the new drops in addition to a Dragon Egg
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3740,11 +3741,6 @@ weapon and armor when this occurs, but it doesn't drop any of these on death, th
 
 New biome sets:
 Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite, Endermen, Inkling, Erkel
-
-New items:
-Wings of Liberation - gives you psuedo-Flight while in hands
-Paranormal Sphere - gives you ghost-like abilities while in hands, you can move through blocks/entities and will not suffocate, you will die if in the void
-and you can fly as if you have the Flight effect active
 
 --Reminders-
 Add armor models for the higher tiered armors
