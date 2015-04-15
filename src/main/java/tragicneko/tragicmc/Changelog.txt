@@ -3664,7 +3664,7 @@ Added another cap on worldgen for structures to prevent them trying to generate 
 Allowed Death Circle to generate in Scorched biomes
 Fixed Molten Netherrack not doing the proper block pick in creative mode, reverted change to it that made it drop as lava rocks
 
-2.43.2244++ <197> (April 9, 2015)
+2.43.2285 <197> (April 9, 2015)
 Added a new chest type, it will require mob kills near it to collect souls, this'll generate in a small standalone structure in the Collision, it'll
 have similar generation to the Kitsune Den, except much smaller of course
 It basically uses a retextured chest as it's model but this should be fine
@@ -3718,14 +3718,23 @@ actually give you Flight (due to complications involved in doing that per tick),
 and also fly through them, it'll probably involve the Wings of Liberation in the recipe along with Ectoplasm and one other drop (either a new drop or an old
 underused one)
 Added recipe for the Wings of Liberation that uses a couple of the new drops in addition to a Dragon Egg
+Added special check for Corrupted Spire to ensure that it gets generated in the Collision
+
+2.43.2285++ <198> (April 14, 2015)
+Added Fusea, it drops redstone, gunpowder and unstable isotopes, it explodes when attacked or attacking something losing one of it's shells in the process until
+it has no shells left and dies
+Added TNT recipes for Unstable Isotopes, one uses gunpowder and yields 8, the other uses lunar powder and yields 16
+Fixed bug where Fusea would not have any drops on death
+Added Volatile Fusea, a larger version that moves faster the less shells it has, it has a chance to drop redstone blocks and a greater chance to drop unstable isotopes
+Volatile Fusea is a mini-boss version of the Fusea, in case that wasn't obvious
+Added ability for Fusea to heal when struck by lightning, added ability for Volatile Fusea to do random damaging effects when near certain blocks
+Prioritize being near energy blocks doing it's effect than being near fire, because otherwise the first lightning it summons will immediately change it
+into fireball mode and that'll be basically perpetual until it wanders away
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
 increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague, will be added to the Corroded and
 Dark Forest biomes
-Fusea - a volatile creature that explodes when threatened, it takes no damage from the explosion and as such can explode multiple times, it floats
-slowly through the air
-Volatile Fusea - Multi-layered Fusea, when attacked enough it's outermost shell "breaks" allowing it to move faster and cause greater explosions
 Ranmas - A Snowflake-like being that is made of a nearly unbreakable material, it can only be damaged on impact with something at high speed or by being
 hit by other Ranmas. It attacks by charging up and shooting itself at it's target.
 
