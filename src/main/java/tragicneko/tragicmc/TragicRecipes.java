@@ -101,11 +101,12 @@ public class TragicRecipes {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WingsOfLiberation, 1),
 				"xyx",
-				"xzx",
+				"wzw",
 				"xyx",
 				'x', TragicItems.ArchangelFeather,
 				'y', TragicItems.WispParticles,
-				'z', TragicItems.UnstableIsotope
+				'w', TragicItems.UnstableIsotope,
+				'z', Blocks.dragon_egg
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.CorruptedEssence, 3),
