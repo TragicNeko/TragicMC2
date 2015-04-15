@@ -62,6 +62,7 @@ import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
+import tragicneko.tragicmc.client.render.mob.RenderIre;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderNorVox;
@@ -102,6 +103,7 @@ import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
+import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
@@ -125,6 +127,7 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
+import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
@@ -218,6 +221,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityWebBomb.class, new RenderProjectile(21));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCrystalMortor.class, new RenderProjectile(22));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordMortor.class, new RenderProjectile(23));
+		RenderingRegistry.registerEntityRenderingHandler(EntityIreEnergy.class, new RenderProjectile(24));
 
 		//Non projectile renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityStatue.class, new RenderStatue());
@@ -261,6 +265,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityHarvester.class, new RenderMob(new ModelHarvester(), 0.785F, "Harvester", 1.555F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLockbot.class, new RenderMob(new ModelLockbot(), 0.335F, "Lockbot"));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySeeker.class, new RenderMob(new ModelSeeker(), 0.475F, "Seeker"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityIre.class, new RenderIre());
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());

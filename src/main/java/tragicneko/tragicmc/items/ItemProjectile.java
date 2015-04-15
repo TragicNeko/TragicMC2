@@ -20,6 +20,7 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
+import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
@@ -41,15 +42,15 @@ import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 
 public class ItemProjectile extends Item {
 
-	private String[] subNames = new String[] {"rock", "lavaRock", "pumpkinbomb", "largePumpkinbomb", "poisonBarb", "nekoRocket", "nekoStickyBomb", "nekoClusterBomb",
+	private static final String[] subNames = new String[] {"rock", "lavaRock", "pumpkinbomb", "largePumpkinbomb", "poisonBarb", "nekoRocket", "nekoStickyBomb", "nekoClusterBomb",
 			"nekoMiniBomb", "solarBomb", "spiritCast", "spore", "banana", "largeRock", "icicle", "timeBomb", "starShard", "darkLightning", "pitchBlack", "darkEnergy",
-			"darkMortor", "webBomb", "crystalMortor", "overlordMortor"};
+			"darkMortor", "webBomb", "crystalMortor", "overlordMortor", "ireEnergy"};
 
-	private String[] textureNames = new String[] {"Rock", "LavaRock", "Pumpkinbomb", "LargePumpkinbomb", "PoisonBarb", "NekoRocket", "NekoStickyBomb", "NekoClusterBomb",
+	private static final String[] textureNames = new String[] {"Rock", "LavaRock", "Pumpkinbomb", "LargePumpkinbomb", "PoisonBarb", "NekoRocket", "NekoStickyBomb", "NekoClusterBomb",
 			"NekoMiniBomb", "SolarBomb", "SpiritCast", "Spore", "Banana", "LargeRock", "Icicle", "TimeBomb", "StarShard", "DarkLightning", "PitchBlack", "DarkEnergy", 
-			"DarkMortor", "WebBomb", "CrystalMortor", "OverlordMortor"};
+			"DarkMortor", "WebBomb", "CrystalMortor", "OverlordMortor", "IreEnergy"};
 
-	private IIcon[] iconArray = new IIcon[subNames.length];
+	private static IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemProjectile()
 	{
@@ -171,6 +172,10 @@ public class ItemProjectile extends Item {
 			entity.motionX += itemRand.nextFloat() - itemRand.nextFloat();
 			entity.motionY += itemRand.nextFloat() - itemRand.nextFloat();
 			entity.motionZ += itemRand.nextFloat() - itemRand.nextFloat();
+			break;
+		case 24:
+			entity = new EntityIreEnergy(world, player, x, y, z);
+			break;
 		}
 
 		if (entity != null)

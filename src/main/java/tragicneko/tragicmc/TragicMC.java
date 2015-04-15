@@ -34,6 +34,7 @@ import org.apache.logging.log4j.Logger;
 
 import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
+import tragicneko.tragicmc.events.ServerTickEvents;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -87,6 +88,7 @@ public class TragicMC
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.initialize();
 		//MinecraftForge.EVENT_BUS.register(new TragicConfig()); //for the gui stuff, eventually I'll sit down and do this
+		FMLCommonHandler.instance().bus().register(new ServerTickEvents());
 
 		logDuration("Configuration");
 
@@ -270,6 +272,7 @@ public class TragicMC
 	public void mappings(FMLMissingMappingsEvent event)
 	{
 		//If I change modIDs I'll set this up properly
+		TragicMC.logInfo("Mapping event received.");
 	}
 
 	public static void doPotionReflection()

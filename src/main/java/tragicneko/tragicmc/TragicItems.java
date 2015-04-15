@@ -179,6 +179,8 @@ public class TragicItems {
 	public static Item WispParticles;
 	public static Item StinHorn;
 	public static Item IcyFur;
+	public static Item ArchangelFeather; //can be used to brew flight potions possibly, ore dictionary replacement for feathers
+	public static Item WingsOfLiberation; //while in your hands, you can fly as if you have Flight active, uses durability while you are in air and doesn't negate fall damage
 
 	public static Item FrozenLightning;
 

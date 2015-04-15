@@ -86,14 +86,14 @@ public class TragicConfig {
 	private static boolean[] blanketMob = new boolean[12];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
 	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns;
-	private static boolean[] mobConfigs = new boolean[32];
+	private static boolean[] mobConfigs = new boolean[48];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
-	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem, allowHunter, allowHarvester;
-	private static int[] mobsSC = new int[32];
+	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
+	private static int[] mobsSC = new int[48];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
 	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC, snowGolemSC, hunterSC;
-	public static int harvesterSC;
+	public static int harvesterSC, archangelSC, ireSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
 	private static int[] miniBossSC = new int[16];
@@ -104,10 +104,10 @@ public class TragicConfig {
 	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
 	private static int[] mobInts = new int[6];
 	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap;
-	private static double[][] mobStats = new double[32][];
+	private static double[][] mobStats = new double[48][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats, hunterStats, harvesterStats, seekerStats;
+	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats;
 	private static double[][] miniBossStats = new double[16][];
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats;
 	private static double[][] bossStats = new double[12][];
@@ -679,6 +679,10 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "hunterAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "harvesterSpawnChance", 10).getInt(10));
 		mobConfigs[mapping++] = (config.get(catMobs, "harveseterAllow", true).getBoolean(true));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "archangelSpawnChance", 5).getInt(5));
+		mobConfigs[mapping++] = (config.get(catMobs, "archangelAllow", true).getBoolean(true));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "ireSpawnChance", 45).getInt(45));
+		mobConfigs[mapping++] = (config.get(catMobs, "ireAllow", true).getBoolean(true));
 
 		mapping = 0;
 		miniBossSC[mapping] = clampPositive(config.get(catMobs, "jarraSpawnChance", 5).getInt(5));
@@ -749,7 +753,9 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "circuitGolemStats", new double[] {0, 0, 0, 0, 0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "hunterStats", new double[] {16.0, 0.236, 4.0, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "harvesterStats", new double[] {72.0, 0.145, 0.0, 16.0, 100.0, 24}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {50.0, 0.0, 1.0, 48.0, 96.0, 24}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {50.0, 0.0, 1.0, 48.0, 100.0, 24}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "archangelStats", new double[] {45.0, 0.0, 1.0, 32.0, 0.5, 12}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "ireStats", new double[] {25.0, 0.0, 1.0, 16.0, 100.0, 0}).getDoubleList());
 		
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
@@ -1442,6 +1448,10 @@ public class TragicConfig {
 		allowHunter = mobConfigs[mapping++];
 		harvesterSC = mobsSC[mapping];
 		allowHarvester = mobConfigs[mapping++];
+		archangelSC = mobsSC[mapping];
+		allowArchangel = mobConfigs[mapping++];
+		ireSC = mobsSC[mapping];
+		allowIre = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1513,6 +1523,8 @@ public class TragicConfig {
 		hunterStats = mobStats[mapping++];
 		harvesterStats = mobStats[mapping++];
 		seekerStats = mobStats[mapping++];
+		archangelStats = mobStats[mapping++];
+		ireStats = mobStats[mapping++];
 		
 		mapping = 0;
 		jarraStats = miniBossStats[mapping++];

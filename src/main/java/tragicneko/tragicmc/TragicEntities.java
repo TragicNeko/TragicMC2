@@ -36,12 +36,14 @@ import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
+import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
+import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
@@ -65,6 +67,7 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
+import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
 import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import tragicneko.tragicmc.entity.projectile.EntityNekoClusterBomb;
@@ -496,6 +499,18 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntitySeeker.class, "Seeker", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntitySeeker.class, "TragicMC.Seeker", id++, 0x53BBBC, 0x464646);
 		}
+		
+		if (TragicConfig.allowArchangel)
+		{
+			EntityRegistry.registerModEntity(EntityArchangel.class, "Archangel", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityArchangel.class, "TragicMC.Archangel", id++, 0xFFFFDD, 0xFFFFA2);
+		}
+		
+		if (TragicConfig.allowIre)
+		{
+			EntityRegistry.registerModEntity(EntityIre.class, "Ire", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityIre.class, "TragicMC.Ire", id++, 0xFFFFFF, 0xFFFF89);
+		}
 
 		//Iron Golem
 		TragicEntityList.addMapping(EntityIronGolem.class, "TragicMC.IronGolem", id++, 0xDBCDC1, 0x8B7260);
@@ -854,5 +869,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityDimensionalAnomaly.class, "DimensionalAnomaly", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityLock.class, "Lock", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDirectedLightning.class, "DirectedLightning", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityIreEnergy.class, "IreEnergy", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }

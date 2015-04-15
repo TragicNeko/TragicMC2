@@ -35,12 +35,14 @@ import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
+import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
+import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
@@ -164,6 +166,11 @@ public class EntityDropHelper {
 		addToDropList(EntityLockbot.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(10, TragicItems.GravityOrb)},
 			{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(5, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.GravityOrb)}});
 		
+		addToDropList(EntityIre.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(10, Items.glowstone_dust)}, {new EntityDrop(10, TragicItems.LightParticles), new EntityDrop(5, Items.quartz),
+			new EntityDrop(3, TragicItems.WispParticles)}});
+		
+		addToDropList(EntityArchangel.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(5, TragicItems.Tungsten)}, {new EntityDrop(25, TragicItems.LightParticles),
+			new EntityDrop(5, new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(TragicItems.Ruby), new ItemStack(TragicItems.Sapphire)}), new EntityDrop(10, Items.feather)}});
 		
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream)},
