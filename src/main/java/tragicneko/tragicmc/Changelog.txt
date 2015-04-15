@@ -3681,36 +3681,68 @@ Finished up the Corrupted Spire, it doesn't generate completely uniform (the out
 doesn't really matter, the tower generates as it should and is actually really tough to do, I decided to put it to 20 floors because there is a lot of
 lag while generating it and also because it is actually very difficult to get through
 Changed the Molten Rock textures, they are now less saturated and don't have as much contrast
+Removed some imports from the main class, this makes it look a bit messier but that's fine
+Increased the cap some worldgens had in the config
+Fixed bug with distance challenge scroll not properly counting negative coordinates
+Allow certain food items to be potion ingredients, in modded this isn't that big of a feature but still it's cool to have, if I figure out how to do the bitwise flags
+I'll maybe change some of them to my mod's potion effects
+Added Overlord Cocoon model and death animation, increased hitbox size
+Improved ability for Seekers to teleport to a safe location
+Fixed Overlord Core platform being placed on the client and server side
+Fixed Dark Lightning not using Directed Lightning, the Enyvil still uses it when it does it's thunderstorm attack
+Added Overlord Cocoon/Combat form textures, fixed minor offset with one of the circuits in the Combat form model
+Updated Synapse entity egg textures
+Adding new blocks for the new frozen biomes, moved some gas variants into their own classes rather than keeping them anonymous
+Consolidated Vine WorldGen classes since they use the same worldgen anyway, removed extra vine worldgen that corroded biomes used
+Added configurability of biome weights for my biomes, added Frozen biomes to the dimension
+If all biome weights are set to 0, then the Dimension is disabled
+Added Ice spike generaton to the Frozen biomes, uses my custom spike generation, not the vanilla one
+Added ice spike blocks, these are a sort of trap block
+Added Snow Golem spawns to Frozen biomes
+Added small Pits that generate with hazardous blocks at the bottom, these will generate in each of the new biomes, uses a modified version of the void pit generator
+Fixed Ragr spawning
+Reduced chance for Soul Tombs, Celestial Temples and Pits to generate
+Added Frozen texture to Erkel, updated Wisp to spawn snow particles when in Frozen biomes
+Added Crystal biome, added Crystal block, changed worldgen to have a 5 in 1000 chance to generate a crystal biome (if config is left unchanged)
+Made moss not able to be climbed up like a ladder
+Added Frozen biomes as valid spot for ice towers to generate
+Added spike generation to crystal biome
+Added Archangel, no model/render yet until I get it's AI down, it will use a heavily modified version of the Ghast's AI, using hovering from the Overlord
+Core's AI and laser fire from the Seeker's AI
+Added ability to use any of the Jacks as hoes, this should've been added before but I guess I forgot about it
+Added hover buffer and light value cap to the Archangel's light ray attack, need to add it's model and rendering now
+Adding the Ire, it will use static variables to have a true hive-mind AI
+The Ire's tick will be controlled by a server update event, I'll use this event for other things in the future (possibly) that require server tick updates
 
 New Mobs:
-Archangel - Updated from the 1.6 version, it'll fire like a Kamehaha beam at it's target and will dodge incoming projectiles, it'll use a modified
-version of the Ghast's movement since I don't want it to go through walls like the Ender Dragon or Overlord, it'll have relatively low health and no
-armor but it's beam attack will do armor piercing damage (it'll be a rapidly damaging effect)
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
-increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague
+increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague, will be added to the Corroded and
+Dark Forest biomes
 Fusea - a volatile creature that explodes when threatened, it takes no damage from the explosion and as such can explode multiple times, it floats
 slowly through the air
 Volatile Fusea - Multi-layered Fusea, when attacked enough it's outermost shell "breaks" allowing it to move faster and cause greater explosions
 Ranmas - A Snowflake-like being that is made of a nearly unbreakable material, it can only be damaged on impact with something at high speed or by being
 hit by other Ranmas. It attacks by charging up and shooting itself at it's target.
-Ire - A small creature of pure light, it has low health and attacks with magic, it does more damage the more nearby Ire that it is "linked" to
+
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
 AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
 to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
 ("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
 use the same drop rates and items from that actually
+Arbiter - A fairy-like creature that emits dark and light at the same time, when approached by a player it'll calculate their "purity", if judged pure then
+it'll transform into a light version of the player which follows them around like a pet, but if they are judged to be impure then it'll transform into
+a dark version of the player, which will aggressively attack the player, if the player has ender pearls on them it'll use these, it gains the player's
+weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 New biome sets:
-Frozen biomes, Ragr, Cryse, Ice wasteland, Ice spikes, slippery movement, ice pits with water at the bottom
-Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite
-Crystal biomes, huge jagged crystal generation (lots of short spike gen), very hard to mine, will be like a variant of the starlit biomes, crystalized trees,
-Ranmas
+Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite, Endermen, Inkling, Erkel
+
+New items:
+Wings of Liberation - gives you psuedo-Flight while in hands
+Paranormal Sphere - gives you ghost-like abilities while in hands, you can move through blocks/entities and will not suffocate, you will die if in the void
+and you can fly as if you have the Flight effect active
 
 --Reminders-
-Add a Chainbot as a mini-boss form of the lockbot, it'll basically be a mobile version of the lockbot that actually moves to it's trapped target and attacks them,
-the target may break the chain after enough hits to it and it'll have to reattach, what it'll do is with lower health is generate a weaker lockbot, that attaches a lock to it's target and
-then the Chainbot will go after the targetted player while it is locked, knocking it back and aggressively attacking it
-Add more smaller structures, including trap structures
 Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
