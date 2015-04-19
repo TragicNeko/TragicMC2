@@ -3751,6 +3751,8 @@ Made the Soul Tomb a bit more bulkier, so that is has more of a tomb feeling ins
 Added armor model for the Overlord armor
 Added a safeguard to the Cocoon to prevent it from being spawned in too trapping of an area, I think it'd be a cool ability to prevent the player from placing blocks
 while near it, but mostly this is to ensure that there is enough space to spawn in the Seekers
+Added more armor types to randomly apply on Vanilla mobs (zombies, skeletons) when they spawn
+
 
 Need a model and texture for the Fusea and Archangel
 
