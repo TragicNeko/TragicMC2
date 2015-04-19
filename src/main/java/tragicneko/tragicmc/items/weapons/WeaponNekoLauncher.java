@@ -32,7 +32,9 @@ public class WeaponNekoLauncher extends TragicWeapon {
 		double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 		EntityNekoRocket rocket = new EntityNekoRocket(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
-		rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
+		rocket.posY = par3EntityPlayer.posY + 0.55;
+		rocket.posX += d4 * 0.215;
+		rocket.posZ += d6 * 0.215;
 		if (!par2World.isRemote) par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 
 		par1ItemStack.damageItem(1, par3EntityPlayer);
