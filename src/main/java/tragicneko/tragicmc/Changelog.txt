@@ -3730,6 +3730,29 @@ Volatile Fusea is a mini-boss version of the Fusea, in case that wasn't obvious
 Added ability for Fusea to heal when struck by lightning, added ability for Volatile Fusea to do random damaging effects when near certain blocks
 Prioritize being near energy blocks doing it's effect than being near fire, because otherwise the first lightning it summons will immediately change it
 into fireball mode and that'll be basically perpetual until it wanders away
+Fixed Dragon Fang model offsets and improved Reaper Scythe model/texture
+Added Sentinel, Hellraiser and Neko Launcher models
+Fixed missle firing out of the player's face, it now fires close to where the rocket should be (in their crotch area lol)
+Improved Titan model, made it look a bit lessy bulky and made it's texture have a bit more contrast
+Added armor model for Dark armor, it takes so long to do this, my god
+Added Stalagmite and cracked permafrost gen for the Frozen biomes
+Reduced amount of grass that generates in Frozen biomes, particularly in Tundras
+Added armor model for Light armor, it uses a modified version of the Dark Armor (so does the item textures so this fits anyway)
+Removed references to Circuit Golem from config, originally I planned it as a new golem type (helpful golem for the player to spawn in) but I ended up
+rolling it's planned AI into the Aegar and it's spawning method into the Overlord
+Added new item, weapon and Doomsday, it is meant to act as another "fun" type of weapon to go along with the Neko Launcher as well as a new item for other
+recipes
+Removed special check for the Corrupted Spire to be generated in the Collision, it's no longer necessary to have this as a restriction (and it's probably going
+to be less laggy having the players able to spawn it in the overworld)
+Added checks for null structures and for structures having enough vertical space to fully generate
+Fixed height value for Obsidian Caverns
+Added Ire Node as a drop for the Ire, also added a few recipes involving it
+Made the Soul Tomb a bit more bulkier, so that is has more of a tomb feeling instead of an open cradle look
+Added armor model for the Overlord armor
+Added a safeguard to the Cocoon to prevent it from being spawned in too trapping of an area, I think it'd be a cool ability to prevent the player from placing blocks
+while near it, but mostly this is to ensure that there is enough space to spawn in the Seekers
+
+Need a model and texture for the Fusea and Archangel
 
 New Mobs:
 Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
@@ -3749,10 +3772,9 @@ a dark version of the player, which will aggressively attack the player, if the 
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 New biome sets:
-Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite, Endermen, Inkling, Erkel
+Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite, Endermen, Inkling, Erkel, Enyvil
 
 --Reminders-
-Add armor models for the higher tiered armors
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
