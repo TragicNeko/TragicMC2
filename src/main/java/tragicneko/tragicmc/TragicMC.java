@@ -225,9 +225,9 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 17); //Corroded biomes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen(), 18); //Corroded biomes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.PitWorldGen(), 19); //Pits for some of the newer biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.FrozenSurfaceWorldGen(), 20); //Frozen biome generation
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.AerisWorldGen(), 24); //Aeris flower gen
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen(), 25); //For the tainted scarlands
-
 		}
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 20);
