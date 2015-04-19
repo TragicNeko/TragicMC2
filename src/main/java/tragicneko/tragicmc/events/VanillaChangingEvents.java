@@ -221,7 +221,7 @@ public class VanillaChangingEvents {
 							switch(i)
 							{
 							case 0:
-								switch(rand.nextInt(8))
+								switch(rand.nextInt(12))
 								{
 								case 0:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.Scythe));
@@ -230,7 +230,7 @@ public class VanillaChangingEvents {
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.MercuryDagger));
 									break;
 								case 2:
-									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.TungstenJack));
+									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.Jack));
 									break;
 								case 3:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.iron_sword));
@@ -241,10 +241,13 @@ public class VanillaChangingEvents {
 								case 5:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.wooden_sword));
 									break;
+								case 6:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.diamond_sword));
+									break;
 								}
 								break;
 							case 1:
-								switch(rand.nextInt(6))
+								switch(rand.nextInt(12))
 								{
 								case 0:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.SkullHelmet));
@@ -264,10 +267,19 @@ public class VanillaChangingEvents {
 								case 5:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.leather_helmet));
 									break;
+								case 6:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.diamond_helmet));
+									break;
+								case 7:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.DarkHelm));
+									break;
+								case 8:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.LightHelm));
+									break;
 								}
 								break;
 							case 2:
-								switch(rand.nextInt(6))
+								switch(rand.nextInt(12))
 								{
 								case 0:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.SkullPlate));
@@ -287,10 +299,19 @@ public class VanillaChangingEvents {
 								case 5:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.leather_chestplate));
 									break;
+								case 6:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.diamond_chestplate));
+									break;
+								case 7:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.DarkPlate));
+									break;
+								case 8:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.LightPlate));
+									break;
 								}
 								break;
 							case 3:
-								switch(rand.nextInt(6))
+								switch(rand.nextInt(12))
 								{
 								case 0:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.SkullLegs));
@@ -310,10 +331,19 @@ public class VanillaChangingEvents {
 								case 5:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.leather_leggings));
 									break;
+								case 6:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.diamond_leggings));
+									break;
+								case 7:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.DarkLegs));
+									break;
+								case 8:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.LightLegs));
+									break;
 								}
 								break;
 							case 4:
-								switch(rand.nextInt(6))
+								switch(rand.nextInt(12))
 								{
 								case 0:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.SkullBoots));
@@ -332,6 +362,15 @@ public class VanillaChangingEvents {
 									break;
 								case 5:
 									((EntityMob)event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.leather_boots));
+									break;
+								case 6:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(Items.diamond_boots));
+									break;
+								case 7:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.DarkBoots));
+									break;
+								case 8:
+									((EntityMob) event.entity).setCurrentItemOrArmor(i, new ItemStack(TragicItems.LightBoots));
 									break;
 								}
 								break;
