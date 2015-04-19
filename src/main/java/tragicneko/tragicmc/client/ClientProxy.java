@@ -62,6 +62,7 @@ import tragicneko.tragicmc.client.render.boss.RenderVoxStellarum;
 import tragicneko.tragicmc.client.render.boss.RenderYeti;
 import tragicneko.tragicmc.client.render.mob.RenderCryse;
 import tragicneko.tragicmc.client.render.mob.RenderErkel;
+import tragicneko.tragicmc.client.render.mob.RenderFusea;
 import tragicneko.tragicmc.client.render.mob.RenderIre;
 import tragicneko.tragicmc.client.render.mob.RenderJabba;
 import tragicneko.tragicmc.client.render.mob.RenderMob;
@@ -95,10 +96,12 @@ import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
+import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
+import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
@@ -195,6 +198,10 @@ public class ClientProxy extends CommonProxy {
 			MinecraftForgeClient.registerItemRenderer(TragicItems.Paranoia, new RenderEpicWeapon(5, mc));
 			MinecraftForgeClient.registerItemRenderer(TragicItems.CelestialAegis, new RenderEpicWeapon(6, mc));
 			MinecraftForgeClient.registerItemRenderer(TragicItems.Titan, new RenderEpicWeapon(7, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.SilentHellraiser, new RenderEpicWeapon(8, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.Sentinel, new RenderEpicWeapon(9, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.NekoLauncher, new RenderEpicWeapon(10, mc));
+			MinecraftForgeClient.registerItemRenderer(TragicItems.IreNetParticleCannon, new RenderEpicWeapon(11, mc));
 		}
 
 		//Projectile renders
@@ -266,6 +273,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityLockbot.class, new RenderMob(new ModelLockbot(), 0.335F, "Lockbot"));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySeeker.class, new RenderMob(new ModelSeeker(), 0.475F, "Seeker"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityIre.class, new RenderIre());
+		RenderingRegistry.registerEntityRenderingHandler(EntityFusea.class, new RenderFusea(0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityVolatileFusea.class, new RenderFusea(1));
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());
