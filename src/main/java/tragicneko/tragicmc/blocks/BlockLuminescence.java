@@ -12,6 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -50,16 +51,13 @@ public class BlockLuminescence extends Block {
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		world.setBlockToAir(x, y, z);
+		if (!world.isRemote) world.setBlockToAir(x, y, z);
 	}
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
-		if (!world.isRemote)
-		{
-			world.scheduleBlockUpdate(x, y, z, this, 5);
-		}
+		if (!world.isRemote) world.scheduleBlockUpdate(x, y, z, this, 5);
 	}
 
 	@Override
