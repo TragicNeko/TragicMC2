@@ -5,16 +5,15 @@ import static tragicneko.tragicmc.TragicConfig.overlordCocoonStats;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -385,10 +384,18 @@ public class EntityOverlordCocoon extends TragicBoss {
 	{
 		if (!this.worldObj.isRemote)
 		{
-			List<int[]> lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 5.5, this.posX, this.posY - 1, this.posZ);
+			List<int[]> lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.5, this.posX, this.posY + 1, this.posZ);
+			
+			for (int[] coord: lst)
+			{
+				this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
+			}
+			
+			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 12.5, this.posX, this.posY - 1, this.posZ);
+			
 			for (int[] coords : lst)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.CelledBlock);
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicConfig.mobsOnly ? Blocks.obsidian : TragicBlocks.CelledBlock);
 			}
 
 			this.spawnSeekers();
