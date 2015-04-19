@@ -14,12 +14,40 @@ public class ModelReaperScythe extends ModelBase {
 		textureHeight = 32;
 		
 		scythe = new ModelRenderer(this, 0, 0);
-		scythe.addBox(0F, -8F, 0F, 1, 36, 1);
+		scythe.addBox(0F, -8F, 0F, 1, 4, 1);
 		scythe.setRotationPoint(16F, 4F, -3F);
+		
+		ModelRenderer scythe2 = new ModelRenderer(this, 0, 0);
+		scythe2.addBox(-1F, -4F, 0F, 1, 4, 1);
+		scythe.addChild(scythe2);
+		
+		ModelRenderer scythe3 = new ModelRenderer(this, 0, 0);
+		scythe3.addBox(0F, 0F, 0F, 1, 8, 1);
+		scythe.addChild(scythe3);
+		
+		ModelRenderer scythe4 = new ModelRenderer(this, 0, 0);
+		scythe4.addBox(1F, 8F, 0F, 1, 4, 1);
+		scythe.addChild(scythe4);
+		
+		ModelRenderer scythe5 = new ModelRenderer(this, 0, 0);
+		scythe5.addBox(0F, 12F, 0F, 1, 4, 1);
+		scythe.addChild(scythe5);
+		
+		ModelRenderer scythe6 = new ModelRenderer(this, 0, 0);
+		scythe6.addBox(-1F, 16F, 0F, 1, 4, 1);
+		scythe.addChild(scythe6);
+		
+		ModelRenderer scythe7 = new ModelRenderer(this, 0, 0);
+		scythe7.addBox(0F, 20F, 0F, 1, 8, 1);
+		scythe.addChild(scythe7);
 
 		ModelRenderer scytheBlade = new ModelRenderer(this, 46, 0);
 		scytheBlade.addBox(1F, 13F, 0F, 2, 13, 1);
 		scythe.addChild(scytheBlade);
+		
+		ModelRenderer scytheBlade1b = new ModelRenderer(this, 38, 0);
+		scytheBlade1b.addBox(0F, 16F, 0F, 1, 4, 1);
+		scythe.addChild(scytheBlade1b);
 		
 		ModelRenderer scytheBlade2 = new ModelRenderer(this, 38, 0);
 		scytheBlade2.addBox(3F, 14F, 0F, 4, 11, 1);
@@ -62,12 +90,22 @@ public class ModelReaperScythe extends ModelBase {
 		scythe.addChild(scytheBlade11);
 		
 		ModelRenderer scytheBlade12 = new ModelRenderer(this, 46, 0);
-		scytheBlade12.addBox(-2F, 12F, 0F, 2, 12, 1);
+		scytheBlade12.addBox(-2F, 12F, 0F, 2, 4, 1);
 		scythe.addChild(scytheBlade12);
+		
+		ModelRenderer scytheBlade12b = new ModelRenderer(this, 46, 0);
+		scytheBlade12b.addBox(-2F, 20F, 0F, 2, 4, 1);
+		scythe.addChild(scytheBlade12b);
+		
+		ModelRenderer scytheBlade12c = new ModelRenderer(this, 46, 0);
+		scytheBlade12c.addBox(-2F, 16F, 0F, 1, 4, 1);
+		scythe.addChild(scytheBlade12c);
 		
 		ModelRenderer scytheBlade13 = new ModelRenderer(this, 38, 0);
 		scytheBlade13.addBox(-4F, 13F, 0F, 2, 10, 1);
 		scythe.addChild(scytheBlade13);
+		
+		
 		
 		ModelRenderer scytheBlade14 = new ModelRenderer(this, 30, 0);
 		scytheBlade14.addBox(-6F, 15F, 0F, 2, 6, 1);

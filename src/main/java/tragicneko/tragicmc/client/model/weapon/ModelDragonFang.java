@@ -14,11 +14,11 @@ public class ModelDragonFang extends ModelBase {
 		textureHeight = 32;
 
 		fang = new ModelRenderer(this, 16, 0);
-		fang.addBox(-2F, -5F, 0F, 5, 4, 1);
+		fang.addBox(-2.5F, -5F, -1.5F, 5, 4, 3);
 		fang.setRotationPoint(16F, 4F, -3F);
 
 		ModelRenderer fangBlade = new ModelRenderer(this, 0, 0);
-		fangBlade.addBox(-1F, -1F, 0F, 3, 8, 2);
+		fangBlade.addBox(-1.5F, -1F, 0F, 3, 8, 2);
 		fang.addChild(fangBlade);
 
 		ModelRenderer fangBlade2 = new ModelRenderer(this, 16, 0);
