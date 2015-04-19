@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.items.armor;
 
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,28 +9,27 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorLight extends TragicArmor {
+	
+	@SideOnly(Side.CLIENT)
+	private static final net.minecraft.client.model.ModelBiped[] models = new net.minecraft.client.model.ModelBiped[] {
+		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(0),
+		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(1),
+		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(2),
+		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(3)
+	};
+	
+	private static final String texture = "tragicmc:textures/armor/LightArmor.png";
 
 	public ArmorLight(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
-	}
-
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{
-		return slot == 2 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png";
-	}
-
-	@Override
-	public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
-	{
-		return super.getArmorModel(entity, stack, slot);
 	}
 
 	@Override
@@ -69,5 +67,18 @@ public class ArmorLight extends TragicArmor {
 				}
 			}
 		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
+	{
+		return models[slot];
+	}
+	
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	{
+		return texture; //slot == 2 ? "tragicmc:textures/armor/Light2.png" : "tragicmc:textures/armor/Light1.png";
 	}
 }

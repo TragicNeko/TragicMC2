@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.items.armor;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,17 +12,23 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorOverlord extends TragicArmor {
+	
+	@SideOnly(Side.CLIENT)
+	private static final net.minecraft.client.model.ModelBiped[] models = new net.minecraft.client.model.ModelBiped[] {
+		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(0),
+		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(1),
+		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(2),
+		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(3)
+	};
+	
+	private static final String texture = "tragicmc:textures/armor/OverlordArmor.png";
 
 	public ArmorOverlord(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
-	}
-
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{
-		return slot == 2 ? "tragicmc:textures/armor/Overlord2.png" : "tragicmc:textures/armor/Overlord1.png";
 	}
 	
 	@Override
@@ -60,5 +67,18 @@ public class ArmorOverlord extends TragicArmor {
 			if (TragicConfig.allowCripple && player.isPotionActive(TragicPotion.Cripple)) player.removePotionEffect(TragicPotion.Cripple.id);
 			if (player.isPotionActive(Potion.weakness)) player.removePotionEffect(Potion.weakness.id);
 		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
+	{
+		return models[slot];
+	}
+	
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	{
+		return texture; //slot == 2 ? "tragicmc:textures/armor/Overlord2.png" : "tragicmc:textures/armor/Overlord1.png";
 	}
 }
