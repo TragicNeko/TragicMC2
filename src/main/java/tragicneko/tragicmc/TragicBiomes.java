@@ -109,7 +109,7 @@ public class TragicBiomes {
 		CorrodedRunoff = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedRunoff).setBiomeName("tragicmc.corrodedRunoff"))).setHeightVariation(0.06F).setRootHeight(-0.65F);
 		CorrodedFallout = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout).setBiomeName("tragicmc.corrodedFallout"))).setHeightVariation(0.4F).setRootHeight(-0.65F);
 		
-		FrozenTundra = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenTundra).setBiomeName("tragicmc.frozenTundra"))).setHeightVariation(0.01F).setRootHeight(0.15F).setGrassPerChunk(32);
+		FrozenTundra = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenTundra).setBiomeName("tragicmc.frozenTundra"))).setHeightVariation(0.01F).setRootHeight(0.15F).setGrassPerChunk(8);
 		FrozenHills = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenHills).setBiomeName("tragcmc.frozenHills"))).setHeightVariation(0.35F).setRootHeight(0.25F).setGrassPerChunk(16);
 		FrozenDepths = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenDepths).setBiomeName("tragicmc.frozenDepths"))).setHeightVariation(0.65F).setRootHeight(-0.65F).setGrassPerChunk(0).setTreesPerChunk(0);
 		
