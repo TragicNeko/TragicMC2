@@ -51,6 +51,7 @@ tile.tragicmc.disappearingBlockInvis.name=Disappearing Block (Invisible)
 tile.tragicmc.quicksand.quicksand.name=Quicksand
 tile.tragicmc.quicksand.mud.name=Mud
 tile.tragicmc.quicksand.netherDrudge.name=Drudge
+tile.tragicmc.quicksand.toxicSludge.name=Toxic Sludge
 
 tile.tragicmc.darkStone.smooth.name=Dark Stone
 tile.tragicmc.darkStone.red.name=Red Corroded Dark Stone
@@ -356,6 +357,7 @@ item.tragicmc.corruptedEye.name=Corrupted Eye
 item.tragicmc.corruptedEssence.name=Corrupted Essence
 item.tragicmc.nanoBots.name=Nano Bots
 item.tragicmc.corruptedEgg.name=Corrupted Egg
+item.tragicmc.ireNode.name=Ire Node
 
 item.tragicmc.password.name=The Password
 
@@ -366,9 +368,9 @@ item.tragicmc.guiltyThorn.name=Guilty Thorn
 item.tragicmc.beastlyClaws.name=Beastly Claws
 item.tragicmc.nekoLauncher.name=Neko Rocket Launcher
 item.tragicmc.reaperScythe.name=Reaper Scythe
-item.tragicmc.enigmaShield.name=Enigma Shield
 item.tragicmc.witheringAxe.name=Withering Axe
 item.tragicmc.frozenLightning.name=Frozen Lightning
+item.tragicmc.ireNetParticleCannon.name=IreNet Particle Cannon
 
 item.tragicmc.diamondCharm.name=Diamond Charm
 item.tragicmc.emeraldCharm.name=Emerald Charm
@@ -971,6 +973,7 @@ doomsday.shotgun.name=Shotgun
 doomsday.guardiansCall.name=Guardian's Call
 doomsday.sharpen.name=Sharpen
 doomsday.harden.name=Harden
+doomsday.flash.name=Flash
 
 tragicmc.paintedForest=Painted Forest
 tragicmc.paintedPlains=Painted Plains
