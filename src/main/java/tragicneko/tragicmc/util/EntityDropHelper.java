@@ -168,8 +168,8 @@ public class EntityDropHelper {
 		addToDropList(EntityLockbot.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(10, TragicItems.GravityOrb)},
 			{new EntityDrop(25, TragicItems.NanoBots), new EntityDrop(10, Items.iron_ingot), new EntityDrop(5, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.GravityOrb)}});
 		
-		addToDropList(EntityIre.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(10, Items.glowstone_dust)}, {new EntityDrop(10, TragicItems.LightParticles), new EntityDrop(5, Items.quartz),
-			new EntityDrop(3, TragicItems.WispParticles)}});
+		addToDropList(EntityIre.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.IreNode)}, {new EntityDrop(10, TragicItems.LightParticles), new EntityDrop(5, Items.quartz),
+			new EntityDrop(3, TragicItems.WispParticles), new EntityDrop(5, TragicItems.IreNode)}});
 		
 		addToDropList(EntityArchangel.class, new EntityDrop[][] {{new EntityDrop(15, TragicItems.LightParticles), new EntityDrop(5, TragicItems.Tungsten)}, {new EntityDrop(25, TragicItems.LightParticles),
 			new EntityDrop(10, new ItemStack[] {new ItemStack(Items.diamond), new ItemStack(Items.emerald), new ItemStack(TragicItems.Ruby), new ItemStack(TragicItems.Sapphire)}), new EntityDrop(5, TragicItems.ArchangelFeather)}});

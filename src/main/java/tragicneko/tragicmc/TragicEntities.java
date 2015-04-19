@@ -479,11 +479,6 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityNanoSwarm.class, "TragicMC.NanoSwarm", id++, 0xFFFFFF, 0xAAAAAA);
 		}
 
-		if (TragicConfig.allowCircuitGolem)
-		{
-			//TODO add Circuit Golem
-		}
-
 		if (TragicConfig.allowHunter)
 		{
 			EntityRegistry.registerModEntity(EntityHunter.class, "Hunter", listid++, TragicMC.getInstance(), 80, 1, true);

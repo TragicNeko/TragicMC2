@@ -719,6 +719,15 @@ public class TragicRecipes {
 				'y', TragicItems.WovenSilk,
 				'z', TragicItems.ToughLeather
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IreNetParticleCannon, 1),
+				"zxy",
+				"zyz",
+				"yxz",
+				'z', TragicBlocks.CelledBlock,
+				'y', TragicItems.UnstableIsotope,
+				'x', TragicItems.IreNode
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LightIngot, 1), 
 				TragicItems.LightParticles, TragicItems.Tungsten
@@ -759,6 +768,15 @@ public class TragicRecipes {
 				'z', TragicItems.PureLight
 				);
 
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EverlastingLight, 1), 
+				"xyx",
+				"yzy",
+				"xyx",
+				'x', TragicItems.PureLight,
+				'y', Blocks.glass,
+				'z', TragicItems.IreNode
+				);
+		
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EverlastingLight, 1), 
 				"xyx",
 				"yzy",

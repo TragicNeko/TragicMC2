@@ -62,11 +62,12 @@ public abstract class Doomsday {
 	public static final Doomsday GuardiansCall = (new DoomsdayGuardian(39));
 	public static final Doomsday Harden = (new DoomsdayHarden(40));
 	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
+	public static final Doomsday Flash = (new DoomsdayFlash(42));
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

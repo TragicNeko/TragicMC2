@@ -1,7 +1,6 @@
 package tragicneko.tragicmc;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -77,6 +76,7 @@ import tragicneko.tragicmc.items.weapons.WeaponGravitySpike;
 import tragicneko.tragicmc.items.weapons.WeaponGuiltyThorn;
 import tragicneko.tragicmc.items.weapons.WeaponHarmonyBell;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
+import tragicneko.tragicmc.items.weapons.WeaponIreParticleCannon;
 import tragicneko.tragicmc.items.weapons.WeaponMourningStar;
 import tragicneko.tragicmc.items.weapons.WeaponNekoLauncher;
 import tragicneko.tragicmc.items.weapons.WeaponParanoia;
@@ -174,6 +174,7 @@ public class TragicItems {
 	public static Item CorruptedEgg; //random spawn egg item
 	public static Item NanoBots;
 	public static Item UnstableIsotope; //drop for Fusea, to be used as an alternative way to craft TNT, possibly for some other technological items
+	public static Item IreNode; //drop from the Ire, to be used for crafting an IreNet Particle Cannon (fires Ire energy in large amounts like a flamethrower)
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
 
@@ -183,6 +184,7 @@ public class TragicItems {
 	public static Item ArchangelFeather; //can be used to brew flight potions possibly, ore dictionary replacement for feathers
 	public static Item WingsOfLiberation; //while in your hands, you can fly as if you have Flight active, uses durability while you are in air and doesn't negate fall damage
 	public static Item ParanormalBox; //while in your hands, you can fly through blocks & entities like a ghost
+	public static Item IreNetParticleCannon; //fires ire energy as a sort of flamethrower, crafted from Ire nodes, Unstable Isotopes and a type of metal (unsure of which kind at this point)
 
 	public static Item FrozenLightning;
 
@@ -415,7 +417,7 @@ public class TragicItems {
 		GuiltyThorn = (new WeaponGuiltyThorn(toolThorn, Doomsday.Torment).setUnlocalizedName("tragicmc.guiltyThorn").setTextureName("tragicmc:GuiltyThorn" ));
 		GameRegistry.registerItem(GuiltyThorn, "guiltyThorn");
 
-		NekoLauncher = (new WeaponNekoLauncher(toolLauncher, Doomsday.SuicidalTendencies).setUnlocalizedName("tragicmc.nekoLauncher").setTextureName("tragicmc:NekoLauncher" ));
+		NekoLauncher = (new WeaponNekoLauncher(toolLauncher, Doomsday.SuicidalTendencies).setUnlocalizedName("tragicmc.nekoLauncher").setTextureName("tragicmc:NekoLauncher"));
 		GameRegistry.registerItem(NekoLauncher, "nekoLauncher");
 
 		ReaperScythe = (new WeaponReaperScythe(toolReaper, Doomsday.ReaperLaugh).setUnlocalizedName("tragicmc.reaperScythe").setTextureName("tragicmc:ReaperScythe" ));
@@ -615,6 +617,12 @@ public class TragicItems {
 			}
 		}.setUnlocalizedName("tragicmc.wingsOfLiberation").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
 		GameRegistry.registerItem(WingsOfLiberation, "wingsOfLiberation");
+		
+		IreNode = (new ItemGeneric().setUnlocalizedName("tragicmc.ireNode").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IreNode"));
+		GameRegistry.registerItem(IreNode, "ireNode");
+		
+		IreNetParticleCannon = (new WeaponIreParticleCannon(toolLauncher, Doomsday.Flash).setUnlocalizedName("tragicmc.ireNetParticleCannon").setTextureName("tragicmc:IreParticleCannon" ));
+		GameRegistry.registerItem(IreNetParticleCannon, "ireParticleCannon");
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));

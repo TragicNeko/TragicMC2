@@ -89,11 +89,11 @@ public class TragicConfig {
 	private static boolean[] mobConfigs = new boolean[48];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
-	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowCircuitGolem, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
+	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
 	public static boolean allowFusea;
 	private static int[] mobsSC = new int[48];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, circuitGolemSC, snowGolemSC, hunterSC;
+	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
 	public static int harvesterSC, archangelSC, ireSC, fuseaSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
@@ -109,7 +109,7 @@ public class TragicConfig {
 	private static double[][] mobStats = new double[48][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, circuitGolemStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats;
+	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats;
 	private static double[][] miniBossStats = new double[16][];
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats, volatileFuseaStats;
 	private static double[][] bossStats = new double[12][];
@@ -378,6 +378,7 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayGuardianAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHardenAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySharpenAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFlashAllow", true).getBoolean(true));
 		
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -421,6 +422,7 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayGuardianCooldown", 50).getInt(50));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCooldown", 4).getInt(4));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCooldown", 6).getInt(6));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlashCooldown", 5).getInt(5));
 		
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -464,6 +466,7 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayGuardianCost", 75).getInt(75));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlashCost", 10).getInt(10));
 		
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
@@ -673,8 +676,6 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "lockbotAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "nanoSwarmSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "nanoSwarmAllow", true).getBoolean(true));
-		mobsSC[mapping] = clampPositive(config.get(catMobs, "circuitGolemSpawnChance", 5).getInt(5));
-		mobConfigs[mapping++] = (config.get(catMobs, "circuitGolemAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "snowGolemSpawnChance", 40).getInt(40));
 		mobConfigs[mapping++] = (config.get(catMobs, "snowGolemAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "hunterChance", 15).getInt(15));
@@ -756,7 +757,6 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "psygoteStats", new double[] {64.0, 0.290, 8.0, 32.0, 0.65, 16}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "lockbotStats", new double[] {22.0, 0.0, 1.0, 8.0, 100.0, 8}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "nanoSwarmStats", new double[] {6.0, 0.335, 2.0, 64.0, 0.0, 0}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "circuitGolemStats", new double[] {0, 0, 0, 0, 0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "hunterStats", new double[] {16.0, 0.236, 4.0, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "harvesterStats", new double[] {72.0, 0.145, 0.0, 16.0, 100.0, 24}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {50.0, 0.0, 1.0, 48.0, 100.0, 24}).getDoubleList());
@@ -1151,17 +1151,13 @@ public class TragicConfig {
 		}
 		
 		boolean flag = false;
-		
 		for (int w : biomeWeights) //if all biome weights are set to 0, the dimensions are disabled
 		{
 			if (flag) break;
 			if (w > 0) flag = true;
 		}
 		
-		if (!flag)
-		{
-			TragicConfig.allowDimension = false;
-		}
+		if (!flag) TragicConfig.allowDimension = false;
 
 		initializeAllVariables();
 	}
@@ -1448,8 +1444,6 @@ public class TragicConfig {
 		allowLockbot = mobConfigs[mapping++];
 		nanoSwarmSC = mobsSC[mapping];
 		allowNanoSwarm = mobConfigs[mapping++];
-		circuitGolemSC = mobsSC[mapping];
-		allowCircuitGolem = mobConfigs[mapping++];
 		snowGolemSC = mobsSC[mapping];
 		allowSnowGolem = mobConfigs[mapping++];
 		hunterSC = mobsSC[mapping];
@@ -1531,7 +1525,6 @@ public class TragicConfig {
 		psygoteStats = mobStats[mapping++];
 		lockbotStats = mobStats[mapping++];
 		nanoSwarmStats = mobStats[mapping++];
-		circuitGolemStats = mobStats[mapping++];
 		hunterStats = mobStats[mapping++];
 		harvesterStats = mobStats[mapping++];
 		seekerStats = mobStats[mapping++];
@@ -1664,6 +1657,7 @@ public class TragicConfig {
 		allowItemTimeAltering = miscConfigs[mapping++];
 		allowWeaponModels = miscConfigs[mapping++];
 		allowPvP = miscConfigs[mapping++];
+		//allowArmorModels = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
