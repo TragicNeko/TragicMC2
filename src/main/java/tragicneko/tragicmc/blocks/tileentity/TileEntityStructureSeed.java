@@ -21,12 +21,20 @@ public class TileEntityStructureSeed extends TileEntity {
 		int meta = this.getBlockMetadata();
 
 		Structure structure = Structure.structureList[meta];
-		if (structure == null) return;
-		if (structure instanceof StructureCorruptedSpire && this.worldObj.provider.dimensionId != TragicConfig.dimensionID)
+		if (structure == null)
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0);
-			if (player != null) player.addChatMessage(new ChatComponentText(structure.structureName + " must be generated in the Collision!"));
+			if (player != null) player.addChatMessage(new ChatComponentText("The structure you are attempting to generate is null for some reason. Try a different seed."));
+			return;
 		}
+		
+		if (structure.getHeight() + this.yCoord > 256)
+		{
+			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0);
+			if (player != null) player.addChatMessage(new ChatComponentText(structure.structureName + " wasn't able to generate due to not enough height!"));
+			return;
+		}
+		
 		if (structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.xCoord, this.yCoord, this.zCoord))
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0);
