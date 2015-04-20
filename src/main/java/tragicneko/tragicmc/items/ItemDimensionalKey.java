@@ -63,7 +63,7 @@ public class ItemDimensionalKey extends Item {
 	@Override
 	public int getMaxItemUseDuration(ItemStack par1ItemStack)
 	{
-		return 72000;
+		return 100;
 	}
 
 	@Override
@@ -105,7 +105,9 @@ public class ItemDimensionalKey extends Item {
 
 		if (par3EntityPlayer instanceof EntityPlayerMP)
 		{
-			if (par4 >= 30 || par3EntityPlayer.capabilities.isCreativeMode)
+			TragicMC.logInfo("Item use amount was " + j);
+			
+			if (j >= 60 || par3EntityPlayer.capabilities.isCreativeMode)
 			{
 				int dim = par3EntityPlayer.dimension;
 
