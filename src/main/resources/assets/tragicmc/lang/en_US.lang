@@ -160,6 +160,7 @@ tile.tragicmc.sapling.toxic.name=Toxic Tree Sapling
 tile.tragicmc.sapling.dead.name=Dead Tree Sapling
 tile.tragicmc.sapling.corroded.name=Corroded Tree Sapling
 tile.tragicmc.sapling.hallowed.name=Hallowed Tree Sapling
+tile.tragicmc.sapling.darkwood.name=Darkwood Tree Sapling
 
 tile.tragicmc.flower.blueSpiranthes.name=Blue Spiranthes
 tile.tragicmc.flower.pinkSpiranthes.name=Pink Spiranthes
@@ -282,6 +283,13 @@ tile.tragicmc.iceSpike.name=Ice Stalagmite
 tile.tragicmc.iceSpikeHanging.name=Ice Stalactite
 
 tile.tragicmc.crystal.name=Crystal
+
+tile.tragicmc.darkGrass.name=Darkened Grass
+tile.tragicmc.darkwood.name=Darkwood
+tile.tragicmc.darkwoodPlanks.name=Darkwood Planks
+tile.tragicmc.darkVine.name=Darkwood Vine
+tile.tragicmc.darkLeaves.name=Darkwood Leaves
+tile.tragicmc.darkGas.name=Blinding Gas
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
@@ -874,7 +882,7 @@ entity.TragicMC.Seeker.name=Seeker
 entity.TragicMC.Archangel.name=Archangel
 entity.TragicMC.Ire.name=Ire
 entity.TragicMC.Fusea.name=Fusea
-entity.TragicMC.VolatileFusea.name=VolatileFusea
+entity.TragicMC.VolatileFusea.name=Volatile Fusea
 entity.TragicMC.Ranmas.name=Ranmas
 entity.TragicMC.Aegar.name=Aegar
 entity.TragicMC.CircuitGolem.name=Circuit Golem
@@ -1021,8 +1029,7 @@ tragicmc.frozenHills=Frozen Hills
 
 tragicmc.darkForest=Dark Forest
 tragicmc.darkForestHills=Dark Forest Hills
-tragicmc.darkForestValley=Dark Forest Valley
-tragicmc.darkForestClearing=Dark Forest Clearing
+tragicmc.darkMarsh=Dark Marshland
 
 tragicmc.crystal=Crystal
 
