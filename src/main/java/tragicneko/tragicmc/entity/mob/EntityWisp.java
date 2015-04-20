@@ -18,6 +18,7 @@ import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
@@ -148,7 +149,7 @@ public class EntityWisp extends TragicMob {
 		{
 			String s = "flame";
 			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-			if (TragicConfig.allowDimension && biome instanceof BiomeGenStarlitPrarie) s = "witchMagic";
+			if (TragicConfig.allowDimension && (biome instanceof BiomeGenStarlitPrarie || biome instanceof BiomeGenDarkForest)) s = "witchMagic";
 			if (TragicConfig.allowDimension && biome instanceof BiomeGenAshenHills) s = "smoke";
 			if (TragicConfig.allowDimension && biome instanceof BiomeGenPaintedForest) s = "magicCrit";
 			if (TragicConfig.allowDimension && biome instanceof BiomeGenHallowedHills) s = "crit";

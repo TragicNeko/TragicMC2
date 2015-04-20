@@ -32,7 +32,7 @@ public class EntityArchangel extends TragicMob {
 
 	public EntityArchangel(World par1World) {
 		super(par1World);
-		this.setSize(1.625F, 2.725F);
+		this.setSize(1.725F, 1.625F);
 		this.isImmuneToFire = true;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));

@@ -189,7 +189,7 @@ public abstract class TragicMob extends EntityMob
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
-		if (result && TragicConfig.allowCorruption && this.canCorrupt() && rand.nextInt(4) == 0)
+		if (result && TragicConfig.allowCorruption && this.canCorrupt() && rand.nextInt(4) == 0 && this.isPotionActive(TragicPotion.Corruption))
 		{
 			if (par1Entity instanceof TragicMob && ((TragicMob)par1Entity).canCorrupt())
 			{
