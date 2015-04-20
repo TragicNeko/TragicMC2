@@ -3720,7 +3720,7 @@ underused one)
 Added recipe for the Wings of Liberation that uses a couple of the new drops in addition to a Dragon Egg
 Added special check for Corrupted Spire to ensure that it gets generated in the Collision
 
-2.43.2285++ <198> (April 14, 2015)
+2.43.2325 <198> (April 14, 2015)
 Added Fusea, it drops redstone, gunpowder and unstable isotopes, it explodes when attacked or attacking something losing one of it's shells in the process until
 it has no shells left and dies
 Added TNT recipes for Unstable Isotopes, one uses gunpowder and yields 8, the other uses lunar powder and yields 16
@@ -3765,6 +3765,11 @@ Added Parasmite mob for the Dark Forest biomes, it will attach to any mob near i
 The Parasmite will reuse the Hunter model, since it is how I was gonna make it look anyway, it'll use it's own texture of course
 Added Abomination and Empariah to the Frozen biome spawns
 Added Dark Gas generation via the decorator inside of the BiomeGen class
+Added Ranmas and Parasmite to the drop helper, Ranmas currently doesn't drop anything useful, but may in the future drop something rare like Ascendent Shards
+Fixed Erkels poisoning entities that aren't close to them, regardless of if the damage was projectile
+Fixed Soul Tomb not properly clearing enough air space when generating
+Fixed armor models not allowing the server to load, they are now stored in the client proxy
+Fixed Soul Chest causing a crash on the server-side (accidentally used render bounding box)
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
@@ -3778,11 +3783,11 @@ a dark version of the player, which will aggressively attack the player, if the 
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 --Reminders-
-Add more boss structures
+Add more boss and trap structures
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
 Update the config to get each actual Property instead of dealing with each of the raw types directly
 Add each of the lores and the property names to the localizations
-Find a way to speed up large structure generation, most likely by generating them into parts
+Find a way to speed up large structure generation, most likely by generating them in parts
