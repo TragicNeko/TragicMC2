@@ -36,7 +36,8 @@ public class ItemScythe extends ItemTool {
 			Blocks.red_flower, Blocks.reeds, Blocks.sapling, Blocks.sponge, Blocks.tripwire, Blocks.vine,
 			Blocks.waterlily, Blocks.web, Blocks.wheat, Blocks.yellow_flower, TragicBlocks.CarrotBlock, TragicBlocks.PotatoBlock,
 			TragicBlocks.AshenTallGrass, TragicBlocks.DriedGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.PaintedTallGrass,
-			TragicBlocks.GlowVine, TragicBlocks.DeadBush, TragicBlocks.AshenBush, TragicBlocks.TragicFlower, TragicBlocks.TragicSapling});
+			TragicBlocks.Glowvine, TragicBlocks.DeadBush, TragicBlocks.AshenBush, TragicBlocks.TragicFlower, TragicBlocks.TragicSapling,
+			TragicBlocks.HallowedLeafTrim, TragicBlocks.HallowedLeaves, TragicBlocks.DarkLeaves, TragicBlocks.WickedVine, TragicBlocks.DarkVine});
 
 	public ItemScythe(ToolMaterial par2Material) {
 		super(3.0F, par2Material, blocksEffectiveAgainst);

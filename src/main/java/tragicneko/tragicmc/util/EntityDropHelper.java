@@ -107,7 +107,7 @@ public class EntityDropHelper {
 		addToDropList(EntityTox.class, new EntityDrop[][] {{new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(15, Blocks.vine), new EntityDrop(10, TragicItems.Thorns),
 				new EntityDrop(5, new ItemStack(Items.wheat_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.melon_seeds))},
 			{new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(25, Items.slime_ball)},
-			{new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicBlocks.GlowVine), new EntityDrop(5, TragicItems.Thorns),
+			{new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicBlocks.Glowvine), new EntityDrop(5, TragicItems.Thorns),
 				new EntityDrop(10, new ItemStack(Items.wheat_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.melon_seeds))},
 			{new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(5, TragicItems.GooeyFruit), new EntityDrop(25, Items.slime_ball)}},
 				true);

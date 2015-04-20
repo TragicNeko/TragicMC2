@@ -27,7 +27,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		this.topBlock = TragicBlocks.BrushedGrass;
 		this.temperature = 1.2F;
 		this.rainfall = 1.5F;
-		this.theBiomeDecorator.treesPerChunk = 24;
+		this.theBiomeDecorator.treesPerChunk = 16;
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = 4;
 	}
@@ -82,7 +82,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		int l = z + rand.nextInt(16) + 8;
 		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(24) - rand.nextInt(24);
 		
-		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.GlowVine);
+		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.Glowvine);
 
 		for (l = 0; l < 20; ++l)
 		{

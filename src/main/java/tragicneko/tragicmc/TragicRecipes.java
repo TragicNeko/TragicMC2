@@ -1086,7 +1086,7 @@ public class TragicRecipes {
 				'w', new ItemStack(TragicItems.Projectile, 1, 10)
 				));
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.GlowVine, 1),
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Glowvine, 1),
 				"xyx",
 				"zyz",
 				"xyx",
