@@ -68,7 +68,7 @@ public class EntityErkel extends TragicMob {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
-		if (source.getEntity() != null && source.getEntity() instanceof EntityLivingBase && !source.isProjectile() && rand.nextBoolean() && !this.worldObj.isRemote)
+		if (source.getEntity() != null && source.getEntity() instanceof EntityLivingBase && !source.isProjectile() && rand.nextBoolean() && !this.worldObj.isRemote && this.getDistanceToEntity(source.getEntity()) <= 2.0F)
 		{
 			((EntityLivingBase) source.getEntity()).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
 		}
