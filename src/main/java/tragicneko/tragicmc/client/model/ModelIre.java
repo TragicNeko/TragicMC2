@@ -61,7 +61,14 @@ public class ModelIre extends ModelBase {
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		
+		this.shape1.offsetY = (float) (Math.sin(Math.PI + this.simplifyAngle(entity.ticksExisted, 120.0F)) * -0.15F + 0.45F);
+		
 		this.shape1.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.shape1.rotateAngleX = f4 / (180F / (float)Math.PI);
+	}
+    
+    private float simplifyAngle(float par1, float par2)
+	{
+		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
 	}
 }
