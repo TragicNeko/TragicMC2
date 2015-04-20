@@ -9,6 +9,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import tragicneko.tragicmc.TragicMC;
 
@@ -44,7 +45,7 @@ public class TileEntitySoulChest extends TileEntityChest {
 
 		if (this.souls >= this.requiredSouls) return; 
 
-		List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, this.getRenderBoundingBox().expand(6.0, 6.0, 6.0));
+		List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1).offset(this.xCoord, this.yCoord, this.zCoord).expand(6.0, 6.0, 6.0));
 
 		for (EntityMob mob : list)
 		{
