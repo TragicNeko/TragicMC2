@@ -17,14 +17,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorOverlord extends TragicArmor {
 	
-	@SideOnly(Side.CLIENT)
-	private static final net.minecraft.client.model.ModelBiped[] models = new net.minecraft.client.model.ModelBiped[] {
-		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(0),
-		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(1),
-		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(2),
-		new tragicneko.tragicmc.client.model.armor.ModelOverlordArmor(3)
-	};
-	
 	private static final String texture = "tragicmc:textures/armor/OverlordArmor.png";
 
 	public ArmorOverlord(ArmorMaterial material, int armorType, Doomsday dday) {
@@ -73,7 +65,7 @@ public class ArmorOverlord extends TragicArmor {
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
-		return models[slot];
+		return tragicneko.tragicmc.client.ClientProxy.modelsOverlord[slot];
 	}
 	
 	@Override

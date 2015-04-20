@@ -16,14 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorDark extends TragicArmor {
 	
-	@SideOnly(Side.CLIENT)
-	private static final net.minecraft.client.model.ModelBiped[] models = new net.minecraft.client.model.ModelBiped[] {
-		new tragicneko.tragicmc.client.model.armor.ModelDarkArmor(0),
-		new tragicneko.tragicmc.client.model.armor.ModelDarkArmor(1),
-		new tragicneko.tragicmc.client.model.armor.ModelDarkArmor(2),
-		new tragicneko.tragicmc.client.model.armor.ModelDarkArmor(3)
-	};
-	
 	private static final String texture = "tragicmc:textures/armor/DarkArmor.png";
 
 	public ArmorDark(ArmorMaterial material, int armorType, Doomsday dday) {
@@ -65,7 +57,7 @@ public class ArmorDark extends TragicArmor {
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
-		return models[slot];
+		return tragicneko.tragicmc.client.ClientProxy.modelsDark[slot];
 	}
 	
 	@Override

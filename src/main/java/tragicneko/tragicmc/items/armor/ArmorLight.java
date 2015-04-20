@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.items.armor;
 
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,14 +16,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorLight extends TragicArmor {
-	
-	@SideOnly(Side.CLIENT)
-	private static final net.minecraft.client.model.ModelBiped[] models = new net.minecraft.client.model.ModelBiped[] {
-		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(0),
-		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(1),
-		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(2),
-		new tragicneko.tragicmc.client.model.armor.ModelLightArmor(3)
-	};
 	
 	private static final String texture = "tragicmc:textures/armor/LightArmor.png";
 
@@ -73,7 +64,7 @@ public class ArmorLight extends TragicArmor {
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
-		return models[slot];
+		return tragicneko.tragicmc.client.ClientProxy.modelsLight[slot];
 	}
 	
 	@Override
