@@ -24,7 +24,7 @@ public class TragicBiomeGenLayer extends GenLayer {
 	public TragicBiomeGenLayer(long seed)
 	{
 		super(seed);
-		biomeList = new ArrayList[9];
+		biomeList = new ArrayList[10];
 
 		ArrayList<BiomeEntry> decayingBiomes = new ArrayList<BiomeEntry>();
 		decayingBiomes.add(new BiomeEntry(TragicBiomes.DecayingWasteland, TragicConfig.decayingWastelandW));
@@ -78,6 +78,11 @@ public class TragicBiomeGenLayer extends GenLayer {
 		frozenBiomes.add(new BiomeEntry(TragicBiomes.FrozenTundra, TragicConfig.frozenTundraW));
 		frozenBiomes.add(new BiomeEntry(TragicBiomes.FrozenHills, TragicConfig.frozenHillsW));
 		frozenBiomes.add(new BiomeEntry(TragicBiomes.FrozenDepths, TragicConfig.frozenDepthsW));
+		
+		ArrayList<BiomeEntry> darkForestBiomes = new ArrayList<BiomeEntry>();
+		darkForestBiomes.add(new BiomeEntry(TragicBiomes.DarkForest, TragicConfig.darkForestW));
+		darkForestBiomes.add(new BiomeEntry(TragicBiomes.DarkForestHills, TragicConfig.darkForestHillsW));
+		darkForestBiomes.add(new BiomeEntry(TragicBiomes.DarkMarsh, TragicConfig.darkMarshW));
 
 		biomeList[0] = decayingBiomes;
 		biomeList[1] = paintedBiomes;
@@ -88,6 +93,7 @@ public class TragicBiomeGenLayer extends GenLayer {
 		biomeList[6] = scorchedBiomes;
 		biomeList[7] = corrodedBiomes;
 		biomeList[8] = frozenBiomes;
+		biomeList[9] = darkForestBiomes;
 	}
 
 	@Override

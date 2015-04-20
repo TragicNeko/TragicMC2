@@ -3,6 +3,7 @@ package tragicneko.tragicmc;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCrystal;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
@@ -63,7 +64,9 @@ public class TragicBiomes {
 	
 	public static TragicBiome Crystal;
 	
-	//public static Set<BiomeGenBase> darkForestBiomes; //will be based off of the vanilla roofed forest biome, etc.
+	public static TragicBiome DarkForest; //lots of trees, few mushrooms, lots of gas
+	public static TragicBiome DarkForestHills; //hilly, fewer gas pockets
+	public static TragicBiome DarkMarsh; //mud, few trees, lots of large mushrooms
 
 	public static void load()
 	{
@@ -114,5 +117,9 @@ public class TragicBiomes {
 		FrozenDepths = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenDepths).setBiomeName("tragicmc.frozenDepths"))).setHeightVariation(0.65F).setRootHeight(-0.65F).setGrassPerChunk(0).setTreesPerChunk(0);
 		
 		Crystal = ((TragicBiome) (new BiomeGenCrystal(TragicConfig.idCrystal).setBiomeName("tragicmc.crystal"))).setHeightVariation(1.25F).setRootHeight(1.0F);
+		
+		DarkForest = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkForest).setBiomeName("tragicmc.darkForest"))).setHeightVariation(0.05F).setRootHeight(0.15F).setTreesPerChunk(24).setGrassPerChunk(4);
+		DarkForestHills = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkForestHills).setBiomeName("tragicmc.darkForestHills"))).setHeightVariation(0.35F).setRootHeight(0.12F).setTreesPerChunk(12).setGrassPerChunk(8);
+		DarkMarsh = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkMarsh).setBiomeName("tragicmc.darkMarsh"))).setHeightVariation(0.15F).setRootHeight(-0.25F).setTreesPerChunk(4).setGrassPerChunk(8);
 	}
 }

@@ -10,7 +10,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -125,7 +127,7 @@ public class TragicBlocks {
 	public static Block DarkCobblestone;
 	public static Block LightCobblestone;
 	public static Block LightStone;
-	
+
 	public static Block FrozenNetherrack;
 
 	public static Block DeadDirt;
@@ -133,7 +135,7 @@ public class TragicBlocks {
 	public static Block DarkSandstone;
 
 	public static Block WickedVine;
-	public static Block GlowVine;
+	public static Block Glowvine;
 	public static Block Root;
 
 	public static Block TragicObsidian;
@@ -183,20 +185,20 @@ public class TragicBlocks {
 	public static Block SynapseCore;
 	public static Block OverlordBarrier;
 
-	public static Block WitheringGas, CorruptedGas, ExplosiveGas, RadiatedGas;
+	public static Block WitheringGas, CorruptedGas, ExplosiveGas, RadiatedGas, DarkGas;
 
 	public static Block Conduit;
 	public static Block DigitalSea;
 	public static Block DigitalSeaPowered;
-	
+
 	public static Block Aeris;
-	
+
 	public static Block MoltenRock;
 	public static Block ScorchedRock;
 	public static Block Geyser;
 	public static Block GeyserSteaming;
 	public static Block SteamVent;
-	
+
 	public static Block HallowedGrass;
 	public static Block StringLight;
 	public static Block FragileLight;
@@ -205,17 +207,24 @@ public class TragicBlocks {
 	public static Block HallowedLeafTrim;
 	public static Block HallowedWood;
 	public static Block HallowedPlanks;
-	
+
 	public static Block SoulChest;
-	
+
 	public static Block IcedDirt; //filler
 	public static Block Permafrost; //top block, will have a meta variant, cracked permafrost, mossy permafrost
 	public static Block IceSpike; //trap block, only damages when you land on it, may make it a double block
 	public static Block IceSpikeHanging;
 	public static Block Moss; //will be able to be placed on all sides of a block, if placed on top of permafrost will convert it to mossy permafrost
 	public static Block Lichen; //will work like a bush, a small mossy bush basically
-	
+
 	public static Block Crystal;
+
+	public static Block DarkGrass;
+	public static Block DarkLeaves;
+	public static Block Darkwood;
+	public static Block DarkwoodPlanks;
+	public static Block DarkVine;
+	public static Block DarkTallGrass;
 
 	public static void load()
 	{		
@@ -225,10 +234,10 @@ public class TragicBlocks {
 			GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");
 
 			GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "summonBlock");
-			
+
 			Luminescence = (new BlockLuminescence().setBlockName("tragicmc.luminescence"));
 			GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
-			
+
 			OverlordBarrier = (new BlockOverlordBarrier());
 			GameRegistry.registerBlock(OverlordBarrier, ItemBlock.class, "overlordBarrier");
 			return;
@@ -340,8 +349,8 @@ public class TragicBlocks {
 		PaintedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.paintedPlanks").setBlockTextureName("tragicmc:PaintedPlanks"));
 		GameRegistry.registerBlock(PaintedPlanks, ItemBlock.class, "paintedPlanks");
 
-		GlowVine = (new BlockGlowvine().setBlockName("tragicmc.glowvine").setBlockTextureName("tragicmc:GlowVine"));
-		GameRegistry.registerBlock(GlowVine, ItemBlock.class, "glowvine");
+		Glowvine = (new BlockGlowvine().setBlockName("tragicmc.glowvine").setBlockTextureName("tragicmc:GlowVine"));
+		GameRegistry.registerBlock(Glowvine, ItemBlock.class, "glowvine");
 
 		PaintedTallGrass = (new BlockGenericTallGrass("Painted").setBlockName("tragicmc.paintedTallGrass"));
 		GameRegistry.registerBlock(PaintedTallGrass, ItemBlock.class, "paintedTallGrass");
@@ -431,7 +440,7 @@ public class TragicBlocks {
 					entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob((EntityLivingBase) entity), 1.0F);
 				}
 			}
-			
+
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
@@ -472,87 +481,136 @@ public class TragicBlocks {
 
 		DigitalSeaPowered = (new BlockDigitalSea(true));
 		GameRegistry.registerBlock(DigitalSeaPowered, null, "digitalSeaPowered");
-		
+
 		FrozenNetherrack = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:FrozenNetherrack").setBlockName("tragicmc.frozenNetherrack").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");
-		
+
 		Aeris = (new BlockAeris());
 		GameRegistry.registerBlock(Aeris, ItemBlockAeris.class, "aeris");
 		GameRegistry.registerTileEntity(TileEntityAeris.class, "aeris");
 
 		MoltenRock = (new BlockMoltenRock());
 		GameRegistry.registerBlock(MoltenRock, ItemBlock.class, "moltenRock");
-		
+
 		ScorchedRock = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:MoltenRockBottom").setBlockName("tragicmc.scorchedRock").setHardness(0.8F).setResistance(10.0F));
 		GameRegistry.registerBlock(ScorchedRock, ItemBlock.class, "scorchedRock");
-		
+
 		Geyser = (new BlockGeyser(false));
 		GameRegistry.registerBlock(Geyser, ItemBlock.class, "geyser");
-		
+
 		GeyserSteaming = (new BlockGeyser(true));
 		GameRegistry.registerBlock(GeyserSteaming, null, "geyserSteaming");
-		
+
 		SteamVent = (new BlockSteamVent());
 		GameRegistry.registerBlock(SteamVent, ItemBlock.class, "steamVent");
-		
+
 		HallowedGrass = (new BlockGenericGrass("Hallowed").setBlockName("tragicmc.hallowedGrass").setLightLevel(0.25F));
 		GameRegistry.registerBlock(HallowedGrass, ItemBlock.class, "hallowedGrass");
-		
+
 		StringLight = (new BlockStringLight().setBlockName("tragicmc.stringLight"));
 		GameRegistry.registerBlock(StringLight, ItemBlock.class, "stringLight");
-		
+
 		FragileLight = (new BlockFragileLight(true));
 		GameRegistry.registerBlock(FragileLight, ItemBlock.class, "fragileLight");
-		
+
 		FragileLightInvis = (new BlockFragileLight(false));
 		GameRegistry.registerBlock(FragileLightInvis, null, "fragileLightInvis");
-		
+
 		HallowedLeaves = (new BlockGenericLeaves().setBlockName("tragicmc.hallowedLeaves").setBlockTextureName("HallowedLeaves"));
 		GameRegistry.registerBlock(HallowedLeaves, ItemBlock.class, "hallowedLeaves");
-		
+
 		HallowedLeafTrim = (new BlockLeafTrim("Hallowed").setBlockName("tragicmc.hallowedLeafTrim"));
 		GameRegistry.registerBlock(HallowedLeafTrim, ItemBlock.class, "hallowedLeafTrim");
-		
+
 		HallowedPlanks = (new BlockGenericPlanks().setBlockName("tragicmc.hallowedPlanks").setBlockTextureName("tragicmc:HallowedPlanks"));
 		GameRegistry.registerBlock(HallowedPlanks, ItemBlock.class, "hallowedPlanks");
-		
+
 		HallowedWood = (new BlockGenericLog("Hallowed").setBlockName("tragicmc.hallowedWood"));
 		GameRegistry.registerBlock(HallowedWood, ItemBlock.class, "hallowedWood");
-		
+
 		WickedVine = (new BlockWickedVine().setBlockName("tragicmc.wickedVine"));
 		GameRegistry.registerBlock(WickedVine, ItemBlock.class, "wickedVine");
-		
+
 		RadiatedGas = new BlockRadiatedGas().setBlockName("tragicmc.radiatedGas");
 		GameRegistry.registerBlock(RadiatedGas, ItemBlock.class, "radiatedGas");
-		
+
 		ExplosiveGas = new BlockExplosiveGas().setBlockName("tragicmc.explosiveGas");
 		GameRegistry.registerBlock(ExplosiveGas, ItemBlock.class, "explosiveGas");
-		
+
 		SoulChest = new BlockSoulChest(0).setBlockName("tragicmc.soulChest").setHardness(100F).setStepSound(Block.soundTypeWood).setResistance(1000F).setBlockTextureName("tragicmc:SoulChest");
 		GameRegistry.registerBlock(SoulChest, ItemBlock.class, "soulChest");
 		GameRegistry.registerTileEntity(TileEntitySoulChest.class, "soulChest");
-		
+
 		IcedDirt = new BlockGeneric(Material.ground, "shovel", 0).setBlockName("tragicmc.icedDirt").setHardness(1.0F).setHardness(0.5F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tragicmc:IcedDirt");
 		GameRegistry.registerBlock(IcedDirt, ItemBlock.class, "icedDirt");
-		
+
 		Permafrost = new BlockPermafrost().setBlockName("tragicmc.permafrost");
 		GameRegistry.registerBlock(Permafrost, TragicItemBlock.class, "permafrost", new Object[] {new String[] {"normal", "cracked", "mossy"}, "permafrost"});
-		
+
 		Moss = new BlockMoss().setBlockName("tragicmc.moss").setBlockTextureName("tragicmc:Moss");
 		GameRegistry.registerBlock(Moss, ItemBlock.class, "moss");
-		
+
 		Lichen = new BlockGenericBush().setBlockName("tragicmc.lichen").setBlockTextureName("tragicmc:Lichen");
 		GameRegistry.registerBlock(Lichen, ItemBlock.class, "lichen");
-		
+
 		IceSpike = new BlockIceSpike(true).setBlockName("tragicmc.iceSpike").setBlockTextureName("tragicmc:IceSpike");
 		GameRegistry.registerBlock(IceSpike, ItemBlock.class, "iceSpike");
-		
+
 		IceSpikeHanging = new BlockIceSpike(false).setBlockName("tragicmc.iceSpikeHanging").setBlockTextureName("tragicmc:IceSpikeHanging");
 		GameRegistry.registerBlock(IceSpikeHanging, null, "iceSpikeHanging");
-		
+
 		Crystal = new BlockGeneric(Material.iron, "pickaxe", 3).setBlockTextureName("tragicmc:Crystal").setBlockName("tragicmc.crystal").setHardness(100.0F).setResistance(1000F);
 		GameRegistry.registerBlock(Crystal, ItemBlock.class, "crystal");
+
+		DarkGrass = new BlockGenericGrass("Dark").setBlockName("tragicmc.darkGrass");
+		GameRegistry.registerBlock(DarkGrass, ItemBlock.class, "darkGrass");
+
+		DarkLeaves = new BlockGenericLeaves() {
+			@Override
+			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			{
+				if (!world.isRemote && entity instanceof EntityLivingBase) entity.attackEntityFrom(DamageSource.cactus, 1.0F);
+			}
+		}.setBlockName("tragicmc.darkLeaves").setBlockTextureName("DarkLeaves");
+		GameRegistry.registerBlock(DarkLeaves, ItemBlock.class, "darkLeaves");
+
+		Darkwood = new BlockGenericLog("Darkwood").setBlockName("tragicmc.darkwood");
+		GameRegistry.registerBlock(Darkwood, ItemBlock.class, "darkwood");
+
+		DarkwoodPlanks = new BlockGenericPlanks().setBlockName("tragicmc.darkwoodPlanks").setBlockTextureName("tragicmc:DarkwoodPlanks");
+		GameRegistry.registerBlock(DarkwoodPlanks, ItemBlock.class, "darkwoodPlanks");
+
+		DarkVine = new BlockWickedVine().setBlockName("tragicmc.darkVine").setBlockTextureName("tragicmc:DarkVine").setLightLevel(0F);
+		GameRegistry.registerBlock(DarkVine, ItemBlock.class, "darkVine");
 		
+		DarkGas = new BlockGas() {
+			@Override
+			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+			{
+				if (!world.isRemote && entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
+			}
+
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					world.spawnParticle("smoke", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.0F, 0.0F, 0.0F);
+					world.spawnParticle("smoke", x + rand.nextDouble() - rand.nextDouble(), y + (rand.nextDouble() * 0.725), z + rand.nextDouble() - rand.nextDouble(),
+							0.0F, 0.0F, 0.0F);
+				}
+			}
+			
+			@Override
+			public void updateTick(World world, int x, int y, int z, Random rand) {}
+		}.setBlockName("tragicmc.darkGas");
+		GameRegistry.registerBlock(DarkGas, ItemBlock.class, "darkGas");
+		
+		DarkTallGrass = new BlockGenericTallGrass("Dark").setBlockName("tragicmc.darkTallGrass");
+		GameRegistry.registerBlock(DarkTallGrass, ItemBlock.class, "darkTallGrass");
+
 		for (int i = 0; i < 3; i++)
 		{
 			OreDictionary.registerOre("blockQuicksand", new ItemStack(Quicksand, 1, i));
@@ -566,7 +624,9 @@ public class TragicBlocks {
 		OreDictionary.registerOre("stone", ErodedStone);
 
 		OreDictionary.registerOre("materialVine", Blocks.vine);
-		OreDictionary.registerOre("materialVine", GlowVine);
+		OreDictionary.registerOre("materialVine", Glowvine);
+		OreDictionary.registerOre("materialVine", WickedVine);
+		OreDictionary.registerOre("materialVine", DarkVine);
 
 		OreDictionary.registerOre("oreRuby", RubyOre);
 		OreDictionary.registerOre("oreSapphire", SapphireOre);
@@ -584,6 +644,8 @@ public class TragicBlocks {
 		OreDictionary.registerOre("plankWood", BleachedPlanks);
 		OreDictionary.registerOre("logWood", HallowedWood);
 		OreDictionary.registerOre("plankWood", HallowedPlanks);
+		OreDictionary.registerOre("logWood", Darkwood);
+		OreDictionary.registerOre("plankWood", DarkwoodPlanks);
 
 		java.util.Set<BiomeGenBase> set = FlowerWorldGen.allowedBiomes;
 		BiomeGenBase[] biomes = set.toArray(new BiomeGenBase[set.size()]);
