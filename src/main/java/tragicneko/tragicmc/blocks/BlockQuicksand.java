@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -85,8 +86,10 @@ public class BlockQuicksand extends BlockFalling
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.125;
+		if (entity.motionY < 0.1) entity.motionY = -0.1;
 		entity.velocityChanged = true;
 		entity.fallDistance = 0.0F;
+		if (!(entity instanceof EntityFallingBlock)) entity.onGround = true;
 		if (world.getBlockMetadata(x, y, z) == 3 && entity instanceof EntityLivingBase && world.rand.nextInt(16) == 0) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60 + world.rand.nextInt(40)));
 	}
 
@@ -95,6 +98,7 @@ public class BlockQuicksand extends BlockFalling
 	{
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
+		entity.motionY = -0.5;
 		entity.velocityChanged = true;
 	}
 
@@ -103,6 +107,7 @@ public class BlockQuicksand extends BlockFalling
 	{
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
+		entity.motionY = -0.5;
 		entity.fallDistance = 0.0F;
 	}
 
