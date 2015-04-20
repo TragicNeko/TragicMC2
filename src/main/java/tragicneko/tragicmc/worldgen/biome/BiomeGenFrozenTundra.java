@@ -10,6 +10,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.entity.boss.EntityYeti;
+import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
@@ -27,6 +29,8 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		if (TragicConfig.allowCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.cryseSC, 2, 4));
 		if (TragicConfig.allowRagr) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityRagr.class, TragicConfig.ragrSC, 0, 1));
 		if (TragicConfig.allowSnowGolem) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySnowman.class, TragicConfig.snowGolemSC, 1, 2));
+		if (TragicConfig.allowAbomination) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAbomination.class, TragicConfig.abominationSC, 3, 5));
+		if (TragicConfig.allowYeti) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.yetiSC, 0, 1));
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 32;
 	}
