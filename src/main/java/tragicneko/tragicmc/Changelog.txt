@@ -3752,17 +3752,21 @@ Added armor model for the Overlord armor
 Added a safeguard to the Cocoon to prevent it from being spawned in too trapping of an area, I think it'd be a cool ability to prevent the player from placing blocks
 while near it, but mostly this is to ensure that there is enough space to spawn in the Seekers
 Added more armor types to randomly apply on Vanilla mobs (zombies, skeletons) when they spawn
+Added model with basic texture for the Fusea and Volatile Fusea, fixed renders for them both (they share a render)
+Added model and texture for the Archangel, added new render class for simple mobs that have transparency
+Added Ranmas with basic AI, it is immune to all damage except from other Ranmas or from colliding with things at high speed
+Added Dark Forest biomes, added Darkwood and Dark Leaves, added Dark Vines, added Dark Tree generation, added Dark Grass, added Dark Gas
+Added new config option to set the biome sizes, this is heavily restricted due to the huge amount of lag that could occur if set too high
+Added model for Ranmas, it'll use the Crystal block for it's texture
+Fixed item use duration for Dimensional Keys, it now properly takes 3 seconds on use when not in Creative
+Adjusted biome heights and grass/tree generation per chunk for the Dark Forest biomes, fixed generation error with them
+Added tall grass variant for Dark Forest biomes
+Added Parasmite mob for the Dark Forest biomes, it will attach to any mob near it and give it a strength buff, but it will damage them once per tick while attached
+The Parasmite will reuse the Hunter model, since it is how I was gonna make it look anyway, it'll use it's own texture of course
+Added Abomination and Empariah to the Frozen biome spawns
+Added Dark Gas generation via the decorator inside of the BiomeGen class
 
-
-Need a model and texture for the Fusea and Archangel
-
-New Mobs:
-Parasmite - Flying parasitic creature, gives strength buff to whatever it is attached to but damages them, multiple can attach in a chain (up to 3) that
-increases the strength buff given but also increases damage done, it flutters quickly through the air like a Plague, will be added to the Corroded and
-Dark Forest biomes
-Ranmas - A Snowflake-like being that is made of a nearly unbreakable material, it can only be damaged on impact with something at high speed or by being
-hit by other Ranmas. It attacks by charging up and shooting itself at it's target.
-
+New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
 AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
 to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
@@ -3773,13 +3777,12 @@ it'll transform into a light version of the player which follows them around lik
 a dark version of the player, which will aggressively attack the player, if the player has ender pearls on them it'll use these, it gains the player's
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
-New biome sets:
-Dark Forest biomes, dark large mushrooms, blinding gas, glowing small mushrooms, thorny tree leaves, Parasmite, Endermen, Inkling, Erkel, Enyvil
-
 --Reminders-
+Add more boss structures
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Change the LoreHelper to use json files so that people can set up their own lore for whatever weapons they want
 Update the config to get each actual Property instead of dealing with each of the raw types directly
 Add each of the lores and the property names to the localizations
+Find a way to speed up large structure generation, most likely by generating them into parts
