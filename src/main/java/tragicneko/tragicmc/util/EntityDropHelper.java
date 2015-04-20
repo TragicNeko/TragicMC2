@@ -50,11 +50,13 @@ import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
+import tragicneko.tragicmc.entity.mob.EntityParasmite;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -176,6 +178,11 @@ public class EntityDropHelper {
 		
 		addToDropList(EntityFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(5, Items.redstone)}, {new EntityDrop(15, Items.gunpowder), new EntityDrop(5, TragicItems.UnstableIsotope),
 			new EntityDrop(5, Items.redstone)}});
+		
+		addToDropList(EntityRanmas.class, new EntityDrop[][] {{new EntityDrop(25, TragicBlocks.Crystal)}, {new EntityDrop(25, TragicBlocks.Crystal)}});
+		
+		addToDropList(EntityParasmite.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, TragicItems.BoneMarrow)},
+			{new EntityDrop(25, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice)}});
 		
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream)},

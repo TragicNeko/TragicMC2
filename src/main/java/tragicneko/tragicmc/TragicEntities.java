@@ -520,13 +520,13 @@ public class TragicEntities {
 		if (TragicConfig.allowRanmas)
 		{
 			EntityRegistry.registerModEntity(EntityRanmas.class, "Ranmas", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityRanmas.class, "TragicMC.Ranmas", id++, 0xDCDCDC, 0xABABAB);
+			TragicEntityList.addMapping(EntityRanmas.class, "TragicMC.Ranmas", id++, 0xDCDCDC, 0xCCCCCC);
 		}
 		
 		if (TragicConfig.allowParasmite)
 		{
 			EntityRegistry.registerModEntity(EntityParasmite.class, "Parasmite", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityParasmite.class, "TragicMC.Parasmite", id++, 0xDCDCDC, 0xABABAB);
+			TragicEntityList.addMapping(EntityParasmite.class, "TragicMC.Parasmite", id++, 0xAF00A6, 0x581354);
 		}
 
 		//Iron Golem
