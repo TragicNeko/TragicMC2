@@ -51,11 +51,13 @@ import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
+import tragicneko.tragicmc.entity.mob.EntityParasmite;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
@@ -500,19 +502,31 @@ public class TragicEntities {
 		if (TragicConfig.allowArchangel)
 		{
 			EntityRegistry.registerModEntity(EntityArchangel.class, "Archangel", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityArchangel.class, "TragicMC.Archangel", id++, 0xFFFFDD, 0xFFFFA2);
+			TragicEntityList.addMapping(EntityArchangel.class, "TragicMC.Archangel", id++, 0xFFFCA0, 0xFFFCA0);
 		}
 		
 		if (TragicConfig.allowIre)
 		{
 			EntityRegistry.registerModEntity(EntityIre.class, "Ire", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityIre.class, "TragicMC.Ire", id++, 0xFFFFFF, 0xFFFF89);
+			TragicEntityList.addMapping(EntityIre.class, "TragicMC.Ire", id++, 0xFFFFC3, 0xFFFFC3);
 		}
 		
 		if (TragicConfig.allowFusea)
 		{
 			EntityRegistry.registerModEntity(EntityFusea.class, "Fusea", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityFusea.class, "TragicMC.Fusea", id++, 0x238823, 0x232376);
+			TragicEntityList.addMapping(EntityFusea.class, "TragicMC.Fusea", id++, 0xE4B1E0, 0xA0E39D);
+		}
+		
+		if (TragicConfig.allowRanmas)
+		{
+			EntityRegistry.registerModEntity(EntityRanmas.class, "Ranmas", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityRanmas.class, "TragicMC.Ranmas", id++, 0xDCDCDC, 0xABABAB);
+		}
+		
+		if (TragicConfig.allowParasmite)
+		{
+			EntityRegistry.registerModEntity(EntityParasmite.class, "Parasmite", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityParasmite.class, "TragicMC.Parasmite", id++, 0xDCDCDC, 0xABABAB);
 		}
 
 		//Iron Golem
@@ -623,7 +637,7 @@ public class TragicEntities {
 		if (TragicConfig.allowVolatileFusea)
 		{
 			EntityRegistry.registerModEntity(EntityVolatileFusea.class, "VolatileFusea", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityVolatileFusea.class, "TragicMC.VolatileFusea", id++, 0x238823, 0x232376, EnumEggType.MINIBOSS);
+			TragicEntityList.addMapping(EntityVolatileFusea.class, "TragicMC.VolatileFusea", id++, 0xE7E69B, 0xB3ADE3, EnumEggType.MINIBOSS);
 		}
 
 		//Bosses
@@ -839,10 +853,10 @@ public class TragicEntities {
 		if (TragicConfig.allowOverlord)
 		{
 			EntityRegistry.registerModEntity(EntityOverlordCocoon.class, "OverlordCocoon", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x00CD7D, 0x787878, EnumEggType.ALPHA);
+			TragicEntityList.addMapping(EntityOverlordCocoon.class, "TragicMC.OverlordCocoon", id++, 0x335548, 0x787878, EnumEggType.ALPHA);
 
 			EntityRegistry.registerModEntity(EntityOverlordCombat.class, "OverlordCombat", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x49F3B1, 0x555555, EnumEggType.ALPHA);
+			TragicEntityList.addMapping(EntityOverlordCombat.class, "TragicMC.OverlordCombat", id++, 0x64A28A, 0x555555, EnumEggType.ALPHA);
 
 			EntityRegistry.registerModEntity(EntityOverlordCore.class, "OverlordCore", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityOverlordCore.class, "TragicMC.OverlordCore", id++, 0x92F9D1, 0x212121, EnumEggType.ALPHA);
