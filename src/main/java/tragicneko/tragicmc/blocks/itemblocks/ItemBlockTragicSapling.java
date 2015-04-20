@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockTragicSapling extends ItemBlockWithMetadata {
 
-	private static final String[] subNames = new String[] {"painted", "bleached", "ashen", "hallowed"};
+	private static final String[] subNames = new String[] {"painted", "bleached", "ashen", "hallowed", "darkwood"};
 
 	public ItemBlockTragicSapling(Block block) {
 		super(block, block);
