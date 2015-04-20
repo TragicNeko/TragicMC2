@@ -42,21 +42,21 @@ public class TragicConfig {
 	public static boolean amuTime, amuWither;
 
 	public static boolean keepDimensionLoaded, allowDimensionRespawn;
-	private static int[] dimensionIDs = new int[4];
-	public static int dimensionID, providerID, synapseID, synapseProviderID;
+	private static int[] dimensionIDs = new int[5];
+	public static int dimensionID, providerID, synapseID, synapseProviderID, collisionBiomeSize;
 	private static int[] biomeIDs = new int[48];
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
 	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles, idHallowedHills, idHallowedForest, idHallowedPrarie, idHallowedCliffs;
 	public static int idScorchedWastelands, idScorchedValley, idScorchedScarlands, idCorrodedSteppe, idCorrodedHeights, idCorrodedVeld, idCorrodedRunoff, idCorrodedFallout;
-	public static int idFrozenTundra, idFrozenHills, idFrozenDepths, idCrystal;
+	public static int idFrozenTundra, idFrozenHills, idFrozenDepths, idCrystal, idDarkForest, idDarkForestHills, idDarkMarsh;
 	public static int idSynapse;
 	private static int[] biomeWeights = new int[48];
 	public static int decayingHillsW, decayingValleyW, decayingWastelandW, decayingMountainsW, paintedForestW, paintedPlainsW, paintedHillsW, paintedClearingW;
 	public static int ashenMountainsW, ashenHillsW, ashenBadlandsW, starlitPrarieW, starlitPlateausW, starlitCliffsW, starlitLowlandsW, taintedSpikesW, taintedLowlandsW;
 	public static int taintedRisesW, taintedScarlandsW, taintedIslesW, hallowedHillsW, hallowedForestW, hallowedPrarieW, hallowedCliffsW, scorchedWastelandsW, scorchedValleyW;
 	public static int scorchedScarlandsW, corrodedSteppeW, corrodedHeightsW, corrodedVeldW, corrodedRunoffW, corrodedFalloutW, frozenTundraW, frozenHillsW, frozenDepthsW;
-	public static int synapseW, crystalW;
+	public static int synapseW, crystalW, darkForestW, darkForestHillsW, darkMarshW;
 
 	private static boolean[] blanketDoom = new boolean[17];
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
@@ -90,11 +90,11 @@ public class TragicConfig {
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
 	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
-	public static boolean allowFusea;
+	public static boolean allowFusea, allowRanmas, allowParasmite;
 	private static int[] mobsSC = new int[48];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
 	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
-	public static int harvesterSC, archangelSC, ireSC, fuseaSC;
+	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
 	public static boolean allowVolatileFusea;
@@ -109,7 +109,7 @@ public class TragicConfig {
 	private static double[][] mobStats = new double[48][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats;
+	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats;
 	private static double[][] miniBossStats = new double[16][];
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats, volatileFuseaStats;
 	private static double[][] bossStats = new double[12][];
@@ -150,7 +150,7 @@ public class TragicConfig {
 	{
 		Configuration config = TragicMC.getConfig();
 		config.load();
-		
+
 		Property prop;
 		prop = config.get(catMaster, "isMobsOnly", false);
 		prop.comment = "Is the mod in mob only mode?";
@@ -226,6 +226,7 @@ public class TragicConfig {
 		dimensionIDs[1] = (config.get(catDimension, "providerID", dimensionIDs[0]).getInt(dimensionIDs[0]));
 		dimensionIDs[2] = (config.get(catDimension, "synapseID", DimensionManager.getNextFreeDimId()).getInt(DimensionManager.getNextFreeDimId()));
 		dimensionIDs[3] = (config.get(catDimension, "synapseProviderID", dimensionIDs[2]).getInt(dimensionIDs[2]));
+		dimensionIDs[4] = MathHelper.clamp_int((config.get(catDimension, "collisionBiomeSize", 6).getInt(6)), 1, 20);
 		allowDimensionRespawn = (config.get(catDimension, "allowCollisionRespawn", false).getBoolean(false));
 
 		mapping = 0;
@@ -303,7 +304,13 @@ public class TragicConfig {
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeFrozenDepthsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeCrystalWeight", 5).getInt(5));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeCrystalID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
-		
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDarkForestWeight", 25).getInt(25));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeDarkForestID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDarkForestHillsWeight", 15).getInt(15));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeDarkForestHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDarkMarshWeight", 10).getInt(10));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeDarkMarshID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+
 		config.addCustomCategoryComment(catDimension, "Set the various biome IDs in the Dimension, including the Dimension's own ID, also set if the Dimension should stay loaded.");
 
 		mapping = 0;
@@ -335,7 +342,7 @@ public class TragicConfig {
 		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "crucialMomentChance", 5).getInt(5), 1, 100);
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeAmount", 100).getInt(100));
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "maxDoomMinimumAmount", 100).getInt(100));
-		
+
 		mapping = 1;
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDecayAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHuntersInstinctAllow", true).getBoolean(true));
@@ -379,7 +386,7 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHardenAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySharpenAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFlashAllow", true).getBoolean(true));
-		
+
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHuntersInstinctCooldown", 25).getInt(25));
@@ -423,7 +430,7 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCooldown", 4).getInt(4));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCooldown", 6).getInt(6));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlashCooldown", 5).getInt(5));
-		
+
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHuntersInstinctCost", 60).getInt(60));
@@ -467,7 +474,7 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlashCost", 10).getInt(10));
-		
+
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "blindingLight-SolarBombs", true).getBoolean(true));
@@ -508,7 +515,7 @@ public class TragicConfig {
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "witheringAxe-BlueWitherSkull", true).getBoolean(true));
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "dragonFang-Flamethrower", true).getBoolean(true)); //37
 		//nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "", true).getBoolean(true));
-		
+
 		mapping = 0;
 		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "beastlyClaws-ComboCost", 0).getInt(0));
 		nonDoomsdayAbilityCosts[mapping++] = clampPositive(config.get(catDoom, "blindingLight-SolarBombsCost", 15).getInt(15));
@@ -688,6 +695,10 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "ireAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "fuseaSpawnChance", 45).getInt(45));
 		mobConfigs[mapping++] = (config.get(catMobs, "fuseaAllow", true).getBoolean(true));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "ranmasSpawnChance", 25).getInt(25));
+		mobConfigs[mapping++] = (config.get(catMobs, "ranmasAllow", true).getBoolean(true));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "parasmiteSpawnChance", 25).getInt(25));
+		mobConfigs[mapping++] = (config.get(catMobs, "parasmiteAllow", true).getBoolean(true));
 
 		mapping = 0;
 		miniBossSC[mapping] = clampPositive(config.get(catMobs, "jarraSpawnChance", 5).getInt(5));
@@ -728,7 +739,7 @@ public class TragicConfig {
 		bossConfigs[mapping++] = (config.get(catMobs, "claymationAllow", true).getBoolean(true));
 		bossSC[mapping] = clampPositive(config.get(catMobs, "overlordSpawnChance", 5).getInt(5));
 		bossConfigs[mapping++] = (config.get(catMobs, "overlordAllow", true).getBoolean(true));
-		
+
 		mapping = 0;
 		mobStats[mapping++] = (config.get(catMobs, "jabbaStats", new double[] {40.0, 0.275, 5.5, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "jannaStats", new double[] {20.0, 0.325, 4.5, 32.0, 0.0, 0}).getDoubleList());
@@ -763,7 +774,9 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "archangelStats", new double[] {45.0, 0.0, 1.0, 32.0, 0.5, 12}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "ireStats", new double[] {25.0, 0.0, 1.0, 16.0, 100.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "fuseaStats", new double[] {10.0, 0.0, 0.0, 16.0, 100.0, 0}).getDoubleList());
-		
+		mobStats[mapping++] = (config.get(catMobs, "ranmasStats", new double[] {50.0, 0.0, 1.0, 32.0, 100.0, 24}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "parasmiteStats", new double[] {10.0, 0.0, 1.0, 16.0, 0.0, 0}).getDoubleList());
+
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "kragulStats", new double[] {8.0, 0.380, 5.0, 5.0, 32.0, 0}).getDoubleList());
@@ -774,7 +787,7 @@ public class TragicConfig {
 		miniBossStats[mapping++] = (config.get(catMobs, "stinQueenStats", new double[] {160.0, 0.186, 12.0, 24, 2.0, 10}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "volatileFuseaStats", new double[] {18.0, 0.0, 0.0, 32.0, 100.0, 0}).getDoubleList());
-		
+
 		mapping = 0;
 		bossStats[mapping++] = (config.get(catMobs, "apisStats", new double[] {160.0, 0.325, 8.0, 32.0, 1.0, 15}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "deathReaperStats", new double[] {220.0, 0.350, 16.0, 32.0, 1.0, 20}).getDoubleList());
@@ -814,7 +827,7 @@ public class TragicConfig {
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "convergenceAllow", true).getBoolean(true));
 		positivePotionIDs[mapping] = (config.get(catPotion, "divinityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "divinityAllow", true).getBoolean(true));
-		
+
 		temp = mapping - 1;
 
 		mapping = 0;
@@ -901,7 +914,7 @@ public class TragicConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowItemTimeAltering", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowWeaponModels", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowPvP", true).getBoolean(true));
-		
+
 		mapping = 0;
 		griefConfigs[mapping++] = config.get(catMisc, "allowNatureDrainDestruction", true).getBoolean(true);
 		griefConfigs[mapping++] = config.get(catMisc, "allowRavageDestruction", true).getBoolean(true);
@@ -918,7 +931,7 @@ public class TragicConfig {
 		miscInts[mapping++] = config.get(catMisc, "guiYPosition", 1).getInt(1);
 
 		config.addCustomCategoryComment(catMisc, "Miscellaneous options that don't fit into other categories.");
-		
+
 		mapping = 0;
 		modifierAmts[mapping++] = config.get(catMod, "claymationUtilitySpeedDebuff", -1.0).getDouble(-1.0);
 		modifierAmts[mapping++] = config.get(catMod, "kitsuneSpeedDebuff", -0.5).getDouble(-0.5);
@@ -945,7 +958,7 @@ public class TragicConfig {
 		modifierAmts[mapping++] = config.get(catMod, "synthesisHealthBuff", 10.0).getDouble(10.0); //22
 		modifierAmts[mapping++] = config.get(catMod, "butcherKnockbackResistanceBuff", 1.0).getDouble(1.0);
 		modifierAmts[mapping++] = config.get(catMod, "overlordArmorHealthBuff", 5.0).getDouble(5.0); //24
-		
+
 		config.addCustomCategoryComment(catMod, "These are here due to the addition of the mob stats, in case these need to be modified to fit with the input stats. These could also be set to 0 if you want to nullify them.");
 
 		if (config.hasChanged()) config.save();
@@ -1022,7 +1035,7 @@ public class TragicConfig {
 			{
 				blanketDoom[14] = false;
 			}
-			
+
 			if (!blanketDoom[6])
 			{
 				for (i = 0; i < nonDoomsdayAbilities.length; i++)
@@ -1149,14 +1162,14 @@ public class TragicConfig {
 				blanketWorldGen[5] = false;
 			}
 		}
-		
+
 		boolean flag = false;
 		for (int w : biomeWeights) //if all biome weights are set to 0, the dimensions are disabled
 		{
 			if (flag) break;
 			if (w > 0) flag = true;
 		}
-		
+
 		if (!flag) TragicConfig.allowDimension = false;
 
 		initializeAllVariables();
@@ -1293,6 +1306,12 @@ public class TragicConfig {
 		idFrozenDepths = biomeIDs[mapping++];
 		crystalW = biomeWeights[mapping];
 		idCrystal = biomeIDs[mapping++];
+		darkForestW = biomeWeights[mapping];
+		idDarkForest = biomeIDs[mapping++];
+		darkForestHillsW = biomeWeights[mapping];
+		idDarkForestHills = biomeIDs[mapping++];
+		darkMarshW = biomeWeights[mapping];
+		idDarkMarsh = biomeIDs[mapping++];
 
 		mapping = 0;
 		allowDoomsdays = blanketDoom[mapping++];
@@ -1456,6 +1475,10 @@ public class TragicConfig {
 		allowIre = mobConfigs[mapping++];
 		fuseaSC = mobsSC[mapping];
 		allowFusea = mobConfigs[mapping++];
+		ranmasSC = mobsSC[mapping];
+		allowRanmas = mobConfigs[mapping++];
+		parasmiteSC = mobsSC[mapping];
+		allowParasmite = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1496,7 +1519,7 @@ public class TragicConfig {
 		allowClaymation = bossConfigs[mapping++];
 		overlordSC = bossSC[mapping];
 		allowOverlord = bossConfigs[mapping++];
-		
+
 		mapping = 0;
 		jabbaStats = mobStats[mapping++];
 		jannaStats = mobStats[mapping++];
@@ -1531,7 +1554,9 @@ public class TragicConfig {
 		archangelStats = mobStats[mapping++];
 		ireStats = mobStats[mapping++];
 		fuseaStats = mobStats[mapping++];
-		
+		ranmasStats = mobStats[mapping++];
+		parasmiteStats = mobStats[mapping++];
+
 		mapping = 0;
 		jarraStats = miniBossStats[mapping++];
 		kragulStats = miniBossStats[mapping++];
@@ -1542,7 +1567,7 @@ public class TragicConfig {
 		stinQueenStats = miniBossStats[mapping++];
 		aegarStats = miniBossStats[mapping++];
 		volatileFuseaStats = miniBossStats[mapping++];
-		
+
 		mapping = 0;
 		apisStats = bossStats[mapping++];
 		deathReaperStats = bossStats[mapping++];
@@ -1666,11 +1691,12 @@ public class TragicConfig {
 		guiTexture = miscInts[mapping++];
 		guiX = miscInts[mapping++];
 		guiY = miscInts[mapping++];
-		
+
 		dimensionID = dimensionIDs[0];
 		providerID = dimensionIDs[1];
 		synapseID = dimensionIDs[2];
 		synapseProviderID = dimensionIDs[3];
+		collisionBiomeSize = dimensionIDs[4];
 	}
 
 	public static void disablePotions()
@@ -1696,7 +1722,7 @@ public class TragicConfig {
 		else if (configId >= Enchantment.enchantmentsList.length)
 		{
 			configId -= Enchantment.enchantmentsList.length;
-			
+
 			while (Enchantment.enchantmentsList[configId] != null)
 			{
 				configId++;
@@ -1727,7 +1753,7 @@ public class TragicConfig {
 		else if (configId >= Potion.potionTypes.length)
 		{
 			configId -= Potion.potionTypes.length;
-			
+
 			while (Potion.potionTypes[configId] != null)
 			{
 				configId++;
@@ -1738,7 +1764,7 @@ public class TragicConfig {
 				}
 			}
 		}
-		
+
 		return configId;
 	}
 
@@ -1758,7 +1784,7 @@ public class TragicConfig {
 		else if (configId >= BiomeGenBase.getBiomeGenArray().length)
 		{
 			configId -= BiomeGenBase.getBiomeGenArray().length;
-			
+
 			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
 			{
 				configId++;
@@ -1771,7 +1797,7 @@ public class TragicConfig {
 		}
 		return configId;
 	}
-	
+
 	private static int clampPositive(int i) {
 		return i < 0 ? 0 : i;
 	}
