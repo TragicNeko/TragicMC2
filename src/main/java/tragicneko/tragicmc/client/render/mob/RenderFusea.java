@@ -8,17 +8,17 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.client.model.ModelIre;
+import tragicneko.tragicmc.client.model.ModelFusea;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
 
 public class RenderFusea extends RenderLiving {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Fusea.png");
-	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mob/VolatileFusea.png");
+	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/VolatileFusea.png");
 	private final int fuseaType;
 
 	public RenderFusea(int i) {
-		super(new ModelIre(), 0.335F);
+		super(new ModelFusea(), 0.335F);
 		this.fuseaType = i;
 	}
 	

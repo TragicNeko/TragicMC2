@@ -36,7 +36,7 @@ public class EntityIre extends TragicMob {
 
 	public EntityIre(World par1World) {
 		super(par1World);
-		this.setSize(1.5F, 1.5F);
+		this.setSize(1.355F, 1.825F);
 		this.isImmuneToFire = true;
 		this.tasks.addTask(4, new EntityAIWatchTarget(this, 64.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));

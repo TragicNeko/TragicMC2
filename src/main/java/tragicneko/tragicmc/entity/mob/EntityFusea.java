@@ -126,6 +126,8 @@ public class EntityFusea extends TragicMob {
 			this.motionY = Math.min(Math.abs(d4), 0.66D) == Math.abs(d4) ? d4 : 0.66D  * (d4 < 0 ? -1 : 1);
 			if (this.isCollided) this.motionY += rand.nextDouble() - rand.nextDouble();
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
+			
+			if (this.superiorForm != null && this.getAttackTarget().getClass() == this.superiorForm.getClass()) this.setAttackTarget(null);
 		}
 		else
 		{
@@ -159,6 +161,8 @@ public class EntityFusea extends TragicMob {
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
 		boolean flag = false;
+		this.hurtTime = 0;
+		this.hurtResistantTime = 0;
 
 		if (!this.worldObj.isRemote && src.getEntity() != null && src.getEntity() instanceof EntityPlayer)
 		{
@@ -166,6 +170,8 @@ public class EntityFusea extends TragicMob {
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
 
+		if (flag) return super.attackEntityFrom(src, 1000.0F);
+		
 		if ((src.getEntity() != null || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
@@ -176,14 +182,13 @@ public class EntityFusea extends TragicMob {
 			if (this.getHealth() == 0F) this.onDeath(src);
 		}
 
-		if (flag) return super.attackEntityFrom(src, 1000.0F);
 		return !this.worldObj.isRemote;
 	}
 
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (!this.worldObj.isRemote && this.explosionBuffer == 0)
+		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && par1Entity.getClass() != this.superiorForm.getClass())
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setShells(this.getShellsLost() + 1);

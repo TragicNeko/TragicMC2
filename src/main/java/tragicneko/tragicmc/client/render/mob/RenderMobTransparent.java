@@ -1,31 +1,22 @@
 package tragicneko.tragicmc.client.render.mob;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import tragicneko.tragicmc.client.model.ModelIre;
-import tragicneko.tragicmc.entity.mob.EntityIre;
+public class RenderMobTransparent extends RenderMob {
 
-public class RenderIre extends RenderLiving {
+	private final float maxTransparency;
 	
-	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Ire.png");
-
-	public RenderIre() {
-		super(new ModelIre(), 0.335F);
+	public RenderMobTransparent(ModelBase model, float shadowSize, String path, float scale, float trans) {
+		super(model, shadowSize, path, scale);
+		this.maxTransparency = trans;
 	}
 	
-	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float par2)
-	{
-		float scale = 1.0F;
-		GL11.glScalef(scale, scale, scale);
-	}
-
 	@Override
 	protected void renderModel(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4, float par5, float par6, float par7)
     {
@@ -34,10 +25,9 @@ public class RenderIre extends RenderLiving {
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
         {       
 			float[] rgb = new float[] {1.0F, 1.0F, 1.0F};
-			float trans = 0.65F;
 			
             GL11.glPushMatrix();
-            GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, trans);
+            GL11.glColor4f(rgb[0] * 2.55F, rgb[1] * 2.55F, rgb[2] * 2.55F, this.maxTransparency);
             GL11.glDepthMask(false);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -80,14 +70,4 @@ public class RenderIre extends RenderLiving {
             return -1;
         }
     }
-
-	@Override
-	protected ResourceLocation getEntityTexture(Entity var1) {
-		return getEntityTexture((EntityIre) var1);
-	}
-	
-	private ResourceLocation getEntityTexture(EntityIre ire)
-	{
-		return texture;
-	}
 }
