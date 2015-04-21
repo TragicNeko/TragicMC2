@@ -209,9 +209,6 @@ public class TragicMC
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenBadlands);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenHills);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenMountains);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.FrozenTundra);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.FrozenHills);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.FrozenDepths);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.DarkForest);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.DarkForestHills);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.DarkMarsh);

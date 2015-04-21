@@ -20,7 +20,6 @@ import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.TragicBiome;
@@ -57,8 +56,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		boolean flag4 = biome != BiomeGenBase.roofedForest && biome != BiomeGenBase.swampland;
 		boolean flag5 = biome instanceof BiomeGenPaintedForest && world.provider instanceof TragicWorldProvider;
 		boolean flag6 = biome instanceof BiomeGenDarkForest;
-		boolean flag7 = biome instanceof BiomeGenFrozenTundra;
-		boolean flag8 = biome instanceof BiomeGenHallowedHills;
+		boolean flag7 = biome instanceof BiomeGenHallowedHills;
 
 		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
 		{
@@ -125,8 +123,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 
 			if (flag5) meta = 4;
 			if (flag6) meta = 15;
-			if (flag7) meta = 13;
-			if (flag8) meta = 14;
+			if (flag7) meta = 14;
 
 			for (int i = 0; i < trBiome.getFlowersFromBiomeType(); i++)
 			{
