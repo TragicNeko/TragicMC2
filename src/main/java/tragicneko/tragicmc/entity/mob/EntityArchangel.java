@@ -10,6 +10,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -392,5 +393,28 @@ public class EntityArchangel extends TragicMob {
 	public boolean isOnLadder()
 	{
 		return false;
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("courseChangeCooldown")) this.courseChangeCooldown = tag.getInteger("courseChangeCooldown");
+		if (tag.hasKey("hoverBuffer")) this.hoverBuffer = tag.getInteger("hoverBuffer");
+		if (tag.hasKey("hoverTicks")) this.setHoverTicks(tag.getInteger("hoverTicks"));
+		if (tag.hasKey("waypointX")) this.waypointX = tag.getDouble("waypointX");
+		if (tag.hasKey("waypointY")) this.waypointY = tag.getDouble("waypointY");
+		if (tag.hasKey("waypointZ")) this.waypointZ = tag.getDouble("waypointZ");
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("courseChangeCooldown", this.courseChangeCooldown);
+		tag.setInteger("hoverBuffer", this.hoverBuffer);
+		tag.setInteger("hoverTicks", this.getHoverTicks());
+		tag.setDouble("waypointX", this.waypointX);
+		tag.setDouble("waypointY", this.waypointY);
+		tag.setDouble("waypointZ", this.waypointZ);
 	}
 }
