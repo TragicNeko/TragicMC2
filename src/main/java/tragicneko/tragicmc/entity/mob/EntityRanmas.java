@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -115,13 +116,6 @@ public class EntityRanmas extends TragicMob {
 					this.attackEntityFrom(DamageSource.fall, f);
 				}
 			}
-			else
-			{
-				this.motionX = this.motions[0];
-				this.motionY = this.motions[1];
-				this.motionZ = this.motions[2];
-				this.motions = new double[] {this.motionX, this.motionY, this.motionZ};
-			}
 		}
 		else
 		{
@@ -208,5 +202,24 @@ public class EntityRanmas extends TragicMob {
 	@Override
 	public boolean handleLavaMovement() {
 		return false;
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("chargeTicks")) this.chargeTicks = tag.getInteger("ageTicks");
+		if (tag.hasKey("chargeBuffer")) this.chargeBuffer = tag.getInteger("chargeBuffer");
+		if (tag.hasKey("chargeX") && tag.hasKey("chargeY") && tag.hasKey("chargeZ")) this.motions = new double[] {tag.getDouble("chargeX"), tag.getDouble("chargeY"), tag.getDouble("chargeZ")};
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("chargeTicks", this.chargeTicks);
+		tag.setInteger("chargeBuffer", this.chargeBuffer);
+		tag.setDouble("chargeX", this.motions[0]);
+		tag.setDouble("chargeY", this.motions[1]);
+		tag.setDouble("chargeZ", this.motions[2]);
 	}
 }
