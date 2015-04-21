@@ -172,7 +172,7 @@ public class EntityFusea extends TragicMob {
 
 		if (flag) return super.attackEntityFrom(src, 1000.0F);
 		
-		if ((src.getEntity() != null || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
+		if ((src.getEntity() != null && !src.isExplosion() || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setShells(this.getShellsLost() + 1);
@@ -188,7 +188,7 @@ public class EntityFusea extends TragicMob {
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && par1Entity.getClass() != this.superiorForm.getClass())
+		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && this.superiorForm != null && par1Entity.getClass() != this.superiorForm.getClass())
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setShells(this.getShellsLost() + 1);
