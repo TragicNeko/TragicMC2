@@ -1452,11 +1452,21 @@ public class TragicRecipes {
 				"xx",
 				'x', TragicItems.DyingObsidianOrb
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSand, 8),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', Blocks.sand,
+				'y', TragicItems.DarkParticles
+				);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 0),
-				"xx",
-				"xx",
-				'x', Blocks.netherrack
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 8, 0),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', Blocks.netherrack,
+				'y', TragicItems.LightParticles
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.SmoothNetherrack, 4, 2),
