@@ -11,6 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
@@ -110,4 +112,9 @@ public class BlockFox extends Block {
 		}
 	}
 
+	@Override
+	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
+    {
+        return side == ForgeDirection.UP;
+    }
 }

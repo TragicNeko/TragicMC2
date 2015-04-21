@@ -19,6 +19,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenJungle;
 import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenTaiga;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import tragicneko.tragicmc.blocks.BlockAeris;
 import tragicneko.tragicmc.blocks.BlockBone;
@@ -492,7 +493,14 @@ public class TragicBlocks {
 		MoltenRock = (new BlockMoltenRock());
 		GameRegistry.registerBlock(MoltenRock, ItemBlock.class, "moltenRock");
 
-		ScorchedRock = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:MoltenRockBottom").setBlockName("tragicmc.scorchedRock").setHardness(0.8F).setResistance(10.0F));
+		ScorchedRock = (new BlockGeneric(Material.rock, "pickaxe", 0)
+		{
+			@Override
+			public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
+		    {
+		        return side == ForgeDirection.UP;
+		    }
+		}.setBlockTextureName("tragicmc:MoltenRockBottom").setBlockName("tragicmc.scorchedRock").setHardness(0.8F).setResistance(10.0F));
 		GameRegistry.registerBlock(ScorchedRock, ItemBlock.class, "scorchedRock");
 
 		Geyser = (new BlockGeyser(false));

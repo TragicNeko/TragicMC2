@@ -50,7 +50,7 @@ public class ScorchedSurfaceWorldGen implements IWorldGenerator {
 				TragicMC.logInfo("Geyser generated at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 			}
 		}
-		
+
 		mew = biome == TragicBiomes.ScorchedScarlands ? 10 : 5;
 
 		for (int i = 0; i < mew; i++)
@@ -60,7 +60,7 @@ public class ScorchedSurfaceWorldGen implements IWorldGenerator {
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
 			biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 			if (!(biome instanceof BiomeGenScorchedWasteland)) continue;
-			
+
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
 			if (block == TragicBlocks.MoltenRock && random.nextInt(4) == 0)
 			{
@@ -68,22 +68,22 @@ public class ScorchedSurfaceWorldGen implements IWorldGenerator {
 				TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 			}
 		}
-		
+
 		mew = biome == TragicBiomes.ScorchedWastelands ? 8 : 2;
-		
+
 		for (int i = 0; i < mew; i++)
 		{
 			Xcoord = (chunkX * 16) + random.nextInt(16);
 			Zcoord = (chunkZ * 16) + random.nextInt(16);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
-			
+
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
-			
+
 			if (block == TragicBlocks.MoltenRock && random.nextInt(4) == 0)
 			{
 				cands.clear();
 				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, (random.nextDouble() * 2.25) + 1.5, Xcoord, Ycoord - 1, Zcoord));
-				
+
 				for (int[] coords : cands)
 				{
 					block = world.getBlock(coords[0], coords[1], coords[2]);
@@ -94,6 +94,18 @@ public class ScorchedSurfaceWorldGen implements IWorldGenerator {
 				}
 				TragicMC.logInfo("Boulder placed at coords: " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 			}
+		}
+
+		mew = biome == TragicBiomes.ScorchedScarlands ? 16 : 4;
+
+		for (int i = 0; i < mew; i++)
+		{
+			Xcoord = (chunkX * 16) + random.nextInt(16);
+			Zcoord = (chunkZ * 16) + random.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+
+			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			if (block == TragicBlocks.MoltenRock && random.nextInt(4) == 0) world.setBlock(Xcoord, Ycoord + 1, Zcoord, Blocks.fire);
 		}
 	}
 
