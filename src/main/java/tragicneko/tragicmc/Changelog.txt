@@ -3791,6 +3791,8 @@ Added recipe for Dark Sand since I'm not sure if I'll ever add a sandy biome tha
 Disabled DEBUG so that I can do an actual Survival test run (less lag that way)
 Did some balancing for the mobs, made Psygote easier to fight, Harvester/Seekers no longer take an eternity to kill, Mega Cryse and Pumpkinhead
 are slightly tougher to kill
+Greatly reduced chance for Time Controller to spaz out
+Doubled health of Kitsunakuma, increased armor of Polaris and Empariah
 This is going to be the release version number, these updates are just small balancing/stability updates so they aren't being counted towards it
 
 New Mobs (Save for next update):
