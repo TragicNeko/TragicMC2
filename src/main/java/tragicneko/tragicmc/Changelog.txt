@@ -3792,7 +3792,9 @@ Disabled DEBUG so that I can do an actual Survival test run (less lag that way)
 Did some balancing for the mobs, made Psygote easier to fight, Harvester/Seekers no longer take an eternity to kill, Mega Cryse and Pumpkinhead
 are slightly tougher to kill
 Greatly reduced chance for Time Controller to spaz out
-Doubled health of Kitsunakuma, increased armor of Polaris and Empariah
+Incrased default health of Kitsunakuma, increased armor of Polaris and Empariah
+Added texture for Hunter's armor, completely forgot about doing that
+Adding NBT Tags for new mobs, removed unnecessary datawatcher from Fusea
 This is going to be the release version number, these updates are just small balancing/stability updates so they aren't being counted towards it
 
 New Mobs (Save for next update):
