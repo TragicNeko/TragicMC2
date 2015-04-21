@@ -74,7 +74,7 @@ public class TragicMC
 	private static Configuration config;
 
 	private static long time = 0L;
-	public static boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
 	public static CreativeTabs Survival;
 	public static CreativeTabs Creative;
