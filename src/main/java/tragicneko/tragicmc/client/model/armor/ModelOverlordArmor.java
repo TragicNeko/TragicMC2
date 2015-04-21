@@ -311,6 +311,8 @@ public class ModelOverlordArmor extends ModelBiped {
 
     @Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    	
+    	this.isSneak = entity.isSneaking();
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		if (this.isChild)
