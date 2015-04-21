@@ -3776,6 +3776,11 @@ Added Drudge worldgen to the Dark Marshland
 Reduced trees per chunk for Hallowed Prarie biomes, increased trees per chunk for Dark Forest Hills
 Fixed armor models not "sneaking" with the player
 Fixed Ranmas charging being affected by water/lava
+Reduced size of Geysers and improved generation logic for Boulders, Steam Vents as well as Geysers
+Reduced amount of String lights and such that generate for Hallowed biomes
+Increased amount of lava lakes that generate in Scorched biomes
+Fixed WorldGen for dimensional flowers, it did a lot of unnecessary checks for my various block types so it never placed the flowers
+Added more flower worldgen for my biomes, only certain types for specific biome sets though
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
