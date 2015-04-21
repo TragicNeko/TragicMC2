@@ -20,8 +20,9 @@ public class BlockPermafrost extends Block {
 	public BlockPermafrost() {
 		super(Material.ground);
 		this.setCreativeTab(TragicMC.Survival);
-		this.setResistance(1.0F);
-		this.setHardness(0.5F);
+		this.setResistance(5.0F);
+		this.setHardness(1.5F);
+		this.slipperiness = 0.72F;
 		this.setStepSound(soundTypeGravel);
 		this.setHarvestLevel("shovel", 1);
 	}

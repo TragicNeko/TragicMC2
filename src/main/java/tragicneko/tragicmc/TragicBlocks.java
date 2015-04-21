@@ -541,7 +541,7 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(SoulChest, ItemBlock.class, "soulChest");
 		GameRegistry.registerTileEntity(TileEntitySoulChest.class, "soulChest");
 
-		IcedDirt = new BlockGeneric(Material.ground, "shovel", 0).setBlockName("tragicmc.icedDirt").setHardness(1.0F).setHardness(0.5F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tragicmc:IcedDirt");
+		IcedDirt = new BlockGeneric(Material.ground, "shovel", 0).setBlockName("tragicmc.icedDirt").setHardness(2.5F).setResistance(0.75F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tragicmc:IcedDirt");
 		GameRegistry.registerBlock(IcedDirt, ItemBlock.class, "icedDirt");
 
 		Permafrost = new BlockPermafrost().setBlockName("tragicmc.permafrost");
