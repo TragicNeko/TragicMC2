@@ -3770,6 +3770,12 @@ Fixed Erkels poisoning entities that aren't close to them, regardless of if the 
 Fixed Soul Tomb not properly clearing enough air space when generating
 Fixed armor models not allowing the server to load, they are now stored in the client proxy
 Fixed Soul Chest causing a crash on the server-side (accidentally used render bounding box)
+Fixed crash with Fusea, made Fusea immune to explosions
+Adjusted biomes to allow them to generate down to y = 42
+Added Drudge worldgen to the Dark Marshland
+Reduced trees per chunk for Hallowed Prarie biomes, increased trees per chunk for Dark Forest Hills
+Fixed armor models not "sneaking" with the player
+Fixed Ranmas charging being affected by water/lava
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
