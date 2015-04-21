@@ -748,7 +748,7 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "minotaurStats", new double[] {32.0, 0.350, 7.0, 32.0, 0.5, 6}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "inklingStats", new double[] {16.0, 0.230, 1.0, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "ragrStats", new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "pumpkinheadStats", new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 15}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "pumpkinheadStats", new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 18}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "tragicNekoStats", new double[] {80.0, 0.335, 6.0, 32.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "toxStats", new double[] {40.0, 0.050, 8.0, 64.0, 1.0, 16}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "poxStats", new double[] {30.0, 0.050, 4.0, 64.0, 0.7, 10}).getDoubleList());
@@ -765,12 +765,12 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "abominationStats", new double[] {45.0, 0.276, 7.0, 32.0, 0.5, 4}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "erkelStats", new double[] {16.0, 0.476, 1.0, 16.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "sirvStats", new double[] {8.0, 0.375, 14.0, 64.0, 0.5, 0}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "psygoteStats", new double[] {64.0, 0.290, 8.0, 32.0, 0.65, 16}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "psygoteStats", new double[] {52.0, 0.290, 8.0, 32.0, 0.65, 10}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "lockbotStats", new double[] {22.0, 0.0, 1.0, 8.0, 100.0, 8}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "nanoSwarmStats", new double[] {6.0, 0.335, 2.0, 64.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "hunterStats", new double[] {16.0, 0.236, 4.0, 32.0, 0.0, 0}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "harvesterStats", new double[] {72.0, 0.145, 0.0, 16.0, 100.0, 24}).getDoubleList());
-		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {50.0, 0.0, 1.0, 48.0, 100.0, 24}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "harvesterStats", new double[] {56.0, 0.145, 0.0, 16.0, 100.0, 20}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "seekerStats", new double[] {30.0, 0.0, 1.0, 48.0, 100.0, 24}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "archangelStats", new double[] {45.0, 0.0, 1.0, 32.0, 0.5, 12}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "ireStats", new double[] {25.0, 0.0, 1.0, 16.0, 100.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "fuseaStats", new double[] {10.0, 0.0, 0.0, 16.0, 100.0, 0}).getDoubleList());
@@ -781,7 +781,7 @@ public class TragicConfig {
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "kragulStats", new double[] {8.0, 0.380, 5.0, 5.0, 32.0, 0}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "magmoxStats", new double[] {75.0, 0.050, 15.0, 64.0, 1.0, 20}).getDoubleList());
-		miniBossStats[mapping++] = (config.get(catMobs, "megaCryseStats", new double[] {50.0, 0.310, 6.0, 48.0, 1.0, 10}).getDoubleList());
+		miniBossStats[mapping++] = (config.get(catMobs, "megaCryseStats", new double[] {50.0, 0.310, 6.0, 48.0, 1.0, 18}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "voxStellarumStats", new double[] {150.0, 0.460, 4.0, 64.0, 0.2, 16}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "stinKingStats", new double[] {100.0, 0.226, 20.0, 32.0, 2.0, 20}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "stinQueenStats", new double[] {160.0, 0.186, 12.0, 24, 2.0, 10}).getDoubleList());
