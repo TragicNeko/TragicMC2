@@ -3789,6 +3789,9 @@ Added localized name for Dark Tall Grass
 Fixed statue rendering again (stupid eclipse wasn't updating to the correct values so I screwed them up when I adjusted them the first time)
 Added recipe for Dark Sand since I'm not sure if I'll ever add a sandy biome that will have it and adjusted recipe for Smooth Netherrack
 Disabled DEBUG so that I can do an actual Survival test run (less lag that way)
+Did some balancing for the mobs, made Psygote easier to fight, Harvester/Seekers no longer take an eternity to kill, Mega Cryse and Pumpkinhead
+are slightly tougher to kill
+This is going to be the release version number, these updates are just small balancing/stability updates so they aren't being counted towards it
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
