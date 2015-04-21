@@ -20,6 +20,7 @@ import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKitsune2;
 import tragicneko.tragicmc.client.model.ModelKragul;
 import tragicneko.tragicmc.client.model.ModelMegaCryse;
+import tragicneko.tragicmc.client.model.ModelOverlordCocoon;
 import tragicneko.tragicmc.client.model.ModelOverlordCombat;
 import tragicneko.tragicmc.client.model.ModelOverlordCore;
 import tragicneko.tragicmc.client.model.ModelPolaris;
@@ -54,7 +55,7 @@ public class RenderStatue extends Render {
 	
 	private static final ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
 			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
-			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore(), new ModelOverlordCombat(), new ModelBlock()};
+			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore(), new ModelOverlordCombat(), new ModelOverlordCocoon()};
 
 	@Override
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
@@ -67,12 +68,13 @@ public class RenderStatue extends Render {
 		if (model != models[statue.getMobID()]) model = models[statue.getMobID()];
 
 		boolean flag = model instanceof ModelApis || model instanceof ModelTimeController; //much smaller
-		boolean flag2 = model instanceof ModelKragul; //much larger
+		boolean flag2 = model instanceof ModelOverlordCocoon; //much larger
 		boolean flag3 = model instanceof ModelJarra || model instanceof ModelMegaCryse || model instanceof ModelClaymation || model instanceof ModelVoxStellarum; //slightly larger
-		boolean flag4 = model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen; //slightly smaller
+		boolean flag4 = model instanceof ModelGreaterStin || model instanceof ModelStinKing || model instanceof ModelStinQueen || model instanceof ModelOverlordCombat; //slightly smaller
+		boolean flag5 = model instanceof ModelKragul; //way way larger
 		
-		float f = flag ? 0.505F : (flag2 ? 1.825F : (flag3 ? 0.925F : (flag4 ? 0.625F : 0.725F)));
-		float f1 = flag ? 0.01725F : (flag2 ? 0.0825F : (flag3 ? 0.04F : (flag4 ? 0.02F : 0.03F)));
+		float f = flag ? 0.505F : (flag2 ? 1.325F : (flag3 ? 0.925F : (flag4 ? 0.625F : (flag5 ? 2.625F : 0.725F))));
+		float f1 = flag ? 0.01725F : (flag2 ? 0.1625F : (flag3 ? 0.04F : (flag4 ? 0.02F : (flag5 ? 0.1525F : 0.03F))));
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)par2, (float)par3 + f, (float)par4);

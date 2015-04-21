@@ -875,7 +875,11 @@ public class ModelOverlordCombat extends ModelBase
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-		if (!(entity instanceof EntityOverlordCombat)) body.render(f5);
+		if (!(entity instanceof EntityOverlordCombat))
+		{
+			body.render(f5);
+			return;
+		}
 
 		EntityOverlordCombat combat = (EntityOverlordCombat) entity;
 		saberRight.showModel = saberLeft.showModel = combat.getAttackTime() > 0;
@@ -943,7 +947,7 @@ public class ModelOverlordCombat extends ModelBase
 			legBL.rotateAngleZ = -0.0371786F;
 			legBR.rotateAngleZ = 0.0371786F;
 		}
-		
+
 		if (!combat.onGround)
 		{
 			legFR.rotateAngleX = -0.08F + this.simplifyAngle(combat.ticksExisted, 15.0F) * 0.08F;
@@ -994,7 +998,7 @@ public class ModelOverlordCombat extends ModelBase
 
 				armRight.rotateAngleX = 0.45F;
 				armLeft.rotateAngleX = 0.45F;
-				
+
 				armRight.offsetY = armLeft.offsetY = -0.3F;
 			}
 			else
@@ -1016,7 +1020,7 @@ public class ModelOverlordCombat extends ModelBase
 				}
 			}
 		}
-		
+
 		if (combat.getUnstableTicks() > 0)
 		{
 			body.offsetX = (combat.getRNG().nextFloat() - combat.getRNG().nextFloat()) * 0.5F;
@@ -1027,7 +1031,7 @@ public class ModelOverlordCombat extends ModelBase
 		{
 			body.offsetX = body.offsetZ = 0F;
 		}
-		
+
 		if (combat.getAttackTime() > 0)
 		{
 			armRight.rotateAngleX = -0.085F + this.simplifyAngle(combat.getHurtTime(), 40.0F) * 0.085F;
