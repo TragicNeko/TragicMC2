@@ -3784,6 +3784,8 @@ Fixed WorldGen for dimensional flowers, it did a lot of unnecessary checks for m
 Added more flower worldgen for my biomes, only certain types for specific biome sets though
 Added Fire worldgen for Scorched biomes and made some blocks fire sources
 Rearranged world generators to do destructive generators first
+Fixed game crashes caused by Mob Statues
+Added localized name for Dark Tall Grass
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
