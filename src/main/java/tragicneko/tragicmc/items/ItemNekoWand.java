@@ -133,6 +133,7 @@ public class ItemNekoWand extends Item {
 		return true;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer par3EntityPlayer)
 	{
