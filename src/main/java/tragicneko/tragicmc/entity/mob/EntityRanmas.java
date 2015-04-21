@@ -135,34 +135,25 @@ public class EntityRanmas extends TragicMob {
 				this.setAttackTarget((EntityLivingBase) this.worldObj.findNearestEntityWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d4, d4, d4), this));
 			}
 		}
-		/*
-		if (this.ticksExisted % 5 == 0)
-		{
-			TragicMC.logInfo("Charge ticks: " + this.chargeTicks);
-			TragicMC.logInfo("Charge buffer: " + this.chargeBuffer);
-			TragicMC.logInfo("Motions: " + this.motions[0] + ", " + this.motions[1] + ", " + this.motions[2]);
-			TragicMC.logInfo("Has target? " + (this.getAttackTarget() != null));
-		} */
+		
+		if (this.ticksExisted % 20 == 0) TragicMC.logWarning("Health: " + this.getHealth());
 	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
 		boolean flag = false;
-
-		if (!this.worldObj.isRemote && src.getEntity() != null && src.getEntity() instanceof EntityPlayer)
+		if (this.worldObj.isRemote) return flag;
+		
+		if (src.getEntity() != null && src.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) src.getEntity();
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
+		
+		if (flag) return super.attackEntityFrom(src, dmg);
 
-		if (flag || !flag && src.getEntity() != null && src.getEntity() instanceof EntityRanmas || src.canHarmInCreative() || src == DamageSource.fall)
-		{
-			TragicMC.logInfo("Damage was " + dmg);
-			return super.attackEntityFrom(src, dmg);
-		}
-
-		return !this.worldObj.isRemote;
+		return super.attackEntityFrom(src.setDamageBypassesArmor(), Math.min(1.0F, dmg));
 	}
 
 	@Override
@@ -179,7 +170,7 @@ public class EntityRanmas extends TragicMob {
 		if (f > 20.0F) f = 20.0F;
 		boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), f * (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		TragicMC.logInfo("Damage value was " + f);
-		
+
 		if (flag && this.chargeTicks > 0)
 		{
 			par1Entity.motionX *= 2.25D;
@@ -193,17 +184,17 @@ public class EntityRanmas extends TragicMob {
 
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
-	
+
 	@Override
 	public boolean handleWaterMovement() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean handleLavaMovement() {
 		return false;
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
