@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -83,7 +84,7 @@ public class DarkShieldWorldGen implements IWorldGenerator {
 					if (block == TragicBlocks.DarkCobblestone && random.nextBoolean()) world.setBlockMetadataWithNotify(coords[0], coords[1], coords[2], 2, 2);
 				}
 			}
-			
+
 			for (int k = 0; k < 24 + random.nextInt(8); k++)
 			{
 				block = world.getBlock(coords[0], coords[1], coords[2]);
@@ -98,6 +99,39 @@ public class DarkShieldWorldGen implements IWorldGenerator {
 				coords = list.get(random.nextInt(list.size()));
 			}
 		}
+		else if (biome == TragicBiomes.DarkMarsh)
+		{
+			radius = (4.0D * random.nextDouble()) + 3.0D;
+
+			for (int y1 = -1; y1 < 2; y1++)
+			{
+				x += random.nextInt(4) - random.nextInt(4);
+				z += random.nextInt(4) - random.nextInt(4);
+				list = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
+
+				for (int i = 0; i < list.size(); i++)
+				{
+					coords = list.get(i);
+					block = world.getBlock(coords[0], coords[1], coords[2]);
+					if (block == TragicBlocks.DarkGrass && world.getBlock(coords[0], coords[1] + 1, coords[2]) == Blocks.air) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.Quicksand, 2, 2);
+				}
+			}
+
+			for (int k = 0; k < 24 + random.nextInt(8); k++)
+			{
+				block = world.getBlock(coords[0], coords[1], coords[2]);
+				list = WorldHelper.getBlocksAdjacent(coords);
+
+				for (int[] cand2 : list)
+				{
+					block = world.getBlock(cand2[0], cand2[1], cand2[2]);
+					if (block == TragicBlocks.DarkGrass && world.getBlock(cand2[0], cand2[1] + 1, cand2[2]) == Blocks.air) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.Quicksand, 2, 2);
+				}
+
+				coords = list.get(random.nextInt(list.size()));
+			}
+		}
+
 	}
 
 }
