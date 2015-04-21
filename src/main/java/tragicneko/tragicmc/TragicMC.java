@@ -217,22 +217,23 @@ public class TragicMC
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedCliffs);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedPrarie);
 
+			//TODO convert these to biome-unique decoration instead of having them called every chunk for every dimension for every biome
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen(), 3); //For the tainted scarlands
 			if (TragicConfig.allowVoidPitGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.VoidPitWorldGen(), 4);
-			if (TragicConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen(), 5);
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StarCrystalWorldGen(), 6); //for the starlit prarie
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CustomSpikesWorldGen(), 7); //for the decaying wasteland and tainted spikes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 8); //for the ashen badlands and tainted scarlands
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 9); //for the ashen badlands and decaying wasteland
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.IsleWorldGen(), 10); //for the tainted isles
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.PitWorldGen(), 5); //Pits for some of the newer biomes
+			if (TragicConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen(), 6);
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StarCrystalWorldGen(), 7); //for the starlit prarie
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CustomSpikesWorldGen(), 8); //for the decaying wasteland and tainted spikes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 9); //for the ashen badlands and tainted scarlands
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 10); //for the ashen badlands and decaying wasteland
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.IsleWorldGen(), 11); //for the tainted isles
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StringLightWorldGen(), 12); //For Hallowed biomes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ScorchedSurfaceWorldGen(), 13); //For the Scorched biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DimensionOreWorldGen(), 15);
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 16); //Corroded biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen(), 17); //Corroded biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.PitWorldGen(), 18); //Pits for some of the newer biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.FrozenSurfaceWorldGen(), 19); //Frozen biome generation
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DimensionOreWorldGen(), 14);
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 15); //Corroded biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen(), 16); //Corroded biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.FrozenSurfaceWorldGen(), 17); //Frozen biome generation
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.AerisWorldGen(), 24); //Aeris flower gen
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen(), 25); //For the tainted scarlands
 		}
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 20);
