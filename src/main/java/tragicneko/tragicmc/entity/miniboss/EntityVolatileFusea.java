@@ -47,9 +47,9 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.getShellsLost() > 0)
+		if (this.getHealth() < this.getMaxHealth())
 		{
-			for (int i = 0; i < this.getShellsLost(); i++)
+			for (int i = 0; i < this.getMaxHealth() - this.getHealth(); i++)
 			{
 				this.motionX *= 1.015;
 				this.motionZ *= 1.015;

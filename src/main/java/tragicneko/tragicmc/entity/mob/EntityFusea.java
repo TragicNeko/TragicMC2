@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -33,7 +34,7 @@ public class EntityFusea extends TragicMob {
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false));
-		this.explosionBuffer = 40;
+		this.explosionBuffer = 20;
 	}
 
 	@Override
@@ -63,23 +64,6 @@ public class EntityFusea extends TragicMob {
 	public int getTotalArmorValue()
 	{
 		return (int) fuseaStats[5];
-	}
-
-	@Override
-	protected void entityInit()
-	{
-		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0)); //shells left, in other words, how many explosions it has done
-	}
-
-	public int getShellsLost()
-	{
-		return this.dataWatcher.getWatchableObjectInt(16);
-	}
-
-	private void setShells(int i)
-	{
-		this.dataWatcher.updateObject(16, i);
 	}
 
 	@Override
@@ -145,7 +129,6 @@ public class EntityFusea extends TragicMob {
 		if (this.ticksExisted % 20 == 0)
 		{
 			TragicMC.logInfo("Explosion buffer: " + this.explosionBuffer);
-			TragicMC.logInfo("Shells lost: " + this.getShellsLost());
 			TragicMC.logInfo("Max health: " + this.getMaxHealth());
 			TragicMC.logInfo("Current health: " + this.getHealth());
 		}
@@ -175,7 +158,6 @@ public class EntityFusea extends TragicMob {
 		if ((src.getEntity() != null && !src.isExplosion() || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
-			this.setShells(this.getShellsLost() + 1);
 			this.setHealth(this.getHealth() - 1F);
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 			this.recentlyHit = 60;
@@ -191,7 +173,6 @@ public class EntityFusea extends TragicMob {
 		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && this.superiorForm != null && par1Entity.getClass() != this.superiorForm.getClass())
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
-			this.setShells(this.getShellsLost() + 1);
 			this.setHealth(this.getHealth() - 1F);
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 		}
@@ -206,10 +187,19 @@ public class EntityFusea extends TragicMob {
 
 	@Override
 	public void onStruckByLightning(EntityLightningBolt bolt) {
-		if (this.getShellsLost() > 0)
-		{
-			this.setShells(this.getShellsLost() - 1);
-			this.setHealth(this.getHealth() + 1F);
-		}
+		if (this.getHealth() < this.getMaxHealth()) this.setHealth(this.getHealth() + 1F);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("explosionBuffer")) this.explosionBuffer = tag.getInteger("explosionBuffer");
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setInteger("explosionBuffer", this.explosionBuffer);
 	}
 }
