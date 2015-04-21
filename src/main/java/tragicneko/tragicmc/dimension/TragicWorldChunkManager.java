@@ -16,6 +16,7 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.worldgen.biome.TragicBiome;
 
 public class TragicWorldChunkManager extends WorldChunkManager
 {
@@ -210,7 +211,7 @@ public class TragicWorldChunkManager extends WorldChunkManager
 			{
 				BiomeGenBase biomegenbase = BiomeGenBase.getBiome(ints[i]);
 
-				if (!biomes.contains(biomegenbase))
+				if (!biomes.contains(biomegenbase) || !(biomegenbase instanceof TragicBiome))
 				{
 					return false;
 				}

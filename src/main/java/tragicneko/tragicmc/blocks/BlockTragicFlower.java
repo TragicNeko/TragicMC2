@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.IGrowable;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 
 public class BlockTragicFlower extends BlockFlower implements IGrowable{
@@ -31,9 +31,15 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	}
 	
 	@Override
-	protected boolean canPlaceBlockOn(Block p_149854_1_)
+	public boolean canBlockStay(World world, int x, int y, int z)
     {
-        return p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.BrushedGrass || p_149854_1_ == TragicBlocks.DeadDirt || p_149854_1_ == TragicBlocks.StarlitGrass;
+		return this.canPlaceBlockOn(world.getBlock(x, y - 1, z));
+    }
+	
+	@Override
+	protected boolean canPlaceBlockOn(Block block)
+    {
+        return block instanceof BlockGrass || block == Blocks.dirt;
     }
 	
 	@Override

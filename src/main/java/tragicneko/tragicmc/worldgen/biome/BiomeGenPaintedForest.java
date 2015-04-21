@@ -29,7 +29,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		this.rainfall = 1.5F;
 		this.theBiomeDecorator.treesPerChunk = 16;
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
-		this.theBiomeDecorator.grassPerChunk = 4;
+		this.theBiomeDecorator.grassPerChunk = 2;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class StringLightWorldGen implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (!(world.provider instanceof TragicWorldProvider) || world.isRemote) return;
+		if (!(world.provider instanceof TragicWorldProvider) || world.isRemote || random.nextBoolean()) return;
 
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);

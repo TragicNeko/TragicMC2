@@ -10,6 +10,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
@@ -51,17 +52,17 @@ public class FrozenSurfaceWorldGen implements IWorldGenerator {
 		}
 		
 		pow = 8;
-		if (biome == TragicBiomes.FrozenHills || world.getBlock(cand[0], cand[1], cand[2]) != TragicBlocks.Permafrost) return;
+		if (biome == TragicBiomes.FrozenHills || world.getBlock(cand[0], cand[1] - 1, cand[2]) != TragicBlocks.Permafrost) return;
 
 		for (int k = 0; k < pow + random.nextInt(8); k++)
 		{
-			world.setBlock(cand[0], cand[1], cand[2], TragicBlocks.Permafrost, 1, 2);
+			world.setBlockMetadataWithNotify(cand[0], cand[1] - 1, cand[2], 1, 2);
 			cands = WorldHelper.getBlocksAdjacent(cand);
 
 			for (int[] cand2 : cands)
 			{
 				block = world.getBlock(cand2[0], cand2[1], cand2[2]);
-				if (block == TragicBlocks.Permafrost) world.setBlock(cand2[0], cand2[1], cand2[2], TragicBlocks.Permafrost, 1, 2);
+				if (block == TragicBlocks.Permafrost) world.setBlockMetadataWithNotify(cand2[0], cand2[1], cand2[2], 1, 2);
 			}
 
 			cand = cands.get(random.nextInt(cands.size()));

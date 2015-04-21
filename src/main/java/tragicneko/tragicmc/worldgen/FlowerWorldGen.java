@@ -12,13 +12,16 @@ import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.TragicBiome;
 
@@ -53,6 +56,9 @@ public class FlowerWorldGen implements IWorldGenerator {
 		boolean flag3 = !(biome instanceof BiomeGenPlains);
 		boolean flag4 = biome != BiomeGenBase.roofedForest && biome != BiomeGenBase.swampland;
 		boolean flag5 = biome instanceof BiomeGenPaintedForest && world.provider instanceof TragicWorldProvider;
+		boolean flag6 = biome instanceof BiomeGenDarkForest;
+		boolean flag7 = biome instanceof BiomeGenFrozenTundra;
+		boolean flag8 = biome instanceof BiomeGenHallowedHills;
 
 		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
 		{
@@ -118,6 +124,9 @@ public class FlowerWorldGen implements IWorldGenerator {
 			TragicBiome trBiome = (TragicBiome) biome;
 
 			if (flag5) meta = 4;
+			if (flag6) meta = 15;
+			if (flag7) meta = 13;
+			if (flag8) meta = 14;
 
 			for (int i = 0; i < trBiome.getFlowersFromBiomeType(); i++)
 			{
@@ -125,9 +134,10 @@ public class FlowerWorldGen implements IWorldGenerator {
 				Zcoord += random.nextInt(8) - random.nextInt(8);
 				Ycoord += random.nextInt(2) - random.nextInt(2);
 
-				if (world.isAirBlock(Xcoord, Ycoord, Zcoord) && (!world.provider.hasNoSky || Ycoord < 255) && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
+				if (world.isAirBlock(Xcoord, Ycoord, Zcoord) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
 				{
 					world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
+					TragicMC.logInfo("Flower placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 				}
 			}
 

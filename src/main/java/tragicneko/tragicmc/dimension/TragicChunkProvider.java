@@ -28,6 +28,7 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 
 public class TragicChunkProvider implements IChunkProvider
 {
@@ -378,7 +379,8 @@ public class TragicChunkProvider implements IChunkProvider
 			(new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
 
-		if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) && !flag && this.rand.nextInt(16) == 0)
+		int r = biomegenbase instanceof BiomeGenScorchedWasteland ? 4 : 16;
+		if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) && !flag && this.rand.nextInt(r) == 0)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(this.rand.nextInt(248) + 8);

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -25,6 +26,12 @@ public class BiomeGenHallowedHills extends TragicBiome {
 		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 1));
 		if (TragicConfig.allowArchangel) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.archangelSC, 0, 1));
 		if (TragicConfig.allowIre) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.ireSC, 2, 4)); 
+	}
+	
+	@Override
+	public int getFlowersFromBiomeType()
+	{
+		return this == TragicBiomes.HallowedPrarie ? 16 : 6;
 	}
 	
 	@Override

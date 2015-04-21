@@ -76,9 +76,9 @@ public class TragicBiomes {
 		DecayingMountains = ((TragicBiome) (new BiomeGenDecayingWasteland(TragicConfig.idDecayingMountains).setBiomeName("tragicmc.decayingMountains").setDisableRain())).setHeightVariation(0.75F).setRootHeight(0.35F).setMushroomsPerChunk(8);
 		
 		PaintedForest = ((TragicBiome) (new BiomeGenPaintedForest(TragicConfig.idPaintedForest).setBiomeName("tragicmc.paintedForest"))).setHeightVariation(0.15F).setRootHeight(0.15F).setMushroomsPerChunk(8);
-		PaintedPlains = ((TragicBiome) (new BiomeGenPaintedForest(TragicConfig.idPaintedPlains).setBiomeName("tragicmc.paintedPlains"))).setHeightVariation(0.05F).setRootHeight(0.1F).setTreesPerChunk(2).setGrassPerChunk(8);
+		PaintedPlains = ((TragicBiome) (new BiomeGenPaintedForest(TragicConfig.idPaintedPlains).setBiomeName("tragicmc.paintedPlains"))).setHeightVariation(0.05F).setRootHeight(0.1F).setTreesPerChunk(2).setGrassPerChunk(4);
 		PaintedHills = ((TragicBiome) (new BiomeGenPaintedForest(TragicConfig.idPaintedHills).setBiomeName("tragicmc.paintedHills"))).setHeightVariation(0.35F).setRootHeight(0.2F);
-		PaintedClearing = ((TragicBiome) (new BiomeGenPaintedForest(TragicConfig.idPaintedClearing).setBiomeName("tragicmc.paintedClearing"))).setHeightVariation(0.0F).setRootHeight(0.05F).setTreesPerChunk(-999);
+		PaintedClearing = ((TragicBiome) (new BiomeGenPaintedForest(TragicConfig.idPaintedClearing).setBiomeName("tragicmc.paintedClearing"))).setHeightVariation(0.0F).setRootHeight(0.05F).setTreesPerChunk(-999).setGrassPerChunk(4);
 		
 		AshenMountains = ((TragicBiome) (new BiomeGenAshenHills(TragicConfig.idAshenMountains).setBiomeName("tragicmc.ashenMountains"))).setHeightVariation(0.85F).setRootHeight(0.45F);
 		AshenHills = ((TragicBiome) (new BiomeGenAshenHills(TragicConfig.idAshenHills).setBiomeName("tragicmc.ashenHills"))).setHeightVariation(0.45F).setRootHeight(0.25F);

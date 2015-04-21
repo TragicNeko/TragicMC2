@@ -36,6 +36,12 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 	}
 	
 	@Override
+	public int getFlowersFromBiomeType()
+	{
+		return this == TragicBiomes.FrozenTundra ? 6 : 2;
+	}
+	
+	@Override
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
