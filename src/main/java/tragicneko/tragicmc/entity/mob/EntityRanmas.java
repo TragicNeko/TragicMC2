@@ -199,4 +199,14 @@ public class EntityRanmas extends TragicMob {
 
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
+	
+	@Override
+	public boolean handleWaterMovement() {
+		return false;
+	}
+	
+	@Override
+	public boolean handleLavaMovement() {
+		return false;
+	}
 }
