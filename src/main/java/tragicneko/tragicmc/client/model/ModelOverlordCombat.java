@@ -877,6 +877,7 @@ public class ModelOverlordCombat extends ModelBase
 
 		if (!(entity instanceof EntityOverlordCombat))
 		{
+			saberRight.showModel = saberLeft.showModel = false;
 			body.render(f5);
 			return;
 		}

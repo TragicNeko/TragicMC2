@@ -281,9 +281,11 @@ public class ModelOverlordCocoon extends ModelBase {
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		
-		this.cocoonBottom.offsetY = 1.0F;
+		this.cocoonBottom.offsetY = 0.4F;
+		this.cocoonBottom.rotateAngleY = 0F;
 		if (!(entity instanceof EntityOverlordCocoon)) return;
 		EntityOverlordCocoon cocoon = (EntityOverlordCocoon) entity;
+		this.cocoonBottom.offsetY = 1.0F;
 
 		int death = MathHelper.clamp_int(cocoon.deathTime / 10, 0, 19);
 
