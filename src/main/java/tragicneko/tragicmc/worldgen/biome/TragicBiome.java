@@ -150,12 +150,12 @@ public class TragicBiome extends BiomeGenBase {
 
 							k = l;
 
-							if (l1 >= 51)
+							if (l1 >= 42)
 							{
 								p_150560_3_[i2] = block;
 								p_150560_4_[i2] = b0;
 							}
-							else if (l1 < 56 - l)
+							else if (l1 < 47 - l)
 							{
 								block = null;
 								block1 = TragicBlocks.DarkStone;

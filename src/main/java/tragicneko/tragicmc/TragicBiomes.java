@@ -99,7 +99,7 @@ public class TragicBiomes {
 		
 		HallowedHills = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedHills).setBiomeName("tragicmc.hallowedHills"))).setHeightVariation(0.35F).setRootHeight(0.6F).setFlowersPerChunk(4).setTreesPerChunk(4);
 		HallowedForest = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedForest).setBiomeName("tragicmc.hallowedForest"))).setHeightVariation(0.15F).setRootHeight(0.55F).setFlowersPerChunk(8).setTreesPerChunk(16);
-		HallowedPrarie = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedPrarie).setBiomeName("tragicmc.hallowedPrarie"))).setHeightVariation(0.05F).setRootHeight(0.65F).setFlowersPerChunk(16).setTreesPerChunk(8);
+		HallowedPrarie = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedPrarie).setBiomeName("tragicmc.hallowedPrarie"))).setHeightVariation(0.05F).setRootHeight(0.65F).setFlowersPerChunk(16).setTreesPerChunk(2);
 		HallowedCliffs = ((TragicBiome) (new BiomeGenHallowedHills(TragicConfig.idHallowedCliffs).setBiomeName("tragicmc.hallowedCliffs"))).setHeightVariation(1.55F).setRootHeight(0.85F).setFlowersPerChunk(4).setTreesPerChunk(0);
 		
 		ScorchedWastelands = ((TragicBiome) (new BiomeGenScorchedWasteland(TragicConfig.idScorchedWastelands).setBiomeName("tragicmc.scorchedWastelands"))).setHeightVariation(0.2F).setRootHeight(0.15F);
@@ -113,13 +113,13 @@ public class TragicBiomes {
 		CorrodedFallout = ((TragicBiome) (new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout).setBiomeName("tragicmc.corrodedFallout"))).setHeightVariation(0.4F).setRootHeight(-0.65F);
 		
 		FrozenTundra = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenTundra).setBiomeName("tragicmc.frozenTundra"))).setHeightVariation(0.01F).setRootHeight(0.15F).setGrassPerChunk(8);
-		FrozenHills = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenHills).setBiomeName("tragcmc.frozenHills"))).setHeightVariation(0.35F).setRootHeight(0.25F).setGrassPerChunk(16);
+		FrozenHills = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenHills).setBiomeName("tragicmc.frozenHills"))).setHeightVariation(0.35F).setRootHeight(0.25F).setGrassPerChunk(16);
 		FrozenDepths = ((TragicBiome) (new BiomeGenFrozenTundra(TragicConfig.idFrozenDepths).setBiomeName("tragicmc.frozenDepths"))).setHeightVariation(0.65F).setRootHeight(-0.65F).setGrassPerChunk(0).setTreesPerChunk(0);
 		
 		Crystal = ((TragicBiome) (new BiomeGenCrystal(TragicConfig.idCrystal).setBiomeName("tragicmc.crystal"))).setHeightVariation(1.25F).setRootHeight(1.0F);
 		
 		DarkForest = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkForest).setBiomeName("tragicmc.darkForest"))).setHeightVariation(0.05F).setRootHeight(0.15F).setTreesPerChunk(24).setGrassPerChunk(4);
-		DarkForestHills = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkForestHills).setBiomeName("tragicmc.darkForestHills"))).setHeightVariation(0.35F).setRootHeight(0.12F).setTreesPerChunk(12).setGrassPerChunk(8);
+		DarkForestHills = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkForestHills).setBiomeName("tragicmc.darkForestHills"))).setHeightVariation(0.35F).setRootHeight(0.12F).setTreesPerChunk(16).setGrassPerChunk(8);
 		DarkMarsh = ((TragicBiome) (new BiomeGenDarkForest(TragicConfig.idDarkMarsh).setBiomeName("tragicmc.darkMarsh"))).setHeightVariation(0.15F).setRootHeight(-0.25F).setTreesPerChunk(4).setGrassPerChunk(8);
 	}
 }
