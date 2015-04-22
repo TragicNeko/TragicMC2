@@ -35,6 +35,7 @@ import org.apache.logging.log4j.Logger;
 import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.events.ServerTickEvents;
+import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.worldgen.FlowerWorldGen;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -130,6 +131,7 @@ public class TragicMC
 		TragicBlocks.load();
 		logDuration("Blocks");
 		TragicItems.load();
+		//if (!TragicConfig.mobsOnly) LoreHelper.registerLoreJson(event.getModConfigurationDirectory()); TODO setup custom lores, add all of my lores to this so that people can remove them or modify them as they wish
 		logDuration("Items");
 		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
 		if (!TragicConfig.mobsOnly) TragicRecipes.load();

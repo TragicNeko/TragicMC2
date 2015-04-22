@@ -2,12 +2,23 @@ package tragicneko.tragicmc.util;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.io.ByteStreams;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumRarity;
@@ -153,13 +164,13 @@ public class LoreHelper {
 				new Lore(15, "Stand alone complex.", 3), new Lore(5, "The law doesn't protect people. People protect the law.", 3), new Lore(15, "The time when our connections to others was the basis of ourselves is long gone.", 3), new Lore(5, "The future is not a straight line. It is filled with many crossroads.", 3),
 				new Lore(25, "When you leave behind your body, what remains is your ghost.", 3), new Lore(5, "KANEDAAAAAAAAA!", 3), new Lore(5, "TESTSUOOOOOOOO!", 3), new Lore(15, "Human curiosity.", 3)},
 				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.aquaAffinity, 5), new EnchantEntry(Enchantment.respiration, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5),
-				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
-				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.thorns, 5),
-				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
-				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.thorns, 5),
-				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
-				new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(Enchantment.featherFalling, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5),
-				new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}}));
+					new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
+					new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.thorns, 5),
+						new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
+						new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5), new EnchantEntry(Enchantment.thorns, 5),
+							new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}},
+							new EnchantEntry[][] {{}, {}, {}, {new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.protection, 5), new EnchantEntry(Enchantment.featherFalling, 5), new EnchantEntry(TragicEnchantments.DeathTouch, 5),
+								new EnchantEntry(TragicEnchantments.Elasticity, 3), new EnchantEntry(TragicEnchantments.Ignition, 5), new EnchantEntry(TragicEnchantments.Paralysis, 5), new EnchantEntry(TragicEnchantments.RuneWalker, 5), new EnchantEntry(TragicEnchantments.Toxicity, 5)}}));
 
 		//Tools
 		addToLoreMap(TragicItems.TungstenJack.getClass(), new Lore[] {new Lore(25, "Work, work, work!", 1), new Lore(15, "Time for lunch!", 1), new Lore(15, "Work all day, sleep all night!", 2),
@@ -439,6 +450,33 @@ public class LoreHelper {
 		if (s3 == null) return new String[] {s, s2};
 
 		return new String[] {s, s2, s3};
+	}
+
+	public static void registerLoreJson(File config)
+	{	
+		Gson gson = new Gson();
+		Map<String, String[]> json;
+		Type mapType = new TypeToken<Map<String, String[]>>() {}.getType();
+
+		try
+		{
+			InputStream is = new FileInputStream(new File(config, "CustomLores.json")); //Looks for the custom lores in the config folder, if none then defaults to the packaged one
+			String data = new String(ByteStreams.toByteArray(is));
+			is.close();
+			json = gson.fromJson(data, mapType);
+		}
+		catch(Exception e)
+		{
+			TragicMC.logError("Failed to load Custom Lores from Json in the Configuration directory.", e);
+
+			Reader read = new InputStreamReader(TragicMC.class.getResourceAsStream("/assets/tragicmc/CustomLores.json")); //I'll add all of the Lore for the current weapon to this instead of keeping them in an extremely long list here
+			json = gson.fromJson(read, mapType);
+			try {
+				read.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	public static class LoreEntry {
