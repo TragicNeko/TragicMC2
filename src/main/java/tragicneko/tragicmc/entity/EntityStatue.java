@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.entity;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,8 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityClaymation;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -38,7 +40,7 @@ public class EntityStatue extends Entity {
 	public EntityStatue(World world) {
 		super(world);
 		this.preventEntitySpawning = true;
-		this.setSize(0.425F, 0.865F);
+		this.setSize(0.525F, 0.865F);
 		this.isImmuneToFire = true;
 	}
 
@@ -134,6 +136,15 @@ public class EntityStatue extends Entity {
 		this.prevPosZ = this.posZ;
 
 		if (!this.worldObj.isRemote && this.getRotation() > 360.0F) this.setRotation(this.getRotation() - 360.0F);
+		if (!this.worldObj.isRemote) //this is to prevent players from being kicked on servers by standing on the statue
+		{
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0, 1.0, 0.0));
+			for (Entity e : list)
+			{
+				this.applyEntityCollision(e);
+				e.velocityChanged = true;
+			}
+		}
 	}
 
 	@Override
