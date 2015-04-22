@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.events;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -15,6 +16,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.items.Challenge;
 import tragicneko.tragicmc.items.ItemChallenge;
+import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ChallengeItemEvents {
@@ -69,7 +71,10 @@ public class ChallengeItemEvents {
 								break;
 							}
 						}
-						if (cls != null && (cls == event.entityLiving.getClass() || event.entityLiving.getClass().getSuperclass() == cls || flag))
+						if (cls != null && (cls == event.entityLiving.getClass() || event.entityLiving.getClass().getSuperclass() == cls ||
+								event.entityLiving.getClass().getSuperclass() != null && event.entityLiving.getClass().getSuperclass().getSuperclass() == cls ||
+								event.entityLiving.getClass().getSuperclass().getSuperclass() != null && event.entityLiving.getClass().getSuperclass().getSuperclass().getSuperclass() == cls
+								|| flag))
 						{
 							int pow = stack.stackTagCompound.getInteger("challengeProgress");
 							stack.stackTagCompound.setInteger("challengeProgress", ++pow);
@@ -122,7 +127,7 @@ public class ChallengeItemEvents {
 						for (int j = 0; j < list.size(); j++)
 						{
 							Class cl = list.get(j).getClass();
-							
+
 							boolean flag = false;
 							for (Class cl2 : cl.getInterfaces())
 							{
@@ -132,7 +137,7 @@ public class ChallengeItemEvents {
 									break;
 								}
 							}
-							
+
 							if (cl == challenge.challengeClass || flag)
 							{
 								stack.stackTagCompound.setInteger("challengeProgress", 1);
@@ -142,8 +147,17 @@ public class ChallengeItemEvents {
 					}
 					else if (challenge.isBlockChallenge)
 					{
-						Block block = player.worldObj.getBlock((int) player.posX, (int) player.posY - 1, (int) player.posZ);
-						if (block == challenge.challengeBlock) stack.stackTagCompound.setInteger("challengeProgress", 1);
+						ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(player.worldObj, 1.5, player.posX, player.boundingBox.minY - 1.5, player.posZ);
+						Block block;
+						for (int[] coords : list)
+						{
+							block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+							if (block == challenge.challengeBlock)
+							{
+								stack.stackTagCompound.setInteger("challengeProgress", 1);
+								break;
+							}
+						}
 					}
 					else if (challenge.isLoreChallenge)
 					{

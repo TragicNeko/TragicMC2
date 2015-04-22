@@ -1,8 +1,10 @@
 package tragicneko.tragicmc.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityIronGolem;
@@ -25,17 +27,24 @@ import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
+import tragicneko.tragicmc.entity.mob.EntityArchangel;
+import tragicneko.tragicmc.entity.mob.EntityFusea;
+import tragicneko.tragicmc.entity.mob.EntityHarvester;
+import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.entity.mob.EntityPirah;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
+import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
@@ -47,21 +56,21 @@ public class Challenge {
 
 	public static final Challenge zombieKills = new Challenge(1, false, 50, EntityZombie.class, false).setDifficulty(1);
 	public static final Challenge collectWheat = new Challenge(2, true, 48, new ItemStack(Items.wheat));
-	public static final Challenge stayAlive = new Challenge(3, false, 1200);
-	public static final Challenge stayAlive3 = new Challenge(4, false, 3600).setDifficulty(1);
-	public static final Challenge survive = new Challenge(5, false, 180).setDifficulty(1).setMobRushChallenge();
+	public static final Challenge stayAlive = new Challenge(3, false, 1200).setTimed();
+	public static final Challenge stayAlive3 = new Challenge(4, false, 3600).setDifficulty(1).setTimed();
+	public static final Challenge survive = new Challenge(5, false, 180).setDifficulty(1).setMobRushChallenge().setTimed();
 	public static final Challenge endermanKills = new Challenge(6, false, 30, EntityEnderman.class, false).setDifficulty(2);
 	public static final Challenge bossKills = new Challenge(7, false, 10, TragicBoss.class, false).setDifficulty(3);
 	public static final Challenge collectLeather = new Challenge(8, true, 32, new ItemStack(Items.leather));
-	public static final Challenge stayAlive7 = new Challenge(9, false, 8400).setDifficulty(2);
-	public static final Challenge witherKill = new Challenge(10, false, 1).setDifficulty(2);
+	public static final Challenge stayAlive7 = new Challenge(9, false, 8400).setDifficulty(2).setTimed();
+	public static final Challenge witherKill = new Challenge(10, false, 1, EntityWither.class, false).setDifficulty(2);
 	public static final Challenge findEmerald = new Challenge(11, true, 1, new ItemStack(Items.emerald)).setDifficulty(1);
 	public static final Challenge findDiamonds = new Challenge(12, true, 6, new ItemStack(Items.diamond)).setDifficulty(1);
 	public static final Challenge collectAsh = new Challenge(13, true, 64, new ItemStack(TragicItems.Ash));
 	public static final Challenge miniBossKills = new Challenge(14, false, 25, TragicMiniBoss.class, false).setDifficulty(2);
 	public static final Challenge stinKills = new Challenge(15, false, 25, EntityStin.class, false).setDifficulty(1);
 	public static final Challenge tragicNekoKills = new Challenge(16, false, 10, EntityTragicNeko.class, false).setDifficulty(1);
-	public static final Challenge collectGoldenApples = new Challenge(17, true, 16, new ItemStack(Items.golden_apple, 1, 1)).setDifficulty(2);
+	public static final Challenge collectGoldenApples = new Challenge(17, true, 16, new ItemStack(Items.golden_apple, 1, 1)).setDifficulty(3);
 	public static final Challenge findWisp = new Challenge(18, true, 1, EntityWisp.class, true);
 	public static final Challenge findApis = new Challenge(19, true, 1, EntityApis.class, true).setDifficulty(1);
 	public static final Challenge findIronGolem = new Challenge(20, true, 1, EntityIronGolem.class, true).setDifficulty(1);
@@ -70,13 +79,13 @@ public class Challenge {
 	public static final Challenge findRecord11 = new Challenge(23, true, 1, new ItemStack(Items.record_11)).setDifficulty(2);
 	public static final Challenge collectFish = new Challenge(24, true, 64, new ItemStack(Items.fish)).setDifficulty(1);
 	public static final Challenge collectGunpowder = new Challenge(25, true, 64, new ItemStack(Items.gunpowder)).setDifficulty(2);
-	public static final Challenge collectWitherSkulls = new Challenge(26, true, 10, new ItemStack(Blocks.skull, 1, 3)).setDifficulty(3);
+	public static final Challenge collectRedSand = new Challenge(26, true, 64, new ItemStack(Blocks.sand, 1, 1)).setDifficulty(2);
 	public static final Challenge bossKill = new Challenge(27, false, 1, TragicBoss.class, false).setDifficulty(2);
-	public static final Challenge survive2 = new Challenge(28, false, 360).setDifficulty(2).setMobRushChallenge();
+	public static final Challenge survive2 = new Challenge(28, false, 360).setDifficulty(2).setMobRushChallenge().setTimed();
 	public static final Challenge collectCooldownDefuse = new Challenge(29, true, 3, new ItemStack(TragicItems.CooldownDefuse)).setDifficulty(1);
-	public static final Challenge findStarlitCliffs = new Challenge(30, true, 1, TragicBiomes.StarlitCliffs).setDifficulty(1);
+	public static final Challenge findStarlitCliffs = new Challenge(30, true, 1, TragicBiomes.StarlitCliffs).setDifficulty(3);
 	public static final Challenge findMesa = new Challenge(31, true, 1, BiomeGenBase.mesa).setDifficulty(2);
-	public static final Challenge findMushroomIsland = new Challenge(32, true, 1, BiomeGenBase.mushroomIsland).setDifficulty(3);
+	public static final Challenge findMushroomIsland = new Challenge(32, true, 1, BiomeGenBase.mushroomIsland).setDifficulty(2);
 	public static final Challenge findBedrock = new Challenge(33, true, 1, Blocks.bedrock).setDifficulty(1);
 	public static final Challenge findWater = new Challenge(34, true, 1, Blocks.water);
 	public static final Challenge findAshenGrass = new Challenge(35, true, 1, TragicBlocks.AshenGrass).setDifficulty(1);
@@ -95,8 +104,8 @@ public class Challenge {
 	public static final Challenge killGhasts = new Challenge(48, false, 15, EntityGhast.class, false);
 	public static final Challenge findSlime = new Challenge(49, true, 1, EntitySlime.class, true);
 	public static final Challenge killZombiePigmen = new Challenge(50, false, 100, EntityPigZombie.class, false).setDifficulty(2);
-	public static final Challenge survive3 = new Challenge(51, false, 720).setDifficulty(3).setMobRushChallenge();
-	public static final Challenge cliffDiamond = new Challenge(52, true, 1, new ItemStack(Items.diamond)).setLocationBased(BiomeGenBase.extremeHills);
+	public static final Challenge survive3 = new Challenge(51, false, 720).setDifficulty(3).setMobRushChallenge().setTimed();
+	public static final Challenge cliffDiamond = new Challenge(52, true, 1, new ItemStack(Items.diamond)).setLocationBased(BiomeGenBase.extremeHills).setDifficulty(1);
 	public static final Challenge killVillagers = new Challenge(53, false, 5, EntityVillager.class, false).setDifficulty(1);
 	public static final Challenge collectEmeralds = new Challenge(54, true, 16, new ItemStack(Items.emerald)).setDifficulty(1);
 	public static final Challenge collectIronBlocks = new Challenge(55, true, 64, new ItemStack(Blocks.iron_block)).setDifficulty(2);
@@ -140,19 +149,42 @@ public class Challenge {
 	public static final Challenge collectChallengeScrolls = new Challenge(89, true, 5, new ItemStack(TragicItems.ChallengeScroll)).setDifficulty(2);
 	public static final Challenge findEnderChest = new Challenge(90, true, 1, new ItemStack(Blocks.ender_chest)).setDifficulty(2);
 	public static final Challenge killBats = new Challenge(91, false, 15, EntityBat.class, false).setDifficulty(1);
-	public static final Challenge longTermKilling = new Challenge(92, false, 100, EntityLivingBase.class, false).setDifficulty(1);
+	public static final Challenge longTermKilling = new Challenge(92, false, 100, EntityCreature.class, false).setDifficulty(1);
 	public static final Challenge killPlayer = new Challenge(93, false, 1, EntityPlayer.class, false).setDifficulty(3);
 	public static final Challenge findPlayer = new Challenge(94, true, 1, EntityPlayer.class, true).setDifficulty(1);
-	public static final Challenge longTermKilling2 = new Challenge(95, false, 500, EntityLivingBase.class, false).setDifficulty(2);
-	public static final Challenge longTermKilling3 = new Challenge(96, false, 1000, EntityLivingBase.class, false).setDifficulty(3);
+	public static final Challenge longTermKilling2 = new Challenge(95, false, 500, EntityCreature.class, false).setDifficulty(2);
+	public static final Challenge longTermKilling3 = new Challenge(96, false, 1000, EntityCreature.class, false).setDifficulty(3);
 	public static final Challenge killAnimals = new Challenge(97, false, 30, EntityAnimal.class, false).setDifficulty(1);
 	public static final Challenge findWolf = new Challenge(98, true, 1, EntityWolf.class, true).setDifficulty(1);
 	public static final Challenge collectRedstone = new Challenge(99, true, 64, new ItemStack(Items.redstone)).setDifficulty(1);
 	public static final Challenge killEnderDragon = new Challenge(100, false, 1, EntityDragon.class, false).setDifficulty(2);
 	public static final Challenge travelFar = new Challenge(101, false, 1, (double) 1000);
 	public static final Challenge travelFar2 = new Challenge(102, false, 1, (double) 5000).setDifficulty(1);
-	public static final Challenge travelFar3 = new Challenge(102, false, 1, (double) 10000).setDifficulty(2);
-	public static final Challenge travelFar4 = new Challenge(103, false, 1, (double) 100000).setDifficulty(3);
+	public static final Challenge travelFar3 = new Challenge(103, false, 1, (double) 10000).setDifficulty(2);
+	public static final Challenge travelFar4 = new Challenge(104, false, 1, (double) 100000).setDifficulty(3);
+	public static final Challenge findScorchedWasteland = new Challenge(105, true, 1, TragicBiomes.ScorchedWastelands).setDifficulty(1);
+	public static final Challenge findIreNetCannon = new Challenge(106, true, 1, new ItemStack(TragicItems.IreNetParticleCannon)).setDifficulty(2);
+	public static final Challenge findArchangel = new Challenge(107, true, 1, EntityArchangel.class, true).setDifficulty(1);
+	public static final Challenge findRanmas = new Challenge(108, true, 1, EntityRanmas.class, true).setDifficulty(3);
+	public static final Challenge findDarkForest = new Challenge(109, true, 1, TragicBiomes.DarkForest);
+	public static final Challenge killOverlordCore = new Challenge(110, false, 1, EntityOverlordCore.class, false).setDifficulty(3);
+	public static final Challenge findSynapse = new Challenge(111, true, 1, TragicBiomes.Synapse).setDifficulty(2);
+	public static final Challenge collectNanoBots = new Challenge(112, true, 64, new ItemStack(TragicItems.NanoBots)).setDifficulty(1);
+	public static final Challenge findWingsOfLiberation = new Challenge(113, true, 1, new ItemStack(TragicItems.WingsOfLiberation)).setDifficulty(2);
+	public static final Challenge killFusea = new Challenge(114, false, 10, EntityFusea.class, false).setDifficulty(1);
+	public static final Challenge findPermafrost = new Challenge(115, true, 1, TragicBlocks.Permafrost).setDifficulty(1);
+	public static final Challenge netherBed = new Challenge(116, true, 1, new ItemStack(Blocks.bed)).setLocationBased(BiomeGenBase.hell).setDifficulty(1);
+	public static final Challenge darkAeris = new Challenge(117, true, 1, new ItemStack(TragicBlocks.Aeris)).setLocationBased(TragicBiomes.DarkMarsh).setDifficulty(2);
+	public static final Challenge findAshenBadlands = new Challenge(118, true, 1, TragicBiomes.AshenBadlands).setDifficulty(1);
+	public static final Challenge findHallowedHills = new Challenge(119, true, 1, TragicBiomes.HallowedHills).setDifficulty(1);
+	public static final Challenge findPsygote = new Challenge(120, true, 1, EntityPsygote.class, true).setDifficulty(1);
+	public static final Challenge killHarvesters = new Challenge(121, false, 10, EntityHarvester.class, true).setDifficulty(2);
+	public static final Challenge collectConduit = new Challenge(122, true, 64, new ItemStack(TragicBlocks.Conduit)).setDifficulty(2);
+	public static final Challenge findQuicksand = new Challenge(123, true, 1, TragicBlocks.Quicksand).setDifficulty(1);
+	public static final Challenge killHunters = new Challenge(124, false, 30, EntityHunter.class, true).setDifficulty(1);
+	public static final Challenge findSoulChest = new Challenge(125, true, 1, TragicBlocks.SoulChest).setDifficulty(3);
+	public static final Challenge onABoat = new Challenge(126, true, 1, EntityBoat.class, true).setLocationBased(BiomeGenBase.deepOcean).setDifficulty(1);
+	public static final Challenge collectQuartz = new Challenge(127, true, 64, new ItemStack(Blocks.quartz_block));
 	
 	public final int challengeID;
 	public final boolean savesProgress;
@@ -177,7 +209,7 @@ public class Challenge {
 
 	public final static String[] challengeNames = new String[] {"null", "zombieKills", "collectWheat", "stayAlive", "stayAlive3", "survive", "endermanKills", "bossKills",
 		"collectLeather", "stayAlive7", "witherKill", "findEmerald", "findDiamonds", "collectAsh", "miniBossKills", "stinKills", "tragicNekoKills", "collectGoldenApples",
-		"findWisp", "findApis", "findIronGolem", "findSnowBlock", "iceBucketChallenge", "findRecord11", "collectFish", "collectGunpowder", "collectWitherSkulls", "bossKill",
+		"findWisp", "findApis", "findIronGolem", "findSnowBlock", "iceBucketChallenge", "findRecord11", "collectFish", "collectGunpowder", "collectRedSand", "bossKill",
 		"survive2", "collectCooldownDefuse", "findStarlitCliffs", "findMesa", "findMushroomIsland", "findBedrock", "findWater", "findAshenGrass", "findRedMushroomBlock",
 		"findSand", "findMossyCobblestone", "findIronOre", "findIceMountains", "findDeepOcean", "findNorVox", "killInklings", "findHorses", "killTragicMobs", "findOcelots",
 		"findVillagers", "killGhasts", "findSlime", "killZombiePigmen", "survive3", "cliffDiamond", "killVillagers", "collectEmeralds", "collectIronBlocks", "killPirah",
@@ -186,90 +218,68 @@ public class Challenge {
 		"collectRedFlowers", "goFishing3", "findMobStatue", "collectTNT", "collectEnderPearls", "findEpicLore", "findRareLore", "collectEpicLore", "collectUncommonLore",
 		"wearDiamondArmor", "wearPumpkin", "wearDarkArmor", "findEverlastingLight", "collectExoticFruit", "collectChallengeScrolls", "findEnderChest", "killBats",
 		"longTermKilling", "killPlayer", "findPlayer", "longTermKilling2", "longTermKilling3", "killAnimals", "findWolf", "collectRedstone", "killEnderDragon", "travelFar",
-		"travelFar2", "travelFar3", "travelFar4"
+		"travelFar2", "travelFar3", "travelFar4", "findScorchedWasteland", "findIreNetCannon", "findArchangel", "findRanmas", "findDarkForest", "killOverlordCore",
+		"findSynapse", "collectNanoBots", "findWingsOfLiberation", "killFusea", "findPermafrost", "netherBed", "darkAeris", "findAshenBadlands", "findHallowedHills",
+		"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz"
 	};
-
+	
 	public Challenge(int id, boolean flag, int limit)
 	{
+		if (challengeList[id] != null) throw new IllegalArgumentException("There is already a Challenge that has that id!");
+		challengeList[id] = this;
 		this.challengeID = id;
 		this.savesProgress = flag;
-		this.isItemChallenge = false;
 		this.requirement = limit;
-		this.isTimed = true;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, Class oclass, boolean flag2)
 	{
-		this.challengeID = id;
-		this.savesProgress = flag;
-		this.isItemChallenge = false;
-		this.requirement = limit;
+		this(id, flag, limit);
 		this.challengeClass = oclass;
 		this.isTargetChallenge = flag2;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, ItemStack stack)
 	{
-		this.challengeID = id;
-		this.savesProgress = flag;
+		this(id, flag, limit);
 		this.isItemChallenge = true;
-		this.requirement = limit;
+		if (stack == null) throw new IllegalArgumentException("Itemstack for Challenge is null!");
 		this.challengeItem = stack;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, Block block)
 	{
-		this.challengeID = id;			
-		this.savesProgress = flag;
-		this.isItemChallenge = false;
-		this.requirement = limit;
+		this(id, flag, limit);
 		this.challengeBlock = block;
 		this.isBlockChallenge = true;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, double range)
 	{
-		this.challengeID = id;
-		this.savesProgress = flag;
-		this.requirement = limit;
+		this(id, flag, limit);
 		this.isLocationBased = true;
 		this.challengeRange = range;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, BiomeGenBase biome)
 	{
-		this.challengeID = id;
-		this.savesProgress = flag;
-		this.isItemChallenge = true;
-		this.requirement = limit;
+		this(id, flag, limit);
 		this.isLocationBased = true;
 		this.challengeBiome = biome;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, int loreRarity)
 	{
-		this.challengeID = id;
-		this.savesProgress = flag;
+		this(id, flag, limit);
 		this.isLoreChallenge = true;
-		this.requirement = limit;
 		this.loreRarity = loreRarity;
-		challengeList[id] = this;
 	}
 
 	public Challenge(int id, boolean flag, int limit, ItemStack[] armor)
 	{
-		this.challengeID = id;
-		this.savesProgress = flag;
+		this(id, flag, limit);
 		this.isArmorChallenge = true;
-		this.requirement = limit;
 		this.challengeArmor = armor;
-		challengeList[id] = this;
 	}
 
 	public Challenge setMobRushChallenge()
@@ -287,15 +297,16 @@ public class Challenge {
 	public Challenge setLocationBased(BiomeGenBase biome)
 	{
 		this.challengeBiome = biome;
-		return setLocationBased();
-	}
-
-	public Challenge setLocationBased()
-	{
 		this.isLocationBased = true;
 		return this;
 	}
 
+	public Challenge setTimed()
+	{
+		this.isTimed = true;
+		return this;
+	}
+	
 	public static String getNameFromID(int id)
 	{
 		return StatCollector.translateToLocal("challenge." + challengeNames[id] + ".name");

@@ -166,9 +166,17 @@ public class ItemChallenge extends Item {
 	{
 		if (stack.getItemDamage() == 250)
 		{
+			if (stack.hasTagCompound() && stack.stackTagCompound.hasKey("challengeID"))
+			{
+				Challenge challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
+				if (challenge == null) return;
+				EnumChatFormatting format = challenge.difficulty == 1 ? EnumChatFormatting.AQUA : (challenge.difficulty == 2 ? EnumChatFormatting.BLUE : (challenge.difficulty == 3 ? EnumChatFormatting.GOLD : EnumChatFormatting.WHITE));
+				par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
+				String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
+				par2List.add("Difficulty: " + format + diff);
+			}
 			par2List.add(EnumChatFormatting.GOLD + "Challenge complete!");
-			par2List.add(EnumChatFormatting.WHITE + "What are you doing reading this,");
-			par2List.add(EnumChatFormatting.WHITE + "get your reward!");
+			par2List.add(EnumChatFormatting.WHITE + "What are you doing reading this, get your reward!");
 		}
 		else if (stack.getItemDamage() == 0)
 		{
@@ -186,6 +194,7 @@ public class ItemChallenge extends Item {
 			String[] subs = LoreHelper.splitDesc(Challenge.getDesc(challenge.challengeID));
 			for (String s : subs) par2List.add(s);
 			par2List.add("Progress: " + stack.stackTagCompound.getInteger("challengeProgress") + "/ " + challenge.requirement);
+			if (challenge.isLocationBased && stack.stackTagCompound.hasKey("challengeLocation")) par2List.add("Proper location: " + (stack.stackTagCompound.getBoolean("challengeLocation") ? "Yes" : "No"));
 		}
 	}
 
@@ -213,7 +222,7 @@ public class ItemChallenge extends Item {
 					if (inv[i] != null && challenge.challengeItem != null)
 					{
 						invStack = inv[i];
-						if (invStack.getItem() == challenge.challengeItem.getItem())
+						if (invStack.getItem() == challenge.challengeItem.getItem() && invStack.getItemDamage() == challenge.challengeItem.getItemDamage())
 						{
 							amt += invStack.stackSize;
 						}
@@ -274,7 +283,7 @@ public class ItemChallenge extends Item {
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.GreaterStin")),
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.StinQueen")),
 				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VoxStellarum")),
-				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.Aegar") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.Aegar"))};
+				new ItemStack(TragicItems.SpawnEgg, 1, TragicEntityList.stringToIDMapping.get("TragicMC.VolatileFusea") == null ? 0 : TragicEntityList.stringToIDMapping.get("TragicMC.VolatileFusea"))};
 		return stacks;
 	}
 

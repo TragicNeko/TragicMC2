@@ -140,7 +140,7 @@ public class TragicMC
 		if (!TragicConfig.mobsOnly) 
 		{
 			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
-			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.ChallengeItemEvents());
+			if (TragicConfig.allowChallengeScrolls) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.ChallengeItemEvents());
 		}
 
 		if (TragicConfig.allowDoom)
