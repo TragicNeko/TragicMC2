@@ -69,39 +69,18 @@ public class KeyInputEvents extends Gui {
 		{
 			boolean flag = player.isPotionActive(TragicPotion.Flight.id);
 
-			if (player != null && Keyboard.isCreated() && (flag || player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TragicItems.WingsOfLiberation)
-					&& player.ticksExisted % 2 == 0)
+			if (player != null && Keyboard.isCreated() && flag && player.ticksExisted % 2 == 0)
 			{
-				int dur;
+				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
+				int dur = effect.getDuration();
 
-				if (flag)
+				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE))
 				{
-					PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
-					dur = effect.getDuration();
+					player.motionY = player.isSprinting() ? 0.245D : 0.165D;
 				}
-				else
+				else if (player.isSneaking())
 				{
-					dur = player.getCurrentEquippedItem().getItemDamage() <= 500 ? 100 : 0;
-					//player.getCurrentEquippedItem().attemptDamageItem(1, player.worldObj.rand);
-				}
-
-				if (dur >= 40)
-				{
-					if (Keyboard.isKeyDown(Keyboard.KEY_SPACE))
-					{
-						if (player.isSprinting())
-						{
-							player.motionY = 0.215D;
-						}
-						else
-						{
-							player.motionY = 0.135D;
-						}
-					}
-					else if (player.isSneaking())
-					{
-						player.motionY = -0.455D;
-					}
+					player.motionY = -0.455D;
 				}
 			}
 		}
@@ -110,25 +89,18 @@ public class KeyInputEvents extends Gui {
 		{
 			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Hacked);
 
-			if (effect.getDuration() >= 5)
-			{
-				ItemStack current = player.getCurrentEquippedItem();
-				if (current != null && rand.nextInt(1048) == 0 && rand.nextInt(1048) == 42) player.dropOneItem(true);
-				if (player.swingProgress == 1.0F) player.swingProgress = 0.0F;
-				MovementInput input = new MovementInput();
-				if (rand.nextInt(16) == 0) input.jump = true;
-				if (rand.nextInt(4) == 0) input.moveForward = rand.nextFloat() * 1.4F - rand.nextFloat() * 1.4F;
-				if (rand.nextInt(4) == 0) input.moveStrafe = rand.nextFloat() * 1.4F - rand.nextFloat() * 1.4F;
-				if (rand.nextInt(32) == 0) input.sneak = true;
-				player.movementInput = input;
-			}
-			else
-			{
-				player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
-			}
+			ItemStack current = player.getCurrentEquippedItem();
+			if (current != null && rand.nextInt(1048) == 0 && rand.nextInt(1048) == 42) player.dropOneItem(true);
+			if (player.swingProgress == 1.0F) player.swingProgress = 0.0F;
+			MovementInput input = new MovementInput();
+			if (rand.nextInt(4) == 0) input.jump = true;
+			if (rand.nextInt(4) == 0) input.moveForward = rand.nextFloat() * 1.4F - rand.nextFloat() * 1.4F;
+			if (rand.nextInt(4) == 0) input.moveStrafe = rand.nextFloat() * 1.4F - rand.nextFloat() * 1.4F;
+			if (rand.nextInt(32) == 0) input.sneak = true;
+			player.movementInput = input;
 		}
 
-		if (player != null && !(player.movementInput instanceof MovementInputFromOptions)) player.movementInput = new MovementInputFromOptions(Minecraft.getMinecraft().gameSettings);
+		if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked)) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
 
 		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation) && player.ticksExisted % 2 == 0)
 		{

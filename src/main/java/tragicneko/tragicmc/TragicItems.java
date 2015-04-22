@@ -1,6 +1,7 @@
 package tragicneko.tragicmc;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -8,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -609,10 +611,11 @@ public class TragicItems {
 			@Override
 			public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
 			{
-				if (!world.isRemote && par5 && entity instanceof EntityPlayer)
+				if (!world.isRemote && par5 && entity instanceof EntityPlayer && TragicConfig.allowFlight)
 				{
 					if (!entity.onGround && entity.ticksExisted % 20 == 0) itemstack.damageItem(1, (EntityPlayer) entity);
 					entity.fallDistance = 0F;
+					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 5));
 				}
 			}
 		}.setUnlocalizedName("tragicmc.wingsOfLiberation").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
