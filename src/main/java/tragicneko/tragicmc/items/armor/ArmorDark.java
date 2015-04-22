@@ -57,12 +57,12 @@ public class ArmorDark extends TragicArmor {
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
-		return tragicneko.tragicmc.client.ClientProxy.modelsDark[slot];
+		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsDark[slot] : null;
 	}
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return texture; //slot == 2 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png";
+		return TragicConfig.allowArmorModels ? texture : (slot == 2 ? "tragicmc:textures/armor/Dark2.png" : "tragicmc:textures/armor/Dark1.png");
 	}
 }

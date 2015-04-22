@@ -48,6 +48,7 @@ import tragicneko.tragicmc.items.weapons.WeaponGravitySpike;
 import tragicneko.tragicmc.items.weapons.WeaponGuiltyThorn;
 import tragicneko.tragicmc.items.weapons.WeaponHarmonyBell;
 import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
+import tragicneko.tragicmc.items.weapons.WeaponIreParticleCannon;
 import tragicneko.tragicmc.items.weapons.WeaponMourningStar;
 import tragicneko.tragicmc.items.weapons.WeaponNekoLauncher;
 import tragicneko.tragicmc.items.weapons.WeaponParanoia;
@@ -269,6 +270,14 @@ public class LoreHelper {
 			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 2), new EnchantEntry(Enchantment.punch, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.punch, 2), new EnchantEntry(Enchantment.flame, 1), new EnchantEntry(Enchantment.power, 1)}});
 
+		addToLoreMap(WeaponIreParticleCannon.class, new Lore[] {new Lore(25, "Accelerate!", 1), new Lore(15, "Fire! Fire! Fire!", 2), new Lore(5, "Kill! Kill! Kill!", 3),
+			new Lore(25, "You look pretty shady, dontcha?", 1), new Lore(15, "Get away from me you creeper!", 1), new Lore(5, "Take a picture, it'll last longer.", 2),
+			new Lore(25, "This is why I don't reply to PMs!", 2), new Lore(15, "Seriously, stop following me!", 1), new Lore(5, "Why are you stalking me?", 1),
+			new Lore(5, "Seriously, can you not do that!", 2), new Lore(10, "You ought not to have done that!", 2), new Lore(5, "Prepare to be particle accelerated!", 3),
+			new Lore(15, "I will give you $5 if you could not do that.", 3), new Lore(5, "Way to slide into those DMs, buddy.", 3), new Lore(5, "I'll never get that image out of my head.", 3)},
+			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1), new EnchantEntry(Enchantment.knockback, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.knockback, 3)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.knockback, 5)}});
+		
 		addToLoreMap(WeaponMourningStar.class, new Lore[] {new Lore(25, "Sleep is for the weak!", 1), new Lore(15, "Dy-no-mite!", 1), new Lore(5, "Kaboom.", 1), new Lore(5, "Nuke!", 3),
 			new Lore(25, "For SPARTAAAAAA!", 3), new Lore(15, "Just die already!", 2), new Lore(15, "I'm TNT, I'm dynamite!", 3), new Lore(25, "I have an explosive temper.", 2),
 			new Lore(5, "Enemy airstrike inbound!", 3)},
