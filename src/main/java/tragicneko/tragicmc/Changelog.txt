@@ -3796,6 +3796,14 @@ Increased default health of Kitsunakuma, increased armor of Polaris and Empariah
 Added texture for Hunter's armor, completely forgot about doing that
 Added NBT Tags for new mobs, removed unnecessary datawatcher from Fusea
 Suppressed warning for Neko Wand's ore wand aspect (only a DEBUG thing)
+Modified Ranmas to be allowed to be damaged by normal entities but only 1 damage will be done to it max
+Experimented a bit with using a Lore json file for the weapon lores again, referred to the Morph mod in order to implement it in it's current state but
+it's not going to be done in this release as too much testing is required for it
+Fixed Hacked not taking effect due to fix for it, improved Flight and Wings of Liberation handling of it
+Added lores for IreNet Particle Cannon, wasn't going to do this at first but may as well since I've done all this other stuff while testing
+Send message to player on world join notifying them if the Flight potion effect is disabled, this will notify for each Dimension change but shouldn't
+be too much of an annoyance
+Added config option for Flight notify as well as for armor models
 This is going to be the release version number, these updates are just small balancing/stability updates so they aren't being counted towards it
 
 New Mobs (Save for next update):
@@ -3810,7 +3818,9 @@ a dark version of the player, which will aggressively attack the player, if the 
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 --Reminders-
+Add the special mobs
 Add more boss and trap structures
+Add new amulets, add new Doomsdays
 Create particles and add mob sounds
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
@@ -3818,3 +3828,5 @@ Change the LoreHelper to use json files so that people can set up their own lore
 Update the config to get each actual Property instead of dealing with each of the raw types directly
 Add each of the lores and the property names to the localizations
 Find a way to speed up large structure generation, most likely by generating them in parts
+Eventually convert the structures to matrix form so that I can apply rotations and such when necessary for some more variation, this would also be
+useful for multipart structures since I could store them as matrices
