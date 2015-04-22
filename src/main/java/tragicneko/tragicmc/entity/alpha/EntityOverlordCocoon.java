@@ -313,16 +313,16 @@ public class EntityOverlordCocoon extends TragicBoss {
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
-		if (src.isProjectile()) return false;
+		if (src.isProjectile() || this.worldObj.isRemote) return false;
 
-		if (src.getEntity() instanceof EntityLivingBase && !this.worldObj.isRemote)
+		if (src.getEntity() instanceof EntityLivingBase)
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
 			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
 			
 			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag && this.hurtResistantTime == 0 || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0)
 			{
 				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, (float) TragicConfig.bossDamageCap);
 
@@ -460,6 +460,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 	protected void onDeathUpdate()
 	{
 		++this.deathTime;
+		this.hurtResistantTime = 0;
+		this.hurtTime = 0;
 
 		if (this.deathTime >= 200)
 		{
