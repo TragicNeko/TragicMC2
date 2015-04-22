@@ -3804,6 +3804,8 @@ Added lores for IreNet Particle Cannon, wasn't going to do this at first but may
 Send message to player on world join notifying them if the Flight potion effect is disabled, this will notify for each Dimension change but shouldn't
 be too much of an annoyance
 Added config option for Flight notify as well as for armor models
+Fixed players being able to stand on statues, this is to prevent kicks from multiplayer environments
+Added Ranmas animations, fixed them not properly being set, also fixed bug from previous fix that prevented it from actually charging
 This is going to be the release version number, these updates are just small balancing/stability updates so they aren't being counted towards it
 
 New Mobs (Save for next update):
@@ -3829,4 +3831,4 @@ Update the config to get each actual Property instead of dealing with each of th
 Add each of the lores and the property names to the localizations
 Find a way to speed up large structure generation, most likely by generating them in parts
 Eventually convert the structures to matrix form so that I can apply rotations and such when necessary for some more variation, this would also be
-useful for multipart structures since I could store them as matrices
+useful for multipart structures since I could store them as matrices and rotate certain parts of them (as in the case of strongholds and mineshafts)
