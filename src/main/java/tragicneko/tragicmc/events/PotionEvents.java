@@ -64,7 +64,6 @@ public class PotionEvents {
 		if (event.entity instanceof EntityPlayerMP)
 		{
 			TragicMC.net.sendTo(new MessageFlight(TragicConfig.allowFlight), (EntityPlayerMP) event.entity);
-			if (!TragicConfig.allowFlight && TragicConfig.allowFlightNotify) ((EntityPlayerMP) event.entity).addChatMessage(new ChatComponentText("Flight potion effect is disabled due to the server not allowing it. Change the option in your server.properties file if you want it enabled."));
 		}
 	}
 
