@@ -23,7 +23,6 @@ import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 public class EntityRanmas extends TragicMob {
 
 	private double[] motions = new double[] {0, 0, 0};
-	private int chargeTicks = 0;
 	private int chargeBuffer = 120;
 
 	public EntityRanmas(World par1World) {
@@ -81,26 +80,42 @@ public class EntityRanmas extends TragicMob {
 	{
 		return false;
 	}
+	
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(16, Integer.valueOf(0)); //charge ticks
+	}
+	
+	private void setChargeTicks(int i)
+	{
+		this.dataWatcher.updateObject(16, i);
+	}
+	
+	public int getChargeTicks()
+	{
+		return this.dataWatcher.getWatchableObjectInt(16);
+	}
 
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.worldObj.isRemote || this.chargeTicks == 0) this.motionX = this.motionY = this.motionZ = 0;
+		if (this.worldObj.isRemote || this.getChargeTicks() == 0) this.motionX = this.motionY = this.motionZ = 0;
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) return;
 
 		if (this.chargeBuffer > 0) --this.chargeBuffer;
-
-		if (this.chargeTicks > 0)
+		if (this.getChargeTicks() > 0)
 		{
-			this.chargeTicks--;
+			this.setChargeTicks(this.getChargeTicks() - 1);
 			this.chargeBuffer = 40 + (int) (60 * (this.getHealth() / this.getMaxHealth()));
 
 			if (this.isCollidedHorizontally)
 			{
 				TragicMC.logInfo("Ranmas was collided");
-				this.chargeTicks = 0;
+				this.setChargeTicks(0);
 
 				double x = this.motions[0];
 				double y = this.motions[1];
@@ -116,18 +131,20 @@ public class EntityRanmas extends TragicMob {
 					this.attackEntityFrom(DamageSource.fall, f);
 				}
 			}
+			this.motionX = this.motions[0];
+			this.motionY = this.motions[1];
+			this.motionZ = this.motions[2];
 		}
 		else
 		{
 			if (this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) && this.ticksExisted % 5 == 0 && rand.nextInt(8) == 0 && this.chargeBuffer == 0)
 			{
-				double d0 = MathHelper.clamp_double(this.getAttackTarget().posX - this.posX, -2.4D, 2.4D);
-				double d1 = MathHelper.clamp_double(this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F), -2.4D, 2.4D);
-				double d2 = MathHelper.clamp_double(this.getAttackTarget().posZ - this.posZ, -2.4D, 2.4D);
-				double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
-
+				double d0 = MathHelper.clamp_double(this.getAttackTarget().posX - this.posX, -2.4D, 3.2D);
+				double d1 = MathHelper.clamp_double(this.getAttackTarget().posY + this.getAttackTarget().height / 2.0 - (this.posY + this.height / 2.0F), -3.2D, 3.2D);
+				double d2 = MathHelper.clamp_double(this.getAttackTarget().posZ - this.posZ, -3.2D, 3.2D);
+				
 				this.motions = new double[] {d0, d1, d2};
-				this.chargeTicks = 30;
+				this.setChargeTicks(15);
 			}
 			else if (this.getAttackTarget() == null && this.ticksExisted % 20 == 0)
 			{
@@ -136,7 +153,13 @@ public class EntityRanmas extends TragicMob {
 			}
 		}
 		
-		if (this.ticksExisted % 20 == 0) TragicMC.logWarning("Health: " + this.getHealth());
+		if (this.ticksExisted % 10 == 0)
+			{
+			TragicMC.logWarning("Motions: " + this.motions[0] + ", " + this.motions[1] + ", " + this.motions[2]);
+			TragicMC.logWarning("Has target: " + (this.getAttackTarget() != null));
+			TragicMC.logWarning("Charge buffer: " + this.chargeBuffer);
+			TragicMC.logWarning("Charge ticks: " + this.getChargeTicks());
+			}
 	}
 
 	@Override
@@ -171,10 +194,10 @@ public class EntityRanmas extends TragicMob {
 		boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), f * (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		TragicMC.logInfo("Damage value was " + f);
 
-		if (flag && this.chargeTicks > 0)
+		if (flag && this.getChargeTicks() > 0)
 		{
-			par1Entity.motionX *= 2.25D;
-			par1Entity.motionZ *= 2.25D;
+			par1Entity.motionX += this.motionX;
+			par1Entity.motionZ += this.motionZ;
 		}
 		return flag;
 	}
@@ -198,7 +221,7 @@ public class EntityRanmas extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("chargeTicks")) this.chargeTicks = tag.getInteger("ageTicks");
+		if (tag.hasKey("chargeTicks")) this.setChargeTicks(tag.getInteger("chageTicks"));
 		if (tag.hasKey("chargeBuffer")) this.chargeBuffer = tag.getInteger("chargeBuffer");
 		if (tag.hasKey("chargeX") && tag.hasKey("chargeY") && tag.hasKey("chargeZ")) this.motions = new double[] {tag.getDouble("chargeX"), tag.getDouble("chargeY"), tag.getDouble("chargeZ")};
 	}
@@ -207,7 +230,7 @@ public class EntityRanmas extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("chargeTicks", this.chargeTicks);
+		tag.setInteger("chargeTicks", this.getChargeTicks());
 		tag.setInteger("chargeBuffer", this.chargeBuffer);
 		tag.setDouble("chargeX", this.motions[0]);
 		tag.setDouble("chargeY", this.motions[1]);

@@ -79,7 +79,7 @@ public class ModelPsygote extends ModelBase
 		if (psy.getFiringTicks() >= 40 || psy.getSwitchTicks() > 0)
 		{			
 			center.rotateAngleX = this.simplifyAngle(psy.ticksExisted, 5.0F) * 0.16F;
-			center.rotateAngleY = (float) (Math.cos(psy.ticksExisted / 1.25D) * Math.PI);
+			center.rotateAngleY = ((psy.ticksExisted * 5.25F) % 180.0F) - 90F;
 		}
 		
 		if (psy.getHurtTime() > 0)
