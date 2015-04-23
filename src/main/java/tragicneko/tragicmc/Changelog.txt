@@ -3806,6 +3806,19 @@ be too much of an annoyance
 Added config option for Flight notify as well as for armor models
 Fixed players being able to stand on statues, this is to prevent kicks from multiplayer environments
 Added Ranmas animations, fixed them not properly being set, also fixed bug from previous fix that prevented it from actually charging
+Fixed Overlord Cocoon taking extra damage while being hurt resistant
+Changed Flight notify to get the client's config setting for it instead of the server's
+Going through and making sure Challenges are working
+Fixed Wither Kill challenge
+Changed Wither Skull collection challenge to Red Sand since Skulls have a weird itemblock issue
+Fixed Living Entities challenge, fixed biome challenges
+Added lots of new challenges for the new content of the mod
+Added more clear descriptions for Challenges, on completion tells you the completed challenge and the difficulty, in progress tells you location-specific
+information now
+Fixed id offsets for Challenges, added exceptions for if an ID is already in use, simplified Challenge constructors
+Improved Reach targetting, it now works way more effectively using bounding boxes of blocks and interrupting the hit before it gets to an unsuspecting
+target
+Updated TileEntity names to avoid mixups with other mods that may have similarly named tile entities
 This is going to be the release version number, these updates are just small balancing/stability updates so they aren't being counted towards it
 
 New Mobs (Save for next update):
