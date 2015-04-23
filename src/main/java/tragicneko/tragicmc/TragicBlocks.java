@@ -234,7 +234,7 @@ public class TragicBlocks {
 			SummonBlock = (new BlockSummon());
 			GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");
 
-			GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "summonBlock");
+			GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "tragicmc.summonBlock");
 
 			Luminescence = (new BlockLuminescence().setBlockName("tragicmc.luminescence"));
 			GameRegistry.registerBlock(Luminescence, ItemBlock.class, "luminescence");
@@ -284,12 +284,12 @@ public class TragicBlocks {
 		SummonBlock = (new BlockSummon());
 		GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");
 
-		GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "summonBlock");
+		GameRegistry.registerTileEntity(TileEntitySummonBlock.class, "tragicmc.summonBlock");
 
 		StructureSeed = (new BlockStructureSeed());
 		GameRegistry.registerBlock(StructureSeed, ItemBlockStructureSeeds.class, "structureSeed");
 
-		GameRegistry.registerTileEntity(TileEntityStructureSeed.class, "structureSeed");
+		GameRegistry.registerTileEntity(TileEntityStructureSeed.class, "tragicmc.structureSeed");
 
 		DisappearingBlock = (new BlockDisappearing(false).setBlockName("tragicmc.disappearingBlock"));
 		GameRegistry.registerBlock(DisappearingBlock, ItemBlock.class, "disappearingBlock");
@@ -327,7 +327,7 @@ public class TragicBlocks {
 		TimeDisruptionCube = (new BlockTimeDisruptor().setBlockName("tragicmc.timeDisruptor").setBlockTextureName("tragicmc:DimensionBlock"));
 		GameRegistry.registerBlock(TimeDisruptionCube, ItemBlock.class, "timeDisruptor");
 
-		GameRegistry.registerTileEntity(TileEntityTimeDisruptor.class, "timeDisruptor");
+		GameRegistry.registerTileEntity(TileEntityTimeDisruptor.class, "tragicmc.timeDisruptor");
 
 		TragicOres = (new BlockTragicOres());
 		GameRegistry.registerBlock(TragicOres, ItemBlockOres.class, "tragicOres");
@@ -488,7 +488,7 @@ public class TragicBlocks {
 
 		Aeris = (new BlockAeris());
 		GameRegistry.registerBlock(Aeris, ItemBlockAeris.class, "aeris");
-		GameRegistry.registerTileEntity(TileEntityAeris.class, "aeris");
+		GameRegistry.registerTileEntity(TileEntityAeris.class, "tragicmc.aeris");
 
 		MoltenRock = (new BlockMoltenRock());
 		GameRegistry.registerBlock(MoltenRock, ItemBlock.class, "moltenRock");
@@ -547,7 +547,7 @@ public class TragicBlocks {
 
 		SoulChest = new BlockSoulChest(0).setBlockName("tragicmc.soulChest").setHardness(100F).setStepSound(Block.soundTypeWood).setResistance(1000F).setBlockTextureName("tragicmc:SoulChest");
 		GameRegistry.registerBlock(SoulChest, ItemBlock.class, "soulChest");
-		GameRegistry.registerTileEntity(TileEntitySoulChest.class, "soulChest");
+		GameRegistry.registerTileEntity(TileEntitySoulChest.class, "tragicmc.soulChest");
 
 		IcedDirt = new BlockGeneric(Material.ground, "shovel", 0).setBlockName("tragicmc.icedDirt").setHardness(2.5F).setResistance(0.75F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tragicmc:IcedDirt");
 		GameRegistry.registerBlock(IcedDirt, ItemBlock.class, "icedDirt");
