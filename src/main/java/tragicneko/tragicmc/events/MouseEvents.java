@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -43,10 +44,10 @@ public class MouseEvents {
 	@SubscribeEvent
 	public void onMouseInput(MouseEvent event)
 	{
-		Minecraft.getMinecraft();
-		BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
+		Minecraft mc = Minecraft.getMinecraft();
+		BlockGenericLeaves.fancyGraphics = mc.isFancyGraphicsEnabled();
 
-		if (event.buttonstate && event.button == 0)
+		if (event.buttonstate && event.button == 0 && mc.inGameHasFocus)
 		{
 			if (mc.thePlayer == null) return;
 
@@ -69,13 +70,13 @@ public class MouseEvents {
 			float f8 = f3 * f5;
 			double limit = player.capabilities.isCreativeMode ? 2.5D : 1.5D;
 			double enchantLimit = limit + (TragicConfig.allowReach ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) * 1.5D : 0);
-			
+
 			IAttributeInstance ins = player.getEntityAttribute(AmuletModifier.reach);
 			double d3 = ins == null ? 0.0 : ins.getAttributeValue();
 			enchantLimit += d3;
 			//TragicMC.logInfo("Reach modifier was applied to the player. Amount was " + d3);
 			double box = 0.135D;
-			
+
 			AxisAlignedBB bb;
 
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
@@ -83,39 +84,40 @@ public class MouseEvents {
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
 				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord, vec31.yCoord, vec31.zCoord).expand(box, box, box);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
-				Entity entity;
-				
+
 				if (list.size() > 0 && d <= limit) break;
-				
-				if (list.size() > 0)
+
+				List<int[]> list2 = WorldHelper.getBlocksInSphericalRange(world, 1.00, vec31.xCoord, vec31.yCoord, vec31.zCoord);
+				Block block;
+				AxisAlignedBB bb2;
+
+				for (int[] coords : list2)
 				{
-					List<int[]> list2 = WorldHelper.getBlocksInSphericalRange(world, 1.0, vec31.xCoord - 0.5, vec31.yCoord - 0.5, vec31.zCoord - 0.5);
-					int[] coords;
-					Block block;
-					
-					for (int j = 0; j < list2.size(); j++)
+					block = world.getBlock(coords[0], coords[1], coords[2]);
+
+					if (block.getMaterial() != Material.air && !block.getMaterial().isLiquid())
 					{
-						coords = list2.get(j);
-						block = world.getBlock(coords[0], coords[1], coords[2]);
-						
-						if (block != Blocks.air && block != TragicBlocks.Luminescence && block != TragicBlocks.WitheringGas && block != TragicBlocks.CorruptedGas) break meow;
+						bb2 = block.getCollisionBoundingBoxFromPool(world, coords[0], coords[1], coords[2]);
+						if (bb2 != null && bb.intersectsWith(bb2))
+						{
+							TragicMC.logWarning(block + " had a colliding bounding box. Stopping hit.");
+							break meow;
+						}
 					}
 				}
 
-				for (int i = 0; i < list.size(); i++)
+				for (Entity entity : list)
 				{
-					entity = list.get(i);
-					
 					if (entity instanceof IMultiPart)
 					{
-						TragicMC.logInfo("Entity attacked with reach at a distance of " + d);
+						TragicMC.logWarning("Entity attacked with reach at a distance of " + d);
 						TragicMC.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
 						break meow;
 					}
 
 					if (!(entity instanceof EntityItem) && !(entity instanceof EntityXPOrb) && !(entity instanceof EntityArrow) && entity != player)
 					{
-						TragicMC.logInfo("Entity attacked with reach at a distance of " + d);
+						TragicMC.logWarning("Entity attacked with reach at a distance of " + d);
 						TragicMC.net.sendToServer(new MessageAttack(entity));
 						break meow;
 					}
