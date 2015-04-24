@@ -3832,7 +3832,8 @@ Removed some unnecessary targetting for some mobs, improved some mob's flight ab
 in that particular column in the world, this might be moved to a WorldHelper method so that other things like Doomsdays can use it
 Added Empariah Cave, since it's easier to add structures now, it generates in Frozen Tundra biomes with packed ice, added to config
 Modified StructureWorldGen to give more weight to the horizon of the world, this allows more chances for surface Structures to generate
-Fixed Ragr model offsets and animations
+Fixed Ragr model offsets and animations, fixed Ragr leg animations
+Fixed Sludge/Drudge generating as normal Quicksand, this was due to a bug in BlockFalling
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
