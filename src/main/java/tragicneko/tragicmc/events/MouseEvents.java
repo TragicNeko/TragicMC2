@@ -98,11 +98,7 @@ public class MouseEvents {
 					if (block.getMaterial() != Material.air && !block.getMaterial().isLiquid())
 					{
 						bb2 = block.getCollisionBoundingBoxFromPool(world, coords[0], coords[1], coords[2]);
-						if (bb2 != null && bb.intersectsWith(bb2))
-						{
-							TragicMC.logWarning(block + " had a colliding bounding box. Stopping hit.");
-							break meow;
-						}
+						if (bb2 != null && bb.intersectsWith(bb2)) break meow;
 					}
 				}
 
@@ -110,14 +106,12 @@ public class MouseEvents {
 				{
 					if (entity instanceof IMultiPart)
 					{
-						TragicMC.logWarning("Entity attacked with reach at a distance of " + d);
 						TragicMC.net.sendToServer(new MessageAttack(((IMultiPart) entity).getDefaultPart()));
 						break meow;
 					}
 
 					if (!(entity instanceof EntityItem) && !(entity instanceof EntityXPOrb) && !(entity instanceof EntityArrow) && entity != player)
 					{
-						TragicMC.logWarning("Entity attacked with reach at a distance of " + d);
 						TragicMC.net.sendToServer(new MessageAttack(entity));
 						break meow;
 					}

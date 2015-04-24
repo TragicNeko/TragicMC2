@@ -9,12 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.util.MathHelper;
-import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -234,12 +230,11 @@ public class MiscEvents {
 							armor == TragicItems.OverlordBoots) i++;
 				}
 			}
-			
+
 			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", TragicConfig.modifierAmts[24] * i, 0);
 			IAttributeInstance ins = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
 			if (ins != null) ins.removeModifier(mod);
 			if (i > 0 && ins != null) ins.applyModifier(mod);
 		}
 	}
-
 }

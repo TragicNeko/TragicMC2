@@ -1,12 +1,11 @@
 package tragicneko.tragicmc.events;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.EnumDifficulty;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -60,9 +59,8 @@ public class RespawnDoomEvents {
 				}
 			}
 		}
-		
+
 		property.setCooldown(0);
 		TragicMC.net.sendTo(new MessageDoom(event.player), (EntityPlayerMP)event.player);
 	}
-
 }
