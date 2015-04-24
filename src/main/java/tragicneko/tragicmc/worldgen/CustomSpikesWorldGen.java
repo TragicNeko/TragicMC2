@@ -17,6 +17,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenCrystal;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -34,10 +35,11 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 		boolean flag = biome instanceof BiomeGenDecayingWasteland || biome instanceof BiomeGenFrozenTundra;
 
-		if (!flag && biome != TragicBiomes.TaintedSpikes || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
+		if (biome == TragicBiomes.TaintedIsles || biome == TragicBiomes.TaintedScarlands) return;
+		if (!flag && !(biome instanceof BiomeGenTaintedSpikes) || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
 		if (flag && random.nextInt(4) != 0 && !(biome instanceof BiomeGenCrystal)|| !flag && !TragicConfig.allowLargeSpikeGen && !(biome instanceof BiomeGenCrystal)) return;
 
-		int relays = flag ? 4 : (biome instanceof BiomeGenCrystal ? 8 : 6);
+		int relays = flag ? 4 : (biome instanceof BiomeGenCrystal ? 8 : (biome == TragicBiomes.TaintedSpikes ? 6 : 2));
 		Block spike = flag ? (biome instanceof BiomeGenFrozenTundra ? Blocks.packed_ice : TragicBlocks.BoneBlock ): (biome instanceof BiomeGenCrystal ? TragicBlocks.Crystal : TragicBlocks.DarkStone);
 		int meta = flag ? (biome instanceof BiomeGenFrozenTundra ? 0 : random.nextInt(2)) : (biome instanceof BiomeGenCrystal ? 0 : 14);
 		ArrayList<int[]> list;
