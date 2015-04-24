@@ -62,7 +62,7 @@ public class BlockDigitalSea extends Block {
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		if (this.lit) world.setBlock(x, y, z, TragicBlocks.DigitalSea);
+		//if (this.lit) world.setBlock(x, y, z, TragicBlocks.DigitalSea);
 	}
 
 	@Override
@@ -125,13 +125,7 @@ public class BlockDigitalSea extends Block {
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)
 	{
-		Block block = world.getBlock(x, y, z);
-
-		if (block == TragicBlocks.DigitalSea || block == TragicBlocks.DigitalSeaPowered)
-		{
-			return false;
-		}
-
+		if (world.getBlock(x, y, z) == this) return false;
 		return super.shouldSideBeRendered(world, x, y, z, side);
 	}
 }
