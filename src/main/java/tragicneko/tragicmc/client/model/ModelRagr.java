@@ -107,8 +107,8 @@ public class ModelRagr extends ModelBase
 		
 		if (entity.onGround)
 		{
-			this.leftLeg.rotateAngleX = -1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * 1.85F;
-			this.rightLeg.rotateAngleX = 1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * 1.85F;
+			this.leftLeg.rotateAngleX = -0.85F * this.simplifyAngle(f1, 15.0F) * 0.85F;
+			this.rightLeg.rotateAngleX = 0.85F * this.simplifyAngle(f1, 15.0F) * 0.85F;
 		}
 		
 		if (entity.onGround || entity.isRiding() || entity.isSneaking())
