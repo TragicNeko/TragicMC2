@@ -3,6 +3,7 @@ package tragicneko.tragicmc.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -77,6 +78,8 @@ import tragicneko.tragicmc.client.render.mob.RenderPirah;
 import tragicneko.tragicmc.client.render.mob.RenderStin;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
+import tragicneko.tragicmc.dimension.SynapseSkyRenderer;
+import tragicneko.tragicmc.dimension.TragicSkyRenderer;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
@@ -182,6 +185,9 @@ public class ClientProxy extends CommonProxy {
 	
 	public static final ModelDarkArmor[] modelsDark = new  ModelDarkArmor[] {new ModelDarkArmor(0), new ModelDarkArmor(1),
 		new ModelDarkArmor(2), new ModelDarkArmor(3)};
+	
+	public static final IRenderHandler collisionSkyRenderer = new TragicSkyRenderer();
+	public static final IRenderHandler synapseSkyRenderer = new SynapseSkyRenderer();
 	
 	@Override
 	public void registerRenders()

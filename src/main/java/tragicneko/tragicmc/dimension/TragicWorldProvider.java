@@ -7,6 +7,7 @@ import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.client.ClientProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,7 +22,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public IRenderHandler getSkyRenderer()
 	{
-		return new TragicSkyRenderer();
+		return ClientProxy.collisionSkyRenderer;
 	}
 
 	@Override
@@ -104,7 +105,7 @@ public class TragicWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
     public double getVoidFogYFactor()
     {
-        return 0.07315;
+        return 0;
     }
 
 	@Override

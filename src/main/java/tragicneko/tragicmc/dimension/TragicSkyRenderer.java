@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.dimension;
 
+import java.awt.Color;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -9,6 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
+
+import tragicneko.tragicmc.TragicMC;
 
 public class TragicSkyRenderer extends IRenderHandler {
 	
@@ -56,7 +60,7 @@ public class TragicSkyRenderer extends IRenderHandler {
             }
 
             tessellator.startDrawingQuads();
-            tessellator.setColorOpaque_I(0x444444);
+            tessellator.setColorRGBA_F(0.4F, 0.4F, 0.4F, 0.72F);
             tessellator.addVertexWithUV(-64.0D, -64.0D, -64.0D, 0.0D, 0.0D);
             tessellator.addVertexWithUV(-64.0D, -64.0D, 64.0D, 0.0D, 64.0D);
             tessellator.addVertexWithUV(64.0D, -64.0D, 64.0D, 64.0D, 64.0D);

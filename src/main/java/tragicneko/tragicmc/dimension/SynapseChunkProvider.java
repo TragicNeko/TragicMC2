@@ -179,7 +179,7 @@ public class SynapseChunkProvider implements IChunkProvider
                 {
                     int l1 = (l * 16 + k) * 128 + k1;
 
-                    if (k1 < 96 - this.synapseRNG.nextInt(8) && k1 > 24 + this.synapseRNG.nextInt(8))
+                    if (k1 < 96 - this.synapseRNG.nextInt(4) && k1 > 24 + this.synapseRNG.nextInt(4))
                     {
                         Block block2 = p_147418_3_[l1];
 
@@ -230,7 +230,7 @@ public class SynapseChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        p_147418_3_[l1] = this.synapseRNG.nextInt(6) == 0 ? Blocks.air : TragicBlocks.DigitalSea;
+                        p_147418_3_[l1] = this.synapseRNG.nextInt(12) != 0 ? Blocks.air : TragicBlocks.DigitalSea;
                     }
                 }
             }

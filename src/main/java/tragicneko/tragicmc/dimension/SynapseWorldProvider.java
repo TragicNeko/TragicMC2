@@ -9,6 +9,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.client.ClientProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +25,7 @@ public class SynapseWorldProvider extends WorldProvider
 	@Override
 	public IRenderHandler getSkyRenderer()
 	{
-		return new SynapseSkyRenderer();
+		return ClientProxy.synapseSkyRenderer;
 	}
 
 	@Override
