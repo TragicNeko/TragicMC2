@@ -41,7 +41,7 @@ public class DropEvents {
 
 		if (event.block instanceof BlockGrass && rand.nextInt(64) == 0)
 		{
-			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 10));
+			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
 		}
 		else if (event.block == Blocks.dirt && event.y <= 32 && rand.nextInt(8) == 0)
 		{
@@ -68,10 +68,6 @@ public class DropEvents {
 		{
 			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.Projectile, 1, 1));
-		}
-		else if (event.block == Blocks.log && rand.nextInt(64) == 0)
-		{
-			event.drops.add(new ItemStack(TragicItems.Sap, 1, 1));
 		}
 		else if (event.block instanceof BlockLeaves && rand.nextInt(32) == 0)
 		{
@@ -126,7 +122,7 @@ public class DropEvents {
 		{
 			if (event.blockMetadata != 4)
 			{
-				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 10));
+				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
 			}
 			else
 			{
@@ -233,6 +229,7 @@ public class DropEvents {
 			{
 				x = 2;
 				y = 10;
+				event.entityLiving.entityDropItem(new ItemStack(TragicItems.DimensionalKeyEnd), rand.nextFloat());
 			}
 
 			if (rand.nextBoolean() && rand.nextInt(x) == 0)
@@ -286,13 +283,13 @@ public class DropEvents {
 			{
 			case 0:
 			case 1:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Sap, rand.nextInt(3) + 1), rand.nextFloat());
+				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Projectile, 1, rand.nextInt(3) + 2), rand.nextFloat());
 				break;
 			case 2:
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1), rand.nextFloat());
 				break;
 			case 3:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 10), rand.nextFloat());
+				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 10 + rand.nextInt(2)), rand.nextFloat());
 				break;
 			case 4:
 				event.entityLiving.entityDropItem(new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1), rand.nextFloat());

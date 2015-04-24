@@ -166,7 +166,6 @@ public class TragicItems {
 	public static Item CrushedIce;
 	public static Item DarkParticles;
 	public static Item LightParticles;
-	public static Item Sap;
 	public static Item Thorns;
 	public static Item BoneMarrow;
 	public static Item Horn;
@@ -528,9 +527,6 @@ public class TragicItems {
 
 		Thorns = (new ItemGeneric().setUnlocalizedName("tragicmc.thorns").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Thorns"));
 		GameRegistry.registerItem(Thorns, "thorns");
-
-		Sap = (new ItemGeneric().setUnlocalizedName("tragicmc.sap").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sap"));
-		GameRegistry.registerItem(Sap, "sap");
 
 		Horn = (new ItemGeneric().setUnlocalizedName("tragicmc.horn").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Horn"));
 		GameRegistry.registerItem(Horn, "horn");
@@ -1067,8 +1063,7 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Items.rotten_flesh), 2, 5, 100),
 				new WeightedRandomChestContent(new ItemStack(Items.string), 2, 4, 75),
 				new WeightedRandomChestContent(new ItemStack(Items.bone), 0, 2, 25),
-				new WeightedRandomChestContent(new ItemStack(Projectile, 1, 10), 0, 3, 10),
-				new WeightedRandomChestContent(new ItemStack(Sap), 0, 3, 10)
+				new WeightedRandomChestContent(new ItemStack(Projectile, 1, 10), 0, 3, 10)
 		};
 
 		WeightedRandomChestContent[] awesomeChestContent = new WeightedRandomChestContent[] {

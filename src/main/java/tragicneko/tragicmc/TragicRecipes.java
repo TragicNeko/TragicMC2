@@ -216,7 +216,7 @@ public class TragicRecipes {
 				"yzy",
 				"xyx",
 				'x', TragicItems.LivingClay,
-				'y', new ItemStack(TragicItems.Projectile, 1, 10),
+				'y', new ItemStack(TragicItems.Projectile, 1, 11),
 				'z', Blocks.redstone_block
 				);
 
@@ -386,7 +386,7 @@ public class TragicRecipes {
 				'w', TragicItems.Talisman,
 				'x', Blocks.emerald_block,
 				'y', TragicItems.LunarPowder,
-				'z', new ItemStack(TragicItems.Projectile, 1, 10)
+				'z', new ItemStack(TragicItems.Projectile, 1, 11)
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HydrationTalisman, 1), 
@@ -842,7 +842,7 @@ public class TragicRecipes {
 				"xxx",
 				"xyx",
 				"xxx",
-				'x', TragicItems.Sap,
+				'x', Items.slime_ball,
 				'y', TragicItems.ExoticFruit
 				);
 
@@ -1083,7 +1083,7 @@ public class TragicRecipes {
 				'x', TragicItems.Thorns,
 				'y', "materialVine",
 				'z', TragicItems.QuicksilverIngot,
-				'w', new ItemStack(TragicItems.Projectile, 1, 10)
+				'w', new ItemStack(TragicItems.Projectile, 1, 11)
 				));
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Glowvine, 1),
@@ -1092,7 +1092,25 @@ public class TragicRecipes {
 				"xyx",
 				'x', Items.glowstone_dust,
 				'y', Blocks.vine,
-				'z', new ItemStack(TragicItems.Projectile, 1, 10)
+				'z', new ItemStack(Items.dye, 1, 4)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.WickedVine, 1),
+				"xyx",
+				"zyz",
+				"xyx",
+				'x', Items.glowstone_dust,
+				'y', Blocks.vine,
+				'z', new ItemStack(TragicItems.Projectile, 1, 11)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkVine, 1),
+				"xyx",
+				"zyz",
+				"xyx",
+				'x', Items.glowstone_dust,
+				'y', Blocks.vine,
+				'z', TragicItems.DarkParticles
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.FrozenLightning, 1),
@@ -1605,7 +1623,7 @@ public class TragicRecipes {
 				"xyx",
 				"xxx",
 				'x', TragicBlocks.DarkCobblestone,
-				'y', new ItemStack(TragicItems.Projectile, 1, 10)
+				'y', new ItemStack(TragicItems.Projectile, 1, 11)
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 3), 
