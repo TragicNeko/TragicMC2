@@ -30,7 +30,7 @@ public class SchematicObsidianCavern extends Schematic {
 	private static Block spawner = Blocks.mob_spawner;
 	
 	public SchematicObsidianCavern() {
-		super(8, 16, 16);
+		super(8, 12, 12);
 	}
 
 	@Override

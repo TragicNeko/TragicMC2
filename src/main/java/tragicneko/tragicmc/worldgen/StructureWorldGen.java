@@ -26,10 +26,10 @@ public class StructureWorldGen implements IWorldGenerator {
 		{
 			if (s != null && s.isValidDimension(world.provider.dimensionId) && s.areCoordsValidForGeneration(world, x, y, z, random, s.getHeight()))
 			{
-				TragicMC.logInfo("Attempting to generate " + s.structureName + "...");
+				TragicMC.logInfo("Attempting to generate " + s.getLocalizedName() + "...");
 				if (s.generate(world, random, x, y, z))
 				{
-					TragicMC.logInfo(s.structureName + " succesfully generated at " + x + ", " + y + ", " + z);
+					TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + y + ", " + z);
 					break;
 				}
 			}

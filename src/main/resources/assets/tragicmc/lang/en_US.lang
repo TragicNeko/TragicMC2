@@ -88,15 +88,16 @@ tile.tragicmc.tragicObsidian.bleeding.name=Bleeding Obsidian
 tile.tragicmc.timeDisruptor.name=Time Disruption Cube
 tile.tragicmc.soulChest.name=Soul Chest
 
-tile.tragicmc.structureSeed.apisTemple.name=Apis Temple Seed
-tile.tragicmc.structureSeed.tower.name=Random Tower Seed
-tile.tragicmc.structureSeed.deathCircle.name=Death Circle Seed
-tile.tragicmc.structureSeed.obsidianCavern.name=Random Obsidian Cavern Seed
-tile.tragicmc.structureSeed.kitsuneDen.name=Kitsunakuma Den Seed
-tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple Seed
-tile.tragicmc.structureSeed.timeAltar.name=Time Altar Seed
+tile.tragicmc.structureSeed.apisTemple.name=Apis Temple
+tile.tragicmc.structureSeed.tower.name=Random Tower
+tile.tragicmc.structureSeed.deathCircle.name=Death Circle
+tile.tragicmc.structureSeed.obsidianCavern.name=Random Obsidian Cavern
+tile.tragicmc.structureSeed.kitsuneDen.name=Kitsunakuma Den
+tile.tragicmc.structureSeed.celestialTemple.name=Celestial Temple
+tile.tragicmc.structureSeed.timeAltar.name=Time Altar
 tile.tragicmc.structureSeed.soulTomb.name=Soul Tomb
-tile.tragicmc.structureSeed.corruptedSpire.name=Corrupted Spire Seed
+tile.tragicmc.structureSeed.corruptedSpire.name=Corrupted Spire
+tile.tragicmc.structureSeed.empariahCave.name=Empariah Cave
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt

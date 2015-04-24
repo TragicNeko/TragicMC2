@@ -31,18 +31,18 @@ public class TileEntityStructureSeed extends TileEntity {
 		if (structure.getHeight() + this.yCoord > 256)
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0);
-			if (player != null) player.addChatMessage(new ChatComponentText(structure.structureName + " wasn't able to generate due to not enough height!"));
+			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " wasn't able to generate due to not enough height!"));
 			return;
 		}
 		
 		if (structure.generateStructureWithVariant(this.worldObj.rand.nextInt(structure.getVariantSize()), this.worldObj, this.worldObj.rand, this.xCoord, this.yCoord, this.zCoord))
 		{
 			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0);
-			if (player != null) player.addChatMessage(new ChatComponentText(structure.structureName + " was generated successfully!"));
+			if (player != null) player.addChatMessage(new ChatComponentText(structure.getLocalizedName() + " was generated successfully!"));
 		}
 		else
 		{
-			TragicMC.logError("Something went wrong while generating a " + structure.structureName + " with a structure seed");
+			TragicMC.logError("Something went wrong while generating a " + structure.getLocalizedName() + " with a structure seed");
 		}
 	}
 

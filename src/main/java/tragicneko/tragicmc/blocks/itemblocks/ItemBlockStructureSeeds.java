@@ -9,13 +9,13 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockStructureSeeds extends TragicItemBlock {
 
 	public static String[] subNames = new String[] {"apisTemple", "tower", "deathCircle", "obsidianCavern", "kitsuneDen", "celestialTemple",
-		"timeAltar", "soulTomb", "corruptedSpire"};
+		"timeAltar", "soulTomb", "corruptedSpire", "empariahCave"};
 
 	public ItemBlockStructureSeeds(Block p_i45326_1_) {
 		super(p_i45326_1_, subNames);
 		this.setUnlocalizedName("tragicmc.structureSeed");
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
@@ -50,6 +50,9 @@ public class ItemBlockStructureSeeds extends TragicItemBlock {
 			break;
 		case 8: //Aegar Tower
 			color = 0xFFFFFF;
+			break;
+		case 9: //Empariah Cave
+			color = 0xB9BFC7;
 		default:
 			break;
 		}

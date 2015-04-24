@@ -5,6 +5,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
@@ -17,19 +18,20 @@ public class Structure extends WorldGenerator {
 
 	protected final Schematic schematic;
 	public final int structureId;
-	public final String structureName;
+	private final String structureName;
 	protected final int height;
 	
 	public static Structure[] structureList = new Structure[16];
-	public static Structure apisTemple = new StructureApisTemple(0, "Apis Temple");
-	public static Structure towerStructure = new StructureTower(1, "Tower");
-	public static Structure deathCircle = new StructureDeathCircle(2, "Death Circle");
-	public static Structure obsidianCavern = new StructureObsidianCavern(3, "Obsidian Cavern");
-	public static Structure kitsuneDen = new StructureKitsuneDen(4, "Kitsune Den");
-	public static Structure celestialTemple = new StructureCelestialTemple(5, "Celestial Temple");
-	public static Structure timeAltar = new StructureTimeAltar(6, "Time Altar");
-	public static Structure soulTomb = new StructureSoulTomb(7, "Soul Tomb");
-	public static Structure corruptedSpire = new StructureCorruptedSpire(8, "Corrupted Spire");
+	public static Structure apisTemple = new StructureApisTemple(0, "apisTemple");
+	public static Structure towerStructure = new StructureTower(1, "tower");
+	public static Structure deathCircle = new StructureDeathCircle(2, "deathCircle");
+	public static Structure obsidianCavern = new StructureObsidianCavern(3, "obsidianCavern");
+	public static Structure kitsuneDen = new StructureKitsuneDen(4, "kitsuneDen");
+	public static Structure celestialTemple = new StructureCelestialTemple(5, "celestialTemple");
+	public static Structure timeAltar = new StructureTimeAltar(6, "timeAltar");
+	public static Structure soulTomb = new StructureSoulTomb(7, "soulTomb");
+	public static Structure corruptedSpire = new StructureCorruptedSpire(8, "corruptedSpire");
+	public static Structure empariahCave = new StructureEmpariahCave(9, "empariahCave");
 	
 	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
 			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,
@@ -39,7 +41,8 @@ public class Structure extends WorldGenerator {
 			TragicBlocks.StarlitGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.StarCrystal, TragicBlocks.ErodedStone, TragicBlocks.DarkCobblestone,
 			TragicBlocks.HallowedGrass, TragicBlocks.HallowedLeaves, TragicBlocks.HallowedLeafTrim, TragicBlocks.MoltenRock, TragicBlocks.ScorchedRock,
 			TragicBlocks.StructureSeed, TragicBlocks.Luminescence, TragicBlocks.ExplosiveGas, TragicBlocks.RadiatedGas, TragicBlocks.CorruptedGas,
-			TragicBlocks.WitheringGas, TragicBlocks.WickedVine});
+			TragicBlocks.WitheringGas, TragicBlocks.WickedVine, TragicBlocks.Permafrost, TragicBlocks.IcedDirt, TragicBlocks.IceSpike, TragicBlocks.IceSpikeHanging,
+			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.FragileLightInvis});
 
 	public Structure(Schematic sch, int id, String s)
 	{
@@ -150,5 +153,10 @@ public class Structure extends WorldGenerator {
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
 		return !world.isRemote && this.canGenerate();
+	}
+	
+	public String getLocalizedName()
+	{
+		return StatCollector.translateToLocal("tile.tragicmc.structureSeed." + this.structureName + ".name");
 	}
 }

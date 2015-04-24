@@ -136,7 +136,7 @@ public class TragicConfig {
 	public static boolean allowVoidPitGen, allowLargeSpikeGen, allowDarkStoneVariantGen, allowStructureGen, allowNonBossStructureGen, allowBossStructureGen;
 	private static int[] worldGenInts = new int[16];
 	public static int voidPitRarity, largeSpikeRarity, starCrystalRarity, structureOverallRarity, apisTempleRarity, desertTowerRarity, deathCircleRarity, obsidianCavernRarity;
-	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, soulTombRarity, aerisRarity;
+	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, soulTombRarity, aerisRarity, empariahCaveRarity;
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
@@ -902,6 +902,7 @@ public class TragicConfig {
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "soulTombRarity", 10).getInt(10), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "aerisRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "empariahCaveRarity", 5).getInt(5), 1, 200);
 
 		config.addCustomCategoryComment(catWorldGen, "These toggle specific WorldGen features, meant to help with lag reduction if your CPU cannot handle it during WorldGen, also toggle rarities of structures");
 
@@ -1674,6 +1675,7 @@ public class TragicConfig {
 		timeAltarRarity = worldGenInts[mapping++];
 		soulTombRarity = worldGenInts[mapping++];
 		aerisRarity = worldGenInts[mapping++];
+		empariahCaveRarity = worldGenInts[mapping++];
 
 		mapping = 0;
 		allowRandomWeaponLore = miscConfigs[mapping++];
