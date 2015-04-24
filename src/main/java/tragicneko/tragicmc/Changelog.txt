@@ -3769,7 +3769,7 @@ Added Ranmas and Parasmite to the drop helper, Ranmas currently doesn't drop any
 Fixed Erkels poisoning entities that aren't close to them, regardless of if the damage was projectile
 Fixed Soul Tomb not properly clearing enough air space when generating
 
-2.43.2375 <199> (April 24, 2015)
+2.43.2375 <199> (April 20, 2015)
 Fixed armor models not allowing the server to load, they are now stored in the client proxy
 Fixed Soul Chest causing a crash on the server-side (accidentally used render bounding box)
 Fixed crash with Fusea, made Fusea immune to explosions
@@ -3831,6 +3831,7 @@ Working on improving FPS in the Synapse, reduced amount of Digital Sea generatio
 Removed some unnecessary targetting for some mobs, improved some mob's flight ability by checking to the ground below them rather than the highest block
 in that particular column in the world, this might be moved to a WorldHelper method so that other things like Doomsdays can use it
 Added Empariah Cave, since it's easier to add structures now, it generates in Frozen Tundra biomes with packed ice, added to config
+Modified StructureWorldGen to give more weight to the horizon of the world, this allows more chances for surface Structures to generate
 
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
