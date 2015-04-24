@@ -19,7 +19,7 @@ public class StructureWorldGen implements IWorldGenerator {
 				!TragicConfig.allowDimension && world.provider.dimensionId == TragicConfig.synapseID) return;
 
 		int x = chunkX * 16 + random.nextInt(16);
-		int y = random.nextInt(236) + 10;
+		int y = random.nextInt(118) + random.nextInt(118) + 10;
 		int z = chunkZ * 16 + random.nextInt(16);
 
 		for (Structure s : Structure.structureList)
