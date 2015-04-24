@@ -80,7 +80,7 @@ public class ModelRagr extends ModelBase
 		leftFist.addBox(-1F, 25F, -3F, 8, 6, 8);
 		leftForearm.addChild(leftFist);
 		
-		this.partArray = new ModelRenderer[] {head, nose, body, rightLeg, leftLeg, rightShoulder, leftShoulder};
+		this.partArray = new ModelRenderer[] {head, body, rightLeg, leftLeg, rightShoulder, leftShoulder};
 	}
 
 	@Override
@@ -103,12 +103,12 @@ public class ModelRagr extends ModelBase
 		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
 		
 		this.nose.offsetX = this.nose.offsetY = this.nose.offsetZ = 0.0F;
-		this.nose.rotateAngleX = 0.135F + this.simplifyAngle(entity.ticksExisted, 20.0F) * f5;
+		this.nose.rotateAngleX = 0.135F + this.simplifyAngle(entity.ticksExisted, 20.0F) * -0.135F;
 		
 		if (entity.onGround)
 		{
-			this.leftLeg.rotateAngleX = -1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * f5;
-			this.rightLeg.rotateAngleX = 1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * f5;
+			this.leftLeg.rotateAngleX = -1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * 1.85F;
+			this.rightLeg.rotateAngleX = 1.85F * this.simplifyAngle(entity.ticksExisted, 15.0F) * 1.85F;
 		}
 		
 		if (entity.onGround || entity.isRiding() || entity.isSneaking())
