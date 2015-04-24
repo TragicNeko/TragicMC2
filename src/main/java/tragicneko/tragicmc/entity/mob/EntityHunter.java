@@ -99,7 +99,7 @@ public class EntityHunter extends TragicMob {
 		else
 		{
 			this.motionY += (rand.nextDouble() - rand.nextDouble()) * 0.2 - 0.1;
-			if (rand.nextInt(6) == 0 && this.posY <= this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ) + 10) this.motionY += rand.nextDouble() + 0.8;
+			if (rand.nextInt(6) == 0 && this.getDistanceToGround() < 10) this.motionY += rand.nextDouble() + 0.8;
 
 			this.motionX += (rand.nextDouble() - rand.nextDouble()) * 0.2;
 			this.motionZ += (rand.nextDouble() - rand.nextDouble()) * 0.2;

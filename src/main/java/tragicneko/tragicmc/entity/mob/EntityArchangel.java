@@ -177,7 +177,7 @@ public class EntityArchangel extends TragicMob {
 					for (int i = 0; i < 4; i++)
 					{
 						this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(),
-								this.posY + 0.25 + rand.nextDouble() * 0.5, this.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, 0.0, 0.0);
+								this.posY + 0.75 + rand.nextDouble() * 0.5, this.posZ + rand.nextDouble() - rand.nextDouble(), 0.0, 0.0, 0.0);
 					}
 				}
 			}
@@ -210,12 +210,21 @@ public class EntityArchangel extends TragicMob {
 
 			if (d3 < 1.0D || d3 > 3600.0D)
 			{
-				this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-				this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-				this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			}
+				if (this.getAttackTarget() != null)
+				{
+					this.waypointX = this.getAttackTarget().posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+					this.waypointY = this.getAttackTarget().posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+					this.waypointZ = this.getAttackTarget().posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+				}
+				else
+				{
+					this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+					this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+					this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
 
-			if (this.waypointY - this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ) >= 30) this.waypointY -= 30;
+					if (this.waypointY - this.getDistanceToGround() >= 20) this.waypointY -= 10;
+				}
+			}			
 
 			if (this.courseChangeCooldown-- <= 0)
 			{
@@ -238,7 +247,7 @@ public class EntityArchangel extends TragicMob {
 
 			double d4 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
 
-			if (this.getAttackTarget() != null && this.getAttackTarget().getDistanceSqToEntity(this) < d4 * d4 && this.getHoverTicks() == 0)
+			if (this.getAttackTarget() != null && this.getAttackTarget().getDistanceSqToEntity(this) < d4 * d4 && this.getAttackTarget().getDistanceToEntity(this) > 6.0F && this.getHoverTicks() == 0)
 			{
 				double d5 = this.getAttackTarget().posX - this.posX;
 				double d6 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
@@ -250,11 +259,6 @@ public class EntityArchangel extends TragicMob {
 			else
 			{
 				this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
-			}
-
-			if (this.getAttackTarget() == null && this.ticksExisted % 20 == 0)
-			{
-				this.setAttackTarget((EntityLivingBase) this.worldObj.findNearestEntityWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d4, d4, d4), this));
 			}
 		}
 		else
@@ -285,14 +289,6 @@ public class EntityArchangel extends TragicMob {
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
-
-		if (this.ticksExisted % 20 == 0)
-		{
-			TragicMC.logInfo("Waypoint coords are " + waypointX + ", " + waypointY + ", " + waypointZ);
-			TragicMC.logInfo("Course change: " + this.courseChangeCooldown);
-			TragicMC.logInfo("Hover ticks: " + this.getHoverTicks());
-			TragicMC.logInfo("Motion is " + this.motionX + ", " + this.motionY + ", " + this.motionZ);
-		}
 	}
 
 	private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_)
@@ -394,7 +390,7 @@ public class EntityArchangel extends TragicMob {
 	{
 		return false;
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);

@@ -146,20 +146,7 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {d0, d1, d2};
 				this.setChargeTicks(15);
 			}
-			else if (this.getAttackTarget() == null && this.ticksExisted % 20 == 0)
-			{
-				double d4 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
-				this.setAttackTarget((EntityLivingBase) this.worldObj.findNearestEntityWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d4, d4, d4), this));
-			}
 		}
-		
-		if (this.ticksExisted % 10 == 0)
-			{
-			TragicMC.logWarning("Motions: " + this.motions[0] + ", " + this.motions[1] + ", " + this.motions[2]);
-			TragicMC.logWarning("Has target: " + (this.getAttackTarget() != null));
-			TragicMC.logWarning("Charge buffer: " + this.chargeBuffer);
-			TragicMC.logWarning("Charge ticks: " + this.getChargeTicks());
-			}
 	}
 
 	@Override

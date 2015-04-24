@@ -17,6 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
@@ -375,5 +376,19 @@ public abstract class TragicMob extends EntityMob
 	public boolean canAttackClass(Class par1Class)
 	{
 		return super.canAttackClass(par1Class) && par1Class != TragicBoss.class && this instanceof TragicMiniBoss ? par1Class != this.getLesserForm() : true;
+	}
+	
+	public int getDistanceToGround()
+	{
+		int x = MathHelper.floor_double(this.posX);
+		int y = MathHelper.floor_double(this.boundingBox.minY);
+		int z = MathHelper.floor_double(this.posZ);
+		
+		for (int i = 0; y - i > 0; ++i)
+		{
+			if (this.worldObj.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
+		}
+		
+		return y;
 	}
 }

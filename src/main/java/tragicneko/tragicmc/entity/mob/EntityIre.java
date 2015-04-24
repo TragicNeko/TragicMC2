@@ -186,7 +186,7 @@ public class EntityIre extends TragicMob {
 				}
 			}
 
-			if (this.getAttackTarget() == null || this.getDistanceToEntity(this.getAttackTarget()) >= 16.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
+			if (this.getDistanceToEntity(this.getAttackTarget()) >= 16.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
 			{
 				this.setAttackTarget(null);
 			}

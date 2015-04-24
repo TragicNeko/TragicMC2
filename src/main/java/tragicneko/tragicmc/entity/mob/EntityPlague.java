@@ -117,11 +117,7 @@ public class EntityPlague extends TragicMob {
 			{
 				this.motionY = -rand.nextDouble() + 0.2;
 
-				if (rand.nextInt(4) == 0 && this.posY <= this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ) + 10)
-				{
-					this.motionY += rand.nextDouble() + 0.8;
-				}
-
+				if (rand.nextInt(4) == 0 && this.getDistanceToGround() < 10) this.motionY += rand.nextDouble() + 0.8;
 				this.motionX = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 				this.motionZ = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 			}
