@@ -3835,6 +3835,11 @@ Modified StructureWorldGen to give more weight to the horizon of the world, this
 Fixed Ragr model offsets and animations, fixed Ragr leg animations
 Fixed Sludge/Drudge generating as normal Quicksand, this was due to a bug in BlockFalling
 
+2.43.2375 <200> (April 25, 2015)
+Added/Changed/Removed sounds for Jabba species
+Modified DropHelper to make it make more sense and fix Janna and possibly other variant drops
+Added Plague sounds
+
 New Mobs (Save for next update):
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
 AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
