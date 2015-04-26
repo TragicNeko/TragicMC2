@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.plagueStats;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -186,5 +187,40 @@ public class EntityPlague extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.plague.chirp";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.plague.chirp";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.plague.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.2F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
 }
