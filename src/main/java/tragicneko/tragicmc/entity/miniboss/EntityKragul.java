@@ -147,4 +147,9 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		return EntityGragul.class;
 	}
 
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.2F;
+	}
 }
