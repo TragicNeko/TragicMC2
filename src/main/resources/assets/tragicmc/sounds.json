@@ -1,38 +1,27 @@
 {
-    "random.test":
-    {
-        "category": "master",
-        "sounds":
-        [
-            "random/test1",
-			"random/test2"
-        ]
-    },
-    "mob.jabba.breath":
-    {
-        "category": "master",
-        "sounds":
-        [
-            "mob/jabba/breath",
-            "mob/jabba/breath2",
-            "mob/jabba/breath3"
-        ]
-    },
     "mob.jabba.hurt":
     {
-        "category": "master",
+        "category": "hostile",
         "sounds":
         [
             "mob/jabba/hurt",
-            "mob/jabba/hurt2"
+            "mob/jabba/hurt2",
+	    "mob/jabba/hurt3",
+	    "mob/jabba/hurt4",
+	    "mob/jabba/hurt5",
+	    "mob/jabba/hurt6",
+	    "mob/jabba/hurt7"
         ]
     },
-    "mob.jabba.death":
+    "mob.jabba.squish":
     {
-        "category": "master",
+        "category": "hostile",
         "sounds":
         [
-            "mob/jabba/death"
+            "mob/jabba/squish",
+	    "mob/jabba/squish2",
+	    "mob/jabba/squish3",
+	    "mob/jabba/squish4"
         ]
     }
 }

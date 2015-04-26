@@ -140,4 +140,22 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityJabba.class;
 	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.4F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.2F + rand.nextFloat() * 0.1F;
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.jabba.hurt";
+	}
 }

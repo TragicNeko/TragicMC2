@@ -5,6 +5,7 @@ import static tragicneko.tragicmc.TragicConfig.jannaStats;
 
 import java.util.UUID;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -20,6 +21,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -440,11 +442,11 @@ public class EntityJabba extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return TragicConfig.allowJarra;
 	}
-	/*
+	
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.jabba.breath";
+		return "tragicmc:mob.jabba.squish";
 	}
 	
 	@Override
@@ -456,12 +458,24 @@ public class EntityJabba extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.jabba.death";
+		return "tragicmc:mob.jabba.hurt";
 	} 
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
 	
 	@Override
 	public float getSoundPitch()
 	{
-		return this.getJabbaType() == 0 ? super.getSoundPitch() : super.getSoundPitch() + 1.4F;
-	} */
+		return this.getJabbaType() == 0 ? super.getSoundPitch() : super.getSoundPitch() + 0.4F + rand.nextFloat();
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.1F + rand.nextFloat() * 0.1F;
+	}
 }
