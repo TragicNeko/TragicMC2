@@ -2,26 +2,30 @@
     "mob.jabba.hurt":
     {
         "category": "hostile",
-        "sounds":
-        [
-            "mob/jabba/hurt",
-            "mob/jabba/hurt2",
-	    "mob/jabba/hurt3",
-	    "mob/jabba/hurt4",
-	    "mob/jabba/hurt5",
-	    "mob/jabba/hurt6",
-	    "mob/jabba/hurt7"
-        ]
+        "sounds": [
+	"mob/jabba/hurt", "mob/jabba/hurt2",
+	"mob/jabba/hurt3", "mob/jabba/hurt4",
+	"mob/jabba/hurt5", "mob/jabba/hurt6",
+	"mob/jabba/hurt7"]
     },
     "mob.jabba.squish":
     {
         "category": "hostile",
-        "sounds":
-        [
-            "mob/jabba/squish",
-	    "mob/jabba/squish2",
-	    "mob/jabba/squish3",
-	    "mob/jabba/squish4"
-        ]
+        "sounds": [
+        "mob/jabba/squish", "mob/jabba/squish2",
+	"mob/jabba/squish3", "mob/jabba/squish4"]
+    },
+    "mob.plague.chirp":
+    {
+	"category": "hostile",
+	"sounds": [
+	"mob/plague/chirp", "mob/plague/chirp2",
+	"mob/plague/chirp3"]
+    },
+    "mob.plague.death":
+    {
+	"category": "hostile",
+	"sounds": [
+	"mob/plague/death"]
     }
 }
