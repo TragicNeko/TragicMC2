@@ -18,11 +18,12 @@ public class IsleWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
+		if (random.nextInt(4) != 0) return;
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
-		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1;
+		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
-		if (biome != TragicBiomes.TaintedIsles || random.nextInt(6) == 0) return;
+		if (biome != TragicBiomes.TaintedIsles) return;
 
 		ArrayList<int[]> list;
 		int relays = 1 + random.nextInt(3);
@@ -36,9 +37,9 @@ public class IsleWorldGen implements IWorldGenerator {
 		for (int buzza = 0; buzza < relays; buzza++)
 		{
 			size = random.nextDouble() * 3.5D + 1.5D;
-			Xcoord += random.nextInt(8) - random.nextInt(8);
-			Zcoord += random.nextInt(8) - random.nextInt(8);
-			Ycoord += 38 + random.nextInt(48) - random.nextInt(16);
+			Xcoord += random.nextInt(6) - random.nextInt(6);
+			Zcoord += random.nextInt(6) - random.nextInt(6);
+			Ycoord += 10 + random.nextInt(24) - random.nextInt(12);
 			yMax = Ycoord;
 
 			for (int y1 = 0; y1 > -32; y1--)
@@ -57,15 +58,11 @@ public class IsleWorldGen implements IWorldGenerator {
 				for (int[] coords2 : list)
 				{
 					block = world.getBlock(coords2[0], coords2[1], coords2[2]);
-					if (Structure.validBlocks.contains(block) && !cands.contains(coords2))
-					{
-						if (yMax < coords2[1]) yMax = coords2[1];
-						cands.add(coords2);
-					}
+					if (Structure.validBlocks.contains(block) && !cands.contains(coords2)) cands.add(coords2);
 				}
 			}
 
-			int rand = random.nextInt(3) + 1;
+			int rand = random.nextInt(2) + 1;
 
 			for (int[] coords2 : cands)
 			{
