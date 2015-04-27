@@ -76,7 +76,7 @@ public class EntityDropHelper {
 				new ItemStack(TragicBlocks.CompactOre, 1, 3), new ItemStack(TragicBlocks.CompactOre, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
 				new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(1, new ItemStack(TragicItems.SilentHellraiser))};
 
-	static
+	public static void fill()
 	{
 		//Normal Mob Drops
 		addToDropList(EntityJabba.class, new EntityDrop[][] {{new EntityDrop(25, Items.magma_cream), new EntityDrop(15, TragicItems.Ash)},
