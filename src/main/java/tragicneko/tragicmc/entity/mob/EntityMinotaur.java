@@ -185,9 +185,9 @@ public class EntityMinotaur extends TragicMob {
 
 			if (this.isCharging())
 			{
-				par1Entity.motionX *= 1.2000000059604645D;
-				par1Entity.motionZ *= 1.2D;
-				par1Entity.motionY += 0.3D;
+				par1Entity.motionX += this.motionX;
+				par1Entity.motionZ += this.motionZ;
+				par1Entity.motionY += this.motionY;
 			}
 		}
 		
