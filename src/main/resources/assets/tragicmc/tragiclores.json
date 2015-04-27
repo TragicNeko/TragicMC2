@@ -1,0 +1,31 @@
+[
+  { "classname" : "tragicneko.tragicmc.items.weapons.WeaponTitan",
+    "lores": [
+		{
+			"weight" : 25,
+			"desc" : "Isn't this supposed to be a lore thing?",
+			"rarity" : 1
+		},
+		{
+			"weight": 25,
+			"desc" : "I really don't think this lore fits this weapon.",
+			"rarity": 1
+		},
+		{
+			"weight": 25,
+			"desc" : "This is a terrible lore.",
+			"rarity": 0
+		},
+		{
+			"weight": 25,
+			"desc" : "This lore is awesome! ... no, it's not...",
+			"rarity": 2
+		},
+		{
+			"weight": 25,
+			"desc" : "I'm sorry, Dave. I'm afraid I can't do that.",
+			"rarity": 3
+		}
+	]
+  }
+]

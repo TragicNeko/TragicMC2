@@ -2,13 +2,11 @@ package tragicneko.tragicmc.util;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,9 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.io.ByteStreams;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang3.Validate;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumRarity;
@@ -60,11 +58,191 @@ import tragicneko.tragicmc.items.weapons.WeaponThardus;
 import tragicneko.tragicmc.items.weapons.WeaponTitan;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class LoreHelper {
 
-	private static Map<Class<? extends Item>, LoreEntry> weaponLores = new HashMap();
+	private static Map<Class<? extends Item>, LoreEntry> loreMap = new HashMap();
+	private static Logger logger = LogManager.getLogger(TragicMC.MODNAME + "/ LoreHelper");
 
-	static
+	public static void addToLoreMap(Class<? extends Item> clazz, LoreEntry entry)
+	{
+		if (loreMap.containsKey(clazz)) TragicMC.logWarning("Duplicate lore entry for the item " + clazz);
+		loreMap.put(clazz, entry);
+	}
+
+	public static void addToLoreMap(Class<? extends Item> clazz, Lore[] lores, EnchantEntry[][] enchants)
+	{
+		if (loreMap.containsKey(clazz)) TragicMC.logWarning("Duplicate lore entry for the item " + clazz);
+		loreMap.put(clazz, new LoreEntry(Arrays.asList(lores), enchants));
+	}
+
+	public static LoreEntry getLoreEntry(Class<? extends Item> clazz)
+	{
+		return loreMap.containsKey(clazz) ? loreMap.get(clazz) : null;
+	}
+
+	public static EnumChatFormatting getFormatForRarity(int rarity)
+	{
+		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.GOLD : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.DARK_RED));
+	}
+
+	public static int getRarityFromStack(ItemStack stack)
+	{
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getByte("tragicLoreRarity") : 0;
+	}
+
+	public static String getDescFromStack(ItemStack stack)
+	{
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreDesc") ? stack.stackTagCompound.getString("tragicLoreDesc") : null;
+	}
+
+	/**
+	 * Can split any lengthy string into 3 smaller ones to fit within an item's description, it will only split to a max of 3 lines, then will trim out the rest
+	 * @param lore
+	 * @return
+	 */
+	public static String[] splitDesc(String lore)
+	{
+		String s = lore;
+		String s2 = null;
+		String s3 = null;
+
+		if (s.length() > 32)
+		{
+			for (int i = 32; i < s.length(); i++)
+			{
+				if (s.substring(0, i).endsWith(" "))
+				{
+					if (s2 == null)
+					{
+						s2 = s.substring(i).trim();
+						s = s.substring(0, i).trim();
+						break;
+					}
+
+				}
+			}
+		}
+
+		if (s2 != null && s2.length() > 32)
+		{
+			for (int i = 32; i < s2.length(); i++)
+			{
+				if (s2.substring(0, i).endsWith(" "))
+				{
+					if (s3 == null)
+					{
+						s3 = s2.substring(i).trim();
+						s2 = s2.substring(0, i).trim();
+						break;
+					}
+				}
+			}
+
+			if (s3 != null && s3.length() > 42)
+			{
+				s3 = s3.substring(0, 42).trim();
+			}
+		}
+
+		if (s2 == null) return new String[] {s};
+		if (s3 == null) return new String[] {s, s2};
+
+		return new String[] {s, s2, s3};
+	}
+
+
+
+	public static void registerLoreJson(File config)
+	{	
+		if (TragicMC.DEBUG) logger.info("Loading default lore entries for items.");
+		loadDefaultLores();
+		if (TragicMC.DEBUG) logger.info("Attempting to load Custom Lores from config directory...");
+		File fileIn = new File(config, "tragiclores.json");
+		/*
+		if (!fileIn.exists()) //If it doesn't exist then uses the one bundled in the mod, this will probably not be implemented (it'll take a lot of work to convert the current lores into a json format)
+		{
+			//logger.info("Failed to parse Custom Lores from Json in the Configuration directory. Defaulting to internal backup.");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(TragicMC.class.getResourceAsStream("/assets/tragicmc/tragiclores.json")));
+			lores = parser.parse(reader);
+		} */
+
+		if (fileIn.exists())
+		{
+			logger.info("Proper file was found for custom lores, attempting load of custom lores.");
+
+			try
+			{
+				JsonParser parser = new JsonParser();
+				JsonElement lores = null;
+				lores = parser.parse(new FileReader(fileIn));
+
+				for (JsonElement el : lores.getAsJsonArray())
+				{
+					JsonObject obj = el.getAsJsonObject();
+					String className = obj.get("classname").getAsString();
+					try
+					{
+						Class oclass = Class.forName(className);
+						if (!obj.get("lores").isJsonArray())
+						{
+							logger.error("There is an error with the lores array element for class of %s, skipping...", className);
+							continue;
+						}
+						JsonArray array = obj.get("lores").getAsJsonArray();
+						LoreEntry entry = getLoreEntry(oclass);
+
+						if (entry == null)
+						{
+							logger.warn(className + " didn't have an entry in the lore map so it was ignored.");
+							continue;
+						}
+
+						for (JsonElement el2 : array)
+						{
+							JsonObject obj2 = el2.getAsJsonObject();
+							try
+							{
+								int weight = obj2.get("weight").getAsInt();
+								String desc = obj2.get("desc").getAsString();
+								int rarity = obj2.get("rarity").getAsInt();
+								entry.addLore(new Lore(weight, desc, rarity));
+								logger.info("Lore added for item of class " + className);
+							}
+							catch (ClassCastException e)
+							{
+								logger.error("Error found while parsing class of %s, problem with an element, skipping lore...", className); //log and move on for these, they aren't necessary for normal mod functions
+								continue;
+							}
+						}
+					}
+					catch (ClassNotFoundException e)
+					{
+						logger.error("Unable to find class with name of %s while parsing the Custom Lores json file.", className);
+						continue; //log and move on for these, they aren't necessary for normal mod functions
+					}
+				}
+
+			}
+			catch (Exception e)
+			{
+				logger.warn("Failed to load Custom Lores from Json, this may cause instability with lores!");
+				return;
+			}
+		}
+		else
+		{
+			logger.info("tragiclores.json file was not found in config directory, skipping custom lore parsing.");
+		}
+
+		if (TragicMC.DEBUG) logger.info("No problems caught while retrieving lores from json!");
+	}
+
+	public static void loadDefaultLores()
 	{
 		//Armor
 		addToLoreMap(ArmorDark.class, new LoreEntry(new Lore[] {new Lore(25, "It's dark.", 1), new Lore(20, "Dim.", 1), new Lore(15, "Rather dark out!", 1), new Lore(10, "Hold me.", 1), new Lore(10, "I'm so alone.", 1),
@@ -277,7 +455,7 @@ public class LoreHelper {
 			new Lore(15, "I will give you $5 if you could not do that.", 3), new Lore(5, "Way to slide into those DMs, buddy.", 3), new Lore(5, "I'll never get that image out of my head.", 3)},
 			new EnchantEntry[][] {{}, {new EnchantEntry(Enchantment.unbreaking, 1), new EnchantEntry(Enchantment.knockback, 1)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.knockback, 3)},
 			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.knockback, 5)}});
-		
+
 		addToLoreMap(WeaponMourningStar.class, new Lore[] {new Lore(25, "Sleep is for the weak!", 1), new Lore(15, "Dy-no-mite!", 1), new Lore(5, "Kaboom.", 1), new Lore(5, "Nuke!", 3),
 			new Lore(25, "For SPARTAAAAAA!", 3), new Lore(15, "Just die already!", 2), new Lore(15, "I'm TNT, I'm dynamite!", 3), new Lore(25, "I have an explosive temper.", 2),
 			new Lore(5, "Enemy airstrike inbound!", 3)},
@@ -373,119 +551,7 @@ public class LoreHelper {
 			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 5), new EnchantEntry(TragicEnchantments.Consume, 3)}});
-	}
 
-	public static void addToLoreMap(Class<? extends Item> clazz, LoreEntry entry)
-	{
-		if (weaponLores.containsKey(clazz)) TragicMC.logWarning("Duplicate lore entry for the item " + clazz);
-		weaponLores.put(clazz, entry);
-	}
-
-	public static void addToLoreMap(Class<? extends Item> clazz, Lore[] lores, EnchantEntry[][] enchants)
-	{
-		weaponLores.put(clazz, new LoreEntry(Arrays.asList(lores), enchants));
-	}
-
-	public static LoreEntry getLoreEntry(Class<? extends Item> clazz)
-	{
-		return weaponLores.containsKey(clazz) ? weaponLores.get(clazz) : null;
-	}
-
-	public static EnumChatFormatting getFormatForRarity(int rarity)
-	{
-		return rarity == 0 ? EnumChatFormatting.GRAY : (rarity == 1 ? EnumChatFormatting.GOLD : (rarity == 2 ? EnumChatFormatting.DARK_GREEN : EnumChatFormatting.DARK_RED));
-	}
-
-	public static int getRarityFromStack(ItemStack stack)
-	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getByte("tragicLoreRarity") : 0;
-	}
-
-	public static String getDescFromStack(ItemStack stack)
-	{
-		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreDesc") ? stack.stackTagCompound.getString("tragicLoreDesc") : null;
-	}
-
-	/**
-	 * Can split any lengthy string into 3 smaller ones to fit within an item's description, it will only split to a max of 3 lines, then will trim out the rest
-	 * @param lore
-	 * @return
-	 */
-	public static String[] splitDesc(String lore)
-	{
-		String s = lore;
-		String s2 = null;
-		String s3 = null;
-
-		if (s.length() > 32)
-		{
-			for (int i = 32; i < s.length(); i++)
-			{
-				if (s.substring(0, i).endsWith(" "))
-				{
-					if (s2 == null)
-					{
-						s2 = s.substring(i).trim();
-						s = s.substring(0, i).trim();
-						break;
-					}
-
-				}
-			}
-		}
-
-		if (s2 != null && s2.length() > 32)
-		{
-			for (int i = 32; i < s2.length(); i++)
-			{
-				if (s2.substring(0, i).endsWith(" "))
-				{
-					if (s3 == null)
-					{
-						s3 = s2.substring(i).trim();
-						s2 = s2.substring(0, i).trim();
-						break;
-					}
-				}
-			}
-
-			if (s3 != null && s3.length() > 42)
-			{
-				s3 = s3.substring(0, 42).trim();
-			}
-		}
-
-		if (s2 == null) return new String[] {s};
-		if (s3 == null) return new String[] {s, s2};
-
-		return new String[] {s, s2, s3};
-	}
-
-	public static void registerLoreJson(File config)
-	{	
-		Gson gson = new Gson();
-		Map<String, String[]> json;
-		Type mapType = new TypeToken<Map<String, String[]>>() {}.getType();
-
-		try
-		{
-			InputStream is = new FileInputStream(new File(config, "CustomLores.json")); //Looks for the custom lores in the config folder, if none then defaults to the packaged one
-			String data = new String(ByteStreams.toByteArray(is));
-			is.close();
-			json = gson.fromJson(data, mapType);
-		}
-		catch(Exception e)
-		{
-			TragicMC.logError("Failed to load Custom Lores from Json in the Configuration directory.", e);
-
-			Reader read = new InputStreamReader(TragicMC.class.getResourceAsStream("/assets/tragicmc/CustomLores.json")); //I'll add all of the Lore for the current weapon to this instead of keeping them in an extremely long list here
-			json = gson.fromJson(read, mapType);
-			try {
-				read.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
 	}
 
 	public static class LoreEntry {
@@ -534,7 +600,7 @@ public class LoreHelper {
 
 				if (alist.isEmpty()) return this.lores.size() > 0 && r > 0 ? this.lores.get(rand.nextInt(this.lores.size())) : new Lore(1, null, 0);
 
-				return (Lore) WeightedRandom.getRandomItem(rand, alist);
+				return ((Lore) WeightedRandom.getRandomItem(rand, alist)).get();
 			}
 			catch (Exception e)
 			{
@@ -562,7 +628,7 @@ public class LoreHelper {
 
 				if (alist.isEmpty()) return new Lore(1, null, rarity);
 
-				return (Lore) WeightedRandom.getRandomItem(rand, alist);
+				return ((Lore) WeightedRandom.getRandomItem(rand, alist)).get();
 			}
 			catch (Exception e)
 			{
@@ -619,12 +685,26 @@ public class LoreHelper {
 			this.rarity = MathHelper.clamp_int(rarity, 0, 3);
 		}
 
+		public Lore(Lore lore)
+		{
+			this(lore.itemWeight, lore.getDesc(), lore.getRarity());
+		}
+
 		public String getDesc() { return this.desc; }
 		public int getRarity() { return this.rarity; }
 
 		public EnumRarity getRarityEnum()
 		{
 			return this.rarity == 0 ? EnumRarity.common : (this.rarity == 1 ? EnumRarity.uncommon : (this.rarity == 2 ? EnumRarity.rare : EnumRarity.epic));
+		}
+
+		/**
+		 * Returns a copy of this Lore so that it remains in the map
+		 * @return
+		 */
+		public Lore get()
+		{
+			return new Lore(this);
 		}
 	}
 }
