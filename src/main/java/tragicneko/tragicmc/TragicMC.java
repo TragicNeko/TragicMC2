@@ -82,15 +82,11 @@ public class TragicMC
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		logTime();
-
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.initialize();
 		//MinecraftForge.EVENT_BUS.register(new TragicConfig()); //for the gui stuff, eventually I'll sit down and do this
 		FMLCommonHandler.instance().bus().register(new ServerTickEvents());
-
-		logDuration("Configuration");
 
 		if (TragicConfig.allowPotions)
 		{
@@ -109,7 +105,6 @@ public class TragicMC
 		if (TragicConfig.allowEnchantments) TragicEnchantments.load();
 		if (TragicConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.EnchantmentEvents());
 
-		logDuration("Potions and Enchantments");
 		if (!TragicConfig.mobsOnly)
 		{
 			Survival = (new CreativeTabs("tragicMCSurvival") {
@@ -128,10 +123,8 @@ public class TragicMC
 		});
 
 		TragicBlocks.load();
-		logDuration("Blocks");
 		TragicItems.load();
 		if (TragicConfig.allowRandomWeaponLore) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
-		logDuration("Items");
 		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
 		if (!TragicConfig.mobsOnly) TragicRecipes.load();
 
@@ -147,7 +140,6 @@ public class TragicMC
 			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DoomEvents());
 			FMLCommonHandler.instance().bus().register(new tragicneko.tragicmc.events.RespawnDoomEvents());
 		}
-		logDuration("Events 1");
 
 		if (TragicConfig.allowMobs)
 		{
@@ -156,12 +148,8 @@ public class TragicMC
 			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DynamicHealthScaling());
 		}
 
-		logDuration("Entities");
-
 		if (TragicConfig.allowChallengeScrolls && !TragicConfig.mobsOnly) TragicItems.initializeChallengeItem();
-
 		if (!TragicConfig.mobsOnly) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DropEvents());
-		logDuration("Events 2");
 
 		if (TragicConfig.allowDimension)
 		{
@@ -189,13 +177,9 @@ public class TragicMC
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
 		}
 
-		logDuration("Dimension Registrations");
-
 		if (!TragicConfig.mobsOnly) NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		if (TragicConfig.allowDoomsdays) FMLCommonHandler.instance().bus().register(new DoomsdayManager());
 		DoomsdayManager.clearRegistry();
-
-		logDuration("Events 3");
 
 		if (TragicConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.VanillaChangingEvents());
 		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.OverworldOreWorldGen(), 1);
@@ -220,27 +204,20 @@ public class TragicMC
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedPrarie);
 
 			//TODO convert these to biome-unique decoration instead of having them called every chunk for every dimension for every biome
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen(), 3); //For the tainted scarlands
-			if (TragicConfig.allowVoidPitGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.VoidPitWorldGen(), 4);
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.PitWorldGen(), 5); //Pits for some of the newer biomes
-			if (TragicConfig.allowDarkStoneVariantGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen(), 6);
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StarCrystalWorldGen(), 7); //for the starlit prarie
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CustomSpikesWorldGen(), 8); //for the decaying wasteland and tainted spikes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 9); //for the ashen badlands and tainted scarlands
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 10); //for the ashen badlands and decaying wasteland
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.IsleWorldGen(), 11); //for the tainted isles
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StringLightWorldGen(), 12); //For Hallowed biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ScorchedSurfaceWorldGen(), 13); //For the Scorched biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DimensionOreWorldGen(), 14);
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 15); //Corroded biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen(), 16); //Corroded biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.FrozenSurfaceWorldGen(), 17); //Frozen biome generation
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.AerisWorldGen(), 24); //Aeris flower gen
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StarCrystalWorldGen(), 1); //for the starlit prarie
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CustomSpikesWorldGen(), 2); //for the decaying wasteland and tainted spikes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 3); //for the ashen badlands and tainted scarlands
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 4); //for the ashen badlands and decaying wasteland
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.IsleWorldGen(), 5); //for the tainted isles
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StringLightWorldGen(), 6); //For Hallowed biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ScorchedSurfaceWorldGen(), 7); //For the Scorched biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 8); //Corroded biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen(), 9); //Corroded biomes
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.FrozenSurfaceWorldGen(), 10); //Frozen biome generation
+			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.AerisWorldGen(), 11); //Aeris flower gen
 		}
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 20);
-
-		logDuration("WorldGen registration");
 
 		net = new SimpleNetworkWrapper(TragicMC.MODID);
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerDoom.class, tragicneko.tragicmc.network.MessageDoom.class, 0, Side.CLIENT);
@@ -250,17 +227,12 @@ public class TragicMC
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerFlight.class, tragicneko.tragicmc.network.MessageFlight.class, 4, Side.CLIENT);
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerAttack.class, tragicneko.tragicmc.network.MessageAttack.class, 5, Side.SERVER);
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerSpawnParticle.class, tragicneko.tragicmc.network.MessageParticle.class, 6, Side.CLIENT);
-
-		logDuration("Network Handlers");
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		logTime();
-
 		proxy.registerRenders();
-		logDuration("Proxy Registrations");
 	}
 
 	@EventHandler
@@ -343,20 +315,6 @@ public class TragicMC
 	public static Configuration getConfig()
 	{
 		return config;
-	}
-
-	public static void logTime()
-	{
-		time = System.currentTimeMillis();
-	}
-
-	public static void logDuration(String sectionName)
-	{
-		if (!DEBUG) return;
-
-		long l = System.currentTimeMillis() - time;
-		logInfo("Time to complete section (" + sectionName + ") was " + l + " ms.");
-		logTime();
 	}
 
 	public static TragicMC getInstance() {

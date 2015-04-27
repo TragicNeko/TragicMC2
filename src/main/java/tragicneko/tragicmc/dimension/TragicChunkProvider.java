@@ -6,6 +6,7 @@ import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.Ev
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -26,6 +27,7 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
@@ -364,14 +366,27 @@ public class TragicChunkProvider implements IChunkProvider
 		long i1 = this.rand.nextLong() / 2L * 2L + 1L;
 		long j1 = this.rand.nextLong() / 2L * 2L + 1L;
 		this.rand.setSeed(par2 * i1 + par3 * j1 ^ this.worldObj.getSeed());
-		boolean flag = false;
 
 		int k1;
 		int l1;
-		int i2; 
-		//TODO add Dimension specific generators directly here to speed up generation, or better yet put them directly into their biome classes under decorate
+		int i2;
+		
+		if (rand.nextInt(100) < TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0)
+		{
+			new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		}
+		
+		if (TragicConfig.allowVoidPitGen && rand.nextInt(100) >= TragicConfig.voidPitRarity && rand.nextInt(4) != 0)
+		{
+			new tragicneko.tragicmc.worldgen.VoidPitWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		}
 
-		if (!flag && this.rand.nextInt(4) == 0 && TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA))
+		if (this.rand.nextInt(8) == 0)
+		{
+			new tragicneko.tragicmc.worldgen.PitWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		}
+		
+		if (this.rand.nextInt(4) == 0)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(256);
@@ -380,7 +395,7 @@ public class TragicChunkProvider implements IChunkProvider
 		}
 
 		int r = biomegenbase instanceof BiomeGenScorchedWasteland ? 4 : 16;
-		if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) && !flag && this.rand.nextInt(r) == 0)
+		if (this.rand.nextInt(r) == 0)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(this.rand.nextInt(248) + 8);
@@ -388,16 +403,22 @@ public class TragicChunkProvider implements IChunkProvider
 			if (this.rand.nextInt(10) == 0) (new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
 
-		boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
-		for (k1 = 0; doGen && k1 < 32; ++k1)
+		for (k1 = 0; k1 < 32; ++k1)
 		{
 			l1 = k + this.rand.nextInt(16) + 8;
 			i2 = this.rand.nextInt(256);
 			int j2 = l + this.rand.nextInt(16) + 8;
 			(new WorldGenDimensionDungeon()).generate(this.worldObj, this.rand, l1, i2, j2);
 		}
+		
+		if (TragicConfig.allowDarkStoneVariantGen)
+		{
+			new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		}
 
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
+		new tragicneko.tragicmc.worldgen.DimensionOreWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		
 		BlockFalling.fallInstantly = false;
 	}
 

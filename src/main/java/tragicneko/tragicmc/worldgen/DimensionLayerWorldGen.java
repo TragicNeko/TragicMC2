@@ -19,8 +19,7 @@ public class DimensionLayerWorldGen implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (!(world.provider instanceof TragicWorldProvider) || world.isRemote) return;
-		//TragicMC.logTime();
+		
 		int paloma = WorldHelper.getWorldDependency(world);
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
@@ -58,6 +57,5 @@ public class DimensionLayerWorldGen implements IWorldGenerator {
 			int Zcoord = z + random.nextInt(16);
 			if (world.getBlockMetadata(Xcoord, Ycoord, Zcoord) == 0) new WorldGenMinable(TragicBlocks.DeadDirt, 2, 8, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
-		//TragicMC.logDuration("Dimension Layer WorldGen");
 	}
 }

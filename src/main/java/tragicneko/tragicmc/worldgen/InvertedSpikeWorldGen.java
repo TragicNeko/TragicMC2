@@ -20,8 +20,6 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (!(world.provider instanceof TragicWorldProvider) || random.nextInt(100) >= TragicConfig.largeSpikeRarity || random.nextInt(6) == 0) return;
-
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);

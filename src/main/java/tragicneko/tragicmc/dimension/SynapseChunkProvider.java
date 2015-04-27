@@ -438,7 +438,7 @@ public class SynapseChunkProvider implements IChunkProvider
         int a;
         int b;
         int c;
-        TragicMC.logTime();
+        
         for (int i = 0; i < 8; i++)
 		{
 			a = k + this.worldObj.rand.nextInt(16);
@@ -446,7 +446,6 @@ public class SynapseChunkProvider implements IChunkProvider
 			c = this.worldObj.rand.nextInt(100) + 10;
 			new WorldGenDeadCircuit(6).generate(worldObj, synapseRNG, a, c, b);
 		}
-        TragicMC.logDuration("Dead Circuit Gen");
 
         boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, synapseRNG, x, z, false, GLOWSTONE);
         for (int i = 0; i < 7; i++)
@@ -456,7 +455,6 @@ public class SynapseChunkProvider implements IChunkProvider
             b = l + this.synapseRNG.nextInt(16) + 8;
             (new ConduitWorldGen1()).generate(this.worldObj, this.synapseRNG, a, c, b);
         }
-        TragicMC.logDuration("Conduit WorldGen 1");
         
         for (int i = 0; i < 10; ++i)
         {
@@ -464,9 +462,7 @@ public class SynapseChunkProvider implements IChunkProvider
             c = this.synapseRNG.nextInt(100) + 10;
             b = l + this.synapseRNG.nextInt(16) + 8;
             (new ConduitWorldGen2()).generate(this.worldObj, this.synapseRNG, a, c, b);
-        }
-        TragicMC.logDuration("Conduit WorldGen 2");
-        
+        }        
     }
 
     /**
