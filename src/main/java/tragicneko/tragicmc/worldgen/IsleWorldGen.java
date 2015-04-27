@@ -18,7 +18,7 @@ public class IsleWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (random.nextInt(4) != 0) return;
+		if (random.nextInt(3) != 0) return;
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
@@ -28,7 +28,7 @@ public class IsleWorldGen implements IWorldGenerator {
 		ArrayList<int[]> list;
 		int relays = 1 + random.nextInt(3);
 		Block block;
-		double regression = 0.88977745D;
+		double regression = 0.86977745D;
 		double cutoff = 0.48943755D;
 		double size;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
@@ -36,10 +36,10 @@ public class IsleWorldGen implements IWorldGenerator {
 
 		for (int buzza = 0; buzza < relays; buzza++)
 		{
-			size = random.nextDouble() * 3.5D + 1.5D;
-			Xcoord += random.nextInt(6) - random.nextInt(6);
-			Zcoord += random.nextInt(6) - random.nextInt(6);
-			Ycoord += 10 + random.nextInt(24) - random.nextInt(12);
+			size = random.nextDouble() * 4.5D + 2.5D;
+			Xcoord += random.nextInt(8) - random.nextInt(8);
+			Zcoord += random.nextInt(8) - random.nextInt(8);
+			Ycoord += 16 + random.nextInt(16) - random.nextInt(8);
 			yMax = Ycoord;
 
 			for (int y1 = 0; y1 > -32; y1--)
@@ -79,6 +79,7 @@ public class IsleWorldGen implements IWorldGenerator {
 					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
 				}
 			}
+			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 		}
 		//seed: -4219481829119480244 x: 4200 z: 4600
 	}

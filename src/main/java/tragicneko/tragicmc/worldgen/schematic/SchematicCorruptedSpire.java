@@ -57,14 +57,6 @@ public class SchematicCorruptedSpire extends Schematic {
 			}
 			y += 6;
 		}
-		//this won't be used until I add the schematic for each floor type, then I'll do testing to make sure it's generating correctly
-		//this.generateFirstFloor(world, rand, x, y, z);
-		//this.generateNormalFloor(world, rand, x, y, z, 3);
-		EntityPlayer player = world.getClosestPlayer(x, y, z, 16.0);
-		if (player != null)
-		{
-			player.setPositionAndUpdate(x - 7.5, y + 1.5, z + 0.5);
-		}
 		return true;
 	}
 
