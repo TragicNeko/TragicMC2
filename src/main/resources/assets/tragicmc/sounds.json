@@ -34,6 +34,27 @@
 	"sounds": [
 	"mob/gragul/death", "mob/gragul/death2"]
     },
+    "mob.minotaur.snort":
+    {
+        "category": "hostile",
+        "sounds": [
+	"mob/minotaur/snort", "mob/minotaur/snort2",
+	"mob/minotaur/snort3"]
+    },
+    "mob.minotaur.hoof":
+    {
+        "category": "hostile",
+        "sounds": [
+	"mob/minotaur/hoof", "mob/minotaur/hoof",
+	"mob/minotaur/hoof", "mob/minotaur/hoof"]
+    },
+    "mob.minotaur.death":
+    {
+        "category": "hostile",
+        "sounds": [
+	"mob/minotaur/death", "mob/minotaur/death2",
+	"mob/minotaur/death3"]
+    },
     "mob.plague.chirp":
     {
 	"category": "hostile",

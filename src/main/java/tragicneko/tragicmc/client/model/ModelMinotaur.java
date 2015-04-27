@@ -130,7 +130,7 @@ public class ModelMinotaur extends ModelBase
 			charge = clay.getUtilityInt();
 		}
 
-		if (charge > 0)
+		if (charge > 10)
 		{
 			body.rotateAngleX = 0.4082002F;
 			body.offsetY = 0.235F;
