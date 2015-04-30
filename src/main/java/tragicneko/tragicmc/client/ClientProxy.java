@@ -1,8 +1,10 @@
 package tragicneko.tragicmc.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,7 +32,6 @@ import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
 import tragicneko.tragicmc.client.model.ModelPlague;
 import tragicneko.tragicmc.client.model.ModelPsygote;
-import tragicneko.tragicmc.client.model.ModelPumpkinhead;
 import tragicneko.tragicmc.client.model.ModelRagr;
 import tragicneko.tragicmc.client.model.ModelRanmas;
 import tragicneko.tragicmc.client.model.ModelSeeker;
@@ -75,6 +76,7 @@ import tragicneko.tragicmc.client.render.mob.RenderMob;
 import tragicneko.tragicmc.client.render.mob.RenderMobTransparent;
 import tragicneko.tragicmc.client.render.mob.RenderNorVox;
 import tragicneko.tragicmc.client.render.mob.RenderPirah;
+import tragicneko.tragicmc.client.render.mob.RenderPumpkinhead;
 import tragicneko.tragicmc.client.render.mob.RenderStin;
 import tragicneko.tragicmc.client.render.mob.RenderTox;
 import tragicneko.tragicmc.client.render.mob.RenderWisp;
@@ -176,19 +178,21 @@ public class ClientProxy extends CommonProxy {
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
 	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);	
-	
+
 	public static final ModelOverlordArmor[] modelsOverlord = new ModelOverlordArmor[] {new ModelOverlordArmor(0), new ModelOverlordArmor(1),
 		new ModelOverlordArmor(2), new ModelOverlordArmor(3)};
 
 	public static final ModelLightArmor[] modelsLight = new ModelLightArmor[] {new ModelLightArmor(0), new ModelLightArmor(1),
 		new ModelLightArmor(2), new ModelLightArmor(3)};
-	
+
 	public static final ModelDarkArmor[] modelsDark = new  ModelDarkArmor[] {new ModelDarkArmor(0), new ModelDarkArmor(1),
 		new ModelDarkArmor(2), new ModelDarkArmor(3)};
-	
+
 	public static final IRenderHandler collisionSkyRenderer = new TragicSkyRenderer();
 	public static final IRenderHandler synapseSkyRenderer = new SynapseSkyRenderer();
-	
+
+	public static IIcon particleTextureSheet;
+
 	@Override
 	public void registerRenders()
 	{
@@ -206,8 +210,12 @@ public class ClientProxy extends CommonProxy {
 
 		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
 		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
-		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
-		
+		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));		
+
+		//Particle registration
+		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+		particleTextureSheet = map.registerIcon("tragicmc:ParticleTextures");
+
 		//Tile Entity render registration (shouldn't be used too often)
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoulChest.class, new RenderSoulChest());
 
@@ -272,7 +280,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityMinotaur.class, new RenderMob(new ModelMinotaur(), 0.337F, "Minotaur"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRagr.class, new RenderMob(new ModelRagr(), 0.435F, "Ragr"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityInkling.class, new RenderMob(new ModelInkling(), 0.175F, "Inkling"));
-		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinhead.class, new RenderMob(new ModelPumpkinhead(), 0.375F, "Pumpkinhead"));
+		RenderingRegistry.registerEntityRenderingHandler(EntityPumpkinhead.class, new RenderPumpkinhead());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTragicNeko.class, new RenderMob(new ModelTragicNeko(), 0.295F, "TragicNeko"));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTox.class, new RenderTox());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMagmox.class, new RenderMob(new ModelTox(), 0.565F, "Magmox2", 1.625F));

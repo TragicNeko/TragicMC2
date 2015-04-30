@@ -346,4 +346,40 @@ public class EntityPumpkinhead extends TragicMob {
 	{
 		return 1;
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return this.isAngry() ? "tragicmc:mob.pumpkinhead.angry" : "tragicmc:mob.pumpkinhead.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.pumpkinhead.hiss";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.pumpkinhead.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.8F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return this.isAngry() ? 40 : 320;
+	}
 }
