@@ -3,69 +3,203 @@
     {
         "category": "hostile",
         "sounds": [
-	"mob/jabba/hurt", "mob/jabba/hurt2",
-	"mob/jabba/hurt3", "mob/jabba/hurt4",
-	"mob/jabba/hurt5", "mob/jabba/hurt6",
-	"mob/jabba/hurt7"]
+			"mob/jabba/hurt", "mob/jabba/hurt2",
+			"mob/jabba/hurt3", "mob/jabba/hurt4",
+			"mob/jabba/hurt5", "mob/jabba/hurt6",
+			"mob/jabba/hurt7"]
     },
     "mob.jabba.squish":
     {
         "category": "hostile",
         "sounds": [
-        "mob/jabba/squish", "mob/jabba/squish2",
-	"mob/jabba/squish3", "mob/jabba/squish4"]
+			"mob/jabba/squish", "mob/jabba/squish2",
+			"mob/jabba/squish3", "mob/jabba/squish4"]
     },
     "mob.gragul.hurt":
     {
-	"category": "hostile",
-	"sounds": [
-	"mob/gragul/hurt", "mob/gragul/hurt2"]
+		"category": "hostile",
+		"sounds": [
+			"mob/gragul/hurt", "mob/gragul/hurt2"]
     },
-    "mob.gragul.living":
+	"mob.gragul.living":
     {
-	"category": "hostile",
-	"sounds": [
-	"mob/gragul/living", "mob/gragul/living2",
-	"mob/gragul/living3"]
+		"category": "hostile",
+		"sounds": [
+			"mob/gragul/living", "mob/gragul/living2",
+			"mob/gragul/living3"]
     },
     "mob.gragul.death":
     {
-	"category": "hostile",
-	"sounds": [
-	"mob/gragul/death", "mob/gragul/death2"]
+		"category": "hostile",
+		"sounds": [
+			"mob/gragul/death", "mob/gragul/death2"]
+    },
+    "mob.inkling.giggle":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/inkling/giggle", "mob/inkling/giggle2",
+			"mob/inkling/giggle3", "mob/inkling/giggle4",
+			"mob/inkling/giggle5", "mob/inkling/giggle6",
+			"mob/inkling/giggle7", "mob/inkling/giggle8",
+			"mob/inkling/giggle9"]
+    },
+    "mob.inkling.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/inkling/hurt", "mob/inkling/hurt2",
+			"mob/inkling/hurt3", "mob/inkling/hurt4",
+			"mob/inkling/hurt5", "mob/inkling/hurt6",
+			"mob/inkling/hurt7", "mob/inkling/hurt8",
+			"mob/inkling/hurt9"]
+    },
+    "mob.inkling.hey":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/inkling/hey", "mob/inkling/hey2",
+			"mob/inkling/hey3", "mob/inkling/hey4",
+			"mob/inkling/hey5"]
+    },
+    "mob.inkling.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/inkling/death", "mob/inkling/death2",
+			"mob/inkling/death3", "mob/inkling/death4"]
     },
     "mob.minotaur.snort":
     {
         "category": "hostile",
         "sounds": [
-	"mob/minotaur/snort", "mob/minotaur/snort2",
-	"mob/minotaur/snort3"]
+			"mob/minotaur/snort", "mob/minotaur/snort2",
+			"mob/minotaur/snort3"]
     },
     "mob.minotaur.hoof":
     {
         "category": "hostile",
         "sounds": [
-	"mob/minotaur/hoof", "mob/minotaur/hoof",
-	"mob/minotaur/hoof", "mob/minotaur/hoof"]
+			"mob/minotaur/hoof", "mob/minotaur/hoof",
+			"mob/minotaur/hoof", "mob/minotaur/hoof"]
     },
     "mob.minotaur.death":
     {
         "category": "hostile",
         "sounds": [
-	"mob/minotaur/death", "mob/minotaur/death2",
-	"mob/minotaur/death3"]
+			"mob/minotaur/death", "mob/minotaur/death2",
+			"mob/minotaur/death3"]
     },
     "mob.plague.chirp":
     {
-	"category": "hostile",
-	"sounds": [
-	"mob/plague/chirp", "mob/plague/chirp2",
-	"mob/plague/chirp3"]
+		"category": "hostile",
+		"sounds": [
+			"mob/plague/chirp", "mob/plague/chirp2",
+			"mob/plague/chirp3"]
     },
     "mob.plague.death":
     {
-	"category": "hostile",
-	"sounds": [
-	"mob/plague/death"]
+		"category": "hostile",
+		"sounds": [
+			"mob/plague/death"]
+    },
+	"mob.pumpkinhead.hiss":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/pumpkinhead/hiss", "mob/pumpkinhead/hiss2",
+			"mob/pumpkinhead/hiss3", "mob/pumpkinhead/hiss4",
+			"mob/pumpkinhead/hiss5", "mob/pumpkinhead/hiss6"]
+    },
+    "mob.pumpkinhead.angry":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/pumpkinhead/angry", "mob/pumpkinhead/angry2",
+			"mob/pumpkinhead/angry3", "mob/pumpkinhead/angry4",
+			"mob/pumpkinhead/angry5", "mob/pumpkinhead/angry6"]
+    },
+    "mob.pumpkinhead.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/pumpkinhead/living", "mob/pumpkinhead/living2",
+			"mob/pumpkinhead/living3", "mob/pumpkinhead/living4",
+			"mob/pumpkinhead/living5", "mob/pumpkinhead/living6"]
+    },
+    "mob.pumpkinhead.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/pumpkinhead/death", "mob/pumpkinhead/death2",
+			"mob/pumpkinhead/death3"]
+    },
+    "mob.ragr.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/ragr/hurt", "mob/ragr/hurt2",
+			"mob/ragr/hurt3", "mob/ragr/hurt4",
+			"mob/ragr/hurt5", "mob/ragr/hurt6",
+			"mob/ragr/hurt7", "mob/ragr/hurt8",
+			"mob/ragr/hurt9", "mob/ragr/hurt10",
+			"mob/ragr/hurt11", "mob/ragr/hurt12"]
+    },
+    "mob.ragr.jump":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/ragr/jump", "mob/ragr/jump2",
+			"mob/ragr/jump3", "mob/ragr/jump4",
+			"mob/ragr/jump5", "mob/ragr/jump6",
+			"mob/ragr/jump7", "mob/ragr/jump8",
+			"mob/ragr/jump9", "mob/ragr/jump10",
+			"mob/ragr/jump11", "mob/ragr/jump12"]
+    },
+    "mob.ragr.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/ragr/death", "mob/ragr/death2",
+			"mob/ragr/death3", "mob/ragr/death4"]
+    },
+    "mob.tragicneko.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/tragicneko/living", "mob/tragicneko/living2",
+			"mob/tragicneko/living3", "mob/tragicneko/living4",
+			"mob/tragicneko/living5", "mob/tragicneko/living6",
+			"mob/tragicneko/living7", "mob/tragicneko/living8",
+			"mob/tragicneko/living9", "mob/tragicneko/living10",
+			"mob/tragicneko/living11", "mob/tragicneko/living12",
+			"mob/tragicneko/living13", "mob/tragicneko/living14",
+			"mob/tragicneko/living15", "mob/tragicneko/living16",
+			"mob/tragicneko/living17", "mob/tragicneko/living18",
+			"mob/tragicneko/living19", "mob/tragicneko/living20",
+			"mob/tragicneko/living21", "mob/tragicneko/living22",
+			"mob/tragicneko/living23", "mob/tragicneko/living24",
+			"mob/tragicneko/living25", "mob/tragicneko/living26",
+			"mob/tragicneko/living27", "mob/tragicneko/living28",
+			"mob/tragicneko/living29", "mob/tragicneko/living30"]
+    },
+    "mob.tragicneko.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/tragicneko/hurt", "mob/tragicneko/hurt2",
+			"mob/tragicneko/hurt3", "mob/tragicneko/hurt4",
+			"mob/tragicneko/hurt5", "mob/tragicneko/hurt6",
+			"mob/tragicneko/hurt7", "mob/tragicneko/hurt8"]
+    },
+    "mob.tragicneko.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/tragicneko/death", "mob/tragicneko/death2",
+			"mob/tragicneko/death3", "mob/tragicneko/death4",
+			"mob/tragicneko/death5", "mob/tragicneko/death6",
+			"mob/tragicneko/death7", "mob/tragicneko/death8",
+			"mob/tragicneko/death9", "mob/tragicneko/death10"]
     }
 }
