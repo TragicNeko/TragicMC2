@@ -216,7 +216,11 @@ public class EntityInkling extends TragicMob {
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
-		if (result) this.setVisibleTicks(10 + rand.nextInt(10));
+		if (result)
+			{
+			this.setVisibleTicks(10 + rand.nextInt(10));
+			this.playSound("tragicmc:mob.inkling.hey", this.getSoundVolume(), this.getSoundPitch());
+			}
 		
 		return result;
 	}
@@ -318,8 +322,8 @@ public class EntityInkling extends TragicMob {
 				this.worldObj.spawnParticle("smoke", d7, d8, d9, f, f1, f2);
 			}
 
-			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
-			this.playSound("mob.endermen.portal", 1.0F, 1.0F);
+			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 0.2F, 1.0F);
+			this.playSound("mob.endermen.portal", 0.2F, 1.0F);
 			return true;
 		}
 	}
@@ -342,4 +346,39 @@ public class EntityInkling extends TragicMob {
 		return false;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return this.isInvisible() ? "tragicmc:mob.inkling.giggle" : "tragicmc:mob.inkling.hey";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.inkling.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? "tragicmc:mob.inkling.death" : "tragicmc:mob.inkling.hurt";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 320;
+	}
 }

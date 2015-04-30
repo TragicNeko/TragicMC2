@@ -30,7 +30,7 @@ public class ModelInkling extends ModelBase
 		
 		//Left Arm
 		leftArm = new ModelRenderer(this, 16, 16);
-		leftArm.addBox(0F, 0F, -2F, 2, 10, 2);
+		leftArm.addBox(0F, 0F, -1F, 2, 10, 2);
 		leftArm.setRotationPoint(3F, 2F, 0F);
 		leftArm.rotateAngleZ = -0.3346075F;
 		
@@ -51,8 +51,8 @@ public class ModelInkling extends ModelBase
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		body.render(f5);
-		rightArm.render(f5);
-		leftArm.render(f5);
+		if (entity.getEntityId() % 3 != 0) rightArm.render(f5);
+		if (entity.getEntityId() % 7 != 0) leftArm.render(f5);
 		rightLeg.render(f5);
 		leftLeg.render(f5);
 	}
