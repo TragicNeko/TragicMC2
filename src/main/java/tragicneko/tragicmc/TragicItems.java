@@ -40,6 +40,7 @@ import tragicneko.tragicmc.items.ItemMoonlight;
 import tragicneko.tragicmc.items.ItemNekoWand;
 import tragicneko.tragicmc.items.ItemNourishmentSacrifice;
 import tragicneko.tragicmc.items.ItemProjectile;
+import tragicneko.tragicmc.items.ItemSoundExtrapolator;
 import tragicneko.tragicmc.items.ItemStatue;
 import tragicneko.tragicmc.items.ItemSynthesis;
 import tragicneko.tragicmc.items.ItemTalisman;
@@ -215,6 +216,7 @@ public class TragicItems {
 	public static Item SwordOfJustice;
 	public static Item Generator;
 	public static Item NekoNekoWand;
+	public static Item SoundExtrapolator;
 
 	public static Item SpawnEgg;
 	public static Item MobStatue;
@@ -900,6 +902,9 @@ public class TragicItems {
 
 		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand"));
 		GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
+		
+		SoundExtrapolator = (new ItemSoundExtrapolator().setUnlocalizedName("tragicmc.soundExtrapolator").setTextureName("tragicmc:SoundExtrapolator"));
+		GameRegistry.registerItem(SoundExtrapolator, "soundExtrapolator");
 
 		if (TragicConfig.allowMobs)
 		{
