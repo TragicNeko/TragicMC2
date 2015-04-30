@@ -3,8 +3,6 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicConfig.ragrStats;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -17,9 +15,7 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -29,11 +25,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.blocks.BlockDarkCobble;
+import tragicneko.tragicmc.blocks.BlockGenericGrass;
+import tragicneko.tragicmc.blocks.BlockPermafrost;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.util.WorldHelper;
 
 import com.google.common.collect.Sets;
@@ -41,7 +40,9 @@ import com.google.common.collect.Sets;
 public class EntityRagr extends TragicMob {
 
 	public static Set crushableBlocks = Sets.newHashSet(new Block[] {Blocks.yellow_flower, Blocks.red_flower, Blocks.red_mushroom, Blocks.brown_mushroom, Blocks.tallgrass,
-			Blocks.leaves});
+			Blocks.leaves, Blocks.leaves2, TragicBlocks.HallowedLeaves, TragicBlocks.AshenLeaves, TragicBlocks.DarkLeaves, TragicBlocks.PaintedLeaves,
+			TragicBlocks.BleachedLeaves, TragicBlocks.AshenTallGrass, TragicBlocks.AshenBush, Blocks.deadbush, TragicBlocks.TragicFlower, TragicBlocks.StarlitTallGrass,
+			TragicBlocks.DarkTallGrass, Blocks.snow_layer});
 
 	public EntityRagr(World par1World) {
 		super(par1World);
@@ -54,6 +55,7 @@ public class EntityRagr extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
 	}
 
 	@Override
@@ -126,21 +128,7 @@ public class EntityRagr extends TragicMob {
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
 				this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
 				this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-				this.motionY = 0.745D;
-			}
-			else if (this.getAngerTicks() >= 600)
-			{
-				if (this.getAngerTicks() % 50 == 0 && this.onGround)
-				{
-					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().posZ - this.posZ;
-					float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-					this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
-					this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-					this.motionY = (rand.nextDouble() * 1.055) + 0.445;
-				}
-
-				if (this.getAngerTicks() >= 800) this.setAngerTicks(400);
+				this.jump();
 			}
 			else if (this.onGround && rand.nextBoolean())
 			{
@@ -149,7 +137,7 @@ public class EntityRagr extends TragicMob {
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
 				this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
 				this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-				this.motionY = 0.545D;
+				this.jump();
 			}
 		}
 		else
@@ -163,47 +151,26 @@ public class EntityRagr extends TragicMob {
 				float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
 				this.motionX = d0 / f2 * 1.5D * 0.800000011920929D + this.motionX * 0.60000000298023224D;
 				this.motionZ = d1 / f2 * 1.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
-				this.motionY = 0.545D;
+				this.jump();
 			}
 		}
+	}
 
-		if (this.getAttackTarget() == null)
+	@Override
+	protected void jump()
+	{
+		this.playSound("tragicmc:mob.ragr.jump", this.getSoundVolume(), 0.8F);
+		this.motionY = this.getAngerTicks() > 600 ? rand.nextDouble() * 1.055 + 0.455 : 0.545;
+		if (this.isPotionActive(Potion.jump))this.motionY += (double)((float)(this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+
+		if (this.isSprinting())
 		{
-			EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
-
-			Entity result = null;
-
-			if (entityplayer != null && this.canEntityBeSeen(entityplayer))
-			{
-				result = entityplayer;
-			}
-			else
-			{
-				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
-
-				for (int i = 0; i < list.size(); i++)
-				{
-					Entity entity = list.get(i);
-
-					if (this.canEntityBeSeen(entity) && !(entity instanceof EntityWither) && !(entity instanceof EntityDragon) &&
-							!(entity instanceof TragicBoss))
-					{
-						if (entity instanceof TragicMob)
-						{
-							result = entity;
-							break;
-						}
-						else if (entity instanceof EntityAnimal)
-						{
-							result = entity;
-							break;
-						}
-					}
-				}
-
-				this.setAttackTarget((EntityLivingBase) result);
-			}
+			float f = this.rotationYaw * 0.017453292F;
+			this.motionX -= (double)(MathHelper.sin(f) * 0.2F);
+			this.motionZ += (double)(MathHelper.cos(f) * 0.2F);
 		}
+
+		this.isAirBorne = true;
 	}
 
 	@Override
@@ -264,6 +231,25 @@ public class EntityRagr extends TragicMob {
 			{
 				this.worldObj.setBlock(x, y, z, Blocks.gravel);
 			}
+			else if (!TragicConfig.mobsOnly) //if mobsOnly mode is enabled all of these blocks will be null
+			{
+				if (block instanceof BlockGenericGrass)
+				{
+					this.worldObj.setBlock(x, y, z, TragicBlocks.DeadDirt);
+				}
+				else if (block instanceof BlockPermafrost)
+				{
+					this.worldObj.setBlock(x, y, z, TragicBlocks.Permafrost, 1, 2);
+				}
+				else if (block == TragicBlocks.DarkStone)
+				{
+					this.worldObj.setBlock(x, y, z, TragicBlocks.DarkCobblestone);
+				}
+				else if (block instanceof BlockDarkCobble)
+				{
+					this.worldObj.setBlock(x, y, z, TragicBlocks.DeadDirt);
+				}
+			}
 		}
 	}
 
@@ -285,20 +271,8 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		int i = MathHelper.floor_double(this.boundingBox.minY);
-
-		if (i <= 63 && !(this.worldObj.provider instanceof TragicWorldProvider))
-		{
-			return false;
-		}
-		else if (i > 63 || this.worldObj.provider instanceof TragicWorldProvider)
-		{
-			return super.getCanSpawnHere();
-		}
-		else
-		{
-			return false;
-		}
+		if (MathHelper.floor_double(this.boundingBox.minY) <= this.worldObj.provider.getAverageGroundLevel() && !(this.worldObj.provider instanceof TragicWorldProvider)) return false;
+		return super.getCanSpawnHere();
 	}
 
 	@Override
@@ -355,9 +329,9 @@ public class EntityRagr extends TragicMob {
 
 			if (!this.onGround)
 			{
-				par1Entity.motionX *= 1.8000000059604645D;
-				par1Entity.motionZ *= 1.8D;
-				par1Entity.motionY += 0.6D;
+				par1Entity.motionX += this.motionX;
+				par1Entity.motionZ += this.motionZ;
+				par1Entity.motionY += this.motionY;
 			}
 
 		}
@@ -369,4 +343,39 @@ public class EntityRagr extends TragicMob {
 		return false;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.ragr.hurt";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.ragr.death";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.8F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
+	}
 }
