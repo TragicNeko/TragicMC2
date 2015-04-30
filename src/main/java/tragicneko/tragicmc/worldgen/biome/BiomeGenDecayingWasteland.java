@@ -10,8 +10,8 @@ import tragicneko.tragicmc.entity.mob.EntitySirv;
 
 public class BiomeGenDecayingWasteland extends TragicBiome {
 
-	public BiomeGenDecayingWasteland(int par1) {
-		super(par1);
+	public BiomeGenDecayingWasteland(int par1, int par2) {
+		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
 		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, 4, 6));
 		if (TragicConfig.allowDeathReaper) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityDeathReaper.class, TragicConfig.deathReaperSC, 0, 1));

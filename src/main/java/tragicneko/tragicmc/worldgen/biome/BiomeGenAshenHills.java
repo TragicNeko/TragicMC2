@@ -18,8 +18,8 @@ import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 
 public class BiomeGenAshenHills extends TragicBiome {
 
-	public BiomeGenAshenHills(int par1) {
-		super(par1);
+	public BiomeGenAshenHills(int par1, int par2) {
+		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
 		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, 0, 2));
 		if (TragicConfig.allowGragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicConfig.gragulSC, 0, 2));

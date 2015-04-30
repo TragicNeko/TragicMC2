@@ -14,8 +14,8 @@ import tragicneko.tragicmc.worldgen.WorldGenHallowedTree;
 
 public class BiomeGenHallowedHills extends TragicBiome {
 
-	public BiomeGenHallowedHills(int par1) {
-		super(par1);
+	public BiomeGenHallowedHills(int par1, int par2) {
+		super(par1, par2);
 		this.enableSnow = false;
 		this.temperature = 1.6F;
 		this.rainfall = 0.4F;

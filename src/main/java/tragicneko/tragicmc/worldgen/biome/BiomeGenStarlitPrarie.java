@@ -16,8 +16,8 @@ import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
 
 public class BiomeGenStarlitPrarie extends TragicBiome {
 
-	public BiomeGenStarlitPrarie(int par1) {
-		super(par1);
+	public BiomeGenStarlitPrarie(int par1, int par2) {
+		super(par1, par2);
 		if (TragicConfig.allowStarCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.starCryseSC, 0, 2));
 		if (TragicConfig.allowStarVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.starVoxSC, 0, 1));
 		if (TragicConfig.allowVoxStellarum) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityVoxStellarum.class, TragicConfig.voxStellarumSC, 0, 1));

@@ -7,7 +7,7 @@ import tragicneko.tragicmc.entity.mob.EntityRanmas;
 public class BiomeGenCrystal extends TragicBiome {
 
 	public BiomeGenCrystal(int par1) {
-		super(par1);
+		super(par1, 0);
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableCaveCreatureList.clear();

@@ -208,7 +208,6 @@ public class TragicMC
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CustomSpikesWorldGen(), 2); //for the decaying wasteland and tainted spikes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 3); //for the ashen badlands and tainted scarlands
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 4); //for the ashen badlands and decaying wasteland
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.IsleWorldGen(), 5); //for the tainted isles
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StringLightWorldGen(), 6); //For Hallowed biomes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ScorchedSurfaceWorldGen(), 7); //For the Scorched biomes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 8); //Corroded biomes

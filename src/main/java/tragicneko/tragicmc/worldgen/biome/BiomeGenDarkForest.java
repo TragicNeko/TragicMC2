@@ -20,8 +20,8 @@ import tragicneko.tragicmc.worldgen.WorldGenDarkForestTree;
 
 public class BiomeGenDarkForest extends TragicBiome {
 
-	public BiomeGenDarkForest(int par1) {
-		super(par1);
+	public BiomeGenDarkForest(int par1, int par2) {
+		super(par1, par2);
 		this.spawnableMonsterList.clear();
 		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, 1, 4));
 		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, 2, 4));

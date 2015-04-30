@@ -18,12 +18,9 @@ public class IsleWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (random.nextInt(3) != 0) return;
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
-		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
-		if (biome != TragicBiomes.TaintedIsles) return;
 
 		ArrayList<int[]> list;
 		int relays = 1 + random.nextInt(3);
@@ -39,8 +36,10 @@ public class IsleWorldGen implements IWorldGenerator {
 			size = random.nextDouble() * 4.5D + 2.5D;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
-			Ycoord += 16 + random.nextInt(16) - random.nextInt(8);
 			yMax = Ycoord;
+			int r = 16 + random.nextInt(16) - random.nextInt(8);
+			Ycoord += r;
+			yMax += r;
 
 			for (int y1 = 0; y1 > -32; y1--)
 			{
@@ -69,10 +68,6 @@ public class IsleWorldGen implements IWorldGenerator {
 				if (coords2[1] >= yMax)
 				{
 					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.ErodedStone, 0, 2);
-				}
-				else if (coords2[1] >= yMax - rand - random.nextInt(2))
-				{
-					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DeadDirt, 0, 2);
 				}
 				else
 				{

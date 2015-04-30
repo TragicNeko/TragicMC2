@@ -10,8 +10,8 @@ import tragicneko.tragicmc.entity.mob.EntityWisp;
 
 public class BiomeGenScorchedWasteland extends TragicBiome {
 
-	public BiomeGenScorchedWasteland(int par1) {
-		super(par1);
+	public BiomeGenScorchedWasteland(int par1, int par2) {
+		super(par1, par2);
 		this.spawnableCreatureList.clear();
 		if (TragicConfig.allowWisp) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.wispSC, 3, 6));
 		if (TragicConfig.allowJabba) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jabbaSC, 2, 4));

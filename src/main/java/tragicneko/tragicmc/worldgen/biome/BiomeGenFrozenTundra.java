@@ -18,8 +18,8 @@ import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
 public class BiomeGenFrozenTundra extends TragicBiome {
 
-	public BiomeGenFrozenTundra(int par1) {
-		super(par1);
+	public BiomeGenFrozenTundra(int par1, int par2) {
+		super(par1, par2);
 		this.enableSnow = true;
 		this.enableRain = false;
 		this.temperature = 0.1F;

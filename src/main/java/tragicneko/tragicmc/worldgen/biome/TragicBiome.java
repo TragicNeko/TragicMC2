@@ -19,9 +19,12 @@ import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
 
 public class TragicBiome extends BiomeGenBase {
+	
+	protected final int variant;
 
-	public TragicBiome(int par1) {
+	public TragicBiome(int par1, int par2) {
 		super(par1, true);
+		this.variant = par2;
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.fillerBlock = TragicBlocks.DarkStone;

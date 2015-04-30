@@ -105,7 +105,7 @@ public class TragicWorldProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
     public double getVoidFogYFactor()
     {
-        return 0;
+        return 0.01;
     }
 
 	@Override
@@ -114,7 +114,7 @@ public class TragicWorldProvider extends WorldProvider
 	{
 		float[] colors = new float[4];
 		float f2 = 0.4F;
-		float f3 = MathHelper.cos(f * 3.141593F * 2.0F) - 0.0F;
+		float f3 = MathHelper.cos(f * 3.141593F * 2.0F);
 		float f4 = -0.0F;
 		if (f3 >= f4 - f2 && f3 <= f4 + f2)
 		{
@@ -139,7 +139,6 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public float calculateCelestialAngle(long time, float f)
 	{
-		time = 17000L;
 		int j = (int) (time % 24000L);
 		float f1 = (j + f) / 24000.0F - 0.25F;
 		if (f1 < 0.0F)

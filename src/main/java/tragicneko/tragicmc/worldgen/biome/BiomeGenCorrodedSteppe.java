@@ -14,8 +14,8 @@ import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
 public class BiomeGenCorrodedSteppe extends TragicBiome {
 
-	public BiomeGenCorrodedSteppe(int par1) {
-		super(par1);
+	public BiomeGenCorrodedSteppe(int par1, int par2) {
+		super(par1, par2);
 		this.enableSnow = false;
 		this.enableRain = false;
 		this.temperature = 0.2F;
