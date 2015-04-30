@@ -239,19 +239,19 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	public float getSoundPitch()
 	{
-		return 1.0F;
+		return 0.8F;
 	}
 	
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.2F + rand.nextFloat() * 0.2F;
+		return 0.8F + rand.nextFloat() * 0.2F;
 	}
 	
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
     {
-		this.playSound("tragicmc:mob.minotaur.hoof", 0.05F + rand.nextFloat() * 0.05F, 0.4F);
+		this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
     }
 	
 	@Override
