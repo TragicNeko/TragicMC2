@@ -215,7 +215,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.2F + rand.nextFloat() * 0.2F;
+		return 0.6F + rand.nextFloat() * 0.2F;
 	}
 	
 	@Override
@@ -223,4 +223,10 @@ public class EntityPlague extends TragicMob {
     {
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
     }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 60;
+	}
 }
