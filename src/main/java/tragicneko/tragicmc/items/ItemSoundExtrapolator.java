@@ -76,6 +76,7 @@ public class ItemSoundExtrapolator extends Item {
 			}
 			catch (Exception e) {
 				TragicMC.logError("Error caught from Sound Extrapolator", e);
+				return par1ItemStack;
 			}
 
 		}
