@@ -683,7 +683,7 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "lockbotAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "nanoSwarmSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "nanoSwarmAllow", true).getBoolean(true));
-		mobsSC[mapping] = clampPositive(config.get(catMobs, "snowGolemSpawnChance", 40).getInt(40));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "snowGolemSpawnChance", 20).getInt(20));
 		mobConfigs[mapping++] = (config.get(catMobs, "snowGolemAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "hunterChance", 15).getInt(15));
 		mobConfigs[mapping++] = (config.get(catMobs, "hunterAllow", true).getBoolean(true));
@@ -890,8 +890,8 @@ public class TragicConfig {
 
 		mapping = 0;
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "voidPitRarity", 5).getInt(5), 1, 200);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "largeSpikeRarity", 95).getInt(95), 1, 200);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "starCrystalRarity", 10).getInt(10), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "largeSpikeRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "starCrystalRarity", 40).getInt(40), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "apisTempleRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "desertTowerRarity", 15).getInt(15), 1, 200);

@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
@@ -66,11 +67,11 @@ public class BiomeGenDarkForest extends TragicBiome {
 		
 		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.DarkVine);
 
-		for (l = 0; l < 12; ++l)
+		for (int a = 0; a < 40; ++a)
 		{
-			i1 = x + rand.nextInt(16) + 8;
-			int j1 = z + rand.nextInt(16) + 8;
-			worldgenvines.generate(world, rand, i1, 128, j1);
+			k = x + rand.nextInt(16) - 8;
+			l = z + rand.nextInt(16) - 8;
+			worldgenvines.generate(world, rand, k, 128, l);
 		}
 	}
 

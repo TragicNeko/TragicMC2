@@ -34,18 +34,16 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 		
-		int k = x + rand.nextInt(16) + 8;
-		int l = z + rand.nextInt(16) + 8;
-		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(8) - rand.nextInt(8);
-		
 		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.WickedVine);
 		int mew = this == TragicBiomes.CorrodedSteppe || this == TragicBiomes.CorrodedHeights ? 4 : (this == TragicBiomes.CorrodedVeld ? 22 :10);
+		int k;
+		int l;
 
-		for (l = 0; l < mew; ++l)
+		for (int a = 0; a < mew; ++a)
 		{
-			i1 = x + rand.nextInt(16) + 8;
-			int j1 = z + rand.nextInt(16) + 8;
-			worldgenvines.generate(world, rand, i1, 128, j1);
+			k = x + rand.nextInt(16) - 8;
+			l = z + rand.nextInt(16) - 8;
+			worldgenvines.generate(world, rand, k, 128, l);
 		}
 	}
 

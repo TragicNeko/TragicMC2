@@ -9,9 +9,12 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityStin;
+import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.IsleWorldGen;
 
 public class BiomeGenTaintedSpikes extends TragicBiome {
+	
+	private CustomSpikesWorldGen spikeWorldGen;
 
 	public BiomeGenTaintedSpikes(int par1, int par2) {
 		super(par1, par2);
@@ -26,13 +29,18 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.rootHeight = 0.25F;
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.ErodedStone;
+		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 6 : 2, TragicBlocks.DarkStone, 14, 0.92977745D, 0.38943755D, 1.5D, 1.0D);
 	}
 
 	@Override
 	public void decorate(World world, Random rand, int x, int z)
 	{
+		super.decorate(world, rand, x, z);
 		if (this.variant == 4 && rand.nextInt(3) == 0) new IsleWorldGen().generate(rand, x / 16, z / 16, world, null, null);
-		//generate before the top/filler blocks are placed so that they can be placed by the decorator
-		super.decorate(world, rand, x, z);		
+		
+		if (this.spikeWorldGen != null && this.variant < 3 && rand.nextInt(100) >= TragicConfig.largeSpikeRarity)
+		{
+			spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
+		}
 	}
 }

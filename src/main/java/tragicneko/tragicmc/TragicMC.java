@@ -204,8 +204,6 @@ public class TragicMC
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedPrarie);
 
 			//TODO convert these to biome-unique decoration instead of having them called every chunk for every dimension for every biome
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StarCrystalWorldGen(), 1); //for the starlit prarie
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CustomSpikesWorldGen(), 2); //for the decaying wasteland and tainted spikes
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 3); //for the ashen badlands and tainted scarlands
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 4); //for the ashen badlands and decaying wasteland
 			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StringLightWorldGen(), 6); //For Hallowed biomes

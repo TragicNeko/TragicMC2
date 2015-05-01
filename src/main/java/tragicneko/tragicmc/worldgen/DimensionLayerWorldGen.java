@@ -45,17 +45,9 @@ public class DimensionLayerWorldGen implements IWorldGenerator {
 				{
 					j = random.nextInt(16);
 					k = random.nextInt(16);
-					if (world.getBlock(x + j, y, z + k) == DarkStone) world.setBlock(x + j, y, z + k, DarkStone, meta, 2);
+					if (world.getBlock(x + j, y, z + k) == DarkStone) world.setBlockMetadataWithNotify(x + j, y, z + k, meta, 2);
 				}
 			}
-		}
-
-		for (int i = 0; i < 4; i++)
-		{
-			int Xcoord = x + random.nextInt(16);
-			int Ycoord = random.nextInt(205) + 10;
-			int Zcoord = z + random.nextInt(16);
-			if (world.getBlockMetadata(Xcoord, Ycoord, Zcoord) == 0) new WorldGenMinable(TragicBlocks.DeadDirt, 2, 8, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
 	}
 }

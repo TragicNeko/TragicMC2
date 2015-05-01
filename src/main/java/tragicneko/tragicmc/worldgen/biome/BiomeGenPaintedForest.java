@@ -78,17 +78,15 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 		
-		int k = x + rand.nextInt(16) + 8;
-		int l = z + rand.nextInt(16) + 8;
-		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(24) - rand.nextInt(24);
-		
 		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.Glowvine);
+		int k;
+		int l;
 
-		for (l = 0; l < 20; ++l)
+		for (int a = 0; a < 40; ++a)
 		{
-			i1 = x + rand.nextInt(16) + 8;
-			int j1 = z + rand.nextInt(16) + 8;
-			worldgenvines.generate(world, rand, i1, 128, j1);
+			k = x + rand.nextInt(16) - 8;
+			l = z + rand.nextInt(16) - 8;
+			worldgenvines.generate(world, rand, k, 128, l);
 		}
 	}
 

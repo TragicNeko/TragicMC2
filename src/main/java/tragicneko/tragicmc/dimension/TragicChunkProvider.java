@@ -2,6 +2,7 @@ package tragicneko.tragicmc.dimension;
 
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
+import static tragicneko.tragicmc.TragicBlocks.DarkStone;
 
 import java.util.List;
 import java.util.Random;
@@ -25,6 +26,7 @@ import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -376,7 +378,7 @@ public class TragicChunkProvider implements IChunkProvider
 			new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
 		}
 		
-		if (TragicConfig.allowVoidPitGen && rand.nextInt(100) >= TragicConfig.voidPitRarity && rand.nextInt(4) != 0)
+		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= TragicConfig.voidPitRarity && rand.nextInt(4) != 0)
 		{
 			new tragicneko.tragicmc.worldgen.VoidPitWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
 		}
@@ -384,6 +386,14 @@ public class TragicChunkProvider implements IChunkProvider
 		if (this.rand.nextInt(8) == 0)
 		{
 			new tragicneko.tragicmc.worldgen.PitWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		}
+		
+		for (int i = 0; i < 4; i++)
+		{
+			k1 = k + this.rand.nextInt(16) + 8;
+			l1 = this.rand.nextInt(246) + 10;
+			i2 = l + this.rand.nextInt(16);
+			new WorldGenMinable(TragicBlocks.DeadDirt, 2, 8, DarkStone).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
 		
 		if (this.rand.nextInt(4) == 0)
@@ -411,11 +421,7 @@ public class TragicChunkProvider implements IChunkProvider
 			(new WorldGenDimensionDungeon()).generate(this.worldObj, this.rand, l1, i2, j2);
 		}
 		
-		if (TragicConfig.allowDarkStoneVariantGen)
-		{
-			new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
-		}
-
+		if (TragicConfig.allowDarkStoneVariantGen) new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
 		new tragicneko.tragicmc.worldgen.DimensionOreWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
 		

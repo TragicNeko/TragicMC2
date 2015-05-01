@@ -22,69 +22,80 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class CustomSpikesWorldGen implements IWorldGenerator {
+	
+	public final int relays; //how many spikes should be attempted per chunk
+	public final Block block;
+	public final int meta;
+	public final double regression; //how quickly the spike reduces in size
+	public final double cutoff; //how long the spike generates until it gets too thin to continue
+	public final boolean usesSpikeTypes; //if the spike can be one of the different spike types
+	public final boolean isStarCrystal; //if the spike should use a randomized meta value per spike
+	public final double size; //starting spike size, basically the minimum
+	public final double sizeVariation; //the degree that the size can be up to, basically this plus the minimum is the maximum, this will be multipled by a random from worldgen
+	
+	public CustomSpikesWorldGen(int relay, Block spikeBlock, int metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation, boolean flag, boolean flag2)
+	{
+		this.relays = relay;
+		this.block = spikeBlock;
+		this.meta = metaValue;
+		this.regression = regress;
+		this.cutoff = spikeCutoff;
+		this.size = baseSize;
+		this.sizeVariation = sizeVariation;
+		this.usesSpikeTypes = flag;
+		this.isStarCrystal = flag2;
+	}
+	
+	public CustomSpikesWorldGen(int relay, Block spikeBlock, int metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation)
+	{
+		this(relay, spikeBlock, metaValue, regress, spikeCutoff, baseSize, sizeVariation, true, false);
+	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-
-		if (!(world.provider instanceof TragicWorldProvider) || random.nextInt(100) >= TragicConfig.largeSpikeRarity) return;
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
+	{
+		if (regression > 0.92 && !TragicConfig.allowLargeSpikeGen || random.nextInt(4) == 0) return;
 
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
-		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		boolean flag = biome instanceof BiomeGenDecayingWasteland || biome instanceof BiomeGenFrozenTundra;
-
-		if (biome == TragicBiomes.TaintedIsles || biome == TragicBiomes.TaintedScarlands) return;
-		if (!flag && !(biome instanceof BiomeGenTaintedSpikes) || !WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) return;
-		if (flag && random.nextInt(4) != 0 && !(biome instanceof BiomeGenCrystal)|| !flag && !TragicConfig.allowLargeSpikeGen && !(biome instanceof BiomeGenCrystal)) return;
-
-		int relays = flag ? 4 : (biome instanceof BiomeGenCrystal ? 8 : (biome == TragicBiomes.TaintedSpikes ? 6 : 2));
-		Block spike = flag ? (biome instanceof BiomeGenFrozenTundra ? Blocks.packed_ice : TragicBlocks.BoneBlock ): (biome instanceof BiomeGenCrystal ? TragicBlocks.Crystal : TragicBlocks.DarkStone);
-		int meta = flag ? (biome instanceof BiomeGenFrozenTundra ? 0 : random.nextInt(2)) : (biome instanceof BiomeGenCrystal ? 0 : 14);
 		ArrayList<int[]> list;
-		Block block;
-		double regression = 0.92977745D;
-		double cutoff = 0.38943755D;
-		double size;
+		double spikeSize;
 		int spikeType;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
+		double regress = regression;
+		int m = meta;
 
 		for (int buzza = 0; buzza < relays; buzza++)
 		{
-			size = random.nextDouble() + 1.5D;
+			spikeSize = random.nextDouble() * sizeVariation + size;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
 			if (WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) //this ensures that the randomly selected spot to start a spike is valid
 			{
-				if (flag || biome instanceof BiomeGenCrystal) //faster regression and higher cutoff means the spikes generate shorter and "fatter"
+				spikeType = this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2);
+				if (this.isStarCrystal) m = random.nextInt(16);
+				if (world.getWorldInfo().getTerrainType() == WorldType.AMPLIFIED && TragicConfig.allowLargeSpikeGen && this.regression > 0.92)
 				{
-					size = 0.35D * random.nextDouble() + 1.0D;
-					regression = 0.89477735D;
-					cutoff = 0.441114525D;
-				}
-				else if (world.getWorldInfo().getTerrainType() == WorldType.AMPLIFIED) //if amplified and not decaying biome, these can be almost 130 blocks tall
-				{
-					size *= 1.25D;
-					regression = 0.9883242287D;
-				}
-
-				spikeType = flag ? random.nextInt(2) : random.nextInt(6);
-
+					spikeSize *= 1.25D;
+					regress = 0.9883242287D;
+				}				
+				
 				boolean flag3 = false;
 				boolean flag2 = false;
 
 				for (int y1 = 0; y1 < 128; y1++)
 				{
-					if (size < cutoff || Ycoord + y1 > 256) break;
+					if (spikeSize < cutoff || Ycoord + y1 > 256) break;
 
-					if (random.nextBoolean() && !flag)
+					if (random.nextBoolean())
 					{
-						size *= regression; //reduce the radius of the spike randomly
+						spikeSize *= regress; //reduce the radius of the spike randomly
 
-						if (random.nextInt(3) == 0 && size >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
+						if (random.nextInt(3) == 0 && spikeSize >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
 						{
 							Xcoord += random.nextInt(2) - random.nextInt(2);
 							Zcoord += random.nextInt(2) - random.nextInt(2);
@@ -92,53 +103,54 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 						if (spikeType == 1 && !flag3 && y1 >= 35 && y1 <= 70 && random.nextBoolean() && size <= 0.774446314D) //Type 1 has chance to thicken at a random spot once
 						{
-							size *= 2.86333567D;
+							spikeSize *= 2.86333567D;
 							flag3 = true;
 						}
 					}
-					else if (flag) size *= regression; //makes sure it's done every y-level if in decaying biomes
+					
+					if (!this.usesSpikeTypes) spikeSize *= regress; //makes sure it's done every y-level if in decaying biomes
 
-					if (flag && random.nextBoolean())
+					if (this.usesSpikeTypes && random.nextBoolean())
 					{
 						if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like
 						{
 							Xcoord += random.nextInt(2) - random.nextInt(2);
 							Zcoord += random.nextInt(2) - random.nextInt(2);
 						}
-						else if (spikeType == 3 && !flag2 && random.nextInt(4) == 0 && y1 >= 35 && size <= 1.41115648D && size >= 0.76663601D) //Type 3 has a chance to create a smaller spike near the top
+						else if (spikeType == 3 && !flag2 && random.nextInt(4) == 0 && y1 >= 35 && spikeSize <= 1.41115648D && spikeSize >= 0.76663601D) //Type 3 has a chance to create a smaller spike near the top
 						{
-							generateChildSpike(world, random, size * 1.32977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, meta);
+							generateChildSpike(world, random, spikeSize * 1.32977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), block, m);
 							flag2 = true;
 						}
-						else if (spikeType == 4 && random.nextInt(4) == 0 && y1 >= 35 && size >= 0.76663601D) //Type 4 creates a lot of smaller spikes going up the spike
+						else if (spikeType == 4 && random.nextInt(4) == 0 && y1 >= 35 && spikeSize >= 0.76663601D) //Type 4 creates a lot of smaller spikes going up the spike
 						{
-							generateChildSpike(world, random, size * 1.12977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, meta);
+							generateChildSpike(world, random, spikeSize * 1.12977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), block, m);
 						}
 						else if (spikeType == 5 && random.nextInt(4) == 0) //Type 5 creates huge spikes at the base, and smaller ones near the top, making for a huge web of spikes (usually)
 						{
 							if (y1 <= 24)
 							{
-								generateChildSpike(world, random, size * 1.12977745D, Xcoord + random.nextInt(6) - random.nextInt(6), Ycoord + y1, Zcoord + random.nextInt(6) - random.nextInt(6), spike, meta);
+								generateChildSpike(world, random, spikeSize * 1.12977745D, Xcoord + random.nextInt(6) - random.nextInt(6), Ycoord + y1, Zcoord + random.nextInt(6) - random.nextInt(6), block, m);
 							}
-							else if (size >= 0.76663601D)
+							else if (spikeSize >= 0.76663601D)
 							{
-								generateChildSpike(world, random, size * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), spike, meta);
+								generateChildSpike(world, random, spikeSize * 1.13977745D, Xcoord + random.nextInt(5) - random.nextInt(5), Ycoord + y1, Zcoord + random.nextInt(5) - random.nextInt(5), block, m);
 							}
 						}
 					}
 
-					list = WorldHelper.getBlocksInSphericalRange(world, size, Xcoord, Ycoord + y1, Zcoord);
+					list = WorldHelper.getBlocksInSphericalRange(world, spikeSize, Xcoord, Ycoord + y1, Zcoord);
 
 					for (int[] coords : list)
 					{
-						block = world.getBlock(coords[0], coords[1], coords[2]);
-						if (Structure.validBlocks.contains(block) && block != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
+						Block ablock = world.getBlock(coords[0], coords[1], coords[2]);
+						if (Structure.validBlocks.contains(ablock) && ablock != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
 				}
 				
 				for (int[] coords : cands)
 				{
-					world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);
+					world.setBlock(coords[0], coords[1], coords[2], block, m, 2);
 				}
 			}
 		}

@@ -139,7 +139,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public float calculateCelestialAngle(long time, float f)
 	{
-		int j = (int) (time % 24000L);
+		int j = (int) (17000L % 24000L);
 		float f1 = (j + f) / 24000.0F - 0.25F;
 		if (f1 < 0.0F)
 		{
