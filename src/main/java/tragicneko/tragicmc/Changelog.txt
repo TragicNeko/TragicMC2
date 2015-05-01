@@ -3862,6 +3862,11 @@ Modified TragicNeko model to also extend ModelBiped, adding sounds for it next, 
 Added a lot of TragicNeko sounds, this is one of my favorite mobs
 Added Sound Extrapolator item, for now it's Creative only unless I decide to add it to Survival with obscure ingredients, it uses reflection in order
 to play entity sounds
+Modified CustomSpikesWorldGen to take specifying values for it's generation, it is now used in multiple biome decorators with the specifications in place
+Certain biome variants now have more varying degrees of spike generation
+Rearranged some worldgen for the dimension
+Increased generation size of Void Pits, improved the modified Spike generator, removed Snow Golems from the Frozen biomes they were spawning way too much
+Modified Tough Leather recipe to only require one leather, this is to make early game a bit easier to survive (if you don't go the mining route)
 
 Note: Increase volume of a lot of the mob sounds, especially the Tragic Neko ones
 
