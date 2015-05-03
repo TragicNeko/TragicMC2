@@ -209,8 +209,7 @@ public class ItemMobEgg extends Item
 					entityliving.rotationYawHead = entityliving.rotationYaw;
 					entityliving.renderYawOffset = entityliving.rotationYaw;
 					entityliving.onSpawnWithEgg((IEntityLivingData)null);
-					par0World.spawnEntityInWorld(entity);
-					entityliving.playLivingSound();
+					if (!par0World.isRemote) par0World.spawnEntityInWorld(entity);
 				}
 			}
 
