@@ -44,7 +44,7 @@ public class EnchantmentEvents {
 		{
 			boolean flag = false;
 
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 5 && !flag; i++)
 			{
 				ItemStack stack = event.entityLiving.getEquipmentInSlot(i);
 				if (stack != null && stack.getItem() != Items.enchanted_book && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luminescence.effectId, stack) > 0) flag = true;
@@ -95,30 +95,6 @@ public class EnchantmentEvents {
 
 	/*
 	@SubscribeEvent
-	public void luck(LivingEvent event)
-	{
-		if (event.entityLiving instanceof EntityPlayer)
-		{
-			EntityPlayer lucky = (EntityPlayer) event.entityLiving;
-
-			for (int i = 0; i < 4; i++)
-			{
-				if (lucky.getCurrentArmor(i) != null)
-				{					
-					ItemStack stack = lucky.getCurrentArmor(i);
-					if (EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luck.effectId, stack) > 0)
-					{
-						if (rand.nextInt(1000) == 42)
-						{
-							lucky.addExperience(rand.nextInt(11) + 10);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	@SubscribeEvent
 	public void luckyXpPickup(PlayerPickupXpEvent event)
 	{
 		EntityPlayer lucky = event.entityPlayer;
@@ -138,43 +114,7 @@ public class EnchantmentEvents {
 			}
 		}
 
-	}
-
-
-	@SubscribeEvent
-	public void rangeIncrease(PlayerEvent event)
-	{
-		if (event.entityPlayer.inventory.getCurrentItem() != null)
-		{
-			ItemStack weapon = event.entityPlayer.inventory.getCurrentItem();
-
-			int v = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Range.effectId, weapon);
-
-			if (v > 0)
-			{
-				if (v > 2)
-				{
-					v = 2;
-				}
-
-				PlayerControllerMP controller = Minecraft.getMinecraft().playerController;
-				EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-
-				if (Minecraft.getMinecraft().objectMouseOver != null)
-				{
-					if (Minecraft.getMinecraft().objectMouseOver.typeOfHit.ordinal() == 1)
-					{
-						if (event.entityPlayer.getDistanceSqToEntity(Minecraft.getMinecraft().objectMouseOver.entityHit) < 4.5 + v)
-						{
-							controller.attackEntity(player, Minecraft.getMinecraft().objectMouseOver.entityHit);
-							controller.updateController();
-						}
-					}
-				} 
-
-			}
-		}
-	} */
+	}*/
 
 	@SubscribeEvent
 	public void multiplyArrow(ArrowLooseEvent event)
