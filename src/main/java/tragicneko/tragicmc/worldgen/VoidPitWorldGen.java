@@ -15,6 +15,15 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class VoidPitWorldGen implements IWorldGenerator {
+	
+	public final double radius;
+	public final double variation;
+	
+	public VoidPitWorldGen(double radius, double var)
+	{
+		this.radius = radius;
+		this.variation = var;
+	}
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -22,16 +31,13 @@ public class VoidPitWorldGen implements IWorldGenerator {
 		int Xcoord = (chunkX * 16) + random.nextInt(16);
 		int Ycoord = random.nextInt(35) + 60;
 		int Zcoord = (chunkZ * 16) + random.nextInt(16);
-		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
-
-		if (!(biome instanceof BiomeGenDecayingWasteland) && biome != TragicBiomes.CorrodedFallout) return;
 
 		double size;
 		int[] coords;
 		ArrayList<int[]> list;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 
-		size = 4.5D * random.nextDouble() + 3.0D;
+		size = this.variation * random.nextDouble() + this.radius;
 
 		for (int pow = 0; pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 		{

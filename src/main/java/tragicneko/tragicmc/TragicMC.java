@@ -202,16 +202,6 @@ public class TragicMC
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedForest);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedCliffs);
 			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedPrarie);
-
-			//TODO convert these to biome-unique decoration instead of having them called every chunk for every dimension for every biome
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen(), 3); //for the ashen badlands and tainted scarlands
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.DarkShieldWorldGen(), 4); //for the ashen badlands and decaying wasteland
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StringLightWorldGen(), 6); //For Hallowed biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ScorchedSurfaceWorldGen(), 7); //For the Scorched biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.CorrodedSurfaceWorldGen(), 8); //Corroded biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.ExplosiveGasWorldGen(), 9); //Corroded biomes
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.FrozenSurfaceWorldGen(), 10); //Frozen biome generation
-			GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.AerisWorldGen(), 11); //Aeris flower gen
 		}
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 20);

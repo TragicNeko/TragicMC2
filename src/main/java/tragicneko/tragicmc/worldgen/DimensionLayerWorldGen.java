@@ -9,6 +9,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.dimension.TragicChunkProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -20,7 +21,9 @@ public class DimensionLayerWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		
-		int paloma = WorldHelper.getWorldDependency(world);
+		if (!(world.getChunkProvider() instanceof TragicChunkProvider)) return;
+		
+		int paloma = ((TragicChunkProvider) world.getChunkProvider()).getWorldDependency();
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
 		

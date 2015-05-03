@@ -16,6 +16,21 @@ import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class InvertedSpikeWorldGen implements IWorldGenerator {
+	
+	public final int iterations;
+	public final double radius;
+	public final double variation;
+	public final double regression;
+	public final double cutoff;
+	
+	public InvertedSpikeWorldGen(int relays, double radius, double var, double regress, double cutoff)
+	{
+		this.iterations = relays;
+		this.radius = radius;
+		this.variation = var;
+		this.regression = regress;
+		this.cutoff = cutoff;
+	}
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -23,22 +38,16 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 		int Xcoord = (chunkX * 16) + random.nextInt(16) - random.nextInt(16);
 		int Zcoord = (chunkZ * 16) + random.nextInt(16) - random.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
-		BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord, Zcoord);
 
-		if (biome != TragicBiomes.TaintedScarlands && biome != TragicBiomes.ScorchedScarlands) return;
-
-		int relays = 4;
 		ArrayList<int[]> list;
 		Material material;
-		double regression = 0.92977745D;
-		double cutoff = 0.46943755D;
 		double size;
 		int spikeType;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 
-		for (int buzza = 0; buzza < relays; buzza++)
+		for (int buzza = 0; buzza < this.iterations; buzza++)
 		{
-			size = random.nextDouble() * 1.5D + 1.5D;
+			size = random.nextDouble() * variation + radius;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1;
@@ -106,10 +115,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 				}
 			}
 			
-			for (int[] coords : cands)
-			{
-				world.setBlockToAir(coords[0], coords[1], coords[2]);
-			}
+			for (int[] coords : cands) world.setBlockToAir(coords[0], coords[1], coords[2]);
 		}
 
 	}
@@ -144,9 +150,6 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 			}
 		}
 		
-		for (int[] coords : cands)
-		{
-			world.setBlockToAir(coords[0], coords[1], coords[2]);
-		}
+		for (int[] coords : cands) world.setBlockToAir(coords[0], coords[1], coords[2]);
 	}
 }

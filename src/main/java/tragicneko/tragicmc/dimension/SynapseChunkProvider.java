@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -22,9 +21,7 @@ import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.worldgen.ConduitWorldGen1;
-import tragicneko.tragicmc.worldgen.ConduitWorldGen2;
+import tragicneko.tragicmc.worldgen.HangingCoralWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenDeadCircuit;
 
 public class SynapseChunkProvider implements IChunkProvider
@@ -447,21 +444,20 @@ public class SynapseChunkProvider implements IChunkProvider
 			new WorldGenDeadCircuit(6).generate(worldObj, synapseRNG, a, c, b);
 		}
 
-        boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, synapseRNG, x, z, false, GLOWSTONE);
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             a = k + this.synapseRNG.nextInt(16) + 8;
             c = this.synapseRNG.nextInt(100) + 10;
             b = l + this.synapseRNG.nextInt(16) + 8;
-            (new ConduitWorldGen1()).generate(this.worldObj, this.synapseRNG, a, c, b);
+            (new HangingCoralWorldGen(4, 32, 1000, TragicBlocks.Conduit, 0)).generate(this.worldObj, this.synapseRNG, a, c, b);
         }
         
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 6; ++i)
         {
             a = k + this.synapseRNG.nextInt(16) + 8;
             c = this.synapseRNG.nextInt(100) + 10;
             b = l + this.synapseRNG.nextInt(16) + 8;
-            (new ConduitWorldGen2()).generate(this.worldObj, this.synapseRNG, a, c, b);
+            (new HangingCoralWorldGen(3, 12, 800, TragicBlocks.Conduit, 0)).generate(this.worldObj, this.synapseRNG, a, c, b);
         }        
     }
 

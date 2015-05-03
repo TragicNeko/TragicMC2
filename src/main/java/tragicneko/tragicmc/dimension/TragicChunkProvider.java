@@ -1,13 +1,10 @@
 package tragicneko.tragicmc.dimension;
 
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
 import static tragicneko.tragicmc.TragicBlocks.DarkStone;
 
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -30,6 +27,8 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
+import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
@@ -63,6 +62,8 @@ public class TragicChunkProvider implements IChunkProvider
 	double[] field_147425_f;
 	double[] field_147426_g;
 	int[][] field_73219_j = new int[32][32];
+	
+	private final int dependency;
 
 	public TragicChunkProvider(World par1World, long par2, boolean par4)
 	{
@@ -70,6 +71,8 @@ public class TragicChunkProvider implements IChunkProvider
 		this.mapFeaturesEnabled = par4;
 		this.field_147435_p = WorldType.DEFAULT;
 		this.rand = new Random(par2);
+		int i = (MathHelper.ceiling_double_int((((par2 % 121L) + (par2 / 1452749627L) )/ 256)) % 256);
+		this.dependency = (Math.abs(i) % 128) + 32;
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.noiseGen2 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.noiseGen3 = new NoiseGeneratorOctaves(this.rand, 8);
@@ -373,21 +376,6 @@ public class TragicChunkProvider implements IChunkProvider
 		int l1;
 		int i2;
 		
-		if (rand.nextInt(100) < TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0)
-		{
-			new tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
-		}
-		
-		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= TragicConfig.voidPitRarity && rand.nextInt(4) != 0)
-		{
-			new tragicneko.tragicmc.worldgen.VoidPitWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
-		}
-
-		if (this.rand.nextInt(8) == 0)
-		{
-			new tragicneko.tragicmc.worldgen.PitWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
-		}
-		
 		for (int i = 0; i < 4; i++)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
@@ -404,7 +392,7 @@ public class TragicChunkProvider implements IChunkProvider
 			(new WorldGenDimensionLakes()).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
 
-		int r = biomegenbase instanceof BiomeGenScorchedWasteland ? 4 : 16;
+		int r = biomegenbase instanceof BiomeGenScorchedWasteland ? 16 : 4;
 		if (this.rand.nextInt(r) == 0)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
@@ -421,9 +409,9 @@ public class TragicChunkProvider implements IChunkProvider
 			(new WorldGenDimensionDungeon()).generate(this.worldObj, this.rand, l1, i2, j2);
 		}
 		
-		if (TragicConfig.allowDarkStoneVariantGen) new tragicneko.tragicmc.worldgen.DimensionLayerWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		if (TragicConfig.allowDarkStoneVariantGen) (new DimensionLayerWorldGen()).generate(this.rand, par2, par3, this.worldObj, this, this);
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
-		new tragicneko.tragicmc.worldgen.DimensionOreWorldGen().generate(this.rand, par2, par3, this.worldObj, par1IChunkProvider, this);
+		(new DimensionOreWorldGen()).generate(this.rand, par2, par3, this.worldObj, null, null);
 		
 		BlockFalling.fallInstantly = false;
 	}
@@ -498,5 +486,10 @@ public class TragicChunkProvider implements IChunkProvider
 	public void recreateStructures(int par1, int par2)
 	{
 
+	}
+	
+	public int getWorldDependency()
+	{
+		return this.dependency;
 	}
 }

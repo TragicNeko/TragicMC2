@@ -3,6 +3,7 @@ package tragicneko.tragicmc.worldgen.biome;
 import java.util.Random;
 
 import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
@@ -13,10 +14,15 @@ import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
+import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenAshenShrubs;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 
 public class BiomeGenAshenHills extends TragicBiome {
+
+	public final SurfaceWorldGen shieldGen;
+	public final RuggedTerrainWorldGen ruggedGen;
 
 	public BiomeGenAshenHills(int par1, int par2) {
 		super(par1, par2);
@@ -35,8 +41,10 @@ public class BiomeGenAshenHills extends TragicBiome {
 		this.topBlock = TragicBlocks.AshenGrass;
 		this.theBiomeDecorator.treesPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = 2;
+		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, 0, TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, true, false);
+		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, 4, 4.0D, 2.0D, false, 8);
 	}
-	
+
 	@Override
 	public int getBushesFromBiomeType()
 	{
@@ -52,11 +60,21 @@ public class BiomeGenAshenHills extends TragicBiome {
 		}		
 		return new WorldGenAshenTree(false);
 	}
-	
+
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{
 		return new WorldGenTallGrass(rand.nextInt(16) == 0 ? TragicBlocks.DriedGrass : TragicBlocks.AshenTallGrass, 0);
 	}
 
+	@Override
+	public void decorate(World world, Random rand, int x, int z)
+	{
+		super.decorate(world, rand, x, z);
+		if (variant == 2)
+		{
+			this.shieldGen.generate(rand, x / 16, z / 16, world, null, null);
+			this.ruggedGen.generate(rand, x / 16, z / 16, world, null, null);
+		}
+	}
 }

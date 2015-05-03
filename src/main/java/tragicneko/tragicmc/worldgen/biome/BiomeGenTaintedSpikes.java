@@ -4,17 +4,21 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
+import tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen;
 import tragicneko.tragicmc.worldgen.IsleWorldGen;
+import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 
 public class BiomeGenTaintedSpikes extends TragicBiome {
-	
-	private CustomSpikesWorldGen spikeWorldGen;
+
+	private final CustomSpikesWorldGen spikeWorldGen;
+	private final InvertedSpikeWorldGen scarGen;
+	private final RuggedTerrainWorldGen ruggedGen;
+	private final IsleWorldGen isleGen;
 
 	public BiomeGenTaintedSpikes(int par1, int par2) {
 		super(par1, par2);
@@ -29,18 +33,22 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.rootHeight = 0.25F;
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.ErodedStone;
-		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 6 : 2, TragicBlocks.DarkStone, 14, 0.92977745D, 0.38943755D, 1.5D, 1.0D);
+		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 6 : 1, TragicBlocks.DarkStone, 14, 0.92977745D, 0.38943755D, 1.5D, 1.0D);
+		this.scarGen = new InvertedSpikeWorldGen(4, 1.5, 2.5, 0.93977745D, 0.48943755D);
+		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, 2, TragicBlocks.ErodedStone, 4, 4.0D, 3.0D, true, 8);
+		this.isleGen = new IsleWorldGen();
 	}
 
 	@Override
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		if (this.variant == 4 && rand.nextInt(3) == 0) new IsleWorldGen().generate(rand, x / 16, z / 16, world, null, null);
-		
-		if (this.spikeWorldGen != null && this.variant < 3 && rand.nextInt(100) >= TragicConfig.largeSpikeRarity)
+		if (this.variant == 4 && rand.nextInt(3) == 0) this.isleGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (this.variant < 3 && rand.nextInt(100) >= TragicConfig.largeSpikeRarity) this.spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (this.variant == 3)
 		{
-			spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
+			if (rand.nextInt(100) < TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+			this.ruggedGen.generate(rand, x / 16, z / 16, world, null, null);
 		}
 	}
 }

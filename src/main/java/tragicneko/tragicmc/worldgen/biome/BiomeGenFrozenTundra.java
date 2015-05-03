@@ -2,13 +2,11 @@ package tragicneko.tragicmc.worldgen.biome;
 
 import java.util.Random;
 
-import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -16,9 +14,16 @@ import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
+import tragicneko.tragicmc.worldgen.PitWorldGen;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
 public class BiomeGenFrozenTundra extends TragicBiome {
+	
+	public final SurfaceWorldGen permafrostGen;
+	public final SurfaceWorldGen2 iceSpikeGen;
+	public final PitWorldGen pitGen;
 
 	public BiomeGenFrozenTundra(int par1, int par2) {
 		super(par1, par2);
@@ -34,6 +39,9 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		if (TragicConfig.allowYeti) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.yetiSC, 0, 1));
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 32;
+		this.permafrostGen = new SurfaceWorldGen(3.0, 2.0, true, 8, TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, true, true);
+		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 16 : 4, TragicBlocks.IceSpike, 0, 4, 8);
+		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);
 	}
 	
 	@Override
@@ -59,7 +67,10 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 			worldgenvines.generate(world, rand, k, 128, l);
 		}
 		
+		this.permafrostGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (variant != 1) this.iceSpikeGen.generate(rand, x / 16, z / 16, world, null, null);
 		new CustomSpikesWorldGen(variant == 2 ? 8 : (variant == 0 ? 2 : 4), Blocks.packed_ice, 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 	
 	@Override

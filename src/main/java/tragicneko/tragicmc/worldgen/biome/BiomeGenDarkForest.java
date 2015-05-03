@@ -9,17 +9,21 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBiomes;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityParasmite;
 import tragicneko.tragicmc.entity.mob.EntityPlague;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 import tragicneko.tragicmc.worldgen.WorldGenDarkForestTree;
 
 public class BiomeGenDarkForest extends TragicBiome {
+	
+	public final SurfaceWorldGen drudgeGen;
+	public final SurfaceWorldGen2 gasGen;
 
 	public BiomeGenDarkForest(int par1, int par2) {
 		super(par1, par2);
@@ -40,6 +44,8 @@ public class BiomeGenDarkForest extends TragicBiome {
 		this.theBiomeDecorator.sandGen =  new WorldGenSand(TragicBlocks.DarkSand, 7);
 		this.theBiomeDecorator.sandPerChunk = 16;
 		this.theBiomeDecorator.sandPerChunk2 = 16;
+		this.drudgeGen = new SurfaceWorldGen(3.0D, 4.0D, true, 24, TragicBlocks.Quicksand, 2, TragicBlocks.DarkGrass, true, true);
+		this.gasGen = new SurfaceWorldGen2(8, TragicBlocks.DarkGas, 0, 4, 4);
 	}
 	
 	@Override
@@ -62,9 +68,7 @@ public class BiomeGenDarkForest extends TragicBiome {
 		int k = x + rand.nextInt(16) + 8;
 		int l = z + rand.nextInt(16) + 8;
 		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(24) - rand.nextInt(24);
-		
-		if (rand.nextBoolean() && world.getBlock(k, i1, l).isAir(world, k, i1, l) && World.doesBlockHaveSolidTopSurface(world, k, i1 - 1, l)) world.setBlock(k, i1, l, TragicBlocks.DarkGas);
-		
+
 		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.DarkVine);
 
 		for (int a = 0; a < 40; ++a)
@@ -73,6 +77,9 @@ public class BiomeGenDarkForest extends TragicBiome {
 			l = z + rand.nextInt(16) - 8;
 			worldgenvines.generate(world, rand, k, 128, l);
 		}
+		
+		this.gasGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 
 }

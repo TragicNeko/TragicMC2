@@ -1,14 +1,29 @@
 package tragicneko.tragicmc.worldgen.biome;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
+import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.InvertedSpikeWorldGen;
+import tragicneko.tragicmc.worldgen.PitWorldGen;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
 
 public class BiomeGenScorchedWasteland extends TragicBiome {
+	
+	public final SurfaceWorldGen2 fireGen;
+	public final PitWorldGen pitGen;
+	public final InvertedSpikeWorldGen scarGen;
 
 	public BiomeGenScorchedWasteland(int par1, int par2) {
 		super(par1, par2);
@@ -25,6 +40,84 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		this.rootHeight = 0.025F;
 		this.fillerBlock = TragicBlocks.ScorchedRock;
 		this.topBlock = TragicBlocks.MoltenRock;
+		this.fireGen = new SurfaceWorldGen2(variant == 2 ? 16 : 4, Blocks.fire, 0, 8, 4);
+		this.pitGen = new PitWorldGen(Blocks.flowing_lava, 0, 12, 6, 4.0D, 3.0D);
+		this.scarGen = new InvertedSpikeWorldGen(6, 1.5, 2.5, 0.93977745D, 0.48943755D);
 	}
 
+	@Override
+	public void decorate(World world, Random rand, int x, int z)
+	{
+		super.decorate(world, rand, x, z);
+		
+		int Xcoord = (x * 16) + rand.nextInt(16);
+		int Zcoord = (z * 16) + rand.nextInt(16);
+		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+
+		int mew = variant == 2 ? 8 : 2;
+		ArrayList<int[]> cands = new ArrayList<int[]>();
+		Block block;
+
+		for (int i = 0; i < mew; i++)
+		{
+			Xcoord = (x * 16) + rand.nextInt(16);
+			Zcoord = (z * 16) + rand.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+
+			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0)
+			{
+				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Geyser);
+				world.setBlock(Xcoord, Ycoord - 1, Zcoord, Blocks.lava);
+				TragicMC.logInfo("Geyser generated at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
+			}
+		}
+
+		mew = variant == 2 ? 10 : 5;
+
+		for (int i = 0; i < mew; i++)
+		{
+			Xcoord = (x * 16) + rand.nextInt(16);
+			Zcoord = (z * 16) + rand.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+
+			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0)
+			{
+				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
+				TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
+			}
+		}
+
+		mew = variant == 0 ? 8 : 2;
+
+		for (int i = 0; i < mew; i++)
+		{
+			Xcoord = (x * 16) + rand.nextInt(16);
+			Zcoord = (z * 16) + rand.nextInt(16);
+			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
+
+			block = world.getBlock(Xcoord, Ycoord, Zcoord);
+
+			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0)
+			{
+				cands.clear();
+				cands.addAll(WorldHelper.getBlocksInSphericalRange(world, (rand.nextDouble() * 2.25) + 1.5, Xcoord, Ycoord - 1, Zcoord));
+
+				for (int[] coords : cands)
+				{
+					block = world.getBlock(coords[0], coords[1], coords[2]);
+					if (block.isReplaceable(world, coords[0], coords[1], coords[2]))
+					{
+						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ScorchedRock);
+					}
+				}
+				TragicMC.logInfo("Boulder placed at coords: " + Xcoord + ", " + Ycoord + ", " + Zcoord);
+			}
+		}
+
+		this.fireGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (variant == 2 && rand.nextInt(100) < TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+	}
 }

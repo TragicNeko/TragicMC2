@@ -108,17 +108,6 @@ public class WorldHelper {
 	}
 
 	/**
-	 * Returns world dependency for use in my dimension's layered rock generation
-	 * @param world
-	 * @return
-	 */
-	public static int getWorldDependency(World world)
-	{
-		int i = (MathHelper.ceiling_double_int((((world.getSeed() % 121L) + (world.getSeed() / 1452749627L) )/ 256)) % 256);
-		return (Math.abs(i) % 128) + 32;
-	}
-
-	/**
 	 * The x, y, z coordinates to be passed in should be for the origin of the circle, returns mappings with coordinates of every block in the circle's area
 	 * @param world
 	 * @param radius
