@@ -3835,7 +3835,7 @@ Modified StructureWorldGen to give more weight to the horizon of the world, this
 Fixed Ragr model offsets and animations, fixed Ragr leg animations
 Fixed Sludge/Drudge generating as normal Quicksand, this was due to a bug in BlockFalling
 
-2.43.2375 <200> (April 25, 2015)
+2.43.2409 <200> (April 25, 2015)
 Added/Changed/Removed sounds for Jabba species
 Modified DropHelper to make it make more sense and fix Janna and possibly other variant drops
 Added Plague sounds
@@ -3867,8 +3867,24 @@ Certain biome variants now have more varying degrees of spike generation
 Rearranged some worldgen for the dimension
 Increased generation size of Void Pits, improved the modified Spike generator, removed Snow Golems from the Frozen biomes they were spawning way too much
 Modified Tough Leather recipe to only require one leather, this is to make early game a bit easier to survive (if you don't go the mining route)
+Increased volume of most of the mob sounds, their actual sounds not volume in game
+Stop mob sound from playing when spawned
+Move WorldDependency to ChunkProvider, this is to prevent it from being recalculated every chunk (very small improvement)
+Removed some unused code from EnchantmentEvents
+Finished moving all WorldGen to biome specific decorators, consolidated some WorldGen
+Modified some dimension specific generation to be more easily extendible and modifiable, moved these to biome decoration as well
+Break compatibility with older Forge versions by removing deprecated method calls for repair materials for armor/materials, that version is extremely
+outdated so this should only affect those who don't update their Forge when they should (which unfortunately is the majority of ppl)
+Added mob group buffs, this was originally meant to be attribute modifiers but I think it'd be a bit annoying to do those so I just did potion effects
+for particular groups on spawn, since my effects are configurable, there are placeholders for those in case they are disabled
 
-Note: Increase volume of a lot of the mob sounds, especially the Tragic Neko ones
+
+2.43.2409++ <201> (May 4, 2015) [May the 4th be with you.]
+
+
+Note: change all biomes to use their variation field to set their height values, this will clean up their initializations quite a bit, in fact those
+should be moved into the tragicbiome superclass similarly to how I did potions
+The height values could be set via a static double array in each of their classes
 
 Tox sounds: clicks for living sound, rapid clicks when angered, high pitched squeal when hurt/dead
 Pirah sounds: squish sound when out of water, most likely no other sounds
@@ -3919,14 +3935,10 @@ a dark version of the player, which will aggressively attack the player, if the 
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 --Reminders-
-Convert some of the current mob models to extend modelbiped so that they have more visibility with things like armor and hats from the hat mod
 Add new flowers, possibly dimension-specific
-Add group specific mob buffs for normal mobs, a group may spawn with strength/invisibility/etc. and the whole pack will spawn with it, this will be
-configurable of course
 Add more boss and trap structures
 Add new amulets, add new Doomsdays
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Convert the various world generators I have for biomes into a biome decorator for those biomes to use, that should speed up their generation a bit
 Add each of the lores and the property names to the localizations
 Split larger structures into different schematics
 Eventually convert the structures to matrix form so that I can apply rotations and such when necessary for some more variation, this would also be
