@@ -618,10 +618,10 @@ public class TragicItems {
 			}
 		}.setUnlocalizedName("tragicmc.wingsOfLiberation").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
 		GameRegistry.registerItem(WingsOfLiberation, "wingsOfLiberation");
-		
+
 		IreNode = (new ItemGeneric().setUnlocalizedName("tragicmc.ireNode").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IreNode"));
 		GameRegistry.registerItem(IreNode, "ireNode");
-		
+
 		IreNetParticleCannon = (new WeaponIreParticleCannon(toolLauncher, Doomsday.Flash).setUnlocalizedName("tragicmc.ireNetParticleCannon").setTextureName("tragicmc:IreParticleCannon" ));
 		GameRegistry.registerItem(IreNetParticleCannon, "ireParticleCannon");
 
@@ -826,29 +826,14 @@ public class TragicItems {
 		armorLight.customCraftingMaterial = LightParticles;
 		armorDark.customCraftingMaterial = DarkParticles;
 
-		try
-		{
-			toolBasic.setRepairItem(new ItemStack(Items.flint));
-			toolScythe.setRepairItem(new ItemStack(Items.bone));
-			toolMercury.setRepairItem(new ItemStack(RedMercury));
-			toolJack.setRepairItem(new ItemStack(Tungsten));
-			toolLight.setRepairItem(new ItemStack(LightParticles));
-			toolDarkness.setRepairItem(new ItemStack(DarkParticles));
-			toolCelestial.setRepairItem(new ItemStack(CelestialSteel));
-			toolCelesJack.setRepairItem(new ItemStack(CelestialSteel));
-		}
-		catch (NoSuchMethodError e)
-		{
-			TragicMC.logWarning("Error caught while setting repair items for materials. Update Forge to at least (1258) to avoid this error in the future.");
-
-			toolBasic.customCraftingMaterial = Items.flint;
-			toolScythe.customCraftingMaterial = Items.bone;
-			toolMercury.customCraftingMaterial = RedMercury;
-			toolJack.customCraftingMaterial = Tungsten;
-			toolLight.customCraftingMaterial = LightParticles;
-			toolDarkness.customCraftingMaterial = DarkParticles;
-			toolCelestial.customCraftingMaterial = toolCelesJack.customCraftingMaterial = CelestialSteel;
-		}
+		toolBasic.setRepairItem(new ItemStack(Items.flint));
+		toolScythe.setRepairItem(new ItemStack(Items.bone));
+		toolMercury.setRepairItem(new ItemStack(RedMercury));
+		toolJack.setRepairItem(new ItemStack(Tungsten));
+		toolLight.setRepairItem(new ItemStack(LightParticles));
+		toolDarkness.setRepairItem(new ItemStack(DarkParticles));
+		toolCelestial.setRepairItem(new ItemStack(CelestialSteel));
+		toolCelesJack.setRepairItem(new ItemStack(CelestialSteel));
 
 		//Special item registrations
 		MobStatue = (new ItemStatue());
@@ -902,7 +887,7 @@ public class TragicItems {
 
 		NekoNekoWand = (new ItemNekoWand().setUnlocalizedName("tragicmc.nekoNekoWand").setTextureName("tragicmc:NekoNekoWand"));
 		GameRegistry.registerItem(NekoNekoWand, "nekoNekoWand");
-		
+
 		SoundExtrapolator = (new ItemSoundExtrapolator().setUnlocalizedName("tragicmc.soundExtrapolator").setTextureName("tragicmc:SoundExtrapolator"));
 		GameRegistry.registerItem(SoundExtrapolator, "soundExtrapolator");
 
