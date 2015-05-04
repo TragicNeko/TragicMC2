@@ -12,7 +12,7 @@ public class TragicPotion extends Potion {
 	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked;
 	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence, Divinity;
 	
-	private ItemStack icon;
+	private ItemStack stackIcon;
 
 	public TragicPotion(int par1, boolean par2, int par3) {
 		super(par1, par2, par3);
@@ -20,7 +20,7 @@ public class TragicPotion extends Potion {
 	
 	public void setIcon(ItemStack icon)
 	{
-		this.icon = icon;
+		this.stackIcon = icon;
 	}
 	
 	@Override
@@ -29,9 +29,9 @@ public class TragicPotion extends Potion {
 		x += 6;
 		y += 7;
 		net.minecraft.client.renderer.entity.RenderItem itemRender = new net.minecraft.client.renderer.entity.RenderItem();
-		if (this.icon == null) this.icon = new ItemStack(Items.apple);
+		if (this.stackIcon == null) this.stackIcon = new ItemStack(Items.apple);
 		net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
-		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.icon, x, y, false);
+		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.stackIcon, x, y, false);
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 	}	
 
