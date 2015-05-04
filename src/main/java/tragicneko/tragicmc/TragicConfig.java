@@ -83,9 +83,9 @@ public class TragicConfig {
 	private static int[] armorEnchantIDs = new int[12];
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
 
-	private static boolean[] blanketMob = new boolean[12];
+	private static boolean[] blanketMob = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
-	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns;
+	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs;
 	private static boolean[] mobConfigs = new boolean[48];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
@@ -104,8 +104,8 @@ public class TragicConfig {
 	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
 	private static int[] bossSC = new int[12];
 	public static int apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
-	private static int[] mobInts = new int[6];
-	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap;
+	private static int[] mobInts = new int[12];
+	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap, groupBuffChance;
 	private static double[][] mobStats = new double[48][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
@@ -622,11 +622,13 @@ public class TragicConfig {
 		blanketMob[7] = (config.get(catMobs, "allowMobTransformation", true).getBoolean(true));
 		blanketMob[8] = (config.get(catMobs, "allowMobHealthScaling", true).getBoolean(true));
 		blanketMob[9] = (config.get(catMobs, "allowMobVanillaDimensionSpawns", true).getBoolean(true));
+		blanketMob[10] = (config.get(catMobs, "allowGroupBuffs", true).getBoolean(true));
 
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
 		mobInts[2] = MathHelper.clamp_int(config.get(catMobs, "mobTransformationChance", 3).getInt(3), 1, 100);
 		mobInts[3] = clampPositive(config.get(catMobs, "bossDamageCap", 30).getInt(30));
+		mobInts[4] = MathHelper.clamp_int(config.get(catMobs, "groupBuffChance", 15).getInt(15), 1, 200);
 
 		mapping = 0;
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "jabbaSpawnChance", 75).getInt(75));
@@ -1405,11 +1407,13 @@ public class TragicConfig {
 		allowMobTransformation = blanketMob[7];
 		allowDynamicHealthScaling = blanketMob[8];
 		allowNonDimensionMobSpawns = blanketMob[9];
+		allowGroupBuffs = blanketMob[10];
 
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
 		mobTransformationChance = mobInts[2];
 		bossDamageCap = mobInts[3];
+		groupBuffChance = mobInts[4];
 
 		mapping = 0;
 		jabbaSC = mobsSC[mapping];

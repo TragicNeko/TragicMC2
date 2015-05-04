@@ -6,6 +6,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -238,36 +240,36 @@ public abstract class TragicMob extends EntityMob
 	}
 	@Override
 	protected void onDeathUpdate()
-    {
-        ++this.deathTime;
+	{
+		++this.deathTime;
 
-        if (this.deathTime == 20)
-        {
-            int i;
+		if (this.deathTime == 20)
+		{
+			int i;
 
-            if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
-            {
-                i = this.getExperiencePoints(this.attackingPlayer);
+			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			{
+				i = this.getExperiencePoints(this.attackingPlayer);
 
-                while (i > 0)
-                {
-                    int j = EntityXPOrb.getXPSplit(i);
-                    i -= j;
-                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
-                }
-            }
+				while (i > 0)
+				{
+					int j = EntityXPOrb.getXPSplit(i);
+					i -= j;
+					this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+				}
+			}
 
-            this.setDead();
+			this.setDead();
 
-            for (i = 0; i < 20; ++i)
-            {
-                double d2 = this.rand.nextGaussian() * 0.02D;
-                double d0 = this.rand.nextGaussian() * 0.02D;
-                double d1 = this.rand.nextGaussian() * 0.02D;
-                this.worldObj.spawnParticle("explode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d2, d0, d1);
-            }
-        }
-    }
+			for (i = 0; i < 20; ++i)
+			{
+				double d2 = this.rand.nextGaussian() * 0.02D;
+				double d0 = this.rand.nextGaussian() * 0.02D;
+				double d1 = this.rand.nextGaussian() * 0.02D;
+				this.worldObj.spawnParticle("explode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d2, d0, d1);
+			}
+		}
+	}
 
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
@@ -350,7 +352,7 @@ public abstract class TragicMob extends EntityMob
 			if (id != 0 && rand.nextInt(100) <= TragicConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
 		}		
 	}
-	
+
 	public boolean isMobVariant()
 	{
 		return false;
@@ -377,18 +379,90 @@ public abstract class TragicMob extends EntityMob
 	{
 		return super.canAttackClass(par1Class) && par1Class != TragicBoss.class && this instanceof TragicMiniBoss ? par1Class != this.getLesserForm() : true;
 	}
-	
+
 	public int getDistanceToGround()
 	{
 		int x = MathHelper.floor_double(this.posX);
 		int y = MathHelper.floor_double(this.boundingBox.minY);
 		int z = MathHelper.floor_double(this.posZ);
-		
+
 		for (int i = 0; y - i > 0; ++i)
 		{
 			if (this.worldObj.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
 		}
-		
+
 		return y;
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		if (!TragicConfig.allowGroupBuffs) return super.onSpawnWithEgg(data);
+		if (data == null)
+		{
+			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
+			{
+				int id = Potion.damageBoost.id;
+				switch(rand.nextInt(12))
+				{
+				case 0:
+				default:
+					break;
+				case 1:
+					id = Potion.moveSpeed.id;
+					break;
+				case 2:
+					id = Potion.invisibility.id;
+					break;
+				case 3:
+					id = this.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD ? Potion.poison.id : Potion.regeneration.id;
+					break;
+				case 4:
+					id = Potion.fireResistance.id;
+					break;
+				case 5:
+					id = Potion.resistance.id;
+					break;
+				case 6:
+					id = Potion.jump.id;
+					break;
+				case 7:
+					id = TragicConfig.allowImmunity ? TragicPotion.Immunity.id : Potion.digSpeed.id;
+					break;
+				case 8:
+					id = TragicConfig.allowClarity ? TragicPotion.Clarity.id : Potion.resistance.id;
+					break;
+				case 9:
+					id = TragicConfig.allowResurrection ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
+					break;
+				case 10:
+					id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
+					break;
+				}
+				
+				PotionEffect effect = new PotionEffect(id, 99999, rand.nextInt(2));
+				this.addPotionEffect(effect);
+				return new GroupBuff(effect);
+			}
+		}
+		else if (data instanceof GroupBuff)
+		{
+			this.addPotionEffect(((GroupBuff) data).getReducedEffect());
+			return super.onSpawnWithEgg(data);
+		}
+		return super.onSpawnWithEgg(data);
+	}
+
+	public static class GroupBuff implements IEntityLivingData {
+		public final PotionEffect effect;
+		public GroupBuff(PotionEffect effect)
+		{
+			this.effect = effect;
+		}
+
+		public PotionEffect getReducedEffect()
+		{
+			return new PotionEffect(effect.getPotionID(), effect.getDuration() * 3 / 4, effect.getAmplifier() / 2 * 3);
+		}
 	}
 }
