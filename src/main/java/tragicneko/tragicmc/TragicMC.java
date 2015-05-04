@@ -49,6 +49,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.ReflectionHelper.UnableToFindFieldException;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = TragicMC.ACCEPTED_VERSION, dependencies="required-after:Forge")
@@ -249,8 +250,6 @@ public class TragicMC
 			Potion[] potionTypes;
 			Field f = ReflectionHelper.findField(Potion.class, "potionTypes", "field_76425_a");
 
-			if (f == null) throw new Throwable();
-
 			Field modfield = Field.class.getDeclaredField("modifiers");
 			modfield.setAccessible(true);
 			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
@@ -267,9 +266,9 @@ public class TragicMC
 				logWarning("potionTypes[]'s array length was " + Potion.potionTypes.length + ", so it is assumed that it was previously reflected to an adequate amount.");
 			}
 		}
-		catch (Throwable t)
+		catch (Exception e)
 		{
-			logError("There was an error during Potion array reflection, this may be due to obfuscation and could have unintended side effects.", t);
+			logError("There was an error during Potion array reflection, this may be due to obfuscation and could have unintended side effects.", e);
 		}
 	}
 
