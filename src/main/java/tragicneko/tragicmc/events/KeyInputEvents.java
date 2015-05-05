@@ -21,6 +21,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.client.ClientProxy;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
@@ -64,6 +65,7 @@ public class KeyInputEvents extends Gui {
 		if (!Minecraft.getMinecraft().inGameHasFocus) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
+		BlockGenericLeaves.fancyGraphics = mc.isFancyGraphicsEnabled();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 		if (TragicConfig.allowFlight)
 		{

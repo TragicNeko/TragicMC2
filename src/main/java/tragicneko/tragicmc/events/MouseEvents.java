@@ -45,7 +45,6 @@ public class MouseEvents {
 	public void onMouseInput(MouseEvent event)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		BlockGenericLeaves.fancyGraphics = mc.isFancyGraphicsEnabled();
 
 		if (event.buttonstate && event.button == 0 && mc.inGameHasFocus)
 		{
