@@ -8,6 +8,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 
 public class EntityPoisonBarb extends EntityProjectile {
 
@@ -35,12 +36,11 @@ public class EntityPoisonBarb extends EntityProjectile {
 		}
 		else
 		{
-			if (mop.entityHit != null) 
+			if (mop.entityHit != null && !(mop.entityHit instanceof EntityMagmox)) 
 			{			
-				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
-
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
+					mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
 					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 200 + rand.nextInt(200), rand.nextInt(3)));
 
 					if (rand.nextInt(16) == 0 && TragicConfig.allowStun)

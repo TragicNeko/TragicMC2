@@ -1,9 +1,10 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import tragicneko.tragicmc.util.DamageHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.mob.EntityGragul;
+import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntitySpiritCast extends EntityProjectile {
 
@@ -27,7 +28,7 @@ public class EntitySpiritCast extends EntityProjectile {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (mop.entityHit != null && this.shootingEntity != null) 
 		{			
-			if (mop.entityHit instanceof EntityLivingBase)
+			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityGragul))
 			{
 				mop.entityHit.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this.shootingEntity), 2.5F);
 			}

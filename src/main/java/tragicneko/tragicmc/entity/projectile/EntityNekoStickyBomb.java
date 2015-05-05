@@ -36,22 +36,25 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 	protected void onImpact(MovingObjectPosition mop)
 	{
 		if (mop == null || this.worldObj.isRemote) return;
-		
+
 		if (mop.entityHit != null) 
 		{			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
+			if (mop.entityHit instanceof EntityLivingBase && !mop.entityHit.equals(this.getThrower()))
+			{
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 
-			if (mop.entityHit.riddenByEntity == null)
-			{
-				this.motionX = 0;
-				this.motionY = 0;
-				this.motionZ = 0;
-				this.mountEntity(mop.entityHit);
-			}
-			
-			if (mop.entityHit instanceof EntityLivingBase && TragicConfig.allowStun)
-			{
-				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 10, 0));
+				if (mop.entityHit.riddenByEntity == null)
+				{
+					this.motionX = 0;
+					this.motionY = 0;
+					this.motionZ = 0;
+					this.mountEntity(mop.entityHit);
+				}
+
+				if (mop.entityHit instanceof EntityLivingBase && TragicConfig.allowStun)
+				{
+					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 10, 0));
+				}
 			}
 		}
 		else

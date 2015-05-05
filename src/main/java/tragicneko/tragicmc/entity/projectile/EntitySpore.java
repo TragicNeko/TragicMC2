@@ -6,6 +6,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.mob.EntityErkel;
+import tragicneko.tragicmc.entity.mob.EntityTox;
 
 public class EntitySpore extends EntityProjectile {
 
@@ -23,10 +25,9 @@ public class EntitySpore extends EntityProjectile {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (mop.entityHit != null && !this.worldObj.isRemote) 
 		{			
-			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
-
-			if (mop.entityHit instanceof EntityLivingBase)
+			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityTox) && !(mop.entityHit instanceof EntityErkel))
 			{
+				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 				((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 2));
 			}
 		}
