@@ -3878,9 +3878,26 @@ outdated so this should only affect those who don't update their Forge when they
 Added mob group buffs, this was originally meant to be attribute modifiers but I think it'd be a bit annoying to do those so I just did potion effects
 for particular groups on spawn, since my effects are configurable, there are placeholders for those in case they are disabled
 
-
 2.43.2409++ <201> (May 4, 2015) [May the 4th be with you.]
-
+Fixed Crystal biome generating with default blocks
+Reduced a lot of hangs by reducing iterations for multiple worldgen types
+Converted Corroded biome ashen cobble gen to use the rugged terrain gen since I think it fits what I want for it better
+Removed sludge from base variants of corroded biomes, only fallout and runoff have sludge now, this is to create more specialization for that set as it is
+currently pretty samey
+Fixed vine gen for corroded biomes (the frequencies were inverted for variants)
+Small fix for Underground structures generating above the surface of a deep biome
+Removed a bunch of logger spam, enabled DEBUG
+Fixed NekoNekoWand not targetting multipart entities
+Allow non-player entities to attack multipart mobs
+Modified StructureWorldGen to allow surface structures a greater chance to generate, previously it was pretty biased towards other structure types and
+surface structures had a tiny chance to actually generate
+Added respawn buffer for Enyvil's Dark Crystals, this is something I've been meaning to add since it regenerates them too quickly when they get destroyed
+Reduced size of InvertedSpikes worldgen
+Fixed Spore doing damage to Tox
+Fixed multiple projectile entity issues, specifically with the Overlord mortor
+Modified Overlord Core to use the movement system from the Archangel, it is heavily modified to fit with the Core's attack patterns but fixes the bug
+wit the Core being rotated 180 degrees from what it should be
+Fixed spawn coordinates not being used if set by Crying Obsidian in the dimensions, doesn't affect the Synapse or the End
 
 Note: change all biomes to use their variation field to set their height values, this will clean up their initializations quite a bit, in fact those
 should be moved into the tragicbiome superclass similarly to how I did potions
