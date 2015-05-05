@@ -69,7 +69,6 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 			{
 				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Geyser);
 				world.setBlock(Xcoord, Ycoord - 1, Zcoord, Blocks.lava);
-				TragicMC.logInfo("Geyser generated at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 			}
 		}
 
@@ -82,11 +81,7 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;
 
 			block = world.getBlock(Xcoord, Ycoord, Zcoord);
-			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0)
-			{
-				world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
-				TragicMC.logInfo("Steam vent placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
-			}
+			if (block == TragicBlocks.MoltenRock && rand.nextInt(4) == 0) world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.SteamVent);
 		}
 
 		mew = variant == 0 ? 8 : 2;
@@ -107,17 +102,13 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 				for (int[] coords : cands)
 				{
 					block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block.isReplaceable(world, coords[0], coords[1], coords[2]))
-					{
-						world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ScorchedRock);
-					}
+					if (block.isReplaceable(world, coords[0], coords[1], coords[2])) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ScorchedRock);
 				}
-				TragicMC.logInfo("Boulder placed at coords: " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 			}
 		}
 
 		this.fireGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (variant == 2 && rand.nextInt(100) < TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (variant == 2 && rand.nextInt(100) > TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 }

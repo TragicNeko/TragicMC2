@@ -42,7 +42,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = 2;
 		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, 0, TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, true, false);
-		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, 4, 4.0D, 2.0D, false, 8);
+		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, 3, 3.0D, 2.0D, false, 8);
 	}
 
 	@Override

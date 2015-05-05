@@ -33,8 +33,8 @@ public class BiomeGenHallowedHills extends TragicBiome {
 		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 1));
 		if (TragicConfig.allowArchangel) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.archangelSC, 0, 1));
 		if (TragicConfig.allowIre) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.ireSC, 2, 4)); 
-		this.stringGen = new StringWorldGen(TragicBlocks.StringLight, 0, 16);
-		this.lightGen = new SurfaceWorldGen2(8, TragicBlocks.Light, 0, 4, 4);
+		this.stringGen = new StringWorldGen(TragicBlocks.StringLight, 0, 12);
+		this.lightGen = new SurfaceWorldGen2(6, TragicBlocks.Light, 0, 4, 4);
 		this.fragileGen = new SurfaceWorldGen2(2, TragicBlocks.FragileLight, 0, 4, 4);
 	}
 	

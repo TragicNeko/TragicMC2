@@ -42,7 +42,7 @@ public class Structure extends WorldGenerator {
 			TragicBlocks.HallowedGrass, TragicBlocks.HallowedLeaves, TragicBlocks.HallowedLeafTrim, TragicBlocks.MoltenRock, TragicBlocks.ScorchedRock,
 			TragicBlocks.StructureSeed, TragicBlocks.Luminescence, TragicBlocks.ExplosiveGas, TragicBlocks.RadiatedGas, TragicBlocks.CorruptedGas,
 			TragicBlocks.WitheringGas, TragicBlocks.WickedVine, TragicBlocks.Permafrost, TragicBlocks.IcedDirt, TragicBlocks.IceSpike, TragicBlocks.IceSpikeHanging,
-			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.FragileLightInvis});
+			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.FragileLightInvis, TragicBlocks.Crystal});
 
 	public Structure(Schematic sch, int id, String s)
 	{

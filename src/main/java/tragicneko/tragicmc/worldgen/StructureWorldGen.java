@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.worldgen;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import net.minecraft.world.World;
@@ -22,16 +24,29 @@ public class StructureWorldGen implements IWorldGenerator {
 		int y = random.nextInt(118) + random.nextInt(118) + 10;
 		int z = chunkZ * 16 + random.nextInt(16);
 
+		int top = world.getTopSolidOrLiquidBlock(x, z);
+		ArrayList<Structure> cands = new ArrayList<Structure>();
+
 		for (Structure s : Structure.structureList)
 		{
-			if (s != null && s.isValidDimension(world.provider.dimensionId) && s.areCoordsValidForGeneration(world, x, y, z, random, s.getHeight()))
+			if (s != null && s.isValidDimension(world.provider.dimensionId))
 			{
-				TragicMC.logInfo("Attempting to generate " + s.getLocalizedName() + "...");
-				if (s.generate(world, random, x, y, z))
+				if (s.isSurfaceStructure() && s.areCoordsValidForGeneration(world, x, top, z, random, s.getHeight()) || s.areCoordsValidForGeneration(world, x, y, z, random, s.getHeight()))
 				{
-					TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + y + ", " + z);
-					break;
+					cands.add(s);
 				}
+			}
+		}
+
+		Collections.shuffle(cands, random);
+
+		for (Structure s : cands)
+		{
+			TragicMC.logInfo("Attempting to generate " + s.getLocalizedName() + "...");
+			if (s.generate(world, random, x, s.isSurfaceStructure() ? top : y, z))
+			{
+				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + (s.isSurfaceStructure() ? top : y) + ", " + z);
+				break;
 			}
 		}
 	}

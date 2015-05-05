@@ -15,16 +15,12 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class TragicTeleporter extends Teleporter {
 
 	protected final WorldServer worldServerInstance;
 	protected final Random random;
-	
-	public static Set spawnBlocks = Sets.newHashSet(new Block[] {TragicBlocks.DeadDirt, TragicBlocks.DarkSand, TragicBlocks.BrushedGrass, TragicBlocks.AshenGrass,
-			TragicBlocks.StarlitGrass, TragicBlocks.ErodedStone, TragicBlocks.CircuitBlock, Blocks.end_stone, Blocks.netherrack, Blocks.soul_sand, Blocks.nether_brick,
-			Blocks.obsidian, TragicBlocks.AshenTallGrass, TragicBlocks.StarlitTallGrass, TragicBlocks.ScorchedRock, TragicBlocks.MoltenRock, TragicBlocks.HallowedGrass,
-			TragicBlocks.ErodedStone, TragicBlocks.DarkCobblestone});
 
 	public TragicTeleporter(WorldServer par1WorldServer)
 	{
@@ -53,10 +49,10 @@ public class TragicTeleporter extends Teleporter {
 				k = this.worldServerInstance.provider.getEntrancePortalLocation().posZ;
 			}
 
-			Block spawnBlock = this.worldServerInstance.getBlock(i, j, k);
+			Block spawnBlock = this.worldServerInstance.getBlock(i, j - 1, k);
 			boolean lavaFlag = spawnBlock.getMaterial() == Material.lava || spawnBlock.getMaterial() == Material.lava;
 
-			if (!spawnBlocks.contains(spawnBlock) || worldServerInstance.provider.dimensionId == TragicConfig.synapseID)
+			if (!Structure.validBlocks.contains(spawnBlock) || lavaFlag || worldServerInstance.provider.dimensionId == TragicConfig.synapseID)
 			{
 				for (int l = -2; l <= 2; ++l)
 				{

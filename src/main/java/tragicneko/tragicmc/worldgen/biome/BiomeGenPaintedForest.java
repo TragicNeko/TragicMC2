@@ -18,6 +18,8 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedShrubs;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 
 public class BiomeGenPaintedForest extends TragicBiome {
+	
+	private final WorldGenCustomVine vineGen;
 
 	public BiomeGenPaintedForest(int par1, int par2) {
 		super(par1, par2);
@@ -30,6 +32,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = 16;
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = 2;
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.Glowvine);
 	}
 
 	@Override
@@ -77,16 +80,18 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		
-		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.Glowvine);
-		int k;
-		int l;
 
-		for (int a = 0; a < 40; ++a)
+		if (variant < 3)
 		{
-			k = x + rand.nextInt(16) - 8;
-			l = z + rand.nextInt(16) - 8;
-			worldgenvines.generate(world, rand, k, 128, l);
+			int k;
+			int l;
+
+			for (int a = 0; a < 20; ++a)
+			{
+				k = x + rand.nextInt(16) - 8;
+				l = z + rand.nextInt(16) - 8;
+				this.vineGen.generate(world, rand, k, 128, l);
+			}
 		}
 	}
 

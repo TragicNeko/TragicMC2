@@ -33,9 +33,9 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.rootHeight = 0.25F;
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.ErodedStone;
-		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 6 : 1, TragicBlocks.DarkStone, 14, 0.92977745D, 0.38943755D, 1.5D, 1.0D);
+		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 4 : 1, TragicBlocks.DarkStone, 14, 0.92477745D, 0.42943755D, 1.5D, 1.0D);
 		this.scarGen = new InvertedSpikeWorldGen(4, 1.5, 2.5, 0.93977745D, 0.48943755D);
-		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, 2, TragicBlocks.ErodedStone, 4, 4.0D, 3.0D, true, 8);
+		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, 2, TragicBlocks.ErodedStone, 3, 2.0D, 2.5D, true, 8);
 		this.isleGen = new IsleWorldGen();
 	}
 
@@ -44,10 +44,10 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 		if (this.variant == 4 && rand.nextInt(3) == 0) this.isleGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (this.variant < 3 && rand.nextInt(100) >= TragicConfig.largeSpikeRarity) this.spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (this.variant < 3 && rand.nextInt(100) >= TragicConfig.largeSpikeRarity && rand.nextBoolean()) this.spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (this.variant == 3)
 		{
-			if (rand.nextInt(100) < TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+			if (rand.nextInt(100) > TragicConfig.largeSpikeRarity && rand.nextInt(3) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
 			this.ruggedGen.generate(rand, x / 16, z / 16, world, null, null);
 		}
 	}

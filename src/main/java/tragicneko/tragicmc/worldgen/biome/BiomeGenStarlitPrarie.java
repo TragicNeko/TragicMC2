@@ -36,7 +36,7 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 		this.topBlock = TragicBlocks.StarlitGrass;
 		this.theBiomeDecorator.treesPerChunk = 2;
 		this.theBiomeDecorator.grassPerChunk = 16;
-		int relay = variant == 1 ? 1 : (variant == 2 ? 8 : 4);
+		int relay = variant == 1 ? 1 : (variant == 2 ? 6 : 3);
 		double spikeSize = variant == 2 ? 1.25D : 0.75D;
 		double spikeV = variant == 2 ? 1.0D : 0.35D;
 		this.crystalWorldGen = new CustomSpikesWorldGen(relay, TragicBlocks.StarCrystal, 0, 0.91377745D, 0.444443755D, spikeSize, spikeV, false, true);

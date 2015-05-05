@@ -74,7 +74,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
-			if (WorldHelper.validBlocksForDimension.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord))) //this ensures that the randomly selected spot to start a spike is valid
+			if (Structure.validBlocks.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord)))
 			{
 				spikeType = this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2);
 				if (this.isStarCrystal) m = random.nextInt(16);

@@ -24,6 +24,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 	public final SurfaceWorldGen permafrostGen;
 	public final SurfaceWorldGen2 iceSpikeGen;
 	public final PitWorldGen pitGen;
+	public final WorldGenCustomVine vineGen;
 
 	public BiomeGenFrozenTundra(int par1, int par2) {
 		super(par1, par2);
@@ -40,8 +41,9 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 32;
 		this.permafrostGen = new SurfaceWorldGen(3.0, 2.0, true, 8, TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, true, true);
-		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 16 : 4, TragicBlocks.IceSpike, 0, 4, 8);
+		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 12 : 4, TragicBlocks.IceSpike, 0, 4, 8);
 		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss);
 	}
 	
 	@Override
@@ -55,8 +57,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 		
-		WorldGenCustomVine worldgenvines = new WorldGenCustomVine(TragicBlocks.Moss);
-		int mew = variant > 0 ? 40 : 20;
+		int mew = variant > 0 ? 18 : 6;
 		int k;
 		int l;
 
@@ -64,7 +65,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		{
 			k = x + rand.nextInt(16) - 8;
 			l = z + rand.nextInt(16) - 8;
-			worldgenvines.generate(world, rand, k, 128, l);
+			this.vineGen.generate(world, rand, k, 128, l);
 		}
 		
 		this.permafrostGen.generate(rand, x / 16, z / 16, world, null, null);

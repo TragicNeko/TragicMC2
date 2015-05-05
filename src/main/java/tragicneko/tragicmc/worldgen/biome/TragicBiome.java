@@ -108,29 +108,29 @@ public class TragicBiome extends BiomeGenBase {
 		this.genTragicBiomeTerrain(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
 	} 
 
-	public final void genTragicBiomeTerrain(World p_150560_1_, Random p_150560_2_, Block[] p_150560_3_, byte[] p_150560_4_, int p_150560_5_, int p_150560_6_, double p_150560_7_)
+	public final void genTragicBiomeTerrain(World world, Random rand, Block[] blockArray, byte[] byteArray, int x, int y, double z)
 	{
 		boolean flag = true;
 		Block block = this.topBlock;
 		byte b0 = (byte)(this.field_150604_aj & 255);
 		Block block1 = this.fillerBlock;
 		int k = -1;
-		int l = (int)(p_150560_7_ / 3.0D + 3.0D + p_150560_2_.nextDouble() * 0.25D);
-		int i1 = p_150560_5_ & 15;
-		int j1 = p_150560_6_ & 15;
-		int k1 = p_150560_3_.length / 256;
+		int l = (int)(z / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+		int i1 = x & 15;
+		int j1 = y & 15;
+		int k1 = blockArray.length / 256;
 
 		for (int l1 = 255; l1 >= 0; --l1)
 		{
 			int i2 = (j1 * 16 + i1) * k1 + l1;
 
-			if (l1 <= 0 + p_150560_2_.nextInt(5))
+			if (l1 <= 0 + rand.nextInt(5))
 			{
-				p_150560_3_[i2] = Blocks.air;
+				blockArray[i2] = Blocks.air;
 			}
 			else
 			{
-				Block block2 = p_150560_3_[i2];
+				Block block2 = blockArray[i2];
 
 				if (block2 != null && block2.getMaterial() != Material.air)
 				{
@@ -153,26 +153,26 @@ public class TragicBiome extends BiomeGenBase {
 
 							k = l;
 
-							if (l1 >= 42)
+							if (l1 >= 37)
 							{
-								p_150560_3_[i2] = block;
-								p_150560_4_[i2] = b0;
+								blockArray[i2] = block;
+								byteArray[i2] = b0;
 							}
-							else if (l1 < 47 - l)
+							else if (l1 < 42 - l)
 							{
 								block = null;
 								block1 = TragicBlocks.DarkStone;
-								p_150560_3_[i2] = TragicBlocks.DeadDirt;
+								blockArray[i2] = TragicBlocks.DeadDirt;
 							}
 							else
 							{
-								p_150560_3_[i2] = block1;
+								blockArray[i2] = block1;
 							}
 						}
 						else if (k > 0)
 						{
 							--k;
-							p_150560_3_[i2] = block1;
+							blockArray[i2] = block1;
 						}
 					}
 				}
