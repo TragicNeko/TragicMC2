@@ -53,6 +53,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public EntityPart enyvilClaw2;
 
 	public EntityDarkCrystal crystal;
+	public int crystalBuffer;
 
 	public EntityEnyvil(World par1World) {
 		super(par1World);
@@ -317,6 +318,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.fallDistance = 0.0F;
 		super.onLivingUpdate();
 
+		if (this.crystalBuffer > 0) this.crystalBuffer--;
 		if (!this.canUseNewAbility()) this.motionX = this.motionY = this.motionZ = 0.0D;
 		if (!this.canUseNewAbility()) this.motionY = -0.1D;
 
@@ -477,7 +479,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			this.crystal = null;
 		}
 
-		if (this.crystal != null)
+		if (this.hasCrystal())
 		{
 			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(1.0F);
 			this.crystal.motionX = this.motionX;
@@ -513,19 +515,17 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 			this.crystal = crystal;
 			if (crystal != null) this.setCrystalID(crystal.getEntityId());
-
-			if (!this.hasCrystal() && rand.nextInt(16) == 0)
-			{
-				this.createNewCrystals();
-			}
+			if (!this.hasCrystal() && this.crystalBuffer == 0) this.createNewCrystals();
 		}
 	}
 
 	public void createNewCrystals() {
+		if (this.crystalBuffer > 0) return;
 		List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(64.0D, 64.0D, 64.0D));
 		if (list.size() >= 5) return;
 
-		for (int i = 0; i < rand.nextInt(3) + 2; i++)
+		int amt = rand.nextInt(this.worldObj.difficultySetting.getDifficultyId() + 1) + 2;
+		for (int i = 0; i < amt; i++)
 		{
 			EntityDarkCrystal crystal = new EntityDarkCrystal(this.worldObj, this);
 			crystal.setPosition(this.posX + getIntegerInRange(4, 12), this.posY + Math.abs(getIntegerInRange(4, 12)), this.posZ + getIntegerInRange(4, 12));
@@ -718,7 +718,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (entity == this.enyvilEye)
 		{			
-			if (super.attackEntityFrom(source, damage))
+			if (super.attackEntityFrom(source, damage) && !source.isMagicDamage())
 			{
 				if (rand.nextInt(4) == 0 && !this.hasCrystal())
 				{

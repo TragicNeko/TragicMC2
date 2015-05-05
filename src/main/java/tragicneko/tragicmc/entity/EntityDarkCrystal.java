@@ -117,7 +117,7 @@ public class EntityDarkCrystal extends Entity {
 			if (this.owner == null) this.setDead();
 			this.incrementRotation();
 		}
-		
+
 		if (this.ticksExisted % 20 == 0) this.motionY = MathHelper.sin(this.ticksExisted + this.getEntityId()) * 0.115;
 		if (Math.abs(this.motionX) >= 0.225D && Math.abs(this.motionX) <= 0.5D) this.motionX *= 1.125D;
 		if (Math.abs(this.motionZ) >= 0.225D && Math.abs(this.motionZ) <= 0.5D) this.motionZ *= 1.125D;
@@ -140,7 +140,11 @@ public class EntityDarkCrystal extends Entity {
 				this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 4.0F, flag);
 
 				float f = this.worldObj.difficultySetting.getDifficultyId() == 2 ? 50.0F : 25.0F;
-				if (this.owner != null) this.owner.enyvilEye.attackEntityFrom(DamageSource.magic, f);
+				if (this.owner != null)
+				{
+					this.owner.enyvilEye.attackEntityFrom(DamageSource.magic, f);
+					this.owner.crystalBuffer = 200 + rand.nextInt(100);
+				}
 			}
 			return true;
 		}
