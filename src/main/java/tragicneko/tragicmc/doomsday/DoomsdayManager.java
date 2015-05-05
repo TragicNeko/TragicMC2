@@ -94,6 +94,7 @@ public class DoomsdayManager {
 		try
 		{
 			playerMap.clear();
+			logger.info("Doomsday map was cleared.");
 		}
 		catch (Exception e)
 		{
