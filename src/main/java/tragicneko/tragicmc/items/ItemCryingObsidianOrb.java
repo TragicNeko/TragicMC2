@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
@@ -33,7 +34,7 @@ public class ItemCryingObsidianOrb extends Item {
 			int dim = par2World.provider.dimensionId;
 			
 			par3EntityPlayer.setSpawnChunk(newCC, true, dim);
-			
+			par3EntityPlayer.addChatMessage(new ChatComponentText("Spawn set to " + x + ", " + y + ", " + z + " for dimension with id of " + par2World.provider.dimensionId));
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

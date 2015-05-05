@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
@@ -35,11 +36,13 @@ public class ItemDyingObsidianOrb extends Item {
 			if (cc != null)
 			{
 				par3EntityPlayer.setPositionAndUpdate(cc.posX, cc.posY, cc.posZ);
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc.posX + ", " + cc.posY + ", " + cc.posZ));
 			}
 			else
 			{
 				ChunkCoordinates cc2 = par2World.getSpawnPoint();
 				par3EntityPlayer.setPositionAndUpdate(cc2.posX, par2World.getTopSolidOrLiquidBlock(cc2.posX, cc2.posZ), cc2.posZ);
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.posX + ", " + cc2.posY + ", " + cc2.posZ));
 			}
 
 			par1ItemStack.stackSize--;

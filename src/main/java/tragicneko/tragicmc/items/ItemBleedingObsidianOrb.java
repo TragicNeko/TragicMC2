@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
@@ -29,6 +30,7 @@ public class ItemBleedingObsidianOrb extends Item {
 			if (cc != null)
 			{
 				par3EntityPlayer.setPositionAndUpdate(cc.posX, cc.posY, cc.posZ);
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc.posX + ", " + cc.posY + ", " + cc.posZ + " for dimension with id of " + dim));
 			}
 			else
 			{
@@ -42,11 +44,13 @@ public class ItemBleedingObsidianOrb extends Item {
 				if (cc2 != null)
 				{
 					par3EntityPlayer.setPositionAndUpdate(cc2.posX, cc2.posY, cc2.posZ);
+					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.posX + ", " + cc2.posY + ", " + cc2.posZ + " for dimension with id of 0"));
 				}
 				else
 				{
 					ChunkCoordinates cc3 = par2World.getSpawnPoint();
 					par3EntityPlayer.setPositionAndUpdate(cc3.posX, par2World.getTopSolidOrLiquidBlock(cc3.posX, cc3.posZ), cc3.posZ);
+					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc3.posX + ", " + cc3.posY + ", " + cc3.posZ + " for dimension with id of 0"));
 				}
 			}
 			
