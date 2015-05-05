@@ -154,8 +154,6 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 				}
 				break;
 			}
-			
-			TragicMC.logInfo("Volatype: " + this.volatype);
 		}
 	}
 	

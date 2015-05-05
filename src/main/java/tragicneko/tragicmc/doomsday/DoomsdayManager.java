@@ -182,7 +182,6 @@ public class DoomsdayManager {
 							if (temp.isActive && !temp.isInstant)
 							{
 								if (!effect.player.capabilities.isCreativeMode && !effect.isCommandActivated) temp.dday.applyDoomCost(temp.doom);
-								TragicMC.logInfo("Instant Dday used for the Combination should've applied doom cost on use");
 							}
 
 							list.clear();

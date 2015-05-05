@@ -75,7 +75,7 @@ public class TragicMC
 	private static Configuration config;
 
 	private static long time = 0L;
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 
 	public static CreativeTabs Survival;
 	public static CreativeTabs Creative;
@@ -240,7 +240,7 @@ public class TragicMC
 	public void mappings(FMLMissingMappingsEvent event)
 	{
 		//If I change modIDs I'll set this up properly
-		TragicMC.logInfo("Mapping event received.");
+		//TragicMC.logInfo("Mapping event received.");
 	}
 
 	public static void doPotionReflection()

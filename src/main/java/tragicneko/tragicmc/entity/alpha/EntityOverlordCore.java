@@ -410,7 +410,6 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setHurtTicks(0);
 			this.setNearTarget(false);
 			this.setDropTicks(0);
-			TragicMC.logInfo("Transformation ticks: " + this.getTransformationTicks());
 			return;
 		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
@@ -589,13 +588,6 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			this.createMortors();
 		}
-
-		TragicMC.logInfo("VulnerableTicks: " + this.getVulnerableTicks());
-		TragicMC.logInfo("HurtTicks: " + this.getHurtTicks());
-		TragicMC.logInfo("HoverTicks: " + this.getHoverTicks());
-		TragicMC.logInfo("HoverBuffer: " + this.hoverBuffer);
-		TragicMC.logInfo("DropTicks: " + this.getDropTicks());
-		TragicMC.logInfo("NearTarget: " + this.isNearTarget());
 
 		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));

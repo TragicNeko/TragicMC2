@@ -29,13 +29,11 @@ public class TileEntityAeris extends TileEntity {
 			if (this.corruptedTicks % 300 == 0 && player != null && this.corruptedTicks < 3000)
 			{
 				player.addChatMessage(new ChatComponentText("Aeris is corrupting... (" + (this.corruptedTicks / 300)  + " /10)"));
-				TragicMC.logInfo("Aeris metadata is " + this.blockMetadata);
 
 				if (this.blockMetadata == 1)
 				{
 					for (int i = 0; i < this.worldObj.rand.nextInt(3) + 1; i++)
 					{
-						TragicMC.logInfo("Aeris attempted to spawn in an entity based on biome.");
 						ItemCorruptedEgg.spawnCreature(this.worldObj, this.xCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble() * 4),
 								this.yCoord,
 								this.zCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble() * 4));
@@ -47,7 +45,6 @@ public class TileEntityAeris extends TileEntity {
 			{
 				this.corruptedTicks = 0;
 				this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, blockMetadata + 1, 2);
-				TragicMC.logInfo("Aeris block had it's meta updated to " + this.blockMetadata + 1);
 				String s = this.blockMetadata == 1 ? "Aeris is starting to show signs of corruption..." : "Aeris has fully corrupted!";
 				if (player != null) player.addChatMessage(new ChatComponentText(s));
 			}

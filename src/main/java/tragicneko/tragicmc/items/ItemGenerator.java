@@ -356,7 +356,6 @@ public class ItemGenerator extends Item {
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1 + random.nextInt(18) + 10;
 			int yMax = Ycoord;
-			TragicMC.logInfo("Size was " + size);
 
 			for (int y1 = 0; y1 > -32; y1--)
 			{
@@ -402,7 +401,6 @@ public class ItemGenerator extends Item {
 					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
 				}
 			}
-			TragicMC.logInfo("Ymax was " + yMax);
 			
 			break;
 		case 10:

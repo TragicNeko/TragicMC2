@@ -61,7 +61,6 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 				if (world.getBlock(Xcoord, Ycoord, Zcoord).isReplaceable(world, Xcoord, Ycoord, Zcoord) && world.getBlock(Xcoord, Ycoord - 1, Zcoord).isOpaqueCube() && random.nextInt(200) <= TragicConfig.aerisRarity)
 				{
 					world.setBlock(Xcoord, Ycoord, Zcoord, TragicBlocks.Aeris, 0, 2);
-					TragicMC.logInfo("Aeris flower placed at " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 					break;
 				}
 			}

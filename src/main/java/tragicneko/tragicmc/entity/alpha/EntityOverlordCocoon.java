@@ -251,13 +251,6 @@ public class EntityOverlordCocoon extends TragicBoss {
 			}
 
 		}
-
-		TragicMC.logInfo("Health: " + this.getHealth());
-		TragicMC.logInfo("Phase: " + this.getCurrentPhase());
-		TragicMC.logInfo("Phase ticks: " + this.getPhaseTicks());
-		TragicMC.logInfo("Phase damage: " + this.phaseDamage);
-		TragicMC.logInfo("Has seekers? " + !this.seekers.isEmpty());
-		if (!this.seekers.isEmpty()) TragicMC.logInfo("How many? " + this.seekers.size());
 	}
 
 	@Override

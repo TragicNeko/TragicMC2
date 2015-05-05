@@ -23,6 +23,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockGenericOre;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
+import tragicneko.tragicmc.entity.boss.EntityPart;
 
 public class ItemNekoWand extends Item {
 
@@ -57,6 +58,12 @@ public class ItemNekoWand extends Item {
 		EnumChatFormatting reset = EnumChatFormatting.RESET;
 		EnumChatFormatting aqua = EnumChatFormatting.AQUA;
 		EnumChatFormatting red = EnumChatFormatting.RED;
+		
+		if (entity instanceof EntityPart)
+		{
+			TragicMC.logInfo("Entity was a multipart entity, choosing it's main part as the attack target.");
+			entity = (Entity) ((EntityPart) entity).main;
+		}
 
 		if (player.isSneaking())
 		{
@@ -105,7 +112,7 @@ public class ItemNekoWand extends Item {
 		else
 		{
 			if (stack.stackTagCompound.getInteger("entityID") == 0)
-			{
+			{				
 				if (entity instanceof EntityCreature)
 				{
 					stack.stackTagCompound.setInteger("entityID", entity.getEntityId());
@@ -117,6 +124,7 @@ public class ItemNekoWand extends Item {
 			else
 			{
 				EntityCreature ent = (EntityCreature) entity.worldObj.getEntityByID(stack.stackTagCompound.getInteger("entityID"));
+				
 				if (entity instanceof EntityCreature && ent != null && !ent.equals(entity))
 				{
 					ent.getNavigator().clearPathEntity();
@@ -133,7 +141,6 @@ public class ItemNekoWand extends Item {
 		return true;
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer par3EntityPlayer)
 	{

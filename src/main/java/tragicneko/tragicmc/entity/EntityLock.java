@@ -40,7 +40,6 @@ public class EntityLock extends Entity {
 				this.ridingEntity.motionX = this.ridingEntity.motionZ = this.ridingEntity.motionY = 0D;
 				if (TragicConfig.allowLeadFoot) ((EntityLivingBase) this.ridingEntity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 10));
 				((EntityLivingBase) this.ridingEntity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 10, 10));
-				TragicMC.logInfo("Effects should be applied");
 			}
 			if (this.lockOwner == null || this.lockOwner.isDead) this.setDead();
 		}

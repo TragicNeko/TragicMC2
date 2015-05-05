@@ -190,7 +190,6 @@ public class EntitySeeker extends TragicMob {
 
 		if (this.shouldRelocate)
 		{
-			TragicMC.logInfo("Seeker relocated.");
 			this.shouldRelocate = false;
 			this.teleportRandomly();
 			this.relocations++;

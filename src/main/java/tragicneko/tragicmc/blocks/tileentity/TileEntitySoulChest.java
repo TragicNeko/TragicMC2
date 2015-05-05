@@ -82,7 +82,6 @@ public class TileEntitySoulChest extends TileEntityChest {
 		if (this.worldObj.isRemote || this.deathCounter.contains(mob.getUniqueID())) return false;
 
 		this.deathCounter.add(mob.getUniqueID());
-		TragicMC.logInfo("Mob death counted. Soul total is " + (this.souls + 1));
 		return true;
 	}
 

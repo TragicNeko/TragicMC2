@@ -134,7 +134,6 @@ public class FlowerWorldGen implements IWorldGenerator {
 				if (world.isAirBlock(Xcoord, Ycoord, Zcoord) &&  Ycoord < 255 && flower.canBlockStay(world, Xcoord, Ycoord, Zcoord))
 				{
 					world.setBlock(Xcoord, Ycoord, Zcoord, flower, meta, 2);
-					TragicMC.logInfo("Flower placed at coords " + Xcoord + ", " + Ycoord + ", " + Zcoord);
 				}
 			}
 

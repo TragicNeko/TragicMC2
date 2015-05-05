@@ -114,7 +114,6 @@ public class EntityRanmas extends TragicMob {
 
 			if (this.isCollidedHorizontally)
 			{
-				TragicMC.logInfo("Ranmas was collided");
 				this.setChargeTicks(0);
 
 				double x = this.motions[0];
@@ -123,7 +122,6 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {0, 0, 0};
 
 				float f = MathHelper.sqrt_double(x * x + z * z + y * y) * 5.0F;
-				TragicMC.logInfo("Collision value was " + f);
 				if (f >= 2.0F)
 				{
 					if (f > 5.0F) f = 5.0F;
@@ -179,7 +177,6 @@ public class EntityRanmas extends TragicMob {
 		if (f < 1.0F) f = 1.0F;
 		if (f > 20.0F) f = 20.0F;
 		boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), f * (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
-		TragicMC.logInfo("Damage value was " + f);
 
 		if (flag && this.getChargeTicks() > 0)
 		{

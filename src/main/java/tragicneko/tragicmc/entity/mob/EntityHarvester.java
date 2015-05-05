@@ -195,8 +195,6 @@ public class EntityHarvester extends TragicMob {
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
 		}
-		
-		TragicMC.logInfo("Release ticks: " + this.getReleaseTicks());
 	}
 
 	@Override

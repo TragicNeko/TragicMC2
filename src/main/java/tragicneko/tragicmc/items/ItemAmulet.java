@@ -193,7 +193,6 @@ public class ItemAmulet extends Item {
 		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
-			TragicMC.logInfo("Applied no modifiers");
 			return;
 		}
 
@@ -209,7 +208,6 @@ public class ItemAmulet extends Item {
 		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance2)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
-			TragicMC.logInfo("Applied 1 modifier");
 			return;
 		}
 
@@ -225,7 +223,6 @@ public class ItemAmulet extends Item {
 		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance3)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
-			TragicMC.logInfo("Applied 2 modifiers");
 			return;
 		}
 
@@ -236,7 +233,6 @@ public class ItemAmulet extends Item {
 		}
 		
 		stack.getTagCompound().setTag("AttributeModifiers", taglist);
-		TragicMC.logInfo("Applied 3 modifiers");
 	}
 
 	public static class AmuletModifier extends SharedMonsterAttributes {

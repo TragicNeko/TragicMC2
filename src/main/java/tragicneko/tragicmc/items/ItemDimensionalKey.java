@@ -104,15 +104,12 @@ public class ItemDimensionalKey extends Item {
 		} 
 
 		if (par3EntityPlayer instanceof EntityPlayerMP)
-		{
-			TragicMC.logInfo("Item use amount was " + j);
-			
+		{			
 			if (j >= 60 || par3EntityPlayer.capabilities.isCreativeMode)
 			{
 				int dim = par3EntityPlayer.dimension;
 
 				ServerConfigurationManager manager = MinecraftServer.getServer().getConfigurationManager();
-				TragicMC.logInfo("Target dimension was " + this.targetDimension + ", current dimension is " + dim);
 
 				if (dim != this.targetDimension)
 				{

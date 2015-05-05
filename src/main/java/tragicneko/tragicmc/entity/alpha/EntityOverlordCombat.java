@@ -466,7 +466,6 @@ public class EntityOverlordCombat extends TragicBoss {
 		}
 
 		if (this.canUseAbility() && this.ticksExisted % 20 == 0 && this.onGround && rand.nextInt(64) == 0) this.setLeapTicks(40);
-		TragicMC.logInfo("Leap ticks: " + this.getLeapTicks());
 
 		if (this.canUseAbility() && this.unstableBuffer == 0 && this.ticksExisted % ((int) (1000 / aggregate)) == 0 && rand.nextInt(32) == 0)
 		{
@@ -478,9 +477,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			{
 				if (e instanceof EntityLivingBase && TragicConfig.allowHacked && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
 			}
-		} 
-		TragicMC.logInfo("Unstable Ticks: " + this.getUnstableTicks());
-		TragicMC.logInfo("Aggregate: " + this.aggregate);
+		}
 
 		if (this.getAttackTarget() != null && this.canUseAbility() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.onGround && !this.isInWater()) this.setChargeTicks(200);
 
@@ -520,7 +517,6 @@ public class EntityOverlordCombat extends TragicBoss {
 				this.setChargeTicks(0);
 			}
 		}
-		TragicMC.logInfo("Charge ticks: " + this.getChargeTicks());
 		
 		if (this.canUseAbility() && this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(16) == 0 && this.onGround) this.setGrappleTicks(80 + rand.nextInt(40));
 		if (this.getGrappleTicks() > 0)
@@ -550,7 +546,6 @@ public class EntityOverlordCombat extends TragicBoss {
 				this.setGrappleTicks(0);
 			}
 		}
-		TragicMC.logInfo("Grapple ticks: " + this.getGrappleTicks());
 
 		if (this.canUseAbility() && rand.nextInt(16) == 0 && this.ticksExisted % 5 == 0 && !this.onGround && this.motionY <= 0 && this.reflectionBuffer == 0 && !this.isInWater()) this.setReflectionTicks(200 + rand.nextInt(100));
 		if (this.getReflectionTicks() > 0)
@@ -595,10 +590,6 @@ public class EntityOverlordCombat extends TragicBoss {
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
-
-		TragicMC.logInfo("Reflection time: " + this.getReflectionTicks());
-		TragicMC.logInfo("Attack time: " + this.getAttackTime());
-		TragicMC.logInfo("Health: " + this.getHealth());
 	}
 
 	private void createMortors() {

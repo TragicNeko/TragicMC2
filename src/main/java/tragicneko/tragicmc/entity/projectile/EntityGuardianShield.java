@@ -115,7 +115,6 @@ public class EntityGuardianShield extends EntityProjectile {
 		if (src.getEntity() != null && src.getEntity() == this.shootingEntity)
 		{
 			this.motionFlag = true;
-			TragicMC.logInfo("Shield attacked by creator");
 			Vec3 vec3 = this.shootingEntity.getLookVec();
 			
 			if (vec3 != null) 	
@@ -135,7 +134,6 @@ public class EntityGuardianShield extends EntityProjectile {
 		{
 			this.health -= dmg;
 			if (this.health <= 0F) this.setDead();
-			TragicMC.logInfo("Shield damaged, health is " + health);
 		}
 		
 		return super.attackEntityFrom(src, dmg);
