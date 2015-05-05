@@ -64,21 +64,7 @@ public class BlockFragileLight extends Block {
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		//TragicMC.logInfo("Fragile Light updated.");
-		Block block = isVisible ? TragicBlocks.FragileLightInvis : TragicBlocks.FragileLight;
-
-		if (!world.getEntitiesWithinAABB(EntityLivingBase.class, AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0).expand(4.0, 4.0, 4.0).offset(x, y, z)).isEmpty())
-		{
-			if (isVisible) world.setBlock(x, y, z, block);
-			//TragicMC.logInfo("Fragile Light hidden.");
-		}
-		else
-		{
-			if (!isVisible) world.setBlock(x, y, z, block);
-			//TragicMC.logInfo("Fragile light visible.");
-		}
-
-		world.scheduleBlockUpdate(x, y, z, this, 1);
+		if (!isVisible) world.setBlock(x, y, z, isVisible ? TragicBlocks.FragileLightInvis : TragicBlocks.FragileLight);
 	}
 
 	@Override
@@ -87,6 +73,7 @@ public class BlockFragileLight extends Block {
 		if (!world.isRemote && entity instanceof EntityLivingBase && isVisible)
 		{
 			world.setBlock(x, y, z, TragicBlocks.FragileLightInvis);
+			world.scheduleBlockUpdate(x, y, z, TragicBlocks.FragileLightInvis, 10);
 		}
 	}
 
@@ -116,7 +103,7 @@ public class BlockFragileLight extends Block {
 	{
 		return false;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
