@@ -48,6 +48,18 @@ public class TragicTeleporter extends Teleporter {
 				j = this.worldServerInstance.provider.getEntrancePortalLocation().posY;
 				k = this.worldServerInstance.provider.getEntrancePortalLocation().posZ;
 			}
+			else if (par1Entity instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer) par1Entity;
+				ChunkCoordinates cc = player.getBedLocation(this.worldServerInstance.provider.dimensionId);
+				
+				if (cc != null)
+				{
+					i = cc.posX;
+					j = cc.posY;
+					k = cc.posZ;
+				}
+			}
 
 			Block spawnBlock = this.worldServerInstance.getBlock(i, j - 1, k);
 			boolean lavaFlag = spawnBlock.getMaterial() == Material.lava || spawnBlock.getMaterial() == Material.lava;
