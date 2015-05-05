@@ -159,7 +159,6 @@ public class LoreHelper {
 
 	public static void registerLoreJson(File config)
 	{	
-		if (TragicMC.DEBUG) logger.info("Loading default lore entries for items.");
 		loadDefaultLores();
 		if (TragicMC.DEBUG) logger.info("Attempting to load Custom Lores from config directory...");
 		File fileIn = new File(config, "tragiclores.json");
@@ -238,8 +237,6 @@ public class LoreHelper {
 		{
 			logger.info("tragiclores.json file was not found in config directory, skipping custom lore parsing.");
 		}
-
-		if (TragicMC.DEBUG) logger.info("No problems caught while retrieving lores from json!");
 	}
 
 	public static void loadDefaultLores()
