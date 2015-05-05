@@ -35,7 +35,6 @@ public class RenderOverlordCore extends RenderBoss {
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
 	{		
 		GL11.glScalef(this.scale, this.scale, this.scale);
-		GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(0F, 0.5F, 0F);
 	}
 

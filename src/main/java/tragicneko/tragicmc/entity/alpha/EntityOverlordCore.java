@@ -13,6 +13,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,6 +48,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 	private int hoverBuffer;
 	private int aggregate;
+	private int courseChangeCooldown;
 
 	public static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
 			TragicBlocks.Conduit, TragicBlocks.WitheringGas, TragicBlocks.CorruptedGas});
@@ -204,8 +206,9 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{		
+		this.getLookHelper().onUpdateLook();
 		if (this.getTransformationTicks() > 0) this.motionX = this.motionY = this.motionZ = 0;
-		
+
 		double d0;
 		double d1;
 		double d2;
@@ -414,11 +417,6 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
 
-		d10 = this.targetX - this.posX;
-		d0 = this.targetY - this.posY;
-		d1 = this.targetZ - this.posZ;
-		d2 = d10 * d10 + d0 * d0 + d1 * d1;
-
 		if (this.target != null)
 		{
 			this.targetX = this.target.posX;
@@ -430,18 +428,14 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (d8 > 10.0D) d8 = 10.0D;
 
-			this.targetY = this.target.boundingBox.minY + d8;
-
-			if (this.getDropTicks() == 0 && this.getVulnerableTicks() == 0)
-			{
-				if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0 && rand.nextInt(10) == 0 && this.getDistanceToEntity(this.target) <= 32.0 && this.canEntityBeSeen(this.target)) this.setHoverTicks(300 + rand.nextInt(120));
-			}
+			this.targetY = this.target.boundingBox.minY + d8;			
 		}
 		else
 		{
 			this.targetX += this.rand.nextGaussian() * 2.0D;
 			this.targetZ += this.rand.nextGaussian() * 2.0D;
 		}
+
 
 		if (this.isNearTarget()) this.setNearTarget(false);
 		if (this.target != null && this.getDistanceToEntity(this.target) <= 5.0)
@@ -454,36 +448,56 @@ public class EntityOverlordCore extends TragicBoss {
 			}
 		}
 
-		if (this.forceNewTarget || d2 < 100.0D || d2 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically) this.setNewTarget();
-		d0 /= MathHelper.sqrt_double(d10 * d10 + d1 * d1);
-		f12 = 0.6F;
+		d0 = this.targetX - this.posX;
+		d1 = this.targetY - this.posY;
+		d2 = this.targetZ - this.posZ;
+		double d3 = d0 * d0 + d1 * d1 + d2 * d2;
+		double d4 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
 
-		if (d0 < (-f12)) d0 = (-f12);
-		if (d0 > f12) d0 = f12;
+		if (this.forceNewTarget || d3 < 100.0D || d3 > 22500.0D || this.isCollidedHorizontally || this.isCollidedVertically) this.setNewTarget();
 
-		this.motionY += d0 * 0.10000000149011612D;
-		this.rotationYaw = MathHelper.wrapAngleTo180_float(this.rotationYaw);
-		double d4 = 180.0D - Math.atan2(d10, d1) * 180.0D / Math.PI;
-		double d6 = MathHelper.wrapAngleTo180_double(d4 - this.rotationYaw);
+		if (this.target != null)
+		{
+			float f = 8.0F;
+			if (this.canEntityBeSeen(this.target) && this.getDistanceToEntity(this.target) > d4) f = 24.0F;
+			
+			this.targetX = this.target.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * f);
+			this.targetY = this.target.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * f);
+			this.targetZ = this.target.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * f);
 
-		if (d6 > 50.0D) d6 = 50.0D;
-		if (d6 < -50.0D) d6 = -50.0D;
+			if (this.getDropTicks() == 0 && this.getVulnerableTicks() == 0)
+			{
+				if (this.rand.nextInt(512) == 0 && this.hoverBuffer == 0 || this.aggregate >= 10 && this.hoverBuffer == 0 && rand.nextInt(10) == 0 && this.getDistanceToEntity(this.target) <= d4 && this.canEntityBeSeen(this.target)) this.setHoverTicks(300 + rand.nextInt(120));
+			}
+		}
+		else
+		{
+			this.targetX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+			this.targetY = (this.worldObj.getActualHeight() / 4) + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+			this.targetZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+		}
 
-		Vec3 vec3 = Vec3.createVectorHelper(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
-		Vec3 vec32 = Vec3.createVectorHelper(MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, (-MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F))).normalize();
-		float f5 = (float)(vec32.dotProduct(vec3) + 0.5D) / 1.5F;
-		if (f5 < 0.0F) f5 = 0.0F;
+		if (this.courseChangeCooldown-- <= 0)
+		{
+			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
+			d3 = (double)MathHelper.sqrt_double(d3);
 
-		this.randomYawVelocity *= 0.8F;
-		float f6 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
-		double d9 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D;
-		if (d9 > 40.0D) d9 = 40.0D;
+			this.motionX += d0 / d3 * 0.2D;
+			this.motionY += d1 / d3 * 0.2D;
+			this.motionZ += d2 / d3 * 0.2D;
+		}		
 
-		this.randomYawVelocity = (float)(this.randomYawVelocity + d6 * (0.699999988079071D / d9 / f6));
-		this.rotationYaw += this.randomYawVelocity * 0.1F;
-		float f7 = (float)(2.0D / (d9 + 1.0D));
-		float f8 = 0.06F;
-		this.moveFlying(0.0F, -1.0F, f8 * (f5 * f7 + (1.0F - f7)));
+		if (this.target != null)
+		{
+			double d5 = this.target.posX - this.posX;
+			double d6 = this.target.boundingBox.minY + (double)(this.target.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
+			double d7 = this.target.posZ - this.posZ;
+			this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(d5, d7)) * 180.0F / (float)Math.PI;
+		}
+		else
+		{
+			this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
+		}
 
 		double m = this.motionX;
 		double m2 = this.motionY;
@@ -498,19 +512,12 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (this.getVulnerableTicks() > 0 && !this.slowed)
 		{
-			m *= 0.355D;
-			m2 *= 0.355D;
-			m3 *= 0.355D;
+			m *= 0.455D;
+			m2 *= 0.455D;
+			m3 *= 0.455D;
 		}
 
 		this.moveEntity(m, m2, m3);
-
-		Vec3 vec31 = Vec3.createVectorHelper(this.motionX, this.motionY, this.motionZ).normalize();
-		float f9 = (float)(vec31.dotProduct(vec32) + 1.0D) / 2.0F;
-		f9 = 0.8F + 0.15F * f9;
-		this.motionX *= f9;
-		this.motionZ *= f9;
-		this.motionY *= 0.9100000262260437D;
 
 		if (this.hoverBuffer > 0) --this.hoverBuffer;
 
@@ -518,7 +525,11 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			this.decrementHoverTicks();
 			this.motionX = this.motionZ = this.motionY = 0.0F;
-
+			if (this.target == null || this.getDistanceToEntity(this.target) > d4 || !this.canEntityBeSeen(this.target))
+			{
+				this.setHoverTicks(0);
+				this.hoverBuffer = 100;
+			}
 			if (this.target != null && this.getHoverTicks() > 60 && this.getHoverTicks() % 10 == 0) this.createMortors();
 			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.healByFactorRanged(5.0F, 5.0F, 30.0F);
 
@@ -593,6 +604,10 @@ public class EntityOverlordCore extends TragicBoss {
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+
+		this.motionX *= 0.98D;
+		this.motionY *= 0.98D;
+		this.motionZ *= 0.98D;
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -648,7 +663,10 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (!this.worldObj.playerEntities.isEmpty() && this.getVulnerableTicks() == 0)
 		{
-			this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
+			Entity ent = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
+
+			if (ent instanceof EntityPlayer && ((EntityPlayer)ent).capabilities.isCreativeMode) return;
+			this.target = ent;
 		}
 		else
 		{
@@ -873,5 +891,19 @@ public class EntityOverlordCore extends TragicBoss {
 				this.worldObj.spawnParticle("largeexplode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
 			}
 		}
+	}
+
+	public int getDistanceToGround()
+	{
+		int x = MathHelper.floor_double(this.posX);
+		int y = MathHelper.floor_double(this.boundingBox.minY);
+		int z = MathHelper.floor_double(this.posZ);
+
+		for (int i = 0; y - i > 0; ++i)
+		{
+			if (this.worldObj.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
+		}
+
+		return y;
 	}
 }
