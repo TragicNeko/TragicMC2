@@ -42,7 +42,7 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		this.topBlock = TragicBlocks.MoltenRock;
 		this.fireGen = new SurfaceWorldGen2(variant == 2 ? 16 : 4, Blocks.fire, 0, 8, 4);
 		this.pitGen = new PitWorldGen(Blocks.flowing_lava, 0, 12, 6, 4.0D, 3.0D);
-		this.scarGen = new InvertedSpikeWorldGen(6, 1.5, 2.5, 0.93977745D, 0.48943755D);
+		this.scarGen = new InvertedSpikeWorldGen(6, 1.5, 2.5, 0.91977745D, 0.48943755D);
 	}
 
 	@Override
