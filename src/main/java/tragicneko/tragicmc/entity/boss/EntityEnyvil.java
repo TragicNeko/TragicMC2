@@ -30,6 +30,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
@@ -690,6 +691,10 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
+		if (source.getEntity() != null && !(source.getEntity() instanceof EntityPlayer))
+		{
+			return this.attackEntityFromPart(this.getDefaultPart(), source, damage);
+		}
 		return false;
 	}
 

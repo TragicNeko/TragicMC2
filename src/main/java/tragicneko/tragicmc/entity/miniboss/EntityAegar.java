@@ -375,7 +375,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	}
 
 	private void createCrystalMortors() {
-		TragicMC.logInfo("Mortor created.");
 
 		double d0 = this.getAttackTarget().posX - this.posX;
 		double d1 = rand.nextInt(4);
@@ -391,7 +390,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	}
 
 	private void fireLaser() {
-		TragicMC.logInfo("Laser fired.");
 		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), 1.0F + rand.nextFloat());
 	}
 
@@ -450,6 +448,10 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
+		if (source.getEntity() != null && !(source.getEntity() instanceof EntityPlayer))
+		{
+			return this.attackEntityFromPart(this.getDefaultPart(), source, damage);
+		}
 		return false;
 	}
 
@@ -462,7 +464,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	@Override
 	public boolean attackEntityFromPart(EntityPart entity, DamageSource source, float damage) {
 		if (this.worldObj.isRemote || source.isFireDamage() || source == DamageSource.drown) return false;
-		TragicMC.logInfo("Aegar part hit was " + entity.partName);
 		if (this.getHurtTime() == 0) this.setHurtTime(10);
 
 		if (source.canHarmInCreative())
@@ -487,7 +488,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			}
 		}
 
-		TragicMC.logInfo("Damage done to Aegar was " + damage);
 		if (source.getEntity() instanceof EntityLivingBase && ((EntityLivingBase) source.getEntity()).getCreatureAttribute() != TragicEntities.Synapse) super.attackEntityFrom(source, damage);
 
 		return true;
