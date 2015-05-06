@@ -74,9 +74,6 @@ public class TragicMC
 	public static final Random rand = new Random();
 	private static Configuration config;
 
-	private static long time = 0L;
-	public static final boolean DEBUG = true;
-
 	public static CreativeTabs Survival;
 	public static CreativeTabs Creative;
 
@@ -289,7 +286,6 @@ public class TragicMC
 
 	public static void logInfo(String s)
 	{
-		if (!DEBUG) return;
 		logger.info(s);
 	}
 

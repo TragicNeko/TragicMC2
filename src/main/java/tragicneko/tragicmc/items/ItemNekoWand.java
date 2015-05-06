@@ -162,7 +162,7 @@ public class ItemNekoWand extends Item {
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(green + "You have reset the selected single entity!"));
 		}
 		
-		if (world.isRemote || !TragicMC.DEBUG) return stack;
+		if (world.isRemote) return stack;
 
 		int m = 0;
 		Chunk chk = world.getChunkFromBlockCoords((int) par3EntityPlayer.posX, (int) par3EntityPlayer.posZ);

@@ -160,7 +160,7 @@ public class LoreHelper {
 	public static void registerLoreJson(File config)
 	{	
 		loadDefaultLores();
-		if (TragicMC.DEBUG) logger.info("Attempting to load Custom Lores from config directory...");
+		logger.info("Attempting to load Custom Lores from config directory...");
 		File fileIn = new File(config, "tragiclores.json");
 		/*
 		if (!fileIn.exists()) //If it doesn't exist then uses the one bundled in the mod, this will probably not be implemented (it'll take a lot of work to convert the current lores into a json format)
