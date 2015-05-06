@@ -28,7 +28,7 @@ import tragicneko.tragicmc.network.MessageUseDoomsday;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 
-public class KeyInputEvents extends Gui {
+public class ClientEvents extends Gui {
 
 	private static ResourceLocation hackedTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky.png");
 	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity.png");
@@ -37,7 +37,12 @@ public class KeyInputEvents extends Gui {
 		{0.8F, 0.3F, 0.5F}, {0.6F, 0.3F, 0.9F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.9F}, {0F, 0F, 0F}};
 	private static int counter;
 	private static int color;
+	private static int buffer;
 
+	private static final String[] sounds = new String[] {"mob.enderdragon.growl", "random.fizz", "mob.enderdragon.wings", "mob.endermen.portal", "mob.zombie.hurt",
+			"mob.skeleton.hurt", "random.bow", "random.explode", "random.chestopen", "mob.wither.hurt", "mob.wither.idle", "random.door_open",
+			"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare"};
+	
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
@@ -109,15 +114,21 @@ public class KeyInputEvents extends Gui {
 			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
 			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
 		}
+		
+		if (player != null && TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun))
+		{
+			player.prevRotationPitch = player.rotationPitch;
+			player.prevRotationYaw = player.rotationYaw;
+			player.rotationYawHead = player.prevRotationYawHead;
+		}
 
 		if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
 		{
-			String[] sounds = new String[] {"mob.enderdragon.growl", "random.fizz", "mob.enderdragon.wings", "mob.endermen.portal", "mob.zombie.hurt",
-					"mob.skeleton.hurt", "random.bow", "random.explode", "random.click", "mob.wither.hurt", "mob.wither.idle", "random.door",
-					"game.hostile.hurt", "game.hostile.hurt.small"};
-			if (player.ticksExisted % 240 == 0 && rand.nextInt(16) == 0)
+			buffer++;
+			if (player.ticksExisted % 120 == 0 && rand.nextBoolean() && buffer >= 1000)
 			{
-				player.playSound(sounds[rand.nextInt(sounds.length)], (float) rand.nextGaussian(), 1.0F);
+				buffer = 0;
+				player.playSound(sounds[rand.nextInt(sounds.length)], rand.nextFloat() * 0.3F + 0.7F, 1.0F);
 			}
 			player.swingItem();
 		}

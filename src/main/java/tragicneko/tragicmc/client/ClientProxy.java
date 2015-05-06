@@ -162,7 +162,7 @@ import tragicneko.tragicmc.entity.projectile.EntityStarShard;
 import tragicneko.tragicmc.entity.projectile.EntityThrowingRock;
 import tragicneko.tragicmc.entity.projectile.EntityTimeBomb;
 import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
-import tragicneko.tragicmc.events.KeyInputEvents;
+import tragicneko.tragicmc.events.ClientEvents;
 import tragicneko.tragicmc.events.MouseEvents;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -208,8 +208,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerKeyBinding(useSpecial);
 		ClientRegistry.registerKeyBinding(openAmuletGui);
 
-		FMLCommonHandler.instance().bus().register(new KeyInputEvents());
-		MinecraftForge.EVENT_BUS.register(new KeyInputEvents());
+		FMLCommonHandler.instance().bus().register(new ClientEvents());
+		MinecraftForge.EVENT_BUS.register(new ClientEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));		
 
 		//Particle registration
