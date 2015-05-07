@@ -4,6 +4,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.monster.EntityGiantZombie;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -237,7 +238,6 @@ public class TragicEntities {
 						BiomeGenBase.forestHills,
 						BiomeGenBase.frozenOcean,
 						BiomeGenBase.frozenRiver,
-						BiomeGenBase.hell,
 						BiomeGenBase.iceMountains,
 						BiomeGenBase.icePlains,
 						BiomeGenBase.jungle,
@@ -256,7 +256,6 @@ public class TragicEntities {
 						BiomeGenBase.roofedForest,
 						BiomeGenBase.savanna,
 						BiomeGenBase.savannaPlateau,
-						BiomeGenBase.sky,
 						BiomeGenBase.stoneBeach,
 						BiomeGenBase.swampland,
 						BiomeGenBase.taiga,
@@ -315,7 +314,7 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityTragicNeko.class, "TragicMC.TragicNeko", id++, 0x373535, 0x853B3B);
 		}
 
-		if (TragicConfig.allowTox)
+		if (TragicConfig.allowTox) //TODO finish mob sounds and render/animation updates
 		{
 			EntityRegistry.registerModEntity(EntityTox.class, "Tox", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowNonDimensionMobSpawns)
@@ -544,6 +543,9 @@ public class TragicEntities {
 					);
 		}
 		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, 0xFFFDF1, 0xABA290);
+		
+		//Giant Zombie
+		TragicEntityList.addMapping(EntityGiantZombie.class, "TragicMC.GiantZombie", id++, 0x43BD98, 0x53DCBC);
 
 		//Mini-Bosses
 		if (TragicConfig.allowJarra)
