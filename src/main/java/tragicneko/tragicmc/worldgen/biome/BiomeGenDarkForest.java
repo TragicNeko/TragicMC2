@@ -27,7 +27,7 @@ public class BiomeGenDarkForest extends TragicBiome {
 	public final SurfaceWorldGen2 gasGen;
 	public final WorldGenCustomVine vineGen;
 	
-	public static final float[][] heights = new float[][] {{0.05F, 0.15F}, {0.35F, 0.22F}, {0.35F, -0.35F}};
+	public static final float[][] heights = new float[][] {{0.05F, 0.15F}, {0.32F, 0.32F}, {0.35F, -0.35F}};
 
 	public BiomeGenDarkForest(int par1, int par2) {
 		super(par1, par2);

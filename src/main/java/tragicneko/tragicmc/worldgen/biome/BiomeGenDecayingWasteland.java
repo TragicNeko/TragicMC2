@@ -11,13 +11,13 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
-import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
+import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 import tragicneko.tragicmc.worldgen.VoidPitWorldGen;
 
 public class BiomeGenDecayingWasteland extends TragicBiome {
 	
 	public final VoidPitWorldGen voidPitGen;
-	public final SurfaceWorldGen mixedDirtGen;
+	public final RuggedTerrainWorldGen mixedDirtGen;
 	
 	public static final float[][] heights = new float[][] {{0.35F, 0.22F}, {0.05F, -0.35F}, {0.18F, 0.15F}, {0.75F, 0.35F}};
 
@@ -37,7 +37,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		this.topBlock = TragicBlocks.DeadDirt;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.voidPitGen = new VoidPitWorldGen(3.5D, 3.5D);
-		this.mixedDirtGen = new SurfaceWorldGen(3.0D, 4.0D, true, 16, TragicBlocks.DeadDirt, 2, TragicBlocks.DeadDirt, true, true);
+		this.mixedDirtGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 2, TragicBlocks.DeadDirt, 6, 3.0D, 4.0D, false, 8);
 	}
 	
 	@Override
