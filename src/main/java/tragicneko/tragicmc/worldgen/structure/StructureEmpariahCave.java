@@ -32,10 +32,10 @@ public class StructureEmpariahCave extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{		
 		if (!(world.getBiomeGenForCoords(x, z) instanceof BiomeGenFrozenTundra) || y < 36) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand, 6) && rand.nextInt(200) <= TragicConfig.empariahCaveRarity;
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.empariahCaveRarity;
 	}
 	
 	@Override

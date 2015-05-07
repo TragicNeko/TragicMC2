@@ -35,12 +35,12 @@ public class StructureApisTemple extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenPlains || biome instanceof BiomeGenSavanna || biome instanceof BiomeGenHallowedHills)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand, height) && rand.nextInt(200) <= TragicConfig.apisTempleRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.apisTempleRarity;
 		}
 		
 		return false;

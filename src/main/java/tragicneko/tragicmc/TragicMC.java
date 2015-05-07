@@ -202,7 +202,7 @@ public class TragicMC
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedPrarie);
 		}
 
-		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 20);
+		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 10);
 
 		net = new SimpleNetworkWrapper(TragicMC.MODID);
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerDoom.class, tragicneko.tragicmc.network.MessageDoom.class, 0, Side.CLIENT);

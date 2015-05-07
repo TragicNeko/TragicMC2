@@ -31,9 +31,9 @@ public class StructureTimeAltar extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{		
-		return super.areCoordsValidForGeneration(world, x, y, z, rand, height) && rand.nextInt(200) <= TragicConfig.timeAltarRarity;
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.timeAltarRarity;
 	}
 
 	@Override

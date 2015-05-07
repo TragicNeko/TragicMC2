@@ -16,13 +16,13 @@ import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 import tragicneko.tragicmc.worldgen.PitWorldGen;
-import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
+import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
 public class BiomeGenFrozenTundra extends TragicBiome {
 	
-	public final SurfaceWorldGen permafrostGen;
+	public final RuggedTerrainWorldGen permafrostGen;
 	public final SurfaceWorldGen2 iceSpikeGen;
 	public final PitWorldGen pitGen;
 	public final WorldGenCustomVine vineGen;
@@ -43,8 +43,8 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		if (TragicConfig.allowYeti) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.yetiSC, 0, 1));
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
-		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 12 : (variant == 2 ? 6 : 0);
-		this.permafrostGen = new SurfaceWorldGen(3.0, 2.0, true, 8, TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, true, true);
+		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 12 : (variant == 2 ? 6 : 2);
+		this.permafrostGen = new RuggedTerrainWorldGen(TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, 2, 2.0D, 3.0D, false, 8);
 		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 12 : 4, TragicBlocks.IceSpike, 0, 4, 8);
 		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);
 		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss);

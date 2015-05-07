@@ -37,9 +37,10 @@ public class StructureObsidianCavern extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{		
-		return super.areCoordsValidForGeneration(world, x, y, z, rand, 8) && rand.nextInt(200) <= TragicConfig.obsidianCavernRarity; //checks smaller radius due to the nature of the obsidian cavern schematic
+		if (y > 80) return false; //To prevent huge lagspikes from it generating from a high y value
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.obsidianCavernRarity;
 	}
 	
 	@Override

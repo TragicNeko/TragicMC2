@@ -30,8 +30,8 @@ public class BiomeGenHallowedHills extends TragicBiome {
 		this.rainfall = 0.4F;
 		this.heightVariation = heights[variant][0]; 
 		this.rootHeight = heights[variant][1];
-		this.theBiomeDecorator.treesPerChunk = variant == 0 ? 4 : (variant == 1 ? 16 : 2);
-		this.theBiomeDecorator.flowersPerChunk = variant == 0 || variant == 3 ? 4 : (variant == 2 ? 16 : 8);
+		this.theBiomeDecorator.treesPerChunk = variant == 0 ? 4 : (variant == 1 ? 12 : 2);
+		this.theBiomeDecorator.flowersPerChunk = variant == 0 || variant == 3 ? 1 : (variant == 2 ? 12 : 4);
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.HallowedGrass;
 		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 1));

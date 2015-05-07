@@ -20,7 +20,7 @@ public class Structure extends WorldGenerator {
 	public final int structureId;
 	private final String structureName;
 	protected final int height;
-	
+
 	public static Structure[] structureList = new Structure[16];
 	public static Structure apisTemple = new StructureApisTemple(0, "apisTemple");
 	public static Structure towerStructure = new StructureTower(1, "tower");
@@ -32,7 +32,7 @@ public class Structure extends WorldGenerator {
 	public static Structure soulTomb = new StructureSoulTomb(7, "soulTomb");
 	public static Structure corruptedSpire = new StructureCorruptedSpire(8, "corruptedSpire");
 	public static Structure empariahCave = new StructureEmpariahCave(9, "empariahCave");
-	
+
 	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
 			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,
 			Blocks.dirt, Blocks.gravel, Blocks.clay, Blocks.hardened_clay, TragicBlocks.DarkStone, TragicBlocks.DarkSand, TragicBlocks.DeadDirt, Blocks.leaves,
@@ -42,7 +42,8 @@ public class Structure extends WorldGenerator {
 			TragicBlocks.HallowedGrass, TragicBlocks.HallowedLeaves, TragicBlocks.HallowedLeafTrim, TragicBlocks.MoltenRock, TragicBlocks.ScorchedRock,
 			TragicBlocks.StructureSeed, TragicBlocks.Luminescence, TragicBlocks.ExplosiveGas, TragicBlocks.RadiatedGas, TragicBlocks.CorruptedGas,
 			TragicBlocks.WitheringGas, TragicBlocks.WickedVine, TragicBlocks.Permafrost, TragicBlocks.IcedDirt, TragicBlocks.IceSpike, TragicBlocks.IceSpikeHanging,
-			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.FragileLightInvis, TragicBlocks.Crystal});
+			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.FragileLightInvis, TragicBlocks.Crystal, TragicBlocks.DarkGrass, TragicBlocks.Lichen,
+			TragicBlocks.Moss});
 
 	public Structure(Schematic sch, int id, String s)
 	{
@@ -52,7 +53,7 @@ public class Structure extends WorldGenerator {
 		this.height = sch.structureHeight;
 		this.structureName = s;
 	}
-	
+
 	/**
 	 * Override to set a variant amount for a particular structure
 	 * @return
@@ -61,7 +62,7 @@ public class Structure extends WorldGenerator {
 	{
 		return 1;
 	}
-	
+
 	/**
 	 * Whether or not this particular structure should only generate on a solid surface
 	 * @return
@@ -70,7 +71,7 @@ public class Structure extends WorldGenerator {
 	{
 		return false;
 	}
-	
+
 	/**
 	 * Check if the structure is in the correct dimension
 	 * @param dim
@@ -80,7 +81,7 @@ public class Structure extends WorldGenerator {
 	{
 		return true;
 	}
-	
+
 	/**
 	 * Check if the starting coords for the structure are valid, may check a larger area as well
 	 * @param world
@@ -90,32 +91,37 @@ public class Structure extends WorldGenerator {
 	 * @param rand
 	 * @return
 	 */
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
-		if (y + height >= 256 || !validBlocks.contains(world.getBlock(x, y, z))) return false;
-		
-		if (this.isSurfaceStructure() && (y <= 50 || !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) ||
-				!world.getBlock(x, y, z).isOpaqueCube() || !world.canBlockSeeTheSky(x, y, z))) return false;
+		if (y + this.height >= 256 || !validBlocks.contains(world.getBlock(x, y, z))) return false;
 
-		for (int y1 = 0; y1 < height; y1++)
+		if (this.isSurfaceStructure())
 		{
-			if (!validBlocks.contains(world.getBlock(x, y + y1 + 1, z))) return false;
-		}
+			if (y <= 50 || !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) ||
+					!world.getBlock(x, y - 1, z).isOpaqueCube() || !world.canBlockSeeTheSky(x, y, z)) return false;
 
-		for (int y1 = 0; y1 < height; y1++)
-		{			
-			if (!validBlocks.contains(world.getBlock(x, y - y1, z)) ||
-					!validBlocks.contains(world.getBlock(x - y1, y, z)) ||
-					!validBlocks.contains(world.getBlock(x + y1, y, z)) ||
-					!validBlocks.contains(world.getBlock(x, y, z + y1)) ||
-					!validBlocks.contains(world.getBlock(x, y , z - y1)))
+			for (int y1 = 0; y1 < this.height; y1++)
 			{
-				return false;
+				if (!validBlocks.contains(world.getBlock(x, y + y1 + 1, z))) return false;
+			}
+		}
+		else
+		{
+			for (int y1 = 0; y1 < this.height; y1++)
+			{			
+				if (!validBlocks.contains(world.getBlock(x, y - y1, z)) ||
+						!validBlocks.contains(world.getBlock(x - y1, y, z)) ||
+						!validBlocks.contains(world.getBlock(x + y1, y, z)) ||
+						!validBlocks.contains(world.getBlock(x, y, z + y1)) ||
+						!validBlocks.contains(world.getBlock(x, y , z - y1)))
+				{
+					return false;
+				}
 			}
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Specific checks for particular structures, this should be where to check things like if the structure is allowed in the config or if a valid variant
 	 * id is set, etc.
@@ -127,12 +133,12 @@ public class Structure extends WorldGenerator {
 	{
 		return true;
 	}
-	
+
 	public int getHeight()
 	{
 		return this.height;
 	}
-	
+
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z) 
 	{
@@ -154,7 +160,7 @@ public class Structure extends WorldGenerator {
 	{
 		return !world.isRemote && this.canGenerate();
 	}
-	
+
 	public String getLocalizedName()
 	{
 		return StatCollector.translateToLocal("tile.tragicmc.structureSeed." + this.structureName + ".name");

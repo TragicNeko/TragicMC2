@@ -28,13 +28,13 @@ public class StructureKitsuneDen extends StructureBoss {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
 		if (world.provider.dimensionId != -1 && y >= 62 || world.getTopSolidOrLiquidBlock(x, z) < y) return false;
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenHell || biome instanceof BiomeGenScorchedWasteland)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand, height) && rand.nextInt(200) <= TragicConfig.kitsuneDenRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.kitsuneDenRarity;
 		}
 		return false;
 	}

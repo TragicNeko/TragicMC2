@@ -31,7 +31,7 @@ public class StructureCorruptedSpire extends Structure {
 	}
 
 	@Override
-	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand, int height)
+	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{		
 		return false; //should not generate naturally
 	}

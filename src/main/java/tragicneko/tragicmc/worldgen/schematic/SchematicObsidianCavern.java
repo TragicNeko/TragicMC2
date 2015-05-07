@@ -648,7 +648,7 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 			world.setBlock(x, 0, z, bedrock);
 			world.setBlock(x, 1, z, chest);
-			this.generateChestGoodies(world, rand, x, 2, z, 1);
+			this.generateChestGoodies(world, rand, x, 1, z, 1);
 			break;
 		case 1:
 			world.setBlock(x, 1, z, bedrock);
