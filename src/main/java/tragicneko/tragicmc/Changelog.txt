@@ -3910,6 +3910,10 @@ Changed all biomes to use their variant field to set their generation values, th
 Added Giant Zombie spawn egg to my mob eggs, modified egg names for Vanilla mobs to ensure that people know they are the Vanilla vesions and not special versions
 Small fix to Reach again
 Fixed item challenges that should ignore meta values
+Added more variation to biome variation heights, modified some biome set rainfall and humidity values
+Fixed being able to use the Flight potion effect while under the effects of Stun
+Fixed chest not generating with loot in an Obsidian Cavern variant
+Fixed Surface structures not generating properly due to safe zone checks being applied to them meant for non-Surface structures
 
 Tox sounds: clicks for living sound, rapid clicks when angered, high pitched squeal when hurt/dead
 Pirah sounds: squish sound when out of water, most likely no other sounds
@@ -3960,7 +3964,7 @@ a dark version of the player, which will aggressively attack the player, if the 
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 --Reminders-
-Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops
+Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
 Add more boss and trap/randomized structures
 Add new amulets, add new Doomsdays
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
