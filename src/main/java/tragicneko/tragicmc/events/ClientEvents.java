@@ -72,11 +72,12 @@ public class ClientEvents extends Gui {
 		Minecraft mc = Minecraft.getMinecraft();
 		BlockGenericLeaves.fancyGraphics = mc.isFancyGraphicsEnabled();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-		if (TragicConfig.allowFlight)
+		
+		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id))
 		{
-			boolean flag = player.isPotionActive(TragicPotion.Flight.id);
-
-			if (player != null && Keyboard.isCreated() && flag && player.ticksExisted % 2 == 0)
+			boolean flag = !TragicConfig.allowStun || TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun.id);
+			
+			if (flag && Keyboard.isCreated() && player.ticksExisted % 2 == 0)
 			{
 				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
 				int dur = effect.getDuration();
