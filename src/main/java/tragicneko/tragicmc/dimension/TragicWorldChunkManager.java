@@ -15,8 +15,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import tragicneko.tragicmc.TragicBiomes;
-import tragicneko.tragicmc.worldgen.biome.TragicBiome;
+import tragicneko.tragicmc.TragicBiome;
 
 public class TragicWorldChunkManager extends WorldChunkManager
 {
@@ -43,16 +42,16 @@ public class TragicWorldChunkManager extends WorldChunkManager
 
 	public void addBiomes(List<BiomeGenBase> list)
 	{
-		list.add(TragicBiomes.DecayingHills);
-		list.add(TragicBiomes.DecayingWasteland);
-		list.add(TragicBiomes.PaintedForest);
-		list.add(TragicBiomes.PaintedPlains);
-		list.add(TragicBiomes.AshenBadlands);
-		list.add(TragicBiomes.StarlitPrarie);
-		list.add(TragicBiomes.StarlitPlateaus);
-		list.add(TragicBiomes.TaintedLowlands);
-		list.add(TragicBiomes.HallowedPrarie);
-		list.add(TragicBiomes.HallowedForest);
+		list.add(TragicBiome.DecayingHills);
+		list.add(TragicBiome.DecayingWasteland);
+		list.add(TragicBiome.PaintedForest);
+		list.add(TragicBiome.PaintedPlains);
+		list.add(TragicBiome.AshenBadlands);
+		list.add(TragicBiome.StarlitPrarie);
+		list.add(TragicBiome.StarlitPlateaus);
+		list.add(TragicBiome.TaintedLowlands);
+		list.add(TragicBiome.HallowedPrarie);
+		list.add(TragicBiome.HallowedForest);
 	}
 
 	public GenLayer[] getGenLayers(long seed, WorldType worldType)

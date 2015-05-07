@@ -3898,10 +3898,18 @@ Fixed multiple projectile entity issues, specifically with the Overlord mortor
 Modified Overlord Core to use the movement system from the Archangel, it is heavily modified to fit with the Core's attack patterns but fixes the bug
 wit the Core being rotated 180 degrees from what it should be
 Fixed spawn coordinates not being used if set by Crying Obsidian in the dimensions, doesn't affect the Synapse or the End
-
-Note: change all biomes to use their variation field to set their height values, this will clean up their initializations quite a bit, in fact those
-should be moved into the tragicbiome superclass similarly to how I did potions
-The height values could be set via a static double array in each of their classes
+Removed DEBUG mode and the time field from the main class
+Made Fear work more effectively on non-player entities, fixed possible client-side crash from playing too many sound effects at the same time (client update bug)
+Fixed rare visual glitch when one potion effect removed others
+Clarity now removes Fear since it's mostly visual to the player and Clarity also refers to mental clarity
+You can no longer go into flight if Stunned (if you're Stunned while not in flight)
+Experimenting with using the Tessellator for rendering Directed Lightning
+Removed the Inkling from the Nether and the End
+Refactored the biome class to use the TragicBiome superclass instead (similarly to how I did the potions)
+Changed all biomes to use their variant field to set their generation values, this is to clean up their initializations
+Added Giant Zombie spawn egg to my mob eggs, modified egg names for Vanilla mobs to ensure that people know they are the Vanilla vesions and not special versions
+Small fix to Reach again
+Fixed item challenges that should ignore meta values
 
 Tox sounds: clicks for living sound, rapid clicks when angered, high pitched squeal when hurt/dead
 Pirah sounds: squish sound when out of water, most likely no other sounds
@@ -3952,11 +3960,8 @@ a dark version of the player, which will aggressively attack the player, if the 
 weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
 
 --Reminders-
-Add new flowers, possibly dimension-specific
-Add more boss and trap structures
+Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops
+Add more boss and trap/randomized structures
 Add new amulets, add new Doomsdays
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Add each of the lores and the property names to the localizations
-Split larger structures into different schematics
-Eventually convert the structures to matrix form so that I can apply rotations and such when necessary for some more variation, this would also be
-useful for multipart structures since I could store them as matrices and rotate certain parts of them (as in the case of strongholds and mineshafts)
+Add each of the config property names to the localizations

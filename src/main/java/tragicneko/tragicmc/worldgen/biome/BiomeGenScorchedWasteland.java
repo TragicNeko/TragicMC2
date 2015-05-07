@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
@@ -24,6 +25,8 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 	public final SurfaceWorldGen2 fireGen;
 	public final PitWorldGen pitGen;
 	public final InvertedSpikeWorldGen scarGen;
+	
+	public static final float[][] heights = new float[][] {{0.15F, 0.05F}, {0.05F, -0.45F}, {0.45F, -0.05F}};
 
 	public BiomeGenScorchedWasteland(int par1, int par2) {
 		super(par1, par2);
@@ -36,8 +39,10 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		this.enableRain = false;
 		this.temperature = 2.0F;
 		this.rainfall = 0.0F;
-		this.heightVariation = 0.015F; 
-		this.rootHeight = 0.025F;
+		this.heightVariation = heights[variant][0]; 
+		this.rootHeight = heights[variant][1];
+		this.theBiomeDecorator.treesPerChunk = -999;
+		this.theBiomeDecorator.mushroomsPerChunk = -999;
 		this.fillerBlock = TragicBlocks.ScorchedRock;
 		this.topBlock = TragicBlocks.MoltenRock;
 		this.fireGen = new SurfaceWorldGen2(variant == 2 ? 16 : 4, Blocks.fire, 0, 8, 4);

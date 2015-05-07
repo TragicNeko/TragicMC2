@@ -7,6 +7,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityPolaris;
@@ -20,6 +21,8 @@ import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
 public class BiomeGenStarlitPrarie extends TragicBiome {
 	
 	public CustomSpikesWorldGen crystalWorldGen;
+	
+	public static final float[][] heights = new float[][] {{0.05F, 0.65F}, {0.01F, 1.62F}, {1.55F, 0.95F}, {0.23F, -0.14F}};
 
 	public BiomeGenStarlitPrarie(int par1, int par2) {
 		super(par1, par2);
@@ -28,14 +31,14 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 		if (TragicConfig.allowVoxStellarum) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityVoxStellarum.class, TragicConfig.voxStellarumSC, 0, 1));
 		if (TragicConfig.allowPolaris) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPolaris.class, TragicConfig.polarisSC, 0, 0));
 		this.enableSnow = false;
-		this.temperature = 1.8F;
+		this.temperature = 1.0F;
 		this.rainfall = 0.6F;
-		this.heightVariation = 0.15F; 
-		this.rootHeight = 0.45F;
+		this.heightVariation = heights[variant][0]; 
+		this.rootHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.StarlitGrass;
-		this.theBiomeDecorator.treesPerChunk = 2;
-		this.theBiomeDecorator.grassPerChunk = 16;
+		this.theBiomeDecorator.treesPerChunk = variant == 1 ? -999 : 2;
+		this.theBiomeDecorator.grassPerChunk = variant == 2 || variant == 1 ? 5 : 12;
 		int relay = variant == 1 ? 1 : (variant == 2 ? 6 : 3);
 		double spikeSize = variant == 2 ? 1.25D : 0.75D;
 		double spikeV = variant == 2 ? 1.0D : 0.35D;

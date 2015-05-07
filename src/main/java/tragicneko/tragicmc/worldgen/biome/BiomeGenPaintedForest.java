@@ -7,7 +7,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
@@ -20,6 +20,7 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 public class BiomeGenPaintedForest extends TragicBiome {
 	
 	private final WorldGenCustomVine vineGen;
+	public static final float[][] heights = new float[][] {{0.15F, 0.15F}, {0.05F, 0.01F}, {0.35F, 0.18F}, {0.01F, -0.12F}};
 
 	public BiomeGenPaintedForest(int par1, int par2) {
 		super(par1, par2);
@@ -29,16 +30,18 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		this.topBlock = TragicBlocks.BrushedGrass;
 		this.temperature = 1.2F;
 		this.rainfall = 1.5F;
-		this.theBiomeDecorator.treesPerChunk = 16;
+		this.heightVariation = heights[variant][0];
+		this.rootHeight = heights[variant][1];
+		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 2 : (variant == 3 ? -999 : 12);
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
-		this.theBiomeDecorator.grassPerChunk = 2;
+		this.theBiomeDecorator.grassPerChunk = variant == 1 || variant == 3 ? 4 : 2;
 		this.vineGen = new WorldGenCustomVine(TragicBlocks.Glowvine);
 	}
 
 	@Override
 	public int getFlowersFromBiomeType()
 	{
-		return this == TragicBiomes.PaintedClearing ? 16 : 6;
+		return variant == 3 ? 24 : 6;
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	@Override
 	public WorldGenAbstractTree func_150567_a(Random rand)
 	{
-		if (this == TragicBiomes.PaintedPlains || this == TragicBiomes.PaintedClearing)
+		if (variant == 1 || variant == 3)
 		{
 			if (rand.nextInt(4) != 0)
 			{

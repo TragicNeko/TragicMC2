@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
@@ -25,6 +26,8 @@ public class BiomeGenDarkForest extends TragicBiome {
 	public final SurfaceWorldGen drudgeGen;
 	public final SurfaceWorldGen2 gasGen;
 	public final WorldGenCustomVine vineGen;
+	
+	public static final float[][] heights = new float[][] {{0.05F, 0.15F}, {0.35F, 0.22F}, {0.35F, -0.35F}};
 
 	public BiomeGenDarkForest(int par1, int par2) {
 		super(par1, par2);
@@ -38,13 +41,9 @@ public class BiomeGenDarkForest extends TragicBiome {
 		this.topBlock = TragicBlocks.DarkGrass;
 		this.temperature = 1.2F;
 		this.rainfall = 1.5F;
-		this.theBiomeDecorator.treesPerChunk = 24;
-		this.theBiomeDecorator.mushroomsPerChunk = 12;
-		this.theBiomeDecorator.grassPerChunk = 4;
-		this.theBiomeDecorator.bigMushroomsPerChunk = 8;
-		this.theBiomeDecorator.sandGen =  new WorldGenSand(TragicBlocks.DarkSand, 7);
-		this.theBiomeDecorator.sandPerChunk = 16;
-		this.theBiomeDecorator.sandPerChunk2 = 16;
+		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 8 : (variant == 2 ? 4 : 12);
+		this.theBiomeDecorator.mushroomsPerChunk = variant == 2 ? 12 : 2;
+		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 4 : 8;
 		this.drudgeGen = new SurfaceWorldGen(3.0D, 4.0D, true, 24, TragicBlocks.Quicksand, 2, TragicBlocks.DarkGrass, true, true);
 		this.gasGen = new SurfaceWorldGen2(8, TragicBlocks.DarkGas, 0, 4, 4);
 		this.vineGen = new WorldGenCustomVine(TragicBlocks.DarkVine);

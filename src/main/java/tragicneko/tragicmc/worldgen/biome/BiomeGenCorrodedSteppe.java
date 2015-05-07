@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
@@ -27,20 +28,24 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 	public final SurfaceWorldGen2 gasGen;
 	public final VoidPitWorldGen voidPitGen;
 	public final WorldGenCustomVine vineGen;
+	
+	public static final float[][] heights = new float[][] {{0.05F, 0.03F}, {0.35F, 0.83F}, {0.01F, -0.53F}, {0.75F, -0.73F}, {0.01F, -1.25F}};
 
 	public BiomeGenCorrodedSteppe(int par1, int par2) {
 		super(par1, par2);
 		this.enableSnow = false;
 		this.enableRain = false;
-		this.temperature = 0.2F;
+		this.temperature = 1.0F;
 		this.rainfall = 0.0F;
+		this.heightVariation = heights[variant][0];
+		this.rootHeight = heights[variant][1];
+		this.theBiomeDecorator.treesPerChunk = -999;
+		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.fillerBlock = TragicBlocks.DarkCobblestone;
 		this.topBlock = TragicBlocks.DarkCobblestone;
 		if (TragicConfig.allowJarra) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.jarraSC, 0, 1));
 		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, 0, 1));
 		if (TragicConfig.allowFusea) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.fuseaSC, 2, 4)); 
-		this.theBiomeDecorator.treesPerChunk = -999;
-		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.sludgeGen = new SurfaceWorldGen(3.0D, 1.5D, true, 10, TragicBlocks.Quicksand, 3, TragicBlocks.DarkCobblestone, true, true);
 		this.toxicCobbleGen = new RuggedTerrainWorldGen(TragicBlocks.DarkCobblestone, 2, TragicBlocks.DarkCobblestone, 6, 4.0D, 3.0D, false, 8);
 		this.gasGen = new SurfaceWorldGen2(variant == 0 || variant == 4 ? 14 : (variant >= 3 ? 7 : 2), TragicBlocks.RadiatedGas, 0, 4, 8);

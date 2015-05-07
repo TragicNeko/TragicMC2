@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityDeathReaper;
@@ -17,6 +18,8 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	
 	public final VoidPitWorldGen voidPitGen;
 	public final SurfaceWorldGen mixedDirtGen;
+	
+	public static final float[][] heights = new float[][] {{0.35F, 0.22F}, {0.05F, -0.35F}, {0.18F, 0.15F}, {0.75F, 0.35F}};
 
 	public BiomeGenDecayingWasteland(int par1, int par2) {
 		super(par1, par2);
@@ -27,8 +30,9 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 0.6F;
 		this.rainfall = 0F;
-		this.heightVariation = 0.015F;
-		this.rootHeight = 0.025F;
+		this.heightVariation = heights[variant][0];
+		this.rootHeight = heights[variant][1];
+		this.theBiomeDecorator.mushroomsPerChunk = variant == 0 || variant == 3 ? 2 : 8;
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.DeadDirt;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;

@@ -8,6 +8,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
@@ -23,6 +24,8 @@ public class BiomeGenAshenHills extends TragicBiome {
 
 	public final SurfaceWorldGen shieldGen;
 	public final RuggedTerrainWorldGen ruggedGen;
+	
+	public static final float[][] heights = new float[][] {{0.85F, 0.45F}, {0.45F, 0.25F}, {0.05F, 0.05F}};
 
 	public BiomeGenAshenHills(int par1, int par2) {
 		super(par1, par2);
@@ -35,12 +38,12 @@ public class BiomeGenAshenHills extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 1.6F;
 		this.rainfall = 0F;
-		this.heightVariation = 0.105F;
-		this.rootHeight = 0.385F;
+		this.heightVariation = heights[variant][0];
+		this.rootHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.AshenGrass;
-		this.theBiomeDecorator.treesPerChunk = 4;
-		this.theBiomeDecorator.grassPerChunk = 2;
+		this.theBiomeDecorator.treesPerChunk = variant == 2 ? 1 : (variant == 1 ? 2 : 4);
+		this.theBiomeDecorator.grassPerChunk = variant == 2 ? 5 : 2;
 		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, 0, TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, true, false);
 		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, 3, 3.0D, 2.0D, false, 8);
 	}

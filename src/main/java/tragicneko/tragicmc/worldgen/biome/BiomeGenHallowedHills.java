@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -20,14 +20,18 @@ public class BiomeGenHallowedHills extends TragicBiome {
 	public final StringWorldGen stringGen;
 	public final SurfaceWorldGen2 lightGen;
 	public final SurfaceWorldGen2 fragileGen;
+	
+	public static final float[][] heights = new float[][] {{0.35F, 0.52F}, {0.12F, 0.36F}, {0.01F, 0.65F}, {1.55F, 0.85F}};
 
 	public BiomeGenHallowedHills(int par1, int par2) {
 		super(par1, par2);
 		this.enableSnow = false;
 		this.temperature = 1.6F;
 		this.rainfall = 0.4F;
-		this.heightVariation = 0.015F; 
-		this.rootHeight = 0.025F;
+		this.heightVariation = heights[variant][0]; 
+		this.rootHeight = heights[variant][1];
+		this.theBiomeDecorator.treesPerChunk = variant == 0 ? 4 : (variant == 1 ? 16 : 2);
+		this.theBiomeDecorator.flowersPerChunk = variant == 0 || variant == 3 ? 4 : (variant == 2 ? 16 : 8);
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.HallowedGrass;
 		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 1));
@@ -55,8 +59,8 @@ public class BiomeGenHallowedHills extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 		if (rand.nextBoolean()) this.stringGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (rand.nextBoolean() && variant == 1) this.lightGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (variant == 3) this.fragileGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextBoolean()) this.lightGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextInt(6) == 0) this.fragileGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 
 }

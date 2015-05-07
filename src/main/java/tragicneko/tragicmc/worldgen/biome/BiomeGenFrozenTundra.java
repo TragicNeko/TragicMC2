@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
@@ -25,6 +26,8 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 	public final SurfaceWorldGen2 iceSpikeGen;
 	public final PitWorldGen pitGen;
 	public final WorldGenCustomVine vineGen;
+	
+	public final static float[][] heights = new float[][] {{0.01F, 0.12F}, {0.35F, 0.22F}, {0.65F, -1.15F}};
 
 	public BiomeGenFrozenTundra(int par1, int par2) {
 		super(par1, par2);
@@ -39,7 +42,8 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		if (TragicConfig.allowAbomination) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAbomination.class, TragicConfig.abominationSC, 3, 5));
 		if (TragicConfig.allowYeti) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.yetiSC, 0, 1));
 		this.theBiomeDecorator.treesPerChunk = -999;
-		this.theBiomeDecorator.mushroomsPerChunk = 32;
+		this.theBiomeDecorator.mushroomsPerChunk = 16;
+		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 12 : (variant == 2 ? 6 : 0);
 		this.permafrostGen = new SurfaceWorldGen(3.0, 2.0, true, 8, TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, true, true);
 		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 12 : 4, TragicBlocks.IceSpike, 0, 4, 8);
 		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);

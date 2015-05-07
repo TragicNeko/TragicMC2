@@ -5,15 +5,9 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import tragicneko.tragicmc.TragicBiomes;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class SurfaceWorldGen implements IWorldGenerator {

@@ -171,7 +171,7 @@ public class TragicMC
 			DimensionManager.registerProviderType(TragicConfig.synapseProviderID, tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.keepDimensionLoaded);
 			DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
 
-			TragicBiomes.load();
+			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
 		}
 
@@ -186,20 +186,20 @@ public class TragicMC
 
 		if (TragicConfig.allowDimension)
 		{
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedClearing);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedForest);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedHills);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.PaintedPlains);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenBadlands);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenHills);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.AshenMountains);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.DarkForest);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.DarkForestHills);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.DarkMarsh);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedHills);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedForest);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedCliffs);
-			FlowerWorldGen.allowedBiomes.add(TragicBiomes.HallowedPrarie);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedClearing);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedForest);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedHills);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedPlains);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.AshenBadlands);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.AshenHills);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.AshenMountains);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.DarkForest);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.DarkForestHills);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.DarkMarsh);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedHills);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedForest);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedCliffs);
+			FlowerWorldGen.allowedBiomes.add(TragicBiome.HallowedPrarie);
 		}
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 20);

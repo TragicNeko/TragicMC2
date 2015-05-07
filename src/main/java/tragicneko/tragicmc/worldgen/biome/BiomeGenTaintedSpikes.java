@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityPsygote;
@@ -19,6 +20,8 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 	private final InvertedSpikeWorldGen scarGen;
 	private final RuggedTerrainWorldGen ruggedGen;
 	private final IsleWorldGen isleGen;
+	
+	public static final float[][] heights = new float[][] {{0.45F, 0.05F}, {0.35F, -0.95F}, {1.85F, 0.45F}, {0.05F, 0.65F}, {0.25F, -0.65F}};
 
 	public BiomeGenTaintedSpikes(int par1, int par2) {
 		super(par1, par2);
@@ -26,11 +29,11 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		if (TragicConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.stinSC, 0, 2));
 		if (TragicConfig.allowGreaterStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.greaterStinSC, 0, 1));
 		this.enableSnow = false;
-		this.enableRain = false;
 		this.temperature = 1.8F;
-		this.rainfall = 0.0F;
-		this.heightVariation = 0.45F; 
-		this.rootHeight = 0.25F;
+		this.rainfall = 2.0F;
+		this.theBiomeDecorator.mushroomsPerChunk = variant == 1 ? 16 : 2;
+		this.heightVariation = heights[variant][0]; 
+		this.rootHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.ErodedStone;
 		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 4 : 1, TragicBlocks.DarkStone, 14, 0.92477745D, 0.42943755D, 1.5D, 1.0D);

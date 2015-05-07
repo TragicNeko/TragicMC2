@@ -7,7 +7,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.client.ClientProxy;
 import cpw.mods.fml.relauncher.Side;
@@ -31,7 +31,7 @@ public class SynapseWorldProvider extends WorldProvider
 	@Override
 	public void registerWorldChunkManager()
 	{
-		this.worldChunkMgr = new WorldChunkManagerHell(TragicBiomes.Synapse, 0.0F);
+		this.worldChunkMgr = new WorldChunkManagerHell(TragicBiome.Synapse, 0.0F);
 	}
 
 	@Override

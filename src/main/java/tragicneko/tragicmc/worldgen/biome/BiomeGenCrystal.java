@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.mob.EntityRanmas;
@@ -24,6 +25,8 @@ public class BiomeGenCrystal extends TragicBiome {
 		this.enableSnow = false;
 		this.rainfall = 0F;
 		this.temperature = 1F;
+		this.heightVariation = 1.25F;
+		this.rootHeight = 1.04F;
 		this.theBiomeDecorator.flowersPerChunk = 0;
 		this.theBiomeDecorator.treesPerChunk = 0;
 		this.fillerBlock = TragicBlocks.Crystal;
