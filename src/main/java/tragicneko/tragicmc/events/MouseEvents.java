@@ -94,11 +94,8 @@ public class MouseEvents {
 				{
 					block = world.getBlock(coords[0], coords[1], coords[2]);
 
-					if (block.getMaterial() != Material.air && !block.getMaterial().isLiquid())
-					{
-						bb2 = block.getCollisionBoundingBoxFromPool(world, coords[0], coords[1], coords[2]);
-						if (bb2 != null && bb.intersectsWith(bb2)) break meow;
-					}
+					bb2 = block.getCollisionBoundingBoxFromPool(world, coords[0], coords[1], coords[2]);
+					if (bb2 != null && bb.intersectsWith(bb2)) break meow;
 				}
 
 				for (Entity entity : list)
