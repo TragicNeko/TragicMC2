@@ -24,7 +24,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicBiomes;
+import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -83,7 +83,7 @@ public class Challenge {
 	public static final Challenge bossKill = new Challenge(27, false, 1, TragicBoss.class, false).setDifficulty(2);
 	public static final Challenge survive2 = new Challenge(28, false, 360).setDifficulty(2).setMobRushChallenge().setTimed();
 	public static final Challenge collectCooldownDefuse = new Challenge(29, true, 3, new ItemStack(TragicItems.CooldownDefuse)).setDifficulty(1);
-	public static final Challenge findStarlitCliffs = new Challenge(30, true, 1, TragicBiomes.StarlitCliffs).setDifficulty(3);
+	public static final Challenge findStarlitCliffs = new Challenge(30, true, 1, TragicBiome.StarlitCliffs).setDifficulty(3);
 	public static final Challenge findMesa = new Challenge(31, true, 1, BiomeGenBase.mesa).setDifficulty(2);
 	public static final Challenge findMushroomIsland = new Challenge(32, true, 1, BiomeGenBase.mushroomIsland).setDifficulty(2);
 	public static final Challenge findBedrock = new Challenge(33, true, 1, Blocks.bedrock).setDifficulty(1);
@@ -120,17 +120,17 @@ public class Challenge {
 	public static final Challenge goFishing2 = new Challenge(64, true, 1, new ItemStack(Items.fishing_rod)).setLocationBased(BiomeGenBase.beach);
 	public static final Challenge findLightChestplate = new Challenge(65, true, 1, new ItemStack(TragicItems.LightPlate)).setDifficulty(2);
 	public static final Challenge findAwakeningStone = new Challenge(66, true, 1, new ItemStack(TragicItems.AwakeningStone)).setDifficulty(2);
-	public static final Challenge findDimensionalKey = new Challenge(67, true, 1, new ItemStack(TragicItems.DimensionalKey)).setDifficulty(3);
+	public static final Challenge findDimensionalKey = new Challenge(67, true, 1, new ItemStack(TragicItems.DimensionalKey)).setDifficulty(3).setIgnoresMeta();
 	public static final Challenge findSavanna = new Challenge(68, true, 1, BiomeGenBase.savanna);
 	public static final Challenge collectPotatoes = new Challenge(69, true, 64, new ItemStack(Items.potato)).setDifficulty(1);
-	public static final Challenge collectStatues = new Challenge(70, true, 10, new ItemStack(TragicItems.MobStatue)).setDifficulty(3);
+	public static final Challenge collectStatues = new Challenge(70, true, 10, new ItemStack(TragicItems.MobStatue)).setDifficulty(3).setIgnoresMeta();
 	public static final Challenge findAbomination = new Challenge(71, true, 1, EntityAbomination.class, true).setDifficulty(1);
 	public static final Challenge findPlague = new Challenge(72, true, 1, EntityPlague.class, true);
 	public static final Challenge findTimeController = new Challenge(73, true, 1, EntityTimeController.class, true).setDifficulty(2);
 	public static final Challenge collectSmoothNetherrack = new Challenge(74, true, 32, TragicBlocks.SmoothNetherrack);
 	public static final Challenge collectRedFlowers = new Challenge(75, true, 32, new ItemStack(Blocks.red_flower, 1, 0)).setDifficulty(1);
 	public static final Challenge goFishing3 = new Challenge(76, true, 1, new ItemStack(Items.fishing_rod)).setLocationBased(BiomeGenBase.frozenRiver).setDifficulty(2);
-	public static final Challenge findMobStatue = new Challenge(77, true, 1, new ItemStack(TragicItems.MobStatue)).setDifficulty(1);
+	public static final Challenge findMobStatue = new Challenge(77, true, 1, new ItemStack(TragicItems.MobStatue, 1, 0)).setDifficulty(1).setIgnoresMeta();
 	public static final Challenge collectTNT = new Challenge(78, true, 64, new ItemStack(Blocks.tnt)).setDifficulty(3);
 	public static final Challenge collectEnderPearls = new Challenge(79, true, 16, new ItemStack(Items.ender_pearl)).setDifficulty(1);
 	public static final Challenge findEpicLore = new Challenge(80, true, 1, 3).setDifficulty(2);
@@ -162,21 +162,21 @@ public class Challenge {
 	public static final Challenge travelFar2 = new Challenge(102, false, 1, (double) 5000).setDifficulty(1);
 	public static final Challenge travelFar3 = new Challenge(103, false, 1, (double) 10000).setDifficulty(2);
 	public static final Challenge travelFar4 = new Challenge(104, false, 1, (double) 100000).setDifficulty(3);
-	public static final Challenge findScorchedWasteland = new Challenge(105, true, 1, TragicBiomes.ScorchedWastelands).setDifficulty(1);
+	public static final Challenge findScorchedWasteland = new Challenge(105, true, 1, TragicBiome.ScorchedWastelands).setDifficulty(1);
 	public static final Challenge findIreNetCannon = new Challenge(106, true, 1, new ItemStack(TragicItems.IreNetParticleCannon)).setDifficulty(2);
 	public static final Challenge findArchangel = new Challenge(107, true, 1, EntityArchangel.class, true).setDifficulty(1);
 	public static final Challenge findRanmas = new Challenge(108, true, 1, EntityRanmas.class, true).setDifficulty(3);
-	public static final Challenge findDarkForest = new Challenge(109, true, 1, TragicBiomes.DarkForest);
+	public static final Challenge findDarkForest = new Challenge(109, true, 1, TragicBiome.DarkForest);
 	public static final Challenge killOverlordCore = new Challenge(110, false, 1, EntityOverlordCore.class, false).setDifficulty(3);
-	public static final Challenge findSynapse = new Challenge(111, true, 1, TragicBiomes.Synapse).setDifficulty(2);
+	public static final Challenge findSynapse = new Challenge(111, true, 1, TragicBiome.Synapse).setDifficulty(2);
 	public static final Challenge collectNanoBots = new Challenge(112, true, 64, new ItemStack(TragicItems.NanoBots)).setDifficulty(1);
 	public static final Challenge findWingsOfLiberation = new Challenge(113, true, 1, new ItemStack(TragicItems.WingsOfLiberation)).setDifficulty(2);
 	public static final Challenge killFusea = new Challenge(114, false, 10, EntityFusea.class, false).setDifficulty(1);
 	public static final Challenge findPermafrost = new Challenge(115, true, 1, TragicBlocks.Permafrost).setDifficulty(1);
 	public static final Challenge netherBed = new Challenge(116, true, 1, new ItemStack(Blocks.bed)).setLocationBased(BiomeGenBase.hell).setDifficulty(1);
-	public static final Challenge darkAeris = new Challenge(117, true, 1, new ItemStack(TragicBlocks.Aeris)).setLocationBased(TragicBiomes.DarkMarsh).setDifficulty(2);
-	public static final Challenge findAshenBadlands = new Challenge(118, true, 1, TragicBiomes.AshenBadlands).setDifficulty(1);
-	public static final Challenge findHallowedHills = new Challenge(119, true, 1, TragicBiomes.HallowedHills).setDifficulty(1);
+	public static final Challenge darkAeris = new Challenge(117, true, 1, new ItemStack(TragicBlocks.Aeris)).setLocationBased(TragicBiome.DarkMarsh).setDifficulty(2);
+	public static final Challenge findAshenBadlands = new Challenge(118, true, 1, TragicBiome.AshenBadlands).setDifficulty(1);
+	public static final Challenge findHallowedHills = new Challenge(119, true, 1, TragicBiome.HallowedHills).setDifficulty(1);
 	public static final Challenge findPsygote = new Challenge(120, true, 1, EntityPsygote.class, true).setDifficulty(1);
 	public static final Challenge killHarvesters = new Challenge(121, false, 10, EntityHarvester.class, true).setDifficulty(2);
 	public static final Challenge collectConduit = new Challenge(122, true, 64, new ItemStack(TragicBlocks.Conduit)).setDifficulty(2);
@@ -206,8 +206,9 @@ public class Challenge {
 	public boolean isArmorChallenge = false;
 	public ItemStack[] challengeArmor = null;
 	public double challengeRange = 0.0D;
+	public boolean ignoresMeta = false;
 
-	public final static String[] challengeNames = new String[] {"null", "zombieKills", "collectWheat", "stayAlive", "stayAlive3", "survive", "endermanKills", "bossKills",
+	public static final String[] challengeNames = new String[] {"null", "zombieKills", "collectWheat", "stayAlive", "stayAlive3", "survive", "endermanKills", "bossKills",
 		"collectLeather", "stayAlive7", "witherKill", "findEmerald", "findDiamonds", "collectAsh", "miniBossKills", "stinKills", "tragicNekoKills", "collectGoldenApples",
 		"findWisp", "findApis", "findIronGolem", "findSnowBlock", "iceBucketChallenge", "findRecord11", "collectFish", "collectGunpowder", "collectRedSand", "bossKill",
 		"survive2", "collectCooldownDefuse", "findStarlitCliffs", "findMesa", "findMushroomIsland", "findBedrock", "findWater", "findAshenGrass", "findRedMushroomBlock",
@@ -304,6 +305,12 @@ public class Challenge {
 	public Challenge setTimed()
 	{
 		this.isTimed = true;
+		return this;
+	}
+	
+	public Challenge setIgnoresMeta()
+	{
+		this.ignoresMeta = true;
 		return this;
 	}
 	

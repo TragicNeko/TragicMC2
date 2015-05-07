@@ -219,10 +219,11 @@ public class ItemChallenge extends Item {
 			{
 				for (int i = 0; i < inv.length; i++)
 				{
-					if (inv[i] != null && challenge.challengeItem != null)
+					invStack = inv[i];
+					if (invStack != null && challenge.challengeItem != null)
 					{
-						invStack = inv[i];
-						if (invStack.getItem() == challenge.challengeItem.getItem() && invStack.getItemDamage() == challenge.challengeItem.getItemDamage())
+						boolean flag2 = !challenge.ignoresMeta && invStack.getItemDamage() == challenge.challengeItem.getItemDamage() || challenge.ignoresMeta;
+						if (invStack.getItem() == challenge.challengeItem.getItem() && flag2)
 						{
 							amt += invStack.stackSize;
 						}
