@@ -40,7 +40,7 @@ public class RenderDirectedLightning extends Render {
 
 		GL11.glPushMatrix();
 		
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 10; i++) //TODO improve Directed Lightning render
 		{
 			tessellator.startDrawing(3);
 			tessellator.setColorRGBA_I(0xFFFFFF, 0x767676);
@@ -48,7 +48,6 @@ public class RenderDirectedLightning extends Render {
 			tessellator.addVertex(bx + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125, by + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125, bz + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125);
 			tessellator.draw();
 		}
-		
 
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_LIGHTING);

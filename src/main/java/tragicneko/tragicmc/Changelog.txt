@@ -3878,7 +3878,7 @@ outdated so this should only affect those who don't update their Forge when they
 Added mob group buffs, this was originally meant to be attribute modifiers but I think it'd be a bit annoying to do those so I just did potion effects
 for particular groups on spawn, since my effects are configurable, there are placeholders for those in case they are disabled
 
-2.43.2409++ <201> (May 4, 2015) [May the 4th be with you.]
+2.43.2442 <201> (May 4, 2015) [May the 4th be with you.]
 Fixed Crystal biome generating with default blocks
 Reduced a lot of hangs by reducing iterations for multiple worldgen types
 Converted Corroded biome ashen cobble gen to use the rugged terrain gen since I think it fits what I want for it better
@@ -3914,6 +3914,8 @@ Added more variation to biome variation heights, modified some biome set rainfal
 Fixed being able to use the Flight potion effect while under the effects of Stun
 Fixed chest not generating with loot in an Obsidian Cavern variant
 Fixed Surface structures not generating properly due to safe zone checks being applied to them meant for non-Surface structures
+
+2.43.2442++ <202> (May 7, 2015) 
 
 Tox sounds: clicks for living sound, rapid clicks when angered, high pitched squeal when hurt/dead
 Pirah sounds: squish sound when out of water, most likely no other sounds
