@@ -142,4 +142,10 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityTox.class;
 	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.2F;
+	}
 }

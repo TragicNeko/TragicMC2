@@ -345,4 +345,39 @@ public class EntityTox extends TragicMob {
 		return TragicConfig.allowMagmox;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.tox.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.tox.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.tox.hurt";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return this.getToxType() == 1 ? 1.4F : 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.9F + rand.nextFloat();
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
+	}
 }

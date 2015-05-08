@@ -163,6 +163,23 @@
 			"mob/ragr/death", "mob/ragr/death2",
 			"mob/ragr/death3", "mob/ragr/death4"]
     },
+	"mob.tox.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/tox/hurt", "mob/tox/hurt2",
+			"mob/tox/hurt3", "mob/tox/hurt4",
+			"mob/tox/hurt5", "mob/tox/hurt6",
+			"mob/tox/hurt7"]
+    },
+	"mob.tox.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/tox/living", "mob/tox/living2",
+			"mob/tox/living3", "mob/tox/living4",
+			"mob/tox/living5", "mob/tox/living6"]
+    },
     "mob.tragicneko.living":
     {
 		"category": "hostile",
