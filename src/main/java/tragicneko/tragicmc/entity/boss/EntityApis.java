@@ -280,6 +280,7 @@ public class EntityApis extends TragicBoss {
 				this.motionZ = d1 / f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
 				this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 				this.setChargeTicks(10);
+				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)  
 					&& this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
@@ -297,6 +298,7 @@ public class EntityApis extends TragicBoss {
 				this.motionZ = d1 / f2 * 2.5D * 0.600000011920929D + this.motionZ * 0.40000000298023224D;
 				this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 				this.setChargeTicks(10);
+				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
 			{
@@ -312,6 +314,7 @@ public class EntityApis extends TragicBoss {
 				this.motionZ = d1 / f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 				this.motionY = 0.45;
 				this.setChargeTicks(10);
+				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			else if (this.getAttackTarget() != null && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F)
 			{
