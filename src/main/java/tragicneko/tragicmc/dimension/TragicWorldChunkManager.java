@@ -30,7 +30,7 @@ public class TragicWorldChunkManager extends WorldChunkManager
 		this.spawnBiomes = new ArrayList<BiomeGenBase>();
 		this.addBiomes(this.spawnBiomes);
 
-		GenLayer[] genLayers = this.getGenLayers(seed, worldType);
+		GenLayer[] genLayers = getGenLayers(seed, worldType);
 		this.genLayerBiomes = genLayers[0];
 		this.genLayerBiomeIndex = genLayers[1];
 	}
@@ -54,7 +54,7 @@ public class TragicWorldChunkManager extends WorldChunkManager
 		list.add(TragicBiome.HallowedForest);
 	}
 
-	public GenLayer[] getGenLayers(long seed, WorldType worldType)
+	public static GenLayer[] getGenLayers(long seed, WorldType worldType)
 	{
 		return new TragicGenLayer().createWorld(seed, worldType);
 	}
