@@ -27,11 +27,11 @@ public class SchematicApisTemple extends Schematic {
 	@Override
 	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
-		for (int y1 = 0; y1 < 10; y1++)
+		for (int y1 = 1; y1 < 10; y1++)
 		{
-			for (int x1 = -8; x1 < 17; x1++)
+			for (int x1 = -6; x1 < 15; x1++)
 			{
-				for (int z1 = -6; z1 < 15; z1++)
+				for (int z1 = -4; z1 < 13; z1++)
 				{
 					world.setBlockToAir(x + x1, y + y1, z + z1);
 				}

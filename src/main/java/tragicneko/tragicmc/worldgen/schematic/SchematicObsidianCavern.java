@@ -35,7 +35,7 @@ public class SchematicObsidianCavern extends Schematic {
 
 	@Override
 	public boolean generateStructure(int variant, World world, Random rand, int x,	int y, int z) {
-		int variant2 = rand.nextInt(variant + 1);
+		int variant2 = rand.nextInt(10);
 		generateTube(world, rand, x, y, z);
 		generateCavernOfferings(variant2, world, rand, x, y, z);
 		generateCaveOpening(variant, world, rand, x, y, z);

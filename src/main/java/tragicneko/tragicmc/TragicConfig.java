@@ -894,7 +894,7 @@ public class TragicConfig {
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "voidPitRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "largeSpikeRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "starCrystalRarity", 40).getInt(40), 1, 200);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "structureOverallRarity", 15).getInt(15), 1, 500);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "apisTempleRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "desertTowerRarity", 15).getInt(15), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "deathCircleRarity", 5).getInt(5), 1, 200);

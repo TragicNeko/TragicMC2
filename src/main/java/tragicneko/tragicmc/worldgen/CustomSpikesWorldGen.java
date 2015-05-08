@@ -70,11 +70,6 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 			{
 				spikeType = this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2);
 				if (this.isStarCrystal) m = random.nextInt(16);
-				if (world.getWorldInfo().getTerrainType() == WorldType.AMPLIFIED && TragicConfig.allowLargeSpikeGen && this.regression > 0.92)
-				{
-					spikeSize *= 1.25D;
-					regress = 0.9883242287D;
-				}				
 				
 				boolean flag3 = false;
 				boolean flag2 = false;
