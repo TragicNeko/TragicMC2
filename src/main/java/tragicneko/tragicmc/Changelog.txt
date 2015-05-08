@@ -3916,8 +3916,15 @@ Fixed chest not generating with loot in an Obsidian Cavern variant
 Fixed Surface structures not generating properly due to safe zone checks being applied to them meant for non-Surface structures
 
 2.43.2442++ <202> (May 7, 2015) 
+Small fix to Minotaur/Apis charging, they now rotate to where they are charging
+Reduced area that Apis Temples clear for generation
+Fixed Obsidian Caverns only generating with one type of cavern offering
+Removed Amplified effect from SpikeGen, it makes them generate larger and taller but it also creates huge amounts of lag, so this is being removed in favor
+of improving overall loading times
+Fixed entity recognition for certain challenge types, specifically killing a high up superclass (like EntityLivingBase) counting for entities that extend
+multiple others (i.e. EntityStinKing -> EntityGreaterStin -> EntityStin -> TragicMob -> EntityMob -> EntityCreature -> EntityLiving -> EntityLivingBase)
+Added Tox/Pox/Magmox sounds
 
-Tox sounds: clicks for living sound, rapid clicks when angered, high pitched squeal when hurt/dead
 Pirah sounds: squish sound when out of water, most likely no other sounds
 Cryse sounds: glass sounds, (I'll finally break this glass that I've been saving for this lol)
 Ranmas sounds: whirling sounds, metallic ding sound when hit
