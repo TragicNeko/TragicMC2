@@ -25,7 +25,7 @@ public class MessageParticle implements IMessage {
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		ByteBufUtils.readTag(buf);
+		this.nameTag = ByteBufUtils.readTag(buf);
 	}
 
 	@Override
