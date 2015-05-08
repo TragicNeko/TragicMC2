@@ -185,6 +185,7 @@ public class Challenge {
 	public static final Challenge findSoulChest = new Challenge(125, true, 1, TragicBlocks.SoulChest).setDifficulty(3);
 	public static final Challenge onABoat = new Challenge(126, true, 1, EntityBoat.class, true).setLocationBased(BiomeGenBase.deepOcean).setDifficulty(1);
 	public static final Challenge collectQuartz = new Challenge(127, true, 64, new ItemStack(Blocks.quartz_block));
+	public static final Challenge findGuiltyThorn = new Challenge(128, true, 1, new ItemStack(TragicItems.GuiltyThorn)).setDifficulty(1);
 	
 	public final int challengeID;
 	public final boolean savesProgress;
@@ -221,7 +222,7 @@ public class Challenge {
 		"longTermKilling", "killPlayer", "findPlayer", "longTermKilling2", "longTermKilling3", "killAnimals", "findWolf", "collectRedstone", "killEnderDragon", "travelFar",
 		"travelFar2", "travelFar3", "travelFar4", "findScorchedWasteland", "findIreNetCannon", "findArchangel", "findRanmas", "findDarkForest", "killOverlordCore",
 		"findSynapse", "collectNanoBots", "findWingsOfLiberation", "killFusea", "findPermafrost", "netherBed", "darkAeris", "findAshenBadlands", "findHallowedHills",
-		"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz"
+		"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz", "findGuiltyThorn"
 	};
 	
 	public Challenge(int id, boolean flag, int limit)

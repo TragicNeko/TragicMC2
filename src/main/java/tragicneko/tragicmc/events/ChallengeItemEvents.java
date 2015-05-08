@@ -62,19 +62,31 @@ public class ChallengeItemEvents {
 					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge)
 					{
 						Class cls = challenge.challengeClass;
+						Class cls2 = event.entityLiving.getClass();
 						boolean flag = false;
-						for (Class cl : event.entityLiving.getClass().getInterfaces())
+
+						for (Class cl : cls2.getInterfaces())
 						{
 							if (cl == cls)
 							{
 								flag = true;
 								break;
 							}
+						}						
+
+						while (!flag)
+						{
+							if (cls == cls2)
+							{
+								flag = true;
+								break;
+							}
+
+							if (cls2.getSuperclass() == null) break;
+							cls2 = cls2.getSuperclass();
 						}
-						if (cls != null && (cls == event.entityLiving.getClass() || event.entityLiving.getClass().getSuperclass() == cls ||
-								event.entityLiving.getClass().getSuperclass() != null && event.entityLiving.getClass().getSuperclass().getSuperclass() == cls ||
-								event.entityLiving.getClass().getSuperclass().getSuperclass() != null && event.entityLiving.getClass().getSuperclass().getSuperclass().getSuperclass() == cls
-								|| flag))
+
+						if (flag)
 						{
 							int pow = stack.stackTagCompound.getInteger("challengeProgress");
 							stack.stackTagCompound.setInteger("challengeProgress", ++pow);
@@ -126,19 +138,32 @@ public class ChallengeItemEvents {
 
 						for (int j = 0; j < list.size(); j++)
 						{
-							Class cl = list.get(j).getClass();
-
+							Class cls = challenge.challengeClass;
+							Class cls2 = event.entityLiving.getClass();
 							boolean flag = false;
-							for (Class cl2 : cl.getInterfaces())
+
+							for (Class cl : cls2.getInterfaces())
 							{
-								if (cl2 == challenge.challengeClass)
+								if (cl == cls)
 								{
 									flag = true;
 									break;
 								}
+							}						
+
+							while (!flag)
+							{
+								if (cls == cls2)
+								{
+									flag = true;
+									break;
+								}
+
+								if (cls2.getSuperclass() == null) break;
+								cls2 = cls2.getSuperclass();
 							}
 
-							if (cl == challenge.challengeClass || flag)
+							if (flag)
 							{
 								stack.stackTagCompound.setInteger("challengeProgress", 1);
 								break;
