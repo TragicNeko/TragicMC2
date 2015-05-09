@@ -376,7 +376,7 @@ public class EntityStin extends TragicMob {
 									}
 									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 									mp.fallDistance = 0.0F;
-									this.worldObj.playSoundAtEntity(mp, "mob.endermen.portal", 0.4F, 0.4F);
+									this.worldObj.playSoundAtEntity(mp, "tragicmc:mob.stin.teleport", 0.4F, 0.4F);
 									return flag;
 								}
 							}
@@ -403,7 +403,7 @@ public class EntityStin extends TragicMob {
 									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 								}
 
-								this.worldObj.playSoundAtEntity(entity, "mob.endermen.portal", 0.4F, 0.4F);
+								this.worldObj.playSoundAtEntity(entity, "tragicmc:mob.stin.teleport", 0.4F, 0.4F);
 								entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
 								return flag;
 							}
@@ -464,4 +464,45 @@ public class EntityStin extends TragicMob {
 		return TragicConfig.allowGreaterStin && this.getAgeTicks() >= 600;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.stin.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.stin.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.stin.hurt";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return this.isAdult() ? 1.0F : 1.6F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		this.playSound(this.isAdult()? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 60;
+	}
 }

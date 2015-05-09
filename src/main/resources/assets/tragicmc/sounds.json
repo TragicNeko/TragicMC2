@@ -163,6 +163,47 @@
 			"mob/ragr/death", "mob/ragr/death2",
 			"mob/ragr/death3", "mob/ragr/death4"]
     },
+	"mob.stin.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/stin/hurt", "mob/stin/hurt2",
+			"mob/stin/hurt3", "mob/stin/hurt4",
+			"mob/stin/hurt5", "mob/stin/hurt6",
+			"mob/stin/hurt7", "mob/stin/hurt8",
+			"mob/stin/hurt9"]
+    },
+	"mob.stin.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/stin/living", "mob/stin/living2",
+			"mob/stin/living3", "mob/stin/living4",
+			"mob/stin/living5", "mob/stin/living6"]
+    },
+	"mob.stin.king":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/stin/king", "mob/stin/king2",
+			"mob/stin/king3", "mob/stin/king4",
+			"mob/stin/king5"]
+    },
+	"mob.stin.step":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/stin/step", "mob/stin/step2",
+			"mob/stin/step3", "mob/stin/step4",
+			"mob/stin/step5", "mob/stin/step6",
+			"mob/stin/step7"]
+    },
+	"mob.stin.teleport":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/stin/teleport", "mob/stin/teleport2"]
+    },
 	"mob.tox.hurt":
     {
 		"category": "hostile",

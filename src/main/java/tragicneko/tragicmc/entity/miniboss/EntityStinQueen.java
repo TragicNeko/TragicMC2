@@ -220,4 +220,9 @@ public class EntityStinQueen extends EntityGreaterStin {
 		return EntityGreaterStin.class;
 	}
 
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.9F;
+	}
 }

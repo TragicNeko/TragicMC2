@@ -133,4 +133,16 @@ public class EntityStinKing extends EntityGreaterStin {
 	public Class getLesserForm() {
 		return EntityGreaterStin.class;
 	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.stin.king";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.stin.king";
+	}
 }
