@@ -149,12 +149,12 @@ public class EntityWisp extends TragicMob {
 		{
 			String s = "flame";
 			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-			if (TragicConfig.allowDimension && (biome instanceof BiomeGenStarlitPrarie || biome instanceof BiomeGenDarkForest)) s = "witchMagic";
-			if (TragicConfig.allowDimension && biome instanceof BiomeGenAshenHills) s = "smoke";
-			if (TragicConfig.allowDimension && biome instanceof BiomeGenPaintedForest) s = "magicCrit";
-			if (TragicConfig.allowDimension && biome instanceof BiomeGenHallowedHills) s = "crit";
-			if (TragicConfig.allowDimension && biome instanceof BiomeGenCorrodedSteppe) s = "reddust";
-			if (TragicConfig.allowDimension && biome instanceof BiomeGenFrozenTundra) s = "snowshovel";
+			if (biome instanceof BiomeGenStarlitPrarie || biome instanceof BiomeGenDarkForest) s = "witchMagic";
+			if (biome instanceof BiomeGenAshenHills) s = "smoke";
+			if (biome instanceof BiomeGenPaintedForest) s = "magicCrit";
+			if (biome instanceof BiomeGenHallowedHills) s = "crit";
+			if (biome instanceof BiomeGenCorrodedSteppe) s = "mobSpellAmbient";
+			if (biome instanceof BiomeGenFrozenTundra) s = "snowshovel";
 
 			for (int i = 0; i < 2 && this.getIdleTicks() == 0; i++)
 			{
