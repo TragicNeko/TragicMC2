@@ -314,7 +314,7 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityTragicNeko.class, "TragicMC.TragicNeko", id++, 0x373535, 0x853B3B);
 		}
 
-		if (TragicConfig.allowTox) //TODO finish mob sounds and render/animation updates
+		if (TragicConfig.allowTox)
 		{
 			EntityRegistry.registerModEntity(EntityTox.class, "Tox", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowNonDimensionMobSpawns)

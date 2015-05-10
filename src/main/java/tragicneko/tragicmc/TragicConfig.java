@@ -85,7 +85,7 @@ public class TragicConfig {
 
 	private static boolean[] blanketMob = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
-	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs;
+	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses;
 	private static boolean[] mobConfigs = new boolean[48];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
@@ -623,6 +623,7 @@ public class TragicConfig {
 		blanketMob[8] = (config.get(catMobs, "allowMobHealthScaling", true).getBoolean(true));
 		blanketMob[9] = (config.get(catMobs, "allowMobVanillaDimensionSpawns", true).getBoolean(true));
 		blanketMob[10] = (config.get(catMobs, "allowGroupBuffs", true).getBoolean(true));
+		blanketMob[11] = (config.get(catMobs, "allowBossesOnEasy", false).getBoolean(false));
 
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
@@ -1408,6 +1409,7 @@ public class TragicConfig {
 		allowDynamicHealthScaling = blanketMob[8];
 		allowNonDimensionMobSpawns = blanketMob[9];
 		allowGroupBuffs = blanketMob[10];
+		allowEasyBosses = blanketMob[11];
 
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
