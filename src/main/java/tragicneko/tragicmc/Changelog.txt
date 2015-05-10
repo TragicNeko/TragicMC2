@@ -3924,13 +3924,15 @@ of improving overall loading times
 Fixed entity recognition for certain challenge types, specifically killing a high up superclass (like EntityLivingBase) counting for entities that extend
 multiple others (i.e. EntityStinKing -> EntityGreaterStin -> EntityStin -> TragicMob -> EntityMob -> EntityCreature -> EntityLiving -> EntityLivingBase)
 Added Tox/Pox/Magmox sounds
+Added Stin/Baby Stin/Greater Stin/Stin King/Stin Queen sounds, added teleport sound
+Changed name of Wisp to Kindling Spirit to avoid confusion with Wisps from other mods, improved Wisp particle effect recognition (based on biome)
+Made it so that Bosses spawning on Easy is configurable
 
 Pirah sounds: squish sound when out of water, most likely no other sounds
-Cryse sounds: glass sounds, (I'll finally break this glass that I've been saving for this lol)
+Cryse sounds: windy sounds, glass sounds
 Ranmas sounds: whirling sounds, metallic ding sound when hit
 NorVox sounds: Crumbling rocks, rock sounds, glass sounds from cryse for star variants
 Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
-Stin sounds: like a deep, chugging "koo-koo-koo" sound
 Wisp sounds: harp-like mystical sounds
 Abomination sounds: kinda derpy beast sounds
 Erkel sounds: high-pitched tones
@@ -3955,9 +3957,10 @@ Enyvil sounds: possibly double toned sounds (high and low pitched at the same ti
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
 Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
 
-Doomsday use/backlash sounds:
-Cooldown Defuse/Amulet Release/Doom Consume use sounds:
-Full Doom sound (when your Doom hits max, this will be easy to tell due to the addition of the animated increments):
+More sounds:
+Doomsday use/backlash sounds
+Cooldown Defuse/Amulet Release/Doom Consume use sounds
+Full Doom sound (when your Doom hits max, this will be easy to tell due to the addition of the animated increments)
 Cooldown empty sound (when your Cooldown hits 0)
 
 
