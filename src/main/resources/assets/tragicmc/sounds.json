@@ -302,5 +302,68 @@
 			"mob/tragicneko/death5", "mob/tragicneko/death6",
 			"mob/tragicneko/death7", "mob/tragicneko/death8",
 			"mob/tragicneko/death9", "mob/tragicneko/death10"]
+    },
+	"mob.wisp.fear":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/wisp/fear", "mob/wisp/fear2",
+			"mob/wisp/fear3", "mob/wisp/fear4",
+			"mob/wisp/fear5", "mob/wisp/fear6",
+			"mob/wisp/fear7", "mob/wisp/fear8",
+			"mob/wisp/fear9"]
+    },
+    "mob.wisp.joy":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/wisp/joy", "mob/wisp/joy2",
+			"mob/wisp/joy3", "mob/wisp/joy4",
+			"mob/wisp/joy5", "mob/wisp/joy6",
+			"mob/wisp/joy7", "mob/wisp/joy8",
+			"mob/wisp/joy9"]
+    },
+	"mob.wisp.release":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/wisp/release", "mob/wisp/release2",
+			"mob/wisp/release3", "mob/wisp/release4"]
+    },
+	"random.amuletrelease":
+    {
+		"category": "player",
+		"sounds": [
+			"random/amuletrelease"]
+    },
+	"random.cooldowndefuse":
+    {
+		"category": "player",
+		"sounds": [
+			"random/cooldowndefuse"]
+    },
+	"random.cooldowndone":
+    {
+		"category": "player",
+		"sounds": [
+			"random/cooldowndone"]
+    },
+	"random.doommaxed":
+    {
+		"category": "player",
+		"sounds": [
+			"random/doommaxed"]
+    },
+	"random.doomfailure":
+    {
+		"category": "player",
+		"sounds": [
+			"random/doomfailure"]
+    },
+	"random.doomsuccess":
+    {
+		"category": "player",
+		"sounds": [
+			"random/doomsuccess"]
     }
 }

@@ -10,10 +10,10 @@ import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
@@ -81,12 +81,6 @@ public class EntityWisp extends TragicMob {
 	public boolean canCorrupt()
 	{
 		return false;
-	}
-
-	@Override
-	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
-	{
-		;
 	}
 
 	@Override
@@ -225,6 +219,8 @@ public class EntityWisp extends TragicMob {
 				this.setIdleTicks(i != 1 ? 40 : 60);
 				this.setIdleState(i);
 			}
+			
+			if (this.isInWater() && this.ticksExisted % 10 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
 		}
 	}
 
@@ -237,5 +233,47 @@ public class EntityWisp extends TragicMob {
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.wisp.joy";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.wisp.fear";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.wisp.release";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 220;
 	}
 }
