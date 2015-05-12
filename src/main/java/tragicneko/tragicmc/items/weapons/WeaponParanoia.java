@@ -57,7 +57,7 @@ public class WeaponParanoia extends EpicWeapon {
 						double d2 = (MathHelper.getRandomIntegerInRange(itemRand, -4, 4) + par3EntityPlayer.posZ) - par3EntityPlayer.posZ; 
 
 						EntityDarkEnergy fireball = new EntityDarkEnergy(par3EntityPlayer.worldObj, par3EntityPlayer, d0, d1, d2);
-						fireball.setPosition(par3EntityPlayer.posX + (d0 * 0.115), par3EntityPlayer.posY + 0.6D, par3EntityPlayer.posZ + (d2 * 0.115));
+						fireball.setPosition(par3EntityPlayer.posX + (d0 * 0.115), par3EntityPlayer.posY + 1.2, par3EntityPlayer.posZ + (d2 * 0.115));
 						par3EntityPlayer.worldObj.spawnEntityInWorld(fireball);
 					}
 
@@ -75,12 +75,12 @@ public class WeaponParanoia extends EpicWeapon {
 					if (vec == null) return par1ItemStack;
 					
 					double d4 = vec.xCoord - par3EntityPlayer.posX;
-					double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
+					double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight());
 					double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 					EntityDarkEnergy rocket = new EntityDarkEnergy(par3EntityPlayer.worldObj, par3EntityPlayer, d4, d5, d6);
 					rocket.posX = par3EntityPlayer.posX + d4 * 0.15D;
-					rocket.posY = par3EntityPlayer.posY + 0.6D;
+					rocket.posY = par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight();
 					rocket.posZ = par3EntityPlayer.posZ + d6 * 0.15D;
 					par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 

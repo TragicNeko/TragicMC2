@@ -51,11 +51,8 @@ public class DoomsdayDragonsRoar extends Doomsday {
 				{
 					entity = (EntityLivingBase) list.get(i);
 					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-					if (TragicConfig.allowStun && crucMoment)
-					{
-						entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
-					}
-					
+					if (TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
+					if (TragicConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
 					entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 120, 10));
 				}
 			}
