@@ -75,7 +75,7 @@ public class ClientEvents extends Gui {
 		
 		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id))
 		{
-			boolean flag = !TragicConfig.allowStun || TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun.id);
+			boolean flag = !TragicConfig.allowStun || TragicConfig.allowStun && !player.isPotionActive(TragicPotion.Stun.id);
 			
 			if (flag && Keyboard.isCreated() && player.ticksExisted % 2 == 0)
 			{
