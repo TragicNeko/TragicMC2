@@ -49,7 +49,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.ReflectionHelper.UnableToFindFieldException;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = TragicMC.MODID, name = TragicMC.MODNAME, version = TragicMC.VERSION, acceptedMinecraftVersions = TragicMC.ACCEPTED_VERSION, dependencies="required-after:Forge")
@@ -212,6 +211,7 @@ public class TragicMC
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerFlight.class, tragicneko.tragicmc.network.MessageFlight.class, 4, Side.CLIENT);
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerAttack.class, tragicneko.tragicmc.network.MessageAttack.class, 5, Side.SERVER);
 		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerSpawnParticle.class, tragicneko.tragicmc.network.MessageParticle.class, 6, Side.CLIENT);
+		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerPlaySound.class, tragicneko.tragicmc.network.MessageSound.class, 7, Side.CLIENT);
 	}
 
 	@EventHandler

@@ -36,6 +36,7 @@ public class GuiDoom extends Gui
 	private static int prevDoom;
 	private static int difference = 0;
 	private static int difTick = 0;
+	private static boolean cdFlag = false;
 
 	private FontRenderer fontRenderer;
 
@@ -85,6 +86,7 @@ public class GuiDoom extends Gui
 
 		if (props.getCurrentCooldown() > 0)
 		{
+			cdFlag = true;
 			drawTexturedModalRect(xPos + 3, yPos + 3, width / 3, 12, 49, 3);
 
 			String s = "Cooling Down... " + props.getCurrentCooldown() ;
@@ -99,6 +101,12 @@ public class GuiDoom extends Gui
 		}
 		else
 		{
+			if (cdFlag)
+			{
+				mc.thePlayer.playSound("tragicmc:random.cooldowndone", 1.0F, 1.0F);
+				cdFlag = false;
+			}
+			
 			buffer++;
 			if (!TragicConfig.allowAnimatedGui) buffer = 0;
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
@@ -107,6 +115,7 @@ public class GuiDoom extends Gui
 			if (difTick == 0)
 			{
 				difference = props.getCurrentDoom() - prevDoom;
+				if (prevDoom != props.getMaxDoom() && props.getCurrentDoom() == props.getMaxDoom()) mc.thePlayer.playSound("tragicmc:random.doommaxed", 1.0F, 1.0F);
 			}
 
 			if (difference != 0)

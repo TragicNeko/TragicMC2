@@ -9,20 +9,17 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageHandlerSpawnParticle implements IMessageHandler<MessageParticle, IMessage>{
+public class MessageHandlerPlaySound implements IMessageHandler<MessageSound, IMessage>{
 
 	@Override
-	public IMessage onMessage(MessageParticle message, MessageContext ctx) {
+	public IMessage onMessage(MessageSound message, MessageContext ctx) {
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		
 		if (player == null || player.worldObj == null || message.nameTag == null) return null; 
 		NBTTagCompound tag = message.nameTag;
-		player.worldObj.spawnParticle(tag.hasKey("particleName") ? tag.getString("particleName") : "null",
-				tag.hasKey("xPos") ? tag.getDouble("xPos") : 0.0,
-				tag.hasKey("yPos") ? tag.getDouble("yPos") : 0.0,
-				tag.hasKey("zPos") ? tag.getDouble("zPos") : 0.0,
-				tag.hasKey("xAccel") ? tag.getDouble("xAccel") : 0.0,
-				tag.hasKey("yAccel") ? tag.getDouble("yAccel") : 0.0,
-				tag.hasKey("zAccel") ? tag.getDouble("zAccel") : 0.0);
+		player.playSound(tag.hasKey("name") ? tag.getString("name") : "null",
+				tag.hasKey("volume") ? tag.getFloat("volume") : 1F,
+				tag.hasKey("pitch") ? tag.getFloat("pitch") : 1F);
 		return null;
 	}
 }

@@ -365,5 +365,17 @@
 		"category": "player",
 		"sounds": [
 			"random/doomsuccess"]
+    },
+	"random.doomconsume":
+    {
+		"category": "player",
+		"sounds": [
+			"random/doomconsume"]
+    },
+	"random.directedlightning":
+    {
+		"category": "weather",
+		"sounds": [
+			"random/directedlightning"]
     }
 }

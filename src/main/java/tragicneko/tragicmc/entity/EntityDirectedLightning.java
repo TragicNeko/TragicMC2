@@ -67,7 +67,8 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 
         if (this.lightningState == 2)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "ambient.weather.thunder", 4.0F, 0.1F + this.rand.nextFloat() * 0.2F);
+        	if (this.user != null) this.worldObj.playSound(user.posX, user.posY, user.posZ, "tragicmc:random.directedlightning", 1.0F, 1.0F, true);
+            this.worldObj.playSound(this.posX, this.posY, this.posZ, "tragicmc:random.directedlightning", 1.0F, 1.0F, true);
             this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.explode", 0.1F + rand.nextFloat(), 0.1F + this.rand.nextFloat() * 0.2F);
         }
 

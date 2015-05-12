@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCooldownDefuse extends Item {
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
@@ -31,34 +31,39 @@ public class ItemCooldownDefuse extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (!par2World.isRemote && TragicConfig.allowCooldownDefuse)
-		{
-			PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
+		if (!par2World.isRemote && !TragicConfig.allowCooldownDefuse) return par1ItemStack;
 
-			if (property.getCurrentCooldown() > 0)
+		PropertyDoom property = PropertyDoom.get(par3EntityPlayer);
+		if (property == null) return par1ItemStack;
+
+		if (property.getCurrentCooldown() > 0)
+		{
+			if (par2World.isRemote)
+			{
+				par3EntityPlayer.playSound("tragicmc:random.cooldowndefuse", 1.0F, 1.0F);
+			}
+			else
 			{
 				if (TragicConfig.defuseRefillAmount >= property.getCurrentCooldown())
 				{
 					property.setCooldown(0);
+					par3EntityPlayer.addChatMessage(new ChatComponentText("Cooldown was removed!"));
 				}
 				else
 				{
 					int cooldown = TragicConfig.defuseRefillAmount;
-					
+
 					if (cooldown < property.getCurrentCooldown())
 					{
 						property.setCooldown(property.getCurrentCooldown() - cooldown);
+						par3EntityPlayer.addChatMessage(new ChatComponentText("Cooldown was reduced!"));
 					}
 				}
 
-				if (!par3EntityPlayer.capabilities.isCreativeMode)
-				{
-					par1ItemStack.stackSize--;
-				}
-				
-				par3EntityPlayer.addChatMessage(new ChatComponentText("Cooldown was reduced!"));
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;	
 			}
 		}
+		
 		return par1ItemStack;
 	}
 }

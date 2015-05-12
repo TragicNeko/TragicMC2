@@ -116,7 +116,7 @@ public class DropEvents {
 		}
 		else if (event.block instanceof BlockFlower || event.block instanceof BlockMushroom || event.block instanceof BlockTallGrass)
 		{
-			if (rand.nextInt(16) == 0) event.drops.add(new ItemStack(TragicItems.Projectile, 1, 10));
+			if (rand.nextInt(16) == 0) event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
 		}
 		else if (event.block == Blocks.double_plant && rand.nextInt(4) == 0)
 		{

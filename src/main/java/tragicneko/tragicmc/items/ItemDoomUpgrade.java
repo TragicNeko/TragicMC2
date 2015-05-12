@@ -35,64 +35,79 @@ public class ItemDoomUpgrade extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (par2World.isRemote || !TragicConfig.allowDoom) return par1ItemStack;
+		if (!par2World.isRemote && !TragicConfig.allowDoom) return par1ItemStack;
 
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 		if (doom == null) return par1ItemStack;
 
 		if (TragicConfig.shouldDoomLimitIncrease && doom.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
 		{
-			doom.increaseConsumptionLevel();
-
-			if (TragicConfig.allowConsumeRefill)
+			if (!par2World.isRemote)
 			{
-				if (TragicConfig.consumeRefillAmount >= 100)
-				{
-					doom.fillDoom();
-				}
-				else
-				{
-					double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
+				doom.increaseConsumptionLevel();
 
-					if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
-					{
-						doom.increaseDoom((int) refill);
-					}
-					else
+				if (TragicConfig.allowConsumeRefill)
+				{
+					if (TragicConfig.consumeRefillAmount >= 100)
 					{
 						doom.fillDoom();
 					}
+					else
+					{
+						double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
+
+						if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
+						{
+							doom.increaseDoom((int) refill);
+						}
+						else
+						{
+							doom.fillDoom();
+						}
+					}
 				}
+
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Doom max limit increased!"));
+			}
+			else
+			{
+				par3EntityPlayer.playSound("tragicmc:random.doomconsume", 1.0F, 1.0F);
 			}
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
-			par3EntityPlayer.addChatMessage(new ChatComponentText("Doom max limit increased!"));
 		}
 		else if (doom.getCurrentDoom() < doom.getMaxDoom())
 		{
-			if (TragicConfig.allowConsumeRefill)
+			if (!par2World.isRemote)
 			{
-				if (TragicConfig.consumeRefillAmount >= 100)
+				if (TragicConfig.allowConsumeRefill)
 				{
-					doom.fillDoom();
-				}
-				else
-				{
-					double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
-
-					if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
-					{
-						doom.increaseDoom((int) refill);
-					}
-					else
+					if (TragicConfig.consumeRefillAmount >= 100)
 					{
 						doom.fillDoom();
 					}
-				}
-			}
+					else
+					{
+						double refill = doom.getMaxDoom() * TragicConfig.consumeRefillAmount / 100;
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
-			par3EntityPlayer.addChatMessage(new ChatComponentText("Doom was refilled!"));
+						if (doom.getCurrentDoom() + refill < doom.getMaxDoom())
+						{
+							doom.increaseDoom((int) refill);
+						}
+						else
+						{
+							doom.fillDoom();
+						}
+					}
+				}
+
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
+				par3EntityPlayer.addChatMessage(new ChatComponentText("Doom was refilled!"));
+			}
+			else
+			{
+				par3EntityPlayer.playSound("tragicmc:random.doomconsume", 1.0F, 1.0F);
+			}
 		}
 
 		return par1ItemStack;

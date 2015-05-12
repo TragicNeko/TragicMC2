@@ -19,10 +19,10 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoomsday, IMessage> {
+public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoomsday, MessageSound> {
 
 	@Override
-	public MessageDoom onMessage(MessageUseDoomsday message, MessageContext ctx) {
+	public MessageSound onMessage(MessageUseDoomsday message, MessageContext ctx) {
 		EntityPlayer player = MinecraftServer.getServer().isDedicatedServer() ? TragicMC.proxy.getPlayerFromMessageCtx(ctx) : ctx.getServerHandler().playerEntity;
 
 		if (player == null) return null;
@@ -116,9 +116,8 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			return null;
 		}
 
-		doomsday.activateDoomsday(doom);
-
-		return null;
+		String s = doomsday.activateDoomsday(doom) ? "tragicmc:random.doomsuccess" : "tragicmc:random.doomfailure";
+		return new MessageSound(s, 0.6F, 1.0F);
 	}
 
 }

@@ -152,46 +152,46 @@ public abstract class Doomsday {
 	 * Method to activate the doomsday, does a check for the required doom and cooldown check, then passes off to the doDoomsday() method
 	 * @param doom
 	 */
-	public void activateDoomsday(PropertyDoom doom)
+	public boolean activateDoomsday(PropertyDoom doom)
 	{
 		if (doom == null)
 		{
 			TragicMC.logError("A doomsday was activated with null doom? This error shouldn't be possible and should be reported.");
-			return;
+			return false;
 		}
 		else if (doom.getCurrentCooldown() != 0)
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You still have cooldown."));
-			return;
+			return false;
 		}
 		else if (!this.doesCurrentDoomMeetRequirement(doom))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "Not enough doom for that Doomsday..."));
-			return;
+			return false;
 		}
 		else if (doom.getPlayer().isDead)
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You are dead and cannot use Doomsdays."));
-			return;
+			return false;
 		}
 		else if (!TragicConfig.allowDoom)
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have Doom disabled... this shouldn't have been called, report this"));
-			return;
+			return false;
 		}
 		else if (TragicConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowHarmony &&
 				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You can't use a Doomsday with that effect active..."));
-			return;
+			return false;
 		}
 		else if (!TragicConfig.doomsdayAllow[this.doomID])
 		{
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have that particular Doomsday disabled, enable in config."));
-			return;
+			return false;
 		}
 		
-		this.doDoomsday(doom, doom.getPlayer());
+		return this.doDoomsday(doom, doom.getPlayer());
 	}
 
 	/**
@@ -202,7 +202,7 @@ public abstract class Doomsday {
 	 * @param posY
 	 * @param posZ
 	 */
-	public void doDoomsday(PropertyDoom doom, EntityPlayer player)
+	public boolean doDoomsday(PropertyDoom doom, EntityPlayer player)
 	{
 		int backlash = this.getScaledBacklash(TragicConfig.backlashChance, player, this.doomsdayType);
 
@@ -215,12 +215,13 @@ public abstract class Doomsday {
 				doom.increaseCooldown(this.getScaledCooldown(player.worldObj.difficultySetting) / 3);
 				doom.increaseDoom(this.getScaledDoomRequirement(doom) / 3);
 				this.doBacklashEffect(doom, player);
-				return;
+				return false;
 			}
 		}
 
 		DoomsdayEffect effect = new DoomsdayEffect(this.doomID, doom);
 		DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect);
+		return true;
 	}
 
 	public abstract void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment);
