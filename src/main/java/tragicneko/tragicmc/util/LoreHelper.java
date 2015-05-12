@@ -547,8 +547,7 @@ public class LoreHelper {
 			new Lore(15, "Wiser than Athena!", 3), new Lore(5, "More creative than Hephaestus!", 3), new Lore(15, "More beautiful than Aphrodite!", 3), new Lore(5, "More spectacular than Zeus!", 3)},
 			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
-			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 5), new EnchantEntry(TragicEnchantments.Consume, 3)}});
-
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 5), new EnchantEntry(Enchantment.looting, 5), new EnchantEntry(TragicEnchantments.Consume, 3)}});
 	}
 
 	public static class LoreEntry {

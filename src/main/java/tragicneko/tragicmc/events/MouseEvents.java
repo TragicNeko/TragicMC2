@@ -68,17 +68,16 @@ public class MouseEvents {
 			float f7 = f4 * f5;
 			float f8 = f3 * f5;
 			double limit = player.capabilities.isCreativeMode ? 2.5D : 1.5D;
-			double enchantLimit = limit + (TragicConfig.allowReach ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) * 1.5D : 0);
+			double enchantLimit = limit + (TragicConfig.allowReach ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) : 0);
 
 			IAttributeInstance ins = player.getEntityAttribute(AmuletModifier.reach);
 			double d3 = ins == null ? 0.0 : ins.getAttributeValue();
 			enchantLimit += d3;
-			//TragicMC.logInfo("Reach modifier was applied to the player. Amount was " + d3);
 			double box = 0.135D;
 
 			AxisAlignedBB bb;
 
-			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.5D)
+			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.25D)
 			{				
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
 				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord, vec31.yCoord, vec31.zCoord).expand(box, box, box);

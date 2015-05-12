@@ -56,7 +56,7 @@ public class WeaponSwordOfJustice extends ItemSword {
 		
 		if (!stack.isItemEnchanted())
 		{
-			if (TragicConfig.allowReach) stack.addEnchantment(TragicEnchantments.Reach, 5);
+			if (TragicConfig.allowReach) stack.addEnchantment(TragicEnchantments.Reach, 10);
 			stack.addEnchantment(Enchantment.looting, 10);
 		}
 	}
