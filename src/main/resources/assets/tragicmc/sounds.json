@@ -1,4 +1,31 @@
 {
+	"mob.cryse.hit":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/cryse/hit", "mob/cryse/hit2"]
+    },
+	"mob.cryse.glass":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/cryse/glass", "mob/cryse/glass2",
+			"mob/cryse/glass3"]
+    },
+    "mob.cryse.break":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/cryse/break", "mob/cryse/break2",
+			"mob/cryse/break3", "mob/cryse/break4"]
+    },
+	"mob.cryse.deflect":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/cryse/deflect", "mob/cryse/deflect2",
+			"mob/cryse/deflect3"]
+    },
     "mob.jabba.hurt":
     {
         "category": "hostile",
