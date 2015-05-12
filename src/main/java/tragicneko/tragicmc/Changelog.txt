@@ -3927,13 +3927,21 @@ Added Tox/Pox/Magmox sounds
 Added Stin/Baby Stin/Greater Stin/Stin King/Stin Queen sounds, added teleport sound
 Changed name of Wisp to Kindling Spirit to avoid confusion with Wisps from other mods, improved Wisp particle effect recognition (based on biome)
 Made it so that Bosses spawning on Easy is configurable
+Nerfed the Range enchantment some (reduced amount of extra range given per enchant level)
+Increased Range level on the Sword of Justice and Titan to compensate for the nerf
+Added Cryse/Mega Cryse/Star-Vox/Vox Stellarum sounds
+Added Nor-Vox sounds
+Increased frequency of the Plague's living sounds (how often they do their sound, not sound frequency)
+Added Kindling Spirit (Wisp) sounds, they now take damage when in water (don't know why they didn't before)
+Added some Gui sounds, as well as some of the Doomsday confirmation sounds and Item use sounds
+Added Item Use sounds to the Amulet Release, Doom Consume and Cooldown Defuse
+Added Sound net messages in order to send doomsday success/failures to the client from the Doom use message handler
+Fixed derps with client-side only messages
+Fixed Tall Grass and a few other blocks dropping Spirit Casts
+Added Directed Lightning sounds, these are under the weather category
 
-Pirah sounds: squish sound when out of water, most likely no other sounds
-Cryse sounds: windy sounds, glass sounds
 Ranmas sounds: whirling sounds, metallic ding sound when hit
-NorVox sounds: Crumbling rocks, rock sounds, glass sounds from cryse for star variants
 Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
-Wisp sounds: harp-like mystical sounds
 Abomination sounds: kinda derpy beast sounds
 Erkel sounds: high-pitched tones
 Psygote sounds: baby noises, possibly with lots of reverb/delay put on them similarly to the Inkling
@@ -3946,6 +3954,7 @@ Archangel sounds: holy sounds (choired vocals)
 Ire sounds: Possibly quiet/just use default sounds
 Fusea sounds: Wah-wah sounds
 Parasmite sounds: shrieks
+
 Aegar sounds: robotic bloops (and the sweeps, creeps and bleeps)
 Apis sounds: Mad bull sounds
 Skultar sounds: maniacal laughing, joker sounds
@@ -3958,11 +3967,8 @@ Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds wh
 Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
 
 More sounds:
-Doomsday use/backlash sounds
-Cooldown Defuse/Amulet Release/Doom Consume use sounds
-Full Doom sound (when your Doom hits max, this will be easy to tell due to the addition of the animated increments)
-Cooldown empty sound (when your Cooldown hits 0)
-
+Soul chest sound
+Maybe some block sounds
 
 New Mobs:
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
@@ -3980,4 +3986,3 @@ Add new flowers, possibly dimension-specific, with special orientations and type
 Add more boss and trap/randomized structures
 Add new amulets, add new Doomsdays
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Add each of the config property names to the localizations
