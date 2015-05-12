@@ -117,6 +117,22 @@
 			"mob/minotaur/death", "mob/minotaur/death2",
 			"mob/minotaur/death3"]
     },
+	"mob.norvox.hit":
+    {
+        "category": "hostile",
+        "sounds": [
+			"mob/norvox/hit", "mob/norvox/hit2",
+			"mob/norvox/hit3", "mob/norvox/hit4",
+			"mob/norvox/hit5"]
+    },
+    "mob.norvox.scrape":
+    {
+        "category": "hostile",
+        "sounds": [
+			"mob/norvox/scrape", "mob/norvox/scrape2",
+			"mob/norvox/scrape3", "mob/norvox/scrape4",
+			"mob/norvox/scrape5"]
+    },
     "mob.plague.chirp":
     {
 		"category": "hostile",

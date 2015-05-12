@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.megaCryseStats;
 
 import java.util.UUID;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -222,4 +223,10 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityCryse.class;
 	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+    }
 }

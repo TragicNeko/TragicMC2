@@ -2,6 +2,7 @@ package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.cryseStats;
 import static tragicneko.tragicmc.TragicConfig.starCryseStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -256,7 +257,7 @@ public class EntityCryse extends TragicMob {
 
 		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0)
 		{
-			this.worldObj.playSoundAtEntity(this, "mob.enderdragon.hit", 0.4F, 1.0F);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.deflect", 1.0F, 1.9F);
 			par1DamageSource.getEntity().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), par2 / 4);
 		}
 
@@ -341,4 +342,45 @@ public class EntityCryse extends TragicMob {
 		return TragicConfig.allowMegaCryse;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.cryse.glass";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.cryse.hit";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.cryse.break";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+    }
 }

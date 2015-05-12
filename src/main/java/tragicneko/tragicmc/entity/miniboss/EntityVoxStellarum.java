@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.voxStellarumStats;
 
 import java.util.UUID;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -332,4 +333,46 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityNorVox.class;
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.cryse.glass";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.cryse.hit";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.cryse.break";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+    }
 }
