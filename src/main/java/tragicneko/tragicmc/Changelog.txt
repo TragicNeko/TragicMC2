@@ -3915,7 +3915,7 @@ Fixed being able to use the Flight potion effect while under the effects of Stun
 Fixed chest not generating with loot in an Obsidian Cavern variant
 Fixed Surface structures not generating properly due to safe zone checks being applied to them meant for non-Surface structures
 
-2.43.2442++ <202> (May 7, 2015) 
+2.43.2469 <202> (May 7, 2015) 
 Small fix to Minotaur/Apis charging, they now rotate to where they are charging
 Reduced area that Apis Temples clear for generation
 Fixed Obsidian Caverns only generating with one type of cavern offering
@@ -3939,21 +3939,27 @@ Added Sound net messages in order to send doomsday success/failures to the clien
 Fixed derps with client-side only messages
 Fixed Tall Grass and a few other blocks dropping Spirit Casts
 Added Directed Lightning sounds, these are under the weather category
+Added Nano Swarm sounds
+Added Harvester sounds, using chest open sound for when it releases a nano swarm
+Added Lockbot sounds, still need a lockdown sound for it (when it attaches a lock to an entity)
+Added Hunter sounds, a drone-y sound that goes higher pitched when it is attacking something
+Added Seeker sound, it only plays when it's targetting something, it gains volume/pitch while gazing at them until it loses sight of them long enough or
+it kills them
+Slight modification done to Directed Lightning sounds
+
+2.43.2469++ <203> (May 13, 2015)
+Set up adding all of the new Doomsdays, Amulets and Structures
+Planned a large amount of random Achievements but still need to add the "plotline" ones
 
 Ranmas sounds: whirling sounds, metallic ding sound when hit
 Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
 Abomination sounds: kinda derpy beast sounds
 Erkel sounds: high-pitched tones
 Psygote sounds: baby noises, possibly with lots of reverb/delay put on them similarly to the Inkling
-Harvester sounds: electronic hovering noise, opening/closing sound for when a Nano Swarm is released
-Lockbot sounds: humming noise playing continuously while near it, a chain noise when it locks down a target
-Nano Swarm sounds: swarmed buzzes
-Hunter sounds: high-pitched electronic buzzing sounds
-Seeker sounds: humming tone, gets louder and higher pitched the longer it stares at it's target (play at entity and self, otherwise make no sound)
 Archangel sounds: holy sounds (choired vocals)
 Ire sounds: Possibly quiet/just use default sounds
 Fusea sounds: Wah-wah sounds
-Parasmite sounds: shrieks
+Parasmite sounds: shrieks, metroid-like sounds
 
 Aegar sounds: robotic bloops (and the sweeps, creeps and bleeps)
 Apis sounds: Mad bull sounds
@@ -3961,28 +3967,67 @@ Skultar sounds: maniacal laughing, joker sounds
 Kitsune sounds: higher registry animal sounds when hurt
 Polaris sounds: Sonar-like pings, bell dings possibly or spacey sounds
 Yeti sounds: Deep beastly sounds
-Time Controller sounds: sorta organic w/ electronic filter chimey sounds possibly, some type of bubble effect or the glitchy harsh tones
+Time Controller sounds: sorta organic w/ electronic filter chimey sounds possibly, some type of bubble effect
 Enyvil sounds: possibly double toned sounds (high and low pitched at the same time to create a weird effect)
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
 Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
 
 More sounds:
-Soul chest sound
-Maybe some block sounds
+Soul chest sound (a long breathing sound possibly)
+Challenge sounds, when you start or complete a challenge
 
-New Mobs:
+New Mob:
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
 AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
 to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
 ("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
 use the same drop rates and items from that actually
-Arbiter - A fairy-like creature that emits dark and light at the same time, when approached by a player it'll calculate their "purity", if judged pure then
-it'll transform into a light version of the player which follows them around like a pet, but if they are judged to be impure then it'll transform into
-a dark version of the player, which will aggressively attack the player, if the player has ender pearls on them it'll use these, it gains the player's
-weapon and armor when this occurs, but it doesn't drop any of these on death, they drop whichever particles fits them (light or dark particles)
+
+==Scroll only Doomsdays (for now at least)==
+Septics, World Shaper, you create a dangerous gas that damages mobs only, may be extended
+Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
+Life Share, Influence, gets the average percentage of health each mob has around you and sets all to the average (includes your health in both calculations)
+Death Mark, Overflow, a nearby enemy is inflicted with Submission X and gets damaged randomly for a few minutes
+Paradigm Shift, Influence, activates a random Doomsday effect
+Adrenaline, Crisis, gives you a Speed Boost V for like 5 seconds, higher amplifier/duration for lower health that you have
+Escape, World Shaper, creates multiple explosive particles around the user and inflicts blindness on all nearby mobs
+Gift of the Gods, World Shaper, makes it rain random luxury drops, like diamond, ruby, sapphire, etc. may also do stuff like coal, cake or sushi
+Gambler, Influence, gives you a random Potion Effect for a random duration and random amplifier
+Soulstealer, Influence, steals health from the mob closest to you and gives it to you, keeps the mob "leashed"
+Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
+Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
+Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
+Magnetizer, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
+Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
+Dimentia, Influence, mobs around you start attacking each other
+Delete, World Shaper, fires a single "Drill" projectile that instantly sets blocks that it goes through to air
+Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
+Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except non instantaneous mining (doesn't set blocks to air)
+Radiant Light, Influence, any mobs near you get inflicted with Weakness XGHVWRBOA and pretty much do no damage at all to anything, meanwhile you get Strength XGIAHR and can oneshot most things
+Danger Zone, Crisis, any mobs in the area get exploded and get stunned
+Support, Overflow, increase nearby player's doom at the cost of yours
+Purify, Influence, clear all potion effects on all entities nearby
+Recall, Influence, teleports you to your spawn point
+Rewrite, World Shaper, moves blocks around you to different positions and moves entities to different locations
+
+==Amulets==
+Normal - Spider - Spider Eyes - Climb up walls, 3rd tier gains Immunity (maybe)
+Normal - Stin - Stin Horn - Huge knockback on any hit, even bare handed
+Cursed - Polaris - Star Pieces - Gain Armor resistance at night (possibly), take more damage during day
+Normal - Synapse - Synapse Crystal - You are basically immune to Hacked and take less damage while in the Synapse
+Cursed - Lightning - Lightning Orb - You gain Invincibility from Lightning but lose alot of Hunger
+Cursed - Consumption - Doom Consume - You sometimes only use half of your Doom when using a Doomsday but use all of your Doom if it backlashes
+Normal - Supernatural - Ectoplasm - Gives you random potion effects every once in a while, higher tier increases chance for good effects
+Cursed - Undead - Bone Marrow - Poison/Cripple/Weakness all apply the opposite effect to you
+Cursed - Ender Dragon - Dragon Egg - You delete blocks that you collide in to (on a horizontal axis, not vertically)
+Normal - Fusea - Unstable Isotope - You create an explosion when attacked, this explosion doesn't damage terrain or hurt you, higher tier is larger explosion size
+Epic - Enyvil - Pure Darkness - You inflict Fear on any mobs near you
+Normal - Hunter - Tough Leather - You gain extra XP per mob kill (about 50% increase)
+Epic - Luck - Bottle o Enchanting - You randomly gain XP
+Epic - Flame - Fire Orbs - You place fire while you walk (on solid surfaces)
+Normal - Archangel - Archangel Feathers - You gain Flight
+Epic - Strider - N/A - You can walk on water, impossible to obtain in Survival until next update
 
 --Reminders-
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
-Add more boss and trap/randomized structures
-Add new amulets, add new Doomsdays
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
