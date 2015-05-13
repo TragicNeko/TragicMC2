@@ -121,6 +121,8 @@ public class ClientEvents extends Gui {
 			player.prevRotationPitch = player.rotationPitch;
 			player.prevRotationYaw = player.rotationYaw;
 			player.rotationYawHead = player.prevRotationYawHead;
+			player.movementInput.jump = false;
+			player.movementInput.sneak = false;
 		}
 
 		if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
