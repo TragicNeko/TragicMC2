@@ -32,6 +32,10 @@ public class Structure extends WorldGenerator {
 	public static Structure soulTomb = new StructureSoulTomb(7, "soulTomb");
 	public static Structure corruptedSpire = new StructureCorruptedSpire(8, "corruptedSpire");
 	public static Structure empariahCave = new StructureEmpariahCave(9, "empariahCave");
+	//public static Structure claymationRuin = new Structure(10, "claymationRuin"); //TODO add Claymation Ruins, blaze spawners
+	//public static Structure hexBuilding = new Structure(11, "hexBuilding"); //witch spawners, like a giant swamp shack possibly
+	//public static Structure ragrPit = new Structure(12, "ragrPit"); //Ragr spawners, generate similarly to the Empariah Cave
+	//public static Structure spiderNest = new Structure(13, "spiderNest"); //Various spider spawners, Stin spawners, made of nearly solid cobwebs
 
 	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
 			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,

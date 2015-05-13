@@ -63,6 +63,31 @@ public abstract class Doomsday {
 	public static final Doomsday Harden = (new DoomsdayHarden(40));
 	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	public static final Doomsday Flash = (new DoomsdayFlash(42));
+	//public static final Doomsday Septics = new Doomsday(); //TODO add the Doomsdays, thier names, localizations and abilities
+	//public static final Doomsday Kurayami = new Doomsday();
+	//public static final Doomsday LifeShare = new Doomsday();
+	//public static final Doomsday DeathMark = new Doomsday();
+	//public static final Doomsday ParadigmShift = new Doomsday();
+	//public static final Doomsday Adrenaline = new Doomsday();
+	//public static final Doomsday Escape = new Doomsday();
+	//public static final Doomsday GiftOfTheGods = new Doomsday();
+	//public static final Doomsday Gambler = new Doomsday();
+	//public static final Doomsday Soulstealer = new Doomsday();
+	//public static final Doomsday Parasite = new Doomsday();
+	//public static final Doomsday Symbiosis = new Doomsday();
+	//public static final Doomsday TimeCollapse = new Doomsday();
+	//public static final Doomsday Magnetizer = new Doomsday();
+	//public static final Doomsday Ambience = new Doomsday();
+	//public static final Doomsday Dimentia = new Doomsday();
+	//public static final Doomsday Delete = new Doomsday();
+	//public static final Doomsday PetalDance = new Doomsday();
+	//public static final Doomsday LaserCutter = new Doomsday();
+	//public static final Doomsday RadiantLight = new Doomsday();
+	//public static final Doomsday DangerZone = new Doomsday();
+	//public static final Doomsday Support = new Doomsday();
+	//public static final Doomsday Purify = new Doomsday();
+	//public static final Doomsday Recall = new Doomsday();
+	//public static final Doomsday Rewrite = new Doomsday();
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",

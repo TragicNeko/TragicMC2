@@ -157,6 +157,22 @@ public class TragicItems {
 	public static Item IronGolemAmulet;
 	public static Item EndermanAmulet;
 	public static Item WitherAmulet;
+	
+	public static Item SpiderAmulet; //TODO add new amulets and their abilities/textures/descriptions/specials
+	public static Item StinAmulet;
+	public static Item PolarisAmulet;
+	public static Item SynapseAmulet;
+	public static Item LightningAmulet;
+	public static Item ConsumptionAmulet;
+	public static Item SupernaturalAmulet;
+	public static Item UndeadAmulet;
+	public static Item EnderDragonAmulet;
+	public static Item FuseaAmulet;
+	public static Item EnyvilAmulet;
+	public static Item HunterAmulet;
+	public static Item LuckAmulet;
+	public static Item FlameAmulet;
+	public static Item ArchangelAmulet;
 
 	//Normal items
 	public static Item Ectoplasm;
