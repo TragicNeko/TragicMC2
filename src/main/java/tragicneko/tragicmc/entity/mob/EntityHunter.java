@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.hunterStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -116,4 +117,45 @@ public class EntityHunter extends TragicMob {
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
 
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.hunter.noise";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return super.getHurtSound();
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.hunter.noise";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return this.getAttackTarget() != null ? 1.8F : 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 2;
+	}
 }

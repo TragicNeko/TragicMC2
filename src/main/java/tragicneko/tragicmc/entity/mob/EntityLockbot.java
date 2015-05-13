@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.lockbotStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -84,7 +85,6 @@ public class EntityLockbot extends TragicMob {
 			lock.setPosition(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);
 			this.worldObj.spawnEntityInWorld(lock);
 		}
-
 	}
 
 	@Override
@@ -93,4 +93,45 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
 
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.lockbot.hum";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return super.getHurtSound();
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.lockbot.hum";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 2;
+	}
 }

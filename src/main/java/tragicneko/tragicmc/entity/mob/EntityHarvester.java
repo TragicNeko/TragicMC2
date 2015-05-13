@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.harvesterStats;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -194,6 +195,7 @@ public class EntityHarvester extends TragicMob {
 			EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 			swarm.setPosition(this.posX, this.posY, this.posZ);
 			this.worldObj.spawnEntityInWorld(swarm);
+			this.worldObj.playSoundAtEntity(this, "random.chestopen", 1.0F, 0.4F);
 		}
 	}
 
@@ -214,5 +216,47 @@ public class EntityHarvester extends TragicMob {
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("directionTicks", this.directionTicks);
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.harvester.hover";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return super.getHurtSound();
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return null; //"tragicmc:mob.nanoswarm.glitch";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 2;
 	}
 }

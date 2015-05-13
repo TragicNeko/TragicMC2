@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.nanoSwarmStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -148,5 +149,47 @@ public class EntityNanoSwarm extends TragicMob {
 	public boolean canAttackClass(Class oclass)
 	{
 		return super.canAttackClass(oclass) && oclass != EntityOverlordCombat.class && oclass != EntityOverlordCocoon.class && oclass != EntityOverlordCore.class;
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.nanoswarm.glitch";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.nanoswarm.glitch";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.nanoswarm.glitch";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return rand.nextFloat();
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 4;
 	}
 }

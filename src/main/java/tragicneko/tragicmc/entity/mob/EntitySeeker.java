@@ -116,14 +116,14 @@ public class EntitySeeker extends TragicMob {
 				double d0 = entity.posX - this.posX;
 				double d1 = entity.posY - this.posY;
 				double d2 = entity.posZ - this.posZ;
-				
+
 				for (int l = 0; l < 4; l++)
 				{
 					double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
 					this.worldObj.spawnParticle("reddust", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 					if (this.getKillTicks() >= 300) this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 0.75D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 				}
-				
+
 				if (this.getKillTicks() >= 300)
 				{
 					for (int i = 0; i < 4; i++)
@@ -146,14 +146,14 @@ public class EntitySeeker extends TragicMob {
 
 				if (this.getKillTicks() >= 300)
 				{
-					this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), Math.max(this.getAttackTarget().getMaxHealth() / 20F, 1.0F));
+					this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), Math.max(this.getAttackTarget().getMaxHealth() / 20F, 2.0F));
 				}
 
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
 				for (Entity e : list)
 				{
 					if (this.getAttackTarget() == null) break;
-					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && ((EntityLiving) e).getAttackTarget() == null)
+					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && ((EntityLiving) e).getAttackTarget() == null && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse)
 					{
 						((EntityLiving) e).setAttackTarget(this.getAttackTarget());
 					}
@@ -164,7 +164,7 @@ public class EntitySeeker extends TragicMob {
 				if (this.ticksExisted % 2 == 0 && this.getKillTicks() > 0) this.setKillTicks(this.getKillTicks() - 1);
 				if (this.getKillTicks() == 0) this.setAttackTarget(null);
 			}
-			
+
 			if (this.getAttackTarget() == null || this.getDistanceToEntity(this.getAttackTarget()) >= 64.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
 			{
 				this.setKillTicks(0);
@@ -178,9 +178,6 @@ public class EntitySeeker extends TragicMob {
 			if (this.timeSinceTarget >= 200) this.setKillTicks(0);
 			this.setTargetId(0);
 		}
-		//TragicMC.logInfo("Kill ticks: " + this.killTicks);
-		//TragicMC.logInfo("Health: " + this.getHealth());
-		//TragicMC.logInfo("Current position: " + this.posX + ", " + this.posY + ", " + this.posZ);
 
 		if (this.getOwner() != null)
 		{
@@ -206,6 +203,13 @@ public class EntitySeeker extends TragicMob {
 				this.setPosition(this.getOwner().posX, this.getOwner().posY, this.getOwner().posZ);
 			}
 			this.relocations = 0;
+		}
+		
+		if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getKillTicks() > 0)
+		{
+			float f = this.getKillTicks() / 300.0F;
+			this.playSound("tragicmc:mob.seeker.tone", f, f * 1.9F);
+			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.seeker.tone", f, f * 1.9F);
 		}
 	}
 

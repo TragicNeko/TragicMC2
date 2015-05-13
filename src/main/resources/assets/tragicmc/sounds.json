@@ -61,6 +61,18 @@
 		"sounds": [
 			"mob/gragul/death", "mob/gragul/death2"]
     },
+	"mob.harvester.hover":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/harvester/hover"]
+    },
+	"mob.hunter.noise":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/hunter/noise"]
+    },
     "mob.inkling.giggle":
     {
 		"category": "hostile",
@@ -96,6 +108,13 @@
 			"mob/inkling/death", "mob/inkling/death2",
 			"mob/inkling/death3", "mob/inkling/death4"]
     },
+	"mob.lockbot.hum":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/lockbot/hum", "mob/lockbot/hum2",
+			"mob/lockbot/hum3"]
+    },
     "mob.minotaur.snort":
     {
         "category": "hostile",
@@ -116,6 +135,14 @@
         "sounds": [
 			"mob/minotaur/death", "mob/minotaur/death2",
 			"mob/minotaur/death3"]
+    },
+	"mob.nanoswarm.glitch":
+    {
+        "category": "hostile",
+        "sounds": [
+			"mob/nanoswarm/glitch", "mob/nanoswarm/glitch2",
+			"mob/nanoswarm/glitch3", "mob/nanoswarm/glitch4",
+			"mob/nanoswarm/glitch5"]
     },
 	"mob.norvox.hit":
     {
@@ -205,6 +232,12 @@
 		"sounds": [
 			"mob/ragr/death", "mob/ragr/death2",
 			"mob/ragr/death3", "mob/ragr/death4"]
+    },
+	"mob.seeker.tone":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/seeker/tone"]
     },
 	"mob.stin.hurt":
     {

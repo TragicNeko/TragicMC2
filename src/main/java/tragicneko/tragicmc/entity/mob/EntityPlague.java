@@ -227,6 +227,6 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public int getTalkInterval()
 	{
-		return 10;
+		return 4;
 	}
 }
