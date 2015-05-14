@@ -158,10 +158,10 @@ public class TragicItems {
 	public static Item EndermanAmulet;
 	public static Item WitherAmulet;
 	
-	public static Item SpiderAmulet; //TODO add new amulets and their abilities/textures/descriptions/specials
+	public static Item SpiderAmulet;
 	public static Item StinAmulet;
 	public static Item PolarisAmulet;
-	public static Item SynapseAmulet;
+	public static Item OverlordAmulet;
 	public static Item LightningAmulet;
 	public static Item ConsumptionAmulet;
 	public static Item SupernaturalAmulet;
@@ -169,10 +169,7 @@ public class TragicItems {
 	public static Item EnderDragonAmulet;
 	public static Item FuseaAmulet;
 	public static Item EnyvilAmulet;
-	public static Item HunterAmulet;
 	public static Item LuckAmulet;
-	public static Item FlameAmulet;
-	public static Item ArchangelAmulet;
 
 	//Normal items
 	public static Item Ectoplasm;
@@ -834,6 +831,42 @@ public class TragicItems {
 
 		WitherAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
+		
+		SpiderAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(SpiderAmulet, "spiderAmulet");
+		
+		StinAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(StinAmulet, "stinAmulet");
+		
+		PolarisAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(PolarisAmulet, "polarisAmulet");
+		
+		OverlordAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(OverlordAmulet, "overlordAmulet");
+		
+		LightningAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(LightningAmulet, "lightningAmulet");
+		
+		ConsumptionAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(ConsumptionAmulet, "consumptionAmulet");
+		
+		SupernaturalAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(SupernaturalAmulet, "supernaturalAmulet");
+		
+		UndeadAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(UndeadAmulet, "undeadAmulet");
+		
+		EnderDragonAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(EnderDragonAmulet, "enderDragonAmulet");
+		
+		FuseaAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(FuseaAmulet, "fuseaAmulet");
+		
+		EnyvilAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(EnyvilAmulet, "enyvilAmulet");
+		
+		LuckAmulet = (new ItemAmulet(id++));
+		GameRegistry.registerItem(LuckAmulet, "luckAmulet");
 
 		//Armor and Tool materials
 		armorSkull.customCraftingMaterial = Items.bone;
@@ -989,7 +1022,17 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 2),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 5),
-				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5)
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5),
+				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity)
 		};
 
 		WeightedRandomChestContent[] scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
@@ -1047,7 +1090,17 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(DragonFang), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 10),
-				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10)
+				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10),
+				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity)
 		};
 
 		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];

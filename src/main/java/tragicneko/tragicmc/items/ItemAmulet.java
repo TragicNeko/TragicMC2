@@ -33,19 +33,21 @@ public class ItemAmulet extends Item {
 	private IIcon[][] iconArray = new IIcon[4][2];
 
 	private int amuletID;
-	private String amuletName;
 
 	public static final int COLOR_WHITE = 0xFFFFFF;
 	public static final int COLOR_BLACK = 0x000000;
 
 	private static String[] amuletNames = new String[] {"Kitsune", "Peace", "Yeti", "Claymation", "Chicken", "Martyr", "Piercing", "Blacksmith", "Apis", "Creeper", "Zombie",
-		"Skeleton", "Sunken", "Time", "Ice", "SnowGolem", "IronGolem", "Enderman", "Wither"};
+		"Skeleton", "Sunken", "Time", "Ice", "SnowGolem", "IronGolem", "Enderman", "Wither", "Spider", "Stin", "Polaris", "Overlord", "Lightning", "Consumption", "Supernatural",
+		"Undead", "EnderDragon", "Fusea", "Enyvil", "Luck"};
 	private static int[][] amuletColors = new int[][] {{COLOR_BLACK, 0xB51919}, {0x9F5B86, 0xFF9ACA}, {0xFAFAFA, 0x98B4C1}, {0xFF9500, 0xFFCA02}, {0xDEDEDE, 0xFFEAA1},
 		{COLOR_BLACK, 0x454545}, {COLOR_BLACK, 0xFFFA5}, {0x949494, 0x696969}, {COLOR_BLACK, 0xEFE297}, {0x27C123, 0x43E140}, {0x3A8F4A, 0x27C1C9}, {0xA0A0A0, 0xC1C1C1},
-		{COLOR_BLACK, 0x466DB3}, {COLOR_WHITE, 0xEA92E9}, {0xC4EFFF, 0xA5D0E0}, {0xFFFDF1, 0xABA290}, {0xDBCDC1, 0x8B7260}, {COLOR_BLACK, 0xB547DE}, {COLOR_WHITE, 0x252525}};
+		{COLOR_BLACK, 0x466DB3}, {COLOR_WHITE, 0xEA92E9}, {0xC4EFFF, 0xA5D0E0}, {0xFFFDF1, 0xABA290}, {0xDBCDC1, 0x8B7260}, {COLOR_BLACK, 0xB547DE}, {COLOR_WHITE, 0x252525},
+		{0xFFFFFF, 0xFFFFFF}, {0xFFFFFF, 0xFFFFFF}, {0x000000, 0x000000}, {0xFFFFFF, 0xFFFFFF}, {0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000},
+		{0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000}};
 
-	public static Set<Integer> cursedIds = Sets.newHashSet(0, 5, 6, 8, 12, 17);
-	public static Set<Integer> epicIds = Sets.newHashSet(13, 18);
+	public static Set<Integer> cursedIds = Sets.newHashSet(0, 5, 6, 8, 12, 17, 21, 23, 24, 26, 27);
+	public static Set<Integer> epicIds = Sets.newHashSet(13, 18, 29);
 
 	public ItemAmulet(int id)
 	{

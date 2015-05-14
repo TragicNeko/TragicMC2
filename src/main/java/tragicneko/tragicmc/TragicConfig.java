@@ -36,10 +36,11 @@ public class TragicConfig {
 	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity, amuletModifierChance, amuletModifierChance2, amuletModifierChance3;
 	private static boolean[] normalAmuletConfigs = new boolean[24];
 	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton, amuIce, amuSnowGolem, amuIronGolem;
+	public static boolean amuSpider, amuStin, amuSupernatural, amuFusea, amuLuck;
 	private static boolean[] cursedAmuletConfigs = new boolean[12];
-	public static boolean amuKitsune, amuMartyr, amuPiercing, amuApis, amuSunken, amuEnderman;
-	private static boolean[] epicAmuletConfigs = new boolean[6];
-	public static boolean amuTime, amuWither;
+	public static boolean amuKitsune, amuMartyr, amuPiercing, amuApis, amuSunken, amuEnderman, amuPolaris, amuLightning, amuConsumption, amuUndead, amuEnderDragon;
+	private static boolean[] epicAmuletConfigs = new boolean[8];
+	public static boolean amuTime, amuWither, amuOverlord, amuEnyvil;
 
 	public static boolean keepDimensionLoaded, allowDimensionRespawn;
 	private static int[] dimensionIDs = new int[5];
@@ -205,6 +206,11 @@ public class TragicConfig {
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectIce", true).getBoolean(true));
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSnowGolem", true).getBoolean(true));
 		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectIronGolem", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSpider", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectStin", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSupernatural", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectFusea", true).getBoolean(true));
+		normalAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectLuck", true).getBoolean(true));
 
 		mapping = 0;
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectKitsune", true).getBoolean(true));
@@ -213,10 +219,17 @@ public class TragicConfig {
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectApis", true).getBoolean(true));
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectSunken", true).getBoolean(true));
 		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectEnderman", true).getBoolean(true));
+		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectPolaris", true).getBoolean(true));
+		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletLightning", true).getBoolean(true));
+		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletConsumption", true).getBoolean(true));
+		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletUndead", true).getBoolean(true));
+		cursedAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEnderDragon", true).getBoolean(true));
 
 		mapping = 0;
 		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectTime", true).getBoolean(true));
 		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectWither", true).getBoolean(true));
+		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectOverlord", true).getBoolean(true));
+		epicAmuletConfigs[mapping++] = (config.get(catAmulet, "amuletEffectEnyvil", true).getBoolean(true));
 
 		config.addCustomCategoryComment(catAmulet, "Disable specific amulet effects, does not remove the Amulets from the game.");
 
@@ -386,6 +399,9 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayHardenAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySharpenAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayFlashAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySepticsAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayKurayamiAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayLifeShareAllow", true).getBoolean(true));
 
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -430,6 +446,9 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCooldown", 4).getInt(4));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCooldown", 6).getInt(6));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlashCooldown", 5).getInt(5));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySepticsCooldown", 6).getInt(6));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayKurayamiCooldown", 80).getInt(80));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayLifeShareCooldown", 25).getInt(25));
 
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -474,6 +493,9 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayHardenCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySharpenCost", 75).getInt(75));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayFlashCost", 10).getInt(10));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySepticsCost", 8).getInt(8));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayKurayamiCost", 115).getInt(115));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayLifeShareCost", 65).getInt(65));
 
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
@@ -1225,6 +1247,11 @@ public class TragicConfig {
 		amuIce = normalAmuletConfigs[mapping++];
 		amuSnowGolem = normalAmuletConfigs[mapping++];
 		amuIronGolem = normalAmuletConfigs[mapping++];
+		amuSpider = normalAmuletConfigs[mapping++];
+		amuStin = normalAmuletConfigs[mapping++];
+		amuSupernatural = normalAmuletConfigs[mapping++];
+		amuFusea = normalAmuletConfigs[mapping++];
+		amuLuck = normalAmuletConfigs[mapping++];
 
 		mapping = 0;
 		amuKitsune = cursedAmuletConfigs[mapping++];
@@ -1233,9 +1260,16 @@ public class TragicConfig {
 		amuApis = cursedAmuletConfigs[mapping++];
 		amuSunken = cursedAmuletConfigs[mapping++];
 		amuEnderman = cursedAmuletConfigs[mapping++];
-
+		amuPolaris = cursedAmuletConfigs[mapping++];
+		amuLightning = cursedAmuletConfigs[mapping++];
+		amuConsumption = cursedAmuletConfigs[mapping++];
+		amuUndead = cursedAmuletConfigs[mapping++];
+		amuEnderDragon = cursedAmuletConfigs[mapping++];
+		
 		amuTime = epicAmuletConfigs[0];
 		amuWither = epicAmuletConfigs[1];
+		amuOverlord = epicAmuletConfigs[2];
+		amuEnyvil = epicAmuletConfigs[3];
 
 		mapping = 0;
 		decayingHillsW = biomeWeights[mapping];

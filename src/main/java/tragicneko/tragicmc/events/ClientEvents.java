@@ -23,8 +23,11 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.client.ClientProxy;
+import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
+import tragicneko.tragicmc.properties.PropertyAmulets;
+import tragicneko.tragicmc.util.AmuletHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 
@@ -134,6 +137,65 @@ public class ClientEvents extends Gui {
 				player.playSound(sounds[rand.nextInt(sounds.length)], rand.nextFloat() * 0.3F + 0.7F, 1.0F);
 			}
 			player.swingItem();
+		}
+		
+		PropertyAmulets amu = PropertyAmulets.get(player);
+		
+		if (amu != null)
+		{
+			if (player.ticksExisted % 2 != 0) return;
+
+			int[] levels = new int[3];
+			ItemAmulet[] amulets = new ItemAmulet[3];
+
+			int i;
+
+			for (i = 0; i < 3; i++)
+			{
+				amulets[i] = amu.getActiveAmulet(i);
+				levels[i] = AmuletHelper.getAmuletLevel(amu.getActiveAmuletItemStack(i));
+			}
+
+			int same = AmuletHelper.getSameAmulets(amulets[0], amulets[1], amulets[2]);
+			int id = 0;
+
+			if (same == 0)
+			{
+				for (i = 0; i < 3; i++)
+				{
+					id = amulets[i] != null ? amulets[i].getAmuletID() : 0;
+					if (amulets[i] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[i], player, player.worldObj, i, levels[i]);
+				}
+			}
+			else if (same == 12)
+			{
+				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
+				if (amulets[0] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[0], player, player.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[1]));
+
+				id = amulets[2] != null ? amulets[2].getAmuletID() : 0;
+				if (amulets[2] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[2], player, player.worldObj, i, levels[2]);
+			}
+			else if (same == 13)
+			{
+				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
+				if (amulets[0] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[0], player, player.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[2]));
+
+				id = amulets[1] != null ? amulets[1].getAmuletID() : 0;
+				if (amulets[1] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[1], player, player.worldObj, i, levels[1]);
+			}
+			else if (same == 23)
+			{
+				id = amulets[1] != null ? amulets[1].getAmuletID() : 0;
+				if (amulets[1] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[1], player, player.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[1], levels[2]));
+
+				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
+				if (amulets[0] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[0], player, player.worldObj, i, levels[0]);
+			}
+			else if (same == 123)
+			{
+				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
+				if (amulets[0] != null) AmuletEvents.doAmuletEffect(id, amu, amulets[0], player, player.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[1], levels[2]));
+			}
 		}
 	}
 

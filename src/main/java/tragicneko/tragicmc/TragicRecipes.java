@@ -1335,6 +1335,114 @@ public class TragicRecipes {
 					'y', Items.nether_star,
 					'z', TragicItems.AwakeningStone
 					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SpiderAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.spider_eye,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.StinAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.StinHorn,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PolarisAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.StarPieces,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.OverlordAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.CorruptedEssence,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LightningAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.LightningOrb,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ConsumptionAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.DoomConsume,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SupernaturalAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.Ectoplasm,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.UndeadAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.BoneMarrow,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EnderDragonAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Blocks.dragon_egg,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.FuseaAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.UnstableIsotope,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EnyvilAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', TragicItems.PureDarkness,
+					'z', TragicItems.AwakeningStone
+					);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LuckAmulet, 1), 
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.Tungsten,
+					'y', Items.experience_bottle,
+					'z', TragicItems.AwakeningStone
+					);
 		}
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Quicksand, 3, 0),
@@ -1862,6 +1970,46 @@ public class TragicRecipes {
 
 			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.IronGolemAmulet, 1),
 					TragicItems.IronGolemAmulet, TragicItems.AmuletRelease
+					));
+			
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SpiderAmulet, 1),
+					TragicItems.SpiderAmulet, TragicItems.SpiderAmulet, "oreCharms"
+					));
+
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SpiderAmulet, 1),
+					TragicItems.SpiderAmulet, TragicItems.AmuletRelease
+					));
+			
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.StinAmulet, 1),
+					TragicItems.StinAmulet, TragicItems.StinAmulet, "oreCharms"
+					));
+
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.StinAmulet, 1),
+					TragicItems.StinAmulet, TragicItems.AmuletRelease
+					));
+			
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SupernaturalAmulet, 1),
+					TragicItems.SupernaturalAmulet, TragicItems.SupernaturalAmulet, "oreCharms"
+					));
+
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.SupernaturalAmulet, 1),
+					TragicItems.SupernaturalAmulet, TragicItems.AmuletRelease
+					));
+			
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.FuseaAmulet, 1),
+					TragicItems.FuseaAmulet, TragicItems.FuseaAmulet, "oreCharms"
+					));
+
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.FuseaAmulet, 1),
+					TragicItems.FuseaAmulet, TragicItems.AmuletRelease
+					));
+			
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.LuckAmulet, 1),
+					TragicItems.LuckAmulet, TragicItems.LuckAmulet, "oreCharms"
+					));
+
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.LuckAmulet, 1),
+					TragicItems.LuckAmulet, TragicItems.AmuletRelease
 					));
 		}
 

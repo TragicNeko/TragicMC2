@@ -74,7 +74,7 @@ public class EntityDropHelper {
 		new EntityDrop(1, TragicItems.Splinter), new EntityDrop(1, TragicItems.Butcher), new EntityDrop(1, TragicItems.Thardus), new EntityDrop(3, TragicItems.DragonFang),
 		new EntityDrop(8, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1), new ItemStack(TragicBlocks.CompactOre, 1, 2),
 				new ItemStack(TragicBlocks.CompactOre, 1, 3), new ItemStack(TragicBlocks.CompactOre, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
-				new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(1, new ItemStack(TragicItems.SilentHellraiser))};
+				new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(1, new ItemStack(TragicItems.SilentHellraiser)), new EntityDrop(1, getAmulets(false))};
 
 	public static void fill()
 	{
@@ -244,7 +244,7 @@ public class EntityDropHelper {
 		//Alpha Drops
 		addToDropList(EntityOverlordCore.class, new EntityDrop[][]{{new EntityDrop(25, TragicItems.CorruptedEye)}, {new EntityDrop(5, getDoomsdayScrollStacks()), new EntityDrop(5, TragicItems.CelestialSteel),
 			new EntityDrop(25, TragicItems.SynapseCrystal), new EntityDrop(5, TragicItems.SynapseLink), new EntityDrop(5, TragicItems.CorruptedEssence), new EntityDrop(20, TragicBlocks.SynapseCore),
-			new EntityDrop(10, TragicItems.CorruptedEye)}});
+			new EntityDrop(10, TragicItems.CorruptedEye), new EntityDrop(3, getAmulets(true))}});
 	}
 
 	public static void addToDropList(DropEntry entry)
@@ -315,6 +315,41 @@ public class EntityDropHelper {
 		stack[1] = new ItemStack(Items.potionitem, 1, 78);
 		stack[2] = new ItemStack(Items.potionitem, 1, 46);
 		stack[3] = new ItemStack(Items.potionitem, 1, 16478);
+		return stack;
+	}
+	
+	private static ItemStack[] getAmulets(boolean flag)
+	{
+		ItemStack[] stack = new ItemStack[27];
+		
+		if (flag) stack[0] = new ItemStack(TragicItems.KitsuneAmulet);
+		stack[1] = new ItemStack(TragicItems.YetiAmulet);
+		stack[2] = new ItemStack(TragicItems.PeaceAmulet);
+		stack[3] = new ItemStack(TragicItems.ClaymationAmulet);
+		stack[4] = new ItemStack(TragicItems.ChickenAmulet);
+		if (flag) stack[5] = new ItemStack(TragicItems.MartyrAmulet);
+		if (flag) stack[6] = new ItemStack(TragicItems.PiercingAmulet);
+		stack[7] = new ItemStack(TragicItems.BlacksmithAmulet);
+		if (flag) stack[8] = new ItemStack(TragicItems.ApisAmulet);
+		stack[9] = new ItemStack(TragicItems.CreeperAmulet);
+		stack[10] = new ItemStack(TragicItems.ZombieAmulet);
+		stack[11] = new ItemStack(TragicItems.SkeletonAmulet);
+		if (flag) stack[12] = new ItemStack(TragicItems.SunkenAmulet);
+		stack[13] = new ItemStack(TragicItems.IceAmulet);
+		stack[14] = new ItemStack(TragicItems.SnowGolemAmulet);
+		stack[15] = new ItemStack(TragicItems.IronGolemAmulet);
+		if (flag) stack[16] = new ItemStack(TragicItems.EndermanAmulet);
+		
+		stack[17] = new ItemStack(TragicItems.SpiderAmulet);
+		stack[18] = new ItemStack(TragicItems.StinAmulet);
+		if (flag) stack[19] = new ItemStack(TragicItems.PolarisAmulet);
+		if (flag) stack[20] = new ItemStack(TragicItems.LightningAmulet);
+		if (flag) stack[21] = new ItemStack(TragicItems.ConsumptionAmulet);
+		stack[22] = new ItemStack(TragicItems.SupernaturalAmulet);
+		if (flag) stack[23] = new ItemStack(TragicItems.UndeadAmulet);
+		if (flag) stack[24] = new ItemStack(TragicItems.EnderDragonAmulet);
+		stack[25] = new ItemStack(TragicItems.FuseaAmulet);
+		stack[26] = new ItemStack(TragicItems.LuckAmulet);
 		return stack;
 	}
 
