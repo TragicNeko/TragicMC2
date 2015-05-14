@@ -3950,6 +3950,31 @@ Slight modification done to Directed Lightning sounds
 2.43.2469++ <203> (May 13, 2015)
 Set up adding all of the new Doomsdays, Amulets and Structures
 Planned a large amount of random Achievements but still need to add the "plotline" ones
+Important change to Amulets was done, so that effects would be done on client and server side, this was done to make the Spider Amulet work but will most
+likely be done to sync Doomsday Effects as well
+Added Spider Amulet ability
+Added Stin Amulet ability
+Fixed derp up on Piercing amulet ability
+Added Polaris Amulet ability
+Added Overlord Amulet ability
+Added Lightning Amulet ability
+Added Consumption Amulet ability, fixed derp with backlash giving you Doom instead of taking it
+Added Supernatural Amulet ability
+Added Undead Amulet ability
+Added Ender Dragon Amulet ability
+Added Fusea Amulet ability
+Added Luck Amulet ability
+This should be the last of the Amulets as I decided I didn't like some of the last few effects (and this is a lot added already)
+Added all of the new Amulet recipes, added them to the Chest Hooks
+Added Amulets to Luxury boss drops (Only regular Amulets), added Amulet drops to the Overlord Core (can drop Cursed and regular Amulets)
+Added Septics Doomsday, added Septic Gas for it, which is basically a temporary version of Radiated Gas
+Added Life Share Doomsday
+Added Kurayami, still need the Kurayami entity to make it actually functional, but currently I'm going to make it at least strong enough to take out a few
+Iron Golems, will despawn after an amount of time that depends on the Overflow amount it it summoned with, it'll use a more aggressive form of the Kitsunakuma's
+AI/attack patterns but it will take damage like a normal mob
+
+Note:
+Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 
 Ranmas sounds: whirling sounds, metallic ding sound when hit
 Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
@@ -3984,7 +4009,6 @@ to alert players of their presence ("An Avris has appeared nearby!") and a messa
 use the same drop rates and items from that actually
 
 ==Scroll only Doomsdays (for now at least)==
-Septics, World Shaper, you create a dangerous gas that damages mobs only, may be extended
 Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
 Life Share, Influence, gets the average percentage of health each mob has around you and sets all to the average (includes your health in both calculations)
 Death Mark, Overflow, a nearby enemy is inflicted with Submission X and gets damaged randomly for a few minutes
@@ -4009,24 +4033,6 @@ Support, Overflow, increase nearby player's doom at the cost of yours
 Purify, Influence, clear all potion effects on all entities nearby
 Recall, Influence, teleports you to your spawn point
 Rewrite, World Shaper, moves blocks around you to different positions and moves entities to different locations
-
-==Amulets==
-Normal - Spider - Spider Eyes - Climb up walls, 3rd tier gains Immunity (maybe)
-Normal - Stin - Stin Horn - Huge knockback on any hit, even bare handed
-Cursed - Polaris - Star Pieces - Gain Armor resistance at night (possibly), take more damage during day
-Normal - Synapse - Synapse Crystal - You are basically immune to Hacked and take less damage while in the Synapse
-Cursed - Lightning - Lightning Orb - You gain Invincibility from Lightning but lose alot of Hunger
-Cursed - Consumption - Doom Consume - You sometimes only use half of your Doom when using a Doomsday but use all of your Doom if it backlashes
-Normal - Supernatural - Ectoplasm - Gives you random potion effects every once in a while, higher tier increases chance for good effects
-Cursed - Undead - Bone Marrow - Poison/Cripple/Weakness all apply the opposite effect to you
-Cursed - Ender Dragon - Dragon Egg - You delete blocks that you collide in to (on a horizontal axis, not vertically)
-Normal - Fusea - Unstable Isotope - You create an explosion when attacked, this explosion doesn't damage terrain or hurt you, higher tier is larger explosion size
-Epic - Enyvil - Pure Darkness - You inflict Fear on any mobs near you
-Normal - Hunter - Tough Leather - You gain extra XP per mob kill (about 50% increase)
-Epic - Luck - Bottle o Enchanting - You randomly gain XP
-Epic - Flame - Fire Orbs - You place fire while you walk (on solid surfaces)
-Normal - Archangel - Archangel Feathers - You gain Flight
-Epic - Strider - N/A - You can walk on water, impossible to obtain in Survival until next update
 
 --Reminders-
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
