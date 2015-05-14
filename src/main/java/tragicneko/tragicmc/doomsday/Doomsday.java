@@ -10,9 +10,11 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.items.ItemAmulet;
+import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public abstract class Doomsday {
@@ -63,9 +65,9 @@ public abstract class Doomsday {
 	public static final Doomsday Harden = (new DoomsdayHarden(40));
 	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	public static final Doomsday Flash = (new DoomsdayFlash(42));
-	//public static final Doomsday Septics = new Doomsday(); //TODO add the Doomsdays, thier names, localizations and abilities
-	//public static final Doomsday Kurayami = new Doomsday();
-	//public static final Doomsday LifeShare = new Doomsday();
+	public static final Doomsday Septics = new DoomsdaySeptics(43); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday Kurayami = new DoomsdayKurayami(44);
+	public static final Doomsday LifeShare = new DoomsdayLifeShare(45);
 	//public static final Doomsday DeathMark = new Doomsday();
 	//public static final Doomsday ParadigmShift = new Doomsday();
 	//public static final Doomsday Adrenaline = new Doomsday();
@@ -92,7 +94,8 @@ public abstract class Doomsday {
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
-		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash"
+		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
+		"kurayami", "lifeShare"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
@@ -162,12 +165,12 @@ public abstract class Doomsday {
 
 		return reqDoom * 2 / 3;
 	}
-	
+
 	public int getScaledDoomRequirement(World world)
 	{
 		return getScaledDoomRequirement(world.difficultySetting);
 	}
-	
+
 	public int getScaledDoomRequirement(PropertyDoom doom)
 	{
 		return getScaledDoomRequirement(doom.getPlayer().worldObj);
@@ -215,7 +218,7 @@ public abstract class Doomsday {
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have that particular Doomsday disabled, enable in config."));
 			return false;
 		}
-		
+
 		return this.doDoomsday(doom, doom.getPlayer());
 	}
 
@@ -238,7 +241,27 @@ public abstract class Doomsday {
 			if (!player.capabilities.isCreativeMode)
 			{
 				doom.increaseCooldown(this.getScaledCooldown(player.worldObj.difficultySetting) / 3);
-				doom.increaseDoom(this.getScaledDoomRequirement(doom) / 3);
+				int cost = this.getScaledDoomRequirement(doom) / 3;
+
+				if (TragicConfig.amuConsumption)
+				{
+					EntityPlayer mp = (EntityPlayer) doom.getPlayer();
+					PropertyAmulets amu = PropertyAmulets.get(mp);
+
+					ItemAmulet[] amulets = new ItemAmulet[3];
+					int i;
+
+					for (i = 0; i < 3; i++)
+					{
+						if (amu.getActiveAmulet(i) != null && amu.getActiveAmulet(i).getAmuletID() == 24)
+						{
+							cost = doom.getMaxDoom();
+							break;
+						}
+					}	
+				}
+
+				doom.increaseDoom(-cost);
 				this.doBacklashEffect(doom, player);
 				return false;
 			}
@@ -278,23 +301,42 @@ public abstract class Doomsday {
 	{
 		doom.decreaseDoomAmountAndApplyCooldown(this.getScaledDoomRequirement(doom), this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting));
 	}
-	
+
 	public void applyDoomCost(PropertyDoom doom)
 	{
-		doom.increaseDoom(-this.getScaledDoomRequirement(doom));
+		int cost = -this.getScaledDoomRequirement(doom);
+
+		if (TragicConfig.amuConsumption)
+		{
+			EntityPlayer mp = (EntityPlayer) doom.getPlayer();
+			PropertyAmulets amu = PropertyAmulets.get(mp);
+
+			ItemAmulet[] amulets = new ItemAmulet[3];
+			int i;
+
+			for (i = 0; i < 3; i++)
+			{
+				if (amu.getActiveAmulet(i).getAmuletID() == 24 && mp.worldObj.rand.nextInt(16) == 0)
+				{
+					cost *= 0.5;
+					break;
+				}
+			}		
+		}
+		doom.increaseDoom(cost);
 	}
-	
+
 	public void applyCooldown(PropertyDoom doom, int iterations)
 	{
 		doom.increaseCooldown(this.getScaledCooldown(doom.getPlayer().worldObj.difficultySetting) * iterations);
 	}
-	
+
 	public void applyCooldown(PropertyDoom doom, int iterations, int inheritence)
 	{
 		this.applyCooldown(doom, iterations);
 		doom.increaseCooldown(inheritence);
 	}
-	
+
 	/**
 	 * Backlash chance scales based on difficulty, with higher difficulty having a higher chance to backlash, crisis and overflow doomsdays that reduce the
 	 * chance for backlash based on their respective amounts should be done individually
@@ -515,7 +557,7 @@ public abstract class Doomsday {
 	{
 		return player.getHealth() / player.getMaxHealth();
 	}
-	
+
 	/**
 	 * Extended Doomsdays return the instant one they combine with, Instant ones return the combination that they form
 	 * @return
@@ -531,22 +573,22 @@ public abstract class Doomsday {
 		CRISIS(EnumChatFormatting.RED),
 		WORLDSHAPER(EnumChatFormatting.DARK_PURPLE),
 		COMBINATION(EnumChatFormatting.YELLOW);
-		
+
 		private final EnumChatFormatting format;
-		
+
 		private EnumDoomType()
 		{
 			this(EnumChatFormatting.AQUA);
 		}
-		
+
 		private EnumDoomType(EnumChatFormatting format)
 		{
 			this.format = format;
 		}
-		
+
 		public EnumChatFormatting getFormat() { return this.format; }
 	}
-	
+
 	public interface IExtendedDoomsday {} //Marker interface
 
 	static

@@ -44,5 +44,4 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		
 	}
-
 }

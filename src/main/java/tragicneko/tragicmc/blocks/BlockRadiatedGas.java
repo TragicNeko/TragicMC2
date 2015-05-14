@@ -17,7 +17,7 @@ public class BlockRadiatedGas extends BlockGas {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if (!world.isRemote && entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse)
+		if (!world.isRemote && entity instanceof EntityLivingBase)
 		{
 			entity.attackEntityFrom(DamageSource.cactus, 1.0F);
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0));
