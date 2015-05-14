@@ -115,7 +115,7 @@ public class WorldHelper {
 	public static ArrayList<int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z) 
 	{		
 		ArrayList<int[]> list = new ArrayList();
-		if (radius <= 0) return list;
+		if (radius <= 0) throw new IllegalArgumentException("Radius cannot be negative!");
 
 		int[] coords;
 
@@ -123,65 +123,13 @@ public class WorldHelper {
 		{
 			for (double z2 = -radius - 0.55D; z2 < radius + 0.55D; z2 += 0.5D)
 			{
-				coords = new int[] {(int) Math.round(x + x2), (int) Math.round(y), (int) Math.round(z + z2)};
+				coords = new int[] {(int) ((int) x + x2), (int) y, (int) ((int) z + z2)};
 
 				if (MathHelper.sqrt_double(x2 * x2 + z2 * z2) <= radius)
 				{
 					if (!list.contains(coords))
 					{
 						list.add(coords);
-					}
-				}
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * The x, y, z coordinates to be passed in should be for the origin of the circle, returns mappings with coordinates of every block in the circle's area, flag set to true will
-	 * check along the x axis, false will check along the z
-	 * @param world
-	 * @param radius
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @param flag
-	 * @return
-	 */
-	public static ArrayList<int[]> getBlocksInCircularRangeVertical(World world, double radius, double x, double y, double z, boolean flag) 
-	{		
-		ArrayList<int[]> list = new ArrayList();
-		if (radius <= 0) return list;
-
-		int[] coords;
-
-		if (flag)
-		{
-			for (double x2 = -radius - 0.55D; x2 < radius + 0.55D; x2 += 0.5D)
-			{
-				for (double z2 = -radius - 0.55D; z2 < radius + 0.55D; z2 += 0.5D)
-				{
-					coords = new int[] {(int) Math.round(x), (int) Math.round(y + x2), (int) Math.round(z + z2)};
-
-					if (MathHelper.sqrt_double(x2 * x2 + z2 * z2) <= radius)
-					{
-						if (!list.contains(coords)) list.add(coords);
-					}
-				}
-			}
-		}
-		else
-		{
-			for (double x2 = -radius - 0.55D; x2 < radius + 0.55D; x2 += 0.5D)
-			{
-				for (double z2 = -radius - 0.55D; z2 < radius + 0.55D; z2 += 0.5D)
-				{
-					coords = new int[] {(int) Math.round(x + x2), (int) Math.round(y + z2), (int) Math.round(z)};
-
-					if (MathHelper.sqrt_double(x2 * x2 + z2 * z2) <= radius)
-					{
-						if (!list.contains(coords)) list.add(coords);
 					}
 				}
 			}
@@ -202,8 +150,7 @@ public class WorldHelper {
 	public static ArrayList<int[]> getBlocksInSphericalRange(World world, double radius, double x, double y, double z)
 	{		
 		ArrayList<int[]> list = new ArrayList();
-
-		if (radius <= 0) return list;
+		if (radius <= 0) throw new IllegalArgumentException("Radius cannot be negative!");
 
 		double distance = radius + 1.5D;
 
@@ -217,14 +164,13 @@ public class WorldHelper {
 				{					
 					if (MathHelper.sqrt_double(x1 * x1 + z1 * z1 + y1 * y1) < radius)
 					{
-						coords = new int[] {(int) Math.round(x + x1), (int) Math.round(y + y1), (int) Math.round(z + z1)};
+						coords = new int[] {(int) ((int) x + x1), (int) ((int) y + y1), (int) ((int) z + z1)};
 
 						if (!list.contains(coords))
 						{
 							list.add(coords);
 						}
 					}
-
 				}
 			}
 		}
