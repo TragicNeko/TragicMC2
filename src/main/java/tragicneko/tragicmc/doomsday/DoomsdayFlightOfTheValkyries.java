@@ -1,11 +1,12 @@
 package tragicneko.tragicmc.doomsday;
 
+import java.util.List;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -22,18 +23,10 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
+		super.doInitialEffects(effect, doom, player, crucMoment);
 
-		if (effect.utilityList.size() > 0)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Flight of the Valkyries!"));	
-			if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 200, 0));
-			doom.fillDoom();
-		}
-		else
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No entities close enough..."));
-		}
+		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 200, 0));
+		doom.fillDoom();
 	}
 
 	@Override
@@ -41,36 +34,40 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 		EntityLivingBase entity;
 		float damage = crucMoment ? 8.0F : 4.0F;
 		float amt = crucMoment ? 1.5F : 0.5F;
-		
-		if (crucMoment)
+
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
+
+		if (list.size() > 0)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-		
-		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0D, 32.0D, 32.0D));
-		
-		for (int i = 0; i < effect.utilityList.size(); i++)
-		{
-			if (effect.utilityList.get(i) instanceof EntityLivingBase)
+			if (crucMoment) addCrucialMessage(player);
+
+			for (int i = 0; i < list.size(); i++)
 			{
-				entity = (EntityLivingBase) effect.utilityList.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-				
-				entity.motionX = rand.nextDouble() - rand.nextDouble();
-				entity.motionY = 0.75 - rand.nextDouble();
-				entity.motionZ = rand.nextDouble() - rand.nextDouble();
-				
-				if (rand.nextBoolean())
+				if (list.get(i) instanceof EntityLivingBase)
 				{
-					entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F + (rand.nextFloat() * damage));
-					
-					if (rand.nextInt(16) == 0)
+					entity = (EntityLivingBase) list.get(i);
+					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+
+					entity.motionX = rand.nextDouble() - rand.nextDouble();
+					entity.motionY = 0.75 - rand.nextDouble();
+					entity.motionZ = rand.nextDouble() - rand.nextDouble();
+
+					if (rand.nextBoolean())
 					{
-						player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
-						player.heal(amt);
+						entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F + (rand.nextFloat() * damage));
+
+						if (rand.nextInt(16) == 0)
+						{
+							player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
+							player.heal(amt);
+						}
 					}
 				}
 			}
+		}
+		else
+		{
+			addNoEntityMessage(player);
 		}
 	}
 

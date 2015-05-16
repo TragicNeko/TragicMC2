@@ -28,36 +28,7 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Septics!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-
-		double radius = crucMoment ? 6.0D : 4.0D;
-		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-
-		Block block;
-		int[] coords;
-
-		for (int i = 0; i < list2.size(); i++)
-		{
-			if (list2.get(i) instanceof EntityMob) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 1));
-		}
-
-		for (int i = 0; i < list.size(); i++)
-		{
-			coords = (int[]) list.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
-
-			if (block.isAir(player.worldObj, coords[0], coords[1], coords[2]) && World.doesBlockHaveSolidTopSurface(player.worldObj, coords[0], coords[1] - 1, coords[2]))
-			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.SepticGas);
-			}
-		}
-
+		super.doInitialEffects(effect, doom, player, crucMoment);
 		if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600, 0));
 	}
 
@@ -90,10 +61,7 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 			}
 		}
 
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
+		if (crucMoment) addCrucialMessage(player);
 	}
 
 	@Override

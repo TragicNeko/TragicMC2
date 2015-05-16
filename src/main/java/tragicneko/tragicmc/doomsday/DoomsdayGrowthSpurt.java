@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.doomsday;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockLog;
@@ -20,20 +22,17 @@ public class DoomsdayGrowthSpurt extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		double radius = crucMoment ? 12.0D : 7.0D;
-		effect.utilityList =  WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
-		double plantCount = 0.0D;
+		float plantCount = 0.0F;
 		int[] coords;
+		
+		double radius = crucMoment ? 12.0D : 7.0D;
+		List<int[]> list =  WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 
-		for (int i = 0; i < effect.utilityList.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
-			coords = (int[]) effect.utilityList.get(i);
+			coords = list.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
 			if (block == Blocks.gravel)
@@ -102,28 +101,15 @@ public class DoomsdayGrowthSpurt extends Doomsday {
 			}
 		}
 
-		float f = MathHelper.ceiling_double_int(plantCount);
+		if (plantCount > 40.0F) plantCount = 40.0F;
 
-		if (f > 40.0F)
+		if (plantCount > 0.0F)
 		{
-			f = 40.0F;
-		}
-
-		if (f > 0.0F)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Growth Spurt!"));
-
-			if (crucMoment)
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			}
-
-			player.heal(f);
-			player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
+			player.heal(plantCount);
 		}
 		else
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Nowhere to grow plants..."));
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Nowhere to grow plants!"));
 		}
 	}
 

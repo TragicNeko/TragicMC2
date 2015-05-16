@@ -19,26 +19,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
-
-		if (vec == null)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Doomsday needs to be aimed..."));
-		}
-		else
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Suicidal Tendencies!"));
-
-			if (crucMoment)
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			}
-		}
-	}
-
-	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom,	EntityPlayer player, boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
 	{
 		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 		if (vec == null) return;
@@ -51,11 +32,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 		rocket.posX = player.posX + (d4 * 0.115D);
 		rocket.posY = player.posY + player.getEyeHeight();
 		rocket.posZ = player.posZ + (d6 * 0.115D);
-
-		if (!player.worldObj.isRemote)
-		{
-			player.worldObj.spawnEntityInWorld(rocket);
-		}
+		player.worldObj.spawnEntityInWorld(rocket);
 	}
 
 	@Override

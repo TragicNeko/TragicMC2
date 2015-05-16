@@ -27,8 +27,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Death Mark!"));
-		if (crucMoment) player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+		super.doInitialEffects(effect, doom, player, crucMoment);
 
 		double radius = crucMoment ? 12.0D : 6.0D;
 		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
@@ -52,32 +51,38 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		if (effect.utilityEntity != null)
+
+		if (effect.utilityEntity == null || effect.utilityEntity.isDead || ((EntityLivingBase) effect.utilityEntity).getHealth() == 0F)
 		{
-			if (effect.utilityEntity.isDead || ((EntityLivingBase) effect.utilityEntity).getHealth() == 0F)
+			effect.utilityEntity = null;
+			double radius = crucMoment ? 12.0D : 6.0D;
+			List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+
+			Block block;
+			int[] coords;
+
+			Collections.shuffle(list);
+
+			for (int i = 0; i < list.size(); i++)
 			{
-				double radius = crucMoment ? 12.0D : 6.0D;
-				List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-
-				Block block;
-				int[] coords;
-
-				Collections.shuffle(list);
-
-				for (int i = 0; i < list.size(); i++)
+				if (list.get(i) instanceof EntityMob)
 				{
-					if (list.get(i) instanceof EntityMob)
-					{
-						EntityMob e = (EntityMob) list.get(i);
-						e.addPotionEffect(new PotionEffect(TragicConfig.allowSubmission ? TragicPotion.Submission.id : Potion.weakness.id, 600, 10));
-						effect.utilityEntity = e;
-						break;
-					}
+					EntityMob e = (EntityMob) list.get(i);
+					e.addPotionEffect(new PotionEffect(TragicConfig.allowSubmission ? TragicPotion.Submission.id : Potion.weakness.id, 600, 10));
+					effect.utilityEntity = e;
+					break;
 				}
 			}
+
+			if (effect.utilityEntity == null) addNoEntityMessage(player);
+		}
+
+		if (effect.utilityEntity != null)
+		{
 			if (rand.nextBoolean()) effect.utilityEntity.attackEntityFrom(DamageSource.outOfWorld, 1.0F);
 			player.addChatMessage(new ChatComponentText("Target is at " + effect.utilityEntity.posX + ", " + effect.utilityEntity.posY + ", " + effect.utilityEntity.posZ));
 		}
+
 
 	}
 

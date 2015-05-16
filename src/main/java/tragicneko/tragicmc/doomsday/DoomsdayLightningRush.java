@@ -26,47 +26,46 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 3));
+		super.doInitialEffects(effect, doom, player, crucMoment);
 		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 600, 0));
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Lightning Rush!"));
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(2.0D, 2.0D, 2.0D));
 		EntityLivingBase entity;
-		
-		if (crucMoment)
+
+		if (list.size() > 0)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-		
-		for (int i = 0; i < list.size(); i++)
-		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (crucMoment) player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+
+			for (int i = 0; i < list.size(); i++)
 			{
-				entity = (EntityLivingBase) list.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-				entity.applyEntityCollision(player);
-				
-				entity.motionX *= 1.8;
-				entity.motionZ *= 1.8;
-				entity.motionY *= 1.8;
-				
-				float f = crucMoment ? 3.0F : 1.0F;
-				entity.attackEntityFrom(DamageSource.causePlayerDamage(player), f);
-				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, f * rand.nextFloat(), false);
-				player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
-				
-				if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1)); 
+				if (list.get(i) instanceof EntityLivingBase)
+				{
+					entity = (EntityLivingBase) list.get(i);
+					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					entity.applyEntityCollision(player);
+
+					entity.motionX *= 1.8;
+					entity.motionZ *= 1.8;
+					entity.motionY *= 1.8;
+
+					float f = crucMoment ? 3.0F : 1.0F;
+					entity.attackEntityFrom(DamageSource.causePlayerDamage(player), f);
+					player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, f * rand.nextFloat(), false);
+					player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
+
+					if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1)); 
+				}
 			}
 		}
 	}
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

@@ -14,25 +14,6 @@ public class DoomsdayPoisonBreak extends Doomsday {
 	public DoomsdayPoisonBreak(int id) {
 		super(id);
 	}
-	
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		Vec3 vec = WorldHelper.getVecFromEntity(player);
-		
-		if (vec == null)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Doomsday needs to be aimed..."));
-		}
-		else
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Poison Break!"));
-
-			if (crucMoment)
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			}
-		}
-	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
@@ -43,22 +24,18 @@ public class DoomsdayPoisonBreak extends Doomsday {
 		for (int i = 0; i < 4; i ++)
 		{
 			double d0 = vec.xCoord - player.posX; 
-			double d1 = vec.yCoord - player.posY + 0.65;
+			double d1 = vec.yCoord - player.posY;
 			double d2 = vec.zCoord - player.posZ;
 
 			EntityPoisonBarb fireball = new EntityPoisonBarb(player.worldObj, player, d0, d1, d2);
-			fireball.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6D, player.posZ + (d2 * 0.115));
+			fireball.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6, player.posZ + (d2 * 0.115));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
 	}
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TragicItems.MercuryDagger)
-		{
-			player.destroyCurrentEquippedItem();
-			player.playSound("random.break", rand.nextFloat(), rand.nextFloat());
-		}
+		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TragicItems.MercuryDagger) player.destroyCurrentEquippedItem();
 	}
 
 }

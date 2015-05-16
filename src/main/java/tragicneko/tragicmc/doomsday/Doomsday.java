@@ -188,35 +188,36 @@ public abstract class Doomsday {
 			TragicMC.logError("A doomsday was activated with null doom? This error shouldn't be possible and should be reported.");
 			return false;
 		}
-		else if (doom.getCurrentCooldown() != 0)
-		{
-			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You still have cooldown."));
-			return false;
-		}
-		else if (!this.doesCurrentDoomMeetRequirement(doom))
-		{
-			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "Not enough doom for that Doomsday..."));
-			return false;
-		}
-		else if (doom.getPlayer().isDead)
-		{
-			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You are dead and cannot use Doomsdays."));
-			return false;
-		}
 		else if (!TragicConfig.allowDoom)
 		{
-			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have Doom disabled... this shouldn't have been called, report this"));
-			return false;
-		}
-		else if (TragicConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowHarmony &&
-				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
-		{
-			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You can't use a Doomsday with that effect active..."));
+			TragicMC.logError("You have Doom disabled... this shouldn't have been called, report this");
 			return false;
 		}
 		else if (!TragicConfig.doomsdayAllow[this.doomID])
 		{
-			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "You have that particular Doomsday disabled, enable in config."));
+			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail5")));
+			return false;
+		}
+		else if (doom.getCurrentCooldown() != 0)
+		{
+			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail")));
+			return false;
+		}
+		else if (!this.doesCurrentDoomMeetRequirement(doom))
+		{
+			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail2")));
+			return false;
+		}
+		else if (doom.getPlayer().isDead)
+		{
+			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail3")));
+			return false;
+		}
+		
+		else if (TragicConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowHarmony &&
+				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
+		{
+			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail4")));
 			return false;
 		}
 
@@ -237,7 +238,7 @@ public abstract class Doomsday {
 
 		if (rand.nextInt(100) <= backlash && TragicConfig.allowBacklash)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Doomsday backlashed..."));
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + StatCollector.translateToLocal("doomsday.backlash")));
 
 			if (!player.capabilities.isCreativeMode)
 			{
@@ -273,7 +274,11 @@ public abstract class Doomsday {
 		return true;
 	}
 
-	public abstract void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment);
+	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	{
+		player.addChatMessage(new ChatComponentText(this.doomsdayType.format + StatCollector.translateToLocal("doomsday.confirmation") + " " + this.getLocalizedName() + "!"));
+		if (crucMoment) addCrucialMessage(player);
+	}
 
 	/**
 	 * This is the main method each doomsday will override to do it's unique abilities
@@ -565,6 +570,16 @@ public abstract class Doomsday {
 	 */
 	public Doomsday getCombination() {
 		return null;
+	}
+	
+	public static void addCrucialMessage(EntityPlayer player)
+	{
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + StatCollector.translateToLocal("doomsday.crucial")));
+	}
+	
+	public static void addNoEntityMessage(EntityPlayer player)
+	{
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + StatCollector.translateToLocal("doomsday.noEntities")));
 	}
 
 	public enum EnumDoomType

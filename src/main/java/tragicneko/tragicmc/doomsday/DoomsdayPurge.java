@@ -21,43 +21,37 @@ public class DoomsdayPurge extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Purge!"));
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(2.0D, 2.0D, 2.0D));
 		EntityLivingBase entity;
-		
-		if (crucMoment)
+
+		if (list.size() > 0)
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-		
-		for (int i = 0; i < list.size(); i++)
-		{
-			if (list.get(i) instanceof EntityLivingBase)
+			if (crucMoment) addCrucialMessage(player);
+
+			for (int i = 0; i < list.size(); i++)
 			{
-				entity = (EntityLivingBase) list.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-				entity.applyEntityCollision(player);
-				
-				entity.motionX *= 1.8;
-				entity.motionZ *= 1.8;
-				entity.motionY *= 1.8;
-				
-				float f = crucMoment ? 3.0F : 1.0F;
-				entity.attackEntityFrom(DamageSource.causePlayerDamage(player), f);
+				if (list.get(i) instanceof EntityLivingBase)
+				{
+					entity = (EntityLivingBase) list.get(i);
+					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
+					entity.applyEntityCollision(player);
+
+					entity.motionX *= 1.8;
+					entity.motionZ *= 1.8;
+					entity.motionY *= 1.8;
+
+					float f = crucMoment ? 3.0F : 1.0F;
+					entity.attackEntityFrom(DamageSource.causePlayerDamage(player), f);
+				}
 			}
 		}
 	}
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 	@Override

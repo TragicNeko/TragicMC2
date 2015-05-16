@@ -34,11 +34,13 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		double radius = crucMoment ? 12.0D : 7.0D;
+		super.doInitialEffects(effect, doom, player, crucMoment);
+		
+		double radius = crucMoment ? 14.0D : 7.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
 		boolean griefCheck = TragicConfig.griefConfigs[0];
-		double plantCount = 0.0D;
+		float plantCount = 0.0F;
 		int[] coords;
 
 		for (int i = 0; i < list.size(); i++)
@@ -82,112 +84,82 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 			}
 		}
 
-		float f = MathHelper.ceiling_double_int(plantCount);
-
-		if (crucMoment)
-		{
-			f *= 1.5;
-		}
-
-		if (f > 40.0F)
-		{
-			f = 40.0F;
-		}
-
-		if (f > 0.0F)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Nature Drain!"));
-			
-			if (crucMoment)
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			}
-			
-			player.heal(f);
-			player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
-		}
-		else
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No plantlife in range..."));
-		}
+		if (crucMoment) plantCount *= 1.5F;
+		if (plantCount > 40.0F) plantCount = 40.0F;
+		effect.utilityInt = MathHelper.ceiling_double_int(plantCount);
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		double radius = crucMoment ? 12.0D : 7.0D;
-		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		
-		boolean griefCheck = TragicConfig.griefConfigs[0];
-		double plantCount = 0.0D;
-		int[] coords;
-
-		for (int i = 0; i < list.size(); i++)
+		if (effect.utilityInt > 0)
 		{
-			coords = (int[]) list.get(i);
-			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
-
-			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
-					|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
-					|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
-			{
-				if (griefCheck)
-				{
-					if (block instanceof BlockLeaves)
-					{
-						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.gravel);
-					}
-					else
-					{
-						player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
-				}
-				plantCount += 0.2;
-			}
-			else if (block instanceof BlockGrass)
-			{
-				if (griefCheck)
-				{
-					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
-				}
-				plantCount += 0.1;
-			}
-
-			if (block instanceof BlockFarmland)
-			{
-				if (griefCheck)
-				{
-					player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
-				}
-				plantCount += 0.15;
-			}
-		}
-
-		float f = MathHelper.ceiling_double_int(plantCount);
-
-		if (crucMoment)
-		{
-			f *= 1.5;
-		}
-
-		if (f > 40.0F)
-		{
-			f = 40.0F;
-		}
-
-		if (f > 0.0F)
-		{
+			int i = rand.nextInt(effect.utilityInt) + 1;
+			
 			if (crucMoment)
 			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+				i *= 1.5;
+				addCrucialMessage(player);
 			}
 			
-			player.heal(f);
-			player.playSound("random.breath", rand.nextFloat(), rand.nextFloat());
+			if (i > effect.utilityInt) i = effect.utilityInt;
+			effect.utilityInt -= i;
+			player.heal(i);
 		}
 		else
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No plantlife in range..."));
+			double radius = crucMoment ? 14.0D : 7.0D;
+			List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
+			
+			boolean griefCheck = TragicConfig.griefConfigs[0];
+			float plantCount = 0.0F;
+			int[] coords;
+
+			for (int i = 0; i < list.size(); i++)
+			{
+				coords = (int[]) list.get(i);
+				Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
+
+				if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
+						|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
+						|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
+				{
+					if (griefCheck)
+					{
+						if (block instanceof BlockLeaves)
+						{
+							player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.gravel);
+						}
+						else
+						{
+							player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+						}
+					}
+					plantCount += 0.2;
+				}
+				else if (block instanceof BlockGrass)
+				{
+					if (griefCheck)
+					{
+						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+					}
+					plantCount += 0.1;
+				}
+
+				if (block instanceof BlockFarmland)
+				{
+					if (griefCheck)
+					{
+						player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.dirt);
+					}
+					plantCount += 0.15;
+				}
+			}
+
+			if (crucMoment) plantCount *= 1.5F;
+			if (plantCount > 40.0F) plantCount = 40.0F;
+			effect.utilityInt = MathHelper.ceiling_double_int(plantCount);
+			if (plantCount == 0) player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No plantlife in range to drain!"));
 		}
 	}
 

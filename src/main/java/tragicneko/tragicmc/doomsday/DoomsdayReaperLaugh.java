@@ -15,21 +15,15 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayReaperLaugh(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 15;
-		this.maxIterations = 20;
+		this.waitTime = 10;
+		this.maxIterations = 30;
 	}
 	
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
+		super.doInitialEffects(effect, doom, player, crucMoment);
 		if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 300, 0));
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Reaper Laugh!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
 	}
 
 	@Override
@@ -37,15 +31,15 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 	{		
 		for (int l = 0; l < 3; l++)
 		{
-			double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
-			double d1 = (MathHelper.getRandomIntegerInRange(rand, -2, 2) + player.posY) - player.posY;
-			double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ;
+			double d1 = rand.nextDouble() - rand.nextDouble(); 
+			double d2 = (rand.nextDouble() * 6.0D + rand.nextDouble() * 6.0D) + 2.0D;
+			double d3 = rand.nextDouble() - rand.nextDouble();
 
 			EntityPumpkinbomb bomb = new EntityPumpkinbomb(player.worldObj, player);
-			bomb.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6D, player.posZ + (d2 * 0.115));
-			bomb.motionX = d0;
-			bomb.motionY = d1;
-			bomb.motionZ = d2;
+			bomb.setPosition(player.posX + (d1 * 0.115), player.posY + 0.6D, player.posZ + (d3 * 0.115));
+			bomb.motionX = d1;
+			bomb.motionY = d2;
+			bomb.motionZ = d3;
 			player.worldObj.spawnEntityInWorld(bomb);
 		}	
 	}

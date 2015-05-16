@@ -14,13 +14,10 @@ public class DoomsdayGuardian extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Guardian's Call!"));
-		if (crucMoment) player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-
-		float f = Math.max(1 / (this.getCrisis(player)) * 10F, 20F); //Minimum health for the shield is 20, maximum varies depending on health system, vanilla would allow a max of 200
-		double d0 = 0.0D; //placeholder value in order to complete construction
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+		
+		float f = Math.max(1 / (this.getCrisis(player)) * 20F, 40F);
+		double d0 = 0.0D;
 		if (crucMoment) player.heal(player.getHealth() / 2);
 
 		EntityGuardianShield shield = new EntityGuardianShield(player.worldObj, player, d0, d0, d0).setShieldMaxHealth(f);
@@ -42,10 +39,6 @@ public class DoomsdayGuardian extends Doomsday {
 		shield4.setPosition(player.posX, player.posY + 0.3, player.posZ - 2.25);
 		shield4.setShieldOffsets(0, -2.25);
 		player.worldObj.spawnEntityInWorld(shield4);
-	}
-
-	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 	}
 
 	@Override

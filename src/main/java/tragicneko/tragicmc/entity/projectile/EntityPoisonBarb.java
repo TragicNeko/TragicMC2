@@ -17,9 +17,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 		this.setSize(0.125F, 0.125F);
 	}
 
-	public EntityPoisonBarb(World par1World,
-			EntityLivingBase par2EntityLivingBase, double par3, double par5,
-			double par7) {
+	public EntityPoisonBarb(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7) {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
 

@@ -20,69 +20,27 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayMarionette(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 3;
+		this.waitTime = 1;
 		this.maxIterations = 100;
-	}
-
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(4.0D, 4.0D, 4.0D));
-
-		if (list.isEmpty())
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No entity close enough..."));
-		}
-		else
-		{
-			EntityLivingBase entity = null;
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (list.get(i) instanceof EntityLivingBase)
-				{
-					if (list.get(i) instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-					if (entity != null)
-					{
-						if (player.getDistanceToEntity(entity) > player.getDistanceToEntity(list.get(i))) entity = (EntityLivingBase) list.get(i);
-					}
-					if (entity == null) entity = (EntityLivingBase) list.get(i);
-				}
-			}
-			
-			effect.utilityEntity = entity;
-
-			if (effect.utilityEntity != null && effect.utilityEntity instanceof EntityLivingBase)
-			{
-				if (TragicConfig.allowSubmission) ((EntityLivingBase) effect.utilityEntity).addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 200, 10));
-
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Marionette!"));
-
-				if (crucMoment)
-				{
-					player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-				}
-			}
-			else
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No living entities close enough..."));
-			}
-		}
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		if (effect.utilityEntity != null && !effect.utilityEntity.isDead && effect.utilityEntity instanceof EntityLivingBase)
 		{
-			Vec3 vec = WorldHelper.getVecFromEntity(player, 5.0D);
+			Vec3 vec = WorldHelper.getVecFromEntity(player, 5.5D);
 
 			if (vec != null)
 			{
 				((EntityLivingBase) effect.utilityEntity).setPositionAndUpdate(vec.xCoord, vec.yCoord, vec.zCoord);
-				if (rand.nextInt(8) == 0) effect.utilityEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), 1.0F);
+				if (rand.nextInt(8) == 0 || crucMoment) effect.utilityEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), crucMoment ? 5.0F : 3.0F);
 			}
+			
+			if (crucMoment) addCrucialMessage(player);
 		}
 		else
 		{
-			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(4.0D, 4.0D, 4.0D));
+			List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(6.0D, 6.0D, 6.0D));
 			EntityLivingBase entity = null;
 			
 			for (int i = 0; i < list.size(); i++)
@@ -93,11 +51,13 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 					{
 						if (player.getDistanceToEntity(entity) > player.getDistanceToEntity(list.get(i))) entity = (EntityLivingBase) list.get(i);
 					}
-					if (entity == null) entity = (EntityLivingBase) list.get(i);
+					else entity = (EntityLivingBase) list.get(i);
 				}
 			}
 			
 			effect.utilityEntity = entity;
+			
+			if (entity == null) addNoEntityMessage(player);
 		}
 	}
 

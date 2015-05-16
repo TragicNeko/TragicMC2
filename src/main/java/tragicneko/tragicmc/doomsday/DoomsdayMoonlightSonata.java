@@ -10,11 +10,6 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 	public DoomsdayMoonlightSonata(int id) {
 		super(id);
 	}
-	
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
@@ -22,12 +17,6 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 		if (!player.worldObj.isDaytime() && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
 		{
 			doom.fillDoom();
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_BLUE + "You have used Moonlight Sonata!"));
-			
-			if (crucMoment)
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			}
 		}
 		else
 		{

@@ -16,21 +16,9 @@ public class DoomsdayHarden extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		boolean flag = TragicConfig.allowInvulnerability;
 		player.addPotionEffect(new PotionEffect(flag ? TragicPotion.Invulnerability.id : Potion.resistance.id, crucMoment ? 40 : 20, flag ? 0 : 10));
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Harden!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-	}
-
-	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-
 	}
 
 	@Override

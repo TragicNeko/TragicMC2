@@ -20,27 +20,24 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Fire Rain!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-		
+		super.doInitialEffects(effect, doom, player, crucMoment);
 		player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 500));
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		double d1 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
-		double d2 = (MathHelper.getRandomIntegerInRange(rand, 4, 10) + player.posY) - player.posY;
-		double d3 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ;
+		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D; 
+		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
+		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D; 
 		
-		for (int l = 0; l < 16; l++)
+		int i = crucMoment ? 16 : 8;
+		if (crucMoment) addCrucialMessage(player);
+		
+		for (int l = 0; l < i; l++)
 		{
 			EntitySmallFireball fireball = new EntitySmallFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
-			player.posZ + rand.nextInt(16) - rand.nextInt(16));
+			fireball.setPosition(player.posX + rand.nextInt(12) - rand.nextInt(12), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 18 + rand.nextInt(12),
+			player.posZ + rand.nextInt(12) - rand.nextInt(12));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
 	}

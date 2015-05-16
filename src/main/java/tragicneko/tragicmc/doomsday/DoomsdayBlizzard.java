@@ -13,29 +13,19 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 	public DoomsdayBlizzard(int id) {
 		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 6;
-		this.maxIterations = 100;
-	}
-
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Blizzard!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
+		this.maxIterations = 60;
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		for (int l = 0; l < 30; l++)
 		{
-			double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
-			double d1 = (MathHelper.getRandomIntegerInRange(rand, -2, 2) + player.posY) - player.posY;
-			double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ; 
+			double d1 = rand.nextDouble() - rand.nextDouble(); 
+			double d2 = rand.nextDouble()+ rand.nextDouble();
+			double d3 = rand.nextDouble() - rand.nextDouble();
 
-			EntityIcicle fireball = new EntityIcicle(player.worldObj, player, d0, d1, d2);
-			fireball.setPosition(player.posX + (d0 * 0.115), player.posY + 0.6D, player.posZ + (d2 * 0.115));
+			EntityIcicle fireball = new EntityIcicle(player.worldObj, player, d1, d2, d3);
+			fireball.setPosition(player.posX + (d1 * 0.115), player.posY + 0.6D, player.posZ + (d3 * 0.115));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}	
 	}

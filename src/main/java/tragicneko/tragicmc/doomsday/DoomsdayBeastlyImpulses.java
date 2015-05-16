@@ -12,17 +12,6 @@ public class DoomsdayBeastlyImpulses extends Doomsday {
 	public DoomsdayBeastlyImpulses(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
-	
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Beastly Impulses!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 

@@ -10,11 +10,6 @@ public class DoomsdayKurayami extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		//TODO add Kurayami mob so that I can actually implement the Kurayami Doomsday
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
 	}

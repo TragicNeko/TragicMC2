@@ -12,20 +12,11 @@ public class DoomsdayParadigmShift extends Doomsday {
 	public DoomsdayParadigmShift(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
-
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "You have used Paradigm Shift!"));
-		if (crucMoment) player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-
-		effect.utilityInt = (int) ((1 / this.getCrisis(player)) * 10);
-	}
-
+	
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
-		TragicMC.logInfo("Integer value is " + effect.utilityInt);
-		boolean flag = effect.utilityInt >= 15 || effect.isCommandActivated;
+		boolean flag = (int) ((1 / this.getCrisis(player)) * 10) >= 15 || effect.isCommandActivated;
 		if (crucMoment)
 		{
 			Doomsday dday = this.doomsdayList[rand.nextInt(this.doomsdayList.length)];

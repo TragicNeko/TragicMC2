@@ -20,11 +20,6 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Rapid Fire!"));
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		float f = 1.0F;
@@ -35,7 +30,7 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 		if (crucMoment)
 		{
 			damage += 3.0;
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
+			addCrucialMessage(player);
 		}
 
 		entityarrow.setDamage(entityarrow.getDamage() + damage);
@@ -43,39 +38,21 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 		entityarrow.motionZ *= 1.3;
 		entityarrow.motionY *= 1.1;
 
-		if (f == 1.0F)
-		{
-			entityarrow.setIsCritical(true);
-		}
+		if (f == 1.0F) entityarrow.setIsCritical(true);
 
 		int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, stack);
+		if (l > 0) entityarrow.setKnockbackStrength(l);
 
-		if (l > 0)
-		{
-			entityarrow.setKnockbackStrength(l);
-		}
-
-		if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, stack) > 0)
-		{
-			entityarrow.setFire(200);
-		}
+		if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, stack) > 0) entityarrow.setFire(200);
 
 		player.worldObj.playSoundAtEntity(player, "random.bow", 1.0F, 1.0F / (Doomsday.rand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 		entityarrow.canBePickedUp = 2;
-
-		if (!player.worldObj.isRemote)
-		{
-			player.worldObj.spawnEntityInWorld(entityarrow);
-		}
+		player.worldObj.spawnEntityInWorld(entityarrow);
 	}
-	
+
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TragicItems.HuntersBow)
-		{
-			player.destroyCurrentEquippedItem();
-			player.playSound("random.break", rand.nextFloat(), rand.nextFloat());
-		}
+		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TragicItems.HuntersBow) player.destroyCurrentEquippedItem();
 	}
 
 	@Override

@@ -22,17 +22,12 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	public DoomsdayFirestorm(int id) {
 		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 20;
-		this.maxIterations = 60;
+		this.maxIterations = 30;
 	}
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Firestorm!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
+		super.doInitialEffects(effect, doom, player, crucMoment);
 		
 		if (TragicConfig.allowFlight)
 		{
@@ -42,6 +37,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		{
 			player.addPotionEffect(new PotionEffect(Potion.jump.id, 600, 3));
 		}
+		player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 600));
 
 		if (crucMoment)
 		{
@@ -62,14 +58,41 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 				}
 			}
 		}
+		//Because the wait time is so high, we'll do it on the initial use to reduce the awkward pause after using it
+		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D; 
+		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
+		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
+		
+		for (int l = 0; l < 12; l++)
+		{
+			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
+			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
+			player.posZ + rand.nextInt(16) - rand.nextInt(16));
+			player.worldObj.spawnEntityInWorld(fireball);
+		}
+		
+		for (int l = 0; l < 24; l++)
+		{
+			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
+			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
+			player.posZ + rand.nextInt(8) - rand.nextInt(8));
+			player.worldObj.spawnEntityInWorld(fireball);
+		}
+		
+		if (rand.nextInt(4) == 0)
+		{
+			double d4 = d1 + rand.nextInt(32) - rand.nextInt(32);
+			double d5 = d3 + rand.nextInt(32) - rand.nextInt(32);
+			player.worldObj.addWeatherEffect(new EntityLightningBolt(player.worldObj, d4, player.worldObj.getTopSolidOrLiquidBlock((int) d4, (int) d5), d5));
+		}
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		
-		double d1 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posX) - player.posX; 
-		double d2 = (MathHelper.getRandomIntegerInRange(rand, 4, 10) + player.posY) - player.posY;
-		double d3 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + player.posZ) - player.posZ;
+		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D; 
+		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
+		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
 		
 		for (int l = 0; l < 12; l++)
 		{

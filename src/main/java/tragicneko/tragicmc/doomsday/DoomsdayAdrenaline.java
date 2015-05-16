@@ -18,16 +18,6 @@ public class DoomsdayAdrenaline extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "You have used Adrenaline!"));
-		
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-	}
-	
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		float f = (1 / this.getCrisis(player));

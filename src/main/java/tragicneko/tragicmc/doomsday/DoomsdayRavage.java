@@ -1,9 +1,10 @@
 package tragicneko.tragicmc.doomsday;
 
+import java.util.List;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -14,30 +15,18 @@ public class DoomsdayRavage extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-		double d0 = crucMoment ? 24.0D : 12.0D;
-		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Ravage!"));
-		
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-	}
-	
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
+		double d0 = crucMoment ? 24.0D : 12.0D;
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 		float f = crucMoment ? 5.0F : 2.5F;
 		int meow = crucMoment ? 4 : 0;
 
-		for (int i = 0; i < effect.utilityList.size(); i ++)
+		for (int i = 0; i < list.size(); i ++)
 		{
-			if (effect.utilityList.get(i) instanceof EntityLivingBase)
+			if (list.get(i) instanceof EntityLivingBase)
 			{
-				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+				EntityLivingBase entity = (EntityLivingBase) list.get(i);
 				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
 			}
@@ -45,7 +34,7 @@ public class DoomsdayRavage extends Doomsday {
 
 		for (int x = 0; x < rand.nextInt(8) + 4 + meow; x++)
 		{
-			player.worldObj.createExplosion(player, player.posX + (rand.nextInt(9) - 4), player.posY + (rand.nextInt(3) - 1), player.posZ + (rand.nextInt(9) - 4), rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
+			player.worldObj.createExplosion(player, player.posX + (rand.nextInt(9) - 4), player.posY + (rand.nextInt(4) - 1), player.posZ + (rand.nextInt(9) - 4), rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
 		}
 	}
 

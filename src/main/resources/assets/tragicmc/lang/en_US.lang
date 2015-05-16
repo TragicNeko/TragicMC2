@@ -1021,6 +1021,16 @@ potion.hacked=Hacked
 potion.convergence=Convergence
 potion.divinity=Divinity
 
+doomsday.confirmation=You have used
+doomsday.backlash=Doomsday has backlashed...
+doomsday.crucial=Crucial Moment!
+doomsday.fail=You still have cooldown and cannot use a Doomsday yet!
+doomsday.fail2=Not enough Doom for that Doomsday!
+doomsday.fail3=You are dead and cannot use Doomsdays.
+doomsday.fail4=You cannot use a Doomsday with that effect active!
+doomsday.fail5=You have that particular Doomsday disabled, enable in config.
+doomsday.noEntities=No entities in range to target!
+
 doomsday.influence.type=Influence
 doomsday.overflow.type=Overflow
 doomsday.worldShaper.type=World Shaper

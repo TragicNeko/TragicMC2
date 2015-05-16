@@ -1,11 +1,12 @@
 package tragicneko.tragicmc.doomsday;
 
+import java.util.List;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -17,55 +18,45 @@ public class DoomsdayHarmonizer extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		double d0 = 12.0;
-		effect.utilityList = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
-
-		if (effect.utilityList.size() > 0)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "You have used Harmonizer!"));
-
-			if (crucMoment)
-			{
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			}
-		}
-		else
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "No entities close enough..."));
-		}
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
+
+		double d0 = 12.0;
+		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
 		float crisis = this.getCrisis(player);
 		crisis /= 1.0F / 20.0F;
 
-		for (int i = 0; i < effect.utilityList.size(); i ++)
+		if (list.size() > 0)
 		{
-			if (effect.utilityList.get(i) instanceof EntityLivingBase)
+			for (int i = 0; i < list.size(); i ++)
 			{
-				EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-
-				int dur = crucMoment ? 600 : 300;
-
-				if (TragicConfig.allowHarmony)
+				if (list.get(i) instanceof EntityLivingBase)
 				{
-					entity.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, dur));
-				}
-				else
-				{
-					entity.addPotionEffect(new PotionEffect(Potion.blindness.id, dur));
-				}
+					EntityLivingBase entity = (EntityLivingBase) list.get(i);
+					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 
-				if (player.getHealth() < player.getMaxHealth())
-				{
-					float potato = crucMoment ? crisis * 2 : crisis;
-					player.heal(potato);
+					int dur = crucMoment ? 600 : 300;
+
+					if (TragicConfig.allowHarmony)
+					{
+						entity.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, dur));
+					}
+					else
+					{
+						entity.addPotionEffect(new PotionEffect(Potion.blindness.id, dur));
+					}
+
+					if (player.getHealth() < player.getMaxHealth())
+					{
+						float potato = crucMoment ? crisis * 2 : crisis;
+						player.heal(potato);
+					}
 				}
 			}
+		}
+		else
+		{
+			addNoEntityMessage(player);
 		}
 	}
 

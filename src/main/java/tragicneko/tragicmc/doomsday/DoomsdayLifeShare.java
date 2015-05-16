@@ -16,51 +16,33 @@ public class DoomsdayLifeShare extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Life Share!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-		
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		List<EntityLivingBase> list = player.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, player.boundingBox.expand(16.0, 16.0, 16.0));
 		EntityLivingBase e;
 		float total = 0F;
-		
-		if (list.size() > 0)
+
+		for (int i = 0; i < list.size(); i++)
 		{
-			for (int i = 0; i < list.size(); i++)
-			{
-				e = list.get(i);
-				total += e.getHealth() / e.getMaxHealth();
-			}
-			
-			total /= list.size();
-			if (total < 0.1F) total = 0.1F;
-			
-			TragicMC.logInfo("Amount of entities was " + list.size());
-			TragicMC.logInfo("Total was " + total);
-			
-			for (int i = 0; i < list.size(); i++)
-			{
-				e = list.get(i);
-				
-				if (e == player && crucMoment) player.setHealth(player.getMaxHealth() * total + (player.getMaxHealth() / 2));
-				else e.setHealth(total * e.getMaxHealth());
-			}
+			e = list.get(i);
+			total += e.getHealth() / e.getMaxHealth();
 		}
-			
+
+		total /= list.size();
+		if (total < 0.1F) total = 0.1F;
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			e = list.get(i);
+
+			if (e == player && crucMoment) player.setHealth(player.getMaxHealth() * total + (player.getMaxHealth() / 2));
+			else e.setHealth(total * e.getMaxHealth());
+		}		
 	}
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

@@ -21,15 +21,9 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "You have used Titanfall!"));
-
+		super.doInitialEffects(effect, doom, player, crucMoment);
 		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 400, 0));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-			player.worldObj.createExplosion(player, player.posX, player.posY, player.posZ, 5.0f * rand.nextFloat(), false);
-		}
+		if (crucMoment) player.worldObj.createExplosion(player, player.posX, player.posY, player.posZ, 5.0f * rand.nextFloat(), false);
 	}
 
 	@Override

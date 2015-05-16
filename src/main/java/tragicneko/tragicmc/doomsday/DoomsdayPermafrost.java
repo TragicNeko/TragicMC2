@@ -22,63 +22,14 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayPermafrost(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 3;
+		this.waitTime = 5;
 		this.maxIterations = 60;
-	}
-
-	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Permafrost!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-
-		double radius = crucMoment ? 6.0D : 4.0D;
-		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-		
-		Block block;
-		int[] coords;
-
-		for (int i = 0; i < list2.size(); i++)
-		{
-			if (list2.get(i) instanceof EntityMob) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
-		}
-
-		for (int i = 0; i < list.size(); i++)
-		{
-			coords = (int[]) list.get(i);
-			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
-
-			if (block == Blocks.lava)
-			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.obsidian);
-			}
-			else if (block == Blocks.water)
-			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.ice);
-			}
-			else if (block == Blocks.ice)
-			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.packed_ice);
-			}
-			else if (block instanceof BlockBush || block instanceof BlockLeaves)
-			{
-				player.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
-			}
-			else if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(player.worldObj, coords[0], coords[1] - 1, coords[2]) && rand.nextBoolean())
-			{
-				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.snow_layer, rand.nextInt(8), 2);
-			}
-		}
 	}
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 
-		double radius = crucMoment ? 6.0D : 4.0D;
+		double radius = crucMoment ? 8.0D : 4.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
 		
@@ -117,10 +68,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 			}
 		}
 		
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
+		if (crucMoment) addCrucialMessage(player);
 	}
 
 	@Override

@@ -14,27 +14,13 @@ public class DoomsdayHuntersInstinct extends Doomsday {
 	}
 	
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Hunter's Instinct!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-	}
-	
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		player.addPotionEffect(new PotionEffect(Potion.jump.id, 400, 1));
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 400, 2));
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 400, 0));
-
-		if (crucMoment)
-		{
-			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 1));
-		}
+		int i = crucMoment ? 800 : 400;
+		player.addPotionEffect(new PotionEffect(Potion.jump.id, i, 1));
+		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, i, 2));
+		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, i, 0));
+		if (crucMoment) player.addPotionEffect(new PotionEffect(Potion.regeneration.id, i, 1));
 	}
 
 	@Override

@@ -14,20 +14,8 @@ public class DoomsdaySharpen extends Doomsday {
 	}
 
 	@Override
-	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, crucMoment ? 40 : 20, 10));
-		
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "You have used Sharpen!"));
-
-		if (crucMoment)
-		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));
-		}
-	}
-
-	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, crucMoment ? 40 : 20, 10));
 	}
 
 	@Override
