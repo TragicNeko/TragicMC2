@@ -71,6 +71,8 @@ public class DropEvents {
 		}
 		else if (event.block instanceof BlockLeaves && rand.nextInt(32) == 0)
 		{
+			event.drops.clear();
+			
 			if (rand.nextInt(16) != 0)
 			{
 				event.drops.add(new ItemStack(Items.stick));
@@ -116,10 +118,15 @@ public class DropEvents {
 		}
 		else if (event.block instanceof BlockFlower || event.block instanceof BlockMushroom || event.block instanceof BlockTallGrass)
 		{
-			if (rand.nextInt(16) == 0) event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
+			if (rand.nextInt(16) == 0)
+			{
+				event.drops.clear();
+				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
+			}
 		}
 		else if (event.block == Blocks.double_plant && rand.nextInt(4) == 0)
 		{
+			event.drops.clear();
 			if (event.blockMetadata != 4)
 			{
 				event.drops.add(new ItemStack(TragicItems.Projectile, 1, 11));
@@ -136,6 +143,7 @@ public class DropEvents {
 		}
 		else if (event.block instanceof BlockGenericLeaves && rand.nextInt(16) == 0)
 		{
+			event.drops.clear();
 			event.drops.add(new ItemStack(TragicItems.ExoticFruit));
 		}
 	}

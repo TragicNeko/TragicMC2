@@ -16,13 +16,14 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 
 	public static final String propertyName = "TragicMC.Amulets";
 	private final EntityPlayer thePlayer;
-	public final InventoryAmulet inventory = new InventoryAmulet();
+	public final InventoryAmulet inventory;
 	private byte slotsOpen;
 
 	public PropertyAmulets(EntityPlayer player)
 	{
 		this.thePlayer = player;
 		this.slotsOpen = 1;
+		this.inventory = new InventoryAmulet(player);
 	}
 
 	public static final void register(EntityPlayer player)

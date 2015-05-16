@@ -13,8 +13,13 @@ public class InventoryAmulet implements IInventory {
 	private final String tagName = "InvAmulet";
 
 	public static final int invSize = 28;
-
-	ItemStack[] inventory = new ItemStack[invSize];
+	public ItemStack[] inventory = new ItemStack[invSize];
+	public final EntityPlayer player;
+	
+	public InventoryAmulet(EntityPlayer player)
+	{
+		this.player = player;
+	}
 
 	@Override
 	public int getSizeInventory() 
@@ -157,6 +162,19 @@ public class InventoryAmulet implements IInventory {
 				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
 			}
 		}
+	}
+
+	public void dropAllAmulets() {
+		int i;
+
+        for (i = 0; i < this.inventory.length; ++i)
+        {
+            if (this.inventory[i] != null)
+            {
+                this.player.func_146097_a(this.inventory[i], true, false);
+                this.inventory[i] = null;
+            }
+        }
 	}
 
 }

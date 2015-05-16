@@ -30,8 +30,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
-import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -42,13 +42,12 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -59,7 +58,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class AmuletEvents {
@@ -1025,6 +1023,16 @@ public class AmuletEvents {
 					break;
 				}
 			}
+		}
+		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.deathDropsAmulets && !event.entityLiving.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+		{
+			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
+			PropertyAmulets amu = PropertyAmulets.get(player);
+			if (amu == null) return;
+
+			InventoryAmulet inv = amu.inventory;
+			inv.dropAllAmulets();
+			inv.markDirty();
 		}
 	}
 

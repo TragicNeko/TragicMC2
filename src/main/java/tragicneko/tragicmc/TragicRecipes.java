@@ -620,7 +620,7 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ToughLeather, 1), 
-				TragicItems.WovenSilk, Items.leather
+				Items.leather, TragicItems.WovenSilk, Items.leather
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ToughLeather, 1),
