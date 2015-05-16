@@ -3947,7 +3947,7 @@ Added Seeker sound, it only plays when it's targetting something, it gains volum
 it kills them
 Slight modification done to Directed Lightning sounds
 
-2.43.2469++ <203> (May 13, 2015)
+2.44.2469++ <203> (May 13, 2015) [Major Doomsday cleanup, Amulets changed to be server and client-side, lots of new content for both]
 Set up adding all of the new Doomsdays, Amulets and Structures
 Planned a large amount of random Achievements but still need to add the "plotline" ones
 Important change to Amulets was done, so that effects would be done on client and server side, this was done to make the Spider Amulet work but will most
@@ -3980,6 +3980,16 @@ Added Paradigm Shift Doomsday
 Did some adjustments to iterations for various Doomsdays (affects how often they update per second and how many times they'll update in total)
 Increased time it takes to mine a Summon block (this will be used for an Achievement)
 Added Adrenaline Doomsday
+Added more localized terms for Doomsdays, made confirmation message and crucial moment messages automatic on use
+Added static methods for displaying crucial moment and no entity in range messages
+Cleaned up all current Doomsday classes, removed a lot of redundancies within them
+Modified Guardian physics a bit
+Changed how Nature Drain works, it now heals you slowly and only "drains" the plantlife around you when it runs out of drained energy
+Added Escape Doomsday
+Added Gift of the Gods Doomsday
+Added Gambler Doomsday
+Added Psygote sounds
+Added Archangel sounds
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
@@ -3989,8 +3999,6 @@ Ranmas sounds: whirling sounds, metallic ding sound when hit
 Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
 Abomination sounds: kinda derpy beast sounds
 Erkel sounds: high-pitched tones
-Psygote sounds: baby noises, possibly with lots of reverb/delay put on them similarly to the Inkling
-Archangel sounds: holy sounds (choired vocals)
 Ire sounds: Possibly quiet/just use default sounds
 Fusea sounds: Wah-wah sounds
 Parasmite sounds: shrieks, metroid-like sounds
@@ -4016,16 +4024,15 @@ AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob t
 to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
 ("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
 use the same drop rates and items from that actually
+Kurayami - A black & blue fox that looks like a smaller version of the Kitsunakuma, it is not immune to all damage except for fireballs and does not taunt
+enemies, it aggressively attacks any mobs that are near it (it will extend EntityGolem)
 
 ==Scroll only Doomsdays (for now at least)==
 Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
-Escape, World Shaper, creates multiple explosive particles around the user and inflicts blindness on all nearby mobs
-Gift of the Gods, World Shaper, makes it rain random luxury drops, like diamond, ruby, sapphire, etc. may also do stuff like coal, cake or sushi
-Gambler, Influence, gives you a random Potion Effect for a random duration and random amplifier
 Soulstealer, Influence, steals health from the mob closest to you and gives it to you, keeps the mob "leashed"
 Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
 Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
-Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion
+Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion //every tick, 1 cost, 2 cooldown
 Magnetizer, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
 Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
 Dimentia, Influence, mobs around you start attacking each other
