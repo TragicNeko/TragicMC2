@@ -3972,9 +3972,18 @@ Added Life Share Doomsday
 Added Kurayami, still need the Kurayami entity to make it actually functional, but currently I'm going to make it at least strong enough to take out a few
 Iron Golems, will despawn after an amount of time that depends on the Overflow amount it it summoned with, it'll use a more aggressive form of the Kitsunakuma's
 AI/attack patterns but it will take damage like a normal mob
+Added feature along with a config option to enable/disable dropping all Amulets on death
+Drops for flowers/leaves now stop the block from being dropped to avoid easy farming
+Changed Tough Leather recipe again to require two leathers
+Added Death Mark Doomsday
+Added Paradigm Shift Doomsday
+Did some adjustments to iterations for various Doomsdays (affects how often they update per second and how many times they'll update in total)
+Increased time it takes to mine a Summon block (this will be used for an Achievement)
+Added Adrenaline Doomsday
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
+Do experience value scaling for mobs/bosses, currently most of them give like 5 experience so we'll increase this for tougher mobs
 
 Ranmas sounds: whirling sounds, metallic ding sound when hit
 Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
@@ -4010,10 +4019,6 @@ use the same drop rates and items from that actually
 
 ==Scroll only Doomsdays (for now at least)==
 Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
-Life Share, Influence, gets the average percentage of health each mob has around you and sets all to the average (includes your health in both calculations)
-Death Mark, Overflow, a nearby enemy is inflicted with Submission X and gets damaged randomly for a few minutes
-Paradigm Shift, Influence, activates a random Doomsday effect
-Adrenaline, Crisis, gives you a Speed Boost V for like 5 seconds, higher amplifier/duration for lower health that you have
 Escape, World Shaper, creates multiple explosive particles around the user and inflicts blindness on all nearby mobs
 Gift of the Gods, World Shaper, makes it rain random luxury drops, like diamond, ruby, sapphire, etc. may also do stuff like coal, cake or sushi
 Gambler, Influence, gives you a random Potion Effect for a random duration and random amplifier
