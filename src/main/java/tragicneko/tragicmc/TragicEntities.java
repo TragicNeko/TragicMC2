@@ -422,7 +422,7 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityWisp.class, "TragicMC.Wisp", id++, 0xFF2323, 0xCB6B4B);
 		}
 
-		if (TragicConfig.allowAbomination)
+		if (TragicConfig.allowAbomination) //TODO finish mob sounds
 		{
 			EntityRegistry.registerModEntity(EntityAbomination.class, "Abomination", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowNonDimensionMobSpawns)

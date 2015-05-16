@@ -71,9 +71,9 @@ public abstract class Doomsday {
 	public static final Doomsday DeathMark = new DoomsdayDeathMark(46);
 	public static final Doomsday ParadigmShift = new DoomsdayParadigmShift(47);
 	public static final Doomsday Adrenaline = new DoomsdayAdrenaline(48); //TODO add the Doomsdays, their names, localizations and abilities
-	//public static final Doomsday Escape = new Doomsday();
-	//public static final Doomsday GiftOfTheGods = new Doomsday();
-	//public static final Doomsday Gambler = new Doomsday();
+	public static final Doomsday Escape = new DoomsdayEscape(49);
+	public static final Doomsday GiftOfTheGods = new DoomsdayGiftOfTheGods(50);
+	public static final Doomsday Gambler = new DoomsdayGambler(51);
 	//public static final Doomsday Soulstealer = new Doomsday();
 	//public static final Doomsday Parasite = new Doomsday();
 	//public static final Doomsday Symbiosis = new Doomsday();
@@ -95,7 +95,7 @@ public abstract class Doomsday {
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
-		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline"
+		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
