@@ -497,9 +497,9 @@ public class TragicBlocks {
 		{
 			@Override
 			public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
-		    {
-		        return side == ForgeDirection.UP;
-		    }
+			{
+				return side == ForgeDirection.UP;
+			}
 		}.setBlockTextureName("tragicmc:MoltenRockBottom").setBlockName("tragicmc.scorchedRock").setHardness(0.8F).setResistance(10.0F));
 		GameRegistry.registerBlock(ScorchedRock, ItemBlock.class, "scorchedRock");
 
@@ -590,7 +590,7 @@ public class TragicBlocks {
 
 		DarkVine = new BlockWickedVine().setBlockName("tragicmc.darkVine").setBlockTextureName("tragicmc:DarkVine").setLightLevel(0F);
 		GameRegistry.registerBlock(DarkVine, ItemBlock.class, "darkVine");
-		
+
 		DarkGas = new BlockGas() {
 			@Override
 			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
@@ -610,26 +610,31 @@ public class TragicBlocks {
 							0.0F, 0.0F, 0.0F);
 				}
 			}
-			
+
 			@Override
 			public void updateTick(World world, int x, int y, int z, Random rand) {}
 		}.setBlockName("tragicmc.darkGas");
 		GameRegistry.registerBlock(DarkGas, ItemBlock.class, "darkGas");
-		
+
 		DarkTallGrass = new BlockGenericTallGrass("Dark").setBlockName("tragicmc.darkTallGrass");
 		GameRegistry.registerBlock(DarkTallGrass, ItemBlock.class, "darkTallGrass");
-		
+
 		SepticGas = new BlockGas() {
 			@Override
 			public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 			{
 				if (!world.isRemote && entity instanceof EntityLivingBase)
 				{
-					entity.attackEntityFrom(DamageSource.cactus, 1.0F);
-					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0));
+					boolean flag = TragicConfig.allowImmunity && ((EntityLivingBase) entity).isPotionActive(TragicPotion.Immunity);
+
+					if (!flag)
+					{
+						entity.attackEntityFrom(DamageSource.cactus, 1.0F);
+						((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0));
+					}
 				}
 			}
-			
+
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(World world, int x, int y, int z, Random rand)

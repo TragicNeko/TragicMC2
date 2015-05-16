@@ -29,7 +29,7 @@ public class BlockSummon extends BlockContainer {
 		super(Material.iron);
 		this.setCreativeTab(TragicMC.Creative);
 		this.setResistance(100.0F);
-		this.setHardness(10.0F);
+		this.setHardness(150.0F);
 		this.setStepSound(soundTypeStone);
 		this.setBlockName("tragicmc.summonBlock");
 	}
