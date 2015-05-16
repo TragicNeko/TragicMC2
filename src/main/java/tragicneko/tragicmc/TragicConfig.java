@@ -31,7 +31,7 @@ public class TragicConfig {
 
 	private static boolean[] blanketAmulet = new boolean[10];
 	public static boolean allowNormalAmulets, allowCursedAmulets, allowEpicAmulets, allowAmuletLeveling, allowAmuletCrafting, shouldUnlockAmuletSlots, allowAmuletKillRecharge;
-	public static boolean showAmuletStatus, allowAmuletModifiers;
+	public static boolean showAmuletStatus, allowAmuletModifiers, deathDropsAmulets;
 	private static int[] amuletInts = new int[8];
 	public static int maxAmuletSlots, overallAmuletRarity, amuletReleaseRarity, amuletModifierChance, amuletModifierChance2, amuletModifierChance3;
 	private static boolean[] normalAmuletConfigs = new boolean[24];
@@ -185,6 +185,7 @@ public class TragicConfig {
 		blanketAmulet[mapping++] = (config.get(catAmulet, "allowToughKillRecharge", true).getBoolean(true));
 		blanketAmulet[mapping++] = (config.get(catAmulet, "showAmuletStatusGui", true).getBoolean(true));
 		blanketAmulet[mapping++] = (config.get(catAmulet, "allowAmuletModifiers", true).getBoolean(true));
+		blanketAmulet[mapping++] = (config.get(catAmulet, "deathDropsAmulets", true).getBoolean(true));
 
 		mapping = 0;
 		amuletInts[mapping++] = MathHelper.clamp_int((config.get(catAmulet, "maxAmuletSlots", 3).getInt(3)), 1, 3);
@@ -402,6 +403,9 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySepticsAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayKurayamiAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayLifeShareAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDeathMarkAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayParadigmShiftAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayAdrenalineAllow", true).getBoolean(true));
 
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -449,6 +453,9 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySepticsCooldown", 6).getInt(6));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayKurayamiCooldown", 80).getInt(80));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayLifeShareCooldown", 25).getInt(25));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDeathMarkCooldown", 10).getInt(10));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayParadigmShiftCooldown", 0).getInt(0));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayAdrenalineCooldown", 21).getInt(21));
 
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -496,6 +503,9 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySepticsCost", 8).getInt(8));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayKurayamiCost", 115).getInt(115));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayLifeShareCost", 65).getInt(65));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDeathMarkCost", 12).getInt(12));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayParadigmShiftCost", 50).getInt(50));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayAdrenalineCost", 33).getInt(33));
 
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
@@ -1226,6 +1236,7 @@ public class TragicConfig {
 		allowAmuletKillRecharge = blanketAmulet[mapping++];
 		showAmuletStatus = blanketAmulet[mapping++];
 		allowAmuletModifiers = blanketAmulet[mapping++];
+		deathDropsAmulets = blanketAmulet[mapping++];
 
 		mapping = 0;
 		maxAmuletSlots = amuletInts[mapping++];

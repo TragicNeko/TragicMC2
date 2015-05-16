@@ -15,7 +15,7 @@ public class DoomsdayShotgun extends Doomsday implements IExtendedDoomsday {
 	public DoomsdayShotgun(int id) {
 		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 10;
-		this.maxIterations = 30;
+		this.maxIterations = 20;
 	}
 
 	@Override

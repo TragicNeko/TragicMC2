@@ -14,11 +14,11 @@ import tragicneko.tragicmc.doomsday.DoomsdayEffect;
 import tragicneko.tragicmc.doomsday.DoomsdayManager;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
-public class DoomsdayCoomand extends CommandBase {
+public class DoomsdayComand extends CommandBase {
 
 	private List aliases;
 
-	public DoomsdayCoomand()
+	public DoomsdayComand()
 	{
 	}
 

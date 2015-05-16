@@ -16,7 +16,7 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 	public DoomsdayTitanfall(int id) {
 		super(id, EnumDoomType.OVERFLOW);
 		this.waitTime = 10;
-		this.maxIterations = 100;
+		this.maxIterations = 40;
 	}
 
 	@Override

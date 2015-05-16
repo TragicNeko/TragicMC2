@@ -38,7 +38,7 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 		double radius = crucMoment ? 6.0D : 4.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-		
+
 		Block block;
 		int[] coords;
 
@@ -57,8 +57,8 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 				player.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.SepticGas);
 			}
 		}
-		
-		if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 300, 0));
+
+		if (TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600, 0));
 	}
 
 	@Override
@@ -66,14 +66,17 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 
 		double radius = crucMoment ? 6.0D : 4.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-		
+
 		Block block;
 		int[] coords;
 
-		for (int i = 0; i < list2.size(); i++)
+		if (crucMoment)
 		{
-			if (list2.get(i) instanceof EntityMob) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 1));
+			List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
+			for (int i = 0; i < list2.size(); i++)
+			{
+				if (list2.get(i) instanceof EntityMob) ((EntityLivingBase) list2.get(i)).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 2));
+			}
 		}
 
 		for (int i = 0; i < list.size(); i++)
@@ -86,7 +89,7 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 				player.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.SepticGas);
 			}
 		}
-		
+
 		if (crucMoment)
 		{
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "Crucial Moment!"));

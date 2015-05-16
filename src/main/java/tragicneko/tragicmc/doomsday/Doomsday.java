@@ -65,12 +65,12 @@ public abstract class Doomsday {
 	public static final Doomsday Harden = (new DoomsdayHarden(40));
 	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	public static final Doomsday Flash = (new DoomsdayFlash(42));
-	public static final Doomsday Septics = new DoomsdaySeptics(43); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday Septics = new DoomsdaySeptics(43); 
 	public static final Doomsday Kurayami = new DoomsdayKurayami(44);
 	public static final Doomsday LifeShare = new DoomsdayLifeShare(45);
-	//public static final Doomsday DeathMark = new Doomsday();
-	//public static final Doomsday ParadigmShift = new Doomsday();
-	//public static final Doomsday Adrenaline = new Doomsday();
+	public static final Doomsday DeathMark = new DoomsdayDeathMark(46);
+	public static final Doomsday ParadigmShift = new DoomsdayParadigmShift(47);
+	public static final Doomsday Adrenaline = new DoomsdayAdrenaline(48); //TODO add the Doomsdays, their names, localizations and abilities
 	//public static final Doomsday Escape = new Doomsday();
 	//public static final Doomsday GiftOfTheGods = new Doomsday();
 	//public static final Doomsday Gambler = new Doomsday();
@@ -95,7 +95,7 @@ public abstract class Doomsday {
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
-		"kurayami", "lifeShare"
+		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();
@@ -121,6 +121,7 @@ public abstract class Doomsday {
 		this.requiredDoom = TragicConfig.doomsdayCosts[id];
 		this.waitTime = 0;
 		this.maxIterations = 1;
+		if (doomsdayList[id] != null) throw new IllegalArgumentException("There is already a Doomsday registered for that ID!");
 		doomsdayList[id] = this;
 	}
 
@@ -316,7 +317,7 @@ public abstract class Doomsday {
 
 			for (i = 0; i < 3; i++)
 			{
-				if (amu.getActiveAmulet(i).getAmuletID() == 24 && mp.worldObj.rand.nextInt(16) == 0)
+				if (amu.getActiveAmulet(i) != null && amu.getActiveAmulet(i).getAmuletID() == 24 && mp.worldObj.rand.nextInt(16) == 0)
 				{
 					cost *= 0.5;
 					break;

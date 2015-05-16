@@ -21,13 +21,13 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 	public DoomsdayLightningRush(int id) {
 		super(id, EnumDoomType.COMBINATION);
 		this.waitTime = 3;
-		this.maxIterations = 100;
+		this.maxIterations = 200;
 	}
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1200, 2));
-		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 1200, 0));
+		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 3));
+		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 600, 0));
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Lightning Rush!"));
 	}
 

@@ -21,13 +21,13 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayFirestorm(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 10;
-		this.maxIterations = 120;
+		this.waitTime = 20;
+		this.maxIterations = 60;
 	}
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "You have used Dragon's Roar!"));
+		player.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You have used Firestorm!"));
 
 		if (crucMoment)
 		{

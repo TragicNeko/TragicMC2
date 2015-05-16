@@ -224,7 +224,7 @@ public class TragicMC
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
 		if (TragicConfig.allowDoom) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomCommand());
-		if (TragicConfig.allowDoomsdays) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomsdayCoomand());
+		if (TragicConfig.allowDoomsdays) event.registerServerCommand(new tragicneko.tragicmc.commands.DoomsdayComand());
 
 		if (!event.getServer().isFlightAllowed())
 		{

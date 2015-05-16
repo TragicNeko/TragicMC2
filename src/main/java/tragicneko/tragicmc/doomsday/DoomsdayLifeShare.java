@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayLifeShare extends Doomsday {
@@ -37,18 +38,21 @@ public class DoomsdayLifeShare extends Doomsday {
 			for (int i = 0; i < list.size(); i++)
 			{
 				e = list.get(i);
-				total += e.getHealth();
+				total += e.getHealth() / e.getMaxHealth();
 			}
 			
-			total /= list.size() + 1;
-			if (total < 1.0F) total = 1.0F;
+			total /= list.size();
+			if (total < 0.1F) total = 0.1F;
+			
+			TragicMC.logInfo("Amount of entities was " + list.size());
+			TragicMC.logInfo("Total was " + total);
 			
 			for (int i = 0; i < list.size(); i++)
 			{
 				e = list.get(i);
 				
-				if (e == player && crucMoment) player.setHealth(total * 2.5F);
-				else e.setHealth(total);
+				if (e == player && crucMoment) player.setHealth(player.getMaxHealth() * total + (player.getMaxHealth() / 2));
+				else e.setHealth(total * e.getMaxHealth());
 			}
 		}
 			
