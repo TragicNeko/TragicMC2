@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicConfig.archangelStats;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -270,8 +271,16 @@ public class EntityArchangel extends TragicMob {
 			{
 				this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 			}
+			
+			if (this.getHoverTicks() % 15 == 0)
+			{
+				this.playSound("tragicmc:mob.archangel.low", 0.6F, 1.0F);
+				if (this.getAttackTarget() != null) this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.archangel.low", 0.6F, 1.0F);
+			}
 
 			if (this.getAttackTarget() == null || this.getAttackTarget().isDead || !this.canEntityBeSeen(this.getAttackTarget())) this.setHoverTicks(0);
+			
+			
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
@@ -412,5 +421,41 @@ public class EntityArchangel extends TragicMob {
 		tag.setDouble("waypointX", this.waypointX);
 		tag.setDouble("waypointY", this.waypointY);
 		tag.setDouble("waypointZ", this.waypointZ);
+	}
+
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.archangel.choir";
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.archangel.vibrato";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.archangel.triple";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+	{
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
 	}
 }

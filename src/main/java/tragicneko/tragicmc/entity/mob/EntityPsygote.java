@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.psygoteStats;
 
 import java.util.UUID;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -146,6 +147,8 @@ public class EntityPsygote extends TragicMob {
 							(this.rand.nextDouble() - 0.6D) * 0.1D,
 							this.rand.nextDouble() * -0.8D - 2.4D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D);
+					
+					if (this.getSwitchTicks() == 3) this.playSound("tragicmc:mob.psygote.coo", 0.6F, 1.0F);
 				}
 			}
 			return;
@@ -322,4 +325,39 @@ public class EntityPsygote extends TragicMob {
 		return false;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return this.getAttackTarget() == null ? "tragicmc:mob.psygote.coo" : "tragicmc:mob.psygote.cry";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.psygote.shriek";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.psygote.shriek";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
 }

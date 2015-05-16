@@ -1,4 +1,28 @@
 {
+	"mob.archangel.choir":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/archangel/choir", "mob/archangel/choir2"]
+    },
+	"mob.archangel.triple":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/archangel/triple"]
+    },
+	"mob.archangel.vibrato":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/archangel/vibrato"]
+    },
+	"mob.archangel.low":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/archangel/low"]
+    },
 	"mob.cryse.hit":
     {
 		"category": "hostile",
@@ -172,6 +196,30 @@
 		"category": "hostile",
 		"sounds": [
 			"mob/plague/death"]
+    },
+	"mob.psygote.cry":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/psygote/cry", "mob/psygote/cry2",
+			"mob/psygote/cry3", "mob/psygote/cry4",
+			"mob/psygote/cry5", "mob/psygote/cry6",
+			"mob/psygote/cry7", "mob/psygote/cry8",
+			"mob/psygote/cry9"]
+    },
+    "mob.psygote.shriek":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/psygote/shriek", "mob/psygote/shriek2",
+			"mob/psygote/shriek3", "mob/psygote/shriek4",
+			"mob/psygote/shriek5"]
+    },
+	"mob.psygote.coo":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/psygote/coo", "mob/psygote/coo2"]
     },
 	"mob.pumpkinhead.hiss":
     {

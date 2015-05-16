@@ -44,7 +44,8 @@ public class ClientEvents extends Gui {
 
 	private static final String[] sounds = new String[] {"mob.enderdragon.growl", "random.fizz", "mob.enderdragon.wings", "mob.endermen.portal", "mob.zombie.hurt",
 			"mob.skeleton.hurt", "random.bow", "random.explode", "random.chestopen", "mob.wither.hurt", "mob.wither.idle", "random.door_open",
-			"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare"};
+			"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare",
+			"tragicmc:mob.psygote.cry", "tragicmc:mob.inkling.giggle", "tragicmc:mob.stin.teleport"};
 	
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
