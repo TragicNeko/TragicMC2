@@ -39,15 +39,6 @@ public class DoomsdayFear extends Doomsday {
 					entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 300));
 					if (TragicConfig.allowFear) entity.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 300, crucMoment ? 1 + rand.nextInt(3) : 0));
 					if (crucMoment && TragicConfig.allowSubmission) entity.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 300, 5));
-
-					if (crucMoment)
-					{
-						int x = MathHelper.floor_double(entity.posX);
-						int y = MathHelper.floor_double(entity.posY);
-						int z = MathHelper.floor_double(entity.posZ);
-
-						entity.setPositionAndUpdate(x + rand.nextInt(7) - 3, y + 5 + rand.nextInt(5), z + rand.nextInt(7) - 3);
-					}
 				}
 			}
 		}
@@ -63,4 +54,7 @@ public class DoomsdayFear extends Doomsday {
 		if (TragicConfig.allowFear) player.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.Symbiosis;
+	}
 }

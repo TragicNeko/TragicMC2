@@ -21,7 +21,7 @@ public abstract class Doomsday {
 
 	protected static final Random rand = new Random();
 
-	public static final Doomsday[] doomsdayList = new Doomsday[64];
+	public static final Doomsday[] doomsdayList = new Doomsday[96];
 
 	public static final Doomsday Decay = (new DoomsdayDecay(1));
 	public static final Doomsday HuntersInstinct = (new DoomsdayHuntersInstinct(2));
@@ -70,32 +70,33 @@ public abstract class Doomsday {
 	public static final Doomsday LifeShare = new DoomsdayLifeShare(45);
 	public static final Doomsday DeathMark = new DoomsdayDeathMark(46);
 	public static final Doomsday ParadigmShift = new DoomsdayParadigmShift(47);
-	public static final Doomsday Adrenaline = new DoomsdayAdrenaline(48); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday Adrenaline = new DoomsdayAdrenaline(48);
 	public static final Doomsday Escape = new DoomsdayEscape(49);
 	public static final Doomsday GiftOfTheGods = new DoomsdayGiftOfTheGods(50);
 	public static final Doomsday Gambler = new DoomsdayGambler(51);
-	//public static final Doomsday Soulstealer = new Doomsday();
-	//public static final Doomsday Parasite = new Doomsday();
-	//public static final Doomsday Symbiosis = new Doomsday();
-	//public static final Doomsday TimeCollapse = new Doomsday();
-	//public static final Doomsday Magnetizer = new Doomsday();
-	//public static final Doomsday Ambience = new Doomsday();
-	//public static final Doomsday Dimentia = new Doomsday();
-	//public static final Doomsday Delete = new Doomsday();
-	//public static final Doomsday PetalDance = new Doomsday();
-	//public static final Doomsday LaserCutter = new Doomsday();
-	//public static final Doomsday RadiantLight = new Doomsday();
-	//public static final Doomsday DangerZone = new Doomsday();
-	//public static final Doomsday Support = new Doomsday();
-	//public static final Doomsday Purify = new Doomsday();
-	//public static final Doomsday Recall = new Doomsday();
-	//public static final Doomsday Rewrite = new Doomsday();
+	public static final Doomsday Soulstealer = new DoomsdaySoulstealer(52);
+	public static final Doomsday Parasite = new DoomsdayParasite(53);
+	public static final Doomsday Symbiosis = new DoomsdaySymbiosis(54); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday TimeCollapse = new DoomsdayTimeCollapse(55);
+	//public static final Doomsday Magnetizer = new Doomsday(56);
+	//public static final Doomsday Ambience = new Doomsday(57);
+	//public static final Doomsday Dimentia = new Doomsday(58);
+	//public static final Doomsday Delete = new Doomsday(59);
+	//public static final Doomsday PetalDance = new Doomsday(60);
+	//public static final Doomsday LaserCutter = new Doomsday(61);
+	//public static final Doomsday RadiantLight = new Doomsday(62);
+	//public static final Doomsday DangerZone = new Doomsday(63);
+	//public static final Doomsday Support = new Doomsday(64);
+	//public static final Doomsday Purify = new Doomsday(65);
+	//public static final Doomsday Recall = new Doomsday(66);
+	//public static final Doomsday Rewrite = new Doomsday(67);
+	//public static final Doomsday Shuffle = new Doomsday(68);
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
-		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler"
+		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

@@ -35,19 +35,6 @@ public class DoomsdayManager {
 	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/Doomsday Manager");
 	private static Map<UUID, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
 
-	private static Set<Doomsday> combinations = Sets.newConcurrentHashSet();
-
-	static
-	{
-		combinations.add(Doomsday.Purge);
-		combinations.add(Doomsday.Titanfall);
-		combinations.add(Doomsday.Marionette);
-		combinations.add(Doomsday.NatureDrain);
-		combinations.add(Doomsday.Permafrost);
-		combinations.add(Doomsday.FireRain);
-		combinations.add(Doomsday.RapidFire);
-	}
-
 	public synchronized static void registerDoomsdayEffect(UUID playerID, DoomsdayEffect effect)
 	{
 		if (playerMap.containsKey(playerID))
@@ -200,7 +187,7 @@ public class DoomsdayManager {
 							break;
 						}
 
-						if (combinations.contains(effect.dday))
+						if (effect.dday instanceof IExtendedDoomsday && effect.dday.getCombination() != null)
 						{
 							flag = true;
 							temp = effect;

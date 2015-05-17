@@ -42,7 +42,7 @@ public class DoomsdayDecay extends Doomsday {
 		}
 		else
 		{
-			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + StatCollector.translateToLocal("doomsday.noEntities")));
+			addNoEntityMessage(player);
 		}
 	}
 

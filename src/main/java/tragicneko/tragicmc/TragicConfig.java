@@ -409,6 +409,10 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayEscapeAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayGiftOfTheGodsAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayGamblerAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySoulstealerAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayParasiteAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySymbiosisAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayTimeCollapseAllow", true).getBoolean(true));
 
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -462,6 +466,10 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayEscapeCooldown", 38).getInt(38));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayGiftOfTheGodsCooldown", 100).getInt(100));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayGamblerCooldown", 20).getInt(20));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySoulstealerCooldown", 8).getInt(8));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayParasiteCooldown", 12).getInt(12));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySymbiosisCooldown", 14).getInt(14));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayTimeCollapseCooldown", 2).getInt(2));
 
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -515,6 +523,10 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayEscapeCost", 12).getInt(12));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayGiftOfTheGodsCost", 115).getInt(115));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayGamblerCost", 15).getInt(15));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySoulstealerCost", 12).getInt(12));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayParasiteCost", 16).getInt(16));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySymbiosisCost", 18).getInt(18));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayTimeCollapseCost", 1).getInt(1));
 
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
