@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockLight extends Block {
 
 	public BlockLight() {
-		super(Material.glass);
+		super(Material.circuits);
 		this.setLightLevel(0.69F);
 		this.setLightOpacity(0);
 		this.setResistance(1.0F);
