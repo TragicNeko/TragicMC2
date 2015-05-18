@@ -3983,13 +3983,31 @@ Added Adrenaline Doomsday
 Added more localized terms for Doomsdays, made confirmation message and crucial moment messages automatic on use
 Added static methods for displaying crucial moment and no entity in range messages
 Cleaned up all current Doomsday classes, removed a lot of redundancies within them
-Modified Guardian physics a bit
+Modified Guardian physics a bit, they now get removed when they don't have an owner (since I can't get them to save their owner ID)
 Changed how Nature Drain works, it now heals you slowly and only "drains" the plantlife around you when it runs out of drained energy
 Added Escape Doomsday
 Added Gift of the Gods Doomsday
 Added Gambler Doomsday
 Added Psygote sounds
 Added Archangel sounds
+Added Soulstealer Doomsday
+Added Parasite Doomsday
+Added Symbiosis Doomsday, it is a Combination Doomsday of Parasite and Fear
+Added Time Collapse Doomsday
+Increased DoomsdayList size for more Doomsdays
+Removed Combinations set from the DoomsdayManager, instead check if a Doomsday is extended and returns a non-null combination (both required to start a 
+combination)
+Added Soul Chest sound when a mob soul is given to it, this is under block sounds
+Added various Challenge start sounds, added Challenge end sound, these are experimental
+Fixed find Entity challenges, fixed kill Entity game crash
+Redid Plague sounds, they were a bit annoying so I made them a bit more subtle, lowered overall volume
+Redid Minotaur sounds, they have a bit more variety and sound better and also fixed derp with it's hoof sounds
+Lowered overall volume of Pumpkinhead
+Changed Light material to circuits
+Small change to boss render bars
+Added Amulet colors for the new batch of Amulets, adjusted some of the colors for the older ones
+Fixed Overlord Amulet not being an Epic Amulet
+Changed the Luck attribute to affect entity xp on death, similarly to the Luck Amulet, their effects stack
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
@@ -4014,10 +4032,6 @@ Enyvil sounds: possibly double toned sounds (high and low pitched at the same ti
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
 Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
 
-More sounds:
-Soul chest sound (a long breathing sound possibly)
-Challenge sounds, when you start or complete a challenge
-
 New Mob:
 Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
 AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
@@ -4029,10 +4043,6 @@ enemies, it aggressively attacks any mobs that are near it (it will extend Entit
 
 ==Scroll only Doomsdays (for now at least)==
 Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
-Soulstealer, Influence, steals health from the mob closest to you and gives it to you, keeps the mob "leashed"
-Parasite, Overflow, you periodically drain health from nearby animals and passive creatures
-Symbiosis, Overflow, you drain hunger from nearby entities and they restore health
-Time Collapse, Overflow, you Stun all nearby mobs for a long time and stop all of their motion //every tick, 1 cost, 2 cooldown
 Magnetizer, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
 Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
 Dimentia, Influence, mobs around you start attacking each other
@@ -4045,6 +4055,7 @@ Support, Overflow, increase nearby player's doom at the cost of yours
 Purify, Influence, clear all potion effects on all entities nearby
 Recall, Influence, teleports you to your spawn point
 Rewrite, World Shaper, moves blocks around you to different positions and moves entities to different locations
+Shuffle, Influence, swaps entity positions around
 
 --Reminders-
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
