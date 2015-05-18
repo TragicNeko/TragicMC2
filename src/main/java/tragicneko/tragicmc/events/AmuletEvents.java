@@ -2,7 +2,9 @@ package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -149,11 +151,6 @@ public class AmuletEvents {
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(mp);
-
-			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
-			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
-			if (rand.nextDouble() * 2.5D < d0 && mp.ticksExisted % 20 == 0) mp.addExperience(1);
-			//TragicMC.logInfo("Luck modifier applied to player. Amount was " + d0);
 
 			if (amu == null) return;
 			TragicMC.net.sendTo(new MessageAmulet((EntityPlayer)event.entityLiving), (EntityPlayerMP)event.entityLiving);
@@ -542,7 +539,7 @@ public class AmuletEvents {
 
 			if (level >= 3 && player.ticksExisted % 20 == 0 && TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 100, 0));
 		}
-		else if (id == 22 && TragicConfig.allowHacked)
+		else if (id == 22 && TragicConfig.amuOverlord && TragicConfig.allowHacked)
 		{
 			if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id); 
 		}
@@ -1034,6 +1031,32 @@ public class AmuletEvents {
 			InventoryAmulet inv = amu.inventory;
 			inv.dropAllAmulets();
 			inv.markDirty();
+		}
+		
+		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving)
+		{
+			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
+			EntityLiving ent = (EntityLiving) event.entityLiving;
+			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
+			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
+			try
+			{
+				Method m = EntityLiving.class.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
+				m.setAccessible(true);
+				int j = (Integer) m.invoke(event.entityLiving, mp);
+				j *= d0;
+
+				while (j > 0)
+				{
+					int k = EntityXPOrb.getXPSplit(j);
+					j -= k;
+					mp.worldObj.spawnEntityInWorld(new EntityXPOrb(mp.worldObj, event.entity.posX, event.entity.posY, event.entity.posZ, k));
+				}
+			}
+			catch (Exception e)
+			{
+				TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck attribute.", e);
+			}			
 		}
 	}
 

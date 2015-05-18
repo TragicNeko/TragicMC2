@@ -40,14 +40,14 @@ public class ItemAmulet extends Item {
 	private static String[] amuletNames = new String[] {"Kitsune", "Peace", "Yeti", "Claymation", "Chicken", "Martyr", "Piercing", "Blacksmith", "Apis", "Creeper", "Zombie",
 		"Skeleton", "Sunken", "Time", "Ice", "SnowGolem", "IronGolem", "Enderman", "Wither", "Spider", "Stin", "Polaris", "Overlord", "Lightning", "Consumption", "Supernatural",
 		"Undead", "EnderDragon", "Fusea", "Enyvil", "Luck"};
-	private static int[][] amuletColors = new int[][] {{COLOR_BLACK, 0xB51919}, {0x9F5B86, 0xFF9ACA}, {0xFAFAFA, 0x98B4C1}, {0xFF9500, 0xFFCA02}, {0xDEDEDE, 0xFFEAA1},
-		{COLOR_BLACK, 0x454545}, {COLOR_BLACK, 0xFFFA5}, {0x949494, 0x696969}, {COLOR_BLACK, 0xEFE297}, {0x27C123, 0x43E140}, {0x3A8F4A, 0x27C1C9}, {0xA0A0A0, 0xC1C1C1},
-		{COLOR_BLACK, 0x466DB3}, {COLOR_WHITE, 0xEA92E9}, {0xC4EFFF, 0xA5D0E0}, {0xFFFDF1, 0xABA290}, {0xDBCDC1, 0x8B7260}, {COLOR_BLACK, 0xB547DE}, {COLOR_WHITE, 0x252525},
-		{0xFFFFFF, 0xFFFFFF}, {0xFFFFFF, 0xFFFFFF}, {0x000000, 0x000000}, {0xFFFFFF, 0xFFFFFF}, {0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000},
-		{0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000}, {0x000000, 0x000000}};
+	private static int[][] amuletColors = new int[][] {{0xFFD087, 0xFF0000}, {0x9F5B86, 0xFF9ACA}, {0xFAFAFA, 0x98B4C1}, {0xFF9500, 0xFFCA02}, {0xDEDEDE, 0xFFEAA1},
+		{COLOR_BLACK, 0x454545}, {0x237878, 0x449999}, {0x949494, 0x696969}, {0xFFCD82, 0xFFFF82}, {0x27C123, 0x43E140}, {0x3A8F4A, 0x27C1C9}, {0xA0A0A0, 0xC1C1C1},
+		{0x0000FF, 0x466DB3}, {0x94FFA3, 0xEA92E9}, {0xC4EFFF, 0xA5D0E0}, {0xFFFDF1, 0xABA290}, {0xDBCDC1, 0x8B7260}, {COLOR_BLACK, 0xB547DE}, {COLOR_BLACK, 0x245238},
+		{0x555555, 0xCF5555}, {0x464646, 0x878787}, {0x565656, 0x4A00BA}, {0x212121, 0x92F9D1}, {0xFCFCFC, 0xABABAB}, {0xFF0000, 0xB53838}, {0x99DD99, 0x87CE87},
+		{0x898989, 0x777777}, {0xCC00FA, 0x1A1A1A}, {0xA0E39D, 0xE4B1E0}, {0xFF6FFF, 0x5D1543}, {0xBBBA56, 0xFFFA56}};
 
 	public static Set<Integer> cursedIds = Sets.newHashSet(0, 5, 6, 8, 12, 17, 21, 23, 24, 26, 27);
-	public static Set<Integer> epicIds = Sets.newHashSet(13, 18, 29);
+	public static Set<Integer> epicIds = Sets.newHashSet(13, 18, 22, 29);
 
 	public ItemAmulet(int id)
 	{

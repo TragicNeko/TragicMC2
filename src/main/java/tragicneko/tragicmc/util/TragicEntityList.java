@@ -9,13 +9,7 @@ import java.util.Set;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.common.FMLLog;
 
 public class TragicEntityList
 {    
