@@ -22,6 +22,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.util.TragicEntityList;
@@ -108,8 +109,8 @@ public class ItemMobEgg extends Item
 				{
 					((EntityLiving)entity).setCustomNameTag(par1ItemStack.getDisplayName());
 				}
-				
-				if (par3World.difficultySetting.getDifficultyId() < 2 && par2EntityPlayer instanceof EntityPlayerMP && entity instanceof TragicBoss)
+
+				if (par3World.difficultySetting.getDifficultyId() < 2 && par2EntityPlayer instanceof EntityPlayerMP && entity instanceof TragicBoss && !TragicConfig.allowEasyBosses)
 				{
 					par2EntityPlayer.addChatMessage(new ChatComponentText("Boss was spawned on too low of a difficulty. Raise difficulty level to fight it."));
 				}
@@ -209,7 +210,7 @@ public class ItemMobEgg extends Item
 					entityliving.rotationYawHead = entityliving.rotationYaw;
 					entityliving.renderYawOffset = entityliving.rotationYaw;
 					entityliving.onSpawnWithEgg((IEntityLivingData)null);
-					if (!par0World.isRemote) par0World.spawnEntityInWorld(entity);
+					if (!par0World.isRemote) par0World.spawnEntityInWorld(entity);					
 				}
 			}
 
