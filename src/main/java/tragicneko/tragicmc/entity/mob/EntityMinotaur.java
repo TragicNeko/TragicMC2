@@ -222,25 +222,25 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.minotaur.snort";
+		return this.getAttackTarget() == null ? "tragicmc:mob.minotaur.snort" : "tragicmc:mob.minotaur.charge";
 	}
 	
 	@Override
 	public String getHurtSound()
 	{
-		return "game.hostile.hurt";
+		return "tragicmc:mob.minotaur.hurt";
 	}
 	
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.minotaur.death";
+		return "tragicmc:mob.minotaur.charge";
 	}
 	
 	@Override
 	public float getSoundPitch()
 	{
-		return 0.8F;
+		return 1.0F;
 	}
 	
 	@Override

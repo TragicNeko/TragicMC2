@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -19,6 +20,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.network.MessageSound;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.TragicEntityList;
@@ -117,6 +119,7 @@ public class ItemChallenge extends Item {
 				if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 				stack.stackTagCompound.setInteger("challengeID", challenge.challengeID);
 				player.addChatMessage(new ChatComponentText("Challenge accepted!"));
+				if (player instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengestart", 1.0F, 1.0F), (EntityPlayerMP) player);
 			}
 			catch (Exception e)
 			{
@@ -269,6 +272,7 @@ public class ItemChallenge extends Item {
 			else
 			{
 				stack.setItemDamage(250);
+				if (entity instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengedone", 1.0F, 1.0F), (EntityPlayerMP) entity);
 			}
 		}
 	}

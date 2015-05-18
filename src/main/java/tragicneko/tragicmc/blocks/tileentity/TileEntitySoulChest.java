@@ -51,23 +51,26 @@ public class TileEntitySoulChest extends TileEntityChest {
 		{
 			if (mob.deathTime > 0 || mob.getHealth() <= 0F || mob.isDead)
 			{
-				if (mob != null)
+				double d0 = mob.posX - this.xCoord;
+				double d1 = mob.posY - this.yCoord;
+				double d2 = mob.posZ - this.zCoord;
+
+				for (int l = 0; l < 4; l++)
 				{
-					double d0 = mob.posX - this.xCoord;
-					double d1 = mob.posY - this.yCoord;
-					double d2 = mob.posZ - this.zCoord;
-					
-					for (int l = 0; l < 4; l++)
-					{
-						double d3 = 0.23D * l + (this.worldObj.rand.nextDouble() * 0.25D);
-						this.worldObj.spawnParticle("flame", this.xCoord + 0.5 + d0 * d3, this.yCoord + 0.5 + d1 * d3 + 0.75D, this.zCoord + 0.5 + d2 * d3, 0, 0, 0);
-						this.worldObj.spawnParticle("flame", this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125, this.worldObj.rand.nextDouble() * 0.15, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125);
-					}
+					double d3 = 0.23D * l + (this.worldObj.rand.nextDouble() * 0.25D);
+					this.worldObj.spawnParticle("flame", this.xCoord + 0.5 + d0 * d3, this.yCoord + 0.5 + d1 * d3, this.zCoord + 0.5 + d2 * d3, 0, 0, 0);
+					this.worldObj.spawnParticle("flame", this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125, this.worldObj.rand.nextDouble() * 0.15, (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 0.125);
 				}
-				if (this.addMobToDeathCounter(mob)) this.souls++;
+
+
+				if (this.addMobToDeathCounter(mob))
+				{
+					this.worldObj.playSoundEffect(mob.posX, mob.posY, mob.posZ, "tragicmc:random.soulbreath", 1.0F, 1.0F);
+					this.souls++;
+				}
 			}
 		}
-		
+
 		if (this.worldObj.rand.nextInt(32) == 0)
 		{
 			for (int l = 0; l < 3; l++)
@@ -79,9 +82,11 @@ public class TileEntitySoulChest extends TileEntityChest {
 
 	public boolean addMobToDeathCounter(EntityMob mob)
 	{
-		if (this.worldObj.isRemote || this.deathCounter.contains(mob.getUniqueID())) return false;
+		if (this.deathCounter.contains(mob.getUniqueID())) return false;
 
 		this.deathCounter.add(mob.getUniqueID());
+		//this.worldObj.playSoundAtEntity(mob, "tragicmc:random.soulbreath", 0.6F, this.worldObj.rand.nextFloat() * 0.5F + 0.5F);
+
 		return true;
 	}
 

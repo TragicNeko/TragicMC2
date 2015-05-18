@@ -197,7 +197,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.plague.chirp";
+		return super.getHurtSound(); //"tragicmc:mob.plague.chirp";
 	}
 	
 	@Override
@@ -215,7 +215,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.6F + rand.nextFloat() * 0.2F;
+		return 0.4F + rand.nextFloat() * 0.2F;
 	}
 	
 	@Override

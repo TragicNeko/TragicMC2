@@ -139,6 +139,21 @@
 			"mob/lockbot/hum", "mob/lockbot/hum2",
 			"mob/lockbot/hum3"]
     },
+	"mob.minotaur.charge":
+    {
+        "category": "hostile",
+        "sounds": [
+			"mob/minotaur/charge", "mob/minotaur/charge2"]
+    },
+	"mob.minotaur.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+			"mob/minotaur/hurt", "mob/minotaur/hurt2",
+			"mob/minotaur/hurt3", "mob/minotaur/hurt4",
+			"mob/minotaur/hurt5", "mob/minotaur/hurt6",
+			"mob/minoatur/hurt7"]
+    },
     "mob.minotaur.snort":
     {
         "category": "hostile",
@@ -150,15 +165,8 @@
     {
         "category": "hostile",
         "sounds": [
-			"mob/minotaur/hoof", "mob/minotaur/hoof",
-			"mob/minotaur/hoof", "mob/minotaur/hoof"]
-    },
-    "mob.minotaur.death":
-    {
-        "category": "hostile",
-        "sounds": [
-			"mob/minotaur/death", "mob/minotaur/death2",
-			"mob/minotaur/death3"]
+			"mob/minotaur/hoof", "mob/minotaur/hoof2",
+			"mob/minotaur/hoof3", "mob/minotaur/hoof4"]
     },
 	"mob.nanoswarm.glitch":
     {
@@ -188,8 +196,7 @@
     {
 		"category": "hostile",
 		"sounds": [
-			"mob/plague/chirp", "mob/plague/chirp2",
-			"mob/plague/chirp3"]
+			"mob/plague/chirp"]
     },
     "mob.plague.death":
     {
@@ -417,6 +424,20 @@
 		"sounds": [
 			"random/amuletrelease"]
     },
+	"random.challengedone":
+    {
+		"category": "player",
+		"sounds": [
+			"random/challengedone"]
+    },
+	"random.challengestart":
+    {
+		"category": "player",
+		"sounds": [
+			"random/challengestart", "random/challengstart2",
+			"random/challengestart3", "random/challengestart4",
+			"random/challengestart5"]
+    },
 	"random.cooldowndefuse":
     {
 		"category": "player",
@@ -455,8 +476,14 @@
     },
 	"random.directedlightning":
     {
-		"category": "weather",
+		"category": "ambient",
 		"sounds": [
 			"random/directedlightning"]
+    },
+	"random.soulbreath":
+    {
+		"category": "block",
+		"sounds": [
+			"random/soulbreath"]
     }
 }
