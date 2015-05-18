@@ -16,6 +16,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
@@ -974,7 +975,7 @@ public class AmuletEvents {
 	{
 		if (event.entityLiving.worldObj.isRemote) return;
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving.getMaxHealth() >= 100F) && TragicConfig.allowAmuletKillRecharge)
+		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof IBossDisplayData) && TragicConfig.allowAmuletKillRecharge)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			PropertyAmulets amu = PropertyAmulets.get(player);
