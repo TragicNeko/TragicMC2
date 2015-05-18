@@ -59,15 +59,15 @@ public class ChallengeItemEvents {
 					stack = inv[i];
 					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 					challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
-					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge)
+					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge && challenge.challengeClass != null)
 					{
 						Class cls = challenge.challengeClass;
 						Class cls2 = event.entityLiving.getClass();
-						boolean flag = false;
+						boolean flag = cls == cls2;
 
 						for (Class cl : cls2.getInterfaces())
 						{
-							if (cl == cls)
+							if (flag || cl == cls)
 							{
 								flag = true;
 								break;
@@ -139,8 +139,8 @@ public class ChallengeItemEvents {
 						for (int j = 0; j < list.size(); j++)
 						{
 							Class cls = challenge.challengeClass;
-							Class cls2 = event.entityLiving.getClass();
-							boolean flag = false;
+							Class cls2 = list.get(j).getClass();
+							boolean flag = cls == cls2;
 
 							for (Class cl : cls2.getInterfaces())
 							{
