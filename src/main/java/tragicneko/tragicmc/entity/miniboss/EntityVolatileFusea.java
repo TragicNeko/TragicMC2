@@ -166,4 +166,10 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityFusea.class;
 	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.4F;
+	}
 }
