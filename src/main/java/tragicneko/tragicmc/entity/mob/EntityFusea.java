@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.fuseaStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -18,10 +19,9 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityFusea extends TragicMob {
 
@@ -116,7 +116,7 @@ public class EntityFusea extends TragicMob {
 		else
 		{
 			this.motionY += (rand.nextDouble() - rand.nextDouble()) * 0.2 - 0.1;
-			if (rand.nextInt(6) == 0 && this.getDistanceToGround() < 10) this.motionY += rand.nextDouble() + 0.8;
+			if (rand.nextInt(6) == 0 && WorldHelper.getDistanceToGround(this) < 10) this.motionY += rand.nextDouble() + 0.8;
 
 			this.motionX += (rand.nextDouble() - rand.nextDouble()) * 0.2;
 			this.motionZ += (rand.nextDouble() - rand.nextDouble()) * 0.2;
@@ -125,6 +125,9 @@ public class EntityFusea extends TragicMob {
 			this.motionZ *= 0.542D;
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
 		}
+		
+		int i = this.getAttackTarget() != null ? 15 : 25;
+		if (this.ticksExisted % i == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.fusea.hum", this.getAttackTarget() != null ? 1.4F : 0.8F, this.getAttackTarget() != null ? 0.2F : 1.0F);
 	}
 
 	@Override
@@ -195,4 +198,40 @@ public class EntityFusea extends TragicMob {
 		super.writeEntityToNBT(tag);
 		tag.setInteger("explosionBuffer", this.explosionBuffer);
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.fusea.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.fusea.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.fusea.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
 }

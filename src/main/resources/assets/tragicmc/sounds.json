@@ -66,6 +66,41 @@
 			"mob/jabba/squish", "mob/jabba/squish2",
 			"mob/jabba/squish3", "mob/jabba/squish4"]
     },
+	 "mob.fusea.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/fusea/hurt", "mob/fusea/hurt2",
+			"mob/fusea/hurt3", "mob/fusea/hurt4",
+			"mob/fusea/hurt5", "mob/fusea/hurt6",
+			"mob/fusea/hurt7", "mob/fusea/hurt8",
+			"mob/fusea/hurt9", "mob/fusea/hurt10",
+			"mob/fusea/hurt11", "mob/fusea/hurt12"]
+    },
+	"mob.fusea.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/fusea/living", "mob/fusea/living2",
+			"mob/fusea/living3", "mob/fusea/living4",
+			"mob/fusea/living5", "mob/fusea/living6",
+			"mob/fusea/living7", "mob/fusea/living8"]
+    },
+    "mob.fusea.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/fusea/death", "mob/fusea/death2",
+			"mob/fusea/death3"]
+    },
+	"mob.fusea.hum":
+    {
+		"category": "hostile",
+		"sounds": [
+			"mob/fusea/hum", "mob/fusea/hum2",
+			"mob/fusea/hum3", "mob/fusea/hum4",
+			"mob/fusea/hum5"]
+    },
     "mob.gragul.hurt":
     {
 		"category": "hostile",
@@ -152,7 +187,7 @@
 			"mob/minotaur/hurt", "mob/minotaur/hurt2",
 			"mob/minotaur/hurt3", "mob/minotaur/hurt4",
 			"mob/minotaur/hurt5", "mob/minotaur/hurt6",
-			"mob/minoatur/hurt7"]
+			"mob/minotaur/hurt7"]
     },
     "mob.minotaur.snort":
     {
@@ -434,7 +469,7 @@
     {
 		"category": "player",
 		"sounds": [
-			"random/challengestart", "random/challengstart2",
+			"random/challengestart", "random/challengestart2",
 			"random/challengestart3", "random/challengestart4",
 			"random/challengestart5"]
     },
