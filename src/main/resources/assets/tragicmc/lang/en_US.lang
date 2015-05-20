@@ -1093,6 +1093,15 @@ doomsday.soulstealer.name=Soulstealer
 doomsday.parasite.name=Parasite
 doomsday.symbiosis.name=Symbiosis
 doomsday.timeCollapse.name=Time Collapse
+doomsday.magnetizer.name=Magnetizer
+doomsday.ambience.name=Ambience
+doomsday.dimentia.name=Dimentia
+doomsday.delete.name=Delete
+doomsday.laserCutter.name=Laser Cutter
+doomsday.radiantLight.name=Radiant Light
+doomsday.dangerZone.name=Danger Zone
+doomsday.support.name=Support
+doomsday.purify.name=Purify
 
 tragicmc.paintedForest=Painted Forest
 tragicmc.paintedPlains=Painted Plains

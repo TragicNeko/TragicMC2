@@ -75,6 +75,6 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 	}
 
 	public Doomsday getCombination() {
-		return Doomsday.Ravage;
+		return Doomsday.LightShove;
 	}
 }

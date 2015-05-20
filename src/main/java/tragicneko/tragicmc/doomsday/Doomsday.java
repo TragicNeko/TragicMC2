@@ -76,27 +76,29 @@ public abstract class Doomsday {
 	public static final Doomsday Gambler = new DoomsdayGambler(51);
 	public static final Doomsday Soulstealer = new DoomsdaySoulstealer(52);
 	public static final Doomsday Parasite = new DoomsdayParasite(53);
-	public static final Doomsday Symbiosis = new DoomsdaySymbiosis(54); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday Symbiosis = new DoomsdaySymbiosis(54); 
 	public static final Doomsday TimeCollapse = new DoomsdayTimeCollapse(55);
-	//public static final Doomsday Magnetizer = new Doomsday(56);
-	//public static final Doomsday Ambience = new Doomsday(57);
-	//public static final Doomsday Dimentia = new Doomsday(58);
-	//public static final Doomsday Delete = new Doomsday(59);
-	//public static final Doomsday PetalDance = new Doomsday(60);
-	//public static final Doomsday LaserCutter = new Doomsday(61);
-	//public static final Doomsday RadiantLight = new Doomsday(62);
-	//public static final Doomsday DangerZone = new Doomsday(63);
-	//public static final Doomsday Support = new Doomsday(64);
-	//public static final Doomsday Purify = new Doomsday(65);
-	//public static final Doomsday Recall = new Doomsday(66);
-	//public static final Doomsday Rewrite = new Doomsday(67);
-	//public static final Doomsday Shuffle = new Doomsday(68);
+	public static final Doomsday Magnetizer = new DoomsdayMagnetizer(56);
+	public static final Doomsday Ambience = new DoomsdayAmbience(57); 
+	public static final Doomsday Dimentia = new DoomsdayDimentia(58);
+	public static final Doomsday Delete = new DoomsdayDelete(59);
+	public static final Doomsday LaserCutter = new DoomsdayLaserCutter(60);
+	public static final Doomsday RadiantLight = new DoomsdayRadiantLight(61);
+	public static final Doomsday DangerZone = new DoomsdayDangerZone(62); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday Support = new DoomsdaySupport(63);
+	public static final Doomsday Purify = new DoomsdayPurify(64);
+	//public static final Doomsday Recall = new Doomsday(65);
+	//public static final Doomsday Rewrite = new Doomsday(66);
+	//public static final Doomsday Shuffle = new Doomsday(67);
+	//public static final Doomsday Blink = new Doomsday(68);
+	//public static final Doomsday Evacuation = new Doomsday(69); //Blink + Shuffle
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
-		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse"
+		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
+		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "dangerZone", "support", "purify"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

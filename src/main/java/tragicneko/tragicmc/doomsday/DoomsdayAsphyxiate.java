@@ -81,4 +81,8 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 		}
 	}
 
+	public Doomsday getCombination()
+	{
+		return Doomsday.Harmonizer;
+	}
 }

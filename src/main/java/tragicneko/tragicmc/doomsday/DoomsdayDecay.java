@@ -50,4 +50,8 @@ public class DoomsdayDecay extends Doomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(240) + 160, rand.nextInt(2) + 1));
 	}
+	
+	public Doomsday getCombination() {
+		return Doomsday.RadiantLight;
+	}
 }

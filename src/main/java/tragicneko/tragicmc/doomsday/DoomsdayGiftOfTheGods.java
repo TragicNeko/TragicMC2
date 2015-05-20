@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 
 public class DoomsdayGiftOfTheGods extends Doomsday {
@@ -40,12 +41,13 @@ public class DoomsdayGiftOfTheGods extends Doomsday {
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		ItemStack stack = (ItemStack) effect.utilityList.get(rand.nextInt(effect.utilityList.size()));
 		int amt = crucMoment ? 48 + rand.nextInt(16) : 16 + rand.nextInt(32);
+		double y = player.posY - WorldHelper.getDistanceToGround(player);
 
 		for (int i = 0; i < amt; i++)
 		{
 			EntityItem item = new EntityItem(player.worldObj);
 			item.setEntityItemStack(stack.copy());
-			item.setPosition(player.posX + (rand.nextDouble() - rand.nextDouble()) * 8.0, player.posY + 18 + rand.nextInt(12), player.posZ + (rand.nextDouble() - rand.nextDouble()) * 8.0);
+			item.setPosition(player.posX + (rand.nextDouble() - rand.nextDouble()) * 8.0, y + 18 + rand.nextInt(12), player.posZ + (rand.nextDouble() - rand.nextDouble()) * 8.0);
 			player.worldObj.spawnEntityInWorld(item);
 		}
 	}

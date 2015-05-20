@@ -413,6 +413,14 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayParasiteAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySymbiosisAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayTimeCollapseAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayMagnetizerAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayAmbienceAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDimentiaAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDeleteAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayLaserCutterAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDangerZoneAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySupportAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPurifyAllow", true).getBoolean(true));
 
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -470,6 +478,14 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayParasiteCooldown", 12).getInt(12));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySymbiosisCooldown", 14).getInt(14));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayTimeCollapseCooldown", 2).getInt(2));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayMagnetizerCooldown", 65).getInt(65));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayAmbienceCooldown", 1).getInt(1));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDimentiaCooldown", 77).getInt(77));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDeleteCooldown", 125).getInt(125));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayLaserCutterCooldown", 15).getInt(15));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDangerZoneCooldown", 24).getInt(24));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySupportCooldown", 16).getInt(16));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurifyCooldown", 42).getInt(42));
 
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -526,7 +542,15 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySoulstealerCost", 12).getInt(12));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayParasiteCost", 16).getInt(16));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySymbiosisCost", 18).getInt(18));
-		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayTimeCollapseCost", 1).getInt(1));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayTimeCollapseCost", 3).getInt(3));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayMagnetizerCost", 95).getInt(95));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayAmbienceCost", 1).getInt(1));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDimentiaCost", 99).getInt(99));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDeleteCost", 135).getInt(135));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayLaserCutterCost", 16).getInt(16));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDangerZoneCost", 22).getInt(22));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySupportCost", 60).getInt(60));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurifyCost", 42).getInt(42));
 
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));

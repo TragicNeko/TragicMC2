@@ -16,6 +16,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
@@ -63,10 +64,12 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
 		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
 		
+		double y = player.posY - WorldHelper.getDistanceToGround(player);
+		
 		for (int l = 0; l < 12; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), y + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
@@ -74,7 +77,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		for (int l = 0; l < 24; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), y + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(8) - rand.nextInt(8));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
@@ -94,10 +97,12 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
 		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
 		
+		double y = player.posY - WorldHelper.getDistanceToGround(player);
+		
 		for (int l = 0; l < 12; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), y + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
@@ -105,7 +110,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 		for (int l = 0; l < 24; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 24 + rand.nextInt(16),
+			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), y + 24 + rand.nextInt(16),
 			player.posZ + rand.nextInt(8) - rand.nextInt(8));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}

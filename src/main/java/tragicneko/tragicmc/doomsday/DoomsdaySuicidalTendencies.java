@@ -42,4 +42,9 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 		player.worldObj.spawnEntityInWorld(bomb);
 	}
 
+	@Override
+	public Doomsday getCombination()
+	{
+		return Doomsday.Ravage;
+	}
 }

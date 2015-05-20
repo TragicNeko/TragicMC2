@@ -73,4 +73,9 @@ public class DoomsdayHarmonizer extends Doomsday {
 		}
 	}
 
+	@Override
+	public Doomsday getCombination()
+	{
+		return Doomsday.Dimentia;
+	}
 }

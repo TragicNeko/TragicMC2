@@ -9,6 +9,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 
@@ -33,10 +34,12 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 		int i = crucMoment ? 16 : 8;
 		if (crucMoment) addCrucialMessage(player);
 		
+		double y = player.posY - WorldHelper.getDistanceToGround(player);
+		
 		for (int l = 0; l < i; l++)
 		{
 			EntitySmallFireball fireball = new EntitySmallFireball(player.worldObj, player, -d1, -d2, -d3);
-			fireball.setPosition(player.posX + rand.nextInt(12) - rand.nextInt(12), player.worldObj.getTopSolidOrLiquidBlock((int) player.posX, (int) player.posZ) + 18 + rand.nextInt(12),
+			fireball.setPosition(player.posX + rand.nextInt(12) - rand.nextInt(12), y + 18 + rand.nextInt(12),
 			player.posZ + rand.nextInt(12) - rand.nextInt(12));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}

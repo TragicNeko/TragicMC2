@@ -44,6 +44,6 @@ public class DoomsdayRavage extends Doomsday {
 	}
 
 	public Doomsday getCombination() {
-		return Doomsday.LightningRush;
+		return Doomsday.DangerZone;
 	}
 }

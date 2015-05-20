@@ -52,4 +52,7 @@ public class DoomsdayLightShove extends Doomsday {
 
 	}
 
+	public Doomsday getCombination() {
+		return Doomsday.LightningRush;
+	}
 }
