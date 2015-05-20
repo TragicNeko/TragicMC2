@@ -64,6 +64,7 @@ public class TragicWeapon extends ItemSword {
 			{
 				String[] subs = LoreHelper.splitDesc(lore);
 				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
+				par2List.add(""); //extra space
 			}
 		}
 
@@ -76,12 +77,14 @@ public class TragicWeapon extends ItemSword {
 				format = doomsday2.getDoomsdayType().getFormat();
 				par2List.add(format + doomsday2.getLocalizedType() + ": " + doomsday2.getLocalizedName());
 				par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday2.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+				par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday2.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
 				par2List.add(""); //extra space in between
 			}
 			
 			format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
 			par2List.add(""); //extra space
 		}
 	}

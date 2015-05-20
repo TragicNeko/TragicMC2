@@ -64,6 +64,7 @@ public class ItemJack extends ItemTool {
 			{
 				String[] subs = LoreHelper.splitDesc(lore);
 				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
+				par2List.add(""); //extra space
 			}
 		}
 
@@ -72,6 +73,7 @@ public class ItemJack extends ItemTool {
 			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
 			par2List.add(""); //extra space
 		}
 	}

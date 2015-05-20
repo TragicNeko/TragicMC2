@@ -41,8 +41,8 @@ public class ItemDoomsdayScroll extends Item {
 	{
 		Doomsday dday = Doomsday.getDoomsdayFromId(par1ItemStack.getItemDamage() + 1);
 
-		par2List.add(EnumChatFormatting.WHITE + "This is a one-time use, regardless of if");
-		par2List.add(EnumChatFormatting.WHITE + "the effect is successful or not.");
+		par2List.add(EnumChatFormatting.WHITE + "This is a one-time use, regardless of if the");
+		par2List.add(EnumChatFormatting.WHITE + "effect is successful or not.");
 
 		if (TragicConfig.allowDoomsdays && dday != null)
 		{
@@ -50,6 +50,7 @@ public class ItemDoomsdayScroll extends Item {
 			EnumChatFormatting format = dday.getDoomsdayType().getFormat();
 			par2List.add(format + dday.getLocalizedType() + ": " + dday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + dday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
+			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + dday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
 		}
 	}
 
