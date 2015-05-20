@@ -4022,9 +4022,12 @@ Added Danger Zone Doomsday, it is a combination of Suicidal Tendencies and Ravag
 Moved getDistanceToGround to WorldHelper and made it static, use it in Doomsdays that spawn things in the sky
 Added Support Doomsday, it gives the Doom that you use to activate it to other players near you
 Added Purify Doomsday, removes all potion effects from all entities and extinguishes them if they are on fire
+Fix crash from config options for Doomsdays
+Made Doomsday Scrolls in the Creative Tab work more efficiently (it uses the Doomsday list rather than the names so that spotting errors with them is easier)
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
+Also make sure all of the Doomsdays work in a server environment
 Do experience value scaling for mobs/bosses, currently most of them give like 5 experience so we'll increase this for tougher mobs
 
 Ranmas sounds: whirling sounds, metallic ding sound when hit
