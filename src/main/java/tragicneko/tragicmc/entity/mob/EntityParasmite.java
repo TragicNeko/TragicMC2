@@ -15,7 +15,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.entity.boss.EntityApis;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityParasmite extends TragicMob {
 
@@ -128,7 +128,7 @@ public class EntityParasmite extends TragicMob {
 		else
 		{
 			this.motionY += (rand.nextDouble() - rand.nextDouble()) * 0.2 - 0.1;
-			if (rand.nextInt(6) == 0 && this.getDistanceToGround() < 10) this.motionY += rand.nextDouble() + 0.8;
+			if (rand.nextInt(6) == 0 && WorldHelper.getDistanceToGround(this) < 10) this.motionY += rand.nextDouble() + 0.8;
 
 			this.motionX += (rand.nextDouble() - rand.nextDouble()) * 0.2;
 			this.motionZ += (rand.nextDouble() - rand.nextDouble()) * 0.2;

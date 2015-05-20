@@ -26,6 +26,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -118,7 +119,7 @@ public class EntityPlague extends TragicMob {
 			{
 				this.motionY = -rand.nextDouble() + 0.2;
 
-				if (rand.nextInt(4) == 0 && this.getDistanceToGround() < 10) this.motionY += rand.nextDouble() + 0.8;
+				if (rand.nextInt(4) == 0 && WorldHelper.getDistanceToGround(this) < 10) this.motionY += rand.nextDouble() + 0.8;
 				this.motionX = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 				this.motionZ = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 			}

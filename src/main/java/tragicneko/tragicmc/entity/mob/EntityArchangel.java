@@ -1,8 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.archangelStats;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,10 +16,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.util.WorldHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityArchangel extends TragicMob {
 
@@ -223,7 +222,7 @@ public class EntityArchangel extends TragicMob {
 					this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
 					this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
 
-					if (this.waypointY - this.getDistanceToGround() >= 20) this.waypointY -= 10;
+					if (this.waypointY - WorldHelper.getDistanceToGround(this) >= 20) this.waypointY -= 10;
 				}
 			}			
 

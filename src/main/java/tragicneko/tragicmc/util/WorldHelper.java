@@ -284,4 +284,18 @@ public class WorldHelper {
 		list.add(new int[] {start[0], start[1], start[2] - 1});
 		return list;
 	}
+	
+	public static int getDistanceToGround(Entity entity)
+	{
+		int x = MathHelper.floor_double(entity.posX);
+		int y = MathHelper.floor_double(entity.boundingBox.minY);
+		int z = MathHelper.floor_double(entity.posZ);
+
+		for (int i = 0; y - i > 0; ++i)
+		{
+			if (entity.worldObj.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
+		}
+
+		return y;
+	}
 }

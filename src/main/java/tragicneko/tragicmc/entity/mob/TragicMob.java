@@ -380,20 +380,6 @@ public abstract class TragicMob extends EntityMob
 		return super.canAttackClass(par1Class) && par1Class != TragicBoss.class && this instanceof TragicMiniBoss ? par1Class != this.getLesserForm() : true;
 	}
 
-	public int getDistanceToGround()
-	{
-		int x = MathHelper.floor_double(this.posX);
-		int y = MathHelper.floor_double(this.boundingBox.minY);
-		int z = MathHelper.floor_double(this.posZ);
-
-		for (int i = 0; y - i > 0; ++i)
-		{
-			if (this.worldObj.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
-		}
-
-		return y;
-	}
-
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
