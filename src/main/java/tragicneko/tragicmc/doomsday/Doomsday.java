@@ -98,7 +98,7 @@ public abstract class Doomsday {
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
 		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
-		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "dangerZone", "support", "purify"
+		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

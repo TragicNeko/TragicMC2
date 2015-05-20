@@ -66,9 +66,9 @@ public class TragicConfig {
 	private static int[] doomInts = new int[12];
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
 	public static int doomConsumeAmount, maxDoomMinimum;
-	public static boolean[] doomsdayAllow = new boolean[64];
-	public static int[] doomsdayCooldowns = new int[64];
-	public static int[] doomsdayCosts = new int[64];
+	public static boolean[] doomsdayAllow = new boolean[96];
+	public static int[] doomsdayCooldowns = new int[96];
+	public static int[] doomsdayCosts = new int[96];
 	public static boolean[] nonDoomsdayAbilities = new boolean[64];
 	public static int[] nonDoomsdayAbilityCosts = new int[64];
 
