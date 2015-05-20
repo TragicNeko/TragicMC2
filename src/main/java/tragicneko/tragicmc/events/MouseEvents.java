@@ -44,8 +44,6 @@ public class MouseEvents {
 	@SubscribeEvent
 	public void onMouseInput(MouseEvent event)
 	{
-		Minecraft mc = Minecraft.getMinecraft();
-
 		if (event.buttonstate && event.button == 0 && mc.inGameHasFocus)
 		{
 			if (mc.thePlayer == null) return;
