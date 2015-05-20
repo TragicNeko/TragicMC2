@@ -4008,6 +4008,20 @@ Small change to boss render bars
 Added Amulet colors for the new batch of Amulets, adjusted some of the colors for the older ones
 Fixed Overlord Amulet not being an Epic Amulet
 Changed the Luck attribute to affect entity xp on death, similarly to the Luck Amulet, their effects stack
+Added Fusea/Volatile Fusea sounds
+Fixed typos with a couple of the other sounds
+Added Magnetizer Doomsday
+Added Ambience Doomsday, this will form a combination with Decay to create Radiant Light
+Lightning Rush now requires Light Shove to be used while Titanfall is active instead of Ravage, this is so that Ravage is opened up for a future combination
+that makes more sense
+Added Dimentia Doomsday, it is a combination of Harmonizer and Asphyxiate (two polar opposite Doomsdays)
+Added Delete Doomsday, it uses a vector to delete multiple blocks in a line
+Added Laser Cutter Doomsday, uses the vector system that the Delete Doomsday uses but mines slowly and is an extended Doomsday
+Cut the Petal Dance Doomsday, may change it up and add it later
+Added Danger Zone Doomsday, it is a combination of Suicidal Tendencies and Ravage
+Moved getDistanceToGround to WorldHelper and made it static, use it in Doomsdays that spawn things in the sky
+Added Support Doomsday, it gives the Doom that you use to activate it to other players near you
+Added Purify Doomsday, removes all potion effects from all entities and extinguishes them if they are on fire
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
@@ -4018,7 +4032,6 @@ Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
 Abomination sounds: kinda derpy beast sounds
 Erkel sounds: high-pitched tones
 Ire sounds: Possibly quiet/just use default sounds
-Fusea sounds: Wah-wah sounds
 Parasmite sounds: shrieks, metroid-like sounds
 
 Aegar sounds: robotic bloops (and the sweeps, creeps and bleeps)
@@ -4042,20 +4055,12 @@ Kurayami - A black & blue fox that looks like a smaller version of the Kitsunaku
 enemies, it aggressively attacks any mobs that are near it (it will extend EntityGolem)
 
 ==Scroll only Doomsdays (for now at least)==
-Kurayami, Overflow, a dark fox is summoned to fight with you with total health, attack damage and armor based on how much Doom you have when you summon it
-Magnetizer, World Shaper, pulls all ores that are near you into large spherical shapes around you, may suffocate you if there are a lot
-Ambience, World Shaper, makes you glow (with Luminescence blocks) for the duration of it
-Dimentia, Influence, mobs around you start attacking each other
-Delete, World Shaper, fires a single "Drill" projectile that instantly sets blocks that it goes through to air
-Petal Dance, Crisis, shoots mobs that are near you and damages them with magic damage, lower health means more damage
-Laser Cutter, World Shaper, fires a laser that "drills" blocks that you look at, extended, works like Delete except non instantaneous mining (doesn't set blocks to air)
-Radiant Light, Influence, any mobs near you get inflicted with Weakness XGHVWRBOA and pretty much do no damage at all to anything, meanwhile you get Strength XGIAHR and can oneshot most things
-Danger Zone, Crisis, any mobs in the area get exploded and get stunned
-Support, Overflow, increase nearby player's doom at the cost of yours
-Purify, Influence, clear all potion effects on all entities nearby
 Recall, Influence, teleports you to your spawn point
 Rewrite, World Shaper, moves blocks around you to different positions and moves entities to different locations
-Shuffle, Influence, swaps entity positions around
+Shuffle, Overflow, swaps entity positions around continuously
+Blink, Influence, teleports you to where you are looking (instant Teleport)
+Evacuation, Influence, teleports all entities around you to random locations and inflicts blindness on them
+Soul Link, Overflow, give Doom to random players around you
 
 --Reminders-
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
