@@ -107,14 +107,22 @@ public class ItemDoomsdayScroll extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
 	{
-		if (world.isRemote || !TragicConfig.allowDoomsdays) return stack;
 
-		PropertyDoom doom = PropertyDoom.get(player);
-		if (doom != null)
+		if (!TragicConfig.allowDoomsdays) return stack;
+
+		if (world.isRemote)
 		{
-			Doomsday doomsday = Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1);
-			if (doomsday != null) doomsday.activateDoomsday(doom);
-			stack.stackSize--;
+			player.playSound("tragicmc:random.doomsuccess", 1.0F, 1.0F);
+		}
+		else
+		{
+			PropertyDoom doom = PropertyDoom.get(player);
+			if (doom != null)
+			{
+				Doomsday doomsday = Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1);
+				if (doomsday != null) doomsday.activateDoomsday(doom);
+				stack.stackSize--;
+			}
 		}
 		return stack;
 	}
