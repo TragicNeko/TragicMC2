@@ -30,7 +30,7 @@ public abstract class RenderBoss extends RenderLiving {
 	
 	public void doRender(TragicBoss boss, double par2, double par4, double par6, float par8, float par9)
 	{
-		if (boss.getHealth() > 0) BossStatus.setBossStatus(boss, true);
+		BossStatus.setBossStatus(boss, true);
 		super.doRender(boss, par2, par4, par6, par8, par9);
 	}
 	
