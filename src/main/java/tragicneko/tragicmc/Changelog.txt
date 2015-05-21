@@ -4024,6 +4024,16 @@ Added Support Doomsday, it gives the Doom that you use to activate it to other p
 Added Purify Doomsday, removes all potion effects from all entities and extinguishes them if they are on fire
 Fix crash from config options for Doomsdays
 Made Doomsday Scrolls in the Creative Tab work more efficiently (it uses the Doomsday list rather than the names so that spotting errors with them is easier)
+Fixed derps with config regarding the Radiant Light
+Modified Danger Zone to not create as much lag
+Added Recall Doomsday
+Added Kurayami mob for the Kurayami Doomsday, it uses slightly modified code from the Kitsunakuma but is categorized as a Golem
+Modified Iron Golem and Snow Golem entity eggs to be categorized as Pets, same thing was done for the Kurayami egg
+Fixed crash due to entity attributes for the Kurayami
+Updated some aspects of the Kitsune AI, it now teleports when in water and it's navigator now avoids water
+Kitsunakuma vs Kurayami now works in such a way that they will fight each other (and do damage to each other) but the battle will be weighed towards the Kitsune
+since it is a Boss
+Adjusted Kurayami's animations to fit it's longer attack time
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
@@ -4040,7 +4050,7 @@ Parasmite sounds: shrieks, metroid-like sounds
 Aegar sounds: robotic bloops (and the sweeps, creeps and bleeps)
 Apis sounds: Mad bull sounds
 Skultar sounds: maniacal laughing, joker sounds
-Kitsune sounds: higher registry animal sounds when hurt
+Kitsune/Kurayami sounds: higher registry animal sounds when hurt
 Polaris sounds: Sonar-like pings, bell dings possibly or spacey sounds
 Yeti sounds: Deep beastly sounds
 Time Controller sounds: sorta organic w/ electronic filter chimey sounds possibly, some type of bubble effect
@@ -4054,11 +4064,8 @@ AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob t
 to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
 ("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
 use the same drop rates and items from that actually
-Kurayami - A black & blue fox that looks like a smaller version of the Kitsunakuma, it is not immune to all damage except for fireballs and does not taunt
-enemies, it aggressively attacks any mobs that are near it (it will extend EntityGolem)
 
 ==Scroll only Doomsdays (for now at least)==
-Recall, Influence, teleports you to your spawn point
 Rewrite, World Shaper, moves blocks around you to different positions and moves entities to different locations
 Shuffle, Overflow, swaps entity positions around continuously
 Blink, Influence, teleports you to where you are looking (instant Teleport)
