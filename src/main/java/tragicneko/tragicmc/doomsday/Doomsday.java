@@ -87,7 +87,7 @@ public abstract class Doomsday {
 	public static final Doomsday DangerZone = new DoomsdayDangerZone(62); //TODO add the Doomsdays, their names, localizations and abilities
 	public static final Doomsday Support = new DoomsdaySupport(63);
 	public static final Doomsday Purify = new DoomsdayPurify(64);
-	//public static final Doomsday Recall = new Doomsday(65);
+	public static final Doomsday Recall = new DoomsdayRecall(65);
 	//public static final Doomsday Rewrite = new Doomsday(66);
 	//public static final Doomsday Shuffle = new Doomsday(67);
 	//public static final Doomsday Blink = new Doomsday(68);
@@ -98,7 +98,7 @@ public abstract class Doomsday {
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
 		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
-		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify"
+		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

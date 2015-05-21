@@ -977,6 +977,8 @@ entity.TragicMC.Parasmite.name=Parasmite
 entity.TragicMC.OverlordCore.name=The Overlord (Core)
 entity.TragicMC.OverlordCombat.name=The Overlord (Combat)
 entity.TragicMC.OverlordCocoon.name=The Overlord (Cocoon)
+entity.TragicMC.Kurayami.name=Kurayami
+entity.TragicMC.Avris.name=Avris
 
 enchantment.combustion=Combustion
 enchantment.multiply=Multiply
@@ -1102,6 +1104,7 @@ doomsday.radiantLight.name=Radiant Light
 doomsday.dangerZone.name=Danger Zone
 doomsday.support.name=Support
 doomsday.purify.name=Purify
+doomsday.recall.name=Recall
 
 tragicmc.paintedForest=Painted Forest
 tragicmc.paintedPlains=Painted Plains

@@ -27,6 +27,7 @@ import tragicneko.tragicmc.client.model.ModelInkling;
 import tragicneko.tragicmc.client.model.ModelIre;
 import tragicneko.tragicmc.client.model.ModelJarra;
 import tragicneko.tragicmc.client.model.ModelKragul;
+import tragicneko.tragicmc.client.model.ModelKurayami;
 import tragicneko.tragicmc.client.model.ModelLockbot;
 import tragicneko.tragicmc.client.model.ModelMinotaur;
 import tragicneko.tragicmc.client.model.ModelNanoSwarm;
@@ -85,6 +86,7 @@ import tragicneko.tragicmc.dimension.TragicSkyRenderer;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
+import tragicneko.tragicmc.entity.EntityKurayami;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -310,6 +312,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityVolatileFusea.class, new RenderFusea(1));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRanmas.class, new RenderMob(new ModelRanmas(), 0.775F, "Ranmas", 1.25F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityParasmite.class, new RenderMob(new ModelHunter(), 0.565F, "Parasmite", 1.355F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityKurayami.class, new RenderMob(new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());

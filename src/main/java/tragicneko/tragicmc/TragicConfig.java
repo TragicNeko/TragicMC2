@@ -110,7 +110,7 @@ public class TragicConfig {
 	private static double[][] mobStats = new double[48][];
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats;
+	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats, kurayamiStats, avrisStats;
 	private static double[][] miniBossStats = new double[16][];
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats, volatileFuseaStats;
 	private static double[][] bossStats = new double[12][];
@@ -418,9 +418,11 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDimentiaAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDeleteAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayLaserCutterAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayRadiantLightAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDangerZoneAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySupportAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPurifyAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayRecallAllow", true).getBoolean(true));
 
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -483,9 +485,11 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDimentiaCooldown", 77).getInt(77));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDeleteCooldown", 125).getInt(125));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayLaserCutterCooldown", 15).getInt(15));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRadiantLightCooldown", 65).getInt(65));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDangerZoneCooldown", 24).getInt(24));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySupportCooldown", 16).getInt(16));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurifyCooldown", 42).getInt(42));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRecall", 22).getInt(22));
 
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -548,9 +552,11 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDimentiaCost", 99).getInt(99));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDeleteCost", 135).getInt(135));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayLaserCutterCost", 16).getInt(16));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRadiantLightCost", 62).getInt(62));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDangerZoneCost", 22).getInt(22));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySupportCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurifyCost", 42).getInt(42));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRecallCost", 82).getInt(82));
 
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));
@@ -856,6 +862,7 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "fuseaStats", new double[] {10.0, 0.0, 0.0, 16.0, 100.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "ranmasStats", new double[] {50.0, 0.0, 1.0, 32.0, 100.0, 24}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "parasmiteStats", new double[] {10.0, 0.0, 1.0, 16.0, 0.0, 0}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "kurayamiStats", new double[] {120.0, 0.420, 12.0, 64.0, 0.4, 10}).getDoubleList());
 
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
@@ -1655,6 +1662,7 @@ public class TragicConfig {
 		fuseaStats = mobStats[mapping++];
 		ranmasStats = mobStats[mapping++];
 		parasmiteStats = mobStats[mapping++];
+		kurayamiStats = mobStats[mapping++];
 
 		mapping = 0;
 		jarraStats = miniBossStats[mapping++];

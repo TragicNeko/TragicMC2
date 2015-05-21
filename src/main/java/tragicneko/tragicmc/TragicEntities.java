@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
+import tragicneko.tragicmc.entity.EntityKurayami;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
@@ -497,39 +498,42 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntitySeeker.class, "Seeker", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntitySeeker.class, "TragicMC.Seeker", id++, 0x53BBBC, 0x464646);
 		}
-		
+
 		if (TragicConfig.allowArchangel)
 		{
 			EntityRegistry.registerModEntity(EntityArchangel.class, "Archangel", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityArchangel.class, "TragicMC.Archangel", id++, 0xFFFCA0, 0xFFFCA0);
 		}
-		
+
 		if (TragicConfig.allowIre)
 		{
 			EntityRegistry.registerModEntity(EntityIre.class, "Ire", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityIre.class, "TragicMC.Ire", id++, 0xFFFFC3, 0xFFFFC3);
 		}
-		
+
 		if (TragicConfig.allowFusea)
 		{
 			EntityRegistry.registerModEntity(EntityFusea.class, "Fusea", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityFusea.class, "TragicMC.Fusea", id++, 0xE4B1E0, 0xA0E39D);
 		}
-		
+
 		if (TragicConfig.allowRanmas)
 		{
 			EntityRegistry.registerModEntity(EntityRanmas.class, "Ranmas", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityRanmas.class, "TragicMC.Ranmas", id++, 0xDCDCDC, 0xCCCCCC);
 		}
-		
+
 		if (TragicConfig.allowParasmite)
 		{
 			EntityRegistry.registerModEntity(EntityParasmite.class, "Parasmite", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityParasmite.class, "TragicMC.Parasmite", id++, 0xAF00A6, 0x581354);
 		}
 
+		//Giant Zombie
+		TragicEntityList.addMapping(EntityGiantZombie.class, "TragicMC.GiantZombie", id++, 0x43BD98, 0x53DCBC);
+
 		//Iron Golem
-		TragicEntityList.addMapping(EntityIronGolem.class, "TragicMC.IronGolem", id++, 0xDBCDC1, 0x8B7260);
+		TragicEntityList.addMapping(EntityIronGolem.class, "TragicMC.IronGolem", id++, 0xDBCDC1, 0x8B7260, EnumEggType.PET);
 
 		//Added snow golem to ice biomes
 		if (TragicConfig.allowSnowGolem)
@@ -542,10 +546,11 @@ public class TragicEntities {
 					BiomeGenBase.coldTaigaHills
 					);
 		}
-		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, 0xFFFDF1, 0xABA290);
-		
-		//Giant Zombie
-		TragicEntityList.addMapping(EntityGiantZombie.class, "TragicMC.GiantZombie", id++, 0x43BD98, 0x53DCBC);
+		TragicEntityList.addMapping(EntitySnowman.class, "TragicMC.SnowGolem", id++, 0xFFFDF1, 0xABA290, EnumEggType.PET);
+
+		//Kurayami
+		EntityRegistry.registerModEntity(EntityKurayami.class, "Kurayami", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityKurayami.class, "TragicMC.Kurayami", id++, 0x2222AA, 0x010146, EnumEggType.PET);
 
 		//Mini-Bosses
 		if (TragicConfig.allowJarra)
@@ -635,7 +640,7 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityAegar.class, "Aegar", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityAegar.class, "TragicMC.Aegar", id++, 0x45C0CB, 0xCEFBFF, EnumEggType.MINIBOSS);
 		}
-		
+
 		if (TragicConfig.allowVolatileFusea)
 		{
 			EntityRegistry.registerModEntity(EntityVolatileFusea.class, "VolatileFusea", listid++, TragicMC.getInstance(), 80, 1, true);

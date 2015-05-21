@@ -15,7 +15,6 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -33,6 +32,7 @@ import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
+import tragicneko.tragicmc.entity.EntityKurayami;
 
 public class EntityKitsune extends TragicBoss {
 
@@ -42,6 +42,7 @@ public class EntityKitsune extends TragicBoss {
 		super(par1World);
 		this.setSize(0.745F, 1.745F);
 		this.experienceValue = 120;
+		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.75D));
@@ -212,6 +213,8 @@ public class EntityKitsune extends TragicBoss {
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.isFiring() || this.getTauntTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
+		
+		if (this.isInWater()) this.teleportRandomly();
 
 		if (this.getAttackTarget() != null)
 		{
@@ -320,6 +323,11 @@ public class EntityKitsune extends TragicBoss {
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
+		}
+		
+		if (par1DamageSource.getEntity() instanceof EntityKurayami)
+		{
+			return super.attackEntityFrom(par1DamageSource, par2 * 0.145F);
 		}
 
 		if (!par1DamageSource.getDamageType().equals("fireball") && !flag)

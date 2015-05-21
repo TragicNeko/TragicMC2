@@ -8,28 +8,28 @@ import tragicneko.tragicmc.entity.boss.EntityKitsune;
 
 public class ModelKitsune2 extends ModelBase
 {
-	private ModelRenderer head;
-	private ModelRenderer leftEar;
-	private ModelRenderer rightEar;
-	private ModelRenderer lowerMouth;
-	private ModelRenderer tongue;
-	private ModelRenderer body;
-	private ModelRenderer rightArm;
-	private ModelRenderer leftArm;
+	protected ModelRenderer head;
+	protected ModelRenderer leftEar;
+	protected ModelRenderer rightEar;
+	protected ModelRenderer lowerMouth;
+	protected ModelRenderer tongue;
+	protected ModelRenderer body;
+	protected ModelRenderer rightArm;
+	protected ModelRenderer leftArm;
 
-	private ModelRenderer rightLeg;
-	private ModelRenderer leftLeg;
+	protected ModelRenderer rightLeg;
+	protected ModelRenderer leftLeg;
 
-	private ModelRenderer tailFR;
-	private ModelRenderer tailTipFR;
-	private ModelRenderer tailMR;
-	private ModelRenderer tailTipMR;
-	private ModelRenderer tailMid;
-	private ModelRenderer tailTipMid;
-	private ModelRenderer tailML;
-	private ModelRenderer tailTipML;
-	private ModelRenderer tailFL;
-	private ModelRenderer tailTipFL;
+	protected ModelRenderer tailFR;
+	protected ModelRenderer tailTipFR;
+	protected ModelRenderer tailMR;
+	protected ModelRenderer tailTipMR;
+	protected ModelRenderer tailMid;
+	protected ModelRenderer tailTipMid;
+	protected ModelRenderer tailML;
+	protected ModelRenderer tailTipML;
+	protected ModelRenderer tailFL;
+	protected ModelRenderer tailTipFL;
 
 	public ModelKitsune2()
 	{
@@ -323,7 +323,7 @@ public class ModelKitsune2 extends ModelBase
 		}
 	}
 
-	private float simplifyAngle(float par1, float par2)
+	protected float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);
 	}

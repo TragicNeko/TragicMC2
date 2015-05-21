@@ -17,7 +17,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayDangerZone(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 5;
+		this.waitTime = 10;
 		this.maxIterations = 120;
 	}
 	
