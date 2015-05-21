@@ -46,6 +46,7 @@ public class EntityPolaris extends TragicBoss {
 		this.setSize(0.5F, 2.075F);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 120;
+		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -170,6 +171,7 @@ public class EntityPolaris extends TragicBoss {
 		if (this.worldObj.isRemote)	return;
 		if (this.getAttackTime() > 0) this.decrementAttackTime();
 		if (this.isClone() && this.tasks.taskEntries.contains(fearGolems)) this.tasks.taskEntries.remove(fearGolems);
+		if (this.isInWater()) this.teleportRandomly();
 
 		if (this.ticksExisted % 240 == 0) this.heal(3.0F);
 
