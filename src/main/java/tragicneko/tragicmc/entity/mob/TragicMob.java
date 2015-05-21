@@ -142,10 +142,10 @@ public abstract class TragicMob extends EntityMob
 			}
 			else
 			{
-				this.setCorruptionTicks(0);
+				this.setCorruptionTicks(this.getCorruptionTicks() - 1);
 			}
 
-			if (this.canChange() && this.getCorruptionTicks() >= 600 && this.rand.nextInt(100) <= TragicConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
+			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
 			{
 				this.change();
 			}
