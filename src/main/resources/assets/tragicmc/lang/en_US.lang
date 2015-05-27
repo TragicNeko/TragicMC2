@@ -1105,6 +1105,11 @@ doomsday.dangerZone.name=Danger Zone
 doomsday.support.name=Support
 doomsday.purify.name=Purify
 doomsday.recall.name=Recall
+doomsday.shuffle.name=Shuffle
+doomsday.blink.name=Blink
+doomsday.evacuation.name=Evacuate
+doomsday.medic.name=Medic
+doomsday.resurge.name=Resurgence
 
 tragicmc.paintedForest=Painted Forest
 tragicmc.paintedPlains=Painted Plains

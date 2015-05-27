@@ -423,6 +423,11 @@ public class TragicConfig {
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdaySupportAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayPurifyAllow", true).getBoolean(true));
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayRecallAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayShuffleAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayBlinkAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayEvacuateAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayMedicAllow", true).getBoolean(true));
+		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayResurgenceAllow", true).getBoolean(true));
 
 		mapping = 1;
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCooldown", 20).getInt(20));
@@ -489,7 +494,12 @@ public class TragicConfig {
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayDangerZoneCooldown", 24).getInt(24));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdaySupportCooldown", 16).getInt(16));
 		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurifyCooldown", 42).getInt(42));
-		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRecall", 22).getInt(22));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayRecallCooldown", 22).getInt(22));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayShuffleCooldown", 8).getInt(8));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayBlinkCooldown", 1).getInt(1));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayEvacuateCooldown", 77).getInt(77));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayMedicCooldown", 9).getInt(9));
+		doomsdayCooldowns[mapping++] = clampPositive(config.get(catDoom, "doomsdayResurgenceCooldown", 55).getInt(55));
 
 		mapping = 1;
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayDecayCost", 40).getInt(40));
@@ -557,6 +567,11 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySupportCost", 60).getInt(60));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayPurifyCost", 42).getInt(42));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRecallCost", 82).getInt(82));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayShuffleCost", 18).getInt(18));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayBlinkCost", 15).getInt(15));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayEvacuateCost", 56).getInt(56));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayMedicCost", 9).getInt(9));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayResurgenceCost", 135).getInt(135));
 
 		mapping = 0;
 		nonDoomsdayAbilities[mapping++] = (config.get(catDoom, "beastlyClaws-Combo", true).getBoolean(true));

@@ -550,7 +550,7 @@ public class TragicEntities {
 
 		//Kurayami
 		EntityRegistry.registerModEntity(EntityKurayami.class, "Kurayami", listid++, TragicMC.getInstance(), 80, 1, true);
-		TragicEntityList.addMapping(EntityKurayami.class, "TragicMC.Kurayami", id++, 0x2222AA, 0x010146, EnumEggType.PET);
+		TragicEntityList.addMapping(EntityKurayami.class, "TragicMC.Kurayami", id++, 0x2222AA, 0x8888FF, EnumEggType.PET);
 
 		//Mini-Bosses
 		if (TragicConfig.allowJarra)

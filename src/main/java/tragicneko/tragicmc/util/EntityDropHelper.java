@@ -74,7 +74,7 @@ public class EntityDropHelper {
 		new EntityDrop(1, TragicItems.Splinter), new EntityDrop(1, TragicItems.Butcher), new EntityDrop(1, TragicItems.Thardus), new EntityDrop(3, TragicItems.DragonFang),
 		new EntityDrop(8, new ItemStack(TragicBlocks.CompactOre, 1, 0), new ItemStack(TragicBlocks.CompactOre, 1, 1), new ItemStack(TragicBlocks.CompactOre, 1, 2),
 				new ItemStack(TragicBlocks.CompactOre, 1, 3), new ItemStack(TragicBlocks.CompactOre, 1, 4)), new EntityDrop(5, TragicItems.Talisman),
-				new EntityDrop(15, getDoomsdayScrollStacks()), new EntityDrop(1, new ItemStack(TragicItems.SilentHellraiser)), new EntityDrop(1, getAmulets(false))};
+				new EntityDrop(25, getDoomsdayScrollStacks()), new EntityDrop(1, new ItemStack(TragicItems.SilentHellraiser)), new EntityDrop(1, getAmulets(false))};
 
 	public static void fill()
 	{
