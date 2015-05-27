@@ -51,4 +51,4 @@ bin/*
 *.db
 *.classpath
 .metadata/*
-TragicMC2 1.8 blockstates and model jsons/*
+TragicMC2 1.8 port blockstates and model jsons/*
