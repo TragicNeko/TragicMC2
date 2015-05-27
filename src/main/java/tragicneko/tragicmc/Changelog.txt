@@ -3947,7 +3947,7 @@ Added Seeker sound, it only plays when it's targetting something, it gains volum
 it kills them
 Slight modification done to Directed Lightning sounds
 
-2.44.2469++ <203> (May 13, 2015) [Major Doomsday cleanup, Amulets changed to be server and client-side, lots of new content for both]
+2.44.2560 <203> (May 13, 2015) [Major Doomsday cleanup, Amulets changed to be server and client-side, lots of new content for both]
 Set up adding all of the new Doomsdays, Amulets and Structures
 Planned a large amount of random Achievements but still need to add the "plotline" ones
 Important change to Amulets was done, so that effects would be done on client and server side, this was done to make the Spider Amulet work but will most
@@ -4034,24 +4034,37 @@ Updated some aspects of the Kitsune AI, it now teleports when in water and it's 
 Kitsunakuma vs Kurayami now works in such a way that they will fight each other (and do damage to each other) but the battle will be weighed towards the Kitsune
 since it is a Boss
 Adjusted Kurayami's animations to fit it's longer attack time
+Added Shuffle Doomsday
+Added Blink Doomsday
+Fixed some lag with the recent Nature Drain changes
+Added Evacuate Doomsday, it is a combination of Shuffle and Blink
+Added Medic Doomsday
+Added Resurgence Doomsday (Soul Link will be added another time), it is a combination of Support and Medic
+
+2.44.2560++ <204> (May 22, 2015)
+Modified Plague and Harvester sounds to play on update rather than using the vanilla living sound thing
+Added Ranmas sounds (uses the Harvester and the Vanilla Anvil sounds)
+Added Erkel sounds (uses very high-pitched versions of the Tox sounds)
+Added Ire sounds
+Added Sirv sounds
+Added Parasmite sounds
+Added Abomination sounds
+Added Aegar sounds
+Added laser particles for the Aegar's laser attacks
+Added Polaris sounds
+Added Kitsunakuma & Kurayami sounds
+Reduced amount of particles that the Aegar spawns
+Removed variation in the Kitsunakuma & Kurayami's fireball accuracy, it's the main way to attack it by deflecting it back to it and that doesn't work so well when
+it doesn't shoot it accurately at it's target
+Working on Skultar sounds
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 Also make sure all of the Doomsdays work in a server environment
 Do experience value scaling for mobs/bosses, currently most of them give like 5 experience so we'll increase this for tougher mobs
 
-Ranmas sounds: whirling sounds, metallic ding sound when hit
-Sirv sounds: bone-breaking, cracking sounds when hit/dead/moving
-Abomination sounds: kinda derpy beast sounds
-Erkel sounds: high-pitched tones
-Ire sounds: Possibly quiet/just use default sounds
-Parasmite sounds: shrieks, metroid-like sounds
-
-Aegar sounds: robotic bloops (and the sweeps, creeps and bleeps)
+Boss sounds~
 Apis sounds: Mad bull sounds
-Skultar sounds: maniacal laughing, joker sounds
-Kitsune/Kurayami sounds: higher registry animal sounds when hurt
-Polaris sounds: Sonar-like pings, bell dings possibly or spacey sounds
 Yeti sounds: Deep beastly sounds
 Time Controller sounds: sorta organic w/ electronic filter chimey sounds possibly, some type of bubble effect
 Enyvil sounds: possibly double toned sounds (high and low pitched at the same time to create a weird effect)
@@ -4064,13 +4077,6 @@ AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob t
 to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
 ("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
 use the same drop rates and items from that actually
-
-==Scroll only Doomsdays (for now at least)==
-Rewrite, World Shaper, moves blocks around you to different positions and moves entities to different locations
-Shuffle, Overflow, swaps entity positions around continuously
-Blink, Influence, teleports you to where you are looking (instant Teleport)
-Evacuation, Influence, teleports all entities around you to random locations and inflicts blindness on them
-Soul Link, Overflow, give Doom to random players around you
 
 --Reminders-
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
