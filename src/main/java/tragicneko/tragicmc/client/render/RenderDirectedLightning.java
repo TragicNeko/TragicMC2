@@ -28,7 +28,6 @@ public class RenderDirectedLightning extends Render {
 
 		Entity user = bolt.worldObj.getEntityByID(bolt.getUserID());
 		Random rand = new Random(bolt.boltVertex);
-		if (user != null) TragicMC.logInfo("User is not null");
 		double bx = (bolt.posX - bolt.prevPosX);
 		double by = (bolt.posY - bolt.prevPosY);
 		double bz = (bolt.posZ - bolt.prevPosZ);
