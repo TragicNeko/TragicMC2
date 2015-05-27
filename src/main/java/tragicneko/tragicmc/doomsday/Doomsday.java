@@ -84,21 +84,23 @@ public abstract class Doomsday {
 	public static final Doomsday Delete = new DoomsdayDelete(59);
 	public static final Doomsday LaserCutter = new DoomsdayLaserCutter(60);
 	public static final Doomsday RadiantLight = new DoomsdayRadiantLight(61);
-	public static final Doomsday DangerZone = new DoomsdayDangerZone(62); //TODO add the Doomsdays, their names, localizations and abilities
+	public static final Doomsday DangerZone = new DoomsdayDangerZone(62);
 	public static final Doomsday Support = new DoomsdaySupport(63);
 	public static final Doomsday Purify = new DoomsdayPurify(64);
 	public static final Doomsday Recall = new DoomsdayRecall(65);
-	//public static final Doomsday Rewrite = new Doomsday(66);
-	//public static final Doomsday Shuffle = new Doomsday(67);
-	//public static final Doomsday Blink = new Doomsday(68);
-	//public static final Doomsday Evacuation = new Doomsday(69); //Blink + Shuffle
+	public static final Doomsday Shuffle = new DoomsdayShuffle(66);
+	public static final Doomsday Blink = new DoomsdayBlink(67);
+	public static final Doomsday Evacuation = new DoomsdayEvacuation(68);
+	public static final Doomsday Medic = new DoomsdayMedic(69);
+	public static final Doomsday Resurge = new DoomsdayResurge(70);
 
 	public static final String[] doomsdayNames = new String[] {"null", "decay", "huntersInstinct", "toxicity", "berserker", "piercingLight", "natureDrain", "poisonBreak",
 		"snipe", "rapidFire", "pulse", "lightShove", "fear", "harmonizer", "ravage", "torment", "beastlyImpulses", "suicidalTendencies", "reaperLaugh", "realityAlter",
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
 		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
-		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall"
+		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall", "shuffle", "blink", "evacuation", 
+		"medic", "resurge"
 	};
 
 	public static final Map<String, Integer> stringToIDMapping = new HashMap();

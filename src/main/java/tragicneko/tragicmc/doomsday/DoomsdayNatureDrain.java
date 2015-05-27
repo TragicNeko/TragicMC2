@@ -20,6 +20,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -28,15 +29,15 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayNatureDrain(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 10;
-		this.maxIterations = 50;
+		this.waitTime = 20;
+		this.maxIterations = 30;
 	}
 
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
 		
-		double radius = crucMoment ? 14.0D : 7.0D;
+		double radius = crucMoment ? 10.0D : 5.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		
 		boolean griefCheck = TragicConfig.griefConfigs[0];
@@ -94,7 +95,8 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	{
 		if (effect.utilityInt > 0)
 		{
-			int i = rand.nextInt(effect.utilityInt) + 1;
+			float i = rand.nextInt((effect.utilityInt / 2) + 1) + 0.5F;
+			TragicMC.logInfo("Total is " + effect.utilityInt + ", amount chosen is " + i);
 			
 			if (crucMoment)
 			{
@@ -105,10 +107,11 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 			if (i > effect.utilityInt) i = effect.utilityInt;
 			effect.utilityInt -= i;
 			player.heal(i);
+			player.worldObj.playSoundAtEntity(player, "mob.blaze.breath", 0.4F, 1.6F);
 		}
 		else
 		{
-			double radius = crucMoment ? 14.0D : 7.0D;
+			double radius = crucMoment ? 10.0D : 5.0D;
 			List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 			
 			boolean griefCheck = TragicConfig.griefConfigs[0];

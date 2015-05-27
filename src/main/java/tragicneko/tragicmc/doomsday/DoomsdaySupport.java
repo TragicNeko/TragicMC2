@@ -51,4 +51,9 @@ public class DoomsdaySupport extends Doomsday {
 
 	}
 
+	@Override
+	public Doomsday getCombination()
+	{
+		return Doomsday.Resurge;
+	}
 }
