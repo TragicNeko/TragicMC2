@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.ranmasStats;
+import net.minecraft.block.Block;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -128,6 +129,8 @@ public class EntityRanmas extends TragicMob {
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (f / 2) * rand.nextFloat() + (f / 2), this.getMobGriefing());
 					this.attackEntityFrom(DamageSource.fall, f);
 				}
+				
+				this.worldObj.playSoundAtEntity(this, "random.anvil_land", 0.4F, 1.0F);
 			}
 			this.motionX = this.motions[0];
 			this.motionY = this.motions[1];
@@ -144,6 +147,7 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {d0, d1, d2};
 				this.setChargeTicks(15);
 			}
+			else if (this.ticksExisted % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.2F, 0.2F);
 		}
 	}
 
@@ -219,5 +223,47 @@ public class EntityRanmas extends TragicMob {
 		tag.setDouble("chargeX", this.motions[0]);
 		tag.setDouble("chargeY", this.motions[1]);
 		tag.setDouble("chargeZ", this.motions[2]);
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return null;
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "random.anvil_land";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return getHurtSound();
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.4F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

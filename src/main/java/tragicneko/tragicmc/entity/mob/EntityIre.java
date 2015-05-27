@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.ireStats;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -184,6 +185,8 @@ public class EntityIre extends TragicMob {
 				{
 					if (this.getHealth() < this.getMaxHealth()) this.heal(ireNetSize);
 				}
+				
+				this.worldObj.playSoundAtEntity(this, "tragicmc:mob.ire.active", 0.8F, 0.5F + rand.nextFloat());
 			}
 
 			if (this.getDistanceToEntity(this.getAttackTarget()) >= 16.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
@@ -221,5 +224,47 @@ public class EntityIre extends TragicMob {
 	public boolean canAttackClass(Class oclass)
 	{
 		return super.canAttackClass(oclass) && oclass != this.getClass() && oclass != EntityArchangel.class && oclass != EntityApis.class;
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.ire.tone";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.ire.hit";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.ire.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return rand.nextFloat() + 0.5F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

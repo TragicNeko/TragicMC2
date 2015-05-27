@@ -187,6 +187,7 @@ public class EntityHarvester extends TragicMob {
 			}
 
 			if (flag && rand.nextInt(32) == 0 && this.getReleaseTicks() == 0) this.setReleaseTicks(20);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.6F, 1.0F);
 		}
 
 		if (this.getReleaseTicks() > 0) this.setReleaseTicks(this.getReleaseTicks() - 1);
@@ -221,7 +222,7 @@ public class EntityHarvester extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.harvester.hover";
+		return null;
 	}
 	
 	@Override
@@ -257,6 +258,6 @@ public class EntityHarvester extends TragicMob {
 	@Override
 	public int getTalkInterval()
 	{
-		return 2;
+		return super.getTalkInterval();
 	}
 }

@@ -292,12 +292,10 @@ public class EntityKitsune extends TragicBoss {
 			if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
-				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
 				double d2 = this.getAttackTarget().posZ - this.posZ;
 
-				float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.375F;
-
-				EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
+				EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0, d1, d2);
 				fireball.posY = this.posY + (this.height * 2 / 3);
 				this.worldObj.spawnEntityInWorld(fireball);
 			}
@@ -309,6 +307,7 @@ public class EntityKitsune extends TragicBoss {
 			}
 
 			if (!this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) > 8.0F && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && rand.nextInt(56) == 0 && this.getTauntTicks() == 0) this.setTauntTicks(40);
+			if (this.getTauntTicks() == 40) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.kitsune.taunt", 1.0F, 1.0F);
 		}
 	}
 
@@ -487,5 +486,41 @@ public class EntityKitsune extends TragicBoss {
 		tag.setInteger("tauntTicks", this.getTauntTicks());
 		tag.setInteger("hurtTime", this.getHurtTime());
 		tag.setInteger("attackTime", this.getAttackTime());
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:boss.kitsune.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:boss.kitsune.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:boss.kitsune.hurt";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval() / 2;
 	}
 }

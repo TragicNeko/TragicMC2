@@ -175,6 +175,11 @@ public class EntityPlague extends TragicMob {
 			{
 				this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
 			}
+			
+			if (this.ticksExisted % 20 == 0)
+			{
+				this.worldObj.playSoundAtEntity(this,"tragicmc:mob.plague.chirp", 0.3F, 1.0F);
+			}
 		}
 	}
 
@@ -192,7 +197,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.plague.chirp";
+		return null;
 	}
 	
 	@Override
@@ -228,6 +233,6 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public int getTalkInterval()
 	{
-		return 4;
+		return super.getTalkInterval();
 	}
 }

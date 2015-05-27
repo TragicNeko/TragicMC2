@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.abominationStats;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -247,4 +248,39 @@ public class EntityAbomination extends TragicMob {
 		return false;
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.abomination.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.abomination.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.abomination.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.8F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
+	}
 }

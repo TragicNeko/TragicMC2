@@ -5,6 +5,7 @@ import static tragicneko.tragicmc.TragicConfig.aegarStats;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -63,7 +64,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.isImmuneToFire = true;
 	}
-	
+
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
@@ -99,6 +100,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.dataWatcher.addObject(21, Integer.valueOf(0));
 		this.dataWatcher.addObject(22, Integer.valueOf(0));
 		this.dataWatcher.addObject(23, Integer.valueOf(0));
+		this.dataWatcher.addObject(24, Integer.valueOf(0));
 	}
 
 	public boolean getHypermode()
@@ -200,7 +202,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	{
 		this.setMortorTicks(this.getMortorTicks() - 1);
 	}
-	
+
 	public int getAutoTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(23);
@@ -214,6 +216,16 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	private void decrementAutoTicks()
 	{
 		this.setAutoTicks(this.getAutoTicks() - 1);
+	}
+	
+	public int getTargetID()
+	{
+		return this.dataWatcher.getWatchableObjectInt(24);
+	}
+	
+	private void setTargetID(int i)
+	{
+		this.dataWatcher.updateObject(24, i);
 	}
 
 	private boolean canUseAbility()
@@ -236,7 +248,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		}
 
 		if (this.getLaserTicks() > 0 || this.getShockwaveTicks() > 0 || this.getMortorTicks() > 20) this.motionX = this.motionZ = this.motionY = 0.0D;
-		
+
 		super.onLivingUpdate();
 
 		float f1 = this.rotationYaw * (float)Math.PI / 180.0F;
@@ -281,12 +293,12 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 				this.worldObj.spawnParticle("mobSpellAmbient", this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.55, this.posY + 0.25 + rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.55,
 						0.0, 0.0, 0.0);
 			}
-			
+
 			if (this.getHurtTime() >= 8)
 			{
-				for (int i = 0; i < 32; i++)
-				this.worldObj.spawnParticle(s, this.posX + (rand.nextDouble() - rand.nextDouble()) * this.width, this.posY + rand.nextDouble() * this.height + 0.15, this.posZ + (rand.nextDouble() - rand.nextDouble()) * this.width,
-						0.0, 0.0, 0.0);
+				for (int i = 0; i < 12; i++)
+					this.worldObj.spawnParticle(s, this.posX + (rand.nextDouble() - rand.nextDouble()) * this.width, this.posY + rand.nextDouble() * this.height + 0.15, this.posZ + (rand.nextDouble() - rand.nextDouble()) * this.width,
+							0.0, 0.0, 0.0);
 			}
 
 			if (this.getMortorTicks() > 20)
@@ -318,6 +330,23 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 				{
 					this.worldObj.spawnParticle("flame", this.posX + (rand.nextDouble() - rand.nextDouble()) * 0.55, this.posY + 2.25 + rand.nextDouble(), this.posZ + (rand.nextDouble() - rand.nextDouble()) * 0.55,
 							0.0, 0.0, 0.0);
+				}
+			}
+			
+			if (this.getLaserTicks() == 5 || this.getAutoTicks() > 0 && this.getAutoTicks() % 5 == 0)
+			{
+				Entity entity = this.worldObj.getEntityByID(this.getTargetID());
+				if (entity != null)
+				{
+					double d0 = entity.posX - this.aegarCannon.posX;
+					double d1 = entity.posY - this.aegarCannon.posY;
+					double d2 = entity.posZ - this.aegarCannon.posZ;
+
+					for (int l = 0; l < 4; l++)
+					{
+						double d3 = 0.23D * l + (rand.nextDouble() * 0.25D);
+						this.worldObj.spawnParticle("flame", this.aegarCannon.posX + d0 * d3, this.aegarCannon.posY + d1 * d3 + 1.25D, this.aegarCannon.posZ + d2 * d3, 0.0, 0.0, 0.0);
+					}
 				}
 			}
 
@@ -352,15 +381,22 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			if (this.getLaserTicks() > 0) this.setLaserTicks(0);
 			if (this.getMortorTicks() > 0) this.setMortorTicks(0);
 			if (this.getAutoTicks() > 0) this.setAutoTicks(0);
+			this.setTargetID(0);
 		}
 		else
 		{
+			this.setTargetID(this.getAttackTarget().getEntityId());
 			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(64) == 0) this.setLaserTicks(40);
 			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && rand.nextInt(128) == 0 && this.getHypermode()) this.setAutoTicks(100 + rand.nextInt(80));
 			if (this.getLaserTicks() == 5 && this.canEntityBeSeen(this.getAttackTarget()) || this.getAutoTicks() > 20 && this.getAutoTicks() % 5 == 0 && this.canEntityBeSeen(this.getAttackTarget())) this.fireLaser();
 			if (this.getLaserTicks() > 0 && !this.canEntityBeSeen(this.getAttackTarget())) this.setLaserTicks(0);
 
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround) this.setShockwaveTicks(60);
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround)
+			{
+				this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
+				this.setShockwaveTicks(60);
+			}
+			
 			if (this.getShockwaveTicks() == 5)
 			{
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0F + 2.0F * rand.nextFloat(), this.getMobGriefing());
@@ -387,9 +423,13 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		mortor.posZ += d2 * 0.04335D;
 		mortor.motionY += 0.36D * f1;
 		this.worldObj.spawnEntityInWorld(mortor);
+
+		this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.trill", 0.6F, 1.0F);
 	}
 
 	private void fireLaser() {
+		this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
+		this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
 		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), 1.0F + rand.nextFloat());
 	}
 
@@ -480,6 +520,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		{
 			if (entity == this.aegarCrystal)
 			{
+				this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.harshhurt", 0.6F, 1.0F);
 				damage *= 1.35F;
 			}
 			else
@@ -525,7 +566,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			}
 		}
 	}
-	
+
 	@Override
 	protected void despawnEntity() {}
 
@@ -561,5 +602,47 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		tag.setInteger("mortorTicks", this.getMortorTicks());
 		tag.setInteger("autoTicks", this.getAutoTicks());
 		tag.setFloat("crystalHealth", this.aegarCrystal.getHealth());
+	}
+
+	@Override
+	public String getLivingSound()
+	{
+		return this.getHypermode() ? "tragicmc:boss.aegar.hyperwah" : "tragicmc:boss.aegar.wah";
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return this.getHypermode() ? "tragicmc:boss.aegar.harshhurt" : "tragicmc:boss.aegar.hurt";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:boss.aegar.death";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F + rand.nextFloat() * 0.2F;
+	}
+
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+	{
+
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

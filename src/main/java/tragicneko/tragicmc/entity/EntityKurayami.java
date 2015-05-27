@@ -54,7 +54,7 @@ public class EntityKurayami extends EntityGolem {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, IMob.class, 0, true));
 		this.isImmuneToFire = true;
-		this.timeToLive = 2000;
+		this.timeToLive = 1800;
 	}
 	
 	@Override
@@ -71,7 +71,7 @@ public class EntityKurayami extends EntityGolem {
 	public void setKurayamiLevel(double d0)
 	{
 		this.armorValue = MathHelper.ceiling_double_int(d0 * kurayamiStats[5]);
-		this.timeToLive = MathHelper.ceiling_double_int(2000 * d0);
+		this.timeToLive = MathHelper.ceiling_double_int(1800 * d0);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kurayamiStats[0] * d0);
 		this.setHealth(this.getMaxHealth());
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kurayamiStats[1]);
@@ -162,7 +162,7 @@ public class EntityKurayami extends EntityGolem {
 			if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
 			if (this.getFiringTicks() > 0) this.setFiringTicks(this.getFiringTicks() - 1);
 			
-			if (this.getAttackTarget() == this.owner || this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
+			if (this.getAttackTarget() == this.owner || this.getAttackTarget() != null && this.getAttackTarget().isDead || this.getAttackTarget() instanceof EntityKurayami) this.setAttackTarget(null);
 			if (this.isInWater()) this.teleportRandomly();
 			
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
@@ -206,12 +206,10 @@ public class EntityKurayami extends EntityGolem {
 				if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getFiringTicks() > 0 && this.getFiringTicks() % 25 == 0)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 
-					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.375F;
-
-					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
+					EntityLargeFireball fireball = new EntityLargeFireball(this.worldObj, this, d0, d1, d2);
 					fireball.posY = this.posY + (this.height * 2 / 3);
 					this.worldObj.spawnEntityInWorld(fireball);
 				}
@@ -223,7 +221,7 @@ public class EntityKurayami extends EntityGolem {
 				}
 			}
 			
-			if (this.owner == null) this.setDead();
+			if (this.owner == null || this.ticksExisted > this.timeToLive) this.setDead();
 		}
 	}
 
@@ -399,5 +397,41 @@ public class EntityKurayami extends EntityGolem {
 		if (this.owner == null) this.setOwner(this.worldObj.getClosestPlayer(this.posX, this.posY, this.posZ, 16.0));
 		this.setKurayamiLevel(1.0);
 		return super.onSpawnWithEgg(data);
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:boss.kitsune.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:boss.kitsune.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:boss.kitsune.hurt";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.4F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval() / 2;
 	}
 }

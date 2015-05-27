@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.sirvStats;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -159,5 +160,47 @@ public class EntitySirv extends TragicMob {
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.sirv.crunch";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.sirv.snap";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.sirv.crunch";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.4F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

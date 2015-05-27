@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.parasmiteStats;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -167,4 +168,45 @@ public class EntityParasmite extends TragicMob {
 		return oclass != this.getClass();
 	}
 
+	@Override
+	public String getLivingSound()
+	{
+		return this.ridingEntity == null ? "tragicmc:mob.parasmite.squeek" : "tragicmc:mob.parasmite.shriek";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.parasmite.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.parasmite.shriek";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.4F + rand.nextFloat() * 0.2F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		//this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
+	}
 }

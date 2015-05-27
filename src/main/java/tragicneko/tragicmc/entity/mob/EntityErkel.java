@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.erkelStats;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -193,5 +194,47 @@ public class EntityErkel extends TragicMob {
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:mob.tox.living";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:mob.tox.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:mob.tox.death";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.9F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.2F + rand.nextFloat() * 0.1F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+    {
+		super.func_145780_a(x, y, z, block);
+    }
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }
