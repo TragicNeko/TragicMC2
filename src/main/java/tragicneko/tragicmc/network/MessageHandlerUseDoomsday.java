@@ -4,18 +4,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.items.armor.TragicArmor;
-import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
+import tragicneko.tragicmc.items.weapons.TragicBow;
+import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
-import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
-import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
@@ -37,26 +35,18 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 		if (stack != null)
 		{
 			flag = true;
-			if (stack.getItem() instanceof WeaponHuntersBow)
+			if (stack.getItem() instanceof TragicBow)
 			{
-				doomsday = ((WeaponHuntersBow)stack.getItem()).doomsday;
-			}
-			else if (stack.getItem() instanceof WeaponCelestialLongbow)
-			{
-				doomsday = ((WeaponCelestialLongbow)stack.getItem()).doomsday;
+				doomsday = ((TragicBow)stack.getItem()).doomsday;
 			}
 			else if (stack.getItem() instanceof TragicWeapon)
 			{
 				TragicWeapon weapon = (TragicWeapon) stack.getItem();
 				doomsday = !player.isSneaking() && weapon.getSecondaryDoomsday() != null ? weapon.getSecondaryDoomsday() : weapon.getDoomsday();
 			}
-			else if (stack.getItem() instanceof ItemScythe)
+			else if (stack.getItem() instanceof TragicTool)
 			{
-				doomsday = ((ItemScythe)stack.getItem()).doomsday;
-			}
-			else if (stack.getItem() instanceof ItemJack)
-			{
-				doomsday = ((ItemJack)stack.getItem()).doomsday;
+				doomsday = ((ItemScythe)stack.getItem()).getDoomsday();
 			}
 		}
 		else

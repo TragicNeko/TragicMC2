@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.items.weapons;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.enchantment.Enchantment;
@@ -58,12 +59,10 @@ public class TragicWeapon extends ItemSword {
 		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
-			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
 			
 			if (lore != null)
 			{
-				String[] subs = LoreHelper.splitDesc(lore);
-				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
+				LoreHelper.splitDesc(par2List, lore, 32, LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack)));
 				par2List.add(""); //extra space
 			}
 		}
@@ -106,6 +105,7 @@ public class TragicWeapon extends ItemSword {
 	 */
 	public static void updateAsWeapon(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
+		if (world.isRemote) return;
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 
 		if (!stack.stackTagCompound.hasKey("cooldown")) stack.stackTagCompound.setInteger("cooldown", 0);
@@ -119,7 +119,7 @@ public class TragicWeapon extends ItemSword {
 		if (lore == null) return;
 
 		if (!stack.stackTagCompound.hasKey("tragicLoreRarity")) stack.stackTagCompound.setByte("tragicLoreRarity", Byte.valueOf((byte) lore.getRarity()));
-		if (!stack.stackTagCompound.hasKey("tragicLoreDesc")) stack.stackTagCompound.setString("tragicLoreDesc", lore.getDesc() == null ? "" : lore.getDesc());
+		if (!stack.stackTagCompound.hasKey("tragicLoreDesc")) stack.stackTagCompound.setString("tragicLoreDesc", lore.getDesc());
 
 		int rarity = stack.stackTagCompound.getByte("tragicLoreRarity");
 		lore = entry.getLoreOfRarity(rarity);

@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.items.weapons;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,15 +20,14 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
+import tragicneko.tragicmc.items.Challenge;
 import tragicneko.tragicmc.util.LoreHelper;
 
 import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
-public class ItemScythe extends ItemTool {
-
-	public Doomsday doomsday;
+public class ItemScythe extends TragicTool {
 
 	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {Blocks.tallgrass,
 			Blocks.brown_mushroom_block, Blocks.cactus, Blocks.red_mushroom_block, Blocks.carrots,
@@ -39,53 +39,12 @@ public class ItemScythe extends ItemTool {
 			TragicBlocks.Glowvine, TragicBlocks.DeadBush, TragicBlocks.AshenBush, TragicBlocks.TragicFlower, TragicBlocks.TragicSapling,
 			TragicBlocks.HallowedLeafTrim, TragicBlocks.HallowedLeaves, TragicBlocks.DarkLeaves, TragicBlocks.WickedVine, TragicBlocks.DarkVine});
 
-	public ItemScythe(ToolMaterial par2Material) {
-		super(3.0F, par2Material, blocksEffectiveAgainst);
+	public ItemScythe(ToolMaterial par2Material, Doomsday dday) {
+		super(3.0F, par2Material, blocksEffectiveAgainst, dday);
 		this.setHarvestLevel("scythe", 3);
 		this.setCreativeTab(TragicMC.Survival);
 	}
 	
-	public Doomsday getDoomsday()
-	{
-		return this.doomsday;
-	}
-
-	public EnumDoomType doomsdayType()
-	{
-		return this.doomsday.doomsdayType;
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	{
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
-		{
-			String lore = LoreHelper.getDescFromStack(stack);
-			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
-			
-			if (lore != null)
-			{
-				String[] subs = LoreHelper.splitDesc(lore);
-				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
-				par2List.add(""); //extra space
-			}
-		}
-
-		if (TragicConfig.allowDoomsdays && this.doomsday != null)
-		{
-			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
-			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
-			par2List.add(""); //extra space
-		}
-	}
-	
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{
-		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
-	}
 
 	@Override
 	public float func_150893_a(ItemStack stack, Block block)

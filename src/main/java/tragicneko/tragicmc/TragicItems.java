@@ -478,7 +478,7 @@ public class TragicItems {
 		GameRegistry.registerItem(Sentinel, "sentinel");
 
 		//Tool Registrations
-		Scythe = (new ItemScythe(toolScythe).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" ));
+		Scythe = (new ItemScythe(toolScythe, null).setUnlocalizedName("tragicmc.scythe").setTextureName("tragicmc:Scythe" ));
 		GameRegistry.registerItem(Scythe, "scythe");
 
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EverlastingLight" ));

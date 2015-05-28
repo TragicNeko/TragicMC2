@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -194,8 +195,7 @@ public class ItemChallenge extends Item {
 			par2List.add("Challenge: " + format + Challenge.getNameFromID(challenge.challengeID));
 			String diff = challenge.difficulty == 0 ? "Easy" : (challenge.difficulty == 1 ? "Medium" : (challenge.difficulty == 2 ? "Hard" : "Harsh"));
 			par2List.add("Difficulty: " + format + diff);
-			String[] subs = LoreHelper.splitDesc(Challenge.getDesc(challenge.challengeID));
-			for (String s : subs) par2List.add(s);
+			LoreHelper.splitDesc(par2List, Challenge.getDesc(challenge.challengeID), 32, EnumChatFormatting.WHITE);
 			par2List.add("Progress: " + stack.stackTagCompound.getInteger("challengeProgress") + "/ " + challenge.requirement);
 			if (challenge.isLocationBased && stack.stackTagCompound.hasKey("challengeLocation")) par2List.add("Proper location: " + (stack.stackTagCompound.getBoolean("challengeLocation") ? "Yes" : "No"));
 		}

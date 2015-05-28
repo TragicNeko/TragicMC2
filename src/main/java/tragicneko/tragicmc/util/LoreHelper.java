@@ -2,21 +2,14 @@ package tragicneko.tragicmc.util;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.Validate;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumRarity;
@@ -25,6 +18,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.WeightedRandom;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
@@ -101,58 +98,35 @@ public class LoreHelper {
 	}
 
 	/**
-	 * Can split any lengthy string into 3 smaller ones to fit within an item's description, it will only split to a max of 3 lines, then will trim out the rest
+	 * Can split any lengthy string (most likely a description) into smaller ones to fit within an item's description, it will split as often as it needs to
 	 * @param lore
 	 * @return
 	 */
-	public static String[] splitDesc(String lore)
+	public static List<String> splitDesc(List<String> list, final String lore, final int lineBreak, final EnumChatFormatting format)
 	{
 		String s = lore;
-		String s2 = null;
-		String s3 = null;
 
-		if (s.length() > 32)
+		if (lore.length() <= lineBreak)
 		{
-			for (int i = 32; i < s.length(); i++)
+			list.add(format + lore);
+		}
+		else
+		{
+
+			for (int i = lineBreak; i < s.length(); i++)
 			{
 				if (s.substring(0, i).endsWith(" "))
 				{
-					if (s2 == null)
-					{
-						s2 = s.substring(i).trim();
-						s = s.substring(0, i).trim();
-						break;
-					}
-
-				}
-			}
-		}
-
-		if (s2 != null && s2.length() > 32)
-		{
-			for (int i = 32; i < s2.length(); i++)
-			{
-				if (s2.substring(0, i).endsWith(" "))
-				{
-					if (s3 == null)
-					{
-						s3 = s2.substring(i).trim();
-						s2 = s2.substring(0, i).trim();
-						break;
-					}
+					list.add(format + s.substring(0, i).trim());
+					s = s.substring(i).trim();
+					i = lineBreak;
 				}
 			}
 
-			if (s3 != null && s3.length() > 42)
-			{
-				s3 = s3.substring(0, 42).trim();
-			}
+			if (s.length() > 0) list.add(format + s);
 		}
 
-		if (s2 == null) return new String[] {s};
-		if (s3 == null) return new String[] {s, s2};
-
-		return new String[] {s, s2, s3};
+		return list;
 	}
 
 
@@ -363,8 +337,8 @@ public class LoreHelper {
 			new Lore(15, "We just found a clue!", 1), new Lore(5, "I live by Harry's code.", 3), new Lore(5, "I'm not a psychopath, I'm a high functioning sociopath, do your research.", 3),
 			new Lore(5, "Colonel Mustard in the library with a knife!", 3)},
 			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 1)}, {new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(Enchantment.fortune, 1)},
-			{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.fortune, 3), new EnchantEntry(TragicEnchantments.Combustion, 1)},
-			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.fortune, 5), new EnchantEntry(TragicEnchantments.Combustion, 1), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
+			{new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(Enchantment.fortune, 3), new EnchantEntry(TragicEnchantments.Veteran, 1)},
+			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(Enchantment.fortune, 5), new EnchantEntry(TragicEnchantments.Veteran, 3), new EnchantEntry(TragicEnchantments.Luminescence, 1)}});
 
 		//Normal Weapons
 		addToLoreMap(TragicItems.MercuryDagger.getClass(), new Lore[] {new Lore(25, "Boring.", 1), new Lore(15, "Nice.", 1), new Lore(5, "Interesting.", 1), new Lore(15, "Lame", 1), new Lore(25, "Ha.", 2),
@@ -594,7 +568,7 @@ public class LoreHelper {
 					if (l.getRarity() == r) alist.add(l);
 				}
 
-				if (alist.isEmpty()) return this.lores.size() > 0 && r > 0 ? this.lores.get(rand.nextInt(this.lores.size())) : new Lore(1, null, 0);
+				if (alist.isEmpty()) return this.lores.size() > 0 && r > 0 ? this.lores.get(rand.nextInt(this.lores.size())) : new Lore(1, "[There are markings that you can't quite make out...]", 0);
 
 				return ((Lore) WeightedRandom.getRandomItem(rand, alist)).get();
 			}
@@ -622,7 +596,7 @@ public class LoreHelper {
 					if (l.getRarity() == rarity) alist.add(l);
 				}
 
-				if (alist.isEmpty()) return new Lore(1, null, rarity);
+				if (alist.isEmpty()) return new Lore(1, "[There are markings that you can't quite make out...]", rarity);
 
 				return ((Lore) WeightedRandom.getRandomItem(rand, alist)).get();
 			}

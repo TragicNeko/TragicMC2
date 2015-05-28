@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.items.weapons;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -32,19 +33,13 @@ import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class WeaponCelestialLongbow extends ItemBow {
+public class WeaponCelestialLongbow extends TragicBow {
 
 	private static final String[] bowPullIconName = new String[] {"pulling", "pulling1", "pulling2"};
 
-	@SideOnly(Side.CLIENT)
-	private IIcon[] iconArray;
-
-	public final Doomsday doomsday = Doomsday.Snipe;
-
 	public WeaponCelestialLongbow()
 	{
-		this.setMaxDamage(1348);
-		this.setFull3D();
+		super(1348, Doomsday.Snipe);
 		this.setCreativeTab(TragicMC.Survival);
 	}
 
@@ -92,31 +87,6 @@ public class WeaponCelestialLongbow extends ItemBow {
 	public IIcon getItemIconForUseDuration(int par1)
 	{
 		return this.iconArray[par1];
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	{
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
-		{
-			String lore = LoreHelper.getDescFromStack(stack);
-			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
-			
-			if (lore != null)
-			{
-				String[] subs = LoreHelper.splitDesc(lore);
-				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
-			}
-		}
-
-		if (TragicConfig.allowDoomsdays && this.doomsday != null)
-		{
-			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
-			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
-			par2List.add(""); //extra space
-		}
 	}
 
 	@Override
@@ -237,12 +207,4 @@ public class WeaponCelestialLongbow extends ItemBow {
 			if (!par2World.isRemote) par2World.spawnEntityInWorld(arrow);
 		}
 	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{
-		if (world.isRemote || !(entity instanceof EntityPlayer)) return; 
-		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
-	}
-
 }

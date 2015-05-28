@@ -16,8 +16,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 public class WeaponReaperScythe extends ItemScythe {
 
 	public WeaponReaperScythe(ToolMaterial par2Material, Doomsday dday) {
-		super(par2Material);
-		this.doomsday = dday;
+		super(par2Material, dday);
 	}
 
 	@Override

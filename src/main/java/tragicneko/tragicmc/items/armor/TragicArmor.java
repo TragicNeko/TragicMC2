@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.items.armor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -52,12 +53,10 @@ public class TragicArmor extends ItemArmor {
 		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
-			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
 			
 			if (lore != null)
 			{
-				String[] subs = LoreHelper.splitDesc(lore);
-				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
+				LoreHelper.splitDesc(par2List, lore, 32, LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack)));
 				par2List.add(""); //extra space
 			}
 		}

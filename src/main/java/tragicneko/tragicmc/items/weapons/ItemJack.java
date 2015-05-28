@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.items.weapons;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -25,9 +26,7 @@ import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
-public class ItemJack extends ItemTool {
-
-	public final Doomsday doomsday;
+public class ItemJack extends TragicTool {
 
 	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone,
 			Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore,
@@ -46,42 +45,9 @@ public class ItemJack extends ItemTool {
 			Blocks.wooden_button, Blocks.stone_button, Blocks.wooden_door, Blocks.wooden_slab, TragicBlocks.SummonBlock});
 
 	public ItemJack(ToolMaterial material, Doomsday dday) {
-		super(1.0F, material, blocksEffectiveAgainst);
-		this.doomsday = dday;
+		super(1.0F, material, blocksEffectiveAgainst, dday);
 		this.setHarvestLevel("pickaxe", 3);
 		this.setCreativeTab(TragicMC.Survival);
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	{		
-		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
-		{
-			String lore = LoreHelper.getDescFromStack(stack);
-			EnumChatFormatting loreFormat = LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack));
-			
-			if (lore != null)
-			{
-				String[] subs = LoreHelper.splitDesc(lore);
-				if (subs != null) for (String sub : subs) par2List.add(loreFormat + sub);
-				par2List.add(""); //extra space
-			}
-		}
-
-		if (TragicConfig.allowDoomsdays && this.doomsday != null)
-		{
-			EnumChatFormatting format = doomsday.getDoomsdayType().getFormat();
-			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
-			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
-			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
-			par2List.add(""); //extra space
-		}
-	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{		
-		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 	
 	@Override

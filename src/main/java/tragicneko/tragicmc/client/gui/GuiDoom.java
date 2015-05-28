@@ -16,11 +16,10 @@ import org.lwjgl.opengl.GL11;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
-import tragicneko.tragicmc.items.weapons.ItemJack;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
+import tragicneko.tragicmc.items.weapons.TragicBow;
+import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
-import tragicneko.tragicmc.items.weapons.WeaponCelestialLongbow;
-import tragicneko.tragicmc.items.weapons.WeaponHuntersBow;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -138,16 +137,9 @@ public class GuiDoom extends Gui
 			{
 				ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
 
-				if (stack.getItem() instanceof WeaponHuntersBow)
+				if (stack.getItem() instanceof TragicBow)
 				{
-					if (((WeaponHuntersBow)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
-					{
-						flag = true;
-					}
-				}
-				else if (stack.getItem() instanceof WeaponCelestialLongbow)
-				{
-					if (((WeaponCelestialLongbow)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
+					if (((TragicBow)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
 					{
 						flag = true;
 					}
@@ -160,16 +152,9 @@ public class GuiDoom extends Gui
 						flag = true;
 					}
 				}
-				else if (stack.getItem() instanceof ItemScythe)
+				else if (stack.getItem() instanceof TragicTool)
 				{
-					if (((ItemScythe)stack.getItem()).doomsday != null && ((ItemScythe)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
-					{
-						flag = true;
-					}
-				}
-				else if (stack.getItem() instanceof ItemJack)
-				{
-					if (((ItemJack)stack.getItem()).doomsday != null && ((ItemJack)stack.getItem()).doomsday.doesCurrentDoomMeetRequirement(props))
+					if (((ItemScythe)stack.getItem()).getDoomsday() != null && ((ItemScythe)stack.getItem()).getDoomsday().doesCurrentDoomMeetRequirement(props))
 					{
 						flag = true;
 					}
