@@ -11,11 +11,12 @@ import tragicneko.tragicmc.enchantment.EnchantmentMultiply;
 import tragicneko.tragicmc.enchantment.EnchantmentRange;
 import tragicneko.tragicmc.enchantment.EnchantmentRuneWalker;
 import tragicneko.tragicmc.enchantment.EnchantmentUnbreakable;
+import tragicneko.tragicmc.enchantment.EnchantmentVeteran;
 import tragicneko.tragicmc.enchantment.EnchantmentWeaponExtra;
 
 public class TragicEnchantments {
 	
-	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, RuneBreak, Reach, Unbreakable, Rust;
+	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, RuneBreak, Reach, Unbreakable, Rust, Veteran;
 	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch, Agility, RuneWalker, Luminescence;
 
 	public static void load()
@@ -33,6 +34,7 @@ public class TragicEnchantments {
 		if (TragicConfig.allowReach) Reach = (new EnchantmentRange(TragicConfig.idReach, 6, EnumEnchantmentType.weapon));
 		if (TragicConfig.allowUnbreakable) Unbreakable = (new EnchantmentUnbreakable(TragicConfig.idUnbreakable, 1, EnumEnchantmentType.breakable));
 		if (TragicConfig.allowRust) Rust = (new EnchantmentWeaponExtra(TragicConfig.idRust, 6, 4));
+		if (TragicConfig.allowVeteran) Veteran = (new EnchantmentVeteran(TragicConfig.idVeteran, 1, EnumEnchantmentType.digger));
 
 		if (TragicConfig.allowIgnition)Ignition = (new EnchantmentArmorExtra(TragicConfig.idIgnition, 6, 0));
 		if (TragicConfig.allowParalysis)Paralysis = (new EnchantmentArmorExtra(TragicConfig.idParalysis, 1, 1));

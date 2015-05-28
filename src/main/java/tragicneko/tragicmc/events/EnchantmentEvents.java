@@ -2,7 +2,6 @@ package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -13,19 +12,23 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -51,18 +54,12 @@ public class EnchantmentEvents {
 			}
 			if (!flag) return;
 
-			ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(event.entityLiving.worldObj, 1.25, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
-			int[] coords;
-			Block block;
-
-			for (int i = 0; i < list.size(); i++)
+			int x = (int) (event.entityLiving.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (event.entityLiving.posY + rand.nextInt(2) - rand.nextInt(2));
+			int z = (int) (event.entityLiving.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(event.entityLiving.worldObj.getBlock(x, y, z)))
 			{
-				coords = list.get(i);
-				block = event.entityLiving.worldObj.getBlock(coords[0], coords[1], coords[2]);
-				if (replaceableBlocks.contains(block))
-				{
-					event.entityLiving.worldObj.setBlock(coords[0], coords[1], coords[2], TragicBlocks.Luminescence); 
-				}
+				event.entityLiving.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
 			}
 		}
 	}
@@ -70,51 +67,149 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onCombustion(HarvestDropsEvent event)
 	{
-		if (event.harvester != null && !event.isSilkTouching && TragicConfig.allowCombustion)
+		if (event.harvester != null && !event.isSilkTouching)
 		{			
 			if (event.harvester.getEquipmentInSlot(0) != null)
 			{
 				ItemStack tool = event.harvester.getEquipmentInSlot(0);
 
-				if (EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
+				if (tool.getItem() instanceof ItemTool && TragicConfig.allowCombustion && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Combustion.effectId, tool) > 0)
 				{
-					int z = EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, tool);
-					ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(event.block, 1, event.blockMetadata));
-
-					if (result != null)
+					if (tool.getItem().func_150893_a(tool, event.block) > 1.0F)
 					{
-						result.stackSize = rand.nextInt(z + 1) + 1;
-						tool.attemptDamageItem(1, rand);
-						event.drops.clear();
-						event.drops.add(result.copy());
+						int z = EnchantmentHelper.getFortuneModifier(event.harvester);
+						ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(event.block, 1, event.blockMetadata));
+
+						if (result != null)
+						{
+							result.stackSize = z > 0 ? rand.nextInt(z) + 1 : 1;
+							tool.attemptDamageItem(1, rand);
+							event.drops.clear();
+							event.drops.add(result.copy());
+							event.world.playSoundAtEntity(event.harvester, "random.fire.hiss", 0.4F, 1.0F);
+						}
 					}
 				}
 			}
 		}
 	}
 
-	/*
 	@SubscribeEvent
-	public void luckyXpPickup(PlayerPickupXpEvent event)
+	public void onBreak(BreakEvent event)
 	{
-		EntityPlayer lucky = event.entityPlayer;
-
-		for (int i = 0; i < 4; i++)
+		if (event.getPlayer() != null && !event.isCanceled())
 		{
-			if (lucky.getCurrentArmor(i) != null)
-			{					
-				ItemStack stack = lucky.getCurrentArmor(i);
-				if (EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Luck.effectId, stack) > 0)
+			if (event.getPlayer().getEquipmentInSlot(0) != null)
+			{
+				ItemStack tool = event.getPlayer().getEquipmentInSlot(0);
+				int i = TragicConfig.allowVeteran ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool) * 2 + 1 : 1;
+				
+				if (tool.getItemDamage() >= tool.getMaxDamage() - i && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, tool) > 0)
 				{
-					if (rand.nextInt(10) == 4)
+					if (event.isCancelable()) event.setCanceled(true);
+					return;
+				}
+				
+				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.x, event.y, event.z) && TragicConfig.allowVeteran && !event.world.isRemote)
+				{
+					int e = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool);
+					if (e < 1) return;
+					MovingObjectPosition mop = WorldHelper.getMOPFromEntity(event.getPlayer(), event.getPlayer().capabilities.isCreativeMode ? 4.5 : 3.5);
+
+					if (mop != null)
 					{
-						lucky.addExperience(rand.nextInt(5));
+						int x = mop.blockX;
+						int y = mop.blockY;
+						int z = mop.blockZ;
+
+						if (mop.sideHit == 0 || mop.sideHit == 1)
+						{
+							if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z)) event.world.func_147480_a(event.x + 1, event.y, event.z, true);
+							if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z)) event.world.func_147480_a(event.x - 1, event.y, event.z, true);
+							if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 1)) event.world.func_147480_a(event.x, event.y, event.z - 1, true);
+							if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 1)) event.world.func_147480_a(event.x, event.y, event.z + 1, true);
+
+							if (e >= 2)
+							{
+								if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z - 1)) event.world.func_147480_a(event.x - 1, event.y, event.z - 1, true);
+								if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z + 1)) event.world.func_147480_a(event.x + 1, event.y, event.z + 1, true);
+								if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z - 1)) event.world.func_147480_a(event.x + 1, event.y, event.z - 1, true);
+								if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z + 1)) event.world.func_147480_a(event.x - 1, event.y, event.z + 1, true);
+
+								if (e >= 3)
+								{
+									if (canMineWithTool(event.world, tool, event.x + 2, event.y, event.z)) event.world.func_147480_a(event.x + 2, event.y, event.z, true);
+									if (canMineWithTool(event.world, tool, event.x - 2, event.y, event.z)) event.world.func_147480_a(event.x - 2, event.y, event.z, true);
+									if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 2)) event.world.func_147480_a(event.x, event.y, event.z - 2, true);
+									if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 2)) event.world.func_147480_a(event.x, event.y, event.z + 2, true);
+								}
+							}
+						}
+						else
+						{
+							if (canMineWithTool(event.world, tool, event.x, event.y + 1, event.z)) event.world.func_147480_a(event.x, event.y + 1, event.z, true);
+							if (canMineWithTool(event.world, tool, event.x, event.y - 1, event.z)) event.world.func_147480_a(event.x, event.y - 1, event.z, true);
+
+							if (e >= 3)
+							{
+								if (canMineWithTool(event.world, tool, event.x, event.y + 2, event.z)) event.world.func_147480_a(event.x, event.y + 2, event.z, true);
+								if (canMineWithTool(event.world, tool, event.x, event.y - 2, event.z)) event.world.func_147480_a(event.x, event.y - 2, event.z, true);
+							}
+
+							if (mop.sideHit == 2 || mop.sideHit == 3)
+							{
+								if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z)) event.world.func_147480_a(event.x + 1, event.y, event.z, true);
+								if (canMineWithTool(event.world, tool, event.x - 1, event.y, event.z)) event.world.func_147480_a(event.x - 1, event.y, event.z, true);
+
+								if (e >= 2)
+								{
+									if (canMineWithTool(event.world, tool, event.x + 1, event.y + 1, event.z)) event.world.func_147480_a(event.x + 1, event.y + 1, event.z, true);
+									if (canMineWithTool(event.world, tool, event.x - 1, event.y + 1, event.z)) event.world.func_147480_a(event.x - 1, event.y + 1, event.z, true);
+									if (canMineWithTool(event.world, tool, event.x + 1, event.y - 1, event.z)) event.world.func_147480_a(event.x + 1, event.y - 1, event.z, true);
+									if (canMineWithTool(event.world, tool, event.x - 1, event.y - 1, event.z)) event.world.func_147480_a(event.x - 1, event.y - 1, event.z, true);
+
+									if (e >= 3)
+									{
+										if (canMineWithTool(event.world, tool, event.x + 2, event.y, event.z)) event.world.func_147480_a(event.x + 2, event.y, event.z, true);
+										if (canMineWithTool(event.world, tool, event.x - 2, event.y, event.z)) event.world.func_147480_a(event.x - 2, event.y, event.z, true);
+									}
+								}
+							}
+							else
+							{
+								if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 1)) event.world.func_147480_a(event.x, event.y, event.z - 1, true);
+								if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 1)) event.world.func_147480_a(event.x, event.y, event.z + 1, true);
+
+								if (e >= 2)
+								{
+									if (canMineWithTool(event.world, tool, event.x, event.y + 1, event.z - 1)) event.world.func_147480_a(event.x, event.y + 1, event.z - 1, true);
+									if (canMineWithTool(event.world, tool, event.x, event.y + 1, event.z + 1)) event.world.func_147480_a(event.x, event.y + 1, event.z + 1, true);
+									if (canMineWithTool(event.world, tool, event.x, event.y - 1, event.z - 1)) event.world.func_147480_a(event.x, event.y - 1, event.z - 1, true);
+									if (canMineWithTool(event.world, tool, event.x, event.y - 1, event.z + 1)) event.world.func_147480_a(event.x, event.y - 1, event.z + 1, true);
+
+									if (e >= 3)
+									{
+										if (canMineWithTool(event.world, tool, event.x, event.y, event.z - 2)) event.world.func_147480_a(event.x, event.y, event.z - 2, true);
+										if (canMineWithTool(event.world, tool, event.x, event.y, event.z + 2)) event.world.func_147480_a(event.x, event.y, event.z + 2, true);
+									}
+								}
+							}
+						}
+
+						tool.attemptDamageItem(e + rand.nextInt(e), rand);
 					}
 				}
 			}
 		}
+	}
 
-	}*/
+	public static boolean canMineWithTool(World world, ItemStack stack, int x, int y, int z)
+	{
+		ItemTool tool = (ItemTool) stack.getItem();
+		Block block = world.getBlock(x, y, z);
+		if (tool.func_150893_a(stack, block) > 1.0F && block.getBlockHardness(world, x, y, z) > 0) return true;
+		return false;
+	}
 
 	@SubscribeEvent
 	public void multiplyArrow(ArrowLooseEvent event)
