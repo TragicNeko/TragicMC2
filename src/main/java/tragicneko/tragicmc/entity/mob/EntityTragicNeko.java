@@ -397,7 +397,7 @@ public class EntityTragicNeko extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.9F + rand.nextFloat();
+		return 1.0F;
 	}
 	
 	@Override

@@ -583,4 +583,40 @@ public class EntityDeathReaper extends TragicBoss {
 		tag.setInteger("reaperType", this.getReaperType());
 		tag.setBoolean("isBomb", this.isBomb);
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return null; //"tragicmc:boss.skultar.laugh";
+	}
+	
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:boss.skultar.hurt";
+	}
+	
+	@Override
+	public String getDeathSound()
+	{
+		return null; //"tragicmc:boss.skultar.laugh";
+	}
+	
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+	
+	@Override
+	public int getTalkInterval()
+	{
+		return 330;
+	}
 }
