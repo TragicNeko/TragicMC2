@@ -423,7 +423,7 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityWisp.class, "TragicMC.Wisp", id++, 0xFF2323, 0xCB6B4B);
 		}
 
-		if (TragicConfig.allowAbomination) //TODO finish mob sounds
+		if (TragicConfig.allowAbomination)
 		{
 			EntityRegistry.registerModEntity(EntityAbomination.class, "Abomination", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowNonDimensionMobSpawns)
@@ -655,7 +655,7 @@ public class TragicEntities {
 		//Wither
 		TragicEntityList.addMapping(EntityWither.class, "TragicMC.Wither", id++, 0x1C1C1C, 0x252525, EnumEggType.BOSS);
 
-		if (TragicConfig.allowApis)
+		if (TragicConfig.allowApis) //TODO finish Boss sounds
 		{
 			EntityRegistry.registerModEntity(EntityApis.class, "Apis", listid++, TragicMC.getInstance(), 80, 1, true);
 
