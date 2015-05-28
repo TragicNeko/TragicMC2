@@ -4056,6 +4056,19 @@ Added Kitsunakuma & Kurayami sounds
 Reduced amount of particles that the Aegar spawns
 Removed variation in the Kitsunakuma & Kurayami's fireball accuracy, it's the main way to attack it by deflecting it back to it and that doesn't work so well when
 it doesn't shoot it accurately at it's target
+Added Veteran Enchantment, it had been planned for a long time and so I finally added it now, it breaks blocks around the one you mined (comparable to the
+special tool types in Tinkerer's Construct), it doesn't combine with Silk Touch or Combustion
+Added Veteran to the Celestial Jack, this replaces Combustion for it
+Improved description splitter for various items by using an ArrayList instead of keeping it as an array
+Made superclasses for the Bow and Tool classes that I use, this is to simplify checks for Doomsdays and to simplify the lore description process for them
+Improved Veteran block mining, it'll now properly check if the block is breakable (not a -1 hardness level) and if the tool is efficient against it (greater than 1
+break speed)
+Combustion now needs to be effective against the block it breaks in order to smelt it
+Improved Unbreakable so that it doesn't break blocks when it isn't supposed to, there's also a buffer for Veteran so that it doesn't break while that is also
+on the Tool
+Added default Lore when an item fails to find an appropriate Lore (which shouldn't happen but is there just in case)
+Fixed derp with description splitter, it now actually splits the lines in the proper order and splits more than one time
+Made it so that weapons cannot update lores on the client-side and result in null Lores being picked even if one is displayed to the player
 Working on Skultar sounds
 
 Note:
