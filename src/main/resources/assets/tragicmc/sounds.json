@@ -104,6 +104,21 @@
 		"sounds": [
 			"boss/polaris/death"]
     },
+	"boss.skultar.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/skultar/hurt", "boss/skultar/hurt2",
+			"boss/skultar/hurt3", "boss/skultar/hurt4"]
+    },
+	"boss.skultar.laugh":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/skultar/laugh", "boss/skultar/laugh2",
+			"boss/skultar/laugh3", "boss/skultar/laugh4",
+			"boss/skultar/laugh5"]
+    },
 	"mob.abomination.hurt":
     {
 		"category": "hostile",
