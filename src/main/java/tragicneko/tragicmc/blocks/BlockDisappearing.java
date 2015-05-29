@@ -24,8 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockDisappearing extends Block
 {
 	private final boolean isPowered;
-	private Block blockToBecome;
-
 	@SideOnly(Side.CLIENT)
 	private IIcon iconTop;
 
@@ -221,11 +219,11 @@ public class BlockDisappearing extends Block
 	{
 		return false;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
-    {
-        return this.isPowered ? false : super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
-    }
+	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
+	{
+		return this.isPowered ? false : super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+	}
 }

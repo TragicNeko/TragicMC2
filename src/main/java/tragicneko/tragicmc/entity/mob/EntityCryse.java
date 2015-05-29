@@ -25,8 +25,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
@@ -49,7 +49,7 @@ public class EntityCryse extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -230,7 +230,7 @@ public class EntityCryse extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		if (this.isSpinning()) this.setSpinTicks(0);
@@ -249,7 +249,7 @@ public class EntityCryse extends TragicMob {
 			{
 				par2 *= 1.275;
 			}
-		}	
+		}
 
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 
@@ -347,40 +347,40 @@ public class EntityCryse extends TragicMob {
 	{
 		return "tragicmc:mob.cryse.glass";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.cryse.hit";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.cryse.break";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
-    }
+	}
 }

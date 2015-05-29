@@ -267,7 +267,7 @@ public class ModelDeathReaper extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		if (!(entity instanceof EntityDeathReaper) && !(entity instanceof EntityClaymation)) return;
-		
+
 		int attack = 0;
 		int hit = 0;
 
@@ -306,7 +306,7 @@ public class ModelDeathReaper extends ModelBase
 			{
 				armRight.rotateAngleX = this.simplifyAngle(time, 20.0F) * 1.246F + 0.326F;
 				armRight.rotateAngleZ = 0.845289F + this.simplifyAngle(time, 20.0F) * 0.946F;
-			} 
+			}
 		}
 		else
 		{

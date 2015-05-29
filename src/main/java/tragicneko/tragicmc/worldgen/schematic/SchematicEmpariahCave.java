@@ -29,7 +29,7 @@ public class SchematicEmpariahCave extends Schematic {
 			{
 				world.setBlock(coords[0], coords[1], coords[2], Blocks.packed_ice);
 			}
-			
+
 			list = WorldHelper.getBlocksInCircularRange(world, i > 12 ? (1.25 + rand.nextDouble() * 3.75) : (i > 7 ? 1.55 + rand.nextDouble() * 1.25 : 1.25 + rand.nextDouble() * 2), x + rand.nextInt(2) - rand.nextInt(2), y - i, z + rand.nextInt(2) - rand.nextInt(2));
 
 			for (int[] coords : list)
@@ -37,7 +37,7 @@ public class SchematicEmpariahCave extends Schematic {
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 		}
-		
+
 		for (int i = 16; i < 32 && y - i > 0; i++)
 		{
 			list = WorldHelper.getBlocksInCircularRange(world, i > 24 ? 11.95 + rand.nextDouble() : 8.55 + rand.nextDouble() * 2, x + rand.nextInt(3) - rand.nextInt(3), y - i, z + rand.nextInt(3) - rand.nextInt(3));
@@ -46,7 +46,7 @@ public class SchematicEmpariahCave extends Schematic {
 			{
 				world.setBlock(coords[0], coords[1], coords[2], Blocks.packed_ice);
 			}
-			
+
 			list = WorldHelper.getBlocksInCircularRange(world, i > 24 ? 7.95 + rand.nextDouble() * 2 : 3.45 + rand.nextDouble() * 3.5, x + rand.nextInt(3) - rand.nextInt(3), y - i, z + rand.nextInt(3) - rand.nextInt(3));
 
 			for (int[] coords : list)
@@ -72,13 +72,13 @@ public class SchematicEmpariahCave extends Schematic {
 		{
 			world.setBlock(x + 5, y - 31, z, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x + 5, y - 31, z, "TragicMC.Abomination");
-			
+
 			world.setBlock(x - 5, y - 31, z, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x - 5, y - 31, z, "TragicMC.Abomination");
-			
+
 			world.setBlock(x, y - 31, z + 5, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x, y - 31, z + 5, "TragicMC.Abomination");
-			
+
 			world.setBlock(x, y - 31, z - 5, Blocks.mob_spawner, 0, 2);
 			this.setSpawnerMob(world, x, y - 31, z - 5, "TragicMC.Abomination");
 		}

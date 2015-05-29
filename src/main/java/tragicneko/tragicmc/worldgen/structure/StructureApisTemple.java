@@ -21,7 +21,7 @@ public class StructureApisTemple extends StructureBoss {
 	{
 		return true;
 	}
-	
+
 	@Override
 	public int getVariantSize()
 	{
@@ -42,14 +42,14 @@ public class StructureApisTemple extends StructureBoss {
 		{
 			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.apisTempleRarity;
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;	
+		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
 }

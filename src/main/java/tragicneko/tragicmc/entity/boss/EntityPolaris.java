@@ -19,7 +19,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -30,9 +29,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -153,7 +152,7 @@ public class EntityPolaris extends TragicBoss {
 
 	@Override
 	public void onLivingUpdate()
-	{		
+	{
 		if (!this.worldObj.isRemote)
 		{
 			if (this.worldObj.isDaytime() && !this.getDaytime())
@@ -187,7 +186,7 @@ public class EntityPolaris extends TragicBoss {
 			{
 				this.setInvisible(false);
 			}
-			
+
 			if (this.getDistanceToEntity(this.getAttackTarget()) > 16.0F && rand.nextInt(48) == 0) this.teleportToEntity(this.getAttackTarget());
 
 			if (this.ticksExisted % 10 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F) this.teleportRandomly();
@@ -258,7 +257,7 @@ public class EntityPolaris extends TragicBoss {
 					list.get(i).setDead();
 				}
 			}
-			
+
 			if (this.isClone()) this.setDead();
 		}
 
@@ -382,16 +381,16 @@ public class EntityPolaris extends TragicBoss {
 				}
 			}
 			return true;
-		} 
+		}
 	}
-	
+
 	@Override
 	public void setInWeb() {}
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
-		if (!this.worldObj.isRemote && !this.worldObj.isDaytime() && this.getDaytime()) this.setDaytime(false);		
+		if (!this.worldObj.isRemote && !this.worldObj.isDaytime() && this.getDaytime()) this.setDaytime(false);
 		return super.onSpawnWithEgg(data);
 	}
 
@@ -409,37 +408,37 @@ public class EntityPolaris extends TragicBoss {
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setBoolean("isClone", this.isClone());
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:boss.polaris.sonar";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:boss.polaris.ding";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:boss.polaris.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

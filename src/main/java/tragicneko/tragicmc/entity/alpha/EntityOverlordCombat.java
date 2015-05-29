@@ -13,11 +13,9 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -26,14 +24,12 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
-import tragicneko.tragicmc.entity.projectile.EntityOverlordMortor;
 import tragicneko.tragicmc.util.DamageHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -286,7 +282,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
-		{			
+		{
 			double x;
 			double y;
 			double z;
@@ -345,7 +341,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 
 			if (this.getUnstableTicks() > 0)
-			{				
+			{
 				for (int i = 0; i < 44; i++)
 				{
 					dr = rand.nextDouble() - rand.nextDouble();
@@ -359,7 +355,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 
 			if (this.getReflectionTicks() > 0)
-			{				
+			{
 				for (int i = 0; i < 22; i++)
 				{
 					dr = rand.nextDouble() - rand.nextDouble();
@@ -410,7 +406,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		if (this.reflectionBuffer > 0) this.reflectionBuffer--;
 		if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 		if (this.getLeapTicks() > 0) this.setLeapTicks(this.getLeapTicks() - 1);
-		if (this.hasLeaped && !this.onGround) this.motionY = -1D; 
+		if (this.hasLeaped && !this.onGround) this.motionY = -1D;
 		if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
 
 		if (this.getLeapTicks() > 0 && this.getLeapTicks() <= 20)
@@ -421,7 +417,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 		if (this.getUnstableTicks() > 0)
 		{
-			this.setUnstableTicks(this.getUnstableTicks() - 1);			
+			this.setUnstableTicks(this.getUnstableTicks() - 1);
 			if (this.getUnstableTicks() % 20 == 0 && rand.nextBoolean())
 			{
 				EntityDimensionalAnomaly ana = new EntityDimensionalAnomaly(this.worldObj);
@@ -467,7 +463,7 @@ public class EntityOverlordCombat extends TragicBoss {
 
 		if (this.canUseAbility() && this.ticksExisted % 20 == 0 && this.onGround && rand.nextInt(64) == 0) this.setLeapTicks(40);
 
-		if (this.canUseAbility() && this.unstableBuffer == 0 && this.ticksExisted % ((int) (1000 / aggregate)) == 0 && rand.nextInt(32) == 0)
+		if (this.canUseAbility() && this.unstableBuffer == 0 && this.ticksExisted % (1000 / aggregate) == 0 && rand.nextInt(32) == 0)
 		{
 			this.setUnstableTicks(200 + rand.nextInt(100));
 			this.aggregate = 1;
@@ -517,7 +513,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				this.setChargeTicks(0);
 			}
 		}
-		
+
 		if (this.canUseAbility() && this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(16) == 0 && this.onGround) this.setGrappleTicks(80 + rand.nextInt(40));
 		if (this.getGrappleTicks() > 0)
 		{
@@ -590,25 +586,6 @@ public class EntityOverlordCombat extends TragicBoss {
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
-	}
-
-	private void createMortors() {
-		if (this.getAttackTarget() == null) return;
-
-		double d0 = this.getAttackTarget().posX - this.posX;
-		double d1 = rand.nextInt(4) + 2;
-		double d2 = this.getAttackTarget().posZ - this.posZ;
-		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.995F;
-
-		EntityOverlordMortor mortor = new EntityOverlordMortor(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
-		mortor.posY += (rand.nextDouble() * this.height) + d1 * 0.04335D;
-		mortor.posX += d0 * 0.04335D;
-		mortor.posZ += d2 * 0.04335D;
-		mortor.motionY += rand.nextFloat();
-		mortor.motionX += rand.nextFloat() - rand.nextFloat();
-		mortor.motionZ += rand.nextFloat() - rand.nextFloat();
-		mortor.spawnsAnomalies = false;
-		this.worldObj.spawnEntityInWorld(mortor);
 	}
 
 	@Override

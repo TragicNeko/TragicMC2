@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDarkStone extends Block {
 
-	private String[] oreNames = new String[]{"Smooth", "Red", "Green", "Teal", "Brown", "Violet", "Navy", "Beveled", "BeveledRed", "BeveledGreen", "BeveledTeal", "BeveledYellow", 
+	private String[] oreNames = new String[]{"Smooth", "Red", "Green", "Teal", "Brown", "Violet", "Navy", "Beveled", "BeveledRed", "BeveledGreen", "BeveledTeal", "BeveledYellow",
 			"BeveledPurple", "BeveledNavy", "Spike"};
 
 	private IIcon[] iconArray = new IIcon[oreNames.length];
@@ -41,12 +41,12 @@ public class BlockDarkStone extends Block {
 			if (side == 0 || side == 1) return spikeTexture[0];
 			return this.spikeTexture[1];
 		}
-		
+
 		if (meta >= this.iconArray.length)
 		{
 			meta = this.iconArray.length - 1;
 		}
-		
+
 		return this.iconArray[meta];
 	}
 

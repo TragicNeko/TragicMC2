@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockErodedStone extends Block {
-	
+
 	private String[] oreNames = new String[] {"Smooth", "Carved", "Scattered"};
 	private IIcon[] iconArray = new IIcon[oreNames.length];
 
@@ -27,7 +27,7 @@ public class BlockErodedStone extends Block {
 		this.setStepSound(soundTypeStone);
 		this.setBlockName("tragicmc.erodedStone");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -38,7 +38,7 @@ public class BlockErodedStone extends Block {
 		}
 		return this.iconArray[meta];
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)

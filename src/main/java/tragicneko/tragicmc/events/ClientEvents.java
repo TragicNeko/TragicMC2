@@ -18,7 +18,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
@@ -43,10 +42,10 @@ public class ClientEvents extends Gui {
 	private static int buffer;
 
 	private static final String[] sounds = new String[] {"mob.enderdragon.growl", "random.fizz", "mob.enderdragon.wings", "mob.endermen.portal", "mob.zombie.hurt",
-			"mob.skeleton.hurt", "random.bow", "random.explode", "random.chestopen", "mob.wither.hurt", "mob.wither.idle", "random.door_open",
-			"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare",
-			"tragicmc:mob.psygote.cry", "tragicmc:mob.inkling.giggle", "tragicmc:mob.stin.teleport"};
-	
+		"mob.skeleton.hurt", "random.bow", "random.explode", "random.chestopen", "mob.wither.hurt", "mob.wither.idle", "random.door_open",
+		"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare",
+		"tragicmc:mob.psygote.cry", "tragicmc:mob.inkling.giggle", "tragicmc:mob.stin.teleport"};
+
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
@@ -74,17 +73,17 @@ public class ClientEvents extends Gui {
 		if (!Minecraft.getMinecraft().inGameHasFocus) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
-		BlockGenericLeaves.fancyGraphics = mc.isFancyGraphicsEnabled();
+		BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-		
+
 		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id))
 		{
 			boolean flag = !TragicConfig.allowStun || TragicConfig.allowStun && !player.isPotionActive(TragicPotion.Stun.id);
-			
+
 			if (flag && Keyboard.isCreated() && player.ticksExisted % 2 == 0)
 			{
 				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
-				int dur = effect.getDuration();
+				effect.getDuration();
 
 				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE))
 				{
@@ -99,7 +98,7 @@ public class ClientEvents extends Gui {
 
 		if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
 		{
-			PotionEffect effect = player.getActivePotionEffect(TragicPotion.Hacked);
+			player.getActivePotionEffect(TragicPotion.Hacked);
 
 			ItemStack current = player.getCurrentEquippedItem();
 			if (current != null && rand.nextInt(1048) == 0 && rand.nextInt(1048) == 42) player.dropOneItem(true);
@@ -119,7 +118,7 @@ public class ClientEvents extends Gui {
 			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
 			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
 		}
-		
+
 		if (player != null && TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun))
 		{
 			player.prevRotationPitch = player.rotationPitch;
@@ -139,9 +138,9 @@ public class ClientEvents extends Gui {
 			}
 			player.swingItem();
 		}
-		
+
 		PropertyAmulets amu = PropertyAmulets.get(player);
-		
+
 		if (amu != null)
 		{
 			if (player.ticksExisted % 2 != 0) return;

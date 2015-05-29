@@ -20,7 +20,7 @@ public class DoomsdayResurge extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(32.0, 32.0, 32.0));
-		
+
 		for (Entity e : list)
 		{
 			if (e instanceof EntityPlayer)
@@ -33,7 +33,7 @@ public class DoomsdayResurge extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

@@ -32,7 +32,6 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
-import tragicneko.tragicmc.entity.boss.EntityKitsune;
 
 public class EntityKurayami extends EntityGolem {
 
@@ -56,7 +55,7 @@ public class EntityKurayami extends EntityGolem {
 		this.isImmuneToFire = true;
 		this.timeToLive = 1800;
 	}
-	
+
 	@Override
 	public boolean isAIEnabled()
 	{
@@ -161,13 +160,13 @@ public class EntityKurayami extends EntityGolem {
 			if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 			if (this.getAttackTime() > 0) this.setAttackTime(this.getAttackTime() - 1);
 			if (this.getFiringTicks() > 0) this.setFiringTicks(this.getFiringTicks() - 1);
-			
+
 			if (this.getAttackTarget() == this.owner || this.getAttackTarget() != null && this.getAttackTarget().isDead || this.getAttackTarget() instanceof EntityKurayami) this.setAttackTarget(null);
 			if (this.isInWater()) this.teleportRandomly();
-			
+
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 			if (this.getFiringTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-			
+
 			if (this.getAttackTarget() != null)
 			{
 				if (!this.canEntityBeSeen(this.getAttackTarget()))
@@ -220,7 +219,7 @@ public class EntityKurayami extends EntityGolem {
 					if (!flag) this.teleportRandomly();
 				}
 			}
-			
+
 			if (this.owner == null || this.ticksExisted > this.timeToLive) this.setDead();
 		}
 	}
@@ -272,7 +271,7 @@ public class EntityKurayami extends EntityGolem {
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
 		if (this.getHurtTime() > 0) return false;
-		
+
 		if (src.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) src.getEntity();
@@ -369,7 +368,7 @@ public class EntityKurayami extends EntityGolem {
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);
 			return true;
-		} 
+		}
 	}
 
 	@Override
@@ -390,7 +389,7 @@ public class EntityKurayami extends EntityGolem {
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setInteger("armorValue", this.armorValue);
 	}
-	
+
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
@@ -398,37 +397,37 @@ public class EntityKurayami extends EntityGolem {
 		this.setKurayamiLevel(1.0);
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:boss.kitsune.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:boss.kitsune.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:boss.kitsune.hurt";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.4F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

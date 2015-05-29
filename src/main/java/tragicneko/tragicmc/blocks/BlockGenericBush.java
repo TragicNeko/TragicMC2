@@ -15,10 +15,10 @@ public class BlockGenericBush extends BlockBush {
 		this.setStepSound(soundTypeGrass);
 		this.setCreativeTab(TragicMC.Survival);
 	}
-	
+
 	@Override
 	protected boolean canPlaceBlockOn(Block block)
-    {
+	{
 		return block instanceof BlockDirt || block instanceof BlockGrass || block.getMaterial() == Material.grass || block.getMaterial() == Material.ground;
-    }
+	}
 }

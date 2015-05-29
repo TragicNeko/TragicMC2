@@ -50,7 +50,7 @@ public class EntityNorVox extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -251,8 +251,6 @@ public class EntityNorVox extends TragicMob {
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.95F;
-			float f2 = this.rotationYaw;
-
 			for (int i = 0; i < 2 + rand.nextInt(2); i++)
 			{
 				EntityWitherSkull skull = new EntityWitherSkull(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
@@ -269,8 +267,6 @@ public class EntityNorVox extends TragicMob {
 			double d2 = this.getAttackTarget().posZ - this.posZ;
 
 			float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.925F;
-			float f2 = this.rotationYaw;
-
 			for (int i = 0; i < 2; i++)
 			{
 				EntityStarShard shard = new EntityStarShard(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
@@ -284,7 +280,7 @@ public class EntityNorVox extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote || par1DamageSource.isExplosion() || par1DamageSource == DamageSource.wither) return false;
 
 		if (par1DamageSource.isProjectile()) par2 /= 4;
@@ -347,7 +343,7 @@ public class EntityNorVox extends TragicMob {
 			return false;
 		}
 		else
-		{		
+		{
 			int j = MathHelper.floor_double(this.posX);
 			int k = MathHelper.floor_double(this.posZ);
 			int l = this.worldObj.getBlockLightValue(j, i, k);
@@ -407,46 +403,46 @@ public class EntityNorVox extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return TragicConfig.allowVoxStellarum;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.scrape" : "tragicmc:mob.cryse.glass";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.hit";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.break";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		if (this.getNorVoxType() == 0) this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
-    }
+	}
 }

@@ -3,8 +3,6 @@ package tragicneko.tragicmc.network;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -14,12 +12,12 @@ public class MessageHandlerPlaySound implements IMessageHandler<MessageSound, IM
 	@Override
 	public IMessage onMessage(MessageSound message, MessageContext ctx) {
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		
-		if (player == null || player.worldObj == null || message.nameTag == null) return null; 
+
+		if (player == null || player.worldObj == null || message.nameTag == null) return null;
 		NBTTagCompound tag = message.nameTag;
 		player.playSound(tag.hasKey("name") ? tag.getString("name") : "null",
 				tag.hasKey("volume") ? tag.getFloat("volume") : 1F,
-				tag.hasKey("pitch") ? tag.getFloat("pitch") : 1F);
+						tag.hasKey("pitch") ? tag.getFloat("pitch") : 1F);
 		return null;
 	}
 }

@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockStorage extends Block {
 
 	private String[] oreNames = new String[]{"Ruby", "Sapphire", "Tungsten", "Mercury", "Quicksilver"};
-	
+
 	private IIcon[] iconArray = new IIcon[oreNames.length];
 
 	public BlockStorage() {
@@ -27,7 +27,7 @@ public class BlockStorage extends Block {
 		this.setHardness(6.0F);
 		this.setResistance(10.0F);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -48,13 +48,13 @@ public class BlockStorage extends Block {
 			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.oreNames[i] + "Block");
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)

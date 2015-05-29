@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockGenericTallGrass extends BlockTallGrass {
 
 	private String texturePrefix;
-	
+
 	public BlockGenericTallGrass(String s)
 	{
 		super();
@@ -28,12 +28,12 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 		this.setLightLevel(0.5F);
 		this.setStepSound(soundTypeGrass);
 	}
-	
+
 	@Override
 	protected boolean canPlaceBlockOn(Block p_149854_1_)
-    {
-        return p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.BrushedGrass || p_149854_1_ == TragicBlocks.DeadDirt || p_149854_1_ == TragicBlocks.AshenGrass || p_149854_1_ == TragicBlocks.StarlitGrass;
-    }
+	{
+		return p_149854_1_ == Blocks.grass || p_149854_1_ == Blocks.dirt || p_149854_1_ == Blocks.farmland || p_149854_1_ == TragicBlocks.BrushedGrass || p_149854_1_ == TragicBlocks.DeadDirt || p_149854_1_ == TragicBlocks.AshenGrass || p_149854_1_ == TragicBlocks.StarlitGrass;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -41,7 +41,7 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 	{
 		p_149666_3_.add(new ItemStack(p_149666_1_, 1, 1));
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)

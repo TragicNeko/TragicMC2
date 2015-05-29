@@ -22,7 +22,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		this.experienceValue = 15;
 		this.stepHeight = 1.5F;
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -105,7 +105,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		}
 
 		if (this.worldObj.isRemote) return;
-		
+
 		if (this.superiorForm == null && this.isChangeAllowed()) this.superiorForm = this.rand.nextBoolean() && TragicConfig.allowStinKing ? new EntityStinKing(this.worldObj) : (TragicConfig.allowStinQueen ? new EntityStinQueen(this.worldObj) : null);
 
 		if (this.isCharging())
@@ -156,7 +156,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 		if (this.isCharging() && this.getChargeTicks() > 170) this.setChargeTicks(0);
 		if (this.isCharging() && this.getChargeTicks() <= 170) par2 /= 2;

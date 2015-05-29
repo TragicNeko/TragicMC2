@@ -7,7 +7,7 @@ import tragicneko.tragicmc.client.model.ModelErkel;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 
 public class RenderErkel extends RenderLiving {
-	
+
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Erkel.png");
 	private static final ResourceLocation ashenTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelAshen.png");
 	private static final ResourceLocation paintedTexture = new ResourceLocation("tragicmc:textures/mobs/ErkelPainted.png");

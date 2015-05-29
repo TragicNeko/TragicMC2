@@ -90,7 +90,7 @@ public class PotionEvents {
 			{
 				event.entityLiving.removePotionEffect(Potion.blindness.id);
 			}
-			
+
 			if (TragicConfig.allowFear && event.entityLiving.isPotionActive(TragicPotion.Fear))
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Fear.id);
@@ -119,10 +119,10 @@ public class PotionEvents {
 				event.entityLiving.removePotionEffect(Potion.wither.id);
 			}
 
-			if (TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption)) 
+			if (TragicConfig.allowCorruption && event.entityLiving.isPotionActive(TragicPotion.Corruption))
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Corruption.id);
-			} 
+			}
 		}
 
 		if (TragicConfig.allowInhibit && event.entityLiving.isPotionActive(TragicPotion.Inhibit))
@@ -137,10 +137,10 @@ public class PotionEvents {
 				event.entityLiving.removePotionEffect(Potion.damageBoost.id);
 			}
 
-			if (event.entityLiving.isPotionActive(Potion.digSpeed)) 
+			if (event.entityLiving.isPotionActive(Potion.digSpeed))
 			{
 				event.entityLiving.removePotionEffect(Potion.digSpeed.id);
-			} 
+			}
 
 			if (event.entityLiving.isPotionActive(Potion.moveSpeed))
 			{
@@ -168,7 +168,7 @@ public class PotionEvents {
 			if (entity.getHealth() < entity.getMaxHealth() && rand.nextBoolean() && entity.ticksExisted % 10 == 0) entity.heal(1.0F);
 			if (TragicConfig.allowHacked && entity.isPotionActive(TragicPotion.Hacked)) entity.removePotionEffect(TragicPotion.Hacked.id);
 		}
-		
+
 		if (world.isRemote) return;
 
 		if (TragicConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption.id))
@@ -231,7 +231,7 @@ public class PotionEvents {
 						if (tag.hasKey("recoveryTicks") && tag.getInteger("recoveryTicks") >= 120)
 						{
 							entity.removePotionEffect(TragicPotion.Corruption.id);
-							tag.setInteger("recoveryTicks", 0);	
+							tag.setInteger("recoveryTicks", 0);
 						}
 
 						CommonProxy.storeEntityData(entity.getUniqueID(), tag);
@@ -336,7 +336,7 @@ public class PotionEvents {
 			{
 				((EntityCreature) entity).setTarget(null);
 				((EntityCreature) entity).setAttackTarget(null);
-				
+
 				if (!((EntityCreature) entity).getNavigator().noPath())
 				{
 					PathEntity path = ((EntityCreature) entity).getNavigator().getPath();
@@ -365,7 +365,7 @@ public class PotionEvents {
 
 		if (TragicConfig.allowHarmony && event.entityLiving.isPotionActive(TragicPotion.Harmony))
 		{
-			if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityDragon 
+			if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityDragon
 					|| event.entityLiving instanceof EntityWither || event.entityLiving instanceof TragicBoss)
 			{
 				event.entityLiving.removePotionEffect(TragicPotion.Harmony.id);
@@ -392,7 +392,7 @@ public class PotionEvents {
 			{
 				int amp = entity.getActivePotionEffect(TragicPotion.Malnourish).getAmplifier() * 2;
 				FoodStats food = ((EntityPlayerMP)entity).getFoodStats();
-				Boolean flag = entity.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration");
+				entity.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration");
 
 				if (amp > 10)
 				{
@@ -408,7 +408,7 @@ public class PotionEvents {
 				int limit = amp >= 10 ? 9 : (amp > 6 ? 13 : (amp > 3 ? 15 : 19));
 
 				if (entity.getHealth() >= entity.getMaxHealth() - amp)
-				{						
+				{
 					if (f >= limit)
 					{
 						if (f - amp < 0) f = amp;
@@ -433,7 +433,7 @@ public class PotionEvents {
 		if (TragicConfig.allowLeadFoot && event.entityLiving.isPotionActive(TragicPotion.LeadFoot))
 		{
 			event.entityLiving.motionY = -0.1D;
-			if (TragicConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotion.Flight)) event.entityLiving.removePotionEffect(TragicPotion.Flight.id); 
+			if (TragicConfig.allowFlight && event.entityLiving.isPotionActive(TragicPotion.Flight)) event.entityLiving.removePotionEffect(TragicPotion.Flight.id);
 		}
 
 		if (TragicConfig.allowConvergence && event.entityLiving.isPotionActive(TragicPotion.Convergence) && event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowDoom)
@@ -491,7 +491,7 @@ public class PotionEvents {
 					}
 				}
 			}
-		} 
+		}
 
 		if (TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation))
 		{
@@ -532,7 +532,7 @@ public class PotionEvents {
 			event.entityLiving.motionZ = 0.0;
 			event.entityLiving.motionX = 0.0;
 			event.entityLiving.onGround = true;
-			
+
 			if (event.entityLiving instanceof EntityPlayer) ((EntityPlayer) event.entityLiving).capabilities.isFlying = false;
 		}
 

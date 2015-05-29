@@ -2,7 +2,6 @@ package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.ranmasStats;
 import net.minecraft.block.Block;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -12,13 +11,11 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 
 public class EntityRanmas extends TragicMob {
@@ -81,19 +78,19 @@ public class EntityRanmas extends TragicMob {
 	{
 		return false;
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0)); //charge ticks
 	}
-	
+
 	private void setChargeTicks(int i)
 	{
 		this.dataWatcher.updateObject(16, i);
 	}
-	
+
 	public int getChargeTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
@@ -129,7 +126,7 @@ public class EntityRanmas extends TragicMob {
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (f / 2) * rand.nextFloat() + (f / 2), this.getMobGriefing());
 					this.attackEntityFrom(DamageSource.fall, f);
 				}
-				
+
 				this.worldObj.playSoundAtEntity(this, "random.anvil_land", 0.4F, 1.0F);
 			}
 			this.motionX = this.motions[0];
@@ -143,7 +140,7 @@ public class EntityRanmas extends TragicMob {
 				double d0 = MathHelper.clamp_double(this.getAttackTarget().posX - this.posX, -2.4D, 3.2D);
 				double d1 = MathHelper.clamp_double(this.getAttackTarget().posY + this.getAttackTarget().height / 2.0 - (this.posY + this.height / 2.0F), -3.2D, 3.2D);
 				double d2 = MathHelper.clamp_double(this.getAttackTarget().posZ - this.posZ, -3.2D, 3.2D);
-				
+
 				this.motions = new double[] {d0, d1, d2};
 				this.setChargeTicks(15);
 			}
@@ -156,13 +153,13 @@ public class EntityRanmas extends TragicMob {
 	{
 		boolean flag = false;
 		if (this.worldObj.isRemote) return flag;
-		
+
 		if (src.getEntity() != null && src.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) src.getEntity();
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
-		
+
 		if (flag) return super.attackEntityFrom(src, dmg);
 
 		return super.attackEntityFrom(src.setDamageBypassesArmor(), Math.min(1.0F, dmg));
@@ -224,43 +221,43 @@ public class EntityRanmas extends TragicMob {
 		tag.setDouble("chargeY", this.motions[1]);
 		tag.setDouble("chargeZ", this.motions[2]);
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return null;
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "random.anvil_land";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return getHurtSound();
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 0.4F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

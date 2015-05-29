@@ -179,7 +179,7 @@ public class ClientProxy extends CommonProxy {
 	//public static final String moddir = "tragicmc:";
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);
-	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);	
+	public static KeyBinding openAmuletGui = new KeyBinding("Open Amulet Gui", Keyboard.KEY_Y, TragicMC.MODNAME);
 
 	public static final ModelOverlordArmor[] modelsOverlord = new ModelOverlordArmor[] {new ModelOverlordArmor(0), new ModelOverlordArmor(1),
 		new ModelOverlordArmor(2), new ModelOverlordArmor(3)};
@@ -212,7 +212,7 @@ public class ClientProxy extends CommonProxy {
 
 		FMLCommonHandler.instance().bus().register(new ClientEvents());
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
-		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));		
+		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
 
 		//Particle registration
 		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
@@ -341,7 +341,7 @@ public class ClientProxy extends CommonProxy {
 		return Minecraft.getMinecraft().thePlayer;
 	}
 
-	/*//These are just being kept here until I update to 1.8, assuming there is no changes to forge until then, if you're wondering, these are for the new block/item rendering	
+	/*//These are just being kept here until I update to 1.8, assuming there is no changes to forge until then, if you're wondering, these are for the new block/item rendering
 	public static String[] getColoredVariantsForBlock(Item ib)
 	{
 		String[] colors = new String[16];

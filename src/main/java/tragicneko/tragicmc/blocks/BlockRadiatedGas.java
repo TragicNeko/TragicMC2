@@ -8,7 +8,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEntities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -23,7 +22,7 @@ public class BlockRadiatedGas extends BlockGas {
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0));
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
@@ -36,10 +35,10 @@ public class BlockRadiatedGas extends BlockGas {
 					0.1F, 1.0F, 0.1F);
 		}
 	}
-	
+
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		
+
 	}
 }

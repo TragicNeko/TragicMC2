@@ -26,8 +26,8 @@ public class EntitySpiritCast extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && this.shootingEntity != null) 
-		{			
+		if (mop.entityHit != null && this.shootingEntity != null)
+		{
 			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityGragul))
 			{
 				mop.entityHit.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this.shootingEntity), 2.5F);
@@ -42,7 +42,7 @@ public class EntitySpiritCast extends EntityProjectile {
 
 		if (this.ticksExisted >= 60) this.setDead();
 	}
-	
+
 	@Override
 	protected String getParticleString()
 	{

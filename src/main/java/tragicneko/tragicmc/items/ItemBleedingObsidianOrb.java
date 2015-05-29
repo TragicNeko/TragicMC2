@@ -53,7 +53,7 @@ public class ItemBleedingObsidianOrb extends Item {
 					par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc3.posX + ", " + cc3.posY + ", " + cc3.posZ + " for dimension with id of 0"));
 				}
 			}
-			
+
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

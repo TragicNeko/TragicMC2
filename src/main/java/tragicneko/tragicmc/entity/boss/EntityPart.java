@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 
 public class EntityPart extends Entity {
-	
+
 	public final IMultiPart main;
 	public final String partName;
 
@@ -23,35 +23,35 @@ public class EntityPart extends Entity {
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-		
+
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-		
+
 	}
-	
+
 	@Override
 	public boolean canBeCollidedWith()
-    {
-        return true;
-    }
+	{
+		return true;
+	}
 
-    @Override
+	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return this.isEntityInvulnerable() ? false : this.main.attackEntityFromPart(this, source, damage);
-    }
+	{
+		return this.isEntityInvulnerable() ? false : this.main.attackEntityFromPart(this, source, damage);
+	}
 
-    /**
-     * Returns true if Entity argument is equal to this Entity
-     */
-    @Override
+	/**
+	 * Returns true if Entity argument is equal to this Entity
+	 */
+	@Override
 	public boolean isEntityEqual(Entity p_70028_1_)
-    {
-        return this == p_70028_1_ || this.main == p_70028_1_;
-    }
+	{
+		return this == p_70028_1_ || this.main == p_70028_1_;
+	}
 
-    @Override
+	@Override
 	public void onStruckByLightning(EntityLightningBolt bolt) {} //prevents the Enyvil from hurting itself
 }

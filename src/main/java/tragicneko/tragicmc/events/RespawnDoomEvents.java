@@ -38,7 +38,7 @@ public class RespawnDoomEvents {
 
 			if (event.player.worldObj.difficultySetting == EnumDifficulty.NORMAL)
 			{
-				property.increaseDoom(-(property.getCurrentDoom() / 2)); 
+				property.increaseDoom(-(property.getCurrentDoom() / 2));
 				event.player.addPotionEffect(new PotionEffect(Potion.weakness.id, 1200));
 
 				if (TragicConfig.allowCripple)
@@ -50,7 +50,7 @@ public class RespawnDoomEvents {
 
 			if (event.player.worldObj.difficultySetting == EnumDifficulty.EASY)
 			{
-				property.increaseDoom(-(property.getCurrentDoom() / 4)); 
+				property.increaseDoom(-(property.getCurrentDoom() / 4));
 
 				if (TragicConfig.allowCripple)
 				{

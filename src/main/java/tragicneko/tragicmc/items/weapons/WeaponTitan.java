@@ -24,7 +24,7 @@ public class WeaponTitan extends EpicWeapon {
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (player.worldObj.isRemote || !(entity instanceof EntityLivingBase)) return super.onLeftClickEntity(stack, player, entity);
-		
+
 		if (itemRand.nextInt(6) != 0) return super.onLeftClickEntity(stack, player, entity);
 
 		PropertyDoom doom = PropertyDoom.get(player);
@@ -49,7 +49,7 @@ public class WeaponTitan extends EpicWeapon {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;
-		
+
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 		if (doom == null) return par1ItemStack;
 
@@ -93,7 +93,7 @@ public class WeaponTitan extends EpicWeapon {
 								par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.2D * d4)),
 										par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.2D * d4)), (int) (par3EntityPlayer.posZ + (0.2D * d6))),
 										par3EntityPlayer.posZ + (0.2D * d6)));
-								
+
 								if (d7 >= 24.0D)
 								{
 									par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.1D * d4)),
@@ -104,7 +104,7 @@ public class WeaponTitan extends EpicWeapon {
 						}
 					}
 				}
-				
+
 				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[32]);
 				setStackCooldown(par1ItemStack, 5);
 			}

@@ -21,7 +21,7 @@ public class RenderProjectile extends Render
 	private int damage = 0;
 
 	public RenderProjectile() {}
-	
+
 	public RenderProjectile(int damage) {
 		this.damage = damage;
 	}

@@ -19,15 +19,15 @@ public class DoomsdayRadiantLight extends Doomsday {
 		double d0 = crucMoment ? 32.0 : 16.0;
 		List<EntityCreature> list = player.worldObj.getEntitiesWithinAABB(EntityCreature.class, player.boundingBox.expand(d0, d0, d0));
 		PotionEffect eff = new PotionEffect(Potion.weakness.id, 600, 10);
-		
+
 		for (EntityCreature ent : list)
 		{
 			ent.addPotionEffect(eff);
 		}
-		
+
 		List<EntityPlayer> list2 = player.worldObj.getEntitiesWithinAABB(EntityPlayer.class, player.boundingBox.expand(d0, d0, d0));
 		eff = new PotionEffect(Potion.damageBoost.id, 600, 10);
-		
+
 		for (EntityPlayer ply : list2)
 		{
 			ply.addPotionEffect(eff);
@@ -36,7 +36,7 @@ public class DoomsdayRadiantLight extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

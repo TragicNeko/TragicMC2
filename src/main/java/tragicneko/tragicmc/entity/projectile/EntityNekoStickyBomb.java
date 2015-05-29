@@ -37,8 +37,8 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 	{
 		if (mop == null || this.worldObj.isRemote) return;
 
-		if (mop.entityHit != null) 
-		{			
+		if (mop.entityHit != null)
+		{
 			if (mop.entityHit instanceof EntityLivingBase && !mop.entityHit.equals(this.getThrower()))
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
@@ -92,12 +92,12 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 				this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
 			}
 			else
-			{				
+			{
 				for (int l = 0; l < 11; l++)
 				{
-					double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX; 
+					double d0 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posX;
 					double d1 = rand.nextInt(3) + this.posY - 1;
-					double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ; 
+					double d2 = MathHelper.getRandomIntegerInRange(rand, -1, 1) + this.posZ;
 
 					if (this.worldObj.isAirBlock((int)d0, (int)d1, (int)d2) && rand.nextInt(3) == 0)
 					{

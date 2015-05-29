@@ -59,8 +59,6 @@ public class IsleWorldGen implements IWorldGenerator {
 				}
 			}
 
-			int rand = random.nextInt(2) + 1;
-
 			for (int[] coords2 : cands)
 			{
 				if (coords2[1] >= yMax)

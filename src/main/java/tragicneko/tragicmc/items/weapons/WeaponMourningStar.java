@@ -1,11 +1,9 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -21,7 +19,7 @@ public class WeaponMourningStar extends TragicWeapon {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;
-		
+
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
 		if (doom != null)
@@ -41,9 +39,9 @@ public class WeaponMourningStar extends TragicWeapon {
 			{
 				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[20]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[20])
 				{
-					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);	
+					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 					if (vec == null) return par1ItemStack;
-					
+
 					double d4 = vec.xCoord;
 					double d5 = vec.yCoord;
 					double d6 = vec.zCoord;
@@ -51,7 +49,7 @@ public class WeaponMourningStar extends TragicWeapon {
 					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, 3.0F * itemRand.nextFloat() + 2.0F, TragicConfig.griefConfigs[3]);
 					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[20]);
 					setStackCooldown(par1ItemStack, 5);
-					
+
 					return par1ItemStack;
 				}
 			}

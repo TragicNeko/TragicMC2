@@ -2,8 +2,6 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.util.TragicEntityList;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.Entity;
@@ -21,6 +19,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import tragicneko.tragicmc.TragicMC;
 
 public class ItemCorruptedEgg extends Item {
 
@@ -140,18 +139,18 @@ public class ItemCorruptedEgg extends Item {
 			Entity entity = null;
 			BiomeGenBase.SpawnListEntry entry = (SpawnListEntry) WeightedRandom.getRandomItem(itemRand, list);
 			try
-	        {
-	            Class oclass = entry.entityClass;
+			{
+				Class oclass = entry.entityClass;
 
-	            if (oclass != null)
-	            {
-	                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par0World});
-	            }
-	        }
-	        catch (Exception exception)
-	        {
-	            exception.printStackTrace();
-	        }
+				if (oclass != null)
+				{
+					entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par0World});
+				}
+			}
+			catch (Exception exception)
+			{
+				exception.printStackTrace();
+			}
 
 			if (entity != null)
 			{

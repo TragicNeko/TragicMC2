@@ -48,7 +48,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	public int getChargeTicks() {
 		return 0;
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
@@ -83,7 +83,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) this.setSize(1.755F, 3.15F);
-		
+
 		if (this.worldObj.isRemote) return;
 
 		if (TragicConfig.allowStinBaby)
@@ -96,25 +96,25 @@ public class EntityStinQueen extends EntityGreaterStin {
 				{
 					this.spawnBabies();
 				}
-				
+
 				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.75D, this.posX, this.posY, this.posZ);
 				int[] coords;
 
 				for (int i = 0 ; i < list.size(); i++)
 				{
 					coords = list.get(i);
-					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web); 
+					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web);
 				}
 			}
 		}
-		
+
 		if (this.isFiring())
 		{
 			this.decrementFiringTicks();
 			if (this.isCharging()) this.setChargeTicks(0);
 			if (this.isGalloping()) this.setGallopTicks(0);
 		}
-		
+
 		if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F &&
 				rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0)
 		{
@@ -126,7 +126,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 			this.doMortorFire();
 		}
 	}
-	
+
 	private void doMortorFire() {
 
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
@@ -189,7 +189,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		for (int i = 0 ; i < list.size(); i++)
 		{
 			coords = list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web); 
+			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web);
 		}
 
 		return flag;

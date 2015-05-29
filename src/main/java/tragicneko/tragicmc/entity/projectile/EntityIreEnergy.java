@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.mob.EntityIre;
 import tragicneko.tragicmc.util.DamageHelper;
 
@@ -31,11 +30,11 @@ public class EntityIreEnergy extends EntityProjectile {
 		if (this.worldObj.isRemote) return;
 
 		if (mop.entityHit != null)
-		{			
+		{
 			if (mop.entityHit instanceof EntityIreEnergy || mop.entityHit instanceof EntityIre) return;
 			if (mop.entityHit instanceof EntityLivingBase)
 			{
-				mop.entityHit.attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this.shootingEntity), MathHelper.clamp_float((float) EntityIre.ireNetSize, 1.0F, 100.0F));
+				mop.entityHit.attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this.shootingEntity), MathHelper.clamp_float(EntityIre.ireNetSize, 1.0F, 100.0F));
 				if (rand.nextBoolean()) mop.entityHit.setFire(4 + rand.nextInt(8));
 				//TragicMC.logInfo("Entity's health is " + ((EntityLivingBase) mop.entityHit).getHealth());
 				//TragicMC.logInfo("Ire netsize was " + EntityIre.ireNetSize);

@@ -157,7 +157,7 @@ public class TragicItems {
 	public static Item IronGolemAmulet;
 	public static Item EndermanAmulet;
 	public static Item WitherAmulet;
-	
+
 	public static Item SpiderAmulet;
 	public static Item StinAmulet;
 	public static Item PolarisAmulet;
@@ -471,7 +471,7 @@ public class TragicItems {
 		GameRegistry.registerItem(Paranoia, "paranoia");
 
 		DragonFang = (new WeaponDragonFang(Doomsday.DragonsRoar).setUnlocalizedName("tragicmc.dragonFang").setTextureName("tragicmc:DragonFang" ));
-		GameRegistry.registerItem(DragonFang, "dragonFang");		
+		GameRegistry.registerItem(DragonFang, "dragonFang");
 
 		//Big boss weapons
 		Sentinel = (new WeaponSentinel(toolSentinel, Doomsday.Sharpen).setUnlocalizedName("tragicmc.sentinel").setTextureName("tragicmc:Sentinel" ));
@@ -654,7 +654,7 @@ public class TragicItems {
 		Rice = (new ItemRice(2, false).setUnlocalizedName("tragicmc.rice").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Rice"));
 		GameRegistry.registerItem(Rice, "rice");
 
-		Sushi = (new ItemSushi(4, true).setUnlocalizedName("tragicmc.sushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sushi")); 
+		Sushi = (new ItemSushi(4, true).setUnlocalizedName("tragicmc.sushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Sushi"));
 		GameRegistry.registerItem(Sushi, "sushi");
 
 		GoldenSushi = (new ItemEnchantedSushi(8, true).setUnlocalizedName("tragicmc.goldenSushi").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:GoldenSushi"));
@@ -711,7 +711,6 @@ public class TragicItems {
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-				EntityPlayer player = (EntityPlayer) entity;
 				if (!world.isRaining()) world.rainingStrength = 1.0F;
 			}
 		}.setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman"));
@@ -723,8 +722,6 @@ public class TragicItems {
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
-
-				EntityPlayer player = (EntityPlayer) entity;
 
 				if (world.isThundering()) world.thunderingStrength = 0.0F;
 				if (world.isRaining()) world.rainingStrength = 0.0F;
@@ -739,7 +736,6 @@ public class TragicItems {
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-				EntityPlayer player = (EntityPlayer) entity;
 				if (!world.isThundering()) world.thunderingStrength = 1.0F;
 			}
 		}).setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman");
@@ -751,8 +747,6 @@ public class TragicItems {
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer) || !TragicConfig.allowItemTimeAltering) return;
-
-				EntityPlayer player = (EntityPlayer) entity;
 
 				int a = flag ? -5 : 5;
 				world.setWorldTime(world.getWorldTime() + a);
@@ -831,40 +825,40 @@ public class TragicItems {
 
 		WitherAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
-		
+
 		SpiderAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(SpiderAmulet, "spiderAmulet");
-		
+
 		StinAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(StinAmulet, "stinAmulet");
-		
+
 		PolarisAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(PolarisAmulet, "polarisAmulet");
-		
+
 		OverlordAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(OverlordAmulet, "overlordAmulet");
-		
+
 		LightningAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(LightningAmulet, "lightningAmulet");
-		
+
 		ConsumptionAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(ConsumptionAmulet, "consumptionAmulet");
-		
+
 		SupernaturalAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(SupernaturalAmulet, "supernaturalAmulet");
-		
+
 		UndeadAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(UndeadAmulet, "undeadAmulet");
-		
+
 		EnderDragonAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(EnderDragonAmulet, "enderDragonAmulet");
-		
+
 		FuseaAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(FuseaAmulet, "fuseaAmulet");
-		
+
 		EnyvilAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(EnyvilAmulet, "enyvilAmulet");
-		
+
 		LuckAmulet = (new ItemAmulet(id++));
 		GameRegistry.registerItem(LuckAmulet, "luckAmulet");
 

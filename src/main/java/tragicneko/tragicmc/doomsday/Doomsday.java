@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
-import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -65,7 +64,7 @@ public abstract class Doomsday {
 	public static final Doomsday Harden = (new DoomsdayHarden(40));
 	public static final Doomsday Sharpen = (new DoomsdaySharpen(41));
 	public static final Doomsday Flash = (new DoomsdayFlash(42));
-	public static final Doomsday Septics = new DoomsdaySeptics(43); 
+	public static final Doomsday Septics = new DoomsdaySeptics(43);
 	public static final Doomsday Kurayami = new DoomsdayKurayami(44);
 	public static final Doomsday LifeShare = new DoomsdayLifeShare(45);
 	public static final Doomsday DeathMark = new DoomsdayDeathMark(46);
@@ -76,10 +75,10 @@ public abstract class Doomsday {
 	public static final Doomsday Gambler = new DoomsdayGambler(51);
 	public static final Doomsday Soulstealer = new DoomsdaySoulstealer(52);
 	public static final Doomsday Parasite = new DoomsdayParasite(53);
-	public static final Doomsday Symbiosis = new DoomsdaySymbiosis(54); 
+	public static final Doomsday Symbiosis = new DoomsdaySymbiosis(54);
 	public static final Doomsday TimeCollapse = new DoomsdayTimeCollapse(55);
 	public static final Doomsday Magnetizer = new DoomsdayMagnetizer(56);
-	public static final Doomsday Ambience = new DoomsdayAmbience(57); 
+	public static final Doomsday Ambience = new DoomsdayAmbience(57);
 	public static final Doomsday Dimentia = new DoomsdayDimentia(58);
 	public static final Doomsday Delete = new DoomsdayDelete(59);
 	public static final Doomsday LaserCutter = new DoomsdayLaserCutter(60);
@@ -99,7 +98,7 @@ public abstract class Doomsday {
 		"skullCrusher", "minerSkills", "freeze", "moonlightSonata", "flightOfTheValkyries", "titanfall", "bloodlust", "permafrost", "purge", "lightningCrush", "marionette",
 		"mindcrack", "growthSpurt", "blizzard", "asphyxiate", "fireRain", "dragonsRoar", "firestorm", "shotgun", "guardiansCall", "harden", "sharpen", "flash", "septics",
 		"kurayami", "lifeShare", "deathMark", "paradigmShift", "adrenaline", "escape", "giftOfTheGods", "gambler", "soulstealer", "parasite", "symbiosis", "timeCollapse",
-		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall", "shuffle", "blink", "evacuation", 
+		"magnetizer", "ambience", "dimentia", "delete", "laserCutter", "radiantLight", "dangerZone", "support", "purify", "recall", "shuffle", "blink", "evacuation",
 		"medic", "resurge"
 	};
 
@@ -218,7 +217,7 @@ public abstract class Doomsday {
 			doom.getPlayer().addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + StatCollector.translateToLocal("doomsday.fail3")));
 			return false;
 		}
-		
+
 		else if (TragicConfig.allowStun && doom.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowHarmony &&
 				doom.getPlayer().isPotionActive(TragicPotion.Harmony) || TragicConfig.allowFear && doom.getPlayer().isPotionActive(TragicPotion.Fear))
 		{
@@ -252,10 +251,9 @@ public abstract class Doomsday {
 
 				if (TragicConfig.amuConsumption)
 				{
-					EntityPlayer mp = (EntityPlayer) doom.getPlayer();
+					EntityPlayer mp = doom.getPlayer();
 					PropertyAmulets amu = PropertyAmulets.get(mp);
 
-					ItemAmulet[] amulets = new ItemAmulet[3];
 					int i;
 
 					for (i = 0; i < 3; i++)
@@ -265,7 +263,7 @@ public abstract class Doomsday {
 							cost = doom.getMaxDoom();
 							break;
 						}
-					}	
+					}
 				}
 
 				doom.increaseDoom(-cost);
@@ -319,10 +317,9 @@ public abstract class Doomsday {
 
 		if (TragicConfig.amuConsumption)
 		{
-			EntityPlayer mp = (EntityPlayer) doom.getPlayer();
+			EntityPlayer mp = doom.getPlayer();
 			PropertyAmulets amu = PropertyAmulets.get(mp);
 
-			ItemAmulet[] amulets = new ItemAmulet[3];
 			int i;
 
 			for (i = 0; i < 3; i++)
@@ -332,7 +329,7 @@ public abstract class Doomsday {
 					cost *= 0.5;
 					break;
 				}
-			}		
+			}
 		}
 		doom.increaseDoom(cost);
 	}
@@ -457,32 +454,6 @@ public abstract class Doomsday {
 
 
 	/**
-	 * Returns the overflow amount for overflow type doomsdays
-	 * @param doom
-	 * @return
-	 */
-	private int getOverflowAmount(PropertyDoom doom) 
-	{
-		int currentDoom = doom.getCurrentDoom();
-		int reqDoom = this.getScaledDoomRequirement(doom);
-
-		return currentDoom - reqDoom;
-	}
-
-	/**
-	 * Returns the crisis amount (percentage of total health the player has)
-	 * @param player
-	 * @return
-	 */
-	private float getCrisisAmount(EntityPlayer player)
-	{
-		float health = player.getHealth();
-		float maxHealth = player.getMaxHealth();
-
-		return health / maxHealth;
-	}
-
-	/**
 	 * Gets the doomsday type from the specified id
 	 * @param id
 	 * @return
@@ -576,12 +547,12 @@ public abstract class Doomsday {
 	public Doomsday getCombination() {
 		return null;
 	}
-	
+
 	public static void addCrucialMessage(EntityPlayer player)
 	{
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + StatCollector.translateToLocal("doomsday.crucial")));
 	}
-	
+
 	public static void addNoEntityMessage(EntityPlayer player)
 	{
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + StatCollector.translateToLocal("doomsday.noEntities")));
@@ -613,7 +584,7 @@ public abstract class Doomsday {
 	public interface IExtendedDoomsday {} //Marker interface
 
 	static
-	{		
+	{
 		for (int i = 0; i < doomsdayNames.length; i++)
 		{
 			stringToIDMapping.put(doomsdayNames[i], i);

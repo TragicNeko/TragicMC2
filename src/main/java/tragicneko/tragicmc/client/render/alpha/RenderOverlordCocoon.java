@@ -11,13 +11,13 @@ import tragicneko.tragicmc.client.render.boss.RenderBoss;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
 
 public class RenderOverlordCocoon extends RenderBoss {
-	
+
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/OverlordCocoon.png");
 
 	public RenderOverlordCocoon() {
 		super(new ModelOverlordCocoon(), 0.756F, 3.25F);
 	}
-	
+
 	@Override
 	protected void rotateCorpse(EntityLivingBase entity, float par1, float par2, float par3)
 	{
@@ -26,10 +26,10 @@ public class RenderOverlordCocoon extends RenderBoss {
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
-	{		
+	{
 		GL11.glScalef(this.scale, this.scale, this.scale);
 	}
-	
+
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return getEntityTexture((EntityOverlordCocoon) entity);

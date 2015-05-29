@@ -111,7 +111,7 @@ public class ModelCryse extends ModelBase
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		if (!(entity instanceof EntityCryse)) return;
-		
+
 		EntityCryse cryse = (EntityCryse) entity;
 
 		if (cryse.getAttackTime() > 0)
@@ -134,14 +134,14 @@ public class ModelCryse extends ModelBase
 		{
 			eyeRight.offsetZ = eyeRight.offsetY = eyeLeft.offsetZ = eyeLeft.offsetY = 0.0F;
 			eyeRight.offsetZ = eyeRight.offsetY = eyeLeft.offsetZ = eyeLeft.offsetY = 0.0F;
-			
+
 			for (int i = 0; i < bodyParts.length; i++)
 			{
 				bodyParts[i].offsetX = 0.0F;
 				bodyParts[i].offsetY = 0.0F;
 				bodyParts[i].offsetX = 0.0F;
 			}
-			
+
 			body.offsetY = 0.0F;
 			body.offsetZ = 0.0F;
 			body.offsetX = 0.0F;
@@ -168,7 +168,7 @@ public class ModelCryse extends ModelBase
 				for (int i = 0; i < bodyParts.length; i++)
 				{
 					bodyParts[i].rotateAngleZ = barDefaults[i];
-				} 
+				}
 
 				if (cryse.isFluttering())
 				{
@@ -209,14 +209,14 @@ public class ModelCryse extends ModelBase
 				{
 					eyeRight.offsetZ = eyeRight.offsetY = eyeLeft.offsetZ = eyeLeft.offsetY = 0.0F;
 					eyeRight.offsetZ = eyeRight.offsetY = eyeLeft.offsetZ = eyeLeft.offsetY = 0.0F;
-					
+
 					for (int i = 0; i < bodyParts.length; i++)
 					{
 						bodyParts[i].offsetX = 0.0F;
 						bodyParts[i].offsetY = 0.0F;
 						bodyParts[i].offsetX = 0.0F;
 					}
-					
+
 					body.offsetY = 0.0F;
 					body.offsetZ = 0.0F;
 					body.offsetX = 0.0F;
@@ -225,7 +225,7 @@ public class ModelCryse extends ModelBase
 					face.offsetZ = 0.0F;
 				}
 
-			} 
+			}
 		}
 	}
 

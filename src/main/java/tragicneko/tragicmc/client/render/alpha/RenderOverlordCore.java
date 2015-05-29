@@ -1,11 +1,8 @@
 package tragicneko.tragicmc.client.render.alpha;
 
-import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -23,7 +20,7 @@ public class RenderOverlordCore extends RenderBoss {
 	public RenderOverlordCore() {
 		super(new ModelOverlordCore(), 0.756F, 2.25F);
 	}
-	
+
 	@Override
 	protected void rotateCorpse(EntityLivingBase entity, float par1, float par2, float par3)
 	{
@@ -33,7 +30,7 @@ public class RenderOverlordCore extends RenderBoss {
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
-	{		
+	{
 		GL11.glScalef(this.scale, this.scale, this.scale);
 		GL11.glTranslatef(0F, 0.5F, 0F);
 	}
@@ -42,22 +39,22 @@ public class RenderOverlordCore extends RenderBoss {
 	protected void renderModel(EntityLivingBase entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
 		EntityOverlordCore core = (EntityOverlordCore) entity;
-		
+
 		if (core.deathTime > 0)
-        {
-            float f6 = (float)core.deathTime / 300.0F;
-            GL11.glDepthFunc(GL11.GL_LEQUAL);
-            GL11.glEnable(GL11.GL_ALPHA_TEST);
-            GL11.glAlphaFunc(GL11.GL_GREATER, f6);
-            this.bindTexture(enderDragonExplodingTextures);
-            GL11.glTranslated(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
-            this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
-            GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-            GL11.glDepthFunc(GL11.GL_EQUAL);
-        }
-		
+		{
+			float f6 = core.deathTime / 300.0F;
+			GL11.glDepthFunc(GL11.GL_LEQUAL);
+			GL11.glEnable(GL11.GL_ALPHA_TEST);
+			GL11.glAlphaFunc(GL11.GL_GREATER, f6);
+			this.bindTexture(enderDragonExplodingTextures);
+			GL11.glTranslated(entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3, entity.getRNG().nextGaussian() * 0.3);
+			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
+			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+			GL11.glDepthFunc(GL11.GL_EQUAL);
+		}
+
 		this.bindEntityTexture(core);
-		
+
 		if (!core.isInvisible() && core.getVulnerableTicks() == 0 && core.getTransformationTicks() <= 60 && core.getTransformationTicks() >= 20)
 		{
 			this.mainModel.render(core, par2, par3, par4, par5, par6, par7);
@@ -89,7 +86,7 @@ public class RenderOverlordCore extends RenderBoss {
 	protected int shouldRenderPass(EntityLivingBase entity, int pass, float partialTick)
 	{
 		EntityOverlordCore core = (EntityOverlordCore) entity;
-		
+
 		if (core.isInvisible())
 		{
 			GL11.glDepthMask(false);
@@ -99,7 +96,7 @@ public class RenderOverlordCore extends RenderBoss {
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		if (pass == 0)
 		{
 			this.setRenderPassModel(this.mainModel);
@@ -143,7 +140,7 @@ public class RenderOverlordCore extends RenderBoss {
 				return -1;
 			}
 		}	*/
-		
+
 		if (pass == 1)
 		{
 			if (core.getVulnerableTicks() == 0 || core.getTransformationTicks() >= 20 && core.getTransformationTicks() <= 60) return -1;
@@ -153,7 +150,7 @@ public class RenderOverlordCore extends RenderBoss {
 
 		return -1;
 
-	} 
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {

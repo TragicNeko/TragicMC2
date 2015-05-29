@@ -10,30 +10,30 @@ public class EnchantmentCombustion extends Enchantment {
 		super(par1, par2, par3EnumEnchantmentType);
 		this.setName("combustion");
 	}
-	
+
 	@Override
 	public int getMinEnchantability(int par1)
-    {
-        return 20;
-    }
+	{
+		return 20;
+	}
 
-    @Override
+	@Override
 	public int getMaxEnchantability(int par1)
-    {
-        return super.getMinEnchantability(par1) + 50;
-    }
+	{
+		return super.getMinEnchantability(par1) + 50;
+	}
 
-    @Override
+	@Override
 	public int getMaxLevel()
-    {
-        return 1;
-    }
-    
-    @Override
+	{
+		return 1;
+	}
+
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
-    {
-        return super.canApplyTogether(par1Enchantment) && par1Enchantment.effectId != Enchantment.silkTouch.effectId;
-    }
-	
+	{
+		return super.canApplyTogether(par1Enchantment) && par1Enchantment.effectId != Enchantment.silkTouch.effectId;
+	}
+
 
 }

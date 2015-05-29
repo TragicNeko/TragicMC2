@@ -93,7 +93,7 @@ public class ModelJabba extends ModelBase
 
 	@Override
 	public void setLivingAnimations(EntityLivingBase entity, float par1, float par2, float par3)
-	{				
+	{
 		if (!(entity instanceof EntityJabba) && !(entity instanceof EntityClaymation)) return;
 
 		int attack = 0;
@@ -131,7 +131,7 @@ public class ModelJabba extends ModelBase
 			body.offsetX = movementOffsets[1][k] * f0;
 			body2.offsetX = movementOffsets[2][k] * f0;
 			body3.offsetX = movementOffsets[3][k] * f0;
-			head2.offsetX = movementOffsets[4][k] * f0;			
+			head2.offsetX = movementOffsets[4][k] * f0;
 		}
 
 		if (attack > 0)

@@ -3,7 +3,6 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 
 public class ModelTragicNeko extends ModelBiped

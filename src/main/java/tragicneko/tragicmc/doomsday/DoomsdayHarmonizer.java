@@ -65,11 +65,11 @@ public class DoomsdayHarmonizer extends Doomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		if (TragicConfig.allowHarmony)
 		{
-			player.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 240)); 
+			player.addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 240));
 		}
 		else
 		{
-			player.addPotionEffect(new PotionEffect(Potion.blindness.id, 240)); 
+			player.addPotionEffect(new PotionEffect(Potion.blindness.id, 240));
 		}
 	}
 

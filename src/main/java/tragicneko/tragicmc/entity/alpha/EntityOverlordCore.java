@@ -21,13 +21,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -205,7 +203,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 	@Override
 	public void onLivingUpdate()
-	{		
+	{
 		this.getLookHelper().onUpdateLook();
 		if (this.getTransformationTicks() > 0) this.motionX = this.motionY = this.motionZ = 0;
 
@@ -213,8 +211,6 @@ public class EntityOverlordCore extends TragicBoss {
 		double d1;
 		double d2;
 		double d10;
-		float f12;
-
 		if (this.worldObj.isRemote)
 		{
 			if (this.newPosRotationIncrements > 0)
@@ -256,8 +252,6 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (t > 0)
 			{
-				boolean flag = this.getTransformationTicks() % 2 == 0;
-
 				float f = 0.33F;
 				float f1 = 0.88F;
 				float f2 = 0.94F;
@@ -401,7 +395,7 @@ public class EntityOverlordCore extends TragicBoss {
 			}
 
 			return;
-		} 
+		}
 
 		if (this.worldObj.difficultySetting.getDifficultyId() == 0) this.setDead();
 		if (this.deathTime > 0) return;
@@ -428,7 +422,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (d8 > 10.0D) d8 = 10.0D;
 
-			this.targetY = this.target.boundingBox.minY + d8;			
+			this.targetY = this.target.boundingBox.minY + d8;
 		}
 		else
 		{
@@ -460,10 +454,10 @@ public class EntityOverlordCore extends TragicBoss {
 		{
 			float f = 8.0F;
 			if (this.canEntityBeSeen(this.target) && this.getDistanceToEntity(this.target) > d4) f = 24.0F;
-			
-			this.targetX = this.target.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * f);
-			this.targetY = this.target.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * f);
-			this.targetZ = this.target.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * f);
+
+			this.targetX = this.target.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * f;
+			this.targetY = this.target.posY + (this.rand.nextFloat() * 2.0F - 1.0F) * f;
+			this.targetZ = this.target.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * f;
 
 			if (this.getDropTicks() == 0 && this.getVulnerableTicks() == 0)
 			{
@@ -472,25 +466,24 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 		else
 		{
-			this.targetX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+			this.targetX = this.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
 			this.targetY = (this.worldObj.getActualHeight() / 4) + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
-			this.targetZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+			this.targetZ = this.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
 		}
 
 		if (this.courseChangeCooldown-- <= 0)
 		{
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
-			d3 = (double)MathHelper.sqrt_double(d3);
+			d3 = MathHelper.sqrt_double(d3);
 
 			this.motionX += d0 / d3 * 0.2D;
 			this.motionY += d1 / d3 * 0.2D;
 			this.motionZ += d2 / d3 * 0.2D;
-		}		
+		}
 
 		if (this.target != null)
 		{
 			double d5 = this.target.posX - this.posX;
-			double d6 = this.target.boundingBox.minY + (double)(this.target.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
 			double d7 = this.target.posZ - this.posZ;
 			this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(d5, d7)) * 180.0F / (float)Math.PI;
 		}
@@ -555,7 +548,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (this.ridingEntity != null && this.getDropTicks() > 10)
 			{
-				if (this.getDropTicks() % 10 == 0) 
+				if (this.getDropTicks() % 10 == 0)
 				{
 					this.ridingEntity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) overlordCoreStats[2] / 2);
 					this.heal(1.0F);
@@ -865,30 +858,30 @@ public class EntityOverlordCore extends TragicBoss {
 
 			for (int ji = 0; ji < 20; ++ji)
 			{
-				this.worldObj.spawnParticle("hugeexplosion", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
+				this.worldObj.spawnParticle("hugeexplosion", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.1, 0.1, 0.1);
 			}
 
 			for (int j = 0; j < 120; ++j)
 			{
-				this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 3.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 3.0F) - (double)this.width, 0, 0, 0);
+				this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 3.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 3.0F - this.width, 0, 0, 0);
 			}
 		}
 
 		for (int j = 0; j < 40; ++j)
 		{
-			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
+			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0, 0, 0);
 		}
 
 		for (int ji = 0; ji < 40; ++ji)
 		{
-			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0.1, 0.1, 0.1);
+			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0.1, 0.1, 0.1);
 		}
 
 		if (this.deathTime % 5 == 0)
 		{
 			for (int ji = 0; ji < 20; ++ji)
 			{
-				this.worldObj.spawnParticle("largeexplode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
+				this.worldObj.spawnParticle("largeexplode", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.1, 0.1, 0.1);
 			}
 		}
 	}

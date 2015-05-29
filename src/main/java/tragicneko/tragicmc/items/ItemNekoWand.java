@@ -43,13 +43,13 @@ public class ItemNekoWand extends Item {
 		par2List.add("L-Click again to set the mob's target");
 		par2List.add("Sneak-L-Click allows you to select a group");
 		par2List.add("Sneak-L-Click to set a group's target");
-		par2List.add("R-Click to reset all selections"); 
+		par2List.add("R-Click to reset all selections");
 	}
 
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
-		if (player.worldObj.isRemote) return false; 
+		if (player.worldObj.isRemote) return false;
 		if (this.cooldown > 0) return true;
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("entityIDs")) stack.stackTagCompound.setIntArray("entityIDs", new int[0]);
@@ -58,7 +58,7 @@ public class ItemNekoWand extends Item {
 		EnumChatFormatting reset = EnumChatFormatting.RESET;
 		EnumChatFormatting aqua = EnumChatFormatting.AQUA;
 		EnumChatFormatting red = EnumChatFormatting.RED;
-		
+
 		if (entity instanceof EntityPart)
 		{
 			TragicMC.logInfo("Entity was a multipart entity, choosing it's main part as the attack target.");
@@ -112,7 +112,7 @@ public class ItemNekoWand extends Item {
 		else
 		{
 			if (stack.stackTagCompound.getInteger("entityID") == 0)
-			{				
+			{
 				if (entity instanceof EntityCreature)
 				{
 					stack.stackTagCompound.setInteger("entityID", entity.getEntityId());
@@ -124,7 +124,7 @@ public class ItemNekoWand extends Item {
 			else
 			{
 				EntityCreature ent = (EntityCreature) entity.worldObj.getEntityByID(stack.stackTagCompound.getInteger("entityID"));
-				
+
 				if (entity instanceof EntityCreature && ent != null && !ent.equals(entity))
 				{
 					ent.getNavigator().clearPathEntity();
@@ -137,7 +137,7 @@ public class ItemNekoWand extends Item {
 					return true;
 				}
 			}
-		} 
+		}
 		return true;
 	}
 
@@ -161,7 +161,7 @@ public class ItemNekoWand extends Item {
 			stack.stackTagCompound.setInteger("entityID", 0);
 			if (world.isRemote) par3EntityPlayer.addChatMessage(new ChatComponentText(green + "You have reset the selected single entity!"));
 		}
-		
+
 		if (world.isRemote) return stack;
 
 		int m = 0;
@@ -231,7 +231,7 @@ public class ItemNekoWand extends Item {
 				if (b == Blocks.redstone_ore) red++;
 				if (b == Blocks.emerald_ore) em++;
 			}
-			
+
 			TragicMC.logInfo("Ore dist. is Emerald:" + em + ", Diamond:" + diam + ", Gold:" + gold + ", Redstone:" + red + ", Lapis:" + lapis + ", Iron:" + iron + ", Coal:" + coal + ", Tungsten:" + tung + ", Mercury:" + merc);
 		}
 		else if (dim == TragicConfig.dimensionID)
@@ -262,7 +262,7 @@ public class ItemNekoWand extends Item {
 				if (meta == 10) xp++;
 				if (meta == 6) em++;
 			}
-			
+
 			TragicMC.logInfo("Ore dist. is Emerald:" + em + ", Diamond:" + diam + ", Gold:" + gold + ", Ruby:" + ruby + ", Sapphire:" + saph + ", Lapis:" + lapis + ", Iron:" + iron + ", Coal:" + coal + ", Tungsten:" + tung + ", Mercury:" + merc + ", XP:" + xp);
 		}
 

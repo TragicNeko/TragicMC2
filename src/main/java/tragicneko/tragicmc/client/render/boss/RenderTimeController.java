@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.client.render.boss;
 
-import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,9 +26,8 @@ public class RenderTimeController extends RenderBoss {
 		this.bindEntityTexture(par1EntityLivingBase);
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
-		{       
+		{
 			GL11.glPushMatrix();
-			Random rand = par1EntityLivingBase.worldObj.rand;
 			float f2 = 1.8F;
 			EntityTimeController ctrl = (EntityTimeController) par1EntityLivingBase;
 			if (ctrl.getLeapTicks() > 0)

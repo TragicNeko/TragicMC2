@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.client.render.alpha;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
@@ -11,8 +10,6 @@ import org.lwjgl.opengl.GL11;
 import tragicneko.tragicmc.client.model.ModelOverlordCombat;
 import tragicneko.tragicmc.client.render.boss.RenderBoss;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
-import tragicneko.tragicmc.entity.boss.EntityApis;
-import tragicneko.tragicmc.entity.boss.TragicBoss;
 
 public class RenderOverlordCombat extends RenderBoss {
 
@@ -22,7 +19,7 @@ public class RenderOverlordCombat extends RenderBoss {
 	public RenderOverlordCombat() {
 		super(new ModelOverlordCombat(), 0.756F, 2.25F);
 	}
-	
+
 	@Override
 	protected void rotateCorpse(EntityLivingBase entity, float par1, float par2, float par3)
 	{
@@ -32,7 +29,7 @@ public class RenderOverlordCombat extends RenderBoss {
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
-	{		
+	{
 		GL11.glScalef(this.scale, this.scale, this.scale);
 	}
 
@@ -46,7 +43,7 @@ public class RenderOverlordCombat extends RenderBoss {
 	protected int shouldRenderPass(EntityLivingBase boss, int par2, float par3)
 	{
 		EntityOverlordCombat combat = (EntityOverlordCombat) boss;
-		
+
 		if (boss.isInvisible())
 		{
 			GL11.glDepthMask(false);
@@ -56,14 +53,14 @@ public class RenderOverlordCombat extends RenderBoss {
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		if (par2 == 0)
 		{
 			this.setRenderPassModel(this.mainModel);
-            GL11.glEnable(GL11.GL_NORMALIZE);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            return 1;
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			return 1;
 		}
 
 		if (combat.getReflectionTicks() > 0)

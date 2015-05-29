@@ -15,8 +15,6 @@ public class RenderPolaris extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Polaris2.png");
 
-	private boolean isInCombat;
-
 	public RenderPolaris() {
 		super(new ModelPolaris(), 0.335F);
 	}
@@ -32,9 +30,9 @@ public class RenderPolaris extends RenderBoss {
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		EntityPolaris polar = (EntityPolaris) boss;
-		
+
 		if (par2 == 0 && !polar.getDaytime())
 		{
 			float f1 = boss.ticksExisted;
@@ -46,10 +44,10 @@ public class RenderPolaris extends RenderBoss {
 			GL11.glTranslatef(f2, f3, 0.0F);
 			this.setRenderPassModel(this.mainModel);
 			GL11.glMatrixMode(GL11.GL_MODELVIEW);
-            GL11.glEnable(GL11.GL_NORMALIZE);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            return 1;
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			return 1;
 		}
 
 		GL11.glMatrixMode(GL11.GL_TEXTURE);
@@ -73,11 +71,11 @@ public class RenderPolaris extends RenderBoss {
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
-	}	
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
-	{	
+	{
 		return texture;
 	}
 }

@@ -7,9 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -50,7 +47,8 @@ public class DoomsdayDecay extends Doomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.hunger.id, rand.nextInt(240) + 160, rand.nextInt(2) + 1));
 	}
-	
+
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.RadiantLight;
 	}

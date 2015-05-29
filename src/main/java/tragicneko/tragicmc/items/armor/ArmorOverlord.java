@@ -16,13 +16,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorOverlord extends TragicArmor {
-	
+
 	private static final String texture = "tragicmc:textures/armor/OverlordArmor.png";
 
 	public ArmorOverlord(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
 	}
-	
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
 	{
@@ -32,7 +32,7 @@ public class ArmorOverlord extends TragicArmor {
 	}
 
 	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
 		if (world.isRemote) return;
 
@@ -42,7 +42,7 @@ public class ArmorOverlord extends TragicArmor {
 		Boolean flag4 = false;
 
 		for (int a = 1; a < 5; a++)
-		{				
+		{
 			if (player.getEquipmentInSlot(a) != null)
 			{
 				Item armor = player.getEquipmentInSlot(a).getItem();
@@ -60,14 +60,14 @@ public class ArmorOverlord extends TragicArmor {
 			if (player.isPotionActive(Potion.weakness)) player.removePotionEffect(Potion.weakness.id);
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, int slot)
 	{
 		return TragicConfig.allowArmorModels ? tragicneko.tragicmc.client.ClientProxy.modelsOverlord[slot] : null;
 	}
-	
+
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{

@@ -31,7 +31,7 @@ public class DoomsdayTimeCollapse extends Doomsday implements IExtendedDoomsday 
 
 			for (int i = 0; i < list.size(); i ++)
 			{
-				Entity entity = (Entity) list.get(i);
+				Entity entity = list.get(i);
 				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 				entity.motionX = entity.motionY = entity.motionZ = 0;
 				entity.velocityChanged = false;

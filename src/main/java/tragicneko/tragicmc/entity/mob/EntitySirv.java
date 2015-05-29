@@ -35,14 +35,14 @@ public class EntitySirv extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 	}
-	
+
 	public int getAttackTime()
 	{
 		return this.dataWatcher.getWatchableObjectInt(16);
@@ -58,7 +58,7 @@ public class EntitySirv extends TragicMob {
 		int pow = this.getAttackTime();
 		this.setAttackTime(--pow);
 	}
-	
+
 	@Override
 	public boolean canCorrupt()
 	{
@@ -81,13 +81,13 @@ public class EntitySirv extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(sirvStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(sirvStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) sirvStats[5];
 	}
-	
+
 	@Override
 	public void onLivingUpdate()
 	{
@@ -97,14 +97,14 @@ public class EntitySirv extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
-		
+
 		if (result && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
 		{
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
 			EntitySirv sirv;
-			
+
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) instanceof EntitySirv)
@@ -122,7 +122,7 @@ public class EntitySirv extends TragicMob {
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
-		
+
 		if (result)
 		{
 			if (par1Entity instanceof EntityLivingBase && rand.nextInt(4) == 0)
@@ -138,12 +138,12 @@ public class EntitySirv extends TragicMob {
 					break;
 				}
 			}
-			
+
 			this.setAttackTime(10);
 		}
 		return result;
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -161,43 +161,43 @@ public class EntitySirv extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.sirv.crunch";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.sirv.snap";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.sirv.crunch";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.4F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

@@ -22,8 +22,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.projectile.EntitySpore;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
@@ -45,7 +45,7 @@ public class EntityTox extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -189,7 +189,7 @@ public class EntityTox extends TragicMob {
 			if (this.getToxType() == 0)
 			{
 				this.setSize(0.625F, 1.965F);
-				
+
 				if ((this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0) && !this.isImmuneToFire())
 				{
 					this.worldObj.spawnParticle("mobSpellAmbient",
@@ -224,7 +224,7 @@ public class EntityTox extends TragicMob {
 				this.decrementWiggleTime();
 				if (this.getAttackTarget() != null) this.setWiggleTime(0);
 			}
-			
+
 			if (this.superiorForm == null && this.getToxType() == 0) this.superiorForm = new EntityMagmox(this.worldObj);
 			if (this.isFiring()) this.decrementFiringTicks();
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
@@ -242,7 +242,7 @@ public class EntityTox extends TragicMob {
 			{
 				this.shootProjectiles();
 			}
-			
+
 			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(3.0F);
 		}
 	}
@@ -267,7 +267,7 @@ public class EntityTox extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		if (this.isFiring()) this.setFiringTicks(19);
@@ -350,31 +350,31 @@ public class EntityTox extends TragicMob {
 	{
 		return "tragicmc:mob.tox.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.tox.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.tox.hurt";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return this.getToxType() == 1 ? 1.4F : 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.9F + rand.nextFloat();
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

@@ -6,9 +6,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
@@ -28,7 +26,7 @@ public class SchematicObsidianCavern extends Schematic {
 	private static Block chest = Blocks.chest;
 	private static Block glowstone = Blocks.glowstone;
 	private static Block spawner = Blocks.mob_spawner;
-	
+
 	public SchematicObsidianCavern() {
 		super(8, 12, 12);
 	}
@@ -76,7 +74,7 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 		}
 
-		y = 7;		
+		y = 7;
 
 		for (int who = 0; who < 5; who++)
 		{
@@ -134,7 +132,7 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 
 			for (int x1 = 0; x1 < 11; x1++) //To generate the bedrock walls around the cavern, outer layer
-			{				
+			{
 				world.setBlock(x + x1 - 5, y + who, z - 5, bedrock);
 				world.setBlock(x - 5, y + who, z + x1 - 5, bedrock);
 				world.setBlock(x + 10 - 5, y + who, z + x1 - 5, bedrock);
@@ -158,7 +156,7 @@ public class SchematicObsidianCavern extends Schematic {
 			world.setBlock(x - 3, y, z + x1 - 3, bedrock);
 			world.setBlock(x + 6 - 3, y, z + x1 - 3, bedrock);
 			world.setBlock(x + x1 - 3, y, z + 6 - 3, bedrock);
-		} 
+		}
 
 		y = 14;
 
@@ -184,7 +182,7 @@ public class SchematicObsidianCavern extends Schematic {
 		y = 16;
 
 		for (int who = 0; y + who <= starty; who++)
-		{		
+		{
 			for (int wah = 0; wah < 3; wah++)
 			{
 				for (int wuh = 0; wuh < 3; wuh++) //To make sure the tube is completely air before generating obsidian
@@ -213,7 +211,7 @@ public class SchematicObsidianCavern extends Schematic {
 		}
 
 		for (int i = 0; y + i <= starty; i++)
-		{			
+		{
 			world.setBlock(x, y + i, z, ladder, 3, 2);
 		}
 
@@ -240,8 +238,6 @@ public class SchematicObsidianCavern extends Schematic {
 			meta = rand.nextInt(5);
 		}
 
-		Block block;
-
 		switch(variant)
 		{
 		case 0:
@@ -263,7 +259,7 @@ public class SchematicObsidianCavern extends Schematic {
 				world.setBlockToAir(x, y + y1, z + 1);
 				world.setBlockToAir(x, y + y1, z - 1);
 				world.setBlockToAir(x, y + y1, z);
-			}			
+			}
 
 			for (int x1 = -1; x1 < 2; x1++)
 			{
@@ -424,7 +420,7 @@ public class SchematicObsidianCavern extends Schematic {
 				for (int z1 = -1; z1 < 2; z1++) //sets the blocks that make up the center of the head
 				{
 					if (y1 > 0 && z1 != 0)
-					{		
+					{
 						world.setBlock(x, y + y1, z + z1, obs);
 					}
 
@@ -618,7 +614,7 @@ public class SchematicObsidianCavern extends Schematic {
 					}
 					break;
 				}
-			}	
+			}
 
 			for (int y1 = 0; y1 < 3; y1++)
 			{
@@ -630,7 +626,7 @@ public class SchematicObsidianCavern extends Schematic {
 			}
 			break;
 		}
-		
+
 		if (world.getBlock(x, y, z) != Blocks.ladder && world.getBlock(x, y, z) != Blocks.air) world.setBlockToAir(x, y, z);
 
 	}

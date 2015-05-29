@@ -15,7 +15,7 @@ public class ModelRagr extends ModelBase
 	private ModelRenderer rightForearm;
 	private ModelRenderer leftShoulder;
 	private ModelRenderer leftForearm;
-	
+
 	private ModelRenderer[] partArray = new ModelRenderer[8];
 
 	public ModelRagr()
@@ -79,7 +79,7 @@ public class ModelRagr extends ModelBase
 		ModelRenderer leftFist = new ModelRenderer(this, 0, 46);
 		leftFist.addBox(-1F, 25F, -3F, 8, 6, 8);
 		leftForearm.addChild(leftFist);
-		
+
 		this.partArray = new ModelRenderer[] {head, body, rightLeg, leftLeg, rightShoulder, leftShoulder};
 	}
 
@@ -101,23 +101,23 @@ public class ModelRagr extends ModelBase
 	{
 		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.nose.offsetX = this.nose.offsetY = this.nose.offsetZ = 0.0F;
 		this.nose.rotateAngleX = 0.135F + this.simplifyAngle(entity.ticksExisted, 20.0F) * -0.135F;
-		
+
 		if (entity.onGround)
 		{
 			this.leftLeg.rotateAngleX = -0.85F * this.simplifyAngle(f1, 15.0F) * 0.85F;
 			this.rightLeg.rotateAngleX = 0.85F * this.simplifyAngle(f1, 15.0F) * 0.85F;
 		}
-		
+
 		if (entity.onGround || entity.isRiding() || entity.isSneaking())
-		{		
+		{
 			this.rightShoulder.rotateAngleX = 0.8000468F;
 			this.leftShoulder.rotateAngleX = -0.5000468F;
 			this.rightShoulder.rotateAngleZ = 0.4000242F;
 			this.leftShoulder.rotateAngleZ = -0.6000242F;
-			
+
 			this.rightForearm.rotateAngleX = -0.4000468F;
 			this.leftForearm.rotateAngleX = -0.4000468F;
 			this.rightForearm.rotateAngleZ = -0.2000242F;
@@ -126,7 +126,7 @@ public class ModelRagr extends ModelBase
 			this.leftForearm.offsetZ = 0.4000468F;
 			this.rightForearm.offsetX = -0.1200468F;
 			this.leftForearm.offsetX = 0.5200468F;
-			
+
 			for (int i = 0; i < this.partArray.length; i++)
 			{
 				this.partArray[i].offsetY = 0.465F;
@@ -138,7 +138,7 @@ public class ModelRagr extends ModelBase
 			this.rightShoulder.rotateAngleX = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
 			this.leftShoulder.rotateAngleZ = -0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
 			this.rightShoulder.rotateAngleZ = 0.45F * this.simplifyAngle(entity.ticksExisted, 20.0F) * f1;
-			
+
 			this.rightForearm.rotateAngleX = 0.0F;
 			this.leftForearm.rotateAngleX = 0.0F;
 			this.rightForearm.rotateAngleZ = 0.0F;
@@ -147,7 +147,7 @@ public class ModelRagr extends ModelBase
 			this.leftForearm.offsetZ = 0.0F;
 			this.rightForearm.offsetX = 0.0F;
 			this.leftForearm.offsetX = 0.0F;
-			
+
 			for (int i = 0; i < this.partArray.length; i++)
 			{
 				this.partArray[i].offsetY = 0.0F;

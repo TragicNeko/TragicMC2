@@ -9,7 +9,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 import com.google.common.collect.Sets;
@@ -112,7 +111,7 @@ public class Structure extends WorldGenerator {
 		else
 		{
 			for (int y1 = 0; y1 < this.height; y1++)
-			{			
+			{
 				if (!validBlocks.contains(world.getBlock(x, y - y1, z)) ||
 						!validBlocks.contains(world.getBlock(x - y1, y, z)) ||
 						!validBlocks.contains(world.getBlock(x + y1, y, z)) ||
@@ -144,7 +143,7 @@ public class Structure extends WorldGenerator {
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) 
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 		return generateStructureWithVariant(rand.nextInt(this.getVariantSize()), world, rand, x, y, z);
 	}

@@ -37,7 +37,7 @@ public class DropEvents {
 	@SubscribeEvent
 	public void onBlockBreak(HarvestDropsEvent event)
 	{
-		if (event.harvester == null || event.isSilkTouching || rand.nextBoolean()) return;		
+		if (event.harvester == null || event.isSilkTouching || rand.nextBoolean()) return;
 
 		if (event.block instanceof BlockGrass && rand.nextInt(64) == 0)
 		{
@@ -72,7 +72,7 @@ public class DropEvents {
 		else if (event.block instanceof BlockLeaves && rand.nextInt(32) == 0)
 		{
 			event.drops.clear();
-			
+
 			if (rand.nextInt(16) != 0)
 			{
 				event.drops.add(new ItemStack(Items.stick));
@@ -229,7 +229,7 @@ public class DropEvents {
 		}
 
 		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityDragon)
-		{			
+		{
 			int x = 5;
 			int y = 3;
 

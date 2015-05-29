@@ -15,7 +15,7 @@ import tragicneko.tragicmc.enchantment.EnchantmentVeteran;
 import tragicneko.tragicmc.enchantment.EnchantmentWeaponExtra;
 
 public class TragicEnchantments {
-	
+
 	public static Enchantment Decay, Absolve, Slay, Vampirism, Leech, Consume, Distract, Combustion, Multiply, RuneBreak, Reach, Unbreakable, Rust, Veteran;
 	public static Enchantment Ignition, Paralysis, Toxicity, Elasticity, DeathTouch, Agility, RuneWalker, Luminescence;
 

@@ -11,23 +11,23 @@ import tragicneko.tragicmc.client.model.ModelAegar;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 
 public class RenderAegar extends RenderLiving {
-	
+
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Aegar.png");
 	private static final ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/AegarDamaged.png");
-	
+
 	protected float scale;
 
 	public RenderAegar() {
 		super(new ModelAegar(), 0.845F);
 		this.scale = 1.745F;
 	}
-	
+
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float par2)
 	{
 		GL11.glScalef(scale, scale, scale);
 	}
-	
+
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return this.getEntityTexture((EntityAegar) entity);

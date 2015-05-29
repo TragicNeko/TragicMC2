@@ -23,8 +23,8 @@ public class EntitySpore extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !this.worldObj.isRemote) 
-		{			
+		if (mop.entityHit != null && !this.worldObj.isRemote)
+		{
 			if (mop.entityHit instanceof EntityLivingBase && !(mop.entityHit instanceof EntityTox) && !(mop.entityHit instanceof EntityErkel))
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
@@ -34,7 +34,7 @@ public class EntitySpore extends EntityProjectile {
 
 		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{

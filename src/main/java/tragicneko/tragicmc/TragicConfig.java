@@ -14,7 +14,6 @@ public class TragicConfig {
 
 	private static final String catMaster = "Master Configs";
 	private static final String catBlanket = "Blanket Configs";
-	private static final String catAchievement = "Achievements";
 	private static final String catAmulet = "Amulets";
 	private static final String catDimension = "Dimension";
 	private static final String catDoom = "Doom";
@@ -159,8 +158,6 @@ public class TragicConfig {
 		mobsOnly = prop.getBoolean(mobsOnly);
 
 		int mapping = 0;
-		int i = 0;
-
 		//Blanket options
 		blanketConfigs[mapping++] = false; //(config.get(catBlanket, "allowAchievements", true).getBoolean(true)); //these aren't set up yet
 		blanketConfigs[mapping++] = (config.get(catBlanket, "allowAmulets", true).getBoolean(true));
@@ -1188,7 +1185,7 @@ public class TragicConfig {
 
 				if (i < miniBossConfigs.length) miniBossConfigs[i] = false;
 				if (i < bossConfigs.length) bossConfigs[i] = false;
-				if (i < blanketMob.length) blanketMob[i] = false; 
+				if (i < blanketMob.length) blanketMob[i] = false;
 			}
 		}
 		else
@@ -1224,7 +1221,7 @@ public class TragicConfig {
 			{
 				positivePotionConfigs[i] = false;
 				if (i < negativePotionConfigs.length) negativePotionConfigs[i] = false;
-				if (i < blanketPotion.length) blanketPotion[i] = false; 
+				if (i < blanketPotion.length) blanketPotion[i] = false;
 			}
 		}
 		else
@@ -1262,7 +1259,7 @@ public class TragicConfig {
 			}
 		}
 		else
-		{			
+		{
 			if (!blanketWorldGen[3])
 			{
 				blanketWorldGen[4] = false;
@@ -1345,7 +1342,7 @@ public class TragicConfig {
 		amuConsumption = cursedAmuletConfigs[mapping++];
 		amuUndead = cursedAmuletConfigs[mapping++];
 		amuEnderDragon = cursedAmuletConfigs[mapping++];
-		
+
 		amuTime = epicAmuletConfigs[0];
 		amuWither = epicAmuletConfigs[1];
 		amuOverlord = epicAmuletConfigs[2];
@@ -1866,7 +1863,7 @@ public class TragicConfig {
 	}
 
 	private static int getOpenIDForPotion(int configId)
-	{		
+	{
 		if (configId < Potion.potionTypes.length && Potion.potionTypes[configId] != null)
 		{
 			while (Potion.potionTypes[configId] != null)

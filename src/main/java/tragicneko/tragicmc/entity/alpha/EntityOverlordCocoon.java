@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -312,12 +311,12 @@ public class EntityOverlordCocoon extends TragicBoss {
 		{
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
 			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
-			
+
 			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 
 			if (flag && this.hurtResistantTime == 0 || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0)
 			{
-				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, (float) TragicConfig.bossDamageCap);
+				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, TragicConfig.bossDamageCap);
 
 				if (this.getCurrentPhase() < 4)
 				{
@@ -341,22 +340,22 @@ public class EntityOverlordCocoon extends TragicBoss {
 					default:
 						break;
 					}
-					
-					if (this.getHealth() - MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, (float) TragicConfig.bossDamageCap) <= f && f > 0 || this.phaseDamage >= this.getMaxHealth() / 5)
+
+					if (this.getHealth() - MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, TragicConfig.bossDamageCap) <= f && f > 0 || this.phaseDamage >= this.getMaxHealth() / 5)
 					{
 						this.phaseChange = true;
 						dmg = 0;
 						this.phaseDamage = 0F;
 					}
 				}
-				
+
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 					swarm.setPosition(this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
 					this.worldObj.spawnEntityInWorld(swarm);
 				}
-				
+
 				return super.attackEntityFrom(src, dmg);
 			}
 		}
@@ -378,14 +377,14 @@ public class EntityOverlordCocoon extends TragicBoss {
 		if (!this.worldObj.isRemote)
 		{
 			List<int[]> lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.5, this.posX, this.posY + 1, this.posZ);
-			
+
 			for (int[] coord: lst)
 			{
 				this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
 			}
-			
+
 			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 12.5, this.posX, this.posY - 1, this.posZ);
-			
+
 			for (int[] coords : lst)
 			{
 				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicConfig.mobsOnly ? Blocks.obsidian : TragicBlocks.CelledBlock);
@@ -409,7 +408,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		}
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -448,7 +447,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		tag.setFloat("phaseDamage", this.phaseDamage);
 		tag.setInteger("phaseTicks", this.getPhaseTicks());
 	}
-	
+
 	@Override
 	protected void onDeathUpdate()
 	{
@@ -459,7 +458,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		if (this.deathTime >= 200)
 		{
 			this.deathTime = 1;
-			
+
 			int i;
 			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
 			{
@@ -472,33 +471,33 @@ public class EntityOverlordCocoon extends TragicBoss {
 					this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
 				}
 			}
-			
-			this.setDead(); 
-			
+
+			this.setDead();
+
 			for (int ji = 0; ji < 20; ++ji)
 			{
-				this.worldObj.spawnParticle("hugeexplosion", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.1, 0.1, 0.1);
-			} 
-			
+				this.worldObj.spawnParticle("hugeexplosion", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, 0.1, 0.1, 0.1);
+			}
+
 			if (!this.worldObj.isRemote)
-			{				
+			{
 				EntityOverlordCombat combat = new EntityOverlordCombat(this.worldObj);
 				combat.setPosition(this.posX, this.posY, this.posZ);
 				combat.setTransforming();
-				this.worldObj.spawnEntityInWorld(combat); 
-			} 
+				this.worldObj.spawnEntityInWorld(combat);
+			}
 		}
-		
+
 		if (!this.worldObj.isRemote) for (EntitySeeker sk : this.seekers) sk.setDead();
-		
+
 		for (int j = 0; j < 40; ++j)
 		{
-			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0, 0, 0);
+			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0, 0, 0);
 		}
-		
+
 		for (int ji = 0; ji < 40; ++ji)
 		{
-			this.worldObj.spawnParticle("reddust", this.posX + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height * 2.0F), this.posZ + (double)(this.rand.nextFloat() * this.width * 5.0F) - (double)this.width, 0.1, 0.1, 0.1);
+			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0.1, 0.1, 0.1);
 		}
 	}
 }

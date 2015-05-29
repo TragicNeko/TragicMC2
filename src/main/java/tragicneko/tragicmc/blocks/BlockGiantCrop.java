@@ -50,7 +50,7 @@ public class BlockGiantCrop extends Block {
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName);
-		
+
 		if (this == TragicBlocks.CarrotBlock)
 		{
 			this.topIcon = par1IconRegister.registerIcon("tragicmc:" + this.textureName + "_Top");

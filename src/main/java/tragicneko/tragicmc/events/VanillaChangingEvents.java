@@ -46,7 +46,6 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -63,7 +62,7 @@ public class VanillaChangingEvents {
 
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
-	{		
+	{
 		if (event.entityLiving.getEquipmentInSlot(0) != null && event.entityLiving instanceof EntityZombie)
 		{
 			if (event.entityLiving.getEquipmentInSlot(0).getItem() == Items.egg)
@@ -392,9 +391,9 @@ public class VanillaChangingEvents {
 
 	@SubscribeEvent
 	public void onEntityAttack(LivingAttackEvent event)
-	{		
+	{
 		if (event.entityLiving.worldObj.isRemote) return;
-		
+
 		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
 		{
 			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
@@ -558,7 +557,7 @@ public class VanillaChangingEvents {
 		{
 			event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).removeModifier(mobBlindnessDebuff);
 
-			if (event.entityLiving.isPotionActive(Potion.blindness.id)|| event.entityLiving.isPotionActive(Potion.confusion.id) 
+			if (event.entityLiving.isPotionActive(Potion.blindness.id)|| event.entityLiving.isPotionActive(Potion.confusion.id)
 					|| TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation.id))
 			{
 				event.entityLiving.getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(mobBlindnessDebuff);

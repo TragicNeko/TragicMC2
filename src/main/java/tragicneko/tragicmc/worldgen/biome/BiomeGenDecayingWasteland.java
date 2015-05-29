@@ -15,10 +15,10 @@ import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
 import tragicneko.tragicmc.worldgen.VoidPitWorldGen;
 
 public class BiomeGenDecayingWasteland extends TragicBiome {
-	
+
 	public final VoidPitWorldGen voidPitGen;
 	public final RuggedTerrainWorldGen mixedDirtGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.35F, 0.22F}, {0.05F, -0.35F}, {0.18F, 0.15F}, {0.75F, 0.35F}};
 
 	public BiomeGenDecayingWasteland(int par1, int par2) {
@@ -39,7 +39,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		this.voidPitGen = new VoidPitWorldGen(3.5D, 3.5D);
 		this.mixedDirtGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 2, TragicBlocks.DeadDirt, 6, 3.0D, 4.0D, false, 8);
 	}
-	
+
 	@Override
 	public int getBushesFromBiomeType()
 	{

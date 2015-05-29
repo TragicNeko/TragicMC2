@@ -17,9 +17,9 @@ public class BlockExplosiveGas extends BlockGas {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		
+
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
@@ -32,7 +32,7 @@ public class BlockExplosiveGas extends BlockGas {
 					0.8F, 0.8F, 0.8F);
 		}
 	}
-	
+
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
@@ -44,9 +44,10 @@ public class BlockExplosiveGas extends BlockGas {
 		}
 		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 	}
-	
+
+	@Override
 	public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion explosion)
-    {
-        if (!world.isRemote)  world.createExplosion(null, x, y, z, 1.5F + world.rand.nextFloat(), WorldHelper.getMobGriefing(world));
-    }
+	{
+		if (!world.isRemote)  world.createExplosion(null, x, y, z, 1.5F + world.rand.nextFloat(), WorldHelper.getMobGriefing(world));
+	}
 }

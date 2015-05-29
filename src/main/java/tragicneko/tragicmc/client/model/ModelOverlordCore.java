@@ -1,13 +1,10 @@
 package tragicneko.tragicmc.client.model;
 
-import java.util.List;
-import java.util.Random;
-
-import tragicneko.tragicmc.entity.EntityStatue;
-import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.EntityStatue;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 
 public class ModelOverlordCore extends ModelBase
 {
@@ -1002,8 +999,6 @@ public class ModelOverlordCore extends ModelBase
 		if (entity instanceof EntityStatue) return;
 
 		EntityOverlordCore core = (EntityOverlordCore) entity;
-		Random rand = core.worldObj.rand;
-
 		brainSac.rotateAngleY = brain.rotateAngleY = (f3 / (180F / (float)Math.PI)) * 0.35F;
 		brainSac.rotateAngleX = brain.rotateAngleX = (f4 / (180F / (float)Math.PI)) * 0.35F;
 		brainSac.rotateAngleZ = 0F;
@@ -1012,7 +1007,7 @@ public class ModelOverlordCore extends ModelBase
 
 		upperLegFR.rotateAngleY = upperLegFL.rotateAngleY = upperLegFMR.rotateAngleY = upperLegFML.rotateAngleY = legBMR.rotateAngleY = legBML.rotateAngleY = legBR.rotateAngleY = legBL.rotateAngleY = (f3 / (180F / (float) Math.PI));
 		upperLegFR.rotateAngleZ = upperLegFL.rotateAngleZ = upperLegFMR.rotateAngleZ = upperLegFML.rotateAngleZ = legBMR.rotateAngleZ = legBML.rotateAngleZ = legBR.rotateAngleZ = legBL.rotateAngleZ = (f4 / (180F / (float) Math.PI));
-		
+
 		if (core.getTransformationTicks() > 0)
 		{
 			upperLegFL.rotateAngleZ = this.simplifyAngle(core.ticksExisted, 10.0F) * 0.38F - 0.38F;
@@ -1023,9 +1018,9 @@ public class ModelOverlordCore extends ModelBase
 			legBMR.rotateAngleZ = this.simplifyAngle(core.ticksExisted + 2, 6.0F) * -0.22F + 0.22F;
 			legBR.rotateAngleZ = this.simplifyAngle(core.ticksExisted, 6.0F) * -0.22F + 0.22F;
 			legBL.rotateAngleZ = this.simplifyAngle(core.ticksExisted - 3, 6.0F) * 0.22F - 0.22F;
-			
+
 			head.rotateAngleX = -0.23F;
-			
+
 			if (core.getTransformationTicks() >= 20)
 			{
 				pincerLeft.rotateAngleY = 0.57F - this.simplifyAngle(core.ticksExisted, 3F) * 0.125F;
@@ -1095,7 +1090,7 @@ public class ModelOverlordCore extends ModelBase
 
 				lowerJaw.rotateAngleX = this.simplifyAngle(core.getHoverTicks(), 5.0F) * -0.15F + 0.25F;
 			}
-			
+
 			if (core.getVulnerableTicks() > 0 || core.getHurtTicks() > 0)
 			{
 				brainSac.rotateAngleZ = brain.rotateAngleZ = this.simplifyAngle(core.getVulnerableTicks() + 6, 15.0F) * -0.05F + 0.05F;

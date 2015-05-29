@@ -20,7 +20,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 		this.waitTime = 10;
 		this.maxIterations = 120;
 	}
-	
+
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
@@ -43,9 +43,9 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
 			}
 		}
-		
+
 		double y = player.posY - WorldHelper.getDistanceToGround(player);
-		
+
 		for (int l = 0; l < meow; l++)
 		{
 			EntityTNTPrimed tnt = new EntityTNTPrimed(player.worldObj, player.posX + rand.nextInt(16) - rand.nextInt(16), y + 24 + rand.nextInt(16),
@@ -56,7 +56,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

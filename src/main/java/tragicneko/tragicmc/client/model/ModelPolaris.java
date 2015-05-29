@@ -22,19 +22,19 @@ public class ModelPolaris extends ModelBase
 		head = new ModelRenderer(this, 16, 40);
 		head.addBox(-3F, -6F, -3F, 6, 5, 6);
 		head.setRotationPoint(0F, -2F, 0F);
-		
+
 		ModelRenderer headpiece = new ModelRenderer(this, 28, 8);
 		headpiece.addBox(-1F, -7F, -4F, 2, 7, 6);
 		head.addChild(headpiece);
-		
+
 		ModelRenderer eyepiece = new ModelRenderer(this, 28, 0);
 		eyepiece.addBox(-4F, -5F, -4F, 8, 2, 5);
 		head.addChild(eyepiece);
-		
+
 		ModelRenderer eye = new ModelRenderer(this, 56, 0);
 		eye.addBox(-1F, -5F, -5F, 2, 2, 1);
 		head.addChild(eye);
-		
+
 		body = new ModelRenderer(this, 14, 24);
 		body.addBox(-4F, 0F, -2F, 8, 6, 5);
 		body.setRotationPoint(0F, -3F, 0F);
@@ -42,7 +42,7 @@ public class ModelPolaris extends ModelBase
 		ModelRenderer abdomen = new ModelRenderer(this, 0, 10);
 		abdomen.addBox(-2F, 6F, -1F, 4, 3, 3);
 		body.addChild(abdomen);
-		
+
 		ModelRenderer pelvis = new ModelRenderer(this, 0, 0);
 		pelvis.addBox(-3F, 9F, -2F, 6, 3, 5);
 		body.addChild(pelvis);
@@ -55,12 +55,12 @@ public class ModelPolaris extends ModelBase
 		ModelRenderer rightShoulder = new ModelRenderer(this, 46, 16);
 		rightShoulder.addBox(-3F, -2F, -2F, 4, 3, 4);
 		rightArm.addChild(rightShoulder);
-		
+
 		leftArm = new ModelRenderer(this, 0, 42);
 		leftArm.addBox(-1F, 1F, -1F, 2, 8, 2);
 		leftArm.setRotationPoint(5F, 0F, 0F);
 		leftArm.rotateAngleX = -1.710216F;
-		
+
 		ModelRenderer leftShoulder = new ModelRenderer(this, 46, 16);
 		leftShoulder.addBox(-1F, -2F, -2F, 4, 3, 4);
 		leftArm.addChild(leftShoulder);
@@ -68,10 +68,10 @@ public class ModelPolaris extends ModelBase
 		rightLeg = new ModelRenderer(this, 0, 18);
 		rightLeg.addBox(-2F, 0F, -2F, 3, 14, 3);
 		rightLeg.setRotationPoint(-2F, 9F, 1F);
-		
+
 		leftLeg = new ModelRenderer(this, 0, 18);
 		leftLeg.addBox(-1F, 0F, -2F, 3, 14, 3);
-		leftLeg.setRotationPoint(2F, 9F, 1F);		
+		leftLeg.setRotationPoint(2F, 9F, 1F);
 	}
 
 	@Override
@@ -91,9 +91,9 @@ public class ModelPolaris extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		if (!(entity instanceof EntityPolaris)) return;
-		
+
 		EntityPolaris polar = (EntityPolaris) entity;
-		
+
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		head.rotateAngleX = f4 / (180F / (float)Math.PI);
 
@@ -103,18 +103,18 @@ public class ModelPolaris extends ModelBase
 		rightArm.rotateAngleX = -1.710216F + -0.15F * this.simplifyAngle(f, 3.0F) * f1;
 		leftArm.rotateAngleY = 0.15F * this.simplifyAngle(f, 3.0F) * f1;
 		rightArm.rotateAngleY = -0.15F * this.simplifyAngle(f, 3.0F) * f1;
-		
+
 		if (polar.getAttackTime() > 0)
 		{
 			rightArm.rotateAngleX = -1.710216F + this.simplifyAngle(polar.getAttackTime(), 5.0F) * 0.85F;
 			leftArm.rotateAngleX = -1.710216F + this.simplifyAngle(polar.getAttackTime(), 5.0F) * 0.85F;
 			rightArm.rotateAngleZ = 0.45F * this.simplifyAngle(polar.getAttackTime(), 5.0F);
 			leftArm.rotateAngleZ = -0.45F * this.simplifyAngle(polar.getAttackTime(), 5.0F);
-			
+
 			head.rotateAngleX = 0.25F * this.simplifyAngle(polar.getAttackTime(), 5.0F);
 		}
 	}
-	
+
 	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);

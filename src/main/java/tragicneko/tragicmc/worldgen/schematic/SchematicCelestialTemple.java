@@ -5,12 +5,9 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.WorldHelper;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
@@ -388,7 +385,7 @@ public class SchematicCelestialTemple extends Schematic {
 		//Seventh row
 		world.setBlock(x, y, z - 3, quartz, 1, 2);
 		world.setBlock(x, y, z - 2, quartz, 1, 2);
-		world.setBlock(x, y, z, quartz, 1, 2); 
+		world.setBlock(x, y, z, quartz, 1, 2);
 		world.setBlock(x, y, z + 9, quartz, 1, 2);
 		world.setBlock(x, y, z + 11, quartz, 1, 2);
 		world.setBlock(x, y, z + 12, quartz, 1, 2);
@@ -1009,7 +1006,7 @@ public class SchematicCelestialTemple extends Schematic {
 		//Seventh layer
 
 		//Seventh row
-		world.setBlock(x, y, z, quartz, 1, 2); 
+		world.setBlock(x, y, z, quartz, 1, 2);
 		world.setBlock(x, y, z + 1, quartz, 1, 2);
 		world.setBlock(x, y, z + 2, quartz, 1, 2);
 		world.setBlock(x, y, z + 3, quartz, 1, 2);
@@ -1057,7 +1054,7 @@ public class SchematicCelestialTemple extends Schematic {
 		world.setBlock(x + 9, y, z + 9, quartz, 1, 2);
 
 		//Seventeenth row
-		world.setBlock(x + 10, y, z, quartz, 1, 2); 
+		world.setBlock(x + 10, y, z, quartz, 1, 2);
 		world.setBlock(x + 10, y, z + 1, quartz, 1, 2);
 		world.setBlock(x + 10, y, z + 2, quartz, 1, 2);
 		world.setBlock(x + 10, y, z + 3, quartz, 1, 2);

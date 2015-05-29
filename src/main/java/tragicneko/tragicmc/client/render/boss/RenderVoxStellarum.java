@@ -27,12 +27,12 @@ public class RenderVoxStellarum extends RenderLiving {
 		this.renderModel((EntityVoxStellarum) par1EntityLivingBase, par2, par3, par4, par5, par6, par7);
 	}
 
-	private void renderModel(EntityVoxStellarum par1EntityLivingBase, float par2, 	float par3, float par4, float par5, float par6, float par7) 
+	private void renderModel(EntityVoxStellarum par1EntityLivingBase, float par2, 	float par3, float par4, float par5, float par6, float par7)
 	{
 		this.bindEntityTexture(par1EntityLivingBase);
 
 		if (!par1EntityLivingBase.isInvisible() && !par1EntityLivingBase.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
-		{       
+		{
 			GL11.glPushMatrix();
 
 			float[] rgb = this.getRGBThroughTextureID(par1EntityLivingBase.getTextureID());

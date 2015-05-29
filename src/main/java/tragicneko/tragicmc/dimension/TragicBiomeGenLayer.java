@@ -12,7 +12,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 
 public class TragicBiomeGenLayer extends GenLayer {
-	
+
 	private ArrayList[] biomeList;
 
 	public TragicBiomeGenLayer(long seed, GenLayer genlayer)
@@ -66,19 +66,19 @@ public class TragicBiomeGenLayer extends GenLayer {
 		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedWastelands, TragicConfig.scorchedWastelandsW));
 		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedValley, TragicConfig.scorchedValleyW));
 		scorchedBiomes.add(new BiomeEntry(TragicBiome.ScorchedScarlands, TragicConfig.scorchedScarlandsW));
-		
+
 		ArrayList<BiomeEntry> corrodedBiomes = new ArrayList<BiomeEntry>();
 		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedSteppe, TragicConfig.corrodedSteppeW));
 		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedHeights, TragicConfig.corrodedHeightsW));
 		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedVeld, TragicConfig.corrodedVeldW));
 		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedRunoff, TragicConfig.corrodedRunoffW));
 		corrodedBiomes.add(new BiomeEntry(TragicBiome.CorrodedFallout, TragicConfig.corrodedFalloutW));
-		
+
 		ArrayList<BiomeEntry> frozenBiomes = new ArrayList<BiomeEntry>();
 		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenTundra, TragicConfig.frozenTundraW));
 		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenHills, TragicConfig.frozenHillsW));
 		frozenBiomes.add(new BiomeEntry(TragicBiome.FrozenDepths, TragicConfig.frozenDepthsW));
-		
+
 		ArrayList<BiomeEntry> darkForestBiomes = new ArrayList<BiomeEntry>();
 		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForest, TragicConfig.darkForestW));
 		darkForestBiomes.add(new BiomeEntry(TragicBiome.DarkForestHills, TragicConfig.darkForestHillsW));

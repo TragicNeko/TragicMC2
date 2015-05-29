@@ -1,9 +1,9 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.mob.EntityStin;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.mob.EntityStin;
 
 public class ModelStinBaby extends ModelBase
 {

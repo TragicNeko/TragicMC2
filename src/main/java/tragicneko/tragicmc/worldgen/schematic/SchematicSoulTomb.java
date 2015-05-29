@@ -51,12 +51,12 @@ public class SchematicSoulTomb extends Schematic {
 		world.setBlock(x - 3, y + 1, z, block, 1, 2);
 		world.setBlock(x, y + 1, z + 3, block, 1, 2);
 		world.setBlock(x, y + 1, z - 3, block, 1, 2);
-		
+
 		world.setBlock(x + 3, y + 1, z + 1, block, 1, 2);
 		world.setBlock(x - 3, y + 1, z + 1, block, 1, 2);
 		world.setBlock(x + 1, y + 1, z + 3, block, 1, 2);
 		world.setBlock(x + 1, y + 1, z - 3, block, 1, 2);
-		
+
 		world.setBlock(x + 3, y + 1, z - 1, block, 1, 2);
 		world.setBlock(x - 3, y + 1, z - 1, block, 1, 2);
 		world.setBlock(x - 1, y + 1, z + 3, block, 1, 2);

@@ -29,16 +29,16 @@ public class BlockDarkCobble extends Block {
 		this.setHardness(1.0F);
 		this.setBlockName("tragicmc.darkCobblestone");
 	}
-	
+
 	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
-    {
-        if (side == ForgeDirection.UP && world.getBlockMetadata(x, y, z) == 1)
-        {
-            return true;
-        }
-        return false;
-    }
+	{
+		if (side == ForgeDirection.UP && world.getBlockMetadata(x, y, z) == 1)
+		{
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -48,7 +48,7 @@ public class BlockDarkCobble extends Block {
 		{
 			meta = this.iconArray.length - 1;
 		}
-		
+
 		return this.iconArray[meta];
 	}
 

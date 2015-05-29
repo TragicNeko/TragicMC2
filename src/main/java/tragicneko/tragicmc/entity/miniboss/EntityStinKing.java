@@ -61,7 +61,7 @@ public class EntityStinKing extends EntityGreaterStin {
 
 	@Override
 	public void onLivingUpdate()
-	{				
+	{
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -119,7 +119,7 @@ public class EntityStinKing extends EntityGreaterStin {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote || rand.nextInt(32) == 0) return false;
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
@@ -133,13 +133,13 @@ public class EntityStinKing extends EntityGreaterStin {
 	public Class getLesserForm() {
 		return EntityGreaterStin.class;
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.stin.king";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{

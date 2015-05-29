@@ -132,7 +132,7 @@ public class LoreHelper {
 
 
 	public static void registerLoreJson(File config)
-	{	
+	{
 		loadDefaultLores();
 		logger.info("Attempting to load Custom Lores from config directory...");
 		File fileIn = new File(config, "tragiclores.json");

@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.mob.EntityPirah;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.mob.EntityPirah;
 
 public class ModelPirah extends ModelBase
 {
@@ -48,10 +48,10 @@ public class ModelPirah extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		
+
 		EntityPirah pirah = (EntityPirah) entity;
 		Material material = pirah.getPirahType() == 0 ? Material.water : Material.lava;
-		
+
 		if (pirah.isInsideOfMaterial(material))
 		{
 			fin.rotateAngleY = this.simplifyAngle(pirah.ticksExisted, 10.0F) * 0.35F;

@@ -7,8 +7,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -20,9 +18,9 @@ public class DoomsdayBlink extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		MovingObjectPosition mop = WorldHelper.getMOPFromEntity(player, crucMoment ? 50.0 : 35.0);
-		
+
 		if (mop.typeOfHit == MovingObjectType.BLOCK && player instanceof EntityPlayerMP && ((EntityPlayerMP) player).playerNetServerHandler.func_147362_b().isChannelOpen())
 		{
 			if (player.isRiding()) player.mountEntity((Entity)null);
@@ -43,7 +41,7 @@ public class DoomsdayBlink extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 	@Override

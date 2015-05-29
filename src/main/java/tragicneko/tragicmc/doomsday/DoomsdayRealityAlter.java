@@ -12,8 +12,6 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
@@ -36,7 +34,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 		double radius = crucMoment ? 24.0D : 12.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-		
+
 		for (int i = 0; i < list2.size(); i++)
 		{
 			if (list2.get(i) instanceof EntityAnimal && rand.nextInt(8) == 0)
@@ -141,6 +139,7 @@ public class DoomsdayRealityAlter extends Doomsday {
 		if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 120, 0));
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.GrowthSpurt;
 	}

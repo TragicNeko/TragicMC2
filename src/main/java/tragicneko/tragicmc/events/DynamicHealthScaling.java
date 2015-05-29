@@ -28,7 +28,7 @@ public class DynamicHealthScaling {
 	public void onJoinWorld(EntityJoinWorldEvent event)
 	{
 		if (!TragicConfig.allowDynamicHealthScaling) return;
-		
+
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.EASY)
 		{
 			if (event.entity instanceof TragicMob)
@@ -46,7 +46,7 @@ public class DynamicHealthScaling {
 				event.entity.setDead();
 			}
 		}
-		
+
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD)
 		{
 			if (event.entity instanceof TragicMob)
@@ -73,7 +73,7 @@ public class DynamicHealthScaling {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onEntitySpawn(LivingPackSizeEvent event)
 	{

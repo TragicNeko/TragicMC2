@@ -23,8 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiAmuletStatus extends Gui
 {
 	private final Minecraft mc;
-	private int buffer;
-	private int width;
 	private static final RenderItem itemRender = new RenderItem();
 
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/amulet_status_minimal.png");
@@ -43,7 +41,7 @@ public class GuiAmuletStatus extends Gui
 		if (event.isCancelable() || event.type != ElementType.EXPERIENCE || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyAmulets amu = PropertyAmulets.get(this.mc.thePlayer);
-		if (amu == null || amu.getSlotsOpen() <= 0) return; 
+		if (amu == null || amu.getSlotsOpen() <= 0) return;
 
 		int xPos = TragicConfig.guiX + 1;
 		int yPos = TragicConfig.guiY + 11;
@@ -100,6 +98,6 @@ public class GuiAmuletStatus extends Gui
 			return texturepath;
 		default:
 			return texturepath4;
-		} 
+		}
 	}
 }

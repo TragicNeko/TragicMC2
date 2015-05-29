@@ -16,8 +16,6 @@ public class RenderApis extends RenderBoss
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat2.png");
 	private static final ResourceLocation combatTexture = new ResourceLocation("tragicmc:textures/mobs/ApisCombat3.png");
 
-	private boolean isInCombat;
-
 	public RenderApis() {
 		super(new ModelApis(), 0.556F);
 	}
@@ -25,7 +23,7 @@ public class RenderApis extends RenderBoss
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
 		EntityApis apis = (EntityApis) boss;
-		
+
 		if (boss.isInvisible())
 		{
 			GL11.glDepthMask(false);
@@ -35,14 +33,14 @@ public class RenderApis extends RenderBoss
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		if (par2 == 0)
 		{
 			this.setRenderPassModel(this.mainModel);
-            GL11.glEnable(GL11.GL_NORMALIZE);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            return 1;
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			return 1;
 		}
 
 		if (apis.isReflecting())
@@ -103,11 +101,11 @@ public class RenderApis extends RenderBoss
 	protected int inheritRenderPass(EntityLivingBase par1EntityLivingBase, int par2, float par3)
 	{
 		return -1;
-	}	
+	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
-	{	
+	{
 		return texture;
 	}
 }

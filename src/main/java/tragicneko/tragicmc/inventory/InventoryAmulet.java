@@ -15,14 +15,14 @@ public class InventoryAmulet implements IInventory {
 	public static final int invSize = 28;
 	public ItemStack[] inventory = new ItemStack[invSize];
 	public final EntityPlayer player;
-	
+
 	public InventoryAmulet(EntityPlayer player)
 	{
 		this.player = player;
 	}
 
 	@Override
-	public int getSizeInventory() 
+	public int getSizeInventory()
 	{
 		return inventory.length;
 	}
@@ -33,18 +33,18 @@ public class InventoryAmulet implements IInventory {
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int amount) 
+	public ItemStack decrStackSize(int slot, int amount)
 	{
 		ItemStack stack = getStackInSlot(slot);
-		
-		if (stack != null) 
+
+		if (stack != null)
 		{
-			if (stack.stackSize > amount) 
+			if (stack.stackSize > amount)
 			{
 				stack = stack.splitStack(amount);
 				markDirty();
-			} 
-			else 
+			}
+			else
 			{
 				setInventorySlotContents(slot, null);
 			}
@@ -54,7 +54,7 @@ public class InventoryAmulet implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) 
+	public ItemStack getStackInSlotOnClosing(int slot)
 	{
 		ItemStack stack = getStackInSlot(slot);
 		//setInventorySlotContents(slot, null);
@@ -62,15 +62,15 @@ public class InventoryAmulet implements IInventory {
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) 
+	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
 		if (slot > this.getSizeInventory())
 		{
 			return;
 		}
-		
+
 		inventory[slot] = stack;
-		if (stack != null && stack.stackSize > getInventoryStackLimit()) 
+		if (stack != null && stack.stackSize > getInventoryStackLimit())
 		{
 			stack.stackSize = getInventoryStackLimit();
 		}
@@ -95,7 +95,7 @@ public class InventoryAmulet implements IInventory {
 
 	@Override
 	public void markDirty() {
-		for (int i = 0; i < getSizeInventory(); ++i) 
+		for (int i = 0; i < getSizeInventory(); ++i)
 		{
 			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
 			{
@@ -123,17 +123,17 @@ public class InventoryAmulet implements IInventory {
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int var1, ItemStack stack) 
+	public boolean isItemValidForSlot(int var1, ItemStack stack)
 	{
 		return stack.getItem() instanceof ItemAmulet;
 	}
 
-	public void writeToNBT(NBTTagCompound compound) 
+	public void writeToNBT(NBTTagCompound compound)
 	{
 		NBTTagList items = new NBTTagList();
-		for (int i = 0; i < getSizeInventory(); ++i) 
+		for (int i = 0; i < getSizeInventory(); ++i)
 		{
-			if (getStackInSlot(i) != null) 
+			if (getStackInSlot(i) != null)
 			{
 				NBTTagCompound item = new NBTTagCompound();
 				item.setByte("Slot", (byte) i);
@@ -145,19 +145,19 @@ public class InventoryAmulet implements IInventory {
 		compound.setTag(tagName, items);
 	}
 
-	public void readFromNBT(NBTTagCompound compound) 
+	public void readFromNBT(NBTTagCompound compound)
 	{
 		if (compound == null) return;
-		
+
 		NBTTagList items = compound.getTagList(tagName, compound.getId());
-		
+
 		if (items == null) return;
-		
-		for (int i = 0; i < items.tagCount(); ++i) 
+
+		for (int i = 0; i < items.tagCount(); ++i)
 		{
 			NBTTagCompound item = items.getCompoundTagAt(i);
 			byte slot = item.getByte("Slot");
-			if (slot >= 0 && slot < getSizeInventory()) 
+			if (slot >= 0 && slot < getSizeInventory())
 			{
 				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
 			}
@@ -167,14 +167,14 @@ public class InventoryAmulet implements IInventory {
 	public void dropAllAmulets() {
 		int i;
 
-        for (i = 0; i < this.inventory.length; ++i)
-        {
-            if (this.inventory[i] != null)
-            {
-                this.player.func_146097_a(this.inventory[i], true, false);
-                this.inventory[i] = null;
-            }
-        }
+		for (i = 0; i < this.inventory.length; ++i)
+		{
+			if (this.inventory[i] != null)
+			{
+				this.player.func_146097_a(this.inventory[i], true, false);
+				this.inventory[i] = null;
+			}
+		}
 	}
 
 }

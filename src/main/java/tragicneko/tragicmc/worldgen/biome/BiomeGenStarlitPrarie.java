@@ -15,13 +15,12 @@ import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
-import tragicneko.tragicmc.worldgen.IsleWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedOakTree;
 
 public class BiomeGenStarlitPrarie extends TragicBiome {
-	
+
 	public CustomSpikesWorldGen crystalWorldGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.05F, 0.65F}, {0.01F, 1.62F}, {1.55F, 0.95F}, {0.23F, -0.14F}};
 
 	public BiomeGenStarlitPrarie(int par1, int par2) {
@@ -33,7 +32,7 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 		this.enableSnow = false;
 		this.temperature = 1.0F;
 		this.rainfall = 0.6F;
-		this.heightVariation = heights[variant][0]; 
+		this.heightVariation = heights[variant][0];
 		this.rootHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.StarlitGrass;

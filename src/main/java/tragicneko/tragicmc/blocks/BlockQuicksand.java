@@ -82,7 +82,7 @@ public class BlockQuicksand extends BlockFalling
 	 */
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
-	{				
+	{
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.125;
@@ -175,45 +175,46 @@ public class BlockQuicksand extends BlockFalling
 	{
 		return false;
 	}
-	
+
+	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
-    {
-        if (!world.isRemote)
-        {
-            this.updateFallingBlock(world, x, y, z);
-        }
-    }
-	
+	{
+		if (!world.isRemote)
+		{
+			this.updateFallingBlock(world, x, y, z);
+		}
+	}
+
 	private void updateFallingBlock(World world, int x, int y, int z)
-    {
-        if (func_149831_e(world, x, y - 1, z) && y >= 0)
-        {
-            byte b0 = 32;
+	{
+		if (func_149831_e(world, x, y - 1, z) && y >= 0)
+		{
+			byte b0 = 32;
 
-            if (!fallInstantly && world.checkChunksExist(x - b0, y - b0, z - b0, x + b0, y + b0, z + b0))
-            {
-                if (!world.isRemote)
-                {
-                    EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), this, world.getBlockMetadata(x, y, z));
-                    this.func_149829_a(entityfallingblock);
-                    world.spawnEntityInWorld(entityfallingblock);
-                }
-            }
-            else
-            {
-            	int m = world.getBlockMetadata(x, y, z);
-                world.setBlockToAir(x, y, z);
+			if (!fallInstantly && world.checkChunksExist(x - b0, y - b0, z - b0, x + b0, y + b0, z + b0))
+			{
+				if (!world.isRemote)
+				{
+					EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, this, world.getBlockMetadata(x, y, z));
+					this.func_149829_a(entityfallingblock);
+					world.spawnEntityInWorld(entityfallingblock);
+				}
+			}
+			else
+			{
+				int m = world.getBlockMetadata(x, y, z);
+				world.setBlockToAir(x, y, z);
 
-                while (func_149831_e(world, x, y - 1, z) && y > 0)
-                {
-                    --y;
-                }
+				while (func_149831_e(world, x, y - 1, z) && y > 0)
+				{
+					--y;
+				}
 
-                if (y > 0)
-                {
-                    world.setBlock(x, y, z, this, m, 2);
-                }
-            }
-        }
-    }
+				if (y > 0)
+				{
+					world.setBlock(x, y, z, this, m, 2);
+				}
+			}
+		}
+	}
 }

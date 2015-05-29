@@ -13,7 +13,7 @@ public class ItemSushi extends ItemFood {
 		super(p_i45340_1_, p_i45340_2_);
 		this.setPotionEffect(Potion.damageBoost.id, 30, 0, 1.0F);
 	}
-	
+
 	@Override
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{
@@ -21,7 +21,7 @@ public class ItemSushi extends ItemFood {
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 600, 0));
 		return super.onEaten(stack, world, player);
 	}
-	
+
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{

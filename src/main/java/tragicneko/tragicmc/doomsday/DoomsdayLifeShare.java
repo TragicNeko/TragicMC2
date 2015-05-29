@@ -4,9 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayLifeShare extends Doomsday {
@@ -37,7 +34,7 @@ public class DoomsdayLifeShare extends Doomsday {
 
 			if (e == player && crucMoment) player.setHealth(player.getMaxHealth() * total + (player.getMaxHealth() / 2));
 			else e.setHealth(total * e.getMaxHealth());
-		}		
+		}
 	}
 
 	@Override

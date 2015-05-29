@@ -94,7 +94,7 @@ public class EntityInkling extends TragicMob {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-		
+
 		if (this.worldObj.isRemote && this.getVisibleTicks() == 0 && rand.nextBoolean())
 		{
 			this.worldObj.spawnParticle("smoke",
@@ -107,10 +107,10 @@ public class EntityInkling extends TragicMob {
 		}
 
 		if (this.worldObj.isRemote) return;
-		
+
 		if (this.isBurning()) this.setVisibleTicks(20);
 
-		if (this.getVisibleTicks() > 0) 
+		if (this.getVisibleTicks() > 0)
 		{
 			this.decrementVisibleTicks();
 			this.setInvisible(false);
@@ -165,7 +165,7 @@ public class EntityInkling extends TragicMob {
 			}
 		}
 
-		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null 
+		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null
 				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ) <= 8 &&
 				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()))
 		{
@@ -194,7 +194,7 @@ public class EntityInkling extends TragicMob {
 				}
 			}
 		}
-		
+
 		if (this.getAttackTarget() == null)
 		{
 			if (this.getVisibleTicks() == 0) this.setVisibleTicks(10);
@@ -217,18 +217,18 @@ public class EntityInkling extends TragicMob {
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
 		if (result)
-			{
+		{
 			this.setVisibleTicks(10 + rand.nextInt(10));
 			this.playSound("tragicmc:mob.inkling.hey", this.getSoundVolume(), this.getSoundPitch());
-			}
-		
+		}
+
 		return result;
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		if (this.isBurning()) return 0; 
+		if (this.isBurning()) return 0;
 		return (int) inklingStats[5];
 	}
 
@@ -327,7 +327,7 @@ public class EntityInkling extends TragicMob {
 			return true;
 		}
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -351,31 +351,31 @@ public class EntityInkling extends TragicMob {
 	{
 		return this.isInvisible() ? "tragicmc:mob.inkling.giggle" : "tragicmc:mob.inkling.hey";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.inkling.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? "tragicmc:mob.inkling.death" : "tragicmc:mob.inkling.hurt";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

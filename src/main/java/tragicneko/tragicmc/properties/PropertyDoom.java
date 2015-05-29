@@ -8,8 +8,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.network.MessageDoom;
 
 public class PropertyDoom implements IExtendedEntityProperties {
@@ -219,7 +219,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		if (amount < 0) amount = 0;
 		if (amount > this.getMaxDoom()) amount = this.getMaxDoom();
-		
+
 		this.currentDoom = amount;
 		if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP)this.thePlayer);
 	}

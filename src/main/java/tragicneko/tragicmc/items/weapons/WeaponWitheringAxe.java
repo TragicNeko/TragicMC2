@@ -2,7 +2,6 @@ package tragicneko.tragicmc.items.weapons;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,13 +35,13 @@ public class WeaponWitheringAxe extends TragicWeapon {
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
-	} 
+	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-		
+
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
@@ -51,7 +50,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
-			
+
 			if (!par3EntityPlayer.isSneaking())
 			{
 				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[35]) && TragicConfig.nonDoomsdayAbilities[35])

@@ -1,27 +1,19 @@
 package tragicneko.tragicmc.items.weapons;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.util.LoreHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,7 +29,7 @@ public class WeaponHuntersBow extends TragicBow {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) 
+	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
 	{
 		if (usingItem == null) return itemIcon;
 
@@ -47,15 +39,15 @@ public class WeaponHuntersBow extends TragicBow {
 		{
 			return iconArray[2];
 		}
-		else if (ticksInUse > 8) 
+		else if (ticksInUse > 8)
 		{
 			return iconArray[1];
 		}
-		else if (ticksInUse > 2) 
+		else if (ticksInUse > 2)
 		{
 			return iconArray[0];
 		}
-		else 
+		else
 		{
 			return itemIcon;
 		}
@@ -82,7 +74,7 @@ public class WeaponHuntersBow extends TragicBow {
 	}
 
 	@Override
-	public int getItemEnchantability() 
+	public int getItemEnchantability()
 	{
 		return 5;
 	}
@@ -116,9 +108,9 @@ public class WeaponHuntersBow extends TragicBow {
 		if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow))
 		{
 			float f = j / 20.0F;
-	        f = (f * f + f * 2.0F) / 3.0F;
-			f *= 1.275F;	
-			
+			f = (f * f + f * 2.0F) / 3.0F;
+			f *= 1.275F;
+
 			if (f < 0.2D) return;
 			if (f > 1.0F) f = 1.0F;
 
@@ -129,7 +121,7 @@ public class WeaponHuntersBow extends TragicBow {
 			if (f >= 1.0F) arrow.setIsCritical(true);
 
 			int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
-			if (k > 0) arrow.setDamage(arrow.getDamage() + k * 0.5D + 0.5D); 
+			if (k > 0) arrow.setDamage(arrow.getDamage() + k * 0.5D + 0.5D);
 
 			k = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);
 			if (k > 0) arrow.setKnockbackStrength(k);

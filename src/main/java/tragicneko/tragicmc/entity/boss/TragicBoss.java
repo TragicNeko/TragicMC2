@@ -29,7 +29,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		super(par1World);
 		this.experienceValue = 100;
 	}
-	
+
 	@Override
 	public boolean isAIEnabled()
 	{
@@ -64,7 +64,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 				x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
 			}
 		}
-		
+
 		int amt = 0;
 
 		if (TragicConfig.allowExtraBossLoot)
@@ -123,7 +123,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 	@Override
 	public boolean getCanSpawnHere()
-	{		
+	{
 		if (rand.nextInt(10) != 0) return false;
 
 		if (this.posY <= 63)
@@ -164,17 +164,17 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 
 		if (par1DamageSource.getEntity() != null)
 		{
-			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= (float)TragicConfig.bossDamageCap)
+			if (par1DamageSource.getEntity() instanceof EntityPlayer && par2 >= TragicConfig.bossDamageCap)
 			{
 				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 				boolean flag = player.getCurrentEquippedItem() == null ? false : (player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice);
 
-				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, (float)TragicConfig.bossDamageCap);
+				if (!player.capabilities.isCreativeMode || !flag) par2 = MathHelper.clamp_float(par2, 0.0F, TragicConfig.bossDamageCap);
 			}
 
 			if (rand.nextBoolean() && this.getAttackTarget() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && this.getAttackTarget() != par1DamageSource.getEntity()) this.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 		}
-		
+
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
@@ -193,51 +193,51 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
 	}
-	
+
 	public boolean isEntityInRange(Entity entity, float min, float max)
 	{
 		float f = this.getDistanceToEntity(entity);
 		return f >= min && f <= max;
 	}
-	
+
 	public int getIntegerInRange(int min, int max)
 	{
 		int cand = MathHelper.getRandomIntegerInRange(rand, min, max);
 		return rand.nextBoolean() ? cand : -cand;
 	}
-	
+
 	public int getPlayersNearby() {
 		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(64.0, 64.0, 64.0)).size();
 	}
-	
+
 	public int getPlayersNearby(int min, int max)
 	{
 		return MathHelper.clamp_int(getPlayersNearby(), min, max);
 	}
-	
+
 	public int getPlayersNearby(double range)
 	{
 		return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(range, range, range)).size();
 	}
-	
+
 	public int getPlayersNearby(double range, int min, int max)
 	{
 		return MathHelper.clamp_int(getPlayersNearby(range), min, max);
 	}
-	
+
 	public void healByFactor(float factor)
 	{
 		int i = this.getPlayersNearby();
 		this.heal(factor * i);
 	}
-	
+
 	public void healByFactorRanged(float factor, float min, float max)
 	{
 		int i = this.getPlayersNearby();
 		float f = MathHelper.clamp_float(factor * i, min, max);
 		this.heal(f);
 	}
-	
+
 	public int getHighestSolidBlock(int posX, int posY, int posZ) {
 		while(this.worldObj.getBlock(posX, posY, posZ).getMaterial() == Material.air && posY > 0)
 		{

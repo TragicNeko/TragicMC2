@@ -26,7 +26,7 @@ public class EntityPoisonBarb extends EntityProjectile {
 	{
 		if (this.worldObj.isRemote)
 		{
-			for (int l = 0; l < 4; ++l) 
+			for (int l = 0; l < 4; ++l)
 			{
 				worldObj.spawnParticle("witchMagic", posX + (rand.nextDouble() - rand.nextDouble() * 0.25D), posY + (rand.nextDouble() - rand.nextDouble() * 0.25D),
 						posZ + (rand.nextDouble() - rand.nextDouble() * 0.25D), 0.0D, 0.0D, 0.0D);
@@ -34,8 +34,8 @@ public class EntityPoisonBarb extends EntityProjectile {
 		}
 		else
 		{
-			if (mop.entityHit != null && !(mop.entityHit instanceof EntityMagmox)) 
-			{			
+			if (mop.entityHit != null && !(mop.entityHit instanceof EntityMagmox))
+			{
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
 					mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.0F);
@@ -47,8 +47,8 @@ public class EntityPoisonBarb extends EntityProjectile {
 					}
 				}
 			}
-			
+
 			if (mop != null) this.setDead();
-		}		
+		}
 	}
 }

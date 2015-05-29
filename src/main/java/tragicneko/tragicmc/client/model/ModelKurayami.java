@@ -31,7 +31,7 @@ public class ModelKurayami extends ModelKitsune2 {
 		tailMR.rotateAngleZ = -0.4833219F + this.simplifyAngle(entity.ticksExisted - 15.0F, 70.0F) * 0.14F;
 		tailMid.rotateAngleZ = this.simplifyAngle(entity.ticksExisted, 60.0F) * 0.14F;
 		tailML.rotateAngleZ = 0.4833219F + this.simplifyAngle(entity.ticksExisted + 50.0F, 70.0F) * 0.14F;
-		tailFL.rotateAngleZ = 0.8922867F + this.simplifyAngle(entity.ticksExisted + 30.0F, 70.0F) * 0.14F; 
+		tailFL.rotateAngleZ = 0.8922867F + this.simplifyAngle(entity.ticksExisted + 30.0F, 70.0F) * 0.14F;
 
 		tailTipFR.rotateAngleZ = this.simplifyAngle(entity.ticksExisted - 45.0F, 70.0F) * 0.04F;
 		tailTipMR.rotateAngleZ = this.simplifyAngle(entity.ticksExisted - 15.0F, 70.0F) * 0.04F;

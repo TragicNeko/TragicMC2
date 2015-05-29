@@ -10,7 +10,7 @@ public class ItemRice extends ItemFood {
 		super(p_i45340_1_, p_i45340_2_);
 		this.setContainerItem(Items.bowl);
 	}
-	
+
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{

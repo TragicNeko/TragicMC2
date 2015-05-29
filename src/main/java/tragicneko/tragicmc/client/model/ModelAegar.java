@@ -183,13 +183,13 @@ public class ModelAegar extends ModelBase
 		leftShoulder.rotateAngleX = leftShoulder.rotateAngleZ = 0.0F;
 		leftJoint.rotateAngleX = 0.0F;
 		body.rotateAngleX = 0.0F;
-		
+
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		head.rotateAngleX = f4 / (180F / (float)Math.PI);
 
 		leftShoulder.rotateAngleX = 0.55F * this.simplifyAngle(f, 13.0F) * f1;
 		rightShoulder.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
-		
+
 		body.offsetY = head.offsetY = rightShoulder.offsetY = leftShoulder.offsetY = 0.0F;
 
 		if (aegar.getAttackTime() >= 10)
@@ -209,7 +209,7 @@ public class ModelAegar extends ModelBase
 
 				leftShoulder.rotateAngleX = 0.65F * this.simplifyAngle(aegar.getHurtTime(), 10.0F) - 0.65F;
 				leftShoulder.rotateAngleZ = 0.15F * this.simplifyAngle(aegar.getHurtTime(), 10.0F) + 0.15F;
-				
+
 				head.offsetY = -0.075F + this.simplifyAngle(aegar.getHurtTime(), 10.0F) * 0.075F;
 				body.offsetY = 0.075F - this.simplifyAngle(aegar.getHurtTime(), 10.0F) * 0.075F;
 			}
@@ -233,14 +233,14 @@ public class ModelAegar extends ModelBase
 					{
 						rightShoulder.rotateAngleX = -1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 100.0F) - 1.25F;
 						leftShoulder.rotateAngleX = -1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 100.0F) - 1.25F;
-						
+
 						body.rotateAngleX = -0.15F * this.simplifyAngle(aegar.getShockwaveTicks(), 100.0F) - 0.15F;
 					}
 					else if (aegar.getShockwaveTicks() > 5)
 					{
 						rightShoulder.rotateAngleX = -1.25F - 1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 10.0F);
 						leftShoulder.rotateAngleX = -1.25F - 1.25F * this.simplifyAngle(aegar.getShockwaveTicks(), 10.0F);
-						
+
 						body.rotateAngleX = -0.15F * this.simplifyAngle(aegar.getShockwaveTicks(), 10.0F) - 0.15F;
 					}
 				}

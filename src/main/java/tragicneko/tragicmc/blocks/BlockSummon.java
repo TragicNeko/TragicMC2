@@ -22,7 +22,7 @@ public class BlockSummon extends BlockContainer {
 
 	private String[] bossNames = new String[]{"Wither", "EnderDragon", "Apis", "DeathReaper", "Kitsune", "Polaris", "Yeti", "TimeController",
 			"Enyvil", "Claymation", "Aegar"};
-	
+
 	private IIcon[] iconArray = new IIcon[bossNames.length];
 
 	public BlockSummon() {
@@ -33,13 +33,13 @@ public class BlockSummon extends BlockContainer {
 		this.setStepSound(soundTypeStone);
 		this.setBlockName("tragicmc.summonBlock");
 	}
-	
+
 	@Override
 	protected boolean canSilkHarvest()
-    {
+	{
 		return false;
-    }
-	
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -86,7 +86,7 @@ public class BlockSummon extends BlockContainer {
 			par3.add(new ItemStack(par1, 1, i));
 		}
 	}
-	
+
 	@Override
 	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_)
 	{

@@ -15,7 +15,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 
 public class EntityHarvester extends TragicMob {
 
@@ -93,7 +92,7 @@ public class EntityHarvester extends TragicMob {
 
 	@Override
 	public void onLivingUpdate()
-	{			
+	{
 		this.motionY = 0D;
 		this.rotationPitch = this.rotationYaw = 0;
 		super.onLivingUpdate();
@@ -108,7 +107,7 @@ public class EntityHarvester extends TragicMob {
 						this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.3D,
 						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
-			
+
 			if (this.getReleaseTicks() == 10)
 			{
 				for (int i = 0; i < 24; i++)
@@ -133,7 +132,7 @@ public class EntityHarvester extends TragicMob {
 		{
 			this.directionTicks--;
 			double d0 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
-			
+
 			switch(this.getDirection())
 			{
 			case 0:
@@ -205,7 +204,7 @@ public class EntityHarvester extends TragicMob {
 
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -218,43 +217,43 @@ public class EntityHarvester extends TragicMob {
 		super.writeEntityToNBT(tag);
 		tag.setInteger("directionTicks", this.directionTicks);
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return null;
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return super.getHurtSound();
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return null; //"tragicmc:mob.nanoswarm.glitch";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

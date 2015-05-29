@@ -1,9 +1,9 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 
 public class ModelLargeRock extends ModelBase
 {
@@ -39,9 +39,9 @@ public class ModelLargeRock extends ModelBase
 	{
 		rock.rotateAngleX = rock.rotateAngleY = rock.rotateAngleZ = 0.0F;
 		rock.offsetY = 0.4F;
-		
+
 		rock.rotateAngleY = (float) (Math.sin(entity.ticksExisted) * 0.5F);
-		
+
 		if (!(entity instanceof EntityLargeRock)) return;
 		rock.offsetY = 0.0F;
 		rock.rotateAngleX = (float) (Math.cos(entity.ticksExisted) * 0.5F);

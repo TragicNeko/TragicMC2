@@ -3,12 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicPotion;
-import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayAdrenaline extends Doomsday {
@@ -16,7 +10,7 @@ public class DoomsdayAdrenaline extends Doomsday {
 	public DoomsdayAdrenaline(int id) {
 		super(id, EnumDoomType.CRISIS);
 	}
-	
+
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
@@ -28,6 +22,6 @@ public class DoomsdayAdrenaline extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 }

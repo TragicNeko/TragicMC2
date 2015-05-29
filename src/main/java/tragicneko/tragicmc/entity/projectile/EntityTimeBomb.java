@@ -25,7 +25,7 @@ public class EntityTimeBomb extends EntityProjectile {
 	{
 		return 0.766736F;
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{

@@ -2,8 +2,6 @@ package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.goldenPirahStats;
 import static tragicneko.tragicmc.TragicConfig.pirahStats;
-
-import tragicneko.tragicmc.TragicEntities;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
@@ -22,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicEntities;
 
 public class EntityPirah extends TragicMob {
 
@@ -41,7 +40,7 @@ public class EntityPirah extends TragicMob {
 			}
 		}));
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -53,7 +52,7 @@ public class EntityPirah extends TragicMob {
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean canRenderOnFire()
 	{
@@ -124,21 +123,21 @@ public class EntityPirah extends TragicMob {
 		int pow = this.getAirTicks();
 		this.setAirTicks(--pow);
 	}
-	
+
 	protected void setPirahType(int i)
 	{
 		if (i == 1) this.isImmuneToFire = true;
 		this.dataWatcher.updateObject(17, i);
-		
+
 		float height = 0.515F;
 		float width = 0.325F;
-		
+
 		if (this.getTextureID() == 7)
 		{
 			height *= 1.5F;
 			width *= 1.5F;
 		}
-		
+
 		if (i == 0)
 		{
 			this.setSize(width, height);
@@ -153,7 +152,7 @@ public class EntityPirah extends TragicMob {
 	{
 		return this.dataWatcher.getWatchableObjectInt(17);
 	}
-	
+
 	protected void setTextureID(int i)
 	{
 		this.dataWatcher.updateObject(18, i);
@@ -184,18 +183,18 @@ public class EntityPirah extends TragicMob {
 			{
 				//spawn splash particles
 			}
-			
+
 			float w = 0.325F;
 			float h = 0.515F;
-			
+
 			if (this.getTextureID() == 7)
 			{
 				w *= 1.5F;
 				h *= 1.5F;
-				
+
 				//spawn special particles
 			}
-			
+
 			if (this.getPirahType() == 0)
 			{
 				this.setSize(w, h);
@@ -211,13 +210,13 @@ public class EntityPirah extends TragicMob {
 			{
 				if (this.getAttackTarget() != null && !this.getAttackTarget().isInsideOfMaterial(getMaterial())) this.setAttackTarget(null);
 				this.fallDistance = 0.0F;
-				
+
 				if (this.ticksExisted % 5 == 0)
 				{
 					this.motionY += ((rand.nextDouble() - rand.nextDouble()) + 0.625D) * 0.725D;
 					this.motionX += ((rand.nextDouble() - rand.nextDouble())) * 0.825D;
 					this.motionZ += ((rand.nextDouble() - rand.nextDouble())) * 0.825D;
-					
+
 					if (this.getAttackTarget() == null)
 					{
 						if (this.ticksExisted % 10 == 0)
@@ -249,11 +248,11 @@ public class EntityPirah extends TragicMob {
 				if (this.getAirTicks() > 0) this.decrementAirTicks();
 
 				if (this.ticksExisted % 20 == 0 && this.getAirTicks() == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
-				if (this.ticksExisted % 4 == 0 && this.motionY <= 0.0D &&  
+				if (this.ticksExisted % 4 == 0 && this.motionY <= 0.0D &&
 						World.doesBlockHaveSolidTopSurface(this.worldObj, (int) this.posX, MathHelper.ceiling_double_int(this.posY) - 1, (int) this.posZ)) this.motionY = 0.35D + rand.nextDouble() * 0.25D;
 				this.motionX = (rand.nextDouble() - rand.nextDouble());
 				this.motionZ = (rand.nextDouble() - rand.nextDouble());
-				
+
 				if (this.getPirahType() == 1 && this.isInsideOfMaterial(Material.water) && this.ticksExisted % 5 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
 			}
 		}
@@ -262,7 +261,7 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public void moveEntity(double d0, double d1, double d2)
 	{
-		if (this.isInsideOfMaterial(getMaterial())) 
+		if (this.isInsideOfMaterial(getMaterial()))
 		{
 			super.moveEntity(d0, d1, d2);
 		}
@@ -271,7 +270,7 @@ public class EntityPirah extends TragicMob {
 			super.moveEntity(d0 * 0.315D, d1, d2 * 0.315D);
 		}
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -298,7 +297,7 @@ public class EntityPirah extends TragicMob {
 			this.motionY = rand.nextDouble();
 		}
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);

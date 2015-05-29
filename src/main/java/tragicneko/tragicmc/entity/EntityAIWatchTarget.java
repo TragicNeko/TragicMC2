@@ -3,7 +3,6 @@ package tragicneko.tragicmc.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class EntityAIWatchTarget extends EntityAIBase
 {
@@ -30,13 +29,13 @@ public class EntityAIWatchTarget extends EntityAIBase
 		{
 			this.targetEntity = this.theWatcher.getAttackTarget();
 			return true;
-		}        
+		}
 	}
 
 	@Override
 	public boolean continueExecuting()
 	{
-		return !this.targetEntity.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.targetEntity) > (double)(this.maxDistance * this.maxDistance) ? false : this.lookTime > 0);
+		return !this.targetEntity.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.targetEntity) > this.maxDistance * this.maxDistance ? false : this.lookTime > 0);
 	}
 
 	@Override
@@ -54,7 +53,7 @@ public class EntityAIWatchTarget extends EntityAIBase
 	@Override
 	public void updateTask()
 	{
-		this.theWatcher.getLookHelper().setLookPosition(this.targetEntity.posX, this.targetEntity.posY + (double)this.targetEntity.getEyeHeight(), this.targetEntity.posZ, 10.0F, (float)this.theWatcher.getVerticalFaceSpeed());
+		this.theWatcher.getLookHelper().setLookPosition(this.targetEntity.posX, this.targetEntity.posY + this.targetEntity.getEyeHeight(), this.targetEntity.posZ, 10.0F, this.theWatcher.getVerticalFaceSpeed());
 		--this.lookTime;
 	}
 }

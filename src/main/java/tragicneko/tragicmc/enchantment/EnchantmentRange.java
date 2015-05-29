@@ -10,29 +10,29 @@ public class EnchantmentRange extends Enchantment {
 		super(par1, par2, par3EnumEnchantmentType);
 		this.setName("reach");
 	}
-	
+
 	@Override
 	public int getMinEnchantability(int par1)
-    {
-        return 5 + (par1 * 5);
-    }
+	{
+		return 5 + (par1 * 5);
+	}
 
-    @Override
+	@Override
 	public int getMaxEnchantability(int par1)
-    {
-        return super.getMinEnchantability(par1) + 50;
-    }
+	{
+		return super.getMinEnchantability(par1) + 50;
+	}
 
-    @Override
+	@Override
 	public int getMaxLevel()
-    {
-        return 5;
-    }
-    
-    @Override
+	{
+		return 5;
+	}
+
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
-    {
-        return super.canApplyTogether(par1Enchantment);
-    }
+	{
+		return super.canApplyTogether(par1Enchantment);
+	}
 
 }

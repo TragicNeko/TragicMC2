@@ -23,7 +23,7 @@ public class EntityDarkMortor extends EntityProjectile {
 			double par7) {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
-	
+
 	@Override
 	protected float getMotionFactor()
 	{
@@ -67,7 +67,7 @@ public class EntityDarkMortor extends EntityProjectile {
 					}
 				}
 			}
-			
+
 			if (!this.worldObj.isRemote) this.setDead();
 		}
 	}

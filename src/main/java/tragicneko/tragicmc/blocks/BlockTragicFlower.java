@@ -18,10 +18,10 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 
 public class BlockTragicFlower extends BlockFlower implements IGrowable{
-	
+
 	private String[] plantNames = new String[]{"BlueSpiranthes", "PinkSpiranthes", "RedSpiranthes", "WhiteSpiranthes", "BlueCoral", "RedCoral", "PinkGinger", "RedGinger",
-		"Bluebonnet", "VioletSage", "PinkSage", "WhiteSage", "BirdOfParadise", "JuniperBush", "Stapelia", "Thistle"};
-	
+			"Bluebonnet", "VioletSage", "PinkSage", "WhiteSage", "BirdOfParadise", "JuniperBush", "Stapelia", "Thistle"};
+
 	private IIcon[] iconArray = new IIcon[plantNames.length];
 
 	public BlockTragicFlower() {
@@ -30,19 +30,19 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 		this.setBlockName("tragicmc.flower");
 		this.setStepSound(soundTypeGrass);
 	}
-	
+
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z)
-    {
+	{
 		return this.canPlaceBlockOn(world.getBlock(x, y - 1, z));
-    }
-	
+	}
+
 	@Override
 	protected boolean canPlaceBlockOn(Block block)
-    {
-        return block instanceof BlockGrass || block == Blocks.dirt || block.getMaterial() == Material.ground;
-    }
-	
+	{
+		return block instanceof BlockGrass || block == Blocks.dirt || block.getMaterial() == Material.ground;
+	}
+
 	@Override
 	public IIcon getIcon(int side, int meta)
 	{
@@ -61,13 +61,13 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.plantNames[i]);
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
-	
+
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
@@ -93,7 +93,7 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_) {
 		if (p_149853_2_.nextInt(4) != 0) return;
 		int meta = p_149853_1_.getBlockMetadata(p_149853_3_, p_149853_4_, p_149853_5_);
-		
+
 		if (meta >= 14 && p_149853_2_.nextInt(4) != 0) return;
 		this.dropBlockAsItem(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, new ItemStack(this, 1, meta));
 	}

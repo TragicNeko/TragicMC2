@@ -11,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
-import tragicneko.tragicmc.TragicMC;
 
 public class TileEntitySoulChest extends TileEntityChest {
 
@@ -35,7 +34,7 @@ public class TileEntitySoulChest extends TileEntityChest {
 			if (!this.worldObj.isRemote) player.addChatMessage(new ChatComponentText("Mob kills are required to open this chest! Souls required: " + (this.requiredSouls - this.souls)));
 			return false;
 		}
-		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class TileEntitySoulChest extends TileEntityChest {
 	{
 		super.updateEntity();
 
-		if (this.souls >= this.requiredSouls) return; 
+		if (this.souls >= this.requiredSouls) return;
 
 		List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1).offset(this.xCoord, this.yCoord, this.zCoord).expand(6.0, 6.0, 6.0));
 
@@ -90,6 +89,7 @@ public class TileEntitySoulChest extends TileEntityChest {
 		return true;
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
@@ -97,6 +97,7 @@ public class TileEntitySoulChest extends TileEntityChest {
 		if (tag.hasKey("souls")) this.souls = tag.getInteger("souls");
 	}
 
+	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);

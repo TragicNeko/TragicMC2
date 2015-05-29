@@ -11,19 +11,19 @@ public class StructureObsidianCavern extends Structure {
 	public StructureObsidianCavern(int id, String name) {
 		super(new SchematicObsidianCavern(), id, name);
 	}
-	
+
 	@Override
 	public boolean canGenerate()
 	{
 		return TragicConfig.allowNonBossStructureGen;
 	}
-	
+
 	@Override
 	public int getVariantSize()
 	{
 		return 10;
 	}
-	
+
 	@Override
 	public boolean isSurfaceStructure()
 	{
@@ -38,15 +38,15 @@ public class StructureObsidianCavern extends Structure {
 
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
-	{		
+	{
 		if (y > 80) return false; //To prevent huge lagspikes from it generating from a high y value
 		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.obsidianCavernRarity;
 	}
-	
+
 	@Override
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;	
+		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
 }

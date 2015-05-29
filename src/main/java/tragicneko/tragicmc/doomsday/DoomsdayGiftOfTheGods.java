@@ -5,18 +5,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandom;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
 
 public class DoomsdayGiftOfTheGods extends Doomsday {
 
 	public DoomsdayGiftOfTheGods(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
 	}
-	
+
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);

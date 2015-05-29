@@ -26,13 +26,13 @@ public class DoomsdayRecall extends Doomsday{
 			cc = player.worldObj.getSpawnPoint();
 			player.setPositionAndUpdate(cc.posX, cc.posY, cc.posZ);
 		}
-		
+
 		player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + player.getCommandSenderName() + " was teleported to " + cc.posX + ", " + cc.posY + ", " + cc.posZ));
 	}
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

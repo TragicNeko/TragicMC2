@@ -7,10 +7,10 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageSound implements IMessage {
 
-public NBTTagCompound nameTag;
-	
+	public NBTTagCompound nameTag;
+
 	public MessageSound() {}
-	
+
 	public MessageSound(String s, float f, float f2)
 	{
 		this.nameTag = new NBTTagCompound();

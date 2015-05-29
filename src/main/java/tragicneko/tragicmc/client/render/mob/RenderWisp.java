@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelBlock;
 
 public class RenderWisp extends RenderLiving {
-	
+
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/blocks/Transparency.png");
 
 	public RenderWisp() {

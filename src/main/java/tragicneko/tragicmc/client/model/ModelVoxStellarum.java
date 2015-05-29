@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.client.model;
 
-import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 
 public class ModelVoxStellarum extends ModelNorVox
 {
@@ -145,7 +145,7 @@ public class ModelVoxStellarum extends ModelNorVox
 		//Head 2 pieces
 		ModelRenderer headTop2 = new ModelRenderer(this, 64, 0);
 		headTop2.addBox(-9F, -6F, -2F, 6, 2, 8);
-		head.addChild(headTop2);	
+		head.addChild(headTop2);
 		ModelRenderer noseBridge2 = new ModelRenderer(this, 0, 0);
 		noseBridge2.addBox(-10F, -3F, 1F, 1, 6, 2);
 		head.addChild(noseBridge2);

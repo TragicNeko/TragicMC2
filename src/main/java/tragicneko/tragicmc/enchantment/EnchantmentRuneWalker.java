@@ -16,37 +16,37 @@ public class EnchantmentRuneWalker extends Enchantment {
 
 	@Override
 	public int getMinEnchantability(int par1)
-    {
-        return 15 + (par1 * 3);
-    }
+	{
+		return 15 + (par1 * 3);
+	}
 
-    @Override
+	@Override
 	public int getMaxEnchantability(int par1)
-    {
-        return super.getMinEnchantability(par1) + 50;
-    }
+	{
+		return super.getMinEnchantability(par1) + 50;
+	}
 
-    @Override
+	@Override
 	public int getMaxLevel()
-    {
-        return 5;
-    }
-    
-    @Override
+	{
+		return 5;
+	}
+
+	@Override
 	public int calcModifierDamage(int par1, DamageSource source)
-    {
-    	return source.isMagicDamage() && !(source.canHarmInCreative()) ? MathHelper.floor_float(par1 * 1.5F) : 0;
-    }
-    
-    @Override
+	{
+		return source.isMagicDamage() && !(source.canHarmInCreative()) ? MathHelper.floor_float(par1 * 1.5F) : 0;
+	}
+
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
-    {
-    	Boolean flag = true;
-    	
-    	if (par1Enchantment instanceof EnchantmentProtection)
-    	{
-    		flag = false;
-    	}
-        return super.canApplyTogether(par1Enchantment) && flag;
-    }
+	{
+		Boolean flag = true;
+
+		if (par1Enchantment instanceof EnchantmentProtection)
+		{
+			flag = false;
+		}
+		return super.canApplyTogether(par1Enchantment) && flag;
+	}
 }

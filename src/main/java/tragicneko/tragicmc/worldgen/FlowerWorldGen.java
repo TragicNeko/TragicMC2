@@ -15,7 +15,6 @@ import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
@@ -51,7 +50,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		int meta = random.nextInt(16);
 
 		boolean flag = !(biome instanceof BiomeGenJungle);
-		boolean flag2 = !(biome instanceof BiomeGenTaiga); 
+		boolean flag2 = !(biome instanceof BiomeGenTaiga);
 		boolean flag3 = !(biome instanceof BiomeGenPlains);
 		boolean flag4 = biome != BiomeGenBase.roofedForest && biome != BiomeGenBase.swampland;
 		boolean flag5 = biome instanceof BiomeGenPaintedForest && world.provider instanceof TragicWorldProvider;

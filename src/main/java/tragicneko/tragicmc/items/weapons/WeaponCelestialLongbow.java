@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.items.weapons;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -11,10 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -24,11 +19,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import tragicneko.tragicmc.util.LoreHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -45,7 +39,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining) 
+	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
 	{
 		if (usingItem == null) return itemIcon;
 
@@ -55,15 +49,15 @@ public class WeaponCelestialLongbow extends TragicBow {
 		{
 			return iconArray[2];
 		}
-		else if (ticksInUse > 24) 
+		else if (ticksInUse > 24)
 		{
 			return iconArray[1];
 		}
-		else if (ticksInUse > 6) 
+		else if (ticksInUse > 6)
 		{
 			return iconArray[0];
 		}
-		else 
+		else
 		{
 			return itemIcon;
 		}
@@ -90,7 +84,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 	}
 
 	@Override
-	public int getItemEnchantability() 
+	public int getItemEnchantability()
 	{
 		return 20;
 	}
@@ -99,7 +93,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-		
+
 		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[5]))
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -179,7 +173,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 		{
 			float f = j / 40.0F;
 			f = (f * f + f * 2.0F) / 3.0F;
-			f *= 0.75F;	
+			f *= 0.75F;
 
 			if (f < 0.2D) return;
 			if (f > 1.0F) f = 1.0F;

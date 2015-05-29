@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDeadDirt extends Block {
-	
+
 	private String[] oreNames = new String[] {"Normal", "Rugged", "Mixed"};
 	private IIcon[] iconArray = new IIcon[oreNames.length];
 
@@ -37,7 +37,7 @@ public class BlockDeadDirt extends Block {
 		}
 		return this.iconArray[meta];
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)

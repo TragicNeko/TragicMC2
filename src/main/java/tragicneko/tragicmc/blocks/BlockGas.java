@@ -143,9 +143,10 @@ public class BlockGas extends Block {
 	{
 		return null;
 	}
-	
+
+	@Override
 	public boolean isAir(IBlockAccess world, int x, int y, int z)
-    {
-        return true;
-    }
+	{
+		return true;
+	}
 }

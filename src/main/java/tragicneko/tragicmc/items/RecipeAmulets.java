@@ -3,13 +3,11 @@ package tragicneko.tragicmc.items;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.AmuletHelper;
@@ -85,7 +83,7 @@ public class RecipeAmulets extends ShapelessOreRecipe {
 		{
 			Tuple<String, AttributeModifier> tup = tuples[i];
 			if (tup == null) continue;
-			
+
 			try
 			{
 				AttributeModifier mod = tup.getRight();

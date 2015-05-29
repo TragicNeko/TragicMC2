@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.items.weapons;
 
-import tragicneko.tragicmc.TragicMC;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,12 +12,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class WeaponBowOfJustice extends ItemBow {
-
-	private int cooldown;
 
 	public WeaponBowOfJustice()
 	{
@@ -26,14 +24,14 @@ public class WeaponBowOfJustice extends ItemBow {
 		this.setMaxDamage(1);
 		this.setCreativeTab(TragicMC.Creative);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		return EnumRarity.epic;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack par1ItemStack, int passes)
@@ -42,7 +40,7 @@ public class WeaponBowOfJustice extends ItemBow {
 	}
 
 	@Override
-	public int getItemEnchantability() 
+	public int getItemEnchantability()
 	{
 		return 100;
 	}
@@ -101,12 +99,12 @@ public class WeaponBowOfJustice extends ItemBow {
 			if (!flag) par1ItemStack.stackSize--;
 		}
 	}
-	
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
 		if (world.isRemote) return;
-		
+
 		if (!stack.isItemEnchanted())
 		{
 			stack.addEnchantment(Enchantment.looting, 10);

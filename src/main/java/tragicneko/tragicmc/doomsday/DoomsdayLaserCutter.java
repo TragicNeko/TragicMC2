@@ -37,7 +37,7 @@ public class DoomsdayLaserCutter extends Doomsday implements IExtendedDoomsday {
 				}
 			}
 		}
-		
+
 		if (crucMoment && flag) addCrucialMessage(player);
 	}
 

@@ -6,8 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -24,7 +22,7 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		
+
 		double d0 = crucMoment ? 16.0 : 8.0; //Do effect on initial so that there isn't an awkward pause at the start since it has such a long wait time
 		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
 
@@ -50,7 +48,7 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
-	{		
+	{
 		double d0 = crucMoment ? 16.0 : 8.0;
 		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0 / 2, d0));
 

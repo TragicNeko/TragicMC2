@@ -15,8 +15,8 @@ import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityInkling;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
-import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
 import tragicneko.tragicmc.worldgen.RuggedTerrainWorldGen;
+import tragicneko.tragicmc.worldgen.SurfaceWorldGen;
 import tragicneko.tragicmc.worldgen.WorldGenAshenShrubs;
 import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 
@@ -24,7 +24,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 
 	public final SurfaceWorldGen shieldGen;
 	public final RuggedTerrainWorldGen ruggedGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.85F, 0.45F}, {0.45F, 0.25F}, {0.05F, 0.05F}};
 
 	public BiomeGenAshenHills(int par1, int par2) {
@@ -60,7 +60,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 		if (rand.nextInt(16) == 0)
 		{
 			return new WorldGenAshenShrubs();
-		}		
+		}
 		return new WorldGenAshenTree(false);
 	}
 

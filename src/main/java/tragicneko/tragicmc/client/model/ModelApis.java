@@ -191,12 +191,12 @@ public class ModelApis extends ModelBase
 			head.rotateAngleX = rightArm.rotateAngleX = leftArm.rotateAngleX = rightArm.rotateAngleZ = leftArm.rotateAngleZ = 0.0F;
 
 			if (attack > 0)
-			{			
+			{
 				rightArm.rotateAngleX = 0.745F * simplifyAngle(attack, 10.0F) - 0.745F;
 				rightArm.rotateAngleZ = -0.425F * simplifyAngle(attack, 10.0F) + 0.425F;
 			}
 			else
-			{		
+			{
 				if (charge > 0)
 				{
 					rightArm.rotateAngleX = -0.556F;
@@ -236,7 +236,7 @@ public class ModelApis extends ModelBase
 				}
 
 			}
-		} 
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

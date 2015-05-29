@@ -8,7 +8,6 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class DimensionOreWorldGen implements IWorldGenerator {
@@ -137,7 +136,7 @@ public class DimensionOreWorldGen implements IWorldGenerator {
 			int Ycoord = random.nextInt(236) + 10;
 			int Zcoord = (chunkZ * 16) + random.nextInt(16);
 			new WorldGenMinable(TragicOres, 9, 5, DarkStone).generate(world, random, Xcoord, Ycoord, Zcoord);
-		}	
+		}
 
 		for (int i = 0; i < 16; i++) //XP
 		{

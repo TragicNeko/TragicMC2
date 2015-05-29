@@ -317,11 +317,11 @@ public class EntityDropHelper {
 		stack[3] = new ItemStack(Items.potionitem, 1, 16478);
 		return stack;
 	}
-	
+
 	private static ItemStack[] getAmulets(boolean flag)
 	{
 		ItemStack[] stack = new ItemStack[27];
-		
+
 		if (flag) stack[0] = new ItemStack(TragicItems.KitsuneAmulet);
 		stack[1] = new ItemStack(TragicItems.YetiAmulet);
 		stack[2] = new ItemStack(TragicItems.PeaceAmulet);
@@ -339,7 +339,7 @@ public class EntityDropHelper {
 		stack[14] = new ItemStack(TragicItems.SnowGolemAmulet);
 		stack[15] = new ItemStack(TragicItems.IronGolemAmulet);
 		if (flag) stack[16] = new ItemStack(TragicItems.EndermanAmulet);
-		
+
 		stack[17] = new ItemStack(TragicItems.SpiderAmulet);
 		stack[18] = new ItemStack(TragicItems.StinAmulet);
 		if (flag) stack[19] = new ItemStack(TragicItems.PolarisAmulet);

@@ -15,7 +15,7 @@ public class DoomsdayDelete extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		double d = crucMoment ? 40.0 : 30.0;
 		for (double d0 = 1.0; d0 < d; d0 += 0.5D)
 		{

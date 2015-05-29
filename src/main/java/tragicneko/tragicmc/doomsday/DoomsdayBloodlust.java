@@ -3,8 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -41,13 +39,13 @@ public class DoomsdayBloodlust extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 60, 0));
 		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 60, 0));
 		player.addPotionEffect(new PotionEffect(Potion.jump.id, 60, 0));
 		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 60, 0));
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 0));
-		
+
 		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 640, 0));
 		if (TragicConfig.allowDisorientation) player.addPotionEffect(new PotionEffect(TragicPotion.Disorientation.id, 640, 1));
 	}

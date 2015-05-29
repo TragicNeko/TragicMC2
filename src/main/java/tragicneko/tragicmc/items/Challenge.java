@@ -186,7 +186,7 @@ public class Challenge {
 	public static final Challenge onABoat = new Challenge(126, true, 1, EntityBoat.class, true).setLocationBased(BiomeGenBase.deepOcean).setDifficulty(1);
 	public static final Challenge collectQuartz = new Challenge(127, true, 64, new ItemStack(Blocks.quartz_block));
 	public static final Challenge findGuiltyThorn = new Challenge(128, true, 1, new ItemStack(TragicItems.GuiltyThorn)).setDifficulty(1);
-	
+
 	public final int challengeID;
 	public final boolean savesProgress;
 	public final int requirement;
@@ -224,7 +224,7 @@ public class Challenge {
 		"findSynapse", "collectNanoBots", "findWingsOfLiberation", "killFusea", "findPermafrost", "netherBed", "darkAeris", "findAshenBadlands", "findHallowedHills",
 		"findPsygote", "killHarvesters", "collectConduit", "findQuicksand", "killHunters", "findSoulChest", "onABoat", "collectQuartz", "findGuiltyThorn"
 	};
-	
+
 	public Challenge(int id, boolean flag, int limit)
 	{
 		if (challengeList[id] != null) throw new IllegalArgumentException("There is already a Challenge that has that id!");
@@ -308,13 +308,13 @@ public class Challenge {
 		this.isTimed = true;
 		return this;
 	}
-	
+
 	public Challenge setIgnoresMeta()
 	{
 		this.ignoresMeta = true;
 		return this;
 	}
-	
+
 	public static String getNameFromID(int id)
 	{
 		return StatCollector.translateToLocal("challenge." + challengeNames[id] + ".name");

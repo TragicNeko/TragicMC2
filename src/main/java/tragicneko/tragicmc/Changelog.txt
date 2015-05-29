@@ -4069,6 +4069,7 @@ on the Tool
 Added default Lore when an item fails to find an appropriate Lore (which shouldn't happen but is there just in case)
 Fixed derp with description splitter, it now actually splits the lines in the proper order and splits more than one time
 Made it so that weapons cannot update lores on the client-side and result in null Lores being picked even if one is displayed to the player
+Doing a mass cleanup now, standby for huge GitHub update
 Working on Skultar sounds
 
 Note:

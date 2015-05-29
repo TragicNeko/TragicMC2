@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayEscape extends Doomsday {
@@ -20,7 +19,7 @@ public class DoomsdayEscape extends Doomsday {
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		player.worldObj.createExplosion(player, player.posX, player.posY, player.posZ, crucMoment ? 3.0F : 1.5F, false);
-		
+
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0D, 8.0D, 8.0D));
 		EntityLivingBase entity;
 
@@ -37,7 +36,7 @@ public class DoomsdayEscape extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

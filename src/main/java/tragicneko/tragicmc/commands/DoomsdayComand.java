@@ -16,8 +16,6 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayComand extends CommandBase {
 
-	private List aliases;
-
 	public DoomsdayComand()
 	{
 	}
@@ -98,15 +96,15 @@ public class DoomsdayComand extends CommandBase {
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "There was an error using that Doomsday."));
 			return;
 		}
-		
+
 		if (!TragicConfig.doomsdayAllow[doomsday.doomID])
 		{
 			var1.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "That particular Doomsday is disabled, enable in config."));
 			return;
 		}
 
-		boolean crucMoment = false;
-		if (TragicConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicConfig.crucialMomentChance) crucMoment = true;
+		if (TragicConfig.allowCrucialMoments && mp.worldObj.rand.nextInt(100) <= TragicConfig.crucialMomentChance) {
+		}
 		DoomsdayEffect effect = new DoomsdayEffect(doomsday.getDoomId(), doom, true);
 		DoomsdayManager.registerDoomsdayEffect(mp.getUniqueID(), effect);
 	}

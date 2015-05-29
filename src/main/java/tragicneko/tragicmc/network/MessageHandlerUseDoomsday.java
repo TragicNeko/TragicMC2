@@ -30,11 +30,8 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 
 		ItemStack stack = message.stack;
 		Doomsday doomsday = null;
-		boolean flag = false;
-
 		if (stack != null)
 		{
-			flag = true;
 			if (stack.getItem() instanceof TragicBow)
 			{
 				doomsday = ((TragicBow)stack.getItem()).doomsday;
@@ -99,7 +96,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			player.addChatComponentMessage(new ChatComponentText("The Doomsday of that type is disabled, enable in config."));
 			return null;
 		}
-		
+
 		if (!TragicConfig.doomsdayAllow[doomsday.doomID])
 		{
 			player.addChatComponentMessage(new ChatComponentText("That particular Doomsday is disabled, enable in config."));

@@ -3,8 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayHuntersInstinct extends Doomsday {
@@ -12,7 +10,7 @@ public class DoomsdayHuntersInstinct extends Doomsday {
 	public DoomsdayHuntersInstinct(int id) {
 		super(id);
 	}
-	
+
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{

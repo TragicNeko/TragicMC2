@@ -15,9 +15,9 @@ public class DoomsdayLightShove extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
-		float crisis = this.getCrisis(player);
+		this.getCrisis(player);
 		double d0 = crucMoment ? 6.0D : 3.0D;
 
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
@@ -52,6 +52,7 @@ public class DoomsdayLightShove extends Doomsday {
 
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.LightningRush;
 	}

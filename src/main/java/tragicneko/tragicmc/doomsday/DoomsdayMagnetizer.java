@@ -24,7 +24,7 @@ public class DoomsdayMagnetizer extends Doomsday {
 		List<int[]> list2 = WorldHelper.getBlocksInSphericalRange(player.worldObj, crucMoment ? 7.25 : 4.25, player.posX + rand.nextInt(8) - rand.nextInt(8), player.posY + rand.nextInt(8), player.posZ + rand.nextInt(8) - rand.nextInt(8));
 		List<int[]> cands = new ArrayList();
 		Block block;
-		
+
 		for (int[] coords : list2)
 		{
 			block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
@@ -33,7 +33,7 @@ public class DoomsdayMagnetizer extends Doomsday {
 				cands.add(coords);
 			}
 		}
-		
+
 		int amt = 0;
 		Chunk chk = player.worldObj.getChunkFromBlockCoords((int) player.posX, (int) player.posZ);
 		List<Tuple<Block, Integer>> ores = new ArrayList();
@@ -53,10 +53,10 @@ public class DoomsdayMagnetizer extends Doomsday {
 				}
 			}
 		}
-		
+
 		Collections.shuffle(ores);
 		Collections.shuffle(cands);
-		
+
 		for (int i = 0; i < ores.size() && i < cands.size(); i++)
 		{
 			int[] coords = cands.get(i);
@@ -67,6 +67,6 @@ public class DoomsdayMagnetizer extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 }

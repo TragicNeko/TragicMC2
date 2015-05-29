@@ -126,7 +126,7 @@ public class TragicMC
 		if (!TragicConfig.mobsOnly) TragicRecipes.load();
 
 		if (TragicConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.AmuletEvents());
-		if (!TragicConfig.mobsOnly) 
+		if (!TragicConfig.mobsOnly)
 		{
 			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
 			if (TragicConfig.allowChallengeScrolls) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.ChallengeItemEvents());
@@ -156,7 +156,7 @@ public class TragicMC
 				TragicConfig.dimensionID = id;
 				TragicConfig.providerID = id;
 			}
-			
+
 			DimensionManager.registerProviderType(TragicConfig.providerID, tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.keepDimensionLoaded);
 			DimensionManager.registerDimension(TragicConfig.dimensionID, TragicConfig.providerID);
 

@@ -1,14 +1,11 @@
 package tragicneko.tragicmc.items.armor;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import tragicneko.tragicmc.TragicEnchantments;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.doomsday.Doomsday;
 
 public class ArmorSkull extends TragicArmor {
-	
+
 	public ArmorSkull(ArmorMaterial material, int armorType, Doomsday dday) {
 		super(material, armorType, dday);
 	}

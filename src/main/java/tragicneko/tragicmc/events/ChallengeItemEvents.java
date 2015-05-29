@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.items.Challenge;
 import tragicneko.tragicmc.items.ItemChallenge;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -34,11 +34,10 @@ public class ChallengeItemEvents {
 			ItemStack stack;
 			Challenge challenge = null;
 
-			for (int i = 0; i < inv.length; i++)
-			{
-				if (inv[i] != null && inv[i].hasTagCompound() && inv[i].getItem() instanceof ItemChallenge && inv[i].getItemDamage() != 0 && inv[i].getItemDamage() != 250)
+			for (ItemStack element : inv) {
+				if (element != null && element.hasTagCompound() && element.getItem() instanceof ItemChallenge && element.getItemDamage() != 0 && element.getItemDamage() != 250)
 				{
-					stack = inv[i];
+					stack = element;
 					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 					challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.savesProgress) stack.stackTagCompound.setInteger("challengeProgress", 0);
@@ -52,11 +51,10 @@ public class ChallengeItemEvents {
 			ItemStack stack;
 			Challenge challenge = null;
 
-			for (int i = 0; i < inv.length; i++)
-			{
-				if (inv[i] != null && inv[i].hasTagCompound() && inv[i].getItem() instanceof ItemChallenge && inv[i].getItemDamage() != 0 && inv[i].getItemDamage() != 250)
+			for (ItemStack element : inv) {
+				if (element != null && element.hasTagCompound() && element.getItem() instanceof ItemChallenge && element.getItemDamage() != 0 && element.getItemDamage() != 250)
 				{
-					stack = inv[i];
+					stack = element;
 					if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 					challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 					if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && !challenge.isItemChallenge && challenge.challengeClass != null)
@@ -72,7 +70,7 @@ public class ChallengeItemEvents {
 								flag = true;
 								break;
 							}
-						}						
+						}
 
 						while (!flag)
 						{
@@ -111,11 +109,10 @@ public class ChallengeItemEvents {
 		ItemStack stack;
 		Challenge challenge = null;
 
-		for (int i = 0; i < inv.length; i++)
-		{
-			if (inv[i] != null && inv[i].hasTagCompound() && inv[i].getItem() instanceof ItemChallenge && inv[i].getItemDamage() != 0 && inv[i].getItemDamage() != 250)
+		for (ItemStack element : inv) {
+			if (element != null && element.hasTagCompound() && element.getItem() instanceof ItemChallenge && element.getItemDamage() != 0 && element.getItemDamage() != 250)
 			{
-				stack = inv[i];
+				stack = element;
 				if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("challengeID")) continue;
 				challenge = Challenge.getChallengeFromID(stack.stackTagCompound.getInteger("challengeID"));
 
@@ -149,7 +146,7 @@ public class ChallengeItemEvents {
 									flag = true;
 									break;
 								}
-							}						
+							}
 
 							while (!flag)
 							{
@@ -189,11 +186,10 @@ public class ChallengeItemEvents {
 						ItemStack loreStack;
 						int amt = 0;
 
-						for (int m = 0; m < inv.length; m++)
-						{
-							if (inv[m] != null && inv[m].hasTagCompound() && inv[m].stackTagCompound.hasKey("tragicLoreRarity"))
+						for (ItemStack element2 : inv) {
+							if (element2 != null && element2.hasTagCompound() && element2.stackTagCompound.hasKey("tragicLoreRarity"))
 							{
-								loreStack = inv[m];
+								loreStack = element2;
 								if (loreStack.stackTagCompound.getInteger("tragicLoreRarity") <= challenge.loreRarity) amt++;
 							}
 						}
@@ -205,13 +201,11 @@ public class ChallengeItemEvents {
 						ItemStack[] armorInv = player.inventory.armorInventory;
 						ItemStack[] challengeArmor = challenge.challengeArmor;
 
-						for (int m = 0; m < armorInv.length; m++)
-						{
-							if (armorInv[m] != null)
+						for (ItemStack element2 : armorInv) {
+							if (element2 != null)
 							{
-								for (int pew = 0; pew < challengeArmor.length; pew++)
-								{
-									if (challengeArmor[pew] != null && armorInv[m].getItem() == challengeArmor[pew].getItem()) amt++;
+								for (ItemStack element3 : challengeArmor) {
+									if (element3 != null && element2.getItem() == element3.getItem()) amt++;
 								}
 							}
 						}

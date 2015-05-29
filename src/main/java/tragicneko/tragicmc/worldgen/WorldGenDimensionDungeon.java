@@ -2,8 +2,6 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
@@ -11,11 +9,12 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DungeonHooks;
+import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicItems;
 
 public class WorldGenDimensionDungeon extends WorldGenerator {
-	
+
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
@@ -161,7 +160,7 @@ public class WorldGenDimensionDungeon extends WorldGenerator {
 	/**
 	 * Randomly decides which spawner to use in a dungeon
 	 */
-	 private String pickMobSpawner(Random p_76543_1_)
+	private String pickMobSpawner(Random p_76543_1_)
 	{
 		return DungeonHooks.getRandomDungeonMob(p_76543_1_);
 	}

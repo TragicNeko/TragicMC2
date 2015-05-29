@@ -10,8 +10,8 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -23,7 +23,7 @@ public class DoomEvents {
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
-		if (event.entity instanceof EntityPlayer) 
+		if (event.entity instanceof EntityPlayer)
 		{
 			PropertyDoom doom = PropertyDoom.get((EntityPlayer) event.entity);
 
@@ -62,7 +62,7 @@ public class DoomEvents {
 	}
 
 	@SubscribeEvent
-	public void onLivingDeathEvent(PlayerEvent.Clone event) 
+	public void onLivingDeathEvent(PlayerEvent.Clone event)
 	{
 		if (!event.entity.worldObj.isRemote && TragicConfig.allowDoom) {
 			if (PropertyDoom.get(event.original) != null)
@@ -96,7 +96,7 @@ public class DoomEvents {
 				properties.applyDoomPainRecharge(event.ammount);
 			}
 		}
-	} 
+	}
 
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public void onDeath(Clone event)

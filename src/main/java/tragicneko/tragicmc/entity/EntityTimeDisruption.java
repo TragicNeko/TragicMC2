@@ -3,8 +3,6 @@ package tragicneko.tragicmc.entity;
 import java.util.Iterator;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,6 +10,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTimeDisruption extends Entity {
 
@@ -24,7 +24,7 @@ public class EntityTimeDisruption extends Entity {
 		this.preventEntitySpawning = true;
 		this.isImmuneToFire = true;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBrightnessForRender(float par1)
@@ -37,7 +37,7 @@ public class EntityTimeDisruption extends Entity {
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	protected boolean canTriggerWalking()
 	{
@@ -60,7 +60,7 @@ public class EntityTimeDisruption extends Entity {
 	public void onUpdate()
 	{
 		this.motionX = this.motionY = this.motionZ = 0.0D;
-		
+
 		super.onUpdate();
 
 		if (this.worldObj.isRemote)
@@ -84,7 +84,7 @@ public class EntityTimeDisruption extends Entity {
 
 				this.worldObj.spawnParticle("portal", d0, d1, d2, d4 * 15.5, d5 * 15.5, d6 * 15.5);
 			}
-			
+
 			if (rand.nextBoolean())
 			{
 				this.worldObj.spawnParticle("witchMagic", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.255D), this.posY + 0.0625D + rand.nextDouble() * 0.275D,
@@ -113,7 +113,7 @@ public class EntityTimeDisruption extends Entity {
 				EntityLivingBase entity = (EntityLivingBase) iterator.next();
 
 				if (entity.canEntityBeSeen(this) && !(entity instanceof EntityTimeController))
-				{				
+				{
 					for (int i = 0; i < 5; i++)
 					{
 						entity.attackEntityFrom(DamageSource.magic, 1.0F);
@@ -127,7 +127,7 @@ public class EntityTimeDisruption extends Entity {
 
 		if (this.ticksExisted >= 400 + timeToLive) this.setDead();
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float par2)
 	{

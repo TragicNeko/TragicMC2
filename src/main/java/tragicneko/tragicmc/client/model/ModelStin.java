@@ -9,14 +9,14 @@ public class ModelStin extends ModelBase
 {
 	private ModelRenderer body;
 	private ModelRenderer head;
-	
+
 	private ModelRenderer legFR;
 	private ModelRenderer legFL;
 	private ModelRenderer legML;
 	private ModelRenderer legMR;
 	private ModelRenderer legBR;
 	private ModelRenderer legBL;
-	
+
 	private ModelRenderer tail;
 
 	private float[] legValues = new float[] {-0.2230717F, -0.2230717F, -0.0371786F, -0.0371786F, 0.0743572F, 0.0743572F};
@@ -177,7 +177,7 @@ public class ModelStin extends ModelBase
 			body.offsetY = head.offsetY = head.offsetZ = tail.offsetZ = tail.offsetY = tail.offsetX = 0.0F;
 			body.rotateAngleX = head.rotateAngleX = tail.rotateAngleX = 0.0F;
 			legFR.offsetY = legFL.offsetY = legBR.offsetY = legBL.offsetY = legMR.offsetY = legML.offsetY = 0.0F;
-			
+
 			head.rotateAngleY = f3 / (180F / (float)Math.PI);
 			head.rotateAngleX = f4 / (180F / (float)Math.PI);
 
@@ -190,7 +190,7 @@ public class ModelStin extends ModelBase
 			legFL.rotateAngleX = legValues[1] + this.simplifyAngle(f + 2.0F, 3.0F) * 0.093F * f1;
 			legML.rotateAngleX = legValues[2] + this.simplifyAngle(f + 2.0F, 3.0F) * 0.093F * f1;
 			legBL.rotateAngleX = legValues[5] + this.simplifyAngle(f + 3.0F, 3.0F) * 0.093F * f1;
-		} 
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

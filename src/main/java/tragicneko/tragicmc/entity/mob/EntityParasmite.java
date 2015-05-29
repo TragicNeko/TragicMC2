@@ -81,7 +81,7 @@ public class EntityParasmite extends TragicMob {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-		
+
 		if (this.ridingEntity != null)
 		{
 			this.yOffset = -0.2F;
@@ -121,7 +121,6 @@ public class EntityParasmite extends TragicMob {
 			this.motionX = Math.min(Math.abs(d2), 0.46D) == Math.abs(d2) ? d2 : 0.46D  * (d2 < 0 ? -1 : 1);
 			double d3 = d1 / f2 * 0.33D * 0.11D + this.motionZ * 0.84D;
 			this.motionZ = Math.min(Math.abs(d3), 0.46D) == Math.abs(d3) ? d3 : 0.46D  * (d3 < 0 ? -1 : 1);
-			double d5 = d4 / f2 * 0.33D * 0.11D + this.motionY * 1.24D;
 			this.motionY = Math.min(Math.abs(d4), 0.66D) == Math.abs(d4) ? d4 : 0.66D  * (d4 < 0 ? -1 : 1);
 			if (this.isCollided) this.motionY += rand.nextDouble() - rand.nextDouble();
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
@@ -137,12 +136,12 @@ public class EntityParasmite extends TragicMob {
 			this.motionZ *= 0.542D;
 			this.motionY *= 0.256D;
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
-			
+
 			EntityParasmite smite = (EntityParasmite) this.worldObj.findNearestEntityWithinAABB(EntityParasmite.class, this.boundingBox.expand(2.0, 2.0, 2.0), this);
 			if (smite != null && smite.riddenByEntity == null && this.ridingEntity == null) this.mountEntity(smite);
 		}
-		
-		
+
+
 	}
 
 	@Override
@@ -161,7 +160,7 @@ public class EntityParasmite extends TragicMob {
 		}
 		return !this.worldObj.isRemote;
 	}
-	
+
 	@Override
 	public boolean canAttackClass(Class oclass)
 	{
@@ -173,37 +172,37 @@ public class EntityParasmite extends TragicMob {
 	{
 		return this.ridingEntity == null ? "tragicmc:mob.parasmite.squeek" : "tragicmc:mob.parasmite.shriek";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.parasmite.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.parasmite.shriek";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.4F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

@@ -10,7 +10,7 @@ public class RenderPumpkinhead extends RenderLiving {
 
 	private ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/PumpkinheadNormal.png");
 	private ResourceLocation texture2 = new ResourceLocation("tragicmc:textures/mobs/Pumpkinhead.png");
-	
+
 	public RenderPumpkinhead() {
 		super(new ModelPumpkinhead(), 0.655F);
 	}
@@ -19,7 +19,7 @@ public class RenderPumpkinhead extends RenderLiving {
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return getEntityTexture((EntityPumpkinhead) entity);
 	}
-	
+
 	protected ResourceLocation getEntityTexture(EntityPumpkinhead entity)
 	{
 		return entity.isAngry() ? texture2 : texture;

@@ -30,7 +30,7 @@ public class TileEntitySummonBlock extends TileEntity {
 
 	private static final String[] taunts = new String[] {"The choice is made, the Traveller has come!", "They're here...", "Ready? ... FIGHT!", "Mortal Kombat!",
 		"Begin.", "Let's get ready to RUMBLE!", "Come now, make up and hug it out", "Come play with us, forever and ever and ever and ever...", "Oh no!", "Kissy kissy~",
-		"Run away!", "Retreat!", "Requesting permission to GTFO of here!", "Come on, it only wants a hug!", "It doesn't bite! ... much...", 
+		"Run away!", "Retreat!", "Requesting permission to GTFO of here!", "Come on, it only wants a hug!", "It doesn't bite! ... much...",
 		"It's just trying to show you some affection!", "Just pretend it's Dinnerbone and hug!", "I think you should get that checked out by a Doctor", "Is that the TARDIS I hear?",
 		"Knock knock", "Did you see how he turned the Summon Block?", "I'm distracting you!", "I am Groot", "We are Groot"};
 
@@ -49,7 +49,7 @@ public class TileEntitySummonBlock extends TileEntity {
 	/**
 	 * Checks for nearby players, if there is at least 1 that is not in creative mode, summons a boss and removes the block and tile entity
 	 */
-	private void updateState() 
+	private void updateState()
 	{
 		double d0 = 12.0;
 
@@ -60,7 +60,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		{
 			for (int i = 0; i < list.size(); i++)
 			{
-				EntityPlayer player = list.get(i);			
+				EntityPlayer player = list.get(i);
 
 				if (!player.isPotionActive(Potion.invisibility) && !player.capabilities.isCreativeMode && !this.worldObj.isRemote)
 				{
@@ -124,7 +124,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		if (boss instanceof TragicBoss && this.worldObj.difficultySetting.getDifficultyId() < 2 && player != null)
 		{
 			player.addChatMessage(new ChatComponentText("Difficulty needs to be raised to spawn this boss."));
-			return; 
+			return;
 		}
 
 		if (boss == null) return;

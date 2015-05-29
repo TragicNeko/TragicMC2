@@ -60,10 +60,10 @@ public class ItemCooldownDefuse extends Item {
 					}
 				}
 
-				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;	
+				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 			}
 		}
-		
+
 		return par1ItemStack;
 	}
 }

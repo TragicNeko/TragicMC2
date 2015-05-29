@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -25,7 +24,7 @@ public class DoomsdaySymbiosis extends Doomsday implements IExtendedDoomsday {
 		if (list.size() > 0)
 		{
 			if (crucMoment) addCrucialMessage(player);
-			
+
 			for (int i = 0; i < list.size(); i ++)
 			{
 				if (list.get(i) instanceof EntityLivingBase)
@@ -46,7 +45,7 @@ public class DoomsdaySymbiosis extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

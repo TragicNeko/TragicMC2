@@ -49,7 +49,7 @@ public class BlockTimeDisruptor extends BlockContainer {
 		else if (world.getBlock(x, y - 1, z) == TragicBlocks.StarCrystal && world.getBlock(x, y - 2, z) == TragicBlocks.StarCrystal) block = TragicBlocks.StarCrystal;
 		else if (world.getBlock(x, y - 1, z) == TragicBlocks.BoneBlock && world.getBlock(x, y - 2, z) == TragicBlocks.BoneBlock) block = TragicBlocks.BoneBlock;
 		else if (world.getBlock(x, y - 1, z) == Blocks.nether_brick && world.getBlock(x, y - 2, z) == Blocks.nether_brick) block = Blocks.nether_brick;
-		
+
 		if (block == null) return;
 		boolean flag = world.getBlock(x - 1, y - 1, z) == block && world.getBlock(x + 1, y - 1, z) == block && world.getBlock(x, y - 1, z - 1) == block && world.getBlock(x, y - 1, z + 1) == block;
 
@@ -64,9 +64,9 @@ public class BlockTimeDisruptor extends BlockContainer {
 			else if (block == TragicBlocks.StarCrystal && TragicConfig.allowPolaris) boss = new EntityPolaris(world);
 			else if (block == TragicBlocks.BoneBlock && TragicConfig.allowDeathReaper) boss = new EntityDeathReaper(world);
 			else if (block == Blocks.nether_brick && TragicConfig.allowKitsune) boss = new EntityKitsune(world);
-			
+
 			if (boss == null) return;
-			
+
 			world.setBlock(x, y, z, air, 0, 2);
 			world.setBlock(x, y - 1, z, air, 0, 2);
 			world.setBlock(x, y - 2, z, air, 0, 2);
@@ -74,13 +74,13 @@ public class BlockTimeDisruptor extends BlockContainer {
 			world.setBlock(x + 1, y - 1, z, air, 0, 2);
 			world.setBlock(x, y - 1, z - 1, air, 0, 2);
 			world.setBlock(x, y - 1, z + 1, air, 0, 2);
-			
+
 			boss.setLocationAndAngles(x + 0.5D, y - 1.95D, z + 0.5D, 0.0F, 0.0F);
 			EntityPlayer player = boss.worldObj.getClosestVulnerablePlayerToEntity(boss, 16.0D);
 			if (player != null) boss.setTarget(player);
 			world.spawnEntityInWorld(boss);
 
-			for (int l = 0; l < 120; ++l) 
+			for (int l = 0; l < 120; ++l)
 				world.spawnParticle("hugeexplosion", x + world.rand.nextDouble(), y - 2 + world.rand.nextDouble() * 3.9D, z + world.rand.nextDouble(),
 						0.0D, 0.0D, 0.0D);
 

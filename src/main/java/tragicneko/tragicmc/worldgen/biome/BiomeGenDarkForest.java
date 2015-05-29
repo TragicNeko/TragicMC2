@@ -6,7 +6,6 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBiome;
@@ -22,11 +21,11 @@ import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 import tragicneko.tragicmc.worldgen.WorldGenDarkForestTree;
 
 public class BiomeGenDarkForest extends TragicBiome {
-	
+
 	public final SurfaceWorldGen drudgeGen;
 	public final SurfaceWorldGen2 gasGen;
 	public final WorldGenCustomVine vineGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.05F, 0.15F}, {0.32F, 0.32F}, {0.35F, -0.35F}};
 
 	public BiomeGenDarkForest(int par1, int par2) {
@@ -48,35 +47,33 @@ public class BiomeGenDarkForest extends TragicBiome {
 		this.gasGen = new SurfaceWorldGen2(8, TragicBlocks.DarkGas, 0, 4, 4);
 		this.vineGen = new WorldGenCustomVine(TragicBlocks.DarkVine);
 	}
-	
+
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
 	{
 		return new WorldGenTallGrass(TragicBlocks.DarkTallGrass, 0);
 	}
-	
+
 	@Override
 	public WorldGenAbstractTree func_150567_a(Random rand)
 	{
 		return new WorldGenDarkForestTree();
 	}
-	
+
 	@Override
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		
+
 		int k = x + rand.nextInt(16) + 8;
 		int l = z + rand.nextInt(16) + 8;
-		int i1 = world.getTopSolidOrLiquidBlock(k, l) + rand.nextInt(24) - rand.nextInt(24);
-
 		for (int a = 0; a < 20; ++a)
 		{
 			k = x + rand.nextInt(16) - 8;
 			l = z + rand.nextInt(16) - 8;
 			this.vineGen.generate(world, rand, k, 128, l);
 		}
-		
+
 		this.gasGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world, null, null);
 	}

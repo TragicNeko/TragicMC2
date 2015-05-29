@@ -147,7 +147,7 @@ public class EntityPsygote extends TragicMob {
 							(this.rand.nextDouble() - 0.6D) * 0.1D,
 							this.rand.nextDouble() * -0.8D - 2.4D,
 							(this.rand.nextDouble() - 0.6D) * 0.1D);
-					
+
 					if (this.getSwitchTicks() == 3) this.playSound("tragicmc:mob.psygote.coo", 0.6F, 1.0F);
 				}
 			}
@@ -162,12 +162,12 @@ public class EntityPsygote extends TragicMob {
 		{
 			if (this.getFiringTicks() > 0) this.setFiringTicks(0);
 			if (this.getSwitchTicks() > 0) this.setSwitchTicks(0);
-			
+
 			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0)
 			{
 				this.fireOneMortor();
 			}
-		} 
+		}
 
 		if (this.getSwitchTicks() > 0) this.setFiringTicks(0);
 
@@ -291,7 +291,7 @@ public class EntityPsygote extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 		if (this.getHurtTime() == 0) this.setHurtTime(10);
 		return super.attackEntityFrom(par1DamageSource, par2);
@@ -302,7 +302,7 @@ public class EntityPsygote extends TragicMob {
 	{
 		return (int) psygoteStats[5];
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -330,34 +330,34 @@ public class EntityPsygote extends TragicMob {
 	{
 		return this.getAttackTarget() == null ? "tragicmc:mob.psygote.coo" : "tragicmc:mob.psygote.cry";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.psygote.shriek";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.psygote.shriek";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
+	}
 }

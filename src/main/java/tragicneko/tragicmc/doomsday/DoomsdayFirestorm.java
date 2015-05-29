@@ -9,9 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -29,7 +26,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		
+
 		if (TragicConfig.allowFlight)
 		{
 			player.addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 6000, 0));
@@ -54,34 +51,34 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 					{
 						entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 1));
 					}
-					
+
 					entity.addPotionEffect(new PotionEffect(Potion.weakness.id, 300, 15));
 				}
 			}
 		}
 		//Because the wait time is so high, we'll do it on the initial use to reduce the awkward pause after using it
-		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D; 
+		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
 		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
 		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-		
+
 		double y = player.posY - WorldHelper.getDistanceToGround(player);
-		
+
 		for (int l = 0; l < 12; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
 			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), y + 24 + rand.nextInt(16),
-			player.posZ + rand.nextInt(16) - rand.nextInt(16));
+					player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
-		
+
 		for (int l = 0; l < 24; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
 			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), y + 24 + rand.nextInt(16),
-			player.posZ + rand.nextInt(8) - rand.nextInt(8));
+					player.posZ + rand.nextInt(8) - rand.nextInt(8));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
-		
+
 		if (rand.nextInt(4) == 0)
 		{
 			double d4 = d1 + rand.nextInt(32) - rand.nextInt(32);
@@ -92,29 +89,29 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
-		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D; 
+
+		double d1 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
 		double d2 = (rand.nextDouble() - rand.nextDouble()) * 4.0D + 4.0D;
 		double d3 = (rand.nextDouble() - rand.nextDouble()) * 4.0D;
-		
+
 		double y = player.posY - WorldHelper.getDistanceToGround(player);
-		
+
 		for (int l = 0; l < 12; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
 			fireball.setPosition(player.posX + rand.nextInt(16) - rand.nextInt(16), y + 24 + rand.nextInt(16),
-			player.posZ + rand.nextInt(16) - rand.nextInt(16));
+					player.posZ + rand.nextInt(16) - rand.nextInt(16));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
-		
+
 		for (int l = 0; l < 24; l++)
 		{
 			EntityLargeFireball fireball = new EntityLargeFireball(player.worldObj, player, -d1, -d2, -d3);
 			fireball.setPosition(player.posX + rand.nextInt(8) - rand.nextInt(8), y + 24 + rand.nextInt(16),
-			player.posZ + rand.nextInt(8) - rand.nextInt(8));
+					player.posZ + rand.nextInt(8) - rand.nextInt(8));
 			player.worldObj.spawnEntityInWorld(fireball);
 		}
-		
+
 		if (rand.nextInt(4) == 0)
 		{
 			double d4 = d1 + rand.nextInt(32) - rand.nextInt(32);
@@ -125,7 +122,7 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

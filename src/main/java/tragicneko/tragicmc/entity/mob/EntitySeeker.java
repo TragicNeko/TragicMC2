@@ -17,7 +17,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
@@ -104,7 +103,7 @@ public class EntitySeeker extends TragicMob {
 
 	@Override
 	public void onLivingUpdate()
-	{		
+	{
 		this.motionX = this.motionY = this.motionZ = 0D;
 		super.onLivingUpdate();
 
@@ -204,7 +203,7 @@ public class EntitySeeker extends TragicMob {
 			}
 			this.relocations = 0;
 		}
-		
+
 		if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getKillTicks() > 0)
 		{
 			float f = this.getKillTicks() / 300.0F;
@@ -285,7 +284,7 @@ public class EntitySeeker extends TragicMob {
 		else
 		{
 			return true;
-		} 
+		}
 	}
 
 	public void setOwner(EntityOverlordCocoon cc)

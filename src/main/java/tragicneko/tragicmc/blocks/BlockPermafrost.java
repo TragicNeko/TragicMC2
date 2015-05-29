@@ -37,7 +37,7 @@ public class BlockPermafrost extends Block {
 		}
 		return side == 1 ? this.iconArray[meta] : this.iconArray[0];
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)

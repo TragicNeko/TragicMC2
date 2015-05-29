@@ -42,7 +42,7 @@ public class RenderPirah extends RenderLiving {
 	protected ResourceLocation getEntityTexture(EntityPirah entity)
 	{
 		int i = entity.getTextureID();
-		if (i > textures.length) i = 0; 
+		if (i > textures.length) i = 0;
 		return entity.getPirahType() == 0 ? textures[i] : textures2[i];
 	}
 

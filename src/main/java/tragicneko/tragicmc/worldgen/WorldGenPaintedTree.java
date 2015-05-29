@@ -11,127 +11,127 @@ import tragicneko.tragicmc.TragicBlocks;
 
 public class WorldGenPaintedTree extends WorldGenAbstractTree
 {
-    private boolean isLargeTree;
+	private boolean isLargeTree;
 
-    public WorldGenPaintedTree(boolean p_i45449_1_, boolean p_i45449_2_)
-    {
-        super(p_i45449_1_);
-        this.isLargeTree = p_i45449_2_;
-    }
+	public WorldGenPaintedTree(boolean p_i45449_1_, boolean p_i45449_2_)
+	{
+		super(p_i45449_1_);
+		this.isLargeTree = p_i45449_2_;
+	}
 
-    @Override
+	@Override
 	public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
-    {
-        int l = p_76484_2_.nextInt(3) + 5;
+	{
+		int l = p_76484_2_.nextInt(3) + 5;
 
-        if (this.isLargeTree)
-        {
-            l += p_76484_2_.nextInt(7);
-        }
+		if (this.isLargeTree)
+		{
+			l += p_76484_2_.nextInt(7);
+		}
 
-        boolean flag = true;
+		boolean flag = true;
 
-        if (p_76484_4_ >= 1 && p_76484_4_ + l + 1 <= 256)
-        {
-            int j1;
-            int k1;
+		if (p_76484_4_ >= 1 && p_76484_4_ + l + 1 <= 256)
+		{
+			int j1;
+			int k1;
 
-            for (int i1 = p_76484_4_; i1 <= p_76484_4_ + 1 + l; ++i1)
-            {
-                byte b0 = 1;
+			for (int i1 = p_76484_4_; i1 <= p_76484_4_ + 1 + l; ++i1)
+			{
+				byte b0 = 1;
 
-                if (i1 == p_76484_4_)
-                {
-                    b0 = 0;
-                }
+				if (i1 == p_76484_4_)
+				{
+					b0 = 0;
+				}
 
-                if (i1 >= p_76484_4_ + 1 + l - 2)
-                {
-                    b0 = 2;
-                }
+				if (i1 >= p_76484_4_ + 1 + l - 2)
+				{
+					b0 = 2;
+				}
 
-                for (j1 = p_76484_3_ - b0; j1 <= p_76484_3_ + b0 && flag; ++j1)
-                {
-                    for (k1 = p_76484_5_ - b0; k1 <= p_76484_5_ + b0 && flag; ++k1)
-                    {
-                        if (i1 >= 0 && i1 < 256)
-                        {
-                            Block block = p_76484_1_.getBlock(j1, i1, k1);
+				for (j1 = p_76484_3_ - b0; j1 <= p_76484_3_ + b0 && flag; ++j1)
+				{
+					for (k1 = p_76484_5_ - b0; k1 <= p_76484_5_ + b0 && flag; ++k1)
+					{
+						if (i1 >= 0 && i1 < 256)
+						{
+							p_76484_1_.getBlock(j1, i1, k1);
 
-                            if (!this.isReplaceable(p_76484_1_, j1, i1, k1))
-                            {
-                                flag = false;
-                            }
-                        }
-                        else
-                        {
-                            flag = false;
-                        }
-                    }
-                }
-            }
+							if (!this.isReplaceable(p_76484_1_, j1, i1, k1))
+							{
+								flag = false;
+							}
+						}
+						else
+						{
+							flag = false;
+						}
+					}
+				}
+			}
 
-            if (!flag)
-            {
-                return false;
-            }
-            else
-            {
-                Block block2 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ - 1, p_76484_5_);
+			if (!flag)
+			{
+				return false;
+			}
+			else
+			{
+				Block block2 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ - 1, p_76484_5_);
 
-                boolean isSoil = block2.canSustainPlant(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, ForgeDirection.UP, (IPlantable) TragicBlocks.TragicSapling);
-                if (isSoil && p_76484_4_ < 256 - l - 1)
-                {
-                    block2.onPlantGrow(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, p_76484_3_, p_76484_4_, p_76484_5_);
-                    int k2;
+				boolean isSoil = block2.canSustainPlant(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, ForgeDirection.UP, (IPlantable) TragicBlocks.TragicSapling);
+				if (isSoil && p_76484_4_ < 256 - l - 1)
+				{
+					block2.onPlantGrow(p_76484_1_, p_76484_3_, p_76484_4_ - 1, p_76484_5_, p_76484_3_, p_76484_4_, p_76484_5_);
+					int k2;
 
-                    for (k2 = p_76484_4_ - 3 + l; k2 <= p_76484_4_ + l; ++k2)
-                    {
-                        j1 = k2 - (p_76484_4_ + l);
-                        k1 = 1 - j1 / 2;
+					for (k2 = p_76484_4_ - 3 + l; k2 <= p_76484_4_ + l; ++k2)
+					{
+						j1 = k2 - (p_76484_4_ + l);
+						k1 = 1 - j1 / 2;
 
-                        for (int l2 = p_76484_3_ - k1; l2 <= p_76484_3_ + k1; ++l2)
-                        {
-                            int l1 = l2 - p_76484_3_;
+						for (int l2 = p_76484_3_ - k1; l2 <= p_76484_3_ + k1; ++l2)
+						{
+							int l1 = l2 - p_76484_3_;
 
-                            for (int i2 = p_76484_5_ - k1; i2 <= p_76484_5_ + k1; ++i2)
-                            {
-                                int j2 = i2 - p_76484_5_;
+							for (int i2 = p_76484_5_ - k1; i2 <= p_76484_5_ + k1; ++i2)
+							{
+								int j2 = i2 - p_76484_5_;
 
-                                if (Math.abs(l1) != k1 || Math.abs(j2) != k1 || p_76484_2_.nextInt(2) != 0 && j1 != 0)
-                                {
-                                    Block block1 = p_76484_1_.getBlock(l2, k2, i2);
+								if (Math.abs(l1) != k1 || Math.abs(j2) != k1 || p_76484_2_.nextInt(2) != 0 && j1 != 0)
+								{
+									Block block1 = p_76484_1_.getBlock(l2, k2, i2);
 
-                                    if (block1.isAir(p_76484_1_, l2, k2, i2) || block1.isLeaves(p_76484_1_, l2, k2, i2))
-                                    {
-                                        this.setBlockAndNotifyAdequately(p_76484_1_, l2, k2, i2, TragicBlocks.PaintedLeaves, 2);
-                                    }
-                                }
-                            }
-                        }
-                    }
+									if (block1.isAir(p_76484_1_, l2, k2, i2) || block1.isLeaves(p_76484_1_, l2, k2, i2))
+									{
+										this.setBlockAndNotifyAdequately(p_76484_1_, l2, k2, i2, TragicBlocks.PaintedLeaves, 2);
+									}
+								}
+							}
+						}
+					}
 
-                    for (k2 = 0; k2 < l; ++k2)
-                    {
-                        Block block3 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ + k2, p_76484_5_);
+					for (k2 = 0; k2 < l; ++k2)
+					{
+						Block block3 = p_76484_1_.getBlock(p_76484_3_, p_76484_4_ + k2, p_76484_5_);
 
-                        if (block3.isAir(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_) || block3.isLeaves(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_))
-                        {
-                            this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_, TragicBlocks.PaintedWood, 2);
-                        }
-                    }
+						if (block3.isAir(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_) || block3.isLeaves(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_))
+						{
+							this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_, TragicBlocks.PaintedWood, 2);
+						}
+					}
 
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

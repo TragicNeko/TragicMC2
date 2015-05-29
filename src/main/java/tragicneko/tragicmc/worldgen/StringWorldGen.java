@@ -5,20 +5,16 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.dimension.TragicWorldProvider;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class StringWorldGen implements IWorldGenerator {
-	
+
 	public final Block block;
 	public final int meta;
 	public final int iterations;
-	
+
 	public StringWorldGen(Block block, int meta, int iterations)
 	{
 		this.block = block;

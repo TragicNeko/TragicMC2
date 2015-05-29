@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.util.DamageHelper;
-import tragicneko.tragicmc.util.WorldHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -11,6 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityGuardianShield extends EntityProjectile {
 
@@ -33,18 +32,18 @@ public class EntityGuardianShield extends EntityProjectile {
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 		if (par2EntityLivingBase != null) this.setOwnerID(par2EntityLivingBase.getEntityId());
 	}
-	
+
 	@Override
 	protected void entityInit() {
 		this.dataWatcher.addObject(4, Integer.valueOf(0));
 	}
-	
+
 	private void setOwnerID(int i)
 	{
 		this.dataWatcher.updateObject(4, i);
 		this.updateOwner();
 	}
-	
+
 	public int getOwnerID()
 	{
 		return this.dataWatcher.getWatchableObjectInt(4);
@@ -133,14 +132,14 @@ public class EntityGuardianShield extends EntityProjectile {
 			this.motionFlag = true;
 			Vec3 vec3 = this.shootingEntity.getLookVec();
 
-			if (vec3 != null) 	
-			{ 	
-				this.motionX = vec3.xCoord; 	
-				this.motionY = vec3.yCoord; 	
-				this.motionZ = vec3.zCoord; 	
-				this.accelerationX = this.motionX * 0.1D; 	
-				this.accelerationY = this.motionY * 0.1D; 	
-				this.accelerationZ = this.motionZ * 0.1D; 	
+			if (vec3 != null)
+			{
+				this.motionX = vec3.xCoord;
+				this.motionY = vec3.yCoord;
+				this.motionZ = vec3.zCoord;
+				this.accelerationX = this.motionX * 0.1D;
+				this.accelerationY = this.motionY * 0.1D;
+				this.accelerationZ = this.motionZ * 0.1D;
 			}
 
 			return super.attackEntityFrom(src, dmg);
@@ -159,7 +158,7 @@ public class EntityGuardianShield extends EntityProjectile {
 	public void onUpdate()
 	{
 		if (this.worldObj.isRemote)
-		{			
+		{
 			for (int l = 0; l < 6; ++l)
 			{
 				this.worldObj.spawnParticle("crit", this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.855D), this.posY + rand.nextDouble() - rand.nextDouble() + 0.235D,
@@ -171,7 +170,7 @@ public class EntityGuardianShield extends EntityProjectile {
 		{
 			this.updateOwner();
 			if (this.shootingEntity == null) this.setDead();
-			
+
 			if (!this.motionFlag && this.shootingEntity != null)
 			{
 				this.motionX = this.shootingEntity.motionX;

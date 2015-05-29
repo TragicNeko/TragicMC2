@@ -21,7 +21,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -30,8 +29,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
@@ -62,7 +61,7 @@ public class EntityJabba extends TragicMob {
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -136,7 +135,7 @@ public class EntityJabba extends TragicMob {
 		int pow = this.getAttackTicks();
 		this.setAttackTicks(--pow);
 	}
-	
+
 	public int getWormTicks()
 	{
 		return this.dataWatcher.getWatchableObjectInt(19);
@@ -195,7 +194,7 @@ public class EntityJabba extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? jabbaStats[3] : jannaStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? jabbaStats[4] : jannaStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -206,7 +205,7 @@ public class EntityJabba extends TragicMob {
 	public void onLivingUpdate()
 	{
 		if (this.getWormTicks() > 0) this.motionX = this.motionZ = 0.0D;
-		
+
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -249,7 +248,7 @@ public class EntityJabba extends TragicMob {
 			if (this.getAngerTicks() >= 400 && this.getAttackTarget() != null)
 			{
 				if (this.ticksExisted % 100 == 0) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 1.5F * rand.nextFloat(), false);
-				if (this.ticksExisted % 40 == 0) this.spawnProjectiles();	
+				if (this.ticksExisted % 40 == 0) this.spawnProjectiles();
 				if (this.getAttackTicks() == 0) this.setAttackTicks(10);
 			}
 
@@ -267,12 +266,12 @@ public class EntityJabba extends TragicMob {
 					if (doom != null) doom.increaseDoom(-((this.rand.nextInt(3) + 1) * i));
 				}
 			}
-			
+
 			if (this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(32) == 0 && this.getAttackTicks() == 0)
 			{
 				this.setAttackTicks(60);
 			}
-			
+
 			if (this.getAttackTarget() == null && this.ticksExisted % 10 == 0 && rand.nextInt(48) == 0 && this.getWormTicks() == 0)
 			{
 				this.setWormTicks(60);
@@ -313,7 +312,7 @@ public class EntityJabba extends TragicMob {
 		}
 	}
 
-	protected void spawnProjectiles() 
+	protected void spawnProjectiles()
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
@@ -333,13 +332,13 @@ public class EntityJabba extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		if (this.getHealth() <= this.getMaxHealth() / 2) par2 /= 2;
 
 		Boolean result = super.attackEntityFrom(par1DamageSource, par2);
-		
+
 		if (result && this.getWormTicks() > 0) this.setWormTicks(0);
 
 		if (this.rand.nextInt(8) == 0 && this.worldObj.difficultySetting == EnumDifficulty.HARD && result)
@@ -442,37 +441,37 @@ public class EntityJabba extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return TragicConfig.allowJarra;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.jabba.squish";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.jabba.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.jabba.hurt";
-	} 
-	
+	}
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public float getSoundPitch()
 	{
 		return this.getJabbaType() == 0 ? super.getSoundPitch() : super.getSoundPitch() + 0.4F + rand.nextFloat();
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{

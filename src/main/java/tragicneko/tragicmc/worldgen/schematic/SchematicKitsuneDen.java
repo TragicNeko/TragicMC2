@@ -4,24 +4,17 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 
 public class SchematicKitsuneDen extends Schematic {
 
 	private static Block fox = TragicBlocks.SmoothNetherrack; //1 is chiseled, 2 is beveled, 3 is sculpted, 5 is molten
 	private static Block chest = Blocks.chest;
 	private static Block spawner = Blocks.mob_spawner;
-	private static Block summon = TragicBlocks.SummonBlock; //5 is the kitsune
-	
 	public SchematicKitsuneDen() {
 		super(12, 9, 9);
 	}
@@ -186,7 +179,7 @@ public class SchematicKitsuneDen extends Schematic {
 		world.setBlock(x + 3, y + 5, z + 3, fox, 1, 2); //Fills in the last four blocks to finish the top
 		world.setBlock(x - 3, y + 5, z + 3, fox, 1, 2);
 		world.setBlock(x + 3, y + 5, z - 3, fox, 1, 2);
-		world.setBlock(x - 3, y + 5, z - 3, fox, 1, 2); 
+		world.setBlock(x - 3, y + 5, z - 3, fox, 1, 2);
 
 		for (int y1 = 5; y1 < 7; y1++)
 		{
@@ -424,7 +417,7 @@ public class SchematicKitsuneDen extends Schematic {
 		world.setBlock(x + 2, y + 5, z + 2, fox, 1, 2); //Fills in the last four blocks to finish the top
 		world.setBlock(x - 2, y + 5, z + 2, fox, 1, 2);
 		world.setBlock(x + 2, y + 5, z - 2, fox, 1, 2);
-		world.setBlock(x - 2, y + 5, z - 2, fox, 1, 2); 
+		world.setBlock(x - 2, y + 5, z - 2, fox, 1, 2);
 
 		for (int y1 = 5; y1 < 7; y1++)
 		{

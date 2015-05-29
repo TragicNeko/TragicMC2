@@ -73,7 +73,7 @@ public class EntityFusea extends TragicMob {
 
 	@Override
 	public void onLivingUpdate()
-	{				
+	{
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)
@@ -106,11 +106,10 @@ public class EntityFusea extends TragicMob {
 			this.motionX = Math.min(Math.abs(d2), 0.46D) == Math.abs(d2) ? d2 : 0.46D  * (d2 < 0 ? -1 : 1);
 			double d3 = d1 / f2 * 0.33D * 0.11D + this.motionZ * 0.84D;
 			this.motionZ = Math.min(Math.abs(d3), 0.46D) == Math.abs(d3) ? d3 : 0.46D  * (d3 < 0 ? -1 : 1);
-			double d5 = d4 / f2 * 0.33D * 0.11D + this.motionY * 1.24D;
 			this.motionY = Math.min(Math.abs(d4), 0.66D) == Math.abs(d4) ? d4 : 0.66D  * (d4 < 0 ? -1 : 1);
 			if (this.isCollided) this.motionY += rand.nextDouble() - rand.nextDouble();
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
-			
+
 			if (this.superiorForm != null && this.getAttackTarget().getClass() == this.superiorForm.getClass()) this.setAttackTarget(null);
 		}
 		else
@@ -125,7 +124,7 @@ public class EntityFusea extends TragicMob {
 			this.motionZ *= 0.542D;
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
 		}
-		
+
 		int i = this.getAttackTarget() != null ? 15 : 25;
 		if (this.ticksExisted % i == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.fusea.hum", this.getAttackTarget() != null ? 1.4F : 0.8F, this.getAttackTarget() != null ? 0.2F : 1.0F);
 	}
@@ -150,7 +149,7 @@ public class EntityFusea extends TragicMob {
 		}
 
 		if (flag) return super.attackEntityFrom(src, 1000.0F);
-		
+
 		if ((src.getEntity() != null && !src.isExplosion() || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
 		{
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
@@ -185,7 +184,7 @@ public class EntityFusea extends TragicMob {
 	public void onStruckByLightning(EntityLightningBolt bolt) {
 		if (this.getHealth() < this.getMaxHealth()) this.setHealth(this.getHealth() + 1F);
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -198,40 +197,40 @@ public class EntityFusea extends TragicMob {
 		super.writeEntityToNBT(tag);
 		tag.setInteger("explosionBuffer", this.explosionBuffer);
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.fusea.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.fusea.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.fusea.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
+	}
 }

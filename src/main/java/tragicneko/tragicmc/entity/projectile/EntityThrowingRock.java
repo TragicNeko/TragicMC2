@@ -22,14 +22,14 @@ public class EntityThrowingRock extends EntityThrowable {
 		super(world, par2, par4, par6);
 		if (flag) this.setLavaRock();
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 	}
-	
+
 	public void setLavaRock()
 	{
 		this.dataWatcher.updateObject(16, 1);
@@ -43,7 +43,7 @@ public class EntityThrowingRock extends EntityThrowable {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		if (this.worldObj.isRemote) 
+		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 4; ++l) {
 				worldObj.spawnParticle("crit", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
@@ -51,7 +51,7 @@ public class EntityThrowingRock extends EntityThrowable {
 		}
 		else
 		{
-			if (mop.entityHit != null) 
+			if (mop.entityHit != null)
 			{
 				float f = 1.0F;
 

@@ -43,12 +43,12 @@ import tragicneko.tragicmc.entity.projectile.EntityWebBomb;
 public class ItemProjectile extends Item {
 
 	private static final String[] subNames = new String[] {"rock", "lavaRock", "pumpkinbomb", "largePumpkinbomb", "poisonBarb", "nekoRocket", "nekoStickyBomb", "nekoClusterBomb",
-			"nekoMiniBomb", "solarBomb", "spiritCast", "spore", "banana", "largeRock", "icicle", "timeBomb", "starShard", "darkLightning", "pitchBlack", "darkEnergy",
-			"darkMortor", "webBomb", "crystalMortor", "overlordMortor", "ireEnergy"};
+		"nekoMiniBomb", "solarBomb", "spiritCast", "spore", "banana", "largeRock", "icicle", "timeBomb", "starShard", "darkLightning", "pitchBlack", "darkEnergy",
+		"darkMortor", "webBomb", "crystalMortor", "overlordMortor", "ireEnergy"};
 
 	private static final String[] textureNames = new String[] {"Rock", "LavaRock", "Pumpkinbomb", "LargePumpkinbomb", "PoisonBarb", "NekoRocket", "NekoStickyBomb", "NekoClusterBomb",
-			"NekoMiniBomb", "SolarBomb", "SpiritCast", "Spore", "Banana", "LargeRock", "Icicle", "TimeBomb", "StarShard", "DarkLightning", "PitchBlack", "DarkEnergy", 
-			"DarkMortor", "WebBomb", "CrystalMortor", "OverlordMortor", "IreEnergy"};
+		"NekoMiniBomb", "SolarBomb", "SpiritCast", "Spore", "Banana", "LargeRock", "Icicle", "TimeBomb", "StarShard", "DarkLightning", "PitchBlack", "DarkEnergy",
+		"DarkMortor", "WebBomb", "CrystalMortor", "OverlordMortor", "IreEnergy"};
 
 	private static IIcon[] iconArray = new IIcon[subNames.length];
 
@@ -62,7 +62,7 @@ public class ItemProjectile extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (world.isRemote) return stack;
 
@@ -85,7 +85,7 @@ public class ItemProjectile extends Item {
 
 		Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
 		MovingObjectPosition mop = world.func_147447_a(vec3, vec31, true, false, true);
-		
+
 
 		double x = mop.hitVec.xCoord - player.posX;
 		double y = mop.hitVec.yCoord - player.posY;
@@ -201,8 +201,8 @@ public class ItemProjectile extends Item {
 	@Override
 	public IIcon getIconFromDamage(int damage)
 	{
-		if (damage >= this.iconArray.length) damage = this.iconArray.length - 1;
-		return this.iconArray[damage];
+		if (damage >= ItemProjectile.iconArray.length) damage = ItemProjectile.iconArray.length - 1;
+		return ItemProjectile.iconArray[damage];
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class ItemProjectile extends Item {
 	{
 		for (int i = 0; i < subNames.length; i++)
 		{
-			this.iconArray[i] = register.registerIcon("tragicmc:Projectile" + textureNames[i]);
+			ItemProjectile.iconArray[i] = register.registerIcon("tragicmc:Projectile" + textureNames[i]);
 		}
 	}
 

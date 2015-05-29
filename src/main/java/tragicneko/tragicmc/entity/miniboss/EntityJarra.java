@@ -21,7 +21,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		this.experienceValue = 20;
 		this.isImmuneToFire = false;
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -52,7 +52,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	{
 		return this.isBurning();
 	}
-	
+
 	@Override
 	protected void setJabbaType(int i)
 	{
@@ -70,7 +70,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(jarraStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(jarraStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -86,7 +86,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 		}
 
 		super.onLivingUpdate();
-		
+
 		if (this.worldObj.isRemote)
 		{
 			this.setSize(0.725F * 1.585F, 0.825F * 1.585F);
@@ -96,7 +96,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	@Override
 	protected void doParticleEffects() {
 		if (this.getAngerTicks() == 0) return;
-		
+
 		for (int l = 0; l < 3; ++l)
 		{
 			this.worldObj.spawnParticle("witchMagic",
@@ -110,7 +110,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	}
 
 	@Override
-	protected void spawnProjectiles() 
+	protected void spawnProjectiles()
 	{
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
@@ -140,19 +140,19 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityJabba.class;
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 0.4F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.2F + rand.nextFloat() * 0.1F;
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{

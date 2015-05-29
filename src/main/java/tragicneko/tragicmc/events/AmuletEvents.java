@@ -2,12 +2,11 @@ package tragicneko.tragicmc.events;
 
 import static tragicneko.tragicmc.TragicMC.rand;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -71,7 +70,7 @@ public class AmuletEvents {
 
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
-		if (event.entity instanceof EntityPlayer) 
+		if (event.entity instanceof EntityPlayer)
 		{
 			PropertyAmulets amu = PropertyAmulets.get((EntityPlayer) event.entity);
 
@@ -92,7 +91,7 @@ public class AmuletEvents {
 	}
 
 	@SubscribeEvent
-	public void onLivingDeathEvent(PlayerEvent.Clone event) 
+	public void onLivingDeathEvent(PlayerEvent.Clone event)
 	{
 		if (!event.entity.worldObj.isRemote && TragicConfig.allowAmulets) {
 			if (PropertyAmulets.get(event.original) != null)
@@ -164,9 +163,8 @@ public class AmuletEvents {
 				if (o instanceof IAttributeInstance)
 				{
 					ia = (IAttributeInstance) o;
-					for (int i = 0; i < AmuletHelper.uuids.length; i++)
-					{
-						ia.removeModifier(new AttributeModifier(AmuletHelper.uuids[i], ia.getAttribute().getAttributeUnlocalizedName(), 0, 0));
+					for (UUID uuid : AmuletHelper.uuids) {
+						ia.removeModifier(new AttributeModifier(uuid, ia.getAttribute().getAttributeUnlocalizedName(), 0, 0));
 					}
 				}
 			}
@@ -239,7 +237,7 @@ public class AmuletEvents {
 	}
 
 	public static void doAmuletEffect(int id, PropertyAmulets amu, ItemAmulet amulet, EntityPlayer player, World world, int slot, int level)
-	{				
+	{
 		if (id == 0 && TragicConfig.amuKitsune && player.ticksExisted % 60 == 0)
 		{
 			if (player.isBurning()) player.extinguish();
@@ -332,11 +330,10 @@ public class AmuletEvents {
 					{
 						EntityMob entity = (EntityMob) list.get(x);
 
-						for (int z = 0; z < effects.length; z++)
-						{
-							if (effects[z] != null)
+						for (PotionEffect effect : effects) {
+							if (effect != null)
 							{
-								entity.addPotionEffect(effects[z]);
+								entity.addPotionEffect(effect);
 							}
 						}
 					}
@@ -411,7 +408,7 @@ public class AmuletEvents {
 			else if (level == 2 && player.ticksExisted % 40 == 0)
 			{
 				flag = true;
-			}						
+			}
 			else if (level == 3 && player.ticksExisted % 20 == 0)
 			{
 				flag = true;
@@ -507,7 +504,7 @@ public class AmuletEvents {
 			if (player.isPotionActive(Potion.resistance) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
 		}
 		else if (id == 19 && TragicConfig.amuSpider)
-		{	      
+		{
 			double d0 = level == 1 ? 0.03 : (level == 2 ? 0.5 : 0.11);
 			if (player.isCollidedHorizontally)
 			{
@@ -541,7 +538,7 @@ public class AmuletEvents {
 		}
 		else if (id == 22 && TragicConfig.amuOverlord && TragicConfig.allowHacked)
 		{
-			if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id); 
+			if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id);
 		}
 		else if (id == 25 && player.ticksExisted % 600 == 0 && TragicConfig.amuSupernatural)
 		{
@@ -571,7 +568,7 @@ public class AmuletEvents {
 			}
 		}
 		else if (id == 26 && TragicConfig.amuUndead)
-		{			
+		{
 			if (world.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ) && world.isDaytime() && player.ticksExisted % 10 == 0)
 			{
 				player.setFire(8 + rand.nextInt(4));
@@ -1032,11 +1029,10 @@ public class AmuletEvents {
 			inv.dropAllAmulets();
 			inv.markDirty();
 		}
-		
+
 		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
-			EntityLiving ent = (EntityLiving) event.entityLiving;
 			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
 			try
@@ -1056,7 +1052,7 @@ public class AmuletEvents {
 			catch (Exception e)
 			{
 				TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck attribute.", e);
-			}			
+			}
 		}
 	}
 

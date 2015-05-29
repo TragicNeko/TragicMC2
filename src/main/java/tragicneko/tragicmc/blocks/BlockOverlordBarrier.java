@@ -26,7 +26,7 @@ public class BlockOverlordBarrier extends Block {
 		this.setLightLevel(10.0F);
 		this.setLightOpacity(0);
 	}
-	
+
 	@Override
 	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z)
 	{
@@ -56,7 +56,7 @@ public class BlockOverlordBarrier extends Block {
 	{
 		if (!world.isRemote) world.scheduleBlockUpdate(x, y, z, this, 45 + world.rand.nextInt(16));
 	}
-	
+
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
 	{
@@ -69,13 +69,13 @@ public class BlockOverlordBarrier extends Block {
 	{
 		return 1;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
-	
+
 	@Override
 	public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_) {}
 }

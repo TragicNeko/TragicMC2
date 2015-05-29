@@ -45,15 +45,15 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 		}
 		else
 		{
-			if (mop.entityHit != null) 
-			{			
+			if (mop.entityHit != null)
+			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5.0F);
 				if (mop.entityHit instanceof EntityLivingBase)
 				{
 					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 200 + rand.nextInt(160)));
 				}
 			}
-			
+
 			int random = rand.nextInt(8) + 6;
 
 			if (this.getThrower() != null)
@@ -69,7 +69,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 			}
-			
+
 			this.setDead();
 		}
 	}
@@ -86,7 +86,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 			this.setDead();
 		}
 
-		if (!inGround) 
+		if (!inGround)
 		{
 			this.airTicks++;
 
@@ -107,9 +107,9 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 
 			for (int l = 0; l < random; l++)
 			{
-				double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX; 
+				double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX;
 				double d1 = (MathHelper.getRandomIntegerInRange(rand, 0, 6) + this.posY) - this.posY;
-				double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ; 
+				double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ;
 
 				if (this.getThrower() != null && !this.worldObj.isRemote)
 				{

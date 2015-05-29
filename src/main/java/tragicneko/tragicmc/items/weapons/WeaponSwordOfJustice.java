@@ -25,16 +25,16 @@ public class WeaponSwordOfJustice extends ItemSword {
 		this.setMaxDamage(1);
 		this.setCreativeTab(TragicMC.Creative);
 	}
-	
+
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
-    {
+	{
 		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote) entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entity2), Float.MAX_VALUE);
 		if (entity2 instanceof EntityPlayer && !entity.worldObj.isRemote && !((EntityPlayer) entity2).capabilities.isCreativeMode) stack.stackSize--;
 		return true;
-    }
-	
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
@@ -48,24 +48,24 @@ public class WeaponSwordOfJustice extends ItemSword {
 	{
 		return true;
 	}
-	
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
 		if (world.isRemote) return;
-		
+
 		if (!stack.isItemEnchanted())
 		{
 			if (TragicConfig.allowReach) stack.addEnchantment(TragicEnchantments.Reach, 10);
 			stack.addEnchantment(Enchantment.looting, 10);
 		}
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote) return par1ItemStack;
-		
+
 		if (par3EntityPlayer.capabilities.isCreativeMode && par3EntityPlayer.canCommandSenderUseCommand(2, ""))
 		{
 			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(128.0, 128.0, 128.0));

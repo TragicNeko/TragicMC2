@@ -11,7 +11,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
@@ -26,7 +25,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 		this.experienceValue = 20;
 		this.setSize(1.5F * 1.585F, 1.5F * 1.585F);
 	}
-	
+
 	@Override
 	protected void applyEntityAttributes()
 	{
@@ -66,7 +65,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 			for (int[] coords : list)
 			{
 				block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
-				
+
 				if (block.getMaterial() == Material.water || block instanceof BlockIce)
 				{
 					this.volatype = 2;
@@ -121,7 +120,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 						d1 = rand.nextInt(4) - rand.nextInt(4);
 						d2 = rand.nextInt(4) - rand.nextInt(4);
 					}
-					
+
 					EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.worldObj, this, d0, d1, d2);
 					this.worldObj.spawnEntityInWorld(entitysmallfireball);
 				}
@@ -135,7 +134,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 						d1 = rand.nextInt(4) - rand.nextInt(4);
 						d2 = rand.nextInt(4) - rand.nextInt(4);
 					}
-					
+
 					EntityIcicle icicle = new EntityIcicle(this.worldObj, this, d0, d1, d2);
 					this.worldObj.spawnEntityInWorld(icicle);
 				}
@@ -149,14 +148,14 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 						d1 = rand.nextInt(4) - rand.nextInt(4) + this.posY;
 						d2 = rand.nextInt(4) - rand.nextInt(4) + this.posZ;
 					}
-					
+
 					this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, d0, d1, d2, this));
 				}
 				break;
 			}
 		}
 	}
-	
+
 	@Override
 	protected boolean isChangeAllowed() {
 		return false;
@@ -166,7 +165,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityFusea.class;
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{

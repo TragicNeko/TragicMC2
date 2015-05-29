@@ -22,7 +22,7 @@ public class ItemNourishmentSacrifice extends Item {
 	{
 		par2List.add("Sacrifice some Hunger for Doom");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
@@ -49,13 +49,13 @@ public class ItemNourishmentSacrifice extends Item {
 				{
 					property.increaseDoom((int) amount);
 				}
-				
+
 				par3EntityPlayer.getFoodStats().addStats(-par3EntityPlayer.getFoodStats().getFoodLevel() + 1, 0.0F);
 				if (TragicConfig.allowMalnourish) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Malnourish.id, 600, 0));
 				if (TragicConfig.allowConvergence) par3EntityPlayer.addPotionEffect(new PotionEffect(TragicPotion.Convergence.id, 300));
-				
+
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
-				
+
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Hunger sacrificed!"));
 			}
 		}

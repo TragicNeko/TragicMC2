@@ -2,13 +2,10 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
@@ -16,9 +13,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockIceSpike extends Block {
-	
+
 	private final boolean onGround;
 
 	public BlockIceSpike(boolean flag) {
@@ -32,14 +31,14 @@ public class BlockIceSpike extends Block {
 		this.setStepSound(soundTypeStone);
 		this.setLightOpacity(0);
 	}
-	
+
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z)
 	{
 		if (!this.onGround && world.getBlock(x, y + 1, z).isSideSolid(world, x, y + 1, z, ForgeDirection.SOUTH)) return true;
 		return this.onGround && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z);
 	}
-	
+
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
@@ -49,19 +48,19 @@ public class BlockIceSpike extends Block {
 			world.setBlock(x, y, z, TragicBlocks.IceSpikeHanging, 0, 4);
 		}
 	}
-	
+
 	@Override
 	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float distance)
 	{
 		if (this.onGround) entity.attackEntityFrom(DamageSource.cactus, distance * 1.5F);
-	}	
-	
+	}
+
 	@Override
 	public int getRenderType()
 	{
 		return 1;
 	}
-	
+
 	@Override
 	public boolean canHarvestBlock(EntityPlayer player, int meta)
 	{
@@ -72,19 +71,19 @@ public class BlockIceSpike extends Block {
 	{
 		return true;
 	}
-	
+
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
 		return Item.getItemFromBlock(TragicBlocks.IceSpike);
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side)

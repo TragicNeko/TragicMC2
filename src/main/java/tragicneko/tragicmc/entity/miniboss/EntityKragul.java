@@ -56,7 +56,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(kragulStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kragulStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -68,7 +68,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	{
 		super.onLivingUpdate();
 
-		if (this.worldObj.isRemote) return; 
+		if (this.worldObj.isRemote) return;
 
 		++this.timeSinceFiring;
 
@@ -91,7 +91,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 				this.timeSinceFiring = 0;
 			}
 		}
-		
+
 		if (this.getAttackTarget() != null && this.ticksExisted % 40 == 0 && rand.nextInt(16) == 0) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 	}
 
@@ -123,7 +123,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 
 		return result;
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);

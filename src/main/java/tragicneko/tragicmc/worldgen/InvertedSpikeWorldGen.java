@@ -10,13 +10,13 @@ import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class InvertedSpikeWorldGen implements IWorldGenerator {
-	
+
 	public final int iterations;
 	public final double radius;
 	public final double variation;
 	public final double regression;
 	public final double cutoff;
-	
+
 	public InvertedSpikeWorldGen(int relays, double radius, double var, double regress, double cutoff)
 	{
 		this.iterations = relays;
@@ -70,7 +70,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 						flag = true;
 					}
 				}
-				
+
 				if (random.nextBoolean())
 				{
 					if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like
@@ -108,7 +108,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 					if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 				}
 			}
-			
+
 			for (int[] coords : cands) world.setBlockToAir(coords[0], coords[1], coords[2]);
 		}
 
@@ -143,7 +143,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 				if (!material.isLiquid() && material != Material.air && !cands.contains(coords)) cands.add(coords);
 			}
 		}
-		
+
 		for (int[] coords : cands) world.setBlockToAir(coords[0], coords[1], coords[2]);
 	}
 }

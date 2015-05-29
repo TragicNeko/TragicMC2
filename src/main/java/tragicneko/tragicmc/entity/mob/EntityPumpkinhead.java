@@ -162,10 +162,9 @@ public class EntityPumpkinhead extends TragicMob {
 						this.worldObj.spawnParticle("flame", this.posX + d0 * d3, this.posY + d1 * d3 + 1.45D, this.posZ + d2 * d3, 0.0, 0.0, 0.0);
 					}
 				}
-				
+
 				for (int i = 0; i < 2; i++)
 				{
-					double d3 = 0.23D * i;
 					this.worldObj.spawnParticle("flame", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY, this.posZ + rand.nextDouble() - rand.nextDouble(),
 							0.0, rand.nextDouble() * 0.175D, 0.0);
 				}
@@ -196,7 +195,7 @@ public class EntityPumpkinhead extends TragicMob {
 			this.setAngerTicks(0);
 			this.resetModValue();
 		}
-		
+
 		if (!this.hasHomePumpkin())
 		{
 			this.detachHome();
@@ -277,12 +276,12 @@ public class EntityPumpkinhead extends TragicMob {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 
 		if (result && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && !par1DamageSource.isMagicDamage())
@@ -340,43 +339,43 @@ public class EntityPumpkinhead extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public int getMaxSpawnedInChunk()
 	{
 		return 1;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return this.isAngry() ? "tragicmc:mob.pumpkinhead.angry" : "tragicmc:mob.pumpkinhead.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.pumpkinhead.hiss";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.pumpkinhead.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 0.8F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.4F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

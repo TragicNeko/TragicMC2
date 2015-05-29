@@ -34,7 +34,7 @@ public class ModelGreaterStin extends ModelBase
 		ModelRenderer bodyThickness = new ModelRenderer(this, 0, 30);
 		bodyThickness.addBox(-4F, 2F, 0F, 8, 8, 13);
 		body.addChild(bodyThickness);
-		
+
 		ModelRenderer backSpike = new ModelRenderer(this, 0, 18);
 		backSpike.addBox(0F, -6F, 5F, 2, 8, 2);
 		backSpike.rotateAngleX = 0.2230717F;
@@ -60,7 +60,7 @@ public class ModelGreaterStin extends ModelBase
 		ModelRenderer neckThickness2 = new ModelRenderer(this, 32, 80);
 		neckThickness2.addBox(-1F, -18F, -5F, 2, 17, 6);
 		head.addChild(neckThickness2);
-		
+
 		ModelRenderer neckSpike = new ModelRenderer(this, 0, 18);
 		neckSpike.addBox(-1F, -11F, -5F, 2, 12, 2);
 		neckSpike.rotateAngleX = 0.5205006F;
@@ -216,7 +216,7 @@ public class ModelGreaterStin extends ModelBase
 
 			if (stin.isCharging() && stin.getChargeTicks() >= 170)
 			{
-				body.rotateAngleX = 0.2F; 
+				body.rotateAngleX = 0.2F;
 				legFL.rotateAngleX = legValues[1] - 0.2F;
 				legFR.rotateAngleX = legValues[0] - 0.2F;
 				legML.rotateAngleX = legValues[2] - 0.2F;
@@ -240,7 +240,7 @@ public class ModelGreaterStin extends ModelBase
 				legML.rotateAngleX = legValues[2] + this.simplifyAngle(f + 2.0F, 3.0F) * 0.093F * f1;
 				legBL.rotateAngleX = legValues[5] + this.simplifyAngle(f + 3.0F, 3.0F) * 0.093F * f1;
 			}
-		} 
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

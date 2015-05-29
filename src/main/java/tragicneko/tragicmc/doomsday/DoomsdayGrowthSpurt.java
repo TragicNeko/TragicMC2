@@ -9,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -26,7 +25,7 @@ public class DoomsdayGrowthSpurt extends Doomsday {
 
 		float plantCount = 0.0F;
 		int[] coords;
-		
+
 		double radius = crucMoment ? 12.0D : 7.0D;
 		List<int[]> list =  WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 

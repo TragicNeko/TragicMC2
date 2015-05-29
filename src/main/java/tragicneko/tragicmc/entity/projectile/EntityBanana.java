@@ -29,15 +29,15 @@ public class EntityBanana extends EntityThrowable {
 	protected void onImpact(MovingObjectPosition mop) {
 
 		if (this.worldObj.isRemote)
-		{ 
-			for (int l = 0; l < 4; ++l) 
+		{
+			for (int l = 0; l < 4; ++l)
 			{
 				worldObj.spawnParticle("crit", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 			}
 		}
 		else
 		{
-			if (mop.entityHit != null) 
+			if (mop.entityHit != null)
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 			}
@@ -47,7 +47,7 @@ public class EntityBanana extends EntityThrowable {
 				this.onGround = true;
 				this.inGround = true;
 			}
-			
+
 			this.setDead();
 		}
 	}

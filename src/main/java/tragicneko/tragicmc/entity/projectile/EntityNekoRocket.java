@@ -34,8 +34,8 @@ public class EntityNekoRocket extends EntityProjectile {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (this.worldObj.isRemote) return;
 
-		if (mop.entityHit != null) 
-		{			
+		if (mop.entityHit != null)
+		{
 			if (mop.entityHit == this.shootingEntity) return;
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 		}
@@ -60,7 +60,7 @@ public class EntityNekoRocket extends EntityProjectile {
 			{
 				this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
 				this.setDead();
-			}			
+			}
 		}
 
 		super.onUpdate();
@@ -87,9 +87,9 @@ public class EntityNekoRocket extends EntityProjectile {
 			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 			this.posX -= this.motionX / f2 * 0.0000000074505806D;
 			this.posY -= this.motionY / f2 * 0.00000000074505806D;
-			this.posZ -= this.motionZ / f2 * 0.0000000074505806D; 
+			this.posZ -= this.motionZ / f2 * 0.0000000074505806D;
 		}
-		
+
 		if (this.isInWater())
 		{
 			if (this.worldObj.isRemote)

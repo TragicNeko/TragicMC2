@@ -3,7 +3,6 @@ package tragicneko.tragicmc.client.model;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 
 public class ModelPumpkinhead extends ModelBiped
@@ -75,17 +74,17 @@ public class ModelPumpkinhead extends ModelBiped
 		this.bipedLeftLeg.rotateAngleX = 0F;
 		this.bipedRightLeg.rotateAngleY = 0F;
 		this.bipedRightArm.rotateAngleX = -1.55F * this.simplifyAngle(f, 15.0F) * f1;
-		
+
 		if (this.isRiding)
-        {
+		{
 			this.bipedRightArm.rotateAngleX = -1.11F;
 			this.bipedLeftArm.rotateAngleX = -1.11F;
-            this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-            this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-            this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
-            this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
-        }
-		
+			this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+			this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+			this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+			this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
+		}
+
 		if (Math.abs(entity.motionX) > 0.05 || Math.abs(entity.motionZ) > 0.05 || Math.abs(entity.motionY) > 0.01)
 		{
 			this.bipedCloak.rotateAngleX = 0.185931F + 0.8F * this.simplifyAngle(entity.ticksExisted, 10.0F) * f1;

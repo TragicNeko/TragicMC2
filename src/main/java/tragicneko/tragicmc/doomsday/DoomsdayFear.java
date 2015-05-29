@@ -7,10 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -22,8 +18,8 @@ public class DoomsdayFear extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
-	{		
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
+	{
 		double d0 = crucMoment ? 32.0D : 6.0D;
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
 
@@ -54,6 +50,7 @@ public class DoomsdayFear extends Doomsday {
 		if (TragicConfig.allowFear) player.addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 120, 1));
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Symbiosis;
 	}

@@ -3,8 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class DoomsdayBeastlyImpulses extends Doomsday {
@@ -14,7 +12,7 @@ public class DoomsdayBeastlyImpulses extends Doomsday {
 	}
 
 	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		int d0 = 12;
 		d0 /= this.getCrisis(player);

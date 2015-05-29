@@ -124,7 +124,7 @@ public class EntityArchangel extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
@@ -152,7 +152,7 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.getHoverTicks() > 0) this.motionX = this.motionY = this.motionZ = 0;		
+		if (this.getHoverTicks() > 0) this.motionX = this.motionY = this.motionZ = 0;
 
 		super.onLivingUpdate();
 
@@ -212,24 +212,24 @@ public class EntityArchangel extends TragicMob {
 			{
 				if (this.getAttackTarget() != null)
 				{
-					this.waypointX = this.getAttackTarget().posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-					this.waypointY = this.getAttackTarget().posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-					this.waypointZ = this.getAttackTarget().posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+					this.waypointX = this.getAttackTarget().posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+					this.waypointY = this.getAttackTarget().posY + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+					this.waypointZ = this.getAttackTarget().posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
 				}
 				else
 				{
-					this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
-					this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
-					this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
+					this.waypointX = this.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
+					this.waypointY = this.posY + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
+					this.waypointZ = this.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
 
 					if (this.waypointY - WorldHelper.getDistanceToGround(this) >= 20) this.waypointY -= 10;
 				}
-			}			
+			}
 
 			if (this.courseChangeCooldown-- <= 0)
 			{
 				this.courseChangeCooldown += this.rand.nextInt(5) + 2;
-				d3 = (double)MathHelper.sqrt_double(d3);
+				d3 = MathHelper.sqrt_double(d3);
 
 				if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
 				{
@@ -250,7 +250,6 @@ public class EntityArchangel extends TragicMob {
 			if (this.getAttackTarget() != null && this.getAttackTarget().getDistanceSqToEntity(this) < d4 * d4 && this.getAttackTarget().getDistanceToEntity(this) > 6.0F && this.getHoverTicks() == 0)
 			{
 				double d5 = this.getAttackTarget().posX - this.posX;
-				double d6 = this.getAttackTarget().boundingBox.minY + (double)(this.getAttackTarget().height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
 				double d7 = this.getAttackTarget().posZ - this.posZ;
 				this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(d5, d7)) * 180.0F / (float)Math.PI;
 
@@ -262,7 +261,7 @@ public class EntityArchangel extends TragicMob {
 			}
 		}
 		else
-		{	
+		{
 			this.setHoverTicks(this.getHoverTicks() - 1);
 			this.hoverBuffer = 80 + (int) (120 * (this.getHealth() / this.getMaxHealth()));
 
@@ -270,7 +269,7 @@ public class EntityArchangel extends TragicMob {
 			{
 				this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 			}
-			
+
 			if (this.getHoverTicks() % 15 == 0)
 			{
 				this.playSound("tragicmc:mob.archangel.low", 0.6F, 1.0F);
@@ -278,8 +277,8 @@ public class EntityArchangel extends TragicMob {
 			}
 
 			if (this.getAttackTarget() == null || this.getAttackTarget().isDead || !this.canEntityBeSeen(this.getAttackTarget())) this.setHoverTicks(0);
-			
-			
+
+
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
@@ -306,7 +305,7 @@ public class EntityArchangel extends TragicMob {
 		double d6 = (this.waypointZ - this.posZ) / p_70790_7_;
 		AxisAlignedBB axisalignedbb = this.boundingBox.copy();
 
-		for (int i = 1; (double)i < p_70790_7_; ++i)
+		for (int i = 1; i < p_70790_7_; ++i)
 		{
 			axisalignedbb.offset(d4, d5, d6);
 
@@ -374,9 +373,9 @@ public class EntityArchangel extends TragicMob {
 			}
 
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double)f2;
-			this.motionY *= (double)f2;
-			this.motionZ *= (double)f2;
+			this.motionX *= f2;
+			this.motionY *= f2;
+			this.motionZ *= f2;
 		}
 
 		this.prevLimbSwingAmount = this.limbSwingAmount;

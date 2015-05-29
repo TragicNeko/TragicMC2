@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicConfig;
@@ -26,7 +25,7 @@ public class StructureWorldGen implements IWorldGenerator {
 		int z = chunkZ * 16 + random.nextInt(16);
 
 		int top = world.getTopSolidOrLiquidBlock(x, z);
-		ArrayList<Structure> cands = new ArrayList<Structure>();		
+		ArrayList<Structure> cands = new ArrayList<Structure>();
 
 		for (Structure s : Structure.structureList)
 		{
@@ -39,7 +38,7 @@ public class StructureWorldGen implements IWorldGenerator {
 				}
 			}
 		}
-		
+
 		if (cands.isEmpty()) return;
 
 		Collections.shuffle(cands, random);

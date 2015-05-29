@@ -4,7 +4,6 @@ import static tragicneko.tragicmc.TragicConfig.abominationStats;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -39,7 +38,7 @@ public class EntityAbomination extends TragicMob {
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 1.0D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 	}
-	
+
 	@Override
 	public boolean canCorrupt()
 	{
@@ -50,10 +49,10 @@ public class EntityAbomination extends TragicMob {
 	public void onKillEntity(EntityLivingBase entity)
 	{
 		super.onKillEntity(entity);
-		
+
 		int ticks = (int) entity.getMaxHealth();
 		this.setCelebrationTicks(ticks + rand.nextInt(10));
-		
+
 		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
 		EntityAbomination mob;
 
@@ -63,7 +62,7 @@ public class EntityAbomination extends TragicMob {
 			{
 				mob = (EntityAbomination) list.get(i);
 				if (mob.getAttackTarget() == entity) mob.setCelebrationTicks(ticks + rand.nextInt(10) - rand.nextInt(10));
-				
+
 			}
 		}
 	}
@@ -166,7 +165,7 @@ public class EntityAbomination extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		if (this.isCelebrating()) this.setCelebrationTicks(0);
@@ -227,7 +226,7 @@ public class EntityAbomination extends TragicMob {
 	{
 		return (int) abominationStats[5];
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -253,31 +252,31 @@ public class EntityAbomination extends TragicMob {
 	{
 		return "tragicmc:mob.abomination.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.abomination.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.abomination.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

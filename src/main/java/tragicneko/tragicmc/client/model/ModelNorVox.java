@@ -94,7 +94,7 @@ public class ModelNorVox extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		if (!(entity instanceof EntityNorVox) && !(entity instanceof EntityClaymation)) return;
-		
+
 		int firing = 0;
 		int nod = 0;
 		int attack = 0;

@@ -1,9 +1,7 @@
 package tragicneko.tragicmc.items.weapons;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,11 +9,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -36,7 +33,7 @@ public class TragicWeapon extends ItemSword {
 		this.setCreativeTab(TragicMC.Survival);
 		this.material = material;
 	}
-	
+
 	public TragicWeapon(ToolMaterial material, Doomsday dday, Doomsday dday2)
 	{
 		this(material, dday);
@@ -55,11 +52,11 @@ public class TragicWeapon extends ItemSword {
 
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	{		
+	{
 		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
-			
+
 			if (lore != null)
 			{
 				LoreHelper.splitDesc(par2List, lore, 32, LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack)));
@@ -70,7 +67,7 @@ public class TragicWeapon extends ItemSword {
 		if (TragicConfig.allowDoomsdays && this.doomsday != null)
 		{
 			EnumChatFormatting format;
-			
+
 			if (this.doomsday2 != null)
 			{
 				format = doomsday2.getDoomsdayType().getFormat();
@@ -79,7 +76,7 @@ public class TragicWeapon extends ItemSword {
 				par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday2.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
 				par2List.add(""); //extra space in between
 			}
-			
+
 			format = doomsday.getDoomsdayType().getFormat();
 			par2List.add(format + doomsday.getLocalizedType() + ": " + doomsday.getLocalizedName());
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
@@ -90,8 +87,8 @@ public class TragicWeapon extends ItemSword {
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{		
-		if (world.isRemote || !(entity instanceof EntityPlayer)) return; 
+	{
+		if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 		updateAsWeapon(stack, world, entity, numb, flag);
 	}
 
@@ -156,11 +153,11 @@ public class TragicWeapon extends ItemSword {
 	{
 		return this.doomsday2;
 	}
-	
+
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase entity2)
-    {
+	{
 		if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return false;
 		return super.hitEntity(stack, entity, entity2);
-    }
+	}
 }

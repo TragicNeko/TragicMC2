@@ -19,7 +19,7 @@ public class MessageHandlerAttack implements IMessageHandler<MessageAttack, IMes
 			Entity entity = player.worldObj.getEntityByID(message.entityID);
 			if (entity != null)
 			{
-				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return null; 
+				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) return null;
 				player.attackTargetEntityWithCurrentItem(entity);
 			}
 		}

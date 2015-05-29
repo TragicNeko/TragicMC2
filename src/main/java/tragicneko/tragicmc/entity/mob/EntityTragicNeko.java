@@ -30,7 +30,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
 import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 
 public class EntityTragicNeko extends TragicMob {
-	
+
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifierAmts[9], 0);
 
 	public EntityTragicNeko(World par1World) {
@@ -189,7 +189,7 @@ public class EntityTragicNeko extends TragicMob {
 		if (this.getAttackTarget() != null)
 		{
 			if (this.getFlickTime() > 0) this.setFlickTime(0);
-			
+
 			if (this.getFiringTicks() == 40)
 			{
 				this.doMissleAttack();
@@ -199,7 +199,7 @@ public class EntityTragicNeko extends TragicMob {
 				this.throwRandomProjectile();
 				this.setThrowingTicks(20);
 			}
-			
+
 			int i = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 16;
 
 			if (rand.nextInt(i) == 0 && this.canFire() && this.ticksExisted % 10 == 0 && this.getThrowingTicks() == 0 && this.getAttackTime() == 0
@@ -213,12 +213,12 @@ public class EntityTragicNeko extends TragicMob {
 			if (this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0) this.setFlickTime(10);
 			this.setFiringTicks(35);
 		}
-		
+
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.isAboutToFire() || this.getThrowingTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-		
+
 	}
-	
+
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
@@ -240,7 +240,7 @@ public class EntityTragicNeko extends TragicMob {
 			for (int i = 0; i < x; i++)
 			{
 				EntityNekoClusterBomb bomb = new EntityNekoClusterBomb(this.worldObj);
-				
+
 				bomb.posY = this.posY + 0.15;
 				bomb.posX = this.posX + rand.nextDouble() - rand.nextDouble();
 				bomb.posZ = this.posZ + rand.nextDouble() - rand.nextDouble();
@@ -268,7 +268,7 @@ public class EntityTragicNeko extends TragicMob {
 		this.worldObj.spawnEntityInWorld(rocket);
 	}
 
-	private void throwRandomProjectile() 
+	private void throwRandomProjectile()
 	{
 		EntityThrowable theProjectile = null;
 
@@ -287,7 +287,7 @@ public class EntityTragicNeko extends TragicMob {
 			theProjectile = new EntityNekoMiniBomb(this.worldObj, this);
 			break;
 		}
-		
+
 		theProjectile.motionX = (this.getAttackTarget().posX - this.posX) * 0.335D;
 		theProjectile.motionZ = (this.getAttackTarget().posZ - this.posZ) * 0.335D;
 		theProjectile.motionY = (this.getAttackTarget().posY - this.posY) * 0.335D;
@@ -326,9 +326,9 @@ public class EntityTragicNeko extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (par1DamageSource.isExplosion() || this.worldObj.isRemote) return false;
-		
+
 		if (this.getFiringTicks() < 60) this.setFiringTicks(61);
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
 		if (result) this.setAttackTime(10);
@@ -345,7 +345,7 @@ public class EntityTragicNeko extends TragicMob {
 		if (result) this.setAttackTime(10);
 		return result;
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -375,31 +375,31 @@ public class EntityTragicNeko extends TragicMob {
 	{
 		return "tragicmc:mob.tragicneko.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return rand.nextInt(4) == 0 ? "tragicmc:mob.tragicneko.hurt" : "game.hostile.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.tragicneko.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

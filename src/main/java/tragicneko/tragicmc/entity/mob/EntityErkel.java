@@ -41,14 +41,14 @@ public class EntityErkel extends TragicMob {
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.45D));
 	}
-	
+
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.getDataWatcher().addObject(16, Integer.valueOf(0));
 	}
-	
+
 	@Override
 	protected void applyEntityAttributes()
 	{
@@ -59,13 +59,13 @@ public class EntityErkel extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(erkelStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(erkelStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
 		return (int) erkelStats[5];
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
@@ -73,7 +73,7 @@ public class EntityErkel extends TragicMob {
 		{
 			((EntityLivingBase) source.getEntity()).addPotionEffect(new PotionEffect(Potion.poison.id, 120, 0));
 		}
-		
+
 		if (this.worldObj.isRemote)
 		{
 			for (int i = 0; i < 2; i++)
@@ -84,7 +84,7 @@ public class EntityErkel extends TragicMob {
 		}
 		return super.attackEntityFrom(source, damage);
 	}
-	
+
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
@@ -105,7 +105,7 @@ public class EntityErkel extends TragicMob {
 		if (this.worldObj.isRemote)
 		{
 			String s = "mobSpellAmbient";
-			
+
 			for (int i = 0; i < 2; i++)
 			{
 				this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
@@ -119,7 +119,7 @@ public class EntityErkel extends TragicMob {
 				int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
 				int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-				
+
 				if (this.worldObj.isAirBlock(x, y, z) || this.worldObj.getBlock(x, y, z) instanceof BlockTallGrass)
 				{
 					if (Blocks.brown_mushroom.canBlockStay(this.worldObj, x, y, z)) this.worldObj.setBlock(x, y, z, rand.nextBoolean() ? Blocks.brown_mushroom : Blocks.red_mushroom);
@@ -127,13 +127,13 @@ public class EntityErkel extends TragicMob {
 			}
 		}
 	}
-	
+
 	@Override
 	protected boolean isValidLightLevel()
-    {
-        return true;
-    }
-	
+	{
+		return true;
+	}
+
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
@@ -163,27 +163,27 @@ public class EntityErkel extends TragicMob {
 		{
 			i = 6;
 		}
-		
+
 		this.setTextureId(i);
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	private void setTextureId(int i)
 	{
 		this.getDataWatcher().updateObject(16, i);
 	}
-	
+
 	public int getTextureId()
 	{
 		return this.getDataWatcher().getWatchableObjectInt(16);
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("texture")) this.setTextureId(tag.getInteger("texture"));
 	}
-	
+
 	@Override
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
@@ -195,43 +195,43 @@ public class EntityErkel extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.tox.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.tox.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.tox.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.9F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.2F + rand.nextFloat() * 0.1F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		super.func_145780_a(x, y, z, block);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

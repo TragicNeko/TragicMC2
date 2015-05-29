@@ -34,7 +34,7 @@ public class DoomsdayToxicity extends Doomsday {
 
 					for (int j = 0; j < 4; j ++)
 					{
-						double d0 = entity.posX - player.posX; 
+						double d0 = entity.posX - player.posX;
 						double d1 = entity.posY - player.posY + 0.65;
 						double d2 = entity.posZ - player.posZ;
 
@@ -43,7 +43,7 @@ public class DoomsdayToxicity extends Doomsday {
 						player.worldObj.spawnEntityInWorld(fireball);
 					}
 				}
-			}	
+			}
 		}
 		else
 		{

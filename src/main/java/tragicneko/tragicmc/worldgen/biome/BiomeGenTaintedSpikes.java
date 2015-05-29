@@ -20,7 +20,7 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 	private final InvertedSpikeWorldGen scarGen;
 	private final RuggedTerrainWorldGen ruggedGen;
 	private final IsleWorldGen isleGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.45F, 0.05F}, {0.35F, -0.95F}, {1.85F, 0.45F}, {0.05F, 0.65F}, {0.25F, -0.65F}};
 
 	public BiomeGenTaintedSpikes(int par1, int par2) {
@@ -32,7 +32,7 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.temperature = 1.8F;
 		this.rainfall = 2.0F;
 		this.theBiomeDecorator.mushroomsPerChunk = variant == 1 ? 16 : 2;
-		this.heightVariation = heights[variant][0]; 
+		this.heightVariation = heights[variant][0];
 		this.rootHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.ErodedStone;

@@ -10,7 +10,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
@@ -21,11 +20,11 @@ import tragicneko.tragicmc.worldgen.PitWorldGen;
 import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
 
 public class BiomeGenScorchedWasteland extends TragicBiome {
-	
+
 	public final SurfaceWorldGen2 fireGen;
 	public final PitWorldGen pitGen;
 	public final InvertedSpikeWorldGen scarGen;
-	
+
 	public static final float[][] heights = new float[][] {{0.15F, 0.05F}, {0.05F, -0.45F}, {0.45F, -0.05F}};
 
 	public BiomeGenScorchedWasteland(int par1, int par2) {
@@ -39,7 +38,7 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		this.enableRain = false;
 		this.temperature = 2.0F;
 		this.rainfall = 0.0F;
-		this.heightVariation = heights[variant][0]; 
+		this.heightVariation = heights[variant][0];
 		this.rootHeight = heights[variant][1];
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = -999;
@@ -54,7 +53,7 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		
+
 		int Xcoord = (x * 16) + rand.nextInt(16);
 		int Zcoord = (z * 16) + rand.nextInt(16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) - 1;

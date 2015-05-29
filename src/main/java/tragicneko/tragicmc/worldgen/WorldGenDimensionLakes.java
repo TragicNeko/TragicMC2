@@ -2,7 +2,6 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -10,6 +9,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import tragicneko.tragicmc.TragicBlocks;
 
 public class WorldGenDimensionLakes extends WorldGenerator {
 

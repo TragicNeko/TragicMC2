@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.entity.projectile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -16,6 +13,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class EntityProjectile extends Entity
 {
@@ -223,7 +222,7 @@ public abstract class EntityProjectile extends Entity
 			this.motionZ *= f2;
 			this.worldObj.spawnParticle(this.getParticleString(), this.posX, this.posY + 0.25D, this.posZ, 0.0D, 0.0D, 0.0D);
 			this.setPosition(this.posX, this.posY, this.posZ);
-			
+
 			if (this.ticksExisted > 600) this.setDead();
 		}
 	}
@@ -322,19 +321,19 @@ public abstract class EntityProjectile extends Entity
 			{
 				Vec3 vec3 = par1DamageSource.getEntity().getLookVec();
 
-				if (vec3 != null) 	
-				{ 	
-					this.motionX = vec3.xCoord; 	
-					this.motionY = vec3.yCoord; 	
-					this.motionZ = vec3.zCoord; 	
-					this.accelerationX = this.motionX * 0.1D; 	
-					this.accelerationY = this.motionY * 0.1D; 	
-					this.accelerationZ = this.motionZ * 0.1D; 	
-				} 	
+				if (vec3 != null)
+				{
+					this.motionX = vec3.xCoord;
+					this.motionY = vec3.yCoord;
+					this.motionZ = vec3.zCoord;
+					this.accelerationX = this.motionX * 0.1D;
+					this.accelerationY = this.motionY * 0.1D;
+					this.accelerationZ = this.motionZ * 0.1D;
+				}
 
-				if (par1DamageSource.getEntity() instanceof EntityLivingBase) 	
-				{ 	
-					this.shootingEntity = (EntityLivingBase)par1DamageSource.getEntity(); 	
+				if (par1DamageSource.getEntity() instanceof EntityLivingBase)
+				{
+					this.shootingEntity = (EntityLivingBase)par1DamageSource.getEntity();
 				}
 
 				return true;

@@ -27,7 +27,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 		super(par1World);
 		this.experienceValue = 12;
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -149,9 +149,9 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		boolean flag = false;
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
@@ -223,10 +223,10 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityCryse.class;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
-    }
+	}
 }

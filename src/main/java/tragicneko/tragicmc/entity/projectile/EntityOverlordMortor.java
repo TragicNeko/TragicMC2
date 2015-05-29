@@ -3,7 +3,6 @@ package tragicneko.tragicmc.entity.projectile;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -12,7 +11,6 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
-import tragicneko.tragicmc.entity.miniboss.EntityAegar;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityOverlordMortor extends EntityProjectile {
@@ -41,8 +39,8 @@ public class EntityOverlordMortor extends EntityProjectile {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (mop == null || this.worldObj.isRemote) return;
 
-		if (mop.entityHit != null) 
-		{			
+		if (mop.entityHit != null)
+		{
 			if (mop.entityHit == this.shootingEntity && this.shootingEntity != null) return;
 
 			if (mop.entityHit instanceof EntityLivingBase && ((EntityLivingBase) mop.entityHit).getCreatureAttribute() != TragicEntities.Synapse)
@@ -127,7 +125,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 			this.posX -= this.motionX / f2 * 0.0000000074505806D;
 			this.posY -= this.motionY / f2 * 0.00000000074505806D;
-			this.posZ -= this.motionZ / f2 * 0.0000000074505806D; 
+			this.posZ -= this.motionZ / f2 * 0.0000000074505806D;
 		}
 	}
 

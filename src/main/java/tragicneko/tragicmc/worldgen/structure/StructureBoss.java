@@ -1,8 +1,5 @@
 package tragicneko.tragicmc.worldgen.structure;
 
-import java.util.Random;
-
-import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 

@@ -29,7 +29,7 @@ public class DoomsdayEvacuation extends Doomsday {
 			double x = entity.posX;
 			double y = entity.posY;
 			double z = entity.posZ;
-			
+
 			if (!(entity instanceof EntityLivingBase)) continue;
 
 			label0: for (int y1 = 0; y1 < 24; y1++)
@@ -56,7 +56,7 @@ public class DoomsdayEvacuation extends Doomsday {
 											!player.worldObj.isAnyLiquid(bb))
 									{
 										mp.playerNetServerHandler.setPlayerLocation(x + x1, y + y1, z + z1, mp.rotationYaw, mp.rotationPitch);
-										
+
 										mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 										mp.fallDistance = 0.0F;
 										player.worldObj.playSoundAtEntity(mp, "tragicmc:mob.stin.teleport", 0.4F, 0.4F);

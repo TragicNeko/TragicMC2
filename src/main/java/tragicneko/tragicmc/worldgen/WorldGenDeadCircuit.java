@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -22,7 +21,7 @@ public class WorldGenDeadCircuit extends WorldGenerator
 
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z)
-	{		
+	{
 		ArrayList<int[]> cands;
 		Block block = world.getBlock(x, y, z);
 		if (block != CircuitBlock) return false;

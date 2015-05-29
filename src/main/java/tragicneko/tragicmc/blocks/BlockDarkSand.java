@@ -19,20 +19,20 @@ public class BlockDarkSand extends BlockSand {
 		this.setCreativeTab(TragicMC.Survival);
 		this.setStepSound(soundTypeSand);
 	}
-	
+
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List list)
 	{
 		list.add(new ItemStack(item));
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
 		return this.blockIcon;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister regi)

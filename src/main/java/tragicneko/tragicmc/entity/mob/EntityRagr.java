@@ -161,20 +161,20 @@ public class EntityRagr extends TragicMob {
 	{
 		this.playSound("tragicmc:mob.ragr.jump", this.getSoundVolume(), 0.8F);
 		this.motionY = this.getAngerTicks() > 600 ? rand.nextDouble() * 1.055 + 0.455 : 0.545;
-		if (this.isPotionActive(Potion.jump))this.motionY += (double)((float)(this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+		if (this.isPotionActive(Potion.jump))this.motionY += (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
 
 		if (this.isSprinting())
 		{
 			float f = this.rotationYaw * 0.017453292F;
-			this.motionX -= (double)(MathHelper.sin(f) * 0.2F);
-			this.motionZ += (double)(MathHelper.cos(f) * 0.2F);
+			this.motionX -= MathHelper.sin(f) * 0.2F;
+			this.motionZ += MathHelper.cos(f) * 0.2F;
 		}
 
 		this.isAirBorne = true;
 	}
 
 	@Override
-	protected void fall(float par1) 
+	protected void fall(float par1)
 	{
 		if (this.worldObj.isRemote) return;
 
@@ -197,7 +197,7 @@ public class EntityRagr extends TragicMob {
 
 		int x = (int) this.posX;
 		int y = (int) this.posY;
-		int z = (int) this.posZ;		
+		int z = (int) this.posZ;
 		par1 = MathHelper.clamp_float(par1 / 2.0F, 1.0F, 4.0F);
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, par1, x, y, z);
 		int[] coords;
@@ -277,7 +277,7 @@ public class EntityRagr extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();

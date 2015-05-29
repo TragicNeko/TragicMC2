@@ -183,7 +183,7 @@ public class ModelTox extends ModelBase
 	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
 	{
 		if (!(entity instanceof EntityTox)) return;
-		
+
 		EntityTox tox = (EntityTox) entity;
 		Random rand = tox.worldObj.rand;
 
@@ -211,17 +211,17 @@ public class ModelTox extends ModelBase
 					rootParts[i].rotateAngleX = 0.065F * (this.simplifyAngle(tox.getAttackTime(), 2.5F) + rand.nextFloat() - rand.nextFloat());
 					rootParts[i].rotateAngleZ = 0.065F * (this.simplifyAngle(tox.getAttackTime(), 2.5F) + rand.nextFloat() - rand.nextFloat());
 				}
-				
+
 				for (int i = 0; i < leafParts.length; i++)
 				{
 					leafParts[i].rotateAngleX = leafDefaults[i][0] + 0.465F * this.simplifyAngle(tox.getAttackTime(), 5.0F);
 					leafParts[i].rotateAngleY = leafDefaults[i][1];
 					leafParts[i].rotateAngleZ = leafDefaults[i][2];
 				}
-				
+
 				mouthTop.rotateAngleX = 0.465F * this.simplifyAngle(tox.getAttackTime(), 5.0F);
 				mouthBottom.rotateAngleX = 0.3717861F + 0.465F * this.simplifyAngle(tox.getAttackTime(), 5.0F);
-				
+
 			}
 			else
 			{
@@ -230,7 +230,7 @@ public class ModelTox extends ModelBase
 					rootParts[i].rotateAngleX = 0.0F;
 					rootParts[i].rotateAngleZ = 0.0F;
 				}
-				
+
 				if (tox.isFiring())
 				{
 					mouthBottom.rotateAngleX = 0.6725F;
@@ -253,7 +253,7 @@ public class ModelTox extends ModelBase
 					}
 				}
 			}
-		}		
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

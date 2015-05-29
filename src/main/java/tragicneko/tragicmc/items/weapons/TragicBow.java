@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicBow extends ItemBow {
-	
+
 	public final Doomsday doomsday;
 	@SideOnly(Side.CLIENT)
 	protected IIcon[] iconArray;
@@ -27,14 +27,14 @@ public class TragicBow extends ItemBow {
 		this.setMaxDamage(dmg);
 		this.doomsday = dday;
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
-			
+
 			if (lore != null)
 			{
 				LoreHelper.splitDesc(par2List, lore, 32, LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack)));
@@ -51,10 +51,10 @@ public class TragicBow extends ItemBow {
 			par2List.add(""); //extra space
 		}
 	}
-	
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{		
+	{
 		TragicWeapon.updateAsWeapon(stack, world, entity, numb, flag);
 	}
 }

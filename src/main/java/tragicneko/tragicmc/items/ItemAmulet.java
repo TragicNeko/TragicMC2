@@ -19,8 +19,8 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.util.AmuletHelper;
 
 import com.google.common.collect.Sets;
@@ -71,7 +71,7 @@ public class ItemAmulet extends Item {
 		return true;
 	}
 
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int pass)
@@ -141,7 +141,7 @@ public class ItemAmulet extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister regi)
-	{		
+	{
 		for (int i = 0; i < 4; i++)
 		{
 			this.iconArray[i][0] = regi.registerIcon("tragicmc:Amulet" + (i + 1));
@@ -176,22 +176,22 @@ public class ItemAmulet extends Item {
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{		
-		if (world.isRemote || !(entity instanceof EntityPlayer)) return; 
+	{
+		if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setInteger("amuletLevel", getDefaultLevels(this.amuletID));
 		if (TragicConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
 	}
-	
+
 	public void applyModifiersToItemStack(ItemStack stack)
 	{
 		NBTTagList taglist = new NBTTagList();
 		NBTTagCompound tag;
-		
+
 		IAttribute atr = AmuletHelper.getRandomAttribute();
 		AttributeModifier mod = AmuletHelper.getRandomModifier(atr);
-		
+
 		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
@@ -203,10 +203,10 @@ public class ItemAmulet extends Item {
 			tag = AmuletHelper.writeAttributeModifierToNBT(atr.getAttributeUnlocalizedName(), mod);
 			taglist.appendTag(tag);
 		}
-		
+
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
-		
+
 		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance2)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
@@ -218,10 +218,10 @@ public class ItemAmulet extends Item {
 			tag = AmuletHelper.writeAttributeModifierToNBT(atr.getAttributeUnlocalizedName(), mod);
 			taglist.appendTag(tag);
 		}
-		
+
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
-		
+
 		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance3)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
@@ -233,7 +233,7 @@ public class ItemAmulet extends Item {
 			tag = AmuletHelper.writeAttributeModifierToNBT(atr.getAttributeUnlocalizedName(), mod);
 			taglist.appendTag(tag);
 		}
-		
+
 		stack.getTagCompound().setTag("AttributeModifiers", taglist);
 	}
 

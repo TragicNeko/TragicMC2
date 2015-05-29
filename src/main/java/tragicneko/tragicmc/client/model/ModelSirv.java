@@ -40,7 +40,7 @@ public class ModelSirv extends ModelBase
 		ModelRenderer armRightFist = new ModelRenderer(this, 6, 14);
 		armRightFist.addBox(-1F, 9F, -1F, 1, 8, 2);
 		armRight.addChild(armRightFist);
-		
+
 		armLeft = new ModelRenderer(this, 0, 12);
 		armLeft.addBox(0F, 0F, -0.5F, 1, 9, 1);
 		armLeft.setRotationPoint(2F, -1F, 0F);
@@ -54,7 +54,7 @@ public class ModelSirv extends ModelBase
 		ModelRenderer legRightFoot = new ModelRenderer(this, 0, 0);
 		legRightFoot.addBox(-0.5F, 8F, -0.5F, 1, 9, 2);
 		legRight.addChild(legRightFoot);
-		
+
 		legLeft = new ModelRenderer(this, 0, 0);
 		legLeft.addBox(-0.5F, 0F, -0.5F, 1, 8, 1);
 		legLeft.setRotationPoint(1F, 7F, 0F);
@@ -84,7 +84,7 @@ public class ModelSirv extends ModelBase
 		legLeft.rotateAngleX = -0.85F * this.simplifyAngle(f, 10.0F) * f1;
 		legRight.rotateAngleX = 0.85F * this.simplifyAngle(f, 10.0F) * f1;
 	}
-	
+
 	@Override
 	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
 	{

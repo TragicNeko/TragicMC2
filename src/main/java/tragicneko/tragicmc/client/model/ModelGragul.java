@@ -13,7 +13,6 @@ public class ModelGragul extends ModelBase
 	private ModelRenderer leftNub;
 	private ModelRenderer leftLeg;
 	private ModelRenderer rightLeg;
-	private ModelRenderer lightLeg;
 	private ModelRenderer eye;
 	private ModelRenderer jaw;
 
@@ -60,17 +59,17 @@ public class ModelGragul extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		
+
 		if (!(entity instanceof EntityGragul)) return;
 		int i = entity.ticksExisted;
-		
+
 		this.leftLeg.rotateAngleZ = -0.075F * this.simplifyAngle(i, 15.0F) * f1;
 		this.rightLeg.rotateAngleZ = 0.075F * this.simplifyAngle(i, 15.0F) * f1;
 		this.leftNub.rotateAngleX = -0.075F * this.simplifyAngle(i, 15.0F) * f1;
 		this.rightNub.rotateAngleX = 0.075F * this.simplifyAngle(i, 15.0F) * f1;
 		this.body.rotateAngleZ = 0.165F * this.simplifyAngle(i, 30.0F) * f1;
 	}
-	
+
 	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);

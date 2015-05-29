@@ -27,9 +27,9 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenSynapse;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenTaintedSpikes;
 
 public class TragicBiome extends BiomeGenBase {
-	
+
 	protected final int variant;
-	
+
 	public static BiomeGenBase DecayingHills, DecayingValley, DecayingWasteland, DecayingMountains;
 	public static BiomeGenBase PaintedForest, PaintedPlains, PaintedHills, PaintedClearing;
 	public static BiomeGenBase AshenMountains, AshenHills, AshenBadlands;
@@ -93,11 +93,10 @@ public class TragicBiome extends BiomeGenBase {
 	public void genTerrainBlocks(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
 	{
 		this.genTragicBiomeTerrain(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
-	} 
+	}
 
 	public final void genTragicBiomeTerrain(World world, Random rand, Block[] blockArray, byte[] byteArray, int x, int y, double z)
 	{
-		boolean flag = true;
 		Block block = this.topBlock;
 		byte b0 = (byte)(this.field_150604_aj & 255);
 		Block block1 = this.fillerBlock;
@@ -170,57 +169,57 @@ public class TragicBiome extends BiomeGenBase {
 			}
 		}
 	}
-	
+
 	public static void load()
 	{
 		DecayingHills = new BiomeGenDecayingWasteland(TragicConfig.idDecayingHills, 0).setBiomeName("tragicmc.decayingHills");
 		DecayingValley = new BiomeGenDecayingWasteland(TragicConfig.idDecayingValley, 1).setBiomeName("tragicmc.decayingValley");
 		DecayingWasteland = new BiomeGenDecayingWasteland(TragicConfig.idDecayingWasteland, 2).setBiomeName("tragicmc.decayingWasteland");
 		DecayingMountains = new BiomeGenDecayingWasteland(TragicConfig.idDecayingMountains, 3).setBiomeName("tragicmc.decayingMountains");
-		
+
 		PaintedForest = new BiomeGenPaintedForest(TragicConfig.idPaintedForest, 0).setBiomeName("tragicmc.paintedForest");
 		PaintedPlains = new BiomeGenPaintedForest(TragicConfig.idPaintedPlains, 1).setBiomeName("tragicmc.paintedPlains");
 		PaintedHills = new BiomeGenPaintedForest(TragicConfig.idPaintedHills, 2).setBiomeName("tragicmc.paintedHills");
 		PaintedClearing = new BiomeGenPaintedForest(TragicConfig.idPaintedClearing, 3).setBiomeName("tragicmc.paintedClearing");
-		
+
 		AshenMountains = new BiomeGenAshenHills(TragicConfig.idAshenMountains, 0).setBiomeName("tragicmc.ashenMountains");
 		AshenHills = new BiomeGenAshenHills(TragicConfig.idAshenHills, 1).setBiomeName("tragicmc.ashenHills");
 		AshenBadlands = new BiomeGenAshenHills(TragicConfig.idAshenBadlands, 2).setBiomeName("tragicmc.ashenBadlands");
-		
+
 		StarlitPrarie = new BiomeGenStarlitPrarie(TragicConfig.idStarlitPrarie, 0).setBiomeName("tragicmc.starlitPrarie");
 		StarlitPlateaus = new BiomeGenStarlitPrarie(TragicConfig.idStarlitPlateaus, 1).setBiomeName("tragicmc.starlitPlateaus");
 		StarlitCliffs = new BiomeGenStarlitPrarie(TragicConfig.idStarlitCliffs, 2).setBiomeName("tragicmc.starlitCliffs");
 		StarlitLowlands = new BiomeGenStarlitPrarie(TragicConfig.idStarlitLowlands, 3).setBiomeName("tragicmc.starlitLowlands");
-		
+
 		TaintedSpikes = new BiomeGenTaintedSpikes(TragicConfig.idTaintedSpikes, 0).setBiomeName("tragicmc.taintedSpikes");
 		TaintedLowlands = new BiomeGenTaintedSpikes(TragicConfig.idTaintedLowlands, 1).setBiomeName("tragicmc.taintedLowlands");
 		TaintedRises = new BiomeGenTaintedSpikes(TragicConfig.idTaintedRises, 2).setBiomeName("tragicmc.taintedRises");
 		TaintedScarlands = new BiomeGenTaintedSpikes(TragicConfig.idTaintedScarlands, 3).setBiomeName("tragicmc.taintedScarlands");
 		TaintedIsles = new BiomeGenTaintedSpikes(TragicConfig.idTaintedIsles, 4).setBiomeName("tragicmc.taintedIsles");
-		
+
 		Synapse = new BiomeGenSynapse(TragicConfig.idSynapse).setBiomeName("tragicmc.synapse");
-		
+
 		HallowedHills = new BiomeGenHallowedHills(TragicConfig.idHallowedHills, 0).setBiomeName("tragicmc.hallowedHills");
 		HallowedForest = new BiomeGenHallowedHills(TragicConfig.idHallowedForest, 1).setBiomeName("tragicmc.hallowedForest");
 		HallowedPrarie = new BiomeGenHallowedHills(TragicConfig.idHallowedPrarie, 2).setBiomeName("tragicmc.hallowedPrarie");
 		HallowedCliffs = new BiomeGenHallowedHills(TragicConfig.idHallowedCliffs, 3).setBiomeName("tragicmc.hallowedCliffs");
-		
+
 		ScorchedWastelands = new BiomeGenScorchedWasteland(TragicConfig.idScorchedWastelands, 0).setBiomeName("tragicmc.scorchedWastelands");
 		ScorchedValley = new BiomeGenScorchedWasteland(TragicConfig.idScorchedValley, 1).setBiomeName("tragicmc.scorchedValley");
 		ScorchedScarlands = new BiomeGenScorchedWasteland(TragicConfig.idScorchedScarlands, 2).setBiomeName("tragicmc.scorchedScarlands");
-		
+
 		CorrodedSteppe = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedSteppe, 0).setBiomeName("tragicmc.corrodedSteppe");
 		CorrodedHeights = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedHeights, 1).setBiomeName("tragicmc.corrodedHeights");
 		CorrodedVeld = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedVeld, 2).setBiomeName("tragicmc.corrodedVeld");
 		CorrodedRunoff = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedRunoff, 3).setBiomeName("tragicmc.corrodedRunoff");
 		CorrodedFallout = new BiomeGenCorrodedSteppe(TragicConfig.idCorrodedFallout, 4).setBiomeName("tragicmc.corrodedFallout");
-		
+
 		FrozenTundra = new BiomeGenFrozenTundra(TragicConfig.idFrozenTundra, 0).setBiomeName("tragicmc.frozenTundra");
 		FrozenHills = new BiomeGenFrozenTundra(TragicConfig.idFrozenHills, 1).setBiomeName("tragicmc.frozenHills");
 		FrozenDepths = new BiomeGenFrozenTundra(TragicConfig.idFrozenDepths, 2).setBiomeName("tragicmc.frozenDepths");
-		
+
 		Crystal = new BiomeGenCrystal(TragicConfig.idCrystal).setBiomeName("tragicmc.crystal");
-		
+
 		DarkForest = new BiomeGenDarkForest(TragicConfig.idDarkForest, 0).setBiomeName("tragicmc.darkForest");
 		DarkForestHills = new BiomeGenDarkForest(TragicConfig.idDarkForestHills, 1).setBiomeName("tragicmc.darkForestHills");
 		DarkMarsh = new BiomeGenDarkForest(TragicConfig.idDarkMarsh, 2).setBiomeName("tragicmc.darkMarsh");

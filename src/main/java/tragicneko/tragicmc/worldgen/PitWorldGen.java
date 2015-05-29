@@ -4,27 +4,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.util.WorldHelper;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenCorrodedSteppe;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class PitWorldGen implements IWorldGenerator {
-	
+
 	public final Block block;
 	public final int meta;
 	public final int depth;
 	public final int depthVar;
 	public final double radius;
 	public final double variation;
-	
+
 	public PitWorldGen(Block block, int meta, int depth, int depthVar, double radius, double variation)
 	{
 		this.block = block;
@@ -60,7 +53,7 @@ public class PitWorldGen implements IWorldGenerator {
 				{
 					coords = list.get(mapping);
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
-				} 
+				}
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
@@ -69,7 +62,7 @@ public class PitWorldGen implements IWorldGenerator {
 			{
 				coords = list.get(mapping);
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
-			} 
+			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 

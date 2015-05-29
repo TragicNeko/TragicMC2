@@ -228,7 +228,7 @@ public class TragicBlocks {
 	public static Block DarkTallGrass;
 
 	public static void load()
-	{		
+	{
 		if (TragicConfig.mobsOnly)
 		{
 			SummonBlock = (new BlockSummon());
@@ -695,7 +695,7 @@ public class TragicBlocks {
 		for (BiomeGenBase b : biomes)
 		{
 			boolean flag = !(b instanceof BiomeGenJungle);
-			boolean flag2 = !(b instanceof BiomeGenTaiga); 
+			boolean flag2 = !(b instanceof BiomeGenTaiga);
 			boolean flag3 = !(b instanceof BiomeGenPlains);
 			boolean flag4 = b != BiomeGenBase.roofedForest && b != BiomeGenBase.swampland;
 

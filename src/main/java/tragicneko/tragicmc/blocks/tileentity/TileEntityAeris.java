@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.items.ItemCorruptedEgg;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -24,7 +23,7 @@ public class TileEntityAeris extends TileEntity {
 		{
 			corruptedTicks++;
 			this.worldObj.getChunkFromBlockCoords(this.xCoord, this.zCoord).inhabitedTime += 100;
-			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0D); 
+			EntityPlayer player = this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 16.0D);
 
 			if (this.corruptedTicks % 300 == 0 && player != null && this.corruptedTicks < 3000)
 			{

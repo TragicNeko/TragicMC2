@@ -13,7 +13,7 @@ public class DoomsdayRavage extends Doomsday {
 	public DoomsdayRavage(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
 	}
-	
+
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
@@ -43,6 +43,7 @@ public class DoomsdayRavage extends Doomsday {
 		player.worldObj.createExplosion(null, player.posX, player.posY, player.posZ, rand.nextFloat() * 1.5F, TragicConfig.griefConfigs[1]);
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.DangerZone;
 	}

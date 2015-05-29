@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import tragicneko.tragicmc.client.model.ModelEnyvil;
 
 public class RenderEnyvil extends RenderBoss {
-	
+
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Enyvil.png");
 
 	public RenderEnyvil() {

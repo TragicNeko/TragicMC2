@@ -24,7 +24,7 @@ public class DoomsdayKurayami extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 }

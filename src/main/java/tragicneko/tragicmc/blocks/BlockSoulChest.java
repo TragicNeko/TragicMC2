@@ -1,8 +1,6 @@
 package tragicneko.tragicmc.blocks;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockChest;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.inventory.IInventory;
@@ -12,6 +10,8 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.tileentity.TileEntitySoulChest;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSoulChest extends BlockChest {
 
@@ -19,24 +19,24 @@ public class BlockSoulChest extends BlockChest {
 		super(open);
 		this.setCreativeTab(TragicMC.Creative);
 	}
-	
+
 	@Override
 	public int getRenderType()
-    {
-        return 42;
-    }
-	
+	{
+		return 42;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister reg)
-    {
-        this.blockIcon = reg.registerIcon("tragicmc:SoulChest");
-    }
+	public void registerBlockIcons(IIconRegister reg)
+	{
+		this.blockIcon = reg.registerIcon("tragicmc:SoulChest");
+	}
 
 	@Override
 	public IInventory func_149951_m(World world, int x, int y, int z)
 	{
-		Object object = (TileEntityChest)world.getTileEntity(x, y, z);
+		Object object = world.getTileEntity(x, y, z);
 
 		if (object == null)
 		{
@@ -87,13 +87,13 @@ public class BlockSoulChest extends BlockChest {
 			return (IInventory)object;
 		}
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
-    {
-        TileEntitySoulChest tileentitychest = new TileEntitySoulChest(30);
-        return tileentitychest;
-    }
-	
-	
+	{
+		TileEntitySoulChest tileentitychest = new TileEntitySoulChest(30);
+		return tileentitychest;
+	}
+
+
 }

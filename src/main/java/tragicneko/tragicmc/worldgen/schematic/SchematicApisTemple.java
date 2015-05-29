@@ -7,7 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 
 public class SchematicApisTemple extends Schematic {
 
@@ -252,7 +251,7 @@ public class SchematicApisTemple extends Schematic {
 		//First layer chest gen
 		this.applyChestContents(world, rand, x + 4, y, z + 4, TragicItems.BossStructureHook);
 		this.applyChestContents(world, rand, x + 4, y, z + 5, TragicItems.BossStructureHook);
-		
+
 		y++;
 		//Second layer
 		x -= 1;
@@ -306,7 +305,7 @@ public class SchematicApisTemple extends Schematic {
 		//Seventh row
 		world.setBlock(x, y, z - 3, brick, rand.nextInt(3), 2);
 		world.setBlock(x, y, z - 2, brick, rand.nextInt(3), 2);
-		world.setBlock(x, y, z, brick, 3, 2); 
+		world.setBlock(x, y, z, brick, 3, 2);
 		world.setBlock(x, y, z + 9, brick, 3, 2);
 		world.setBlock(x, y, z + 11, brick, rand.nextInt(3), 2);
 		world.setBlock(x, y, z + 12, brick, rand.nextInt(3), 2);
@@ -927,7 +926,7 @@ public class SchematicApisTemple extends Schematic {
 		//Seventh layer
 
 		//Seventh row
-		world.setBlock(x, y, z, brick, 3, 2); 
+		world.setBlock(x, y, z, brick, 3, 2);
 		world.setBlock(x, y, z + 1, brick, rand.nextInt(3), 2);
 		world.setBlock(x, y, z + 2, brick, rand.nextInt(3), 2);
 		world.setBlock(x, y, z + 3, brick, rand.nextInt(3), 2);
@@ -975,7 +974,7 @@ public class SchematicApisTemple extends Schematic {
 		world.setBlock(x + 9, y, z + 9, brick, rand.nextInt(3), 2);
 
 		//Seventeenth row
-		world.setBlock(x + 10, y, z, brick, 3, 2); 
+		world.setBlock(x + 10, y, z, brick, 3, 2);
 		world.setBlock(x + 10, y, z + 1, brick, rand.nextInt(3), 2);
 		world.setBlock(x + 10, y, z + 2, brick, rand.nextInt(3), 2);
 		world.setBlock(x + 10, y, z + 3, brick, rand.nextInt(3), 2);

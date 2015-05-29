@@ -16,7 +16,7 @@ public abstract class Schematic {
 	public int width;
 	public int height;
 	public int structureHeight;
-	
+
 	//public int offsetX;
 	//public int offsetY;
 	//public int offsetZ;
@@ -31,7 +31,7 @@ public abstract class Schematic {
 		this.structureHeight = structureHeight;
 		//this.fillMatrices();
 	}
-	
+
 	/*
 	public abstract void fillMatrices();
 
@@ -77,13 +77,13 @@ public abstract class Schematic {
 	{
 		int h = this.height;
 		int w = this.width;
-		
+
 		for (int m = 0; m < layers.size(); m++)
 		{
 			BlockPreset[][] matrix = layers.get(m);
 			BlockPreset[][] newMatrix = new BlockPreset[h][w];
 			BlockPreset preset;
-			
+
 			for (int i = 0; i < h; i++)
 			{
 				for (int k = 0; k < w; k++)
@@ -131,7 +131,7 @@ public abstract class Schematic {
 	public boolean applyChestContents(World world, Random rand, int x, int y, int z, ChestGenHooks hook)
 	{
 		if (y <= 0 || y >= 256) return false;
-		
+
 		TileEntityChest tileentity = (TileEntityChest)world.getTileEntity(x, y, z);
 		if (tileentity != null)
 		{
@@ -144,14 +144,14 @@ public abstract class Schematic {
 			return false;
 		}
 	}
-	
+
 	public boolean addSignContents(World world, int x, int y, int z, int line, String text) {
 		TileEntitySign sign = (TileEntitySign) world.getTileEntity(x, y, z);
 		if (sign == null || line > 4) return false;
 		sign.signText[line] = text;
 		return true;
 	}
-	
+
 	public boolean setSpawnerMob(World world, int x, int y, int z, String mobName)
 	{
 		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
@@ -159,7 +159,7 @@ public abstract class Schematic {
 		spawner.func_145881_a().setEntityName(mobName);
 		return true;
 	}
-	
+
 	/*
 	public static class BlockPreset {
 

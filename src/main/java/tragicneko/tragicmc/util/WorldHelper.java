@@ -14,9 +14,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
-
-import com.google.common.collect.Sets;
 
 public class WorldHelper {
 
@@ -112,8 +109,8 @@ public class WorldHelper {
 	 * @param z
 	 * @return
 	 */
-	public static ArrayList<int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z) 
-	{		
+	public static ArrayList<int[]> getBlocksInCircularRange(World world, double radius, double x, double y, double z)
+	{
 		ArrayList<int[]> list = new ArrayList();
 		if (radius <= 0) throw new IllegalArgumentException("Radius cannot be negative!");
 
@@ -148,7 +145,7 @@ public class WorldHelper {
 	 * @return
 	 */
 	public static ArrayList<int[]> getBlocksInSphericalRange(World world, double radius, double x, double y, double z)
-	{		
+	{
 		ArrayList<int[]> list = new ArrayList();
 		if (radius <= 0) throw new IllegalArgumentException("Radius cannot be negative!");
 
@@ -161,7 +158,7 @@ public class WorldHelper {
 			for (double x1 = -distance; x1 < distance; x1 += 0.5D)
 			{
 				for (double z1 = -distance; z1 < distance; z1 += 0.5D)
-				{					
+				{
 					if (MathHelper.sqrt_double(x1 * x1 + z1 * z1 + y1 * y1) < radius)
 					{
 						coords = new int[] {(int) ((int) x + x1), (int) ((int) y + y1), (int) ((int) z + z1)};
@@ -284,7 +281,7 @@ public class WorldHelper {
 		list.add(new int[] {start[0], start[1], start[2] - 1});
 		return list;
 	}
-	
+
 	public static int getDistanceToGround(Entity entity)
 	{
 		int x = MathHelper.floor_double(entity.posX);

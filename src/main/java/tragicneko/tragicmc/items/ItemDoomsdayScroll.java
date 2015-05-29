@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import cpw.mods.fml.relauncher.Side;
@@ -105,7 +105,7 @@ public class ItemDoomsdayScroll extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 
 		if (!TragicConfig.allowDoomsdays) return stack;

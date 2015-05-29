@@ -2,8 +2,6 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,6 +10,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockGeyser extends Block {
 
@@ -71,7 +71,7 @@ public class BlockGeyser extends Block {
 		}
 		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 	}
-	
+
 	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity)
 	{
@@ -96,7 +96,7 @@ public class BlockGeyser extends Block {
 			}
 		}
 	}
-	
+
 	@Override
 	public int tickRate(World world)
 	{

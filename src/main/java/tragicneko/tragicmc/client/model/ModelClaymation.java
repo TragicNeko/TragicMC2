@@ -237,13 +237,6 @@ public class ModelClaymation extends ModelBase
 		armRight.render(f5);
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z)
-	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
-	}
-
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
@@ -258,7 +251,7 @@ public class ModelClaymation extends ModelBase
 		legRight.rotateAngleX = 1.5F * this.simplifyAngle(f, 13.0F) * f1;
 		armLeft.rotateAngleX = 0.55F * this.simplifyAngle(f, 13.0F) * f1;
 		armRight.rotateAngleX = -0.55F * this.simplifyAngle(f, 13.0F) * f1;
-		
+
 		if (clay.getUtilityInt() > 0)
 		{
 			armRight.rotateAngleX = -0.556F;
@@ -279,7 +272,7 @@ public class ModelClaymation extends ModelBase
 			}
 		}
 	}
-	
+
 	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);

@@ -14,9 +14,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDarkenedQuartz extends BlockRotatedPillar {
-	
-private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
-	
+
+	private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
+
 	private IIcon[] sideIconArray = new IIcon[variantNames.length];
 	private IIcon[] topIconArray = new IIcon[variantNames.length];
 
@@ -38,13 +38,13 @@ private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
 			this.sideIconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.variantNames[i] + "DarkenedQuartzSide"); //side
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(int par1)
 	{
 		return par1 >= 2 ? 2 : par1;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
@@ -54,12 +54,12 @@ private String[] variantNames = new String[]{"Smooth", "Chiseled", "Pillared"};
 			par3.add(new ItemStack(par1, 1, i));
 		}
 	}
-	
+
 	@Override
-    protected IIcon getTopIcon(int i)
-    {
-        return this.topIconArray[i >= 2 ? 2 : i];
-    }
+	protected IIcon getTopIcon(int i)
+	{
+		return this.topIconArray[i >= 2 ? 2 : i];
+	}
 
 	@Override
 	protected IIcon getSideIcon(int i) {

@@ -219,12 +219,12 @@ public class MiscEvents {
 			int i = 0;
 
 			for (int a = 1; a < 5; a++)
-			{				
+			{
 				if (player.getEquipmentInSlot(a) != null)
 				{
 					Item armor = player.getEquipmentInSlot(a).getItem();
 
-					if (armor == TragicItems.OverlordHelm || 
+					if (armor == TragicItems.OverlordHelm ||
 							armor == TragicItems.OverlordPlate ||
 							armor == TragicItems.OverlordLegs ||
 							armor == TragicItems.OverlordBoots) i++;

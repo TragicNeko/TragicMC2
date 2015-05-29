@@ -14,13 +14,13 @@ public class StructureKitsuneDen extends StructureBoss {
 	public StructureKitsuneDen(int id, String name) {
 		super(new SchematicKitsuneDen(), id, name);
 	}
-	
+
 	@Override
 	public boolean isValidDimension(int dim)
 	{
 		return dim == -1 || dim == TragicConfig.dimensionID;
 	}
-	
+
 	@Override
 	public int getVariantSize()
 	{
@@ -38,11 +38,11 @@ public class StructureKitsuneDen extends StructureBoss {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{
-		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;	
+		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
 }

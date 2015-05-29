@@ -36,10 +36,10 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doInitialEffects(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
 		super.doInitialEffects(effect, doom, player, crucMoment);
-		
+
 		double radius = crucMoment ? 10.0D : 5.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-		
+
 		boolean griefCheck = TragicConfig.griefConfigs[0];
 		float plantCount = 0.0F;
 		int[] coords;
@@ -49,7 +49,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 			coords = (int[]) list.get(i);
 			Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
-			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
+			if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower
 					|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
 					|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
 			{
@@ -97,13 +97,13 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		{
 			float i = rand.nextInt((effect.utilityInt / 2) + 1) + 0.5F;
 			TragicMC.logInfo("Total is " + effect.utilityInt + ", amount chosen is " + i);
-			
+
 			if (crucMoment)
 			{
 				i *= 1.5;
 				addCrucialMessage(player);
 			}
-			
+
 			if (i > effect.utilityInt) i = effect.utilityInt;
 			effect.utilityInt -= i;
 			player.heal(i);
@@ -113,7 +113,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		{
 			double radius = crucMoment ? 10.0D : 5.0D;
 			List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
-			
+
 			boolean griefCheck = TragicConfig.griefConfigs[0];
 			float plantCount = 0.0F;
 			int[] coords;
@@ -123,7 +123,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 				coords = (int[]) list.get(i);
 				Block block = player.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
-				if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower 
+				if (block instanceof BlockReed || block instanceof BlockSapling || block instanceof BlockFlower
 						|| block instanceof BlockDoublePlant || block instanceof BlockMushroom || block instanceof BlockCrops
 						|| block instanceof BlockStem || block instanceof BlockLeaves || block instanceof BlockTallGrass)
 				{
@@ -172,6 +172,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		player.addExhaustion(f);
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.RealityAlter;
 	}

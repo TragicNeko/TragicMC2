@@ -21,9 +21,9 @@ public class CommonProxy implements IGuiHandler {
 	public void registerRenders(){}
 
 	@Override
-	public Object getServerGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z) 
+	public Object getServerGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (guiId == TragicMC.idAmuletGui) 
+		if (guiId == TragicMC.idAmuletGui)
 		{
 			return new ContainerAmulet(player, player.inventory, PropertyAmulets.get(player).inventory);
 		}
@@ -31,7 +31,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	@Override
-	public Object getClientGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z) 
+	public Object getClientGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z)
 	{
 		if (guiId == TragicMC.idAmuletGui)
 		{
@@ -53,7 +53,7 @@ public class CommonProxy implements IGuiHandler {
 	public static NBTTagCompound getEntityData(UUID uuid) {
 		return extendedEntityData.remove(uuid);
 	}
-	
+
 	public EntityPlayer getPlayerFromMessageCtx(MessageContext ctx)
 	{
 		return ctx.getServerHandler().playerEntity;

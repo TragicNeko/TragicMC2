@@ -15,7 +15,7 @@ public class StructureDeathCircle extends StructureBoss {
 	public StructureDeathCircle(int id, String name) {
 		super(new SchematicDeathCircle(), id, name);
 	}
-	
+
 	@Override
 	public boolean isSurfaceStructure()
 	{
@@ -36,10 +36,10 @@ public class StructureDeathCircle extends StructureBoss {
 		{
 			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.deathCircleRarity;
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public boolean generateStructureWithVariant(int variant, World world, Random rand, int x, int y, int z)
 	{

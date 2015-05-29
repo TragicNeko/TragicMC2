@@ -58,7 +58,7 @@ public class EntityPlague extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(plagueStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(plagueStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -175,7 +175,7 @@ public class EntityPlague extends TragicMob {
 			{
 				this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
 			}
-			
+
 			if (this.ticksExisted % 20 == 0)
 			{
 				this.worldObj.playSoundAtEntity(this,"tragicmc:mob.plague.chirp", 0.3F, 1.0F);
@@ -193,43 +193,43 @@ public class EntityPlague extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return null;
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return super.getHurtSound(); //"tragicmc:mob.plague.chirp";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.plague.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.4F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

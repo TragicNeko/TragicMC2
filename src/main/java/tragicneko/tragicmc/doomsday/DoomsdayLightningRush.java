@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -57,7 +56,7 @@ public class DoomsdayLightningRush extends Doomsday implements IExtendedDoomsday
 					player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, f * rand.nextFloat(), false);
 					player.worldObj.spawnEntityInWorld(new EntityDirectedLightning(player.worldObj, entity.posX, entity.posY, entity.posZ, player));
 
-					if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1)); 
+					if (TragicConfig.allowStun)entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60, 1));
 				}
 			}
 		}

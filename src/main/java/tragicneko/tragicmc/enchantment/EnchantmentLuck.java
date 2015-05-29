@@ -11,35 +11,35 @@ public class EnchantmentLuck extends Enchantment {
 		super(par1, par2, par3EnumEnchantmentType);
 		this.setName("luck");
 	}
-	
+
 	@Override
 	public int getMinEnchantability(int par1)
-    {
-        return 20;
-    }
+	{
+		return 20;
+	}
 
-    @Override
+	@Override
 	public int getMaxEnchantability(int par1)
-    {
-        return super.getMinEnchantability(par1) + 50;
-    }
+	{
+		return super.getMinEnchantability(par1) + 50;
+	}
 
-    @Override
+	@Override
 	public int getMaxLevel()
-    {
-        return 1;
-    }
-    
-    @Override
+	{
+		return 1;
+	}
+
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
-    {
-        return super.canApplyTogether(par1Enchantment);
-    }
-    
-    @Override
+	{
+		return super.canApplyTogether(par1Enchantment);
+	}
+
+	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack)
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 
 }

@@ -16,7 +16,7 @@ public class RenderGuardianShield extends Render {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/entities/GuardianShield.png");
 	public ModelBase model;
-	
+
 	public RenderGuardianShield()
 	{
 		super();
@@ -29,7 +29,7 @@ public class RenderGuardianShield extends Render {
 	}
 
 	public void doRender(EntityGuardianShield entity, double par2, double par3, double par4, float par5, float par6) {
-		float f = -0.225F;		
+		float f = -0.225F;
 		float f1 = 0.025F;
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
@@ -42,23 +42,23 @@ public class RenderGuardianShield extends Render {
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f1);
 		GL11.glDepthMask(true);
 		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glDepthFunc(GL11.GL_EQUAL);
-        GL11.glDepthFunc(GL11.GL_LEQUAL);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glPopMatrix();
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glDepthFunc(GL11.GL_EQUAL);
+		GL11.glDepthFunc(GL11.GL_LEQUAL);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glPopMatrix();
 	}
 
 	@Override

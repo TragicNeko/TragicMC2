@@ -6,10 +6,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -34,7 +30,7 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 		if (list.size() > 0)
 		{
 			if (crucMoment) addCrucialMessage(player);
-			
+
 			for (int i = 0; i < list.size(); i ++)
 			{
 				if (list.get(i) instanceof EntityLivingBase)
@@ -49,9 +45,9 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 					{
 						for (int l = 0; l < 3; l++)
 						{
-							double d1 = rand.nextDouble() - rand.nextDouble(); 
+							double d1 = rand.nextDouble() - rand.nextDouble();
 							double d2 = (rand.nextDouble() * 6.0D + rand.nextDouble() * 6.0D) + 2.0D;
-							double d3 = rand.nextDouble() - rand.nextDouble(); 
+							double d3 = rand.nextDouble() - rand.nextDouble();
 
 							EntityDarkEnergy fireball = new EntityDarkEnergy(player.worldObj, player, -d1, -d2, -d3);
 							fireball.setPosition(entity.posX + (-d1 * 0.115), entity.posY + 6.0 + (-d2 * 0.115), entity.posZ + (-d3 * 0.115));
@@ -71,9 +67,9 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		for (int l = 0; l < 3; l++)
 		{
-			double d1 = rand.nextDouble() - rand.nextDouble(); 
+			double d1 = rand.nextDouble() - rand.nextDouble();
 			double d2 = (rand.nextDouble() * 6.0D + rand.nextDouble() * 6.0D) + 2.0D;
-			double d3 = rand.nextDouble() - rand.nextDouble(); 
+			double d3 = rand.nextDouble() - rand.nextDouble();
 
 			EntityDarkEnergy fireball = new EntityDarkEnergy(player.worldObj, player, -d1, -d2, -d3);
 			fireball.setPosition(player.posX + (-d1 * 0.115), player.posY + (-d2 * 0.115), player.posZ + (-d3 * 0.115));
@@ -81,6 +77,7 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 		}
 	}
 
+	@Override
 	public Doomsday getCombination()
 	{
 		return Doomsday.Harmonizer;

@@ -19,7 +19,7 @@ public class BlockGenericLeaves extends BlockLeaves {
 
 	private IIcon[] ashenIcons = new IIcon[6];
 	private IIcon opaqueIcon;
-	
+
 	public static boolean fancyGraphics;
 
 	public BlockGenericLeaves()
@@ -50,17 +50,17 @@ public class BlockGenericLeaves extends BlockLeaves {
 			this.opaqueIcon = par1IconRegister.registerIcon("tragicmc:Opaque" + this.textureName);
 		}
 	}
-	
-	@Override
-	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
-    {
-		//if (p_149674_1_.isRemote) fancyGraphics = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-    }
 
 	@Override
-	public IIcon getIcon(int side, int meta) {		
+	public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+	{
+		//if (p_149674_1_.isRemote) fancyGraphics = Minecraft.getMinecraft().gameSettings.fancyGraphics;
+	}
+
+	@Override
+	public IIcon getIcon(int side, int meta) {
 		//fancyGraphics = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-		
+
 		if (this == TragicBlocks.AshenLeaves)
 		{
 			if (fancyGraphics)
@@ -139,5 +139,5 @@ public class BlockGenericLeaves extends BlockLeaves {
 		{
 			this.dropBlockAsItem(p_150124_1_, p_150124_2_, p_150124_3_, p_150124_4_, new ItemStack(Items.apple, 1, 0));
 		}
-	} 
+	}
 }

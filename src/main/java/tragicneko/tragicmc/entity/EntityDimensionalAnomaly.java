@@ -70,17 +70,17 @@ public class EntityDimensionalAnomaly extends Entity {
 			}
 
 			if (rand.nextInt(16) == 0)
-			{				
+			{
 				for (int i = 0; i < 4; i++)
 				{
 					this.worldObj.spawnParticle("cloud", d0, d1, d2, d4 * -0.5, d5 * -0.5, d6 * -0.5);
 				}
 			}
-			
+
 			if (this.ticksExisted >= this.getTimeToLive()) this.worldObj.spawnParticle("cloud", this.posX, this.posY, this.posZ, 0D, 0D, 0D);
 			return;
 		}
-		
+
 		if (this.ticksExisted >= this.getTimeToLive()) this.setDead();
 		if (!this.onGround)
 		{
@@ -112,12 +112,12 @@ public class EntityDimensionalAnomaly extends Entity {
 	protected void entityInit() {
 		this.dataWatcher.addObject(2, Integer.valueOf(0));
 	}
-	
+
 	public int getTimeToLive()
 	{
 		return this.dataWatcher.getWatchableObjectInt(2);
 	}
-	
+
 	public void setTimeToLive(int i)
 	{
 		this.dataWatcher.updateObject(2, i);

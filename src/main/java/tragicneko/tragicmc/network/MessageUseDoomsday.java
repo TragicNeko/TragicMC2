@@ -6,16 +6,16 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageUseDoomsday implements IMessage {
-	
+
 	public ItemStack stack;
-	
+
 	public MessageUseDoomsday() {}
 
 	public MessageUseDoomsday(ItemStack stack)
 	{
 		this.stack = stack;
 	}
-	
+
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		this.stack = ByteBufUtils.readItemStack(buf);

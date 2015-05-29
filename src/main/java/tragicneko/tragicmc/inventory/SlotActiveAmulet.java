@@ -8,25 +8,23 @@ import tragicneko.tragicmc.items.ItemAmulet;
 
 public class SlotActiveAmulet extends Slot {
 
-	private final EntityPlayer player;
 	private final boolean isLocked;
-	
+
 	public SlotActiveAmulet(IInventory par1iInventory, int par2, int par3, int par4, EntityPlayer player, boolean locked) {
 		super(par1iInventory, par2, par3, par4);
-		this.player = player;
 		this.isLocked = locked;
 	}
 
 	@Override
 	public boolean isItemValid(ItemStack itemstack)
-	{		
+	{
 		if (this.isLocked)
 		{
 			return false;
 		}
 		return itemstack.getItem() instanceof ItemAmulet;
 	}
-	
+
 	public boolean isLocked()
 	{
 		return this.isLocked;

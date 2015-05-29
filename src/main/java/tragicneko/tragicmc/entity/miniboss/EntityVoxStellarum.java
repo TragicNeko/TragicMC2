@@ -40,7 +40,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(voxStellarumStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(voxStellarumStats[4]);
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -150,7 +150,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		}
 		else
 		{
-			if (this.isSpinning()) 
+			if (this.isSpinning())
 			{
 				this.decrementSpinTicks();
 				if (this.isFiring()) this.setFiringTicks(0);
@@ -209,7 +209,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				if (this.motionY >= 0.25D) this.motionY = -0.15D;
 
 				if (this.getHealth() <= this.getMaxHealth() / 3 && this.ticksExisted % 10 == 0) this.shootProjectiles();
-			}			
+			}
 		}
 	}
 
@@ -221,7 +221,6 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		double d2 = this.getAttackTarget().posZ - this.posZ;
 
 		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
-		float f2 = this.rotationYaw;
 		int blah = this.isSpinning() ? 10 : 4;
 
 		for (int i = 0; i < blah; i++)
@@ -243,8 +242,8 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
-		if (this.worldObj.isRemote) return false; 
+	{
+		if (this.worldObj.isRemote) return false;
 
 		if (this.isSpinning() && this.getSpinTicks() >= 100 && this.getSpinTicks() <= 800)
 		{
@@ -298,7 +297,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	{
 		return (int) voxStellarumStats[5];
 	}
-	
+
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
@@ -333,46 +332,46 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityNorVox.class;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.cryse.glass";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.cryse.hit";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.cryse.break";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
-    }
+	}
 }

@@ -110,13 +110,13 @@ public class ModelMinotaur extends ModelBase
 	public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity entity)
 	{
 		if (!(entity instanceof EntityMinotaur) && !(entity instanceof EntityClaymation)) return;
-		
+
 		this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
 		this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
 		this.leftLeg.rotateAngleX = -1.5F * this.simplifyAngle(par1, 13.0F) * par2;
 		this.rightLeg.rotateAngleX = 1.5F * this.simplifyAngle(par1, 13.0F) * par2;
 		this.leftArm.rotateAngleX = 0.55F * this.simplifyAngle(par1, 13.0F) * par2;
-		this.rightArm.rotateAngleX = -0.55F * this.simplifyAngle(par1, 13.0F) * par2; 
+		this.rightArm.rotateAngleX = -0.55F * this.simplifyAngle(par1, 13.0F) * par2;
 
 		int charge = 0;
 		if (entity instanceof EntityMinotaur)

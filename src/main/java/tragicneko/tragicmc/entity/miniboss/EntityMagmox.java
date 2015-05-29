@@ -22,7 +22,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 		this.experienceValue = 12;
 		this.isImmuneToFire = true;
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -67,7 +67,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 		if (this.worldObj.isRemote)
 		{
 			this.setSize(0.625F * 1.625F, 1.965F * 1.625F);
-			
+
 			if (this.getWiggleTime() > 0 || this.isFiring() || this.getAttackTime() > 0)
 			{
 				this.worldObj.spawnParticle("flame",
@@ -142,7 +142,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	public Class getLesserForm() {
 		return EntityTox.class;
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{

@@ -13,11 +13,11 @@ public class ItemBlockTragicFlower extends ItemBlockWithMetadata {
 		super(block, block);
 		this.setUnlocalizedName("tragicmc.flower");
 	}
-	
+
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int damage = itemstack.getItemDamage();
-		
+
 		if (damage >= subNames.length)
 		{
 			damage = subNames.length - 1;

@@ -3,8 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -74,6 +72,7 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 		}
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.LightShove;
 	}

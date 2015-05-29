@@ -25,7 +25,7 @@ public class BlockStructureSeed extends BlockContainer {
 		this.setCreativeTab(TragicMC.Creative);
 		this.setBlockName("tragicmc.structureSeed");
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube()
 	{

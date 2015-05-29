@@ -10,7 +10,7 @@ import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityNorVox;
 
 public class EntityStarShard extends EntityProjectile {
-	
+
 	public EntityStarShard(World par1World)
 	{
 		super(par1World);
@@ -20,7 +20,7 @@ public class EntityStarShard extends EntityProjectile {
 	public EntityStarShard(World par1World, EntityLivingBase entity, double par2, double par4, double par6) {
 		super(par1World, entity, par2, par4, par6);
 	}
-	
+
 	@Override
 	protected float getMotionFactor()
 	{
@@ -29,21 +29,21 @@ public class EntityStarShard extends EntityProjectile {
 
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
-		if (mop.entityHit != null && !this.worldObj.isRemote) 
-		{			
+		if (mop.entityHit != null && !this.worldObj.isRemote)
+		{
 			if (mop.entityHit instanceof EntityVoxStellarum || mop.entityHit instanceof EntityNorVox || mop.entityHit instanceof EntityCryse || mop.entityHit instanceof EntityMegaCryse) return;
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 2.0F);
 		}
-		
+
 		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
-	
+
 	@Override
 	protected String getParticleString()
 	{
 		return "crit";
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{

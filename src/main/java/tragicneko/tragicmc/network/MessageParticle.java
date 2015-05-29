@@ -6,11 +6,11 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageParticle implements IMessage {
-	
+
 	public NBTTagCompound nameTag;
-	
+
 	public MessageParticle() {}
-	
+
 	public MessageParticle(String s, double x, double y, double z, double x2, double y2, double z2)
 	{
 		this.nameTag = new NBTTagCompound();

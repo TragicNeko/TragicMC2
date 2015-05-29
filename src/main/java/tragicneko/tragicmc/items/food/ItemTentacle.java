@@ -12,7 +12,7 @@ public class ItemTentacle extends ItemFood {
 		this.setPotionEffect(Potion.waterBreathing.id, 20, 0, 1.0F);
 		this.setPotionEffect(PotionHelper.field_151423_m);
 	}
-	
+
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{

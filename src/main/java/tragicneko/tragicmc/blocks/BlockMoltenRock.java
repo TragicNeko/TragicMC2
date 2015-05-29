@@ -1,18 +1,17 @@
 package tragicneko.tragicmc.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMoltenRock extends Block {
-	
+
 	private IIcon topIcon;
 	private IIcon sideIcon;
 	private IIcon bottomIcon;
@@ -24,7 +23,7 @@ public class BlockMoltenRock extends Block {
 		this.setBlockTextureName("tragicmc:MoltenRock");
 		this.setHarvestLevel("pickaxe", 0);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int par1, int par2)
@@ -45,7 +44,7 @@ public class BlockMoltenRock extends Block {
 
 	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
-    {
-        return side == ForgeDirection.UP;
-    }
+	{
+		return side == ForgeDirection.UP;
+	}
 }

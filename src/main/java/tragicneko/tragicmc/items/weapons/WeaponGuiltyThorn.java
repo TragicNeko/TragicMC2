@@ -1,13 +1,11 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday;
@@ -23,7 +21,7 @@ public class WeaponGuiltyThorn extends TragicWeapon {
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
-		
+
 		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(8) == 0 && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[16]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[16])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.poison.id, 60, itemRand.nextInt(4)));
@@ -32,5 +30,5 @@ public class WeaponGuiltyThorn extends TragicWeapon {
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
-	} 
+	}
 }

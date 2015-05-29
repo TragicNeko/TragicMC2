@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.items.weapons;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,7 +8,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
@@ -44,7 +42,7 @@ public class WeaponThardus extends EpicWeapon {
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
 		if (doom == null || !TragicConfig.allowNonDoomsdayAbilities || par2World.isRemote) return par1ItemStack;
-		
+
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
@@ -53,7 +51,7 @@ public class WeaponThardus extends EpicWeapon {
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
-			
+
 			for (int i = 0; i < 7; i++)
 			{
 				EntityIcicle rocket = new EntityIcicle(par3EntityPlayer.worldObj, par3EntityPlayer, d4 + itemRand.nextDouble() - itemRand.nextDouble(), d5,
@@ -63,11 +61,11 @@ public class WeaponThardus extends EpicWeapon {
 				rocket.posZ += d6 * 0.115D;
 				par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 			}
-			
+
 			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[30]);
 			setStackCooldown(par1ItemStack, 5);
 		}
-		
+
 		return par1ItemStack;
 	}
 

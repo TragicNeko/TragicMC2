@@ -93,7 +93,6 @@ public class EntityHunter extends TragicMob {
 			this.motionX = Math.min(Math.abs(d2), 0.76D) == Math.abs(d2) ? d2 : 0.76D  * (d2 < 0 ? -1 : 1);
 			double d3 = d1 / f2 * 1.33D * 0.11D + this.motionZ * 0.84D;
 			this.motionZ = Math.min(Math.abs(d3), 0.76D) == Math.abs(d3) ? d3 : 0.76D  * (d3 < 0 ? -1 : 1);
-			double d5 = d4 / f2 * 1.33D * 0.11D + this.motionY * 1.24D;
 			this.motionY = Math.min(Math.abs(d4), 1.16D) == Math.abs(d4) ? d4 : 1.16D  * (d4 < 0 ? -1 : 1);
 			if (this.isCollided) this.motionY += rand.nextDouble() - rand.nextDouble();
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
@@ -123,37 +122,37 @@ public class EntityHunter extends TragicMob {
 	{
 		return "tragicmc:mob.hunter.noise";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return super.getHurtSound();
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.hunter.noise";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return this.getAttackTarget() != null ? 1.8F : 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

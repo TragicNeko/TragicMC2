@@ -18,7 +18,7 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedShrubs;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 
 public class BiomeGenPaintedForest extends TragicBiome {
-	
+
 	private final WorldGenCustomVine vineGen;
 	public static final float[][] heights = new float[][] {{0.15F, 0.15F}, {0.05F, 0.01F}, {0.35F, 0.18F}, {0.01F, -0.12F}};
 

@@ -28,9 +28,9 @@ public class EntityLargeRock extends EntityProjectile {
 	@Override
 	protected void onImpact(MovingObjectPosition mop) {
 		if (mop == null || this.worldObj.isRemote) return;
-		
-		if (mop.entityHit != null) 
-		{			
+
+		if (mop.entityHit != null)
+		{
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 12.0F);
 
 			if (this.rand.nextInt(4) == 0 && mop.entityHit instanceof EntityLivingBase && TragicConfig.allowStun)
@@ -41,7 +41,7 @@ public class EntityLargeRock extends EntityProjectile {
 
 		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
-		
+
 		this.setDead();
 	}
 
@@ -55,7 +55,7 @@ public class EntityLargeRock extends EntityProjectile {
 	public void onUpdate()
 	{
 		super.onUpdate();
-		
+
 		this.motionY -= 0.0205D;
 	}
 

@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCelledLamp extends Block {
-	
+
 	private String[] subNames = new String[] {"Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGray", "DarkGray", "Pink", "Lime", "Yellow", "LightBlue",
 			"Magenta", "Orange", "White"};
 	private IIcon[] iconArray = new IIcon[subNames.length];
@@ -28,7 +28,7 @@ public class BlockCelledLamp extends Block {
 		this.setLightLevel(0.8F);
 		this.setStepSound(soundTypeMetal);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -49,13 +49,13 @@ public class BlockCelledLamp extends Block {
 			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:WrappedLamp" + this.subNames[i]);
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(int par1)
 	{
 		return par1;
 	}
-	
+
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{

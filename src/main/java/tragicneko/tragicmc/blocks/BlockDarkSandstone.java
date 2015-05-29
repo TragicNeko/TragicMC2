@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDarkSandstone extends Block {
-	
+
 	private String[] stoneNames = new String[]{"Rough", "Smooth", "Bricked", "Chiseled", "Gridded", "Carved"};
 
 	private IIcon[] iconArray = new IIcon[stoneNames.length];
@@ -27,15 +27,15 @@ public class BlockDarkSandstone extends Block {
 		this.setHardness(1.5F);
 		this.setBlockName("tragicmc.darkSandstone");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
-	{		
-		if (meta >= this.iconArray.length) meta = this.iconArray.length - 1;		
+	{
+		if (meta >= this.iconArray.length) meta = this.iconArray.length - 1;
 		return this.iconArray[meta];
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -45,7 +45,7 @@ public class BlockDarkSandstone extends Block {
 			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.stoneNames[i] + "DarkSandstone");
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(int par1)
 	{

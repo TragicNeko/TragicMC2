@@ -12,7 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,9 +21,6 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.EnumDoomType;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
-
-import com.google.common.collect.Sets;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
@@ -46,7 +42,7 @@ public class DoomsdayManager {
 				for (int i = 0; i < list.size(); i++)
 				{
 					DoomsdayEffect effect2 = list.get(i);
-					if (effect2.dday == effect.dday) 
+					if (effect2.dday == effect.dday)
 					{
 						logger.warn("" + getUsernameFromUUID(playerID) + " attempted to register a new Doomsday effect for a Doomsday they already have active, ignoring registration.");
 						return;
@@ -218,7 +214,7 @@ public class DoomsdayManager {
 						reason = "No more Doomsday effects.";
 					}
 				}
-				
+
 				if (effect.player.getHealth() <= 0F) reason = "Player is dead.";
 				if (list.isEmpty() || effect.player.getHealth() <= 0F) clearPlayerFromRegistry(effect.player.getUniqueID(), reason);
 			}
@@ -237,9 +233,9 @@ public class DoomsdayManager {
 			{
 				clearPlayerFromRegistry(net.playerEntity.getUniqueID(), "Disconnected from server.");
 			}
-		} 
+		}
 	}
-	
+
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDeathEvent event)
 	{

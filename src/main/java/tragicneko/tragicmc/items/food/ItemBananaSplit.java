@@ -13,7 +13,7 @@ public class ItemBananaSplit extends ItemFood {
 		super(p_i45340_1_, p_i45340_2_);
 		this.setPotionEffect(Potion.jump.id, 30, 1, 1.0F);
 	}
-	
+
 	@Override
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{

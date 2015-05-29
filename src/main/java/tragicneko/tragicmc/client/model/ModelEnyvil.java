@@ -10,7 +10,7 @@ public class ModelEnyvil extends ModelBase
 {
 	private ModelRenderer eye;
 	private ModelRenderer shell;
-	
+
 	private ModelRenderer clawNobRight;
 	private ModelRenderer clawNobLeft;
 	private ModelRenderer clawLeftLower;
@@ -22,7 +22,7 @@ public class ModelEnyvil extends ModelBase
 	private ModelRenderer legBR;
 	private ModelRenderer legUL;
 	private ModelRenderer legUR;
-	
+
 	private ModelRenderer legTipML;
 	private ModelRenderer legTipMR;
 	private ModelRenderer legTipBL;
@@ -38,7 +38,7 @@ public class ModelEnyvil extends ModelBase
 		shell = new ModelRenderer(this, 0, 0);
 		shell.addBox(0F, 0F, 0F, 0, 0, 0);
 		shell.setRotationPoint(0F, -1F, 0F);
-		
+
 		eye = new ModelRenderer(this, 20, 7);
 		eye.addBox(-3F, -1F, -3F, 6, 6, 6);
 		shell.addChild(eye);
@@ -133,7 +133,7 @@ public class ModelEnyvil extends ModelBase
 		legMR.addBox(-18F, 0F, 4F, 6, 2, 2);
 		legMR.rotateAngleZ = -1.067F;
 		shell.addChild(legMR);
-		
+
 		legTipMR = new ModelRenderer(this, 0, 0);
 		legTipMR.addBox(-22F, 0F, 4F, 4, 1, 1);
 		legMR.addChild(legTipMR);
@@ -142,7 +142,7 @@ public class ModelEnyvil extends ModelBase
 		legML.addBox(12F, 0F, 4F, 6, 2, 2);
 		legML.rotateAngleZ = 1.067F;
 		shell.addChild(legML);
-		
+
 		legTipML = new ModelRenderer(this, 0, 0);
 		legTipML.addBox(18F, 0F, 4F, 4, 1, 1);
 		legML.addChild(legTipML);
@@ -151,7 +151,7 @@ public class ModelEnyvil extends ModelBase
 		legBL.addBox(14F, 0F, 1F, 6, 2, 2);
 		legBL.rotateAngleZ = 0.7346075F;
 		shell.addChild(legBL);
-		
+
 		legTipBL = new ModelRenderer(this, 0, 0);
 		legTipBL.addBox(20F, 0F, 1F, 4, 1, 1);
 		legBL.addChild(legTipBL);
@@ -160,7 +160,7 @@ public class ModelEnyvil extends ModelBase
 		legBR.addBox(-20F, 0F, 1F, 6, 2, 2);
 		legBR.rotateAngleZ = -0.7346075F;
 		shell.addChild(legBR);
-		
+
 		legTipBR = new ModelRenderer(this, 0, 0);
 		legTipBR.addBox(-24F, 0F, 1F, 4, 1, 1);
 		legBR.addChild(legTipBR);
@@ -169,7 +169,7 @@ public class ModelEnyvil extends ModelBase
 		legUL.addBox(11F, 0F, -1F, 6, 2, 2);
 		legUL.rotateAngleZ = 1.2346075F;
 		shell.addChild(legUL);
-		
+
 		legTipUL = new ModelRenderer(this, 0, 0);
 		legTipUL.addBox(17F, 0F, -1F, 4, 1, 1);
 		legUL.addChild(legTipUL);
@@ -207,41 +207,41 @@ public class ModelEnyvil extends ModelBase
 		clawNobLeft.offsetZ = 0.0F;
 		clawNobRight.rotateAngleZ = 0.0F;
 		clawNobLeft.rotateAngleZ = 0.0F;
-		
+
 		shell.rotateAngleY = 0.0F;
 		shell.rotateAngleX = 0.0F;
 		shell.rotateAngleZ = 0.0F;
-		
+
 		shell.offsetY = 0.0F;
-		
+
 		eye.rotateAngleY = f3 / (180F / (float)Math.PI);
 		eye.rotateAngleX = f4 / (180F / (float)Math.PI);
 		eye.rotateAngleZ = 0.0F;
-		
+
 		legBL.rotateAngleZ = 0.7346075F + this.simplifyAngle(eny.ticksExisted + 13, 40.0F) * -0.0615F;
 		legTipBL.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 13, 40.0F) * -0.019F;
 		legTipBL.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 13, 40.0F) * 0.01275F;
-		
+
 		legBR.rotateAngleZ = -0.7346075F + this.simplifyAngle(eny.ticksExisted - 13, 40.0F) * 0.0615F;
 		legTipBR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 13, 40.0F) * 0.019F;
 		legTipBR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 13, 40.0F) * -0.01275F;
-		
+
 		legML.rotateAngleZ = 1.067F + this.simplifyAngle(eny.ticksExisted + 33, 40.0F) * -0.0615F;
 		legTipML.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 33, 40.0F) * -0.019F;
 		legTipML.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 33, 40.0F) * 0.01275F;
-		
+
 		legMR.rotateAngleZ = -1.067F + this.simplifyAngle(eny.ticksExisted - 33, 40.0F) * 0.0615F;
 		legTipMR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 33, 40.0F) * 0.019F;
 		legTipMR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 33, 40.0F) * -0.01275F;
-		
+
 		legUL.rotateAngleZ = 1.2346075F + this.simplifyAngle(eny.ticksExisted + 17, 40.0F) * -0.0615F;
 		legTipUL.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 17, 40.0F) * -0.019F;
 		legTipUL.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 17, 40.0F) * 0.01275F;
-		
+
 		legUR.rotateAngleZ = -1.2346075F + this.simplifyAngle(eny.ticksExisted - 17, 40.0F) * 0.0615F;
 		legTipUR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 17, 40.0F) * 0.019F;
 		legTipUR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 17, 40.0F) * -0.01275F;
-		
+
 		clawNobRight.rotateAngleZ = 0.055F + this.simplifyAngle(f, 40.0F) * f1 * -0.105F;
 		clawNobLeft.rotateAngleZ = -0.055F + this.simplifyAngle(f, 40.0F) * f1 * 0.105F;
 
@@ -256,10 +256,10 @@ public class ModelEnyvil extends ModelBase
 
 			clawNobRight.rotateAngleZ = 0.125F + this.simplifyAngle(eny.getHurtTime(), 10.0F) * -0.125F;
 			clawNobLeft.rotateAngleZ = -0.125F + this.simplifyAngle(eny.getHurtTime(), 10.0F) * 0.125F;
-			
+
 			shell.rotateAngleX = -0.115F + this.simplifyAngle(eny.getHurtTime(), 10.0F) * 0.115F;
 			shell.rotateAngleZ = -0.065F + this.simplifyAngle(eny.getHurtTime(), 10.0F) * 0.065F;
-			
+
 			eye.rotateAngleY = MathHelper.cos(eny.getHurtTime() + eny.getEntityId());
 			eye.rotateAngleZ = MathHelper.sin(eny.getHurtTime() - eny.getEntityId());
 			eye.rotateAngleX = MathHelper.sin(eny.getHurtTime());
@@ -269,7 +269,7 @@ public class ModelEnyvil extends ModelBase
 			if (eny.getAttackTime() > 0)
 			{
 				shell.rotateAngleZ = -0.065F + this.simplifyAngle(eny.getAttackTime(), 10.0F) * 0.165F;
-				
+
 				clawNobLeft.rotateAngleX = -0.865F + this.simplifyAngle(eny.getAttackTime(), 10.0F) * 0.465F;
 				clawNobLeft.offsetY = 0.235F + this.simplifyAngle(eny.getAttackTime(), 10.0F) * -0.235F;
 			}
@@ -282,33 +282,33 @@ public class ModelEnyvil extends ModelBase
 					clawNobLeft.offsetY = 0.425F;
 					clawNobRight.offsetZ = 0.215F;
 					clawNobLeft.offsetZ = 0.215F;
-					
+
 					clawNobLeft.rotateAngleX = -1.45F + MathHelper.cos(eny.ticksExisted + 10294) * 0.045F;
 					clawNobLeft.rotateAngleY = MathHelper.cos(eny.ticksExisted + 42) * 0.045F;
-					
+
 					clawNobRight.rotateAngleX = -1.45F + MathHelper.sin(eny.ticksExisted + 5498418) * 0.045F;
 					clawNobRight.rotateAngleY = MathHelper.sin(eny.ticksExisted + 16481) * 0.045F;
-					
+
 					legBL.rotateAngleZ = 0.7346075F + this.simplifyAngle(eny.ticksExisted + 13, 4.0F) * -0.0615F;
 					legTipBL.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 13, 4.0F) * -0.019F;
 					legTipBL.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 13, 4.0F) * 0.01275F;
-					
+
 					legBR.rotateAngleZ = -0.7346075F + this.simplifyAngle(eny.ticksExisted - 13, 4.0F) * 0.0615F;
 					legTipBR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 13, 4.0F) * 0.019F;
 					legTipBR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 13, 4.0F) * -0.01275F;
-					
+
 					legML.rotateAngleZ = 1.067F + this.simplifyAngle(eny.ticksExisted + 33, 4.0F) * -0.0615F;
 					legTipML.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 33, 4.0F) * -0.019F;
 					legTipML.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 33, 4.0F) * 0.01275F;
-					
+
 					legMR.rotateAngleZ = -1.067F + this.simplifyAngle(eny.ticksExisted - 33, 4.0F) * 0.0615F;
 					legTipMR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 33, 4.0F) * 0.019F;
 					legTipMR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 33, 4.0F) * -0.01275F;
-					
+
 					legUL.rotateAngleZ = 1.2346075F + this.simplifyAngle(eny.ticksExisted + 17, 4.0F) * -0.0615F;
 					legTipUL.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 17, 4.0F) * -0.019F;
 					legTipUL.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 17, 4.0F) * 0.01275F;
-					
+
 					legUR.rotateAngleZ = -1.2346075F + this.simplifyAngle(eny.ticksExisted - 17, 4.0F) * 0.0615F;
 					legTipUR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 17, 4.0F) * 0.019F;
 					legTipUR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 17, 4.0F) * -0.01275F;
@@ -320,38 +320,38 @@ public class ModelEnyvil extends ModelBase
 						shell.rotateAngleZ = 0.0475F + this.simplifyAngle(eny.ticksExisted, 5.0F) * -0.095F;
 						clawNobLeft.rotateAngleZ = 0.0475F + this.simplifyAngle(eny.ticksExisted - 3, 5.0F) * -0.095F;
 						clawNobRight.rotateAngleZ = 0.0475F + this.simplifyAngle(eny.ticksExisted + 3, 5.0F) * -0.095F;
-						
+
 						clawNobLeft.rotateAngleX = -1.45F + MathHelper.cos(eny.ticksExisted + 10294) * 0.045F;
 						clawNobLeft.rotateAngleY = MathHelper.cos(eny.ticksExisted + 42) * 0.045F;
-						
+
 						clawNobRight.rotateAngleX = -1.45F + MathHelper.sin(eny.ticksExisted + 5498418) * 0.045F;
 						clawNobRight.rotateAngleY = MathHelper.sin(eny.ticksExisted + 16481) * 0.045F;
-						
+
 						clawNobRight.offsetY = 0.425F;
 						clawNobLeft.offsetY = 0.425F;
 						clawNobRight.offsetZ = 0.215F;
 						clawNobLeft.offsetZ = 0.215F;
-						
+
 						legBL.rotateAngleZ = 0.7346075F + this.simplifyAngle(eny.ticksExisted + 13, 4.0F) * -0.0615F;
 						legTipBL.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 13, 4.0F) * -0.019F;
 						legTipBL.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 13, 4.0F) * 0.01275F;
-						
+
 						legBR.rotateAngleZ = -0.7346075F + this.simplifyAngle(eny.ticksExisted - 13, 4.0F) * 0.0615F;
 						legTipBR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 13, 4.0F) * 0.019F;
 						legTipBR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 13, 4.0F) * -0.01275F;
-						
+
 						legML.rotateAngleZ = 1.067F + this.simplifyAngle(eny.ticksExisted + 33, 4.0F) * -0.0615F;
 						legTipML.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 33, 4.0F) * -0.019F;
 						legTipML.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 33, 4.0F) * 0.01275F;
-						
+
 						legMR.rotateAngleZ = -1.067F + this.simplifyAngle(eny.ticksExisted - 33, 4.0F) * 0.0615F;
 						legTipMR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 33, 4.0F) * 0.019F;
 						legTipMR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 33, 4.0F) * -0.01275F;
-						
+
 						legUL.rotateAngleZ = 1.2346075F + this.simplifyAngle(eny.ticksExisted + 17, 4.0F) * -0.0615F;
 						legTipUL.rotateAngleZ = 0.00745F + this.simplifyAngle(eny.ticksExisted + 17, 4.0F) * -0.019F;
 						legTipUL.offsetZ = -0.01275F + this.simplifyAngle(eny.ticksExisted + 17, 4.0F) * 0.01275F;
-						
+
 						legUR.rotateAngleZ = -1.2346075F + this.simplifyAngle(eny.ticksExisted - 17, 4.0F) * 0.0615F;
 						legTipUR.rotateAngleZ = -0.00745F + this.simplifyAngle(eny.ticksExisted - 17, 4.0F) * 0.019F;
 						legTipUR.offsetZ = 0.01275F + this.simplifyAngle(eny.ticksExisted - 17, 4.0F) * -0.01275F;
@@ -364,40 +364,40 @@ public class ModelEnyvil extends ModelBase
 							clawNobRight.offsetY = 0.956F;
 							clawNobRight.offsetX = 0.115F;
 							clawNobRight.offsetZ = 0.267F;
-							
+
 							clawNobLeft.rotateAngleZ = -0.556F;
 							clawNobLeft.offsetY = 0.956F;
 							clawNobLeft.offsetX = -0.115F;
 							clawNobLeft.offsetZ = 0.267F;
-							
+
 							eye.rotateAngleZ = MathHelper.cos(eny.getTractorBeamTicks());
-							
+
 							clawNobLeft.rotateAngleX = -1.45F + MathHelper.cos(eny.ticksExisted + 10294) * 0.045F;
 							clawNobLeft.rotateAngleY = MathHelper.cos(eny.ticksExisted + 42) * 0.045F;
-							
+
 							clawNobRight.rotateAngleX = -1.45F + MathHelper.sin(eny.ticksExisted + 5498418) * 0.045F;
 							clawNobRight.rotateAngleY = MathHelper.sin(eny.ticksExisted + 16481) * 0.045F;
-							
+
 							legBL.rotateAngleZ = 0.7346075F;
 							legTipBL.rotateAngleZ = 0.0F;
 							legTipBL.offsetZ = 0.0F;
-							
+
 							legBR.rotateAngleZ = -0.7346075F;
 							legTipBR.rotateAngleZ = 0.0F;
 							legTipBR.offsetZ = 0.0F;
-							
+
 							legML.rotateAngleZ = 1.067F;
 							legTipML.rotateAngleZ = 0.0F;
 							legTipML.offsetZ = 0.0F;
-							
+
 							legMR.rotateAngleZ = -1.067F;
 							legTipMR.rotateAngleZ = 0.0F;
 							legTipMR.offsetZ = 0.0F;
-							
+
 							legUL.rotateAngleZ = 1.2346075F;
 							legTipUL.rotateAngleZ = 0.00745F;
 							legTipUL.offsetZ = 0.0F;
-							
+
 							legUR.rotateAngleZ = -1.2346075F;
 							legTipUR.rotateAngleZ = 0.0F;
 							legTipUR.offsetZ = 0.0F;
@@ -407,7 +407,7 @@ public class ModelEnyvil extends ModelBase
 							if (eny.getSlamTicks() > 0)
 							{
 								shell.offsetY = -0.4F + this.simplifyAngle(eny.ticksExisted, 40.0F) * 0.8F;
-								
+
 								clawNobRight.rotateAngleX = -0.825F + this.simplifyAngle(eny.ticksExisted, 40.0F) * 0.425F;
 								clawNobLeft.rotateAngleX = -0.825F + this.simplifyAngle(eny.ticksExisted, 40.0F) * 0.425F;
 								clawNobRight.offsetY = 0.425F + this.simplifyAngle(eny.ticksExisted, 40.0F) * -0.425F;
@@ -417,7 +417,7 @@ public class ModelEnyvil extends ModelBase
 
 								clawNobRight.rotateAngleZ = 0.125F + this.simplifyAngle(eny.ticksExisted, 40.0F) * -0.125F;
 								clawNobLeft.rotateAngleZ = -0.125F + this.simplifyAngle(eny.ticksExisted, 40.0F) * 0.125F;
-								
+
 								shell.rotateAngleX = -0.115F + this.simplifyAngle(eny.ticksExisted, 40.0F) * 0.115F;
 								shell.rotateAngleZ = -0.065F + this.simplifyAngle(eny.ticksExisted, 40.0F) * 0.065F;
 							}

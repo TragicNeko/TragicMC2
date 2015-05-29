@@ -42,7 +42,7 @@ public class DoomsdaySoulstealer extends Doomsday implements IExtendedDoomsday {
 					}
 					else entity = (EntityLivingBase) list.get(i);
 				}
-			}		
+			}
 			effect.utilityEntity = entity;
 			if (entity == null) addNoEntityMessage(player);
 		}

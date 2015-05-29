@@ -1,7 +1,5 @@
 package tragicneko.tragicmc.client.model;
 
-import java.util.Random;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -18,18 +16,18 @@ public class ModelNanoSwarm extends ModelBase
 	private ModelRenderer shape8;
 	private ModelRenderer shape9;
 	private ModelRenderer shape10;
-	
+
 	private ModelRenderer[] shapeArray = new ModelRenderer[10];
 
 	public ModelNanoSwarm()
 	{
 		textureWidth = 64;
 		textureHeight = 32;
-		
+
 		shape = new ModelRenderer(this, 0, 0);
 		shape.addBox(0F, 0F, 0F, 1, 1, 1);
 		shape.setRotationPoint(0F, 10F, 0F);
-		
+
 		shape2 = new ModelRenderer(this, 0, 0);
 		shape2.addBox(0F, 5F, 5F, 1, 1, 1);
 		shape2.setRotationPoint(0F, 10F, 0F);
@@ -65,7 +63,7 @@ public class ModelNanoSwarm extends ModelBase
 		shape10 = new ModelRenderer(this, 0, 0);
 		shape10.addBox(-6F, -2F, 0F, 1, 1, 1);
 		shape10.setRotationPoint(0F, 10F, 0F);
-		
+
 		this.shapeArray = new ModelRenderer[] {shape, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10};
 	}
 
@@ -92,7 +90,7 @@ public class ModelNanoSwarm extends ModelBase
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		int j = entity.ticksExisted;
 		float meow;
-		
+
 		for (int i = 0; i < this.shapeArray.length; i++)
 		{
 			meow = (0.65F + (i * 0.25F)) * (float) Math.PI;
@@ -101,7 +99,7 @@ public class ModelNanoSwarm extends ModelBase
 			shapeArray[i].rotateAngleZ = meow * this.simplifyAngle(j, 180.0F);
 		}
 	}
-	
+
 	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);

@@ -23,7 +23,7 @@ public class ItemBanana extends ItemFood {
 		{
 			stack.stackSize--;
 		}
-		
+
 		return super.onLeftClickEntity(stack, player, entity);
 
 	}

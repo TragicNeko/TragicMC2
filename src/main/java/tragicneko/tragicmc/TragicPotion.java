@@ -8,21 +8,21 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
 public class TragicPotion extends Potion {
-	
+
 	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked;
 	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence, Divinity;
-	
+
 	private ItemStack stackIcon;
 
 	public TragicPotion(int par1, boolean par2, int par3) {
 		super(par1, par2, par3);
 	}
-	
+
 	public void setIcon(ItemStack icon)
 	{
 		this.stackIcon = icon;
 	}
-	
+
 	@Override
 	public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc)
 	{
@@ -33,7 +33,7 @@ public class TragicPotion extends Potion {
 		net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 		itemRender.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), this.stackIcon, x, y, false);
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
-	}	
+	}
 
 	public static void load()
 	{
@@ -47,7 +47,7 @@ public class TragicPotion extends Potion {
 		if (TragicConfig.allowInhibit) Inhibit = (new TragicPotion(TragicConfig.idInhibit, true, 0x232323).setPotionName("potion.inhibit"));
 		if (TragicConfig.allowLeadFoot) LeadFoot = (new TragicPotion(TragicConfig.idLeadFoot, true, 0x78AB76).setPotionName("potion.leadFoot"));
 		if (TragicConfig.allowHacked) Hacked = (new TragicPotion(TragicConfig.idHacked, true, 0xC6F6FF).setPotionName("potion.hacked"));
-		
+
 		if (TragicConfig.allowFlight) Flight = (new TragicPotion(TragicConfig.idFlight, false, 0xFDDC69).setPotionName("potion.flight"));
 		if (TragicConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(TragicConfig.idAquaSuperiority, true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));
 		if (TragicConfig.allowImmunity) Immunity = (new TragicPotion(TragicConfig.idImmunity, false, 0xBABABA).setPotionName("potion.immunity"));
@@ -58,7 +58,7 @@ public class TragicPotion extends Potion {
 		if (TragicConfig.allowConvergence) Convergence = (new TragicPotion(TragicConfig.idConvergence, false, 0x9B2525).setPotionName("potion.convergence"));
 		if (TragicConfig.allowDivinity) Divinity = (new TragicPotion(TragicConfig.idDivinity, false, 0xFFFFFF).setPotionName("potion.divinity"));
 	}
-	
+
 	public static void setPotionIcons()
 	{
 		if (Corruption != null) ((TragicPotion) Corruption).setIcon(new ItemStack(TragicItems.DarkParticles));
@@ -71,7 +71,7 @@ public class TragicPotion extends Potion {
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
 		if (LeadFoot != null) ((TragicPotion) LeadFoot).setIcon(new ItemStack(Blocks.anvil));
 		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.OverlordBarrier));
-		
+
 		if (Flight != null) ((TragicPotion) Flight).setIcon(new ItemStack(Items.feather));
 		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.EnchantedTears));
 		if (Immunity != null) ((TragicPotion) Immunity).setIcon(new ItemStack(Items.milk_bucket));

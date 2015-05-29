@@ -10,8 +10,6 @@ import net.minecraft.world.World;
 
 public class EntityPumpkinbomb extends EntityThrowable {
 
-	private int groundTicks;
-	private int airTicks;
 	private int bounces;
 
 	public EntityPumpkinbomb(World world) {
@@ -48,8 +46,8 @@ public class EntityPumpkinbomb extends EntityThrowable {
 		}
 		else
 		{
-			if (!inGround) 
-			{			
+			if (!inGround)
+			{
 				if (mop.entityHit != null)
 				{
 					mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
@@ -81,9 +79,9 @@ public class EntityPumpkinbomb extends EntityThrowable {
 
 					for (int l = 0; l < random; l++)
 					{
-						double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX; 
+						double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX;
 						double d1 = (MathHelper.getRandomIntegerInRange(rand, 0, 6) + this.posY) - this.posY;
-						double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ; 
+						double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ;
 
 						if (this.getThrower() != null && !this.worldObj.isRemote)
 						{

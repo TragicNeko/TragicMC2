@@ -59,7 +59,7 @@ public class EnchantmentEvents {
 			int z = (int) (event.entityLiving.posZ + rand.nextInt(2) - rand.nextInt(2));
 			if (EntityOverlordCore.replaceableBlocks.contains(event.entityLiving.worldObj.getBlock(x, y, z)))
 			{
-				event.entityLiving.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
+				event.entityLiving.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 			}
 		}
 	}
@@ -68,7 +68,7 @@ public class EnchantmentEvents {
 	public void onCombustion(HarvestDropsEvent event)
 	{
 		if (event.harvester != null && !event.isSilkTouching)
-		{			
+		{
 			if (event.harvester.getEquipmentInSlot(0) != null)
 			{
 				ItemStack tool = event.harvester.getEquipmentInSlot(0);
@@ -103,13 +103,13 @@ public class EnchantmentEvents {
 			{
 				ItemStack tool = event.getPlayer().getEquipmentInSlot(0);
 				int i = TragicConfig.allowVeteran ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool) * 2 + 1 : 1;
-				
+
 				if (tool.getItemDamage() >= tool.getMaxDamage() - i && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, tool) > 0)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					return;
 				}
-				
+
 				if (tool.getItem() instanceof ItemTool && canMineWithTool(event.world, tool, event.x, event.y, event.z) && TragicConfig.allowVeteran && !event.world.isRemote)
 				{
 					int e = EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool);
@@ -118,10 +118,6 @@ public class EnchantmentEvents {
 
 					if (mop != null)
 					{
-						int x = mop.blockX;
-						int y = mop.blockY;
-						int z = mop.blockZ;
-
 						if (mop.sideHit == 0 || mop.sideHit == 1)
 						{
 							if (canMineWithTool(event.world, tool, event.x + 1, event.y, event.z)) event.world.func_147480_a(event.x + 1, event.y, event.z, true);
@@ -288,7 +284,7 @@ public class EnchantmentEvents {
 		{
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			if (!event.source.canHarmInCreative())
-			{				
+			{
 				for (int x = 1; x < 5; x++)
 				{
 					if (player.getEquipmentInSlot(x) != null)

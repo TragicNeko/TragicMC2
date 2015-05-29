@@ -1,6 +1,5 @@
 package tragicneko.tragicmc.items;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -103,7 +102,7 @@ public class ItemChallenge extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (world.isRemote) return stack;
 
@@ -203,8 +202,8 @@ public class ItemChallenge extends Item {
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{		
-		if (world.isRemote || stack.getItemDamage() == 0 || stack.getItemDamage() == 250) return; 
+	{
+		if (world.isRemote || stack.getItemDamage() == 0 || stack.getItemDamage() == 250) return;
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("challengeID")) stack.stackTagCompound.setInteger("challengeID", stack.getItemDamage());
@@ -220,9 +219,8 @@ public class ItemChallenge extends Item {
 
 			if (challenge.isItemChallenge)
 			{
-				for (int i = 0; i < inv.length; i++)
-				{
-					invStack = inv[i];
+				for (ItemStack element : inv) {
+					invStack = element;
 					if (invStack != null && challenge.challengeItem != null)
 					{
 						boolean flag2 = !challenge.ignoresMeta && invStack.getItemDamage() == challenge.challengeItem.getItemDamage() || challenge.ignoresMeta;
@@ -251,7 +249,7 @@ public class ItemChallenge extends Item {
 						}
 					}
 				}
-			}			
+			}
 		}
 
 		if (stack.stackTagCompound.hasKey("challengeProgress") && challenge != null && stack.stackTagCompound.getInteger("challengeProgress") == 0 && challenge.isLocationBased &&

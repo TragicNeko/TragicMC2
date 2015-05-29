@@ -12,7 +12,6 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicEntities;
@@ -185,7 +184,7 @@ public class EntityIre extends TragicMob {
 				{
 					if (this.getHealth() < this.getMaxHealth()) this.heal(ireNetSize);
 				}
-				
+
 				this.worldObj.playSoundAtEntity(this, "tragicmc:mob.ire.active", 0.8F, 0.5F + rand.nextFloat());
 			}
 
@@ -197,7 +196,7 @@ public class EntityIre extends TragicMob {
 		else
 		{
 			this.setTargetId(0);
-		}	
+		}
 
 		List<EntityIre> list = this.worldObj.getEntitiesWithinAABB(EntityIre.class, this.boundingBox.expand(16.0, 16.0, 16.0));
 		int count = 0;
@@ -207,7 +206,7 @@ public class EntityIre extends TragicMob {
 		}
 
 		if (count > ireNetSize) ireNetSize = count;
-		
+
 		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
 		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
@@ -225,43 +224,43 @@ public class EntityIre extends TragicMob {
 	{
 		return super.canAttackClass(oclass) && oclass != this.getClass() && oclass != EntityArchangel.class && oclass != EntityApis.class;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.ire.tone";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.ire.hit";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.ire.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return rand.nextFloat() + 0.5F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

@@ -23,7 +23,7 @@ public class DoomsdayAmbience extends Doomsday implements IExtendedDoomsday {
 		int z = (int) (player.posZ + rand.nextInt(2) - rand.nextInt(2));
 		if (EntityOverlordCore.replaceableBlocks.contains(player.worldObj.getBlock(x, y, z)))
 		{
-			player.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
+			player.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 		}
 	}
 
@@ -32,6 +32,7 @@ public class DoomsdayAmbience extends Doomsday implements IExtendedDoomsday {
 		player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 0));
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Decay;
 	}

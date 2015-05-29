@@ -24,7 +24,7 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 public class RenderClaymation extends RenderBoss {
 
 	private static final ResourceLocation texture = new ResourceLocation("tragicmc:textures/mobs/Claymation.png");
-	
+
 	private static final ModelBase[] models = new ModelBase[] {new ModelClaymation(), new ModelMinotaur(), new ModelApis(), new ModelStinKing(), new ModelNorVox(), new ModelJabba(),
 		new ModelRagr(), new ModelDeathReaper(), new ModelKitsune2(), new ModelCustomGolem()};
 
@@ -39,7 +39,7 @@ public class RenderClaymation extends RenderBoss {
 		if (this.scale != this.getScaleFromClaymationForm((EntityClaymation) entity)) this.scale = this.getScaleFromClaymationForm((EntityClaymation) entity);
 		GL11.glScalef(scale, scale, scale);
 	}
-	
+
 	protected int shouldRenderPass(TragicBoss boss, int par2, float par3)
 	{
 		if (boss.isInvisible())
@@ -51,7 +51,7 @@ public class RenderClaymation extends RenderBoss {
 		{
 			GL11.glDepthMask(true);
 		}
-		
+
 		if (par2 == 0)
 		{
 			float f1 = boss.ticksExisted;
@@ -63,12 +63,12 @@ public class RenderClaymation extends RenderBoss {
 			GL11.glTranslatef(f2, f3, 0.0F);
 			this.setRenderPassModel(this.mainModel);
 			GL11.glMatrixMode(GL11.GL_MODELVIEW);
-            GL11.glEnable(GL11.GL_NORMALIZE);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            return 1;
+			GL11.glEnable(GL11.GL_NORMALIZE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			return 1;
 		}
-		
+
 		GL11.glMatrixMode(GL11.GL_TEXTURE);
 		GL11.glLoadIdentity();
 		GL11.glMatrixMode(GL11.GL_TEXTURE);

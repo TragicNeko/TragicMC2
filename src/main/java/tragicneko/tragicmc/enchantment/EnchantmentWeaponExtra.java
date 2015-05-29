@@ -10,15 +10,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.items.weapons.ItemScythe;
 
 public class EnchantmentWeaponExtra extends Enchantment {
 
 	private String[] enchantNames = {"vampirism", "leech", "consume", "distract", "rust"};
-	private static String enchantName;
 	private int damageType;
 
 	private final Random rand = TragicMC.rand;

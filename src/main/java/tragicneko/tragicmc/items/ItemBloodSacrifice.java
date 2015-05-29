@@ -22,7 +22,7 @@ public class ItemBloodSacrifice extends Item {
 	{
 		par2List.add("Sacrifice some Health for Doom");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
@@ -49,9 +49,9 @@ public class ItemBloodSacrifice extends Item {
 				{
 					property.increaseDoom((int) amount);
 				}
-				
+
 				par3EntityPlayer.setHealth(1.0F);
-				
+
 				if (!par3EntityPlayer.capabilities.isCreativeMode) par1ItemStack.stackSize--;
 
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Health sacrificed!"));

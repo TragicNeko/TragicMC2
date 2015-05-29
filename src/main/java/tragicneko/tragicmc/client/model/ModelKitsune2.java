@@ -215,7 +215,7 @@ public class ModelKitsune2 extends ModelBase
 
 		leftLeg.offsetY = 0.0F;
 		rightLeg.offsetY = 0.0F;
-		
+
 		int taunt = 0;
 		int firing = 0;
 		int attack = 0;
@@ -250,7 +250,7 @@ public class ModelKitsune2 extends ModelBase
 		tailMR.rotateAngleZ = -0.4833219F + this.simplifyAngle(entity.ticksExisted - 15.0F, 70.0F) * 0.14F;
 		tailMid.rotateAngleZ = this.simplifyAngle(entity.ticksExisted, 60.0F) * 0.14F;
 		tailML.rotateAngleZ = 0.4833219F + this.simplifyAngle(entity.ticksExisted + 50.0F, 70.0F) * 0.14F;
-		tailFL.rotateAngleZ = 0.8922867F + this.simplifyAngle(entity.ticksExisted + 30.0F, 70.0F) * 0.14F; 
+		tailFL.rotateAngleZ = 0.8922867F + this.simplifyAngle(entity.ticksExisted + 30.0F, 70.0F) * 0.14F;
 
 		tailTipFR.rotateAngleZ = this.simplifyAngle(entity.ticksExisted - 45.0F, 70.0F) * 0.04F;
 		tailTipMR.rotateAngleZ = this.simplifyAngle(entity.ticksExisted - 15.0F, 70.0F) * 0.04F;

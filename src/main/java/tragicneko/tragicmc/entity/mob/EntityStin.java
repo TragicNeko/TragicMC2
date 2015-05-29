@@ -54,7 +54,7 @@ public class EntityStin extends TragicMob {
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.targetTasks.addTask(3, targetPlayer);
 	}
-	
+
 	@Override
 	public boolean isMobVariant()
 	{
@@ -214,7 +214,7 @@ public class EntityStin extends TragicMob {
 				this.setSize(0.65F, 0.65F);
 				this.stepHeight = 0.5F;
 			}
-			
+
 			return;
 		}
 
@@ -297,7 +297,7 @@ public class EntityStin extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		boolean flag = super.attackEntityFrom(par1DamageSource, par2);
@@ -426,7 +426,7 @@ public class EntityStin extends TragicMob {
 		super.fall(f);
 		if (!this.isGalloping()) this.setGallopTicks(15);
 	}
-	
+
 	@Override
 	public void setInWeb() {}
 
@@ -469,37 +469,37 @@ public class EntityStin extends TragicMob {
 	{
 		return "tragicmc:mob.stin.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.stin.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.stin.hurt";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return this.isAdult() ? 1.0F : 1.6F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		this.playSound(this.isAdult()? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

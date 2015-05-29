@@ -31,7 +31,7 @@ public class ArmorTungsten extends TragicArmor {
 		case 3:
 			this.itemIcon = par1IconRegister.registerIcon("tragicmc:TungstenBoots");
 			break;
-		} 
+		}
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.items.weapons;
 
-import tragicneko.tragicmc.doomsday.Doomsday;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.doomsday.Doomsday;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,13 +20,13 @@ public class WeaponSilentHellraiser extends TragicWeapon {
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean isBookEnchantable(ItemStack stack, ItemStack book)
-    {
-        return false;
-    }
-	
+	{
+		return false;
+	}
+
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par, boolean flag)
 	{

@@ -1,18 +1,17 @@
 package tragicneko.tragicmc.client.model.armor;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
+
+import org.lwjgl.opengl.GL11;
 
 /**
  * ModelDarkArmor - TragicNeko
  * Created using Tabula 4.1.1
  */
 public class ModelDarkArmor extends ModelBiped {
-	
+
 	public ModelRenderer shape57;
 	public ModelRenderer shape58;
 	public ModelRenderer shape59;
@@ -387,8 +386,8 @@ public class ModelDarkArmor extends ModelBiped {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-		
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
 		this.isSneak = entity.isSneaking();
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
@@ -426,7 +425,7 @@ public class ModelDarkArmor extends ModelBiped {
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
 	 */
-	 public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;

@@ -19,14 +19,14 @@ public class ItemEnchantedSushi extends ItemFood {
 		if (TragicConfig.allowImmunity) this.setPotionEffect(TragicPotion.Immunity.id, 120, 0, 1.0F);
 		this.setAlwaysEdible();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
 		return EnumRarity.epic;
 	}
-	
+
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack)
 	{
@@ -50,7 +50,7 @@ public class ItemEnchantedSushi extends ItemFood {
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
 		if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
 		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 60));
-		
+
 		return super.onEaten(stack, world, player);
 	}
 

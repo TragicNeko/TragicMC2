@@ -1,7 +1,6 @@
 package tragicneko.tragicmc.items;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,9 +18,9 @@ import tragicneko.tragicmc.entity.EntityStatue;
 public class ItemStatue extends Item {
 
 	public static String[] subNames = new String[] {"apis", "kitsune", "deathReaper", "timeController", "yeti", "polaris", "jarra", "kragul", "magmox", "megaCryse", "stinKing",
-			"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord", "overlordCombat", "overlordCocoon"};
+		"stinQueen", "greaterStin", "voxStellarum", "enyvil", "claymation", "aegar", "overlord", "overlordCombat", "overlordCocoon"};
 	private static String[] textureNames = new String[] {"Apis", "Kitsune", "DeathReaper", "TimeController", "Yeti", "Polaris", "Jarra", "Kragul", "Magmox", "MegaCryse", "StinKing",
-			"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation", "Aegar", "Overlord", "OverlordCombat", "OverlordCocoon"};
+		"StinQueen", "GreaterStin", "VoxStellarum", "Enyvil", "Claymation", "Aegar", "Overlord", "OverlordCombat", "OverlordCocoon"};
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public ItemStatue()
@@ -46,7 +45,7 @@ public class ItemStatue extends Item {
 	public IIcon getIconFromDamage(int damage)
 	{
 		if (damage < this.iconArray.length) return this.iconArray[damage];
-		
+
 		damage %= this.iconArray.length;
 
 		if (damage >= this.iconArray.length)
@@ -69,9 +68,9 @@ public class ItemStatue extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int damage = itemstack.getItemDamage();
-		
+
 		if (damage < subNames.length) return getUnlocalizedName() + "." + subNames[damage];
-		
+
 		int var = damage % subNames.length;
 
 		if (var >= subNames.length)
@@ -80,14 +79,14 @@ public class ItemStatue extends Item {
 		}
 		return getUnlocalizedName() + "." + subNames[var];
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
-    {
+	{
 		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
 		if (stack.getItemDamage() < subNames.length) return s;
-        return s + " " + StatCollector.translateToLocal(this.getExtraStringName(stack.getItemDamage())) + (this.getAnimated(stack) ? StatCollector.translateToLocal("tragicmc.mobTexture.animated") : "");
-    }
+		return s + " " + StatCollector.translateToLocal(this.getExtraStringName(stack.getItemDamage())) + (this.getAnimated(stack) ? StatCollector.translateToLocal("tragicmc.mobTexture.animated") : "");
+	}
 
 	private String getExtraStringName(int damage) {
 		int var = 0;
@@ -99,7 +98,7 @@ public class ItemStatue extends Item {
 				var = i;
 			}
 		}
-		
+
 		switch(var)
 		{
 		case 1:
@@ -138,7 +137,7 @@ public class ItemStatue extends Item {
 	}
 
 	private byte getTextureIDFromDamage(int damage)
-	{		
+	{
 		for (byte i = 1; i < 18; i++)
 		{
 			if (damage >= subNames.length * i && damage < (i * subNames.length) + subNames.length) return i;
@@ -154,9 +153,8 @@ public class ItemStatue extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		Random random = TragicMC.rand;
 		MovingObjectPosition mop = this.getMovingObjectPositionFromPlayer(world, player, false);
 
 		if (mop == null) return stack;
@@ -170,11 +168,11 @@ public class ItemStatue extends Item {
 		if (World.doesBlockHaveSolidTopSurface(world, x, y, z) && !world.isRemote)
 		{
 			statue = new EntityStatue(world);
-			
+
 			double x2 = x + 0.5D;
 			double y2 = y;
 			double z2 = z + 0.5D;
-			
+
 			switch (mop.sideHit)
 			{
 			case 0: //bottom
@@ -196,7 +194,7 @@ public class ItemStatue extends Item {
 				x2 += 1.0D;
 				break;
 			}
-			
+
 			statue.setPosition(x2, y2, z2);
 			if (!world.getCollidingBoundingBoxes(statue, statue.boundingBox).isEmpty() || world.isAnyLiquid(statue.boundingBox)) return stack;
 			statue.setMobID(stack.getItemDamage() % subNames.length);
@@ -208,7 +206,7 @@ public class ItemStatue extends Item {
 
 		return stack;
 	}
-	
+
 	private boolean getAnimated(ItemStack stack)
 	{
 		return stack.hasTagCompound() && stack.getTagCompound().hasKey("isAnimated") ? stack.getTagCompound().getInteger("isAnimated") == 1 : false;

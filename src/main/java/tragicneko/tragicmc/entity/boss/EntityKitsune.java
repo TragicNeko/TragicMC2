@@ -213,7 +213,7 @@ public class EntityKitsune extends TragicBoss {
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.isFiring() || this.getTauntTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-		
+
 		if (this.isInWater()) this.teleportRandomly();
 
 		if (this.getAttackTarget() != null)
@@ -323,7 +323,7 @@ public class EntityKitsune extends TragicBoss {
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
-		
+
 		if (par1DamageSource.getEntity() instanceof EntityKurayami)
 		{
 			return super.attackEntityFrom(par1DamageSource, par2 * 0.145F);
@@ -466,7 +466,7 @@ public class EntityKitsune extends TragicBoss {
 			this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
 			this.playSound(this.getLivingSound() == null ? "mob.endermen.portal" : this.getLivingSound(), 1.0F, 1.0F);
 			return true;
-		} 
+		}
 	}
 
 	@Override
@@ -487,37 +487,37 @@ public class EntityKitsune extends TragicBoss {
 		tag.setInteger("hurtTime", this.getHurtTime());
 		tag.setInteger("attackTime", this.getAttackTime());
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:boss.kitsune.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:boss.kitsune.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:boss.kitsune.hurt";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F;
 	}
-	
+
 	@Override
 	public int getTalkInterval()
 	{

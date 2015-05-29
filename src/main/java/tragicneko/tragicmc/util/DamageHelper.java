@@ -16,7 +16,7 @@ public class DamageHelper {
 		EntityDamageSource source = (EntityDamageSource) new EntityDamageSource("suffocation", entity).setDamageBypassesArmor().setDamageIsAbsolute();
 		return source;
 	}
-	
+
 	/**
 	 * Should be used for inflicting magic damage instead of using vanilla magic
 	 * @param entity
@@ -27,7 +27,7 @@ public class DamageHelper {
 		EntityDamageSource source = (EntityDamageSource) new EntityDamageSource("modMagic", entity).setDamageBypassesArmor().setMagicDamage();
 		return source;
 	}
-	
+
 	/**
 	 * Should be used to inflict damage from things that should be armor piercing, such as various Doomsday attacks
 	 * @param entity

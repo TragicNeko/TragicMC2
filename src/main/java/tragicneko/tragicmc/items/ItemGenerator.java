@@ -39,8 +39,6 @@ import tragicneko.tragicmc.worldgen.WorldGenAshenTree;
 import tragicneko.tragicmc.worldgen.WorldGenBleachedTree;
 import tragicneko.tragicmc.worldgen.WorldGenLargePaintedTree;
 import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public class ItemGenerator extends Item {
@@ -70,7 +68,7 @@ public class ItemGenerator extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (world.isRemote) return stack;
 		Random random = world.rand;
@@ -102,7 +100,7 @@ public class ItemGenerator extends Item {
 					{
 						coords = list.get(mapping);
 						if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
-					} 
+					}
 				}
 
 				list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
@@ -111,7 +109,7 @@ public class ItemGenerator extends Item {
 				{
 					coords = list.get(mapping);
 					if (random.nextInt(2) != 0) world.setBlock(coords[0], coords[1], coords[2], Blocks.air);
-				} 
+				}
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
@@ -141,7 +139,7 @@ public class ItemGenerator extends Item {
 				{
 					break;
 				}
-			} 
+			}
 
 			if (!ablock.isOpaqueCube() && !(ablock instanceof BlockBreakable)|| ablock.hasTileEntity(0) || ablock instanceof BlockFalling) ablock = Blocks.tnt;
 
@@ -256,8 +254,6 @@ public class ItemGenerator extends Item {
 			int blockMeta = 14;
 			int spikeType = random.nextInt(6);
 			boolean flag = false;
-			boolean flag2 = false;
-
 			player.addChatMessage(new ChatComponentText(EnumChatFormatting.ITALIC + "Spike of type " + spikeType + " and size of " + size + " generated."));
 
 			for (int y1 = 0; y1 < 256; y1++)
@@ -350,7 +346,7 @@ public class ItemGenerator extends Item {
 			double regression = 0.88977745D;
 			double cutoff = 0.48943755D;
 			ArrayList<int[]> cands = new ArrayList<int[]>();
-			
+
 			size = random.nextDouble() * 3.5D + 1.5D;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
@@ -385,7 +381,7 @@ public class ItemGenerator extends Item {
 			}
 
 			int rand = random.nextInt(4) + 2;
-			
+
 			for (int[] coords2 : cands)
 			{
 				if (coords2[1] >= yMax)
@@ -401,7 +397,7 @@ public class ItemGenerator extends Item {
 					world.setBlock(coords2[0], coords2[1], coords2[2], TragicBlocks.DarkStone, 0, 2);
 				}
 			}
-			
+
 			break;
 		case 10:
 			EntityDirectedLightning lightning = new EntityDirectedLightning(world, Xcoord, Ycoord, Zcoord, player);
@@ -413,7 +409,7 @@ public class ItemGenerator extends Item {
 			int depth = Ycoord - 10 - random.nextInt(10);
 			size = 3.0D * random.nextDouble() + 3.0D;
 			cands = new ArrayList<int[]>();
-			
+
 			for (int pow = 0; pow + Ycoord >= depth && pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 			{
 				if (size >= 5.5D)
@@ -424,7 +420,7 @@ public class ItemGenerator extends Item {
 					{
 						coords = list.get(mapping);
 						if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
-					} 
+					}
 				}
 
 				list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
@@ -433,7 +429,7 @@ public class ItemGenerator extends Item {
 				{
 					coords = list.get(mapping);
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
-				} 
+				}
 
 				list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
@@ -442,13 +438,13 @@ public class ItemGenerator extends Item {
 					coords = list.get(mapping);
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 				}
-				
+
 				if (size >= 3.0D && random.nextInt(4) == 0) size *= 0.987425D; //reduces size of the void pit randomly, similarly to spikes, but this is to reduce lag
 			}
-			
+
 			block = random.nextBoolean() ? TragicBlocks.IceSpike : (random.nextBoolean() ? Blocks.flowing_lava : (random.nextBoolean() ? TragicBlocks.RadiatedGas : TragicBlocks.Quicksand));
 			int m = block == TragicBlocks.Quicksand && random.nextBoolean() ? 3 : 0;
-			
+
 			for (int[] coords2 : cands)
 			{
 				if (coords2[1] > depth + 1) world.setBlockToAir(coords2[0], coords2[1], coords2[2]);

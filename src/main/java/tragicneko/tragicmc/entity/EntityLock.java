@@ -2,13 +2,11 @@ package tragicneko.tragicmc.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 
@@ -32,9 +30,9 @@ public class EntityLock extends Entity {
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
-		
+
 		if (!this.worldObj.isRemote)
-		{			
+		{
 			if (this.ridingEntity instanceof EntityLivingBase && this.lockOwner != null && this.getDistanceToEntity(this.lockOwner) >= 8.0F)
 			{
 				this.ridingEntity.motionX = this.ridingEntity.motionZ = this.ridingEntity.motionY = 0D;

@@ -23,7 +23,7 @@ public class ItemSoundExtrapolator extends Item {
 		this.setMaxStackSize(1);
 		this.setCreativeTab(TragicMC.Creative);
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
@@ -53,7 +53,7 @@ public class ItemSoundExtrapolator extends Item {
 			String sound = null;
 			float pitch = 1F;
 			float volume = 1F;
-			try 
+			try
 			{
 				oclass = Class.forName(par1ItemStack.stackTagCompound.getString("extrapolatedEntity"));
 				EntityLiving entity = (EntityLiving) oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par2World});

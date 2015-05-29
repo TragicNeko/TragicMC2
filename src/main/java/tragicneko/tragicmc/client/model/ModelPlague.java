@@ -18,18 +18,18 @@ public class ModelPlague extends ModelBase
 	private ModelRenderer shape8;
 	private ModelRenderer shape9;
 	private ModelRenderer shape10;
-	
+
 	private ModelRenderer[] shapeArray = new ModelRenderer[10];
 
 	public ModelPlague()
 	{
 		textureWidth = 64;
 		textureHeight = 32;
-		
+
 		shape = new ModelRenderer(this, 0, 0);
 		shape.addBox(0F, 0F, 0F, 1, 1, 1);
 		shape.setRotationPoint(0F, 10F, 0F);
-		
+
 		shape2 = new ModelRenderer(this, 0, 0);
 		shape2.addBox(0F, 5F, 5F, 1, 1, 1);
 		shape2.setRotationPoint(0F, 10F, 0F);
@@ -65,7 +65,7 @@ public class ModelPlague extends ModelBase
 		shape10 = new ModelRenderer(this, 0, 0);
 		shape10.addBox(-6F, -2F, 0F, 1, 1, 1);
 		shape10.setRotationPoint(0F, 10F, 0F);
-		
+
 		this.shapeArray = new ModelRenderer[] {shape, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9, shape10};
 	}
 
@@ -92,7 +92,7 @@ public class ModelPlague extends ModelBase
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		Random rand = entity.worldObj.rand;
 		int j = entity.ticksExisted;
-		
+
 		for (int i = 0; i < this.boxList.size(); i++)
 		{
 			shapeArray[i].rotateAngleX = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
@@ -100,7 +100,7 @@ public class ModelPlague extends ModelBase
 			shapeArray[i].rotateAngleZ = ((rand.nextFloat() - rand.nextFloat()) * 0.45F) * this.simplifyAngle(j - f2, 10.0F);
 		}
 	}
-	
+
 	private float simplifyAngle(float par1, float par2)
 	{
 		return (Math.abs(par1 % par2 - par2 * 0.5F) - par2 * 0.25F) / (par2 * 0.25F);

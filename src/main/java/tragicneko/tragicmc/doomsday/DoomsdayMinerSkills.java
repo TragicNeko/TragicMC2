@@ -9,8 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -35,7 +33,6 @@ public class DoomsdayMinerSkills extends Doomsday {
 		player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, (int) (600 * d0), 3));
 		if (crucMoment) player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, (int) (400 * d0), 1));
 
-		int limit = crucMoment ? 100 : 60;
 		Block block;
 		int[] coords;
 		double range = crucMoment ? 6.0D : 4.0D;

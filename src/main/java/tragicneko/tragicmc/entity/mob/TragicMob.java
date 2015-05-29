@@ -19,10 +19,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -156,7 +155,7 @@ public abstract class TragicMob extends EntityMob
 		}
 	}
 
-	protected void change() 
+	protected void change()
 	{
 		if (this.isChangeAllowed())
 		{
@@ -188,7 +187,7 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.worldObj.isRemote || TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false; 
+		if (this.worldObj.isRemote || TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
 
 		Boolean result = super.attackEntityAsMob(par1Entity);
 
@@ -210,7 +209,7 @@ public abstract class TragicMob extends EntityMob
 			{
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, 200,1));
 			}
-		} 
+		}
 
 		return result;
 	}
@@ -266,14 +265,14 @@ public abstract class TragicMob extends EntityMob
 				double d2 = this.rand.nextGaussian() * 0.02D;
 				double d0 = this.rand.nextGaussian() * 0.02D;
 				double d1 = this.rand.nextGaussian() * 0.02D;
-				this.worldObj.spawnParticle("explode", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d2, d0, d1);
+				this.worldObj.spawnParticle("explode", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d2, d0, d1);
 			}
 		}
 	}
 
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
-	{		
+	{
 		super.onDeath(par1DamageSource);
 
 		if (!this.worldObj.isRemote && this.getAllowLoot())
@@ -350,7 +349,7 @@ public abstract class TragicMob extends EntityMob
 			}
 
 			if (id != 0 && rand.nextInt(100) <= TragicConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
-		}		
+		}
 	}
 
 	public boolean isMobVariant()
@@ -425,7 +424,7 @@ public abstract class TragicMob extends EntityMob
 					id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
 					break;
 				}
-				
+
 				PotionEffect effect = new PotionEffect(id, 99999, rand.nextInt(2));
 				this.addPotionEffect(effect);
 				return new GroupBuff(effect);

@@ -106,7 +106,7 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 		}
 		return null;
 	}
-	
+
 	public ItemStack getActiveAmuletItemStack(int slot)
 	{
 		if (this.inventory.getStackInSlot(slot) != null)
@@ -119,10 +119,10 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 				return this.inventory.getStackInSlot(slot);
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Shortcut method to damage an amulet
 	 * @param slot
@@ -142,7 +142,7 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 			}
 		}
 	}
-	
+
 	public void repairStackInSlot(int slot, int repair)
 	{
 		if (this.getActiveAmulet(slot) != null)

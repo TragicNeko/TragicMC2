@@ -35,13 +35,13 @@ public class EntityNanoSwarm extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
 	}
-	
+
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return TragicEntities.Synapse;
 	}
-	
+
 	@Override
 	protected void applyEntityAttributes()
 	{
@@ -52,7 +52,7 @@ public class EntityNanoSwarm extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(nanoSwarmStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(nanoSwarmStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -69,12 +69,12 @@ public class EntityNanoSwarm extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-		
+
 		if (this.worldObj.isRemote)
 		{
 			for (int l = 0; l < 2; ++l)
@@ -86,21 +86,21 @@ public class EntityNanoSwarm extends TragicMob {
 						(this.rand.nextDouble() - 0.6D) * 0.1D,
 						this.rand.nextDouble() * 0.1D,
 						(this.rand.nextDouble() - 0.6D) * 0.1D);
-			} 
+			}
 		}
-		
+
 		if (this.motionY < 0 && !this.onGround) this.motionY *= 0.65D;
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && !par1DamageSource.isProjectile() && !par1DamageSource.isMagicDamage())
 		{
 			EntityLivingBase entity = (EntityLivingBase) par1DamageSource.getEntity();
-			
+
 			if (entity.getCreatureAttribute() == TragicEntities.Synapse) return false;
 
 			if (entity.getEquipmentInSlot(0) != null)
@@ -122,20 +122,20 @@ public class EntityNanoSwarm extends TragicMob {
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
-	
+
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		boolean result = super.attackEntityAsMob(par1Entity);
-		
+
 		if (result && par1Entity instanceof EntityLivingBase && ((EntityLivingBase) par1Entity).getCreatureAttribute() != TragicEntities.Synapse)
 		{
 			this.setDead();
 			if (TragicConfig.allowHacked) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 120 + rand.nextInt(80)));
 		}
-		
+
 		return result;
 	}
 
@@ -144,49 +144,49 @@ public class EntityNanoSwarm extends TragicMob {
 
 	@Override
 	public void updateFallState(double par1, boolean par2) {}
-	
+
 	@Override
 	public boolean canAttackClass(Class oclass)
 	{
 		return super.canAttackClass(oclass) && oclass != EntityOverlordCombat.class && oclass != EntityOverlordCocoon.class && oclass != EntityOverlordCore.class;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.nanoswarm.glitch";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.nanoswarm.glitch";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.nanoswarm.glitch";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return rand.nextFloat();
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

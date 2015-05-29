@@ -8,7 +8,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityNekoMiniBomb extends EntityThrowable {
-	
+
 	public EntityNekoMiniBomb(World world) {
 		super(world);
 	}
@@ -29,8 +29,8 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 	@Override
 	protected void onImpact(MovingObjectPosition mop)
 	{
-		if (mop.entityHit != null) 
-		{			
+		if (mop.entityHit != null)
+		{
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 		}
 		else
@@ -43,7 +43,7 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 
 	@Override
 	public void onUpdate()
-	{		
+	{
 		super.onUpdate();
 
 		if (this.isInWater())

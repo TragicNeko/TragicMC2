@@ -4,27 +4,24 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 
 public class SchematicDeathCircle extends Schematic {
-	
+
 	private static Block fire = Blocks.fire;
 	private static Block exCob = TragicBlocks.DarkCobblestone;
 	private static Block darkCob = TragicBlocks.DarkCobblestone;
 	private static Block summon = TragicBlocks.SummonBlock;
 	private static Block chest = Blocks.chest;
-	
+
 	public SchematicDeathCircle() {
 		super(6, 11, 11);
 	}
 
 	@Override
-	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z) 
+	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		for (int y1 = 0; y1 < 6; y1++)
 		{
@@ -35,7 +32,7 @@ public class SchematicDeathCircle extends Schematic {
 					world.setBlockToAir(x + x1 - 5, y + y1, z - 5 + z1);
 				}
 			}
-		} 
+		}
 
 		//First layer
 
@@ -277,7 +274,7 @@ public class SchematicDeathCircle extends Schematic {
 
 		//Eighteenth row
 		world.setBlock(x - 4, y, z - 9, darkCob);
-		world.setBlock(x + 2, y, z - 9, darkCob);		
+		world.setBlock(x + 2, y, z - 9, darkCob);
 
 		//Second layer
 		y++;
@@ -300,7 +297,7 @@ public class SchematicDeathCircle extends Schematic {
 
 		world.setBlock(x - 8, y, z, darkCob);
 		world.setBlock(x, y, z, chest, 0, 2);
-		
+
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x - 4, y, z - 1, exCob, 1, 2);
@@ -325,7 +322,7 @@ public class SchematicDeathCircle extends Schematic {
 
 		//Third layer
 		y++;
-		
+
 		world.setBlock(x - 1, y, z + 5, exCob, 1, 2);
 
 		world.setBlock(x - 3, y, z + 4, exCob, 1, 2);
@@ -355,7 +352,7 @@ public class SchematicDeathCircle extends Schematic {
 		world.setBlock(x, y, z - 7, darkCob);
 
 		world.setBlock(x + 1, y, z - 8, darkCob);
-		
+
 		//Fourth layer
 		y++;
 
@@ -378,10 +375,10 @@ public class SchematicDeathCircle extends Schematic {
 		world.setBlock(x - 1, y, z - 5, fire);
 
 		world.setBlock(x + 1, y, z - 8, darkCob);
-		
+
 		//Fifth layer
 		y++;
-		
+
 		world.setBlock(x - 3, y, z + 4, exCob, 1, 2);
 
 		world.setBlock(x + 2, y, z + 1, exCob, 1, 2);
@@ -395,10 +392,10 @@ public class SchematicDeathCircle extends Schematic {
 		world.setBlock(x - 5, y, z - 3, darkCob);
 
 		world.setBlock(x + 1, y, z - 8, darkCob);
-		
+
 		//Sixth layer
 		y++;
-		
+
 		world.setBlock(x - 3, y, z + 4, fire);
 
 		world.setBlock(x + 2, y, z + 1, exCob, 1, 2);
@@ -408,12 +405,12 @@ public class SchematicDeathCircle extends Schematic {
 		world.setBlock(x - 5, y, z - 3, fire);
 
 		world.setBlock(x + 1, y, z - 8, fire);
-		
+
 		//Seventh layer
 		y++;
-		
+
 		world.setBlock(x + 2, y, z + 1, fire);
-		
+
 		return true;
 	}
 

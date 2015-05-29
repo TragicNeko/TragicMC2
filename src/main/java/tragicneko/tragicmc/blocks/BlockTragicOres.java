@@ -113,7 +113,7 @@ public class BlockTragicOres extends Block {
 		{
 			return 0;
 		}
-		else if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.diamond || this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.emerald || 
+		else if (this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.diamond || this.getItemDropped(p_149690_5_, rand, p_149690_7_) == Items.emerald ||
 				this.getItemDropped(p_149690_5_, rand, p_149690_7_) == TragicItems.Ruby || this.getItemDropped(p_149690_5_, rand, p_149690_7_) == TragicItems.Sapphire)
 		{
 			return MathHelper.getRandomIntegerInRange(rand, 3, 7);
@@ -126,7 +126,7 @@ public class BlockTragicOres extends Block {
 		{
 			return MathHelper.getRandomIntegerInRange(rand, 0, 3);
 		}
-		
+
 		return MathHelper.getRandomIntegerInRange(rand, 0, 3);
 	}
 

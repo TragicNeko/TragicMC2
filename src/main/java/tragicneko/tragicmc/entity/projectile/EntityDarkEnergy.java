@@ -28,10 +28,10 @@ public class EntityDarkEnergy extends EntityProjectile {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (this.worldObj.isRemote) return;
 
-		if (mop.entityHit != null) 
-		{			
+		if (mop.entityHit != null)
+		{
 			if (mop.entityHit instanceof EntityDarkEnergy) return;
-			
+
 			if (mop.entityHit instanceof EntityLivingBase)
 			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 3.0F);
@@ -41,12 +41,12 @@ public class EntityDarkEnergy extends EntityProjectile {
 
 		if (mop != null) this.setDead();
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-		
+
 		if (!this.worldObj.isRemote && this.ticksExisted >= 80) this.setDead();
 	}
 

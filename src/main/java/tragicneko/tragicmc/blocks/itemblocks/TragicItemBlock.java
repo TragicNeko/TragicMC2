@@ -15,7 +15,7 @@ public class TragicItemBlock extends ItemBlock {
 		this.setMaxDamage(0);
 		this.subNames = subNames;
 	}
-	
+
 	public TragicItemBlock(Block block, String[] subNames)
 	{
 		this(block, subNames, "null");
@@ -24,7 +24,7 @@ public class TragicItemBlock extends ItemBlock {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int damage = itemstack.getItemDamage();
-		
+
 		if (damage >= subNames.length)
 		{
 			damage = subNames.length - 1;

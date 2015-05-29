@@ -75,7 +75,7 @@ public class BlockTragicSapling extends Block implements IGrowable, IPlantable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
-	{		
+	{
 		for (int i = 0; i < this.treeNames.length; i++)
 		{
 			par3.add(new ItemStack(par1, 1, i));

@@ -127,7 +127,7 @@ public class EntityWisp extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(wispStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(wispStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -169,7 +169,7 @@ public class EntityWisp extends TragicMob {
 									this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.155D), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F,
 									0.155F * this.rand.nextFloat(), rand.nextFloat() * 0.114F - rand.nextFloat() * 0.114F);
 						}
-						
+
 						this.worldObj.spawnParticle(s, this.posX + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), this.posY + 0.115D + rand.nextDouble(),
 								this.posZ + ((rand.nextDouble() - rand.nextDouble()) * 0.355D), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 					}
@@ -210,7 +210,7 @@ public class EntityWisp extends TragicMob {
 			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
 			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
 			{
-				this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence); 
+				this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 			}
 
 			if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() == null && this.getIdleTicks() == 0)
@@ -219,7 +219,7 @@ public class EntityWisp extends TragicMob {
 				this.setIdleTicks(i != 1 ? 40 : 60);
 				this.setIdleState(i);
 			}
-			
+
 			if (this.isInWater() && this.ticksExisted % 10 == 0) this.attackEntityFrom(DamageSource.drown, 1.0F);
 		}
 	}
@@ -234,43 +234,43 @@ public class EntityWisp extends TragicMob {
 	protected boolean isChangeAllowed() {
 		return false;
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.wisp.joy";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.wisp.fear";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.wisp.release";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

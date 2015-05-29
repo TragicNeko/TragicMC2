@@ -13,25 +13,25 @@ public class EnchantmentLightweight extends Enchantment {
 
 	@Override
 	public int getMinEnchantability(int par1)
-    {
-        return 5;
-    }
+	{
+		return 5;
+	}
 
-    @Override
+	@Override
 	public int getMaxEnchantability(int par1)
-    {
-        return super.getMinEnchantability(par1) + 50;
-    }
+	{
+		return super.getMinEnchantability(par1) + 50;
+	}
 
-    @Override
+	@Override
 	public int getMaxLevel()
-    {
-        return 1;
-    }
-    
-    @Override
+	{
+		return 1;
+	}
+
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment)
-    {
-        return super.canApplyTogether(par1Enchantment);
-    }
+	{
+		return super.canApplyTogether(par1Enchantment);
+	}
 }

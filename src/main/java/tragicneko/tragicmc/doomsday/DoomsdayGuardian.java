@@ -1,9 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -15,7 +12,7 @@ public class DoomsdayGuardian extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		float f = Math.max(1 / (this.getCrisis(player)) * 20F, 40F);
 		double d0 = 0.0D;
 		if (crucMoment) player.heal(player.getHealth() / 2);

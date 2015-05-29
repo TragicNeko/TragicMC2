@@ -11,8 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -32,7 +30,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 		double radius = crucMoment ? 8.0D : 4.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 		List list2 = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-		
+
 		Block block;
 		int[] coords;
 
@@ -67,7 +65,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 				player.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.snow_layer, rand.nextInt(8), 2);
 			}
 		}
-		
+
 		if (crucMoment) addCrucialMessage(player);
 	}
 
@@ -76,6 +74,7 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 		player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 	}
 
+	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Freeze;
 	}

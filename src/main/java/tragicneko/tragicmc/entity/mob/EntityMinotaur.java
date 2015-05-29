@@ -22,8 +22,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EntityMinotaur extends TragicMob {
@@ -117,7 +117,7 @@ public class EntityMinotaur extends TragicMob {
 			this.setSprinting(false);
 		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F 
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F
 				&& this.onGround && rand.nextInt(16) == 0 && this.onGround && !this.isCharging() && this.canEntityBeSeen(this.getAttackTarget()))
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
@@ -134,7 +134,7 @@ public class EntityMinotaur extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer && !par1DamageSource.isProjectile() && !par1DamageSource.isMagicDamage())
@@ -164,7 +164,7 @@ public class EntityMinotaur extends TragicMob {
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		boolean result = super.attackEntityAsMob(par1Entity);
-		
+
 		if (result)
 		{
 			if (par1Entity instanceof EntityLivingBase && rand.nextInt(8) == 0)
@@ -191,7 +191,7 @@ public class EntityMinotaur extends TragicMob {
 				par1Entity.motionY += this.motionY;
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -200,7 +200,7 @@ public class EntityMinotaur extends TragicMob {
 	{
 		return (int) minotaurStats[5];
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -224,37 +224,37 @@ public class EntityMinotaur extends TragicMob {
 	{
 		return this.getAttackTarget() == null ? "tragicmc:mob.minotaur.snort" : "tragicmc:mob.minotaur.charge";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.minotaur.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.minotaur.charge";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

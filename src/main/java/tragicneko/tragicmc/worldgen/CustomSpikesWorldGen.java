@@ -5,7 +5,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -14,7 +13,7 @@ import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class CustomSpikesWorldGen implements IWorldGenerator {
-	
+
 	public final int relays; //how many spikes should be attempted per chunk
 	public final Block block;
 	public final int meta;
@@ -24,7 +23,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 	public final boolean isStarCrystal; //if the spike should use a randomized meta value per spike
 	public final double size; //starting spike size, basically the minimum
 	public final double sizeVariation; //the degree that the size can be up to, basically this plus the minimum is the maximum, this will be multipled by a random from worldgen
-	
+
 	public CustomSpikesWorldGen(int relay, Block spikeBlock, int metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation, boolean flag, boolean flag2)
 	{
 		this.relays = relay;
@@ -37,14 +36,14 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		this.usesSpikeTypes = flag;
 		this.isStarCrystal = flag2;
 	}
-	
+
 	public CustomSpikesWorldGen(int relay, Block spikeBlock, int metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation)
 	{
 		this(relay, spikeBlock, metaValue, regress, spikeCutoff, baseSize, sizeVariation, true, false);
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 		if (regression > 0.92 && !TragicConfig.allowLargeSpikeGen || random.nextInt(4) == 0) return;
 
@@ -70,7 +69,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 			{
 				spikeType = this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2);
 				if (this.isStarCrystal) m = random.nextInt(16);
-				
+
 				boolean flag3 = false;
 				boolean flag2 = false;
 
@@ -94,7 +93,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 							flag3 = true;
 						}
 					}
-					
+
 					if (!this.usesSpikeTypes) spikeSize *= regress; //makes sure it's done every y-level if in decaying biomes
 
 					if (this.usesSpikeTypes && random.nextBoolean())
@@ -134,7 +133,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 						if (Structure.validBlocks.contains(ablock) && ablock != TragicBlocks.DarkStone && !cands.contains(coords)) cands.add(coords);
 					}
 				}
-				
+
 				for (int[] coords : cands)
 				{
 					world.setBlock(coords[0], coords[1], coords[2], block, m, 2);
@@ -153,7 +152,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		for (int y1 = 0; y1 < 128; y1++)
 		{
 			if (size < 0.36443755D || Ycoord + y1 > 256) break;
-			
+
 			if (rand.nextBoolean())
 			{
 				size *= 0.95977745D;
@@ -173,7 +172,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 				if (Structure.validBlocks.contains(block) && !cands.contains(coords)) cands.add(coords);
 			}
 		}
-		
+
 		for (int[] coords : cands)
 		{
 			world.setBlock(coords[0], coords[1], coords[2], spike, meta, 2);

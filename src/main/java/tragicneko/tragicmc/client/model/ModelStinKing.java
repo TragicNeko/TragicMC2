@@ -175,7 +175,7 @@ public class ModelStinKing extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		if (!(entity instanceof EntityStinKing) && !(entity instanceof EntityClaymation)) return;
-		
+
 		int gallop = 0;
 		int charge = 0;
 
@@ -239,7 +239,7 @@ public class ModelStinKing extends ModelBase
 
 			if (charge >= 170)
 			{
-				body.rotateAngleX = 0.2F; 
+				body.rotateAngleX = 0.2F;
 				legFL.rotateAngleX = legValues[1] - 0.2F;
 				legFR.rotateAngleX = legValues[0] - 0.2F;
 				legML.rotateAngleX = legValues[2] - 0.2F;
@@ -262,7 +262,7 @@ public class ModelStinKing extends ModelBase
 				legML.rotateAngleX = legValues[2] + this.simplifyAngle(f + 2.0F, 3.0F) * 0.093F * f1;
 				legBL.rotateAngleX = legValues[5] + this.simplifyAngle(f + 3.0F, 3.0F) * 0.093F * f1;
 			}
-		} 
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

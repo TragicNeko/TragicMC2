@@ -11,13 +11,13 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class HangingCoralWorldGen extends WorldGenerator {
-	
+
 	public final int width;
 	public final int height;
 	public final int iterations;
 	public final Block block;
 	public final int meta;
-	
+
 	public HangingCoralWorldGen(int width, int height, int iterations, Block block, int meta)
 	{
 		this.width = width;
@@ -27,6 +27,7 @@ public class HangingCoralWorldGen extends WorldGenerator {
 		this.meta = meta;
 	}
 
+	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 		if (!world.isAirBlock(x, y, z))

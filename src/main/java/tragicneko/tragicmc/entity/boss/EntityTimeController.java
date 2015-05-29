@@ -18,7 +18,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -67,34 +66,6 @@ public class EntityTimeController extends TragicBoss {
 		this.isImmuneToFire = true;
 		this.tracker = new HashMap();
 		this.storedDamage = 0.0F;
-	}
-
-	private void updateTracker()
-	{
-		try
-		{
-			Entity entity;
-			Iterator<Integer> iterator = tracker.keySet().iterator();
-			int i = 0;
-
-			while (iterator.hasNext())
-			{
-				entity = this.worldObj.getEntityByID(iterator.next());
-				if (entity != null)
-				{
-					tracker.put(i++, new double[]{entity.posX, entity.posY, entity.posZ, entity.rotationPitch, entity.rotationYaw});
-				}
-				else
-				{
-					tracker.remove(i++);
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			TragicMC.logError("There was an error updating the Time Controller's tracker.", e);
-			return;
-		}
 	}
 
 	private boolean addToTracker(Entity entity)
@@ -343,7 +314,7 @@ public class EntityTimeController extends TragicBoss {
 			this.decrementLeapTicks();
 			if (TragicConfig.allowLeadFoot) this.weighDownEntities();
 		}
-		
+
 		if (this.getFluxTicks() > 0)
 		{
 			if (this.getLeapTicks() > 0) this.setLeapTicks(0);
@@ -351,14 +322,14 @@ public class EntityTimeController extends TragicBoss {
 			this.pullEntities();
 			this.worldObj.setWorldTime(rand.nextInt(48) * 500);
 		}
-		
+
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
-		if (this.getPurgeTicks() > 0) 
+		if (this.getPurgeTicks() > 0)
 		{
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 			this.decrementPurgeTicks();
 		}
-		
+
 		if (this.getSpazTicks() > 0) this.decrementSpazTicks();
 		if (this.getFluxTicks() == 2) this.damageNearbyEntities();
 
@@ -402,14 +373,14 @@ public class EntityTimeController extends TragicBoss {
 			EntityLivingBase entity = (EntityLivingBase) iterator.next();
 
 			if (entity.canEntityBeSeen(this) && entity != this)
-			{				
+			{
 				entity.addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 60));
 			}
 		}
-		
+
 	}
 
-	private void createTimeBombs() {		
+	private void createTimeBombs() {
 		for (int i = 0; i < 2; i++)
 		{
 			int y1 = MathHelper.getRandomIntegerInRange(this.worldObj.rand, 6, 10);
@@ -445,7 +416,7 @@ public class EntityTimeController extends TragicBoss {
 			EntityLivingBase entity = (EntityLivingBase) iterator.next();
 
 			if (entity.canEntityBeSeen(this) && entity != this && rand.nextBoolean())
-			{	
+			{
 				this.teleportEnemyAway(entity, true);
 			}
 		}
@@ -465,7 +436,7 @@ public class EntityTimeController extends TragicBoss {
 			EntityLivingBase entity = (EntityLivingBase) iterator.next();
 
 			if (entity.canEntityBeSeen(this) && entity != this)
-			{				
+			{
 				if (!flag2)
 				{
 					boolean flag = !(entity instanceof EntityPlayer) || entity instanceof EntityPlayer && !((EntityPlayer) entity).capabilities.isCreativeMode;
@@ -496,7 +467,7 @@ public class EntityTimeController extends TragicBoss {
 			EntityLivingBase entity = (EntityLivingBase) iterator.next();
 
 			if (entity.canEntityBeSeen(this) && entity != this)
-			{					
+			{
 				if (entity instanceof EntityPlayer)
 				{
 					if (!((EntityPlayer)entity).capabilities.isCreativeMode && this.ticksExisted % 4 == 0)

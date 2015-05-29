@@ -3,7 +3,6 @@ package tragicneko.tragicmc.client.gui;
 import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -37,8 +36,6 @@ public class GuiDoom extends Gui
 	private static int difTick = 0;
 	private static boolean cdFlag = false;
 
-	private FontRenderer fontRenderer;
-
 	private static final ResourceLocation texturepath = new ResourceLocation("tragicmc:textures/gui/doom_neko.png");
 	private static final ResourceLocation texturepath2 = new ResourceLocation("tragicmc:textures/gui/doom_pink.png");
 	private static final ResourceLocation texturepath3 = new ResourceLocation("tragicmc:textures/gui/doom_tentacle.png");
@@ -56,7 +53,7 @@ public class GuiDoom extends Gui
 
 		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
 		if (props == null || props.getMaxDoom() == 0) {
-			return; 
+			return;
 		}
 
 		int xPos = TragicConfig.guiX;
@@ -105,7 +102,7 @@ public class GuiDoom extends Gui
 				mc.thePlayer.playSound("tragicmc:random.cooldowndone", 1.0F, 1.0F);
 				cdFlag = false;
 			}
-			
+
 			buffer++;
 			if (!TragicConfig.allowAnimatedGui) buffer = 0;
 			int manabarwidth = (int)(((float) props.getCurrentDoom() / props.getMaxDoom()) * 49);
@@ -215,7 +212,7 @@ public class GuiDoom extends Gui
 				if (flag2 && doomsday != null && doomsday.doesCurrentDoomMeetRequirement(props)) flag = true;
 
 				if (flag)
-				{					
+				{
 					if (buffer >= 10 && buffer <= 20)
 					{
 						color = new Color(0xff, 0xf3, 0x68);
@@ -238,7 +235,7 @@ public class GuiDoom extends Gui
 			this.mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
 			this.mc.fontRenderer.drawString(s, xPos, yPos, color.getRGB());
 
-			if (difference != 0 && difTick > 0) 
+			if (difference != 0 && difTick > 0)
 			{
 				boolean flg = difference > 0;
 				String s2 = (flg ? "+" : "") + difference;

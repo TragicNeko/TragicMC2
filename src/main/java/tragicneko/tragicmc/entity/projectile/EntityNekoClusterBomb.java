@@ -32,18 +32,14 @@ public class EntityNekoClusterBomb extends EntityThrowable {
 	{
 		if (mop == null || this.worldObj.isRemote) return;
 
-		if (mop.entityHit != null) 
-		{			
+		if (mop.entityHit != null)
+		{
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 1.0F);
 		}
-		else 
+		else
 		{
 			for (int l = 0; l < 15; l++)
 			{
-				double d0 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX; 
-				double d1 = MathHelper.getRandomIntegerInRange(rand, 0, 3) + this.posY;
-				double d2 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ; 
-
 				if (this.getThrower() != null && !this.worldObj.isRemote)
 				{
 					EntityNekoMiniBomb bomb = new EntityNekoMiniBomb(this.worldObj, this.getThrower());
@@ -93,9 +89,9 @@ public class EntityNekoClusterBomb extends EntityThrowable {
 			{
 				for (int l = 0; l < 15; l++)
 				{
-					double d0 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX; 
+					double d0 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX;
 					double d1 = MathHelper.getRandomIntegerInRange(rand, 0, 3) + this.posY;
-					double d2 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ; 
+					double d2 = MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ;
 
 					if (this.getThrower() != null && !this.worldObj.isRemote)
 					{

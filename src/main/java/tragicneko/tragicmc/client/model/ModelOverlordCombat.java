@@ -654,7 +654,7 @@ public class ModelOverlordCombat extends ModelBase
 
 		ModelRenderer legMidFMR = new ModelRenderer(this, 72, 100);
 		legMidFMR.addBox(-21.5F, 3F, -0.5F, 3, 7, 3);
-		legJointFMR.addChild(legMidFMR);		
+		legJointFMR.addChild(legMidFMR);
 
 		ModelRenderer legThickFMR = new ModelRenderer(this, 92, 104);
 		legThickFMR.addBox(-24F, 10F, -2F, 6, 16, 6);
@@ -696,7 +696,7 @@ public class ModelOverlordCombat extends ModelBase
 
 		legJointBR = new ModelRenderer(this, 92, 92);
 		legJointBR.addBox(-23F, -3F, -1F, 4, 6, 4);
-		legBR.addChild(legJointBR);		
+		legBR.addChild(legJointBR);
 
 		ModelRenderer legMidBR = new ModelRenderer(this, 72, 100);
 		legMidBR.addBox(-22.5F, 3F, -0.5F, 3, 7, 3);
@@ -788,11 +788,11 @@ public class ModelOverlordCombat extends ModelBase
 
 		legJointBL = new ModelRenderer(this, 92, 92);
 		legJointBL.addBox(18F, -3F, -1F, 4, 6, 4);
-		legBL.addChild(legJointBL);	
+		legBL.addChild(legJointBL);
 
 		ModelRenderer legMidBL = new ModelRenderer(this, 72, 100);
 		legMidBL.addBox(18.5F, 3F, -0.5F, 3, 7, 3);
-		legJointBL.addChild(legMidBL);		
+		legJointBL.addChild(legMidBL);
 
 		ModelRenderer legThickBL = new ModelRenderer(this, 92, 104);
 		legThickBL.addBox(18F, 10F, -2F, 6, 16, 6);

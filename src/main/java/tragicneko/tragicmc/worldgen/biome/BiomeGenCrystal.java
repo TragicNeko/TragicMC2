@@ -11,7 +11,7 @@ import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.worldgen.CustomSpikesWorldGen;
 
 public class BiomeGenCrystal extends TragicBiome {
-	
+
 	public CustomSpikesWorldGen crystalGen;
 
 	public BiomeGenCrystal(int par1) {
@@ -33,7 +33,7 @@ public class BiomeGenCrystal extends TragicBiome {
 		this.topBlock = TragicBlocks.Crystal;
 		this.crystalGen = new CustomSpikesWorldGen(8, TragicBlocks.Crystal, 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false);
 	}
-	
+
 	@Override
 	public void decorate(World world, Random rand, int x, int z)
 	{

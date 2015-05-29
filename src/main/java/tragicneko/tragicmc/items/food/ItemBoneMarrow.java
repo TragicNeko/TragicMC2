@@ -13,7 +13,7 @@ public class ItemBoneMarrow extends ItemFood {
 		this.setPotionEffect(Potion.wither.id, 30, 0, 0.5F);
 		this.setContainerItem(Items.bowl);
 	}
-	
+
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{

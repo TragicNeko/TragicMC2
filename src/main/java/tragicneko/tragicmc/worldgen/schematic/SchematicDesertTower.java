@@ -7,7 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 
 public class SchematicDesertTower extends Schematic {
 
@@ -17,15 +16,12 @@ public class SchematicDesertTower extends Schematic {
 	private static Block tnt = Blocks.tnt;
 	private static Block plate = TragicBlocks.SandstonePressurePlate;
 	private static Block ladder = Blocks.ladder;
-	private static Block water = Blocks.water;
 	private static Block lava = Blocks.lava;
 	private static Block sandStair = Blocks.sandstone_stairs;
 	private static Block redstone = Blocks.redstone_wire;
 	private static Block trapChest = Blocks.trapped_chest;
 	private static Block slab = Blocks.stone_slab;
 
-	//this is for the mesa variant
-	private static Block clay = Blocks.clay;
 	private static Block hardClay = Blocks.hardened_clay;
 
 	//this is for the plains variant
@@ -920,7 +916,7 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, sandstone, 2, 2);
-		
+
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
@@ -1734,7 +1730,7 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, hardClay, 2, 2);
-		
+
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
@@ -2719,7 +2715,7 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, brick, 1, 2);
-		
+
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
@@ -3728,7 +3724,7 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, netherBrick, 2, 2);
-		
+
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row
@@ -4722,7 +4718,7 @@ public class SchematicDesertTower extends Schematic {
 		world.setBlock(x, y, z, trapChest, 0, 2);
 		world.setBlockToAir(x, y, z + 1);
 		world.setBlock(x, y, z + 2, ice, 2, 2);
-		
+
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		//Fifth row

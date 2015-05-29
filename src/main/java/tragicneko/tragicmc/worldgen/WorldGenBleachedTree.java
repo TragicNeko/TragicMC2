@@ -39,7 +39,7 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedLeaves);
 			}
 		}
-		
+
 		list = WorldHelper.getBlocksInSphericalRange(world, size / 2.0D * 3.0D, x, y + (size * 0.795D) - 2.0D, z);
 
 		for (int i = 0; i < list.size(); i++) //removes extra leaves that are too low
@@ -52,7 +52,7 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 				world.setBlockToAir(coords[0], coords[1], coords[2]);
 			}
 		}
-		
+
 		if (size > 8.0D)
 		{
 			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x + 5, y + size + 2.5D, z);
@@ -67,7 +67,7 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
-			
+
 			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x - 5, y + size + 2.5D, z);
 
 			for (int i = 0; i < list.size(); i++)
@@ -80,7 +80,7 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
-			
+
 			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x, y + size + 2.5D, z + 5);
 
 			for (int i = 0; i < list.size(); i++)
@@ -93,7 +93,7 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 					world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 				}
 			}
-			
+
 			list = WorldHelper.getBlocksInSphericalRange(world, size / 3.0D, x + 5, y + size + 2.5D, z - 5);
 
 			for (int i = 0; i < list.size(); i++)
@@ -133,7 +133,7 @@ public class WorldGenBleachedTree extends WorldGenAbstractTree {
 				world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.BleachedWood);
 			}
 		}
-		
+
 		list = WorldHelper.getBlocksInSphericalRange(world, size / 2.0D, x, y, z);
 
 		for (int i = 0; i < list.size(); i++)

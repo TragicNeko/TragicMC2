@@ -226,11 +226,11 @@ public class ModelMegaCryse extends ModelCryse
 			defX = 0.225F;
 			defZ = 0.075F;
 			defY = -0.325F;
-			
+
 			def2X = -0.175F;
 			def2Z = -0.075F;
 			def2Y = -0.375F;
-			
+
 			eyeRight2.offsetZ = eyeRight2.offsetY = eyeLeft2.offsetZ = eyeLeft2.offsetY = 0.0F;
 			eyeRight3.offsetZ = eyeRight3.offsetY = eyeLeft3.offsetZ = eyeLeft3.offsetY = 0.0F;
 
@@ -261,7 +261,7 @@ public class ModelMegaCryse extends ModelCryse
 			face3.offsetY = def2Y;
 			face3.offsetX = def2X;
 			face3.offsetZ = def2Z;
-			
+
 			return; //for the mob statues
 		}
 
@@ -305,7 +305,7 @@ public class ModelMegaCryse extends ModelCryse
 			eyeLeft3.offsetY = -0.375F * this.simplifyAngle(cryse.getAttackTime(), 15.0F);
 		}
 		else
-		{			
+		{
 			eyeRight2.offsetZ = eyeRight2.offsetY = eyeLeft2.offsetZ = eyeLeft2.offsetY = 0.0F;
 			eyeRight3.offsetZ = eyeRight3.offsetY = eyeLeft3.offsetZ = eyeLeft3.offsetY = 0.0F;
 
@@ -434,11 +434,11 @@ public class ModelMegaCryse extends ModelCryse
 
 					face2.offsetY = defY + 0.075F * this.simplifyAngle(cryse.getSpinTicks2(), 10.0F);
 					eyeRight2.offsetX = 0.375F * this.simplifyAngle(cryse.getSpinTicks2(), 10.0F);
-					eyeLeft2.offsetX = -0.375F * this.simplifyAngle(cryse.getSpinTicks2(), 10.0F); 
+					eyeLeft2.offsetX = -0.375F * this.simplifyAngle(cryse.getSpinTicks2(), 10.0F);
 
 					face3.offsetY = def2Y + 0.075F * this.simplifyAngle(cryse.getSpinTicks3(), 10.0F);
 					eyeRight3.offsetX = 0.375F * this.simplifyAngle(cryse.getSpinTicks3(), 10.0F);
-					eyeLeft3.offsetX = -0.375F * this.simplifyAngle(cryse.getSpinTicks3(), 10.0F); 
+					eyeLeft3.offsetX = -0.375F * this.simplifyAngle(cryse.getSpinTicks3(), 10.0F);
 				}
 				else
 				{
@@ -474,7 +474,7 @@ public class ModelMegaCryse extends ModelCryse
 					face3.offsetZ = def2Z;
 				}
 
-			} 
+			}
 		}
 	}
 

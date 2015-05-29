@@ -16,10 +16,10 @@ import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 
 public class AmuletHelper {
-	
+
 	private static IAttribute[] attributes = new IAttribute[] {AmuletModifier.jumpHeight, AmuletModifier.luck, AmuletModifier.reach, AmuletModifier.resistance,
 		AmuletModifier.knockbackResistance, AmuletModifier.attackDamage, AmuletModifier.maxHealth, AmuletModifier.movementSpeed};
-	
+
 	public static UUID[] uuids = new UUID[] {UUID.fromString("8d325bc1-9b36-457f-a984-50cfed8331ed"), UUID.fromString("1f5a801c-312a-4b26-aa7b-3170e63df540"),
 		UUID.fromString("829ea197-31bf-4360-912e-93f6775fedc1"), UUID.fromString("f1695e8a-87f1-4491-bc02-90f3671d299e"), UUID.fromString("b41f1b8d-a0e7-42ee-acb4-a0f9c198626f"),
 		UUID.fromString("237ab9b5-459c-4dcb-bcb8-4e8068ce9135"), UUID.fromString("b06dedf7-fd45-442c-93b4-8fa70bc64d51"), UUID.fromString("1ab86156-baf5-4906-bb07-314a0e7faa59")};
@@ -174,12 +174,12 @@ public class AmuletHelper {
 
 		return 0;
 	}
-	
+
 	public static int getAmuletLevel(ItemStack stack)
 	{
 		return stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : 0;
 	}
-	
+
 	public static AttributeModifier getRandomModifier(IAttribute attr)
 	{
 		double d0 = 0.0D;
@@ -225,17 +225,17 @@ public class AmuletHelper {
 			d0 = rand.nextInt(100) * 0.01;
 			uuid = uuids[1];
 		}
-		
+
 		d0 = attr.clampValue(d0);
 
 		return uuid == null ? null : new AttributeModifier(uuid, attr.getAttributeUnlocalizedName(), d0, 0);
 	}
-	
+
 	public static IAttribute getRandomAttribute()
 	{
 		return attributes[rand.nextInt(attributes.length)];
 	}
-	
+
 	public static NBTTagCompound writeAttributeModifierToNBT(String atrName, AttributeModifier modif)
 	{
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
@@ -247,17 +247,17 @@ public class AmuletHelper {
 		nbttagcompound.setString("AttributeName", atrName);
 		return nbttagcompound;
 	}
-	
+
 	public static IAttribute getAttributeFromMap(BaseAttributeMap map, String s)
 	{
 		return getAttributeInstanceFromMap(map, s) != null ? getAttributeInstanceFromMap(map, s).getAttribute() : null;
 	}
-	
+
 	public static IAttribute getAttributeFromEntity(EntityLivingBase entity, String s)
 	{
 		return getAttributeFromMap(entity.getAttributeMap(), s);
 	}
-	
+
 	public static IAttributeInstance getAttributeInstanceFromMap(BaseAttributeMap map, String s)
 	{
 		return map != null ? map.getAttributeInstanceByName(s) : null;

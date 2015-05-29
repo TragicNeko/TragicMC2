@@ -17,7 +17,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
@@ -28,9 +27,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -172,12 +171,12 @@ public class EntityApis extends TragicBoss {
 		int pow = this.getAttackTime();
 		this.setAttackTime(--pow);
 	}
-	
+
 	private void setHurtTime(int i)
 	{
 		this.dataWatcher.updateObject(20, i);
 	}
-	
+
 	public int getHurtTime()
 	{
 		return this.dataWatcher.getWatchableObjectInt(20);
@@ -186,7 +185,7 @@ public class EntityApis extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.isStomping()) 
+		if (this.isStomping())
 		{
 			this.motionX = this.motionZ = 0.0D;
 			this.motionY = -0.2D;
@@ -264,7 +263,7 @@ public class EntityApis extends TragicBoss {
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
 			if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 
-			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 2.0F, 8.0F) 
+			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 2.0F, 8.0F)
 					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()))
 			{
 				if (rand.nextInt(3) == 0)
@@ -282,7 +281,7 @@ public class EntityApis extends TragicBoss {
 				this.setChargeTicks(10);
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
-			else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)  
+			else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)
 					&& this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
 			{
 				if (rand.nextInt(3) == 0)
@@ -380,7 +379,7 @@ public class EntityApis extends TragicBoss {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote || par1DamageSource.isExplosion()) return false;
 
 		if (this.isReflecting() && par1DamageSource.getEntity() != null && !(par1DamageSource.getEntity() instanceof EntityApis))

@@ -12,12 +12,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TragicWorldProvider extends WorldProvider
-{	
+{
 	public TragicWorldProvider()
 	{
 		this.dimensionId = TragicConfig.dimensionID;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IRenderHandler getSkyRenderer()
@@ -78,35 +78,35 @@ public class TragicWorldProvider extends WorldProvider
 
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
-    {
-        return this.worldObj.getTopBlock(par1, par2).isOpaqueCube();
-    } 
-	
+	{
+		return this.worldObj.getTopBlock(par1, par2).isOpaqueCube();
+	}
+
 	@Override
 	public ChunkCoordinates getRandomizedSpawnPoint()
-    {
-        ChunkCoordinates chunkcoordinates = new ChunkCoordinates(this.worldObj.getSpawnPoint());
+	{
+		ChunkCoordinates chunkcoordinates = new ChunkCoordinates(this.worldObj.getSpawnPoint());
 
-        boolean isAdventure = worldObj.getWorldInfo().getGameType() == GameType.ADVENTURE;
-        int spawnFuzz = terrainType.getSpawnFuzz();
-        int spawnFuzzHalf = spawnFuzz / 2;
+		boolean isAdventure = worldObj.getWorldInfo().getGameType() == GameType.ADVENTURE;
+		int spawnFuzz = terrainType.getSpawnFuzz();
+		int spawnFuzzHalf = spawnFuzz / 2;
 
-        if (!hasNoSky && !isAdventure)
-        {
-            chunkcoordinates.posX += this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf;
-            chunkcoordinates.posZ += this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf;
-            chunkcoordinates.posY = this.worldObj.getTopSolidOrLiquidBlock(chunkcoordinates.posX, chunkcoordinates.posZ);
-        }
+		if (!hasNoSky && !isAdventure)
+		{
+			chunkcoordinates.posX += this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf;
+			chunkcoordinates.posZ += this.worldObj.rand.nextInt(spawnFuzz) - spawnFuzzHalf;
+			chunkcoordinates.posY = this.worldObj.getTopSolidOrLiquidBlock(chunkcoordinates.posX, chunkcoordinates.posZ);
+		}
 
-        return chunkcoordinates;
-    }
+		return chunkcoordinates;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-    public double getVoidFogYFactor()
-    {
-        return 0.01;
-    }
+	public double getVoidFogYFactor()
+	{
+		return 0.01;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -129,12 +129,12 @@ public class TragicWorldProvider extends WorldProvider
 		}
 		return null;
 	}
-	
+
 	@Override
 	public int getMoonPhase(long par1)
-    {
-        return 0;
-    }
+	{
+		return 0;
+	}
 
 	@Override
 	public float calculateCelestialAngle(long time, float f)
@@ -155,18 +155,18 @@ public class TragicWorldProvider extends WorldProvider
 		return f1;
 	}
 
-	
+
 	@Override
 	protected void generateLightBrightnessTable()
-    {
-        float f = 0.0F;
+	{
+		float f = 0.0F;
 
-        for (int i = 0; i <= 15; ++i)
-        {
-            float f1 = 1.0F - i / 15.0F;
-            this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f;
-        }
-    }
+		for (int i = 0; i <= 15; ++i)
+		{
+			float f1 = 1.0F - i / 15.0F;
+			this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f;
+		}
+	}
 
 	@Override
 	public String getDimensionName() {

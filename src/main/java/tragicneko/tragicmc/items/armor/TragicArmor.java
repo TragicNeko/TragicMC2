@@ -1,10 +1,8 @@
 package tragicneko.tragicmc.items.armor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
@@ -14,7 +12,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.util.LoreHelper;
@@ -53,7 +50,7 @@ public class TragicArmor extends ItemArmor {
 		if (TragicConfig.allowRandomWeaponLore && LoreHelper.getRarityFromStack(stack) >= 0)
 		{
 			String lore = LoreHelper.getDescFromStack(stack);
-			
+
 			if (lore != null)
 			{
 				LoreHelper.splitDesc(par2List, lore, 32, LoreHelper.getFormatForRarity(LoreHelper.getRarityFromStack(stack)));
@@ -73,7 +70,7 @@ public class TragicArmor extends ItemArmor {
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
-	{	
+	{
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!TragicConfig.allowRandomWeaponLore) return;
 

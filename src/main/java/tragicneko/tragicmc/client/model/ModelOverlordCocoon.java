@@ -270,7 +270,7 @@ public class ModelOverlordCocoon extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.cocoonBottom.render(f5);
@@ -280,7 +280,7 @@ public class ModelOverlordCocoon extends ModelBase {
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		
+
 		this.cocoonBottom.offsetY = 0.4F;
 		this.cocoonBottom.rotateAngleY = 0F;
 		if (!(entity instanceof EntityOverlordCocoon)) return;
@@ -290,7 +290,7 @@ public class ModelOverlordCocoon extends ModelBase {
 		int death = MathHelper.clamp_int(cocoon.deathTime / 10, 0, 19);
 
 		if (death > 0)
-		{		
+		{
 			cocoonFRLayer9.offsetX = -offset;
 			cocoonFRLayer9.offsetZ = -offset;
 			cocoonFLLayer9.offsetX = offset;
@@ -400,28 +400,28 @@ public class ModelOverlordCocoon extends ModelBase {
 		{
 			cocoonFRLayer9.offsetX = cocoonFRLayer9.offsetZ = cocoonFLLayer9.offsetX = cocoonFLLayer9.offsetZ = 0;
 			cocoonBRLayer9.offsetX = cocoonBRLayer9.offsetZ = cocoonBLLayer9.offsetX = cocoonBLLayer9.offsetZ = 0;
-			
+
 			cocoonFRLayer8.offsetX = cocoonFRLayer8.offsetZ = cocoonFLLayer8.offsetX = cocoonFLLayer8.offsetZ = 0;
 			cocoonBRLayer8.offsetX = cocoonBRLayer8.offsetZ = cocoonBLLayer8.offsetX = cocoonBLLayer8.offsetZ = 0;
-			
+
 			cocoonFRLayer7.offsetX = cocoonFRLayer7.offsetZ = cocoonFLLayer7.offsetX = cocoonFLLayer7.offsetZ = 0;
 			cocoonBRLayer7.offsetX = cocoonBRLayer7.offsetZ = cocoonBLLayer7.offsetX = cocoonBLLayer7.offsetZ = 0;
-			
+
 			cocoonFRLayer6.offsetX = cocoonFRLayer6.offsetZ = cocoonFLLayer6.offsetX = cocoonFLLayer6.offsetZ = 0;
 			cocoonBRLayer6.offsetX = cocoonBRLayer6.offsetZ = cocoonBLLayer6.offsetX = cocoonBLLayer6.offsetZ = 0;
-			
+
 			cocoonFRLayer5.offsetX = cocoonFRLayer5.offsetZ = cocoonFLLayer5.offsetX = cocoonFLLayer5.offsetZ = 0;
 			cocoonBRLayer5.offsetX = cocoonBRLayer5.offsetZ = cocoonBLLayer5.offsetX = cocoonBLLayer5.offsetZ = 0;
-			
+
 			cocoonFRLayer4.offsetX = cocoonFRLayer4.offsetZ = cocoonFLLayer4.offsetX = cocoonFLLayer4.offsetZ = 0;
 			cocoonBRLayer4.offsetX = cocoonBRLayer4.offsetZ = cocoonBLLayer4.offsetX = cocoonBLLayer4.offsetZ = 0;
-			
+
 			cocoonFRLayer3.offsetX = cocoonFRLayer3.offsetZ = cocoonFLLayer3.offsetX = cocoonFLLayer3.offsetZ = 0;
 			cocoonBRLayer3.offsetX = cocoonBRLayer3.offsetZ = cocoonBLLayer3.offsetX = cocoonBLLayer3.offsetZ = 0;
-			
+
 			cocoonFRLayer2.offsetX = cocoonFRLayer2.offsetZ = cocoonFLLayer2.offsetX = cocoonFLLayer2.offsetZ = 0;
 			cocoonBRLayer2.offsetX = cocoonBRLayer2.offsetZ = cocoonBLLayer2.offsetX = cocoonBLLayer2.offsetZ = 0;
-			
+
 			cocoonFRLayer.offsetX = cocoonFRLayer.offsetZ = cocoonFLLayer.offsetX = cocoonFLLayer.offsetZ = 0;
 			cocoonBRLayer.offsetX = cocoonBRLayer.offsetZ = cocoonBLLayer.offsetX = cocoonBLLayer.offsetZ = 0;
 		}

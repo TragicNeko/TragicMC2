@@ -30,13 +30,13 @@ public class WorldGenBleachedOakTree extends WorldGenAbstractTree {
 	public boolean generate(World world, Random rand, int x, int y, int z) {
 		int[] coords;
 		Block block;
-		
+
 		block = world.getBlock(x, y, z);
 		if (!(block instanceof BlockGenericGrass) && !(block instanceof BlockGrass) && block != dirt && block != DeadDirt && !(block instanceof BlockBush)) return false;
-		
+
 		double scale = this.isLargeTree ? rand.nextDouble() * 4.25D + 1.65D : rand.nextDouble() * 3.25D + 1.15D;
 		if (scale < 2.0) return false;
-		
+
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(world, scale * 0.5D, x, y + 1 + scale * 3.0 / 4.0, z);
 
 		for (int y1 = 0; y1 < 1 + scale * 3.0 / 4.0; y1++)
@@ -92,7 +92,7 @@ public class WorldGenBleachedOakTree extends WorldGenAbstractTree {
 
 			world.setBlock((int) (x + dif * 1.5D), (int) (y + 1 + scale * 2.0/ 3.0D), (int) (z - dif * 0.5D), BleachedWood);
 		}
-		
+
 		return true;
 	}
 

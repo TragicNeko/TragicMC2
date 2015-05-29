@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -13,18 +12,15 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAttack;
@@ -76,7 +72,7 @@ public class MouseEvents {
 			AxisAlignedBB bb;
 
 			meow: for (double d = 0.0D; d <= enchantLimit; d += 0.25D)
-			{				
+			{
 				Vec3 vec31 = vec3.addVector(f7 * d, f6 * d, f8 * d);
 				bb = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D).offset(vec31.xCoord, vec31.yCoord, vec31.zCoord).expand(box, box, box);
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, bb);
@@ -108,7 +104,7 @@ public class MouseEvents {
 						TragicMC.net.sendToServer(new MessageAttack(entity));
 						break meow;
 					}
-				} 
+				}
 
 			}
 

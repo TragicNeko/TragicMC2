@@ -56,16 +56,16 @@ public class EntityWebBomb extends EntityProjectile {
 						target.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 1.5F);
 					}
 				}
-				
+
 				ArrayList<int[]> list2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.75D, this.posX, this.posY, this.posZ);
 				int[] coords;
 
 				for (int i = 0 ; i < list2.size(); i++)
 				{
 					coords = list2.get(i);
-					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web); 
+					if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.web);
 				}
-				
+
 				this.setDead();
 			}
 		}

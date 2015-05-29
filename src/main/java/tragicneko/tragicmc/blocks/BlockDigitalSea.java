@@ -2,30 +2,23 @@ package tragicneko.tragicmc.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDigitalSea extends Block {
 
 	public final boolean lit;
-	private static boolean update = false;
-
 	public BlockDigitalSea(boolean flag)
 	{
 		super(Material.circuits);
@@ -75,7 +68,7 @@ public class BlockDigitalSea extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		if (this.lit) this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaActive"); 
+		if (this.lit) this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaActive");
 		else this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaInactive");
 	}
 

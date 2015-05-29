@@ -1,9 +1,6 @@
 package tragicneko.tragicmc.dimension;
 
 import java.util.Random;
-import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -31,7 +28,7 @@ public class TragicTeleporter extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
-	{		
+	{
 		if (this.worldServerInstance.provider.dimensionId != 0)
 		{
 			int i = this.worldServerInstance.getSpawnPoint().posX;
@@ -39,9 +36,9 @@ public class TragicTeleporter extends Teleporter {
 			int j = this.worldServerInstance.provider instanceof TragicWorldProvider ? this.worldServerInstance.getTopSolidOrLiquidBlock(i, k) : this.worldServerInstance.getSpawnPoint().posY;
 			byte b0 = 1;
 			byte b1 = 0;
-			
+
 			boolean endFlag = this.worldServerInstance.provider.dimensionId == 1 || this.worldServerInstance.provider.dimensionId == TragicConfig.synapseID;
-			
+
 			if (endFlag)
 			{
 				i = this.worldServerInstance.provider.getEntrancePortalLocation().posX;
@@ -52,7 +49,7 @@ public class TragicTeleporter extends Teleporter {
 			{
 				EntityPlayer player = (EntityPlayer) par1Entity;
 				ChunkCoordinates cc = player.getBedLocation(this.worldServerInstance.provider.dimensionId);
-				
+
 				if (cc != null)
 				{
 					i = cc.posX;
@@ -116,12 +113,12 @@ public class TragicTeleporter extends Teleporter {
 				{
 					player.setLocationAndAngles(i, j, k, player.rotationYaw, player.rotationPitch);
 				}
-				
+
 				player.motionX = player.motionY = player.motionZ = 0.0D;
 				player.fallDistance = 0.0F;
 			}
 			else
-			{				
+			{
 				par1Entity.setLocationAndAngles(i, j, k, par1Entity.rotationYaw, par1Entity.rotationPitch);
 				par1Entity.motionX = par1Entity.motionY = par1Entity.motionZ = 0.0D;
 				par1Entity.fallDistance = 0.0F;

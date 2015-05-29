@@ -3,7 +3,6 @@ package tragicneko.tragicmc.doomsday;
 import java.util.Collections;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +10,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumChatFormatting;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
@@ -31,9 +29,6 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 
 		double radius = crucMoment ? 12.0D : 6.0D;
 		List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-
-		Block block;
-		int[] coords;
 
 		Collections.shuffle(list);
 
@@ -57,9 +52,6 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 			effect.utilityEntity = null;
 			double radius = crucMoment ? 12.0D : 6.0D;
 			List list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(radius, radius, radius));
-
-			Block block;
-			int[] coords;
 
 			Collections.shuffle(list);
 

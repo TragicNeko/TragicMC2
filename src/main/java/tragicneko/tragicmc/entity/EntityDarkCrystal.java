@@ -113,7 +113,7 @@ public class EntityDarkCrystal extends Entity {
 		}
 		else
 		{
-			if (this.owner != null && this.owner.isDead) this.owner = null; 
+			if (this.owner != null && this.owner.isDead) this.owner = null;
 			if (this.owner == null) this.setDead();
 			this.incrementRotation();
 		}

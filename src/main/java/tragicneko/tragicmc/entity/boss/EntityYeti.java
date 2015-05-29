@@ -16,7 +16,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,9 +26,9 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
@@ -90,7 +89,7 @@ public class EntityYeti extends TragicBoss {
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
-		this.dataWatcher.addObject(20, Integer.valueOf(0)); 
+		this.dataWatcher.addObject(20, Integer.valueOf(0));
 		this.dataWatcher.addObject(21, Integer.valueOf(0));
 	}
 
@@ -272,7 +271,7 @@ public class EntityYeti extends TragicBoss {
 			this.setDemeanor(0);
 		}
 		else
-		{		
+		{
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 
 			double d0 = this.getAttackTarget().posX - this.posX;
@@ -377,7 +376,7 @@ public class EntityYeti extends TragicBoss {
 					}
 				}
 				this.decrementDemeanor();
-				
+
 				list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
 				EntityAbomination mob;
 
@@ -398,9 +397,9 @@ public class EntityYeti extends TragicBoss {
 		}
 	}
 
-	private void attemptToSummonHelp() 
+	private void attemptToSummonHelp()
 	{
-		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, boundingBox.expand(32.0, 32.0, 32.0));		
+		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, boundingBox.expand(32.0, 32.0, 32.0));
 
 		if (list.size() >= 4 || this.getAttackTarget() == null)
 		{
@@ -425,7 +424,7 @@ public class EntityYeti extends TragicBoss {
 						if (this.worldObj.checkNoEntityCollision(clone.boundingBox) &&
 								this.worldObj.getCollidingBoundingBoxes(clone, clone.boundingBox).isEmpty() &&
 								!this.worldObj.isAnyLiquid(clone.boundingBox))
-						{							
+						{
 							this.worldObj.spawnEntityInWorld(clone);
 							clone.onSpawnWithEgg(null);
 							if (entitylivingbase != null) clone.setTarget(entitylivingbase);
@@ -514,11 +513,9 @@ public class EntityYeti extends TragicBoss {
 	@Override
 	public void fall(float par1){}
 
-	private void trackHitType(String damageType) 
+	private void trackHitType(String damageType)
 	{
 		String hitType = null;
-		boolean flag = false;
-
 		if (damageType.equals("arrow"))
 		{
 			hitType = "projectile";
@@ -534,7 +531,6 @@ public class EntityYeti extends TragicBoss {
 		else if (damageType.equals("player"))
 		{
 			hitType = "normal";
-			flag = true;
 		}
 		else if (damageType.equals("generic"))
 		{
@@ -556,7 +552,7 @@ public class EntityYeti extends TragicBoss {
 
 		this.incrementDemeanor();
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);

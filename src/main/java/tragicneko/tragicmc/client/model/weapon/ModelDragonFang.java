@@ -133,11 +133,11 @@ public class ModelDragonFang extends ModelBase {
 		fangBlade15b.addBox(3F, 42F, -1F, 3, 2, 3);
 		fang.addChild(fangBlade15b);
 
-		ModelRenderer fangBlade16 = new ModelRenderer(this, 72, 0);
+		new ModelRenderer(this, 72, 0);
 		fangBlade13.addBox(-1, 42F, -1F, 2, 4, 3);
 		fang.addChild(fangBlade13);
 
-		ModelRenderer fangBlade16b = new ModelRenderer(this, 0, 0);
+		new ModelRenderer(this, 0, 0);
 		fangBlade13b.addBox(-0.5F, 41F, -1F, 1, 1, 3);
 		fang.addChild(fangBlade13b);
 

@@ -13,7 +13,6 @@ import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -46,9 +45,6 @@ public class TragicChunkProvider implements IChunkProvider
 	public NoiseGeneratorOctaves mobSpawnerNoise;
 	/** Reference to the World object. */
 	private World worldObj;
-	/** are map structures going to be generated (e.g. strongholds) */
-	private final boolean mapFeaturesEnabled;
-	private WorldType field_147435_p;
 	private final double[] field_147434_q;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
@@ -62,14 +58,12 @@ public class TragicChunkProvider implements IChunkProvider
 	double[] field_147425_f;
 	double[] field_147426_g;
 	int[][] field_73219_j = new int[32][32];
-	
+
 	private final int dependency;
 
 	public TragicChunkProvider(World par1World, long par2, boolean par4)
 	{
 		this.worldObj = par1World;
-		this.mapFeaturesEnabled = par4;
-		this.field_147435_p = WorldType.DEFAULT;
 		this.rand = new Random(par2);
 		int i = (MathHelper.ceiling_double_int((((par2 % 121L) + (par2 / 1452749627L) )/ 256)) % 256);
 		this.dependency = (Math.abs(i) % 128) + 32;
@@ -234,20 +228,12 @@ public class TragicChunkProvider implements IChunkProvider
 
 	private void func_147423_a(int p_147423_1_, int p_147423_2_, int p_147423_3_)
 	{
-		double d0 = 684.412D;
-		double d1 = 684.412D;
-		double d2 = 512.0D;
-		double d3 = 512.0D;
 		this.field_147426_g = this.noiseGen6.generateNoiseOctaves(this.field_147426_g, p_147423_1_, p_147423_3_, 5, 5, 200.0D, 200.0D, 0.5D);
 		this.field_147427_d = this.noiseGen3.generateNoiseOctaves(this.field_147427_d, p_147423_1_, p_147423_2_, p_147423_3_, 5, 33, 5, 8.555150000000001D, 4.277575000000001D, 8.555150000000001D);
 		this.field_147428_e = this.noiseGen1.generateNoiseOctaves(this.field_147428_e, p_147423_1_, p_147423_2_, p_147423_3_, 5, 33, 5, 684.412D, 684.412D, 684.412D);
 		this.field_147425_f = this.noiseGen2.generateNoiseOctaves(this.field_147425_f, p_147423_1_, p_147423_2_, p_147423_3_, 5, 33, 5, 684.412D, 684.412D, 684.412D);
-		boolean flag1 = false;
-		boolean flag = false;
 		int l = 0;
 		int i1 = 0;
-		double d4 = 8.5D;
-
 		for (int j1 = 0; j1 < 5; ++j1)
 		{
 			for (int k1 = 0; k1 < 5; ++k1)
@@ -375,7 +361,7 @@ public class TragicChunkProvider implements IChunkProvider
 		int k1;
 		int l1;
 		int i2;
-		
+
 		for (int i = 0; i < 4; i++)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
@@ -383,7 +369,7 @@ public class TragicChunkProvider implements IChunkProvider
 			i2 = l + this.rand.nextInt(16);
 			new WorldGenMinable(TragicBlocks.DeadDirt, 2, 8, DarkStone).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
-		
+
 		if (this.rand.nextInt(4) == 0)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
@@ -408,11 +394,11 @@ public class TragicChunkProvider implements IChunkProvider
 			int j2 = l + this.rand.nextInt(16) + 8;
 			(new WorldGenDimensionDungeon()).generate(this.worldObj, this.rand, l1, i2, j2);
 		}
-		
+
 		if (TragicConfig.allowDarkStoneVariantGen) (new DimensionLayerWorldGen()).generate(this.rand, par2, par3, this.worldObj, this, this);
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
 		(new DimensionOreWorldGen()).generate(this.rand, par2, par3, this.worldObj, null, null);
-		
+
 		BlockFalling.fallInstantly = false;
 	}
 
@@ -487,7 +473,7 @@ public class TragicChunkProvider implements IChunkProvider
 	{
 
 	}
-	
+
 	public int getWorldDependency()
 	{
 		return this.dependency;

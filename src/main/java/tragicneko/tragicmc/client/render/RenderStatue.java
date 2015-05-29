@@ -33,12 +33,12 @@ import tragicneko.tragicmc.client.model.ModelYeti;
 import tragicneko.tragicmc.entity.EntityStatue;
 
 public class RenderStatue extends Render {
-	
+
 	private ModelBase model = new ModelBlock();
-	
+
 	private static final String mobPath = "tragicmc:textures/mobs/";
 	private static final String textPath = "tragicmc:textures/statue/";
-	
+
 	private static final ResourceLocation[][] textures = new ResourceLocation[][]{{new ResourceLocation(mobPath + "ApisCombat2.png"), new ResourceLocation(mobPath + "Kitsune2.png"),
 		new ResourceLocation(mobPath + "DeathReaper.png"), new ResourceLocation(mobPath + "TimeController.png"), new ResourceLocation(mobPath + "Yeti2.png"),
 		new ResourceLocation(mobPath + "Polaris2.png"), new ResourceLocation(mobPath + "Jarra.png"), new ResourceLocation(mobPath + "Kragul.png"),
@@ -52,10 +52,10 @@ public class RenderStatue extends Render {
 			new ResourceLocation(textPath + "TungstenStatue.png"), new ResourceLocation(textPath + "RubyStatue.png"), new ResourceLocation(textPath + "SapphireStatue.png"),
 			new ResourceLocation(textPath + "RedstoneStatue.png"), new ResourceLocation(textPath + "CoalStatue.png"), new ResourceLocation(textPath + "LapisStatue.png"),
 			new ResourceLocation(textPath + "NetherrackStatue.png"), new ResourceLocation(textPath + "EnderStatue.png")}};
-	
+
 	private static final ModelBase[] models = new ModelBase[] {new ModelApis(), new ModelKitsune2(), new ModelDeathReaper(), new ModelTimeController(), new ModelYeti(), new ModelPolaris(),
-			new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
-			new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore(), new ModelOverlordCombat(), new ModelOverlordCocoon()};
+		new ModelJarra(), new ModelKragul(), new ModelTox(), new ModelMegaCryse(), new ModelStinKing(), new ModelStinQueen(), new ModelGreaterStin(), new ModelVoxStellarum(),
+		new ModelEnyvil(), new ModelClaymation(), new ModelAegar(), new ModelOverlordCore(), new ModelOverlordCombat(), new ModelOverlordCocoon()};
 
 	@Override
 	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
@@ -86,23 +86,23 @@ public class RenderStatue extends Render {
 		model.render(statue, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, f1);
 		GL11.glDepthMask(true);
 		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glDepthFunc(GL11.GL_EQUAL);
-        GL11.glDepthFunc(GL11.GL_LEQUAL);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glPopMatrix();
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glDepthFunc(GL11.GL_EQUAL);
+		GL11.glDepthFunc(GL11.GL_LEQUAL);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glPopMatrix();
 	}
 
 	@Override

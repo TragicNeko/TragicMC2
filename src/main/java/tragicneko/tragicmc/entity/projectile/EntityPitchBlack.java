@@ -39,16 +39,16 @@ public class EntityPitchBlack extends EntityThrowable {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (this.worldObj.isRemote)
 		{
-			for (int l = 0; l < 4; ++l) 
+			for (int l = 0; l < 4; ++l)
 			{
 				worldObj.spawnParticle("magicCrit", posX + (rand.nextDouble() - rand.nextDouble() * 0.25D), posY + (rand.nextDouble() - rand.nextDouble() * 0.25D),
 						posZ + (rand.nextDouble() - rand.nextDouble() * 0.25D), 0.0D, 0.0D, 0.0D);
 			}
 		}
-		else 
+		else
 		{
-			if (mop.entityHit != null && !mop.entityHit.equals(this.getThrower())) 
-			{						
+			if (mop.entityHit != null && !mop.entityHit.equals(this.getThrower()))
+			{
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 10.0F);
 
 				if (mop.entityHit instanceof EntityLivingBase)
@@ -56,17 +56,17 @@ public class EntityPitchBlack extends EntityThrowable {
 					((EntityLivingBase) mop.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 600, 1));
 				}
 			}
-			
+
 			if (this.getThrower() != null && this.stack != null)
 			{
 				if (mop.entityHit != null) this.setPosition(this.getThrower().posX + rand.nextDouble() - rand.nextDouble(), this.getThrower().posY + 0.4D, this.getThrower().posZ + rand.nextDouble() - rand.nextDouble());
 				this.entityDropItem(stack, 0.4F);
 			}
-			
+
 			this.setDead();
 		}
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{

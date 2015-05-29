@@ -9,7 +9,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class MessageHandlerDoom implements IMessageHandler<MessageDoom, IMessage> {
 
 	@Override
-	public MessageDoom onMessage(MessageDoom message, MessageContext ctx) {			
+	public MessageDoom onMessage(MessageDoom message, MessageContext ctx) {
 		PropertyDoom doom = PropertyDoom.get(TragicMC.proxy.getPlayerFromMessageCtx(ctx));
 		if (doom != null) doom.loadNBTData(message.tag);
 		return null;

@@ -13,7 +13,7 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		
+
 		if (!player.worldObj.isDaytime() && player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ))
 		{
 			doom.fillDoom();
@@ -26,7 +26,7 @@ public class DoomsdayMoonlightSonata extends Doomsday {
 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
-		
+
 	}
 
 	@Override

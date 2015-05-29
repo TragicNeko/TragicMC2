@@ -1,10 +1,10 @@
 package tragicneko.tragicmc.dimension;
 
-import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
+import tragicneko.tragicmc.TragicConfig;
 
 public class TragicGenLayer {
 
@@ -13,7 +13,7 @@ public class TragicGenLayer {
 		GenLayer biomes = new TragicBiomeGenLayer(seed);
 		biomes = GenLayerZoom.magnify(seed, biomes, TragicConfig.collisionBiomeSize);
 		GenLayerVoronoiZoom voronoiZoom = new GenLayerVoronoiZoom(seed, biomes);
-		
+
 		biomes.initWorldGenSeed(seed);
 		voronoiZoom.initWorldGenSeed(seed);
 

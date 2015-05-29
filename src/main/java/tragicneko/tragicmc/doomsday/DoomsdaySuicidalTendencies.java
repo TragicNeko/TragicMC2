@@ -1,8 +1,6 @@
 package tragicneko.tragicmc.doomsday;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Vec3;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.entity.projectile.EntityNekoRocket;
@@ -19,7 +17,7 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	}
 
 	@Override
-	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) 
+	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment)
 	{
 		Vec3 vec = WorldHelper.getVecFromEntity(player, 30.0);
 		if (vec == null) return;

@@ -19,7 +19,7 @@ public class EntitySolarBomb extends EntityProjectile {
 	{
 		super(par1World, par2EntityLivingBase, par3, par5, par7);
 	}
-	
+
 	@Override
 	public boolean canRenderOnFire()
 	{
@@ -33,28 +33,28 @@ public class EntitySolarBomb extends EntityProjectile {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition mop) {		
+	protected void onImpact(MovingObjectPosition mop) {
 		if (mop.entityHit != null && !(mop.entityHit instanceof EntityApis) && !this.worldObj.isRemote)
-		{	
+		{
 			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 			mop.entityHit.setFire(8 + rand.nextInt(16));
 		}
 
 		if (mop != null && !this.worldObj.isRemote) this.setDead();
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-		
+
 		if (this.ticksExisted > 0 && this.ticksExisted % 10 == 0  && !this.worldObj.isRemote)
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX; 
+				double d0 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posX) - this.posX;
 				double d1 = (MathHelper.getRandomIntegerInRange(rand, - 4, 4) + this.posY) - this.posY;
-				double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ; 
+				double d2 = (MathHelper.getRandomIntegerInRange(rand, -4, 4) + this.posZ) - this.posZ;
 
 				if (this.shootingEntity != null)
 				{
@@ -65,7 +65,7 @@ public class EntitySolarBomb extends EntityProjectile {
 				}
 			}
 		}
-		
+
 		if (this.ticksExisted >= 600) this.setDead();
 	}
 }

@@ -61,7 +61,7 @@ public class RenderEpicWeapon implements IItemRenderer {
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		
+
 		return false;
 	}
 

@@ -2,9 +2,9 @@ package tragicneko.tragicmc.blocks.tileentity;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.storage.WorldInfo;
+import tragicneko.tragicmc.TragicConfig;
 
 public class TileEntityTimeDisruptor extends TileEntity {
 

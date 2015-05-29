@@ -9,10 +9,10 @@ import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class VoidPitWorldGen implements IWorldGenerator {
-	
+
 	public final double radius;
 	public final double variation;
-	
+
 	public VoidPitWorldGen(double radius, double var)
 	{
 		this.radius = radius;
@@ -43,7 +43,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 				{
 					coords = list.get(mapping);
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
-				} 
+				}
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
@@ -52,7 +52,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 			{
 				coords = list.get(mapping);
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
-			} 
+			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 

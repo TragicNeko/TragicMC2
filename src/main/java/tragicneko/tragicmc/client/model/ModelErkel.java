@@ -43,15 +43,15 @@ public class ModelErkel extends ModelBase
 		ModelRenderer shroomPart6 = new ModelRenderer(this, 0, 0);
 		shroomPart6.addBox(-3F, 0F, 3F, 6, 2, 1);
 		body.addChild(shroomPart6);
-		
+
 		footRight = new ModelRenderer(this, 20, 12);
 		footRight.addBox(-2F, 9F, 0F, 1, 1, 1);
 		body.addChild(footRight);
-		
+
 		footLeft = new ModelRenderer(this, 20, 12);
 		footLeft.addBox(1F, 9F, 0F, 1, 1, 1);
 		body.addChild(footLeft);
-		
+
 		topShroom = new ModelRenderer(this, 26, 14);
 		topShroom.addBox(2F, -4F, -2F, 1, 2, 1);
 		topShroom.rotateAngleX = 0.1858931F;
@@ -59,7 +59,7 @@ public class ModelErkel extends ModelBase
 		ModelRenderer topShroomCap = new ModelRenderer(this, 32, 14);
 		topShroomCap.addBox(1F, -5F, -3F, 3, 1, 3);
 		topShroom.addChild(topShroomCap);
-		
+
 		topShroom2 = new ModelRenderer(this, 26, 14);
 		topShroom2.addBox(-3F, -4F, 2F, 1, 2, 1);
 		topShroom2.rotateAngleX = -0.2230717F;
@@ -68,7 +68,7 @@ public class ModelErkel extends ModelBase
 		ModelRenderer topShroom2Cap = new ModelRenderer(this, 32, 14);
 		topShroom2Cap.addBox(-4F, -5F, 1F, 3, 1, 3);
 		topShroom2.addChild(topShroom2Cap);
-		
+
 		sideShroom = new ModelRenderer(this, 26, 14);
 		sideShroom.addBox(4F, 1F, 0F, 1, 2, 1);
 		sideShroom.rotateAngleZ = 0.817929F;
@@ -85,10 +85,10 @@ public class ModelErkel extends ModelBase
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		body.render(f5);
 	}
-	
+
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-	{		
+	{
 		body.rotateAngleY = f3 / (180F / (float)Math.PI);
 		body.rotateAngleX = f4 / (180F / (float)Math.PI);
 		footLeft.rotateAngleX = -0.25F * this.simplifyAngle(f, 5.0F) * f1;

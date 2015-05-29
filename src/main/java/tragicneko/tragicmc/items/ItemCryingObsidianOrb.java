@@ -18,21 +18,21 @@ public class ItemCryingObsidianOrb extends Item {
 		par2List.add("spawn point, only affects the dimension");
 		par2List.add("you're currently in");
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (!par2World.isRemote)
 		{
-			ChunkCoordinates cc = par2World.getSpawnPoint();
+			par2World.getSpawnPoint();
 			int x = (int) par3EntityPlayer.posX;
 			int z = (int) par3EntityPlayer.posZ;
 			int y = (int) par3EntityPlayer.posY;
-			
+
 			ChunkCoordinates newCC = new ChunkCoordinates(x, y, z);
-			
+
 			int dim = par2World.provider.dimensionId;
-			
+
 			par3EntityPlayer.setSpawnChunk(newCC, true, dim);
 			par3EntityPlayer.addChatMessage(new ChatComponentText("Spawn set to " + x + ", " + y + ", " + z + " for dimension with id of " + par2World.provider.dimensionId));
 			par1ItemStack.stackSize--;

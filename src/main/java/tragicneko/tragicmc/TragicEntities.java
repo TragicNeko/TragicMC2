@@ -271,7 +271,7 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityRagr.class, "Ragr", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowNonDimensionMobSpawns)
 			{
-				EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, 0, 1, EnumCreatureType.monster, 
+				EntityRegistry.addSpawn(EntityRagr.class, TragicConfig.ragrSC, 0, 1, EnumCreatureType.monster,
 						BiomeGenBase.taiga,
 						BiomeGenBase.taigaHills,
 						BiomeGenBase.coldTaiga,
@@ -615,7 +615,7 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityGreaterStin.class, "GreaterStin", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityGreaterStin.class, "TragicMC.GreaterStin", id++, 0x454545, 0x383838, EnumEggType.MINIBOSS);
-		} 
+		}
 
 		if (TragicConfig.allowStinKing)
 		{
@@ -677,7 +677,7 @@ public class TragicEntities {
 						);
 			}
 			TragicEntityList.addMapping(EntityApis.class, "TragicMC.Apis", id++, 0xFFFF82, 0xFFCD82, EnumEggType.BOSS);
-		} 
+		}
 
 		if (TragicConfig.allowDeathReaper)
 		{

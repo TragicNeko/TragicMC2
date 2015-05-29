@@ -73,7 +73,7 @@ public class EntityGragul extends TragicMob {
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(gragulStats[3]);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(gragulStats[4]);
 	}
-	
+
 	@Override
 	public int getTotalArmorValue()
 	{
@@ -99,9 +99,9 @@ public class EntityGragul extends TragicMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
-	{ 
+	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		boolean flag = false;
 
 		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
@@ -109,9 +109,9 @@ public class EntityGragul extends TragicMob {
 			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
-		
+
 		if (flag) return super.attackEntityFrom(par1DamageSource, par2);
-		
+
 		if (par1DamageSource.isProjectile() || par1DamageSource.isFireDamage()) return false;
 
 		int dif = this.worldObj.difficultySetting.getDifficultyId();
@@ -136,7 +136,7 @@ public class EntityGragul extends TragicMob {
 			this.hurtResistantTime = 40;
 			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextInt(6) == 0)
 			{
-				if (par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer)par1DamageSource.getEntity()).capabilities.isCreativeMode) return result; 
+				if (par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer)par1DamageSource.getEntity()).capabilities.isCreativeMode) return result;
 			}
 		}
 
@@ -157,7 +157,7 @@ public class EntityGragul extends TragicMob {
 				if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
 				{
 					if (rand.nextInt(4) == 0 && TragicConfig.allowLeadFoot) ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
-					
+
 				}
 			}
 
@@ -179,40 +179,40 @@ public class EntityGragul extends TragicMob {
 
 	@Override
 	public void fall(float f) {}
-	
+
 	@Override
 	public String getLivingSound()
 	{
 		return "tragicmc:mob.gragul.living";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return "tragicmc:mob.gragul.hurt";
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.gragul.death";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.8F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
+	}
 }

@@ -65,7 +65,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 			}
 		}
 		return super.onLeftClickEntity(stack, player, entity);
-	} 
+	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
@@ -84,7 +84,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 		if (cooldown > 0) stack.stackTagCompound.setInteger("comboCooldown", cooldown - 1);
 		if (cooldown == 0) stack.stackTagCompound.setInteger("comboCount", 0);
 		double damage = combo * 2.0D;
-		
+
 		AttributeModifier mod2 = new AttributeModifier(mod.getID(), "beastlyClawsComboModifier", damage, 0);
 
 		if (entity instanceof EntityPlayer)

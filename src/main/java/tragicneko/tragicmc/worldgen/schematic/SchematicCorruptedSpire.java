@@ -3,9 +3,7 @@ package tragicneko.tragicmc.worldgen.schematic;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -4199,7 +4197,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		world.setBlock(x - 4, y, z - 4, eroded, 1, 2);
 		world.setBlockToAir(x - 4, y, z - 3);
 		world.setBlockToAir(x - 4, y, z - 2);
-		world.setBlockToAir(x - 4, y, z - 1); 
+		world.setBlockToAir(x - 4, y, z - 1);
 		world.setBlock(x - 4, y, z, eroded, 1, 2);
 		world.setBlock(x - 4, y, z + 1, eroded, 1, 2);
 		world.setBlockToAir(x - 4, y, z + 2);
@@ -11088,7 +11086,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		world.setBlock(x - 4, y, z - 4, eroded, 1, 2);
 		world.setBlockToAir(x - 4, y, z - 3);
 		world.setBlockToAir(x - 4, y, z - 2);
-		world.setBlockToAir(x - 4, y, z - 1); 
+		world.setBlockToAir(x - 4, y, z - 1);
 		world.setBlock(x - 4, y, z, eroded, 1, 2);
 		world.setBlock(x - 4, y, z + 1, eroded, 1, 2);
 		world.setBlockToAir(x - 4, y, z + 2);
@@ -11767,7 +11765,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		world.setBlock(x + 19, y, z + 2, cell);
 		world.setBlock(x + 19, y, z + 3, spike, 14, 2);
 
-		if ((floorNumber % 5) == 3) 
+		if ((floorNumber % 5) == 3)
 		{
 			//generate a double soul chest with good stuff in it
 			world.setBlock(x - 1, y - 3, z, chest);
@@ -11788,7 +11786,7 @@ public class SchematicCorruptedSpire extends Schematic {
 	public void randomlyPlaceHole(World world, Random rand, int x, int y, int z)
 	{
 		int hole = rand.nextInt(4);
-		while (hole == this.lastHole) hole = rand.nextInt(4); 
+		while (hole == this.lastHole) hole = rand.nextInt(4);
 		switch(hole)
 		{
 		case 0:

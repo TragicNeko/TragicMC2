@@ -179,7 +179,7 @@ public class ModelStinQueen extends ModelBase
 			legFL.rotateAngleX = legValues[1] + this.simplifyAngle(f + 2.0F, 3.0F) * 0.093F * f1;
 			legML.rotateAngleX = legValues[2] + this.simplifyAngle(f + 2.0F, 3.0F) * 0.093F * f1;
 			legBL.rotateAngleX = legValues[5] + this.simplifyAngle(f + 3.0F, 3.0F) * 0.093F * f1;
-		} 
+		}
 	}
 
 	private float simplifyAngle(float par1, float par2)

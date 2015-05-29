@@ -10,14 +10,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 
 public class EnchantmentArmorExtra extends Enchantment {
 
 	private String[] enchantNames = {"ignition", "paralysis", "toxicity", "elasticity", "deathTouch"};
-	private static String enchantName;
 	private int damageType;
 	private final Random rand = TragicMC.rand;
 

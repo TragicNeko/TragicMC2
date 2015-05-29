@@ -25,9 +25,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicEntities;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.EntityPart;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
@@ -94,7 +93,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0)); 
+		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 		this.dataWatcher.addObject(20, Integer.valueOf(0));
 		this.dataWatcher.addObject(21, Integer.valueOf(0));
@@ -217,12 +216,12 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	{
 		this.setAutoTicks(this.getAutoTicks() - 1);
 	}
-	
+
 	public int getTargetID()
 	{
 		return this.dataWatcher.getWatchableObjectInt(24);
 	}
-	
+
 	private void setTargetID(int i)
 	{
 		this.dataWatcher.updateObject(24, i);
@@ -254,8 +253,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		float f1 = this.rotationYaw * (float)Math.PI / 180.0F;
 		float f2 = MathHelper.sin(f1);
 		float f3 = MathHelper.cos(f1);
-		double d = 1.225D;
-
 		this.aegarHead.width = 0.35F;
 		this.aegarHead.height = 0.75F;
 		this.aegarCrystal.height = 0.65F;
@@ -270,10 +267,9 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.aegarCannon.setLocationAndAngles(this.posX + (f3 * 0.875D), this.posY + 1.2D, this.posZ + (f2 * 0.875D), 0.0F, 0.0F);
 		this.aegarClaw.setLocationAndAngles(this.posX - (f3 * 0.875D), this.posY + 1.2D, this.posZ - (f2 * 0.875D), 0.0F, 0.0F);
 
-		for (int i = 0; i < this.aegarParts.length; i++)
-		{
-			if (aegarParts[i].isBurning()) aegarParts[i].extinguish();
-			aegarParts[i].onUpdate();
+		for (EntityPart aegarPart : this.aegarParts) {
+			if (aegarPart.isBurning()) aegarPart.extinguish();
+			aegarPart.onUpdate();
 		}
 
 		if (this.worldObj.isRemote)
@@ -332,7 +328,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 							0.0, 0.0, 0.0);
 				}
 			}
-			
+
 			if (this.getLaserTicks() == 5 || this.getAutoTicks() > 0 && this.getAutoTicks() % 5 == 0)
 			{
 				Entity entity = this.worldObj.getEntityByID(this.getTargetID());
@@ -396,7 +392,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 				this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
 				this.setShockwaveTicks(60);
 			}
-			
+
 			if (this.getShockwaveTicks() == 5)
 			{
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3.0F + 2.0F * rand.nextFloat(), this.getMobGriefing());

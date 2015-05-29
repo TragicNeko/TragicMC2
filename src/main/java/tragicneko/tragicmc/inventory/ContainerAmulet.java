@@ -1,17 +1,17 @@
 package tragicneko.tragicmc.inventory;
 
-import tragicneko.tragicmc.items.ItemAmulet;
-import tragicneko.tragicmc.properties.PropertyAmulets;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import tragicneko.tragicmc.items.ItemAmulet;
+import tragicneko.tragicmc.properties.PropertyAmulets;
 
 public class ContainerAmulet extends Container {
 
 	private static final int amuletStart = 1, amuletEnd = amuletStart + 2,
-			invStart = amuletEnd + 1, invEnd = invStart + 25, hotBarStart = invEnd + 1;
+			invStart = amuletEnd + 1, invEnd = invStart + 25;
 
 	public ContainerAmulet(EntityPlayer player, InventoryPlayer invPlayer, InventoryAmulet invAmulet) {
 
@@ -128,46 +128,46 @@ public class ContainerAmulet extends Container {
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int par2) 
+	public ItemStack transferStackInSlot(EntityPlayer player, int par2)
 	{
 		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(par2);
 
-		if (slot != null && slot.getHasStack()) 
+		if (slot != null && slot.getHasStack())
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (par2 < invStart || par2 > invEnd) 
+			if (par2 < invStart || par2 > invEnd)
 			{
-				if (!this.mergeItemStack(itemstack1, 3, 28, true)) 
+				if (!this.mergeItemStack(itemstack1, 3, 28, true))
 				{
 					return null;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
-			else 
+			else
 			{
-				if (itemstack1.getItem() instanceof ItemAmulet) 
+				if (itemstack1.getItem() instanceof ItemAmulet)
 				{
-					if (!this.mergeItemStack(itemstack1, 0, 28, false)) 
+					if (!this.mergeItemStack(itemstack1, 0, 28, false))
 					{
 						return null;
 					}
 				}
 			}
 
-			if (itemstack1.stackSize == 0) 
+			if (itemstack1.stackSize == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}
-			else 
+			else
 			{
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize) 
+			if (itemstack1.stackSize == itemstack.stackSize)
 			{
 				return null;
 			}

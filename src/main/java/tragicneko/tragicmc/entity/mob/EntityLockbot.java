@@ -65,7 +65,7 @@ public class EntityLockbot extends TragicMob {
 
 	@Override
 	public void onLivingUpdate()
-	{		
+	{
 		this.rotationYaw = this.rotationPitch = this.rotationYawHead = 0;
 		this.motionX *= 0.1D;
 		this.motionZ *= 0.1D;
@@ -77,7 +77,7 @@ public class EntityLockbot extends TragicMob {
 		{
 			this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 			this.prevTarget = this.getAttackTarget();
-		}		
+		}
 
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && this.getAttackTarget().riddenByEntity == null)
 		{
@@ -98,37 +98,37 @@ public class EntityLockbot extends TragicMob {
 	{
 		return "tragicmc:mob.lockbot.hum";
 	}
-	
+
 	@Override
 	public String getHurtSound()
 	{
 		return super.getHurtSound();
 	}
-	
+
 	@Override
 	public String getDeathSound()
 	{
 		return "tragicmc:mob.lockbot.hum";
 	}
-	
+
 	@Override
 	public float getSoundPitch()
 	{
 		return 1.0F;
 	}
-	
+
 	@Override
 	public float getSoundVolume()
 	{
 		return 0.6F + rand.nextFloat() * 0.2F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
-    {
+	{
 		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
-    }
-	
+	}
+
 	@Override
 	public int getTalkInterval()
 	{

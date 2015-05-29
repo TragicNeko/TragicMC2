@@ -21,12 +21,12 @@ import tragicneko.tragicmc.worldgen.SurfaceWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenCustomVine;
 
 public class BiomeGenFrozenTundra extends TragicBiome {
-	
+
 	public final RuggedTerrainWorldGen permafrostGen;
 	public final SurfaceWorldGen2 iceSpikeGen;
 	public final PitWorldGen pitGen;
 	public final WorldGenCustomVine vineGen;
-	
+
 	public final static float[][] heights = new float[][] {{0.01F, 0.12F}, {0.35F, 0.22F}, {0.65F, -1.15F}};
 
 	public BiomeGenFrozenTundra(int par1, int par2) {
@@ -49,18 +49,18 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);
 		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss);
 	}
-	
+
 	@Override
 	public int getFlowersFromBiomeType()
 	{
 		return variant == 0 ? 6 : 2;
 	}
-	
+
 	@Override
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		
+
 		int mew = variant > 0 ? 18 : 6;
 		int k;
 		int l;
@@ -71,13 +71,13 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 			l = z + rand.nextInt(16) - 8;
 			this.vineGen.generate(world, rand, k, 128, l);
 		}
-		
+
 		this.permafrostGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (variant != 1) this.iceSpikeGen.generate(rand, x / 16, z / 16, world, null, null);
 		new CustomSpikesWorldGen(variant == 2 ? 8 : (variant == 0 ? 2 : 4), Blocks.packed_ice, 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
 		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
-	
+
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random rand)
 	{

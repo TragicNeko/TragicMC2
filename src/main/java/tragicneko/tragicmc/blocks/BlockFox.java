@@ -13,15 +13,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFox extends Block {
-	
+
 	private String[] subNames = new String[]{"SmoothNetherrack", "ChiseledNetherrack", "BeveledNetherrack", "SculptedNetherrack", "FoxtailRock", "MoltenNetherrack"};
-	
+
 	private IIcon[] iconArray = new IIcon[subNames.length];
 
 	public BlockFox() {
@@ -33,33 +32,33 @@ public class BlockFox extends Block {
 		this.setBlockName("tragicmc.fox");
 		this.setHarvestLevel("pickaxe", 0);
 	}
-	
+
 	@Override
 	public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
-    {
-        if (p_149679_1_ > 0 && Item.getItemFromBlock(this) != this.getItemDropped(0, p_149679_2_, p_149679_1_))
-        {
-            int j = p_149679_2_.nextInt(p_149679_1_ + 2) - 1;
+	{
+		if (p_149679_1_ > 0 && Item.getItemFromBlock(this) != this.getItemDropped(0, p_149679_2_, p_149679_1_))
+		{
+			int j = p_149679_2_.nextInt(p_149679_1_ + 2) - 1;
 
-            if (j < 0)
-            {
-                j = 0;
-            }
+			if (j < 0)
+			{
+				j = 0;
+			}
 
-            return this.quantityDropped(p_149679_2_) * (j + 1);
-        }
-        else
-        {
-            return this.quantityDropped(p_149679_2_);
-        }
-    }
-	
+			return this.quantityDropped(p_149679_2_) * (j + 1);
+		}
+		else
+		{
+			return this.quantityDropped(p_149679_2_);
+		}
+	}
+
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
 		return super.getItemDropped(meta, rand, level);
 	}
-	
+
 	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
 	{
@@ -67,15 +66,15 @@ public class BlockFox extends Block {
 		{
 			return 8;
 		}
-		
+
 		if (world.getBlockMetadata(x, y, z) == 5 && world.getBlock(x, y, z) == this)
 		{
 			return 12;
 		}
-		
+
 		return super.getLightValue(world, x, y, z);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -114,7 +113,7 @@ public class BlockFox extends Block {
 
 	@Override
 	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
-    {
-        return side == ForgeDirection.UP;
-    }
+	{
+		return side == ForgeDirection.UP;
+	}
 }

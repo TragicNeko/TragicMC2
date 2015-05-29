@@ -8,9 +8,9 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class MessageDoom implements IMessage {
-	
+
 	public NBTTagCompound tag;
-	
+
 	public MessageDoom(){}
 
 	public MessageDoom(EntityPlayer player)
@@ -18,7 +18,7 @@ public class MessageDoom implements IMessage {
 		this.tag = new NBTTagCompound();
 		PropertyDoom.get(player).saveNBTData(tag);
 	}
-	
+
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		tag = ByteBufUtils.readTag(buf);

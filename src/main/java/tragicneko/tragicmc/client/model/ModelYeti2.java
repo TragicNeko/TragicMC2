@@ -82,31 +82,31 @@ public class ModelYeti2 extends ModelBase
 		ModelRenderer crownbit = new ModelRenderer(this, 0, 0);
 		crownbit.addBox(-5F, -11F, -2F, 1, 3, 1);
 		head.addChild(crownbit);
-		
+
 		ModelRenderer crownbit2 = new ModelRenderer(this, 0, 0);
 		crownbit2.addBox(4F, -11F, -2F, 1, 3, 1);
 		head.addChild(crownbit2);
-		
+
 		ModelRenderer crownbit3 = new ModelRenderer(this, 0, 0);
 		crownbit3.addBox(-3F, -12F, -3F, 1, 4, 1);
 		head.addChild(crownbit3);
-		
+
 		ModelRenderer crownbit4 = new ModelRenderer(this, 0, 0);
 		crownbit4.addBox(2F, -12F, -3F, 1, 4, 1);
 		head.addChild(crownbit4);
-		
+
 		ModelRenderer crownbit5 = new ModelRenderer(this, 0, 0);
 		crownbit5.addBox(-1F, -11F, -4F, 2, 3, 1);
 		head.addChild(crownbit5);
-		
+
 		ModelRenderer crownbit6 = new ModelRenderer(this, 0, 0);
 		crownbit6.addBox(-2F, -10F, -3F, 4, 2, 1);
 		head.addChild(crownbit6);
-		
+
 		ModelRenderer crownbit7 = new ModelRenderer(this, 0, 0);
 		crownbit7.addBox(-4F, -9F, -4F, 8, 1, 1);
 		head.addChild(crownbit7);
-		
+
 		ModelRenderer crownbit8 = new ModelRenderer(this, 0, 0);
 		crownbit8.addBox(-4F, -9F, -2F, 8, 1, 1);
 		head.addChild(crownbit8);
@@ -266,7 +266,7 @@ public class ModelYeti2 extends ModelBase
 		leftArm.rotateAngleZ = 0.0F;
 
 		head.rotateAngleY = f3 / (180F / (float)Math.PI);
-		head.rotateAngleX = f4 / (180F / (float)Math.PI);	
+		head.rotateAngleX = f4 / (180F / (float)Math.PI);
 		head.rotateAngleZ = 0.0F;
 
 		leftLeg.rotateAngleX = -1.5F * this.simplifyAngle(f, 13.0F) * f1;
@@ -310,7 +310,7 @@ public class ModelYeti2 extends ModelBase
 				else
 				{
 					if (yeti.getFrostTicks() > 0)
-					{					
+					{
 						rightArm.rotateAngleZ = this.simplifyAngle(yeti.getFrostTicks(), 5.0F) * -0.124F + 0.224F;
 						leftArm.rotateAngleZ = this.simplifyAngle(yeti.getFrostTicks(), 5.0F) * 0.124F - 0.224F;
 						head.rotateAngleZ = this.simplifyAngle(yeti.getFrostTicks() + 5, 5.0F) * 0.124F;
@@ -327,7 +327,7 @@ public class ModelYeti2 extends ModelBase
 						else
 						{
 							int meow = yeti.ticksExisted % 60;
-							
+
 							if (!yeti.isBeingAggressive() && meow - 10 >= 40 && meow - 10 < 60)
 							{
 								rightArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 1.214F;
