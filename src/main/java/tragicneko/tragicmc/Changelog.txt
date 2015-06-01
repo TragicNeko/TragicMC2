@@ -4070,12 +4070,22 @@ Added default Lore when an item fails to find an appropriate Lore (which shouldn
 Fixed derp with description splitter, it now actually splits the lines in the proper order and splits more than one time
 Made it so that weapons cannot update lores on the client-side and result in null Lores being picked even if one is displayed to the player
 Doing a mass cleanup now, standby for huge GitHub update
+Fixed derp with GuiDoom (wrong class cast)
+Experimenting with adding custom music for the Dimensions
+Allow client-side effects to apply per tick rather than every other tick, this should improve efficiency of them and some effects that would stop when the
+game was paused (Disorientation, Fear, Stun) now continue their effect correctly
+Fixed render overlays making it impossible to see when the vanilla portal effect is applied at the same time, fixed derp up that made it impossible for players
+to travel to different dimensions when not in Creative
+Fixed crash when not in game yet for Amulets
+Added sounds for the Dimensions, currently using Metroid Prime tracks for placeholders (may keep them, who knows)
+Reverted fix to overlay making it impossible to see, it happens too rarely to really bother with anyway
 Working on Skultar sounds
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 Also make sure all of the Doomsdays work in a server environment
 Do experience value scaling for mobs/bosses, currently most of them give like 5 experience so we'll increase this for tougher mobs
+Do some final Boss/mob scaling, some Bosses may need to have their default values increased to be tougher and some mobs may need to be made a bit easier
 
 Boss sounds~
 Apis sounds: Mad bull sounds
