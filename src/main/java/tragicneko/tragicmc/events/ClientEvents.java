@@ -15,6 +15,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicConfig;
@@ -70,17 +71,15 @@ public class ClientEvents extends Gui {
 	@SubscribeEvent
 	public void onClientUpdate(LivingUpdateEvent event)
 	{
-		if (!Minecraft.getMinecraft().inGameHasFocus) return;
-
 		Minecraft mc = Minecraft.getMinecraft();
 		BlockGenericLeaves.fancyGraphics = Minecraft.isFancyGraphicsEnabled();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 
-		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id))
+		if (player != null && TragicConfig.allowFlight && player.isPotionActive(TragicPotion.Flight.id) && mc.inGameHasFocus)
 		{
 			boolean flag = !TragicConfig.allowStun || TragicConfig.allowStun && !player.isPotionActive(TragicPotion.Stun.id);
 
-			if (flag && Keyboard.isCreated() && player.ticksExisted % 2 == 0)
+			if (flag && Keyboard.isCreated())
 			{
 				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Flight);
 				effect.getDuration();
@@ -96,10 +95,8 @@ public class ClientEvents extends Gui {
 			}
 		}
 
-		if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && player.ticksExisted % 2 == 0)
+		if (player != null && TragicConfig.allowHacked && player.isPotionActive(TragicPotion.Hacked.id) && rand.nextInt(4) == 0)
 		{
-			player.getActivePotionEffect(TragicPotion.Hacked);
-
 			ItemStack current = player.getCurrentEquippedItem();
 			if (current != null && rand.nextInt(1048) == 0 && rand.nextInt(1048) == 42) player.dropOneItem(true);
 			if (player.swingProgress == 1.0F) player.swingProgress = 0.0F;
@@ -113,17 +110,17 @@ public class ClientEvents extends Gui {
 
 		if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked)) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
 
-		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation) && player.ticksExisted % 2 == 0)
+		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation))
 		{
-			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
-			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * 2.25F;
+			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * 4.25F;
+			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * 4.25F;
 		}
 
 		if (player != null && TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun))
 		{
-			player.prevRotationPitch = player.rotationPitch;
-			player.prevRotationYaw = player.rotationYaw;
-			player.rotationYawHead = player.prevRotationYawHead;
+			if (mc.inGameHasFocus) Mouse.setGrabbed(true);
+			mc.mouseHelper.deltaX = 0;
+			mc.mouseHelper.deltaY = 0;
 			player.movementInput.jump = false;
 			player.movementInput.sneak = false;
 		}
@@ -131,14 +128,17 @@ public class ClientEvents extends Gui {
 		if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
 		{
 			buffer++;
-			if (player.ticksExisted % 120 == 0 && rand.nextBoolean() && buffer >= 1000)
+			if (rand.nextInt(16) == 0 && buffer >= 600)
 			{
 				buffer = 0;
 				player.playSound(sounds[rand.nextInt(sounds.length)], rand.nextFloat() * 0.3F + 0.7F, 1.0F);
 			}
 			player.swingItem();
 		}
+		
+		ClientProxy.musicTicker.update();
 
+		if (player == null) return;
 		PropertyAmulets amu = PropertyAmulets.get(player);
 
 		if (amu != null)
