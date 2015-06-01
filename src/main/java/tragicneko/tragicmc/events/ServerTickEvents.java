@@ -21,9 +21,7 @@ public class ServerTickEvents {
 					EntityIre.ireTick = 0;
 					EntityIre.ireNetSize = 0;
 				}
-				//TragicMC.logInfo("Ire net size: " + EntityIre.ireNetSize);
-				//TragicMC.logInfo("Ire tick: " + EntityIre.ireTick);
-			}
+			}	
 		}
 	}
 }

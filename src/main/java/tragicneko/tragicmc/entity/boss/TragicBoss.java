@@ -49,7 +49,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		for (int i = 0; i < list.size(); i++)
 		{
 			coords= list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]).getMaterial() == Material.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
 		}
 
 		int x = 1;
