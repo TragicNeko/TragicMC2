@@ -244,7 +244,7 @@ public class EntityApis extends TragicBoss {
 			{
 				this.decrementReflectionTicks();
 
-				if (this.rand.nextInt(4) == 0 && this.onGround && this.ticksExisted % 2 == 0 && this.worldObj.isDaytime() && this.getHealth() > this.getMaxHealth() / 4)
+				if (this.rand.nextInt(4) == 0 && this.onGround && this.ticksExisted % 2 == 0 && this.worldObj.isDaytime() && this.getHealth() <= this.getMaxHealth() / 4)
 				{
 					ArrayList<int[]> list = WorldHelper.getBlocksInCircularRange(worldObj, 0.75, this.posX, this.posY, this.posZ);
 					Block block;
