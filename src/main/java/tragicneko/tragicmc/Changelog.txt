@@ -4079,6 +4079,7 @@ to travel to different dimensions when not in Creative
 Fixed crash when not in game yet for Amulets
 Added sounds for the Dimensions, currently using Metroid Prime tracks for placeholders (may keep them, who knows)
 Reverted fix to overlay making it impossible to see, it happens too rarely to really bother with anyway
+Rerecorded Polaris sonar/death/clone sounds
 Working on Skultar sounds
 
 Note:
