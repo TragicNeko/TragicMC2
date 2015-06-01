@@ -194,7 +194,8 @@ public class ClientProxy extends CommonProxy {
 	public static final IRenderHandler synapseSkyRenderer = new SynapseSkyRenderer();
 
 	public static IIcon particleTextureSheet;
-
+	public static TragicMusicTicker musicTicker;
+	
 	@Override
 	public void registerRenders()
 	{
@@ -213,6 +214,9 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new ClientEvents());
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
+		
+		//Music events
+		musicTicker = new TragicMusicTicker(mc);
 
 		//Particle registration
 		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();

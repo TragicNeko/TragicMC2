@@ -659,6 +659,30 @@
 			"mob/wisp/release", "mob/wisp/release2",
 			"mob/wisp/release3", "mob/wisp/release4"]
     },
+	"music.dimension.catacombs":
+    {
+		"category": "music",
+		"sounds": [{
+			"name": "music/dimension/catacombs", "stream": "true"}]
+    },
+	"music.dimension.darkechoes":
+    {
+		"category": "music",
+		"sounds": [{
+			"name": "music/dimension/darkechoes", "stream": "true"}]
+    },
+	"music.dimension.hunters":
+    {
+		"category": "music",
+		"sounds": [{
+			"name": "music/dimension/hunters", "stream": "true"}]
+    },
+	"music.dimension.prime":
+    {
+		"category": "music",
+		"sounds": [{
+			"name": "music/dimension/prime", "stream": "true"}]
+    },
 	"random.amuletrelease":
     {
 		"category": "player",
