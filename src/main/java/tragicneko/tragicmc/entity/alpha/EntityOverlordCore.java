@@ -435,7 +435,7 @@ public class EntityOverlordCore extends TragicBoss {
 		if (this.target != null && this.getDistanceToEntity(this.target) <= 5.0)
 		{
 			this.setNearTarget(true);
-			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0 && this.getDistanceToEntity(this.target) <= 10.0)
+			if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0 && this.getDistanceToEntity(this.target) <= 10.0 && this.getDropTicks() == 0)
 			{
 				this.setDropTicks(120 + rand.nextInt(60));
 				this.mountEntity(this.target);
@@ -535,16 +535,6 @@ public class EntityOverlordCore extends TragicBoss {
 			this.decrementDropTicks();
 			this.motionX = this.motionZ = 0.0F;
 			this.motionY = 0.1F;
-
-			if (this.target != null && this.getDistanceToEntity(this.target) <= 5.0)
-			{
-				this.setNearTarget(true);
-				if (rand.nextInt(16) == 0 && this.getHoverTicks() == 0 && this.hoverBuffer == 0 && this.getVulnerableTicks() == 0 && this.getDistanceToEntity(this.target) <= 10.0)
-				{
-					this.setDropTicks(120 + rand.nextInt(60));
-					this.mountEntity(this.target);
-				}
-			}
 
 			if (this.ridingEntity != null && this.getDropTicks() > 10)
 			{
