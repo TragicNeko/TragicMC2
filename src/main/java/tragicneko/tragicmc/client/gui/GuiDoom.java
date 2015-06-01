@@ -15,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
-import tragicneko.tragicmc.items.weapons.ItemScythe;
 import tragicneko.tragicmc.items.weapons.TragicBow;
 import tragicneko.tragicmc.items.weapons.TragicTool;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
@@ -151,7 +150,7 @@ public class GuiDoom extends Gui
 				}
 				else if (stack.getItem() instanceof TragicTool)
 				{
-					if (((ItemScythe)stack.getItem()).getDoomsday() != null && ((ItemScythe)stack.getItem()).getDoomsday().doesCurrentDoomMeetRequirement(props))
+					if (((TragicTool)stack.getItem()).getDoomsday() != null && ((TragicTool)stack.getItem()).getDoomsday().doesCurrentDoomMeetRequirement(props))
 					{
 						flag = true;
 					}
