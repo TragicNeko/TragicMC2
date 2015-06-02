@@ -725,7 +725,7 @@ public class TragicConfig {
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
 		mobInts[2] = MathHelper.clamp_int(config.get(catMobs, "mobTransformationChance", 3).getInt(3), 1, 100);
-		mobInts[3] = clampPositive(config.get(catMobs, "bossDamageCap", 30).getInt(30));
+		mobInts[3] = clampPositive(config.get(catMobs, "bossDamageCap", 25).getInt(25));
 		mobInts[4] = MathHelper.clamp_int(config.get(catMobs, "groupBuffChance", 15).getInt(15), 1, 200);
 
 		mapping = 0;
@@ -890,14 +890,14 @@ public class TragicConfig {
 		miniBossStats[mapping++] = (config.get(catMobs, "volatileFuseaStats", new double[] {18.0, 0.0, 0.0, 32.0, 100.0, 0}).getDoubleList());
 
 		mapping = 0;
-		bossStats[mapping++] = (config.get(catMobs, "apisStats", new double[] {160.0, 0.325, 8.0, 32.0, 1.0, 15}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "apisStats", new double[] {160.0, 0.375, 12.0, 32.0, 1.0, 16}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "deathReaperStats", new double[] {220.0, 0.350, 16.0, 32.0, 1.0, 20}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "kitsuneStats", new double[] {80.0, 0.420, 6.0, 64.0, 0.0, 0}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "polarisStats", new double[] {120.0, 0.390, 5.0, 64.0, 0.0, 14}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "yetiStats", new double[] {140.0, 0.326, 12.0, 48.0, 2.0, 22}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "timeControllerStats", new double[] {350.0, 0.386, 6.0, 64.0, 0.5, 16}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "enyvilStats", new double[] {450.0, 0.276, 24.0, 48.0, 1.0, 0}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "claymationStats", new double[] {150.0, 0.220, 12.0, 32.0, 1.0, 18}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "polarisStats", new double[] {120.0, 0.440, 5.0, 64.0, 0.0, 14}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "yetiStats", new double[] {140.0, 0.326, 16.0, 48.0, 2.0, 22}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "timeControllerStats", new double[] {350.0, 0.366, 6.0, 64.0, 0.5, 18}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "enyvilStats", new double[] {450.0, 0.276, 24.0, 48.0, 1.0, 4}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "claymationStats", new double[] {150.0, 0.320, 12.0, 32.0, 1.0, 18}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCoreStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCombatStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCocoonStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());

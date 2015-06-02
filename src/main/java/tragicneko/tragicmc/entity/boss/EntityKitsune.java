@@ -41,7 +41,7 @@ public class EntityKitsune extends TragicBoss {
 	public EntityKitsune(World par1World) {
 		super(par1World);
 		this.setSize(0.745F, 1.745F);
-		this.experienceValue = 120;
+		this.experienceValue = 60;
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));

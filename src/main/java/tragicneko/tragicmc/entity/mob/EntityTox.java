@@ -35,7 +35,7 @@ public class EntityTox extends TragicMob {
 
 	public EntityTox(World par1World) {
 		super(par1World);
-		this.experienceValue = 6;
+		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 0.05D, true));
@@ -77,6 +77,7 @@ public class EntityTox extends TragicMob {
 		}
 		else
 		{
+			this.experienceValue = 6;
 			this.setSize(0.625F * 0.635F, 1.965F * 0.635F);
 		}
 	}

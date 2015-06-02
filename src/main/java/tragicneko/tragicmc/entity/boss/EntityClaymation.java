@@ -87,6 +87,7 @@ public class EntityClaymation extends TragicBoss {
 		this.isImmuneToFire = true;
 		this.stepHeight = 1.5F;
 		this.formTicks = 0;
+		this.experienceValue = 50;
 	}
 
 	@Override
@@ -192,6 +193,7 @@ public class EntityClaymation extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{
+		if (this.getActualHealth() > 0F) this.deathTime = 0;
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote)

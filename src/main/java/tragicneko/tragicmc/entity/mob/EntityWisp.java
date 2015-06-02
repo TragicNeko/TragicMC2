@@ -31,7 +31,7 @@ public class EntityWisp extends TragicMob {
 	public EntityWisp(World par1World) {
 		super(par1World);
 		this.setSize(0.36F, 1.36F);
-		this.experienceValue = 15;
+		this.experienceValue = 3;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIPanic(this, 1.0D));

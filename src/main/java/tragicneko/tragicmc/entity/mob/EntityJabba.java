@@ -44,7 +44,7 @@ public class EntityJabba extends TragicMob {
 	public EntityJabba(World par1World) {
 		super(par1World);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 8;
+		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -109,6 +109,7 @@ public class EntityJabba extends TragicMob {
 	{
 		this.dataWatcher.updateObject(17, i);
 		this.isImmuneToFire = i == 0;
+		if (i == 1) this.experienceValue = 6;
 
 		if (i == 0)
 		{

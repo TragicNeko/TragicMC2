@@ -48,7 +48,7 @@ public class EntityRagr extends TragicMob {
 		super(par1World);
 		this.setSize(1.335F, 2.675F);
 		this.stepHeight = 1.5F;
-		this.experienceValue = 12;
+		this.experienceValue = 10;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));

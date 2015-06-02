@@ -32,7 +32,7 @@ public class EntityMinotaur extends TragicMob {
 		super(par1World);
 		this.setSize(0.725F, 2.575F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 8;
+		this.experienceValue = 10;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));

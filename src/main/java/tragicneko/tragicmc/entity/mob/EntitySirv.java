@@ -28,7 +28,7 @@ public class EntitySirv extends TragicMob {
 		super(par1World);
 		this.setSize(0.45F, 1.85F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 2;
+		this.experienceValue = 5;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(3, new EntityAIMoveTowardsTarget(this, 1.0D, 64.0F));

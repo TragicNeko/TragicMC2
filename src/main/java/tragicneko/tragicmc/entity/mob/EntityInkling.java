@@ -30,7 +30,7 @@ public class EntityInkling extends TragicMob {
 	public EntityInkling(World par1World) {
 		super(par1World);
 		this.setSize(0.3F, 1.4F);
-		this.experienceValue = 2;
+		this.experienceValue = this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? 6 : 5;
 		this.getNavigator().setBreakDoors(true);
 		this.getNavigator().setAvoidSun(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));

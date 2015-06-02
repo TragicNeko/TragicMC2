@@ -211,11 +211,12 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerKeyBinding(useSpecial);
 		ClientRegistry.registerKeyBinding(openAmuletGui);
 
+		//Client-side event registration
 		FMLCommonHandler.instance().bus().register(new ClientEvents());
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
 		MinecraftForge.EVENT_BUS.register(new MouseEvents(mc));
 		
-		//Music events
+		//Music
 		musicTicker = new TragicMusicTicker(mc);
 
 		//Particle registration

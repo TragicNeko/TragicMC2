@@ -40,7 +40,7 @@ public class EntityApis extends TragicBoss {
 		super(par1World);
 		this.setSize(1.385F, 3.325F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 240;
+		this.experienceValue = 50;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -281,8 +281,8 @@ public class EntityApis extends TragicBoss {
 				this.setChargeTicks(10);
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
-			else if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)
-					&& this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
+			
+			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F) && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
 			{
 				if (rand.nextInt(3) == 0)
 				{
@@ -299,7 +299,8 @@ public class EntityApis extends TragicBoss {
 				this.setChargeTicks(10);
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
-			else if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
+			
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
 			{
 				if (rand.nextInt(3) == 0)
 				{
@@ -315,7 +316,8 @@ public class EntityApis extends TragicBoss {
 				this.setChargeTicks(10);
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
-			else if (this.getAttackTarget() != null && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F)
+			
+			if (this.getAttackTarget() != null && this.ticksExisted % 3 == 0 && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F)
 			{
 				this.setStompTicks(40);
 			}
@@ -334,7 +336,7 @@ public class EntityApis extends TragicBoss {
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 1.225F + 4.0F, this.getMobGriefing());
 			}
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping())
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 10.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping())
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -370,9 +372,9 @@ public class EntityApis extends TragicBoss {
 				}
 			}
 
-			if (this.getAttackTarget() != null && rand.nextInt(48) == 0 && this.ticksExisted % 5 == 0 && !this.isCharging() && this.getHealth() <= this.getMaxHealth() * 2 / 3 && !this.isReflecting())
+			if (this.getAttackTarget() != null && rand.nextInt(8) == 0 && this.ticksExisted % 20 == 0 && !this.isCharging() && this.getHealth() <= this.getMaxHealth() * 2 / 3 && !this.isReflecting())
 			{
-				this.setReflectionTicks(100 + rand.nextInt(120));
+				this.setReflectionTicks(160);
 			}
 		}
 	}

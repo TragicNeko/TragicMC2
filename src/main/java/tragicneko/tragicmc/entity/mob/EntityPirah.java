@@ -26,6 +26,7 @@ public class EntityPirah extends TragicMob {
 
 	public EntityPirah(World par1World) {
 		super(par1World);
+		this.experienceValue = 5;
 		this.tasks.addTask(4, new EntityAIWander(this, 0.7D));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -126,7 +127,11 @@ public class EntityPirah extends TragicMob {
 
 	protected void setPirahType(int i)
 	{
-		if (i == 1) this.isImmuneToFire = true;
+		if (i == 1)
+		{
+			this.isImmuneToFire = true;
+			this.experienceValue = 6;
+		}
 		this.dataWatcher.updateObject(17, i);
 
 		float height = 0.515F;
@@ -136,6 +141,7 @@ public class EntityPirah extends TragicMob {
 		{
 			height *= 1.5F;
 			width *= 1.5F;
+			this.experienceValue = 12;
 		}
 
 		if (i == 0)

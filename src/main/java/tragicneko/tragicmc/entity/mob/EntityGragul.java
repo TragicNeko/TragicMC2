@@ -32,7 +32,7 @@ public class EntityGragul extends TragicMob {
 		super(par1World);
 		this.setSize(0.225F, 0.495F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 8;
+		this.experienceValue = 10;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));

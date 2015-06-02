@@ -25,7 +25,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
 	public EntityMegaCryse(World par1World) {
 		super(par1World);
-		this.experienceValue = 12;
+		this.experienceValue = 15;
 	}
 
 	@Override

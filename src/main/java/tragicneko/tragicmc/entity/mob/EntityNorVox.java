@@ -140,6 +140,7 @@ public class EntityNorVox extends TragicMob {
 		}
 		else
 		{
+			this.experienceValue = 12;
 			this.setSize(1.135F / 1.455F, 1.575F / 1.455F);
 		}
 	}

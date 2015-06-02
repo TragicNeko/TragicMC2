@@ -35,6 +35,7 @@ public class EntityFusea extends TragicMob {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false));
 		this.explosionBuffer = 20;
+		this.experienceValue = 5;
 	}
 
 	@Override

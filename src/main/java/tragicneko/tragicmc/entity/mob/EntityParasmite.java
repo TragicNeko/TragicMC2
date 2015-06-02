@@ -25,6 +25,7 @@ public class EntityParasmite extends TragicMob {
 	public EntityParasmite(World par1World) {
 		super(par1World);
 		this.setSize(0.625F, 0.625F);
+		this.experienceValue = 5;
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));

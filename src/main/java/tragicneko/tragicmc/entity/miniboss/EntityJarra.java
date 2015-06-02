@@ -18,7 +18,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	public EntityJarra(World par1World) {
 		super(par1World);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 20;
+		this.experienceValue = 15;
 		this.isImmuneToFire = false;
 	}
 

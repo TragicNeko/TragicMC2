@@ -279,8 +279,8 @@ public class ModelYeti2 extends ModelBase
 
 		if (yeti.isCharging())
 		{
-			leftArm.rotateAngleX = -0.5F;
-			rightArm.rotateAngleX = -1.2F;
+			leftArm.rotateAngleX = -0.35F;
+			rightArm.rotateAngleX = -0.45F;
 			leftLeg.rotateAngleX = -1.25F;
 			rightLeg.rotateAngleX = 1.25F;
 		}
@@ -326,14 +326,14 @@ public class ModelYeti2 extends ModelBase
 						}
 						else
 						{
-							int meow = yeti.ticksExisted % 60;
-
-							if (!yeti.isBeingAggressive() && meow - 10 >= 40 && meow - 10 < 60)
+							int meow = (yeti.ticksExisted - 10) % 60;
+							if (yeti.getThrowing() && meow > 50 && meow <= 60)
 							{
-								rightArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 1.214F;
-								leftArm.rotateAngleX = -1.2142557F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 1.214F;
-								rightArm.rotateAngleZ = 0.26F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * -0.164F;
-								leftArm.rotateAngleZ = -0.26F + this.simplifyAngle(yeti.ticksExisted - 10, 20.0F) * 0.164F;
+								int mer = Math.max(0, meow);
+								rightArm.rotateAngleX = -1.2142557F + this.simplifyAngle(mer, 10.0F) * 1.214F;
+								leftArm.rotateAngleX = -1.2142557F + this.simplifyAngle(mer, 10.0F) * 1.214F;
+								rightArm.rotateAngleZ = 0.26F + this.simplifyAngle(mer, 10.0F) * -0.164F;
+								leftArm.rotateAngleZ = -0.26F + this.simplifyAngle(mer, 10.0F) * 0.164F;
 							}
 						}
 					}

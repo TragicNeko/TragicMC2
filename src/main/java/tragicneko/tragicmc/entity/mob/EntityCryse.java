@@ -38,7 +38,7 @@ public class EntityCryse extends TragicMob {
 	public EntityCryse(World par1World) {
 		super(par1World);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 6;
+		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -128,6 +128,7 @@ public class EntityCryse extends TragicMob {
 		}
 		else
 		{
+			this.experienceValue = 6;
 			this.setSize(0.525F * 0.625F, 1.475F * 0.625F);
 		}
 	}

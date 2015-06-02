@@ -53,7 +53,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 				aegarHead = new EntityPart(this, "head", 1.0F, 1.0F)};
 		this.setSize(1.385F * 1.545F, 2.325F * 1.545F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 100;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
@@ -62,6 +61,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityGolem.class, 0, true));
 		this.isImmuneToFire = true;
+		this.experienceValue = 36;
 	}
 
 	@Override

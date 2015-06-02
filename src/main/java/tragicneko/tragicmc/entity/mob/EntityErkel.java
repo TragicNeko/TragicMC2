@@ -33,7 +33,7 @@ public class EntityErkel extends TragicMob {
 	public EntityErkel(World par1World) {
 		super(par1World);
 		this.setSize(0.56F, 1.06F);
-		this.experienceValue = 5;
+		this.experienceValue = 2;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(0, new EntityAIPanic(this, 0.65D));

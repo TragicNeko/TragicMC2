@@ -25,7 +25,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		super(par1World);
 		this.setSize(0.225F * 2.115F, 0.515F * 2.115F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 16;
+		this.experienceValue = 22;
 	}
 
 	@Override

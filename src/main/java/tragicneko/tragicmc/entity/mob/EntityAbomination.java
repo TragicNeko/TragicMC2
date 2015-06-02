@@ -28,7 +28,7 @@ public class EntityAbomination extends TragicMob {
 		super(par1World);
 		this.setSize(0.675F, 2.05F);
 		this.stepHeight = 1.0F;
-		this.experienceValue = 12;
+		this.experienceValue = 5;
 		this.getNavigator().setAvoidsWater(true);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));

@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -73,6 +74,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true));
 		this.isImmuneToFire = true;
 		this.stepHeight = 2.5F;
+		this.experienceValue = 60;
 	}
 
 	@Override
@@ -431,7 +433,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		{
 			block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
 
-			if (!block.isAir(this.worldObj, coords[0], coords[1], coords[2]) && block.canEntityDestroy(this.worldObj, coords[0], coords[1], coords[2], this))
+			if (!block.isAir(this.worldObj, coords[0], coords[1], coords[2]) && block.canEntityDestroy(this.worldObj, coords[0], coords[1], coords[2], new EntityWither(this.worldObj)))
 			{
 				this.worldObj.func_147480_a(coords[0], coords[1], coords[2], true);
 			}
@@ -567,6 +569,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		if (this.worldObj.isRemote && this.getClientSideTarget() == null || !this.worldObj.isRemote && this.getAttackTarget() == null) return;
 
 		EntityLivingBase entity = this.worldObj.isRemote ? this.getClientSideTarget() : this.getAttackTarget();
+		if (entity != null && !this.canEntityBeSeen(entity)) return;
 
 		if (entity instanceof EntityPlayer)
 		{

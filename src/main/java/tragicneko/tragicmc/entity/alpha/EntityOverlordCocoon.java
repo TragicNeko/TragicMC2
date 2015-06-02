@@ -38,7 +38,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		super(par1World);
 		this.setSize(5.385F, 5.325F);
 		this.stepHeight = 2.0F;
-		this.experienceValue = 0;
+		this.experienceValue = 50;
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, EntityOverlordCombat.selec));
 		this.isImmuneToFire = true;

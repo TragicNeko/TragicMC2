@@ -42,7 +42,7 @@ public class EntityStin extends TragicMob {
 		super(par1World);
 		this.setSize(0.65F, 0.65F);
 		this.stepHeight = 0.5F;
-		this.experienceValue = 12;
+		this.experienceValue = 5;
 		this.getNavigator().setAvoidSun(true);
 		this.getNavigator().setCanSwim(false);
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
@@ -102,7 +102,9 @@ public class EntityStin extends TragicMob {
 
 	public boolean isAdult()
 	{
-		return this.getAgeTicks() > 0;
+		boolean flag = this.getAgeTicks() > 0;
+		if (!flag) this.experienceValue = 3;
+		return flag;
 	}
 
 	public void setChild()

@@ -36,7 +36,7 @@ public class EntityTragicNeko extends TragicMob {
 	public EntityTragicNeko(World par1World) {
 		super(par1World);
 		this.setSize(0.475F, 1.955F);
-		this.experienceValue = 16;
+		this.experienceValue = 5;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));

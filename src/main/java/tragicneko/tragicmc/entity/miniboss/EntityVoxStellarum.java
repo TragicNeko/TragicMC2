@@ -28,6 +28,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	public EntityVoxStellarum(World par1World) {
 		super(par1World);
 		this.stepHeight = 2.0F;
+		this.experienceValue = 22;
 	}
 
 	@Override
