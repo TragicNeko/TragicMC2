@@ -522,6 +522,16 @@ public class LoreHelper {
 			new EnchantEntry[][] {{new EnchantEntry(Enchantment.unbreaking, 3), new EnchantEntry(TragicEnchantments.Reach, 3)}, {new EnchantEntry(Enchantment.unbreaking, 5), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 7), new EnchantEntry(TragicEnchantments.Reach, 3), new EnchantEntry(Enchantment.looting, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
 			{new EnchantEntry(Enchantment.unbreaking, 10), new EnchantEntry(TragicEnchantments.Reach, 5), new EnchantEntry(Enchantment.looting, 5), new EnchantEntry(TragicEnchantments.Consume, 3)}});
+		
+		//Tier 2 weapons 
+		/*addToLoreMap(WeaponGrievingWidow.class, new Lore[] {new Lore(25, "Jealousy.", 1), new Lore(15, "Hate.", 1), new Lore(15, "Lovesick.", 1), new Lore(10, "Heartbreak.", 1), new Lore(5, "You can't trust any Man.", 1), new Lore(5, "You can't trust any Woman.", 1),
+			new Lore(25, "Loving you is torture...", 2), new Lore(15, "My heart is in pieces.", 2), new Lore(15, "Please lie to make me feel better.", 2), new Lore(15, "I hope it kills you as much as it's killing me.", 2), new Lore(5, "Marriage is being sentenced to endless torture.", 2),
+			new Lore(25, "I still love you with all the pieces of my broken heart.", 3), new Lore(10, "Seeing you with them just eats what's left of my heart.", 2), new Lore(5, "I gave my heart to you, but then you gave it to someone else...", 2), new Lore(5, "As heartless as your wretched lies...", 2),
+			new Lore(15, "There's a hole where my heart used to be.", 3), new Lore(5, "Got a long list of ex-lovers, they'll tell you I'm insane.", 3), new Lore(15, "All that's left is broken pieces of my heart that you trampled all on...", 3), new Lore(10, "The color is all but faded down to this blackened heart.", 3),
+			new Lore(5, "Why did you leave me in this life all alone?!", 3)},
+				new EnchantEntry[][]{{new EnchantEntry(TragicEnchantments.Swiftness, 1), new EnchantEntry(TragicEnchantments.Perforate, 1)}, {new EnchantEntry(TragicEnchantments.Swiftness, 3), new EnchantEntry(TragicEnchantments.Perforate, 3), new EnchantEntry(TragicEnchantments.Consume, 1)},
+			{new EnchantEntry(TragicEnchantments.Swiftness, 5), new EnchantEntry(TragicEnchantments.Perforate, 5), new EnchantEntry(TragicEnchantments.Consume, 3)},
+			{new EnchantEntry(TragicEnchantments.Swiftness, 5), new EnchantEntry(TragicEnchantments.Perforate, 5), new EnchantEntry(TragicEnchantments.Consume, 5), new EnchantEntry(TragicEnchantments.DireHit, 1)}}); */
 	}
 
 	public static class LoreEntry {

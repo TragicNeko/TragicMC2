@@ -4041,7 +4041,7 @@ Added Evacuate Doomsday, it is a combination of Shuffle and Blink
 Added Medic Doomsday
 Added Resurgence Doomsday (Soul Link will be added another time), it is a combination of Support and Medic
 
-2.44.2560++ <204> (May 22, 2015)
+2.44.2602 <204> (May 22, 2015)
 Modified Plague and Harvester sounds to play on update rather than using the vanilla living sound thing
 Added Ranmas sounds (uses the Harvester and the Vanilla Anvil sounds)
 Added Erkel sounds (uses very high-pitched versions of the Tox sounds)
@@ -4090,6 +4090,8 @@ Lowered the default damage cap by 5, max damage is 25 now to bosses by default
 Increased Apis, Claymation and Polaris default speed values
 Lowered Time Controller's speed value a bit
 Fixed bug with Claymation when one of it's forms was killed, it would update onDeath but not actually be dead
+
+2.44.2602++ <205> (June 2, 2015)
 Working on Skultar sounds still (taking a while due to recording issues)
 
 Note:
