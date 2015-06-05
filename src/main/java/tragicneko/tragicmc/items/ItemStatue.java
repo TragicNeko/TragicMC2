@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -149,7 +150,7 @@ public class ItemStatue extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		par2List.add(EnumChatFormatting.GOLD + "A trophy for your triumphs!");
+		par2List.add(EnumChatFormatting.GOLD + "It's a statue of a mob!");
 	}
 
 	@Override
@@ -172,6 +173,7 @@ public class ItemStatue extends Item {
 			double x2 = x + 0.5D;
 			double y2 = y;
 			double z2 = z + 0.5D;
+			float rotation = ((MathHelper.floor_float((player.rotationYaw * 8.0F / 360.0F) + 0.5F)) * 45.0F) + 180F;
 
 			switch (mop.sideHit)
 			{
@@ -196,6 +198,7 @@ public class ItemStatue extends Item {
 			}
 
 			statue.setPosition(x2, y2, z2);
+			statue.setRotation(rotation);
 			if (!world.getCollidingBoundingBoxes(statue, statue.boundingBox).isEmpty() || world.isAnyLiquid(statue.boundingBox)) return stack;
 			statue.setMobID(stack.getItemDamage() % subNames.length);
 			statue.setTextureID(this.getTextureIDFromDamage(stack.getItemDamage()));

@@ -108,7 +108,7 @@ public class EntityStatue extends Entity {
 
 	public void setRotation(float f)
 	{
-		this.dataWatcher.updateObject(4, f % 360.0F);
+		this.dataWatcher.updateObject(4, Math.abs(f) % 360.0F);
 	}
 
 	public float getRotation()
@@ -136,15 +136,14 @@ public class EntityStatue extends Entity {
 		this.prevPosZ = this.posZ;
 
 		if (!this.worldObj.isRemote && this.getRotation() > 360.0F) this.setRotation(this.getRotation() - 360.0F);
-		if (!this.worldObj.isRemote) //this is to prevent players from being kicked on servers by standing on the statue
+
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0, 0.8, 0.0));
+		for (Entity e : list)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0, 1.0, 0.0));
-			for (Entity e : list)
-			{
-				this.applyEntityCollision(e);
-				e.velocityChanged = true;
-			}
+			this.applyEntityCollision(e);
+			e.velocityChanged = true;
 		}
+
 	}
 
 	@Override
