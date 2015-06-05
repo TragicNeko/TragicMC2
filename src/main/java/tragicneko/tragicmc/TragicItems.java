@@ -21,6 +21,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmuletRelease;
+import tragicneko.tragicmc.items.ItemAnomalyAugment;
 import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
 import tragicneko.tragicmc.items.ItemBloodSacrifice;
 import tragicneko.tragicmc.items.ItemChallenge;
@@ -186,10 +187,10 @@ public class TragicItems {
 	public static Item LunarPowder;
 	public static Item CelestialDiamond;
 	public static Item CorruptedEssence;
-	public static Item CorruptedEgg; //random spawn egg item
+	public static Item CorruptedEgg;
 	public static Item NanoBots;
-	public static Item UnstableIsotope; //drop for Fusea, to be used as an alternative way to craft TNT, possibly for some other technological items
-	public static Item IreNode; //drop from the Ire, to be used for crafting an IreNet Particle Cannon (fires Ire energy in large amounts like a flamethrower)
+	public static Item UnstableIsotope;
+	public static Item IreNode;
 
 	public static Item IceOrb, GravityOrb, FireOrb, LightningOrb, AquaOrb;
 
@@ -197,9 +198,11 @@ public class TragicItems {
 	public static Item StinHorn;
 	public static Item IcyFur;
 	public static Item ArchangelFeather; //can be used to brew flight potions possibly, ore dictionary replacement for feathers
-	public static Item WingsOfLiberation; //while in your hands, you can fly as if you have Flight active, uses durability while you are in air and doesn't negate fall damage
+	public static Item WingsOfLiberation;
 	public static Item ParanormalBox; //while in your hands, you can fly through blocks & entities like a ghost
-	public static Item IreNetParticleCannon; //fires ire energy as a sort of flamethrower, crafted from Ire nodes, Unstable Isotopes and a type of metal (unsure of which kind at this point)
+	public static Item IreNetParticleCannon;
+	
+	public static Item AnomalyAugment;
 
 	public static Item FrozenLightning;
 
@@ -637,6 +640,9 @@ public class TragicItems {
 
 		IreNetParticleCannon = (new WeaponIreParticleCannon(toolLauncher, Doomsday.Flash).setUnlocalizedName("tragicmc.ireNetParticleCannon").setTextureName("tragicmc:IreParticleCannon" ));
 		GameRegistry.registerItem(IreNetParticleCannon, "ireParticleCannon");
+		
+		AnomalyAugment = new ItemAnomalyAugment().setTextureName("tragicmc:AnomalyAugment");
+		GameRegistry.registerItem(AnomalyAugment, "anomalyAugment");
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
