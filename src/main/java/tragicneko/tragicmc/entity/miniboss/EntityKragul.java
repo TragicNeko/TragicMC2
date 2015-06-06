@@ -100,7 +100,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	{
 		if (this.worldObj.isRemote || !(par1Entity instanceof EntityLivingBase)) return false;
 
-		boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), ((EntityLivingBase) par1Entity).getMaxHealth() / 5);
+		boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), Math.max(((EntityLivingBase) par1Entity).getMaxHealth() / 5F, 1F));
 
 		if (result)
 		{

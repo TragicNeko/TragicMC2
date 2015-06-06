@@ -150,7 +150,7 @@ public class EntityGragul extends TragicMob {
 
 		if (par1Entity instanceof EntityLivingBase || par1Entity instanceof EntityPlayer)
 		{
-			boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), ((EntityLivingBase) par1Entity).getMaxHealth() / 10);
+			boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), Math.max(((EntityLivingBase) par1Entity).getMaxHealth() / 10F, 0.5F));
 
 			if (result)
 			{
