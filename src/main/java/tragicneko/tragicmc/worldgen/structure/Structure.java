@@ -96,7 +96,7 @@ public class Structure extends WorldGenerator {
 	 */
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
-		if (y + this.height >= 256 || !validBlocks.contains(world.getBlock(x, y, z))) return false;
+		if (!validBlocks.contains(world.getBlock(x, y, z)) || y + this.height >= world.provider.getActualHeight()) return false;
 
 		if (this.isSurfaceStructure())
 		{
