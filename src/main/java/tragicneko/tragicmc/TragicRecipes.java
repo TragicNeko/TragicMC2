@@ -21,6 +21,11 @@ public class TragicRecipes {
 		GameRegistry.addSmelting(new ItemStack(TragicBlocks.TragicOres, 1, 0), new ItemStack(TragicItems.RedMercury), 2F);
 		GameRegistry.addSmelting(TragicBlocks.DarkCobblestone, new ItemStack(TragicBlocks.DarkStone, 1, 0), 1F);
 		GameRegistry.addSmelting(TragicBlocks.LightCobblestone, new ItemStack(TragicBlocks.LightStone, 1, 0), 1F);
+		GameRegistry.addSmelting(TragicBlocks.AshenWood, new ItemStack(Items.coal, 1, 1), 0.5F);
+		GameRegistry.addSmelting(TragicBlocks.BleachedWood, new ItemStack(Items.coal, 1, 1), 0.5F);
+		GameRegistry.addSmelting(TragicBlocks.HallowedWood, new ItemStack(Items.coal, 1, 1), 0.5F);
+		GameRegistry.addSmelting(TragicBlocks.PaintedWood, new ItemStack(Items.coal, 1, 1), 0.5F);
+		GameRegistry.addSmelting(TragicBlocks.Darkwood, new ItemStack(Items.coal, 1, 1), 0.5F);
 
 		//Crafting Recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.QuicksilverIngot, 1),
@@ -560,6 +565,30 @@ public class TragicRecipes {
 				"xx",
 				'x', TragicItems.Ash
 				);
+
+		if (TragicConfig.allowAnomalyAugment)
+		{
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.AnomalyAugment, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', TragicItems.TimeEssence,
+					'y', TragicItems.Ectoplasm,
+					'z', TragicItems.WispParticles
+					);
+		}
+
+		if (TragicConfig.allowNuke)
+		{
+			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Nuke, 1),
+					"xyx",
+					"yzy",
+					"xyx",
+					'x', Blocks.tnt,
+					'z', TragicItems.ObsidianOrb,
+					'y', TragicItems.UnstableIsotope
+					);
+		}
 
 		//Skeleton spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 51),

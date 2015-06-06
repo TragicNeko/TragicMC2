@@ -140,7 +140,7 @@ public class TragicConfig {
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
-	public static boolean allowPvP, allowFlightNotify, allowArmorModels;
+	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowAnomalyAugment, allowNuke;
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
@@ -1018,6 +1018,8 @@ public class TragicConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowPvP", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowFlightNotify", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowArmorModels", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowAnomalyAugment", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowNuke", true).getBoolean(true));
 
 		mapping = 0;
 		griefConfigs[mapping++] = config.get(catMisc, "allowNatureDrainDestruction", true).getBoolean(true);
@@ -1808,6 +1810,8 @@ public class TragicConfig {
 		allowPvP = miscConfigs[mapping++];
 		allowFlightNotify = miscConfigs[mapping++];
 		allowArmorModels = miscConfigs[mapping++];
+		allowAnomalyAugment = miscConfigs[mapping++];
+		allowNuke = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];

@@ -15,6 +15,7 @@ import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.EntityKurayami;
 import tragicneko.tragicmc.entity.EntityLock;
+import tragicneko.tragicmc.entity.EntityNuke;
 import tragicneko.tragicmc.entity.EntityStatue;
 import tragicneko.tragicmc.entity.EntityTimeDisruption;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
@@ -900,5 +901,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityLock.class, "Lock", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityDirectedLightning.class, "DirectedLightning", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityIreEnergy.class, "IreEnergy", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityNuke.class, "Nuke", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }

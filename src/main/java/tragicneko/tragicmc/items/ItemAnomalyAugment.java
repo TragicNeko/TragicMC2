@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.items;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -11,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
@@ -26,6 +28,12 @@ public class ItemAnomalyAugment extends Item{
 		this.setMaxDamage(5);
 		this.setUnlocalizedName("tragicmc.anomalyAugment");
 		this.setHasSubtypes(false);
+	}
+	
+	@Override
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
+	{
+		par2List.add(EnumChatFormatting.AQUA + "Enchant then right-click for a random item!");
 	}
 
 	@Override

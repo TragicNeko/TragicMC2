@@ -724,6 +724,12 @@
 		"sounds": [
 			"random/amuletrelease"]
     },
+	"random.beep":
+    {
+		"category": "ambient",
+		"sounds": [
+			"random/beep"]
+    },
 	"random.challengedone":
     {
 		"category": "player",
@@ -785,5 +791,11 @@
 		"category": "block",
 		"sounds": [
 			"random/soulbreath"]
+    },
+	"random.truncatedbeep":
+    {
+		"category": "ambient",
+		"sounds": [
+			"random/truncatedbeep"]
     }
 }

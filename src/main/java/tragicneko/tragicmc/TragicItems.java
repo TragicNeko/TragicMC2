@@ -40,6 +40,7 @@ import tragicneko.tragicmc.items.ItemMobEgg;
 import tragicneko.tragicmc.items.ItemMoonlight;
 import tragicneko.tragicmc.items.ItemNekoWand;
 import tragicneko.tragicmc.items.ItemNourishmentSacrifice;
+import tragicneko.tragicmc.items.ItemNuke;
 import tragicneko.tragicmc.items.ItemProjectile;
 import tragicneko.tragicmc.items.ItemSoundExtrapolator;
 import tragicneko.tragicmc.items.ItemStatue;
@@ -113,7 +114,7 @@ public class TragicItems {
 	public static Item OverlordHelm, OverlordPlate, OverlordLegs, OverlordBoots;
 
 	public static Item CelestialAegis, CelestialLongbow, CelestialJack, CelestialSteel;
-	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, WitheringAxe;
+	public static Item GravitySpike, HarmonyBell, MourningStar, BeastlyClaws, GuiltyThorn, NekoLauncher, ReaperScythe, WitheringAxe, FrozenLightning;
 
 	public static Item Splinter, Titan, Butcher, Thardus, Paranoia, DragonFang, SilentHellraiser;
 
@@ -201,10 +202,11 @@ public class TragicItems {
 	public static Item WingsOfLiberation;
 	public static Item ParanormalBox; //while in your hands, you can fly through blocks & entities like a ghost
 	public static Item IreNetParticleCannon;
-	
-	public static Item AnomalyAugment;
 
-	public static Item FrozenLightning;
+	public static Item AnomalyAugment;
+	public static Item Nuke;
+
+
 
 	public static Item BloodSacrifice;
 	public static Item NourishmentSacrifice;
@@ -301,7 +303,7 @@ public class TragicItems {
 		//Ore Registrations
 		RedMercury = (new ItemGeneric().setUnlocalizedName("tragicmc.redMercury").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RedMercury" ));
 		GameRegistry.registerItem(RedMercury, "redMercury");
-
+		
 		Quicksilver = (new ItemGeneric().setUnlocalizedName("tragicmc.quicksilver").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Quicksilver" ));
 		GameRegistry.registerItem(Quicksilver, "quicksilver");
 
@@ -640,9 +642,18 @@ public class TragicItems {
 
 		IreNetParticleCannon = (new WeaponIreParticleCannon(toolLauncher, Doomsday.Flash).setUnlocalizedName("tragicmc.ireNetParticleCannon").setTextureName("tragicmc:IreParticleCannon" ));
 		GameRegistry.registerItem(IreNetParticleCannon, "ireParticleCannon");
-		
-		AnomalyAugment = new ItemAnomalyAugment().setTextureName("tragicmc:AnomalyAugment");
-		GameRegistry.registerItem(AnomalyAugment, "anomalyAugment");
+
+		if (TragicConfig.allowAnomalyAugment)
+		{
+			AnomalyAugment = new ItemAnomalyAugment().setTextureName("tragicmc:AnomalyAugment");
+			GameRegistry.registerItem(AnomalyAugment, "anomalyAugment");
+		}
+
+		if (TragicConfig.allowNuke)
+		{
+			Nuke = new ItemNuke().setTextureName("tragicmc:Nuke");
+			GameRegistry.registerItem(Nuke, "nuke");
+		}
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));
