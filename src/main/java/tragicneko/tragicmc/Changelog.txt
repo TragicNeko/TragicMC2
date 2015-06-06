@@ -4092,11 +4092,26 @@ Lowered Time Controller's speed value a bit
 Fixed bug with Claymation when one of it's forms was killed, it would update onDeath but not actually be dead
 
 2.44.2602++ <205> (June 2, 2015)
-Working on Skultar sounds still (taking a while due to recording issues)
+Added the rest of the Skultar sounds
+Statues now rotate towards the player when they are placed
+Reduced range in which statues apply collision to players, collision is applied on server and client side now
+Added an experimental item, Anomaly Augment, it gives you a random item (out of any in the game currently) based on the Enchantments you apply to it, only up to 5 attempts per enchant use
+Adding another experimental item, a Nuke, just for fun, may or may not be in the release version, who knows
+Added a beep and a faded beep, these will most likely be multipurpose but I'm gonna use them for the nuke sound effect for now
+Added recipes for the Anomaly Augment and Nuke, added configurability of whether those two items are enabled (since they both can be pretty game-breaking)
+Added textures for the Anomaly and Nuke, also added a model for the Nuke entity with a basic texture
+Capped Gragul and Kragul's damage to do a minimum amount, this means it can kill you with less health easier
+Increased blast size of the Nuke, added description to the Anomaly Augment
+Fixed bug with Structures generating on the Nether roof
+Reduced amount of particles created from the Nuke, the Nuke now remembers what stage and how much time it's been in that stage when you reload a world,
+this is to prevent ppl from using it then reloading to preserve the Nuke (although doing so now desyncs the client and server side of it, it's not important enough to care about)
+Updated Forge in workspace and refreshed dependencies, going to probably do a full clean sometime soon
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 Also make sure all of the Doomsdays work in a server environment
+Add all of the lores to a .json file (if I really feel like doing it)
+Change Extended Doomsdays to use abstract methods for getting max iterations and wait time, other Doomsdays don't need either of those
 
 Boss sounds~
 Apis sounds: Mad bull sounds
