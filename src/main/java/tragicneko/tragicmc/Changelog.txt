@@ -4106,27 +4106,22 @@ Fixed bug with Structures generating on the Nether roof
 Reduced amount of particles created from the Nuke, the Nuke now remembers what stage and how much time it's been in that stage when you reload a world,
 this is to prevent ppl from using it then reloading to preserve the Nuke (although doing so now desyncs the client and server side of it, it's not important enough to care about)
 Updated Forge in workspace and refreshed dependencies, going to probably do a full clean sometime soon
+Added the Avris mob with it's mostly complete AI, still need to add it's model, animations and texture
+Added Time Controller sounds
+Converted IExtendedDoomsday to have two methods instead of it just being a marker interface, removed unnecessary fields from Instant Doomsdays
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 Also make sure all of the Doomsdays work in a server environment
 Add all of the lores to a .json file (if I really feel like doing it)
-Change Extended Doomsdays to use abstract methods for getting max iterations and wait time, other Doomsdays don't need either of those
 
 Boss sounds~
 Apis sounds: Mad bull sounds
 Yeti sounds: Deep beastly sounds
-Time Controller sounds: sorta organic w/ electronic filter chimey sounds possibly, some type of bubble effect
 Enyvil sounds: possibly double toned sounds (high and low pitched at the same time to create a weird effect)
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
 Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
-
-New Mob:
-Avris - A tall thin creature that has very long legs but a very short torso, with long arms and a tiny head, they carry around a bag of "trinkets", similar
-AI to the Treasure Goblins in Diablo 3, since I liked the idea of a random mob that dropped uncommon things, they will have a message when they spawn in
-to alert players of their presence ("An Avris has appeared nearby!") and a message for if they escape or are killed ("The Avris has alleviated pursuers!"),
-("The Avris has been slain!"), they will basically drop all of the items you can get from doing a "Harsh" Challenge from a Challenge Scroll, I'll probably
-use the same drop rates and items from that actually
+Avris sounds: oohs and ahhs and snickers... mmm snickers
 
 --Reminders-
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
