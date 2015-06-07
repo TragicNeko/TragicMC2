@@ -333,11 +333,17 @@ public class EntityTimeController extends TragicBoss {
 		if (this.getSpazTicks() > 0) this.decrementSpazTicks();
 		if (this.getFluxTicks() == 2) this.damageNearbyEntities();
 
-		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0) this.setLeapTicks(150);
+		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0)
+		{
+			this.setLeapTicks(150);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.leap", 1.9F, 1.0F);
+		}
+		
 		if (rand.nextInt(128) == 0 && ticksSinceFlux > 600 && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F))
 		{
 			this.storedDamage = 0.0F;
 			this.setFluxTicks(250);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.flux", 1.9F, 1.0F);
 		}
 		if (rand.nextInt(64) == 0 && this.getPurgeTicks() == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F))
 		{
@@ -349,6 +355,7 @@ public class EntityTimeController extends TragicBoss {
 		if (this.getPurgeTicks() > 0)
 		{
 			this.setSprinting(true);
+			if (this.getPurgeTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 1.0F, 1.9F);
 		}
 		else
 		{
@@ -518,6 +525,7 @@ public class EntityTimeController extends TragicBoss {
 		if (result && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && rand.nextInt(16) == 0 && this.getHealth() <= this.getMaxHealth() / 3 && this.getSpazTicks() == 0)
 		{
 			this.setSpazTicks(120);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.error", 1.9F, 1.0F);
 		}
 		return result;
 	}
@@ -754,5 +762,41 @@ public class EntityTimeController extends TragicBoss {
 		tag.setInteger("fluxBuffer", this.ticksSinceFlux);
 		tag.setInteger("purgeTicks", this.getPurgeTicks());
 		tag.setInteger("spazTicks", this.getSpazTicks());
+	}
+
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:boss.timecontroller.living";
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:boss.timecontroller.hurt";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:boss.timecontroller.death";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

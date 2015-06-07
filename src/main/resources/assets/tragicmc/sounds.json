@@ -154,6 +154,48 @@
 		"sounds": [
 			"boss/skultar/slice"]
     },
+	"boss.timecontroller.flux":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/timecontroller/flux"]
+    },
+	"boss.timecontroller.error":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/timecontroller/error"]
+    },
+	"boss.timecontroller.leap":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/timecontroller/leap"]
+    },
+	"boss.timecontroller.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/timecontroller/death"]
+    },
+	"boss.timecontroller.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/timecontroller/living", "boss/timecontroller/living2",
+			"boss/timecontroller/living3", "boss/timecontroller/living4",
+			"boss/timecontroller/living5", "boss/timecontroller/living6",
+			"boss/timecontroller/living7", "boss/timecontroller/living8",
+			"boss/timecontroller/living9"]
+    },
+	"boss.timecontroller.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/timecontroller/hurt", "boss/timecontroller/hurt2",
+			"boss/timecontroller/hurt3", "boss/timecontroller/hurt4",
+			"boss/timecontroller/hurt5", "boss/timecontroller/hurt6"]
+    },
 	"mob.abomination.hurt":
     {
 		"category": "hostile",
