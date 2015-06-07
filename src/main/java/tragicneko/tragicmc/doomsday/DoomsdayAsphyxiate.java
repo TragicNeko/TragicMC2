@@ -16,8 +16,6 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayAsphyxiate(int id) {
 		super(id, EnumDoomType.CRISIS);
-		this.waitTime = 3;
-		this.maxIterations = 50;
 	}
 
 	@Override
@@ -81,5 +79,15 @@ public class DoomsdayAsphyxiate extends Doomsday implements IExtendedDoomsday {
 	public Doomsday getCombination()
 	{
 		return Doomsday.Harmonizer;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 3;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 50;
 	}
 }

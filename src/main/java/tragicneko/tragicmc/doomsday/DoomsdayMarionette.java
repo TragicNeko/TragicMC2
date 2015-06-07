@@ -16,8 +16,6 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayMarionette(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 1;
-		this.maxIterations = 100;
 	}
 
 	@Override
@@ -66,5 +64,15 @@ public class DoomsdayMarionette extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Torment;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 1;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 100;
 	}
 }

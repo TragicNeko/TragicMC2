@@ -12,8 +12,6 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 
 	public DoomsdaySuicidalTendencies(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 10;
-		this.maxIterations = 5;
 	}
 
 	@Override
@@ -44,5 +42,15 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 	public Doomsday getCombination()
 	{
 		return Doomsday.Ravage;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 10;
 	}
 }

@@ -19,8 +19,6 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayDeathMark(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 20;
-		this.maxIterations = 20;
 	}
 
 	@Override
@@ -81,6 +79,16 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(TragicConfig.allowSubmission ? TragicPotion.Submission.id : Potion.weakness.id, 200, 10));
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 20;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 20;
 	}
 
 }

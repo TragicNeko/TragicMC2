@@ -20,8 +20,6 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdaySeptics(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 5;
-		this.maxIterations = 60;
 	}
 
 	@Override
@@ -65,5 +63,15 @@ public class DoomsdaySeptics extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.poison.id, 120, 1));
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 5;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 60;
 	}
 }

@@ -23,8 +23,8 @@ public class DoomsdayPurify extends Doomsday {
 			for (int i = 0; i < Potion.potionTypes.length; i++)
 			{
 				if (e.isPotionActive(i)) e.removePotionEffect(i);
-				if (e.isBurning()) e.extinguish();
 			}
+			if (e.isBurning()) e.extinguish();
 		}
 	}
 

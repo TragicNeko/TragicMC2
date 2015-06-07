@@ -14,8 +14,6 @@ public class DoomsdayPurge extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayPurge(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 3;
-		this.maxIterations = 100;
 	}
 
 	@Override
@@ -56,5 +54,15 @@ public class DoomsdayPurge extends Doomsday implements IExtendedDoomsday {
 	public Doomsday getCombination()
 	{
 		return Doomsday.MoonlightSonata;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 3;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 100;
 	}
 }

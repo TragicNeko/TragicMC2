@@ -567,8 +567,8 @@ public abstract class Doomsday {
 	}
 
 	public interface IExtendedDoomsday {
-		int getWaitTime();
-		int getMaxIterations();
+		public int getWaitTime();
+		public int getMaxIterations();
 	}
 
 	static

@@ -20,8 +20,6 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayPermafrost(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 5;
-		this.maxIterations = 60;
 	}
 
 	@Override
@@ -77,5 +75,15 @@ public class DoomsdayPermafrost extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Freeze;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 5;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 60;
 	}
 }

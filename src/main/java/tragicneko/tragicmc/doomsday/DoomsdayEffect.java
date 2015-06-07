@@ -47,7 +47,7 @@ public class DoomsdayEffect {
 		this.doom = doom;
 		this.player = doom.getPlayer();
 		this.isInstant = dday instanceof IExtendedDoomsday ? false : true;
-		this.timeBetweenUpdates = dday.getWaitTime();
+		this.timeBetweenUpdates = dday instanceof IExtendedDoomsday ? ((IExtendedDoomsday) dday).getWaitTime() : 0;
 		this.isActive = true;
 		this.crucMoment = false;
 		this.isCommandActivated = commandActive;
@@ -67,7 +67,7 @@ public class DoomsdayEffect {
 
 	public void onDoomsdayUpdate()
 	{
-		if (this.iterations >= dday.getMaxIterations() || this.player == null || this.player.getHealth() <= 0F)
+		if (this.iterations >= (dday instanceof IExtendedDoomsday ? ((IExtendedDoomsday) dday).getMaxIterations() : 1) || this.player == null || this.player.getHealth() <= 0F)
 		{
 			this.isActive = false;
 			return;
@@ -100,7 +100,7 @@ public class DoomsdayEffect {
 				{
 					this.dday.useDoomsday(this, doom, player, crucMoment);
 					iterations++;
-					this.timeBetweenUpdates = dday.getWaitTime();
+					this.timeBetweenUpdates = dday instanceof IExtendedDoomsday ? ((IExtendedDoomsday) dday).getWaitTime() : 0;
 				}
 				else
 				{
@@ -109,7 +109,7 @@ public class DoomsdayEffect {
 						this.dday.useDoomsday(this, doom, player, crucMoment);
 						if (this.isInstant) this.isActive = false;
 						iterations++;
-						this.timeBetweenUpdates = dday.getWaitTime();
+						this.timeBetweenUpdates = dday instanceof IExtendedDoomsday ? ((IExtendedDoomsday) dday).getWaitTime() : 0;
 					}
 					else
 					{

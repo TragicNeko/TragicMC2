@@ -192,7 +192,7 @@ public class DoomsdayManager {
 
 					effect.onDoomsdayUpdate();
 
-					if (!effect.isActive && effect.isInstant || effect.dday instanceof IExtendedDoomsday && effect.timeBetweenUpdates == effect.dday.waitTime)
+					if (!effect.isActive && effect.isInstant || effect.dday instanceof IExtendedDoomsday && effect.timeBetweenUpdates == ((IExtendedDoomsday) effect.dday).getWaitTime())
 					{
 						if (!effect.player.capabilities.isCreativeMode && !effect.isCommandActivated && effect.sneakTicks == 0) effect.dday.applyDoomCost(effect.doom);
 					}

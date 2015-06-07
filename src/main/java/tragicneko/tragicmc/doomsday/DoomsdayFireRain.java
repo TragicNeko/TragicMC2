@@ -12,8 +12,6 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayFireRain(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 10;
-		this.maxIterations = 120;
 	}
 
 	@Override
@@ -49,5 +47,15 @@ public class DoomsdayFireRain extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.DragonsRoar;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 120;
 	}
 }

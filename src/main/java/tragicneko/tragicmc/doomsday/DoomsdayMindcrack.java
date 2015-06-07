@@ -17,8 +17,6 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayMindcrack(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 3;
-		this.maxIterations = 300;
 	}
 
 	@Override
@@ -54,6 +52,16 @@ public class DoomsdayMindcrack extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 3;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 300;
 	}
 
 }

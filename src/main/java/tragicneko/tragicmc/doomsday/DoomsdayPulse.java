@@ -15,8 +15,6 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 
 	public DoomsdayPulse(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 20;
-		this.maxIterations = 40;
 	}
 
 	@Override
@@ -75,6 +73,16 @@ public class DoomsdayPulse extends Doomsday implements IExtendedDoomsday{
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.motionY += 1.4D;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 20;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 40;
 	}
 
 }

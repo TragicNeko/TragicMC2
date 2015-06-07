@@ -11,8 +11,6 @@ public class DoomsdayMedic extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayMedic(int id) {
 		super(id);
-		this.waitTime = 10;
-		this.maxIterations = 60;
 	}
 
 	@Override
@@ -46,5 +44,15 @@ public class DoomsdayMedic extends Doomsday implements IExtendedDoomsday {
 	public Doomsday getCombination()
 	{
 		return Doomsday.Support;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 60;
 	}
 }

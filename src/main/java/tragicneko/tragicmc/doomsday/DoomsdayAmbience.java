@@ -12,8 +12,6 @@ public class DoomsdayAmbience extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayAmbience(int id) {
 		super(id);
-		this.waitTime = 1;
-		this.maxIterations = 600;
 	}
 
 	@Override
@@ -35,5 +33,15 @@ public class DoomsdayAmbience extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Decay;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 1;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 600;
 	}
 }

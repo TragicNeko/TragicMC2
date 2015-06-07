@@ -13,8 +13,6 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayRapidFire(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 2;
-		this.maxIterations = 30;
 	}
 
 	@Override
@@ -57,5 +55,15 @@ public class DoomsdayRapidFire extends Doomsday implements IExtendedDoomsday {
 	public Doomsday getCombination()
 	{
 		return Doomsday.Snipe;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 2;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 30;
 	}
 }

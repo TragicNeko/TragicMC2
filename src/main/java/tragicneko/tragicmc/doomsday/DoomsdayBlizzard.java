@@ -9,8 +9,6 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayBlizzard(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 6;
-		this.maxIterations = 60;
 	}
 
 	@Override
@@ -30,5 +28,15 @@ public class DoomsdayBlizzard extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 6;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 60;
 	}
 }

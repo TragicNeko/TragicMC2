@@ -19,8 +19,6 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayFirestorm(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 20;
-		this.maxIterations = 30;
 	}
 
 	@Override
@@ -123,6 +121,16 @@ public class DoomsdayFirestorm extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 20;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 30;
 	}
 
 }

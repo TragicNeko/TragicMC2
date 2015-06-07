@@ -13,8 +13,6 @@ public class DoomsdayParasite extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayParasite(int id) {
 		super(id);
-		this.waitTime = 20;
-		this.maxIterations = 30;
 	}
 
 	@Override
@@ -52,5 +50,15 @@ public class DoomsdayParasite extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.Fear;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 20;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 30;
 	}
 }

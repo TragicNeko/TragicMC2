@@ -13,8 +13,6 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayTitanfall(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 10;
-		this.maxIterations = 40;
 	}
 
 	@Override
@@ -75,5 +73,15 @@ public class DoomsdayTitanfall extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.LightShove;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 40;
 	}
 }

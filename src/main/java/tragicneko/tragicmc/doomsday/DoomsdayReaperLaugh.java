@@ -12,8 +12,6 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayReaperLaugh(int id) {
 		super(id, EnumDoomType.OVERFLOW);
-		this.waitTime = 10;
-		this.maxIterations = 30;
 	}
 
 	@Override
@@ -44,5 +42,15 @@ public class DoomsdayReaperLaugh extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 30;
 	}
 }

@@ -17,8 +17,6 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 
 	public DoomsdayFlightOfTheValkyries(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 5;
-		this.maxIterations = 200;
 	}
 
 	@Override
@@ -75,5 +73,15 @@ public class DoomsdayFlightOfTheValkyries extends Doomsday implements IExtendedD
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 5;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 200;
 	}
 }

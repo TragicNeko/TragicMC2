@@ -16,8 +16,6 @@ public class DoomsdayTimeCollapse extends Doomsday implements IExtendedDoomsday 
 
 	public DoomsdayTimeCollapse(int id) {
 		super(id);
-		this.waitTime = 1;
-		this.maxIterations = 500;
 	}
 
 	@Override
@@ -48,6 +46,16 @@ public class DoomsdayTimeCollapse extends Doomsday implements IExtendedDoomsday 
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 300, 0));
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 1;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 500;
 	}
 
 }

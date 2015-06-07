@@ -14,8 +14,6 @@ public class DoomsdayLaserCutter extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayLaserCutter(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 10;
-		this.maxIterations = 60;
 	}
 
 	@Override
@@ -44,6 +42,16 @@ public class DoomsdayLaserCutter extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 260, 1));
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 60;
 	}
 
 }

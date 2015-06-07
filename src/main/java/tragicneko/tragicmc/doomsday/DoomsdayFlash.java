@@ -6,11 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.WorldHelper;
 
-public class DoomsdayFlash extends Doomsday implements IExtendedDoomsday {
+public class DoomsdayFlash extends Doomsday {
 
 	public DoomsdayFlash(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
@@ -33,5 +32,4 @@ public class DoomsdayFlash extends Doomsday implements IExtendedDoomsday {
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
 	}
-
 }

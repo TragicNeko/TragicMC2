@@ -17,8 +17,6 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayDangerZone(int id) {
 		super(id, EnumDoomType.COMBINATION);
-		this.waitTime = 10;
-		this.maxIterations = 120;
 	}
 
 	@Override
@@ -57,6 +55,16 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public void doBacklashEffect(PropertyDoom doom, EntityPlayer player) {
 
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 10;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 120;
 	}
 
 }

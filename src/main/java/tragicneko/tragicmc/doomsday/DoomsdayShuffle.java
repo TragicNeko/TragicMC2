@@ -14,8 +14,6 @@ public class DoomsdayShuffle extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayShuffle(int id) {
 		super(id);
-		this.waitTime = 20;
-		this.maxIterations = 30;
 	}
 
 	@Override
@@ -52,5 +50,15 @@ public class DoomsdayShuffle extends Doomsday implements IExtendedDoomsday {
 	public Doomsday getCombination()
 	{
 		return Doomsday.Blink;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 20;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 30;
 	}
 }

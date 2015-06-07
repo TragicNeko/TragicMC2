@@ -29,8 +29,6 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 
 	public DoomsdayNatureDrain(int id) {
 		super(id, EnumDoomType.WORLDSHAPER);
-		this.waitTime = 20;
-		this.maxIterations = 30;
 	}
 
 	@Override
@@ -175,5 +173,15 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 	@Override
 	public Doomsday getCombination() {
 		return Doomsday.RealityAlter;
+	}
+
+	@Override
+	public int getWaitTime() {
+		return 20;
+	}
+
+	@Override
+	public int getMaxIterations() {
+		return 30;
 	}
 }
