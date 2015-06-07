@@ -41,6 +41,7 @@ import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
+import tragicneko.tragicmc.entity.mob.EntityAvris;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
@@ -528,6 +529,12 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityParasmite.class, "Parasmite", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityParasmite.class, "TragicMC.Parasmite", id++, 0xAF00A6, 0x581354);
+		}
+		
+		if (TragicConfig.allowAvris)
+		{
+			EntityRegistry.registerModEntity(EntityAvris.class, "Avris", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityAvris.class, "TragicMC.Avris", id++, 0x000000, 0x000000);
 		}
 
 		//Giant Zombie

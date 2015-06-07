@@ -29,17 +29,17 @@ public class ItemChallenge extends Item {
 
 	private IIcon scrollIcon, completeIcon;
 
-	private static EntityDrop[] badRewards = new EntityDrop[] {new EntityDrop(15, Items.coal), new EntityDrop(5, Items.flint_and_steel), new EntityDrop(5, Items.string), new EntityDrop(5, Items.stick),
+	public static EntityDrop[] badRewards = new EntityDrop[] {new EntityDrop(15, Items.coal), new EntityDrop(5, Items.flint_and_steel), new EntityDrop(5, Items.string), new EntityDrop(5, Items.stick),
 		new EntityDrop(5, Items.bone), new EntityDrop(15, Items.bread), new EntityDrop(5, Items.book), new EntityDrop(5, Items.bowl), new EntityDrop(5, TragicItems.Ash), new EntityDrop(15, TragicItems.Banana),
 		new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.BoneMarrow), new EntityDrop(30, TragicItems.ChallengeScroll)};
 
-	private static EntityDrop[] cheapRewards = new EntityDrop[] {new EntityDrop(1, Items.diamond), new EntityDrop(1, Items.emerald), new EntityDrop(5, Items.apple), new EntityDrop(10, Items.iron_ingot),
+	public static EntityDrop[] cheapRewards = new EntityDrop[] {new EntityDrop(1, Items.diamond), new EntityDrop(1, Items.emerald), new EntityDrop(5, Items.apple), new EntityDrop(10, Items.iron_ingot),
 		new EntityDrop(5, Items.gold_ingot), new EntityDrop(15, TragicItems.Tungsten), new EntityDrop(25, TragicItems.BloodSacrifice), new EntityDrop(25, TragicItems.NourishmentSacrifice),
 		new EntityDrop(15, TragicItems.RedMercury), new EntityDrop(20, TragicItems.Quicksilver), new EntityDrop(5, TragicItems.QuicksilverIngot), new EntityDrop(5, Blocks.obsidian),
 		new EntityDrop(15, TragicItems.NastyFruit), new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(10, TragicItems.SkyFruit), new EntityDrop(5, TragicItems.GooeyFruit),
 		new EntityDrop(1, getSpawnEggsMiniBoss()), new EntityDrop(15, TragicItems.ChallengeScroll)};
 
-	private static EntityDrop[] rewards = new EntityDrop[] {new EntityDrop(10, Items.diamond), new EntityDrop(5, Items.emerald),
+	public static EntityDrop[] rewards = new EntityDrop[] {new EntityDrop(10, Items.diamond), new EntityDrop(5, Items.emerald),
 		new EntityDrop(15, TragicItems.AwakeningStone), new EntityDrop(30, TragicItems.AmuletRelease), new EntityDrop(25, TragicItems.DoomConsume),
 		new EntityDrop(20, TragicItems.CooldownDefuse), new EntityDrop(25, TragicItems.Ruby), new EntityDrop(5, Items.iron_ingot),
 		new EntityDrop(25, TragicItems.Sapphire), new EntityDrop(5, Items.gold_ingot), new EntityDrop(20, new ItemStack(Items.golden_apple, 1, 0), new ItemStack(Items.golden_apple, 1, 1)),

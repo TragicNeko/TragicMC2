@@ -109,9 +109,6 @@ public abstract class Doomsday {
 	public final int requiredDoom;
 	public final int cooldown;
 
-	public int waitTime;
-	public int maxIterations;
-
 	public Doomsday(int id)
 	{
 		this(id, EnumDoomType.INFLUENCE);
@@ -123,20 +120,8 @@ public abstract class Doomsday {
 		this.doomID = id;
 		this.cooldown = TragicConfig.doomsdayCooldowns[id];
 		this.requiredDoom = TragicConfig.doomsdayCosts[id];
-		this.waitTime = 0;
-		this.maxIterations = 1;
 		if (doomsdayList[id] != null) throw new IllegalArgumentException("There is already a Doomsday registered for that ID!");
 		doomsdayList[id] = this;
-	}
-
-	public int getWaitTime()
-	{
-		return this.waitTime;
-	}
-
-	public int getMaxIterations()
-	{
-		return this.maxIterations;
 	}
 
 	public EnumDoomType getDoomsdayType()
@@ -581,7 +566,10 @@ public abstract class Doomsday {
 		public EnumChatFormatting getFormat() { return this.format; }
 	}
 
-	public interface IExtendedDoomsday {} //Marker interface
+	public interface IExtendedDoomsday {
+		int getWaitTime();
+		int getMaxIterations();
+	}
 
 	static
 	{

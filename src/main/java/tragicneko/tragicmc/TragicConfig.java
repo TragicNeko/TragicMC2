@@ -90,11 +90,11 @@ public class TragicConfig {
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
 	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
-	public static boolean allowFusea, allowRanmas, allowParasmite;
+	public static boolean allowFusea, allowRanmas, allowParasmite, allowAvris;
 	private static int[] mobsSC = new int[48];
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
 	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
-	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC;
+	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC, avrisSC;
 	private static boolean[] miniBossConfigs = new boolean[16];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowLocobot, allowAegar;
 	public static boolean allowVolatileFusea;
@@ -799,6 +799,8 @@ public class TragicConfig {
 		mobConfigs[mapping++] = (config.get(catMobs, "ranmasAllow", true).getBoolean(true));
 		mobsSC[mapping] = clampPositive(config.get(catMobs, "parasmiteSpawnChance", 25).getInt(25));
 		mobConfigs[mapping++] = (config.get(catMobs, "parasmiteAllow", true).getBoolean(true));
+		mobsSC[mapping] = clampPositive(config.get(catMobs, "avrisSpawnChance", 5).getInt(5));
+		mobConfigs[mapping++] = (config.get(catMobs, "avrisAllow", true).getBoolean(true));
 
 		mapping = 0;
 		miniBossSC[mapping] = clampPositive(config.get(catMobs, "jarraSpawnChance", 5).getInt(5));
@@ -877,6 +879,7 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "ranmasStats", new double[] {50.0, 0.0, 1.0, 32.0, 100.0, 24}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "parasmiteStats", new double[] {10.0, 0.0, 1.0, 16.0, 0.0, 0}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "kurayamiStats", new double[] {120.0, 0.420, 12.0, 64.0, 0.4, 10}).getDoubleList());
+		mobStats[mapping++] = (config.get(catMobs, "avrisStats", new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16}).getDoubleList());
 
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
@@ -1603,6 +1606,8 @@ public class TragicConfig {
 		allowRanmas = mobConfigs[mapping++];
 		parasmiteSC = mobsSC[mapping];
 		allowParasmite = mobConfigs[mapping++];
+		avrisSC = mobsSC[mapping];
+		allowAvris = mobConfigs[mapping++];
 
 		mapping = 0;
 		jarraSC = miniBossSC[mapping];
@@ -1681,6 +1686,7 @@ public class TragicConfig {
 		ranmasStats = mobStats[mapping++];
 		parasmiteStats = mobStats[mapping++];
 		kurayamiStats = mobStats[mapping++];
+		avrisStats = mobStats[mapping++];
 
 		mapping = 0;
 		jarraStats = miniBossStats[mapping++];
