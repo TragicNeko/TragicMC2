@@ -14,6 +14,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.boss.EntityPart;
 
 public class ItemSoundExtrapolator extends Item {
 
@@ -36,6 +37,11 @@ public class ItemSoundExtrapolator extends Item {
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
 	{
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
+		if (entity != null && entity instanceof EntityPart)
+		{
+			entity = (Entity) ((EntityPart)entity).main;
+		}
+		
 		if (entity != null && entity instanceof EntityLiving && !entity.worldObj.isRemote)
 		{
 			stack.stackTagCompound.setString("extrapolatedEntity", entity.getClass().getCanonicalName());
