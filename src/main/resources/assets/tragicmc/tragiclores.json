@@ -1,5 +1,5 @@
 [
-  { "classname" : "tragicneko.tragicmc.items.weapons.WeaponTitan",
+  {"classname" : "tragicneko.tragicmc.items.weapons.WeaponTitan",
     "lores": [
 		{
 			"weight" : 25,
