@@ -639,6 +639,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	@Override
 	public int getTalkInterval()
 	{
-		return super.getTalkInterval();
+		return 160;
 	}
 }

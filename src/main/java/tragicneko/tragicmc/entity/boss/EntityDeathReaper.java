@@ -31,6 +31,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
@@ -224,7 +225,7 @@ public class EntityDeathReaper extends TragicBoss {
 						0.0, rand.nextDouble() * 0.5556, 0.0);
 			}
 
-			if (this.getAttackTime() == 2 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F)
+			if (this.getAttackTime() == 2)
 			{
 				for (int i = 0; i < 14; i++)
 				{
@@ -378,7 +379,7 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (this.worldObj.isRemote) return false;
+		if (this.worldObj.isRemote || par1DamageSource == DamageSource.wither) return false;
 
 		if (this.isBomb && this.getReaperType() == 1 && !par1DamageSource.isExplosion())
 		{
@@ -541,13 +542,13 @@ public class EntityDeathReaper extends TragicBoss {
 		{
 			this.incrementDemeanor();
 			if (flag) this.incrementDemeanor();
-			if (this.getAttackTarget() != null && this.isBeingAggressive() && rand.nextInt(4) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.angry", 1.0F, 1.0F);
+			if (this.getAttackTarget() != null && this.isBeingAggressive() && rand.nextInt(8) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.angry", 1.0F, 1.0F);
 		}
 		else
 		{
 			this.decrementDemeanor();
 			if (flag) this.decrementDemeanor();
-			if (this.getAttackTarget() != null && !this.isBeingAggressive() && rand.nextInt(4) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.passive", 1.0F, 1.0F);
+			if (this.getAttackTarget() != null && !this.isBeingAggressive() && rand.nextInt(8) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.passive", 1.0F, 1.0F);
 		}
 	}
 
@@ -593,7 +594,7 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public String getHurtSound()
 	{
-		return rand.nextInt(4) != 0 ? super.getHurtSound() : "tragicmc:boss.skultar.hurt";
+		return rand.nextInt(6) != 0 ? super.getHurtSound() : "tragicmc:boss.skultar.hurt";
 	}
 
 	@Override
@@ -617,6 +618,6 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public int getTalkInterval()
 	{
-		return 330;
+		return 350;
 	}
 }

@@ -335,7 +335,7 @@ public class EntityTimeController extends TragicBoss {
 
 		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0)
 		{
-			this.setLeapTicks(150);
+			this.setLeapTicks(180);
 			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.leap", 1.9F, 1.0F);
 		}
 		
@@ -797,6 +797,6 @@ public class EntityTimeController extends TragicBoss {
 	@Override
 	public int getTalkInterval()
 	{
-		return super.getTalkInterval();
+		return 120;
 	}
 }
