@@ -4110,6 +4110,7 @@ Added the Avris mob with it's mostly complete AI, still need to add it's model, 
 Added Time Controller sounds
 Converted IExtendedDoomsday to have two methods instead of it just being a marker interface, removed unnecessary fields from Instant Doomsdays
 Updated Forge in workspace, for some reason it didn't do it last time I updated it
+Fixed sound extrapolator not working on my multipart entities
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
