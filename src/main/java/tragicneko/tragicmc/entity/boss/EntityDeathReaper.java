@@ -600,7 +600,7 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.skultar.death";
+		return "tragicmc:boss.skultar.laugh";
 	}
 
 	@Override
