@@ -64,7 +64,7 @@ public class TragicConfig {
 	public static boolean allowCooldownDefuse, showDoomGui;
 	private static int[] doomInts = new int[12];
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
-	public static int doomConsumeAmount, maxDoomMinimum;
+	public static int doomConsumeAmount, maxDoomMinimum, doomRechargeAmount;
 	public static boolean[] doomsdayAllow = new boolean[96];
 	public static int[] doomsdayCooldowns = new int[96];
 	public static int[] doomsdayCosts = new int[96];
@@ -344,7 +344,7 @@ public class TragicConfig {
 
 		mapping = 0;
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "maxDoomAmount", 500).getInt(500));
-		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomRechargeRate", 1).getInt(1));
+		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "doomRechargeRate", 1).getInt(1), 0, 20);
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeRarity", 3).getInt(3));
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "cooldownDefuseRarity", 5).getInt(5));
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeRefillAmount", 50).getInt(50));
@@ -353,6 +353,7 @@ public class TragicConfig {
 		doomInts[mapping++] = MathHelper.clamp_int(config.get(catDoom, "crucialMomentChance", 5).getInt(5), 1, 100);
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomConsumeAmount", 100).getInt(100));
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "maxDoomMinimumAmount", 100).getInt(100));
+		doomInts[mapping++] = clampPositive(config.get(catDoom, "doomRechargeAmount", 1).getInt(1));
 
 		mapping = 1;
 		doomsdayAllow[mapping++] = (config.get(catDoom, "doomsdayDecayAllow", true).getBoolean(true));
@@ -1464,6 +1465,7 @@ public class TragicConfig {
 		crucialMomentChance = doomInts[mapping++];
 		doomConsumeAmount = doomInts[mapping++];
 		maxDoomMinimum = doomInts[mapping++];
+		doomRechargeAmount = doomInts[mapping++];
 
 		allowWeaponEnchants = blanketEnchant[0];
 		allowArmorEnchants = blanketEnchant[1];

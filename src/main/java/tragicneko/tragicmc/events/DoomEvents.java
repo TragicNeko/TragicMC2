@@ -19,8 +19,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DoomEvents {
 
-	private static int tick;
-
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
 		if (event.entity instanceof EntityPlayer)
@@ -49,14 +47,11 @@ public class DoomEvents {
 		if (event.entityLiving instanceof EntityPlayer && !event.entity.worldObj.isRemote)
 		{
 			PropertyDoom doom = PropertyDoom.get((EntityPlayer) event.entityLiving);
-			tick++;
 
-			if (doom != null && tick % 4 == 0)
+			if (doom != null)
 			{
 				doom.onUpdate();
 				if (event.entityLiving instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom((EntityPlayer) event.entity), (EntityPlayerMP) event.entity);
-
-				if (tick >= 20) tick = 0;
 			}
 		}
 	}

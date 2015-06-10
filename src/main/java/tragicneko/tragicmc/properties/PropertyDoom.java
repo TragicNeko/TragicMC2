@@ -96,7 +96,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			if (this.shouldRecoverNaturally())
 			{
 				int doom = this.getCurrentDoom();
-				int increment = TragicConfig.doomRechargeRate;
+				int increment = TragicConfig.doomRechargeAmount;
 
 				if (doom >= this.getMaxDoom()) return;
 
@@ -342,7 +342,6 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			}
 
 			if (this.thePlayer instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageDoom(this.thePlayer), (EntityPlayerMP) this.thePlayer);
-
 		}
 	}
 
