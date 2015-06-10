@@ -4111,6 +4111,8 @@ Added Time Controller sounds
 Converted IExtendedDoomsday to have two methods instead of it just being a marker interface, removed unnecessary fields from Instant Doomsdays
 Updated Forge in workspace, for some reason it didn't do it last time I updated it
 Fixed sound extrapolator not working on my multipart entities
+Separated the Doom recharge rate and recharge amounts, this allows for more configurability
+Changed how recharge rate is used, clamped to amounts that would be most plausible
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
