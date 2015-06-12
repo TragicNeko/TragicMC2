@@ -179,9 +179,10 @@ public class WeaponCelestialLongbow extends TragicBow {
 			if (f > 1.0F) f = 1.0F;
 
 			EntityArrow arrow = new EntityArrow(par2World, par3EntityPlayer, f);
-			arrow.setDamage(arrow.getDamage() + 3.0);
-			arrow.motionX *= 1.1;
-			arrow.motionZ *= 1.1;
+			arrow.setDamage(arrow.getDamage() + 2.0);
+			arrow.motionX *= 1.6;
+			arrow.motionZ *= 1.6;
+			arrow.motionY *= 1.15;
 			if (f >= 1.0F) arrow.setIsCritical(true);
 
 			int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, par1ItemStack);
