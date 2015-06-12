@@ -30,7 +30,7 @@ public class DoomsdaySymbiosis extends Doomsday implements IExtendedDoomsday {
 					EntityLivingBase entity = (EntityLivingBase) list.get(i);
 					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 					entity.heal(crucMoment ? 5.0F : 1.0F);
-					player.getFoodStats().addExhaustion(crucMoment ? 5.0F : 1.0F);
+					player.getFoodStats().addExhaustion(0.2F);
 					player.heal(crucMoment ? 5.0F : 1.0F);
 				}
 			}

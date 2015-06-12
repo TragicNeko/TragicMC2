@@ -18,7 +18,7 @@ public class DoomsdayEscape extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		player.worldObj.createExplosion(player, player.posX, player.posY, player.posZ, crucMoment ? 3.0F : 1.5F, false);
+		player.worldObj.createExplosion(player, player.posX, player.posY, player.posZ, crucMoment ? 5.0F : 3.0F, false);
 
 		List<Entity> list = player.worldObj.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(8.0D, 8.0D, 8.0D));
 		EntityLivingBase entity;

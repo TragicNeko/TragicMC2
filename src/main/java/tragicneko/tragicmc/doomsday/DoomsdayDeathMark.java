@@ -70,7 +70,7 @@ public class DoomsdayDeathMark extends Doomsday implements IExtendedDoomsday {
 		if (effect.utilityEntity != null)
 		{
 			if (rand.nextBoolean()) effect.utilityEntity.attackEntityFrom(DamageSource.outOfWorld, 1.0F);
-			player.addChatMessage(new ChatComponentText("Target is at " + effect.utilityEntity.posX + ", " + effect.utilityEntity.posY + ", " + effect.utilityEntity.posZ));
+			player.addChatMessage(new ChatComponentText("Target is at " + ((int) effect.utilityEntity.posX) + ", " + ((int) effect.utilityEntity.posY) + ", " + ((int) effect.utilityEntity.posZ)));
 		}
 
 

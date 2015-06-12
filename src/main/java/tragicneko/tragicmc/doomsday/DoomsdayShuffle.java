@@ -59,6 +59,6 @@ public class DoomsdayShuffle extends Doomsday implements IExtendedDoomsday {
 
 	@Override
 	public int getMaxIterations() {
-		return 30;
+		return 20;
 	}
 }
