@@ -100,7 +100,7 @@ public class ItemAnomalyAugment extends Item{
 				if (stack.attemptDamageItem(1, itemRand))
 				{
 					((EntityLivingBase) player).renderBrokenItemStack(stack);
-					stack.stackSize--;
+					stack.stackSize = 0;
 					return stack;
 				}
 			}
