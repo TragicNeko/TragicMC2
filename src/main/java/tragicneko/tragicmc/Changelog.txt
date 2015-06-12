@@ -4113,11 +4113,24 @@ Updated Forge in workspace, for some reason it didn't do it last time I updated 
 Fixed sound extrapolator not working on my multipart entities
 Separated the Doom recharge rate and recharge amounts, this allows for more configurability
 Changed how recharge rate is used, clamped to amounts that would be most plausible
+Fixed bug with Vanilla music playing at the same time as mine in the Dimensions
+The Overlord boss instance is extremely laggy currently due to the dimension being so framerate intensive, so we'll do more optimizations for that and hopefully
+get it up to playable levels (currently it is settling at ~15 fps for me, but I have no graphics card so the CPU is doing all of the work)
+Created a completely new Circuit World generator for the Synapse, this should increase load times and make it look better overall
+Reduced radius that the MusicTicker looks for the Overlord Core
+Slight increase to velocity of arrows fired from Celestial Longbow
+Added exception handling for the MusicTicker causing crashes for unloaded chunks
+
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 Also make sure all of the Doomsdays work in a server environment
 Add all of the lores to a .json file (if I really feel like doing it)
+Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
+Add the Achievements, which will flow in a set questline, also add side achievements for other random things
+Add more fun things, add some decoration blocks for some of the mob drops
+Add a Dead Sector and Corrupt Sector biome variant to the Synapse, Dead Sector contains massive chunks of dead/aged circuits, corrupt contains massive amounts of
+Digital Sea inside of it
 
 Boss sounds~
 Apis sounds: Mad bull sounds
@@ -4126,7 +4139,3 @@ Enyvil sounds: possibly double toned sounds (high and low pitched at the same ti
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
 Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
 Avris sounds: oohs and ahhs and snickers... mmm snickers
-
---Reminders-
-Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
-Add the Achievements, which will flow in a set questline, also add side achievements for other random things
