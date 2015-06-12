@@ -4120,12 +4120,16 @@ Created a completely new Circuit World generator for the Synapse, this should in
 Reduced radius that the MusicTicker looks for the Overlord Core
 Slight increase to velocity of arrows fired from Celestial Longbow
 Added exception handling for the MusicTicker causing crashes for unloaded chunks
-
+Added ability to right-click amulets into your amulet inventory
+Fixed client-side crashes from newer netcode
+Fixed Kurayami spawning in with 0 health, killing it immediately
+Truncated location for message from Death Mark Doomsday
+Reduced amount of hunger that Symbiosis causes
+Fixed bug with right-clicking amulets that would put them in locked slots
+Reduced amount of iterations that Shuffle does
 
 Note:
 Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
-Also make sure all of the Doomsdays work in a server environment
-Add all of the lores to a .json file (if I really feel like doing it)
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
