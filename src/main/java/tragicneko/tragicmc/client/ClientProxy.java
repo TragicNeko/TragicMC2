@@ -220,6 +220,7 @@ public class ClientProxy extends CommonProxy {
 		
 		//Music
 		musicTicker = new TragicMusicTicker(mc);
+		MinecraftForge.EVENT_BUS.register(new TragicMusicTicker(mc));
 
 		//Particle registration
 		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();

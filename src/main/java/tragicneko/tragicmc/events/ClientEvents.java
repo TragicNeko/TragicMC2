@@ -135,8 +135,15 @@ public class ClientEvents extends Gui {
 			}
 			player.swingItem();
 		}
-		
-		ClientProxy.musicTicker.update();
+
+		try
+		{
+			ClientProxy.musicTicker.update();
+		}
+		catch (NullPointerException e)
+		{
+			TragicMC.logError("An error ocurred while updating the Music Ticker", e);
+		}
 
 		if (player == null) return;
 		PropertyAmulets amu = PropertyAmulets.get(player);
