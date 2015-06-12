@@ -21,6 +21,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.util.AmuletHelper;
 
 import com.google.common.collect.Sets;
@@ -182,6 +183,25 @@ public class ItemAmulet extends Item {
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setInteger("amuletLevel", getDefaultLevels(this.amuletID));
 		if (TragicConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		PropertyAmulets amu = PropertyAmulets.get(player);
+
+		for (int i = 0; i < amu.inventory.getSizeInventory(); i++)
+		{
+			if (amu.inventory.getStackInSlot(i) == null)
+			{
+				if (amu.getSlotsOpen() == 1 && (i == 1 || i == 2)) continue;
+				if (amu.getSlotsOpen() == 2 && i == 2) continue;
+				if (!world.isRemote) amu.inventory.setInventorySlotContents(i, stack.copy());
+				stack.stackSize = 0;
+				break;
+			}
+		}
+		return stack;
 	}
 
 	public void applyModifiersToItemStack(ItemStack stack)
