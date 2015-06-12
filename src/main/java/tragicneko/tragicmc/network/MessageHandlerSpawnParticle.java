@@ -1,8 +1,8 @@
 package tragicneko.tragicmc.network;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import tragicneko.tragicmc.TragicMC;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -11,7 +11,7 @@ public class MessageHandlerSpawnParticle implements IMessageHandler<MessageParti
 
 	@Override
 	public IMessage onMessage(MessageParticle message, MessageContext ctx) {
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		EntityPlayer player = TragicMC.proxy.getPlayerFromMessageCtx(ctx);
 		if (player == null || player.worldObj == null || message.nameTag == null) return null;
 		NBTTagCompound tag = message.nameTag;
 		player.worldObj.spawnParticle(tag.hasKey("particleName") ? tag.getString("particleName") : "null",
