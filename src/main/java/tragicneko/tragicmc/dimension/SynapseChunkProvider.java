@@ -19,8 +19,8 @@ import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.worldgen.CircuitWorldGen;
 import tragicneko.tragicmc.worldgen.HangingCoralWorldGen;
-import tragicneko.tragicmc.worldgen.WorldGenDeadCircuit;
 
 public class SynapseChunkProvider implements IChunkProvider
 {
@@ -49,6 +49,10 @@ public class SynapseChunkProvider implements IChunkProvider
 	double[] noiseData3;
 	double[] noiseData4;
 	double[] noiseData5;
+	
+	private HangingCoralWorldGen coralGen;
+	private HangingCoralWorldGen coralGen2;
+	private CircuitWorldGen circuitGen;
 
 	public SynapseChunkProvider(World p_i2005_1_, long p_i2005_2_)
 	{
@@ -71,6 +75,10 @@ public class SynapseChunkProvider implements IChunkProvider
 		this.netherrackExculsivityNoiseGen = (NoiseGeneratorOctaves)noiseGens[4];
 		this.netherNoiseGen6 = (NoiseGeneratorOctaves)noiseGens[5];
 		this.netherNoiseGen7 = (NoiseGeneratorOctaves)noiseGens[6];
+		
+		this.circuitGen = new CircuitWorldGen();
+		this.coralGen = new HangingCoralWorldGen(4, 32, 1000, TragicBlocks.Conduit, 0);
+		this.coralGen2 = new HangingCoralWorldGen(3, 12, 800, TragicBlocks.Conduit, 0);
 	}
 
 	public void func_147419_a(int p_147419_1_, int p_147419_2_, Block[] p_147419_3_)
@@ -184,17 +192,6 @@ public class SynapseChunkProvider implements IChunkProvider
 							{
 								if (j1 == -1)
 								{
-									if (i1 <= 0)
-									{
-										block = null;
-										block1 = TragicBlocks.CircuitBlock;
-									}
-									else if (k1 >= b0 - 4 && k1 <= b0 + 1)
-									{
-										block = TragicBlocks.CircuitBlock;
-										block1 = TragicBlocks.CircuitBlock;
-									}
-
 									if (k1 < b0 && (block == null || block.getMaterial() == Material.air))
 									{
 										block = Blocks.air;
@@ -225,7 +222,7 @@ public class SynapseChunkProvider implements IChunkProvider
 					}
 					else
 					{
-						p_147418_3_[l1] = this.synapseRNG.nextInt(12) != 0 ? Blocks.air : TragicBlocks.DigitalSea;
+						p_147418_3_[l1] = this.synapseRNG.nextInt(16) != 0 ? Blocks.air : TragicBlocks.DigitalSea;
 					}
 				}
 			}
@@ -433,21 +430,15 @@ public class SynapseChunkProvider implements IChunkProvider
 		 int a;
 		 int b;
 		 int c;
-
-		 for (int i = 0; i < 8; i++)
-		 {
-			 a = k + this.worldObj.rand.nextInt(16);
-			 b = l + this.worldObj.rand.nextInt(16);
-			 c = this.worldObj.rand.nextInt(100) + 10;
-			 new WorldGenDeadCircuit(6).generate(worldObj, synapseRNG, a, c, b);
-		 }
+		 
+		 this.circuitGen.generate(this.synapseRNG, x, z, this.worldObj, this, this);
 
 		 for (int i = 0; i < 4; i++)
 		 {
 			 a = k + this.synapseRNG.nextInt(16) + 8;
 			 c = this.synapseRNG.nextInt(100) + 10;
 			 b = l + this.synapseRNG.nextInt(16) + 8;
-			 (new HangingCoralWorldGen(4, 32, 1000, TragicBlocks.Conduit, 0)).generate(this.worldObj, this.synapseRNG, a, c, b);
+			 this.coralGen.generate(this.worldObj, this.synapseRNG, a, c, b);
 		 }
 
 		 for (int i = 0; i < 6; ++i)
@@ -455,7 +446,7 @@ public class SynapseChunkProvider implements IChunkProvider
 			 a = k + this.synapseRNG.nextInt(16) + 8;
 			 c = this.synapseRNG.nextInt(100) + 10;
 			 b = l + this.synapseRNG.nextInt(16) + 8;
-			 (new HangingCoralWorldGen(3, 12, 800, TragicBlocks.Conduit, 0)).generate(this.worldObj, this.synapseRNG, a, c, b);
+			 this.coralGen2.generate(this.worldObj, this.synapseRNG, a, c, b);
 		 }
 	 }
 
