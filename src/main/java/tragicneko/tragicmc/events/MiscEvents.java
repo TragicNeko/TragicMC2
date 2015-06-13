@@ -61,11 +61,6 @@ public class MiscEvents {
 						event.setCanceled(true);
 					}
 				}
-				/*
-				if (weapon == TragicItems.Sentinel && TragicWeapon.canUseAbility(doom, 0) && TragicMC.rand.nextBoolean())
-				{
-					if ((event.source.isMagicDamage() || event.source.isFireDamage() || event.source.isExplosion() || event.source.isProjectile()) && event.isCancelable()) event.setCanceled(true);
-				} */
 
 				if (weapon == TragicItems.CelestialAegis && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[7]) && TragicConfig.nonDoomsdayAbilities[7])
 				{

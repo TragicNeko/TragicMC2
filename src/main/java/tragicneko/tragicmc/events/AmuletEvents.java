@@ -466,20 +466,22 @@ public class AmuletEvents {
 
 				double d1 = item.posX - player.posX;
 				double d2 = item.posZ - player.posZ;
-				double d3 = item.posY - player.posY + player.getEyeHeight();
+				double d3 = item.posY - player.posY + 0.82;
 				float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
 				double d4 = 0.25D;
 
-				item.motionX = -d1 / f2 * d4 * 0.300000011920929D + item.motionX * 0.90000000298023224D;
-				item.motionZ = -d2 / f2 * d4 * 0.300000011920929D + item.motionZ * 0.90000000298023224D;
-				item.motionY = -d3 / f2 * d4 * 0.300000011920929D + item.motionZ * 0.90000000298023224D;
+				item.motionX = -d1 / f2 * d4 * 0.300000011920929D;
+				item.motionZ = -d2 / f2 * d4 * 0.300000011920929D;
+				item.motionY = -d3 / f2 * d4 * 0.300000011920929D;
+
+				if (rand.nextBoolean()) item.motionY += rand.nextDouble() * 0.4D;
 			}
 		}
 		else if (id == 15 && TragicConfig.amuSnowGolem)
 		{
 			double d = level * 16.0D + 16.0D;
 			List<EntityItem> list = world.getEntitiesWithinAABB(EntityMob.class, player.boundingBox.expand(d, d, d));
-			if (list.size() > 0 && player.ticksExisted % 5 == 0) amu.damageStackInSlot(slot, 4 - level);
+			if (list.size() > 0 && player.ticksExisted % 10 == 0 && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
 			Iterator ite = list.iterator();
 			EntityMob mob;
 
@@ -491,7 +493,7 @@ public class AmuletEvents {
 				mob.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(d + 32.0D);
 			}
 		}
-		else if (id == 16 && TragicConfig.amuIronGolem)
+		else if (id == 16 && TragicConfig.amuIronGolem && player.ticksExisted % 20 == 0)
 		{
 			player.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, level));
 			if (player.isPotionActive(Potion.resistance) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
@@ -533,7 +535,7 @@ public class AmuletEvents {
 		{
 			if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id);
 		}
-		else if (id == 25 && player.ticksExisted % 600 == 0 && TragicConfig.amuSupernatural)
+		else if (id == 25 && player.ticksExisted % 400 == 0 && TragicConfig.amuSupernatural && !world.isRemote)
 		{
 			int i = level * 25;
 			int j = 100 - i;
@@ -558,9 +560,10 @@ public class AmuletEvents {
 					}
 					player.addPotionEffect(new PotionEffect(pot.id, 200 + rand.nextInt(200), rand.nextInt(level)));
 				}
+				amu.damageStackInSlot(slot, 4 - level);				
 			}
 		}
-		else if (id == 26 && TragicConfig.amuUndead)
+		else if (id == 26 && TragicConfig.amuUndead && !world.isRemote)
 		{
 			if (world.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ) && world.isDaytime() && player.ticksExisted % 10 == 0)
 			{
@@ -760,13 +763,14 @@ public class AmuletEvents {
 			{
 				if (amulets[i] != null && amulets[i].getAmuletID() == 27)
 				{
-					List<int[]> list = WorldHelper.getBlocksInSphericalRange(mp.worldObj, 1.0, (int) mp.posX, (int) mp.posY, (int) mp.posZ);
-					for (int j = 0; j < list.size(); j++)
-					{
-						int[] coords = list.get(i);
-						Block block = mp.worldObj.getBlock(coords[0], coords[1], coords[2]);
-						if (block.isOpaqueCube() && coords[1] >= mp.posY) mp.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
-					}
+					int x = MathHelper.floor_double(mp.posX);
+					int y = MathHelper.floor_double(mp.posY);
+					int z = MathHelper.floor_double(mp.posZ);
+					
+					Block block = mp.worldObj.getBlock(x, y, z);
+					if (block.isOpaqueCube() && block.getBlockHardness(mp.worldObj, x, y, z) > 0F) mp.worldObj.setBlockToAir(x, y, z);
+					block = mp.worldObj.getBlock(x, y + 1, z);
+					if (block.isOpaqueCube()  && block.getBlockHardness(mp.worldObj, x, y + 1, z) > 0F) mp.worldObj.setBlockToAir(x, y + 1, z);
 					break;
 				}
 			}
@@ -818,8 +822,16 @@ public class AmuletEvents {
 				if (amulets[i] != null && amulets[i].getAmuletID() == 20)
 				{
 					double d = 0.4D * levels[i];
-					event.entityLiving.motionX += d;
-					event.entityLiving.motionZ += d;
+					event.entity.motionX = event.entity.posX - mp.posX;
+					event.entity.motionY = event.entity.posY - mp.posY;
+					event.entity.motionZ = event.entity.posZ - mp.posZ;
+
+					if (mp.isSprinting() && mp.motionY < 0.0 && mp.fallDistance > 0)
+					{
+						event.entity.motionX *= d;
+						event.entity.motionY *= d;
+						event.entity.motionZ *= d;
+					}
 					amu.damageStackInSlot(i, 4 - levels[i]);
 					break;
 				}
@@ -1074,7 +1086,9 @@ public class AmuletEvents {
 				if (amulets[i] != null && amulets[i].getAmuletID() == 23)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
-					mp.getFoodStats().addExhaustion(-40F);
+					mp.getFoodStats().addStats(20, 1.0F);
+					mp.extinguish();
+					mp.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 100, 0));
 					break;
 				}
 			}

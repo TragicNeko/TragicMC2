@@ -151,6 +151,7 @@ public class PotionEvents {
 		if (TragicConfig.allowMalnourish && event.entityLiving.isPotionActive(TragicPotion.Malnourish))
 		{
 			if (event.entityLiving.isPotionActive(Potion.field_76443_y)) event.entityLiving.removePotionEffect(TragicPotion.Malnourish.id);
+			if (event.entityLiving.isPotionActive(Potion.hunger.id)) event.entityLiving.removePotionEffect(Potion.hunger.id);
 		}
 
 		if (TragicConfig.allowCripple && event.entityLiving.isPotionActive(TragicPotion.Cripple))
@@ -167,6 +168,68 @@ public class PotionEvents {
 		{
 			if (entity.getHealth() < entity.getMaxHealth() && rand.nextBoolean() && entity.ticksExisted % 10 == 0) entity.heal(1.0F);
 			if (TragicConfig.allowHacked && entity.isPotionActive(TragicPotion.Hacked)) entity.removePotionEffect(TragicPotion.Hacked.id);
+		}
+
+		if (TragicConfig.allowAquaSuperiority && entity.isPotionActive(TragicPotion.AquaSuperiority.id))
+		{
+			if (entity instanceof EntityPlayer && entity.isInWater())
+			{
+				if (Math.abs(entity.motionX) <= 0.8115D) entity.motionX *= 1.2115;
+				if (Math.abs(entity.motionZ) <= 0.815D) entity.motionZ *= 1.2115;
+				((EntityPlayer)entity).setAir(300);
+
+				if (entity.motionY > 0.0)
+				{
+					if (Math.abs(entity.motionY) <= 0.8115D) entity.motionY *= 1.2115;
+				}
+				else
+				{
+					if (entity.isSneaking())
+					{
+						entity.motionY -= 0.1;
+					}
+					else
+					{
+						entity.motionY *= 0.8;
+					}
+				}
+			}
+		}
+
+		if (TragicConfig.allowFlight && entity.isPotionActive(TragicPotion.Flight.id))
+		{
+			if (entity instanceof EntityPlayer && !entity.isInWater() && !entity.onGround)
+			{
+				if (rand.nextInt(128) == 0 && entity.motionY > 0.0)
+				{
+					((EntityPlayer) entity).addExhaustion(0.5F);
+				}
+
+				if (entity.motionY <= 0.0)
+				{
+					if (entity.isSneaking())
+					{
+						entity.motionY = -0.0212;
+					}
+					else
+					{
+						entity.motionY -= 0.0215D;
+					}
+				}
+				else if (entity.motionY <= 0.4115)
+				{
+					entity.motionY *= 1.298647D;
+				}
+
+				if (!entity.isSneaking())
+				{
+					if (Math.abs(entity.motionX) <= 0.4115) entity.motionX *= 1.075D;
+					if (Math.abs(entity.motionZ) <= 0.4115) entity.motionZ *= 1.075D;
+				}
+
+				entity.fallDistance = 0.0F;
+
+			}
 		}
 
 		if (world.isRemote) return;
@@ -250,85 +313,7 @@ public class PotionEvents {
 					CommonProxy.storeEntityData(entity.getUniqueID(), tag);
 				}
 			}
-		}
-
-		if (TragicConfig.allowFlight && entity.isPotionActive(TragicPotion.Flight.id))
-		{
-			int a = entity.getActivePotionEffect(TragicPotion.Flight).getDuration();
-
-			if (entity instanceof EntityPlayer && !entity.isInWater() && !entity.onGround)
-			{
-				EntityPlayer player = (EntityPlayer) entity;
-
-				if (!player.capabilities.isCreativeMode)
-				{
-					if (a >= 40)
-					{
-						if (rand.nextInt(128) == 0 && player.motionY > 0.0)
-						{
-							player.addExhaustion(0.5F);
-						}
-
-						if (player.motionY <= 0.0)
-						{
-							if (player.isSneaking())
-							{
-								player.motionY -= 0.0612;
-							}
-							else
-							{
-								player.motionY = -0.215D;
-							}
-						}
-						else if (player.motionY >= 0.4115)
-						{
-							if (rand.nextBoolean()) player.motionY *= 0.998647D;
-						}
-
-						if (Math.abs(player.motionX) <= 0.4115) player.motionX *= 1.075D;
-						if (Math.abs(player.motionZ) <= 0.4115) player.motionZ *= 1.075D;
-					}
-					else
-					{
-						player.motionY -= 0.2;
-					}
-
-					player.fallDistance = 0.0F;
-				}
-			}
-
-			if (a == 0)
-			{
-				entity.removePotionEffect(TragicPotion.Flight.id);
-			}
-		}
-
-		if (TragicConfig.allowAquaSuperiority && entity.isPotionActive(TragicPotion.AquaSuperiority.id))
-		{
-			if (entity instanceof EntityPlayer && entity.isInWater())
-			{
-
-				if (Math.abs(entity.motionX) <= 1.4115D) entity.motionX *= 1.2;
-				if (Math.abs(entity.motionZ) <= 1.4115D) entity.motionZ *= 1.2;
-				((EntityPlayer)entity).setAir(300);
-
-				if (entity.motionY > 0.0)
-				{
-					if (Math.abs(entity.motionY) <= 0.6115D) entity.motionY *= 1.2;
-				}
-				else
-				{
-					if (entity.isSneaking())
-					{
-						entity.motionY -= 0.1;
-					}
-					else
-					{
-						entity.motionY *= 0.8;
-					}
-				}
-			}
-		}
+		}		
 
 		if (TragicConfig.allowFear && entity.isPotionActive(TragicPotion.Fear.id))
 		{
@@ -741,7 +726,7 @@ public class PotionEvents {
 	}
 
 	@SubscribeEvent
-	public void onCorruptedAttack(LivingAttackEvent event)
+	public void onCorruptedAttack(LivingHurtEvent event)
 	{
 		if (event.entityLiving.worldObj.isRemote || !TragicConfig.allowCorruption) return;
 
