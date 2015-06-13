@@ -904,7 +904,7 @@ public class TragicConfig {
 		bossStats[mapping++] = (config.get(catMobs, "claymationStats", new double[] {150.0, 0.320, 12.0, 32.0, 1.0, 18}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCoreStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCombatStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
-		bossStats[mapping++] = (config.get(catMobs, "overlordCocoonStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
+		bossStats[mapping++] = (config.get(catMobs, "overlordCocoonStats", new double[] {500.0, 0.226, 24.0, 64.0, 4.5, 0}).getDoubleList());
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed or disable certain groups like Mini-Bosses or Bosses. Stats are: Health, Movement Speed, Attack Damage, Follow Range, Knockback Resistance, Armor Value.");
 

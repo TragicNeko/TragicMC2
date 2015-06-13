@@ -231,12 +231,13 @@ public class EntityArchangel extends TragicMob {
 			{
 				this.courseChangeCooldown += this.rand.nextInt(5) + 2;
 				d3 = MathHelper.sqrt_double(d3);
+				double d4 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
 
 				if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
 				{
-					this.motionX += d0 / d3 * 0.3D;
-					this.motionY += d1 / d3 * 0.3D;
-					this.motionZ += d2 / d3 * 0.3D;
+					this.motionX += d0 / d3 * d4;
+					this.motionY += d1 / d3 * d4;
+					this.motionZ += d2 / d3 * d4;
 				}
 				else
 				{
