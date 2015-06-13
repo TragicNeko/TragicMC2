@@ -138,7 +138,8 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 			if (invSlot instanceof SlotActiveAmulet && !((SlotActiveAmulet) invSlot).isLocked())
 			{
 				this.getActiveAmuletItemStack(slot).damageItem(damage, thePlayer);
-				if (this.getActiveAmuletItemStack(slot).getItemDamage() > this.getActiveAmuletItemStack(slot).getMaxDamage()) this.inventory.markDirty();
+				if (this.getActiveAmuletItemStack(slot).getItemDamage() >= this.getActiveAmuletItemStack(slot).getMaxDamage()) this.getActiveAmuletItemStack(slot).stackSize = 0;
+				this.inventory.markDirty();
 			}
 		}
 	}

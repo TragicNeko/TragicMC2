@@ -57,23 +57,18 @@ public class InventoryAmulet implements IInventory {
 	public ItemStack getStackInSlotOnClosing(int slot)
 	{
 		ItemStack stack = getStackInSlot(slot);
-		//setInventorySlotContents(slot, null);
 		return stack;
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
-		if (slot > this.getSizeInventory())
-		{
-			return;
-		}
+		if (slot > this.getSizeInventory()) return;
 
 		inventory[slot] = stack;
 		if (stack != null && stack.stackSize > getInventoryStackLimit())
-		{
 			stack.stackSize = getInventoryStackLimit();
-		}
+
 		markDirty();
 
 	}
@@ -125,7 +120,7 @@ public class InventoryAmulet implements IInventory {
 	@Override
 	public boolean isItemValidForSlot(int var1, ItemStack stack)
 	{
-		return stack.getItem() instanceof ItemAmulet;
+		return stack != null && stack.getItem() instanceof ItemAmulet;
 	}
 
 	public void writeToNBT(NBTTagCompound compound)

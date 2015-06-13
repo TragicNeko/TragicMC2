@@ -12,11 +12,14 @@ public class ContainerAmulet extends Container {
 
 	private static final int amuletStart = 1, amuletEnd = amuletStart + 2,
 			invStart = amuletEnd + 1, invEnd = invStart + 25;
+	
+	private final InventoryAmulet invAmulet;
 
 	public ContainerAmulet(EntityPlayer player, InventoryPlayer invPlayer, InventoryAmulet invAmulet) {
 
 		PropertyAmulets amulets = PropertyAmulets.get(player);
 		int slotsOpen = amulets.getSlotsOpen();
+		this.invAmulet = invAmulet;
 
 		addSlotToContainer(new SlotActiveAmulet(invAmulet, 0, 49, 15, player, false));
 
@@ -122,6 +125,10 @@ public class ContainerAmulet extends Container {
 					++k;
 				}
 			}
+		}
+		else
+		{
+			this.invAmulet.markDirty();
 		}
 
 		return flag1;

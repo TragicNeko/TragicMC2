@@ -34,7 +34,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -414,7 +413,7 @@ public class AmuletEvents {
 				flag = true;
 			}
 
-			if (flag)
+			if (flag && !world.isRemote)
 			{
 				ItemStack[] playerInv = player.inventory.mainInventory;
 
@@ -428,22 +427,16 @@ public class AmuletEvents {
 
 						if (item.getDamage(stack) - level <= 0)
 						{
-							if (!world.isRemote) item.setDamage(stack, 0);
+							item.setDamage(stack, 0);
 							break;
 						}
 
 						if (item.getDamage(stack) >= item.getMaxDamage(stack) / 8)
 						{
-							if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem() == stack)
-							{
-								break;
-							}
+							if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem() == stack) continue;
 
-							if (!world.isRemote)
-							{
-								item.setDamage(stack, item.getDamage(stack) - level);
-								amu.damageStackInSlot(slot, 4 - level);
-							}
+							item.setDamage(stack, item.getDamage(stack) - level);
+							amu.damageStackInSlot(slot, 4 - level);
 						}
 
 						break;
@@ -475,7 +468,7 @@ public class AmuletEvents {
 				double d2 = item.posZ - player.posZ;
 				double d3 = item.posY - player.posY + player.getEyeHeight();
 				float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
-				double d4 = 0.65D;
+				double d4 = 0.25D;
 
 				item.motionX = -d1 / f2 * d4 * 0.300000011920929D + item.motionX * 0.90000000298023224D;
 				item.motionZ = -d2 / f2 * d4 * 0.300000011920929D + item.motionZ * 0.90000000298023224D;
@@ -791,7 +784,7 @@ public class AmuletEvents {
 	}
 
 	@SubscribeEvent
-	public void onAmuletAttack(LivingAttackEvent event)
+	public void onAmuletAttack(LivingHurtEvent event)
 	{
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP)
 		{
