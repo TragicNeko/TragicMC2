@@ -4127,14 +4127,29 @@ Truncated location for message from Death Mark Doomsday
 Reduced amount of hunger that Symbiosis causes
 Fixed bug with right-clicking amulets that would put them in locked slots
 Reduced amount of iterations that Shuffle does
+Modified Overlord Core and Archangel movement to use their attribute values
+Fixed bug with Piercing Amulet causing endless looping, fixed multiple bugs with this server-side
+Fixed bug with Amulets appearing in the inventory even if they aren't actually there, updated inventory code to markDirty on any damage changes and to set the
+stack size to 0 if the item durability is at 0
+This should fix multiple inventory ghosting bugs that could occur, there's still a bug when clicking on a slot and moving an amulet to another one that leaves
+a ghost stack but clicking on that will remove it
+Improved Aqua Superiority and Flight on the client-side (you move faster now)
+Saturation now removes Hunger if both are active
+Fixed Iron Golem Amulet applying durability damage too quickly
+Fixed Snow Golem Amulet applying durability damage client-side and too quickly
+Fixed Ender Dragon Amulet breaking the wrong blocks due to offset
+Fixed Undead Amulet causing you to burn too much on the client-side
+Improved Stin Amulet's ability to knockback targets
+Fixed Lightning Amulet not setting the right hunger values to restore hunger
+Did server testing for the Nuke, doesn't lag the server at all so that's awesome
 
 Note:
-Go through and make sure all of the amulets work since I changed them to work on the client and server sides now, also test in a server environment
 Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
 Add a Dead Sector and Corrupt Sector biome variant to the Synapse, Dead Sector contains massive chunks of dead/aged circuits, corrupt contains massive amounts of
 Digital Sea inside of it
+Remove all unneeded info logging outside of setup and initialization
 
 Boss sounds~
 Apis sounds: Mad bull sounds
