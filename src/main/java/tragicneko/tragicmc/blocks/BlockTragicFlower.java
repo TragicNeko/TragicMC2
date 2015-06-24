@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -15,17 +15,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicMC;
 
-public class BlockTragicFlower extends BlockFlower implements IGrowable{
+public class BlockTragicFlower extends BlockBush implements IGrowable {
 
-	private String[] plantNames = new String[]{"BlueSpiranthes", "PinkSpiranthes", "RedSpiranthes", "WhiteSpiranthes", "BlueCoral", "RedCoral", "PinkGinger", "RedGinger",
-			"Bluebonnet", "VioletSage", "PinkSage", "WhiteSage", "BirdOfParadise", "JuniperBush", "Stapelia", "Thistle"};
+	private static final String[][] plantNames = new String[][] {{"BlueSpiranthes", "PinkSpiranthes", "RedSpiranthes", "WhiteSpiranthes", "BlueCoral", "RedCoral", "PinkGinger", "RedGinger",
+			"Bluebonnet", "VioletSage", "PinkSage", "WhiteSage", "BirdOfParadise", "JuniperBush", "Stapelia", "Thistle"},
+			{"Bramble", "TangleWeed", "DeathClaw", "Fusche", "Osiris", "Thusk", "Podtail", "Fanbrush", "Torchweed", "Halon", "Rizaphora", "BlackSpot"}};
 
-	private IIcon[] iconArray = new IIcon[plantNames.length];
+	private IIcon[] iconArray = new IIcon[16];
+	private final int flowerSet;
 
-	public BlockTragicFlower() {
-		super(0);
+	public BlockTragicFlower(int i) {
+		super();
+		this.flowerSet = i;
 		this.setCreativeTab(TragicMC.Survival);
 		this.setBlockName("tragicmc.flower");
 		this.setStepSound(soundTypeGrass);
@@ -40,15 +44,15 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	@Override
 	protected boolean canPlaceBlockOn(Block block)
 	{
-		return block instanceof BlockGrass || block == Blocks.dirt || block.getMaterial() == Material.ground;
+		return block instanceof BlockGrass || block == Blocks.dirt || block.getMaterial() == Material.ground || block.getMaterial() == Material.grass || block == TragicBlocks.MoltenRock || block == TragicBlocks.ScorchedRock;
 	}
 
 	@Override
 	public IIcon getIcon(int side, int meta)
 	{
-		if (meta >= this.iconArray.length)
+		if (meta >= this.iconArray.length || this.iconArray[meta] == null)
 		{
-			meta = this.iconArray.length - 1;
+			return this.iconArray[0];
 		}
 		return this.iconArray[meta];
 	}
@@ -56,9 +60,9 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		for (int i = 0; i < this.plantNames.length; i++)
+		for (int i = 0; i < this.plantNames[this.flowerSet].length; i++)
 		{
-			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.plantNames[i]);
+			this.iconArray[i] = par1IconRegister.registerIcon("tragicmc:" + this.plantNames[this.flowerSet][i]);
 		}
 	}
 
@@ -71,31 +75,29 @@ public class BlockTragicFlower extends BlockFlower implements IGrowable{
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < this.plantNames.length; i++)
+		for (int i = 0; i < this.plantNames[this.flowerSet].length; i++)
 		{
 			par3.add(new ItemStack(par1, 1, i));
 		}
 	}
 
 	@Override
-	public boolean func_149851_a(World p_149851_1_, int p_149851_2_,
-			int p_149851_3_, int p_149851_4_, boolean p_149851_5_) {
+	public boolean func_149851_a(World world, int x, int y, int z, boolean bool) {
 		return true;
 	}
 
 	@Override
-	public boolean func_149852_a(World p_149852_1_, Random p_149852_2_,
-			int p_149852_3_, int p_149852_4_, int p_149852_5_) {
+	public boolean func_149852_a(World world, Random rand, int x, int y, int z) {
 		return true;
 	}
 
 	@Override
-	public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_) {
-		if (p_149853_2_.nextInt(4) != 0) return;
-		int meta = p_149853_1_.getBlockMetadata(p_149853_3_, p_149853_4_, p_149853_5_);
+	public void func_149853_b(World world, Random rand, int x, int y, int z) {
+		if (rand.nextInt(4) != 0) return;
+		int meta = world.getBlockMetadata(x, y, z);
 
-		if (meta >= 14 && p_149853_2_.nextInt(4) != 0) return;
-		this.dropBlockAsItem(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, new ItemStack(this, 1, meta));
+		if (this.flowerSet == 0 && meta == 14 && rand.nextInt(4) != 0) return;
+		this.dropBlockAsItem(world, x, y, z, new ItemStack(this, 1, meta));
 	}
 
 }

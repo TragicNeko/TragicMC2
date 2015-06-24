@@ -26,6 +26,7 @@ public class TragicWeapon extends ItemSword {
 	protected final Doomsday doomsday;
 	protected Doomsday doomsday2;
 	public Item.ToolMaterial material;
+	public float ascensionLevel;
 
 	public TragicWeapon(ToolMaterial material, Doomsday dday) {
 		super(material);
@@ -48,6 +49,12 @@ public class TragicWeapon extends ItemSword {
 	public EnumDoomType doomsdayType()
 	{
 		return this.doomsday.doomsdayType;
+	}
+	
+	public TragicWeapon setAscensionLevel(float f)
+	{
+		this.ascensionLevel = f;
+		return this;
 	}
 
 	@Override
@@ -82,6 +89,11 @@ public class TragicWeapon extends ItemSword {
 			par2List.add(EnumChatFormatting.GOLD + "Doom Cost: " + doomsday.getScaledDoomRequirement(par2EntityPlayer.worldObj));
 			par2List.add(EnumChatFormatting.DARK_AQUA + "Cooldown: " + doomsday.getScaledCooldown(par2EntityPlayer.worldObj.difficultySetting));
 			par2List.add(""); //extra space
+		}
+		
+		if (this.ascensionLevel > 0F)
+		{
+			par2List.add(EnumChatFormatting.LIGHT_PURPLE + "Ascension Level: " + this.ascensionLevel);
 		}
 	}
 

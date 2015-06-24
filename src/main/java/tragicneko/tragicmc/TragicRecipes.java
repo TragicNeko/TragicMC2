@@ -1876,6 +1876,54 @@ public class TragicRecipes {
 				new ItemStack(TragicBlocks.TragicFlower, 1, 15)
 				);
 
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 0)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 13),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 1)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 8),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 2)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 3)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 11),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 4)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 5)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 6)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 7)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 14),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 8)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 9)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.fire_charge),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 10)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 11)
+				);
+
 		//Star Crystal dye recipes
 		for (int i = 0; i < 15; i++)
 		{

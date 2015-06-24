@@ -6,12 +6,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MusicTicker.MusicType;
 import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.client.event.sound.PlaySoundEvent17;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -41,20 +43,28 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 		if (mc.theWorld != null)
 		{
 			WorldProvider prov = mc.theWorld.provider;
-			TragicMusic music = collisionTrack; 
+			TragicMusic music = null; 
+			/*
+			if (this.currentTrack != null && !this.currentTrack.getPositionedSoundLocation().equals(synapseOverlord.loc) && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare) )
+			{
+				this.mc.getSoundHandler().stopSound(this.currentTrack);
+			}
 
-			if (prov instanceof TragicWorldProvider)
+			if (mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Nightmare))
+			{
+				music = synapseOverlord;
+			} */
+
+			if (prov instanceof TragicWorldProvider) // && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare))
 			{
 				music = musictype == MusicType.GAME ? collisionTrack : collisionCreative;
 			}
-			else if (prov instanceof SynapseWorldProvider)
+			else if (prov instanceof SynapseWorldProvider) // && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare))
 			{
 				music = mc.thePlayer != null && !mc.theWorld.getEntitiesWithinAABB(EntityOverlordCore.class, mc.thePlayer.boundingBox.expand(120, 128, 120)).isEmpty() ? synapseOverlord : (musictype == MusicType.GAME ? synapseTrack : collisionCreative);
 			}
-			else
-			{
-				return;
-			}
+			
+			if (/*mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Deafening) ||*/ music == null) return;
 
 			if (this.currentTrack != null)
 			{					
@@ -71,18 +81,19 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 				}
 			}
 
-			if (this.currentTrack == null && this.buffer-- <= 0)
+			if (this.currentTrack == null && /*(mc.thePlayer != null && mc.thePlayer.isPotionActive(TragicPotion.Nightmare) ||*/ this.buffer-- <= 0/*)*/ && mc.gameSettings.getSoundLevel(SoundCategory.MUSIC) > 0F && mc.gameSettings.getSoundLevel(SoundCategory.MASTER) > 0F)
 			{
+				//if (music != synapseOverlord && mc.thePlayer != null && !mc.thePlayer.isPotionActive(TragicPotion.Nightmare)) return;
 				this.currentTrack = PositionedSoundRecord.func_147673_a(music.loc);
 				this.mc.getSoundHandler().playSound(this.currentTrack);
 				this.buffer = Integer.MAX_VALUE;
-				TragicMC.logInfo("Track was set to play.");
+				TragicMC.logInfo("Track set to play");
 			}
 		}
 	}
 
 	@SubscribeEvent
-	public void blah(PlaySoundEvent17 event)
+	public void overrideSound(PlaySoundEvent17 event)
 	{
 		MusicType musictype = mc.func_147109_W();
 
@@ -93,6 +104,15 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 				event.result = null;
 			}
 		}
+		/*
+		if (mc.thePlayer != null)
+		{
+			if (mc.thePlayer.isPotionActive(TragicPotion.Deafening.id))
+			{
+				event.result = null;
+				mc.getSoundHandler().stopSounds();
+			}
+		} */
 	}
 
 	public static class TragicMusic {

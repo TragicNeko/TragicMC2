@@ -48,6 +48,12 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		this.pitGen = new PitWorldGen(Blocks.flowing_lava, 0, 12, 6, 4.0D, 3.0D);
 		this.scarGen = new InvertedSpikeWorldGen(6, 1.5, 2.5, 0.90977745D, 0.48943755D);
 	}
+	
+	@Override
+	public int getFlowersFromBiomeType()
+	{
+		return variant == 2 ? 4 : 0;
+	}
 
 	@Override
 	public void decorate(World world, Random rand, int x, int z)

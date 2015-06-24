@@ -35,7 +35,7 @@ public class TragicBiome extends BiomeGenBase {
 	public static BiomeGenBase AshenMountains, AshenHills, AshenBadlands;
 	public static BiomeGenBase StarlitPrarie, StarlitPlateaus, StarlitCliffs, StarlitLowlands;
 	public static BiomeGenBase TaintedSpikes, TaintedLowlands, TaintedRises, TaintedScarlands, TaintedIsles;
-	public static BiomeGenBase Synapse;
+	public static BiomeGenBase Synapse, SynapseDead, SynapseCorrupt;
 	public static BiomeGenBase HallowedHills, HallowedForest, HallowedPrarie, HallowedCliffs;
 	public static BiomeGenBase ScorchedWastelands, ScorchedValley, ScorchedScarlands;
 	public static BiomeGenBase CorrodedSteppe, CorrodedHeights, CorrodedVeld, CorrodedRunoff, CorrodedFallout;
@@ -198,6 +198,8 @@ public class TragicBiome extends BiomeGenBase {
 		TaintedIsles = new BiomeGenTaintedSpikes(TragicConfig.idTaintedIsles, 4).setBiomeName("tragicmc.taintedIsles");
 
 		Synapse = new BiomeGenSynapse(TragicConfig.idSynapse).setBiomeName("tragicmc.synapse");
+		SynapseDead = new BiomeGenSynapse(TragicConfig.idSynapseDead).setBiomeName("tragicmc.synapseDead");
+		SynapseCorrupt = new BiomeGenSynapse(TragicConfig.idSynapseCorrupt).setBiomeName("tragicmc.synapseCorrupt");
 
 		HallowedHills = new BiomeGenHallowedHills(TragicConfig.idHallowedHills, 0).setBiomeName("tragicmc.hallowedHills");
 		HallowedForest = new BiomeGenHallowedHills(TragicConfig.idHallowedForest, 1).setBiomeName("tragicmc.hallowedForest");

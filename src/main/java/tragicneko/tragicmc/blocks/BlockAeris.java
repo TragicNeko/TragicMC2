@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,7 +19,7 @@ import tragicneko.tragicmc.blocks.tileentity.TileEntityAeris;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockAeris extends BlockTragicFlower implements ITileEntityProvider
+public class BlockAeris extends BlockBush implements ITileEntityProvider
 {
 	@SideOnly(Side.CLIENT)
 	private IIcon corruptingTexture, corruptedTexture;
@@ -54,9 +55,6 @@ public class BlockAeris extends BlockTragicFlower implements ITileEntityProvider
 		for (int i = 0; i < 3; i++)
 			par3.add(new ItemStack(par1, 1, i));
 	}
-
-	@Override
-	public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_) {}
 
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {

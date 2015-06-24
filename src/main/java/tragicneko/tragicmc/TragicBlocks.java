@@ -38,6 +38,7 @@ import tragicneko.tragicmc.blocks.BlockErodedStone;
 import tragicneko.tragicmc.blocks.BlockExplosiveGas;
 import tragicneko.tragicmc.blocks.BlockFox;
 import tragicneko.tragicmc.blocks.BlockFragileLight;
+import tragicneko.tragicmc.blocks.BlockFruit;
 import tragicneko.tragicmc.blocks.BlockGas;
 import tragicneko.tragicmc.blocks.BlockGeneric;
 import tragicneko.tragicmc.blocks.BlockGenericBush;
@@ -83,6 +84,7 @@ import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStarCrystal;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockSummonBlocks;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower;
+import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicFlower2;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockTragicSapling;
 import tragicneko.tragicmc.blocks.itemblocks.TragicItemBlock;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityAeris;
@@ -164,6 +166,7 @@ public class TragicBlocks {
 
 	public static Block TragicSapling;
 	public static Block TragicFlower;
+	public static Block TragicFlower2;
 
 	public static Block AshenBush;
 	public static Block DeadBush;
@@ -226,6 +229,8 @@ public class TragicBlocks {
 	public static Block DarkwoodPlanks;
 	public static Block DarkVine;
 	public static Block DarkTallGrass;
+	
+	public static Block SkyFruit;
 
 	public static void load()
 	{
@@ -380,8 +385,11 @@ public class TragicBlocks {
 		TragicSapling = (new BlockTragicSapling());
 		GameRegistry.registerBlock(TragicSapling, ItemBlockTragicSapling.class, "tragicSapling");
 
-		TragicFlower = (new BlockTragicFlower());
+		TragicFlower = (new BlockTragicFlower(0));
 		GameRegistry.registerBlock(TragicFlower, ItemBlockTragicFlower.class, "tragicFlower");
+		
+		TragicFlower2 = (new BlockTragicFlower(1));
+		GameRegistry.registerBlock(TragicFlower2, ItemBlockTragicFlower2.class, "tragicFlower2");
 
 		AshenBush = (new BlockGenericBush().setBlockName("tragicmc.ashenBush").setBlockTextureName("tragicmc:AshenBush"));
 		GameRegistry.registerBlock(AshenBush, ItemBlock.class, "ashenBush");
@@ -395,7 +403,7 @@ public class TragicBlocks {
 		AshenTallGrass = (new BlockGenericTallGrass("Ashen").setBlockName("tragicmc.ashenTallGrass"));
 		GameRegistry.registerBlock(AshenTallGrass, ItemBlock.class, "ashenTallGrass");
 
-		StarlitGrass = (new BlockGenericGrass("Starlit").setBlockName("tragicmc.starlitGrass"));
+		StarlitGrass = (new BlockGenericGrass("Starlit").setBlockName("tragicmc.starlitGrass").setLightLevel(0.25F));
 		GameRegistry.registerBlock(StarlitGrass, ItemBlock.class, "starlitGrass");
 
 		StarCrystal = (new BlockStarCrystal());
@@ -500,7 +508,7 @@ public class TragicBlocks {
 			{
 				return side == ForgeDirection.UP;
 			}
-		}.setBlockTextureName("tragicmc:MoltenRockBottom").setBlockName("tragicmc.scorchedRock").setHardness(0.8F).setResistance(10.0F));
+		}.setBlockTextureName("tragicmc:MoltenRockBottom").setBlockName("tragicmc.scorchedRock").setHardness(1.6F).setResistance(10.0F));
 		GameRegistry.registerBlock(ScorchedRock, ItemBlock.class, "scorchedRock");
 
 		Geyser = (new BlockGeyser(false));
@@ -512,7 +520,7 @@ public class TragicBlocks {
 		SteamVent = (new BlockSteamVent());
 		GameRegistry.registerBlock(SteamVent, ItemBlock.class, "steamVent");
 
-		HallowedGrass = (new BlockGenericGrass("Hallowed").setBlockName("tragicmc.hallowedGrass").setLightLevel(0.25F));
+		HallowedGrass = (new BlockGenericGrass("Hallowed").setBlockName("tragicmc.hallowedGrass").setLightLevel(0.4F).setLightOpacity(25));
 		GameRegistry.registerBlock(HallowedGrass, ItemBlock.class, "hallowedGrass");
 
 		StringLight = (new BlockStringLight().setBlockName("tragicmc.stringLight"));
@@ -649,6 +657,9 @@ public class TragicBlocks {
 			}
 		}.setBlockName("tragicmc.septicGas");
 		GameRegistry.registerBlock(SepticGas, ItemBlock.class, "septicGas");
+		
+		SkyFruit = new BlockFruit().setBlockName("tragicmc.skyFruit").setBlockTextureName("tragicmc:PaintedTallGrass");
+		GameRegistry.registerBlock(SkyFruit, ItemBlock.class, "skyFruitBlock");
 
 		for (int i = 0; i < 3; i++)
 		{

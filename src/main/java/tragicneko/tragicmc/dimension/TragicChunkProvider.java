@@ -28,6 +28,7 @@ import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.DimensionLayerWorldGen;
 import tragicneko.tragicmc.worldgen.DimensionOreWorldGen;
+import tragicneko.tragicmc.worldgen.FlowerWorldGen2;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionDungeon;
 import tragicneko.tragicmc.worldgen.WorldGenDimensionLakes;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
@@ -398,6 +399,7 @@ public class TragicChunkProvider implements IChunkProvider
 		if (TragicConfig.allowDarkStoneVariantGen) (new DimensionLayerWorldGen()).generate(this.rand, par2, par3, this.worldObj, this, this);
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
 		(new DimensionOreWorldGen()).generate(this.rand, par2, par3, this.worldObj, null, null);
+		(new FlowerWorldGen2()).generate(this.rand, par2, par3, this.worldObj, null, null);
 
 		BlockFalling.fallInstantly = false;
 	}

@@ -15,10 +15,13 @@ public class CircuitWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		Chunk chk = world.getChunkFromChunkCoords(chunkX, chunkZ);
+		double m;
+		byte meta;
+		
 		for (int y1 = 0; y1 < 128; y1++)
 		{
-			double m = (2.5D + (Math.cos((y1 + 6) / 20.0D)) * 2.5);
-			int meta = MathHelper.clamp_int((int) Math.round(m), 0, 4);
+			m = (2.5D + (Math.cos((y1 + 6) / 20.0D)) * 2.5);
+			meta = (byte) MathHelper.clamp_int((int) Math.round(m), 0, 4);
 
 			for (int x1 = 0; x1 < 16; x1++)
 			{

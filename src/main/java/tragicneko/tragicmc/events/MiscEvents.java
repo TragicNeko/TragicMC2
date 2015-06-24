@@ -152,10 +152,9 @@ public class MiscEvents {
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			ItemStack stack = player.getEquipmentInSlot(0);
 
-			if (stack != null && (stack.getItem() == TragicItems.Thardus || stack.getItem() == TragicItems.FrozenLightning) && !event.source.isMagicDamage())
+			if (stack != null && (stack.getItem() == TragicItems.Thardus || stack.getItem() == TragicItems.FrozenLightning))
 			{
-				if (event.isCancelable()) event.setCanceled(true);
-				event.entityLiving.attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(player), event.ammount);
+				event.source.setMagicDamage(); //instead of canceling and subbing in magic damage, we can just change the source to act as magic damage
 			}
 		}
 	}
@@ -172,7 +171,7 @@ public class MiscEvents {
 				if (event.world.rand.nextInt(4) == 0)
 				{
 					event.world.setBlock(event.x, event.y, event.z, TragicBlocks.CarrotBlock);
-					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.4F, 1.0F);
+					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.8F, 1.0F);
 				}
 				event.setResult(Result.ALLOW);
 			}
@@ -187,7 +186,7 @@ public class MiscEvents {
 				if (event.world.rand.nextInt(4) == 0)
 				{
 					event.world.setBlock(event.x, event.y, event.z, TragicBlocks.PotatoBlock);
-					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.4F, 1.0F);
+					event.world.playSoundAtEntity(event.entityPlayer, "random.pop", 0.8F, 1.0F);
 				}
 				event.setResult(Result.ALLOW);
 			}

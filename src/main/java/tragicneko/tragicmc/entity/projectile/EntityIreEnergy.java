@@ -20,7 +20,7 @@ public class EntityIreEnergy extends EntityProjectile {
 	}
 
 	@Override
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.985F;
 	}

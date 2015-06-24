@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
@@ -64,7 +65,7 @@ public class BlockIceSpike extends Block {
 	@Override
 	public boolean canHarvestBlock(EntityPlayer player, int meta)
 	{
-		return false;
+		return super.canHarvestBlock(player, meta);
 	}
 	@Override
 	protected boolean canSilkHarvest()
@@ -75,7 +76,7 @@ public class BlockIceSpike extends Block {
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
-		return Item.getItemFromBlock(TragicBlocks.IceSpike);
+		return null;
 	}
 
 	@Override
@@ -90,5 +91,12 @@ public class BlockIceSpike extends Block {
 	{
 		Block block = world.getBlock(x, y, z);
 		return block == this ? false : super.shouldSideBeRendered(world, x, y, z, side);
+	}
+	
+	@Override
+	public void onEntityWalking(World world, int x, int y, int z, Entity entity)
+	{
+		super.onEntityWalking(world, x, y, z, entity);
+		if (world.rand.nextInt(4) == 0 && entity instanceof EntityLivingBase) entity.attackEntityFrom(new DamageSource("iceSpike").setDamageBypassesArmor(), 1F);
 	}
 }

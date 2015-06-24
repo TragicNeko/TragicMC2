@@ -124,6 +124,12 @@ public class ClientEvents extends Gui {
 			player.movementInput.jump = false;
 			player.movementInput.sneak = false;
 		}
+		/*
+		if (player != null && player.isPotionActive(TragicPotion.Exasperate))
+		{
+			player.setSprinting(false);
+			player.sprintingTicksLeft = 0;
+		} */
 
 		if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
 		{
@@ -212,12 +218,14 @@ public class ClientEvents extends Gui {
 		if (event.type != ElementType.PORTAL) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
+		if (mc.thePlayer == null) return;
 
 		boolean flag = TragicConfig.allowHacked && mc.thePlayer.isPotionActive(TragicPotion.Hacked);
 		boolean flag2 = TragicConfig.allowDivinity && mc.thePlayer.isPotionActive(TragicPotion.Divinity);
 		boolean flag3 = TragicConfig.allowConvergence && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
+		boolean flag4 = false; //mc.thePlayer.isPotionActive(TragicPotion.Nightmare);
 
-		if (!flag && !flag2 && !flag3) return;
+		if (!flag && !flag2 && !flag3 && !flag4) return;
 
 		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
 
@@ -231,7 +239,16 @@ public class ClientEvents extends Gui {
 		float r = rgb[color][0];
 		float g = flag3 ? 0F : rgb[color][1];
 		float b = flag3 ? 0F : rgb[color][2];
-		GL11.glColor4f(r, g, b, trans);
+		
+		if (flag4)
+		{
+			GL11.glColor4f(0.1F, 0.1F, 0.1F, 0.7F);
+		}
+		else
+		{
+			GL11.glColor4f(r, g, b, trans);
+		}
+		
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
 		drawTexturedModalRect(0, 0, 0, 0, mc.displayWidth, mc.displayHeight);

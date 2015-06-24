@@ -6956,7 +6956,7 @@ public class SchematicCorruptedSpire extends Schematic {
 		this.placeSpawners(world, rand, x - 7, y - 4, z + 18, true);
 		this.placeSpawners(world, rand, x - 7, y - 4, z, true);
 
-		this.randomlyPlaceHole(world, rand, x, y, z);
+		this.randomlyPlaceHole(world, rand, x, y - 1, z);
 	}
 
 	public void generateNormalFloor(World world, Random rand, int x, int y, int z, int floorNumber)
@@ -11900,9 +11900,6 @@ public class SchematicCorruptedSpire extends Schematic {
 			break;
 		case 4:
 			s = TragicConfig.allowStinQueen ? "TragicMC.StinQueen" : "WitherBoss";
-			break;
-		case 5:
-			s = "WitherBoss";
 			break;
 		default:
 			break;

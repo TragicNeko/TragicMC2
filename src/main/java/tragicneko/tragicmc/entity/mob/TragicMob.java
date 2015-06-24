@@ -14,14 +14,18 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -33,6 +37,8 @@ import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
+import tragicneko.tragicmc.entity.projectile.EntityProjectile;
+import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.util.EntityDropHelper;
 
 public abstract class TragicMob extends EntityMob
@@ -436,6 +442,80 @@ public abstract class TragicMob extends EntityMob
 			return super.onSpawnWithEgg(data);
 		}
 		return super.onSpawnWithEgg(data);
+	}
+
+	/**
+	 * Utility method for firing a projectile at input target, neither can be null, dispersal is how far off target the projectile
+	 * will be, setting this to 0 will negate it, on hard projectiles are automatically set to fire with target's motion taken into account
+	 * @param entity
+	 * @param target
+	 * @param variance
+	 * @param dispersal
+	 * @return
+	 */
+	protected Entity fireProjectileAtEntity(Entity entity, Entity target, float dispersal)
+	{
+		entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
+		entity.setPosition(this.posX, this.posY + (this.height * 2 / 3), this.posZ);
+		if (entity instanceof EntityProjectile) ((EntityProjectile) entity).shootingEntity = this;
+		else if (entity instanceof EntityFireball) ((EntityFireball) entity).shootingEntity = this;
+
+		double d0 = target.posX - this.posX;
+		double d1 = target.posY - this.posY + (target.height * 0.5D) - (this.height * 2 / 3);
+		double d2 = target.posZ - this.posZ;
+
+		float mf = entity instanceof EntityProjectile ? ((EntityProjectile) entity).getMotionFactor() : entity instanceof EntityWitherSkull 
+				&& ((EntityWitherSkull) entity).isInvulnerable() ? 0.73F : 0.95F;
+		float dist = this.getDistanceToEntity(this.getAttackTarget());
+
+		if (this.worldObj.difficultySetting.getDifficultyId() > 2)
+		{
+			d0 += target.motionX * dist / mf;
+			d1 += target.motionY * dist / mf;
+			d2 += target.motionZ * dist / mf;
+		}
+
+		float f = MathHelper.sqrt_float(dist) * dispersal;
+		d0 += f * this.rand.nextGaussian();
+		d2 += f * this.rand.nextGaussian();
+
+		double d3 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
+
+		if (entity instanceof EntityProjectile)
+		{
+			((EntityProjectile) entity).accelerationX = d0 / d3 * 0.1D;
+			((EntityProjectile) entity).accelerationY = d1 / d3 * 0.1D;
+			((EntityProjectile) entity).accelerationZ = d2 / d3 * 0.1D;
+		}
+		else if (entity instanceof EntityFireball)
+		{
+			((EntityFireball) entity).accelerationX = d0 / d3 * 0.1D;
+			((EntityFireball) entity).accelerationY = d1 / d3 * 0.1D;
+			((EntityFireball) entity).accelerationZ = d2 / d3 * 0.1D;
+		}
+
+		this.worldObj.spawnEntityInWorld(entity);
+
+		return entity;
+	}
+	
+	@Override
+	public boolean attackEntityFrom(DamageSource src, float dmg)
+	{
+		if (src.getEntity() instanceof EntityLivingBase) //testing with weapon ascension
+		{
+			if (((EntityLivingBase) src.getEntity()).getHeldItem() != null)
+			{
+				ItemStack stack = ((EntityLivingBase) src.getEntity()).getHeldItem();
+				if (stack.getItem() instanceof TragicWeapon)
+				{
+					TragicMC.logInfo("Original damage is " + dmg);
+					dmg += ((TragicWeapon) stack.getItem()).ascensionLevel;
+					TragicMC.logInfo("Damage plus ascension is " + dmg);
+				}
+			}
+		}
+		return super.attackEntityFrom(src, dmg);
 	}
 
 	public static class GroupBuff implements IEntityLivingData {

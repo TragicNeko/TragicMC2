@@ -34,6 +34,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -788,7 +789,7 @@ public class AmuletEvents {
 	}
 
 	@SubscribeEvent
-	public void onAmuletAttack(LivingHurtEvent event)
+	public void onAmuletAttack(LivingAttackEvent event)
 	{
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP)
 		{
@@ -809,7 +810,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuPiercing; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 6)
+				if (amulets[i] != null && amulets[i].getAmuletID() == 6 && !event.source.isUnblockable())
 				{
 					event.entityLiving.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(mp), event.ammount * 0.135F + 1.0F);
 					amu.damageStackInSlot(i, 1);

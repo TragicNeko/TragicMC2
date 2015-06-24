@@ -77,6 +77,83 @@
 		"sounds": [
 			"boss/kitsune/taunt"]
     },
+	"boss.overlordcombat.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/living", "boss/overlordcombat/living2",
+			"boss/overlordcombat/living3", "boss/overlordcombat/living4"]
+    },
+	"boss.overlordcombat.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/hurt"]
+    },
+	"boss.overlordcombat.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/death"]
+    },
+	"boss.overlordcombat.wam":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/wam"]
+    },
+	"boss.overlordcombat.wow":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/wow"]
+    },
+	"boss.overlordcombat.shink":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/shink"]
+    },
+	"boss.overlordcombat.phaser":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/phaser"]
+    },
+	"boss.overlordcombat.march":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcombat/march"]
+    },
+	"boss.overlordcocoon.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcocoon/living", "boss/overlordcocoon/living2",
+			"boss/overlordcocoon/living3", "boss/overlordcocoon/living4",
+			"boss/overlordcocoon/living5"]
+    },
+	"boss.overlordcocoon.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcocoon/hurt", "boss/overlordcocoon/hurt2",
+			"boss/overlordcocoon/hurt3", "boss/overlordcocoon/hurt4",
+			"boss/overlordcocoon/hurt5"]
+    },
+	"boss.overlordcocoon.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcocoon/death"]
+    },
+	"boss.overlordcocoon.wah":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcocoon/wah"]
+    },
 	"boss.polaris.clone":
     {
 		"category": "hostile",

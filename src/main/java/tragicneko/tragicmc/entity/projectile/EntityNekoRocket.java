@@ -25,7 +25,7 @@ public class EntityNekoRocket extends EntityProjectile {
 	}
 
 	@Override
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.95F;
 	}

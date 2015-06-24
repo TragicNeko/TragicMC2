@@ -19,8 +19,10 @@ import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.CircuitWorldGen;
 import tragicneko.tragicmc.worldgen.HangingCoralWorldGen;
+import tragicneko.tragicmc.worldgen.SynapseVariantGen;
 
 public class SynapseChunkProvider implements IChunkProvider
 {
@@ -53,6 +55,7 @@ public class SynapseChunkProvider implements IChunkProvider
 	private HangingCoralWorldGen coralGen;
 	private HangingCoralWorldGen coralGen2;
 	private CircuitWorldGen circuitGen;
+	private SynapseVariantGen circuitVarGen;
 
 	public SynapseChunkProvider(World p_i2005_1_, long p_i2005_2_)
 	{
@@ -79,6 +82,7 @@ public class SynapseChunkProvider implements IChunkProvider
 		this.circuitGen = new CircuitWorldGen();
 		this.coralGen = new HangingCoralWorldGen(4, 32, 1000, TragicBlocks.Conduit, 0);
 		this.coralGen2 = new HangingCoralWorldGen(3, 12, 800, TragicBlocks.Conduit, 0);
+		this.circuitVarGen = new SynapseVariantGen();
 	}
 
 	public void func_147419_a(int p_147419_1_, int p_147419_2_, Block[] p_147419_3_)
@@ -432,6 +436,8 @@ public class SynapseChunkProvider implements IChunkProvider
 		 int c;
 		 
 		 this.circuitGen.generate(this.synapseRNG, x, z, this.worldObj, this, this);
+		 
+		 if (TragicConfig.allowSynapseVariants && this.synapseRNG.nextInt(TragicConfig.synapseVariantChance) == 0) this.circuitVarGen.generate(this.synapseRNG, x, z, this.worldObj, this, this);
 
 		 for (int i = 0; i < 4; i++)
 		 {

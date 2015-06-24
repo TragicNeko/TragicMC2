@@ -35,6 +35,9 @@ public class Structure extends WorldGenerator {
 	//public static Structure hexBuilding = new Structure(11, "hexBuilding"); //witch spawners, like a giant swamp shack possibly
 	//public static Structure ragrPit = new Structure(12, "ragrPit"); //Ragr spawners, generate similarly to the Empariah Cave
 	//public static Structure spiderNest = new Structure(13, "spiderNest"); //Various spider spawners, Stin spawners, made of nearly solid cobwebs
+	//public static Structure memoryCache = new Structure(14, "memeoryCache"); //Synapse spherical structure that generates with multiple nano swarm spawners and has a good chest in the middle
+	//public static Structure lightSpire = new Structure(15, "lightSpire"); //Large cylindrical vertical shaft of light, has Archangel spawners
+	//public static Structure hackerNet = new Structure(16, "hackerNet"); //Synapse large cloud of Digital Sea with multiple Hunter spawners inside
 
 	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
 			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,

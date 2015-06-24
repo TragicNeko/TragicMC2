@@ -143,7 +143,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 		{
 			this.setPhaseTicks(this.getPhaseTicks() - 1);
 
-			List<int[]> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
+			List<int[]> lst2 = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
 			for (int[] coords : lst2)
 			{
 				if (World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2]) && EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])))
@@ -247,6 +247,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 						}
 					}
 				}
+				
+				if (this.getPhaseTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.0F);
 			}
 
 		}
@@ -349,10 +351,10 @@ public class EntityOverlordCocoon extends TragicBoss {
 					}
 				}
 
-				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
+				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16 && this.getCurrentPhase() > 1)
 				{
 					EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
-					swarm.setPosition(this.posX + rand.nextInt(4) - rand.nextInt(4), this.posY, this.posZ + rand.nextInt(4) - rand.nextInt(4));
+					swarm.setPosition(this.posX + rand.nextInt(6) - rand.nextInt(6), this.posY, this.posZ + rand.nextInt(6) - rand.nextInt(6));
 					this.worldObj.spawnEntityInWorld(swarm);
 				}
 
@@ -485,6 +487,15 @@ public class EntityOverlordCocoon extends TragicBoss {
 				combat.setPosition(this.posX, this.posY, this.posZ);
 				combat.setTransforming();
 				this.worldObj.spawnEntityInWorld(combat);
+				
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
+				for (Entity e : list)
+				{
+					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != combat)
+					{
+						e.setDead();
+					}
+				}
 			}
 		}
 
@@ -499,5 +510,41 @@ public class EntityOverlordCocoon extends TragicBoss {
 		{
 			this.worldObj.spawnParticle("reddust", this.posX + this.rand.nextFloat() * this.width * 5.0F - this.width, this.posY + this.rand.nextFloat() * this.height * 2.0F, this.posZ + this.rand.nextFloat() * this.width * 5.0F - this.width, 0.1, 0.1, 0.1);
 		}
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:boss.overlordcocoon.living";
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:boss.overlordcocoon.hurt";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:boss.overlordcocoon.death";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.4F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

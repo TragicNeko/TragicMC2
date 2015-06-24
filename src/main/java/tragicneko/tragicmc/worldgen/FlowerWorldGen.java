@@ -12,6 +12,7 @@ import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
+import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -45,7 +46,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 		BlockTragicFlower flower = (BlockTragicFlower) TragicBlocks.TragicFlower;
 		boolean bushType = random.nextBoolean();
 
-		if (!allowedBiomes.contains(biome) && !(biome instanceof BiomeGenPaintedForest)) return;
+		if (!allowedBiomes.contains(biome)) return;
 
 		int meta = random.nextInt(16);
 
@@ -54,19 +55,14 @@ public class FlowerWorldGen implements IWorldGenerator {
 		boolean flag3 = !(biome instanceof BiomeGenPlains);
 		boolean flag4 = biome != BiomeGenBase.roofedForest && biome != BiomeGenBase.swampland;
 		boolean flag5 = biome instanceof BiomeGenPaintedForest && world.provider instanceof TragicWorldProvider;
-		boolean flag6 = biome instanceof BiomeGenDarkForest;
-		boolean flag7 = biome instanceof BiomeGenHallowedHills;
+		boolean flag6 = biome == TragicBiome.DecayingValley && world.provider instanceof TragicWorldProvider;
 
 		if (world.provider.dimensionId == 0) //discriminator based flower generation for the overworld
 		{
 			if (world.getWorldInfo().getTerrainType() == WorldType.FLAT) return;
 
 			boolean[] discrim = new boolean[16];
-
-			for (int meow = 0; meow < discrim.length; meow++)
-			{
-				discrim[meow] = true;
-			}
+			Arrays.fill(discrim, true);
 
 			discrim[14] = random.nextInt(50) == 0; //this is the stapelia, it's rare, this means there's a one in 50 chance for a specific chunk to be able to generate a stapelia
 			//the chunk then has to choose it out of all available flowers based on biome, this makes it extremely rare in natural generation however it can generate in any allowed biome
@@ -116,15 +112,14 @@ public class FlowerWorldGen implements IWorldGenerator {
 		}
 		else
 		{
-
 			if (!(biome instanceof TragicBiome)) return;
 			TragicBiome trBiome = (TragicBiome) biome;
 
-			if (flag5) meta = 4;
-			if (flag6) meta = 15;
-			if (flag7) meta = 14;
+			if (flag5) meta = 4; //painted forest
+			if (flag6) meta = 17; //decaying valley
+			boolean flwr = flag5 || flag6; //prevent any other biomes from generating them if they use the other flower generator
 
-			for (int i = 0; i < trBiome.getFlowersFromBiomeType(); i++)
+			for (int i = 0; i < trBiome.getFlowersFromBiomeType() && flwr; i++)
 			{
 				Xcoord += random.nextInt(8) - random.nextInt(8);
 				Zcoord += random.nextInt(8) - random.nextInt(8);
@@ -160,7 +155,6 @@ public class FlowerWorldGen implements IWorldGenerator {
 					new WorldGenDeadBush(TragicBlocks.DeadBush).generate(world, random, Xcoord, Ycoord, Zcoord);
 				}
 			}
-
 		}
 	}
 

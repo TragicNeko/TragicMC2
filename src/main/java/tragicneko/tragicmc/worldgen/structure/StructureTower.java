@@ -41,7 +41,7 @@ public class StructureTower extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim != -1;
+		return dim != -1 && dim != TragicConfig.synapseID;
 	}
 
 	@Override

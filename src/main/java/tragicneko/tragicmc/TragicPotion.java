@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class TragicPotion extends Potion {
 
-	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked;
+	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked; //, Deafening, Nightmare, Exasperate, EvilPresence;
 	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence, Divinity;
 
 	private ItemStack stackIcon;
@@ -47,6 +47,10 @@ public class TragicPotion extends Potion {
 		if (TragicConfig.allowInhibit) Inhibit = (new TragicPotion(TragicConfig.idInhibit, true, 0x232323).setPotionName("potion.inhibit"));
 		if (TragicConfig.allowLeadFoot) LeadFoot = (new TragicPotion(TragicConfig.idLeadFoot, true, 0x78AB76).setPotionName("potion.leadFoot"));
 		if (TragicConfig.allowHacked) Hacked = (new TragicPotion(TragicConfig.idHacked, true, 0xC6F6FF).setPotionName("potion.hacked"));
+		//Deafening = new TragicPotion(TragicConfig.idHacked + 1, true, 0x000000).setPotionName("potion.deafening");
+		//Nightmare = new TragicPotion(TragicConfig.idHacked + 2, true, 0x000000).setPotionName("potion.nightmare");
+		//Exasperate = new TragicPotion(TragicConfig.idHacked + 3, true, 0x000000).setPotionName("potion.exasperate");
+		//EvilPresence = new TragicPotion(TragicConfig.idHacked + 4, true, 0x000000).setPotionName("potion.evilPresence");
 
 		if (TragicConfig.allowFlight) Flight = (new TragicPotion(TragicConfig.idFlight, false, 0xFDDC69).setPotionName("potion.flight"));
 		if (TragicConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(TragicConfig.idAquaSuperiority, true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));
@@ -71,6 +75,10 @@ public class TragicPotion extends Potion {
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
 		if (LeadFoot != null) ((TragicPotion) LeadFoot).setIcon(new ItemStack(Blocks.anvil));
 		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.OverlordBarrier));
+		//((TragicPotion) Deafening).setIcon(new ItemStack(Items.record_11));
+		//((TragicPotion) Nightmare).setIcon(new ItemStack(TragicItems.CorruptedEgg));
+		//((TragicPotion) Exasperate).setIcon(new ItemStack(TragicItems.EnchantedTears));
+		//((TragicPotion) EvilPresence).setIcon(new ItemStack(TragicItems.PureDarkness));
 
 		if (Flight != null) ((TragicPotion) Flight).setIcon(new ItemStack(Items.feather));
 		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.EnchantedTears));

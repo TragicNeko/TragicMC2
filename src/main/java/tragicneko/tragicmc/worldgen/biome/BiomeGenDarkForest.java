@@ -47,6 +47,12 @@ public class BiomeGenDarkForest extends TragicBiome {
 		this.gasGen = new SurfaceWorldGen2(8, TragicBlocks.DarkGas, 0, 4, 4);
 		this.vineGen = new WorldGenCustomVine(TragicBlocks.DarkVine);
 	}
+	
+	@Override
+	public int getFlowersFromBiomeType()
+	{
+		return variant == 2 ? 2 : 8;
+	}
 
 	@Override
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)

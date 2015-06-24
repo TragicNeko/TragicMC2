@@ -26,7 +26,7 @@ public class EntityCrystalMortor extends EntityProjectile {
 	}
 
 	@Override
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.65F;
 	}

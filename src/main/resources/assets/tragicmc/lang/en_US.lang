@@ -180,6 +180,21 @@ tile.tragicmc.flower.juniperBush.name=Juniper Bush
 tile.tragicmc.flower.stapelia.name=Stapelia
 tile.tragicmc.flower.thistle.name=Thistle
 
+tile.tragicmc.flower.bramble.name=Bramble
+tile.tragicmc.flower.tangleweed.name=Tangleweed
+tile.tragicmc.flower.deathClaw.name=Death Claw
+tile.tragicmc.flower.fusche.name=Fusche
+tile.tragicmc.flower.osiris.name=Osiris
+tile.tragicmc.flower.thusk.name=Thusk
+tile.tragicmc.flower.podtail.name=Podtail
+tile.tragicmc.flower.fanbrush.name=Fanbrush
+tile.tragicmc.flower.torchweed.name=Torchweed
+tile.tragicmc.flower.halon.name=Halon
+tile.tragicmc.flower.rizaphora.name=Rizaphora
+tile.tragicmc.flower.blackSpot.name=Black Spot
+
+tile.tragicmc.skyFruit.name=Sky Fruit
+
 tile.tragicmc.ashenTallGrass.name=Ashen Tall Grass
 tile.tragicmc.driedTallGrass.name=Dried Tall Grass
 
@@ -1164,3 +1179,5 @@ tragicmc.darkMarsh=Dark Marshland
 tragicmc.crystal=Crystal
 
 tragicmc.synapse=Synapse
+tragicmc.synapseDead=Dead Sector
+tragicmc.synapseCorrupt=Corrupted Chunk

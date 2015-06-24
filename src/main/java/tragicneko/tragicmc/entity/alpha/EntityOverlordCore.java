@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity.alpha;
 import static tragicneko.tragicmc.TragicConfig.overlordCoreStats;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -408,6 +409,9 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setHurtTicks(0);
 			this.setNearTarget(false);
 			this.setDropTicks(0);
+			
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 12.0, 16.0));
+			for (Entity e : list) this.applyEntityCollision(e);
 			return;
 		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
@@ -566,7 +570,12 @@ public class EntityOverlordCore extends TragicBoss {
 			this.mountEntity(null);
 		}
 
-		if (this.getVulnerableTicks() > 0) this.decrementVulnerableTicks();
+		if (this.getVulnerableTicks() > 0)
+		{
+			this.decrementVulnerableTicks();
+			if (this.getVulnerableTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.5F);
+		}
+
 		if (this.getHurtTicks() > 0) this.decrementHurtTicks();
 
 		if (this.getHurtTicks() == 0 && this.getHoverTicks() == 0 && this.getDropTicks() == 0 && this.getTransformationTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
@@ -645,15 +654,37 @@ public class EntityOverlordCore extends TragicBoss {
 	private void setNewTarget()
 	{
 		this.forceNewTarget = false;
+		boolean retry = !this.worldObj.playerEntities.isEmpty() && this.getVulnerableTicks() == 0;
 
-		if (!this.worldObj.playerEntities.isEmpty() && this.getVulnerableTicks() == 0)
+		if (retry)
 		{
 			Entity ent = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
 
-			if (ent instanceof EntityPlayer && ((EntityPlayer)ent).capabilities.isCreativeMode) return;
-			this.target = ent;
+			if (ent instanceof EntityPlayer && !((EntityPlayer)ent).capabilities.isCreativeMode)
+			{
+				this.target = ent;
+				retry = false;
+			}
+			
+			if (retry)
+			{
+				double d0 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
+				
+				for (Entity e : list)
+				{
+					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse)
+					{
+						if (e instanceof EntityPlayer && ((EntityPlayer) e).capabilities.isCreativeMode) continue;
+						this.target = e;
+						retry = false;
+						break;
+					}
+				}
+			}
 		}
-		else
+
+		if (retry)
 		{
 			boolean flag = false;
 
@@ -829,6 +860,15 @@ public class EntityOverlordCore extends TragicBoss {
 	protected void onDeathUpdate()
 	{
 		++this.deathTime;
+
+		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
+		for (Entity e : list)
+		{
+			if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse)
+			{
+				e.setDead();
+			}
+		}
 
 		if (this.deathTime >= 300)
 		{

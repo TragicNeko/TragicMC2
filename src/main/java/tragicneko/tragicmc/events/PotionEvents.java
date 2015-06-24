@@ -34,6 +34,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -773,4 +774,10 @@ public class PotionEvents {
 			}
 		}
 	}
+	/*
+	@SubscribeEvent
+	public void onHeal(LivingHealEvent event)
+	{
+		if (event.isCancelable() && event.entityLiving.isPotionActive(TragicPotion.EvilPresence)) event.setCanceled(true);
+	} */
 }

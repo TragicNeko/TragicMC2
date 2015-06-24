@@ -82,7 +82,7 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 		else
 		{
 			if (this.getFiringTicks() >= 20 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.canEntityBeSeen(this.getAttackTarget()) &&
-					this.getDistanceToEntity(this.getAttackTarget()) >= 2.0F)
+					this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);

@@ -22,6 +22,8 @@ public class BlockMoltenRock extends Block {
 		this.setBlockName("tragicmc.moltenRock");
 		this.setBlockTextureName("tragicmc:MoltenRock");
 		this.setHarvestLevel("pickaxe", 0);
+		this.setHardness(0.8F);
+		this.setResistance(5.0F);
 	}
 
 	@Override

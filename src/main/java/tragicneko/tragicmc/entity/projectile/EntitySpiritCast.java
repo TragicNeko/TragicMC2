@@ -19,7 +19,7 @@ public class EntitySpiritCast extends EntityProjectile {
 	}
 
 	@Override
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.812F;
 	}

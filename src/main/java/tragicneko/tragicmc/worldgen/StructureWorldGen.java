@@ -29,7 +29,7 @@ public class StructureWorldGen implements IWorldGenerator {
 
 		for (Structure s : Structure.structureList)
 		{
-			if (s != null && s.isValidDimension(world.provider.dimensionId) && random.nextBoolean())
+			if (s != null && s.isValidDimension(world.provider.dimensionId))
 			{
 				if (s.isSurfaceStructure() && s.areCoordsValidForGeneration(world, x, top, z, random) || s.areCoordsValidForGeneration(world, x, y, z, random))
 				{

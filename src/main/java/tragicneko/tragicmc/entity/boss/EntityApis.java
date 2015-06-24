@@ -35,6 +35,8 @@ import tragicneko.tragicmc.entity.projectile.EntitySolarBomb;
 import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityApis extends TragicBoss {
+	
+	public int reflectionBuffer;
 
 	public EntityApis(World par1World) {
 		super(par1World);
@@ -242,6 +244,7 @@ public class EntityApis extends TragicBoss {
 			if (this.isCharging()) this.decrementChargeTicks();
 			if (this.isReflecting())
 			{
+				this.reflectionBuffer = 160;
 				this.decrementReflectionTicks();
 
 				if (this.rand.nextInt(4) == 0 && this.onGround && this.ticksExisted % 2 == 0 && this.worldObj.isDaytime() && this.getHealth() <= this.getMaxHealth() / 4)
@@ -258,6 +261,10 @@ public class EntityApis extends TragicBoss {
 						if (block == Blocks.air && World.doesBlockHaveSolidTopSurface(this.worldObj, coords[0], coords[1] - 1, coords[2])) this.worldObj.setBlock(coords[0], coords[1], coords[2], Blocks.fire);
 					}
 				}
+			}
+			else
+			{
+				if (this.reflectionBuffer > 0) this.reflectionBuffer--;
 			}
 
 			if (this.getAttackTime() > 0) this.decrementAttackTime();
@@ -372,7 +379,7 @@ public class EntityApis extends TragicBoss {
 				}
 			}
 
-			if (this.getAttackTarget() != null && rand.nextInt(8) == 0 && this.ticksExisted % 20 == 0 && !this.isCharging() && this.getHealth() <= this.getMaxHealth() * 2 / 3 && !this.isReflecting())
+			if (this.getAttackTarget() != null && this.reflectionBuffer == 0 && this.ticksExisted % 20 == 0 && !this.isReflecting())
 			{
 				this.setReflectionTicks(160);
 			}

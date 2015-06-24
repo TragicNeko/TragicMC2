@@ -234,7 +234,7 @@ public abstract class EntityProjectile extends Entity
 	/**
 	 * Return the motion factor for this projectile. The factor is multiplied by the original motion.
 	 */
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.95F;
 	}

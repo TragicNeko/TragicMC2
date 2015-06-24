@@ -250,20 +250,7 @@ public class EntityTox extends TragicMob {
 
 	protected void shootProjectiles()
 	{
-		double d0 = this.getAttackTarget().posX - this.posX;
-		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
-		double d2 = this.getAttackTarget().posZ - this.posZ;
-
-		float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.625F;
-
-		for (int i = 0; i < 3; i++)
-		{
-			EntitySpore spore = new EntitySpore(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
-			spore.posX = this.posX + d0 * 0.115D;
-			spore.posY = this.posY + (this.height * 2 / 3);
-			spore.posZ = this.posZ + d2 * 0.115D;
-			this.worldObj.spawnEntityInWorld(spore);
-		}
+		this.fireProjectileAtEntity(new EntitySpore(this.worldObj), this.getAttackTarget(), 0F);
 	}
 
 	@Override

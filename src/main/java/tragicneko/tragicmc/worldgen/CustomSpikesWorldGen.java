@@ -81,7 +81,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 					{
 						spikeSize *= regress; //reduce the radius of the spike randomly
 
-						if (random.nextInt(4) == 0 && spikeSize >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
+						if (random.nextInt(4) == 0 && spikeSize >= 0.5688233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
 						{
 							Xcoord += random.nextInt(2) - random.nextInt(2);
 							Zcoord += random.nextInt(2) - random.nextInt(2);

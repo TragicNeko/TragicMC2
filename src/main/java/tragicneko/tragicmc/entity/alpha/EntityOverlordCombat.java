@@ -5,6 +5,7 @@ import static tragicneko.tragicmc.TragicConfig.overlordCombatStats;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -97,6 +98,8 @@ public class EntityOverlordCombat extends TragicBoss {
 					if (TragicConfig.allowHacked && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
 				}
 			}
+			
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
 		}
 
 		if (this.worldObj.isRemote && f > 16.0F)
@@ -133,6 +136,15 @@ public class EntityOverlordCombat extends TragicBoss {
 			core.setPosition(this.posX, this.posY, this.posZ);
 			core.setStartTransform();
 			this.worldObj.spawnEntityInWorld(core);
+			
+			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
+			for (Entity e : list)
+			{
+				if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != core)
+				{
+					e.setDead();
+				}
+			}
 		}
 	}
 
@@ -456,6 +468,8 @@ public class EntityOverlordCombat extends TragicBoss {
 					}
 				}
 			}
+			
+			if (this.getUnstableTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 0.5F);
 
 			this.unstableBuffer = 300;
 			this.aggregate = 1;
@@ -507,6 +521,8 @@ public class EntityOverlordCombat extends TragicBoss {
 						this.motionZ = Math.min(Math.abs(d3), 1.6D) == Math.abs(d3) ? d3 : 1.6D * (d3 < 0 ? -1 : 1);
 					}
 				}
+				
+				if (this.getChargeTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.march", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -536,6 +552,8 @@ public class EntityOverlordCombat extends TragicBoss {
 				e.motionX = -d1 / f2 * d4 * 0.600000011920929D + e.motionX * 0.20000000298023224D;
 				e.motionZ = -d2 / f2 * d4 * 0.600000011920929D + e.motionZ * 0.20000000298023224D;
 				e.motionY = -d3 / f2 * d4 * 0.300000011920929D + e.motionZ * 0.10000000298023224D;
+				
+				if (this.getGrappleTicks() % 20 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.phaser", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -567,6 +585,8 @@ public class EntityOverlordCombat extends TragicBoss {
 				hunter.setPosition(this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble(), this.posZ + rand.nextDouble() - rand.nextDouble());
 				this.worldObj.spawnEntityInWorld(hunter);
 			}
+			
+			if (this.getReflectionTicks() % 20 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wow", 1.8F, 1.0F);
 		}
 		if (this.onGround && this.hasLeaped) this.hasLeaped = false;
 
@@ -622,6 +642,7 @@ public class EntityOverlordCombat extends TragicBoss {
 			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 			if (aggregate < 100) aggregate++;
 		}
+		if (!this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, super.getHurtSound(), 1.0F, 1.0F);
 		return true;
 	}
 
@@ -646,6 +667,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				{
 					if (e instanceof EntityLivingBase && e != entity) e.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 				}
+				if (this.getChargeTicks() == 0 && this.getAttackTime() == 20) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.shink", 1.9F, 1.0F);
 			}
 			return flag;
 		}
@@ -695,6 +717,49 @@ public class EntityOverlordCombat extends TragicBoss {
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		this.setTransforming();
+		this.playLivingSound();
 		return super.onSpawnWithEgg(data);
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return "tragicmc:boss.overlordcombat.living";
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return "tragicmc:boss.overlordcombat.hurt";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return "tragicmc:boss.overlordcombat.death";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F;
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+	{
+		this.playSound("mob.irongolem.walk", 1.2F, 1.8F);
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }

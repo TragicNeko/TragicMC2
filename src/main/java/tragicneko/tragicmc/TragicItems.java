@@ -205,9 +205,7 @@ public class TragicItems {
 
 	public static Item AnomalyAugment;
 	public static Item Nuke;
-
-
-
+	
 	public static Item BloodSacrifice;
 	public static Item NourishmentSacrifice;
 
@@ -247,9 +245,9 @@ public class TragicItems {
 	public static ChestGenHooks AwesomeChestHook;
 
 	//Tool Materials
-	private static final ToolMaterial toolBasic = EnumHelper.addToolMaterial("BASIC", 1, 115, 12.0F, 0.0F, 1);
-	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 12.0F, 0.0F, 6);
-	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 15.0F, 2.0F, 5);
+	private static final ToolMaterial toolBasic = EnumHelper.addToolMaterial("BASIC", 1, 115, 6.0F, 0.0F, 1);
+	private static final ToolMaterial toolScythe = EnumHelper.addToolMaterial("SCYTHE", 1, 110, 10.0F, 0.0F, 6);
+	private static final ToolMaterial toolJack = EnumHelper.addToolMaterial("JACK", 3, 825, 14.0F, 2.0F, 5);
 	private static final ToolMaterial toolGravity = EnumHelper.addToolMaterial("GRAVITY", 1, 220, 0.5F, 0.5F, 10);
 	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, -4F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
@@ -258,15 +256,17 @@ public class TragicItems {
 	private static final ToolMaterial toolClaws = EnumHelper.addToolMaterial("CLAWS", 2, 350, 4.0F, 4.0F, 2);
 	private static final ToolMaterial toolThorn = EnumHelper.addToolMaterial("THORN", 1, 330, 6.0F, 6.0F, 4);
 	private static final ToolMaterial toolFrozen = EnumHelper.addToolMaterial("FROZEN", 2, 400, 6.0F, 6.0F, 3);
-	private static final ToolMaterial toolWithering = EnumHelper.addToolMaterial("WITHERING", 3, 550, 15.0F, 6.0F, 16);
+	private static final ToolMaterial toolWithering = EnumHelper.addToolMaterial("WITHERING", 3, 550, 8.0F, 6.0F, 16);
 	private static final ToolMaterial toolDarkness = EnumHelper.addToolMaterial("DARKNESS", 3, 350, 8.0F, 8.0F, 26);
 	private static final ToolMaterial toolLight = EnumHelper.addToolMaterial("LIGHT", 3, 333, 8.0F, 8.0F, 14);
 	private static final ToolMaterial toolMourning = EnumHelper.addToolMaterial("MOURNING", 3, 440, 9.0F, 9.0F, 14);
-	private static final ToolMaterial toolReaper = EnumHelper.addToolMaterial("REAPER", 3, 800, 30.0F, 12.0F, 10);
-	private static final ToolMaterial toolCelesJack = EnumHelper.addToolMaterial("CELESJACK", 3, 1280, 20.0F, 4.0F, 4);
+	private static final ToolMaterial toolReaper = EnumHelper.addToolMaterial("REAPER", 3, 800, 20.0F, 12.0F, 10);
+	private static final ToolMaterial toolCelesJack = EnumHelper.addToolMaterial("CELESJACK", 3, 1280, 14.0F, 4.0F, 4);
 	private static final ToolMaterial toolCelestial = EnumHelper.addToolMaterial("CELESTIAL", 3, 1080, 14.0F, 14.0F, 24);
 	private static final ToolMaterial toolDragon = EnumHelper.addToolMaterial("DRAGON", 3, 860, 14.0F, 14.0F, 18);
+	private static final ToolMaterial toolCorruptThorn = EnumHelper.addToolMaterial("CORRUPTEDTHORN", 3, 480, 6.0F, 16.0F, 12);
 	private static final ToolMaterial toolTragic = EnumHelper.addToolMaterial("TRAGIC", 3, 400, 21.0F, 21.0F, 28);
+	private static final ToolMaterial toolHarvester = EnumHelper.addToolMaterial("HARVESTER", 3, 960, 30.0F, 18.0F, 12);
 	private static final ToolMaterial toolAwakened = EnumHelper.addToolMaterial("AWAKENED", 3, 1000, 26.0F, 26.0F, 32);
 	private static final ToolMaterial toolSentinel = EnumHelper.addToolMaterial("SENTINEL", 4, 9001, 26.0F, 26.0F, 32);
 	private static final ToolMaterial toolJustice = EnumHelper.addToolMaterial("JUSTICE", 100, 1000, Float.MAX_VALUE, 999999996.0F, 100);
@@ -279,6 +279,10 @@ public class TragicItems {
 	private static final ArmorMaterial armorDark = EnumHelper.addArmorMaterial("DARK", 18, new int[] {3, 7, 5, 3}, 6); //18
 	private static final ArmorMaterial armorLight = EnumHelper.addArmorMaterial("LIGHT", 26, new int[] {5, 7, 6, 4}, 18); //22
 	private static final ArmorMaterial armorOverlord = EnumHelper.addArmorMaterial("OVERLORD", 35, new int[] {5, 8, 7, 4}, 26); //24
+	
+	public static final Item test = new TragicWeapon(toolAwakened, null).setAscensionLevel(5F).setUnlocalizedName("tragicmc.test").setTextureName("iron_sword").setCreativeTab(TragicMC.Survival); //Silent hellraiser upgrade
+	public static final Item test2 = new TragicWeapon(toolHarvester, null).setAscensionLevel(8F).setUnlocalizedName("tragicmc.test2").setTextureName("diamond_sword").setCreativeTab(TragicMC.Survival); //Reaper scythe upgrade
+	public static final Item test3 = new TragicWeapon(toolCorruptThorn, null).setAscensionLevel(5F).setUnlocalizedName("tragicmc.test3").setTextureName("stone_sword").setCreativeTab(TragicMC.Survival); //Guilty thorn upgrade
 
 	public static void load()
 	{
@@ -683,7 +687,7 @@ public class TragicItems {
 		BananaSplit = (new ItemBananaSplit(8, false).setUnlocalizedName("tragicmc.bananaSplit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BananaSplit"));
 		GameRegistry.registerItem(BananaSplit, "bananaSplit");
 
-		SkyFruit = (new ItemSkyFruit(4, false).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SkyFruit"));
+		SkyFruit = (new ItemSkyFruit(4, false, TragicBlocks.SkyFruit).setUnlocalizedName("tragicmc.skyFruit").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SkyFruit"));
 		GameRegistry.registerItem(SkyFruit, "skyFruit");
 
 		Tentacle = (new ItemTentacle(3, true).setUnlocalizedName("tragicmc.tentacle").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Tentacle"));

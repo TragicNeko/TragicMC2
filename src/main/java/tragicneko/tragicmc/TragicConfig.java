@@ -41,22 +41,23 @@ public class TragicConfig {
 	private static boolean[] epicAmuletConfigs = new boolean[8];
 	public static boolean amuTime, amuWither, amuOverlord, amuEnyvil;
 
-	public static boolean keepDimensionLoaded, allowDimensionRespawn;
+	public static boolean keepDimensionLoaded, allowDimensionRespawn, allowSynapseVariants;
+	public static int synapseVariantChance;
 	private static int[] dimensionIDs = new int[5];
 	public static int dimensionID, providerID, synapseID, synapseProviderID, collisionBiomeSize;
-	private static int[] biomeIDs = new int[48];
+	private static int[] biomeIDs = new int[64];
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
 	public static int idAshenMountains, idAshenHills, idAshenBadlands, idStarlitPrarie, idStarlitPlateaus, idStarlitCliffs, idStarlitLowlands, idTaintedSpikes;
 	public static int idTaintedLowlands, idTaintedRises, idTaintedScarlands, idTaintedIsles, idHallowedHills, idHallowedForest, idHallowedPrarie, idHallowedCliffs;
 	public static int idScorchedWastelands, idScorchedValley, idScorchedScarlands, idCorrodedSteppe, idCorrodedHeights, idCorrodedVeld, idCorrodedRunoff, idCorrodedFallout;
-	public static int idFrozenTundra, idFrozenHills, idFrozenDepths, idCrystal, idDarkForest, idDarkForestHills, idDarkMarsh;
+	public static int idFrozenTundra, idFrozenHills, idFrozenDepths, idCrystal, idDarkForest, idDarkForestHills, idDarkMarsh, idSynapseDead, idSynapseCorrupt;
 	public static int idSynapse;
-	private static int[] biomeWeights = new int[48];
+	private static int[] biomeWeights = new int[64];
 	public static int decayingHillsW, decayingValleyW, decayingWastelandW, decayingMountainsW, paintedForestW, paintedPlainsW, paintedHillsW, paintedClearingW;
 	public static int ashenMountainsW, ashenHillsW, ashenBadlandsW, starlitPrarieW, starlitPlateausW, starlitCliffsW, starlitLowlandsW, taintedSpikesW, taintedLowlandsW;
 	public static int taintedRisesW, taintedScarlandsW, taintedIslesW, hallowedHillsW, hallowedForestW, hallowedPrarieW, hallowedCliffsW, scorchedWastelandsW, scorchedValleyW;
 	public static int scorchedScarlandsW, corrodedSteppeW, corrodedHeightsW, corrodedVeldW, corrodedRunoffW, corrodedFalloutW, frozenTundraW, frozenHillsW, frozenDepthsW;
-	public static int synapseW, crystalW, darkForestW, darkForestHillsW, darkMarshW;
+	public static int synapseW, crystalW, darkForestW, darkForestHillsW, darkMarshW, synapseDeadW, synapseCorruptW;
 
 	private static boolean[] blanketDoom = new boolean[17];
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
@@ -239,6 +240,8 @@ public class TragicConfig {
 		dimensionIDs[3] = (config.get(catDimension, "synapseProviderID", dimensionIDs[2]).getInt(dimensionIDs[2]));
 		dimensionIDs[4] = MathHelper.clamp_int((config.get(catDimension, "collisionBiomeSize", 6).getInt(6)), 1, 20);
 		allowDimensionRespawn = (config.get(catDimension, "allowCollisionRespawn", false).getBoolean(false));
+		allowSynapseVariants = (config.get(catDimension, "allowSynapseMiniBiomes", true).getBoolean(true));
+		synapseVariantChance = (config.get(catDimension, "synapseMiniBiomeChance", 128).getInt(128));
 
 		mapping = 0;
 		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDecayingHillsWeight", 20).getInt(20));
@@ -321,6 +324,10 @@ public class TragicConfig {
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDarkForestHillsID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDarkMarshWeight", 10).getInt(10));
 		biomeIDs[mapping++] = (config.get(catDimension, "biomeDarkMarshID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeSynapseDeadSectorWeight", 10).getInt(10));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeSynapseDeadSectorID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
+		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeSynapseCorruptChunkWeight", 10).getInt(10));
+		biomeIDs[mapping++] = (config.get(catDimension, "biomeSynapseCorruptChunkID", getOpenIDForBiome(biomeIDs[mapping - 2] + 1)).getInt(getOpenIDForBiome(biomeIDs[mapping - 2] + 1)));
 
 		config.addCustomCategoryComment(catDimension, "Set the various biome IDs in the Dimension, including the Dimension's own ID, also set if the Dimension should stay loaded.");
 
@@ -1435,6 +1442,10 @@ public class TragicConfig {
 		idDarkForestHills = biomeIDs[mapping++];
 		darkMarshW = biomeWeights[mapping];
 		idDarkMarsh = biomeIDs[mapping++];
+		synapseDeadW = biomeWeights[mapping];
+		idSynapseDead = biomeIDs[mapping++];
+		synapseCorruptW = biomeWeights[mapping];
+		idSynapseCorrupt = biomeIDs[mapping++];
 
 		mapping = 0;
 		allowDoomsdays = blanketDoom[mapping++];

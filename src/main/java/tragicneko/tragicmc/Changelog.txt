@@ -4091,7 +4091,7 @@ Increased Apis, Claymation and Polaris default speed values
 Lowered Time Controller's speed value a bit
 Fixed bug with Claymation when one of it's forms was killed, it would update onDeath but not actually be dead
 
-2.44.2602++ <205> (June 2, 2015)
+2.44.2646 <205> (June 2, 2015)
 Added the rest of the Skultar sounds
 Statues now rotate towards the player when they are placed
 Reduced range in which statues apply collision to players, collision is applied on server and client side now
@@ -4143,18 +4143,49 @@ Improved Stin Amulet's ability to knockback targets
 Fixed Lightning Amulet not setting the right hunger values to restore hunger
 Did server testing for the Nuke, doesn't lag the server at all so that's awesome
 
-Note:
-Add new flowers, possibly dimension-specific, with special orientations and types, possibly also add new crops for food sources in the Dimension
+2.44.2646++ <206> (June 15, 2015)
+Added Synapse variants to the Dimension, there will be dead sectors and corrupt sectors, these act like mini-biomes and will be done via worldgen instead
+of by using a normal biome generation method
+The 3x3 chunks around 0,0 are protected from being variants
+Tower structures no longer generate in the Synapse, I will add Synapse specific structures soon
+Reduced default chance for Synapse mini-biomes to generate
+Removed Wither from the Corrupted Spire spawners (unless certain mini-bosses are disabled)
+Fixed hole not generating properly in boss floors of Corrupted Spires
+Ice spikes can be silk touch harvested now
+Created a method for firing projectiles for any of my mobs, this does all of the usual calculations and will adjust for entity motion if on Hard, some issues
+with getting it to register a player's motion for some reason
+Reduced amount of spores that Tox fire
+Apis will now alternate between reflecting and not reflecting instead of just randomly reflecting, this will make it more difficult to fight
+Removed Strength buff from Golden Sushi
+Modified method for projectile firing to allow for vanilla fireballs and wither skulls to be used
+Added Overlord Cocoon sounds, working on the Combat and Core form sounds
+Cocoon form now only summons in Nano Swarms on later phases, it's corrupted gas now spawns in a larger area as well when vulnerable
+Going to use the same vulnerable sounds for all 3 forms so that the player knows when they are vulnerable, but slightly pitch shifted
+Added multiple Combat form sounds, working on Core sounds now
+Added multiple new flowers specifically for the Collision
+Changed the ItemBlock that the flowers and saplings use, my flowers now extend blockbush instead of blockflower
+Did some fixes for smaller spikes generating in the Decaying and Starlit biomes, they should now generate less staggered and cubic
+Added new flower worldgen for the Collision, this will run alongside the other one (but shouldn't cause any hangs)
+Removed a few older flowers from generation in the Collision
+Fixed Molten Rock being insta-mined due to the hardness never being set
+Teleporter now will always clear a spot to spawn you in whenever you go to either of my Dimensions
+Slightly reduced efficiency of the Jacks/Scythes to allow for a bit more room to work with regarding future upgrades for them
+Experimented with Fruit block, possibly to add some type of food to the Collision
+Tested Ascension levels and some future potion effects
+Fixed MusicTicker playing when music is disabled (muted)
+Added Sky Fruit block, will work similarly to Cocoa, working on more food sources for the Dimension
+
+
+TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
-Add a Dead Sector and Corrupt Sector biome variant to the Synapse, Dead Sector contains massive chunks of dead/aged circuits, corrupt contains massive amounts of
-Digital Sea inside of it
 Remove all unneeded info logging outside of setup and initialization
+Avris model, texture, animations
+New Structures
 
-Boss sounds~
+Boss sounds--
 Apis sounds: Mad bull sounds
 Yeti sounds: Deep beastly sounds
 Enyvil sounds: possibly double toned sounds (high and low pitched at the same time to create a weird effect)
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
-Overlord sounds: bio-electronically altered sounds, organic sounds with electronic filters and effects on them
 Avris sounds: oohs and ahhs and snickers... mmm snickers

@@ -25,7 +25,7 @@ public class EntityIcicle extends EntityProjectile {
 	}
 
 	@Override
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.865F;
 	}

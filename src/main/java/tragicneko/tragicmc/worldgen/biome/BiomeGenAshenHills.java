@@ -43,7 +43,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.AshenGrass;
 		this.theBiomeDecorator.treesPerChunk = variant == 2 ? 1 : (variant == 1 ? 2 : 4);
-		this.theBiomeDecorator.grassPerChunk = variant == 2 ? 5 : 2;
+		this.theBiomeDecorator.grassPerChunk = variant == 2 ? 3 : 1;
 		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, 0, TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, true, false);
 		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, 3, 3.0D, 2.0D, false, 8);
 	}
@@ -52,6 +52,12 @@ public class BiomeGenAshenHills extends TragicBiome {
 	public int getBushesFromBiomeType()
 	{
 		return 12;
+	}
+	
+	@Override
+	public int getFlowersFromBiomeType()
+	{
+		return variant == 2 ? 8 : 2;
 	}
 
 	@Override

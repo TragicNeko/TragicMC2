@@ -25,7 +25,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 	}
 
 	@Override
-	protected float getMotionFactor()
+	public float getMotionFactor()
 	{
 		return 0.75F;
 	}

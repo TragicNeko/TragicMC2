@@ -44,7 +44,6 @@ public class ItemEnchantedSushi extends ItemFood {
 	public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
 	{
 		player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 2400, 4));
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 1200, 1));
 		player.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 2400, 1));
 		player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 2400, 2));
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
