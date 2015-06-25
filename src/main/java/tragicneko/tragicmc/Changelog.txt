@@ -4174,7 +4174,10 @@ Experimented with Fruit block, possibly to add some type of food to the Collisio
 Tested Ascension levels and some future potion effects
 Fixed MusicTicker playing when music is disabled (muted)
 Added Sky Fruit block, will work similarly to Cocoa, working on more food sources for the Dimension
-
+Increased spike size variation in Crystal biomes, experimented with changing overall spike sizes in the world generator
+Fixed derp with spikegen (doing no regression on larger spikes)
+Fixed derp with vine generation (not properly using the generation resulting in no vines being generated)
+Fixed another derp with vine gen not using the block that is saved in it
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
