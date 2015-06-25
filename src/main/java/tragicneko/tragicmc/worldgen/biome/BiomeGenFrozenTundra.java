@@ -47,7 +47,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		this.permafrostGen = new RuggedTerrainWorldGen(TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, 2, 2.0D, 3.0D, false, 8);
 		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 12 : 4, TragicBlocks.IceSpike, 0, 4, 8);
 		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss, 128);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		{
 			k = x + rand.nextInt(16) - 8;
 			l = z + rand.nextInt(16) - 8;
-			this.vineGen.generate(world, rand, k, 128, l);
+			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 42, l);
 		}
 
 		this.permafrostGen.generate(rand, x / 16, z / 16, world, null, null);

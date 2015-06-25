@@ -50,7 +50,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		this.toxicCobbleGen = new RuggedTerrainWorldGen(TragicBlocks.DarkCobblestone, 2, TragicBlocks.DarkCobblestone, 6, 4.0D, 3.0D, false, 8);
 		this.gasGen = new SurfaceWorldGen2(variant == 0 || variant == 4 ? 14 : (variant >= 3 ? 7 : 2), TragicBlocks.RadiatedGas, 0, 4, 8);
 		this.voidPitGen = new VoidPitWorldGen(2.5D, 2.0D);
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.WickedVine);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.WickedVine, 128);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		{
 			k = x + rand.nextInt(16) - 8;
 			l = z + rand.nextInt(16) - 8;
-			this.vineGen.generate(world, rand, k, 128, l);
+			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 42, l);
 		}
 
 		int Xcoord = (x * 16) + rand.nextInt(16);

@@ -45,7 +45,7 @@ public class BiomeGenDarkForest extends TragicBiome {
 		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 4 : 8;
 		this.drudgeGen = new SurfaceWorldGen(3.0D, 4.0D, true, 24, TragicBlocks.Quicksand, 2, TragicBlocks.DarkGrass, true, true);
 		this.gasGen = new SurfaceWorldGen2(8, TragicBlocks.DarkGas, 0, 4, 4);
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.DarkVine);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.DarkVine, 128);
 	}
 	
 	@Override
@@ -70,7 +70,7 @@ public class BiomeGenDarkForest extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-
+		/*
 		int k = x + rand.nextInt(16) + 8;
 		int l = z + rand.nextInt(16) + 8;
 		for (int a = 0; a < 20; ++a)
@@ -78,7 +78,7 @@ public class BiomeGenDarkForest extends TragicBiome {
 			k = x + rand.nextInt(16) - 8;
 			l = z + rand.nextInt(16) - 8;
 			this.vineGen.generate(world, rand, k, 128, l);
-		}
+		} */
 
 		this.gasGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world, null, null);

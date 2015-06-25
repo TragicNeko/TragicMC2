@@ -60,7 +60,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 		for (int buzza = 0; buzza < relays; buzza++)
 		{
-			spikeSize = random.nextDouble() * sizeVariation + size;
+			spikeSize = (random.nextDouble() * sizeVariation) + size;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
@@ -75,13 +75,13 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 				for (int y1 = 0; y1 < 128; y1++)
 				{
-					if (spikeSize < cutoff || Ycoord + y1 > 256) break;
+					if (spikeSize < cutoff || Ycoord + y1 > world.getActualHeight()) break;
 
-					if (random.nextBoolean())
+					if (random.nextBoolean() && this.usesSpikeTypes)
 					{
 						spikeSize *= regress; //reduce the radius of the spike randomly
 
-						if (random.nextInt(4) == 0 && spikeSize >= 0.5688233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
+						if (random.nextInt(3) == 0 && spikeSize >= 0.4888233D) //randomly apply offset to the spike, this sometimes gives it a cool spiral effect
 						{
 							Xcoord += random.nextInt(2) - random.nextInt(2);
 							Zcoord += random.nextInt(2) - random.nextInt(2);
@@ -94,8 +94,8 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 						}
 					}
 
-					if (!this.usesSpikeTypes) spikeSize *= regress; //makes sure it's done every y-level if in decaying biomes
-
+					spikeSize *= regress;
+					
 					if (this.usesSpikeTypes && random.nextBoolean())
 					{
 						if (spikeType == 2 && size >= 0.5625292D) //Type 2 has greater chance of offset, making it look more coral-like

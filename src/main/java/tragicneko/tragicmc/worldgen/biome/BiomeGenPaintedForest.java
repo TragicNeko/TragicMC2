@@ -35,7 +35,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 2 : (variant == 3 ? -999 : 12);
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 || variant == 3 ? 4 : 2;
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.Glowvine);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.Glowvine, 128);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-
+		/*
 		if (variant < 3)
 		{
 			int k;
@@ -95,7 +95,7 @@ public class BiomeGenPaintedForest extends TragicBiome {
 				l = z + rand.nextInt(16) - 8;
 				this.vineGen.generate(world, rand, k, 128, l);
 			}
-		}
+		} */
 	}
 
 }

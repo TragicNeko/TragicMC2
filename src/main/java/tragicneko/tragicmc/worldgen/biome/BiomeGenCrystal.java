@@ -31,7 +31,7 @@ public class BiomeGenCrystal extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = 0;
 		this.fillerBlock = TragicBlocks.Crystal;
 		this.topBlock = TragicBlocks.Crystal;
-		this.crystalGen = new CustomSpikesWorldGen(8, TragicBlocks.Crystal, 0, 0.89477735D, 0.381114525D, 1.4D, 0.35D, false, false);
+		this.crystalGen = new CustomSpikesWorldGen(8, TragicBlocks.Crystal, 0, 0.90477735D, 0.421114525D, 1.15D, 1.15D, false, false);
 	}
 
 	@Override
