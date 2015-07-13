@@ -23,7 +23,7 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 
 	public static final float[][] heights = new float[][] {{0.45F, 0.05F}, {0.35F, -0.95F}, {1.85F, 0.45F}, {0.05F, 0.65F}, {0.25F, -0.65F}};
 
-	public BiomeGenTaintedSpikes(int par1, int par2) {
+	public BiomeGenTaintedSpikes(int par1, byte par2) {
 		super(par1, par2);
 		if (TragicConfig.allowPsygote) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPsygote.class, TragicConfig.psygoteSC, 0, 1));
 		if (TragicConfig.allowStin) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityStin.class, TragicConfig.stinSC, 0, 2));
@@ -36,9 +36,9 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 		this.rootHeight = heights[variant][1];
 		this.fillerBlock = TragicBlocks.DarkStone;
 		this.topBlock = TragicBlocks.ErodedStone;
-		this.spikeWorldGen = new CustomSpikesWorldGen(variant == 0 ? 4 : 1, TragicBlocks.DarkStone, 14, 0.92477745D, 0.42943755D, 1.5D, 1.0D);
-		this.scarGen = new InvertedSpikeWorldGen(4, 1.5, 2.5, 0.91977745D, 0.48943755D);
-		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, 2, TragicBlocks.ErodedStone, 3, 2.0D, 2.5D, true, 8);
+		this.spikeWorldGen = new CustomSpikesWorldGen((byte) (variant == 0 ? 4 : 1), TragicBlocks.DarkStone, (byte) 14, 0.93477745D, 0.42943755D, 1.5D, 1.0D);
+		this.scarGen = new InvertedSpikeWorldGen((byte) 4, 1.5, 2.5, 0.91977745D, 0.48943755D);
+		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.ErodedStone, (byte) 2, TragicBlocks.ErodedStone, (byte) 3, 2.0D, 2.5D, true, (byte) 8);
 		this.isleGen = new IsleWorldGen();
 	}
 

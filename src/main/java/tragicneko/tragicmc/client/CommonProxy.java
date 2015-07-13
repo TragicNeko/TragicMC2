@@ -16,8 +16,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy implements IGuiHandler {
 
-	public static final Map<UUID, NBTTagCompound> extendedEntityData = new HashMap<UUID, NBTTagCompound>();
-
 	public void registerRenders(){}
 
 	@Override
@@ -38,20 +36,6 @@ public class CommonProxy implements IGuiHandler {
 			return new GuiAmuletInventory(player, player.inventory, PropertyAmulets.get(player).inventory);
 		}
 		return null;
-	}
-
-	/**
-	 * Adds an entity's custom data to the map for temporary storage
-	 */
-	public static void storeEntityData(UUID uuid, NBTTagCompound compound) {
-		extendedEntityData.put(uuid, compound);
-	}
-
-	/**
-	 * Removes the compound from the map and returns the NBT tag stored for name or null if none exists
-	 */
-	public static NBTTagCompound getEntityData(UUID uuid) {
-		return extendedEntityData.remove(uuid);
 	}
 
 	public EntityPlayer getPlayerFromMessageCtx(MessageContext ctx)

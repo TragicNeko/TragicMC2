@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockStructureSeeds;
 import tragicneko.tragicmc.blocks.tileentity.TileEntityStructureSeed;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -59,7 +60,7 @@ public class BlockStructureSeed extends BlockContainer {
 	@Override
 	public void getSubBlocks(Item par1, CreativeTabs par2, List par3)
 	{
-		for (int i = 0; i < ItemBlockStructureSeeds.subNames.length; i++)
+		for (int i = 0; i < Structure.structureList.length && Structure.structureList[i] != null; i++)
 		{
 			par3.add(new ItemStack(par1, 1, i));
 		}

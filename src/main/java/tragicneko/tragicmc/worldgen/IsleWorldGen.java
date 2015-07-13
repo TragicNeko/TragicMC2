@@ -21,7 +21,7 @@ public class IsleWorldGen implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
 		ArrayList<int[]> list;
-		int relays = 1 + random.nextInt(3);
+		byte relays = (byte) (1 + random.nextInt(3));
 		Block block;
 		double regression = 0.86977745D;
 		double cutoff = 0.48943755D;
@@ -29,17 +29,17 @@ public class IsleWorldGen implements IWorldGenerator {
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 		int yMax;
 
-		for (int buzza = 0; buzza < relays; buzza++)
+		for (byte buzza = 0; buzza < relays; buzza++)
 		{
 			size = random.nextDouble() * 4.5D + 2.5D;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			yMax = Ycoord;
-			int r = 16 + random.nextInt(16) - random.nextInt(8);
+			byte r = (byte) (16 + random.nextInt(16) - random.nextInt(8));
 			Ycoord += r;
 			yMax += r;
 
-			for (int y1 = 0; y1 > -32; y1--)
+			for (byte y1 = 0; y1 > -32; y1--)
 			{
 				if (size < cutoff) break;
 				size *= regression;

@@ -72,7 +72,6 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		if (entity instanceof EntityPlayer)
 		{
 			PropertyDoom doom =	PropertyDoom.get((EntityPlayer) entity);
-
 			if (doom != null) doom.loadNBTData(new NBTTagCompound());
 		}
 	}

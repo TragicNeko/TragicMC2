@@ -16,13 +16,12 @@ public class StructureWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if (world.isRemote || !world.getWorldInfo().isMapFeaturesEnabled() || random.nextInt(500) > TragicConfig.structureOverallRarity) return;
-		if (!TragicConfig.allowDimension && world.provider.dimensionId == TragicConfig.dimensionID ||
-				!TragicConfig.allowDimension && world.provider.dimensionId == TragicConfig.synapseID) return;
+		if (world.isRemote || !world.getWorldInfo().isMapFeaturesEnabled() || random.nextInt(500) > TragicConfig.structureOverallRarity ||
+				(world.provider.dimensionId == TragicConfig.dimensionID || world.provider.dimensionId == TragicConfig.synapseID) && !TragicConfig.allowDimension) return;
 
-		int x = chunkX * 16 + random.nextInt(16);
+		int x = (chunkX * 16) + random.nextInt(16);
 		int y = random.nextInt(118) + random.nextInt(118) + 10;
-		int z = chunkZ * 16 + random.nextInt(16);
+		int z = (chunkZ * 16) + random.nextInt(16);
 
 		int top = world.getTopSolidOrLiquidBlock(x, z);
 		ArrayList<Structure> cands = new ArrayList<Structure>();

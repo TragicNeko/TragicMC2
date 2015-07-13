@@ -14,15 +14,15 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class RuggedTerrainWorldGen implements IWorldGenerator {
 
 	public final Block block;
-	public final int meta;
-	public final int iterations;
+	public final byte meta;
+	public final byte iterations;
 	public final double radius;
 	public final double variation;
 	public final boolean replacesAir;
 	public final Block toReplace;
-	public final int width;
+	public final byte width;
 
-	public RuggedTerrainWorldGen(Block block, int meta, Block toReplace, int iterations, double radius, double var, boolean flag, int width)
+	public RuggedTerrainWorldGen(Block block, byte meta, Block toReplace, byte iterations, double radius, double var, boolean flag, byte width)
 	{
 		this.block = block;
 		this.meta = meta; //1 for dirt, 2 for eroded stone
@@ -43,22 +43,20 @@ public class RuggedTerrainWorldGen implements IWorldGenerator {
 
 		double radius;
 		ArrayList<int[]> list;
-		int[] coords;
 		Block block;
 
-		for (int pow = 0; pow < this.iterations; pow++)
+		for (byte pow = 0; pow < this.iterations; pow++)
 		{
 			x += random.nextInt(width) - random.nextInt(width);
 			z += random.nextInt(width) - random.nextInt(width);
 			radius = (variation * random.nextDouble()) + this.radius;
 
-			for (int y1 = -1; y1 < 2; y1++)
+			for (byte y1 = -1; y1 < 2; y1++)
 			{
 				list = WorldHelper.getBlocksInCircularRange(world, radius, x, y + y1, z);
 
-				for (int i = 0; i < list.size(); i++)
+				for (int[] coords : list)
 				{
-					coords = list.get(i);
 					if (random.nextInt(16) != 0) continue;
 
 					block = world.getBlock(coords[0], coords[1], coords[2]);

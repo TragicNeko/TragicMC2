@@ -14,11 +14,15 @@ public class TragicConfig {
 
 	private static final String catMaster = "Master Configs";
 	private static final String catBlanket = "Blanket Configs";
+	//private static final String catAchievements = "Achievements";
 	private static final String catAmulet = "Amulets";
 	private static final String catDimension = "Dimension";
 	private static final String catDoom = "Doom";
+	//private static final String catDoomsday = "Doomsdays";
+	//private static final String catWeapons = "Weapons";
 	private static final String catEnchant = "Enchantments";
 	private static final String catMobs = "Mobs";
+	//private static final String catMobStats = "Mob Stats";
 	private static final String catPotion = "Potions";
 	private static final String catVanilla = "Vanilla Changes";
 	private static final String catWorldGen = "WorldGen";
@@ -118,13 +122,12 @@ public class TragicConfig {
 
 	private static boolean[] blanketPotion = new boolean[2];
 	public static boolean allowPositivePotions, allowNegativePotions;
-	private static boolean[] positivePotionConfigs = new boolean[12];
+	private static boolean[] positivePotionConfigs = new boolean[20];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
-	private static boolean[] negativePotionConfigs = new boolean[12];
+	private static boolean[] negativePotionConfigs = new boolean[20];
 	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked;
-	private static int[] positivePotionIDs = new int[12];
+	private static int[] potionIDs = new int[32];
 	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence, idDivinity;
-	private static int[] negativePotionIDs = new int[12];
 	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked;
 
 	private static boolean[] blanketVanillaChanges = new boolean[14];
@@ -135,9 +138,10 @@ public class TragicConfig {
 
 	private static boolean[] blanketWorldGen = new boolean[6];
 	public static boolean allowVoidPitGen, allowLargeSpikeGen, allowDarkStoneVariantGen, allowStructureGen, allowNonBossStructureGen, allowBossStructureGen;
-	private static int[] worldGenInts = new int[16];
+	private static int[] worldGenInts = new int[24];
 	public static int voidPitRarity, largeSpikeRarity, starCrystalRarity, structureOverallRarity, apisTempleRarity, desertTowerRarity, deathCircleRarity, obsidianCavernRarity;
-	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, soulTombRarity, aerisRarity, empariahCaveRarity;
+	public static int kitsuneDenRarity, celestialTempleRarity, timeAltarRarity, soulTombRarity, aerisRarity, empariahCaveRarity, claymationRuinRarity, darkHutRarity, spiderNestRarity;
+	public static int memoryCacheRarity, lightSpireRarity, hackerNetRarity, cubeMazeRarity, outlookRarity;
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
@@ -921,48 +925,47 @@ public class TragicConfig {
 		blanketPotion[1] = (config.get(catPotion, "allowNegativePotionEffects", true).getBoolean(true));
 
 		mapping = 0;
-		positivePotionIDs[mapping] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "flightAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "aquaSuperiorityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "aquaSuperiorityAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "immunityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "immunityAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "resurrectionID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "resurrectionAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "harmonyID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "harmonyAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "invulnerabilityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "invulnerabilityAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "clarityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "clarityAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "convergenceAllow", true).getBoolean(true));
-		positivePotionIDs[mapping] = (config.get(catPotion, "divinityID", getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[mapping - 1] + 1)));
 		positivePotionConfigs[mapping++] = (config.get(catPotion, "divinityAllow", true).getBoolean(true));
 
-		temp = mapping - 1;
-
 		mapping = 0;
-		negativePotionIDs[mapping] = (config.get(catPotion, "corruptionID", getOpenIDForPotion(positivePotionIDs[temp] + 1)).getInt(getOpenIDForPotion(positivePotionIDs[temp] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "corruptionAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "disorientationID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "disorientationAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "stunID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "stunAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "fearID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "fearAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "malnourishID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "malnourishAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "crippleID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "crippleAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "submissionID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "submissionAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "inhibitAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "leadFootAllow", true).getBoolean(true));
-		negativePotionIDs[mapping] = (config.get(catPotion, "hackedID", getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(negativePotionIDs[mapping - 1] + 1)));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "hackedAllow", true).getBoolean(true));
+		
+		potionIDs[mapping] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32)));
+		potionIDs[mapping] = (config.get(catPotion, "aquaSuperiorityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "immunityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "resurrectionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "harmonyID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "invulnerabilityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "clarityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "divinityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "corruptionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "disorientationID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "stunID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "fearID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "malnourishID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "crippleID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "submissionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping] = (config.get(catPotion, "hackedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
 
 		config.addCustomCategoryComment(catPotion, "Set whether specific Potion Effects are allowed, or disable all good or all bad effects, also set their IDs");
 
@@ -1011,10 +1014,18 @@ public class TragicConfig {
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "obsidianCavernRarity", 10).getInt(10), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "kitsuneDenRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "celestialTempleRarity", 3).getInt(3), 1, 200);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 5).getInt(5), 1, 200);
-		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "soulTombRarity", 10).getInt(10), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "timeAltarRarity", 3).getInt(3), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "soulTombRarity", 15).getInt(15), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "aerisRarity", 5).getInt(5), 1, 200);
 		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "empariahCaveRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "claymationRuinRarity", 5).getInt(5), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "darkHutRarity", 15).getInt(15), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "spiderNestRarity", 15).getInt(15), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "memoryCacheRarity", 3).getInt(3), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "lightSpireRarity", 10).getInt(10), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "hackerNetRarity", 3).getInt(3), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "cubeMazeRarity", 25).getInt(25), 1, 200);
+		worldGenInts[mapping++] = MathHelper.clamp_int(config.get(catWorldGen, "outlookRarity", 3).getInt(3), 1, 200);
 
 		config.addCustomCategoryComment(catWorldGen, "These toggle specific WorldGen features, meant to help with lag reduction if your CPU cannot handle it during WorldGen, also toggle rarities of structures");
 
@@ -1729,46 +1740,48 @@ public class TragicConfig {
 		allowNegativePotions = blanketPotion[1];
 
 		mapping = 0;
-		idFlight = positivePotionIDs[mapping];
 		allowFlight = positivePotionConfigs[mapping++];
-		idAquaSuperiority = positivePotionIDs[mapping];
 		allowAquaSuperiority = positivePotionConfigs[mapping++];
-		idImmunity = positivePotionIDs[mapping];
 		allowImmunity = positivePotionConfigs[mapping++];
-		idResurrection = positivePotionIDs[mapping];
 		allowResurrection = positivePotionConfigs[mapping++];
-		idHarmony = positivePotionIDs[mapping];
 		allowHarmony = positivePotionConfigs[mapping++];
-		idInvulnerability = positivePotionIDs[mapping];
 		allowInvulnerability = positivePotionConfigs[mapping++];
-		idClarity = positivePotionIDs[mapping];
 		allowClarity = positivePotionConfigs[mapping++];
-		idConvergence = positivePotionIDs[mapping];
 		allowConvergence = positivePotionConfigs[mapping++];
-		idDivinity = positivePotionIDs[mapping];
 		allowDivinity = positivePotionConfigs[mapping++];
 
 		mapping = 0;
-		idCorruption = negativePotionIDs[mapping];
 		allowCorruption = negativePotionConfigs[mapping++];
-		idDisorientation = negativePotionIDs[mapping];
 		allowDisorientation = negativePotionConfigs[mapping++];
-		idStun = negativePotionIDs[mapping];
 		allowStun = negativePotionConfigs[mapping++];
-		idFear = negativePotionIDs[mapping];
 		allowFear = negativePotionConfigs[mapping++];
-		idMalnourish = negativePotionIDs[mapping];
 		allowMalnourish = negativePotionConfigs[mapping++];
-		idCripple = negativePotionIDs[mapping];
 		allowCripple = negativePotionConfigs[mapping++];
-		idSubmission = negativePotionIDs[mapping];
 		allowSubmission = negativePotionConfigs[mapping++];
-		idInhibit = negativePotionIDs[mapping];
 		allowInhibit = negativePotionConfigs[mapping++];
-		idLeadFoot = negativePotionIDs[mapping];
 		allowLeadFoot = negativePotionConfigs[mapping++];
-		idHacked = negativePotionIDs[mapping];
 		allowHacked = negativePotionConfigs[mapping++];
+		
+		mapping = 0;
+		idFlight = potionIDs[mapping++];
+		idAquaSuperiority = potionIDs[mapping++];
+		idImmunity = potionIDs[mapping++];
+		idResurrection = potionIDs[mapping++];
+		idHarmony = potionIDs[mapping++];
+		idInvulnerability = potionIDs[mapping++];
+		idClarity = potionIDs[mapping++];
+		idConvergence = potionIDs[mapping++];
+		idDivinity = potionIDs[mapping++];
+		idCorruption = potionIDs[mapping++];
+		idDisorientation = potionIDs[mapping++];
+		idStun = potionIDs[mapping++];
+		idFear = potionIDs[mapping++];
+		idMalnourish = potionIDs[mapping++];
+		idCripple = potionIDs[mapping++];
+		idSubmission = potionIDs[mapping++];
+		idInhibit = potionIDs[mapping++];
+		idLeadFoot = potionIDs[mapping++];
+		idHacked = potionIDs[mapping++];
 
 		mapping = 0;
 		allowVanillaMobBuffs = blanketVanillaChanges[mapping++];
@@ -1817,6 +1830,14 @@ public class TragicConfig {
 		soulTombRarity = worldGenInts[mapping++];
 		aerisRarity = worldGenInts[mapping++];
 		empariahCaveRarity = worldGenInts[mapping++];
+		claymationRuinRarity = worldGenInts[mapping++];
+		darkHutRarity = worldGenInts[mapping++];
+		spiderNestRarity = worldGenInts[mapping++];
+		memoryCacheRarity  = worldGenInts[mapping++];
+		lightSpireRarity = worldGenInts[mapping++];
+		hackerNetRarity  = worldGenInts[mapping++];
+		cubeMazeRarity = worldGenInts[mapping++];
+		outlookRarity  = worldGenInts[mapping++];
 
 		mapping = 0;
 		allowRandomWeaponLore = miscConfigs[mapping++];

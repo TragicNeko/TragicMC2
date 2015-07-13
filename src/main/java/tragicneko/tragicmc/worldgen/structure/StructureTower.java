@@ -73,4 +73,9 @@ public class StructureTower extends Structure {
 		return 2; //stone tower
 	}
 
+	@Override
+	public int getStructureColor()
+	{
+		return 0xC3E799;
+	}
 }

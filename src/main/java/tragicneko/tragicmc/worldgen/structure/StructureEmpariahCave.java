@@ -7,16 +7,10 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenFrozenTundra;
 import tragicneko.tragicmc.worldgen.schematic.SchematicEmpariahCave;
 
-public class StructureEmpariahCave extends Structure {
+public class StructureEmpariahCave extends StructureBoss {
 
 	public StructureEmpariahCave(int id, String s) {
 		super(new SchematicEmpariahCave(), id, s);
-	}
-
-	@Override
-	public boolean canGenerate()
-	{
-		return TragicConfig.allowBossStructureGen;
 	}
 
 	@Override
@@ -44,5 +38,10 @@ public class StructureEmpariahCave extends Structure {
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
-
+	
+	@Override
+	public int getStructureColor()
+	{
+		return 0xFFFFFF;
+	}
 }

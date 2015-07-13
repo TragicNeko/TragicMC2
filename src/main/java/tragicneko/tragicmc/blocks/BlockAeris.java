@@ -30,6 +30,7 @@ public class BlockAeris extends BlockBush implements ITileEntityProvider
 		this.setBlockName("tragicmc.aeris");
 		this.setCreativeTab(TragicMC.Survival);
 		this.setTickRandomly(true);
+		this.setStepSound(soundTypeGrass);
 	}
 
 	@Override

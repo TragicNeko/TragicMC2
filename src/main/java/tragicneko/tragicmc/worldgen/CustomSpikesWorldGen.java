@@ -14,9 +14,9 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class CustomSpikesWorldGen implements IWorldGenerator {
 
-	public final int relays; //how many spikes should be attempted per chunk
+	public final byte relays; //how many spikes should be attempted per chunk
 	public final Block block;
-	public final int meta;
+	public final byte meta;
 	public final double regression; //how quickly the spike reduces in size
 	public final double cutoff; //how long the spike generates until it gets too thin to continue
 	public final boolean usesSpikeTypes; //if the spike can be one of the different spike types
@@ -24,7 +24,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 	public final double size; //starting spike size, basically the minimum
 	public final double sizeVariation; //the degree that the size can be up to, basically this plus the minimum is the maximum, this will be multipled by a random from worldgen
 
-	public CustomSpikesWorldGen(int relay, Block spikeBlock, int metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation, boolean flag, boolean flag2)
+	public CustomSpikesWorldGen(byte relay, Block spikeBlock, byte metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation, boolean flag, boolean flag2)
 	{
 		this.relays = relay;
 		this.block = spikeBlock;
@@ -37,7 +37,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		this.isStarCrystal = flag2;
 	}
 
-	public CustomSpikesWorldGen(int relay, Block spikeBlock, int metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation)
+	public CustomSpikesWorldGen(byte relay, Block spikeBlock, byte metaValue, double regress, double spikeCutoff, double baseSize, double sizeVariation)
 	{
 		this(relay, spikeBlock, metaValue, regress, spikeCutoff, baseSize, sizeVariation, true, false);
 	}
@@ -53,12 +53,12 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 		ArrayList<int[]> list;
 		double spikeSize;
-		int spikeType;
+		byte spikeType;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 		double regress = regression;
-		int m = meta;
+		byte m = meta;
 
-		for (int buzza = 0; buzza < relays; buzza++)
+		for (byte buzza = 0; buzza < relays; buzza++)
 		{
 			spikeSize = (random.nextDouble() * sizeVariation) + size;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
@@ -67,17 +67,17 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 
 			if (Structure.validBlocks.contains(world.getBlock(Xcoord, Ycoord - 1, Zcoord)))
 			{
-				spikeType = this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2);
-				if (this.isStarCrystal) m = random.nextInt(16);
+				spikeType = (byte) (this.usesSpikeTypes ? random.nextInt(6) : random.nextInt(2));
+				if (this.isStarCrystal) m = (byte) random.nextInt(16);
 
 				boolean flag3 = false;
 				boolean flag2 = false;
 
-				for (int y1 = 0; y1 < 128; y1++)
+				for (byte y1 = 0; y1 < Byte.MAX_VALUE; y1++)
 				{
 					if (spikeSize < cutoff || Ycoord + y1 > world.getActualHeight()) break;
 
-					if (random.nextBoolean() && this.usesSpikeTypes)
+					if (random.nextBoolean())
 					{
 						spikeSize *= regress; //reduce the radius of the spike randomly
 
@@ -149,7 +149,7 @@ public class CustomSpikesWorldGen implements IWorldGenerator {
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 		Block block;
 
-		for (int y1 = 0; y1 < 128; y1++)
+		for (byte y1 = 0; y1 < Byte.MAX_VALUE; y1++)
 		{
 			if (size < 0.36443755D || Ycoord + y1 > 256) break;
 

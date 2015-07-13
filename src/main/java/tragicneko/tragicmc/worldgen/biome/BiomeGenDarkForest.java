@@ -24,11 +24,10 @@ public class BiomeGenDarkForest extends TragicBiome {
 
 	public final SurfaceWorldGen drudgeGen;
 	public final SurfaceWorldGen2 gasGen;
-	public final WorldGenCustomVine vineGen;
 
 	public static final float[][] heights = new float[][] {{0.05F, 0.15F}, {0.32F, 0.32F}, {0.35F, -0.35F}};
 
-	public BiomeGenDarkForest(int par1, int par2) {
+	public BiomeGenDarkForest(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableMonsterList.clear();
 		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, 1, 4));
@@ -43,9 +42,8 @@ public class BiomeGenDarkForest extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 8 : (variant == 2 ? 4 : 12);
 		this.theBiomeDecorator.mushroomsPerChunk = variant == 2 ? 12 : 2;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 4 : 8;
-		this.drudgeGen = new SurfaceWorldGen(3.0D, 4.0D, true, 24, TragicBlocks.Quicksand, 2, TragicBlocks.DarkGrass, true, true);
-		this.gasGen = new SurfaceWorldGen2(8, TragicBlocks.DarkGas, 0, 4, 4);
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.DarkVine, 128);
+		this.drudgeGen = new SurfaceWorldGen(3.0D, 4.0D, true, (byte) 24, TragicBlocks.Quicksand, (byte) 2, TragicBlocks.DarkGrass, true, true);
+		this.gasGen = new SurfaceWorldGen2((byte) 8, TragicBlocks.DarkGas, (byte) 0, (byte) 4, (byte) 4);
 	}
 	
 	@Override
@@ -70,15 +68,6 @@ public class BiomeGenDarkForest extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		/*
-		int k = x + rand.nextInt(16) + 8;
-		int l = z + rand.nextInt(16) + 8;
-		for (int a = 0; a < 20; ++a)
-		{
-			k = x + rand.nextInt(16) - 8;
-			l = z + rand.nextInt(16) - 8;
-			this.vineGen.generate(world, rand, k, 128, l);
-		} */
 
 		this.gasGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world, null, null);

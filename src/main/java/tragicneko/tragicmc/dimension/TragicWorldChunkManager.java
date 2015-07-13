@@ -14,8 +14,13 @@ import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.GenLayerFuzzyZoom;
+import net.minecraft.world.gen.layer.GenLayerSmooth;
+import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
+import net.minecraft.world.gen.layer.GenLayerZoom;
 import net.minecraft.world.gen.layer.IntCache;
 import tragicneko.tragicmc.TragicBiome;
+import tragicneko.tragicmc.TragicConfig;
 
 public class TragicWorldChunkManager extends WorldChunkManager
 {
@@ -56,7 +61,14 @@ public class TragicWorldChunkManager extends WorldChunkManager
 
 	public static GenLayer[] getGenLayers(long seed, WorldType worldType)
 	{
-		return new TragicGenLayer().createWorld(seed, worldType);
+		GenLayer biomes = new TragicBiomeGenLayer(seed);
+		biomes = GenLayerZoom.magnify(1000L, biomes, TragicConfig.collisionBiomeSize);
+		GenLayer zoom = new GenLayerVoronoiZoom(10L, biomes);
+
+		biomes.initWorldGenSeed(seed);
+		zoom.initWorldGenSeed(seed);
+
+		return new GenLayer[] {biomes, zoom};
 	}
 
 	@Override
@@ -209,11 +221,7 @@ public class TragicWorldChunkManager extends WorldChunkManager
 			for (int i = 0; i < len; ++i)
 			{
 				BiomeGenBase biomegenbase = BiomeGenBase.getBiome(ints[i]);
-
-				if (!biomes.contains(biomegenbase) || !(biomegenbase instanceof TragicBiome))
-				{
-					return false;
-				}
+				if (!biomes.contains(biomegenbase) || !(biomegenbase instanceof TragicBiome)) return false;
 			}
 
 			return true;

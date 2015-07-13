@@ -48,7 +48,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 
 		if (!allowedBiomes.contains(biome)) return;
 
-		int meta = random.nextInt(16);
+		byte meta = (byte) random.nextInt(16);
 
 		boolean flag = !(biome instanceof BiomeGenJungle);
 		boolean flag2 = !(biome instanceof BiomeGenTaiga);
@@ -91,11 +91,11 @@ public class FlowerWorldGen implements IWorldGenerator {
 				discrim[15] = false;
 			}
 
-			int m = 0;
-			while (!discrim[meta] && m < 50)
+			byte m = 0;
+			while (!discrim[meta])
 			{
-				meta = random.nextInt(16);
-				m++;
+				meta = (byte) random.nextInt(16);
+				if (m++ > 50) return;
 			}
 
 			for (int i = 0; i < biome.theBiomeDecorator.flowersPerChunk * 4 && discrim[meta]; i++)
@@ -135,7 +135,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 
 			if (trBiome instanceof BiomeGenAshenHills)
 			{
-				for (int i = 0; i < trBiome.getBushesFromBiomeType(); i++)
+				for (byte i = 0; i < trBiome.getBushesFromBiomeType(); i++)
 				{
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);
@@ -146,7 +146,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 			}
 			else if (trBiome instanceof BiomeGenDecayingWasteland)
 			{
-				for (int i = 0; i < trBiome.getBushesFromBiomeType(); i++)
+				for (byte i = 0; i < trBiome.getBushesFromBiomeType(); i++)
 				{
 					Xcoord += random.nextInt(8) - random.nextInt(8);
 					Zcoord += random.nextInt(8) - random.nextInt(8);

@@ -3,11 +3,13 @@ package tragicneko.tragicmc.worldgen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicMC;
 
 public class WorldGenPaintedTree extends WorldGenAbstractTree
 {
@@ -117,6 +119,19 @@ public class WorldGenPaintedTree extends WorldGenAbstractTree
 
 						if (block3.isAir(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_) || block3.isLeaves(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_))
 						{
+							if (k2 > 1)
+							{
+								byte xr = (byte) (p_76484_2_.nextInt(3) - 1);
+								byte zr = (byte) (p_76484_2_.nextInt(3) - 1);
+								byte dir = (byte) (xr == 1 && zr == 0 ? 5 : (xr == -1 && zr == 0 ? 4 : (zr == -1 ? 2 : 3)));
+								Block block4 = p_76484_1_.getBlock(p_76484_3_ + xr, p_76484_4_ + k2, p_76484_5_ + zr);
+								byte m = (byte) Direction.rotateOpposite[Direction.facingToDirection[dir]];
+								boolean flag2 = Math.abs(xr) == 1 && Math.abs(zr) == 1 || xr == 0 && zr == 0;
+								if (!flag2 && block4.isAir(p_76484_1_, p_76484_3_ + xr, p_76484_4_, p_76484_5_ + zr))
+								{
+									this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_ + xr, p_76484_4_ + k2, p_76484_5_ + zr, TragicBlocks.SkyFruit, m);
+								}
+							}
 							this.setBlockAndNotifyAdequately(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_, TragicBlocks.PaintedWood, 2);
 						}
 					}

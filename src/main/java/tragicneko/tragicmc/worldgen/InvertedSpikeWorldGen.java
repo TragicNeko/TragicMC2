@@ -11,13 +11,13 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class InvertedSpikeWorldGen implements IWorldGenerator {
 
-	public final int iterations;
+	public final byte iterations;
 	public final double radius;
 	public final double variation;
 	public final double regression;
 	public final double cutoff;
 
-	public InvertedSpikeWorldGen(int relays, double radius, double var, double regress, double cutoff)
+	public InvertedSpikeWorldGen(byte relays, double radius, double var, double regress, double cutoff)
 	{
 		this.iterations = relays;
 		this.radius = radius;
@@ -36,22 +36,22 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 		ArrayList<int[]> list;
 		Material material;
 		double size;
-		int spikeType;
+		byte spikeType;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 
-		for (int buzza = 0; buzza < this.iterations; buzza++)
+		for (byte buzza = 0; buzza < this.iterations; buzza++)
 		{
 			size = random.nextDouble() * variation + radius;
 			Xcoord += random.nextInt(8) - random.nextInt(8);
 			Zcoord += random.nextInt(8) - random.nextInt(8);
 			Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord) + 1;
 
-			spikeType = random.nextInt(6);
+			spikeType = (byte) random.nextInt(6);
 
 			boolean flag = false;
 			boolean flag2 = false;
 
-			for (int y1 = 0; y1 > -128; y1--)
+			for (byte y1 = 0; y1 > Byte.MIN_VALUE; y1--)
 			{
 				if (Ycoord + y1 < 25 || size < cutoff) break;
 				size *= regression; //reduce the radius of the spike randomly
@@ -120,7 +120,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 		Material material;
 
-		for (int y1 = 0; y1 < 64; y1++)
+		for (byte y1 = 0; y1 < 64; y1++)
 		{
 			if (rand.nextBoolean())
 			{

@@ -27,7 +27,7 @@ public class BiomeGenAshenHills extends TragicBiome {
 
 	public static final float[][] heights = new float[][] {{0.85F, 0.45F}, {0.45F, 0.25F}, {0.05F, 0.05F}};
 
-	public BiomeGenAshenHills(int par1, int par2) {
+	public BiomeGenAshenHills(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
 		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, 0, 2));
@@ -44,8 +44,8 @@ public class BiomeGenAshenHills extends TragicBiome {
 		this.topBlock = TragicBlocks.AshenGrass;
 		this.theBiomeDecorator.treesPerChunk = variant == 2 ? 1 : (variant == 1 ? 2 : 4);
 		this.theBiomeDecorator.grassPerChunk = variant == 2 ? 3 : 1;
-		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, 0, TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, true, false);
-		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 1, TragicBlocks.AshenGrass, 3, 3.0D, 2.0D, false, 8);
+		this.shieldGen = new SurfaceWorldGen(3.0D, 4.0D, false, (byte) 0, TragicBlocks.DeadDirt, (byte) 1, TragicBlocks.AshenGrass, true, false);
+		this.ruggedGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, (byte) 1, TragicBlocks.AshenGrass, (byte) 3, 3.0D, 2.0D, false, (byte) 8);
 	}
 
 	@Override

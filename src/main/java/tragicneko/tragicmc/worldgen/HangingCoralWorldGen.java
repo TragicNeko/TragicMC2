@@ -16,9 +16,9 @@ public class HangingCoralWorldGen extends WorldGenerator {
 	public final int height;
 	public final int iterations;
 	public final Block block;
-	public final int meta;
+	public final byte meta;
 
-	public HangingCoralWorldGen(int width, int height, int iterations, Block block, int meta)
+	public HangingCoralWorldGen(int width, int height, int iterations, Block block, byte meta)
 	{
 		this.width = width;
 		this.height = height;

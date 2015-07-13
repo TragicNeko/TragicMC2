@@ -19,10 +19,9 @@ import tragicneko.tragicmc.worldgen.WorldGenPaintedTree;
 
 public class BiomeGenPaintedForest extends TragicBiome {
 
-	private final WorldGenCustomVine vineGen;
 	public static final float[][] heights = new float[][] {{0.15F, 0.15F}, {0.05F, 0.01F}, {0.35F, 0.18F}, {0.01F, -0.12F}};
 
-	public BiomeGenPaintedForest(int par1, int par2) {
+	public BiomeGenPaintedForest(int par1, byte par2) {
 		super(par1, par2);
 		if (TragicConfig.allowPox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.poxSC, 0, 1));
 		if (TragicConfig.allowJanna) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jannaSC, 0, 2));
@@ -35,7 +34,6 @@ public class BiomeGenPaintedForest extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? 2 : (variant == 3 ? -999 : 12);
 		this.theBiomeDecorator.mushroomsPerChunk = 4;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 || variant == 3 ? 4 : 2;
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.Glowvine, 128);
 	}
 
 	@Override
@@ -78,24 +76,4 @@ public class BiomeGenPaintedForest extends TragicBiome {
 
 		return new WorldGenPaintedTree(false, rand.nextBoolean());
 	}
-
-	@Override
-	public void decorate(World world, Random rand, int x, int z)
-	{
-		super.decorate(world, rand, x, z);
-		/*
-		if (variant < 3)
-		{
-			int k;
-			int l;
-
-			for (int a = 0; a < 20; ++a)
-			{
-				k = x + rand.nextInt(16) - 8;
-				l = z + rand.nextInt(16) - 8;
-				this.vineGen.generate(world, rand, k, 128, l);
-			}
-		} */
-	}
-
 }

@@ -29,7 +29,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 
 	public final static float[][] heights = new float[][] {{0.01F, 0.12F}, {0.35F, 0.22F}, {0.65F, -1.15F}};
 
-	public BiomeGenFrozenTundra(int par1, int par2) {
+	public BiomeGenFrozenTundra(int par1, byte par2) {
 		super(par1, par2);
 		this.enableSnow = true;
 		this.enableRain = false;
@@ -44,10 +44,10 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 12 : (variant == 2 ? 6 : 2);
-		this.permafrostGen = new RuggedTerrainWorldGen(TragicBlocks.Permafrost, 1, TragicBlocks.Permafrost, 2, 2.0D, 3.0D, false, 8);
-		this.iceSpikeGen = new SurfaceWorldGen2(variant == 2 ? 12 : 4, TragicBlocks.IceSpike, 0, 4, 8);
-		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, 0, 12, 6, 4.0D, 3.0D);
-		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss, 128);
+		this.permafrostGen = new RuggedTerrainWorldGen(TragicBlocks.Permafrost, (byte) 1, TragicBlocks.Permafrost, (byte) 2, 2.0D, 3.0D, false, (byte) 8);
+		this.iceSpikeGen = new SurfaceWorldGen2((byte) (variant == 2 ? 12 : 4), TragicBlocks.IceSpike, (byte) 0, (byte) 4, (byte) 8);
+		this.pitGen = new PitWorldGen(TragicBlocks.IceSpike, (byte) 0, (byte) 12, (byte) 6, 4.0D, 3.0D);
+		this.vineGen = new WorldGenCustomVine(TragicBlocks.Moss, 84);
 	}
 
 	@Override
@@ -61,20 +61,20 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 
-		int mew = variant > 0 ? 18 : 6;
+		byte mew = (byte) (variant > 0 ? 18 : 6);
 		int k;
 		int l;
 
-		for (int a = 0; a < mew; ++a)
+		for (byte a = 0; a < mew; ++a)
 		{
 			k = x + rand.nextInt(16) - 8;
 			l = z + rand.nextInt(16) - 8;
-			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 42, l);
+			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 36, l);
 		}
 
 		this.permafrostGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (variant != 1) this.iceSpikeGen.generate(rand, x / 16, z / 16, world, null, null);
-		new CustomSpikesWorldGen(variant == 2 ? 8 : (variant == 0 ? 2 : 4), Blocks.packed_ice, 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
+		new CustomSpikesWorldGen((byte) (variant == 2 ? 8 : (variant == 0 ? 2 : 4)), Blocks.packed_ice, (byte) 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
 		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 

@@ -12,13 +12,13 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class PitWorldGen implements IWorldGenerator {
 
 	public final Block block;
-	public final int meta;
-	public final int depth;
-	public final int depthVar;
+	public final byte meta;
+	public final byte depth;
+	public final byte depthVar;
 	public final double radius;
 	public final double variation;
 
-	public PitWorldGen(Block block, int meta, int depth, int depthVar, double radius, double variation)
+	public PitWorldGen(Block block, byte meta, byte depth, byte depthVar, double radius, double variation)
 	{
 		this.block = block;
 		this.meta = meta;
@@ -37,38 +37,34 @@ public class PitWorldGen implements IWorldGenerator {
 		int depth = Ycoord - this.depth - random.nextInt(this.depthVar + 1);
 
 		double size;
-		int[] coords;
 		ArrayList<int[]> list;
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 
 		size = this.variation * random.nextDouble() + this.radius;
 
-		for (int pow = 0; pow + Ycoord >= depth && pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
+		for (byte pow = 0; pow + Ycoord >= depth && pow + Ycoord >= 0 && pow + Ycoord <= 256; --pow)
 		{
 			if (size >= 5.5D)
 			{
 				list = WorldHelper.getBlocksInCircularRange(world, size * 0.31773D, Xcoord, Ycoord + pow, Zcoord); //makes sure the middle of the pit is clear
 
-				for (int mapping = 0; mapping < list.size(); mapping++)
+				for (int[] coords : list)
 				{
-					coords = list.get(mapping);
 					if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 				}
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size * 0.64773D, Xcoord, Ycoord + pow, Zcoord); //gives the pit more of a gradual feel
 
-			for (int mapping = 0; mapping < list.size(); mapping++)
+			for (int[] coords : list)
 			{
-				coords = list.get(mapping);
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
 
 			list = WorldHelper.getBlocksInCircularRange(world, size, Xcoord, Ycoord + pow, Zcoord); //outer part that has the most scattered blocks
 
-			for (int mapping = 0; mapping < list.size(); mapping++)
+			for (int[] coords : list)
 			{
-				coords = list.get(mapping);
 				if (random.nextBoolean() && !cands.contains(coords)) cands.add(coords);
 			}
 

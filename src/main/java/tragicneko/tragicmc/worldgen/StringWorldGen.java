@@ -12,10 +12,10 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class StringWorldGen implements IWorldGenerator {
 
 	public final Block block;
-	public final int meta;
-	public final int iterations;
+	public final byte meta;
+	public final byte iterations;
 
-	public StringWorldGen(Block block, int meta, int iterations)
+	public StringWorldGen(Block block, byte meta, byte iterations)
 	{
 		this.block = block;
 		this.meta = meta;
@@ -33,7 +33,7 @@ public class StringWorldGen implements IWorldGenerator {
 		ArrayList<int[]> cands = new ArrayList<int[]>();
 		int[] cand;
 
-		for (int i = 0; i < this.iterations; i++)
+		for (byte i = 0; i < this.iterations; i++)
 		{
 			Xcoord += random.nextInt(2) - random.nextInt(2);
 			Zcoord += random.nextInt(2) - random.nextInt(2);

@@ -22,7 +22,8 @@ public class BlockTragicFlower extends BlockBush implements IGrowable {
 
 	private static final String[][] plantNames = new String[][] {{"BlueSpiranthes", "PinkSpiranthes", "RedSpiranthes", "WhiteSpiranthes", "BlueCoral", "RedCoral", "PinkGinger", "RedGinger",
 			"Bluebonnet", "VioletSage", "PinkSage", "WhiteSage", "BirdOfParadise", "JuniperBush", "Stapelia", "Thistle"},
-			{"Bramble", "TangleWeed", "DeathClaw", "Fusche", "Osiris", "Thusk", "Podtail", "Fanbrush", "Torchweed", "Halon", "Rizaphora", "BlackSpot"}};
+			{"Bramble", "TangleWeed", "DeathClaw", "Fusche", "Osiris", "Thusk", "Podtail", "Fanbrush", "Torchweed", "Halon", "Rizaphora", "BlackSpot", "Nannon",
+				"BarbedWire", "Kern", "Flahgrass"}};
 
 	private IIcon[] iconArray = new IIcon[16];
 	private final int flowerSet;

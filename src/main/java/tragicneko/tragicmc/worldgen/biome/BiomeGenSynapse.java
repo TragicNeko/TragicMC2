@@ -15,7 +15,7 @@ import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
 public class BiomeGenSynapse extends TragicBiome {
 
 	public BiomeGenSynapse(int par1) {
-		super(par1, 0);
+		super(par1, (byte) 0);
 		this.enableSnow = false;
 		this.enableRain = false;
 		this.spawnableMonsterList.clear();

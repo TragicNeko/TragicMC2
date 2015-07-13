@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -26,7 +27,7 @@ public class BlockFruit extends BlockCocoa {
 	public BlockFruit()
 	{
 		super();
-		this.setCreativeTab(TragicMC.Survival);
+		this.setCreativeTab(TragicMC.Creative);
 		this.setStepSound(soundTypeGrass);
 	}
 	
@@ -37,7 +38,7 @@ public class BlockFruit extends BlockCocoa {
         x += Direction.offsetX[l];
         z += Direction.offsetZ[l];
         Block block = world.getBlock(x, y, z);
-        return block == TragicBlocks.PaintedWood;
+        return block.getMaterial() == Material.wood && block.getMaterial().blocksMovement() && block.renderAsNormalBlock();
     }
 	
 	@Override
@@ -57,13 +58,13 @@ public class BlockFruit extends BlockCocoa {
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon("tragicmc:SkyFruit");
-		this.stageIcons = new IIcon[] {par1IconRegister.registerIcon("tragicmc:BrushedGrass")};
+		this.stageIcons = new IIcon[] {par1IconRegister.registerIcon("tragicmc:SkyFruitPod"), par1IconRegister.registerIcon("tragicmc:SkyFruitPod2"), par1IconRegister.registerIcon("tragicmc:SkyFruitPod3")};
 	}
 	
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
-		return TragicItems.SkyFruit;
+		return meta > 0 ? TragicItems.SkyFruit : null;
 	}
 	
 	@Override
@@ -81,7 +82,7 @@ public class BlockFruit extends BlockCocoa {
             Item item = getItemDropped(metadata, world.rand, fortune);
             if (item != null)
             {
-                ret.add(new ItemStack(item, 1, damageDropped(metadata)));
+                ret.add(new ItemStack(item, 1, 0));
             }
         }
         return ret;

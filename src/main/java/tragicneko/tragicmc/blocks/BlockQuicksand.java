@@ -11,6 +11,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,6 +24,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.mob.EntityHunter;
+import tragicneko.tragicmc.entity.mob.EntityParasmite;
+import tragicneko.tragicmc.entity.mob.EntityPlague;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -83,6 +88,7 @@ public class BlockQuicksand extends BlockFalling
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
+		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 		entity.motionY *= entity instanceof EntityHorse ? 0.925 : 0.125;
@@ -96,6 +102,7 @@ public class BlockQuicksand extends BlockFalling
 	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity)
 	{
+		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 		entity.motionY = -0.5;
@@ -105,6 +112,7 @@ public class BlockQuicksand extends BlockFalling
 	@Override
 	public void onFallenUpon(World world, int x, int y, int z, Entity entity, float distance)
 	{
+		if (entity instanceof EntityBlaze || entity instanceof EntityGhast || entity instanceof EntityPlague || entity instanceof EntityHunter || entity instanceof EntityParasmite) return;
 		entity.motionX *= 0.0015;
 		entity.motionZ *= 0.0015;
 		entity.motionY = -0.5;

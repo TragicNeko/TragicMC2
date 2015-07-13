@@ -10,13 +10,13 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class SurfaceWorldGen2 implements IWorldGenerator {
 
-	public final int iterations;
+	public final byte iterations;
 	public final Block block;
-	public final int meta;
-	public final int width;
-	public final int height;
+	public final byte meta;
+	public final byte width;
+	public final byte height;
 
-	public SurfaceWorldGen2(int iterations, Block block, int meta, int width, int height)
+	public SurfaceWorldGen2(byte iterations, Block block, byte meta, byte width, byte height)
 	{
 		this.iterations = iterations;
 		this.block = block;
@@ -33,7 +33,7 @@ public class SurfaceWorldGen2 implements IWorldGenerator {
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);
 
 		Block block;
-		for (int i = 0; i < iterations; i++)
+		for (byte i = 0; i < iterations; i++)
 		{
 			Xcoord += random.nextInt(width) - random.nextInt(width);
 			Zcoord += random.nextInt(width) - random.nextInt(width);

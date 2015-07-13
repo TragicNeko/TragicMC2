@@ -34,7 +34,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -51,6 +50,7 @@ import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.network.MessageFlight;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.properties.PropertyMisc;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -252,10 +252,10 @@ public class PotionEvents {
 				}
 			}
 
-			if (entity.ticksExisted % 4 == 0)
+			if (entity.ticksExisted % 5 == 0)
 			{
 				List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(4.0D, 4.0D, 4.0D));
-				boolean flag = list.isEmpty();
+				boolean flag = !list.isEmpty();
 				PotionEffect temp = entity.getActivePotionEffect(TragicPotion.Corruption);
 
 				for (Entity target : list)
@@ -264,57 +264,49 @@ public class PotionEvents {
 					{
 						if (entity.getDistanceToEntity(target) <= 4.0D && entity.canEntityBeSeen(target))
 						{
-							flag = true;
+							if (!flag) flag = true;
 							if (rand.nextBoolean() && !((EntityLivingBase) target).isPotionActive(TragicPotion.Corruption.id)) ((EntityLivingBase) target).addPotionEffect(new PotionEffect(TragicPotion.Corruption.id, temp.getDuration() / 2, temp.getAmplifier()));
 						}
 					}
 				}
 
-				NBTTagCompound tag = null;
+				PropertyMisc misc = PropertyMisc.get(entity);
+				if (misc == null) return;
 				boolean flag2 = false;
 
-				if (!flag && !(entity instanceof TragicMob))
+				if (!flag)
 				{
 					list = world.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(12.0D, 12.0D, 12.0D));
 
-					for (int i = 0; i < list.size(); i++)
+					for (Entity e : list)
 					{
-						if (entity.canEntityBeSeen(list.get(i)) && entity.getDistanceToEntity(list.get(i)) <= 8.0F)
-						{
-							flag2 = true;
-						}
+						if (entity.canEntityBeSeen(e) && entity.getDistanceToEntity(e) <= 12.0F) flag2 = true;
 					}
-
-					tag = CommonProxy.getEntityData(entity.getUniqueID());
-					if (tag == null) tag = new NBTTagCompound();
 
 					if (!flag2)
 					{
-						tag.setInteger("recoveryTicks", tag.hasKey("recoveryTicks") ? tag.getInteger("recoveryTicks") + 1 : 0);
-
-						if (tag.hasKey("recoveryTicks") && tag.getInteger("recoveryTicks") >= 120)
+						if (misc.recoveryTime++ >= 60)
 						{
 							entity.removePotionEffect(TragicPotion.Corruption.id);
-							tag.setInteger("recoveryTicks", 0);
+							misc.recoveryTime = 0;
 						}
-
-						CommonProxy.storeEntityData(entity.getUniqueID(), tag);
 					}
 					else
 					{
-						tag.setInteger("recoveryTicks", 0);
-						CommonProxy.storeEntityData(entity.getUniqueID(), tag);
+						if (misc.recoveryTime > 0) misc.recoveryTime--;
 					}
 				}
-				else if (flag && !(entity instanceof TragicMob))
+				else
 				{
-					tag = CommonProxy.getEntityData(entity.getUniqueID());
-					if (tag == null) tag = new NBTTagCompound();
-					tag.setInteger("recoveryTicks", 0);
-					CommonProxy.storeEntityData(entity.getUniqueID(), tag);
+					misc.recoveryTime = 0;
 				}
 			}
-		}		
+		}
+		else if (TragicConfig.allowCorruption)
+		{
+			PropertyMisc misc = PropertyMisc.get(entity);
+			if (misc != null && misc.recoveryTime > 0) misc.recoveryTime = 0;
+		}
 
 		if (TragicConfig.allowFear && entity.isPotionActive(TragicPotion.Fear.id))
 		{
@@ -569,13 +561,6 @@ public class PotionEvents {
 						player.removePotionEffect(i);
 					}
 				}
-			}
-		}
-		else if (TragicConfig.allowCorruption)
-		{
-			if (CommonProxy.extendedEntityData.containsKey(event.entityLiving.getUniqueID()))
-			{
-				CommonProxy.extendedEntityData.remove(event.entityLiving.getUniqueID());
 			}
 		}
 	}

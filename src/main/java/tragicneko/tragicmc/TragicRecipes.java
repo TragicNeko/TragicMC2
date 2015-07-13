@@ -867,31 +867,6 @@ public class TragicRecipes {
 				'z', TragicItems.PureDarkness
 				);
 
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.GooeyFruit, 1),
-				"xxx",
-				"xyx",
-				"xxx",
-				'x', Items.slime_ball,
-				'y', TragicItems.ExoticFruit
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NastyFruit, 1),
-				"xzx",
-				"zyz",
-				"xzx",
-				'x', TragicItems.BoneMarrow,
-				'y', TragicItems.ExoticFruit,
-				'z', TragicItems.Ectoplasm
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SkyFruit, 1),
-				"xxx",
-				"xyx",
-				"xxx",
-				'x', TragicItems.WispParticles,
-				'y', TragicItems.ExoticFruit
-				);
-
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceCream, 1),
 				" x ",
 				"xyx",
@@ -1189,6 +1164,59 @@ public class TragicRecipes {
 				'x', new ItemStack(TragicBlocks.DarkSandstone, 1, 1),
 				'y', TragicItems.DarkParticles,
 				'z', Items.ender_eye
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 2),
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 0)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 3),
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 1)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 6),
+				"xy",
+				"yx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 1),
+				'y', new ItemStack(TragicBlocks.Corsin, 1, 0)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 5),
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 2)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 5),
+				"xx",
+				"xx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 3)
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 8),
+				"xxx",
+				"xyx",
+				"xxx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 5),
+				'y', TragicItems.WispParticles
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 7),
+				"xyx",
+				"yzy",
+				"xyx",
+				'x', new ItemStack(TragicBlocks.Corsin, 1, 5),
+				'y', TragicItems.WispParticles,
+				'z', TragicItems.UnstableIsotope
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Corsin, 1, 3),
+				Items.water_bucket, new ItemStack(TragicBlocks.Corsin, 1, 0),
+				new ItemStack(TragicBlocks.Corsin, 1, 0), new ItemStack(TragicBlocks.Corsin, 1, 0)
 				);
 
 		//Amulets
@@ -1922,6 +1950,22 @@ public class TragicRecipes {
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 11)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.NanoBots),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 12)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 13),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 13)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 6),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 14)
+				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.blaze_powder),
+				new ItemStack(TragicBlocks.TragicFlower2, 1, 15)
 				);
 
 		//Star Crystal dye recipes

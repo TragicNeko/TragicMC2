@@ -21,7 +21,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 
 	public static final float[][] heights = new float[][] {{0.35F, 0.22F}, {0.05F, -0.35F}, {0.18F, 0.15F}, {0.75F, 0.35F}};
 
-	public BiomeGenDecayingWasteland(int par1, int par2) {
+	public BiomeGenDecayingWasteland(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
 		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, 4, 6));
@@ -37,7 +37,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 		this.topBlock = TragicBlocks.DeadDirt;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.voidPitGen = new VoidPitWorldGen(3.5D, 3.5D);
-		this.mixedDirtGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, 2, TragicBlocks.DeadDirt, 6, 3.0D, 4.0D, false, 8);
+		this.mixedDirtGen = new RuggedTerrainWorldGen(TragicBlocks.DeadDirt, (byte) 2, TragicBlocks.DeadDirt, (byte) 6, 3.0D, 4.0D, false, (byte) 8);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		new CustomSpikesWorldGen(variant == 3 ? 8 : 2, TragicBlocks.BoneBlock, rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
+		new CustomSpikesWorldGen((byte) (variant == 3 ? 8 : 2), TragicBlocks.BoneBlock, (byte) rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
 		this.mixedDirtGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= TragicConfig.voidPitRarity && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, x / 16, z / 16, world, null, null);
 	}

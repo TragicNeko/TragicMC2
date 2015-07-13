@@ -23,7 +23,7 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 
 	public static final float[][] heights = new float[][] {{0.05F, 0.65F}, {0.01F, 1.62F}, {1.55F, 0.95F}, {0.23F, -0.14F}};
 
-	public BiomeGenStarlitPrarie(int par1, int par2) {
+	public BiomeGenStarlitPrarie(int par1, byte par2) {
 		super(par1, par2);
 		if (TragicConfig.allowStarCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.starCryseSC, 0, 2));
 		if (TragicConfig.allowStarVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.starVoxSC, 0, 1));
@@ -38,10 +38,10 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 		this.topBlock = TragicBlocks.StarlitGrass;
 		this.theBiomeDecorator.treesPerChunk = variant == 1 ? -999 : 2;
 		this.theBiomeDecorator.grassPerChunk = variant == 2 || variant == 1 ? 5 : 12;
-		int relay = variant == 1 ? 1 : (variant == 2 ? 6 : 3);
+		byte relay = (byte) (variant == 1 ? 1 : (variant == 2 ? 6 : 3));
 		double spikeSize = variant == 2 ? 1.75D : 1.10D;
 		double spikeV = variant == 2 ? 1.0D : 0.35D;
-		this.crystalWorldGen = new CustomSpikesWorldGen(relay, TragicBlocks.StarCrystal, 0, 0.91377745D, 0.414443755D, spikeSize, spikeV, false, true);
+		this.crystalWorldGen = new CustomSpikesWorldGen(relay, TragicBlocks.StarCrystal, (byte) 0, 0.91377745D, 0.414443755D, spikeSize, spikeV, false, true);
 	}
 
 	@Override

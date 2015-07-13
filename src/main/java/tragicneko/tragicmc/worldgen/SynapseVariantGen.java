@@ -27,11 +27,11 @@ public class SynapseVariantGen implements IWorldGenerator {
 
 		if (flag)
 		{			
-			for (int y1 = 16; y1 < 112; y1++)
+			for (byte y1 = 16; y1 < 112; y1++)
 			{
-				for (int x1 = 0; x1 < 16; x1++)
+				for (byte x1 = 0; x1 < 16; x1++)
 				{
-					for (int z1 = 0; z1 < 16; z1++)
+					for (byte z1 = 0; z1 < 16; z1++)
 					{
 						if (y1 % 8 > 3)
 						{
@@ -47,11 +47,11 @@ public class SynapseVariantGen implements IWorldGenerator {
 		}
 		else
 		{
-			for (int y1 = 16; y1 < 112; y1++)
+			for (byte y1 = 16; y1 < 112; y1++)
 			{
-				for (int x1 = 0; x1 < 16; x1++)
+				for (byte x1 = 0; x1 < 16; x1++)
 				{
-					for (int z1 = 0; z1 < 16; z1++)
+					for (byte z1 = 0; z1 < 16; z1++)
 					{
 						if (chk.getBlock(x1, y1, z1) == Blocks.air && random.nextInt(8) == 0) world.setBlock(x + x1, y1, z + z1, TragicBlocks.DigitalSea);
 						else if (chk.getBlock(x1, y1, z1) == TragicBlocks.CircuitBlock && chk.getBlockMetadata(x1, y1, z1) == 0) chk.setBlockMetadata(x1, y1, z1, random.nextInt(4) + 1);

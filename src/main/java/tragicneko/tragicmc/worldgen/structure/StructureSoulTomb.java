@@ -44,4 +44,9 @@ public class StructureSoulTomb extends Structure {
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
 
+	@Override
+	public int getStructureColor()
+	{
+		return 0x333333;
+	}
 }

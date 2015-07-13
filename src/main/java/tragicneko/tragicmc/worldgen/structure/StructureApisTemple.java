@@ -52,4 +52,10 @@ public class StructureApisTemple extends StructureBoss {
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
+	
+	@Override
+	public int getStructureColor()
+	{
+		return 0xEAD739;
+	}
 }

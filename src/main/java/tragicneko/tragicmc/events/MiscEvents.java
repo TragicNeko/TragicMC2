@@ -2,6 +2,7 @@ package tragicneko.tragicmc.events;
 
 import java.util.UUID;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -10,7 +11,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
@@ -26,7 +29,7 @@ import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.items.weapons.TragicWeapon;
 import tragicneko.tragicmc.properties.PropertyDoom;
-import tragicneko.tragicmc.util.DamageHelper;
+import tragicneko.tragicmc.properties.PropertyMisc;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -229,6 +232,33 @@ public class MiscEvents {
 			IAttributeInstance ins = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
 			if (ins != null) ins.removeModifier(mod);
 			if (i > 0 && ins != null) ins.applyModifier(mod);
+		}
+	}
+	
+	@SubscribeEvent
+	public void onEntityConstructing(EntityConstructing event) {
+		if (event.entity instanceof EntityLivingBase)
+		{
+			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
+
+			if (misc == null)
+			{
+				PropertyMisc.register((EntityLivingBase) event.entity);
+			}
+			else
+			{
+				misc.loadNBTData(new NBTTagCompound());
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onEntityUpdate(LivingUpdateEvent event)
+	{
+		if (event.entity instanceof EntityLivingBase)
+		{
+			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
+			if (misc != null) misc.onUpdate();
 		}
 	}
 }

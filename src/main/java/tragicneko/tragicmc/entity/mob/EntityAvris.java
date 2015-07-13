@@ -68,8 +68,8 @@ public class EntityAvris extends TragicMob {
 		if (this.getHealth() > 0F) this.timeAlive++;
 		if (!this.worldObj.isRemote)
 		{
-			TragicMC.logInfo("Time alive is " + this.timeAlive);
-			TragicMC.logInfo("Rarity is " + this.rarity);
+			//TragicMC.logInfo("Time alive is " + this.timeAlive);
+			//TragicMC.logInfo("Rarity is " + this.rarity);
 		}
 
 		if (!this.worldObj.isRemote && this.ticksExisted % 4 == 0 && this.timeAlive >= 2400 - this.rarity * 400 && this.getHealth() > 0F)
@@ -177,5 +177,11 @@ public class EntityAvris extends TragicMob {
 				mp.addChatMessage(new ChatComponentText("An Avris has appeared nearby!"));
 		}
 		return super.onSpawnWithEgg(data);
+	}
+	
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return super.getCanSpawnHere() && rand.nextInt(32) == 0;
 	}
 }

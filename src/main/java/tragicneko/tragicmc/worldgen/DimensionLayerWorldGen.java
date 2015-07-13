@@ -11,7 +11,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class DimensionLayerWorldGen implements IWorldGenerator {
 
-	private static final int[] modifiers = new int[] {-88, -61, -47, -30, -20, 0, 20, 37, 75, 95};
+	private static final byte[] modifiers = new byte[] {-88, -61, -47, -30, -20, 0, 20, 37, 75, 95};
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -22,27 +22,27 @@ public class DimensionLayerWorldGen implements IWorldGenerator {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
 
-		int j;
-		int k;
-		int meta;
+		byte j;
+		byte k;
+		byte meta;
 		int y;
-		int p;
+		byte p;
 
-		label1: for (int m = 0; m < modifiers.length; m++)
+		label1: for (byte m = 0; m < modifiers.length; m++)
 		{
-			meta = (m % 5) + 1;
+			meta = (byte) ((m % 5) + 1);
 			p = modifiers[m];
 
-			for (int r = -1; r < 2; r++)
+			for (byte r = -1; r < 2; r++)
 			{
 				y = paloma + p + r;
 				if (y < 10) break;
 				if (y > 200) break label1;
 
-				for (int pew = 0; pew < 48; pew++)
+				for (byte pew = 0; pew < 48; pew++)
 				{
-					j = random.nextInt(16);
-					k = random.nextInt(16);
+					j = (byte) random.nextInt(16);
+					k = (byte) random.nextInt(16);
 					if (world.getBlock(x + j, y, z + k) == DarkStone) world.setBlockMetadataWithNotify(x + j, y, z + k, meta, 2);
 				}
 			}

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.SchematicCelestialTemple;
 
 public class StructureCelestialTemple extends StructureBoss {
@@ -27,7 +28,7 @@ public class StructureCelestialTemple extends StructureBoss {
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
-		if (y < 128 || rand.nextInt(50) != 0) return false; //enforced due to how much open space there is for it to generate normally
+		if (y < 128) return false;
 		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.celestialTempleRarity;
 	}
 
@@ -36,5 +37,11 @@ public class StructureCelestialTemple extends StructureBoss {
 	{
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
+	}
+	
+	@Override
+	public int getStructureColor()
+	{
+		return 0xAA23AA;
 	}
 }

@@ -4,6 +4,7 @@ itemGroup.tragicMCCreative=Tragic MC - Creative
 
 death.attack.suffocation=%1$s had the air removed from their lungs by %2$s
 death.attack.modMagic=%1$s was murdered with magic by %2$s
+death.attack.bleed=%1$s bled out
 death.attack.armorPiercing=%1$s was slayed with piercing damage by %2$s
 death.attack.armorPiercing.item=%1$s was slayed with piercing damage by %2$s using %3$s
 
@@ -98,6 +99,15 @@ tile.tragicmc.structureSeed.timeAltar.name=Time Altar
 tile.tragicmc.structureSeed.soulTomb.name=Soul Tomb
 tile.tragicmc.structureSeed.corruptedSpire.name=Corrupted Spire
 tile.tragicmc.structureSeed.empariahCave.name=Empariah Cave
+tile.tragicmc.structureSeed.claymationRuin.name=Claymation Ruin
+tile.tragicmc.structureSeed.darkHut.name=Dark Hut
+tile.tragicmc.structureSeed.ragrPit.name=Ragr Pit
+tile.tragicmc.structureSeed.spiderNest.name=Spider Nest
+tile.tragicmc.structureSeed.memoryCache.name=Memory Cache
+tile.tragicmc.structureSeed.lightSpire.name=Light Spire
+tile.tragicmc.structureSeed.hackerNet.name=Hacker Net
+tile.tragicmc.structureSeed.cubeMaze.name=Cube Maze
+tile.tragicmc.structureSeed.outlook.name=Persistence Outlook
 
 tile.tragicmc.deadDirt.normal.name=Dead Dirt
 tile.tragicmc.deadDirt.rugged.name=Rugged Dirt
@@ -192,8 +202,14 @@ tile.tragicmc.flower.torchweed.name=Torchweed
 tile.tragicmc.flower.halon.name=Halon
 tile.tragicmc.flower.rizaphora.name=Rizaphora
 tile.tragicmc.flower.blackSpot.name=Black Spot
+tile.tragicmc.flower.nannon.name=Nannon
+tile.tragicmc.flower.barbedWire.name=Barbed Wire
+tile.tragicmc.flower.kern.name=Kern
+tile.tragicmc.flower.flahgrass.name=Flahgrass
 
-tile.tragicmc.skyFruit.name=Sky Fruit
+tile.tragicmc.skyFruit.name=Sky Fruit (Plant)
+tile.tragicmc.deathglow.name=Deathglow (Plant)
+tile.tragicmc.honeydrop.name=Honeydrop (Plant)
 
 tile.tragicmc.ashenTallGrass.name=Ashen Tall Grass
 tile.tragicmc.driedTallGrass.name=Dried Tall Grass
@@ -309,6 +325,17 @@ tile.tragicmc.darkGas.name=Blinding Gas
 tile.tragicmc.darkTallGrass.name=Dark Tall Grass
 
 tile.tragicmc.septicGas.name=Septic Gas
+
+tile.tragicmc.corsin.normal.name=Corsin
+tile.tragicmc.corsin.faded.name=Faded Corsin
+tile.tragicmc.corsin.brick.name=Corsin Brick
+tile.tragicmc.corsin.fadedBrick.name=Corsin Brick (Faded)
+tile.tragicmc.corsin.circle.name=Circle Corsin
+tile.tragicmc.corsin.celled.name=Celled Corsin
+tile.tragicmc.corsin.scarred.name=Scarred Corsin
+tile.tragicmc.corsin.wavy.name=Wavy Corsin
+tile.tragicmc.corsin.crystal.name=Crystalized Corsin
+tile.tragicmc.corsin.crystalWrap.name=Crystalized Corsin (Wrapped)
 
 item.tragicmc.redMercury.name=Red Mercury
 item.tragicmc.mercuryHelm.name=Red Mercury Helmet
@@ -616,8 +643,8 @@ item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 item.tragicmc.soundExtrapolator.name=Sound Extrapolator
 
 item.tragicmc.gooeyFruit.name=Gooey Fruit
-item.tragicmc.exoticFruit.name=Exotic Fruit
-item.tragicmc.nastyFruit.name=Nasty Fruit
+item.tragicmc.exoticFruit.name=Honeydrop
+item.tragicmc.nastyFruit.name=Deathglow
 item.tragicmc.iceCream.name=Ice Cream
 item.tragicmc.rice.name=Rice
 item.tragicmc.sushi.name=Sushi

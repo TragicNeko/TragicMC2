@@ -482,9 +482,9 @@ public class EntityOverlordCore extends TragicBoss {
 			d3 = MathHelper.sqrt_double(d3);
 			double d5 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
 
-			this.motionX += d0 / d3 * d5;
-			this.motionY += d1 / d3 * d5;
-			this.motionZ += d2 / d3 * d5;
+			this.motionX += d0 / d3 * d5 * 0.5;
+			this.motionY += d1 / d3 * d5 * 0.5;
+			this.motionZ += d2 / d3 * d5 * 0.5;
 		}
 
 		if (this.target != null)

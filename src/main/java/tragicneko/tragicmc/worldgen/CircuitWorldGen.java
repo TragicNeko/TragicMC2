@@ -14,18 +14,18 @@ public class CircuitWorldGen implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		Chunk chk = world.getChunkFromChunkCoords(chunkX, chunkZ);
+		final Chunk chk = world.getChunkFromChunkCoords(chunkX, chunkZ);
 		double m;
 		byte meta;
 		
-		for (int y1 = 0; y1 < 128; y1++)
+		for (byte y1 = 0; y1 < 128; y1++)
 		{
 			m = (2.5D + (Math.cos((y1 + 6) / 20.0D)) * 2.5);
 			meta = (byte) MathHelper.clamp_int((int) Math.round(m), 0, 4);
 
-			for (int x1 = 0; x1 < 16; x1++)
+			for (byte x1 = 0; x1 < 16; x1++)
 			{
-				for (int z1 = 0; z1 < 16; z1++)
+				for (byte z1 = 0; z1 < 16; z1++)
 				{
 					if (chk.getBlock(x1, y1, z1) == TragicBlocks.CircuitBlock) chk.setBlockMetadata(x1, y1, z1, meta);
 					

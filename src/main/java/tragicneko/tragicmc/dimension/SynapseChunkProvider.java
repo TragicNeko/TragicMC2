@@ -80,8 +80,8 @@ public class SynapseChunkProvider implements IChunkProvider
 		this.netherNoiseGen7 = (NoiseGeneratorOctaves)noiseGens[6];
 		
 		this.circuitGen = new CircuitWorldGen();
-		this.coralGen = new HangingCoralWorldGen(4, 32, 1000, TragicBlocks.Conduit, 0);
-		this.coralGen2 = new HangingCoralWorldGen(3, 12, 800, TragicBlocks.Conduit, 0);
+		this.coralGen = new HangingCoralWorldGen((byte) 4, 32, 1000, TragicBlocks.Conduit, (byte) 0);
+		this.coralGen2 = new HangingCoralWorldGen((byte) 3, 12, 800, TragicBlocks.Conduit, (byte) 0);
 		this.circuitVarGen = new SynapseVariantGen();
 	}
 

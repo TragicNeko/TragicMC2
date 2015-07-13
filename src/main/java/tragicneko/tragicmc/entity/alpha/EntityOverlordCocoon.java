@@ -382,10 +382,10 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (int[] coord: lst)
 			{
-				this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
+				if (this.posY >= coord[1]) this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
 			}
 
-			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 12.5, this.posX, this.posY - 1, this.posZ);
+			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
 
 			for (int[] coords : lst)
 			{

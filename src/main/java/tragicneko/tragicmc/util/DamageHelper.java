@@ -5,6 +5,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 
 public class DamageHelper {
+	
+	public static DamageSource bleed = new DamageSource("bleed").setDamageBypassesArmor();
 
 	/**
 	 * Should be used to inflict suffocation damage on entities

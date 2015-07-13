@@ -15,14 +15,14 @@ public class SurfaceWorldGen implements IWorldGenerator {
 	public final double radius;
 	public final double variation;
 	public final boolean usesAltGen;
-	public final int iterations;
+	public final byte iterations;
 	public final Block block;
-	public final int meta;
+	public final byte meta;
 	public final Block toReplace;
 	public final boolean doesAirCheck;
 	public final boolean randPerIteration;
 
-	public SurfaceWorldGen(double radius, double var, boolean flag, int relays, Block block, int meta, Block toReplace, boolean flag2, boolean flag3)
+	public SurfaceWorldGen(double radius, double var, boolean flag, byte relays, Block block, byte meta, Block toReplace, boolean flag2, boolean flag3)
 	{
 		this.radius = radius;
 		this.variation = var;
@@ -46,7 +46,7 @@ public class SurfaceWorldGen implements IWorldGenerator {
 		int[] coords = new int[] {x, y, z};
 		Block block;
 
-		for (int y1 = -1; y1 < 2; y1++)
+		for (byte y1 = -1; y1 < 2; y1++)
 		{
 			if (this.randPerIteration)
 			{
@@ -66,7 +66,7 @@ public class SurfaceWorldGen implements IWorldGenerator {
 			}
 		}
 
-		for (int k = 0; k < this.iterations && this.usesAltGen; k++)
+		for (byte k = 0; k < this.iterations && this.usesAltGen; k++)
 		{
 			block = world.getBlock(coords[0], coords[1], coords[2]);
 			list = WorldHelper.getBlocksAdjacent(coords);

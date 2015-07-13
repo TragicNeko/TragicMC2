@@ -19,8 +19,9 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 			int Xcoord;
 			int Ycoord;
 			int Zcoord;
+			byte i;
 
-			for (int i = 0; i < TragicConfig.mercuryOreRarity; i++)
+			for (i = 0; i < TragicConfig.mercuryOreRarity; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(48) + 5;
@@ -28,7 +29,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 				new WorldGenMinable(TragicBlocks.MercuryOre, 0, 4, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
-			for (int i = 0; i < TragicConfig.tungstenOreRarity; i++)
+			for (i = 0; i < TragicConfig.tungstenOreRarity; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(24) + 5;
@@ -36,7 +37,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 				new WorldGenMinable(TragicBlocks.TungstenOre, 0, 3, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
-			for (int i = 0; i < TragicConfig.silverfishGenRarity && TragicConfig.allowOverworldSilverfishGen; i++)
+			for (i = 0; i < TragicConfig.silverfishGenRarity && TragicConfig.allowOverworldSilverfishGen; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(6);
@@ -51,7 +52,7 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 
 			if (random.nextInt(4) != 0) return;
 
-			for (int i = 0; i < 16 && TragicConfig.allowDimension; i++)
+			for (i = 0; i < 16 && TragicConfig.allowDimension; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Zcoord = (chunkZ * 16) + random.nextInt(16);

@@ -49,4 +49,10 @@ public class StructureObsidianCavern extends Structure {
 		if (!super.generateStructureWithVariant(variant, world, rand, x, y, z)) return false;
 		return this.schematic.generateStructure(variant, world, rand, x, y, z);
 	}
+	
+	@Override
+	public int getStructureColor()
+	{
+		return 0xAAAAAA;
+	}
 }

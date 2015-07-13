@@ -322,6 +322,7 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityRanmas.class, new RenderMob(new ModelRanmas(), 0.775F, "Ranmas", 1.25F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityParasmite.class, new RenderMob(new ModelHunter(), 0.565F, "Parasmite", 1.355F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityKurayami.class, new RenderMob(new ModelKurayami(), 0.645F, "Kurayami", 0.825F));
+		//TODO do Avris render stuff
 
 		//Boss renders
 		RenderingRegistry.registerEntityRenderingHandler(EntityApis.class, new RenderApis());

@@ -47,4 +47,9 @@ public class StructureDeathCircle extends StructureBoss {
 		return this.schematic.generateStructure(world, rand, x, y, z);
 	}
 
+	@Override
+	public int getStructureColor()
+	{
+		return 0x770300;
+	}
 }

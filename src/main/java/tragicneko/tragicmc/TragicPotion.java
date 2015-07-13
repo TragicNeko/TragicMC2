@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class TragicPotion extends Potion {
 
-	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked; //, Deafening, Nightmare, Exasperate, EvilPresence;
+	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked; //, Deafening, Nightmare, Exasperate, EvilPresence, Bleed;
 	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence, Divinity;
 
 	private ItemStack stackIcon;
@@ -51,6 +51,7 @@ public class TragicPotion extends Potion {
 		//Nightmare = new TragicPotion(TragicConfig.idHacked + 2, true, 0x000000).setPotionName("potion.nightmare");
 		//Exasperate = new TragicPotion(TragicConfig.idHacked + 3, true, 0x000000).setPotionName("potion.exasperate");
 		//EvilPresence = new TragicPotion(TragicConfig.idHacked + 4, true, 0x000000).setPotionName("potion.evilPresence");
+		//Bleed = new PotionBleed(TragicConfig.idHacked + 1, true, 0x000000).setPotionName("potion.bleed");
 
 		if (TragicConfig.allowFlight) Flight = (new TragicPotion(TragicConfig.idFlight, false, 0xFDDC69).setPotionName("potion.flight"));
 		if (TragicConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(TragicConfig.idAquaSuperiority, true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));
@@ -69,7 +70,7 @@ public class TragicPotion extends Potion {
 		if (Disorientation != null) ((TragicPotion) Disorientation).setIcon(new ItemStack(Items.dye));
 		if (Stun != null) ((TragicPotion) Stun).setIcon(new ItemStack(TragicItems.LightParticles));
 		if (Fear != null) ((TragicPotion) Fear).setIcon(new ItemStack(Blocks.pumpkin, 1));
-		if (Cripple != null) ((TragicPotion) Cripple).setIcon(new ItemStack(TragicItems.BloodSacrifice));
+		if (Cripple != null) ((TragicPotion) Cripple).setIcon(new ItemStack(Items.bone));
 		if (Malnourish != null) ((TragicPotion) Malnourish).setIcon(new ItemStack(TragicItems.NourishmentSacrifice));
 		if (Submission != null) ((TragicPotion) Submission).setIcon(new ItemStack(TragicItems.Thorns));
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
@@ -79,6 +80,7 @@ public class TragicPotion extends Potion {
 		//((TragicPotion) Nightmare).setIcon(new ItemStack(TragicItems.CorruptedEgg));
 		//((TragicPotion) Exasperate).setIcon(new ItemStack(TragicItems.EnchantedTears));
 		//((TragicPotion) EvilPresence).setIcon(new ItemStack(TragicItems.PureDarkness));
+		//((TragicPotion) Bleed).setIcon(new ItemStack(TragicItems.BloodSacrifice));
 
 		if (Flight != null) ((TragicPotion) Flight).setIcon(new ItemStack(Items.feather));
 		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.EnchantedTears));

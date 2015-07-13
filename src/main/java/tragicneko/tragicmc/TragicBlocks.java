@@ -26,6 +26,8 @@ import tragicneko.tragicmc.blocks.BlockBone;
 import tragicneko.tragicmc.blocks.BlockCandle;
 import tragicneko.tragicmc.blocks.BlockCelledLamp;
 import tragicneko.tragicmc.blocks.BlockCircuit;
+import tragicneko.tragicmc.blocks.BlockCorsin;
+import tragicneko.tragicmc.blocks.BlockCrop;
 import tragicneko.tragicmc.blocks.BlockDarkCobble;
 import tragicneko.tragicmc.blocks.BlockDarkSand;
 import tragicneko.tragicmc.blocks.BlockDarkSandstone;
@@ -76,7 +78,6 @@ import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.blocks.BlockTragicOres;
 import tragicneko.tragicmc.blocks.BlockTragicSapling;
 import tragicneko.tragicmc.blocks.BlockWickedVine;
-import tragicneko.tragicmc.blocks.itemblocks.ItemBlockAeris;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockCelledLamp;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockDarkStone;
 import tragicneko.tragicmc.blocks.itemblocks.ItemBlockOres;
@@ -214,12 +215,12 @@ public class TragicBlocks {
 
 	public static Block SoulChest;
 
-	public static Block IcedDirt; //filler
-	public static Block Permafrost; //top block, will have a meta variant, cracked permafrost, mossy permafrost
-	public static Block IceSpike; //trap block, only damages when you land on it, may make it a double block
+	public static Block IcedDirt;
+	public static Block Permafrost;
+	public static Block IceSpike;
 	public static Block IceSpikeHanging;
-	public static Block Moss; //will be able to be placed on all sides of a block, if placed on top of permafrost will convert it to mossy permafrost
-	public static Block Lichen; //will work like a bush, a small mossy bush basically
+	public static Block Moss;
+	public static Block Lichen;
 
 	public static Block Crystal;
 
@@ -231,6 +232,10 @@ public class TragicBlocks {
 	public static Block DarkTallGrass;
 	
 	public static Block SkyFruit;
+	public static Block Deathglow;
+	public static Block Honeydrop;
+	
+	public static Block Corsin; //new block for the Spider nests
 
 	public static void load()
 	{
@@ -495,7 +500,7 @@ public class TragicBlocks {
 		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");
 
 		Aeris = (new BlockAeris());
-		GameRegistry.registerBlock(Aeris, ItemBlockAeris.class, "aeris");
+		GameRegistry.registerBlock(Aeris, TragicItemBlock.class, "aeris", new Object[] {new String[] {"pureAeris", "partiallyCorruptedAeris", "corruptedAeris"}, "aeris"});
 		GameRegistry.registerTileEntity(TileEntityAeris.class, "tragicmc.aeris");
 
 		MoltenRock = (new BlockMoltenRock());
@@ -658,8 +663,17 @@ public class TragicBlocks {
 		}.setBlockName("tragicmc.septicGas");
 		GameRegistry.registerBlock(SepticGas, ItemBlock.class, "septicGas");
 		
-		SkyFruit = new BlockFruit().setBlockName("tragicmc.skyFruit").setBlockTextureName("tragicmc:PaintedTallGrass");
+		SkyFruit = new BlockFruit().setBlockName("tragicmc.skyFruit").setBlockTextureName("tragicmc:SkyFruit");
 		GameRegistry.registerBlock(SkyFruit, ItemBlock.class, "skyFruitBlock");
+		
+		Deathglow = new BlockCrop().setBlockName("tragicmc.deathglow").setBlockTextureName("tragicmc:Deathglow");
+		GameRegistry.registerBlock(Deathglow, ItemBlock.class, "deathglow");
+		
+		Honeydrop = new BlockCrop().setBlockName("tragicmc.honeydrop").setBlockTextureName("tragicmc:Honeydrop");
+		GameRegistry.registerBlock(Honeydrop, ItemBlock.class, "honeydrop");
+		
+		Corsin = new BlockCorsin().setBlockName("tragicmc.corsin");
+		GameRegistry.registerBlock(Corsin, TragicItemBlock.class, "corsin", new Object[] {new String[] {"normal", "faded", "brick", "fadedBrick", "circle", "celled", "scarred", "crystal", "crystalWrap"}, "corsin"});
 
 		for (int i = 0; i < 3; i++)
 		{

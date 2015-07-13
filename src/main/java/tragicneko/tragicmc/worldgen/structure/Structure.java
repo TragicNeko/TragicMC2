@@ -20,7 +20,7 @@ public class Structure extends WorldGenerator {
 	private final String structureName;
 	protected final int height;
 
-	public static Structure[] structureList = new Structure[16];
+	public static Structure[] structureList = new Structure[24];
 	public static Structure apisTemple = new StructureApisTemple(0, "apisTemple");
 	public static Structure towerStructure = new StructureTower(1, "tower");
 	public static Structure deathCircle = new StructureDeathCircle(2, "deathCircle");
@@ -31,13 +31,14 @@ public class Structure extends WorldGenerator {
 	public static Structure soulTomb = new StructureSoulTomb(7, "soulTomb");
 	public static Structure corruptedSpire = new StructureCorruptedSpire(8, "corruptedSpire");
 	public static Structure empariahCave = new StructureEmpariahCave(9, "empariahCave");
-	//public static Structure claymationRuin = new Structure(10, "claymationRuin"); //TODO add Claymation Ruins, blaze spawners
-	//public static Structure hexBuilding = new Structure(11, "hexBuilding"); //witch spawners, like a giant swamp shack possibly
-	//public static Structure ragrPit = new Structure(12, "ragrPit"); //Ragr spawners, generate similarly to the Empariah Cave
-	//public static Structure spiderNest = new Structure(13, "spiderNest"); //Various spider spawners, Stin spawners, made of nearly solid cobwebs
-	//public static Structure memoryCache = new Structure(14, "memeoryCache"); //Synapse spherical structure that generates with multiple nano swarm spawners and has a good chest in the middle
-	//public static Structure lightSpire = new Structure(15, "lightSpire"); //Large cylindrical vertical shaft of light, has Archangel spawners
-	//public static Structure hackerNet = new Structure(16, "hackerNet"); //Synapse large cloud of Digital Sea with multiple Hunter spawners inside
+	public static Structure claymationRuin = new StructureClaymationRuin(10, "claymationRuin");
+	public static Structure darkHut = new StructureDarkHut(11, "darkHut");
+	public static Structure spiderNest = new StructureSpiderNest(12, "spiderNest"); 
+	public static Structure memoryCache = new StructureMemoryCache(13, "memoryCache");
+	public static Structure lightSpire = new StructureLightSpire(14, "lightSpire");
+	public static Structure hackerNet = new StructureHackerNet(15, "hackerNet"); //TODO finish planned structures
+	public static Structure cubeMaze = new StructureCubeMaze(16, "cubeMaze");
+	public static Structure outlook = new StructureOutlook(17, "outlook");
 
 	public static final Set validBlocks = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.tallgrass, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant,
 			Blocks.snow_layer, Blocks.snow, Blocks.stone, Blocks.sand, Blocks.air, Blocks.netherrack, TragicBlocks.Quicksand, Blocks.ice, Blocks.water, Blocks.lava,
@@ -49,11 +50,12 @@ public class Structure extends WorldGenerator {
 			TragicBlocks.StructureSeed, TragicBlocks.Luminescence, TragicBlocks.ExplosiveGas, TragicBlocks.RadiatedGas, TragicBlocks.CorruptedGas,
 			TragicBlocks.WitheringGas, TragicBlocks.WickedVine, TragicBlocks.Permafrost, TragicBlocks.IcedDirt, TragicBlocks.IceSpike, TragicBlocks.IceSpikeHanging,
 			TragicBlocks.Light, TragicBlocks.FragileLight, TragicBlocks.FragileLightInvis, TragicBlocks.Crystal, TragicBlocks.DarkGrass, TragicBlocks.Lichen,
-			TragicBlocks.Moss});
+			TragicBlocks.Moss, TragicBlocks.TragicFlower, TragicBlocks.TragicFlower2});
 
 	public Structure(Schematic sch, int id, String s)
 	{
 		this.schematic = sch;
+		if (structureList[id] != null) throw new IllegalArgumentException("There is a structure using that ID (" + id + ") already!");
 		structureList[id] = this;
 		this.structureId = id;
 		this.height = sch.structureHeight;
@@ -170,5 +172,15 @@ public class Structure extends WorldGenerator {
 	public String getLocalizedName()
 	{
 		return StatCollector.translateToLocal("tile.tragicmc.structureSeed." + this.structureName + ".name");
+	}
+
+	public String getUnlocalizedName() 
+	{
+		return this.structureName;
+	}
+	
+	public int getStructureColor() //TODO setup structure colors
+	{
+		return 0x000000;
 	}
 }

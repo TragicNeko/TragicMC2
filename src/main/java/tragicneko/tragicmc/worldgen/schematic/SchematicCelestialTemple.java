@@ -28,7 +28,7 @@ public class SchematicCelestialTemple extends Schematic {
 	public boolean generateStructure(int variant, World world, Random rand, int x, int y, int z)
 	{
 		ArrayList<int[]> list;
-		int relays = 6 + (rand.nextInt(variant + 1) + 1) * (rand.nextInt(variant + 1) + 1);
+		byte relays = (byte) (6 + (rand.nextInt(variant + 1) + 1) * (rand.nextInt(variant + 1) + 1));
 		Block block;
 		double regression = 0.88977745D;
 		double cutoff = 0.48943755D;
@@ -39,7 +39,7 @@ public class SchematicCelestialTemple extends Schematic {
 		int Zcoord;
 		int Ycoord;
 
-		for (int buzza = 0; buzza < relays; buzza++)
+		for (byte buzza = 0; buzza < relays; buzza++)
 		{
 			if (buzza == 0)
 			{
@@ -61,7 +61,7 @@ public class SchematicCelestialTemple extends Schematic {
 			}
 			yMax = Ycoord;
 
-			for (int y1 = 0; y1 > -32; y1--)
+			for (byte y1 = 0; y1 > -32; y1--)
 			{
 				if (size < cutoff) break;
 				size *= regression;
@@ -85,7 +85,7 @@ public class SchematicCelestialTemple extends Schematic {
 				}
 			}
 
-			int rnd = rand.nextInt(3) + 1;
+			byte rnd = (byte) (rand.nextInt(3) + 1);
 
 			for (int[] coords2 : cands)
 			{
@@ -104,11 +104,11 @@ public class SchematicCelestialTemple extends Schematic {
 			}
 		}
 
-		for (int y1 = 0; y1 < 10; y1++)
+		for (byte y1 = 0; y1 < 10; y1++)
 		{
-			for (int x1 = -8; x1 < 17; x1++)
+			for (byte x1 = -8; x1 < 17; x1++)
 			{
-				for (int z1 = -6; z1 < 15; z1++)
+				for (byte z1 = -6; z1 < 15; z1++)
 				{
 					world.setBlockToAir(x + x1, y + y1 + 1, z + z1);
 				}
