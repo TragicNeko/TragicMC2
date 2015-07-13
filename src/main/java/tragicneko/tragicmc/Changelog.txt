@@ -4143,7 +4143,7 @@ Improved Stin Amulet's ability to knockback targets
 Fixed Lightning Amulet not setting the right hunger values to restore hunger
 Did server testing for the Nuke, doesn't lag the server at all so that's awesome
 
-2.44.2646++ <206> (June 15, 2015)
+2.44.2686 <206> (June 15, 2015)
 Added Synapse variants to the Dimension, there will be dead sectors and corrupt sectors, these act like mini-biomes and will be done via worldgen instead
 of by using a normal biome generation method
 The 3x3 chunks around 0,0 are protected from being variants
@@ -4178,17 +4178,72 @@ Increased spike size variation in Crystal biomes, experimented with changing ove
 Fixed derp with spikegen (doing no regression on larger spikes)
 Fixed derp with vine generation (not properly using the generation resulting in no vines being generated)
 Fixed another derp with vine gen not using the block that is saved in it
+Added reed-like crops for the collision, this involves a crop version of the Nasty and Exotic Fruits
+Moved the reed and crop blocks to Creative tab, these are not obtainable in Survival and probably shouldn't even be in the Creative tabs
+Added unripened textures and made it so that the reed has to be partially matured to give food, they can be grown with bone meal now as well
+Added a few more flowers just to total it up to 16 for that block, another one can be created if necessary anyway
+Reduced area that the Cocoon form clears, made it so that it only clears a hemisphere as well
+Added recipes for the newest group of flowers added
+Made certain mobs immune to being affected by Quicksand
+Finished up the Claymation Ruins, one of the most awesome structures I've made
+Fixed a few initial bugs with worldgen with the Ruins regarding properly clearing air space on the entrance tunnel and ensuring that the stairway down
+to the actual ruins can go down to a far enough y level depending on how high the generation is started
+
+2.44.2686++ <207> (July 3, 2015)
+Modified Structure Seeds block/item to automatically update when new ones were added
+Improved memory use during claymation ruin generation, this sped it up a tiny bit but was mostly meant for when the world was being generated, going to go
+through and optimize more of the worldgen code again
+Added Avris to the Collision's spawns, still need it's model stuff done
+Reduced speed of Overlord Core's flight
+Added Dark Hut structure, reduced chance of Time Altar generating, increased chance of Soul Tomb generating
+Added Corsin blocks, texture influenced by Metroid for the Spider Nest structure, due to how I textured the Corsin blocks, it'll be a Dark Forest structure
+Added Corsin block recipes to convert from the base ones to the others (like for the other aesthetic blocks I have)
+Fixed Deathglow and Honeydrop being generated with a meta value of 0
+Renamed Exotic Fruit and Nasty Fruit to their plant names, the blocks now have (Plant) appended to them to differentiate, Gooey Fruit will remain Gooey Fruit
+and the item recipes to create these fruits will be removed
+Finished up the Spider Nest, it generates as a large disc-like room with webs, chests and stin spawners in it
+Added the Memory Cache, it'll generated randomly in the Synapse (only depends on starting coordinate location, not on what blocks are near it
+Added the Hacker Net, it randomly generates Digital Sea with Hunter spawners and decent chests, for the Synapse
+Added the Light Spire, it generates a mostly vertical column of String Light, which has Archangel spawners and sometimes chests
+Added the newest structures to the config, have one more structure (the outlook) and then I'm done with structures for now
+Removed enforced buffer for Celestial Temple, it can now actually generate
+Reduced Corrupted Spire to 15 floors instead of 20 to reduce lag, also optimized some small bits of memory use to help reduce lag further
+Corrupted Spire now generates in ~7 seconds instead of ~18 seconds, so that's a major improvement
+Added utility property for various things (mostly with special potion effects)
+Used the utility property to finally remove the terrible CommonProxy hashmap I had for Corruption radiation
+Did some testing for another new potion effect, went well so that'll be in use later on
+Fixed some issues with Corruption's radiation aspect, you now must be isolated from other living entities in order to remove the corruption (if it's effect
+time runs out, it'll still remove as normal, but this lets you remove it quicker and without possibly corrupting other entities around you)
+Finished a new structure, an experimental 3D maze, generates out of obsidian to encourage actually doing the maze but otherwise allows you to mine into/out of
+it in case it doesn't generate in such a way to allow you to get to the treasure room (or if you find the treasure room but can't get out)
+Created a seperate Structure WorldGen to fix that bug with generating structures 10,000 blocks away
+Previous change to Structure WorldGen did nothing to fix the bug (actually made it worse lol) so I reverted that change
+It's possibly doing the bug during chunk populating, which may be an issue with the vanilla server manager
+Need to look into the chunk generation for my Dimension more to see what's going on with that stuff
+Looked into the gen layers and determined that the cause is due to zooming in so far on the biome gen layer (for larger biome sizes) but since that isn't
+really something I can fix, it'll have to stay until I experiment more with the Gen Layers
+GenLayers were modified some so previous worlds will now have ugly world chunk borders (oh well)
+Added a placeholder for the Outlook, it'll be a randomized surface pillar that goes up to y = 220, it'll generate with a large platform that'll have lots of
+treasures but it will have a singular pillar with a ladder to go all the way up to the top (so if you don't have Flight, it'll take you a while to get there)
+Went through and optimized memory use for most of the WorldGen, fixed some initial bugs with this transition
+Painted Trees (the normal ones, not the 2x2 ones) now may generate with Sky Fruit pods on them
+Config potion ids now get set as one group instead of being set in groups (positive and negative), this is to prevent them from breaking if I add a new one, 
+so now they are done together one after the other such that new effects are added to the end instead of the middle (if they are "positive" effects)
+Working on the Outlook structure then I need to go back into recording Enyvil sounds
+Pushed a massive commit to Git, due to me working on and off on this for the past month or so, I haven't gotten around to pushing commits so I'll try to get
+back on doing that more often
+
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
 Remove all unneeded info logging outside of setup and initialization
 Avris model, texture, animations
-New Structures
+Finalize things and fix small things that are bothering me (like the potion ids in the config)
 
 Boss sounds--
+Overlord Core sounds: Electronically filtered creature sounds, highly phased out death sound
 Apis sounds: Mad bull sounds
 Yeti sounds: Deep beastly sounds
-Enyvil sounds: possibly double toned sounds (high and low pitched at the same time to create a weird effect)
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
 Avris sounds: oohs and ahhs and snickers... mmm snickers
