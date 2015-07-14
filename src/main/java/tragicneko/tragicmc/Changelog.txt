@@ -4231,9 +4231,10 @@ Config potion ids now get set as one group instead of being set in groups (posit
 so now they are done together one after the other such that new effects are added to the end instead of the middle (if they are "positive" effects)
 
 2.44.2716++ <208> (July 13, 2015)
-Working on the Outlook structure then I need to go back into recording Enyvil sounds
 Pushed a massive commit to Git, due to me working on and off on this for the past month or so, I haven't gotten around to pushing commits so I'll try to get
 back on doing that more often
+Finished up the Outlook of Persistence, skeleton spawners every 50 blocks up it and a large platform with a Soul Chest and Enderman spawners at the top
+Soul Chests now open for Creative mode players without requiring souls to be fulfilled
 
 
 TODO still:
