@@ -4189,7 +4189,7 @@ Finished up the Claymation Ruins, one of the most awesome structures I've made
 Fixed a few initial bugs with worldgen with the Ruins regarding properly clearing air space on the entrance tunnel and ensuring that the stairway down
 to the actual ruins can go down to a far enough y level depending on how high the generation is started
 
-2.44.2686++ <207> (July 3, 2015)
+2.44.2716 <207> (July 3, 2015)
 Modified Structure Seeds block/item to automatically update when new ones were added
 Improved memory use during claymation ruin generation, this sped it up a tiny bit but was mostly meant for when the world was being generated, going to go
 through and optimize more of the worldgen code again
@@ -4229,6 +4229,8 @@ Went through and optimized memory use for most of the WorldGen, fixed some initi
 Painted Trees (the normal ones, not the 2x2 ones) now may generate with Sky Fruit pods on them
 Config potion ids now get set as one group instead of being set in groups (positive and negative), this is to prevent them from breaking if I add a new one, 
 so now they are done together one after the other such that new effects are added to the end instead of the middle (if they are "positive" effects)
+
+2.44.2716++ <208> (July 13, 2015)
 Working on the Outlook structure then I need to go back into recording Enyvil sounds
 Pushed a massive commit to Git, due to me working on and off on this for the past month or so, I haven't gotten around to pushing commits so I'll try to get
 back on doing that more often
