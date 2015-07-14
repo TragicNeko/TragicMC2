@@ -29,7 +29,7 @@ public class TileEntitySoulChest extends TileEntityChest {
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		if (this.souls < this.requiredSouls)
+		if (this.souls < this.requiredSouls && !player.capabilities.isCreativeMode)
 		{
 			if (!this.worldObj.isRemote) player.addChatMessage(new ChatComponentText("Mob kills are required to open this chest! Souls required: " + (this.requiredSouls - this.souls)));
 			return false;
