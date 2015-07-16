@@ -87,7 +87,6 @@ public class TragicMusicTicker implements IUpdatePlayerListBox {
 				this.currentTrack = PositionedSoundRecord.func_147673_a(music.loc);
 				this.mc.getSoundHandler().playSound(this.currentTrack);
 				this.buffer = Integer.MAX_VALUE;
-				TragicMC.logInfo("Track set to play");
 			}
 		}
 	}

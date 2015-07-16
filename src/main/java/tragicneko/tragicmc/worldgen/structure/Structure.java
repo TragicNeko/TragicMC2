@@ -36,7 +36,7 @@ public class Structure extends WorldGenerator {
 	public static Structure spiderNest = new StructureSpiderNest(12, "spiderNest"); 
 	public static Structure memoryCache = new StructureMemoryCache(13, "memoryCache");
 	public static Structure lightSpire = new StructureLightSpire(14, "lightSpire");
-	public static Structure hackerNet = new StructureHackerNet(15, "hackerNet"); //TODO finish planned structures
+	public static Structure hackerNet = new StructureHackerNet(15, "hackerNet");
 	public static Structure cubeMaze = new StructureCubeMaze(16, "cubeMaze");
 	public static Structure outlook = new StructureOutlook(17, "outlook");
 
@@ -179,7 +179,7 @@ public class Structure extends WorldGenerator {
 		return this.structureName;
 	}
 	
-	public int getStructureColor() //TODO setup structure colors
+	public int getStructureColor()
 	{
 		return 0x000000;
 	}

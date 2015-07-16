@@ -502,16 +502,14 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
-		if (src.getEntity() instanceof EntityLivingBase) //testing with weapon ascension
+		if (src.getEntity() instanceof EntityLivingBase) //ascension testing
 		{
 			if (((EntityLivingBase) src.getEntity()).getHeldItem() != null)
 			{
 				ItemStack stack = ((EntityLivingBase) src.getEntity()).getHeldItem();
 				if (stack.getItem() instanceof TragicWeapon)
 				{
-					TragicMC.logInfo("Original damage is " + dmg);
 					dmg += ((TragicWeapon) stack.getItem()).ascensionLevel;
-					TragicMC.logInfo("Damage plus ascension is " + dmg);
 				}
 			}
 		}

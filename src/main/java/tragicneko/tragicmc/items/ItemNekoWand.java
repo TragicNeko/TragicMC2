@@ -61,7 +61,6 @@ public class ItemNekoWand extends Item {
 
 		if (entity instanceof EntityPart)
 		{
-			TragicMC.logInfo("Entity was a multipart entity, choosing it's main part as the attack target.");
 			entity = (Entity) ((EntityPart) entity).main;
 		}
 
@@ -189,7 +188,6 @@ public class ItemNekoWand extends Item {
 			}
 		}
 
-		TragicMC.logInfo("Number of ores in chunk(" + " X:" + chunkX + ", Z:" + chunkZ + ") : " + m);
 		int dim = world.provider.dimensionId;
 
 		if (dim == -1)
@@ -204,8 +202,6 @@ public class ItemNekoWand extends Item {
 				if (b == TragicBlocks.SapphireOre) saph++;
 				if (b == Blocks.quartz_ore) quart++;
 			}
-
-			TragicMC.logInfo("Ore dist. is Ruby:" + ruby + ", Sapphire:" + saph + ", Quartz:" + quart);
 		}
 		else if (dim == 0)
 		{
@@ -231,8 +227,6 @@ public class ItemNekoWand extends Item {
 				if (b == Blocks.redstone_ore) red++;
 				if (b == Blocks.emerald_ore) em++;
 			}
-
-			TragicMC.logInfo("Ore dist. is Emerald:" + em + ", Diamond:" + diam + ", Gold:" + gold + ", Redstone:" + red + ", Lapis:" + lapis + ", Iron:" + iron + ", Coal:" + coal + ", Tungsten:" + tung + ", Mercury:" + merc);
 		}
 		else if (dim == TragicConfig.dimensionID)
 		{
@@ -262,8 +256,6 @@ public class ItemNekoWand extends Item {
 				if (meta == 10) xp++;
 				if (meta == 6) em++;
 			}
-
-			TragicMC.logInfo("Ore dist. is Emerald:" + em + ", Diamond:" + diam + ", Gold:" + gold + ", Ruby:" + ruby + ", Sapphire:" + saph + ", Lapis:" + lapis + ", Iron:" + iron + ", Coal:" + coal + ", Tungsten:" + tung + ", Mercury:" + merc + ", XP:" + xp);
 		}
 
 		return stack;

@@ -4235,12 +4235,12 @@ Pushed a massive commit to Git, due to me working on and off on this for the pas
 back on doing that more often
 Finished up the Outlook of Persistence, skeleton spawners every 50 blocks up it and a large platform with a Soul Chest and Enderman spawners at the top
 Soul Chests now open for Creative mode players without requiring souls to be fulfilled
+Removed most info logging, left in a few for debug purposes to be removed later (before release)
 
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
-Remove all unneeded info logging outside of setup and initialization
 Avris model, texture, animations
 Finalize things and fix small things that are bothering me (like the potion ids in the config)
 

@@ -36,8 +36,6 @@ public class EntityIreEnergy extends EntityProjectile {
 			{
 				mop.entityHit.attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this.shootingEntity), MathHelper.clamp_float(EntityIre.ireNetSize, 1.0F, 100.0F));
 				if (rand.nextBoolean()) mop.entityHit.setFire(4 + rand.nextInt(8));
-				//TragicMC.logInfo("Entity's health is " + ((EntityLivingBase) mop.entityHit).getHealth());
-				//TragicMC.logInfo("Ire netsize was " + EntityIre.ireNetSize);
 			}
 		}
 

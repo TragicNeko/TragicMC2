@@ -402,8 +402,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && this.getHypermode() && rand.nextInt(128) == 0) this.setMortorTicks(100);
 			if (this.getMortorTicks() > 20 && this.getMortorTicks() % 20 == 0) this.createCrystalMortors();
 		}
-
-		//if (this.ticksExisted % 120 == 0) TragicMC.logInfo("Aegar health is at " + this.getHealth());
 	}
 
 	private void createCrystalMortors() {

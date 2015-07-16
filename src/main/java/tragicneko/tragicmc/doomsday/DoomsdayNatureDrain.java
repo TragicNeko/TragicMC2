@@ -94,7 +94,6 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		if (effect.utilityInt > 0)
 		{
 			float i = rand.nextInt((effect.utilityInt / 2) + 1) + 0.5F;
-			TragicMC.logInfo("Total is " + effect.utilityInt + ", amount chosen is " + i);
 
 			if (crucMoment)
 			{

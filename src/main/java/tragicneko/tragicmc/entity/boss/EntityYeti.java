@@ -422,9 +422,6 @@ public class EntityYeti extends TragicBoss {
 					}
 				}
 			}
-
-			TragicMC.logInfo("Is throwing? " + this.getThrowing());
-			TragicMC.logInfo("Demeanor: " + this.getDemeanor());
 		}
 	}
 

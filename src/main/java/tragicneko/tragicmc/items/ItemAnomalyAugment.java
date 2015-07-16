@@ -68,15 +68,12 @@ public class ItemAnomalyAugment extends Item{
 			{
 				totalLevels += ee.getEnchantLevel();
 				totalWeights += ee.getEnchantment().getWeight();
-				TragicMC.logInfo("Enchantment was " + ee.getEnchantment());
 			}
 
 			double avgLevels = totalLevels / list.size();
 			double avgWeights = totalWeights / list.size();
 
-			TragicMC.logInfo("Total levels was " + totalLevels + ", average was " + avgLevels + " and total weight was " + totalWeights + ", average was " + avgWeights);
 			int r = MathHelper.floor_double(100 * avgLevels * avgWeights);
-			TragicMC.logInfo("Total attempts are " + r);
 			Item item = Item.getItemById(itemRand.nextInt(42000));
 			int attempts = 0;
 
@@ -88,7 +85,6 @@ public class ItemAnomalyAugment extends Item{
 
 			if (item != null && !world.isRemote)
 			{
-				TragicMC.logInfo("Item chosen was " + item);
 				EntityItem ei = new EntityItem(world);
 				ei.setEntityItemStack(new ItemStack(item));
 				ei.setPosition(player.posX, player.posY, player.posZ);

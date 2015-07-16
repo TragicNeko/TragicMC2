@@ -50,7 +50,6 @@ public class BlockSteamVent extends Block {
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		//TragicMC.logInfo("Steam vent updated.");
 		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 	}
 

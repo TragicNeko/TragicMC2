@@ -47,6 +47,7 @@ public class EntityAvris extends TragicMob {
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(5, new EntityAIWander(this, 0.85D));
 		this.stepHeight = 1.0F;
+		this.isImmuneToFire = true;
 	}
 	
 	@Override
@@ -68,7 +69,7 @@ public class EntityAvris extends TragicMob {
 		if (this.getHealth() > 0F) this.timeAlive++;
 		if (!this.worldObj.isRemote)
 		{
-			//TragicMC.logInfo("Time alive is " + this.timeAlive);
+			//TragicMC.logInfo("Time alive is " + this.timeAlive); //TODO remove after render is finished
 			//TragicMC.logInfo("Rarity is " + this.rarity);
 		}
 
