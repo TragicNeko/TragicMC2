@@ -55,6 +55,82 @@
 		"sounds": [
 			"boss/aegar/shockwave"]
     },
+	"boss.enyvil.calling":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/calling"]
+    },
+	"boss.enyvil.come":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/come", "boss/enyvil/come2"]
+    },
+	"boss.enyvil.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/death", "boss/enyvil/death2"]
+    },
+	"boss.enyvil.laugh":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/laugh"]
+    },
+	"boss.enyvil.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/living", "boss/enyvil/living2",
+			"boss/enyvil/living3", "boss/enyvil/living4"]
+    },
+	"boss.enyvil.hurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/hurt", "boss/enyvil/hurt2",
+			"boss/enyvil/hurt3", "boss/enyvil/hurt4",
+			"boss/enyvil/hurt5"]
+    },
+	"boss.enyvil.realhurt":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/realhurt", "boss/enyvil/realhurt2",
+			"boss/enyvil/realhurt3"]
+    },
+	"boss.enyvil.slam":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/slam"]
+    },
+	"boss.enyvil.spray":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/spray"]
+    },
+	"boss.enyvil.tractor":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/tractor"]
+    },
+	"boss.enyvil.laser":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/laser"]
+    },
+	"boss.enyvil.summon":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/enyvil/summon"]
+    },
 	"boss.kitsune.hurt":
     {
 		"category": "hostile",
