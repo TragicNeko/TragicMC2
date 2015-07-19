@@ -158,4 +158,10 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	{
 		return "tragicmc:mob.jabba.hurt";
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 5;
+	}
 }

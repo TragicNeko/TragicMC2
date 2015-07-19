@@ -109,7 +109,7 @@ public class EntityAvris extends TragicMob {
 			for (EntityPlayerMP mp : list)
 				mp.addChatMessage(new ChatComponentText("The Avris has been slain!"));
 			
-			int x = 5;
+			int x = 7;
 
 			if (src.getEntity() != null && src.getEntity() instanceof EntityPlayer)
 			{

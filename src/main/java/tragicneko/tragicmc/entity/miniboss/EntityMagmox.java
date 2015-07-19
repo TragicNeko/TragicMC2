@@ -148,4 +148,10 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	{
 		return 0.2F;
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 5;
+	}
 }

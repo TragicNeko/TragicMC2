@@ -378,4 +378,10 @@ public class EntityRagr extends TragicMob {
 	{
 		return super.getTalkInterval();
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 3;
+	}
 }

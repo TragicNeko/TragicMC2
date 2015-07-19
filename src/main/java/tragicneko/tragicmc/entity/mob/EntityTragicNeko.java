@@ -405,4 +405,10 @@ public class EntityTragicNeko extends TragicMob {
 	{
 		return 320 + rand.nextInt(120);
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 3;
+	}
 }

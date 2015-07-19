@@ -152,4 +152,10 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 	{
 		return 0.2F;
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 5;
+	}
 }

@@ -260,4 +260,10 @@ public class EntityMinotaur extends TragicMob {
 	{
 		return 320;
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 3;
+	}
 }

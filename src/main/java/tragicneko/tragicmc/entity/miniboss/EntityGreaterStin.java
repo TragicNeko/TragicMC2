@@ -213,4 +213,10 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 	{
 		return 0.4F;
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 5;
+	}
 }

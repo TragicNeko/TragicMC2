@@ -375,4 +375,10 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	{
 		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 5;
+	}
 }

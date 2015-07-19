@@ -18,7 +18,7 @@ public class CircuitWorldGen implements IWorldGenerator {
 		double m;
 		byte meta;
 		
-		for (byte y1 = 0; y1 < 128; y1++)
+		for (int y1 = 0; y1 < world.provider.getActualHeight(); y1++)
 		{
 			m = (2.5D + (Math.cos((y1 + 6) / 20.0D)) * 2.5);
 			meta = (byte) MathHelper.clamp_int((int) Math.round(m), 0, 4);
@@ -31,8 +31,8 @@ public class CircuitWorldGen implements IWorldGenerator {
 					
 					if (y1 > 5 && y1 < 123)
 					{
-						int yr = y1 + random.nextInt(6) - random.nextInt(6);
-						if (chk.getBlock(x1, yr, z1) == TragicBlocks.CircuitBlock) chk.setBlockMetadata(x1, yr, z1, meta);
+						byte yr = (byte) (random.nextInt(6) - random.nextInt(6));
+						if (chk.getBlock(x1, y1 + yr, z1) == TragicBlocks.CircuitBlock) chk.setBlockMetadata(x1, y1 + yr, z1, meta);
 					}
 				}
 			}

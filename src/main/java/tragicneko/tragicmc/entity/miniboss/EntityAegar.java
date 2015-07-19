@@ -639,4 +639,10 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	{
 		return 160;
 	}
+	
+	@Override
+	public int getDropAmount()
+	{
+		return 5;
+	}
 }

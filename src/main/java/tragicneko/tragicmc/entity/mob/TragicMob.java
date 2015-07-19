@@ -283,7 +283,7 @@ public abstract class TragicMob extends EntityMob
 
 		if (!this.worldObj.isRemote && this.getAllowLoot())
 		{
-			int x = 1;
+			int x = this.getDropAmount();
 
 			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
 			{
@@ -442,6 +442,15 @@ public abstract class TragicMob extends EntityMob
 			return super.onSpawnWithEgg(data);
 		}
 		return super.onSpawnWithEgg(data);
+	}
+	
+	/**
+	 * The maximum attempts for mob drops, the looting amount during a kill is added to this amount
+	 * @return
+	 */
+	public int getDropAmount()
+	{
+		return 1;
 	}
 
 	/**
