@@ -109,8 +109,8 @@ public class EntityAbomination extends TragicMob {
 		{
 			this.decrementCelebrationTicks();
 			if (this.getAttackTime() == 0 && this.getCelebrationTicks() >= 10) this.setAttackTime(10);
+			if (this.getCelebrationTicks() % 20 == 0) this.jump();
 		}
-		if (this.isCelebrating() && this.getCelebrationTicks() % 20 == 0) this.jump();
 	}
 
 	@Override
