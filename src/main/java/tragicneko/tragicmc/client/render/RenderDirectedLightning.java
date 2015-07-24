@@ -13,8 +13,6 @@ import tragicneko.tragicmc.entity.EntityDirectedLightning;
 
 public class RenderDirectedLightning extends Render {
 
-	private static final ResourceLocation enderDragonCrystalBeamTextures = new ResourceLocation("textures/entity/endercrystal/endercrystal_beam.png");
-
 	public void doRender(EntityDirectedLightning bolt, double par1, double par2, double par3, float par4, float par5)
 	{
 		Tessellator tessellator = Tessellator.instance;
@@ -32,7 +30,7 @@ public class RenderDirectedLightning extends Render {
 		double y = user != null ? (user.posY - user.prevPosY) : by;
 		double z = user != null ? (user.posZ - user.prevPosZ) : bz;
 		GL11.glPushMatrix();
-
+		/*
 		for (int i = 0; i < 10; i++) //TODO improve Directed Lightning render
 		{
 			tessellator.startDrawing(3);
@@ -40,7 +38,7 @@ public class RenderDirectedLightning extends Render {
 			tessellator.addVertex(x + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125, y + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125, z + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125);
 			tessellator.addVertex(bx + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125, by + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125, bz + rand.nextDouble() * 0.0125 - rand.nextDouble() * 0.0125);
 			tessellator.draw();
-		}
+		} */
 
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_LIGHTING);
