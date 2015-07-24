@@ -63,6 +63,7 @@ public abstract class TragicMob extends EntityMob
 	protected void entityInit()
 	{
 		super.entityInit();
+		this.dataWatcher.addObject(14, Byte.valueOf((byte) 0));
 		this.dataWatcher.addObject(15, Integer.valueOf(0));
 	}
 
@@ -82,12 +83,30 @@ public abstract class TragicMob extends EntityMob
 		this.setCorruptionTicks(++pow);
 	}
 
+	public boolean isChanging()
+	{
+		return this.dataWatcher.getWatchableObjectByte(14) == 1;
+	}
+
 	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
 
-		if (this.worldObj.isRemote) return;
+		if (this.worldObj.isRemote)
+		{
+			if (this.isChanging())
+			{
+				this.spawnExplosionParticle();
+			}
+			return;
+		}
+
+		if (this.isChanging() && this.ticksExisted > 1)
+		{
+			this.change();
+			return;
+		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 
@@ -152,12 +171,12 @@ public abstract class TragicMob extends EntityMob
 
 			if (this.canChange() && this.getCorruptionTicks() >= 400 && this.rand.nextInt(200) <= TragicConfig.mobTransformationChance && this.ticksExisted % 20 == 0 && rand.nextInt(4) == 0)
 			{
-				this.change();
+				this.dataWatcher.updateObject(14, 1);
 			}
 		}
 		else if (this.canChange() && this.ticksExisted >= 6000 && this.ticksExisted % 20 == 0 && this.rand.nextInt(100) <= TragicConfig.mobTransformationChance)
 		{
-			this.change();
+			this.dataWatcher.updateObject(14, 1);
 		}
 	}
 
@@ -172,6 +191,8 @@ public abstract class TragicMob extends EntityMob
 			this.worldObj.spawnEntityInWorld(boss);
 			boss.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 2));
 			boss.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 2));
+			boss.dataWatcher.updateObject(14, (byte) 0);
+			boss.playSound("tragicmc:random.change", 1.0F, 1.0F);
 		}
 	}
 
@@ -225,6 +246,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("corruptionTicks")) this.setCorruptionTicks(tag.getInteger("corruptionTicks"));
+		if (tag.hasKey("changeState")) this.dataWatcher.updateObject(14, tag.getByte("changeState"));
 	}
 
 	@Override
@@ -232,6 +254,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("corruptionTicks", this.getCorruptionTicks());
+		tag.setByte("changeState", this.dataWatcher.getWatchableObjectByte(14));
 	}
 
 	public boolean getMobGriefing()
@@ -243,6 +266,7 @@ public abstract class TragicMob extends EntityMob
 	{
 		return this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot");
 	}
+
 	@Override
 	protected void onDeathUpdate()
 	{
@@ -265,14 +289,7 @@ public abstract class TragicMob extends EntityMob
 			}
 
 			this.setDead();
-
-			for (i = 0; i < 20; ++i)
-			{
-				double d2 = this.rand.nextGaussian() * 0.02D;
-				double d0 = this.rand.nextGaussian() * 0.02D;
-				double d1 = this.rand.nextGaussian() * 0.02D;
-				this.worldObj.spawnParticle("explode", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, d2, d0, d1);
-			}
+			this.spawnExplosionParticle();
 		}
 	}
 
@@ -443,7 +460,7 @@ public abstract class TragicMob extends EntityMob
 		}
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	/**
 	 * The maximum attempts for mob drops, the looting amount during a kill is added to this amount
 	 * @return
@@ -507,7 +524,7 @@ public abstract class TragicMob extends EntityMob
 
 		return entity;
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource src, float dmg)
 	{
