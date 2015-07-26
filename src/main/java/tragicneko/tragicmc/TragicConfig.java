@@ -947,25 +947,26 @@ public class TragicConfig {
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "leadFootAllow", true).getBoolean(true));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "hackedAllow", true).getBoolean(true));
 		
-		potionIDs[mapping] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32)));
-		potionIDs[mapping] = (config.get(catPotion, "aquaSuperiorityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "immunityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "resurrectionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "harmonyID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "invulnerabilityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "clarityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "divinityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "corruptionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "disorientationID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "stunID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "fearID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "malnourishID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "crippleID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "submissionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping] = (config.get(catPotion, "hackedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		mapping = 0;
+		potionIDs[mapping++] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32)));
+		potionIDs[mapping++] = (config.get(catPotion, "aquaSuperiorityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "immunityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "resurrectionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "harmonyID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "invulnerabilityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "clarityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "divinityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "corruptionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "disorientationID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "stunID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "fearID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "malnourishID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "crippleID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "submissionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "hackedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
 
 		config.addCustomCategoryComment(catPotion, "Set whether specific Potion Effects are allowed, or disable all good or all bad effects, also set their IDs");
 
