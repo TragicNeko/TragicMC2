@@ -94,7 +94,7 @@ public class TragicMC
 			}
 			else
 			{
-				TragicMC.logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent any crashes.");
+				logError("The potionType array was not set to an adequate amount, as a result potion effects are disabled now to prevent any crashes.");
 				TragicConfig.disablePotions();
 			}
 		}
@@ -159,6 +159,7 @@ public class TragicMC
 
 			DimensionManager.registerProviderType(TragicConfig.providerID, tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.keepDimensionLoaded);
 			DimensionManager.registerDimension(TragicConfig.dimensionID, TragicConfig.providerID);
+			logInfo("The Collision was registered with an ID of " + TragicConfig.dimensionID);
 
 			if (DimensionManager.isDimensionRegistered(TragicConfig.synapseID))
 			{
@@ -169,6 +170,7 @@ public class TragicMC
 
 			DimensionManager.registerProviderType(TragicConfig.synapseProviderID, tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.keepDimensionLoaded);
 			DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
+			logInfo("Synapse was registered with an ID of " + TragicConfig.synapseID);
 
 			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
@@ -245,7 +247,7 @@ public class TragicMC
 			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 			potionTypes = (Potion[])f.get(null);
 
-			if (potionTypes.length <= 64)
+			if (potionTypes.length <= 96)
 			{
 				final Potion[] newPotionTypes = new Potion[256];
 				System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);

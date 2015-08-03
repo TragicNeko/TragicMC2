@@ -63,7 +63,7 @@ import com.google.gson.JsonParser;
 public class LoreHelper {
 
 	private static Map<Class<? extends Item>, LoreEntry> loreMap = new HashMap();
-	private static Logger logger = LogManager.getLogger(TragicMC.MODNAME + "/ LoreHelper");
+	private static Logger logger = LogManager.getLogger(TragicMC.MODID + "/LoreHelper");
 
 	public static void addToLoreMap(Class<? extends Item> clazz, LoreEntry entry)
 	{
