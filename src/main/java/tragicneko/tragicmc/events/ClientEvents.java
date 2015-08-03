@@ -36,8 +36,8 @@ public class ClientEvents extends Gui {
 	private static ResourceLocation hackedTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky.png");
 	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity.png");
 
-	private static final float[][] rgb = new float[][] {{1F, 1F, 1F}, {1F, 0.3F, 0.3F}, {0.3F, 0.9F, 0.9F}, {0F, 0.8F, 0F}, {1F, 0.3F, 1F}, {0.8F, 0F, 0F}, {0F, 0F, 0.8F},
-		{0.8F, 0.3F, 0.5F}, {0.6F, 0.3F, 0.9F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.9F}, {0F, 0F, 0F}};
+	private static final float[][] rgb = new float[][] {{1F, 1F, 1F}, {1F, 0.3F, 0.3F}, {0.3F, 0.9F, 0.9F}, {0.1F, 0.8F, 0.1F}, {1F, 0.3F, 1F}, {0.8F, 0.1F, 0.1F}, {0F, 0.1F, 0.8F},
+		{0.8F, 0.3F, 0.5F}, {0.6F, 0.3F, 0.9F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.9F}, {0.1F, 0.1F, 0.1F}};
 	private static int counter;
 	private static int color;
 	private static int buffer;
@@ -134,12 +134,16 @@ public class ClientEvents extends Gui {
 		if (player != null && TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear))
 		{
 			buffer++;
-			if (rand.nextInt(16) == 0 && buffer >= 600)
+			if (rand.nextInt(256) == 0 && buffer >= 9600)
 			{
 				buffer = 0;
 				player.playSound(sounds[rand.nextInt(sounds.length)], rand.nextFloat() * 0.3F + 0.7F, 1.0F);
 			}
 			player.swingItem();
+		}
+		else 
+		{
+			buffer = 0;
 		}
 
 		try
@@ -258,10 +262,11 @@ public class ClientEvents extends Gui {
 		GL11.glDepthMask(true);
 
 		counter++;
-		if (counter > 60 + rand.nextInt(20))
+		if (counter > 20)
 		{
 			counter = 0;
-			color = 0; //rand.nextInt(12);
+			color = flag2 && TragicConfig.allowDivinityColorChange ? color + 1 : 0;
+			if (color >= rgb.length) color = 0;
 		}
 	}
 }

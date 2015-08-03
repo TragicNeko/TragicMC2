@@ -1,7 +1,9 @@
 package tragicneko.tragicmc.events;
 
+import java.lang.reflect.Field;
 import java.util.UUID;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -12,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -24,6 +27,8 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockQuicksand;
 import tragicneko.tragicmc.dimension.SynapseWorldProvider;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
@@ -33,6 +38,7 @@ import tragicneko.tragicmc.properties.PropertyMisc;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class MiscEvents {
 
@@ -212,6 +218,30 @@ public class MiscEvents {
 
 		if (event.entityLiving instanceof EntityPlayer)
 		{
+			if (TragicConfig.allowBurned)
+			{
+				if (event.entityLiving.isBurning())
+				{
+					int burn = 5;
+					
+					try 
+					{
+						Field f = ReflectionHelper.findField(Entity.class, "fire");
+						burn = f.getInt(event.entityLiving);
+					}
+					catch (Exception e)
+					{
+						TragicMC.logError("Error caused while reflecting for burn potion effect", e);
+					}
+					
+					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
+				}
+				else if (event.entityLiving.isPotionActive(TragicPotion.Burned.id))
+				{
+					event.entityLiving.removePotionEffect(TragicPotion.Burned.id);
+				}
+			}
+
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			int i = 0;
 
@@ -234,7 +264,7 @@ public class MiscEvents {
 			if (i > 0 && ins != null) ins.applyModifier(mod);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
 		if (event.entity instanceof EntityLivingBase)

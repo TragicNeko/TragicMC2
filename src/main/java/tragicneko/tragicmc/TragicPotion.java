@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class TragicPotion extends Potion {
 
-	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked; //, Deafening, Nightmare, Exasperate, EvilPresence, Bleed;
+	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked, Burned; //, Deafening, Nightmare, Exasperate, EvilPresence, Bleed;
 	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence, Divinity;
 
 	private ItemStack stackIcon;
@@ -47,6 +47,7 @@ public class TragicPotion extends Potion {
 		if (TragicConfig.allowInhibit) Inhibit = (new TragicPotion(TragicConfig.idInhibit, true, 0x232323).setPotionName("potion.inhibit"));
 		if (TragicConfig.allowLeadFoot) LeadFoot = (new TragicPotion(TragicConfig.idLeadFoot, true, 0x78AB76).setPotionName("potion.leadFoot"));
 		if (TragicConfig.allowHacked) Hacked = (new TragicPotion(TragicConfig.idHacked, true, 0xC6F6FF).setPotionName("potion.hacked"));
+		if (TragicConfig.allowBurned) Burned = (new TragicPotion(TragicConfig.idBurned, true, 0xFF0000).setPotionName("potion.burned"));
 		//Deafening = new TragicPotion(TragicConfig.idHacked + 1, true, 0x000000).setPotionName("potion.deafening");
 		//Nightmare = new TragicPotion(TragicConfig.idHacked + 2, true, 0x000000).setPotionName("potion.nightmare");
 		//Exasperate = new TragicPotion(TragicConfig.idHacked + 3, true, 0x000000).setPotionName("potion.exasperate");
@@ -76,6 +77,7 @@ public class TragicPotion extends Potion {
 		if (Inhibit != null) ((TragicPotion) Inhibit).setIcon(new ItemStack(TragicItems.Ash));
 		if (LeadFoot != null) ((TragicPotion) LeadFoot).setIcon(new ItemStack(Blocks.anvil));
 		if (Hacked != null) ((TragicPotion) Hacked).setIcon(new ItemStack(TragicBlocks.OverlordBarrier));
+		if (Burned != null) ((TragicPotion) Burned).setIcon(new ItemStack(Blocks.fire));
 		//((TragicPotion) Deafening).setIcon(new ItemStack(Items.record_11));
 		//((TragicPotion) Nightmare).setIcon(new ItemStack(TragicItems.CorruptedEgg));
 		//((TragicPotion) Exasperate).setIcon(new ItemStack(TragicItems.EnchantedTears));

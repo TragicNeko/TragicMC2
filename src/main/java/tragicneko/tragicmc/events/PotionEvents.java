@@ -19,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -45,9 +44,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
-import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
-import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.network.MessageFlight;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
@@ -239,16 +236,17 @@ public class PotionEvents {
 		{
 			if (TragicConfig.allowCorruptionDamage)
 			{
-				if (entity instanceof EntityPlayer && entity.ticksExisted % 40 == 0 && rand.nextBoolean())
+				int a = MathHelper.ceiling_double_int(80 / (entity.getActivePotionEffect(TragicPotion.Corruption).getAmplifier() + 1)) + 1;
+				if (entity instanceof EntityPlayer && entity.ticksExisted % a == 0)
 				{
 					if (!((EntityPlayer)entity).capabilities.isCreativeMode)
 					{
-						entity.attackEntityFrom(DamageSource.magic, 1.0F);
+						entity.attackEntityFrom(DamageSource.magic, 0.5F);
 					}
 				}
-				else if (entity instanceof EntityAnimal && entity.ticksExisted % 20 == 0 && rand.nextInt(8) == 0)
+				else if (entity instanceof EntityAnimal && entity.ticksExisted % a == 0)
 				{
-					entity.attackEntityFrom(DamageSource.magic, 1.0F);
+					entity.attackEntityFrom(DamageSource.magic, 0.5F);
 				}
 			}
 

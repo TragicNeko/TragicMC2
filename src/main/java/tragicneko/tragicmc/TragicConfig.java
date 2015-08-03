@@ -125,10 +125,10 @@ public class TragicConfig {
 	private static boolean[] positivePotionConfigs = new boolean[20];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
 	private static boolean[] negativePotionConfigs = new boolean[20];
-	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked;
+	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked, allowBurned;
 	private static int[] potionIDs = new int[32];
 	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence, idDivinity;
-	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked;
+	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked, idBurned;
 
 	private static boolean[] blanketVanillaChanges = new boolean[14];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmorAndEnchants, allowRespawnPunishment, allowExtraExplosiveEffects;
@@ -145,7 +145,7 @@ public class TragicConfig {
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
-	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowAnomalyAugment, allowNuke;
+	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowAnomalyAugment, allowNuke, allowDivinityColorChange;
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
@@ -946,7 +946,8 @@ public class TragicConfig {
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "inhibitAllow", true).getBoolean(true));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "leadFootAllow", true).getBoolean(true));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "hackedAllow", true).getBoolean(true));
-		
+		negativePotionConfigs[mapping++] = (config.get(catPotion, "burnedAllow", false).getBoolean(false));
+
 		mapping = 0;
 		potionIDs[mapping++] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32)));
 		potionIDs[mapping++] = (config.get(catPotion, "aquaSuperiorityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
@@ -967,6 +968,7 @@ public class TragicConfig {
 		potionIDs[mapping++] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
 		potionIDs[mapping++] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
 		potionIDs[mapping++] = (config.get(catPotion, "hackedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		potionIDs[mapping++] = (config.get(catPotion, "burnedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
 
 		config.addCustomCategoryComment(catPotion, "Set whether specific Potion Effects are allowed, or disable all good or all bad effects, also set their IDs");
 
@@ -1043,6 +1045,7 @@ public class TragicConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowArmorModels", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowAnomalyAugment", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowNuke", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowDivinityColorChange", true).getBoolean(true));
 
 		mapping = 0;
 		griefConfigs[mapping++] = config.get(catMisc, "allowNatureDrainDestruction", true).getBoolean(true);
@@ -1762,7 +1765,8 @@ public class TragicConfig {
 		allowInhibit = negativePotionConfigs[mapping++];
 		allowLeadFoot = negativePotionConfigs[mapping++];
 		allowHacked = negativePotionConfigs[mapping++];
-		
+		allowBurned = negativePotionConfigs[mapping++];
+
 		mapping = 0;
 		idFlight = potionIDs[mapping++];
 		idAquaSuperiority = potionIDs[mapping++];
@@ -1783,6 +1787,7 @@ public class TragicConfig {
 		idInhibit = potionIDs[mapping++];
 		idLeadFoot = potionIDs[mapping++];
 		idHacked = potionIDs[mapping++];
+		idBurned = potionIDs[mapping++];
 
 		mapping = 0;
 		allowVanillaMobBuffs = blanketVanillaChanges[mapping++];
@@ -1853,6 +1858,7 @@ public class TragicConfig {
 		allowArmorModels = miscConfigs[mapping++];
 		allowAnomalyAugment = miscConfigs[mapping++];
 		allowNuke = miscConfigs[mapping++];
+		allowDivinityColorChange = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];
@@ -1875,97 +1881,118 @@ public class TragicConfig {
 		postProcessConfigs();
 	}
 
-	private static int getOpenIDForEnchant(int configId)
+	private static int getOpenIDForEnchant(final int configId)
 	{
+		int c = configId;
+		boolean flag = false;
+		
 		if (configId < Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[configId] != null)
 		{
 			while (Enchantment.enchantmentsList[configId] != null)
 			{
-				configId++;
+				c++;
 
-				if (configId >= Enchantment.enchantmentsList.length)
+				if (c >= Enchantment.enchantmentsList.length)
 				{
-					configId -= Enchantment.enchantmentsList.length;
+					if (flag) return configId;
+					c -= Enchantment.enchantmentsList.length;
+					flag = true;
 				}
 			}
 		}
 		else if (configId >= Enchantment.enchantmentsList.length)
 		{
-			configId -= Enchantment.enchantmentsList.length;
+			c -= Enchantment.enchantmentsList.length;
 
 			while (Enchantment.enchantmentsList[configId] != null)
 			{
-				configId++;
+				c++;
 
-				if (configId >= Enchantment.enchantmentsList.length)
+				if (c >= Enchantment.enchantmentsList.length)
 				{
-					configId -= Enchantment.enchantmentsList.length;
+					if (flag) return configId;
+					c -= Enchantment.enchantmentsList.length;
+					flag = true;
 				}
 			}
 		}
 
-		return configId;
+		return c;
 	}
 
-	private static int getOpenIDForPotion(int configId)
+	private static int getOpenIDForPotion(final int configId)
 	{
+		boolean flag = false;
+		int c = configId;
+		
 		if (configId < Potion.potionTypes.length && Potion.potionTypes[configId] != null)
 		{
 			while (Potion.potionTypes[configId] != null)
 			{
-				configId++;
-				if (configId >= Potion.potionTypes.length)
+				c++;
+				if (c >= Potion.potionTypes.length)
 				{
-					configId -= Potion.potionTypes.length;
+					if (flag) return configId;
+					c -= Potion.potionTypes.length;
+					flag = true;
 				}
 			}
 		}
 		else if (configId >= Potion.potionTypes.length)
 		{
-			configId -= Potion.potionTypes.length;
+			c -= Potion.potionTypes.length;
 
 			while (Potion.potionTypes[configId] != null)
 			{
-				configId++;
+				c++;
 
-				if (configId >= Potion.potionTypes.length)
+				if (c >= Potion.potionTypes.length)
 				{
-					configId -= Potion.potionTypes.length;
+					if (flag) return configId;
+					c -= Potion.potionTypes.length;
+					flag = true;
 				}
 			}
 		}
 
-		return configId;
+		return c;
 	}
 
-	private static int getOpenIDForBiome(int configId)
+	private static int getOpenIDForBiome(final int configId)
 	{
+		int c = configId;
+		boolean flag = false;
+		
 		if (configId < BiomeGenBase.getBiomeGenArray().length && BiomeGenBase.getBiomeGenArray()[configId] != null)
 		{
 			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
 			{
-				configId++;
-				if (configId >= BiomeGenBase.getBiomeGenArray().length)
+				c++;
+				if (c >= BiomeGenBase.getBiomeGenArray().length)
 				{
-					configId -= BiomeGenBase.getBiomeGenArray().length;
+					if (flag) return configId;
+					c -= BiomeGenBase.getBiomeGenArray().length;
+					flag = true;
 				}
 			}
 		}
 		else if (configId >= BiomeGenBase.getBiomeGenArray().length)
 		{
-			configId -= BiomeGenBase.getBiomeGenArray().length;
+			c -= BiomeGenBase.getBiomeGenArray().length;
 
 			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
 			{
-				configId++;
+				c++;
 
-				if (configId >= BiomeGenBase.getBiomeGenArray().length)
+				if (c >= BiomeGenBase.getBiomeGenArray().length)
 				{
-					configId -= BiomeGenBase.getBiomeGenArray().length;
+					if (flag) return configId;
+					c -= BiomeGenBase.getBiomeGenArray().length;
+					flag = true;
 				}
 			}
 		}
-		return configId;
+		return c;
 	}
 
 	private static int clampPositive(int i) {
