@@ -1066,6 +1066,7 @@ potion.leadFoot=Lead Foot
 potion.hacked=Hacked
 potion.convergence=Convergence
 potion.divinity=Divinity
+potion.burned=Burned
 
 doomsday.confirmation=You have used
 doomsday.backlash=Doomsday has backlashed...
