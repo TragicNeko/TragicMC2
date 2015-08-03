@@ -4240,16 +4240,37 @@ Fixed bug with Synapse chunk generation
 Mobs can now specify their drop amounts (maybe larger/tougher mobs could drop more things)
 Increased Boss drop amounts (for their normal drops, not "luxury" drops)
 Added Enyvil sounds
+Improved Enyvil AI a little bit, it should use slam more often
+Removed current render for Directed Lightning, it was causing too much distraction
+Added Overlord Core sounds, going to rerecord the normal living and the roar sounds since I don't like how they turned out
+Increased how long Dimensional Anomolies stay alive
+Modified how Corruption change is handled, you can now spawn an entity with a change state of 1 in order to change it immediately, now also does explosion particles so that
+it isn't an instant change
+Added a sound when a mob has a corrupted change
+Added sounds for Dimensional Anomalies to make them easier to locate
+Rerecorded some of the Overlord Core sounds, I'll do more later on
+Derped up potion effects when I changed the config, fixed now
+Made Corruption damage more consistent
+Added a visual status effect for burned, this might seem a bit redundant but it'll be toggle-able and will default to disabled, meant to display how long you have been burned for
+Fixed Fear playing way too many sounds at once
+Added color randomization to Divinity's overlay effect, this is configurable
+Updated normal mob memory use for small things like texture and variant ids
+Fixed bug with Time Controller's Quantum Leap ability that mixed up your yaw and pitch values
+Fixed bug with variant drops not dropping after a few kills
+Fixed derp on a Magmox datawatcher
+Slightly modified Tox and Pox drops, Tox now can only drop Exotic Fruit and Pox can now drop Sky Fruit
+Fixed Erkel's death sound
+Modified potion/biome/enchantment ids to automatically check through the entire list of ids once, if no id is found through that check then the default value is used regardless of if
+it is a free slot, this should never be an issue, especially since I increased the size of the potion array even more but should still be done in case of larger modpacks
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
 Avris model, texture, animations
-Finalize things and fix small things that are bothering me (like the potion ids in the config)
-Optimize mob AI on a memory level (i.e. use bytes for things that are using integers that don't need that much memory)
+Convert mob AI to EntityAI, when applicable
+Finish Boss sounds, rerecord Overlord Core living sounds to a whale-like sound instead of the rough screams I did
 
 Boss sounds--
-Overlord Core sounds: Electronically filtered creature sounds, highly phased out death sound
 Apis sounds: Mad bull sounds
 Yeti sounds: Deep beastly sounds
 Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
