@@ -73,7 +73,7 @@ public class EntityJabba extends TragicMob {
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, (byte) 0);
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 	}
@@ -100,18 +100,18 @@ public class EntityJabba extends TragicMob {
 		this.setAngerTicks(--pow);
 	}
 
-	public int getJabbaType()
+	public byte getJabbaType()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectByte(17);
 	}
 
-	protected void setJabbaType(int i)
+	protected void setJabbaType(byte b)
 	{
-		this.dataWatcher.updateObject(17, i);
-		this.isImmuneToFire = i == 0;
-		if (i == 1) this.experienceValue = 6;
+		this.dataWatcher.updateObject(17, b);
+		this.isImmuneToFire = b == 0;
+		if (b == 1) this.experienceValue = 6;
 
-		if (i == 0)
+		if (b == 0)
 		{
 			this.setSize(0.825F, 0.725F);
 		}
@@ -416,7 +416,7 @@ public class EntityJabba extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("jabbaType")) this.setJabbaType(tag.getInteger("jabbaType"));
+		if (tag.hasKey("jabbaType")) this.setJabbaType(tag.getByte("jabbaType"));
 		if (tag.hasKey("angerTicks")) this.setAngerTicks(tag.getInteger("angerTicks"));
 		if (tag.hasKey("wormTicks")) this.setWormTicks(tag.getInteger("wormTicks"));
 	}
@@ -425,7 +425,7 @@ public class EntityJabba extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("jabbaType", this.getJabbaType());
+		tag.setByte("jabbaType", this.getJabbaType());
 		tag.setInteger("angerTicks", this.getAngerTicks());
 		tag.setInteger("wormTicks", this.getWormTicks());
 	}
@@ -434,7 +434,7 @@ public class EntityJabba extends TragicMob {
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		this.setJabbaType(biome instanceof BiomeGenPaintedForest ? 1 : 0);
+		this.setJabbaType(biome instanceof BiomeGenPaintedForest ? (byte) 1 : 0);
 		return super.onSpawnWithEgg(data);
 	}
 

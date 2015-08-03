@@ -79,7 +79,7 @@ public class EntityStin extends TragicMob {
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(18, (byte) 0);
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 	}
 
@@ -141,18 +141,18 @@ public class EntityStin extends TragicMob {
 	 * 0 is normal, 1 is upside down, 2 is sideways left, 3 is sideways right
 	 * @return
 	 */
-	public int getClimbDirection()
+	public byte getClimbDirection()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectByte(18);
 	}
 
 	/**
 	 * 0 is normal, 1 is upside down, 2 is horizontal left, 3 is horizontal right, if needed, 4 is vertical up, 5 is vertical down
 	 * @param
 	 */
-	protected void setClimbDirection(int i)
+	protected void setClimbDirection(byte b)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(18, b);
 	}
 
 	public int getGallopTicks()
@@ -180,11 +180,7 @@ public class EntityStin extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.isAdult() ? stinStats[0] : stinBabyStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.isAdult() ? stinStats[1] : stinBabyStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.isAdult() ? stinStats[2] : stinBabyStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.isAdult() ? stinStats[3] : stinBabyStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(this.isAdult() ? stinStats[4] : stinBabyStats[4]);
+		this.reapplyEntityAttributes();
 	}
 
 	protected void reapplyEntityAttributes()
@@ -246,26 +242,26 @@ public class EntityStin extends TragicMob {
 
 						if (d0 >= 0 && d2 >= 0)
 						{
-							this.setClimbDirection(2);
+							this.setClimbDirection((byte) 2);
 						}
 						else if (d0 < 0 && d2 < 0)
 						{
-							this.setClimbDirection(3);
+							this.setClimbDirection((byte) 3);
 						}
 						else if (d0 >= 0 && d2 < 0)
 						{
-							this.setClimbDirection(4);
+							this.setClimbDirection((byte) 4);
 						}
 						else
 						{
-							this.setClimbDirection(5);
+							this.setClimbDirection((byte) 5);
 						}
 					}
 				}
 			}
 			else
 			{
-				this.setClimbDirection(0);
+				this.setClimbDirection((byte) 0);
 			}
 		}
 
@@ -437,7 +433,7 @@ public class EntityStin extends TragicMob {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("ageTicks")) this.setAgeTicks(tag.getInteger("ageTicks"));
 		if (tag.hasKey("canClimb")) this.setCanClimb(tag.getBoolean("canClimb"));
-		if (tag.hasKey("climbDirection")) this.setClimbDirection(tag.getInteger("climbDirection"));
+		if (tag.hasKey("climbDirection")) this.setClimbDirection(tag.getByte("climbDirection"));
 		if (tag.hasKey("gallopTicks")) this.setGallopTicks(tag.getInteger("gallopTicks"));
 	}
 
@@ -447,7 +443,7 @@ public class EntityStin extends TragicMob {
 		super.writeEntityToNBT(tag);
 		tag.setInteger("ageTicks", this.getAgeTicks());
 		tag.setBoolean("canClimb", this.canClimb());
-		tag.setInteger("textureID", this.getClimbDirection());
+		tag.setByte("climbDirection", this.getClimbDirection());
 		tag.setInteger("gallopTicks", this.getGallopTicks());
 	}
 

@@ -30,9 +30,9 @@ public class EntityMagmox extends EntityTox implements TragicMiniBoss {
 	}
 
 	@Override
-	protected void setToxType(int i)
+	protected void setToxType(byte b)
 	{
-		this.dataWatcher.updateObject(17, 1);
+		this.dataWatcher.updateObject(16, (byte) 1);
 	}
 
 	@Override

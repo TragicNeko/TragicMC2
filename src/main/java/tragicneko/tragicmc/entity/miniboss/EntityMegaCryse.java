@@ -44,9 +44,9 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 	}
 
 	@Override
-	protected void setCryseType(int i)
+	protected void setCryseType(byte b)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(17, (byte) 1);
 		this.setSize(1.435F, 3.075F);
 	}
 

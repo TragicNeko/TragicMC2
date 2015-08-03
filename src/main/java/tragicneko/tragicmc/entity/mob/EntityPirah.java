@@ -99,8 +99,8 @@ public class EntityPirah extends TragicMob {
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, (byte) 0);
+		this.dataWatcher.addObject(18, (byte) 0);
 	}
 
 	protected void setAirTicks(int i)
@@ -125,14 +125,14 @@ public class EntityPirah extends TragicMob {
 		this.setAirTicks(--pow);
 	}
 
-	protected void setPirahType(int i)
+	protected void setPirahType(byte b)
 	{
-		if (i == 1)
+		if (b == 1)
 		{
 			this.isImmuneToFire = true;
 			this.experienceValue = 6;
 		}
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(17, b);
 
 		float height = 0.515F;
 		float width = 0.325F;
@@ -144,7 +144,7 @@ public class EntityPirah extends TragicMob {
 			this.experienceValue = 12;
 		}
 
-		if (i == 0)
+		if (b == 0)
 		{
 			this.setSize(width, height);
 		}
@@ -154,19 +154,19 @@ public class EntityPirah extends TragicMob {
 		}
 	}
 
-	public int getPirahType()
+	public byte getPirahType()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectByte(17);
 	}
 
-	protected void setTextureID(int i)
+	protected void setTextureID(byte b)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(18, b);
 	}
 
-	public int getTextureID()
+	public byte getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectByte(18);
 	}
 
 	@Override
@@ -307,18 +307,18 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("pirahType")) this.setPirahType(tag.getInteger("pirahType"));
+		if (tag.hasKey("pirahType")) this.setPirahType(tag.getByte("pirahType"));
 		if (tag.hasKey("airTicks")) this.setAirTicks(tag.getInteger("airTicks"));
-		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
+		if (tag.hasKey("textureID")) this.setTextureID(tag.getByte("textureID"));
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("pirahType", this.getPirahType());
+		tag.setByte("pirahType", this.getPirahType());
 		tag.setInteger("airTicks", this.getAirTicks());
-		tag.setInteger("textureID", this.getTextureID());
+		tag.setByte("textureID", this.getTextureID());
 	}
 
 	@Override
@@ -328,9 +328,9 @@ public class EntityPirah extends TragicMob {
 		{
 			boolean flag = this.isInsideOfMaterial(Material.water);
 			boolean flag2 = this.isInsideOfMaterial(Material.lava);
-			this.setPirahType(flag ? 0 : (flag2 ? 1 : 0));
-			int i = rand.nextInt(8);
-			if (i == 7) i = rand.nextInt(8); //make the 7 id less common
+			this.setPirahType(flag ? 0 : (flag2 ? (byte) 1 : 0));
+			byte i = (byte) rand.nextInt(8);
+			if (i == 7) i = (byte) rand.nextInt(8); //make the 7 id less common
 			this.setTextureID(i);
 		}
 		return super.onSpawnWithEgg(data);

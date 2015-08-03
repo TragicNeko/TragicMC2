@@ -73,7 +73,7 @@ public class EntityTimeController extends TragicBoss {
 		if (tracker.containsKey(entity.getEntityId()) || entity.isDead) return false;
 		try
 		{
-			tracker.put(entity.getEntityId(), new double[] {entity.posX, entity.posY, entity.posZ, entity.rotationPitch, entity.rotationYaw});
+			tracker.put(entity.getEntityId(), new double[] {entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch});
 		}
 		catch (Exception e)
 		{

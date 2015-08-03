@@ -20,7 +20,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityParasmite extends TragicMob {
 
-	public int power = 0;
+	public byte power = 0;
 
 	public EntityParasmite(World par1World) {
 		super(par1World);
@@ -109,6 +109,10 @@ public class EntityParasmite extends TragicMob {
 			}
 			this.setAttackTarget(null);
 			this.setInvisible(this.ridingEntity.isInvisible());
+		}
+		else
+		{
+			this.power = 0;
 		}
 
 		if (this.getAttackTarget() != null)

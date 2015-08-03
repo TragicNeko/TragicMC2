@@ -24,8 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityIre extends TragicMob {
 
-	public static int ireTick; //ticks per world tick, each Ire will either heal or attack at this time and take that opportunity to update their target
-	public static int ireNetSize; //updated by each Ire currently being updated in the world, whatever Ire has the most Ire near them will be the value set per Ire tick
+	public static byte ireTick; //ticks per world tick, each Ire will either heal or attack at this time and take that opportunity to update their target
+	public static short ireNetSize; //updated by each Ire currently being updated in the world, whatever Ire has the most Ire near them will be the value set per Ire tick
 
 	public static final IEntitySelector selec = new IEntitySelector() {
 		@Override
@@ -200,10 +200,10 @@ public class EntityIre extends TragicMob {
 		}
 
 		List<EntityIre> list = this.worldObj.getEntitiesWithinAABB(EntityIre.class, this.boundingBox.expand(16.0, 16.0, 16.0));
-		int count = 0;
+		short count = 0;
 		for (EntityIre ire : list)
 		{
-			if (ire != this && ire.canEntityBeSeen(this)) count++;
+			if (ire != this && ire.canEntityBeSeen(this) && count < Short.MAX_VALUE) count++;
 		}
 
 		if (count > ireNetSize) ireNetSize = count;

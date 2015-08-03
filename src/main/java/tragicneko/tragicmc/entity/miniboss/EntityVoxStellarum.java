@@ -76,9 +76,9 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	}
 
 	@Override
-	protected void setNorVoxType(int i)
+	protected void setNorVoxType(byte b)
 	{
-		this.dataWatcher.updateObject(17, 0);
+		this.dataWatcher.updateObject(17, (byte) 0);
 		this.setSize(2.475F, 2.725F);
 	}
 
@@ -302,10 +302,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
-		if (!this.worldObj.isRemote)
-		{
-			this.setTextureID(rand.nextInt(8));
-		}
+		if (!this.worldObj.isRemote) this.setTextureID((byte) rand.nextInt(8));
 		return super.onSpawnWithEgg(data);
 	}
 

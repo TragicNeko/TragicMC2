@@ -46,7 +46,7 @@ public class EntityErkel extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.getDataWatcher().addObject(16, Integer.valueOf(0));
+		this.getDataWatcher().addObject(16, (byte) 0);
 	}
 
 	@Override
@@ -138,57 +138,57 @@ public class EntityErkel extends TragicMob {
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		int i = 0;
+		byte b = 0;
 		if (biome instanceof BiomeGenAshenHills || biome instanceof BiomeGenTaintedSpikes)
 		{
-			i = 1;
+			b = 1;
 		}
 		else if (biome instanceof BiomeGenPaintedForest)
 		{
-			i = 2;
+			b = 2;
 		}
 		else if (biome instanceof BiomeGenStarlitPrarie)
 		{
-			i = 3;
+			b = 3;
 		}
 		else if (biome instanceof BiomeGenDecayingWasteland)
 		{
-			i = 4;
+			b = 4;
 		}
 		else if (biome instanceof BiomeGenHallowedHills)
 		{
-			i = 5;
+			b = 5;
 		}
 		else if (biome instanceof BiomeGenFrozenTundra)
 		{
-			i = 6;
+			b = 6;
 		}
 
-		this.setTextureId(i);
+		this.setTextureId(b);
 		return super.onSpawnWithEgg(data);
 	}
 
-	private void setTextureId(int i)
+	private void setTextureId(byte b)
 	{
-		this.getDataWatcher().updateObject(16, i);
+		this.getDataWatcher().updateObject(16, b);
 	}
 
-	public int getTextureId()
+	public byte getTextureId()
 	{
-		return this.getDataWatcher().getWatchableObjectInt(16);
+		return this.getDataWatcher().getWatchableObjectByte(16);
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("texture")) this.setTextureId(tag.getInteger("texture"));
+		if (tag.hasKey("texture")) this.setTextureId(tag.getByte("texture"));
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("texture", this.dataWatcher.getWatchableObjectInt(16));
+		tag.setByte("texture", this.getTextureId());
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class EntityErkel extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.tox.death";
+		return "tragicmc:mob.tox.hurt";
 	}
 
 	@Override

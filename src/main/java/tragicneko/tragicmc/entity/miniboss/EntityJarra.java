@@ -54,9 +54,9 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	}
 
 	@Override
-	protected void setJabbaType(int i)
+	protected void setJabbaType(byte b)
 	{
-		this.dataWatcher.updateObject(17, 1);
+		this.dataWatcher.updateObject(17, (byte) 1);
 		this.setSize(0.725F * 1.585F, 0.825F * 1.585F);
 	}
 

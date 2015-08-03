@@ -86,8 +86,8 @@ public class EntityCryse extends TragicMob {
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, (byte) 0);
+		this.dataWatcher.addObject(18, (byte) 0);
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 		this.dataWatcher.addObject(20, Integer.valueOf(0));
 	}
@@ -113,16 +113,16 @@ public class EntityCryse extends TragicMob {
 		return this.getSpinTicks() > 0;
 	}
 
-	public int getCryseType()
+	public byte getCryseType()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectByte(17);
 	}
 
-	protected void setCryseType(int i)
+	protected void setCryseType(byte b)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(17, b);
 
-		if (i == 0)
+		if (b == 0)
 		{
 			this.setSize(0.425F, 1.475F);
 		}
@@ -133,14 +133,14 @@ public class EntityCryse extends TragicMob {
 		}
 	}
 
-	public int getTextureID()
+	public byte getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectByte(18);
 	}
 
-	protected void setTextureID(int i)
+	protected void setTextureID(byte b)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(18, b);
 	}
 
 	public int getAttackTime()
@@ -308,8 +308,8 @@ public class EntityCryse extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("texture")) this.setTextureID(tag.getInteger("texture"));
-		if (tag.hasKey("cryseType")) this.setCryseType(tag.getInteger("cryseType"));
+		if (tag.hasKey("texture")) this.setTextureID(tag.getByte("texture"));
+		if (tag.hasKey("cryseType")) this.setCryseType(tag.getByte("cryseType"));
 		if (tag.hasKey("spinTicks")) this.setSpinTicks(tag.getInteger("spinTicks"));
 		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
 		if (tag.hasKey("flutterTicks")) this.setFlutterTicks(tag.getInteger("flutterTicks"));
@@ -319,8 +319,8 @@ public class EntityCryse extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("texture", this.getTextureID());
-		tag.setInteger("cryseType", this.getCryseType());
+		tag.setByte("texture", this.getTextureID());
+		tag.setByte("cryseType", this.getCryseType());
 		tag.setInteger("spinTicks", this.getSpinTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setInteger("flutterTicks", this.getFlutterTicks());
@@ -332,8 +332,8 @@ public class EntityCryse extends TragicMob {
 		if (!this.worldObj.isRemote)
 		{
 			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-			this.setCryseType(biome instanceof BiomeGenStarlitPrarie ? 1 : 0);
-			this.setTextureID(rand.nextInt(8));
+			this.setCryseType(biome instanceof BiomeGenStarlitPrarie ? (byte) 1 : 0);
+			this.setTextureID((byte) rand.nextInt(8));
 		}
 		return super.onSpawnWithEgg(data);
 	}

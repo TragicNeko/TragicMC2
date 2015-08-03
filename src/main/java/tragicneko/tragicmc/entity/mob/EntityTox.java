@@ -56,22 +56,22 @@ public class EntityTox extends TragicMob {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(16, (byte) 0);
 		this.dataWatcher.addObject(17, Integer.valueOf(0));
 		this.dataWatcher.addObject(18, Integer.valueOf(0));
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 	}
 
-	public int getToxType()
+	public byte getToxType()
 	{
-		return this.dataWatcher.getWatchableObjectInt(16);
+		return this.dataWatcher.getWatchableObjectByte(16);
 	}
 
-	protected void setToxType(int i)
+	protected void setToxType(byte b)
 	{
-		this.dataWatcher.updateObject(16, i);
+		this.dataWatcher.updateObject(16, b);
 
-		if (i == 0)
+		if (b == 0)
 		{
 			this.setSize(0.625F, 1.965F);
 		}
@@ -304,7 +304,7 @@ public class EntityTox extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("toxType")) this.setToxType(tag.getInteger("toxType"));
+		if (tag.hasKey("toxType")) this.setToxType(tag.getByte("toxType"));
 		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
 		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
 		if (tag.hasKey("wiggleTime")) this.setWiggleTime(tag.getInteger("wiggleTime"));
@@ -314,7 +314,7 @@ public class EntityTox extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("toxType", this.getToxType());
+		tag.setByte("toxType", this.getToxType());
 		tag.setInteger("firingTicks", this.getFiringTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setInteger("wiggleTime", this.getWiggleTime());
@@ -324,7 +324,7 @@ public class EntityTox extends TragicMob {
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		this.setToxType(biome instanceof BiomeGenPaintedForest ? 1 : 0);
+		this.setToxType(biome instanceof BiomeGenPaintedForest ? (byte) 1 : 0);
 		return super.onSpawnWithEgg(data);
 	}
 

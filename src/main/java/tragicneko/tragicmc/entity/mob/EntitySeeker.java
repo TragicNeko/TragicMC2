@@ -27,7 +27,7 @@ public class EntitySeeker extends TragicMob {
 	private int timeSinceTarget;
 	private boolean shouldRelocate;
 	private EntityOverlordCocoon owner = null;
-	private int relocations;
+	private byte relocations;
 
 	public EntitySeeker(World par1World) {
 		super(par1World);
@@ -302,7 +302,7 @@ public class EntitySeeker extends TragicMob {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("owner") && this.worldObj.getEntityByID(tag.getInteger("owner")) instanceof EntityOverlordCocoon) this.setOwner((EntityOverlordCocoon) this.worldObj.getEntityByID(tag.getInteger("owner")));
 		if (tag.hasKey("killTicks")) this.setKillTicks(tag.getInteger("killTicks"));
-		if (tag.hasKey("relocations")) this.relocations = tag.getInteger("relocations");
+		if (tag.hasKey("relocations")) this.relocations = tag.getByte("relocations");
 		if (tag.hasKey("targetlessTime")) this.timeSinceTarget = tag.getInteger("targetlessTime");
 		if (tag.hasKey("shouldRelocate")) this.shouldRelocate = tag.getBoolean("shouldRelocate");
 	}
@@ -314,7 +314,7 @@ public class EntitySeeker extends TragicMob {
 		if (this.getOwner() != null) tag.setInteger("owner", this.getOwner().getEntityId());
 		tag.setInteger("killTicks", this.getKillTicks());
 		tag.setInteger("targetID", this.getTargetId());
-		tag.setInteger("relocations", this.relocations);
+		tag.setByte("relocations", this.relocations);
 		tag.setInteger("targetlessTime", this.timeSinceTarget);
 		tag.setBoolean("shouldRelocate", this.shouldRelocate);
 	}

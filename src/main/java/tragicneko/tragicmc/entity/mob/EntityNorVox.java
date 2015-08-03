@@ -81,8 +81,8 @@ public class EntityNorVox extends TragicMob {
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
-		this.dataWatcher.addObject(17, Integer.valueOf(0));
-		this.dataWatcher.addObject(18, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, (byte) 0);
+		this.dataWatcher.addObject(18, (byte) 0);
 		this.dataWatcher.addObject(19, Integer.valueOf(0));
 		this.dataWatcher.addObject(20, Integer.valueOf(0));
 	}
@@ -115,26 +115,26 @@ public class EntityNorVox extends TragicMob {
 		this.setFiringTicks(--pow);
 	}
 
-	public int getTextureID()
+	public byte getTextureID()
 	{
-		return this.dataWatcher.getWatchableObjectInt(18);
+		return this.dataWatcher.getWatchableObjectByte(18);
 	}
 
-	protected void setTextureID(int i)
+	protected void setTextureID(byte b)
 	{
-		this.dataWatcher.updateObject(18, i);
+		this.dataWatcher.updateObject(18, b);
 	}
 
-	public int getNorVoxType()
+	public byte getNorVoxType()
 	{
-		return this.dataWatcher.getWatchableObjectInt(17);
+		return this.dataWatcher.getWatchableObjectByte(17);
 	}
 
-	protected void setNorVoxType(int i)
+	protected void setNorVoxType(byte b)
 	{
-		this.dataWatcher.updateObject(17, i);
+		this.dataWatcher.updateObject(17, b);
 
-		if (i == 0)
+		if (b == 0)
 		{
 			this.setSize(1.135F, 1.575F);
 		}
@@ -370,10 +370,10 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
-		if (tag.hasKey("norVoxType")) this.setNorVoxType(tag.getInteger("norVoxType"));
+		if (tag.hasKey("norVoxType")) this.setNorVoxType(tag.getByte("norVoxType"));
 		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
 		if (tag.hasKey("attackTime")) this.setAttackTime(tag.getInteger("attackTime"));
-		if (tag.hasKey("textureID")) this.setTextureID(tag.getInteger("textureID"));
+		if (tag.hasKey("textureID")) this.setTextureID(tag.getByte("textureID"));
 		if (tag.hasKey("nodTicks")) this.setNodTicks(tag.getInteger("nodTicks"));
 	}
 
@@ -381,10 +381,10 @@ public class EntityNorVox extends TragicMob {
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
-		tag.setInteger("norVoxType", this.getNorVoxType());
+		tag.setByte("norVoxType", this.getNorVoxType());
 		tag.setInteger("firingTicks", this.getFiringTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
-		tag.setInteger("textureID", this.getTextureID());
+		tag.setByte("textureID", this.getTextureID());
 		tag.setInteger("nodTicks", this.getNodTicks());
 	}
 
@@ -394,8 +394,8 @@ public class EntityNorVox extends TragicMob {
 		if (!this.worldObj.isRemote)
 		{
 			BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-			this.setNorVoxType(biome instanceof BiomeGenStarlitPrarie ? 1 : 0);
-			this.setTextureID(rand.nextInt(8));
+			this.setNorVoxType(biome instanceof BiomeGenStarlitPrarie ? (byte) 1 : 0);
+			this.setTextureID((byte) rand.nextInt(8));
 		}
 		return super.onSpawnWithEgg(data);
 	}
