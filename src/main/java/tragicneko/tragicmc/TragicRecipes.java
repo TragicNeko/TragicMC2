@@ -1214,7 +1214,7 @@ public class TragicRecipes {
 				'z', TragicItems.UnstableIsotope
 				);
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Corsin, 1, 3),
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Corsin, 3, 1),
 				Items.water_bucket, new ItemStack(TragicBlocks.Corsin, 1, 0),
 				new ItemStack(TragicBlocks.Corsin, 1, 0), new ItemStack(TragicBlocks.Corsin, 1, 0)
 				);
