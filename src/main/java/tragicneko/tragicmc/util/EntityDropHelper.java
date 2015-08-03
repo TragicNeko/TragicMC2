@@ -109,10 +109,10 @@ public class EntityDropHelper {
 
 		addToDropList(EntityTox.class, new EntityDrop[][] {{new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(15, Blocks.vine), new EntityDrop(10, TragicItems.Thorns),
 			new EntityDrop(5, new ItemStack(Items.wheat_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.melon_seeds))},
-			{new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(25, Items.slime_ball)}},
+			{new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(25, Items.slime_ball)}},
 			new EntityDrop[][] {{new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicBlocks.Glowvine), new EntityDrop(5, TragicItems.Thorns),
 				new EntityDrop(10, new ItemStack(Items.wheat_seeds), new ItemStack(Items.pumpkin_seeds), new ItemStack(Items.melon_seeds))},
-				{new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(5, TragicItems.NastyFruit), new EntityDrop(5, TragicItems.GooeyFruit), new EntityDrop(25, Items.slime_ball)}});
+				{new EntityDrop(15, TragicItems.SkyFruit), new EntityDrop(25, Items.slime_ball)}});
 
 		addToDropList(EntityCryse.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.CrushedIce), new EntityDrop(15, Items.snowball), new EntityDrop(5, TragicItems.IceOrb)},
 			{new EntityDrop(5, TragicItems.IceOrb)}},
@@ -556,7 +556,7 @@ public class EntityDropHelper {
 
 		public ItemStack getStack()
 		{
-			return this.stack[rand.nextInt(this.stack.length)];
+			return this.stack[rand.nextInt(this.stack.length)].copy();
 		}
 	}
 }
