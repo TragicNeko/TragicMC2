@@ -4230,7 +4230,7 @@ Painted Trees (the normal ones, not the 2x2 ones) now may generate with Sky Frui
 Config potion ids now get set as one group instead of being set in groups (positive and negative), this is to prevent them from breaking if I add a new one, 
 so now they are done together one after the other such that new effects are added to the end instead of the middle (if they are "positive" effects)
 
-2.44.2716++ <208> (July 13, 2015)
+2.44.2746 <208> (July 13, 2015)
 Pushed a massive commit to Git, due to me working on and off on this for the past month or so, I haven't gotten around to pushing commits so I'll try to get
 back on doing that more often
 Finished up the Outlook of Persistence, skeleton spawners every 50 blocks up it and a large platform with a Soul Chest and Enderman spawners at the top
@@ -4262,6 +4262,13 @@ Slightly modified Tox and Pox drops, Tox now can only drop Exotic Fruit and Pox 
 Fixed Erkel's death sound
 Modified potion/biome/enchantment ids to automatically check through the entire list of ids once, if no id is found through that check then the default value is used regardless of if
 it is a free slot, this should never be an issue, especially since I increased the size of the potion array even more but should still be done in case of larger modpacks
+Added verification for the mob stat arrays to ensure that they are correct on config load
+Messed with adding StructureBoundingBoxes to my Structures so that they don't interfere with each other but I'll probably do all of that in the StructureWorldGen class and use the
+world storage to keep track of them (this is to prevent structures from generating on or very near each other)
+Workspace updated to Windows 10 so my recording software isn't working properly for me to finish Boss sounds
+Doing a test build now to ensure that everything is working up to this point
+
+2.44.2746++ <209> (August 5, 2015)
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
