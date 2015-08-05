@@ -4269,6 +4269,10 @@ Workspace updated to Windows 10 so my recording software isn't working properly 
 Doing a test build now to ensure that everything is working up to this point
 
 2.44.2746++ <209> (August 5, 2015)
+Rebalanced Suicidal Tendencies some, it is now actually worth using over spamming rockets normally
+Fixed Fanbrush and Tangleweed textures not working properly after build (capitalization errors on texture strings)
+Fixed improper imports being used for Arrays
+Fixed Neko Launcher and IreNet Particle Cannon not properly checking for Doom global cooldown on use
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
