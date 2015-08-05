@@ -4273,6 +4273,7 @@ Rebalanced Suicidal Tendencies some, it is now actually worth using over spammin
 Fixed Fanbrush and Tangleweed textures not working properly after build (capitalization errors on texture strings)
 Fixed improper imports being used for Arrays
 Fixed Neko Launcher and IreNet Particle Cannon not properly checking for Doom global cooldown on use
+Fixed error with id handling for potions, potions store their id locally so that the automated id search doesn't break
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
