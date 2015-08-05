@@ -19,7 +19,7 @@ public class WeaponIreParticleCannon extends TragicWeapon {
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
-		if (doom == null || doom.getCurrentDoom() < 5 || getStackCooldown(par1ItemStack) > 0) return par1ItemStack;
+		if (doom == null || doom.getCurrentDoom() < 5 || doom.getCurrentCooldown() > 0 || getStackCooldown(par1ItemStack) > 0) return par1ItemStack;
 
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
