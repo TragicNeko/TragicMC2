@@ -56,7 +56,7 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "2.43.2746 Beta";
+	public static final String VERSION = "2.44.2746 Beta";
 	public static final String ACCEPTED_VERSION = "[1.7.10]";
 
 	@Instance(TragicMC.MODID)
@@ -79,10 +79,12 @@ public class TragicMC
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		doPotionReflection();
+		
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.initialize();
-		//MinecraftForge.EVENT_BUS.register(new TragicConfig()); //for the gui stuff, eventually I'll sit down and do this
+		
 		FMLCommonHandler.instance().bus().register(new ServerTickEvents());
 
 		if (TragicConfig.allowPotions)

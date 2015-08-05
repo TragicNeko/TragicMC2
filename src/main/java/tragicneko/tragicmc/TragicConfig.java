@@ -934,8 +934,6 @@ public class TragicConfig {
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed or disable certain groups like Mini-Bosses or Bosses. Stats are: Health, Movement Speed, Attack Damage, Follow Range, Knockback Resistance, Armor Value.");
 
-		TragicMC.doPotionReflection();
-
 		blanketPotion[0] = (config.get(catPotion, "allowPositivePotionEffects", true).getBoolean(true));
 		blanketPotion[1] = (config.get(catPotion, "allowNegativePotionEffects", true).getBoolean(true));
 
@@ -961,29 +959,48 @@ public class TragicConfig {
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "inhibitAllow", true).getBoolean(true));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "leadFootAllow", true).getBoolean(true));
 		negativePotionConfigs[mapping++] = (config.get(catPotion, "hackedAllow", true).getBoolean(true));
-		negativePotionConfigs[mapping++] = (config.get(catPotion, "burnedAllow", false).getBoolean(false));
+		negativePotionConfigs[mapping++] = (config.get(catPotion, "burnedAllow", true).getBoolean(true));
 
-		mapping = 0;
-		potionIDs[mapping++] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32)));
-		potionIDs[mapping++] = (config.get(catPotion, "aquaSuperiorityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "immunityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "resurrectionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "harmonyID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "invulnerabilityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "clarityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "convergenceID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "divinityID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "corruptionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "disorientationID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "stunID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "fearID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "malnourishID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "crippleID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "submissionID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "inhibitID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "leadFootID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "hackedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
-		potionIDs[mapping++] = (config.get(catPotion, "burnedID", getOpenIDForPotion(potionIDs[mapping - 1] + 1)).getInt(getOpenIDForPotion(potionIDs[mapping - 1] + 1)));
+		mapping = 0; //because potion ids are not reserved at all they need to be saved locally so that they don't override each other
+		potionIDs[mapping++] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32))); 
+		int id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "aquaSuperiorityID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "immunityID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "resurrectionID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "harmonyID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "invulnerabilityID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "clarityID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "convergenceID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "divinityID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "corruptionID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "disorientationID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "stunID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "fearID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "malnourishID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "crippleID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "submissionID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "inhibitID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "leadFootID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "hackedID", id).getInt(id));
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		potionIDs[mapping++] = (config.get(catPotion, "burnedID", id).getInt(id));
 
 		config.addCustomCategoryComment(catPotion, "Set whether specific Potion Effects are allowed, or disable all good or all bad effects, also set their IDs");
 
@@ -1896,115 +1913,72 @@ public class TragicConfig {
 		postProcessConfigs();
 	}
 
-	private static int getOpenIDForEnchant(final int configId)
+	private static int getOpenIDForEnchant(int c)
 	{
-		int c = configId;
-		boolean flag = false;
-
-		if (configId < Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[configId] != null)
+		if (c < Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[c] != null)
 		{
-			while (Enchantment.enchantmentsList[configId] != null)
+			while (Enchantment.enchantmentsList[c] != null)
 			{
 				c++;
-
-				if (c >= Enchantment.enchantmentsList.length)
-				{
-					if (flag) return configId;
-					c -= Enchantment.enchantmentsList.length;
-					flag = true;
-				}
+				if (c >= Enchantment.enchantmentsList.length) c -= Enchantment.enchantmentsList.length;
 			}
 		}
-		else if (configId >= Enchantment.enchantmentsList.length)
+		else if (c >= Enchantment.enchantmentsList.length)
 		{
 			c -= Enchantment.enchantmentsList.length;
 
-			while (Enchantment.enchantmentsList[configId] != null)
+			while (Enchantment.enchantmentsList[c] != null)
 			{
 				c++;
-
-				if (c >= Enchantment.enchantmentsList.length)
-				{
-					if (flag) return configId;
-					c -= Enchantment.enchantmentsList.length;
-					flag = true;
-				}
+				if (c >= Enchantment.enchantmentsList.length) c -= Enchantment.enchantmentsList.length;
 			}
 		}
 
 		return c;
 	}
 
-	private static int getOpenIDForPotion(final int configId)
+	public static int getOpenIDForPotion(int c)
 	{
-		boolean flag = false;
-		int c = configId;
-
-		if (configId < Potion.potionTypes.length && Potion.potionTypes[configId] != null)
+		if (c < Potion.potionTypes.length && Potion.potionTypes[c] != null)
 		{
-			while (Potion.potionTypes[configId] != null)
+			while (Potion.potionTypes[c] != null)
 			{
 				c++;
-				if (c >= Potion.potionTypes.length)
-				{
-					if (flag) return configId;
-					c -= Potion.potionTypes.length;
-					flag = true;
-				}
+				if (c >= Potion.potionTypes.length) c -= Potion.potionTypes.length;
 			}
 		}
-		else if (configId >= Potion.potionTypes.length)
+		else if (c >= Potion.potionTypes.length)
 		{
 			c -= Potion.potionTypes.length;
 
-			while (Potion.potionTypes[configId] != null)
+			while (Potion.potionTypes[c] != null)
 			{
 				c++;
-
-				if (c >= Potion.potionTypes.length)
-				{
-					if (flag) return configId;
-					c -= Potion.potionTypes.length;
-					flag = true;
-				}
+				if (c >= Potion.potionTypes.length) c -= Potion.potionTypes.length;
 			}
 		}
 
 		return c;
 	}
 
-	private static int getOpenIDForBiome(final int configId)
+	private static int getOpenIDForBiome(int c)
 	{
-		int c = configId;
-		boolean flag = false;
-
-		if (configId < BiomeGenBase.getBiomeGenArray().length && BiomeGenBase.getBiomeGenArray()[configId] != null)
+		if (c < BiomeGenBase.getBiomeGenArray().length && BiomeGenBase.getBiomeGenArray()[c] != null)
 		{
-			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
+			while (BiomeGenBase.getBiomeGenArray()[c] != null)
 			{
 				c++;
-				if (c >= BiomeGenBase.getBiomeGenArray().length)
-				{
-					if (flag) return configId;
-					c -= BiomeGenBase.getBiomeGenArray().length;
-					flag = true;
-				}
+				if (c >= BiomeGenBase.getBiomeGenArray().length) c -= BiomeGenBase.getBiomeGenArray().length;
 			}
 		}
-		else if (configId >= BiomeGenBase.getBiomeGenArray().length)
+		else if (c >= BiomeGenBase.getBiomeGenArray().length)
 		{
 			c -= BiomeGenBase.getBiomeGenArray().length;
 
-			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
+			while (BiomeGenBase.getBiomeGenArray()[c] != null)
 			{
 				c++;
-
-				if (c >= BiomeGenBase.getBiomeGenArray().length)
-				{
-					if (flag) return configId;
-					c -= BiomeGenBase.getBiomeGenArray().length;
-					flag = true;
-				}
+				if (c >= BiomeGenBase.getBiomeGenArray().length) c -= BiomeGenBase.getBiomeGenArray().length;
 			}
 		}
 		return c;
