@@ -1,13 +1,12 @@
 package tragicneko.tragicmc.worldgen.schematic;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 
 public class SchematicCubeMaze extends Schematic {
 

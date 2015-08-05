@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.worldgen;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 
@@ -12,16 +13,13 @@ import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenDeadBush;
-import scala.actors.threadpool.Arrays;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDecayingWasteland;
-import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
 import com.google.common.collect.Sets;
