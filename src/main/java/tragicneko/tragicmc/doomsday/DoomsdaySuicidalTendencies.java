@@ -24,11 +24,14 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 		double d5 = vec.yCoord - (player.posY + player.height / 2.0F);
 		double d6 = vec.zCoord - player.posZ;
 
-		EntityNekoRocket rocket = new EntityNekoRocket(player.worldObj, player, d4, d5, d6);
-		rocket.posX = player.posX + (d4 * 0.115D);
-		rocket.posY = player.posY + player.getEyeHeight();
-		rocket.posZ = player.posZ + (d6 * 0.115D);
-		player.worldObj.spawnEntityInWorld(rocket);
+		for (int i = 0; i < 3; i++)
+		{
+			EntityNekoRocket rocket = new EntityNekoRocket(player.worldObj, player, d4, d5, d6);
+			rocket.posX = player.posX + (d4 * 0.115D + rand.nextDouble() - rand.nextDouble());
+			rocket.posY = player.posY + player.getEyeHeight();
+			rocket.posZ = player.posZ + (d6 * 0.115D + rand.nextDouble() - rand.nextDouble());
+			player.worldObj.spawnEntityInWorld(rocket);
+		}
 	}
 
 	@Override
@@ -51,6 +54,6 @@ public class DoomsdaySuicidalTendencies extends Doomsday implements IExtendedDoo
 
 	@Override
 	public int getMaxIterations() {
-		return 10;
+		return 30;
 	}
 }

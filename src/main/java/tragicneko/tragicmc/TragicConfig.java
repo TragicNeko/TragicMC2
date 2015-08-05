@@ -527,7 +527,7 @@ public class TragicConfig {
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRavageCost", 55).getInt(55));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayTormentCost", 45).getInt(45));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayBeastlyImpulsesCost", 60).getInt(60));
-		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySuicidalTendenciesCost", 20).getInt(20));
+		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySuicidalTendenciesCost", 12).getInt(12));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayReaperLaughCost", 16).getInt(16));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdayRealityAlterCost", 40).getInt(40));
 		doomsdayCosts[mapping++] = clampPositive(config.get(catDoom, "doomsdaySkullCrusherCost", 50).getInt(50));
