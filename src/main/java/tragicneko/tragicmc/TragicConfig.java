@@ -893,6 +893,11 @@ public class TragicConfig {
 		mobStats[mapping++] = (config.get(catMobs, "kurayamiStats", new double[] {120.0, 0.420, 12.0, 64.0, 0.4, 10}).getDoubleList());
 		mobStats[mapping++] = (config.get(catMobs, "avrisStats", new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16}).getDoubleList());
 
+		for (double[] stat : mobStats) 
+		{
+			if (stat != null && !verify(stat, 6)) throw new IllegalArgumentException("Not enough or invalid values for a certain mob's stats [ " + stat + "].");
+		}
+
 		mapping = 0;
 		miniBossStats[mapping++] = (config.get(catMobs, "jarraStats", new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "kragulStats", new double[] {8.0, 0.380, 5.0, 5.0, 32.0, 0}).getDoubleList());
@@ -903,6 +908,11 @@ public class TragicConfig {
 		miniBossStats[mapping++] = (config.get(catMobs, "stinQueenStats", new double[] {160.0, 0.186, 12.0, 24, 2.0, 10}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24}).getDoubleList());
 		miniBossStats[mapping++] = (config.get(catMobs, "volatileFuseaStats", new double[] {18.0, 0.0, 0.0, 32.0, 100.0, 0}).getDoubleList());
+
+		for (double[] stat : miniBossStats) 
+		{
+			if (stat != null && !verify(stat, 6)) throw new IllegalArgumentException("Not enough or invalid values for a certain miniBoss's stats [ " + stat + "].");
+		}
 
 		mapping = 0;
 		bossStats[mapping++] = (config.get(catMobs, "apisStats", new double[] {160.0, 0.375, 12.0, 32.0, 1.0, 16}).getDoubleList());
@@ -916,6 +926,11 @@ public class TragicConfig {
 		bossStats[mapping++] = (config.get(catMobs, "overlordCoreStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCombatStats", new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0}).getDoubleList());
 		bossStats[mapping++] = (config.get(catMobs, "overlordCocoonStats", new double[] {500.0, 0.226, 24.0, 64.0, 4.5, 0}).getDoubleList());
+
+		for (double[] stat : bossStats) 
+		{
+			if (stat != null && !verify(stat, 6)) throw new IllegalArgumentException("Not enough or invalid values for a certain boss's stats [ " + stat + "].");
+		}
 
 		config.addCustomCategoryComment(catMobs, "Set whether specific Mobs are allowed or disable certain groups like Mini-Bosses or Bosses. Stats are: Health, Movement Speed, Attack Damage, Follow Range, Knockback Resistance, Armor Value.");
 
@@ -1885,7 +1900,7 @@ public class TragicConfig {
 	{
 		int c = configId;
 		boolean flag = false;
-		
+
 		if (configId < Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[configId] != null)
 		{
 			while (Enchantment.enchantmentsList[configId] != null)
@@ -1924,7 +1939,7 @@ public class TragicConfig {
 	{
 		boolean flag = false;
 		int c = configId;
-		
+
 		if (configId < Potion.potionTypes.length && Potion.potionTypes[configId] != null)
 		{
 			while (Potion.potionTypes[configId] != null)
@@ -1962,7 +1977,7 @@ public class TragicConfig {
 	{
 		int c = configId;
 		boolean flag = false;
-		
+
 		if (configId < BiomeGenBase.getBiomeGenArray().length && BiomeGenBase.getBiomeGenArray()[configId] != null)
 		{
 			while (BiomeGenBase.getBiomeGenArray()[configId] != null)
@@ -1997,5 +2012,19 @@ public class TragicConfig {
 
 	private static int clampPositive(int i) {
 		return i < 0 ? 0 : i;
+	}
+
+	private static boolean verify(final double[] array, final int amt)
+	{
+		if (amt > array.length) return false; 
+		for (int i = 0; i < amt; i++)
+		{
+			if (Double.isNaN(array[i]))
+			{
+				TragicMC.logInfo("Value of " + array[i] + " was invalid.");
+				return false;
+			}
+		}
+		return true;
 	}
 }
