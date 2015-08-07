@@ -37,7 +37,7 @@ public class EntityAvris extends TragicMob {
 
 	public EntityAvris(World par1World) {
 		super(par1World);
-		this.setSize(0.86F, 2.36F);
+		this.setSize(1.26F, 2.76F);
 		this.experienceValue = 3;
 		this.getNavigator().setAvoidsWater(true);
 		this.getNavigator().setCanSwim(true);
@@ -67,10 +67,14 @@ public class EntityAvris extends TragicMob {
 		super.onLivingUpdate();
 		
 		if (this.getHealth() > 0F) this.timeAlive++;
-		if (!this.worldObj.isRemote)
+		
+		if (this.worldObj.isRemote)
 		{
-			//TragicMC.logInfo("Time alive is " + this.timeAlive); //TODO remove after render is finished
-			//TragicMC.logInfo("Rarity is " + this.rarity);
+			for (int i = 0; i < 3; i++)
+			{
+				this.worldObj.spawnParticle("flame", this.posX + ((rand.nextDouble() - rand.nextDouble()) * this.width), this.posY + rand.nextDouble() * this.height,
+						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * this.width), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
+			}
 		}
 
 		if (!this.worldObj.isRemote && this.ticksExisted % 4 == 0 && this.timeAlive >= 2400 - this.rarity * 400 && this.getHealth() > 0F)
@@ -184,5 +188,16 @@ public class EntityAvris extends TragicMob {
 	public boolean getCanSpawnHere()
 	{
 		return super.getCanSpawnHere() && rand.nextInt(32) == 0;
+	}
+	
+	@Override
+	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+	{
+		if (this.worldObj.isRemote) return false;
+		
+		boolean flag = super.attackEntityFrom(par1DamageSource, par2);
+		if (flag && par1DamageSource.getEntity() != null) par1DamageSource.getEntity().setFire(4 + rand.nextInt(4));
+
+		return flag;
 	}
 }

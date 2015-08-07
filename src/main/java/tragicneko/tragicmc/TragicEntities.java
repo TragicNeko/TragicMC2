@@ -534,7 +534,7 @@ public class TragicEntities {
 		if (TragicConfig.allowAvris)
 		{
 			EntityRegistry.registerModEntity(EntityAvris.class, "Avris", listid++, TragicMC.getInstance(), 80, 1, true);
-			TragicEntityList.addMapping(EntityAvris.class, "TragicMC.Avris", id++, 0x000000, 0x000000);
+			TragicEntityList.addMapping(EntityAvris.class, "TragicMC.Avris", id++, 0xB81B1B, 0x761E1E);
 		}
 
 		//Giant Zombie
