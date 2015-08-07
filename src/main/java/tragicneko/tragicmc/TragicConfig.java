@@ -45,7 +45,7 @@ public class TragicConfig {
 	private static boolean[] epicAmuletConfigs = new boolean[8];
 	public static boolean amuTime, amuWither, amuOverlord, amuEnyvil;
 
-	public static boolean keepDimensionLoaded, allowDimensionRespawn, allowSynapseVariants;
+	public static boolean keepDimensionLoaded, allowDimensionRespawn, allowSynapseVariants, allowSynapseDigitalSea;
 	public static int synapseVariantChance;
 	private static int[] dimensionIDs = new int[5];
 	public static int dimensionID, providerID, synapseID, synapseProviderID, collisionBiomeSize;
@@ -83,9 +83,8 @@ public class TragicConfig {
 	public static boolean allowReach, allowUnbreakable, allowRust, allowVeteran;
 	private static boolean[] armorEnchantConfigs = new boolean[12];
 	public static boolean allowDeathTouch, allowIgnition, allowToxicity, allowParalysis, allowElasticity, allowAgility, allowRuneWalker, allowLuminescence;
-	private static int[] weaponEnchantIDs = new int[18];
+	private static int[] enchantIDs = new int[32];
 	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable, idRust, idVeteran;
-	private static int[] armorEnchantIDs = new int[16];
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
 
 	private static boolean[] blanketMob = new boolean[16];
@@ -162,7 +161,8 @@ public class TragicConfig {
 		prop.setLanguageKey("tragicmc.mobsOnly");
 		mobsOnly = prop.getBoolean(mobsOnly);
 
-		int mapping = 0;
+		int id = 0;
+		byte mapping = 0;
 		//Blanket options
 		blanketConfigs[mapping++] = false; //(config.get(catBlanket, "allowAchievements", true).getBoolean(true)); //these aren't set up yet
 		blanketConfigs[mapping++] = (config.get(catBlanket, "allowAmulets", true).getBoolean(true));
@@ -246,6 +246,7 @@ public class TragicConfig {
 		allowDimensionRespawn = (config.get(catDimension, "allowCollisionRespawn", false).getBoolean(false));
 		allowSynapseVariants = (config.get(catDimension, "allowSynapseMiniBiomes", true).getBoolean(true));
 		synapseVariantChance = (config.get(catDimension, "synapseMiniBiomeChance", 128).getInt(128));
+		allowSynapseDigitalSea = (config.get(catDimension, "allowSynapseDigitalSea", true).getBoolean(true));
 
 		mapping = 0;
 		biomeWeights[mapping] = clampPositive(config.get(catDimension, "biomeDecayingHillsWeight", 20).getInt(20));
@@ -670,54 +671,76 @@ public class TragicConfig {
 		blanketEnchant[1] = (config.get(catEnchant, "allowArmorEnchantments", true).getBoolean(true));
 
 		mapping = 0;
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "decayID", getOpenIDForEnchant(64)).getInt(getOpenIDForEnchant(64)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "decayAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "slayID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "slayAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "absolveID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "absolveAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "vampirismID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "vampirismAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "leechID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "leechAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "consumeID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "consumeAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "distractID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "distractAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "multiplyID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "multiplyAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "combustionID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "combustionAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "runeBreakID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "runeBreakAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "reachID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "reachAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "unbreakableID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "unbreakableAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "rustID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "rustAllow", true).getBoolean(true));
-		weaponEnchantIDs[mapping] = (config.get(catEnchant, "veteranID", getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[mapping - 1] + 1)));
 		weaponEnchantConfigs[mapping++] = (config.get(catEnchant, "veteranAllow", true).getBoolean(true));
 
-		int temp = mapping - 1;
-
 		mapping = 0;
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "deathTouchID", getOpenIDForEnchant(weaponEnchantIDs[temp] + 1)).getInt(getOpenIDForEnchant(weaponEnchantIDs[temp] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "deathTouchAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "ignitionID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "ignitionAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "toxicityID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "toxicityAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "paralysisID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "paralysisAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "elasticityID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "elasticityAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "agilityID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "agilityAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "runeWalkerID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "runeWalkerAllow", true).getBoolean(true));
-		armorEnchantIDs[mapping] = (config.get(catEnchant, "luminescenceID", getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)).getInt(getOpenIDForEnchant(armorEnchantIDs[mapping - 1] + 1)));
 		armorEnchantConfigs[mapping++] = (config.get(catEnchant, "luminescenceAllow", true).getBoolean(true));
+		
+		mapping = 0;
+		id = getOpenIDForEnchant(64);
+		enchantIDs[mapping++] = (config.get(catEnchant, "decayID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "slayID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "absolveID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "vampirismID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "leechID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "consumeID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "distractID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "multiplyID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "combustionID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "runeBreakID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "reachID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "unbreakableID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "rustID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "veteranID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "deathTouchID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "ignitionID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "toxicityID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "paralysisID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "elasticityID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "agilityID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "runeWalkerID", id).getInt(id));
+		id = getOpenIDForEnchant(enchantIDs[mapping - 1] + 1);
+		enchantIDs[mapping++] = (config.get(catEnchant, "luminescenceID", id).getInt(id));
 
 		config.addCustomCategoryComment(catEnchant, "Set whether specific Enchantments are allowed, also can choose whether an enchantment type is allowed, set their IDs as well.");
 
@@ -963,7 +986,7 @@ public class TragicConfig {
 
 		mapping = 0; //because potion ids are not reserved at all they need to be saved locally so that they don't override each other
 		potionIDs[mapping++] = (config.get(catPotion, "flightID", getOpenIDForPotion(32)).getInt(getOpenIDForPotion(32))); 
-		int id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
+		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
 		potionIDs[mapping++] = (config.get(catPotion, "aquaSuperiorityID", id).getInt(id));
 		id = getOpenIDForPotion(potionIDs[mapping - 1] + 1);
 		potionIDs[mapping++] = (config.get(catPotion, "immunityID", id).getInt(id));
@@ -1131,7 +1154,7 @@ public class TragicConfig {
 
 	public static void postProcessConfigs()
 	{
-		int i;
+		byte i;
 
 		if (mobsOnly)
 		{
@@ -1341,7 +1364,7 @@ public class TragicConfig {
 
 	public static void initializeAllVariables()
 	{
-		int mapping = 0;
+		byte mapping = 0;
 		allowAchievements = blanketConfigs[mapping++];
 		allowAmulets = blanketConfigs[mapping++];
 		allowDimension = blanketConfigs[mapping++];
@@ -1529,52 +1552,54 @@ public class TragicConfig {
 		allowArmorEnchants = blanketEnchant[1];
 
 		mapping = 0;
-		idDecay = weaponEnchantIDs[mapping];
 		allowDecay = weaponEnchantConfigs[mapping++];
-		idSlay = weaponEnchantIDs[mapping];
 		allowSlay = weaponEnchantConfigs[mapping++];
-		idAbsolve= weaponEnchantIDs[mapping];
 		allowAbsolve = weaponEnchantConfigs[mapping++];
-		idVampirism = weaponEnchantIDs[mapping];
 		allowVampirism = weaponEnchantConfigs[mapping++];
-		idLeech = weaponEnchantIDs[mapping];
 		allowLeech = weaponEnchantConfigs[mapping++];
-		idConsume = weaponEnchantIDs[mapping];
 		allowConsume = weaponEnchantConfigs[mapping++];
-		idDistract = weaponEnchantIDs[mapping];
 		allowDistract = weaponEnchantConfigs[mapping++];
-		idMultiply = weaponEnchantIDs[mapping];
 		allowMultiply = weaponEnchantConfigs[mapping++];
-		idCombustion = weaponEnchantIDs[mapping];
 		allowCombustion = weaponEnchantConfigs[mapping++];
-		idRuneBreak = weaponEnchantIDs[mapping];
 		allowRuneBreak = weaponEnchantConfigs[mapping++];
-		idReach = weaponEnchantIDs[mapping];
 		allowReach = weaponEnchantConfigs[mapping++];
-		idUnbreakable = weaponEnchantIDs[mapping];
 		allowUnbreakable = weaponEnchantConfigs[mapping++];
-		idRust = weaponEnchantIDs[mapping];
 		allowRust = weaponEnchantConfigs[mapping++];
-		idVeteran = weaponEnchantIDs[mapping];
 		allowVeteran = weaponEnchantConfigs[mapping++];
-
+		
 		mapping = 0;
-		idDeathTouch = armorEnchantIDs[mapping];
 		allowDeathTouch = armorEnchantConfigs[mapping++];
-		idIgnition = armorEnchantIDs[mapping];
 		allowIgnition = armorEnchantConfigs[mapping++];
-		idToxicity = armorEnchantIDs[mapping];
 		allowToxicity = armorEnchantConfigs[mapping++];
-		idParalysis = armorEnchantIDs[mapping];
 		allowParalysis = armorEnchantConfigs[mapping++];
-		idElasticity = armorEnchantIDs[mapping];
 		allowElasticity = armorEnchantConfigs[mapping++];
-		idAgility = armorEnchantIDs[mapping];
 		allowAgility = armorEnchantConfigs[mapping++];
-		idRuneWalker = armorEnchantIDs[mapping];
 		allowRuneWalker = armorEnchantConfigs[mapping++];
-		idLuminescence = armorEnchantIDs[mapping];
 		allowLuminescence = armorEnchantConfigs[mapping++];
+		
+		mapping = 0;
+		idDecay = enchantIDs[mapping++];
+		idSlay = enchantIDs[mapping++];
+		idAbsolve= enchantIDs[mapping++];
+		idVampirism = enchantIDs[mapping++];
+		idLeech = enchantIDs[mapping++];
+		idConsume = enchantIDs[mapping++];
+		idDistract = enchantIDs[mapping++];
+		idMultiply = enchantIDs[mapping++];
+		idCombustion = enchantIDs[mapping++];
+		idRuneBreak = enchantIDs[mapping++];
+		idReach = enchantIDs[mapping++];
+		idUnbreakable = enchantIDs[mapping++];
+		idRust = enchantIDs[mapping++];
+		idVeteran = enchantIDs[mapping++];
+		idDeathTouch = enchantIDs[mapping++];
+		idIgnition = enchantIDs[mapping++];
+		idToxicity = enchantIDs[mapping++];
+		idParalysis = enchantIDs[mapping++];
+		idElasticity = enchantIDs[mapping++];
+		idAgility = enchantIDs[mapping++];
+		idRuneWalker = enchantIDs[mapping++];
+		idLuminescence = enchantIDs[mapping++];
 
 		allowNormalMobs = blanketMob[0];
 		allowMiniBosses = blanketMob[1];
