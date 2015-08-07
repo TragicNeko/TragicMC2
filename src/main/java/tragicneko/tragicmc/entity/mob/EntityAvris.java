@@ -83,10 +83,7 @@ public class EntityAvris extends TragicMob {
 			boolean flag = true;
 			for (Entity e : entities)
 			{
-				if (e instanceof EntityLivingBase && this.canEntityBeSeen(e))
-				{
-					flag = false;
-				}
+				if (e instanceof EntityLivingBase && this.canEntityBeSeen(e)) flag = false;
 			}
 			
 			if (this.timeAlive >= 3600) flag = true;

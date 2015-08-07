@@ -1,105 +1,106 @@
 package tragicneko.tragicmc.client.model;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 
-public class ModelSirv extends ModelBase
+public class ModelSirv extends ModelBiped
 {
-	private ModelRenderer head;
-	private ModelRenderer chest;
-	private ModelRenderer armRight;
-	private ModelRenderer armLeft;
-	private ModelRenderer legRight;
-	private ModelRenderer legLeft;
-
+	
 	public ModelSirv()
 	{
 		textureWidth = 64;
 		textureHeight = 32;
 
-		head = new ModelRenderer(this, 22, 0);
-		head.addBox(-1.5F, -3F, -1.5F, 3, 4, 3);
-		head.setRotationPoint(0F, -3F, 0F);
+		bipedHead = new ModelRenderer(this, 22, 0);
+		bipedHead.addBox(-1.5F, -3F, -1.5F, 3, 4, 3);
+		bipedHead.setRotationPoint(0F, -3F, 0F);
 
-		chest = new ModelRenderer(this, 8, 0);
-		chest.addBox(-2F, 0F, -1F, 4, 3, 2);
-		chest.setRotationPoint(0F, -1F, 0F);
+		bipedBody = new ModelRenderer(this, 8, 0);
+		bipedBody.addBox(-2F, 0F, -1F, 4, 3, 2);
+		bipedBody.setRotationPoint(0F, -1F, 0F);
 		ModelRenderer stomach = new ModelRenderer(this, 10, 6);
 		stomach.addBox(-1F, 3F, 0F, 2, 5, 1);
-		chest.addChild(stomach);
+		bipedBody.addChild(stomach);
 		ModelRenderer neck = new ModelRenderer(this, 18, 8);
 		neck.addBox(-0.5F, -1F, -0.5F, 1, 1, 1);
-		chest.addChild(neck);
+		bipedBody.addChild(neck);
 
-		armRight = new ModelRenderer(this, 0, 12);
-		armRight.addBox(-1F, 0F, -0.5F, 1, 9, 1);
-		armRight.setRotationPoint(-2F, -1F, 0F);
+		bipedRightArm = new ModelRenderer(this, 0, 12);
+		bipedRightArm.addBox(-1F, 0F, -0.5F, 1, 9, 1);
+		bipedRightArm.setRotationPoint(-2F, -1F, 0F);
 		ModelRenderer armRightFist = new ModelRenderer(this, 6, 14);
 		armRightFist.addBox(-1F, 9F, -1F, 1, 8, 2);
-		armRight.addChild(armRightFist);
+		bipedRightArm.addChild(armRightFist);
 
-		armLeft = new ModelRenderer(this, 0, 12);
-		armLeft.addBox(0F, 0F, -0.5F, 1, 9, 1);
-		armLeft.setRotationPoint(2F, -1F, 0F);
+		bipedLeftArm = new ModelRenderer(this, 0, 12);
+		bipedLeftArm.addBox(0F, 0F, -0.5F, 1, 9, 1);
+		bipedLeftArm.setRotationPoint(2F, -1F, 0F);
 		ModelRenderer armLeftFist = new ModelRenderer(this, 6, 14);
 		armLeftFist.addBox(0F, 9F, -1F, 1, 8, 2);
-		armLeft.addChild(armLeftFist);
+		bipedLeftArm.addChild(armLeftFist);
 
-		legRight = new ModelRenderer(this, 0, 0);
-		legRight.addBox(-0.5F, 0F, -0.5F, 1, 8, 1);
-		legRight.setRotationPoint(-1F, 7F, 0F);
+		bipedRightLeg = new ModelRenderer(this, 0, 0);
+		bipedRightLeg.addBox(-0.5F, 0F, -0.5F, 1, 8, 1);
+		bipedRightLeg.setRotationPoint(-1F, 7F, 0F);
 		ModelRenderer legRightFoot = new ModelRenderer(this, 0, 0);
 		legRightFoot.addBox(-0.5F, 8F, -0.5F, 1, 9, 2);
-		legRight.addChild(legRightFoot);
+		bipedRightLeg.addChild(legRightFoot);
 
-		legLeft = new ModelRenderer(this, 0, 0);
-		legLeft.addBox(-0.5F, 0F, -0.5F, 1, 8, 1);
-		legLeft.setRotationPoint(1F, 7F, 0F);
+		bipedLeftLeg = new ModelRenderer(this, 0, 0);
+		bipedLeftLeg.addBox(-0.5F, 0F, -0.5F, 1, 8, 1);
+		bipedLeftLeg.setRotationPoint(1F, 7F, 0F);
 		ModelRenderer legLeftFoot = new ModelRenderer(this, 0, 0);
 		legLeftFoot.addBox(-0.5F, 8F, -0.5F, 1, 9, 2);
-		legLeft.addChild(legLeftFoot);
+		bipedLeftLeg.addChild(legLeftFoot);
+		
+		bipedHeadwear = new ModelRenderer(this, 0, 0);
+		bipedHeadwear.addBox(0F, 0F, 0F, 0, 0, 0);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		this.isRiding = entity.isRiding();
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		head.render(f5);
-		chest.render(f5);
-		armRight.render(f5);
-		armLeft.render(f5);
-		legRight.render(f5);
-		legLeft.render(f5);
 	}
 
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		head.rotateAngleY = f3 / (180F / (float)Math.PI);
-		head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		legLeft.rotateAngleX = -0.85F * this.simplifyAngle(f, 10.0F) * f1;
-		legRight.rotateAngleX = 0.85F * this.simplifyAngle(f, 10.0F) * f1;
-	}
-
-	@Override
-	public void setLivingAnimations(EntityLivingBase entity, float par2, float par3, float par4)
-	{
-		EntitySirv sirv = (EntitySirv)entity;
-		int i = sirv.getAttackTime();
-
-		if (i > 0)
+		bipedHead.rotateAngleY = f3 / (180F / (float)Math.PI);
+		bipedHead.rotateAngleX = f4 / (180F / (float)Math.PI);
+		bipedLeftLeg.rotateAngleX = -0.85F * this.simplifyAngle(f, 10.0F) * f1;
+		bipedRightLeg.rotateAngleX = 0.85F * this.simplifyAngle(f, 10.0F) * f1;
+		
+		EntitySirv sirv = (EntitySirv) entity;
+		
+		if (sirv.getAttackTime() > 0)
 		{
-			armRight.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle(i - par4, 10.0F);
-			armLeft.rotateAngleX = -2.0F + 1.5F * this.simplifyAngle(i - par4, 10.0F);
+			this.bipedRightArm.rotateAngleX = -0.85F + 0.85F * this.simplifyAngle(sirv.getAttackTime(), 10.0F);
+			this.bipedRightArm.rotateAngleZ = 0.45F + -0.55F * this.simplifyAngle(sirv.getAttackTime(), 10.0F);
+			
+			this.bipedLeftArm.rotateAngleX = -0.85F + 0.85F * this.simplifyAngle(sirv.getAttackTime(), 10.0F);
+			this.bipedLeftArm.rotateAngleZ = -0.45F + 0.55F * this.simplifyAngle(sirv.getAttackTime(), 10.0F);
 		}
 		else
 		{
-			armRight.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(par2, 13.0F)) * par3;
-			armLeft.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(par2, 13.0F)) * par3;
+			this.bipedRightArm.rotateAngleX = 0F;
+			this.bipedRightArm.rotateAngleZ = 0F;
+			this.bipedLeftArm.rotateAngleX = 0F;
+			this.bipedLeftArm.rotateAngleZ = 0F;
+		}
+		
+		if (this.isRiding)
+		{
+			this.bipedRightArm.rotateAngleX = -1.11F;
+			this.bipedLeftArm.rotateAngleX = -1.11F;
+			this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+			this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+			this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+			this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
 		}
 	}
 

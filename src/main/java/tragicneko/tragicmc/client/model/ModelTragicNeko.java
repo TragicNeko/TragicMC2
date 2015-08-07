@@ -113,29 +113,30 @@ public class ModelTragicNeko extends ModelBiped
 			this.leftEar.rotateAngleZ = 0.4461433F;
 			this.rightEar.offsetY = 0.0F;
 			this.rightEar.offsetY = 0.0F;
+		}
 
-			if (neko.getThrowingTicks() > 0)
+		if (neko.getThrowingTicks() > 0)
+		{
+			this.bipedLeftArm.rotateAngleX = -0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+			this.bipedLeftArm.rotateAngleZ = -0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+		}
+		else
+		{
+			bipedLeftArm.rotateAngleX = -0.4833219F;
+			bipedLeftArm.rotateAngleZ = 0.4461433F;
+
+			if (neko.getAttackTime() > 0)
 			{
-				this.bipedLeftArm.rotateAngleX = -0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-				this.bipedLeftArm.rotateAngleZ = -0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+				this.bipedRightArm.rotateAngleX = 0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+				this.bipedRightArm.rotateAngleZ = 0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
 			}
 			else
 			{
-				bipedLeftArm.rotateAngleX = -0.4833219F;
-				bipedLeftArm.rotateAngleZ = 0.4461433F;
-
-				if (neko.getAttackTime() > 0)
-				{
-					this.bipedRightArm.rotateAngleX = 0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-					this.bipedRightArm.rotateAngleZ = 0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-				}
-				else
-				{
-					bipedRightArm.rotateAngleX = -0.4833219F;
-					bipedRightArm.rotateAngleZ = 0.4461433F;
-				}
+				bipedRightArm.rotateAngleX = -0.4833219F;
+				bipedRightArm.rotateAngleZ = 0.4461433F;
 			}
 		}
+
 
 		if (this.isRiding)
 		{
