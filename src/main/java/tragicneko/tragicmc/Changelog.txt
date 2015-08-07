@@ -4274,16 +4274,22 @@ Fixed Fanbrush and Tangleweed textures not working properly after build (capital
 Fixed improper imports being used for Arrays
 Fixed Neko Launcher and IreNet Particle Cannon not properly checking for Doom global cooldown on use
 Fixed error with id handling for potions, potions store their id locally so that the automated id search doesn't break
+Added config option to disable Digital Sea generation in the Synapse
+Modified Enchantment configs to use the same system that Potion configs use, since they both used similar methods previously, also fixed bug with the armor enchant configs never
+being set properly resulting in them being always disabled
+Fixed rarities never being applied to the ItemStack display name (at some point I removed this during a rewrite and never reimplemented it)
+Basically removed all Skultar & Overlord Core sounds (except the Scythe attacking sound), I ended up not liking what I recorded and I'll probably do a release before I get a
+chance to rerecord them
+Added the Avris model/texture and basic render, added particle effects and adjusted the Avris's size, may go back and improve the animations but for now it uses very simple animations
+as it is just supposed to run away from players
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
-Avris model, texture, animations
 Convert mob AI to EntityAI, when applicable
-Finish Boss sounds, rerecord Overlord Core living sounds to a whale-like sound instead of the rough screams I did
-
-Boss sounds--
-Apis sounds: Mad bull sounds
-Yeti sounds: Deep beastly sounds
-Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
-Avris sounds: oohs and ahhs and snickers... mmm snickers
+Finish recording sounds:
+-Rerecord Overlord Core and Skultar sounds, didn't like the first attempts
+-Apis sounds: Mad bull sounds
+-Yeti sounds: Deep beastly sounds
+-Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
+-Avris sounds: oohs and ahhs and snickers... mmm snickers
