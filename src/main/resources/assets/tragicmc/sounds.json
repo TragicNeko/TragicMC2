@@ -153,12 +153,50 @@
 		"sounds": [
 			"boss/kitsune/taunt"]
     },
-	"boss.overlordcombat.living":
+	"boss.overlordcore.hurt":
     {
 		"category": "hostile",
 		"sounds": [
-			"boss/overlordcombat/living", "boss/overlordcombat/living2",
-			"boss/overlordcombat/living3", "boss/overlordcombat/living4"]
+			"boss/overlordcore/hurt", "boss/overlordcore/hurt2",
+			"boss/overlordcore/hurt3"]
+    },
+	"boss.overlordcore.expose":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcore/expose"]
+    },
+	"boss.overlordcore.living":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcore/living", "boss/overlordcore/living2",
+			"boss/overlordcore/living3"]
+    },
+	"boss.overlordcore.death":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcore/roar"]
+    },
+	"boss.overlordcore.roar":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcore/roar"]
+    },
+	"boss.overlordcore.negate":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcore/negate"]
+    },
+	"boss.overlordcore.whine":
+    {
+		"category": "hostile",
+		"sounds": [
+			"boss/overlordcore/whine", "boss/overlordcore/whine2",
+			"boss/overlordcore/whine3", "boss/overlordcore/whine4"]
     },
 	"boss.overlordcombat.hurt":
     {
@@ -1010,5 +1048,11 @@
 		"category": "ambient",
 		"sounds": [
 			"random/truncatedbeep"]
+    },
+	"random.change":
+    {
+		"category": "hostile",
+		"sounds": [
+			"random/change"]
     }
 }

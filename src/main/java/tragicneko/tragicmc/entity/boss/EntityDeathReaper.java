@@ -542,23 +542,20 @@ public class EntityDeathReaper extends TragicBoss {
 		{
 			this.incrementDemeanor();
 			if (flag) this.incrementDemeanor();
-			if (this.getAttackTarget() != null && this.isBeingAggressive() && rand.nextInt(8) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.angry", 1.0F, 1.0F);
+			//if (this.getAttackTarget() != null && this.isBeingAggressive() && rand.nextInt(16) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.angry", 1.0F, 1.0F);
 		}
 		else
 		{
 			this.decrementDemeanor();
 			if (flag) this.decrementDemeanor();
-			if (this.getAttackTarget() != null && !this.isBeingAggressive() && rand.nextInt(8) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.passive", 1.0F, 1.0F);
+			//if (this.getAttackTarget() != null && !this.isBeingAggressive() && rand.nextInt(16) == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.passive", 1.0F, 1.0F);
 		}
 	}
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
-		if (!this.worldObj.isRemote)
-		{
-			this.isBomb = rand.nextBoolean();
-		}
+		if (!this.worldObj.isRemote) this.isBomb = rand.nextBoolean();
 		return super.onSpawnWithEgg(data);
 	}
 
@@ -588,19 +585,24 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return rand.nextInt(16) == 0 ? "tragicmc:boss.skultar.laugh" : "tragicmc:boss.skultar.living";
+		return null; //rand.nextInt(16) == 0 ? "tragicmc:boss.skultar.laugh" : "tragicmc:boss.skultar.living";
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return rand.nextInt(6) != 0 ? super.getHurtSound() : "tragicmc:boss.skultar.hurt";
+		return super.getHurtSound(); // rand.nextInt(6) != 0 ? super.getHurtSound() : "tragicmc:boss.skultar.hurt";
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.skultar.laugh";
+		return null; //"tragicmc:boss.skultar.laugh";
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+	{
 	}
 
 	@Override

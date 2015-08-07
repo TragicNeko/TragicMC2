@@ -409,12 +409,15 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setHurtTicks(0);
 			this.setNearTarget(false);
 			this.setDropTicks(0);
-			
+
+			if (this.getTransformationTicks() == 60) this.playSound("tragicmc:boss.overlordcore.roar", 1.0F, 1.0F);
+
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 12.0, 16.0));
 			for (Entity e : list) this.applyEntityCollision(e);
 			return;
 		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
+		if (this.getVulnerableTicks() % 20 == 0 && this.getVulnerableTicks() > 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.8F);
 
 		if (this.target != null)
 		{
@@ -578,7 +581,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 		if (this.getHurtTicks() > 0) this.decrementHurtTicks();
 
-		if (this.getHurtTicks() == 0 && this.getHoverTicks() == 0 && this.getDropTicks() == 0 && this.getTransformationTicks() == 0) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
+		if (this.getHurtTicks() == 0 && this.getHoverTicks() == 0 && this.getDropTicks() == 0 && this.getTransformationTicks() == 0 && this.hoverBuffer >= 100) this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
 		this.slowed = this.destroyBlocksInAABB(this.boundingBox);
 
@@ -647,7 +650,8 @@ public class EntityOverlordCore extends TragicBoss {
 		for (int i = 0; i < list.size(); ++i)
 		{
 			Entity entity = (Entity)list.get(i);
-			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse && !entity.equals(this.ridingEntity)) entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+			if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getCreatureAttribute() != TragicEntities.Synapse && !entity.equals(this.ridingEntity)) entity.attackEntityFrom(DamageSource.causeMobDamage(this), this.getVulnerableTicks() > 0 ? MathHelper.ceiling_float_int(f / 2) : f);
 		}
 	}
 
@@ -665,12 +669,12 @@ public class EntityOverlordCore extends TragicBoss {
 				this.target = ent;
 				retry = false;
 			}
-			
+
 			if (retry)
 			{
 				double d0 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
-				
+
 				for (Entity e : list)
 				{
 					if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse)
@@ -800,11 +804,19 @@ public class EntityOverlordCore extends TragicBoss {
 					this.hoverBuffer = 100;
 				}
 
-				if (flag && this.getVulnerableTicks() == 0) this.setVulnerableTicks(120 + rand.nextInt(40));
+				if (flag && this.getVulnerableTicks() == 0)
+				{
+					this.setVulnerableTicks(120 + rand.nextInt(40));
+					this.playSound("tragicmc:boss.overlordcore.expose", 1.0F, 1.0F);
+				}
 				if (this.getHurtTicks() == 0) this.setHurtTicks(40);
 				if (this.ridingEntity != null) this.mountEntity(null);
 
 				return super.attackEntityFrom(src, dmg);
+			}
+			else
+			{
+				this.playSound("tragicmc:boss.overlordcore.negate", 1.0F, 1.0F);
 			}
 
 			++aggregate;
@@ -930,5 +942,46 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 
 		return y;
+	}
+
+	@Override
+	public String getLivingSound()
+	{
+		return this.getTransformationTicks() > 0 ? null : (this.getVulnerableTicks() > 0 ? "tragicmc:boss.overlordcore.whine" : "tragicmc:boss.overlordcore.living");
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return this.getTransformationTicks() > 0 ? null : "tragicmc:boss.overlordcore.hurt";
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return null; //"tragicmc:boss.overlordcore.roar";
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F;
+	}
+
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+	{
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return super.getTalkInterval();
 	}
 }
