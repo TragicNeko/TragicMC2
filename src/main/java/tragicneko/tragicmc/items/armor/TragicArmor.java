@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,6 +29,13 @@ public class TragicArmor extends ItemArmor {
 		super(material, 0, armorType);
 		this.doomsday = dday;
 		this.setCreativeTab(TragicMC.Survival);
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		return EnumRarity.values()[rarity];
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumChatFormatting;
@@ -21,6 +22,13 @@ public class TragicTool extends ItemTool {
 	protected TragicTool(float dmg, ToolMaterial mat, Set set, Doomsday dday) {
 		super(dmg, mat, set);
 		this.doomsday = dday;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		return EnumRarity.values()[rarity];
 	}
 
 	public Doomsday getDoomsday()

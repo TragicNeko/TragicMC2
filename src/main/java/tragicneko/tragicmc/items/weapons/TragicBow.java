@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -26,6 +27,13 @@ public class TragicBow extends ItemBow {
 		this.setFull3D();
 		this.setMaxDamage(dmg);
 		this.doomsday = dday;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		return EnumRarity.values()[rarity];
 	}
 
 	@Override

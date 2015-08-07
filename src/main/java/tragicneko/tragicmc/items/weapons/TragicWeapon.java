@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -39,6 +40,13 @@ public class TragicWeapon extends ItemSword {
 	{
 		this(material, dday);
 		this.doomsday2 = dday2;
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		int rarity = stack.hasTagCompound() && stack.stackTagCompound.hasKey("tragicLoreRarity") ? stack.stackTagCompound.getInteger("tragicLoreRarity") : 0;
+		return EnumRarity.values()[rarity];
 	}
 
 	public Doomsday getDoomsday()
