@@ -947,13 +947,13 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return this.getTransformationTicks() > 0 ? null : (this.getVulnerableTicks() > 0 ? "tragicmc:boss.overlordcore.whine" : "tragicmc:boss.overlordcore.living");
+		return null;// this.getTransformationTicks() > 0 ? null : (this.getVulnerableTicks() > 0 ? "tragicmc:boss.overlordcore.whine" : "tragicmc:boss.overlordcore.living");
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return this.getTransformationTicks() > 0 ? null : "tragicmc:boss.overlordcore.hurt";
+		return super.getHurtSound(); //this.getTransformationTicks() > 0 ? null : "tragicmc:boss.overlordcore.hurt";
 	}
 
 	@Override
