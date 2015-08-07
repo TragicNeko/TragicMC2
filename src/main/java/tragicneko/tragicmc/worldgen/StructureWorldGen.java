@@ -43,7 +43,7 @@ public class StructureWorldGen implements IWorldGenerator {
 
 		for (Structure s : cands)
 		{
-			if (s.generate(world, random, x, s.isSurfaceStructure() ? top : y, z)) //TODO either set as a config option or remove
+			if (s.generate(world, random, x, s.isSurfaceStructure() ? top : y, z))
 			{
 				TragicMC.logInfo(s.getLocalizedName() + " succesfully generated at " + x + ", " + (s.isSurfaceStructure() ? top : y) + ", " + z);
 				break;

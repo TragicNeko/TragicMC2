@@ -19,7 +19,6 @@ public class SynapseVariantGen implements IWorldGenerator {
 		if (Math.abs(chunkX) < 2 && Math.abs(chunkZ) < 2) return;
 		Chunk chk = world.getChunkFromChunkCoords(chunkX, chunkZ);
 		boolean flag = random.nextBoolean();
-		TragicMC.logInfo("Chunk at (" + chunkX + ", " + chunkZ + ") was chosen to generate as a " + (flag ? "Corrupt Sector" : "Dead Sector")); //TODO either set as a config option or remove
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
 

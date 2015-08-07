@@ -89,7 +89,7 @@ public class TragicMC
 
 		if (TragicConfig.allowPotions)
 		{
-			if (Potion.potionTypes.length >= 64)
+			if (Potion.potionTypes.length >= 128)
 			{
 				TragicPotion.load();
 				MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.PotionEvents());
@@ -249,7 +249,7 @@ public class TragicMC
 			modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 			potionTypes = (Potion[])f.get(null);
 
-			if (potionTypes.length <= 96)
+			if (potionTypes.length <= 128)
 			{
 				final Potion[] newPotionTypes = new Potion[256];
 				System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
