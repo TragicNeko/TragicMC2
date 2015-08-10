@@ -4285,6 +4285,8 @@ as it is just supposed to run away from players
 Modified Sirv model to be a biped, modified TragicNeko animations a little bit
 Adjusted Sirv attack animations and added sitting animation for when it's in a minecart
 Modified Avris model to be biped and adjusted animations accordingly, added sitting animation
+Fix mob spawners not working in cube mazes
+Working on porting the mod up to 1.8, there's tons of errors but I've resolved most of them (only about 3000 left...)
 
 TODO still:
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
