@@ -4287,8 +4287,25 @@ Adjusted Sirv attack animations and added sitting animation for when it's in a m
 Modified Avris model to be biped and adjusted animations accordingly, added sitting animation
 Fix mob spawners not working in cube mazes
 Working on porting the mod up to 1.8, there's tons of errors but I've resolved most of them (only about 3000 left...)
+Made it so that Claymation Ruins may only generate below y = 80, this is to reduce lag from them generating at a really high y value
+Still working on the mod port, down to around 1200 errors and I still need to do the json files for the blocks and items (why are there so many items and blocks DDDDD;)
+Setup Structures to use BlockPos to ease port to 1.8, this will make it possible to add new structures in future updates without the huge amount of work to port it
+Fixed Dark Lightning and Enyvil using the top block instead of the closest surface to summon lightning
+Fixed Dimensional Keys using durability even when you don't teleport
+Added doom kill recharge, each mob you kill restores a certain amount of doom (this will be disabled by default), the amount is the normal recharge amount if recovery is enabled
+Adjusted biome genlayers again to hopefully fix structures generating thousands of blocks away
+
+TODO for 1.8 port:
+Set up blockstates for all of the blocks
+Set up the json files for all of the item and block textures
+Update the Schematic codes, this requires the blockstates being setup in most cases so they'll be done first
+Rewrite all of the WorldGen code to use blockstates
+Update all of the Dimensional code (since they use modified versions of vanilla code, I'll experiment with this later on in the first expansion's dimensions)
 
 TODO still:
+Add config option to specify blocks in the generator items, this would make them more useful and makes more sense than having them randomized, going to use string arrays to get
+block filters instead of ids due to strings being better than ids in every way
+Possibly add config option to modify the various worldgen values that I have
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
 Convert mob AI to EntityAI, when applicable
