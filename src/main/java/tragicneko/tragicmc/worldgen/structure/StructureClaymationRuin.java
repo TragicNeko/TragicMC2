@@ -36,6 +36,7 @@ public class StructureClaymationRuin extends StructureBoss {
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
+		if (y > 80) return false;
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenDesert || biome instanceof BiomeGenDecayingWasteland)
 		{
