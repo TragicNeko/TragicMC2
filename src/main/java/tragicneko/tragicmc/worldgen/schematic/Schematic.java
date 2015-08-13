@@ -2,6 +2,7 @@ package tragicneko.tragicmc.worldgen.schematic;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.tileentity.TileEntitySign;
@@ -9,6 +10,7 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.worldgen.structure.Structure;
 
 public abstract class Schematic {
 
@@ -158,6 +160,11 @@ public abstract class Schematic {
 		if (spawner == null || mobName == null) return false;
 		spawner.func_145881_a().setEntityName(mobName);
 		return true;
+	}
+	
+	public void setBlock(World world, Structure.BlockPos pos, Block block, int meta, int flag)
+	{
+		world.setBlock(pos.getX(), pos.getY(), pos.getZ(), block, meta, flag);
 	}
 
 	/*
