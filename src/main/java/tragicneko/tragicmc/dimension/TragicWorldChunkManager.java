@@ -62,7 +62,7 @@ public class TragicWorldChunkManager extends WorldChunkManager
 	public static GenLayer[] getGenLayers(long seed, WorldType worldType)
 	{
 		GenLayer biomes = new TragicBiomeGenLayer(seed);
-		biomes = GenLayerZoom.magnify(1000L, biomes, TragicConfig.collisionBiomeSize);
+		biomes = GenLayerZoom.magnify(100L, biomes, TragicConfig.collisionBiomeSize);
 		GenLayer zoom = new GenLayerVoronoiZoom(10L, biomes);
 
 		biomes.initWorldGenSeed(seed);
