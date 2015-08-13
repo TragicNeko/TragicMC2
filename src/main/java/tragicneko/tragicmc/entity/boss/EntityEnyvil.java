@@ -694,7 +694,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		{
 			double d0 = this.posX + this.getIntegerInRange(4, 16) + rand.nextDouble();
 			double d1 = this.posZ + this.getIntegerInRange(4, 16) + rand.nextDouble();
-			double d2 = this.worldObj.getTopSolidOrLiquidBlock((int) d0, (int) d1);
+			double d2 = this.posY - WorldHelper.getDistanceToGround(this);
 
 			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
 			this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 2.0F + 0.5F, this.getMobGriefing());

@@ -8,6 +8,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
+import tragicneko.tragicmc.util.WorldHelper;
 
 public class EntityDarkLightning extends EntityProjectile {
 
@@ -55,7 +56,8 @@ public class EntityDarkLightning extends EntityProjectile {
 
 		if (this.ticksInAir % 20 == 0 && this.ticksInAir > 10 && this.ticksInAir <= 120 && !this.isDead && !this.worldObj.isRemote)
 		{
-			this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, this.posX, this.worldObj.getTopSolidOrLiquidBlock((int) this.posX, (int) this.posZ), this.posZ, this));
+			int y = WorldHelper.getDistanceToGround(this);
+			this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, this.posX, this.posY - y, this.posZ, this));
 		}
 
 		if (!this.worldObj.isRemote && this.ticksExisted >= 120) this.setDead();

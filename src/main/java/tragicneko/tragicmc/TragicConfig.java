@@ -65,7 +65,7 @@ public class TragicConfig {
 
 	private static boolean[] blanketDoom = new boolean[17];
 	public static boolean allowDoomsdays, allowInfluenceDoomsday, allowCrisisDoomsday, allowOverflowDoomsday, allowWorldShaperDoomsday, allowCombinationDoomsday, allowNonDoomsdayAbilities;
-	public static boolean shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash, allowCooldown;
+	public static boolean shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash, allowCooldown, allowDoomKillRecharge;
 	public static boolean allowCooldownDefuse, showDoomGui;
 	private static int[] doomInts = new int[12];
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
@@ -353,6 +353,7 @@ public class TragicConfig {
 		blanketDoom[mapping++] = (config.get(catDoom, "allowCooldown", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "allowCooldownDefuse", true).getBoolean(true));
 		blanketDoom[mapping++] = (config.get(catDoom, "showDoomGui", true).getBoolean(true));
+		blanketDoom[mapping++] = (config.get(catDoom, "allowDoomKillRecharge", false).getBoolean(false));
 
 		mapping = 0;
 		doomInts[mapping++] = clampPositive(config.get(catDoom, "maxDoomAmount", 500).getInt(500));
@@ -1534,6 +1535,7 @@ public class TragicConfig {
 		allowCooldown = blanketDoom[mapping++];
 		allowCooldownDefuse = blanketDoom[mapping++];
 		showDoomGui = blanketDoom[mapping++];
+		allowDoomKillRecharge = blanketDoom[mapping++];
 
 		mapping = 0;
 		maxDoomAmount = doomInts[mapping++];

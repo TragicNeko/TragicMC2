@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -100,6 +101,21 @@ public class DoomEvents {
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
 			TragicMC.net.sendTo(new MessageDoom(player), player);
+		}
+	}
+
+	@SubscribeEvent
+	public void onDeath(LivingDeathEvent event)
+	{
+		if (event.entityLiving instanceof EntityMob && TragicConfig.allowDoomKillRecharge)
+		{
+			if (event.source.getEntity() instanceof EntityLivingBase && event.source.getEntity() instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer) event.source.getEntity();
+
+				PropertyDoom properties = PropertyDoom.get(player);
+				properties.increaseDoom(TragicConfig.doomRechargeAmount);
+			}
 		}
 	}
 }
