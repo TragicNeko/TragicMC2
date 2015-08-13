@@ -28,7 +28,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class FlowerWorldGen implements IWorldGenerator {
 
-	public static Set allowedBiomes = Sets.newHashSet(new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills,
+	public static Set<BiomeGenBase> allowedBiomes = Sets.newHashSet(new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills,
 			BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.taiga, BiomeGenBase.taigaHills, BiomeGenBase.roofedForest, BiomeGenBase.savanna,
 			BiomeGenBase.savannaPlateau, BiomeGenBase.swampland});
 

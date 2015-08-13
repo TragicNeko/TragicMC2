@@ -284,9 +284,9 @@ public class WorldHelper {
 
 	public static int getDistanceToGround(Entity entity)
 	{
-		int x = MathHelper.floor_double(entity.posX);
-		int y = MathHelper.floor_double(entity.boundingBox.minY);
-		int z = MathHelper.floor_double(entity.posZ);
+		final int x = MathHelper.floor_double(entity.posX);
+		final int y = MathHelper.floor_double(entity.boundingBox.minY);
+		final int z = MathHelper.floor_double(entity.posZ);
 
 		for (int i = 0; y - i > 0; ++i)
 		{
