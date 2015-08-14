@@ -26,6 +26,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.projectile.EntityPumpkinbomb;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -349,19 +350,19 @@ public class EntityPumpkinhead extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return this.isAngry() ? "tragicmc:mob.pumpkinhead.angry" : "tragicmc:mob.pumpkinhead.living";
+		return TragicConfig.allowMobSounds ? (this.isAngry() ? "tragicmc:mob.pumpkinhead.angry" : "tragicmc:mob.pumpkinhead.living") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.pumpkinhead.hiss";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.pumpkinhead.hiss" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.pumpkinhead.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.pumpkinhead.death" : null;
 	}
 
 	@Override

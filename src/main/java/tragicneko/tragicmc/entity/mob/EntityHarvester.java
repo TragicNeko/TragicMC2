@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
 public class EntityHarvester extends TragicMob {
@@ -186,7 +187,7 @@ public class EntityHarvester extends TragicMob {
 			}
 
 			if (flag && rand.nextInt(32) == 0 && this.getReleaseTicks() == 0) this.setReleaseTicks(20);
-			this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.6F, 1.0F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.6F, 1.0F);
 		}
 
 		if (this.getReleaseTicks() > 0) this.setReleaseTicks(this.getReleaseTicks() - 1);
@@ -251,7 +252,7 @@ public class EntityHarvester extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

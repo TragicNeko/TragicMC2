@@ -373,19 +373,19 @@ public class EntityTragicNeko extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.tragicneko.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tragicneko.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return rand.nextInt(4) == 0 ? "tragicmc:mob.tragicneko.hurt" : "game.hostile.hurt";
+		return TragicConfig.allowMobSounds && rand.nextInt(4) == 0 ? "tragicmc:mob.tragicneko.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.tragicneko.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tragicneko.death" : null;
 	}
 
 	@Override

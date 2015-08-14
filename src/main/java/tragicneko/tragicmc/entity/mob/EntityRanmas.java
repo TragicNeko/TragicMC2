@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
@@ -145,7 +146,7 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {d0, d1, d2};
 				this.setChargeTicks(15);
 			}
-			else if (this.ticksExisted % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.2F, 0.2F);
+			else if (this.ticksExisted % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 0.2F, 0.2F);
 		}
 	}
 
@@ -256,7 +257,7 @@ public class EntityRanmas extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

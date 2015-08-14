@@ -23,6 +23,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
 public class EntityInkling extends TragicMob {
@@ -219,7 +220,7 @@ public class EntityInkling extends TragicMob {
 		if (result)
 		{
 			this.setVisibleTicks(10 + rand.nextInt(10));
-			this.playSound("tragicmc:mob.inkling.hey", this.getSoundVolume(), this.getSoundPitch());
+			if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.inkling.hey", this.getSoundVolume(), this.getSoundPitch());
 		}
 
 		return result;
@@ -349,7 +350,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return this.isInvisible() ? "tragicmc:mob.inkling.giggle" : "tragicmc:mob.inkling.hey";
+		return TragicConfig.allowMobSounds ? (this.isInvisible() ? "tragicmc:mob.inkling.giggle" : "tragicmc:mob.inkling.hey") : null;
 	}
 
 	@Override
@@ -361,7 +362,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? "tragicmc:mob.inkling.death" : "tragicmc:mob.inkling.hurt";
+		return TragicConfig.allowMobSounds ? (this.getEntityId() % 7 == 0 || this.getEntityId() % 3 == 0 ? "tragicmc:mob.inkling.death" : "tragicmc:mob.inkling.hurt") : super.getHurtSound();
 	}
 
 	@Override
@@ -373,7 +374,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.8F + rand.nextFloat() * 0.2F;
+		return 0.6F;
 	}
 
 	@Override

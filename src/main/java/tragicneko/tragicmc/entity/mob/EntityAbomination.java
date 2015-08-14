@@ -20,6 +20,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
 public class EntityAbomination extends TragicMob {
@@ -250,19 +251,19 @@ public class EntityAbomination extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.abomination.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.abomination.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.abomination.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.abomination.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.abomination.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.abomination.death" : null;
 	}
 
 	@Override

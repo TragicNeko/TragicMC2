@@ -18,6 +18,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
@@ -199,19 +200,19 @@ public class EntityErkel extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.tox.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.tox.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.tox.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : null;
 	}
 
 	@Override

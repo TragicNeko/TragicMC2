@@ -176,7 +176,7 @@ public class EntityPlague extends TragicMob {
 				this.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
 			}
 
-			if (this.ticksExisted % 20 == 0)
+			if (this.ticksExisted % 20 == 0 && TragicConfig.allowMobSounds)
 			{
 				this.worldObj.playSoundAtEntity(this,"tragicmc:mob.plague.chirp", 0.3F, 1.0F);
 			}
@@ -209,7 +209,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.plague.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.plague.death" : null;
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class EntityPlague extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

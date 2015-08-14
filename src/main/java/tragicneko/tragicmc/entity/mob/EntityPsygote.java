@@ -328,19 +328,19 @@ public class EntityPsygote extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return this.getAttackTarget() == null ? "tragicmc:mob.psygote.coo" : "tragicmc:mob.psygote.cry";
+		return TragicConfig.allowMobSounds ? (this.getAttackTarget() == null ? "tragicmc:mob.psygote.coo" : "tragicmc:mob.psygote.cry") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.psygote.shriek";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.psygote.shriek" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.psygote.shriek";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.psygote.shriek" : null;
 	}
 
 	@Override
@@ -358,6 +358,6 @@ public class EntityPsygote extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 }

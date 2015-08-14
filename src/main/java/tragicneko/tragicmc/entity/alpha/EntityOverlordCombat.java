@@ -99,7 +99,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				}
 			}
 			
-			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
 		}
 
 		if (this.worldObj.isRemote && f > 16.0F)
@@ -522,7 +522,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					}
 				}
 				
-				if (this.getChargeTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.march", 1.8F, 1.0F);
+				if (this.getChargeTicks() % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.march", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -553,7 +553,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				e.motionZ = -d2 / f2 * d4 * 0.600000011920929D + e.motionZ * 0.20000000298023224D;
 				e.motionY = -d3 / f2 * d4 * 0.300000011920929D + e.motionZ * 0.10000000298023224D;
 				
-				if (this.getGrappleTicks() % 20 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.phaser", 1.8F, 1.0F);
+				if (this.getGrappleTicks() % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.phaser", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -586,7 +586,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				this.worldObj.spawnEntityInWorld(hunter);
 			}
 			
-			if (this.getReflectionTicks() % 20 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wow", 1.8F, 1.0F);
+			if (this.getReflectionTicks() % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wow", 1.8F, 1.0F);
 		}
 		if (this.onGround && this.hasLeaped) this.hasLeaped = false;
 
@@ -667,7 +667,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				{
 					if (e instanceof EntityLivingBase && e != entity) e.attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 				}
-				if (this.getChargeTicks() == 0 && this.getAttackTime() == 20) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.shink", 1.9F, 1.0F);
+				if (this.getChargeTicks() == 0 && this.getAttackTime() == 20 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.shink", 1.9F, 1.0F);
 			}
 			return flag;
 		}
@@ -724,19 +724,19 @@ public class EntityOverlordCombat extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.overlordcombat.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcombat.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:boss.overlordcombat.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcombat.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.overlordcombat.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcombat.death" : null;
 	}
 
 	@Override

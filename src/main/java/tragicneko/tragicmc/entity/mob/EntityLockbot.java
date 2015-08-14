@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
@@ -96,7 +97,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.lockbot.hum";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.lockbot.hum" : null;
 	}
 
 	@Override
@@ -108,7 +109,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.lockbot.hum";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.lockbot.hum" : null;
 	}
 
 	@Override
@@ -126,7 +127,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

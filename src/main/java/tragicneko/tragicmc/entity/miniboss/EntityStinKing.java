@@ -138,12 +138,12 @@ public class EntityStinKing extends EntityGreaterStin {
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.stin.king";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.king" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.stin.king";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.king" : null;
 	}
 }

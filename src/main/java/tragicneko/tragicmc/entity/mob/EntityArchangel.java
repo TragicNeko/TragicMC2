@@ -15,6 +15,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.util.DamageHelper;
@@ -272,7 +273,7 @@ public class EntityArchangel extends TragicMob {
 				this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 			}
 
-			if (this.getHoverTicks() % 15 == 0)
+			if (this.getHoverTicks() % 15 == 0 && TragicConfig.allowMobSounds)
 			{
 				this.playSound("tragicmc:mob.archangel.low", 0.6F, 1.0F);
 				if (this.getAttackTarget() != null) this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.archangel.low", 0.6F, 1.0F);
@@ -426,19 +427,19 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.archangel.choir";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.archangel.choir" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.archangel.vibrato";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.archangel.vibrato" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.archangel.triple";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.archangel.triple" : null;
 	}
 
 	@Override
@@ -456,6 +457,6 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 }

@@ -307,7 +307,7 @@ public class EntityKitsune extends TragicBoss {
 			}
 
 			if (!this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) > 8.0F && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && rand.nextInt(56) == 0 && this.getTauntTicks() == 0) this.setTauntTicks(40);
-			if (this.getTauntTicks() == 40) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.kitsune.taunt", 1.0F, 1.0F);
+			if (this.getTauntTicks() == 40 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.kitsune.taunt", 1.0F, 1.0F);
 		}
 	}
 
@@ -491,19 +491,19 @@ public class EntityKitsune extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.kitsune.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:boss.kitsune.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.kitsune.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.hurt" : null;
 	}
 
 	@Override

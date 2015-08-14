@@ -183,19 +183,19 @@ public class EntityGragul extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.gragul.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.gragul.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.gragul.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.gragul.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.gragul.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.gragul.death" : null;
 	}
 
 	@Override
@@ -213,6 +213,6 @@ public class EntityGragul extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 }

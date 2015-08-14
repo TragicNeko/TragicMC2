@@ -410,14 +410,14 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setNearTarget(false);
 			this.setDropTicks(0);
 
-			if (this.getTransformationTicks() == 60) this.playSound("tragicmc:boss.overlordcore.roar", 1.0F, 1.0F);
+			if (this.getTransformationTicks() == 60 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.roar", 1.0F, 1.0F);
 
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 12.0, 16.0));
 			for (Entity e : list) this.applyEntityCollision(e);
 			return;
 		}
 		if (this.getVulnerableTicks() > 0 && this.target != null) this.forceNewTarget = true;
-		if (this.getVulnerableTicks() % 20 == 0 && this.getVulnerableTicks() > 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.8F);
+		if (this.getVulnerableTicks() % 20 == 0 && this.getVulnerableTicks() > 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.8F);
 
 		if (this.target != null)
 		{
@@ -576,7 +576,7 @@ public class EntityOverlordCore extends TragicBoss {
 		if (this.getVulnerableTicks() > 0)
 		{
 			this.decrementVulnerableTicks();
-			if (this.getVulnerableTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.5F);
+			if (this.getVulnerableTicks() % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.5F);
 		}
 
 		if (this.getHurtTicks() > 0) this.decrementHurtTicks();
@@ -807,14 +807,14 @@ public class EntityOverlordCore extends TragicBoss {
 				if (flag && this.getVulnerableTicks() == 0)
 				{
 					this.setVulnerableTicks(120 + rand.nextInt(40));
-					this.playSound("tragicmc:boss.overlordcore.expose", 1.0F, 1.0F);
+					if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.expose", 1.0F, 1.0F);
 				}
 				if (this.getHurtTicks() == 0) this.setHurtTicks(40);
 				if (this.ridingEntity != null) this.mountEntity(null);
 
 				return super.attackEntityFrom(src, dmg);
 			}
-			else
+			else if (TragicConfig.allowMobSounds)
 			{
 				this.playSound("tragicmc:boss.overlordcore.negate", 1.0F, 1.0F);
 			}

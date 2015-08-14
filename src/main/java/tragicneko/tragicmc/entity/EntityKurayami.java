@@ -401,19 +401,19 @@ public class EntityKurayami extends EntityGolem {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.kitsune.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:boss.kitsune.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.kitsune.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.kitsune.hurt" : null;
 	}
 
 	@Override

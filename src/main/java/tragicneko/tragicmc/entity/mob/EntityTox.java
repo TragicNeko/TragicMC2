@@ -336,19 +336,19 @@ public class EntityTox extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.tox.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.tox.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.tox.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.tox.hurt" : null;
 	}
 
 	@Override

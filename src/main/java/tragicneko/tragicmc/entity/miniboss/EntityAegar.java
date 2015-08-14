@@ -389,7 +389,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 
 			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround)
 			{
-				this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
 				this.setShockwaveTicks(60);
 			}
 
@@ -418,12 +418,15 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		mortor.motionY += 0.36D * f1;
 		this.worldObj.spawnEntityInWorld(mortor);
 
-		this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.trill", 0.6F, 1.0F);
+		if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.trill", 0.6F, 1.0F);
 	}
 
 	private void fireLaser() {
-		this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
-		this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
+		if (TragicConfig.allowMobSounds) 
+		{
+			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
+			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
+		}
 		this.getAttackTarget().attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(this), 1.0F + rand.nextFloat());
 	}
 
@@ -514,7 +517,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		{
 			if (entity == this.aegarCrystal)
 			{
-				this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.harshhurt", 0.6F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.harshhurt", 0.6F, 1.0F);
 				damage *= 1.35F;
 			}
 			else
@@ -601,19 +604,19 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	@Override
 	public String getLivingSound()
 	{
-		return this.getHypermode() ? "tragicmc:boss.aegar.hyperwah" : "tragicmc:boss.aegar.wah";
+		return TragicConfig.allowMobSounds ? (this.getHypermode() ? "tragicmc:boss.aegar.hyperwah" : "tragicmc:boss.aegar.wah") : null;
 	}
 
 	@Override
 	public String getHurtSound()
-	{
-		return this.getHypermode() ? "tragicmc:boss.aegar.harshhurt" : "tragicmc:boss.aegar.hurt";
+	{ 
+		return TragicConfig.allowMobSounds ? (this.getHypermode() ? "tragicmc:boss.aegar.harshhurt" : "tragicmc:boss.aegar.hurt") : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.aegar.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.aegar.death" : null;
 	}
 
 	@Override
@@ -639,7 +642,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	{
 		return 160;
 	}
-	
+
 	@Override
 	public int getDropAmount()
 	{

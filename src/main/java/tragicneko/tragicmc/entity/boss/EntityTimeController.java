@@ -336,14 +336,14 @@ public class EntityTimeController extends TragicBoss {
 		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0)
 		{
 			this.setLeapTicks(180);
-			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.leap", 1.9F, 1.0F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.leap", 1.9F, 1.0F);
 		}
 		
 		if (rand.nextInt(128) == 0 && ticksSinceFlux > 600 && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F))
 		{
 			this.storedDamage = 0.0F;
 			this.setFluxTicks(250);
-			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.flux", 1.9F, 1.0F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.flux", 1.9F, 1.0F);
 		}
 		if (rand.nextInt(64) == 0 && this.getPurgeTicks() == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F))
 		{
@@ -355,7 +355,7 @@ public class EntityTimeController extends TragicBoss {
 		if (this.getPurgeTicks() > 0)
 		{
 			this.setSprinting(true);
-			if (this.getPurgeTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 1.0F, 1.9F);
+			if (this.getPurgeTicks() % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.harvester.hover", 1.0F, 1.9F);
 		}
 		else
 		{
@@ -525,7 +525,7 @@ public class EntityTimeController extends TragicBoss {
 		if (result && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && rand.nextInt(16) == 0 && this.getHealth() <= this.getMaxHealth() / 3 && this.getSpazTicks() == 0)
 		{
 			this.setSpazTicks(120);
-			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.error", 1.9F, 1.0F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.error", 1.9F, 1.0F);
 		}
 		return result;
 	}
@@ -767,19 +767,19 @@ public class EntityTimeController extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.timecontroller.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.timecontroller.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:boss.timecontroller.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.timecontroller.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.timecontroller.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.timecontroller.death" : null;
 	}
 
 	@Override

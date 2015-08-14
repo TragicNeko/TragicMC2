@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -120,7 +121,7 @@ public class EntityHunter extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.hunter.noise";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.hunter.noise" : null;
 	}
 
 	@Override
@@ -132,7 +133,7 @@ public class EntityHunter extends TragicMob {
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.hunter.noise";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.hunter.noise" : null;
 	}
 
 	@Override
@@ -150,7 +151,7 @@ public class EntityHunter extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

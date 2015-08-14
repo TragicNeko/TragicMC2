@@ -258,7 +258,7 @@ public class EntityCryse extends TragicMob {
 
 		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0)
 		{
-			this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.deflect", 1.0F, 1.9F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.deflect", 1.0F, 1.9F);
 			par1DamageSource.getEntity().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), par2 / 4);
 		}
 
@@ -346,19 +346,19 @@ public class EntityCryse extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.cryse.glass";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.cryse.glass" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.cryse.hit";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.cryse.hit" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.cryse.break";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.cryse.break" : null;
 	}
 
 	@Override
@@ -382,6 +382,6 @@ public class EntityCryse extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+		
 	}
 }

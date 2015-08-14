@@ -159,7 +159,7 @@ public class EntityRagr extends TragicMob {
 	@Override
 	protected void jump()
 	{
-		this.playSound("tragicmc:mob.ragr.jump", this.getSoundVolume(), 0.8F);
+		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.ragr.jump", this.getSoundVolume(), 0.8F);
 		this.motionY = this.getAngerTicks() > 600 ? rand.nextDouble() * 1.055 + 0.455 : 0.545;
 		if (this.isPotionActive(Potion.jump))this.motionY += (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
 
@@ -352,13 +352,13 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.ragr.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.ragr.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.ragr.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.ragr.death" : null;
 	}
 
 	@Override

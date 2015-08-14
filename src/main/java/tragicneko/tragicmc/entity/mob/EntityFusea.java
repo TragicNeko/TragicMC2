@@ -127,7 +127,7 @@ public class EntityFusea extends TragicMob {
 		}
 
 		int i = this.getAttackTarget() != null ? 15 : 25;
-		if (this.ticksExisted % i == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.fusea.hum", this.getAttackTarget() != null ? 1.4F : 0.8F, this.getAttackTarget() != null ? 0.2F : 1.0F);
+		if (this.ticksExisted % i == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.fusea.hum", this.getAttackTarget() != null ? 1.4F : 0.8F, this.getAttackTarget() != null ? 0.2F : 1.0F);
 	}
 
 	@Override
@@ -202,19 +202,19 @@ public class EntityFusea extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.fusea.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.fusea.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.fusea.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.fusea.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.fusea.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.fusea.death" : null;
 	}
 
 	@Override
@@ -232,6 +232,6 @@ public class EntityFusea extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 }

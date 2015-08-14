@@ -165,19 +165,19 @@ public class EntitySirv extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.sirv.crunch";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.sirv.crunch" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.sirv.snap";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.sirv.snap" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.sirv.crunch";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.sirv.crunch" : null;
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class EntitySirv extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
+		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.sirv.snap", 0.45F, 1.0F);
 	}
 
 	@Override

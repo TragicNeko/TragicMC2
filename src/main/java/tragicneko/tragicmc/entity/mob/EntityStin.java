@@ -374,7 +374,7 @@ public class EntityStin extends TragicMob {
 									}
 									mp.addPotionEffect(new PotionEffect(Potion.blindness.id, 200, 0));
 									mp.fallDistance = 0.0F;
-									this.worldObj.playSoundAtEntity(mp, "tragicmc:mob.stin.teleport", 0.4F, 0.4F);
+									this.worldObj.playSoundAtEntity(mp, TragicConfig.allowMobSounds ? "tragicmc:mob.stin.teleport" : "mob.endermen.portal", 0.4F, 0.4F);
 									return flag;
 								}
 							}
@@ -401,7 +401,7 @@ public class EntityStin extends TragicMob {
 									this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 								}
 
-								this.worldObj.playSoundAtEntity(entity, "tragicmc:mob.stin.teleport", 0.4F, 0.4F);
+								this.worldObj.playSoundAtEntity(entity, TragicConfig.allowMobSounds ? "tragicmc:mob.stin.teleport" : "mob.endermen.portal", 0.4F, 0.4F);
 								entity.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
 								return flag;
 							}
@@ -465,19 +465,19 @@ public class EntityStin extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.stin.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.stin.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.stin.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.stin.hurt" : null;
 	}
 
 	@Override
@@ -495,7 +495,7 @@ public class EntityStin extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		this.playSound(this.isAdult()? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
+		this.playSound(this.isAdult() || !TragicConfig.allowMobSounds ? "tragicmc:mob.stin.step" : "mob.spider.step", 0.45F, this.isAdult() ? 1.9F : 0.2F);
 	}
 
 	@Override

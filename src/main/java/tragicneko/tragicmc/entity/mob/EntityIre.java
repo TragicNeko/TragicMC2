@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
@@ -186,7 +187,7 @@ public class EntityIre extends TragicMob {
 					if (this.getHealth() < this.getMaxHealth()) this.heal(ireNetSize);
 				}
 
-				this.worldObj.playSoundAtEntity(this, "tragicmc:mob.ire.active", 0.8F, 0.5F + rand.nextFloat());
+				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.ire.active", 0.8F, 0.5F + rand.nextFloat());
 			}
 
 			if (this.getDistanceToEntity(this.getAttackTarget()) >= 16.0D || this.getAttackTarget().isDead || this.getAttackTarget().getHealth() <= 0F || this.worldObj.getEntityByID(this.getTargetId()) == null)
@@ -229,19 +230,19 @@ public class EntityIre extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.ire.tone";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.ire.tone" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.ire.hit";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.ire.hit" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.ire.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.ire.death" : null;
 	}
 
 	@Override
@@ -259,7 +260,7 @@ public class EntityIre extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

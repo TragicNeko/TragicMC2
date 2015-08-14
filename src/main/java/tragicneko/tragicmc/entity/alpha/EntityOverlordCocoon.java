@@ -248,7 +248,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 					}
 				}
 				
-				if (this.getPhaseTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.0F);
+				if (TragicConfig.allowMobSounds && this.getPhaseTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.0F);
 			}
 
 		}
@@ -515,19 +515,19 @@ public class EntityOverlordCocoon extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.overlordcocoon.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcocoon.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:boss.overlordcocoon.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcocoon.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.overlordcocoon.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcocoon.death" : null;
 	}
 
 	@Override

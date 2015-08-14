@@ -154,19 +154,19 @@ public class EntityNanoSwarm extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.nanoswarm.glitch";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.nanoswarm.glitch" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.nanoswarm.glitch";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.nanoswarm.glitch" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.nanoswarm.glitch";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.nanoswarm.glitch" : null;
 	}
 
 	@Override
@@ -184,7 +184,7 @@ public class EntityNanoSwarm extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		//this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		
 	}
 
 	@Override

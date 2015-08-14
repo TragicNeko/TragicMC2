@@ -222,19 +222,19 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return this.getAttackTarget() == null ? "tragicmc:mob.minotaur.snort" : "tragicmc:mob.minotaur.charge";
+		return TragicConfig.allowMobSounds ? ( this.getAttackTarget() == null ? "tragicmc:mob.minotaur.snort" : "tragicmc:mob.minotaur.charge") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.minotaur.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.minotaur.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.minotaur.charge";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.minotaur.charge" : null;
 	}
 
 	@Override
@@ -252,7 +252,7 @@ public class EntityMinotaur extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
+		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.minotaur.hoof", 0.1F + rand.nextFloat() * 0.05F, 0.4F);
 	}
 
 	@Override

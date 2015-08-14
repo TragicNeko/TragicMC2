@@ -408,19 +408,19 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.scrape" : "tragicmc:mob.cryse.glass";
+		return TragicConfig.allowMobSounds ? (this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.scrape" : "tragicmc:mob.cryse.glass") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.hit";
+		return TragicConfig.allowMobSounds ? ( this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.hit") : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.break";
+		return TragicConfig.allowMobSounds ?  (this.getNorVoxType() == 0 ? "tragicmc:mob.norvox.hit" : "tragicmc:mob.cryse.break") : null;
 	}
 
 	@Override
@@ -444,7 +444,7 @@ public class EntityNorVox extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		if (this.getNorVoxType() == 0) this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
+		if (this.getNorVoxType() == 0 && TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.norvox.scrape", 0.45F, 1.0F);
 	}
 	
 	@Override

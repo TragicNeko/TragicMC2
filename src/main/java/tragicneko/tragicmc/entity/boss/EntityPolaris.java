@@ -358,8 +358,8 @@ public class EntityPolaris extends TragicBoss {
 				double d9 = d5 + (this.posZ - d5) * d6 + (this.rand.nextDouble() - 0.5D) * this.width * 2.0D;
 				this.worldObj.spawnParticle("portal", d7, d8, d9, f, f1, f2);
 			}
-			this.worldObj.playSoundEffect(d3, d4, d5, "tragicmc:boss.polaris.clone", 0.4F, 1.0F);
-			this.playSound("tragicmc:boss.polaris.clone", 0.4F, 1.0F);
+			this.worldObj.playSoundEffect(d3, d4, d5, TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : "mob.endermen.portal", 0.4F, 1.0F);
+			this.playSound(TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.clone" : "mob.endermen.portal", 0.4F, 1.0F);
 
 			if (rand.nextBoolean() && this.getHealth() <= this.getMaxHealth() / 2)
 			{
@@ -412,19 +412,19 @@ public class EntityPolaris extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.polaris.sonar";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.sonar" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:boss.polaris.ding";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.ding" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.polaris.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.polaris.death" : null;
 	}
 
 	@Override

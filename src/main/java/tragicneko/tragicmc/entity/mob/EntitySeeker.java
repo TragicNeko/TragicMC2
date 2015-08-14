@@ -16,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCocoon;
@@ -207,8 +208,11 @@ public class EntitySeeker extends TragicMob {
 		if (this.ticksExisted % 20 == 0 && this.getAttackTarget() != null && this.getKillTicks() > 0)
 		{
 			float f = this.getKillTicks() / 300.0F;
-			this.playSound("tragicmc:mob.seeker.tone", f, f * 1.9F);
-			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.seeker.tone", f, f * 1.9F);
+			if (TragicConfig.allowMobSounds)
+			{
+				this.playSound("tragicmc:mob.seeker.tone", f, f * 1.9F);
+				this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.seeker.tone", f, f * 1.9F);
+			}
 		}
 	}
 
@@ -317,5 +321,11 @@ public class EntitySeeker extends TragicMob {
 		tag.setByte("relocations", this.relocations);
 		tag.setInteger("targetlessTime", this.timeSinceTarget);
 		tag.setBoolean("shouldRelocate", this.shouldRelocate);
+	}
+	
+	@Override
+	protected void func_145780_a(int x, int y, int z, Block block)
+	{
+		
 	}
 }

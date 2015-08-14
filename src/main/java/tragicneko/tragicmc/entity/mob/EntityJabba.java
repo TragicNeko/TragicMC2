@@ -446,25 +446,25 @@ public class EntityJabba extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:mob.jabba.squish";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.jabba.squish" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.jabba.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.jabba.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.jabba.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.jabba.hurt" : null;
 	}
 
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
+		if (TragicConfig.allowMobSounds) this.playSound("tragicmc:mob.jabba.squish", 0.45F, 1.0F);
 	}
 
 	@Override

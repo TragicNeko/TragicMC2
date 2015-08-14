@@ -543,7 +543,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(64.0D, 64.0D, 64.0D));
 		if (list.size() >= 5) return;
 
-		if (!this.worldObj.isRemote) this.playSound("tragicmc:boss.enyvil.summon", 0.6F, 1.0F);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.summon", 0.6F, 1.0F);
 
 		int amt = rand.nextInt(this.worldObj.difficultySetting.getDifficultyId() + 1) + 2;
 		for (int i = 0; i < amt; i++)
@@ -594,7 +594,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		EntityLivingBase entity = this.worldObj.isRemote ? this.getClientSideTarget() : this.getAttackTarget();
 		if (entity != null && !this.canEntityBeSeen(entity)) return;
 
-		if (!this.worldObj.isRemote && this.getTractorBeamTicks() % 10 == 0)
+		if (!this.worldObj.isRemote && this.getTractorBeamTicks() % 10 == 0 && TragicConfig.allowMobSounds)
 		{
 			this.playSound("tragicmc:boss.enyvil.tractor", 0.6F, 1.0F);
 			this.getAttackTarget().playSound("tragicmc:boss.enyvil.tractor", 0.6F, 1.0F);
@@ -669,7 +669,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		{
 			if (!this.worldObj.isRemote && crystal.getDistanceToEntity(this.getAttackTarget()) <= 16.0F)
 			{
-				if (!this.worldObj.isRemote) crystal.playSound("tragicmc:boss.enyvil.laser", 1.0F, 1.0F);
+				if (!this.worldObj.isRemote && TragicConfig.allowMobSounds) crystal.playSound("tragicmc:boss.enyvil.laser", 1.0F, 1.0F);
 				this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), 2.5F * rand.nextFloat() + 1.0F);
 				this.getAttackTarget().setFire(4);
 			}
@@ -820,7 +820,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 				par1Entity.motionX *= 2;
 				par1Entity.motionZ *= 2;
 				this.setTractorBeamTicks(0);
-				this.playSound("tragicmc:boss.enyvil.laugh", 1.6F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.laugh", 1.6F, 1.0F);
 			}
 		}
 
@@ -864,19 +864,19 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	@Override
 	public String getLivingSound()
 	{
-		return "tragicmc:boss.enyvil.living";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.enyvil.living" : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return this.getHurtTime() > 0 ? "tragicmc:boss.enyvil.realhurt" : "tragicmc:boss.enyvil.hurt";
+		return TragicConfig.allowMobSounds ? (this.getHurtTime() > 0 ? "tragicmc:boss.enyvil.realhurt" : "tragicmc:boss.enyvil.hurt") : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:boss.enyvil.death";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.enyvil.death" : null;
 	}
 
 	@Override

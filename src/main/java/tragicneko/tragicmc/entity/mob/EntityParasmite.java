@@ -15,6 +15,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -175,19 +176,19 @@ public class EntityParasmite extends TragicMob {
 	@Override
 	public String getLivingSound()
 	{
-		return this.ridingEntity == null ? "tragicmc:mob.parasmite.squeek" : "tragicmc:mob.parasmite.shriek";
+		return TragicConfig.allowMobSounds ? (this.ridingEntity == null ? "tragicmc:mob.parasmite.squeek" : "tragicmc:mob.parasmite.shriek") : null;
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return "tragicmc:mob.parasmite.hurt";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.parasmite.hurt" : super.getHurtSound();
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return "tragicmc:mob.parasmite.shriek";
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.parasmite.shriek" : null;
 	}
 
 	@Override
