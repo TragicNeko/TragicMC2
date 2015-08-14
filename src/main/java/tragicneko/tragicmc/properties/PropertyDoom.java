@@ -24,6 +24,8 @@ public class PropertyDoom implements IExtendedEntityProperties {
 
 	private int maxDoom;
 	private int currentDoom;
+	
+	private boolean hasUpgraded;
 
 	public PropertyDoom(EntityPlayer player)
 	{
@@ -31,6 +33,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		this.doomCooldown = 0;
 		this.maxDoom = TragicConfig.maxDoomMinimum;
 		this.currentDoom = 0;
+		this.hasUpgraded = false;
 	}
 
 	public static final void register(EntityPlayer player)
@@ -51,6 +54,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 		properties.setInteger("doomCooldown", this.doomCooldown);
 		properties.setInteger("doomAmount", this.currentDoom);
 		properties.setInteger("maxDoom", this.maxDoom);
+		properties.setBoolean("hasUpgraded", this.hasUpgraded);
 
 		compound.setTag(PropertyDoom.propertyName, properties);
 	}
@@ -64,7 +68,10 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			this.doomCooldown = properties.getInteger("doomCooldown");
 			this.maxDoom = properties.getInteger("maxDoom");
 			this.currentDoom = properties.getInteger("doomAmount");
+			this.hasUpgraded = properties.getBoolean("hasUpgraded");
 		}
+		
+		if (this.maxDoom < TragicConfig.maxDoomMinimum || !this.hasUpgraded && this.maxDoom > TragicConfig.maxDoomMinimum) this.maxDoom = TragicConfig.maxDoomMinimum;
 	}
 
 	@Override
@@ -198,6 +205,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 */
 	public void increaseConsumptionLevel()
 	{
+		this.hasUpgraded = true;
 		if (this.getMaxDoom() + TragicConfig.doomConsumeAmount <= TragicConfig.maxDoomAmount)
 		{
 			this.setMaxDoom(this.getMaxDoom() + TragicConfig.doomConsumeAmount);

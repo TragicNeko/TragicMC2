@@ -205,7 +205,7 @@ public class TragicItems {
 
 	public static Item AnomalyAugment;
 	public static Item Nuke;
-	
+
 	public static Item BloodSacrifice;
 	public static Item NourishmentSacrifice;
 
@@ -279,7 +279,7 @@ public class TragicItems {
 	private static final ArmorMaterial armorDark = EnumHelper.addArmorMaterial("DARK", 18, new int[] {3, 7, 5, 3}, 6); //18
 	private static final ArmorMaterial armorLight = EnumHelper.addArmorMaterial("LIGHT", 26, new int[] {5, 7, 6, 4}, 18); //22
 	private static final ArmorMaterial armorOverlord = EnumHelper.addArmorMaterial("OVERLORD", 35, new int[] {5, 8, 7, 4}, 26); //24
-	
+
 	public static final Item test = new TragicWeapon(toolAwakened, null).setAscensionLevel(5F).setUnlocalizedName("tragicmc.test").setTextureName("iron_sword").setCreativeTab(TragicMC.Survival); //Silent hellraiser upgrade
 	public static final Item test2 = new TragicWeapon(toolHarvester, null).setAscensionLevel(8F).setUnlocalizedName("tragicmc.test2").setTextureName("diamond_sword").setCreativeTab(TragicMC.Survival); //Reaper scythe upgrade
 	public static final Item test3 = new TragicWeapon(toolCorruptThorn, null).setAscensionLevel(5F).setUnlocalizedName("tragicmc.test3").setTextureName("stone_sword").setCreativeTab(TragicMC.Survival); //Guilty thorn upgrade
@@ -307,7 +307,7 @@ public class TragicItems {
 		//Ore Registrations
 		RedMercury = (new ItemGeneric().setUnlocalizedName("tragicmc.redMercury").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:RedMercury" ));
 		GameRegistry.registerItem(RedMercury, "redMercury");
-		
+
 		Quicksilver = (new ItemGeneric().setUnlocalizedName("tragicmc.quicksilver").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:Quicksilver" ));
 		GameRegistry.registerItem(Quicksilver, "quicksilver");
 
@@ -788,100 +788,103 @@ public class TragicItems {
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
 
 		//Amulet Registrations
-		int id = 0;
+		if (TragicConfig.allowAmulets)
+		{
+			int id = 0;
 
-		KitsuneAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
+			KitsuneAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
 
-		PeaceAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
+			PeaceAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
 
-		YetiAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
+			YetiAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
 
-		ClaymationAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
+			ClaymationAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
 
-		ChickenAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
+			ChickenAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
 
-		MartyrAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
+			MartyrAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
 
-		PiercingAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
+			PiercingAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
 
-		BlacksmithAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
+			BlacksmithAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
 
-		ApisAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ApisAmulet, "apisAmulet");
+			ApisAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(ApisAmulet, "apisAmulet");
 
-		CreeperAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
+			CreeperAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
 
-		ZombieAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
+			ZombieAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
 
-		SkeletonAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
+			SkeletonAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
 
-		SunkenAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
+			SunkenAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
 
-		TimeAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(TimeAmulet, "timeAmulet");
+			TimeAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(TimeAmulet, "timeAmulet");
 
-		IceAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(IceAmulet, "iceAmulet");
+			IceAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(IceAmulet, "iceAmulet");
 
-		SnowGolemAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
+			SnowGolemAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
 
-		IronGolemAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
+			IronGolemAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
 
-		EndermanAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
+			EndermanAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
 
-		WitherAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(WitherAmulet, "witherAmulet");
+			WitherAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 
-		SpiderAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SpiderAmulet, "spiderAmulet");
+			SpiderAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(SpiderAmulet, "spiderAmulet");
 
-		StinAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(StinAmulet, "stinAmulet");
+			StinAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(StinAmulet, "stinAmulet");
 
-		PolarisAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(PolarisAmulet, "polarisAmulet");
+			PolarisAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(PolarisAmulet, "polarisAmulet");
 
-		OverlordAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(OverlordAmulet, "overlordAmulet");
+			OverlordAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(OverlordAmulet, "overlordAmulet");
 
-		LightningAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(LightningAmulet, "lightningAmulet");
+			LightningAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(LightningAmulet, "lightningAmulet");
 
-		ConsumptionAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(ConsumptionAmulet, "consumptionAmulet");
+			ConsumptionAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(ConsumptionAmulet, "consumptionAmulet");
 
-		SupernaturalAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(SupernaturalAmulet, "supernaturalAmulet");
+			SupernaturalAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(SupernaturalAmulet, "supernaturalAmulet");
 
-		UndeadAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(UndeadAmulet, "undeadAmulet");
+			UndeadAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(UndeadAmulet, "undeadAmulet");
 
-		EnderDragonAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(EnderDragonAmulet, "enderDragonAmulet");
+			EnderDragonAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(EnderDragonAmulet, "enderDragonAmulet");
 
-		FuseaAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(FuseaAmulet, "fuseaAmulet");
+			FuseaAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(FuseaAmulet, "fuseaAmulet");
 
-		EnyvilAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(EnyvilAmulet, "enyvilAmulet");
+			EnyvilAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(EnyvilAmulet, "enyvilAmulet");
 
-		LuckAmulet = (new ItemAmulet(id++));
-		GameRegistry.registerItem(LuckAmulet, "luckAmulet");
+			LuckAmulet = (new ItemAmulet(id++));
+			GameRegistry.registerItem(LuckAmulet, "luckAmulet");
+		}
 
 		//Armor and Tool materials
 		armorSkull.customCraftingMaterial = Items.bone;
@@ -903,38 +906,53 @@ public class TragicItems {
 		MobStatue = (new ItemStatue());
 		GameRegistry.registerItem(MobStatue, "mobStatue");
 
-		DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DoomConsume"));
-		GameRegistry.registerItem(DoomConsume, "doomConsume");
+		if (TragicConfig.allowDoom)
+		{
+			DoomConsume = (new ItemDoomUpgrade().setUnlocalizedName("tragicmc.doomConsume").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:DoomConsume"));
+			GameRegistry.registerItem(DoomConsume, "doomConsume");
 
-		CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CooldownDefuse"));
-		GameRegistry.registerItem(CooldownDefuse, "cooldownDefuse");
+			CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CooldownDefuse"));
+			GameRegistry.registerItem(CooldownDefuse, "cooldownDefuse");
+		}
 
-		AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AmuletRelease"));
-		GameRegistry.registerItem(AmuletRelease, "amuletRelease");
+		if (TragicConfig.allowAmulets)
+		{
+			AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AmuletRelease"));
+			GameRegistry.registerItem(AmuletRelease, "amuletRelease");
+		}
 
-		BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BloodSacrifice"));
-		GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
+		if (TragicConfig.allowDoom)
+		{
+			BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BloodSacrifice"));
+			GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
 
-		NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NourishmentSacrifice"));
-		GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
+			NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NourishmentSacrifice"));
+			GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
+		}
 
-		DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey"));
-		GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
+		if (TragicConfig.allowDimension)
+		{
+			DimensionalKey = (new ItemDimensionalKey(2).setUnlocalizedName("tragicmc.dimensionalKey.collision").setTextureName("tragicmc:DimensionalKey"));
+			GameRegistry.registerItem(DimensionalKey, "dimensionalKey");
 
-		DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyEnd"));
-		GameRegistry.registerItem(DimensionalKeyEnd, "dimensionalKeyEnd");
+			DimensionalKeyEnd = (new ItemDimensionalKey(1).setUnlocalizedName("tragicmc.dimensionalKey.end").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyEnd"));
+			GameRegistry.registerItem(DimensionalKeyEnd, "dimensionalKeyEnd");
 
-		DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyNether"));
-		GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
+			DimensionalKeyNether = (new ItemDimensionalKey(-1).setUnlocalizedName("tragicmc.dimensionalKey.nether").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeyNether"));
+			GameRegistry.registerItem(DimensionalKeyNether, "dimensionalKeyNether");
 
-		DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeySynapse"));
-		GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
+			DimensionalKeySynapse = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeySynapse"));
+			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
 
-		SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:SynapseLink"));
-		GameRegistry.registerItem(SynapseLink, "synapseLink");
+			SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:SynapseLink"));
+			GameRegistry.registerItem(SynapseLink, "synapseLink");
+		}
 
-		DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll"));
-		GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
+		if (TragicConfig.allowDoomsdays)
+		{
+			DoomsdayScroll = (new ItemDoomsdayScroll().setTextureName("tragicmc:DoomsdayScroll"));
+			GameRegistry.registerItem(DoomsdayScroll, "doomsdayScroll");
+		}
 
 		//Creative only items
 		BowOfJustice = (new WeaponBowOfJustice().setUnlocalizedName("tragicmc.bowOfJustice").setTextureName("bow"));

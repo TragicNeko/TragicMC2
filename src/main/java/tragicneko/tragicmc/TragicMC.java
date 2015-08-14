@@ -123,7 +123,7 @@ public class TragicMC
 
 		TragicBlocks.load();
 		TragicItems.load();
-		if (TragicConfig.allowRandomWeaponLore) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
+		if (TragicConfig.allowRandomWeaponLore && !TragicConfig.mobsOnly) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
 		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
 		if (!TragicConfig.mobsOnly) TragicRecipes.load();
 
@@ -140,9 +140,10 @@ public class TragicMC
 			FMLCommonHandler.instance().bus().register(new tragicneko.tragicmc.events.RespawnDoomEvents());
 		}
 
+		TragicEntities.load();
+		
 		if (TragicConfig.allowMobs)
 		{
-			TragicEntities.load();
 			tragicneko.tragicmc.util.EntityDropHelper.fill();
 			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DynamicHealthScaling());
 		}

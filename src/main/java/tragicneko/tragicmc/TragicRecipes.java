@@ -1165,38 +1165,38 @@ public class TragicRecipes {
 				'y', TragicItems.DarkParticles,
 				'z', Items.ender_eye
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 2),
 				"xx",
 				"xx",
 				'x', new ItemStack(TragicBlocks.Corsin, 1, 0)
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 3),
 				"xx",
 				"xx",
 				'x', new ItemStack(TragicBlocks.Corsin, 1, 1)
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 6),
 				"xy",
 				"yx",
 				'x', new ItemStack(TragicBlocks.Corsin, 1, 1),
 				'y', new ItemStack(TragicBlocks.Corsin, 1, 0)
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 5),
 				"xx",
 				"xx",
 				'x', new ItemStack(TragicBlocks.Corsin, 1, 2)
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 5),
 				"xx",
 				"xx",
 				'x', new ItemStack(TragicBlocks.Corsin, 1, 3)
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 8),
 				"xxx",
 				"xyx",
@@ -1204,7 +1204,7 @@ public class TragicRecipes {
 				'x', new ItemStack(TragicBlocks.Corsin, 1, 5),
 				'y', TragicItems.WispParticles
 				);
-		
+
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Corsin, 4, 7),
 				"xyx",
 				"yzy",
@@ -1213,7 +1213,7 @@ public class TragicRecipes {
 				'y', TragicItems.WispParticles,
 				'z', TragicItems.UnstableIsotope
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicBlocks.Corsin, 3, 1),
 				Items.water_bucket, new ItemStack(TragicBlocks.Corsin, 1, 0),
 				new ItemStack(TragicBlocks.Corsin, 1, 0), new ItemStack(TragicBlocks.Corsin, 1, 0)
@@ -1438,14 +1438,17 @@ public class TragicRecipes {
 					'z', TragicItems.AwakeningStone
 					);
 
-			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ConsumptionAmulet, 1),
-					"xyx",
-					"yzy",
-					"xyx",
-					'x', TragicItems.Tungsten,
-					'y', TragicItems.DoomConsume,
-					'z', TragicItems.AwakeningStone
-					);
+			if (TragicConfig.allowDoom)
+			{
+				GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ConsumptionAmulet, 1),
+						"xyx",
+						"yzy",
+						"xyx",
+						'x', TragicItems.Tungsten,
+						'y', TragicItems.DoomConsume,
+						'z', TragicItems.AwakeningStone
+						);
+			}
 
 			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.SupernaturalAmulet, 1),
 					"xyx",
@@ -1907,63 +1910,63 @@ public class TragicRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 2),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 0)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 13),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 1)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 8),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 2)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 5),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 3)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 11),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 4)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 5)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 6)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 7)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 14),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 8)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 9)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.fire_charge),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 10)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 11)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.NanoBots),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 12)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 13),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 13)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 6),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 14)
 				);
-		
+
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.blaze_powder),
 				new ItemStack(TragicBlocks.TragicFlower2, 1, 15)
 				);

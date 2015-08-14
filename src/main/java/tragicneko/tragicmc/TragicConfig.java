@@ -32,7 +32,7 @@ public class TragicConfig {
 	private static boolean[] blanketConfigs = new boolean[9];
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
 
-	private static boolean[] blanketAmulet = new boolean[10];
+	private static boolean[] blanketAmulet = new boolean[12];
 	public static boolean allowNormalAmulets, allowCursedAmulets, allowEpicAmulets, allowAmuletLeveling, allowAmuletCrafting, shouldUnlockAmuletSlots, allowAmuletKillRecharge;
 	public static boolean showAmuletStatus, allowAmuletModifiers, deathDropsAmulets;
 	private static int[] amuletInts = new int[8];
@@ -89,7 +89,7 @@ public class TragicConfig {
 
 	private static boolean[] blanketMob = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowVictoryBuffs, allowCorruptionDamage, allowMobTransformation;
-	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses;
+	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds;
 	private static boolean[] mobConfigs = new boolean[48];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
@@ -149,6 +149,8 @@ public class TragicConfig {
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
 	public static boolean[] griefConfigs = new boolean[8];
+	
+	private static final int BLANK_ACHIEVE = 0, BLANK_AMULET = 1, BLANK_DIMENSION = 2, BLANK_DOOM = 3, BLANK_ENCHANT = 4, BLANK_MOB = 5, BLANK_POTION = 6, BLANK_VANILLA = 7, BLANK_WORLDGEN = 8;
 
 	public static void initialize()
 	{
@@ -160,19 +162,21 @@ public class TragicConfig {
 		prop.comment = "Is the mod in mob only mode?";
 		prop.setLanguageKey("tragicmc.mobsOnly");
 		mobsOnly = prop.getBoolean(mobsOnly);
+		
+		config.addCustomCategoryComment(catMaster, "These completely override any other mod options. More to come later.");
 
 		int id = 0;
 		byte mapping = 0;
 		//Blanket options
-		blanketConfigs[mapping++] = false; //(config.get(catBlanket, "allowAchievements", true).getBoolean(true)); //these aren't set up yet
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowAmulets", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowDimensions", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowDoom", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowEnchantments", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowMobs", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowPotions", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowVanillaChanges", true).getBoolean(true));
-		blanketConfigs[mapping++] = (config.get(catBlanket, "allowWorldgen", true).getBoolean(true));
+		blanketConfigs[BLANK_ACHIEVE] = false; //(config.get(catBlanket, "allowAchievements", true).getBoolean(true)); //these aren't set up yet
+		blanketConfigs[BLANK_AMULET] = (config.get(catBlanket, "allowAmulets", true).getBoolean(true));
+		blanketConfigs[BLANK_DIMENSION] = (config.get(catBlanket, "allowDimensions", true).getBoolean(true));
+		blanketConfigs[BLANK_DOOM] = (config.get(catBlanket, "allowDoom", true).getBoolean(true));
+		blanketConfigs[BLANK_ENCHANT] = (config.get(catBlanket, "allowEnchantments", true).getBoolean(true));
+		blanketConfigs[BLANK_MOB] = (config.get(catBlanket, "allowMobs", true).getBoolean(true));
+		blanketConfigs[BLANK_POTION] = (config.get(catBlanket, "allowPotions", true).getBoolean(true));
+		blanketConfigs[BLANK_VANILLA] = (config.get(catBlanket, "allowVanillaChanges", true).getBoolean(true));
+		blanketConfigs[BLANK_WORLDGEN] = (config.get(catBlanket, "allowWorldgen", true).getBoolean(true));
 
 		config.addCustomCategoryComment(catBlanket, "These toggle all options in their respective categories off.");
 
@@ -757,6 +761,7 @@ public class TragicConfig {
 		blanketMob[9] = (config.get(catMobs, "allowMobVanillaDimensionSpawns", true).getBoolean(true));
 		blanketMob[10] = (config.get(catMobs, "allowGroupBuffs", true).getBoolean(true));
 		blanketMob[11] = (config.get(catMobs, "allowBossesOnEasy", false).getBoolean(false));
+		blanketMob[12] = (config.get(catMobs, "allowCustomMobSounds", true).getBoolean(true));
 
 		mobInts[0] = MathHelper.clamp_int(config.get(catMobs, "overallMobCommonDropChance", 25).getInt(25), 1, 200);
 		mobInts[1] = MathHelper.clamp_int(config.get(catMobs, "overallMobRareDropChance", 5).getInt(5), 1, 100);
@@ -1161,12 +1166,17 @@ public class TragicConfig {
 		{
 			for (i = 0; i < blanketConfigs.length; i++)
 			{
-				if (i != 5) blanketConfigs[i] = false;
+				if (i != BLANK_MOB) blanketConfigs[i] = false;
 			}
 		}
 
-		if (!blanketConfigs[1])
+		if (!blanketConfigs[BLANK_AMULET])
 		{
+			for (i = 0; i < blanketAmulet.length; i++)
+			{
+				blanketAmulet[i] = false;
+			}
+			
 			for (i = 0; i < normalAmuletConfigs.length; i++)
 			{
 				normalAmuletConfigs[i] = false;
@@ -1176,11 +1186,11 @@ public class TragicConfig {
 		}
 		else
 		{
+			
 			if (!blanketAmulet[0])
 			{
 				for (i = 0; i < normalAmuletConfigs.length; i++)
 				{
-
 					normalAmuletConfigs[i] = false;
 				}
 			}
@@ -1202,7 +1212,7 @@ public class TragicConfig {
 			}
 		}
 
-		if (!blanketConfigs[3])
+		if (!blanketConfigs[BLANK_DOOM])
 		{
 			for (i = 0; i < blanketDoom.length; i++)
 			{
@@ -1233,7 +1243,7 @@ public class TragicConfig {
 			}
 		}
 
-		if (!blanketConfigs[4])
+		if (!blanketConfigs[BLANK_ENCHANT])
 		{
 			for (i = 0; i < weaponEnchantConfigs.length; i++)
 			{
@@ -1261,7 +1271,7 @@ public class TragicConfig {
 			}
 		}
 
-		if (!blanketConfigs[5])
+		if (!blanketConfigs[BLANK_MOB])
 		{
 			for (i = 0; i < mobConfigs.length; i++)
 			{
@@ -1299,7 +1309,7 @@ public class TragicConfig {
 			}
 		}
 
-		if (!blanketConfigs[6])
+		if (!blanketConfigs[BLANK_POTION])
 		{
 			for (i = 0; i < positivePotionConfigs.length; i++)
 			{
@@ -1327,7 +1337,7 @@ public class TragicConfig {
 			}
 		}
 
-		if (!blanketConfigs[7])
+		if (!blanketConfigs[BLANK_VANILLA])
 		{
 			for (i = 0; i < blanketVanillaChanges.length; i++)
 			{
@@ -1335,7 +1345,7 @@ public class TragicConfig {
 			}
 		}
 
-		if (!blanketConfigs[8])
+		if (!blanketConfigs[BLANK_WORLDGEN])
 		{
 			for (i = 0; i < blanketWorldGen.length; i++)
 			{
@@ -1615,6 +1625,7 @@ public class TragicConfig {
 		allowNonDimensionMobSpawns = blanketMob[9];
 		allowGroupBuffs = blanketMob[10];
 		allowEasyBosses = blanketMob[11];
+		allowMobSounds = blanketMob[12];
 
 		commonDropRate = mobInts[0];
 		rareDropRate = mobInts[1];
