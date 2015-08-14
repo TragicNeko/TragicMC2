@@ -149,7 +149,11 @@ public abstract class Schematic {
 
 	public boolean addSignContents(World world, int x, int y, int z, int line, String text) {
 		TileEntitySign sign = (TileEntitySign) world.getTileEntity(x, y, z);
-		if (sign == null || line > 4) return false;
+		if (sign == null || line > 4)
+		{
+			TragicMC.logWarning("Sign text setup failed. The tile entity was null or an improper text line was chosen.");
+			return false;
+		}
 		sign.signText[line] = text;
 		return true;
 	}
@@ -157,11 +161,15 @@ public abstract class Schematic {
 	public boolean setSpawnerMob(World world, int x, int y, int z, String mobName)
 	{
 		TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(x, y, z);
-		if (spawner == null || mobName == null) return false;
+		if (spawner == null || mobName == null)
+		{
+			TragicMC.logWarning("Spawner setup failed. The tile entity was null or mobName was null.");
+			return false;
+		}
 		spawner.func_145881_a().setEntityName(mobName);
 		return true;
 	}
-	
+
 	public void setBlock(World world, Structure.BlockPos pos, Block block, int meta, int flag)
 	{
 		world.setBlock(pos.getX(), pos.getY(), pos.getZ(), block, meta, flag);
