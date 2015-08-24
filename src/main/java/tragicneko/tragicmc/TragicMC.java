@@ -85,7 +85,7 @@ public class TragicMC
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
 		TragicConfig.initialize();
 		
-		FMLCommonHandler.instance().bus().register(new ServerTickEvents());
+		if (TragicConfig.allowIre) FMLCommonHandler.instance().bus().register(new ServerTickEvents());
 
 		if (TragicConfig.allowPotions)
 		{
