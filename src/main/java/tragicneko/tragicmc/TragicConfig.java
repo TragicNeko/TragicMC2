@@ -1218,6 +1218,27 @@ public class TragicConfig {
 			{
 				blanketDoom[i] = false;
 			}
+			
+			if (!blanketDoom[0])
+			{
+				for (i = 1; i < 6; i++)
+				{
+					blanketDoom[i] = false;
+				}
+			}
+
+			if (!blanketDoom[13])
+			{
+				blanketDoom[14] = false;
+			}
+
+			if (!blanketDoom[6])
+			{
+				for (i = 0; i < nonDoomsdayAbilities.length; i++)
+				{
+					nonDoomsdayAbilities[i] = false;
+				}
+			}
 		}
 		else
 		{

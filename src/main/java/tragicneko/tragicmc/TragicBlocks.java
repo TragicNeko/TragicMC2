@@ -35,7 +35,6 @@ import tragicneko.tragicmc.blocks.BlockDarkStone;
 import tragicneko.tragicmc.blocks.BlockDarkenedQuartz;
 import tragicneko.tragicmc.blocks.BlockDeadDirt;
 import tragicneko.tragicmc.blocks.BlockDigitalSea;
-import tragicneko.tragicmc.blocks.BlockDisappearing;
 import tragicneko.tragicmc.blocks.BlockErodedStone;
 import tragicneko.tragicmc.blocks.BlockExplosiveGas;
 import tragicneko.tragicmc.blocks.BlockFox;
@@ -301,12 +300,6 @@ public class TragicBlocks {
 
 		GameRegistry.registerTileEntity(TileEntityStructureSeed.class, "tragicmc.structureSeed");
 
-		DisappearingBlock = (new BlockDisappearing(false).setBlockName("tragicmc.disappearingBlock"));
-		GameRegistry.registerBlock(DisappearingBlock, ItemBlock.class, "disappearingBlock");
-
-		DisappearingBlockInvis = (new BlockDisappearing(true).setBlockName("tragicmc.disappearingBlockInvis"));
-		GameRegistry.registerBlock(DisappearingBlockInvis, null, "disappearingBlockInvis");
-
 		Quicksand = (new BlockQuicksand());
 		GameRegistry.registerBlock(Quicksand, TragicItemBlock.class, "quicksand", new Object[] {new String[] {"quicksand", "mud", "netherDrudge", "toxicSludge"}, "quicksand"});
 
@@ -490,11 +483,8 @@ public class TragicBlocks {
 		}.setBlockName("tragicmc.conduit").setBlockTextureName("tragicmc:Conduit").setHardness(12.0F).setResistance(100.0F).setStepSound(Block.soundTypeMetal).setLightLevel(1.0F).setLightOpacity(0));
 		GameRegistry.registerBlock(Conduit, ItemBlock.class, "conduit");
 
-		DigitalSea = (new BlockDigitalSea(false));
+		DigitalSea = (new BlockDigitalSea());
 		GameRegistry.registerBlock(DigitalSea, ItemBlock.class, "digitalSea");
-
-		DigitalSeaPowered = (new BlockDigitalSea(true));
-		GameRegistry.registerBlock(DigitalSeaPowered, null, "digitalSeaPowered");
 
 		FrozenNetherrack = (new BlockGeneric(Material.rock, "pickaxe", 0).setBlockTextureName("tragicmc:FrozenNetherrack").setBlockName("tragicmc.frozenNetherrack").setHardness(1.0F).setResistance(1.0F).setStepSound(Block.soundTypeStone));
 		GameRegistry.registerBlock(FrozenNetherrack, ItemBlock.class, "frozenNetherrack");

@@ -18,12 +18,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDigitalSea extends Block {
 
-	public final boolean lit;
-	public BlockDigitalSea(boolean flag)
+	public BlockDigitalSea()
 	{
 		super(Material.circuits);
-		this.setBlockName("tragicmc.digitalSea." + (flag ? "active" : "inactive"));
-		this.lit = flag;
+		this.setBlockName("tragicmc.digitalSea");
 		this.setCreativeTab(TragicMC.Creative);
 		this.setLightLevel(0.0F);
 		this.setLightOpacity(0);
@@ -68,8 +66,7 @@ public class BlockDigitalSea extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		if (this.lit) this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaActive");
-		else this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaInactive");
+		this.blockIcon = par1IconRegister.registerIcon("tragicmc:DigitalSeaInactive");
 	}
 
 	@Override
