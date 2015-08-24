@@ -10,7 +10,7 @@ public class ItemBoneMarrow extends ItemFood {
 
 	public ItemBoneMarrow(int p_i45340_1_, boolean p_i45340_2_) {
 		super(p_i45340_1_, p_i45340_2_);
-		this.setPotionEffect(Potion.wither.id, 30, 0, 0.5F);
+		this.setPotionEffect(Potion.wither.id, 10, 0, 0.5F);
 		this.setContainerItem(Items.bowl);
 	}
 
