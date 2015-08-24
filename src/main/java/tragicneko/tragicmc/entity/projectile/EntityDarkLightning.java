@@ -6,6 +6,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.entity.EntityDarkCrystal;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.boss.EntityEnyvil;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -37,10 +38,8 @@ public class EntityDarkLightning extends EntityProjectile {
 		}
 		else
 		{
-			if (var1.entityHit != null && !(var1.entityHit instanceof EntityEnyvil))
+			if (var1.entityHit != null && !(var1.entityHit instanceof EntityEnyvil) && !(var1.entityHit instanceof EntityDarkCrystal) && !(var1.entityHit instanceof EntityDarkLightning))
 			{
-				if (var1.entityHit instanceof EntityDarkLightning) return;
-
 				var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 5.0F);
 				this.worldObj.spawnEntityInWorld(new EntityDirectedLightning(this.worldObj, var1.entityHit.posX, var1.entityHit.posY, var1.entityHit.posZ, this));
 				if (var1.entityHit instanceof EntityLivingBase) ((EntityLivingBase) var1.entityHit).addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
