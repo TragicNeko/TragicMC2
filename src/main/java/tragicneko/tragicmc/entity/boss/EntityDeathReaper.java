@@ -488,7 +488,7 @@ public class EntityDeathReaper extends TragicBoss {
 			par1Entity.motionY += 0.3D;
 
 			if (this.getAttackTime() == 0) this.setAttackTime(10);
-			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.slice", 0.8F, 0.8F + rand.nextFloat() * 0.4F);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.skultar.slice", 0.8F, 0.8F + rand.nextFloat() * 0.4F);
 		}
 
 		return result;
