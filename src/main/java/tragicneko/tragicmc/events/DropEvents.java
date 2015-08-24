@@ -82,23 +82,11 @@ public class DropEvents {
 				switch(event.blockMetadata)
 				{
 				case 0: //Oak
-					if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.swampland)
-					{
-						event.drops.add(new ItemStack(TragicItems.NastyFruit));
-					}
-					else if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.roofedForest)
-					{
-						event.drops.add(new ItemStack(TragicItems.GooeyFruit));
-					}
-					else
-					{
-						event.drops.add(new ItemStack(TragicItems.ExoticFruit));
-					}
+					event.drops.add(new ItemStack(TragicItems.ExoticFruit));
 					break;
 				case 1: //Spruce
 					break;
 				case 2: //Birch
-					event.drops.add(new ItemStack(TragicItems.SkyFruit));
 					break;
 				case 3: //Jungle
 					if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungle || event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungleHills)
@@ -106,7 +94,8 @@ public class DropEvents {
 						event.drops.add(new ItemStack(TragicItems.ExoticFruit));
 					}
 					break;
-
+				default:
+					break;
 				}
 			}
 
