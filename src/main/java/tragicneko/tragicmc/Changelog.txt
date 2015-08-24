@@ -4301,21 +4301,28 @@ Fixed max Doom not resetting to proper minimum value after being set to a lower 
 Doom via a Doom Consume
 Fixed some entities not being registered when mobs were disabled in config
 Added config option to disable mob sounds, these only affect the custom ones I recorded and any vanilla ones I use will stay for the mobs
+Reduced how long you are Withered when you drink Bone Marrow
+Adjust target filtering for the Dark Lightning projectile
+Added missing sound for the config filter on my mob sounds
+Only register server tick events if ire is allowed in config
+Removed some fruit from various leaf drops due to addition of growable fruits
+Removed Disappearing and Active Digital Sea blocks
+Added EntityAI for burning entities via daylight (and brightness)
 
 TODO for 1.8 port:
-Set up blockstates for all of the blocks
 Set up the json files for all of the item and block textures
 Update the Schematic codes, this requires the blockstates being setup in most cases so they'll be done first
+Update WorldGen code to use blockstates efficiently, update biome code to use updated worldgen
 
 TODO still:
 Add sound for when a Tragic Neko drops or throws a grenade, also firing sound for rocket launchers
 Add sound when the Overlord Cocoon form is successfully damaged enough (or you fail to damage it enough)
 Add config option to specify blocks in the generator items, this would make them more useful and makes more sense than having them randomized, going to use string arrays to get
-block filters instead of ids due to strings being better than ids in every way
+block filters instead of ids due to strings being better than ids in every way, also going to add an option to set the block choice
 Possibly add config option to modify the various worldgen values that I have
 Add the Achievements, which will flow in a set questline, also add side achievements for other random things
 Add more fun things, add some decoration blocks for some of the mob drops
-Convert mob AI to EntityAI, when applicable
+Convert mob AI to EntityAI, 1.8 will pretty much require this so it should be done now rather than later
 Finish recording sounds:
 -Rerecord Overlord Core and Skultar sounds, didn't like the first attempts
 -Apis sounds: Mad bull sounds
