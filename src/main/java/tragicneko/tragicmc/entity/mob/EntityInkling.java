@@ -25,6 +25,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.entity.EntityAIBurn;
 
 public class EntityInkling extends TragicMob {
 
@@ -41,6 +42,7 @@ public class EntityInkling extends TragicMob {
 		this.tasks.addTask(5, new EntityAIWander(this, 0.75D));
 		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.8D, 32.0F));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
+		this.tasks.addTask(8, new EntityAIBurn(this, true));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
@@ -128,11 +130,6 @@ public class EntityInkling extends TragicMob {
 
 		if (this.worldObj.getBlockLightValue((int)this.posX, (int)this.posY + 1, (int)this.posZ) >= 8)
 		{
-			if (!this.isBurning() && this.ticksExisted % 10 == 0)
-			{
-				this.setFire(4);
-			}
-
 			this.setVisibleTicks(20);
 
 			if (this.ticksExisted % 20 == 0)
