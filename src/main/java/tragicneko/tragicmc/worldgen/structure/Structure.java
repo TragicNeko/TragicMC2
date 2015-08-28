@@ -183,47 +183,4 @@ public class Structure extends WorldGenerator {
 	{
 		return 0x000000;
 	}
-	
-	public static class BlockPos {
-		private final int x;
-		private final int y;
-		private final int z;
-		
-		public BlockPos(int x, int y, int z)
-		{
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
-		
-		public int getX()
-		{
-			return x;
-		}
-		
-		public int getY()
-		{
-			return y;
-		}
-		
-		public int getZ()
-		{
-			return z;
-		}
-		
-		public BlockPos down()
-		{
-			return new BlockPos(x, y - 1, z);
-		}
-		
-		public BlockPos up()
-		{
-			return new BlockPos(x, y + 1, z);
-		}
-		
-		public BlockPos add(int x, int y, int z)
-		{
-			return new BlockPos(this.x + x, this.y + y, this.z + z);
-		}
-	}
 }

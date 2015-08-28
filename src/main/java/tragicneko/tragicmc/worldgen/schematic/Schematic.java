@@ -170,11 +170,6 @@ public abstract class Schematic {
 		return true;
 	}
 
-	public void setBlock(World world, Structure.BlockPos pos, Block block, int meta, int flag)
-	{
-		world.setBlock(pos.getX(), pos.getY(), pos.getZ(), block, meta, flag);
-	}
-
 	/*
 	public static class BlockPreset {
 
