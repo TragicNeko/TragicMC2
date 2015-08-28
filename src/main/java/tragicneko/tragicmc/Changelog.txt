@@ -4268,7 +4268,7 @@ world storage to keep track of them (this is to prevent structures from generati
 Workspace updated to Windows 10 so my recording software isn't working properly for me to finish Boss sounds
 Doing a test build now to ensure that everything is working up to this point
 
-2.44.2746++ <209> (August 5, 2015)
+2.44.2776 <209> (August 5, 2015)
 Rebalanced Suicidal Tendencies some, it is now actually worth using over spamming rockets normally
 Fixed Fanbrush and Tangleweed textures not working properly after build (capitalization errors on texture strings)
 Fixed improper imports being used for Arrays
@@ -4308,11 +4308,12 @@ Only register server tick events if ire is allowed in config
 Removed some fruit from various leaf drops due to addition of growable fruits
 Removed Disappearing and Active Digital Sea blocks
 Added EntityAI for burning entities via daylight (and brightness)
+Reverted 1.7 BlockPos addition, it is no longer required due to how I ended up doing schematic conversion in 1.8
+Doing test build and then I'll do a release later
 
 TODO for 1.8 port:
 Set up the json files for all of the item and block textures
-Update the Schematic codes, this requires the blockstates being setup in most cases so they'll be done first
-Update WorldGen code to use blockstates efficiently, update biome code to use updated worldgen
+Optimize code for 1.8
 
 TODO still:
 Add sound for when a Tragic Neko drops or throws a grenade, also firing sound for rocket launchers
