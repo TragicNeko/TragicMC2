@@ -49,7 +49,7 @@ public class EntityOverlordCore extends TragicBoss {
 	private int aggregate;
 	private int courseChangeCooldown;
 
-	public static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea, TragicBlocks.DigitalSeaPowered,
+	public static final Set ignoredBlocks = Sets.newHashSet(new Block[] {TragicBlocks.OverlordBarrier, Blocks.air, TragicBlocks.Luminescence, TragicBlocks.DigitalSea,
 			TragicBlocks.Conduit, TragicBlocks.WitheringGas, TragicBlocks.CorruptedGas});
 	public static final Set replaceableBlocks = Sets.newHashSet(new Block[] {Blocks.air, TragicBlocks.Luminescence});
 

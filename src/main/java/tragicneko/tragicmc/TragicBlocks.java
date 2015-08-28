@@ -121,9 +121,6 @@ public class TragicBlocks {
 	public static Block SandstonePressurePlate;
 	public static Block NetherBrickPressurePlate;
 
-	public static Block DisappearingBlock;
-	public static Block DisappearingBlockInvis;
-
 	public static Block Quicksand;
 
 	public static Block DarkStone;
@@ -193,7 +190,6 @@ public class TragicBlocks {
 
 	public static Block Conduit;
 	public static Block DigitalSea;
-	public static Block DigitalSeaPowered;
 
 	public static Block Aeris;
 
@@ -234,7 +230,7 @@ public class TragicBlocks {
 	public static Block Deathglow;
 	public static Block Honeydrop;
 	
-	public static Block Corsin; //new block for the Spider nests
+	public static Block Corsin;
 
 	public static void load()
 	{
