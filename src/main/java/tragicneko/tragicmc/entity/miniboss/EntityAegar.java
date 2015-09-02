@@ -20,6 +20,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -27,6 +28,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.EntityPart;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
@@ -647,5 +649,14 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	public int getDropAmount()
 	{
 		return 5;
+	}
+	
+	@Override
+	public void onDeath(DamageSource par1)
+	{
+		super.onDeath(par1);
+
+		if (this.worldObj.isRemote || !this.getAllowLoot()) return;
+		this.entityDropItem(new ItemStack(TragicItems.SynapseLink, 1, 0), 0.4F);
 	}
 }
