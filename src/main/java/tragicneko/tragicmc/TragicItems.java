@@ -21,7 +21,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmuletRelease;
-import tragicneko.tragicmc.items.ItemAnomalyAugment;
 import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
 import tragicneko.tragicmc.items.ItemBloodSacrifice;
 import tragicneko.tragicmc.items.ItemChallenge;
@@ -40,7 +39,6 @@ import tragicneko.tragicmc.items.ItemMobEgg;
 import tragicneko.tragicmc.items.ItemMoonlight;
 import tragicneko.tragicmc.items.ItemNekoWand;
 import tragicneko.tragicmc.items.ItemNourishmentSacrifice;
-import tragicneko.tragicmc.items.ItemNuke;
 import tragicneko.tragicmc.items.ItemProjectile;
 import tragicneko.tragicmc.items.ItemSoundExtrapolator;
 import tragicneko.tragicmc.items.ItemStatue;
@@ -202,9 +200,6 @@ public class TragicItems {
 	public static Item WingsOfLiberation;
 	public static Item ParanormalBox; //while in your hands, you can fly through blocks & entities like a ghost
 	public static Item IreNetParticleCannon;
-
-	public static Item AnomalyAugment;
-	public static Item Nuke;
 
 	public static Item BloodSacrifice;
 	public static Item NourishmentSacrifice;
@@ -646,18 +641,6 @@ public class TragicItems {
 
 		IreNetParticleCannon = (new WeaponIreParticleCannon(toolLauncher, Doomsday.Flash).setUnlocalizedName("tragicmc.ireNetParticleCannon").setTextureName("tragicmc:IreParticleCannon" ));
 		GameRegistry.registerItem(IreNetParticleCannon, "ireParticleCannon");
-
-		if (TragicConfig.allowAnomalyAugment)
-		{
-			AnomalyAugment = new ItemAnomalyAugment().setTextureName("tragicmc:AnomalyAugment");
-			GameRegistry.registerItem(AnomalyAugment, "anomalyAugment");
-		}
-
-		if (TragicConfig.allowNuke)
-		{
-			Nuke = new ItemNuke().setTextureName("tragicmc:Nuke");
-			GameRegistry.registerItem(Nuke, "nuke");
-		}
 
 		//Food Registrations
 		IceCream = (new ItemIceCream(4, false).setUnlocalizedName("tragicmc.iceCream").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:IceCream"));

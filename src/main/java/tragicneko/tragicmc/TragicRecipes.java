@@ -566,30 +566,6 @@ public class TragicRecipes {
 				'x', TragicItems.Ash
 				);
 
-		if (TragicConfig.allowAnomalyAugment)
-		{
-			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.AnomalyAugment, 1),
-					"xyx",
-					"yzy",
-					"xyx",
-					'x', TragicItems.TimeEssence,
-					'y', TragicItems.Ectoplasm,
-					'z', TragicItems.WispParticles
-					);
-		}
-
-		if (TragicConfig.allowNuke)
-		{
-			GameRegistry.addShapedRecipe(new ItemStack(TragicItems.Nuke, 1),
-					"xyx",
-					"yzy",
-					"xyx",
-					'x', Blocks.tnt,
-					'z', TragicItems.ObsidianOrb,
-					'y', TragicItems.UnstableIsotope
-					);
-		}
-
 		//Skeleton spawn egg
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.spawn_egg, 1, 51),
 				TragicItems.EnchantedTears, TragicItems.Ash, Items.bone

@@ -49,7 +49,7 @@ public class EntityNuke extends Entity {
 		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
 
 
-		this.entityDropItem(new ItemStack(TragicItems.Nuke), 0.4F);
+		//this.entityDropItem(new ItemStack(TragicItems.Nuke), 0.4F);
 		return true;
 	}
 
