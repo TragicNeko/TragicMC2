@@ -410,7 +410,7 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setNearTarget(false);
 			this.setDropTicks(0);
 
-			if (this.getTransformationTicks() == 60 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.roar", 1.0F, 1.0F);
+			//if (this.getTransformationTicks() == 60 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.roar", 1.0F, 1.0F);
 
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 12.0, 16.0));
 			for (Entity e : list) this.applyEntityCollision(e);
