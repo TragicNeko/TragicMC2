@@ -4309,7 +4309,13 @@ Removed some fruit from various leaf drops due to addition of growable fruits
 Removed Disappearing and Active Digital Sea blocks
 Added EntityAI for burning entities via daylight (and brightness)
 Reverted 1.7 BlockPos addition, it is no longer required due to how I ended up doing schematic conversion in 1.8
-Doing test build and then I'll do a release later
+Fixed Overlord Core roar sound still playing, added sound when a Tragic Neko drops a cluster bomb
+Removed Nuke and Anomaly Augment, keeping nuke entity to possibly readd in the future
+Added Birthday celebrations for Tragic Nekos, they do not attack and do not use any rockets/bombs, when right-clicked with cake or tnt they spawn fireworks
+Added sound for when a Tragic Neko drops a bomb on death (uses creeper fizz sound)
+
+2.44.2776B
+Fixed Aegar not dropping Synapse Links
 
 TODO for 1.8 port:
 Set up the json files for all of the item and block textures
