@@ -17,9 +17,15 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -38,13 +44,13 @@ public class EntityTragicNeko extends TragicMob {
 		this.setSize(0.475F, 1.955F);
 		this.experienceValue = 5;
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		if (!this.isProperDate()) this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(7, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWander(this, 0.65D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
-		this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.85D, 32.0F));
+		if (!this.isProperDate()) this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.85D, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		if (!this.isProperDate()) this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 
 	@Override
@@ -186,7 +192,7 @@ public class EntityTragicNeko extends TragicMob {
 		if (this.getAttackTime() > 0) this.decrementAttackTime();
 		if (this.getFlickTime() > 0) this.decrementFlickTime();
 
-		if (this.getAttackTarget() != null)
+		if (this.getAttackTarget() != null && !this.isProperDate())
 		{
 			if (this.getFlickTime() > 0) this.setFlickTime(0);
 
@@ -216,7 +222,6 @@ public class EntityTragicNeko extends TragicMob {
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.isAboutToFire() || this.getThrowingTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
-
 	}
 
 	@Override
@@ -233,8 +238,9 @@ public class EntityTragicNeko extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.deathTime == 20 && rand.nextInt(4) == 0)
+		if (this.deathTime == 20 && rand.nextInt(4) == 0 && !this.isProperDate())
 		{
+			this.worldObj.playSoundAtEntity(this, "creeper.primed", 1.0F, 1.0F);
 			int x = rand.nextInt(10) == 0 ? 1 : rand.nextInt(3) + 2;
 
 			for (int i = 0; i < x; i++)
@@ -297,31 +303,26 @@ public class EntityTragicNeko extends TragicMob {
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		int i = MathHelper.floor_double(this.boundingBox.minY);
-
-		if (i <= 63)
+		if (MathHelper.floor_double(this.boundingBox.minY) <= 63)
 		{
 			return false;
 		}
 		else
 		{
-			int j = MathHelper.floor_double(this.posX);
-			int k = MathHelper.floor_double(this.posZ);
-			int l = this.worldObj.getBlockLightValue(j, i, k);
-			byte b0 = 4;
-			Calendar calendar = this.worldObj.getCurrentDate();
-
-			if ((calendar.get(2) + 1 != 10 || calendar.get(5) < 20) && (calendar.get(2) + 1 != 11 || calendar.get(5) > 3))
-			{
-				if (this.rand.nextBoolean()) return false;
-			}
-			else
-			{
-				b0 = 7;
-			}
-
-			return l > this.rand.nextInt(b0) ? false : super.getCanSpawnHere();
+			return super.getCanSpawnHere() || this.isProperDate();
 		}
+	}
+
+	public boolean isProperDate()
+	{
+		Calendar calendar = this.worldObj.getCurrentDate();
+
+		if ((calendar.get(2) + 1 == 8 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 9 || calendar.get(5) < 3))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
@@ -405,10 +406,87 @@ public class EntityTragicNeko extends TragicMob {
 	{
 		return 320 + rand.nextInt(120);
 	}
-	
+
 	@Override
 	public int getDropAmount()
 	{
 		return 3;
+	}
+
+	@Override
+	public boolean interact(EntityPlayer player)
+	{
+		if (player.getCurrentEquippedItem() != null && this.isProperDate())
+		{
+			ItemStack item = player.getCurrentEquippedItem();
+			if (item.getItem() == Items.cake || item.getItem() == Item.getItemFromBlock(Blocks.tnt))
+			{
+				if (this.worldObj.isRemote)
+				{
+					for (byte i = 0; i < 16; i++) this.worldObj.spawnParticle("heart", this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
+							this.posZ + rand.nextDouble() - rand.nextDouble(), 1.0, 1.0, 1.0);
+				}
+				else
+				{
+					ItemStack stack = new ItemStack(Items.fireworks, 1, 0);
+					NBTTagCompound tag = new NBTTagCompound();
+					NBTTagCompound newTag = new NBTTagCompound();
+					newTag.setByte("Flight", (byte) 0);
+					NBTTagList tagList = new NBTTagList();
+					
+					NBTTagCompound explosion = new NBTTagCompound();
+					explosion.setByte("Type", (byte) 2);
+					explosion.setByte("Fade", (byte) 1);
+					explosion.setByte("Flicker", (byte)1 );
+					explosion.setIntArray("Colors", new int[] {0xFF0000, 0x00FF00, 0x2378FF});
+					explosion.setIntArray("FadeColors", new int[] {0xFFFFFF, 0xFFFFFF, 0xFFFFFF});
+					tagList.appendTag(explosion);
+					
+					NBTTagCompound explosion2 = new NBTTagCompound();
+					explosion2.setByte("Type", (byte) 4);
+					explosion2.setByte("Trail", (byte) 1);
+					explosion2.setIntArray("Colors", new int[] {0x00FF00, 0x4488FF, 0x45FF54});
+					explosion2.setIntArray("FadeColors", new int[] {0x00FF00, 0x4488FF, 0x45FF54});
+					tagList.appendTag(explosion2);
+					
+					NBTTagCompound explosion3 = new NBTTagCompound();
+					explosion3.setByte("Type", (byte) 3);
+					explosion3.setIntArray("Colors", new int[] {0xFF0023, 0x004400, 0x2378FF});
+					explosion3.setIntArray("FadeColors", new int[] {0x00FF00, 0x00FF00, 0x00FF00});
+					tagList.appendTag(explosion3);
+					
+					NBTTagCompound explosion4 = new NBTTagCompound();
+					explosion4.setByte("Type", (byte) 0);
+					explosion4.setByte("Trail", (byte) 1);
+					explosion4.setIntArray("Colors", new int[] {0x000000, 0x000000, 0x000000});
+					explosion4.setIntArray("FadeColors", new int[] {0xFF0000, 0xFF0000, 0xFF0000});
+					tagList.appendTag(explosion4);
+					
+					NBTTagCompound explosion5 = new NBTTagCompound();
+					explosion5.setByte("Type", (byte) 1);
+					explosion5.setIntArray("Colors", new int[] {0xFF0023, 0xFF4400, 0xFF7844});
+					explosion5.setIntArray("FadeColors", new int[] {0x46A0F3, 0xAF12EE, 0x4675FF});
+					tagList.appendTag(explosion5);
+					
+					NBTTagCompound explosion6 = new NBTTagCompound();
+					explosion6.setByte("Type", (byte) 0);
+					explosion6.setIntArray("Colors", new int[] {0x4436FF, 0x2246FF, 0x3311FF});
+					explosion6.setIntArray("FadeColors", new int[] {0x00FF00, 0x0036FF, 0x0000FF});
+					tagList.appendTag(explosion6);
+					
+					newTag.setTag("Explosions", tagList);
+					tag.setTag("Fireworks", newTag);
+					stack.setTagCompound(tag);
+					
+					for (byte i = 0; i < 3; i++)
+					this.worldObj.spawnEntityInWorld(new EntityFireworkRocket(this.worldObj, this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble() * this.height,
+							this.posZ + rand.nextDouble() - rand.nextDouble(), stack));
+				}
+				
+				if (!player.capabilities.isCreativeMode) player.getCurrentEquippedItem().stackSize--;
+				return true;
+			}
+		}
+		return false;
 	}
 }

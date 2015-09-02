@@ -64,7 +64,7 @@ public class ModelTragicNeko extends ModelBiped
 
 		//Left Arm
 		bipedLeftArm = new ModelRenderer(this, 40, 16);
-		bipedLeftArm.addBox(-1F, -1F, -2F, 2, 10, 2);
+		bipedLeftArm.addBox(0F, -2F, -2F, 2, 10, 2);
 		bipedLeftArm.setRotationPoint(3F, 2F, 0F);
 		bipedLeftArm.rotateAngleX = -0.4833219F;
 		bipedLeftArm.rotateAngleZ = 0.4461433F;
@@ -84,6 +84,10 @@ public class ModelTragicNeko extends ModelBiped
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		this.isRiding = entity.isRiding();
+		if (entity instanceof EntityTragicNeko)
+		{
+			rocketLauncher.showModel = !((EntityTragicNeko) entity).isProperDate();
+		}
 		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
@@ -115,39 +119,46 @@ public class ModelTragicNeko extends ModelBiped
 			this.rightEar.offsetY = 0.0F;
 		}
 
-		if (neko.getThrowingTicks() > 0)
+		if (!neko.isProperDate())
 		{
-			this.bipedLeftArm.rotateAngleX = -0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-			this.bipedLeftArm.rotateAngleZ = -0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-		}
-		else
-		{
-			bipedLeftArm.rotateAngleX = -0.4833219F;
-			bipedLeftArm.rotateAngleZ = 0.4461433F;
-
-			if (neko.getAttackTime() > 0)
+			if (neko.getThrowingTicks() > 0)
 			{
-				this.bipedRightArm.rotateAngleX = 0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
-				this.bipedRightArm.rotateAngleZ = 0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+				this.bipedLeftArm.rotateAngleX = -0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+				this.bipedLeftArm.rotateAngleZ = -0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
 			}
 			else
 			{
-				bipedRightArm.rotateAngleX = -0.4833219F;
-				bipedRightArm.rotateAngleZ = 0.4461433F;
+				bipedLeftArm.rotateAngleX = -0.4833219F;
+				bipedLeftArm.rotateAngleZ = 0.4461433F;
+
+				if (neko.getAttackTime() > 0)
+				{
+					this.bipedRightArm.rotateAngleX = 0.45F + -1.65F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+					this.bipedRightArm.rotateAngleZ = 0.45F + 0.35F * this.simplifyAngle(neko.getThrowingTicks(), 30.0F);
+				}
+				else
+				{
+					bipedRightArm.rotateAngleX = -0.4833219F;
+					bipedRightArm.rotateAngleZ = 0.4461433F;
+				}
 			}
 		}
-
+		else
+		{
+			bipedRightArm.rotateAngleZ = bipedLeftArm.rotateAngleZ = 0F;
+			bipedRightArm.rotateAngleX = (-0.2F + 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
+			bipedLeftArm.rotateAngleX = (-0.2F - 1.5F * this.simplifyAngle(f, 13.0F)) * f1;
+		}
 
 		if (this.isRiding)
 		{
-			this.bipedRightArm.rotateAngleX = -1.11F;
-			this.bipedLeftArm.rotateAngleX = -1.11F;
-			this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-			this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-			this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
-			this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
+			bipedRightArm.rotateAngleX = -1.11F;
+			bipedLeftArm.rotateAngleX = -1.11F;
+			bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+			bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+			bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+			bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
 		}
-
 	}
 
 	private float simplifyAngle(float par1, float par2)
