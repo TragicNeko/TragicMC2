@@ -284,13 +284,14 @@ public class WorldHelper {
 
 	public static int getDistanceToGround(Entity entity)
 	{
-		final int x = MathHelper.floor_double(entity.posX);
-		final int y = MathHelper.floor_double(entity.boundingBox.minY);
-		final int z = MathHelper.floor_double(entity.posZ);
-
+		return getDistanceToGround(entity.worldObj, MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.boundingBox.minY), MathHelper.floor_double(entity.posZ));
+	}
+	
+	public static int getDistanceToGround(World world, int x, int y, int z)
+	{
 		for (int i = 0; y - i > 0; ++i)
 		{
-			if (entity.worldObj.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
+			if (world.getBlock(x, y - i, z).getMaterial().blocksMovement()) return i;
 		}
 
 		return y;
