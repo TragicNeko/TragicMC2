@@ -14,15 +14,15 @@ public class TragicConfig {
 
 	private static final String catMaster = "Master Configs";
 	private static final String catBlanket = "Blanket Configs";
-	//private static final String catAchievements = "Achievements";
+	private static final String catAchievements = "Achievements";
 	private static final String catAmulet = "Amulets";
 	private static final String catDimension = "Dimension";
 	private static final String catDoom = "Doom";
-	//private static final String catDoomsday = "Doomsdays";
-	//private static final String catWeapons = "Weapons";
+	private static final String catDoomsday = "Doomsdays";
+	private static final String catWeapons = "Weapons";
 	private static final String catEnchant = "Enchantments";
 	private static final String catMobs = "Mobs";
-	//private static final String catMobStats = "Mob Stats";
+	private static final String catMobStats = "Mob Stats";
 	private static final String catPotion = "Potions";
 	private static final String catVanilla = "Vanilla Changes";
 	private static final String catWorldGen = "WorldGen";
@@ -144,7 +144,7 @@ public class TragicConfig {
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
-	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowDivinityColorChange;
+	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowDivinityColorChange, allowDefaultLores;
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
@@ -1105,6 +1105,7 @@ public class TragicConfig {
 		miscConfigs[mapping++] = (config.get(catMisc, "allowFlightNotify", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowArmorModels", true).getBoolean(true));
 		miscConfigs[mapping++] = (config.get(catMisc, "allowDivinityColorChange", true).getBoolean(true));
+		miscConfigs[mapping++] = (config.get(catMisc, "allowDefaultLores", true).getBoolean(true));
 
 		mapping = 0;
 		griefConfigs[mapping++] = config.get(catMisc, "allowNatureDrainDestruction", true).getBoolean(true);
@@ -1137,7 +1138,7 @@ public class TragicConfig {
 		modifierAmts[mapping++] = config.get(catMod, "dynamicMobHealthBuff", 20.0).getDouble(20.0);
 		modifierAmts[mapping++] = config.get(catMod, "dynamicMobHealthDebuff", -20.0).getDouble(-20.0);
 		modifierAmts[mapping++] = config.get(catMod, "dynamicBossHealthBuff", 50.0).getDouble(50.0);
-		modifierAmts[mapping++] = 0.0; //13, this particular attribute modifier wasn't actually being used so it'll have no value
+		modifierAmts[mapping++] = config.get(catMod, "apisStompDebuff", -0.5).getDouble(-0.5); //13
 		modifierAmts[mapping++] = config.get(catMod, "ghastHealthBuff", 30.0).getDouble(30.0);
 		modifierAmts[mapping++] = config.get(catMod, "zombieSkeletonCreeperHealthBuff", 10.0).getDouble(10.0);
 		modifierAmts[mapping++] = config.get(catMod, "endermanHealthBuff", 20.0).getDouble(20.0);
@@ -1946,6 +1947,7 @@ public class TragicConfig {
 		allowFlightNotify = miscConfigs[mapping++];
 		allowArmorModels = miscConfigs[mapping++];
 		allowDivinityColorChange = miscConfigs[mapping++];
+		allowDefaultLores = miscConfigs[mapping++];
 
 		mapping = 0;
 		challengeScrollDropChance = miscInts[mapping++];

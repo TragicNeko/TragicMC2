@@ -4,6 +4,7 @@ import static tragicneko.tragicmc.TragicConfig.apisStats;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -17,6 +18,7 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
@@ -37,6 +39,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 public class EntityApis extends TragicBoss {
 	
 	public int reflectionBuffer;
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("08bd1ef5-8f24-4ee4-9ffa-10cdef76b7ae"), "apisStompDebuff", TragicConfig.modifierAmts[13], 0);
 
 	public EntityApis(World par1World) {
 		super(par1World);
@@ -187,8 +190,10 @@ public class EntityApis extends TragicBoss {
 	@Override
 	public void onLivingUpdate()
 	{
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.isStomping())
 		{
+			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 			this.motionX = this.motionZ = 0.0D;
 			this.motionY = -0.2D;
 			this.fallDistance = 0.0F;
