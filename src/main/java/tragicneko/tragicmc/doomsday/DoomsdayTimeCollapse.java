@@ -34,7 +34,6 @@ public class DoomsdayTimeCollapse extends Doomsday implements IExtendedDoomsday 
 				entity.motionX = entity.motionY = entity.motionZ = 0;
 				entity.velocityChanged = false;
 				if (crucMoment && TragicConfig.allowStun && entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 120, 0));
-
 			}
 		}
 		else

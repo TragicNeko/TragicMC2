@@ -28,7 +28,7 @@ import cpw.mods.fml.common.network.FMLNetworkEvent.ServerDisconnectionFromClient
 
 public class DoomsdayManager {
 
-	public static Logger logger = LogManager.getLogger(TragicMC.MODID + "/Doomsday Manager");
+	public static final Logger logger = LogManager.getLogger(TragicMC.MODID + "/Doomsday Manager");
 	private static Map<UUID, ArrayList<DoomsdayEffect>> playerMap = new HashMap();
 
 	public synchronized static void registerDoomsdayEffect(UUID playerID, DoomsdayEffect effect)
@@ -211,7 +211,6 @@ public class DoomsdayManager {
 							}
 						}
 						list.remove(effect);
-						reason = "No more Doomsday effects.";
 					}
 				}
 
