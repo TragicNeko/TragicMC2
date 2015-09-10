@@ -62,52 +62,23 @@ public class WeaponTitan extends EpicWeapon {
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
-			double d7 = MathHelper.sqrt_double(d4 * d4 + d5 * d5 + d6 * d6);
+			final double d7 = MathHelper.sqrt_double(d4 * d4 + d5 * d5 + d6 * d6);
+			double x, y, z;
+			int y1;
+			int i = MathHelper.ceiling_double_int(d7 / 5.0) + 1;
+			double perc;
 
-			if (d7 >= 3.0D)
+			for (byte j = 0; j < i; j++)
 			{
-				par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.95D * d4)),
-						par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.95D * d4)), (int) (par3EntityPlayer.posZ + (0.95D * d6))),
-						par3EntityPlayer.posZ + (0.95D * d6)));
-
-				if (d7 >= 8.0D)
-				{
-					par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.75D * d4)),
-							par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.75D * d4)), (int) (par3EntityPlayer.posZ + (0.75D * d6))),
-							par3EntityPlayer.posZ + (0.75D * d6)));
-
-					if (d7 >= 13.0D)
-					{
-						par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.6D * d4)),
-								par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.6D * d4)), (int) (par3EntityPlayer.posZ + (0.6D * d6))),
-								par3EntityPlayer.posZ + (0.6D * d6)));
-
-						if (d7 >= 18.0D)
-						{
-							par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.4D * d4)),
-									par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.4D * d4)), (int) (par3EntityPlayer.posZ + (0.4D * d6))),
-									par3EntityPlayer.posZ + (0.4D * d6)));
-
-							if (d7 >= 21.0D)
-							{
-								par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.2D * d4)),
-										par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.2D * d4)), (int) (par3EntityPlayer.posZ + (0.2D * d6))),
-										par3EntityPlayer.posZ + (0.2D * d6)));
-
-								if (d7 >= 24.0D)
-								{
-									par2World.addWeatherEffect(new EntityLightningBolt(par2World, par3EntityPlayer.posX + ((0.1D * d4)),
-											par2World.getTopSolidOrLiquidBlock((int) (par3EntityPlayer.posX + (0.1D * d4)), (int) (par3EntityPlayer.posZ + (0.1D * d6))),
-											par3EntityPlayer.posZ + (0.1D * d6)));
-								}
-							}
-						}
-					}
-				}
-
-				if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[32]);
-				setStackCooldown(par1ItemStack, 5);
+				perc = 1.0D - ((double) j / i) + 0.025D;
+				x = (par3EntityPlayer.posX) + (perc * d4);
+				y = par3EntityPlayer.posY;
+				z = par3EntityPlayer.posZ + (perc * d6);
+				y1 = WorldHelper.getDistanceToGround(par2World, (int) x, (int) par3EntityPlayer.posY, (int) z);
+				par2World.addWeatherEffect(new EntityLightningBolt(par2World, x, y, z));
 			}
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[32]);
+			setStackCooldown(par1ItemStack, 5);
 		}
 		return par1ItemStack;
 	}
