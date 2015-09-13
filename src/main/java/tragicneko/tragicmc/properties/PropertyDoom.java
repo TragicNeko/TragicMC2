@@ -184,6 +184,8 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	 */
 	public void increaseDoom(int amount)
 	{
+		if (amount > 0 && this.getCurrentCooldown() > 0) return; //If the player still has cooldown, don't let their doom regenerate while this is happening
+		
 		if (this.getCurrentDoom() + amount >= this.getMaxDoom())
 		{
 			this.fillDoom();
