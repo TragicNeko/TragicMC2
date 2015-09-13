@@ -28,15 +28,18 @@ public class NewConfig {
 	private static final String CAT_MISC = "Miscellaneous";
 	private static final String CAT_MODIFIERS = "Attribute Modifiers";
 	private static final String CAT_CREATIVE = "Creative Item Options";
+	private static final String CAT_CLIENT = "Client-side Only Options";
+	private static final String CAT_STRUCTURE = "Structures";
+	private static final String CAT_GRIEF = "Weapon Griefing Options";
 
 	//options meant for internal use, for toggling via master configs
-	public static boolean allowNonMobItems, allowNonMobBlocks, allowNetwork, allowRecipes, allowSurvivalTab;
+	public static boolean allowNonMobItems = true, allowNonMobBlocks = true, allowNetwork = true, allowRecipes = true, allowSurvivalTab = true;
 
-	public static boolean mobsOnly, hardcoreMode, lightweightMode;
+	public static boolean mobsOnlyMode, hardcoreMode, lightweightMode, barebonesMode;
 	public static boolean allowAchievements, allowAmulets, allowDimension, allowDoom, allowEnchantments, allowMobs, allowPotions, allowVanillaChanges, allowWorldGen;
 
 	private static boolean[] amuletConfig = new boolean[16];
-	public static boolean allowAmuletLeveling, allowAmuletCrafting, requireAmuletSlotUnlock, allowAmuletBossKillCharge, showAmuletStatusGui, allowAmuletModifiers, allowAmuletDeathDrops;
+	public static boolean allowAmuletLeveling, allowAmuletCrafting, requireAmuletSlotUnlock, allowAmuletBossKillCharge, allowAmuletModifiers, allowAmuletDeathDrops;
 	public static int amuletMaxSlots, amuletOverallRarity, amuletReleaseRarity, amuletModChance, amuletModChance2, amuletModChance3;
 	private static boolean[] amuletEffects = new boolean[48];
 	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton, amuIce, amuSnowGolem, amuIronGolem;
@@ -48,7 +51,7 @@ public class NewConfig {
 	public static double sphereSize, eraserSize, spikeSize, spikeRegression, spikeCutoff, voidPitSize, explosionBaseSize, explosionSizeVariation;
 
 	private static boolean[] dimensionConfig = new boolean[16];
-	public static boolean allowSynapse, allowCollision, allowCollisionRespawn, allowSynapseRespawn, keepCollisionLoaded, keepSynapseLoaded, allowSynapseVariants, allowDigitalSeaGen;
+	public static boolean allowSynapse, allowCollision, allowCollisionRespawn, allowSynapseRespawn, keepCollisionLoaded, keepSynapseLoaded, allowSynapseVariants;
 	public static int collisionID, collisionProviderID, synapseID, synapseProviderID, collisionBiomeSize, synapseVariantChance;
 
 	public static int idDecayingHills, idDecayingValley, idDecayingWasteland, idDecayingMountains, idPaintedForest, idPaintedPlains, idPaintedHills, idPaintedClearing;
@@ -66,7 +69,7 @@ public class NewConfig {
 	private static boolean[] doomConfig = new boolean[24];
 	public static boolean allowDoomsdays, allowInfluenceDoomsdays, allowOverflowDoomsdays, allowCrisisDoomsdays, allowWorldShaperDoomsdays, allowCombinationDoomsdays;
 	public static boolean allowNonDoomsdayAbilities, shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash;
-	public static boolean allowCooldown, allowDoomKillRecharge, allowCooldownDefuse, showDoomGui;
+	public static boolean allowCooldown, allowDoomKillRecharge, allowCooldownDefuse;
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
 	public static int doomConsumeAmount, maxDoomStart, doomRechargeAmount;
 
@@ -83,29 +86,60 @@ public class NewConfig {
 	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable, idRust, idVeteran;
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
 
-	public static boolean[] mobConfig = new boolean[16]; //TODO move allowCorruptionDamage to miscConfig or potionCofig
+	public static boolean[] mobConfig = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowMobTransformation;
 	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds;
+	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap, groupBuffChance;
 	public static boolean[] mobAllow = new boolean[64];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
-	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowLavaPirah, allowStin, allowStinBaby, allowWisp, allowAbomination, allowErkel;
+	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowStin, allowStinBaby, allowKindlingSpirit, allowAbomination, allowErkel;
 	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
 	public static boolean allowFusea, allowRanmas, allowParasmite, allowAvris;
 	public static boolean[] miniBossAllow = new boolean[32];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowAegar, allowVolatileFusea;
 	public static boolean[] bossAllow = new boolean[24];
-	public static boolean allowApis, allowDeathReaper, allowKitsune, allowYeti, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
+	public static boolean allowApis, allowSkultar, allowKitsunakuma, allowEmpariah, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
 
 	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, lavaPirahSC, stinSC, stinBabySC, wispSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
+	public static int pirahSC, stinSC, kindlingSpiritSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
 	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC, avrisSC, jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC;
-	public static int stinKingSC, stinQueenSC, locobotSC, aegarSC, volatileFuseaSC, apisSC, deathReaperSC, kitsuneSC, yetiSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
+	public static int stinKingSC, stinQueenSC, volatileFuseaSC, apisSC, skultarSC, kitsunakumaSC, empariahSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
 
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
-	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, wispStats, abominationStats, erkelStats, sirvStats, psygoteStats;
+	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, kindlingSpiritStats, abominationStats, erkelStats, sirvStats, psygoteStats;
 	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats, kurayamiStats, avrisStats;
-	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, locobotStats, aegarStats, volatileFuseaStats;
-	public static double[] apisStats, deathReaperStats, kitsuneStats, yetiStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats, overlordCombatStats, overlordCocoonStats;
+	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, aegarStats, volatileFuseaStats;
+	public static double[] apisStats, skultarStats, kitsunakumaStats, empariahStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats, overlordCombatStats, overlordCocoonStats;
+
+	public static boolean[] potionAllow = new boolean[32];
+	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
+	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked, allowBurned;
+	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence, idDivinity;
+	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked, idBurned;
+
+	private static boolean[] vanillaConfig = new boolean[16];
+	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmor, allowRespawnPunishment, allowExtraExplosiveEffects;
+	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowDrudgeGen, allowAnimalGolemCorruption;
+	public static boolean allowCowMinotaurCreation;
+	public static int rubyOreRate, sapphireOreRate, mercuryOreRate, tungstenOreRate, drudgeRate, silverfishRate, rubyOreVeinSize, sapphireOreVeinSize, mercuryOreVeinSize;
+	public static int tungstenOreVeinSize, drudgeVeinSize, silverfishVeinSize, aerisRarity;
+
+	private static boolean[] worldGenConfig = new boolean[16];
+	public static boolean allowVoidPitGen, allowSpikeGen, allowScatteredSurfaceGen, allowStringLightGen, allowDarkStoneVariantGen, allowStructureGen, allowInvertedSpikeGen;
+	public static boolean allowDigitalSeaGen, allowFruitGen, allowIsleGen, allowFlowerGen;
+	public static int structureOverallRarity;
+	private static boolean[] structureAllow = new boolean[32];
+	private static int[] structureRarity = new int[32];
+
+	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowGeneratorItems, allowItemTimeAltering;
+	public static boolean allowPvP, allowDefaultLores, allowCorruptionTransfer;
+	public static int challengeScrollDropChance, mobStatueDropChance;
+
+	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui;
+	public static int guiTransparency, guiTexture, guiX, guiY;
+
+	public static boolean[] griefConfig = new boolean[12];
+	public static double[] modifier = new double[32];
 
 	public static void load()
 	{
@@ -121,20 +155,25 @@ public class NewConfig {
 		cat.setRequiresMcRestart(true);
 		cat.setShowInGui(true);
 
-		prop = cat.get("mobsOnly");
+		prop = cat.get("mobsOnlyMode");
 		prop.setDefaultValue(false);
-		prop.comment = "Is mobs only mode enabled?";
-		mobsOnly = prop.getBoolean(false);
+		prop.comment = "Is mobs only mode enabled? This strips the mod down to just the mobs and a few items/blocks related to them.";
+		mobsOnlyMode = prop.getBoolean(false);
 
 		prop = cat.get("hardcoreMode");
 		prop.setDefaultValue(false);
-		prop.comment = "Is hardcode mode enabled?";
+		prop.comment = "Is hardcode mode enabled? This makes things a bit more difficult than normal.";
 		hardcoreMode = prop.getBoolean(false);
 
 		prop = cat.get("lightweightMode");
 		prop.setDefaultValue(false);
-		prop.comment = "Is lightweight mode enabled?";
+		prop.comment = "Is lightweight mode enabled? This makes things somewhat easier than normal.";
 		lightweightMode = prop.getBoolean(false);
+		
+		prop = cat.get("barebonesMode");
+		prop.setDefaultValue(false);
+		prop.comment = "Is barebones mode enabled? This takes things back to a much simpler time, stripping the mod down to just weapons and mobs.";
+		barebonesMode = prop.getBoolean(false);
 
 		cat = config.getCategory(CAT_BLANKET);
 		cat.setComment("These disable all options beneath them if set to false.");
@@ -215,11 +254,6 @@ public class NewConfig {
 		prop = cat.get("allowAmuletBossKillCharge");
 		prop.setDefaultValue(true);
 		prop.comment = "Will your Amulets repair some durability after killing a Boss?";
-		amuletConfig[++m] = prop.getBoolean(true);
-
-		prop = cat.get("allowAmuletStatusGui");
-		prop.setDefaultValue(true);
-		prop.comment = "Will the Amulet Status Gui be shown?";
 		amuletConfig[++m] = prop.getBoolean(true);
 
 		prop = cat.get("allowAmuletModifiers");
@@ -511,11 +545,6 @@ public class NewConfig {
 		prop = cat.get("allowSynapseVariants");
 		prop.setDefaultValue(true);
 		prop.comment = "Can the Synapse generate with mini-Biomes?";
-		dimensionConfig[++m] = prop.getBoolean(true);
-
-		prop = cat.get("allowDigitalSeaGeneration");
-		prop.setDefaultValue(true);
-		prop.comment = "Can the Synapse generate with Digital Sea on the upper and lower sections?";
 		dimensionConfig[++m] = prop.getBoolean(true);
 
 		cat = config.getCategory(CAT_BIOME);
@@ -928,11 +957,6 @@ public class NewConfig {
 		prop = cat.get("allowCooldownDefuse");
 		prop.setDefaultValue(true);
 		prop.comment = "Can Cooldown Defuses be used to remove your Global cooldown?";
-		doomConfig[++m] = prop.getBoolean(true);
-
-		prop = cat.get("allowDoomGui");
-		prop.setDefaultValue(true);
-		prop.comment = "Should the Doom Gui be shown?";
 		doomConfig[++m] = prop.getBoolean(true);
 
 		prop = cat.get("maxDoomAmount");
@@ -1996,155 +2020,155 @@ public class NewConfig {
 
 		prop = cat.get("beastlyClawsComboCost");
 		prop.setDefaultValue(0);
-		doomAbilityCost[m = 0] = prop.getInt(0);
+		doomAbilityCost[m = 0] = clampPositive(prop.getInt(0));
 
 		prop = cat.get("blindingLightSolarBombCost");
 		prop.setDefaultValue(15);
-		doomAbilityCost[++m] = prop.getInt(15);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(15));
 
 		prop = cat.get("blindingLightBurnCost");
 		prop.setDefaultValue(10);
-		doomAbilityCost[++m] = prop.getInt(10);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(10));
 
 		prop = cat.get("blindingLightProjectileDeflectCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("butcherCritKnockbackCost");
 		prop.setDefaultValue(1);
-		doomAbilityCost[++m] = prop.getInt(1);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(1));
 
 		prop = cat.get("butcherKnockbackResistanceCost");
 		prop.setDefaultValue(0);
-		doomAbilityCost[++m] = prop.getInt(0);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(0));
 
 		prop = cat.get("butcherWeaknessDebuffCost");
 		prop.setDefaultValue(0);
-		doomAbilityCost[++m] = prop.getInt(0);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(0));
 
 		prop = cat.get("celestialAegisDamageReductionCost");
 		prop.setDefaultValue(0);
-		doomAbilityCost[++m] = prop.getInt(0);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(0));
 
 		prop = cat.get("celestialLongbowTeleportCost");
 		prop.setDefaultValue(0);
-		doomAbilityCost[++m] = prop.getInt(0);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(0));
 
 		prop = cat.get("dragonFangBurnCost");
 		prop.setDefaultValue(1);
-		doomAbilityCost[++m] = prop.getInt(1);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(1));
 
 		prop = cat.get("dragonFangLargeFireballCost");
 		prop.setDefaultValue(10);
-		doomAbilityCost[++m] = prop.getInt(10);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(10));
 
 		prop = cat.get("dragonFangExtinguishCost");
 		prop.setDefaultValue(1);
-		doomAbilityCost[++m] = prop.getInt(1);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(1));
 
 		prop = cat.get("frozenLightningSlownessDebuffCost");
 		prop.setDefaultValue(3);
-		doomAbilityCost[++m] = prop.getInt(3);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(3));
 
 		prop = cat.get("frozenLightningLightningStrikeCost");
 		prop.setDefaultValue(20);
-		doomAbilityCost[++m] = prop.getInt(20);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(20));
 
 		prop = cat.get("frozenLightningIcicleCost");
 		prop.setDefaultValue(3);
-		doomAbilityCost[++m] = prop.getInt(3);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(3));
 
 		prop = cat.get("gravitySpikeLaunchCost");
 		prop.setDefaultValue(7);
-		doomAbilityCost[++m] = prop.getInt(7);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(7));
 
 		prop = cat.get("guiltyThornPoisonStunDebuffCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("harmonyBellHarmonyDebuffCost");
 		prop.setDefaultValue(3);
-		doomAbilityCost[++m] = prop.getInt(3);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(3));
 
 		prop = cat.get("harmonyBellHealingCost");
 		prop.setDefaultValue(1);
-		doomAbilityCost[++m] = prop.getInt(1);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(1));
 
 		prop = cat.get("mourningStarSelfDestructCost");
 		prop.setDefaultValue(25);
-		doomAbilityCost[++m] = prop.getInt(25);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(25));
 
 		prop = cat.get("mourningStarLookExplosionCost");
 		prop.setDefaultValue(30);
-		doomAbilityCost[++m] = prop.getInt(30);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(30));
 
 		prop = cat.get("paranoiaFearSubmissionDebuffCost");
 		prop.setDefaultValue(10);
-		doomAbilityCost[++m] = prop.getInt(10);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(10));
 
 		prop = cat.get("paranoiaDarkEnergySprayCost");
 		prop.setDefaultValue(15);
-		doomAbilityCost[++m] = prop.getInt(15);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(15));
 
 		prop = cat.get("paranoiaSingleDarkEnergyCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("pitchBlackThrowCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("reaperScytheSmallPumpkinbombCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("reaperScytheLargePumpkinbombCost");
 		prop.setDefaultValue(15);
-		doomAbilityCost[++m] = prop.getInt(15);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(15));
 
 		prop = cat.get("splinterRandomDirectionHitCost");
 		prop.setDefaultValue(3);
-		doomAbilityCost[++m] = prop.getInt(3);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(3));
 
 		prop = cat.get("splinterGroupRandomDirectionHitCost");
 		prop.setDefaultValue(10);
-		doomAbilityCost[++m] = prop.getInt(10);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(10));
 
 		prop = cat.get("thardusSlownessDebuffCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("thardusIcicleCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("titanLightningHitCost");
 		prop.setDefaultValue(10);
-		doomAbilityCost[++m] = prop.getInt(10);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(10));
 
 		prop = cat.get("titanLightningStrikesCost");
 		prop.setDefaultValue(20);
-		doomAbilityCost[++m] = prop.getInt(20);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(20));
 
 		prop = cat.get("titanLightningAbsorbCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("witheringAxeWitherDebuffCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("witheringAxeWitherSkullCost");
 		prop.setDefaultValue(5);
-		doomAbilityCost[++m] = prop.getInt(5);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(5));
 
 		prop = cat.get("witheringAxeBlueWitherSkullCost");
 		prop.setDefaultValue(15);
-		doomAbilityCost[++m] = prop.getInt(15);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(15));
 
 		prop = cat.get("dragonFangFlamethrowerCost");
 		prop.setDefaultValue(3);
-		doomAbilityCost[++m] = prop.getInt(3);
+		doomAbilityCost[++m] = clampPositive(prop.getInt(3));
 
 		cat = config.getCategory(CAT_ENCHANT);
 		cat.setComment("Disable certain enchantments and set their ids");
@@ -2384,267 +2408,1293 @@ public class NewConfig {
 		prop.setDefaultValue(true);
 		prop.comment = "Can the mod-exclusive mobs make their custom sounds? (they will still play the Vanilla sounds if disabled)";
 		mobConfig[++m] = prop.getBoolean(true);
-		
+
+		prop = cat.get("commonMobDropChance");
+		prop.setDefaultValue(25);
+		prop.comment = "Affects the chances of getting common mob drops from the looting amount you killed mobs with, only affects mod-exclusive entities.";
+		commonDropRate = clamp(prop.getInt(25), 1, 200);
+
+		prop = cat.get("rareMobDropChance");
+		prop.setDefaultValue(5);
+		prop.comment = "Affects the chances of getting rare mob drops from the looting amount you killed mobs with, only affects mod-exclusive entities.";
+		rareDropRate = clamp(prop.getInt(5), 1, 100);
+
+		prop = cat.get("mobTransformationChance");
+		prop.setDefaultValue(3);
+		mobTransformationChance = clamp(prop.getInt(3), 1, 100);
+
+		prop = cat.get("bossDamageCap");
+		prop.setDefaultValue(25);
+		bossDamageCap = clampPositive(prop.getInt(25));
+
+		prop = cat.get("groupBuffChance");
+		prop.setDefaultValue(25);
+		groupBuffChance = clamp(prop.getInt(15), 1, 200);
+
+		cat = config.getCategory(CAT_MOBSTATS);
+		cat.setComment("Change mob stats and allowances.");
+		cat.setRequiresMcRestart(true);
+
 		prop = cat.get("jabbaAllow");
 		prop.setDefaultValue(true);
 		mobAllow[m = 0] = prop.getBoolean(true);
-		
+
 		prop = cat.get("jannaAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("plagueAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("gragulAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("minotaurAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("inklingAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("ragrAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("pumpkinheadAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("tragicNekoAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("toxAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("poxAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("cryseAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("starCryseAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("norVoxAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("starVoxAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("pirahAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
-		prop = cat.get("lavaPirahAllow");
-		prop.setDefaultValue(true);
-		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("stinAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("stinBabyAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
-		prop = cat.get("wispAllow");
+
+		prop = cat.get("kindlingSpiritAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("abominationAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("erkelAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("sirvAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("psygoteAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("lockbotAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("nanoSwarmAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("snowGolemAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("hunterAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("harvesterAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("archangelAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("ireAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("fuseaAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("ranmasAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("parasmiteAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("avrisAllow");
 		prop.setDefaultValue(true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("jarraAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
-		
+
 		prop = cat.get("kragulAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("magmoxAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("megaCryseAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("voxStellarumAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("greaterStinAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("stinKingAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("stinQueenAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("aegarAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("volatileFuseaAllow");
 		prop.setDefaultValue(true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("apisAllow");
 		prop.setDefaultValue(true);
 		bossAllow[m = 0] = prop.getBoolean(true);
-		
+
 		prop = cat.get("skultarAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("kitsunakumaAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("empariahAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("timeControllerAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("polarisAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("enyvilAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("claymationAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("overlordAllow");
 		prop.setDefaultValue(true);
 		bossAllow[++m] = prop.getBoolean(true);
-		
+
 		prop = cat.get("jabbaSpawnChance");
 		prop.setDefaultValue(75);
 		jabbaSC = prop.getInt(75);
-		
+
 		prop = cat.get("jannaSpawnChance");
 		prop.setDefaultValue(50);
 		jannaSC = prop.getInt(50);
-		
+
+		prop = cat.get("jarraSpawnChance");
+		prop.setDefaultValue(5);
+		jarraSC = prop.getInt(5);
+
 		prop = cat.get("plagueSpawnChance");
 		prop.setDefaultValue(50);
 		plagueSC = prop.getInt(50);
-		
+
 		prop = cat.get("gragulSpawnChance");
 		prop.setDefaultValue(25);
 		gragulSC = prop.getInt(25);
-		
+
+		prop = cat.get("kragulSpawnChance");
+		prop.setDefaultValue(5);
+		kragulSC = prop.getInt(5);
+
 		prop = cat.get("minotaurSpawnChance");
 		prop.setDefaultValue(75);
 		minotaurSC = prop.getInt(75);
-		
+
 		prop = cat.get("inklingSpawnChance");
 		prop.setDefaultValue(75);
 		inklingSC = prop.getInt(75);
-		
+
 		prop = cat.get("ragrSpawnChance");
 		prop.setDefaultValue(25);
 		ragrSC = prop.getInt(25);
-		
+
 		prop = cat.get("pumpkinheadSpawnChance");
 		prop.setDefaultValue(25);
 		pumpkinheadSC = prop.getInt(25);
-		
+
 		prop = cat.get("tragicNekoSpawnChance");
 		prop.setDefaultValue(50);
 		tragicNekoSC = prop.getInt(50);
-		
+
 		prop = cat.get("toxSpawnChance");
 		prop.setDefaultValue(50);
-		toxSC = prop.getInt(50); //TODO finish spawn chances for mobs in new config
-		
+		toxSC = prop.getInt(50);
+
 		prop = cat.get("poxSpawnChance");
 		prop.setDefaultValue(50);
 		poxSC = prop.getInt(50);
 
+		prop = cat.get("magmoxSpawnChance");
+		prop.setDefaultValue(5);
+		magmoxSC = prop.getInt(5);
+
+		prop = cat.get("cryseSpawnChance");
+		prop.setDefaultValue(75);
+		cryseSC = prop.getInt(75);
+
+		prop = cat.get("starCryseSpawnChance");
+		prop.setDefaultValue(75);
+		starCryseSC = prop.getInt(75);
+
+		prop = cat.get("megaCryseSpawnChance");
+		prop.setDefaultValue(5);
+		megaCryseSC = prop.getInt(5);
+
+		prop = cat.get("norVoxSpawnChance");
+		prop.setDefaultValue(25);
+		norVoxSC = prop.getInt(25);
+
+		prop = cat.get("starVoxSpawnChance");
+		prop.setDefaultValue(25);
+		starVoxSC = prop.getInt(25);
+
+		prop = cat.get("voxStellarumSpawnChance");
+		prop.setDefaultValue(5);
+		voxStellarumSC = prop.getInt(5);
+
+		prop = cat.get("pirahSpawnChance");
+		prop.setDefaultValue(25);
+		pirahSC = prop.getInt(25);
+
+		prop = cat.get("stinSpawnChance");
+		prop.setDefaultValue(50);
+		stinSC = prop.getInt(50);
+
+		prop = cat.get("greaterStinSpawnChance");
+		prop.setDefaultValue(5);
+		greaterStinSC = prop.getInt(5);
+
+		prop = cat.get("stinKingSpawnChance");
+		prop.setDefaultValue(5);
+		stinKingSC = prop.getInt(5);
+
+		prop = cat.get("stinQueenSpawnChance");
+		prop.setDefaultValue(5);
+		stinQueenSC = prop.getInt(5);
+
+		prop = cat.get("kindlingSpiritSpawnChance");
+		prop.setDefaultValue(15);
+		kindlingSpiritSC = prop.getInt(15);
+
+		prop = cat.get("abominationSpawnChance");
+		prop.setDefaultValue(25);
+		abominationSC = prop.getInt(25);
+
+		prop = cat.get("erkelSpawnChance");
+		prop.setDefaultValue(25);
+		erkelSC = prop.getInt(25);
+
+		prop = cat.get("sirvSpawnChance");
+		prop.setDefaultValue(50);
+		greaterStinSC = prop.getInt(50);
+
+		prop = cat.get("psygoteSpawnChance");
+		prop.setDefaultValue(5);
+		psygoteSC = prop.getInt(5);
+
+		prop = cat.get("lockbotSpawnChance");
+		prop.setDefaultValue(5);
+		lockbotSC = prop.getInt(5);
+
+		prop = cat.get("nanoSwarmSpawnChance");
+		prop.setDefaultValue(25);
+		nanoSwarmSC = prop.getInt(25);
+
+		prop = cat.get("snowGolemSpawnChance");
+		prop.setDefaultValue(20);
+		snowGolemSC = prop.getInt(20);
+
+		prop = cat.get("hunterSpawnChance");
+		prop.setDefaultValue(15);
+		hunterSC = prop.getInt(15);
+
+		prop = cat.get("harvesterSpawnChance");
+		prop.setDefaultValue(10);
+		harvesterSC = prop.getInt(10);
+
+		prop = cat.get("archangelSpawnChance");
+		prop.setDefaultValue(5);
+		archangelSC = prop.getInt(5);
+
+		prop = cat.get("ireSpawnChance");
+		prop.setDefaultValue(45);
+		ireSC = prop.getInt(45);
+
+		prop = cat.get("fuseaSpawnChance");
+		prop.setDefaultValue(25);
+		fuseaSC = prop.getInt(25);
+
+		prop = cat.get("volatileFuseaSpawnChance");
+		prop.setDefaultValue(5);
+		volatileFuseaSC = prop.getInt(5);
+
+		prop = cat.get("ranmasSpawnChance");
+		prop.setDefaultValue(25);
+		ranmasSC = prop.getInt(25);
+
+		prop = cat.get("parasmiteSpawnChance");
+		prop.setDefaultValue(25);
+		parasmiteSC = prop.getInt(25);
+
+		prop = cat.get("apisSpawnChance");
+		prop.setDefaultValue(5);
+		apisSC = prop.getInt(5);
+
+		prop = cat.get("skultarSpawnChance");
+		prop.setDefaultValue(5);
+		skultarSC = prop.getInt(5);
+
+		prop = cat.get("kitsunakumaSpawnChance");
+		prop.setDefaultValue(5);
+		kitsunakumaSC = prop.getInt(5);
+
+		prop = cat.get("empariahSpawnChance");
+		prop.setDefaultValue(5);
+		empariahSC = prop.getInt(5);
+
+		prop = cat.get("timeControllerSpawnChance");
+		prop.setDefaultValue(5);
+		timeControllerSC = prop.getInt(5);
+
+		prop = cat.get("polarisSpawnChance");
+		prop.setDefaultValue(5);
+		polarisSC = prop.getInt(5);
+
+		prop = cat.get("enyvilSpawnChance");
+		prop.setDefaultValue(5);
+		enyvilSC = prop.getInt(5);
+
+		prop = cat.get("claymationSpawnChance");
+		prop.setDefaultValue(5);
+		claymationSC = prop.getInt(5);
+
+		prop = cat.get("overlordSpawnChance");
+		prop.setDefaultValue(5);
+		overlordSC = prop.getInt(5);
+
+		prop = cat.get("jabbaStats");
+		prop.setDefaultValues(new double[] {40.0, 0.275, 5.5, 32.0, 0.0, 0});
+		jabbaStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("jannaStats");
+		prop.setDefaultValues(new double[] {20.0, 0.325, 4.5, 32.0, 0.0, 0});
+		jannaStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("jarraStats");
+		prop.setDefaultValues(new double[] {70.0, 0.360, 6.5, 64.0, 0.0, 0});
+		jarraStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("plagueStats");
+		prop.setDefaultValues(new double[] {4.0, 0.235, 1.0, 16.0, 0.0, 0});
+		plagueStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("gragulStats");
+		prop.setDefaultValues(new double[] {5.0, 0.350, 5.0, 32.0, 0.0, 0});
+		gragulStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("kragulStats");
+		prop.setDefaultValues(new double[] {8.0, 0.380, 5.0, 5.0, 32.0, 0});
+		kragulStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("minotaurStats");
+		prop.setDefaultValues(new double[] {32.0, 0.350, 7.0, 32.0, 0.5, 6});
+		minotaurStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("inklingStats");
+		prop.setDefaultValues(new double[] {16.0, 0.230, 1.0, 32.0, 0.0, 0});
+		inklingStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("ragrStats");
+		prop.setDefaultValues(new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10});
+		ragrStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("pumpkinheadStats");
+		prop.setDefaultValues(new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 18});
+		pumpkinheadStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("tragicNekoStats");
+		prop.setDefaultValues(new double[] {80.0, 0.335, 6.0, 32.0, 0.0, 0});
+		tragicNekoStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("toxStats");
+		prop.setDefaultValues(new double[] {40.0, 0.050, 8.0, 64.0, 1.0, 16});
+		toxStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("poxStats");
+		prop.setDefaultValues(new double[] {30.0, 0.050, 4.0, 64.0, 0.7, 10});
+		poxStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("magmoxStats");
+		prop.setDefaultValues(new double[] {75.0, 0.050, 15.0, 64.0, 1.0, 20});
+		magmoxStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("cryseStats");
+		prop.setDefaultValues(new double[] {35.0, 0.285, 4.0, 48.0, 0.0, 4});
+		cryseStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("starCryseStats");
+		prop.setDefaultValues(new double[] {55.0, 0.315, 4.0, 48.0, 0.0, 4});
+		starCryseStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("megaCryseStats");
+		prop.setDefaultValues(new double[] {50.0, 0.310, 6.0, 48.0, 1.0, 18});
+		megaCryseStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("norVoxStats");
+		prop.setDefaultValues(new double[] {30.0, 0.390, 4.0, 32.0, 0.25, 8});
+		norVoxStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("starVoxStats");
+		prop.setDefaultValues(new double[] {40.0, 0.390, 4.0, 32.0, 0.25, 16});
+		starVoxStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("voxStellarumStats");
+		prop.setDefaultValues(new double[] {150.0, 0.460, 4.0, 64.0, 0.2, 16});
+		voxStellarumStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("pirahStats");
+		prop.setDefaultValues(new double[] {10.0, 0.450, 3.0, 16.0, 0.0, 0});
+		pirahStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("goldenPirahStats");
+		prop.setDefaultValues(new double[] {25.0, 0.450, 7.5, 16.0, 0.0, 0});
+		goldenPirahStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("stinStats");
+		prop.setDefaultValues(new double[] {40.0, 0.246, 10.0, 32.0, 0.5, 6});
+		stinStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("stinBabyStats");
+		prop.setDefaultValues(new double[] {16.0, 0.346, 6.0, 32.0, 0.0, 0});
+		stinBabyStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("greaterStinStats");
+		prop.setDefaultValues(new double[] {80.0, 0.276, 14.0, 24.0, 1.0, 12});
+		greaterStinStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("stinKingStats");
+		prop.setDefaultValues(new double[] {100.0, 0.226, 20.0, 32.0, 2.0, 20});
+		stinKingStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("stinQueenStats");
+		prop.setDefaultValues(new double[] {160.0, 0.186, 12.0, 24, 2.0, 10});
+		stinQueenStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("kindlingSpiritStats");
+		prop.setDefaultValues(new double[] {8.0, 0.476, 1.0, 16.0, 0.0, 0});
+		kindlingSpiritStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("abominationStats");
+		prop.setDefaultValues(new double[] {45.0, 0.276, 7.0, 32.0, 0.5, 4});
+		abominationStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("erkelStats");
+		prop.setDefaultValues(new double[] {16.0, 0.476, 1.0, 16.0, 0.0, 0});
+		erkelStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("sirvStats");
+		prop.setDefaultValues(new double[] {8.0, 0.375, 14.0, 64.0, 0.5, 0});
+		sirvStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("lockbotStats");
+		prop.setDefaultValues(new double[] {22.0, 0.0, 1.0, 8.0, 100.0, 8});
+		lockbotStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("nanoSwarmStats");
+		prop.setDefaultValues(new double[] {6.0, 0.335, 2.0, 64.0, 0.0, 0});
+		nanoSwarmStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("hunterStats");
+		prop.setDefaultValues(new double[] {16.0, 0.236, 4.0, 32.0, 0.0, 0});
+		hunterStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("harvesterStats");
+		prop.setDefaultValues(new double[] {56.0, 0.145, 0.0, 16.0, 100.0, 20});
+		harvesterStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("seekerStats");
+		prop.setDefaultValues(new double[] {30.0, 0.0, 1.0, 48.0, 100.0, 24});
+		seekerStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("archangelStats");
+		prop.setDefaultValues(new double[] {45.0, 0.0, 1.0, 32.0, 0.5, 12});
+		archangelStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("ireStats");
+		prop.setDefaultValues(new double[] {25.0, 0.0, 1.0, 16.0, 100.0, 0});
+		ireStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("fuseaStats");
+		prop.setDefaultValues(new double[] {10.0, 0.0, 0.0, 16.0, 100.0, 0});
+		fuseaStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("volatileFuseaStats");
+		prop.setDefaultValues(new double[] {18.0, 0.0, 0.0, 32.0, 100.0, 0});
+		volatileFuseaStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("ranmasStats");
+		prop.setDefaultValues(new double[] {50.0, 0.0, 1.0, 32.0, 100.0, 24});
+		ranmasStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("parasmiteStats");
+		prop.setDefaultValues(new double[] {10.0, 0.0, 1.0, 16.0, 0.0, 0});
+		parasmiteStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("kurayamiStats");
+		prop.setDefaultValues(new double[] {120.0, 0.420, 12.0, 64.0, 0.4, 10});
+		kurayamiStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("avrisStats");
+		prop.setDefaultValues(new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16});
+		avrisStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("aegarStats");
+		prop.setDefaultValues(new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
+		aegarStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("apisStats");
+		prop.setDefaultValues(new double[] {160.0, 0.375, 12.0, 32.0, 1.0, 16});
+		apisStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("skultarStats");
+		prop.setDefaultValues(new double[] {220.0, 0.350, 16.0, 32.0, 1.0, 20});
+		skultarStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("kitsunakumaStats");
+		prop.setDefaultValues(new double[] {80.0, 0.420, 6.0, 64.0, 0.0, 0});
+		kitsunakumaStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("polarisStats");
+		prop.setDefaultValues(new double[] {120.0, 0.440, 5.0, 64.0, 0.0, 14});
+		polarisStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("empariahStats");
+		prop.setDefaultValues(new double[] {140.0, 0.326, 16.0, 48.0, 2.0, 22});
+		empariahStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("timeControllerStats");
+		prop.setDefaultValues(new double[] {350.0, 0.366, 6.0, 64.0, 0.5, 18});
+		timeControllerStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("enyvilStats");
+		prop.setDefaultValues(new double[] {450.0, 0.276, 24.0, 48.0, 1.0, 4});
+		enyvilStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("claymationStats");
+		prop.setDefaultValues(new double[] {150.0, 0.320, 12.0, 32.0, 1.0, 18});
+		claymationStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("overlordCocoonStats");
+		prop.setDefaultValues(new double[] {500.0, 0.226, 24.0, 64.0, 4.5, 0});
+		overlordCocoonStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("overlordCombatStats");
+		prop.setDefaultValues(new double[] {500.0, 0.326, 24.0, 64.0, 4.5, 0});
+		overlordCombatStats = verifyStat(prop.getDoubleList());
+
+		prop = cat.get("overlordCoreStats");
+		prop.setDefaultValues(new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0});
+		overlordCoreStats = verifyStat(prop.getDoubleList());
+
+		cat = config.getCategory(CAT_POTION);
+		cat.setComment("Modify various aspects of Potions.");
+		cat.setRequiresMcRestart(true);
+
+		prop = cat.get("flightAllow");
+		prop.setDefaultValue(true);
+		potionAllow[m = 0] = prop.getBoolean(true);
+
+		prop = cat.get("aquaSuperiorityAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("immunityAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("resurrectionAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("harmonyAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("invulnerabilityAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("clarityAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("convergenceAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("divinityAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("corruptionAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("disorientationAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("stunAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("fearAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("malnourishAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("crippleAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("submissionAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("inhibitAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("leadFootAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("hackedAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("burnedAllow");
+		prop.setDefaultValue(true);
+		potionAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("flightID");
+		prop.setDefaultValue(findPotionID(32));
+		idFlight = prop.getInt(findPotionID(32));
+
+		prop = cat.get("aquaSuperiorityID");
+		prop.setDefaultValue(findPotionID(idFlight));
+		idAquaSuperiority = prop.getInt(findPotionID(idFlight));
+
+		prop = cat.get("immunityID");
+		prop.setDefaultValue(findPotionID(idAquaSuperiority));
+		idImmunity = prop.getInt(findPotionID(idAquaSuperiority));
+
+		prop = cat.get("resurrectionID");
+		prop.setDefaultValue(findPotionID(idImmunity));
+		idResurrection = prop.getInt(findPotionID(idImmunity));
+
+		prop = cat.get("harmonyID");
+		prop.setDefaultValue(findPotionID(idResurrection));
+		idHarmony = prop.getInt(findPotionID(idResurrection));
+
+		prop = cat.get("invulnernabilityID");
+		prop.setDefaultValue(findPotionID(idHarmony));
+		idInvulnerability = prop.getInt(findPotionID(idHarmony));
+
+		prop = cat.get("clarityID");
+		prop.setDefaultValue(findPotionID(idInvulnerability));
+		idClarity = prop.getInt(findPotionID(idInvulnerability));
+
+		prop = cat.get("convergenceID");
+		prop.setDefaultValue(findPotionID(idClarity));
+		idConvergence = prop.getInt(findPotionID(idClarity));
+
+		prop = cat.get("divinityID");
+		prop.setDefaultValue(findPotionID(idConvergence));
+		idDivinity = prop.getInt(findPotionID(idConvergence));
+
+		prop = cat.get("corruptionID");
+		prop.setDefaultValue(findPotionID(idDivinity));
+		idCorruption = prop.getInt(findPotionID(idDivinity));
+
+		prop = cat.get("disorientationID");
+		prop.setDefaultValue(findPotionID(idCorruption));
+		idDisorientation = prop.getInt(findPotionID(idCorruption));
+
+		prop = cat.get("stunID");
+		prop.setDefaultValue(findPotionID(idDisorientation));
+		idStun = prop.getInt(findPotionID(idDisorientation));
+
+		prop = cat.get("fearID");
+		prop.setDefaultValue(findPotionID(idStun));
+		idFear = prop.getInt(findPotionID(idStun));
+
+		prop = cat.get("malnourishID");
+		prop.setDefaultValue(findPotionID(idFear));
+		idMalnourish = prop.getInt(findPotionID(idFear));
+
+		prop = cat.get("crippleID");
+		prop.setDefaultValue(findPotionID(idMalnourish));
+		idCripple = prop.getInt(findPotionID(idMalnourish));
+
+		prop = cat.get("submissionID");
+		prop.setDefaultValue(findPotionID(idCripple));
+		idSubmission = prop.getInt(findPotionID(idCripple));
+
+		prop = cat.get("inhibitID");
+		prop.setDefaultValue(findPotionID(idSubmission));
+		idInhibit = prop.getInt(findPotionID(idSubmission));
+
+		prop = cat.get("leadFootID");
+		prop.setDefaultValue(findPotionID(idInhibit));
+		idLeadFoot = prop.getInt(findPotionID(idInhibit));
+
+		prop = cat.get("hackedID");
+		prop.setDefaultValue(findPotionID(idLeadFoot));
+		idHacked = prop.getInt(findPotionID(idLeadFoot));
+
+		prop = cat.get("burnedID");
+		prop.setDefaultValue(findPotionID(idHacked));
+		idBurned = prop.getInt(findPotionID(idHacked));
+
+		cat = config.getCategory(CAT_VANILLA);
+		cat.setComment("These toggle the various changes the mod does that explicitly affects Vanilla Minecraft. Ore rate and vein size only affects those ores generated in Vanilla Dimensions.");
+		cat.setRequiresMcRestart(true);
+
+		prop = cat.get("allowMobBuffs");
+		prop.setDefaultValue(true);
+		prop.comment = "Will various Vanilla Mobs gain a Health, Attack Damage, Knockback Resistance or Speed buff?";
+		vanillaConfig[m = 0] = prop.getBoolean(true);
+
+		prop = cat.get("allowExtraMobEffects");
+		prop.setDefaultValue(true);
+		prop.comment = "Will some mobs gain Potion Effect debuffs and other abilities along with their normal attacks?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowAnimalRetribution");
+		prop.setDefaultValue(true);
+		prop.comment = "Can slaying animals sometimes trigger a Lightning strike?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowMobModdedArmor");
+		prop.setDefaultValue(true);
+		prop.comment = "Can Vanilla mobs sometimes spawn in with Armor from the mod?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowRespawnPunishment");
+		prop.setDefaultValue(true);
+		prop.comment = "Will you get inflicted with negative effects upon respawning after a death?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowExtraExplosiveEffects");
+		prop.setDefaultValue(true);
+		prop.comment = "Do explosions inflict extra negative effects on you when hit?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowMobBlindnessDebuff");
+		prop.setDefaultValue(true);
+		prop.comment = "Does Blindness reduce the follow range of mobs?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowExtraOverworldFlowers");
+		prop.setDefaultValue(true);
+		prop.comment = "Can some of the mod-exclusive flowers generate in Vanilla biomes?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowOverworldSilverfishGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Will Silverfish stone generate in lower y-levels in the Overworld?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowNetherOreGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Can mod-exclusive ores generate in the Nether?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowOverworldOreGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Can mod-exclusive ores generate in the Overworld?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowDrudgeGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Can Drudge generate in the Nether?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowAnimalAndGolemCorruption");
+		prop.setDefaultValue(true);
+		prop.comment = "Can Animals and Golems become Corrupted?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowCowMinotaurCreation");
+		prop.setDefaultValue(true);
+		prop.comment = "Will striking a Cow with Lightning turn it into a Minotaur?";
+		vanillaConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("rubyOreGenRate");
+		prop.setDefaultValue(10);
+		rubyOreRate = prop.getInt(10);
+
+		prop = cat.get("rubyOreVeinSize");
+		prop.setDefaultValue(3);
+		rubyOreVeinSize = prop.getInt(3);
+
+		prop = cat.get("sapphireOreGenRate");
+		prop.setDefaultValue(10);
+		sapphireOreRate = prop.getInt(10);
+
+		prop = cat.get("sapphireOreVeinSize");
+		prop.setDefaultValue(3);
+		sapphireOreVeinSize = prop.getInt(3);
+
+		prop = cat.get("mercuryOreGenRate");
+		prop.setDefaultValue(20);
+		mercuryOreRate = prop.getInt(20);
+
+		prop = cat.get("mercuryOreVeinSize");
+		prop.setDefaultValue(4);
+		mercuryOreVeinSize = prop.getInt(4);
+
+		prop = cat.get("tungstenOreGenRate");
+		prop.setDefaultValue(10);
+		tungstenOreRate = prop.getInt(10);
+
+		prop = cat.get("tungstenOreVeinSize");
+		prop.setDefaultValue(3);
+		tungstenOreVeinSize = prop.getInt(3);
+
+		prop = cat.get("drudgeGenRate");
+		prop.setDefaultValue(10);
+		drudgeRate = prop.getInt(10);
+
+		prop = cat.get("drudgeVeinSize");
+		prop.setDefaultValue(10);
+		drudgeVeinSize = prop.getInt(10);
+
+		prop = cat.get("silverfishStoneGenRate");
+		prop.setDefaultValue(12);
+		silverfishRate = prop.getInt(12);
+
+		prop = cat.get("silverfishStoneVeinSize");
+		prop.setDefaultValue(3);
+		silverfishVeinSize = prop.getInt(3);
+
+		prop = cat.get("aerisRarity");
+		prop.setDefaultValue(5);
+		aerisRarity = prop.getInt(5);
+
+		cat = config.getCategory(CAT_WORLDGEN);
+		cat.setComment("Change things related to the mod-exclusive Dimensional World Generation.");
+		cat.setRequiresMcRestart(true);
+
+		prop = cat.get("allowVoidPits");
+		prop.setDefaultValue(true);
+		prop.comment = "Should void pits be allowed to generate?";
+		worldGenConfig[m = 0] = prop.getBoolean(true);
+
+		prop = cat.get("allowSpikes");
+		prop.setDefaultValue(true);
+		prop.comment = "Should large spikes, ice spikes, star crystals and crystal spikes be allowed to generate?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowScatteredSurfaceWorldGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should scattered surface features like mixed dirt, light orbs and cracked permafrost be allowed to generate?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowStringLights");
+		prop.setDefaultValue(true);
+		prop.comment = "Should String Lights be allowed to generate?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowDarkStoneVariantGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should Dark Stone have layers generate as a colored variant?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowStructureGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should mod-exclusive Structures be allowed to generate?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowRoughTerrainGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should rough terrain like in the Tainted or Scorched Scarlands be generated?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowDigitalSeaGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should Digital Sea generate in the Synapse?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowFruitGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should Honeydrop, Deathglow and Sky Fruit generate naturally?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowIsleGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should Isles be generated in the Tainted Isles biome?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowFlowerGen");
+		prop.setDefaultValue(true);
+		prop.comment = "Should flowers generate in the mod's Dimensions?";
+		worldGenConfig[++m] = prop.getBoolean(true);
+
+		cat = config.getCategory(CAT_STRUCTURE);
+		cat.setComment("Toggle specific structures and change their rarities. Higher number is higher chance to generate.");
+		cat.setRequiresWorldRestart(true);
+
+		prop = cat.get("structureOverallRarity");
+		prop.setDefaultValue(15);
+		structureOverallRarity = clamp(prop.getInt(15), 1, 500);
+
+		prop = cat.get("apisTempleAllow");
+		prop.setDefaultValue(true);
+		structureAllow[m = 0] = prop.getBoolean(true);
+
+		prop = cat.get("randomTowerAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("deathCircleAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("obsidianCavernAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("kitsunakumaDenAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("celestialTempleAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("timeAltarAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("soulTombAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("corruptedSpireAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("empariahCaveAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("claymationRuinAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("darkHutAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("spiderNestAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("memoryCacheAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("lightSpireAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("hackerNetAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("cubeMazeAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("outlookAllow");
+		prop.setDefaultValue(true);
+		structureAllow[++m] = prop.getBoolean(true);
+
+		prop = cat.get("apisTempleRarity");
+		prop.setDefaultValue(5);
+		structureRarity[m = 0] = clamp(prop.getInt(5), 1, 200);
+
+		prop = cat.get("randomTowerRarity");
+		prop.setDefaultValue(15);
+		structureRarity[++m] = clamp(prop.getInt(15), 1, 200);
+
+		prop = cat.get("deathCircleRarity");
+		prop.setDefaultValue(5);
+		structureRarity[++m] = clamp(prop.getInt(5), 1, 200);
+
+		prop = cat.get("obsidianCavernRarity");
+		prop.setDefaultValue(10);
+		structureRarity[++m] = clamp(prop.getInt(10), 1, 200);
+
+		prop = cat.get("kitsunakumaDenRarity");
+		prop.setDefaultValue(5);
+		structureRarity[++m] = clamp(prop.getInt(5), 1, 200);
+
+		prop = cat.get("celestialTempleRarity");
+		prop.setDefaultValue(10);
+		structureRarity[++m] = clamp(prop.getInt(10), 1, 200);
+
+		prop = cat.get("timeAltarRarity");
+		prop.setDefaultValue(3);
+		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+
+		prop = cat.get("soulTombRarity");
+		prop.setDefaultValue(15);
+		structureRarity[++m] = clamp(prop.getInt(15), 1, 200);
+
+		prop = cat.get("corruptedSpireRarity");
+		prop.setDefaultValue(0);
+		structureRarity[++m] = clamp(prop.getInt(0), 1, 200);
+
+		prop = cat.get("empariahCaveRarity");
+		prop.setDefaultValue(5);
+		structureRarity[++m] = clamp(prop.getInt(5), 1, 200);
+
+		prop = cat.get("claymationRuinRarity");
+		prop.setDefaultValue(5);
+		structureRarity[++m] = clamp(prop.getInt(5), 1, 200);
+
+		prop = cat.get("darkHutRarity");
+		prop.setDefaultValue(15);
+		structureRarity[++m] = clamp(prop.getInt(15), 1, 200);
+
+		prop = cat.get("spiderNestRarity");
+		prop.setDefaultValue(15);
+		structureRarity[++m] = clamp(prop.getInt(15), 1, 200);
+
+		prop = cat.get("memoryCacheRarity");
+		prop.setDefaultValue(3);
+		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+
+		prop = cat.get("lightSpireRarity");
+		prop.setDefaultValue(10);
+		structureRarity[++m] = clamp(prop.getInt(10), 1, 200);
+
+		prop = cat.get("hackerNetRarity");
+		prop.setDefaultValue(3);
+		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+
+		prop = cat.get("cubeMazeRarity");
+		prop.setDefaultValue(25);
+		structureRarity[++m] = clamp(prop.getInt(25), 1, 200);
+
+		prop = cat.get("outlookRarity");
+		prop.setDefaultValue(3);
+		structureRarity[++m] = clamp(prop.getInt(3), 1, 200);
+
+		cat = config.getCategory(CAT_MISC);
+		cat.setComment("Random other options that don't quite fit into other categories.");
+
+		prop = cat.get("allowRandomWeaponLore");
+		prop.setDefaultValue(true);
+		prop.comment = "Should mod-exclusive weapons and armor come with randomized Lore?";
+		allowRandomWeaponLore = prop.getBoolean(true);
+
+		prop = cat.get("allowChallengeScrolls");
+		prop.setDefaultValue(true);
+		prop.comment = "Are Challenge Scrolls enabled?";
+		allowChallengeScrolls = prop.getBoolean(true);
+
+		prop = cat.get("allowMobStatueDrops");
+		prop.setDefaultValue(true);
+		prop.comment = "Can certain mobs drop statues?";
+		allowMobStatueDrops = prop.getBoolean(true);
+
+		prop = cat.get("allowGeneratorItems");
+		prop.setDefaultValue(true);
+		prop.comment = "Will Creative mode-only generator items be enabled?";
+		allowGeneratorItems = prop.getBoolean(true);
+
+		prop = cat.get("allowItemTimeAltering");
+		prop.setDefaultValue(true);
+		prop.comment = "Certain items and blocks may alter in-game time, should this be allowed?";
+		allowItemTimeAltering = prop.getBoolean(true);
+
+		prop = cat.get("allowPvP");
+		prop.setDefaultValue(true);
+		prop.comment = "Should Doomsdays and Weapons be able to be used against other players?";
+		allowPvP = prop.getBoolean(true);
+
+		prop = cat.get("allowDefaultLores");
+		prop.setDefaultValue(true);
+		prop.comment = "Should the Lores bundled with the mod be used? Perhaps disable them if you wish to only use your own custom Lore.";
+		allowDefaultLores = prop.getBoolean(true);
+
+		prop = cat.get("allowCorruptionTransfer");
+		prop.setDefaultValue(true);
+		prop.comment = "Should Corruption transfer between entities?";
+		allowCorruptionTransfer = prop.getBoolean(true);
+
+		prop = cat.get("challengeScrollDropChance");
+		prop.setDefaultValue(5);
+		prop.comment = "Chance for Challenge Scrolls to drop off of any mob that you kill.";
+		challengeScrollDropChance = clamp(prop.getInt(5), 1, 100);
+
+		prop = cat.get("mobStatueDropChance");
+		prop.setDefaultValue(100);
+		prop.comment = "Chance for a mob to drop it's corresponding statue. Only certain mobs have these.";
+		mobStatueDropChance = clamp(prop.getInt(100), 1, 100);
+
+		cat = config.getCategory(CAT_CLIENT);
+		cat.setComment("These are client-side only options, they affect nothing on the server-side.");
+		cat.setShowInGui(true);
+
+		prop = cat.get("allowAnimatedGui");
+		prop.setDefaultValue(true);
+		allowAnimatedGui = prop.getBoolean(true);
+
+		prop = cat.get("allowArmorModels");
+		prop.setDefaultValue(true);
+		allowArmorModels = prop.getBoolean(true);
+
+		prop = cat.get("allowWeaponModels");
+		prop.setDefaultValue(true);
+		allowWeaponModels = prop.getBoolean(true);
+
+		prop = cat.get("allowDivinityColorChange");
+		prop.setDefaultValue(true);
+		allowDivinityColorChange = prop.getBoolean(true);
+		
+		prop = cat.get("showDoomGui");
+		prop.setDefaultValue(true);
+		showDoomGui = prop.getBoolean(true);
+		
+		prop = cat.get("showAmuletStatusGui");
+		prop.setDefaultValue(true);
+		showAmuletStatusGui = prop.getBoolean(true);
+
+		prop = cat.get("guiTransparency");
+		prop.setDefaultValue(100);
+		guiTransparency = clamp(prop.getInt(100), 1, 100);
+
+		prop = cat.get("guiTextureSkinID");
+		prop.setDefaultValue(0);
+		guiTexture = clamp(prop.getInt(0), 0, 100);
+
+		prop = cat.get("guiX");
+		prop.setDefaultValue(1);
+		guiX = clampPositive(prop.getInt(1));
+
+		prop = cat.get("guiY");
+		prop.setDefaultValue(1);
+		guiY = clampPositive(prop.getInt(1));
+
+		cat = config.getCategory(CAT_GRIEF);
+		cat.setComment("Toggle whether specific Weapon abilities or Doomsdays damage the terrain.");
+
+		prop = cat.get("allowNatureDrainDestruction");
+		prop.setDefaultValue(true);
+		griefConfig[m = 0] = prop.getBoolean(true);
+
+		prop = cat.get("allowRavageDestruction");
+		prop.setDefaultValue(true);
+		griefConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowFrozenLightningDestruction");
+		prop.setDefaultValue(true);
+		griefConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowMourningStarDestruction");
+		prop.setDefaultValue(true);
+		griefConfig[++m] = prop.getBoolean(true);
+
+		prop = cat.get("allowTitanDestruction");
+		prop.setDefaultValue(true);
+		griefConfig[++m] = prop.getBoolean(true);
+
+		cat = config.getCategory(CAT_MODIFIERS);
+		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");
+		//TODO finish setting up modifiers
 		//load2();
 	}
 
@@ -2662,11 +3712,12 @@ public class NewConfig {
 
 	private static void postProcessConfigs()
 	{
-		if (mobsOnly)
+		if (mobsOnlyMode)
 		{
 			TragicMC.logInfo("mobsOnly mode is enabled, overriding other config options.");
 			hardcoreMode = false;
 			lightweightMode = false;
+			barebonesMode = false;
 			setupMobsOnly();
 		}
 
@@ -2674,13 +3725,21 @@ public class NewConfig {
 		{
 			TragicMC.logInfo("hardcoreMode is enabled, overriding other config options.");
 			lightweightMode = false;
+			barebonesMode = false;
 			setupHardcoreMode();
 		}
 
 		if (lightweightMode)
 		{
 			TragicMC.logInfo("lightweightMode is enabled, overriding other config options.");
+			barebonesMode = false;
 			setupLightweightMode();
+		}
+		
+		if (barebonesMode)
+		{
+			TragicMC.logInfo("barebonesMode is enabled, overriding other config options.");
+			setupBarebonesMode();
 		}
 
 		byte b;
@@ -2731,6 +3790,26 @@ public class NewConfig {
 			for (b = 0; b < bossAllow.length; b++) bossAllow[b] = false;
 		}
 
+		if (!allowPotions)
+		{
+			for (b = 0; b < potionAllow.length; b++) potionAllow[b] = false;
+		}
+
+		if (!allowVanillaChanges)
+		{
+			for (b = 0; b < vanillaConfig.length; b++) vanillaConfig[b] = false;
+		}
+
+		if (!allowWorldGen)
+		{
+			for (b = 0; b < worldGenConfig.length; b++) worldGenConfig[b] = false;
+		}
+
+		if (!worldGenConfig[5]) //structures
+		{
+			for (b = 0; b < structureAllow.length; b++) structureAllow[b] = false;
+		}
+
 		initializeRemainingVariables();
 	}
 
@@ -2741,7 +3820,6 @@ public class NewConfig {
 		allowAmuletCrafting = amuletConfig[++m];
 		requireAmuletSlotUnlock = amuletConfig[++m];
 		allowAmuletBossKillCharge = amuletConfig[++m];
-		showAmuletStatusGui = amuletConfig[++m];
 		allowAmuletModifiers = amuletConfig[++m];
 		allowAmuletDeathDrops = amuletConfig[++m];
 
@@ -2784,7 +3862,6 @@ public class NewConfig {
 		keepCollisionLoaded = dimensionConfig[++m];
 		keepSynapseLoaded = dimensionConfig[++m];
 		allowSynapseVariants = dimensionConfig[++m];
-		allowDigitalSeaGen = dimensionConfig[++m];
 
 		allowDoomsdays = doomConfig[m = 0];
 		allowInfluenceDoomsdays = doomConfig[++m];
@@ -2802,7 +3879,6 @@ public class NewConfig {
 		allowCooldown = doomConfig[++m];
 		allowDoomKillRecharge = doomConfig[++m];
 		allowCooldownDefuse = doomConfig[++m];
-		showDoomGui = doomConfig[++m];
 
 		allowNormalMobs = mobConfig[m = 0];
 		allowMiniBosses = mobConfig[++m];
@@ -2815,23 +3891,208 @@ public class NewConfig {
 		allowGroupBuffs = mobConfig[++m];
 		allowEasyBosses = mobConfig[++m];
 		allowMobSounds = mobConfig[++m];
-		
-		//TODO put mob allowances from their respective arrays
+
+		allowJabba = mobAllow[m = 0];
+		allowJanna = mobAllow[++m];
+		allowPlague = mobAllow[++m];
+		allowGragul = mobAllow[++m];
+		allowMinotaur = mobAllow[++m];
+		allowInkling = mobAllow[++m];
+		allowRagr = mobAllow[++m];
+		allowPumpkinhead = mobAllow[++m];
+		allowTragicNeko = mobAllow[++m];
+		allowTox = mobAllow[++m];
+		allowPox = mobAllow[++m];
+		allowCryse = mobAllow[++m];
+		allowStarCryse = mobAllow[++m];
+		allowNorVox = mobAllow[++m];
+		allowStarVox = mobAllow[++m];
+		allowPirah = mobAllow[++m];
+		allowStin = mobAllow[++m];
+		allowStinBaby = mobAllow[++m];
+		allowKindlingSpirit = mobAllow[++m];
+		allowAbomination = mobAllow[++m];
+		allowErkel = mobAllow[++m];
+		allowSirv = mobAllow[++m];
+		allowPsygote = mobAllow[++m];
+		allowLockbot = mobAllow[++m];
+		allowNanoSwarm = mobAllow[++m];
+		allowSnowGolem = mobAllow[++m];
+		allowHunter = mobAllow[++m];
+		allowHarvester = mobAllow[++m];
+		allowArchangel = mobAllow[++m];
+		allowIre = mobAllow[++m];
+		allowFusea = mobAllow[++m];
+		allowRanmas = mobAllow[++m];
+		allowAvris = mobAllow[++m];
+
+		allowJarra = miniBossAllow[m = 0];
+		allowKragul = miniBossAllow[++m];
+		allowMagmox = miniBossAllow[++m];
+		allowMegaCryse = miniBossAllow[++m];
+		allowVoxStellarum = miniBossAllow[++m];
+		allowGreaterStin = miniBossAllow[++m];
+		allowStinKing = miniBossAllow[++m];
+		allowStinQueen = miniBossAllow[++m];
+		allowAegar = miniBossAllow[++m];
+		allowVolatileFusea = miniBossAllow[++m];
+
+		allowApis = bossAllow[m = 0];
+		allowSkultar = bossAllow[++m];
+		allowKitsunakuma = bossAllow[++m];
+		allowEmpariah = bossAllow[++m];
+		allowTimeController = bossAllow[++m];
+		allowPolaris = bossAllow[++m];
+		allowEnyvil = bossAllow[++m];
+		allowClaymation = bossAllow[++m];
+		allowOverlord = bossAllow[++m];
+
+		allowFlight = potionAllow[m = 0];
+		allowAquaSuperiority = potionAllow[++m];
+		allowImmunity = potionAllow[++m];
+		allowResurrection = potionAllow[++m];
+		allowHarmony = potionAllow[++m];
+		allowInvulnerability = potionAllow[++m];
+		allowClarity = potionAllow[++m];
+		allowConvergence = potionAllow[++m];
+		allowDivinity = potionAllow[++m];
+		allowCorruption = potionAllow[++m];
+		allowDisorientation = potionAllow[++m];
+		allowStun = potionAllow[++m];
+		allowFear = potionAllow[++m];
+		allowMalnourish = potionAllow[++m];
+		allowCripple = potionAllow[++m];
+		allowSubmission = potionAllow[++m];
+		allowInhibit = potionAllow[++m];
+		allowLeadFoot = potionAllow[++m];
+		allowHacked = potionAllow[++m];
+		allowBurned = potionAllow[++m];
+
+		allowVanillaMobBuffs = vanillaConfig[m = 0];
+		allowExtraMobEffects = vanillaConfig[++m];
+		allowAnimalRetribution = vanillaConfig[++m];
+		allowMobModdedArmor = vanillaConfig[++m];
+		allowRespawnPunishment = vanillaConfig[++m];
+		allowExtraExplosiveEffects = vanillaConfig[++m];
+		allowMobBlindnessDebuff = vanillaConfig[++m];
+		allowExtraOverworldFlowers = vanillaConfig[++m];
+		allowOverworldSilverfishGen = vanillaConfig[++m];
+		allowNetherOreGen = vanillaConfig[++m];
+		allowOverworldOreGen = vanillaConfig[++m];
+		allowDrudgeGen = vanillaConfig[++m];
+		allowAnimalGolemCorruption = vanillaConfig[++m];
+		allowCowMinotaurCreation = vanillaConfig[++m];
 	}
 
 	private static void setupMobsOnly()
 	{
+		//blanket configs
+		allowAchievements = false;
+		allowAmulets = false;
+		allowDimension = false;
+		allowDoom = false;
+		allowEnchantments = false;
+		allowPotions = false;
+		allowVanillaChanges = false;
+		allowWorldGen = false;
 
+		//internal mod options
+		allowNonMobItems = false;
+		allowNonMobBlocks = false;
+		allowNetwork = false;
+		allowRecipes = false;
+		allowSurvivalTab = false;
 	}
 
 	private static void setupHardcoreMode()
 	{
+		//blanket configs
+		allowAchievements = true;
+		allowAmulets = true;
+		allowDimension = true;
+		allowDoom = true;
+		allowEnchantments = true;
+		allowMobs = true;
+		allowPotions = true;
+		allowVanillaChanges = true;
+		allowWorldGen = true;
 
+		//internal mod options
+		allowNonMobItems = true;
+		allowNonMobBlocks = true;
+		allowNetwork = true;
+		allowRecipes = true;
+		allowSurvivalTab = true;
+
+		//hardcore-exclusive options
+		//disable epic amulets
+		amuletConfig[13] = false; //time
+		amuletConfig[18] = false; //wither
+		amuletConfig[22] = false; //overlord
+		amuletConfig[29] = false; //enyvil
+		
+		//simpified doom setup, disable easy mode things
+		maxDoomAmount = 10;
+		maxDoomStart = 5;
+		doomConfig[0] = true; //doomsdays
+		doomConfig[10] = false; //natural recharge
+		doomConfig[11] = false; //crucial moments
+		doomConfig[9] = false; //doom pain recharge
+		doomConfig[8] = false; //consume refill
+		doomConfig[15] = false; //cooldown defuse
+		doomConsumeAmount = 1;
+		doomRechargeAmount = 1;
+		for (byte b = 0; b < doomsdayCost.length; b++) doomsdayCost[b] = doomsdayCost[b] > 100 ? 3 : (doomsdayCost[b] > 50 ? 2 : 1); //basically 1 - 50 is simplified to 1, 51 - 100 is simplified to 2, everything higher is 3
+		
+		//remove crutch potion effects
+		potionAllow[2] = false; //immunity
+		potionAllow[3] = false; //resurrection
+		potionAllow[4] = false; //harmony
+		potionAllow[6] = false; //clarity
+		
+		//remove avris, erkel and wisps
+		mobAllow[32] = false; //avris
+		mobAllow[18] = false; //wisps
+		mobAllow[20] = false; //erkel
+		
+		//TODO setup mob stat changes for hardcore mode
 	}
 
 	private static void setupLightweightMode()
 	{
+		//remove a lot of the risks, backlash, respawn punishment, simplify doom costs to use 5 to 25 with the max values set to the defaults
+		//mob stats are balanced more to fit in with vanilla mob amounts (20 health, 4 - 6 attack damage, etc.)
+		//bosses are balanced to fit in more with the vanilla bosses (200 health, 6 attack damage, etc.)
+		//less negative effects are enabled, plagues have their natural spawns disabled and mobs cannot transform into mini-bosses
+		doomConfig[12] = false; //backlash
+		doomConfig[13] = false; //cooldown
+		allowRespawnPunishment = false;
+		
+		//TODO setup mob stat changes for lightweight mode
+	}
+	
+	private static void setupBarebonesMode()
+	{
+		//removes a lot of the newer stuff this version adds from the original one, doom, amulets, dimensions
+		//retains the simplicity of the original by only having mobs, weapons and other items available
+		
+		//blanket configs
+		allowAchievements = true;
+		allowAmulets = false;
+		allowDimension = false;
+		allowDoom = false;
+		allowEnchantments = true;
+		allowMobs = true;
+		allowPotions = false;
+		allowVanillaChanges = false;
+		allowWorldGen = false;
 
+		//internal mod options
+		allowNonMobItems = true;
+		allowNonMobBlocks = false;
+		allowNetwork = true;
+		allowRecipes = true;
+		allowSurvivalTab = true;
 	}
 
 	public static int clampPositive(int value) {
@@ -2839,11 +4100,11 @@ public class NewConfig {
 	}
 
 	public static int clamp(final int value, final int min, final int max) {
-		return value >= min && value <= max ? value : (value < min ? min : max);
+		return net.minecraft.util.MathHelper.clamp_int(value, min, max);
 	}
 
-	public static int clampExc(final int value, final int min, final int max) {
-		return value > min && value < max ? value : (value <= min ? min + 1 : max - 1);
+	private static double[] verifyStat(final double[] array) {
+		return verify(array, 6);
 	}
 
 	private static double[] verify(final double[] array, final int amt)
@@ -2852,7 +4113,7 @@ public class NewConfig {
 		{
 			throw new IllegalArgumentException("Invalid array length, required length was " + amt + ", array length was " + array.length);
 		}
-		
+
 		for (int i = 0; i < amt; i++)
 		{
 			if (Double.isNaN(array[i]))
@@ -2863,14 +4124,14 @@ public class NewConfig {
 		return array;
 	}
 
-	private static int findOpenID(final Object[] array, int start)
+	private static int findOpenID(final Object[] array, int start, final boolean loop)
 	{
 		final int l = array.length;
 
 		if (start < l && array[start] == null) return start;
 		else if (start >= l || start < 0) start = 0;
 
-		boolean once = false;
+		boolean once = !loop;
 
 		for (int i = 0; i < l; i++)
 		{
@@ -2881,7 +4142,7 @@ public class NewConfig {
 			}
 			else if (once && start + i >= l) break;
 
-			if (array[start + i] == null) continue;
+			if (array[start + i] != null) continue;
 			return start + i;
 		}
 
@@ -2890,14 +4151,14 @@ public class NewConfig {
 	}
 
 	public static int findBiomeID(int start) {
-		return findOpenID(BiomeGenBase.getBiomeGenArray(), start);
+		return findOpenID(BiomeGenBase.getBiomeGenArray(), start, true);
 	}
 
 	public static int findEnchantID(int start) {
-		return findOpenID(Enchantment.enchantmentsList, start);
+		return findOpenID(Enchantment.enchantmentsList, start, true);
 	}
 
 	public static int findPotionID(int start) {
-		return findOpenID(Potion.potionTypes, start);
+		return findOpenID(Potion.potionTypes, start, false);
 	}
 }

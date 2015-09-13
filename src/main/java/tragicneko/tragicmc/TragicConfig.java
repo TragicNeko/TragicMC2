@@ -144,7 +144,7 @@ public class TragicConfig {
 
 	private static boolean[] miscConfigs = new boolean[16];
 	public static boolean allowRandomWeaponLore, allowChallengeScrolls, allowMobStatueDrops, allowAnimatedGui, allowGeneratorItems, allowItemTimeAltering, allowWeaponModels;
-	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowDivinityColorChange, allowDefaultLores;
+	public static boolean allowPvP, allowFlightNotify, allowArmorModels, allowDivinityColorChange, allowDefaultLores; //allowCorruptionTransfer
 	private static int[] miscInts = new int[16];
 	public static int challengeScrollDropChance, mobStatueDropChance, guiTransparency, guiTexture, guiX, guiY;
 	public static double[] modifierAmts = new double[32];
