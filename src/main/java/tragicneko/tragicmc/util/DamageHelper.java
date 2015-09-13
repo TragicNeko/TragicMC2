@@ -6,7 +6,10 @@ import net.minecraft.util.EntityDamageSource;
 
 public class DamageHelper {
 	
-	public static DamageSource bleed = new DamageSource("bleed").setDamageBypassesArmor();
+	public static DamageSource bleed = new DamageSource("bleed").setDamageBypassesArmor(); //for the bleed potion effect
+	public static DamageSource corruption = new DamageSource("corruption").setMagicDamage(); //for corruption/pure corruption potion effect damage
+	public static DamageSource selfInflicted = new DamageSource("selfInflicted").setDamageIsAbsolute(); //for blood sacrifice and possibly other abilities in the future
+	public static DamageSource spike = new DamageSource("spike").setDamageBypassesArmor(); //for ice spike damage
 
 	/**
 	 * Should be used to inflict suffocation damage on entities
