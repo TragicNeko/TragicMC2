@@ -4317,13 +4317,18 @@ Added sound for when a Tragic Neko drops a bomb on death (uses creeper fizz soun
 2.44.2776B
 Fixed Aegar not dropping Synapse Links
 
-2.45.2776++ <210> (September 3, 2015) [Completely revamp the Config, added more options and categories for it]
+2.45.2776++ <210> (September 3, 2015) [Completely revamp the Config, added more options and categories for it, it is easier, better, faster, stronger...]
 Fixed Apis "sliding" when using it's stomp attack
 Modified Titan's Lightning Strike ability to use the updated one from the 1.8 port
 Working on improving the config and setting up some master configs other than mobsOnly mode, hardcore mode has a lot of the easy-mode options disabled and has things scaled in a very
 unforgiving manner, including mob health and doomsday costs, lightweight mode has a lot of the risk removed from doing stuff in the mod and most mobs have their health and damage debuffed
 from normal
 Rewriting the config will take a while, then I'll port it over to the 1.8 version
+Added new Damage Sources
+Ensure that Doom doesn't regenerate while the player still has cooldown
+Removed some unnecessary config options, reorganized options into more distinct categories, added more options for various categories
+Reorganized the config itself to be faster and also easier to read
+Added and set up new master configs, finally more alongside mobsOnly mode
 
 Plans for next release:
 Rewrite config, possiby add in-game gui for it
