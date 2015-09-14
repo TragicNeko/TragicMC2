@@ -204,12 +204,10 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		//ItemModelMesher mesher = mc.getRenderItem().getItemModelMesher();
-		//this.registerItemBlockRenders(mesher);
 
 		//Gui event registration
 		if (TragicConfig.showDoomGui) MinecraftForge.EVENT_BUS.register(new GuiDoom(mc));
-		if (TragicConfig.showAmuletStatus) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(mc));
+		if (TragicConfig.showAmuletStatusGui) MinecraftForge.EVENT_BUS.register(new GuiAmuletStatus(mc));
 
 		//Keybinding registrations
 		ClientRegistry.registerKeyBinding(useSpecial);
@@ -341,48 +339,10 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCombat.class, new RenderOverlordCombat());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverlordCore.class, new RenderOverlordCore());
 	}
-	/*
-	public void registerItemBlockRenders(ItemModelMesher mesher)
-	{
-		Item ib; //Itemblock for block registrations
-	} */
 
 	@Override
 	public EntityPlayer getPlayerFromMessageCtx(MessageContext ctx)
 	{
 		return Minecraft.getMinecraft().thePlayer;
 	}
-
-	/*//These are just being kept here until I update to 1.8, assuming there is no changes to forge until then, if you're wondering, these are for the new block/item rendering
-	public static String[] getColoredVariantsForBlock(Item ib)
-	{
-		String[] colors = new String[16];
-		for (int i = 0; i < 16; i++)
-		{
-			colors[i] = moddir + ib.getUnlocalizedName() + multicolors[i];
-		}
-
-		return colors;
-	}
-
-	public static void registerItemToMesher(Item item, int meta, String location)
-	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(moddir + location, "inventory"));
-	}
-
-	public static void registerBlockToMesher(Block block, int meta, String location)
-	{
-		registerItemToMesher(Item.getItemFromBlock(block), meta, location);
-	}
-
-	public static void registerBlockToBakery(Block block, String... names)
-	{
-		registerItemToBakery(Item.getItemFromBlock(block), names);
-	}
-
-	public static void registerItemToBakery(Item item, String... names)
-	{
-		ModelBakery.registerVariantNames(item, names);
-	}
-	 */
 }

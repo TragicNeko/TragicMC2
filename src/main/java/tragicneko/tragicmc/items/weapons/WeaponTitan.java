@@ -29,7 +29,7 @@ public class WeaponTitan extends EpicWeapon {
 
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[31]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[31])
+		if (canUseAbility(doom, TragicConfig.doomAbilityCost[31]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[31])
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -37,9 +37,9 @@ public class WeaponTitan extends EpicWeapon {
 						entity.posZ + itemRand.nextDouble() - itemRand.nextDouble(), player));
 			}
 
-			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicConfig.griefConfigs[4]);
+			player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, itemRand.nextFloat() * 3.0F, TragicConfig.griefConfig[4]);
 
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[31]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[31]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -56,7 +56,7 @@ public class WeaponTitan extends EpicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 50.0);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[32]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[32])
+		if (canUseAbility(doom, TragicConfig.doomAbilityCost[32]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[32])
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
 			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
@@ -77,7 +77,7 @@ public class WeaponTitan extends EpicWeapon {
 				y1 = WorldHelper.getDistanceToGround(par2World, (int) x, (int) par3EntityPlayer.posY, (int) z);
 				par2World.addWeatherEffect(new EntityLightningBolt(par2World, x, y, z));
 			}
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[32]);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[32]);
 			setStackCooldown(par1ItemStack, 5);
 		}
 		return par1ItemStack;

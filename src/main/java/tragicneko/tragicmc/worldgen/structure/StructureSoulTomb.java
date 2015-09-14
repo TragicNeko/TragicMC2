@@ -13,12 +13,6 @@ public class StructureSoulTomb extends Structure {
 	}
 
 	@Override
-	public boolean canGenerate()
-	{
-		return TragicConfig.allowNonBossStructureGen;
-	}
-
-	@Override
 	public int getVariantSize()
 	{
 		return SchematicSoulTomb.blocks.length;
@@ -27,14 +21,14 @@ public class StructureSoulTomb extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
 		if (y >= 62 || rand.nextInt(8) != 0 || world.getTopSolidOrLiquidBlock(x, z) < y) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.soulTombRarity; //checks smaller radius due to the nature of the obsidian cavern schematic
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 	}
 
 	@Override

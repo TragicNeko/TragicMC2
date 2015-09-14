@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.deathReaperStats;
+import static tragicneko.tragicmc.TragicConfig.skultarStats;
 
 import java.util.List;
 
@@ -179,11 +179,11 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		super.applyEntityAttributes();
 		boolean flag = this.getReaperType() == 0;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(deathReaperStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? deathReaperStats[1] : deathReaperStats[1] * 0.875);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? deathReaperStats[2] : deathReaperStats[2] / 2);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(deathReaperStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? deathReaperStats[4] : deathReaperStats[4] * 0.4);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(skultarStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? skultarStats[1] : skultarStats[1] * 0.875);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? skultarStats[2] : skultarStats[2] / 2);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(skultarStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? skultarStats[4] : skultarStats[4] * 0.4);
 	}
 
 	@Override
@@ -497,7 +497,7 @@ public class EntityDeathReaper extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.getReaperType() == 1 ? MathHelper.floor_double(deathReaperStats[5] / 4) : (this.isBeingAggressive() ? (int) deathReaperStats[5] : MathHelper.floor_double(deathReaperStats[5] / 3));
+		return this.getReaperType() == 1 ? MathHelper.floor_double(skultarStats[5] / 4) : (this.isBeingAggressive() ? (int) skultarStats[5] : MathHelper.floor_double(skultarStats[5] / 3));
 	}
 
 	@Override

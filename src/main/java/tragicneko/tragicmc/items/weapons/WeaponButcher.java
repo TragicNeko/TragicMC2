@@ -17,7 +17,7 @@ import tragicneko.tragicmc.properties.PropertyDoom;
 
 public class WeaponButcher extends EpicWeapon {
 
-	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherKnockbackResistanceBuff", TragicConfig.modifierAmts[23], 0);
+	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("040d7d22-6b19-498b-8216-4316cf39387e"), "butcherKnockbackResistanceBuff", TragicConfig.modifier[23], 0);
 
 	public WeaponButcher(Doomsday dday) {
 		super(dday);
@@ -28,10 +28,10 @@ public class WeaponButcher extends EpicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[6]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[6])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && canUseAbility(doom, TragicConfig.doomAbilityCost[6]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[6])
 		{
 			if (itemRand.nextBoolean()) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 1));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[6]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[6]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -48,10 +48,10 @@ public class WeaponButcher extends EpicWeapon {
 
 		player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).removeModifier(mod);
 
-		if (flag && doom != null && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[5]) && TragicConfig.nonDoomsdayAbilities[5])
+		if (flag && doom != null && canUseAbility(doom, TragicConfig.doomAbilityCost[5]) && TragicConfig.doomAbility[5])
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(mod);
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[5]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[5]);
 		}
 	}
 }

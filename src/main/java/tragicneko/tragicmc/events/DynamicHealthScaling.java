@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.events;
 
-import static tragicneko.tragicmc.TragicConfig.modifierAmts;
+import static tragicneko.tragicmc.TragicConfig.modifier;
 
 import java.util.UUID;
 
@@ -20,9 +20,9 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class DynamicHealthScaling {
 
-	private static AttributeModifier normalHealthDebuff = new AttributeModifier(UUID.fromString("967abeb0-255d-4ac9-bfa7-9636b25b8ca0"), "dynamicMobHealthDebuff", modifierAmts[10], 0);
-	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("3abc10da-144e-4f04-a5dd-f9d7e5feeafe"), "dynamicMobHealthBuff", modifierAmts[11], 0);
-	private static AttributeModifier bossHealthBuff = new AttributeModifier(UUID.fromString("909ba6e3-8763-4720-8fb4-c36db00da69b"), "dynamicBossHealthBuff", modifierAmts[13], 0);
+	private static AttributeModifier normalHealthDebuff = new AttributeModifier(UUID.fromString("967abeb0-255d-4ac9-bfa7-9636b25b8ca0"), "dynamicMobHealthDebuff", modifier[10], 0);
+	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("3abc10da-144e-4f04-a5dd-f9d7e5feeafe"), "dynamicMobHealthBuff", modifier[11], 0);
+	private static AttributeModifier bossHealthBuff = new AttributeModifier(UUID.fromString("909ba6e3-8763-4720-8fb4-c36db00da69b"), "dynamicBossHealthBuff", modifier[13], 0);
 
 	@SubscribeEvent
 	public void onJoinWorld(EntityJoinWorldEvent event)

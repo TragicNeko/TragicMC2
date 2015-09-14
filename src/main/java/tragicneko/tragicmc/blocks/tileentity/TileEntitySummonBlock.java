@@ -88,11 +88,11 @@ public class TileEntitySummonBlock extends TileEntity {
 		{
 			boss = new EntityDragon(this.worldObj);
 		}
-		else if (meta == 3 && TragicConfig.allowDeathReaper)
+		else if (meta == 3 && TragicConfig.allowSkultar)
 		{
 			boss = new EntityDeathReaper(this.worldObj);
 		}
-		else if (meta == 4 && TragicConfig.allowKitsune)
+		else if (meta == 4 && TragicConfig.allowKitsunakuma)
 		{
 			boss = new EntityKitsune(this.worldObj);
 		}
@@ -100,7 +100,7 @@ public class TileEntitySummonBlock extends TileEntity {
 		{
 			boss = new EntityPolaris(this.worldObj);
 		}
-		else if (meta == 6 && TragicConfig.allowYeti)
+		else if (meta == 6 && TragicConfig.allowEmpariah)
 		{
 			boss = new EntityYeti(this.worldObj);
 		}

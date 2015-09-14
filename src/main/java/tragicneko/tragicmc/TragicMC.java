@@ -80,11 +80,11 @@ public class TragicMC
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		doPotionReflection();
-		
+
 		config = null;
 		config = new Configuration(event.getSuggestedConfigurationFile(), TragicMC.VERSION, true);
-		TragicConfig.initialize();
-		
+		TragicConfig.load();
+
 		if (TragicConfig.allowIre) FMLCommonHandler.instance().bus().register(new ServerTickEvents());
 
 		if (TragicConfig.allowPotions)
@@ -104,7 +104,7 @@ public class TragicMC
 		if (TragicConfig.allowEnchantments) TragicEnchantments.load();
 		if (TragicConfig.allowEnchantments) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.EnchantmentEvents());
 
-		if (!TragicConfig.mobsOnly)
+		if (TragicConfig.allowSurvivalTab)
 		{
 			Survival = (new CreativeTabs("tragicMCSurvival") {
 				@Override
@@ -123,16 +123,14 @@ public class TragicMC
 
 		TragicBlocks.load();
 		TragicItems.load();
-		if (TragicConfig.allowRandomWeaponLore && !TragicConfig.mobsOnly) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
+		if (TragicConfig.allowRandomWeaponLore && TragicConfig.allowNonMobItems) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
 		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
-		if (!TragicConfig.mobsOnly) TragicRecipes.load();
+		if (TragicConfig.allowRecipes) TragicRecipes.load();
 
 		if (TragicConfig.allowAmulets) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.AmuletEvents());
-		if (!TragicConfig.mobsOnly)
-		{
-			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
-			if (TragicConfig.allowChallengeScrolls) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.ChallengeItemEvents());
-		}
+
+		MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
+		if (TragicConfig.allowChallengeScrolls && TragicConfig.allowNonMobItems) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.ChallengeItemEvents());
 
 		if (TragicConfig.allowDoom)
 		{
@@ -141,39 +139,45 @@ public class TragicMC
 		}
 
 		TragicEntities.load();
-		
+
 		if (TragicConfig.allowMobs)
 		{
 			tragicneko.tragicmc.util.EntityDropHelper.fill();
 			MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DynamicHealthScaling());
 		}
 
-		if (TragicConfig.allowChallengeScrolls && !TragicConfig.mobsOnly) TragicItems.initializeChallengeItem();
-		if (!TragicConfig.mobsOnly) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DropEvents());
+		if (TragicConfig.allowChallengeScrolls && TragicConfig.allowNonMobItems) TragicItems.initializeChallengeItem();
+		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.DropEvents());
 
 		if (TragicConfig.allowDimension)
 		{
-			if (DimensionManager.isDimensionRegistered(TragicConfig.dimensionID))
+			if (TragicConfig.allowCollision)
 			{
-				int id = DimensionManager.getNextFreeDimId();
-				TragicConfig.dimensionID = id;
-				TragicConfig.providerID = id;
+				if (DimensionManager.isDimensionRegistered(TragicConfig.collisionID))
+				{
+					int id = DimensionManager.getNextFreeDimId();
+					TragicConfig.collisionID = id;
+					TragicConfig.collisionProviderID = id;
+				}
+
+				DimensionManager.registerProviderType(TragicConfig.collisionProviderID, tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.keepCollisionLoaded);
+				DimensionManager.registerDimension(TragicConfig.collisionID, TragicConfig.collisionProviderID);
+				logInfo("The Collision was registered with an ID of " + TragicConfig.collisionID);
 			}
 
-			DimensionManager.registerProviderType(TragicConfig.providerID, tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.keepDimensionLoaded);
-			DimensionManager.registerDimension(TragicConfig.dimensionID, TragicConfig.providerID);
-			logInfo("The Collision was registered with an ID of " + TragicConfig.dimensionID);
-
-			if (DimensionManager.isDimensionRegistered(TragicConfig.synapseID))
+			if (TragicConfig.allowSynapse)
 			{
-				int id = DimensionManager.getNextFreeDimId();
-				TragicConfig.synapseID = id;
-				TragicConfig.synapseProviderID = id;
-			}
+				if (DimensionManager.isDimensionRegistered(TragicConfig.synapseID))
+				{
+					int id = DimensionManager.getNextFreeDimId();
+					TragicConfig.synapseID = id;
+					TragicConfig.synapseProviderID = id;
+				}
 
-			DimensionManager.registerProviderType(TragicConfig.synapseProviderID, tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.keepDimensionLoaded);
-			DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
-			logInfo("Synapse was registered with an ID of " + TragicConfig.synapseID);
+				DimensionManager.registerProviderType(TragicConfig.synapseProviderID, tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.keepSynapseLoaded);
+				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
+				logInfo("Synapse was registered with an ID of " + TragicConfig.synapseID);
+			}
 
 			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
@@ -186,9 +190,9 @@ public class TragicMC
 		if (TragicConfig.allowVanillaChanges) MinecraftForge.EVENT_BUS.register(new tragicneko.tragicmc.events.VanillaChangingEvents());
 		if (TragicConfig.allowOverworldOreGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.OverworldOreWorldGen(), 1);
 		if (TragicConfig.allowNetherOreGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.NetherOreWorldGen(), 2);
-		if (!TragicConfig.mobsOnly) GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
+		if (TragicConfig.allowFlowerGen) GameRegistry.registerWorldGenerator(new FlowerWorldGen(), 3);
 
-		if (TragicConfig.allowDimension)
+		if (TragicConfig.allowDimension && TragicConfig.allowFlowerGen)
 		{
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedClearing);
 			FlowerWorldGen.allowedBiomes.add(TragicBiome.PaintedForest);
@@ -208,15 +212,18 @@ public class TragicMC
 
 		if (TragicConfig.allowStructureGen) GameRegistry.registerWorldGenerator(new tragicneko.tragicmc.worldgen.StructureWorldGen(), 10);
 
-		net = new SimpleNetworkWrapper(TragicMC.MODID);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerDoom.class, tragicneko.tragicmc.network.MessageDoom.class, 0, Side.CLIENT);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerAmulet.class, tragicneko.tragicmc.network.MessageAmulet.class, 1, Side.CLIENT);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerGui.class, tragicneko.tragicmc.network.MessageGui.class, 2, Side.SERVER);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerUseDoomsday.class, tragicneko.tragicmc.network.MessageUseDoomsday.class, 3, Side.SERVER);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerFlight.class, tragicneko.tragicmc.network.MessageFlight.class, 4, Side.CLIENT);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerAttack.class, tragicneko.tragicmc.network.MessageAttack.class, 5, Side.SERVER);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerSpawnParticle.class, tragicneko.tragicmc.network.MessageParticle.class, 6, Side.CLIENT);
-		net.registerMessage(tragicneko.tragicmc.network.MessageHandlerPlaySound.class, tragicneko.tragicmc.network.MessageSound.class, 7, Side.CLIENT);
+		if (TragicConfig.allowNetwork)
+		{
+			net = new SimpleNetworkWrapper(TragicMC.MODID);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerDoom.class, tragicneko.tragicmc.network.MessageDoom.class, 0, Side.CLIENT);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerAmulet.class, tragicneko.tragicmc.network.MessageAmulet.class, 1, Side.CLIENT);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerGui.class, tragicneko.tragicmc.network.MessageGui.class, 2, Side.SERVER);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerUseDoomsday.class, tragicneko.tragicmc.network.MessageUseDoomsday.class, 3, Side.SERVER);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerFlight.class, tragicneko.tragicmc.network.MessageFlight.class, 4, Side.CLIENT);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerAttack.class, tragicneko.tragicmc.network.MessageAttack.class, 5, Side.SERVER);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerSpawnParticle.class, tragicneko.tragicmc.network.MessageParticle.class, 6, Side.CLIENT);
+			net.registerMessage(tragicneko.tragicmc.network.MessageHandlerPlaySound.class, tragicneko.tragicmc.network.MessageSound.class, 7, Side.CLIENT);
+		}
 	}
 
 	@EventHandler

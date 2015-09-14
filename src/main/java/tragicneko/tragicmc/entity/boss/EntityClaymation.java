@@ -2,9 +2,9 @@ package tragicneko.tragicmc.entity.boss;
 
 import static tragicneko.tragicmc.TragicConfig.apisStats;
 import static tragicneko.tragicmc.TragicConfig.claymationStats;
-import static tragicneko.tragicmc.TragicConfig.deathReaperStats;
+import static tragicneko.tragicmc.TragicConfig.skultarStats;
 import static tragicneko.tragicmc.TragicConfig.jabbaStats;
-import static tragicneko.tragicmc.TragicConfig.kitsuneStats;
+import static tragicneko.tragicmc.TragicConfig.kitsunakumaStats;
 import static tragicneko.tragicmc.TragicConfig.minotaurStats;
 import static tragicneko.tragicmc.TragicConfig.norVoxStats;
 import static tragicneko.tragicmc.TragicConfig.ragrStats;
@@ -64,15 +64,15 @@ public class EntityClaymation extends TragicBoss {
 			{norVoxStats[0], norVoxStats[1], norVoxStats[2], norVoxStats[3], norVoxStats[4]}, //nor-vox
 			{jabbaStats[0], jabbaStats[1], jabbaStats[2], jabbaStats[3], jabbaStats[4]}, //jabba
 			{ragrStats[0], ragrStats[1], ragrStats[2], ragrStats[3], ragrStats[4]}, //ragr
-			{deathReaperStats[0], deathReaperStats[1], deathReaperStats[2], deathReaperStats[3], deathReaperStats[4]}, //skultar
-			{kitsuneStats[0], kitsuneStats[1], kitsuneStats[2], kitsuneStats[3], kitsuneStats[4]}, //kitsune
+			{skultarStats[0], skultarStats[1], skultarStats[2], skultarStats[3], skultarStats[4]}, //skultar
+			{kitsunakumaStats[0], kitsunakumaStats[1], kitsunakumaStats[2], kitsunakumaStats[3], kitsunakumaStats[4]}, //kitsune
 			{100.0D, 0.25D, 12.0D, 32.0D, 0.5D}}; //iron golem
 
 	private float[][] formSizes = new float[][] {{1.375F, 2.575F}, {0.725F, 2.575F}, {1.385F, 3.325F}, {1.7835F, 5.15F}, {1.135F, 1.575F}, {0.825F, 0.725F}, {1.335F, 2.675F},
 			{0.7F, 2.1F}, {0.745F, 1.745F}, {1.4F, 2.9F}};
 
 	private int formTicks;
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8b42b35e-f870-40ca-ae74-95a38879bed0"), "claymationUtilitySpeedDebuff", TragicConfig.modifierAmts[0], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("8b42b35e-f870-40ca-ae74-95a38879bed0"), "claymationUtilitySpeedDebuff", TragicConfig.modifier[0], 0);
 
 	public EntityClaymation(World par1World) {
 		super(par1World);

@@ -13,12 +13,6 @@ public class StructureObsidianCavern extends Structure {
 	}
 
 	@Override
-	public boolean canGenerate()
-	{
-		return TragicConfig.allowNonBossStructureGen;
-	}
-
-	@Override
 	public int getVariantSize()
 	{
 		return 10;
@@ -33,14 +27,14 @@ public class StructureObsidianCavern extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
 		if (y > 80) return false; //To prevent huge lagspikes from it generating from a high y value
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.obsidianCavernRarity;
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import tragicneko.tragicmc.TragicConfig;
 
 public class ItemMoonlight extends ItemTalisman {
 
-	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicConfig.modifierAmts[21], 0);
+	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicConfig.modifier[21], 0);
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

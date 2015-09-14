@@ -104,7 +104,7 @@ public class EnchantmentEvents {
 				ItemStack tool = event.getPlayer().getEquipmentInSlot(0);
 				int i = TragicConfig.allowVeteran ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Veteran.effectId, tool) * 2 + 1 : 1;
 
-				if (tool.getItemDamage() >= tool.getMaxDamage() - i && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, tool) > 0)
+				if (tool.getItemDamage() >= tool.getMaxDamage() - i && TragicConfig.allowUnbreakable && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, tool) > 0)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					return;
@@ -312,7 +312,7 @@ public class EnchantmentEvents {
 	@SubscribeEvent
 	public void onExtraWeaponEnchantUse(LivingHurtEvent event)
 	{
-		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && TragicConfig.allowWeaponEnchants)
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer && TragicConfig.allowEnchantments)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
@@ -418,7 +418,7 @@ public class EnchantmentEvents {
 			{
 				ItemStack stack = player.getCurrentEquippedItem();
 
-				if (stack.getItemDamage() >= stack.getMaxDamage() - 1 && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, stack) > 0)
+				if (stack.getItemDamage() >= stack.getMaxDamage() - 1 && TragicConfig.allowUnbreakable && EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Unbreakable.effectId, stack) > 0)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 				}

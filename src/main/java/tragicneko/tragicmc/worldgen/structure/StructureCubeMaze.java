@@ -17,14 +17,14 @@ public class StructureCubeMaze extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
 		if (y >= 48 || world.getTopSolidOrLiquidBlock(x, z) - 22 < y) return false;
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.cubeMazeRarity;
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class TragicWorldProvider extends WorldProvider
 {
 	public TragicWorldProvider()
 	{
-		this.dimensionId = TragicConfig.dimensionID;
+		this.dimensionId = TragicConfig.collisionID;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -60,7 +60,7 @@ public class TragicWorldProvider extends WorldProvider
 	@Override
 	public boolean canRespawnHere()
 	{
-		return TragicConfig.allowDimensionRespawn;
+		return TragicConfig.allowCollisionRespawn;
 	}
 
 	@Override

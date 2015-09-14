@@ -45,6 +45,7 @@ public class MiscEvents {
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
 	{
+		if (!TragicConfig.allowNonMobBlocks) return;
 		if (event.entityLiving instanceof EntityPlayer && event.entityLiving.worldObj.getBlock((int) event.entityLiving.posX, (int) event.entityLiving.posY, (int) event.entityLiving.posZ) instanceof BlockQuicksand) event.entityLiving.motionY *= 0.625D;
 	}
 
@@ -62,19 +63,19 @@ public class MiscEvents {
 			{
 				Item weapon = player.getCurrentEquippedItem().getItem();
 
-				if (weapon == TragicItems.BlindingLight && event.source.isProjectile() && TragicConfig.nonDoomsdayAbilities[3])
+				if (weapon == TragicItems.BlindingLight && event.source.isProjectile() && TragicConfig.doomAbility[3])
 				{
-					if (event.isCancelable() && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[3]))
+					if (event.isCancelable() && TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[3]))
 					{
-						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[3]);
+						if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[3]);
 						event.setCanceled(true);
 					}
 				}
 
-				if (weapon == TragicItems.CelestialAegis && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[7]) && TragicConfig.nonDoomsdayAbilities[7])
+				if (weapon == TragicItems.CelestialAegis && TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[7]) && TragicConfig.doomAbility[7])
 				{
 					event.ammount *= 0.825F;
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[7]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[7]);
 				}
 			}
 		}
@@ -88,7 +89,7 @@ public class MiscEvents {
 			{
 				Item weapon = stack.getItem();
 
-				if (weapon == TragicItems.Butcher && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[4]) && TragicConfig.nonDoomsdayAbilities[4])
+				if (weapon == TragicItems.Butcher && TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[4]) && TragicConfig.doomAbility[4])
 				{
 					event.entity.motionX = event.entity.posX - player.posX;
 					event.entity.motionY = event.entity.posY - player.posY;
@@ -101,19 +102,19 @@ public class MiscEvents {
 						event.entity.motionZ *= 1.2D;
 					}
 
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[4]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[4]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
-				else if (weapon == TragicItems.Splinter && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[27]) && player.worldObj.rand.nextInt(4) == 0 && TragicConfig.nonDoomsdayAbilities[27])
+				else if (weapon == TragicItems.Splinter && TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[27]) && player.worldObj.rand.nextInt(4) == 0 && TragicConfig.doomAbility[27])
 				{
 					event.entity.motionX = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 					event.entity.motionY = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 					event.entity.motionZ = (player.worldObj.rand.nextDouble() - player.worldObj.rand.nextDouble()) * 2.75D;
 
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[27]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[27]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
-				else if (weapon == TragicItems.GravitySpike && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[15]) && TragicConfig.nonDoomsdayAbilities[15])
+				else if (weapon == TragicItems.GravitySpike && TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[15]) && TragicConfig.doomAbility[15])
 				{
 					double d0 = 16.0D;
 					double d1 = event.entity.posX - player.posX;
@@ -125,7 +126,7 @@ public class MiscEvents {
 					event.entity.motionZ = d2 / f2 * d3 * 0.800000011920929D + event.entity.motionZ * 0.60000000298023224D;
 					event.entity.motionY += 1.45;
 
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[15]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[15]);
 					TragicWeapon.setStackCooldown(stack, 5);
 				}
 			}
@@ -141,13 +142,13 @@ public class MiscEvents {
 			EntityPlayerMP mp = (EntityPlayerMP) event.entity;
 			PropertyDoom doom = PropertyDoom.get(mp);
 
-			if (mp.getCurrentEquippedItem() != null && TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[33]) && TragicConfig.nonDoomsdayAbilities[33])
+			if (mp.getCurrentEquippedItem() != null && TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[33]) && TragicConfig.doomAbility[33])
 			{
 				if (mp.getCurrentEquippedItem().getItem() == TragicItems.Titan)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					if (mp.getHealth() <= mp.getMaxHealth()) mp.heal(mp.getMaxHealth() * 0.25F);
-					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[33]);
+					if (!mp.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[33]);
 				}
 			}
 		}
@@ -156,7 +157,7 @@ public class MiscEvents {
 	@SubscribeEvent
 	public void onMagicAttack(LivingAttackEvent event)
 	{
-		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP)
+		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayerMP && TragicConfig.allowNonMobItems)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			ItemStack stack = player.getEquipmentInSlot(0);
@@ -171,6 +172,7 @@ public class MiscEvents {
 	@SubscribeEvent
 	public void carrotAndPotatoBlockCreation(BonemealEvent event)
 	{
+		if (!TragicConfig.allowNonMobBlocks) return;
 		if (event.block == Blocks.carrots)
 		{
 			int meta = event.world.getBlockMetadata(event.x, event.y, event.z);
@@ -244,6 +246,7 @@ public class MiscEvents {
 
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
 			int i = 0;
+			if (!TragicConfig.allowNonMobItems) return;
 
 			for (int a = 1; a < 5; a++)
 			{
@@ -258,7 +261,7 @@ public class MiscEvents {
 				}
 			}
 
-			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", TragicConfig.modifierAmts[24] * i, 0);
+			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", TragicConfig.modifier[24] * i, 0);
 			IAttributeInstance ins = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
 			if (ins != null) ins.removeModifier(mod);
 			if (i > 0 && ins != null) ins.applyModifier(mod);

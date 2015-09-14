@@ -37,7 +37,7 @@ public class EntityKurayami extends EntityGolem {
 
 	public EntityPlayer owner;
 	public int armorValue;
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifierAmts[1], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifier[1], 0);
 	private int timeToLive;
 
 	public EntityKurayami(World world) {

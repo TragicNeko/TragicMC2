@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
-import static tragicneko.tragicmc.TragicConfig.wispStats;
+import static tragicneko.tragicmc.TragicConfig.kindlingSpiritStats;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -122,17 +122,17 @@ public class EntityWisp extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(wispStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(wispStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(wispStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(wispStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(wispStats[4]);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kindlingSpiritStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kindlingSpiritStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kindlingSpiritStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(kindlingSpiritStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kindlingSpiritStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) wispStats[5];
+		return (int) kindlingSpiritStats[5];
 	}
 
 	@Override

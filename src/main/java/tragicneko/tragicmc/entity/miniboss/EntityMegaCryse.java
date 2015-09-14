@@ -20,7 +20,7 @@ import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9"), "megaCryseNoShieldAttackBuff", TragicConfig.modifierAmts[5], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("3466b84d-0df6-4d6c-93cf-0fd4bedc77e9"), "megaCryseNoShieldAttackBuff", TragicConfig.modifier[5], 0);
 	private int timeSinceFirstBreak;
 
 	public EntityMegaCryse(World par1World) {

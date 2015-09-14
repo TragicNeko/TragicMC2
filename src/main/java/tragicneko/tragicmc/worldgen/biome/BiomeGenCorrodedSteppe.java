@@ -105,7 +105,7 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 			boolean flag2 = rand.nextBoolean();
 			new PitWorldGen(flag2 ? TragicBlocks.Quicksand : TragicBlocks.RadiatedGas, (byte) (flag2 ? 3 : 0), (byte) 12, (byte) 6, 4.0D, 3.0D).generate(rand, x / 16, z / 16, world, null, null);
 		}
-		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= TragicConfig.voidPitRarity) this.voidPitGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (rand.nextInt(8) == 0) this.deathglowGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 

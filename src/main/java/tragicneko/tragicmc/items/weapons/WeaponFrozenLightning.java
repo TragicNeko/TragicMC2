@@ -26,10 +26,10 @@ public class WeaponFrozenLightning extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[12]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[12])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.doomAbilityCost[12]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[12])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[12]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[12]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -51,7 +51,7 @@ public class WeaponFrozenLightning extends TragicWeapon {
 
 			if (par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[13]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[13])
+				if (canUseAbility(doom, TragicConfig.doomAbilityCost[13]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[13])
 				{
 					for (int i = 0; i < 3; i++)
 					{
@@ -59,14 +59,14 @@ public class WeaponFrozenLightning extends TragicWeapon {
 								d6 + itemRand.nextDouble() - itemRand.nextDouble(), par3EntityPlayer));
 					}
 
-					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, itemRand.nextFloat() * 2.0F, TragicConfig.griefConfigs[2]);
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[13]);
+					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, itemRand.nextFloat() * 2.0F, TragicConfig.griefConfig[2]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[13]);
 					setStackCooldown(par1ItemStack, 5);
 				}
 			}
 			else
 			{
-				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[14]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[14])
+				if (canUseAbility(doom, TragicConfig.doomAbilityCost[14]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[14])
 				{
 					for (int i = 0; i < 5; i++)
 					{
@@ -82,7 +82,7 @@ public class WeaponFrozenLightning extends TragicWeapon {
 						par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
 					}
 
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[14]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[14]);
 					setStackCooldown(par1ItemStack, 5);
 					return par1ItemStack;
 				}

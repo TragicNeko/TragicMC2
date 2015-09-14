@@ -31,7 +31,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 	{
 		this.thePlayer = player;
 		this.doomCooldown = 0;
-		this.maxDoom = TragicConfig.maxDoomMinimum;
+		this.maxDoom = TragicConfig.maxDoomStart;
 		this.currentDoom = 0;
 		this.hasUpgraded = false;
 	}
@@ -71,7 +71,7 @@ public class PropertyDoom implements IExtendedEntityProperties {
 			this.hasUpgraded = properties.getBoolean("hasUpgraded");
 		}
 		
-		if (this.maxDoom < TragicConfig.maxDoomMinimum || !this.hasUpgraded && this.maxDoom > TragicConfig.maxDoomMinimum) this.maxDoom = TragicConfig.maxDoomMinimum;
+		if (this.maxDoom < TragicConfig.maxDoomStart || !this.hasUpgraded && this.maxDoom > TragicConfig.maxDoomStart) this.maxDoom = TragicConfig.maxDoomStart;
 	}
 
 	@Override

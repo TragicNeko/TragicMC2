@@ -231,7 +231,7 @@ public class EntityRagr extends TragicMob {
 			{
 				this.worldObj.setBlock(x, y, z, Blocks.gravel);
 			}
-			else if (!TragicConfig.mobsOnly) //if mobsOnly mode is enabled all of these blocks will be null
+			else if (TragicConfig.allowNonMobBlocks) //if mobsOnly mode is enabled all of these blocks will be null
 			{
 				if (block instanceof BlockGenericGrass)
 				{

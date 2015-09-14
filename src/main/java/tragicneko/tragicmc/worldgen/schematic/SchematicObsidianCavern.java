@@ -1021,10 +1021,10 @@ public class SchematicObsidianCavern extends Schematic {
 		switch(i)
 		{
 		case 0:
-			s = TragicConfig.allowYeti ? "TragicMC.Yeti" : "Enderman";
+			s = TragicConfig.allowEmpariah ? "TragicMC.Yeti" : "Enderman";
 			break;
 		case 1:
-			s = TragicConfig.allowKitsune ? "TragicMC.Kitsune" : "Enderman";
+			s = TragicConfig.allowKitsunakuma ? "TragicMC.Kitsune" : "Enderman";
 			break;
 		case 2:
 			s = TragicConfig.allowPolaris ? "TragicMC.Polaris" : "Enderman";

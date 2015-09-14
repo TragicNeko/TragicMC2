@@ -87,11 +87,11 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 
 		if (doomsday == null) return null;
 
-		if (doomsday.getDoomsdayType() == EnumDoomType.INFLUENCE && !TragicConfig.allowInfluenceDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.CRISIS && !TragicConfig.allowCrisisDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW && !TragicConfig.allowOverflowDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER && !TragicConfig.allowWorldShaperDoomsday ||
-				doomsday.getDoomsdayType() == EnumDoomType.COMBINATION && !TragicConfig.allowCombinationDoomsday)
+		if (doomsday.getDoomsdayType() == EnumDoomType.INFLUENCE && !TragicConfig.allowInfluenceDoomsdays ||
+				doomsday.getDoomsdayType() == EnumDoomType.CRISIS && !TragicConfig.allowCrisisDoomsdays ||
+				doomsday.getDoomsdayType() == EnumDoomType.OVERFLOW && !TragicConfig.allowOverflowDoomsdays ||
+				doomsday.getDoomsdayType() == EnumDoomType.WORLDSHAPER && !TragicConfig.allowWorldShaperDoomsdays ||
+				doomsday.getDoomsdayType() == EnumDoomType.COMBINATION && !TragicConfig.allowCombinationDoomsdays)
 		{
 			player.addChatComponentMessage(new ChatComponentText("The Doomsday of that type is disabled, enable in config."));
 			return null;

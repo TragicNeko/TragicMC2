@@ -26,18 +26,18 @@ public class WeaponMourningStar extends TragicWeapon {
 		{
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[19]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[19])
+				if (canUseAbility(doom, TragicConfig.doomAbilityCost[19]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[19])
 				{
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[19]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[19]);
 					setStackCooldown(par1ItemStack, 5);
 
-					par2World.createExplosion(par3EntityPlayer, par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ, 3.0F * itemRand.nextFloat() + 2.0F, TragicConfig.griefConfigs[3]);
+					par2World.createExplosion(par3EntityPlayer, par3EntityPlayer.posX, par3EntityPlayer.posY, par3EntityPlayer.posZ, 3.0F * itemRand.nextFloat() + 2.0F, TragicConfig.griefConfig[3]);
 					return par1ItemStack;
 				}
 			}
 			else
 			{
-				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[20]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[20])
+				if (canUseAbility(doom, TragicConfig.doomAbilityCost[20]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[20])
 				{
 					Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer, 30.0);
 					if (vec == null) return par1ItemStack;
@@ -46,8 +46,8 @@ public class WeaponMourningStar extends TragicWeapon {
 					double d5 = vec.yCoord;
 					double d6 = vec.zCoord;
 
-					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, 3.0F * itemRand.nextFloat() + 2.0F, TragicConfig.griefConfigs[3]);
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[20]);
+					par3EntityPlayer.worldObj.createExplosion(par3EntityPlayer, d4, d5, d6, 3.0F * itemRand.nextFloat() + 2.0F, TragicConfig.griefConfig[3]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[20]);
 					setStackCooldown(par1ItemStack, 5);
 
 					return par1ItemStack;

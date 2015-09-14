@@ -24,7 +24,7 @@ public class StructureHackerNet extends Structure {
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
-		return world.getBiomeGenForCoords(x, z) instanceof BiomeGenSynapse && y > 24 && y < 112 && rand.nextInt(200) <= TragicConfig.hackerNetRarity;
+		return world.getBiomeGenForCoords(x, z) instanceof BiomeGenSynapse && y > 24 && y < 112 && this.getRarity(200);
 	}
 
 	@Override

@@ -281,7 +281,7 @@ public class TragicItems {
 
 	public static void load()
 	{
-		if (TragicConfig.mobsOnly)
+		if (!TragicConfig.allowNonMobItems)
 		{
 			SpawnEgg = (new ItemMobEgg());
 			GameRegistry.registerItem(SpawnEgg, "spawnEgg");
@@ -986,8 +986,8 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 1), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 2), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 3), 0, 1, 35),
-				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(ObsidianOrb, 1), 0, 2, 3),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 0, 1, 1),
 				new WeightedRandomChestContent(new ItemStack(HuntersBow, 1), 0, 1, 15),
@@ -1012,21 +1012,21 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Items.cooked_beef, 3), 2, 5, 65),
 				new WeightedRandomChestContent(new ItemStack(Items.cooked_porkchop, 3), 2, 5, 65),
 				new WeightedRandomChestContent(new ItemStack(Items.saddle, 1), 0, 2, 60),
-				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicConfig.amuletReleaseRarity),
 				new WeightedRandomChestContent(new ItemStack(Items.lead, 1 + TragicMC.rand.nextInt(2)), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 5),
-				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(GuiltyThorn, 1), 0, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(GravitySpike, 1), 0, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(FrozenLightning, 1), 0, 1, 15),
@@ -1039,16 +1039,16 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 5),
-				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity)
+				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity)
 		};
 
 		WeightedRandomChestContent[] scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
@@ -1077,27 +1077,27 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 1), 0, 1, 30),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 2), 0, 1, 30),
 				new WeightedRandomChestContent(new ItemStack(TragicBlocks.CompactOre, 1, 3), 0, 1, 50),
-				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(KitsuneAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(PiercingAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(ObsidianOrb, 1), 0, 2, 10),
 				new WeightedRandomChestContent(new ItemStack(AwakeningStone, 1), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1), 0, 1, 35),
 				new WeightedRandomChestContent(new ItemStack(Items.golden_apple, 1, 1), 0, 1, 15),
-				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(SunkenAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(ApisAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(MartyrAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(GoldenSushi, 1), 0, 2, 5),
-				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(BlacksmithAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(CreeperAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(ZombieAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SkeletonAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicConfig.amuletReleaseRarity),
 				new WeightedRandomChestContent(new ItemStack(Items.lead, 1 + TragicMC.rand.nextInt(2)), 0, 1, 15),
 				new WeightedRandomChestContent(new ItemStack(Items.saddle), 0, 2, 15),
-				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
+				new WeightedRandomChestContent(new ItemStack(IceAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SnowGolemAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(IronGolemAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(EndermanAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
 				new WeightedRandomChestContent(new ItemStack(Titan), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Splinter), 0, 1, 5),
 				new WeightedRandomChestContent(new ItemStack(Thardus), 0, 1, 5),
@@ -1107,16 +1107,16 @@ public class TragicItems {
 				new WeightedRandomChestContent(new ItemStack(Talisman), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(BloodSacrifice), 0, 1, 10),
 				new WeightedRandomChestContent(new ItemStack(NourishmentSacrifice), 0, 1, 10),
-				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity),
-				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 0, 1, TragicConfig.overallAmuletRarity)
+				new WeightedRandomChestContent(new ItemStack(SpiderAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(StinAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(PolarisAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(LightningAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(ConsumptionAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(SupernaturalAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(UndeadAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(EnderDragonAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(FuseaAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity),
+				new WeightedRandomChestContent(new ItemStack(LuckAmulet, 1), 0, 1, TragicConfig.amuletOverallRarity)
 		};
 
 		scrollArray = new WeightedRandomChestContent[Doomsday.doomsdayNames.length];
@@ -1204,7 +1204,7 @@ public class TragicItems {
 			ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(DoomConsume, 1), 0, 1, TragicConfig.doomConsumeRarity));
 		}
 
-		if (TragicConfig.shouldUnlockAmuletSlots)
+		if (TragicConfig.requireAmuletSlotUnlock)
 		{
 			ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicConfig.amuletReleaseRarity));
 			ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(AmuletRelease, 1), 0, 1, TragicConfig.amuletReleaseRarity));

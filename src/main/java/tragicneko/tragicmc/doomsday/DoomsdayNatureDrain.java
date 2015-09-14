@@ -38,7 +38,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 		double radius = crucMoment ? 10.0D : 5.0D;
 		List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 
-		boolean griefCheck = TragicConfig.griefConfigs[0];
+		boolean griefCheck = TragicConfig.griefConfig[0];
 		float plantCount = 0.0F;
 		int[] coords;
 
@@ -111,7 +111,7 @@ public class DoomsdayNatureDrain extends Doomsday implements IExtendedDoomsday {
 			double radius = crucMoment ? 10.0D : 5.0D;
 			List list = WorldHelper.getBlocksInSphericalRange(player.worldObj, radius, player.posX, player.posY, player.posZ);
 
-			boolean griefCheck = TragicConfig.griefConfigs[0];
+			boolean griefCheck = TragicConfig.griefConfig[0];
 			float plantCount = 0.0F;
 			int[] coords;
 

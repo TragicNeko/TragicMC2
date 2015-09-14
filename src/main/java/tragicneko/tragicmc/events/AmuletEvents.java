@@ -971,7 +971,7 @@ public class AmuletEvents {
 	{
 		if (event.entityLiving.worldObj.isRemote) return;
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof IBossDisplayData) && TragicConfig.allowAmuletKillRecharge)
+		if (event.source.getEntity() instanceof EntityPlayerMP && (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof IBossDisplayData) && TragicConfig.allowAmuletBossKillCharge)
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.source.getEntity();
 			PropertyAmulets amu = PropertyAmulets.get(player);
@@ -1021,7 +1021,7 @@ public class AmuletEvents {
 				}
 			}
 		}
-		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.deathDropsAmulets && !event.entityLiving.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+		else if (event.entityLiving instanceof EntityPlayerMP && TragicConfig.allowAmuletDeathDrops && !event.entityLiving.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
 		{
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
 			PropertyAmulets amu = PropertyAmulets.get(player);

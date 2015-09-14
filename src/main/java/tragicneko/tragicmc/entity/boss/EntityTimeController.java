@@ -44,7 +44,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTimeController extends TragicBoss {
 
-	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicConfig.modifierAmts[2], 0);
+	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicConfig.modifier[2], 0);
 
 	private HashMap<Integer, double[]> tracker = new HashMap();
 	private float storedDamage;

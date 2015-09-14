@@ -94,7 +94,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 	{
 		PropertyDoom doom = PropertyDoom.get(par3EntityPlayer);
 
-		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[5]))
+		if (!par3EntityPlayer.isSneaking() || !TragicWeapon.canUseAbility(doom, TragicConfig.doomAbilityCost[5]))
 		{
 			ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
 			MinecraftForge.EVENT_BUS.post(event);
@@ -107,7 +107,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 		}
 		else
 		{
-			if (TragicWeapon.getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[8])
+			if (TragicWeapon.getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[8])
 			{
 				float f = 1.0F;
 				float f1 = par3EntityPlayer.prevRotationPitch + (par3EntityPlayer.rotationPitch - par3EntityPlayer.prevRotationPitch) * f;
@@ -148,7 +148,7 @@ public class WeaponCelestialLongbow extends TragicBow {
 
 					par3EntityPlayer.setPositionAndUpdate(d4, d5, d6);
 					par3EntityPlayer.fallDistance = 0.0F;
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[8]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[8]);
 					TragicWeapon.setStackCooldown(par1ItemStack, 5);
 				}
 			}

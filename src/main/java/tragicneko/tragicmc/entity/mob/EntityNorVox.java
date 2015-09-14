@@ -37,7 +37,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityNorVox extends TragicMob {
 
-	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", TragicConfig.modifierAmts[7], 0);
+	protected AttributeModifier mod = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-9902-181d3ac9eb17"), "norVoxSpeedDebuff", TragicConfig.modifier[7], 0);
 
 	public EntityNorVox(World par1World) {
 		super(par1World);

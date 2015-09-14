@@ -29,7 +29,7 @@ public class WeaponSplinter extends EpicWeapon {
 		Vec3 vec = WorldHelper.getVecFromEntity(par3EntityPlayer);
 		if (vec == null) return par1ItemStack;
 
-		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[28]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.nonDoomsdayAbilities[28])
+		if (canUseAbility(doom, TragicConfig.doomAbilityCost[28]) && getStackCooldown(par1ItemStack) == 0 && TragicConfig.doomAbility[28])
 		{
 			List<Entity> list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.expand(12.0D, 12.0D, 12.0D).offset(vec.xCoord, vec.yCoord, vec.zCoord));
 			EntityLivingBase entity;
@@ -48,7 +48,7 @@ public class WeaponSplinter extends EpicWeapon {
 				}
 			}
 
-			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[28]);
+			if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[28]);
 			setStackCooldown(par1ItemStack, 5);
 		}
 

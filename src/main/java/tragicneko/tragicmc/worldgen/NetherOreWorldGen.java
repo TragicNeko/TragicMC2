@@ -21,28 +21,28 @@ public class NetherOreWorldGen implements IWorldGenerator {
 			int Xcoord, Ycoord, Zcoord;
 			byte i;
 			
-			for (i = 0; i < TragicConfig.rubyOreRarity; i++)
+			for (i = 0; i < TragicConfig.rubyOreRate; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(30) + 15;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.RubyOre, 0, 3, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.RubyOre, 0, TragicConfig.rubyOreVeinSize, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
-			for (i = 0; i < TragicConfig.sapphireOreRarity; i++)
+			for (i = 0; i < TragicConfig.sapphireOreRate; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(20) + 95;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.SapphireOre, 0, 3, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.SapphireOre, 0, TragicConfig.sapphireOreVeinSize, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
-			for (i = 0; i < TragicConfig.drudgeGenRarity && TragicConfig.allowQuicksandGen; i++)
+			for (i = 0; i < TragicConfig.drudgeRate && TragicConfig.allowDrudgeGen; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(60) + 30;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.Quicksand, 2, 10, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.Quicksand, 2, TragicConfig.drudgeVeinSize, Blocks.netherrack).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 		}
 		//TragicMC.logDuration("Custom Nether OreGen");

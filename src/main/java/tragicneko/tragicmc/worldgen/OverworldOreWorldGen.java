@@ -21,33 +21,33 @@ public class OverworldOreWorldGen implements IWorldGenerator {
 			int Zcoord;
 			byte i;
 
-			for (i = 0; i < TragicConfig.mercuryOreRarity; i++)
+			for (i = 0; i < TragicConfig.mercuryOreRate; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(48) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.MercuryOre, 0, 4, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.MercuryOre, 0, TragicConfig.mercuryOreVeinSize, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
-			for (i = 0; i < TragicConfig.tungstenOreRarity; i++)
+			for (i = 0; i < TragicConfig.tungstenOreRate; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(24) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(TragicBlocks.TungstenOre, 0, 3, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(TragicBlocks.TungstenOre, 0, TragicConfig.tungstenOreVeinSize, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
-			for (i = 0; i < TragicConfig.silverfishGenRarity && TragicConfig.allowOverworldSilverfishGen; i++)
+			for (i = 0; i < TragicConfig.silverfishRate && TragicConfig.allowOverworldSilverfishGen; i++)
 			{
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(6);
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(Blocks.monster_egg, 0, 3, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(Blocks.monster_egg, 0, TragicConfig.silverfishVeinSize, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 
 				Xcoord = (chunkX * 16) + random.nextInt(16);
 				Ycoord = random.nextInt(16) + 5;
 				Zcoord = (chunkZ * 16) + random.nextInt(16);
-				new WorldGenMinable(Blocks.monster_egg, 0, 3, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
+				new WorldGenMinable(Blocks.monster_egg, 0, TragicConfig.silverfishVeinSize, Blocks.stone).generate(world, random, Xcoord, Ycoord, Zcoord);
 			}
 
 			if (random.nextInt(4) != 0) return;

@@ -405,12 +405,12 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityStin.class, "TragicMC.Stin", id++, 0x676767, 0x454545);
 		}
 
-		if (TragicConfig.allowWisp)
+		if (TragicConfig.allowKindlingSpirit)
 		{
 			EntityRegistry.registerModEntity(EntityWisp.class, "Wisp", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowNonDimensionMobSpawns)
 			{
-				EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.wispSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
+				EntityRegistry.addSpawn(EntityWisp.class, TragicConfig.kindlingSpiritSC, 0, 1, EnumCreatureType.monster, BiomeGenBase.roofedForest,
 						BiomeGenBase.forest,
 						BiomeGenBase.forestHills,
 						BiomeGenBase.birchForest,
@@ -687,13 +687,13 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityApis.class, "TragicMC.Apis", id++, 0xFFFF82, 0xFFCD82, EnumEggType.BOSS);
 		}
 
-		if (TragicConfig.allowDeathReaper)
+		if (TragicConfig.allowSkultar)
 		{
 			EntityRegistry.registerModEntity(EntityDeathReaper.class, "DeathReaper", listid++, TragicMC.getInstance(), 80, 1, true);
 
 			if (TragicConfig.allowBossOverworldSpawns)
 			{
-				EntityRegistry.addSpawn(EntityDeathReaper.class, TragicConfig.deathReaperSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.forest,
+				EntityRegistry.addSpawn(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.forest,
 						BiomeGenBase.forestHills,
 						BiomeGenBase.birchForest,
 						BiomeGenBase.birchForestHills
@@ -702,12 +702,12 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityDeathReaper.class, "TragicMC.DeathReaper", id++, 0xCFCCB4, 0x553131, EnumEggType.BOSS);
 		}
 
-		if (TragicConfig.allowKitsune)
+		if (TragicConfig.allowKitsunakuma)
 		{
 			EntityRegistry.registerModEntity(EntityKitsune.class, "Kitsune", listid++, TragicMC.getInstance(), 80, 1, true);
 			if (TragicConfig.allowBossOverworldSpawns)
 			{
-				EntityRegistry.addSpawn(EntityKitsune.class, TragicConfig.kitsuneSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.hell);
+				EntityRegistry.addSpawn(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.hell);
 			}
 			TragicEntityList.addMapping(EntityKitsune.class, "TragicMC.Kitsune", id++, 0xFF0000, 0xFFD087, EnumEggType.BOSS);
 		}
@@ -751,13 +751,13 @@ public class TragicEntities {
 			TragicEntityList.addMapping(EntityPolaris.class, "TragicMC.Polaris", id++, 0x4A00BA, 0x000000, EnumEggType.BOSS);
 		}
 
-		if (TragicConfig.allowYeti)
+		if (TragicConfig.allowEmpariah)
 		{
 			EntityRegistry.registerModEntity(EntityYeti.class, "Yeti", listid++, TragicMC.getInstance(), 80, 1, true);
 
 			if (TragicConfig.allowBossOverworldSpawns)
 			{
-				EntityRegistry.addSpawn(EntityYeti.class, TragicConfig.yetiSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
+				EntityRegistry.addSpawn(EntityYeti.class, TragicConfig.empariahSC, 0, 0, EnumCreatureType.monster, BiomeGenBase.icePlains,
 						BiomeGenBase.iceMountains,
 						BiomeGenBase.frozenOcean,
 						BiomeGenBase.frozenRiver,

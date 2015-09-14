@@ -30,10 +30,10 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 	public BiomeGenScorchedWasteland(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.clear();
-		if (TragicConfig.allowWisp) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.wispSC, 3, 6));
+		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, 3, 6));
 		if (TragicConfig.allowJabba) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jabbaSC, 2, 4));
 		if (TragicConfig.allowMagmox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMagmox.class, TragicConfig.magmoxSC, 0, 1));
-		if (TragicConfig.allowKitsune) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKitsune.class, TragicConfig.kitsuneSC, 0, 1));
+		if (TragicConfig.allowKitsunakuma) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 1));
 		this.enableSnow = false;
 		this.enableRain = false;
 		this.temperature = 2.0F;
@@ -120,6 +120,6 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 		}
 		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
 		this.fireGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (variant == 2 && rand.nextInt(100) > TragicConfig.largeSpikeRarity && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (variant == 2 && rand.nextInt(100) > 3 && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
 	}
 }

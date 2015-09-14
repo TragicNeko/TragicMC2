@@ -35,7 +35,7 @@ public class FlowerWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if (world.provider.dimensionId == 0 && !TragicConfig.allowExtraOverworldFlowers || world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider)) return;
+		if (world.provider.dimensionId == 0 && !TragicConfig.allowExtraOverworldFlowers || world.provider.dimensionId != 0 && !(world.provider instanceof TragicWorldProvider) || !TragicConfig.allowFlowerGen) return;
 
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);

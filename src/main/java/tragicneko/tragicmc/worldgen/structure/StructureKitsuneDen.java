@@ -18,7 +18,7 @@ public class StructureKitsuneDen extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == -1 || dim == TragicConfig.dimensionID;
+		return dim == -1 || dim == TragicConfig.collisionID;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class StructureKitsuneDen extends StructureBoss {
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenHell || biome instanceof BiomeGenScorchedWasteland)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.kitsuneDenRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 		}
 		return false;
 	}

@@ -30,7 +30,7 @@ public class StructureClaymationRuin extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == 0 || dim == TragicConfig.dimensionID;
+		return dim == 0 || dim == TragicConfig.collisionID;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class StructureClaymationRuin extends StructureBoss {
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenDesert || biome instanceof BiomeGenDecayingWasteland)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.claymationRuinRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 		}
 
 		return false;

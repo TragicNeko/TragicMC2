@@ -31,7 +31,7 @@ public class StructureApisTemple extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == 0 || dim == TragicConfig.dimensionID;
+		return dim == 0 || dim == TragicConfig.collisionID;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class StructureApisTemple extends StructureBoss {
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenPlains || biome instanceof BiomeGenSavanna || biome instanceof BiomeGenHallowedHills)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.apisTempleRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 		}
 
 		return false;

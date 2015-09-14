@@ -228,7 +228,7 @@ public class ItemNekoWand extends Item {
 				if (b == Blocks.emerald_ore) em++;
 			}
 		}
-		else if (dim == TragicConfig.dimensionID)
+		else if (dim == TragicConfig.collisionID)
 		{
 			int diam = 0;
 			int gold = 0;

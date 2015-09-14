@@ -23,7 +23,7 @@ public class StructureDarkHut extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class StructureDarkHut extends Structure {
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenDarkForest)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.darkHutRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 		}
 
 		return false;

@@ -19,13 +19,7 @@ public class StructureTower extends Structure {
 	public StructureTower(int id, String name) {
 		super(new SchematicDesertTower(), id, name);
 	}
-
-	@Override
-	public boolean canGenerate()
-	{
-		return TragicConfig.allowNonBossStructureGen;
-	}
-
+	
 	@Override
 	public int getVariantSize()
 	{
@@ -47,7 +41,7 @@ public class StructureTower extends Structure {
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.desertTowerRarity && rand.nextInt(4) == 0;
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200) && rand.nextInt(4) == 0;
 	}
 
 	@Override

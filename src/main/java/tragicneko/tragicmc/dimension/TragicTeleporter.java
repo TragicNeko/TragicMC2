@@ -61,7 +61,7 @@ public class TragicTeleporter extends Teleporter {
 			Block spawnBlock = this.worldServerInstance.getBlock(i, j - 1, k);
 			boolean lavaFlag = spawnBlock.getMaterial() == Material.lava || spawnBlock.getMaterial() == Material.lava;
 
-			if (worldServerInstance.provider.dimensionId == TragicConfig.dimensionID || lavaFlag || worldServerInstance.provider.dimensionId == TragicConfig.synapseID)
+			if (worldServerInstance.provider.dimensionId == TragicConfig.collisionID || lavaFlag || worldServerInstance.provider.dimensionId == TragicConfig.synapseID)
 			{
 				for (int l = -2; l <= 2; ++l)
 				{

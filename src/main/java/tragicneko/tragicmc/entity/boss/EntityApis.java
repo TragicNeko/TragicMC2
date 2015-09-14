@@ -39,7 +39,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 public class EntityApis extends TragicBoss {
 	
 	public int reflectionBuffer;
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("08bd1ef5-8f24-4ee4-9ffa-10cdef76b7ae"), "apisStompDebuff", TragicConfig.modifierAmts[13], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("08bd1ef5-8f24-4ee4-9ffa-10cdef76b7ae"), "apisStompDebuff", TragicConfig.modifier[13], 0);
 
 	public EntityApis(World par1World) {
 		super(par1World);

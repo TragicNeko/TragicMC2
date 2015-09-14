@@ -12,7 +12,7 @@ import tragicneko.tragicmc.TragicConfig;
 
 public class ItemSynthesis extends ItemTalisman {
 
-	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("c77b57e3-fbb3-4f31-a26e-3e614c57d7ef"), "synthesisModifier", TragicConfig.modifierAmts[22], 0);
+	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("c77b57e3-fbb3-4f31-a26e-3e614c57d7ef"), "synthesisModifier", TragicConfig.modifier[22], 0);
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

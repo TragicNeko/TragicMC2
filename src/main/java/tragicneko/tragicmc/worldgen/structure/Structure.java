@@ -9,6 +9,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
 
 import com.google.common.collect.Sets;
@@ -139,7 +140,17 @@ public class Structure extends WorldGenerator {
 	 */
 	public boolean canGenerate()
 	{
-		return true;
+		return TragicConfig.structureAllow[this.structureId];
+	}
+	
+	/**
+	 * Returns whether a structure can generate based on the configured rarity value out of the integer value to compare to
+	 * @param compare
+	 * @return
+	 */
+	public boolean getRarity(final int compare)
+	{
+		return compare <= TragicConfig.structureRarity[this.structureId];
 	}
 
 	public int getHeight()

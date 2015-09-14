@@ -87,7 +87,7 @@ public class BlockAeris extends BlockBush implements ITileEntityProvider
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand)
 	{
-		if (y <= 50 && world.provider.dimensionId == TragicConfig.dimensionID && !world.canBlockSeeTheSky(x, y, z)|| world.getBlockMetadata(x, y, z) >= 2)
+		if (y <= 50 && world.provider.dimensionId == TragicConfig.collisionID && !world.canBlockSeeTheSky(x, y, z)|| world.getBlockMetadata(x, y, z) >= 2)
 		{
 			int pow = world.getBlockMetadata(x, y, z) >= 2 ? 8 : 3;
 

@@ -27,13 +27,13 @@ public class StructureTimeAltar extends StructureBoss {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override
 	public boolean areCoordsValidForGeneration(World world, int x, int y, int z, Random rand)
 	{
-		return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.timeAltarRarity;
+		return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 	}
 
 	@Override

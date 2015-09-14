@@ -13,12 +13,6 @@ public class StructureCorruptedSpire extends Structure {
 	}
 
 	@Override
-	public boolean canGenerate()
-	{
-		return TragicConfig.allowNonBossStructureGen;
-	}
-
-	@Override
 	public boolean isSurfaceStructure()
 	{
 		return true;
@@ -27,7 +21,7 @@ public class StructureCorruptedSpire extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override

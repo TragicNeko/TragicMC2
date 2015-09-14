@@ -8,10 +8,4 @@ public class StructureBoss extends Structure {
 	public StructureBoss(Schematic sch, int id, String name) {
 		super(sch, id, name);
 	}
-
-	@Override
-	public boolean canGenerate()
-	{
-		return super.canGenerate() && TragicConfig.allowBossStructureGen;
-	}
 }

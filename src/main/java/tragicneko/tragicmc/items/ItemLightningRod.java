@@ -12,7 +12,7 @@ import tragicneko.tragicmc.TragicConfig;
 
 public class ItemLightningRod extends ItemTalisman {
 
-	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifierAmts[20], 0);
+	public static AttributeModifier mod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifier[20], 0);
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)

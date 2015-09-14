@@ -37,7 +37,7 @@ import tragicneko.tragicmc.entity.projectile.EntityNekoStickyBomb;
 
 public class EntityTragicNeko extends TragicMob {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifierAmts[9], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("ef7bc471-3df8-4d0d-8aa6-8f52ae0a6045"), "tragicNekoSpeedDebuff", TragicConfig.modifier[9], 0);
 
 	public EntityTragicNeko(World par1World) {
 		super(par1World);

@@ -34,7 +34,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[0]) && TragicConfig.nonDoomsdayAbilities[0])
+		if (canUseAbility(doom, TragicConfig.doomAbilityCost[0]) && TragicConfig.doomAbility[0])
 		{
 			if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && stack.hasTagCompound())
 			{
@@ -54,7 +54,7 @@ public class WeaponBeastlyClaws extends TragicWeapon {
 					}
 
 					if (cooldown > 5 && cooldown < 20) stack.stackTagCompound.setInteger("comboCooldown", cooldown + 5);
-					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[0]);
+					if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[0]);
 
 				}
 				else

@@ -212,7 +212,7 @@ public class ItemAmulet extends Item {
 		IAttribute atr = AmuletHelper.getRandomAttribute();
 		AttributeModifier mod = AmuletHelper.getRandomModifier(atr);
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance || getDefaultLevels(this.amuletID) == 4)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance || getDefaultLevels(this.amuletID) == 4)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;
@@ -227,7 +227,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance2)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance2)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;
@@ -242,7 +242,7 @@ public class ItemAmulet extends Item {
 		atr = AmuletHelper.getRandomAttribute();
 		mod = AmuletHelper.getRandomModifier(atr);
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModifierChance3)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance3)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;

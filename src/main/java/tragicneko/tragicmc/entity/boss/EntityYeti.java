@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.yetiStats;
+import static tragicneko.tragicmc.TragicConfig.empariahStats;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +38,7 @@ import tragicneko.tragicmc.entity.projectile.EntityLargeRock;
 
 public class EntityYeti extends TragicBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", TragicConfig.modifierAmts[3], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("b23cd5f8-df05-4c8d-91f4-b09f33b15049"), "yetiSpeedDebuff", TragicConfig.modifier[3], 0);
 	private int hitTime = 0;
 
 	public EntityYeti(World par1World) {
@@ -67,11 +67,11 @@ public class EntityYeti extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(yetiStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(yetiStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(yetiStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(yetiStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(yetiStats[4]);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(empariahStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(empariahStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(empariahStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(empariahStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(empariahStats[4]);
 	}
 
 	@Override
@@ -535,7 +535,7 @@ public class EntityYeti extends TragicBoss {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isBeingAggressive() || this.isCharging() ? (int) yetiStats[5] : MathHelper.floor_double(yetiStats[5] / 2);
+		return this.isBeingAggressive() || this.isCharging() ? (int) empariahStats[5] : MathHelper.floor_double(empariahStats[5] / 2);
 	}
 
 	@Override

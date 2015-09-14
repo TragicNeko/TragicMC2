@@ -234,20 +234,17 @@ public class PotionEvents {
 
 		if (TragicConfig.allowCorruption && entity.isPotionActive(TragicPotion.Corruption.id))
 		{
-			if (TragicConfig.allowCorruptionDamage)
+			int a = MathHelper.ceiling_double_int(80 / (entity.getActivePotionEffect(TragicPotion.Corruption).getAmplifier() + 1)) + 1;
+			if (entity instanceof EntityPlayer && entity.ticksExisted % a == 0)
 			{
-				int a = MathHelper.ceiling_double_int(80 / (entity.getActivePotionEffect(TragicPotion.Corruption).getAmplifier() + 1)) + 1;
-				if (entity instanceof EntityPlayer && entity.ticksExisted % a == 0)
-				{
-					if (!((EntityPlayer)entity).capabilities.isCreativeMode)
-					{
-						entity.attackEntityFrom(DamageSource.magic, 0.5F);
-					}
-				}
-				else if (entity instanceof EntityAnimal && entity.ticksExisted % a == 0)
+				if (!((EntityPlayer)entity).capabilities.isCreativeMode)
 				{
 					entity.attackEntityFrom(DamageSource.magic, 0.5F);
 				}
+			}
+			else if (entity instanceof EntityAnimal && entity.ticksExisted % a == 0)
+			{
+				entity.attackEntityFrom(DamageSource.magic, 0.5F);
 			}
 
 			if (entity.ticksExisted % 5 == 0)

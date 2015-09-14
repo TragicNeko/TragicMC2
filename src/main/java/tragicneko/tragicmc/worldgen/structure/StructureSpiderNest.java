@@ -17,7 +17,7 @@ public class StructureSpiderNest extends Structure {
 	@Override
 	public boolean isValidDimension(int dim)
 	{
-		return dim == TragicConfig.dimensionID;
+		return dim == TragicConfig.collisionID;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class StructureSpiderNest extends Structure {
 		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
 		if (biome instanceof BiomeGenDarkForest)
 		{
-			return super.areCoordsValidForGeneration(world, x, y, z, rand) && rand.nextInt(200) <= TragicConfig.spiderNestRarity;
+			return super.areCoordsValidForGeneration(world, x, y, z, rand) && this.getRarity(200);
 		}
 
 		return false;

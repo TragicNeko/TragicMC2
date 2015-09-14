@@ -159,7 +159,7 @@ public class DoomsdayManager {
 						break;
 					}
 
-					if (TragicConfig.allowCombinationDoomsday)
+					if (TragicConfig.allowCombinationDoomsdays)
 					{
 						if (flag && temp != null && temp.dday.getCombination() == effect.dday)
 						{

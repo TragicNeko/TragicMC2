@@ -118,8 +118,8 @@ public abstract class Doomsday {
 	{
 		this.doomsdayType = doomType;
 		this.doomID = id;
-		this.cooldown = TragicConfig.doomsdayCooldowns[id];
-		this.requiredDoom = TragicConfig.doomsdayCosts[id];
+		this.cooldown = TragicConfig.doomsdayCooldown[id];
+		this.requiredDoom = TragicConfig.doomsdayCost[id];
 		if (doomsdayList[id] != null) throw new IllegalArgumentException("There is already a Doomsday registered for that ID!");
 		doomsdayList[id] = this;
 	}

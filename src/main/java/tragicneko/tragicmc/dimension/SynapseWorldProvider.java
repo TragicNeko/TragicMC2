@@ -95,7 +95,7 @@ public class SynapseWorldProvider extends WorldProvider
 	@Override
 	public boolean canRespawnHere()
 	{
-		return false;
+		return TragicConfig.allowSynapseRespawn;
 	}
 
 	@Override

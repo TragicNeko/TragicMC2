@@ -196,16 +196,16 @@ public class EntityStatue extends Entity {
 					if (TragicConfig.allowApis) entity = new EntityApis(this.worldObj);
 					break;
 				case 1:
-					if (TragicConfig.allowKitsune) entity = new EntityKitsune(this.worldObj);
+					if (TragicConfig.allowKitsunakuma) entity = new EntityKitsune(this.worldObj);
 					break;
 				case 2:
-					if (TragicConfig.allowDeathReaper) entity = new EntityDeathReaper(this.worldObj);
+					if (TragicConfig.allowSkultar) entity = new EntityDeathReaper(this.worldObj);
 					break;
 				case 3:
 					if (TragicConfig.allowTimeController) entity = new EntityTimeController(this.worldObj);
 					break;
 				case 4:
-					if (TragicConfig.allowYeti) entity = new EntityYeti(this.worldObj);
+					if (TragicConfig.allowEmpariah) entity = new EntityYeti(this.worldObj);
 					break;
 				case 5:
 					if (TragicConfig.allowPolaris) entity = new EntityPolaris(this.worldObj);

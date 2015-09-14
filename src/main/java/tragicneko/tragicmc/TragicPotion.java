@@ -52,7 +52,24 @@ public class TragicPotion extends Potion {
 		//Nightmare = new TragicPotion(TragicConfig.idHacked + 2, true, 0x000000).setPotionName("potion.nightmare");
 		//Exasperate = new TragicPotion(TragicConfig.idHacked + 3, true, 0x000000).setPotionName("potion.exasperate");
 		//EvilPresence = new TragicPotion(TragicConfig.idHacked + 4, true, 0x000000).setPotionName("potion.evilPresence");
-		//Bleed = new PotionBleed(TragicConfig.idHacked + 1, true, 0x000000).setPotionName("potion.bleed");
+		/*Bleed = new TragicPotion(TragicConfig.idHacked + 5, true, 0x000000) {
+		@Override
+		public void performEffect(EntityLivingBase entity, int amp)
+		{
+			float bleedOut = 0F;
+			PropertyMisc misc = PropertyMisc.get(entity);
+			if (misc != null) bleedOut = misc.bleedOutTime / 120F;
+			entity.attackEntityFrom(DamageHelper.bleed, 1.0F + bleedOut);
+			TragicMC.logInfo("Bleed out time is " + misc.bleedOutTime + ", damage is " + (bleedOut + 1.0F));
+		}
+		
+		@Override
+		public boolean isReady(int dur, int amp)
+		{
+			int k = 40 >> MathHelper.floor_double(amp / 2);
+			return k > 0 ? dur % k == 0 : true;
+		}
+		}.setPotionName("potion.bleed"); */
 
 		if (TragicConfig.allowFlight) Flight = (new TragicPotion(TragicConfig.idFlight, false, 0xFDDC69).setPotionName("potion.flight"));
 		if (TragicConfig.allowAquaSuperiority) AquaSuperiority = (new TragicPotion(TragicConfig.idAquaSuperiority, true, 0x69B9FD).setPotionName("potion.aquaSuperiority"));

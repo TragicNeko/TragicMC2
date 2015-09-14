@@ -234,7 +234,7 @@ public class TragicBlocks {
 
 	public static void load()
 	{
-		if (TragicConfig.mobsOnly)
+		if (!TragicConfig.allowNonMobBlocks)
 		{
 			SummonBlock = (new BlockSummon());
 			GameRegistry.registerBlock(SummonBlock, ItemBlockSummonBlocks.class, "summonBlock");

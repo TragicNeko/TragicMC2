@@ -28,10 +28,10 @@ public class WeaponWitheringAxe extends TragicWeapon {
 	{
 		PropertyDoom doom = PropertyDoom.get(player);
 
-		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[34]) && getStackCooldown(stack) == 0 && TragicConfig.nonDoomsdayAbilities[34])
+		if (!super.onLeftClickEntity(stack, player, entity) && entity instanceof EntityLivingBase && itemRand.nextInt(4) == 0 && canUseAbility(doom, TragicConfig.doomAbilityCost[34]) && getStackCooldown(stack) == 0 && TragicConfig.doomAbility[34])
 		{
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.wither.id, 60, itemRand.nextInt(4)));
-			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[34]);
+			if (!player.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[34]);
 			setStackCooldown(stack, 5);
 		}
 		return super.onLeftClickEntity(stack, player, entity);
@@ -53,9 +53,9 @@ public class WeaponWitheringAxe extends TragicWeapon {
 
 			if (!par3EntityPlayer.isSneaking())
 			{
-				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[35]) && TragicConfig.nonDoomsdayAbilities[35])
+				if (canUseAbility(doom, TragicConfig.doomAbilityCost[35]) && TragicConfig.doomAbility[35])
 				{
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[35]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[35]);
 					setStackCooldown(par1ItemStack, 5);
 
 					EntityWitherSkull skull = new EntityWitherSkull(par2World, par3EntityPlayer, d4, d5, d6);
@@ -66,9 +66,9 @@ public class WeaponWitheringAxe extends TragicWeapon {
 			}
 			else
 			{
-				if (canUseAbility(doom, TragicConfig.nonDoomsdayAbilityCosts[36]) && TragicConfig.nonDoomsdayAbilities[36])
+				if (canUseAbility(doom, TragicConfig.doomAbilityCost[36]) && TragicConfig.doomAbility[36])
 				{
-					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.nonDoomsdayAbilityCosts[36]);
+					if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-TragicConfig.doomAbilityCost[36]);
 					setStackCooldown(par1ItemStack, 5);
 
 					EntityWitherSkull skull = new EntityWitherSkull(par2World, par3EntityPlayer, d4, d5, d6);

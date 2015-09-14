@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.events;
 
-import static tragicneko.tragicmc.TragicConfig.modifierAmts;
+import static tragicneko.tragicmc.TragicConfig.modifier;
 import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.util.List;
@@ -54,11 +54,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class VanillaChangingEvents {
 
-	private static AttributeModifier ghastHealthBuff = new AttributeModifier(UUID.fromString("cb92285c-f0b5-44b5-b500-3ddd7e08ceae"), "ghastHealthBuff", modifierAmts[14], 0);
-	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("d72b0471-d23a-4a9a-a7f8-e2a54018a4ee"), "zombieSkeletonCreeperHealthBuff", modifierAmts[15], 0);
-	private static AttributeModifier endermanHealthBuff = new AttributeModifier(UUID.fromString("883e8a02-2f76-43d0-b7ee-de412b0c352d"), "endermanHealthBuff", modifierAmts[16], 0);
-	private static AttributeModifier spiderHealthBuff = new AttributeModifier(UUID.fromString("e4cec251-fce7-4cbb-9784-eba58a140c30"), "spiderHealthBuff", modifierAmts[17], 0);
-	private static AttributeModifier mobBlindnessDebuff = new AttributeModifier(UUID.fromString("6a73b2cb-c791-4b10-849c-6817ec3eab22"), "mobBlindnessFollowRangeDebuff", modifierAmts[18], 0);
+	private static AttributeModifier ghastHealthBuff = new AttributeModifier(UUID.fromString("cb92285c-f0b5-44b5-b500-3ddd7e08ceae"), "ghastHealthBuff", modifier[14], 0);
+	private static AttributeModifier normalHealthBuff = new AttributeModifier(UUID.fromString("d72b0471-d23a-4a9a-a7f8-e2a54018a4ee"), "zombieSkeletonCreeperHealthBuff", modifier[15], 0);
+	private static AttributeModifier endermanHealthBuff = new AttributeModifier(UUID.fromString("883e8a02-2f76-43d0-b7ee-de412b0c352d"), "endermanHealthBuff", modifier[16], 0);
+	private static AttributeModifier spiderHealthBuff = new AttributeModifier(UUID.fromString("e4cec251-fce7-4cbb-9784-eba58a140c30"), "spiderHealthBuff", modifier[17], 0);
+	private static AttributeModifier mobBlindnessDebuff = new AttributeModifier(UUID.fromString("6a73b2cb-c791-4b10-849c-6817ec3eab22"), "mobBlindnessFollowRangeDebuff", modifier[18], 0);
 
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
@@ -207,7 +207,7 @@ public class VanillaChangingEvents {
 				}
 			}
 
-			if (TragicConfig.allowMobModdedArmorAndEnchants && !event.entity.worldObj.isRemote)
+			if (TragicConfig.allowMobModdedArmor && !event.entity.worldObj.isRemote)
 			{
 				if (event.entity instanceof EntityZombie || event.entity instanceof EntitySkeleton)
 				{
@@ -580,7 +580,7 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onThunderstruck(EntityStruckByLightningEvent event)
 	{
-		if (event.entity instanceof EntityCow && TragicConfig.allowMinotaur)
+		if (event.entity instanceof EntityCow && TragicConfig.allowMinotaur && TragicConfig.allowCowMinotaurCreation)
 		{
 			TragicMob mob = new EntityMinotaur(event.entity.worldObj);
 

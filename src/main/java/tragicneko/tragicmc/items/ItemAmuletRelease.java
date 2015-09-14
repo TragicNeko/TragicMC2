@@ -33,7 +33,7 @@ public class ItemAmuletRelease extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
-		if (TragicConfig.shouldUnlockAmuletSlots)
+		if (TragicConfig.requireAmuletSlotUnlock)
 		{
 			PropertyAmulets amulets = PropertyAmulets.get(par3EntityPlayer);
 

@@ -47,10 +47,10 @@ public class BiomeGenTaintedSpikes extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 		if (this.variant == 4 && rand.nextInt(3) == 0) this.isleGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (this.variant < 3 && rand.nextInt(100) >= TragicConfig.largeSpikeRarity && rand.nextBoolean()) this.spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (this.variant < 3 && rand.nextInt(100) >= 3 && rand.nextBoolean()) this.spikeWorldGen.generate(rand, x / 16, z / 16, world, null, null);
 		if (this.variant == 3)
 		{
-			if (rand.nextInt(100) > TragicConfig.largeSpikeRarity && rand.nextInt(3) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+			if (rand.nextInt(100) > 5 && rand.nextInt(3) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
 			this.ruggedGen.generate(rand, x / 16, z / 16, world, null, null);
 		}
 	}

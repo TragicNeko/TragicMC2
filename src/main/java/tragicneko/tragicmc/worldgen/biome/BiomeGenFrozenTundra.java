@@ -40,7 +40,7 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 		if (TragicConfig.allowCryse) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCryse.class, TragicConfig.cryseSC, 2, 4));
 		if (TragicConfig.allowRagr) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityRagr.class, TragicConfig.ragrSC, 0, 1));
 		if (TragicConfig.allowAbomination) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAbomination.class, TragicConfig.abominationSC, 3, 5));
-		if (TragicConfig.allowYeti) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.yetiSC, 0, 1));
+		if (TragicConfig.allowEmpariah) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityYeti.class, TragicConfig.empariahSC, 0, 1));
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.theBiomeDecorator.grassPerChunk = variant == 1 ? 12 : (variant == 2 ? 6 : 2);

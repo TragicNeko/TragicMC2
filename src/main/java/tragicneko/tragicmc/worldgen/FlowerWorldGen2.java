@@ -7,6 +7,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockTragicFlower;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenAshenHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenDarkForest;
@@ -22,6 +23,8 @@ public class FlowerWorldGen2 implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		
+		if (!TragicConfig.allowFlowerGen) return;
 		int Xcoord = (chunkX * 16);
 		int Zcoord = (chunkZ * 16);
 		int Ycoord = world.getTopSolidOrLiquidBlock(Xcoord, Zcoord);

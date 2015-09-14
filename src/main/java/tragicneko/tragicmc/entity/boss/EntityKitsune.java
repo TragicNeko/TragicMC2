@@ -1,6 +1,6 @@
 package tragicneko.tragicmc.entity.boss;
 
-import static tragicneko.tragicmc.TragicConfig.kitsuneStats;
+import static tragicneko.tragicmc.TragicConfig.kitsunakumaStats;
 
 import java.util.UUID;
 
@@ -36,7 +36,7 @@ import tragicneko.tragicmc.entity.EntityKurayami;
 
 public class EntityKitsune extends TragicBoss {
 
-	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifierAmts[1], 0);
+	private AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "kitsuneSpeedDebuff", TragicConfig.modifier[1], 0);
 
 	public EntityKitsune(World par1World) {
 		super(par1World);
@@ -69,17 +69,17 @@ public class EntityKitsune extends TragicBoss {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kitsuneStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kitsuneStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kitsuneStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(kitsuneStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kitsuneStats[4]);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(kitsunakumaStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(kitsunakumaStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(kitsunakumaStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(kitsunakumaStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(kitsunakumaStats[4]);
 	}
 
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) kitsuneStats[5];
+		return (int) kitsunakumaStats[5];
 	}
 
 	@Override

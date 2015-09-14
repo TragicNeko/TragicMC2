@@ -38,7 +38,7 @@ public class DoomsdayDangerZone extends Doomsday implements IExtendedDoomsday {
 			{
 				EntityLivingBase entity = (EntityLivingBase) list.get(i);
 				if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
-				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfigs[1]);
+				player.worldObj.createExplosion(player, entity.posX, entity.posY, entity.posZ, rand.nextFloat() * f, TragicConfig.griefConfig[1]);
 			}
 		}
 

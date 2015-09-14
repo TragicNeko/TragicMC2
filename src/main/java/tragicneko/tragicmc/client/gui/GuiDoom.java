@@ -13,6 +13,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.TragicBow;
@@ -51,10 +52,8 @@ public class GuiDoom extends Gui
 		if (event.isCancelable() || event.type != ElementType.EXPERIENCE || Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
 
 		PropertyDoom props = PropertyDoom.get(this.mc.thePlayer);
-		if (props == null || props.getMaxDoom() == 0) {
-			return;
-		}
-
+		if (props == null || props.getMaxDoom() == 0) return;
+		
 		int xPos = TragicConfig.guiX;
 		int yPos = TragicConfig.guiY;
 		this.mc.getTextureManager().bindTexture(getTextureFromConfig());

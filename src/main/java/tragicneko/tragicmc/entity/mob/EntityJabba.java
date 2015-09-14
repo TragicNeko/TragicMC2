@@ -39,7 +39,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityJabba extends TragicMob {
 
-	private static AttributeModifier lowHealthDamageBoost = new AttributeModifier(UUID.fromString("8c159dc4-aacf-461f-b3e9-66dc9fbf6e99"), "jabbaLowHealthDamageBoost", TragicConfig.modifierAmts[6], 0);
+	private static AttributeModifier lowHealthDamageBoost = new AttributeModifier(UUID.fromString("8c159dc4-aacf-461f-b3e9-66dc9fbf6e99"), "jabbaLowHealthDamageBoost", TragicConfig.modifier[6], 0);
 
 	public EntityJabba(World par1World) {
 		super(par1World);

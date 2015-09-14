@@ -389,7 +389,7 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (int[] coords : lst)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], TragicConfig.mobsOnly ? Blocks.obsidian : TragicBlocks.CelledBlock);
+				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], !TragicConfig.allowNonMobBlocks ? Blocks.obsidian : TragicBlocks.CelledBlock);
 			}
 
 			this.spawnSeekers();

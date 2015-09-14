@@ -68,7 +68,7 @@ public class SchematicKitsuneDen extends Schematic {
 		this.applyChestContents(world, rand, x, y, z, TragicItems.NetherStructureHook);
 
 		world.setBlock(x, y + 1, z, spawner, 0, 2);
-		this.setSpawnerMob(world, x, y + 1, z, TragicConfig.allowKitsune ? "TragicMC.Kitsune" : "Blaze");
+		this.setSpawnerMob(world, x, y + 1, z, TragicConfig.allowKitsunakuma ? "TragicMC.Kitsune" : "Blaze");
 
 		for (int z1 = -1; z1 < 2; z1++) //sets the extra sculpted blocks on the 0 layer
 		{
