@@ -4329,9 +4329,13 @@ Ensure that Doom doesn't regenerate while the player still has cooldown
 Removed some unnecessary config options, reorganized options into more distinct categories, added more options for various categories
 Reorganized the config itself to be faster and also easier to read
 Added and set up new master configs, finally more alongside mobsOnly mode
+Finished refactoring to new config, setting up new options that were added
+Removed PotionBleed class, it'll be an anonymous class when it's actually added, meanwhile I need to set up the generator item stuff
+Fixed critical issue with new config (null properties due to getting them from the category not setting them up, this just requires me to refactor them a bit)
+Fixed a few initial bugs with copy-pasta (derp)
+Fixed a few initial bugs with some of the new master configs, these need to be more thoroughly tested but otherwise are holding up pretty well
 
 Plans for next release:
-Rewrite config, possiby add in-game gui for it
 Add achivements, finalize other aspects of the mod
 Finish adding sounds for all of the mobs and other events
 Adjust generator items to use the new config options for block filters
