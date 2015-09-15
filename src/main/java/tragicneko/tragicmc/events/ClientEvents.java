@@ -112,8 +112,9 @@ public class ClientEvents extends Gui {
 
 		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation))
 		{
-			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * 4.25F;
-			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * 4.25F;
+			float f = player.getActivePotionEffect(TragicPotion.Disorientation).getAmplifier() * 0.45F + 0.45F;
+			player.rotationPitch += (rand.nextFloat() - rand.nextFloat()) * f;
+			player.rotationYaw += (rand.nextFloat() - rand.nextFloat()) * f;
 		}
 
 		if (player != null && TragicConfig.allowStun && player.isPotionActive(TragicPotion.Stun))
