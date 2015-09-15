@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.inventory.SlotActiveAmulet;
@@ -22,7 +23,7 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 	public PropertyAmulets(EntityPlayer player)
 	{
 		this.thePlayer = player;
-		this.slotsOpen = 1;
+		this.slotsOpen = (byte) TragicConfig.amuletStartSlots;
 		this.inventory = new InventoryAmulet(player);
 	}
 
@@ -51,6 +52,8 @@ public class PropertyAmulets implements IExtendedEntityProperties {
 		if (comp == null) return;
 		inventory.readFromNBT(comp);
 		this.slotsOpen = comp.getByte("slotsOpen");
+		
+		if (this.slotsOpen < TragicConfig.amuletStartSlots) this.slotsOpen = (byte) TragicConfig.amuletStartSlots;
 	}
 
 	@Override

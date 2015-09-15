@@ -40,7 +40,7 @@ public class TragicConfig {
 
 	private static boolean[] amuletConfig = new boolean[16];
 	public static boolean allowAmuletLeveling, allowAmuletCrafting, requireAmuletSlotUnlock, allowAmuletBossKillCharge, allowAmuletModifiers, allowAmuletDeathDrops;
-	public static int amuletMaxSlots, amuletOverallRarity, amuletReleaseRarity, amuletModChance, amuletModChance2, amuletModChance3;
+	public static int amuletMaxSlots, amuletOverallRarity, amuletReleaseRarity, amuletModChance, amuletModChance2, amuletModChance3, amuletStartSlots;
 	private static boolean[] amuletEffects = new boolean[48];
 	public static boolean amuPeace, amuYeti, amuClaymation, amuChicken, amuBlacksmith, amuCreeper, amuZombie, amuSkeleton, amuIce, amuSnowGolem, amuIronGolem;
 	public static boolean amuSpider, amuStin, amuSupernatural, amuFusea, amuLuck, amuKitsune, amuMartyr, amuPiercing, amuApis, amuSunken, amuEnderman, amuPolaris, amuLightning;
@@ -249,7 +249,7 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "amuletMaxSlots", 3);
 		prop.comment = "The maximum amount of slots you can have unlocked.";
-		amuletMaxSlots = clamp(prop.getInt(3), 1, 3);
+		amuletMaxSlots = clamp(prop.getInt(3), 0, 3);
 
 		prop = config.get(cat.getName(), "amuletOverallRarity", 5);
 		prop.comment = "The chance of you getting an Amulet in a chest, higher value is higher chance.";
@@ -270,6 +270,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "amuletModChance3", 89);
 		prop.comment = "Affects the chance of getting a third Modifier on an Amulet. Lower value is higher chance.";
 		amuletModChance3 = clamp(prop.getInt(89), 1, 100);
+		
+		prop = config.get(cat.getName(), "amuletStartSlots", 1);
+		prop.comment = "The amount of slots you have unlocked at the start.";
+		amuletStartSlots = clamp(prop.getInt(1), 0, 3);
 
 		cat = config.getCategory(CAT_AMUEFFECT);
 		cat.setComment("Disable or enable certain Amulet Effects.");
@@ -476,128 +480,128 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "decayingHillsID", findBiomeID(90));
 		idDecayingHills = prop.getInt(findBiomeID(90));
 
-		prop = config.get(cat.getName(), "decayingValleyID", findBiomeID(++idDecayingHills));
-		idDecayingValley = prop.getInt(findBiomeID(++idDecayingHills));
+		prop = config.get(cat.getName(), "decayingValleyID", findBiomeID(idDecayingHills + 1));
+		idDecayingValley = prop.getInt(findBiomeID(idDecayingHills + 1));
 
-		prop = config.get(cat.getName(), "decayingWastelandID", findBiomeID(++idDecayingValley));
-		idDecayingWasteland = prop.getInt(findBiomeID(++idDecayingValley));
+		prop = config.get(cat.getName(), "decayingWastelandID", findBiomeID(idDecayingValley + 1));
+		idDecayingWasteland = prop.getInt(findBiomeID(idDecayingValley + 1));
 
-		prop = config.get(cat.getName(), "decayingMountainsID", findBiomeID(idDecayingWasteland));
-		idDecayingMountains = prop.getInt(findBiomeID(idDecayingWasteland));
+		prop = config.get(cat.getName(), "decayingMountainsID", findBiomeID(idDecayingWasteland + 1));
+		idDecayingMountains = prop.getInt(findBiomeID(idDecayingWasteland + 1));
 
-		prop = config.get(cat.getName(), "paintedForestID", findBiomeID(++idDecayingMountains));
-		idPaintedForest = prop.getInt(findBiomeID(++idDecayingMountains));
+		prop = config.get(cat.getName(), "paintedForestID", findBiomeID(idDecayingMountains + 1));
+		idPaintedForest = prop.getInt(findBiomeID(idDecayingMountains + 1));
 
-		prop = config.get(cat.getName(), "paintedPlainsID", findBiomeID(++idPaintedForest));
-		idPaintedPlains = prop.getInt(findBiomeID(++idPaintedForest));
+		prop = config.get(cat.getName(), "paintedPlainsID", findBiomeID(idPaintedForest + 1));
+		idPaintedPlains = prop.getInt(findBiomeID(idPaintedForest + 1));
 
-		prop = config.get(cat.getName(), "paintedHillsID", findBiomeID(++idPaintedPlains));
-		idPaintedHills = prop.getInt(findBiomeID(++idPaintedPlains));
+		prop = config.get(cat.getName(), "paintedHillsID", findBiomeID(idPaintedPlains + 1));
+		idPaintedHills = prop.getInt(findBiomeID(idPaintedPlains + 1));
 
-		prop = config.get(cat.getName(), "paintedClearingID", findBiomeID(++idPaintedHills));
-		idPaintedClearing = prop.getInt(findBiomeID(++idPaintedHills));
+		prop = config.get(cat.getName(), "paintedClearingID", findBiomeID(idPaintedHills + 1));
+		idPaintedClearing = prop.getInt(findBiomeID(idPaintedHills + 1));
 
-		prop = config.get(cat.getName(), "ashenMountainsID", findBiomeID(++idPaintedClearing));
-		idAshenMountains = prop.getInt(findBiomeID(++idPaintedClearing));
+		prop = config.get(cat.getName(), "ashenMountainsID", findBiomeID(idPaintedClearing + 1));
+		idAshenMountains = prop.getInt(findBiomeID(idPaintedClearing + 1));
 
-		prop = config.get(cat.getName(), "ashenHillsID", findBiomeID(++idAshenMountains));
-		idAshenHills = prop.getInt(findBiomeID(++idAshenMountains));
+		prop = config.get(cat.getName(), "ashenHillsID", findBiomeID(idAshenMountains + 1));
+		idAshenHills = prop.getInt(findBiomeID(idAshenMountains + 1));
 
-		prop = config.get(cat.getName(), "ashenBadlandsID", findBiomeID(++idAshenHills));
-		idAshenBadlands = prop.getInt(findBiomeID(++idAshenHills));
+		prop = config.get(cat.getName(), "ashenBadlandsID", findBiomeID(idAshenHills + 1));
+		idAshenBadlands = prop.getInt(findBiomeID(idAshenHills + 1));
 
-		prop = config.get(cat.getName(), "starlitPrarieID", findBiomeID(++idAshenBadlands));
-		idStarlitPrarie = prop.getInt(findBiomeID(++idAshenBadlands));
+		prop = config.get(cat.getName(), "starlitPrarieID", findBiomeID(idAshenBadlands + 1));
+		idStarlitPrarie = prop.getInt(findBiomeID(idAshenBadlands + 1));
 
-		prop = config.get(cat.getName(), "starlitPlateausID", findBiomeID(++idStarlitPrarie));
-		idStarlitPlateaus = prop.getInt(findBiomeID(++idStarlitPrarie));
+		prop = config.get(cat.getName(), "starlitPlateausID", findBiomeID(idStarlitPrarie + 1));
+		idStarlitPlateaus = prop.getInt(findBiomeID(idStarlitPrarie + 1));
 
-		prop = config.get(cat.getName(), "starlitCliffsID", findBiomeID(++idStarlitPlateaus));
-		idStarlitCliffs = prop.getInt(findBiomeID(++idStarlitPlateaus));
+		prop = config.get(cat.getName(), "starlitCliffsID", findBiomeID(idStarlitPlateaus + 1));
+		idStarlitCliffs = prop.getInt(findBiomeID(idStarlitPlateaus + 1));
 
-		prop = config.get(cat.getName(), "starlitLowlandsID", findBiomeID(++idStarlitCliffs));
-		idStarlitLowlands = prop.getInt(findBiomeID(++idStarlitCliffs));
+		prop = config.get(cat.getName(), "starlitLowlandsID", findBiomeID(idStarlitCliffs + 1));
+		idStarlitLowlands = prop.getInt(findBiomeID(idStarlitCliffs + 1));
 
-		prop = config.get(cat.getName(), "taintedSpikesID", findBiomeID(++idStarlitLowlands));
-		idTaintedSpikes = prop.getInt(findBiomeID(++idStarlitLowlands));
+		prop = config.get(cat.getName(), "taintedSpikesID", findBiomeID(idStarlitLowlands + 1));
+		idTaintedSpikes = prop.getInt(findBiomeID(idStarlitLowlands + 1));
 
-		prop = config.get(cat.getName(), "taintedLowlandsID", findBiomeID(++idTaintedSpikes));
-		idTaintedLowlands = prop.getInt(findBiomeID(++idTaintedSpikes));
+		prop = config.get(cat.getName(), "taintedLowlandsID", findBiomeID(idTaintedSpikes + 1));
+		idTaintedLowlands = prop.getInt(findBiomeID(idTaintedSpikes + 1));
 
-		prop = config.get(cat.getName(), "taintedRisesID", findBiomeID(++idTaintedLowlands));
-		idTaintedRises = prop.getInt(findBiomeID(++idTaintedLowlands));
+		prop = config.get(cat.getName(), "taintedRisesID", findBiomeID(idTaintedLowlands + 1));
+		idTaintedRises = prop.getInt(findBiomeID(idTaintedLowlands + 1));
 
-		prop = config.get(cat.getName(), "taintedScarlandsID", findBiomeID(++idTaintedRises));
-		idTaintedScarlands = prop.getInt(findBiomeID(++idTaintedRises));
+		prop = config.get(cat.getName(), "taintedScarlandsID", findBiomeID(idTaintedRises + 1));
+		idTaintedScarlands = prop.getInt(findBiomeID(idTaintedRises + 1));
 
-		prop = config.get(cat.getName(), "taintedIslesID", findBiomeID(++idTaintedScarlands));
-		idTaintedIsles = prop.getInt(findBiomeID(++idTaintedScarlands));
+		prop = config.get(cat.getName(), "taintedIslesID", findBiomeID(idTaintedScarlands + 1));
+		idTaintedIsles = prop.getInt(findBiomeID(idTaintedScarlands + 1));
 
-		prop = config.get(cat.getName(), "synapseID", findBiomeID(++idTaintedIsles));
-		idSynapse = prop.getInt(findBiomeID(++idTaintedIsles));
+		prop = config.get(cat.getName(), "synapseID", findBiomeID(idTaintedIsles + 1));
+		idSynapse = prop.getInt(findBiomeID(idTaintedIsles + 1));
 
-		prop = config.get(cat.getName(), "hallowedHillsID", findBiomeID(++idSynapse));
-		idHallowedHills = prop.getInt(findBiomeID(++idSynapse));
+		prop = config.get(cat.getName(), "hallowedHillsID", findBiomeID(idSynapse + 1));
+		idHallowedHills = prop.getInt(findBiomeID(idSynapse + 1));
 
-		prop = config.get(cat.getName(), "hallowedForestID", findBiomeID(++idHallowedHills));
-		idHallowedForest = prop.getInt(findBiomeID(++idHallowedHills));
+		prop = config.get(cat.getName(), "hallowedForestID", findBiomeID(idHallowedHills + 1));
+		idHallowedForest = prop.getInt(findBiomeID(idHallowedHills + 1));
 
-		prop = config.get(cat.getName(), "hallowedPrarieID", findBiomeID(++idHallowedForest));
-		idHallowedPrarie = prop.getInt(findBiomeID(++idHallowedForest));
+		prop = config.get(cat.getName(), "hallowedPrarieID", findBiomeID(idHallowedForest + 1));
+		idHallowedPrarie = prop.getInt(findBiomeID(idHallowedForest + 1));
 
-		prop = config.get(cat.getName(), "hallowedCliffsID", findBiomeID(++idHallowedPrarie));
-		idHallowedCliffs = prop.getInt(findBiomeID(++idHallowedPrarie));
+		prop = config.get(cat.getName(), "hallowedCliffsID", findBiomeID(idHallowedPrarie + 1));
+		idHallowedCliffs = prop.getInt(findBiomeID(idHallowedPrarie + 1));
 
-		prop = config.get(cat.getName(), "scorchedWastelandsID", findBiomeID(++idHallowedCliffs));
-		idScorchedWastelands = prop.getInt(findBiomeID(++idHallowedCliffs));
+		prop = config.get(cat.getName(), "scorchedWastelandsID", findBiomeID(idHallowedCliffs + 1));
+		idScorchedWastelands = prop.getInt(findBiomeID(idHallowedCliffs + 1));
 
-		prop = config.get(cat.getName(), "scorchedValleyID", findBiomeID(++idScorchedWastelands));
-		idScorchedValley = prop.getInt(findBiomeID(++idScorchedWastelands));
+		prop = config.get(cat.getName(), "scorchedValleyID", findBiomeID(idScorchedWastelands + 1));
+		idScorchedValley = prop.getInt(findBiomeID(idScorchedWastelands + 1));
 
-		prop = config.get(cat.getName(), "scorchedScarlandsID", findBiomeID(++idScorchedValley));
-		idScorchedScarlands = prop.getInt(findBiomeID(++idScorchedValley));
+		prop = config.get(cat.getName(), "scorchedScarlandsID", findBiomeID(idScorchedValley + 1));
+		idScorchedScarlands = prop.getInt(findBiomeID(idScorchedValley + 1));
 
-		prop = config.get(cat.getName(), "corrodedSteppeID", findBiomeID(++idScorchedScarlands));
-		idCorrodedSteppe = prop.getInt(findBiomeID(++idScorchedScarlands));
+		prop = config.get(cat.getName(), "corrodedSteppeID", findBiomeID(idScorchedScarlands + 1));
+		idCorrodedSteppe = prop.getInt(findBiomeID(idScorchedScarlands + 1));
 
-		prop = config.get(cat.getName(), "corrodedHeightsID", findBiomeID(++idCorrodedSteppe));
-		idCorrodedHeights = prop.getInt(findBiomeID(++idCorrodedSteppe));
+		prop = config.get(cat.getName(), "corrodedHeightsID", findBiomeID(idCorrodedSteppe + 1));
+		idCorrodedHeights = prop.getInt(findBiomeID(idCorrodedSteppe + 1));
 
-		prop = config.get(cat.getName(), "corrodedVeldID", findBiomeID(++idCorrodedHeights));
-		idCorrodedVeld = prop.getInt(findBiomeID(++idCorrodedHeights));
+		prop = config.get(cat.getName(), "corrodedVeldID", findBiomeID(idCorrodedHeights + 1));
+		idCorrodedVeld = prop.getInt(findBiomeID(idCorrodedHeights + 1));
 
-		prop = config.get(cat.getName(), "corrodedRunoffID", findBiomeID(++idCorrodedVeld));
-		idCorrodedRunoff = prop.getInt(findBiomeID(++idCorrodedVeld));
+		prop = config.get(cat.getName(), "corrodedRunoffID", findBiomeID(idCorrodedVeld + 1));
+		idCorrodedRunoff = prop.getInt(findBiomeID(idCorrodedVeld + 1));
 
-		prop = config.get(cat.getName(), "corrodedFalloutID", findBiomeID(++idCorrodedRunoff));
-		idCorrodedFallout = prop.getInt(findBiomeID(++idCorrodedRunoff));
+		prop = config.get(cat.getName(), "corrodedFalloutID", findBiomeID(idCorrodedRunoff + 1));
+		idCorrodedFallout = prop.getInt(findBiomeID(idCorrodedRunoff + 1));
 
-		prop = config.get(cat.getName(), "frozenTundraID", findBiomeID(++idCorrodedFallout));
-		idFrozenTundra = prop.getInt(findBiomeID(++idCorrodedFallout));
+		prop = config.get(cat.getName(), "frozenTundraID", findBiomeID(idCorrodedFallout + 1));
+		idFrozenTundra = prop.getInt(findBiomeID(idCorrodedFallout + 1));
 
-		prop = config.get(cat.getName(), "frozenHillsID", findBiomeID(++idFrozenTundra));
-		idFrozenHills = prop.getInt(findBiomeID(++idFrozenTundra));
+		prop = config.get(cat.getName(), "frozenHillsID", findBiomeID(idFrozenTundra + 1));
+		idFrozenHills = prop.getInt(findBiomeID(idFrozenTundra + 1));
 
-		prop = config.get(cat.getName(), "frozenDepthsID", findBiomeID(++idFrozenHills));
-		idFrozenDepths = prop.getInt(findBiomeID(++idFrozenHills));
+		prop = config.get(cat.getName(), "frozenDepthsID", findBiomeID(idFrozenHills + 1));
+		idFrozenDepths = prop.getInt(findBiomeID(idFrozenHills + 1));
 
-		prop = config.get(cat.getName(), "crystalID", findBiomeID(++idFrozenDepths));
-		idCrystal = prop.getInt(findBiomeID(++idFrozenDepths));
+		prop = config.get(cat.getName(), "crystalID", findBiomeID(idFrozenDepths + 1));
+		idCrystal = prop.getInt(findBiomeID(idFrozenDepths + 1));
 
-		prop = config.get(cat.getName(), "darkForestID", findBiomeID(++idCrystal));
-		idDarkForest = prop.getInt(findBiomeID(++idCrystal));
+		prop = config.get(cat.getName(), "darkForestID", findBiomeID(idCrystal + 1));
+		idDarkForest = prop.getInt(findBiomeID(idCrystal + 1));
 
-		prop = config.get(cat.getName(), "darkForestHillsID", findBiomeID(++idDarkForest));
-		idDarkForestHills = prop.getInt(findBiomeID(++idDarkForest));
+		prop = config.get(cat.getName(), "darkForestHillsID", findBiomeID(idDarkForest + 1));
+		idDarkForestHills = prop.getInt(findBiomeID(idDarkForest + 1));
 
-		prop = config.get(cat.getName(), "darkMarshID", findBiomeID(++idDarkForestHills));
-		idDarkMarsh = prop.getInt(findBiomeID(++idDarkForestHills));
+		prop = config.get(cat.getName(), "darkMarshID", findBiomeID(idDarkForestHills + 1));
+		idDarkMarsh = prop.getInt(findBiomeID(idDarkForestHills + 1));
 
-		prop = config.get(cat.getName(), "synapseDeadID", findBiomeID(++idDarkMarsh));
-		idSynapseDead = prop.getInt(findBiomeID(++idDarkMarsh));
+		prop = config.get(cat.getName(), "synapseDeadID", findBiomeID(idDarkMarsh + 1));
+		idSynapseDead = prop.getInt(findBiomeID(idDarkMarsh + 1));
 
-		prop = config.get(cat.getName(), "synapseCorruptID", findBiomeID(++idSynapseDead));
-		idSynapseCorrupt = prop.getInt(findBiomeID(++idSynapseDead));
+		prop = config.get(cat.getName(), "synapseCorruptID", findBiomeID(idSynapseDead + 1));
+		idSynapseCorrupt = prop.getInt(findBiomeID(idSynapseDead + 1));
 
 		prop = config.get(cat.getName(), "decayingHillsWeight", 20);
 		decayingHillsW = clamp(prop.getInt(20), 0, 250);
@@ -1770,68 +1774,68 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "decayID", findEnchantID(64));
 		idDecay = prop.getInt(findEnchantID(64));
 
-		prop = config.get(cat.getName(), "slayID", findEnchantID(idDecay));
-		idSlay = prop.getInt(findEnchantID(idDecay));
+		prop = config.get(cat.getName(), "slayID", findEnchantID(idDecay + 1));
+		idSlay = prop.getInt(findEnchantID(idDecay + 1));
 
-		prop = config.get(cat.getName(), "absolveID", findEnchantID(idSlay));
-		idAbsolve = prop.getInt(findEnchantID(idSlay));
+		prop = config.get(cat.getName(), "absolveID", findEnchantID(idSlay + 1));
+		idAbsolve = prop.getInt(findEnchantID(idSlay + 1));
 
-		prop = config.get(cat.getName(), "vampirismID", findEnchantID(idAbsolve));
-		idVampirism = prop.getInt(findEnchantID(idAbsolve));
+		prop = config.get(cat.getName(), "vampirismID", findEnchantID(idAbsolve + 1));
+		idVampirism = prop.getInt(findEnchantID(idAbsolve + 1));
 
-		prop = config.get(cat.getName(), "leechID", findEnchantID(idVampirism));
-		idLeech = prop.getInt(findEnchantID(idVampirism));
+		prop = config.get(cat.getName(), "leechID", findEnchantID(idVampirism + 1));
+		idLeech = prop.getInt(findEnchantID(idVampirism + 1));
 
-		prop = config.get(cat.getName(), "consumeID", findEnchantID(idLeech));
-		idConsume = prop.getInt(findEnchantID(idLeech));
+		prop = config.get(cat.getName(), "consumeID", findEnchantID(idLeech + 1));
+		idConsume = prop.getInt(findEnchantID(idLeech + 1));
 
-		prop = config.get(cat.getName(), "distractID", findEnchantID(idConsume));
-		idDistract = prop.getInt(findEnchantID(idConsume));
+		prop = config.get(cat.getName(), "distractID", findEnchantID(idConsume + 1));
+		idDistract = prop.getInt(findEnchantID(idConsume + 1));
 
-		prop = config.get(cat.getName(), "multiplyID", findEnchantID(idDistract));
-		idMultiply = prop.getInt(findEnchantID(idDistract));
+		prop = config.get(cat.getName(), "multiplyID", findEnchantID(idDistract + 1));
+		idMultiply = prop.getInt(findEnchantID(idDistract + 1));
 
-		prop = config.get(cat.getName(), "combustionID", findEnchantID(idMultiply));
-		idCombustion = prop.getInt(findEnchantID(idMultiply));
+		prop = config.get(cat.getName(), "combustionID", findEnchantID(idMultiply + 1));
+		idCombustion = prop.getInt(findEnchantID(idMultiply + 1));
 
-		prop = config.get(cat.getName(), "runeBreakID", findEnchantID(idCombustion));
-		idRuneBreak = prop.getInt(findEnchantID(idCombustion));
+		prop = config.get(cat.getName(), "runeBreakID", findEnchantID(idCombustion + 1));
+		idRuneBreak = prop.getInt(findEnchantID(idCombustion + 1));
 
-		prop = config.get(cat.getName(), "reachID", findEnchantID(idRuneBreak));
-		idReach = prop.getInt(findEnchantID(idRuneBreak));
+		prop = config.get(cat.getName(), "reachID", findEnchantID(idRuneBreak + 1));
+		idReach = prop.getInt(findEnchantID(idRuneBreak + 1));
 
-		prop = config.get(cat.getName(), "unbreakableID", findEnchantID(idReach));
-		idUnbreakable = prop.getInt(findEnchantID(idReach));
+		prop = config.get(cat.getName(), "unbreakableID", findEnchantID(idReach + 1));
+		idUnbreakable = prop.getInt(findEnchantID(idReach + 1));
 
-		prop = config.get(cat.getName(), "rustID", findEnchantID(idUnbreakable));
-		idRust = prop.getInt(findEnchantID(idUnbreakable));
+		prop = config.get(cat.getName(), "rustID", findEnchantID(idUnbreakable + 1));
+		idRust = prop.getInt(findEnchantID(idUnbreakable + 1));
 
-		prop = config.get(cat.getName(), "veteranID", findEnchantID(idRust));
-		idVeteran = prop.getInt(findEnchantID(idRust));
+		prop = config.get(cat.getName(), "veteranID", findEnchantID(idRust + 1));
+		idVeteran = prop.getInt(findEnchantID(idRust + 1));
 
-		prop = config.get(cat.getName(), "deathTouchID", findEnchantID(idVeteran));
-		idDeathTouch = prop.getInt(findEnchantID(idVeteran));
+		prop = config.get(cat.getName(), "deathTouchID", findEnchantID(idVeteran + 1));
+		idDeathTouch = prop.getInt(findEnchantID(idVeteran + 1));
 
-		prop = config.get(cat.getName(), "ignitionID", findEnchantID(idDeathTouch));
-		idIgnition = prop.getInt(findEnchantID(idDeathTouch));
+		prop = config.get(cat.getName(), "ignitionID", findEnchantID(idDeathTouch + 1));
+		idIgnition = prop.getInt(findEnchantID(idDeathTouch + 1));
 
-		prop = config.get(cat.getName(), "toxicityID", findEnchantID(idIgnition));
-		idToxicity = prop.getInt(findEnchantID(idIgnition));
+		prop = config.get(cat.getName(), "toxicityID", findEnchantID(idIgnition + 1));
+		idToxicity = prop.getInt(findEnchantID(idIgnition + 1));
 
-		prop = config.get(cat.getName(), "paralysisID", findEnchantID(idToxicity));
-		idParalysis = prop.getInt(findEnchantID(idToxicity));
+		prop = config.get(cat.getName(), "paralysisID", findEnchantID(idToxicity + 1));
+		idParalysis = prop.getInt(findEnchantID(idToxicity + 1));
 
-		prop = config.get(cat.getName(), "elasticityID", findEnchantID(idParalysis));
-		idElasticity = prop.getInt(findEnchantID(idParalysis));
+		prop = config.get(cat.getName(), "elasticityID", findEnchantID(idParalysis + 1));
+		idElasticity = prop.getInt(findEnchantID(idParalysis + 1));
 
-		prop = config.get(cat.getName(), "agilityID", findEnchantID(idElasticity));
-		idAgility = prop.getInt(findEnchantID(idElasticity));
+		prop = config.get(cat.getName(), "agilityID", findEnchantID(idElasticity + 1));
+		idAgility = prop.getInt(findEnchantID(idElasticity + 1));
 
-		prop = config.get(cat.getName(), "runeWalkerID", findEnchantID(idAgility));
-		idRuneWalker = prop.getInt(findEnchantID(idAgility));
+		prop = config.get(cat.getName(), "runeWalkerID", findEnchantID(idAgility + 1));
+		idRuneWalker = prop.getInt(findEnchantID(idAgility + 1));
 
-		prop = config.get(cat.getName(), "luminescenceID", findEnchantID(idRuneWalker));
-		idLuminescence = prop.getInt(findEnchantID(idRuneWalker));
+		prop = config.get(cat.getName(), "luminescenceID", findEnchantID(idRuneWalker + 1));
+		idLuminescence = prop.getInt(findEnchantID(idRuneWalker + 1));
 
 		cat = config.getCategory(CAT_MOBS);
 		cat.setComment("Set various aspects of Mobs.");
@@ -2446,62 +2450,62 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "flightID", findPotionID(32));
 		idFlight = prop.getInt(findPotionID(32));
 
-		prop = config.get(cat.getName(), "aquaSuperiorityID", findPotionID(idFlight));
-		idAquaSuperiority = prop.getInt(findPotionID(idFlight));
+		prop = config.get(cat.getName(), "aquaSuperiorityID", findPotionID(idFlight + 1));
+		idAquaSuperiority = prop.getInt(findPotionID(idFlight + 1));
 
-		prop = config.get(cat.getName(), "immunityID", findPotionID(idAquaSuperiority));
-		idImmunity = prop.getInt(findPotionID(idAquaSuperiority));
+		prop = config.get(cat.getName(), "immunityID", findPotionID(idAquaSuperiority + 1));
+		idImmunity = prop.getInt(findPotionID(idAquaSuperiority + 1));
 
-		prop = config.get(cat.getName(), "resurrectionID", findPotionID(idImmunity));
-		idResurrection = prop.getInt(findPotionID(idImmunity));
+		prop = config.get(cat.getName(), "resurrectionID", findPotionID(idImmunity + 1));
+		idResurrection = prop.getInt(findPotionID(idImmunity + 1));
 
-		prop = config.get(cat.getName(), "harmonyID", findPotionID(idResurrection));
-		idHarmony = prop.getInt(findPotionID(idResurrection));
+		prop = config.get(cat.getName(), "harmonyID", findPotionID(idResurrection + 1));
+		idHarmony = prop.getInt(findPotionID(idResurrection + 1));
 
-		prop = config.get(cat.getName(), "invulnernabilityID", findPotionID(idHarmony));
-		idInvulnerability = prop.getInt(findPotionID(idHarmony));
+		prop = config.get(cat.getName(), "invulnernabilityID", findPotionID(idHarmony + 1));
+		idInvulnerability = prop.getInt(findPotionID(idHarmony + 1));
 
-		prop = config.get(cat.getName(), "clarityID", findPotionID(idInvulnerability));
-		idClarity = prop.getInt(findPotionID(idInvulnerability));
+		prop = config.get(cat.getName(), "clarityID", findPotionID(idInvulnerability + 1));
+		idClarity = prop.getInt(findPotionID(idInvulnerability + 1));
 
-		prop = config.get(cat.getName(), "convergenceID", findPotionID(idClarity));
-		idConvergence = prop.getInt(findPotionID(idClarity));
+		prop = config.get(cat.getName(), "convergenceID", findPotionID(idClarity + 1));
+		idConvergence = prop.getInt(findPotionID(idClarity + 1));
 
-		prop = config.get(cat.getName(), "divinityID", findPotionID(idConvergence));
-		idDivinity = prop.getInt(findPotionID(idConvergence));
+		prop = config.get(cat.getName(), "divinityID", findPotionID(idConvergence + 1));
+		idDivinity = prop.getInt(findPotionID(idConvergence + 1));
 
-		prop = config.get(cat.getName(), "corruptionID", findPotionID(idDivinity));
-		idCorruption = prop.getInt(findPotionID(idDivinity));
+		prop = config.get(cat.getName(), "corruptionID", findPotionID(idDivinity + 1));
+		idCorruption = prop.getInt(findPotionID(idDivinity + 1));
 
-		prop = config.get(cat.getName(), "disorientationID", findPotionID(idCorruption));
-		idDisorientation = prop.getInt(findPotionID(idCorruption));
+		prop = config.get(cat.getName(), "disorientationID", findPotionID(idCorruption + 1));
+		idDisorientation = prop.getInt(findPotionID(idCorruption + 1));
 
-		prop = config.get(cat.getName(), "stunID", findPotionID(idDisorientation));
-		idStun = prop.getInt(findPotionID(idDisorientation));
+		prop = config.get(cat.getName(), "stunID", findPotionID(idDisorientation + 1));
+		idStun = prop.getInt(findPotionID(idDisorientation + 1));
 
-		prop = config.get(cat.getName(), "fearID", findPotionID(idStun));
-		idFear = prop.getInt(findPotionID(idStun));
+		prop = config.get(cat.getName(), "fearID", findPotionID(idStun + 1));
+		idFear = prop.getInt(findPotionID(idStun + 1));
 
-		prop = config.get(cat.getName(), "malnourishID", findPotionID(idFear));
-		idMalnourish = prop.getInt(findPotionID(idFear));
+		prop = config.get(cat.getName(), "malnourishID", findPotionID(idFear + 1));
+		idMalnourish = prop.getInt(findPotionID(idFear + 1));
 
-		prop = config.get(cat.getName(), "crippleID", findPotionID(idMalnourish));
-		idCripple = prop.getInt(findPotionID(idMalnourish));
+		prop = config.get(cat.getName(), "crippleID", findPotionID(idMalnourish + 1));
+		idCripple = prop.getInt(findPotionID(idMalnourish + 1));
 
-		prop = config.get(cat.getName(), "submissionID", findPotionID(idCripple));
-		idSubmission = prop.getInt(findPotionID(idCripple));
+		prop = config.get(cat.getName(), "submissionID", findPotionID(idCripple + 1));
+		idSubmission = prop.getInt(findPotionID(idCripple + 1));
 
-		prop = config.get(cat.getName(), "inhibitID", findPotionID(idSubmission));
-		idInhibit = prop.getInt(findPotionID(idSubmission));
+		prop = config.get(cat.getName(), "inhibitID", findPotionID(idSubmission + 1));
+		idInhibit = prop.getInt(findPotionID(idSubmission + 1));
 
-		prop = config.get(cat.getName(), "leadFootID", findPotionID(idInhibit));
-		idLeadFoot = prop.getInt(findPotionID(idInhibit));
+		prop = config.get(cat.getName(), "leadFootID", findPotionID(idInhibit + 1));
+		idLeadFoot = prop.getInt(findPotionID(idInhibit + 1));
 
-		prop = config.get(cat.getName(), "hackedID", findPotionID(idLeadFoot));
-		idHacked = prop.getInt(findPotionID(idLeadFoot));
+		prop = config.get(cat.getName(), "hackedID", findPotionID(idLeadFoot + 1));
+		idHacked = prop.getInt(findPotionID(idLeadFoot + 1));
 
-		prop = config.get(cat.getName(), "burnedID", findPotionID(idHacked));
-		idBurned = prop.getInt(findPotionID(idHacked));
+		prop = config.get(cat.getName(), "burnedID", findPotionID(idHacked + 1));
+		idBurned = prop.getInt(findPotionID(idHacked + 1));
 
 		cat = config.getCategory(CAT_VANILLA);
 		cat.setComment("These toggle the various changes the mod does that explicitly affects Vanilla Minecraft. Ore rate and vein size only affects those ores generated in Vanilla Dimensions.");
@@ -3042,6 +3046,11 @@ public class TragicConfig {
 		{
 			for (b = 0; b < doomConfig.length; b++) doomConfig[b] = false;
 		}
+		
+		if (!doomConfig[0])
+		{
+			for (b = 0; b < doomsdayAllow.length; b++) doomsdayAllow[b] = false;
+		}
 
 		if (!doomConfig[6]) //non-Doomsday abilities
 		{
@@ -3281,6 +3290,18 @@ public class TragicConfig {
 		allowDrudgeGen = vanillaConfig[++m];
 		allowAnimalGolemCorruption = vanillaConfig[++m];
 		allowCowMinotaurCreation = vanillaConfig[++m];
+		
+		allowVoidPitGen = worldGenConfig[m = 0];
+		allowSpikeGen = worldGenConfig[++m];
+		allowScatteredSurfaceGen = worldGenConfig[++m];
+		allowStringLightGen = worldGenConfig[++m];
+		allowDarkStoneVariantGen = worldGenConfig[++m];
+		allowStructureGen = worldGenConfig[++m];
+		allowInvertedSpikeGen = worldGenConfig[++m];
+		allowDigitalSeaGen = worldGenConfig[++m];
+		allowFruitGen = worldGenConfig[++m];
+		allowIsleGen = worldGenConfig[++m];
+		allowFlowerGen = worldGenConfig[++m];
 	}
 
 	private static void setupMobsOnly()
@@ -3372,6 +3393,8 @@ public class TragicConfig {
 		//less negative effects are enabled, plagues have their natural spawns disabled and mobs cannot transform into mini-bosses
 		doomConfig[12] = false; //backlash
 		doomConfig[13] = false; //cooldown
+		doomConfig[7] = false; //doom limit increases
+		doomConfig[15] = false; //cooldown defuse allow
 		vanillaConfig[0] = false; //vanilla mob buffs
 		vanillaConfig[1] = false; //extra mob effects
 		vanillaConfig[2] = false; //animal retribution
@@ -3391,16 +3414,36 @@ public class TragicConfig {
 		potionAllow[18] = false; //hacked
 
 		maxDoomAmount = 1000;
-		maxDoomStart = 500;
-		doomConsumeAmount = 100;
+		maxDoomStart = 1000;
+		consumeRefillAmount = 1000;
+		doomConsumeAmount = 0;
 		doomRechargeAmount = 5;
 		doomRechargeRate = 10;
+		for (byte b = 0; b < doomsdayCost.length; b++) doomsdayCost[b] = getCostForLightweight(doomsdayCost[b]); //truncate each cost to the nearest 5
+		for (byte b = 0; b < doomAbilityCost.length; b++) doomAbilityCost[b] = 0; //right-click and special abilities for weapons don't cost anything
+		
+		amuletConfig[2] = false; //require unlocking amulet slots
+		amuletConfig[5] = false; //death drops amulets
+		amuletMaxSlots = 3; //start with all 3 slots already open
+		amuletStartSlots = 3;
 
 		//enable respawn in either dimension
 		dimensionConfig[2] = true;
 		dimensionConfig[3] = true;
 
 		//TODO setup mob stat changes for lightweight mode
+	}
+	
+	/**
+	 * Basically averages each value to go to the nearest 5
+	 * @param cost
+	 * @return
+	 */
+	private static int getCostForLightweight(final int cost)
+	{
+		double penta = cost / 5;
+		final int p = (int) Math.round(penta);
+		return clamp(p * 5, 1, 1000);
 	}
 
 	private static void setupBarebonesMode()
