@@ -4334,6 +4334,8 @@ Removed PotionBleed class, it'll be an anonymous class when it's actually added,
 Fixed critical issue with new config (null properties due to getting them from the category not setting them up, this just requires me to refactor them a bit)
 Fixed a few initial bugs with copy-pasta (derp)
 Fixed a few initial bugs with some of the new master configs, these need to be more thoroughly tested but otherwise are holding up pretty well
+Fixed ID offsets for Biomes, Enchantments and Potions in the config, derp
+Rebalanced Disorientation, higher amplifier causes higher degrees of twitch
 
 Plans for next release:
 Add achivements, finalize other aspects of the mod
