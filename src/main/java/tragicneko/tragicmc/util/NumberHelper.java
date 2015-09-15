@@ -14,4 +14,11 @@ public class NumberHelper {
 	{
 		return (min + rand.nextInt(var));
 	}
+	
+	public static int roundValue(final int value, final int round)
+	{
+		final double d = value / round;
+		final int i = (int) Math.round(d);
+		return i * round;
+	}
 }
