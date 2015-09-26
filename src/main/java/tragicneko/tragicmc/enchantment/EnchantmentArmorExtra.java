@@ -7,9 +7,11 @@ import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
@@ -65,6 +67,7 @@ public class EnchantmentArmorExtra extends Enchantment {
 			if (par2DamageSource.getEntity() != null && par2DamageSource.getEntity() instanceof EntityLivingBase)
 			{
 				EntityLivingBase entity = (EntityLivingBase) par2DamageSource.getEntity();
+				boolean flag = false;
 				if (par1 > 5) par1 = 5;
 				if (rand.nextInt(12 - (par1 * 2)) == 0 && !par2DamageSource.isProjectile() &&
 						!par2DamageSource.isMagicDamage() && !par2DamageSource.isExplosion()) //12.5% chance with level 1, 18% chance with level 2, 25% chance with level 3
@@ -72,13 +75,25 @@ public class EnchantmentArmorExtra extends Enchantment {
 					switch(this.damageType)
 					{
 					case 0:
-						if (rand.nextInt(2) == 0) entity.setFire(8 * par1);
+						if (rand.nextInt(2) == 0)
+						{
+							entity.setFire(8 * par1);
+							flag = true;
+						}
 						break;
 					case 1:
-						if (rand.nextInt(4) == 0 && TragicConfig.allowStun) entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 * par1));
+						if (rand.nextInt(4) == 0 && TragicConfig.allowStun)
+							{
+							entity.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 * par1));
+							flag = true;
+							}
 						break;
 					case 2:
-						if (rand.nextInt(3) == 0) entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120 * par1, par1));
+						if (rand.nextInt(3) == 0)
+							{
+							entity.addPotionEffect(new PotionEffect(Potion.poison.id, 120 * par1, par1));
+							flag = true;
+							}
 						break;
 					case 3:
 						if (rand.nextInt(2) == 0) //12.5% chance with level 3, 6.25% with level 1
@@ -111,12 +126,20 @@ public class EnchantmentArmorExtra extends Enchantment {
 								}
 								entity.velocityChanged = true;
 							}
+							
+							flag = true;
 						}
 						break;
 					case 4:
-						if (rand.nextInt(3) == 0) entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120 * par1, par1));
+						if (rand.nextInt(3) == 0) 
+							{
+							entity.addPotionEffect(new PotionEffect(Potion.wither.id, 120 * par1, par1));
+							flag = true;
+							}
 						break;
 					}
+					
+					if (flag && entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.enchantArmor); 
 				}
 			}
 		}
