@@ -3047,7 +3047,7 @@ public class TragicConfig {
 			for (b = 0; b < doomConfig.length; b++) doomConfig[b] = false;
 		}
 		
-		if (!doomConfig[0])
+		if (!doomConfig[0]) //doomsdays
 		{
 			for (b = 0; b < doomsdayAllow.length; b++) doomsdayAllow[b] = false;
 		}
