@@ -4335,25 +4335,17 @@ Fixed critical issue with new config (null properties due to getting them from t
 Fixed a few initial bugs with copy-pasta (derp)
 Fixed a few initial bugs with some of the new master configs, these need to be more thoroughly tested but otherwise are holding up pretty well
 Fixed ID offsets for Biomes, Enchantments and Potions in the config, derp
-Rebalanced Disorientation, higher amplifier causes higher degrees of twitch
-
-Plans for next release:
-Add achivements, finalize other aspects of the mod
-Finish adding sounds for all of the mobs and other events
-Adjust generator items to use the new config options for block filters
-Start planning for next mod expansion
-
-TODO for 1.8 port:
-Set up the json files for all of the item and block textures
-Optimize code for 1.8, it is completely able to run but is extremely laggy at the same time
+Rebalanced Disorientation, higher amplifier causes higher degrees of twitch, base amplifier is no longer unbearable twitch
+While preparing to add the last few achievements and their triggers, started planning the next Alpha's AI
+For mob-specific achievements I'll add in special boolean variables to keep track, this'll mean in multiplayer that anyone can deactivate the achievement but
+only the one who kills the mob fulfilling the condition will get the achievement (most ppl play in single-player anyway)
 
 TODO still:
-Add sound for when a Tragic Neko drops or throws a grenade, also firing sound for rocket launchers
-Add sound when the Overlord Cocoon form is successfully damaged enough (or you fail to damage it enough)
-Add the Achievements, which will flow in a set questline, also add side achievements for other random things
-Add more fun things, add some decoration blocks for some of the mob drops
-Convert mob AI to EntityAI, 1.8 will pretty much require this so it should be done now rather than later
 Finish recording sounds:
+-Sound for when a Tragic Neko drops or throws a grenade
+-Sound for when a rocket is fired either by a Tragic Neko or by a player
+-Sounds for various projectiles, either firing them or giving them ambient sounds
+-Sound for when the Overlord Cocoon form is damaged enough or not during it's instance
 -Rerecord Overlord Core and Skultar sounds, didn't like the first attempts
 -Apis sounds: Mad bull sounds
 -Yeti sounds: Deep beastly sounds
