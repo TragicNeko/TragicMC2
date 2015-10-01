@@ -4338,7 +4338,8 @@ Fixed ID offsets for Biomes, Enchantments and Potions in the config, derp
 Rebalanced Disorientation, higher amplifier causes higher degrees of twitch, base amplifier is no longer unbearable twitch
 While preparing to add the last few achievements and their triggers, started planning the next Alpha's AI
 For mob-specific achievements I'll add in special boolean variables to keep track, this'll mean in multiplayer that anyone can deactivate the achievement but
-only the one who kills the mob fulfilling the condition will get the achievement (most ppl play in single-player anyway)
+only the one who kills the mob fulfilling the condition will get the achievement (most ppl play in single-player anyway, but this also ensures teamwork is required if multiplayer)
+Started adding some stuff for next expansion, not going to be in next release, just prepping
 
 TODO still:
 Finish recording sounds:
