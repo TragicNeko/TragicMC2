@@ -31,18 +31,35 @@ public class TragicBiome extends BiomeGenBase {
 
 	protected final byte variant;
 
+	//Collision biomes
 	public static BiomeGenBase DecayingHills, DecayingValley, DecayingWasteland, DecayingMountains;
 	public static BiomeGenBase PaintedForest, PaintedPlains, PaintedHills, PaintedClearing;
 	public static BiomeGenBase AshenMountains, AshenHills, AshenBadlands;
 	public static BiomeGenBase StarlitPrarie, StarlitPlateaus, StarlitCliffs, StarlitLowlands;
 	public static BiomeGenBase TaintedSpikes, TaintedLowlands, TaintedRises, TaintedScarlands, TaintedIsles;
-	public static BiomeGenBase Synapse, SynapseDead, SynapseCorrupt;
 	public static BiomeGenBase HallowedHills, HallowedForest, HallowedPrarie, HallowedCliffs;
 	public static BiomeGenBase ScorchedWastelands, ScorchedValley, ScorchedScarlands;
 	public static BiomeGenBase CorrodedSteppe, CorrodedHeights, CorrodedVeld, CorrodedRunoff, CorrodedFallout;
 	public static BiomeGenBase FrozenTundra,FrozenHills,FrozenDepths;
 	public static BiomeGenBase Crystal;
 	public static BiomeGenBase DarkForest, DarkForestHills, DarkMarsh;
+	
+	//Synapse biomes
+	public static BiomeGenBase Synapse, SynapseDead, SynapseCorrupt;
+	
+	//Wilds biomes
+	public static BiomeGenBase WildPlains, IriseiPlains, SeraleisSerenade;
+	public static BiomeGenBase WildForest, WildDenseForest, ImbertonForest, KlahksTrove, UpsidusVeld;
+	public static BiomeGenBase WildValley, CeresteValley, RelicanthicValley;
+	public static BiomeGenBase WildHills, WildForestHills, WildExtemeHills, KluveTerrace, ZybianHeights, TurbulentHeights, HalsydeHills;
+	public static BiomeGenBase WildSteppes, WildSavanna, GandreaSteppes, TombstoneFields, PrahpsPast;
+	public static BiomeGenBase WildDesert, FerrierScarlands, DesertOfAkhora, VeneriaOasis;
+	public static BiomeGenBase WildRiver, RiverOfSouls, FyxisRiver;
+	public static BiomeGenBase WildLake, WildOcean, SeaOfSorrow, VexinLake, StelSea, ExivSea;
+	public static BiomeGenBase WildMountains, LarinthianMountains, EttenDrove, IrsalasVolcano;
+	
+	//Nerve Center biome
+	public static BiomeGenBase NerveCenter;
 
 	public TragicBiome(int par1, byte par2) {
 		super(par1, true);
