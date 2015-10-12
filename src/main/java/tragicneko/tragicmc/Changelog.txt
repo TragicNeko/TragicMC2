@@ -4340,6 +4340,78 @@ While preparing to add the last few achievements and their triggers, started pla
 For mob-specific achievements I'll add in special boolean variables to keep track, this'll mean in multiplayer that anyone can deactivate the achievement but
 only the one who kills the mob fulfilling the condition will get the achievement (most ppl play in single-player anyway, but this also ensures teamwork is required if multiplayer)
 Started adding some stuff for next expansion, not going to be in next release, just prepping
+Added the achievement triggrs, including all of the special mob and boss kill ones
+Fixed any initial errors with Achievement triggers
+Fixed Claymation not dropping it's statue upon death
+Added achievement localizations
+Finished setting up Achievement locations on the Achievement page, fixed any initialization bugs by registering achievements after everything else
+Challenge Scrolls are required to be enabled in order to keep Achievements enabled, otherwise Achievements are done
+Amulets are also required for Achievements
+Converted Dimension-specific WorldGen to use a simplified interface
+Variant entities should now display their proper name (Pox, Janna, Golden Pirah, Stin (Baby), etc.)
+Fixed Ragr not saving it's nbt values
+Reduced Amulet Modifier amounts to differentiate them from Talisman Modifier amounts more
+
+Expansion updates:
+Added Pyragr, the fire variant of the Ragr
+Added the Aggro along with the basic principle for it's Mini-Boss AI, it shoots fireballs while it jumps around and will go into a tantrum randomly to attack
+it's target on foot, slamming the ground to create explosions and hurting targets with a high knockback hit that burns them
+Working on the Blist using a modified version of the Ranmas's AI, it is supposed to be similar to a Shrieker in Super Metroid, in which it sees a target and
+launches itself at them with the intention of exploding killing them and itself
+Blists now latch onto solid blocks near them, otherwise they fall slowly to the ground
+Thorg are fast-moving aggressive mobs, they are small and weak but they fire a projectile while leaping towards their target that causes poison damage for a
+few seconds
+
+First Expansion:
+Finishing up the planning phase of the expansion, may as well work on the design/balance phase of this while I wait for recording programs to update to win10
+Going to start adding new mobs/bosses without models/sounds in order to get their ai worked out, new dimensions will not be worked on until later as that
+is a lot of blocks and stuff to add
+
+Mobs:
+Pyragr*
+Aggro (Mini-Boss)*
+Blist*
+Thorg
+Girsh
+Lurker
+Troll
+Troll King (Mini-Boss)
+Warden (Mini-Boss)
+Arbiter
+Feist
+Volyr
+Phaas
+Lasher
+Trapper (Mini-Boss)
+Berserker
+Mawg
+Xix
+Chaste
+Soulchaste (Mini-Boss)
+Kyrie
+Forsh
+Gorgoth
+
+Pets:
+Kitsuneko -> Kitsune
+Panda Cub -> Panda
+Bangatang -> Urilla / Baboom
+Snapshot -> Burstshot / Autoshot
+Ultho
+
+Bosses:
+Shina & the SheWolf
+Axiv
+Petria
+Amsheer
+Akhora
+Leviathan
+Polypus
+C1R-314
+Pyris, Veneera & Luex
+
+Alpha:
+Admin
 
 TODO still:
 Finish recording sounds:
@@ -4350,5 +4422,5 @@ Finish recording sounds:
 -Rerecord Overlord Core and Skultar sounds, didn't like the first attempts
 -Apis sounds: Mad bull sounds
 -Yeti sounds: Deep beastly sounds
--Claymation sounds: soppy, clay sounds as normal form, uses other mob's sounds when transformed
+-Claymation sounds: soppy, clay sounds
 -Avris sounds: oohs and ahhs and snickers... mmm snickers
