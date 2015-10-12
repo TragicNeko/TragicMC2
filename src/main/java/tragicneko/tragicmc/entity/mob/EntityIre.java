@@ -12,10 +12,14 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.entity.boss.EntityApis;
@@ -267,5 +271,23 @@ public class EntityIre extends TragicMob {
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
+	}
+	
+	@Override
+	public void onDeath(DamageSource src)
+	{
+		super.onDeath(src);
+		
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+		{
+			EntityPlayerMP mp = (EntityPlayerMP) src.getEntity();
+			if (src.getSourceOfDamage() instanceof EntityIreEnergy && mp.getCurrentEquippedItem() != null)
+			{
+				if (mp.getCurrentEquippedItem().getItem() == TragicItems.IreNetParticleCannon)
+				{
+					mp.triggerAchievement(TragicAchievements.ire);
+				}
+			}
+		}
 	}
 }

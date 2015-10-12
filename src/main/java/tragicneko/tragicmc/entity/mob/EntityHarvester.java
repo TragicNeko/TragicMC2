@@ -10,10 +10,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
@@ -259,5 +262,19 @@ public class EntityHarvester extends TragicMob {
 	public int getTalkInterval()
 	{
 		return super.getTalkInterval();
+	}
+	
+	@Override
+	public void onDeath(DamageSource src)
+	{
+		super.onDeath(src);
+		
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+		{
+			if (!((EntityLivingBase) src.getEntity()).isPotionActive(Potion.weakness))
+			{
+				((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.harvester);
+			}
+		}
 	}
 }

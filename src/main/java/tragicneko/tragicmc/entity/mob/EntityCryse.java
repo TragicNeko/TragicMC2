@@ -384,4 +384,10 @@ public class EntityCryse extends TragicMob {
 	{
 		
 	}
+	
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.StarCryse";
+    }
 }

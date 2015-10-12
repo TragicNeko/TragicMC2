@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -14,6 +15,7 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.item.ItemStack;
@@ -22,10 +24,11 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
@@ -311,6 +314,12 @@ public abstract class TragicMob extends EntityMob
 					ItemStack weapon = player.inventory.getCurrentItem();
 					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
 				}
+				
+				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) 
+				{
+					player.triggerAchievement(TragicAchievements.kill);
+					if (this instanceof TragicMiniBoss) player.triggerAchievement(TragicAchievements.killMiniBoss);
+				}
 			}
 
 			int drops = 0;
@@ -553,5 +562,18 @@ public abstract class TragicMob extends EntityMob
 		{
 			return new PotionEffect(effect.getPotionID(), effect.getDuration() * 3 / 4, effect.getAmplifier() / 2 * 3);
 		}
+	}
+	
+	@Override
+	public String getCommandSenderName()
+    {
+        String s = this.isMobVariant() ? this.getVariantName() : null;
+        if (s == null) return super.getCommandSenderName();
+        return StatCollector.translateToLocal("entity." + s + ".name");
+    }
+	
+	protected String getVariantName()
+	{
+		return EntityList.getEntityString(this);
 	}
 }

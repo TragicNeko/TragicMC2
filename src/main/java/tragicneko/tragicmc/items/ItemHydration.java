@@ -7,8 +7,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 
 public class ItemHydration extends ItemTalisman {
@@ -27,6 +29,7 @@ public class ItemHydration extends ItemTalisman {
 		{
 			player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(mod);
 			if (player.ticksExisted % 400 == 0) stack.damageItem(1, player);
+			if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
 		}
 	}
 }

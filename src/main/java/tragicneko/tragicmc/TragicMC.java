@@ -126,16 +126,6 @@ public class TragicMC
 		if (TragicConfig.allowRandomWeaponLore && TragicConfig.allowNonMobItems) tragicneko.tragicmc.util.LoreHelper.registerLoreJson(event.getModConfigurationDirectory());
 		if (TragicConfig.allowPotions) TragicPotion.setPotionIcons();
 		if (TragicConfig.allowRecipes) TragicRecipes.load();
-		if (TragicConfig.allowAchievements && TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks)
-		{
-			TragicAchievements.load(); 
-			registerEvent(new AchievementEvents());
-		}
-		else if (TragicConfig.allowAchievements)
-		{
-			logWarning("Achievements are enabled in config but are disabled due to most blocks and items being disabled. This is to prevent issues with them later on.");
-		}
-
 		if (TragicConfig.allowAmulets) registerEvent(new AmuletEvents());
 
 		registerEvent(new MiscEvents());
@@ -232,6 +222,16 @@ public class TragicMC
 			net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
 			net.registerMessage(MessageHandlerSpawnParticle.class, MessageParticle.class, 6, Side.CLIENT);
 			net.registerMessage(MessageHandlerPlaySound.class,MessageSound.class, 7, Side.CLIENT);
+		}
+		
+		if (TragicConfig.allowAchievements && TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks && TragicConfig.allowChallengeScrolls && TragicConfig.allowAmulets) //register achievements after everything else is processed
+		{
+			TragicAchievements.load(); 
+			registerEvent(new AchievementEvents());
+		}
+		else if (TragicConfig.allowAchievements)
+		{
+			logWarning("Achievements are enabled in config but are disabled due to certain blocks and items being disabled. This is to prevent game crashes from ocurring.");
 		}
 	}
 

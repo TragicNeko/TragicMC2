@@ -59,7 +59,7 @@ public class EntityJabba extends TragicMob {
 	@Override
 	protected boolean canCorrupt()
 	{
-		return false;
+		return this.getJabbaType() == 0;
 	}
 
 	@Override
@@ -478,4 +478,10 @@ public class EntityJabba extends TragicMob {
 	{
 		return 0.1F + rand.nextFloat() * 0.1F;
 	}
+	
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.Janna";
+    }
 }

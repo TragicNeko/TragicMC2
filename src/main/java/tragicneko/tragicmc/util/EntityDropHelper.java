@@ -26,6 +26,7 @@ import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
+import tragicneko.tragicmc.entity.miniboss.EntityAggro;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
@@ -98,7 +99,9 @@ public class EntityDropHelper {
 
 		addToDropList(EntityRagr.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.IcyFur), new EntityDrop(10, TragicItems.CrushedIce), new EntityDrop(15, Items.snowball),
 			new EntityDrop(5, Items.fish)},
-			{new EntityDrop(25, TragicItems.ToughLeather), new EntityDrop(15, TragicItems.IceOrb), new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.GoldenSushi)}});
+			{new EntityDrop(25, TragicItems.ToughLeather), new EntityDrop(15, TragicItems.IceOrb), new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.GoldenSushi)}},
+			new EntityDrop[][] {{new EntityDrop(10, TragicItems.ToughLeather), new EntityDrop(25, new ItemStack(TragicItems.Projectile, 1, 1)), new EntityDrop(3, TragicItems.Ash)},
+				{new EntityDrop(25, TragicItems.ToughLeather), new EntityDrop(25, TragicItems.FireOrb), new EntityDrop(10, TragicItems.Sushi), new EntityDrop(5, TragicItems.GoldenSushi)}});
 
 		addToDropList(EntityPumpkinhead.class, new EntityDrop[][]{{new EntityDrop(25, Items.pumpkin_pie), new EntityDrop(5, Items.pumpkin_seeds), new EntityDrop(10, Blocks.pumpkin)},
 			{new EntityDrop(15, Blocks.lit_pumpkin), new EntityDrop(15, TragicBlocks.Candle), new EntityDrop(5, TragicItems.DarkParticles), new EntityDrop(25, Blocks.torch)}});
@@ -123,8 +126,8 @@ public class EntityDropHelper {
 				new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.EnchantedTears), new EntityDrop(15, TragicItems.Tentacle)},
 				{new EntityDrop(5, TragicItems.EnchantedTears)}},
 				new EntityDrop[][] {{new EntityDrop(25, new ItemStack(Items.fish, 1, 0), new ItemStack(Items.fish, 1, 1), new ItemStack(Items.fish, 1, 2),
-						new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(25, TragicItems.Tentacle)},
-						{new EntityDrop(5, TragicItems.FireOrb), new EntityDrop(10, Items.fire_charge)}});
+						new ItemStack(Items.fish, 1, 3)), new EntityDrop(25, Items.dye), new EntityDrop(5, TragicItems.EnchantedTears), new EntityDrop(25, TragicItems.Tentacle)},
+						{new EntityDrop(5, TragicItems.EnchantedTears)}});
 
 		addToDropList(EntityNorVox.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.Projectile), new EntityDrop(10, Items.glowstone_dust), new EntityDrop(5, TragicItems.ObsidianOrb),
 			new EntityDrop(10, Blocks.stone)},
@@ -179,6 +182,8 @@ public class EntityDropHelper {
 
 		addToDropList(EntityParasmite.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.DarkParticles), new EntityDrop(15, TragicItems.BoneMarrow)},
 			{new EntityDrop(25, TragicItems.BoneMarrow), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice)}});
+		
+		//addToDropList(EntityBlist.class, new EntityDrop[][] {{}, {}}); //TODO setup drops for the Blist
 
 		//Mini-Boss drops
 		addToDropList(EntityJarra.class, new EntityDrop[][] {{new EntityDrop(15, new ItemStack(TragicItems.Projectile, 1, 11)), new EntityDrop(25, TragicItems.Thorns), new EntityDrop(5, Items.magma_cream)},
@@ -215,6 +220,8 @@ public class EntityDropHelper {
 
 		addToDropList(EntityVolatileFusea.class, new EntityDrop[][] {{new EntityDrop(15, Items.gunpowder), new EntityDrop(15, Items.redstone), new EntityDrop(25, TragicItems.UnstableIsotope)}, {new EntityDrop(5, Items.gunpowder), new EntityDrop(15, TragicItems.UnstableIsotope),
 			new EntityDrop(10, Items.redstone), new EntityDrop(3, Blocks.redstone_block)}});
+		
+		//addToDropList(EntityAggro.class, new EntityDrop[][] {{new EntityDrop(5, Items.nether_wart)}, {new EntityDrop(15, TragicItems.FireOrb)}}); //TODO setup actual drops for the Aggro
 
 		//Boss Drops
 		addToDropList(EntityApis.class, new EntityDrop[][] {{new EntityDrop(25, TragicItems.PureLight)}, {new EntityDrop(25, TragicItems.PureLight), new EntityDrop(20, TragicItems.Horn),

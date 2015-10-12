@@ -31,6 +31,7 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -44,6 +45,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
@@ -589,6 +591,16 @@ public class VanillaChangingEvents {
 			event.entity.worldObj.removeEntity(event.entity);
 			event.entity.worldObj.spawnEntityInWorld(mob);
 			if (TragicConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
+			
+			List<EntityPlayerMP> list = mob.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, mob.boundingBox.expand(16.0, 16.0, 16.0));
+			
+			if (!list.isEmpty() && TragicConfig.allowAchievements)
+			{
+				for (EntityPlayerMP mp : list)
+				{
+					mp.triggerAchievement(TragicAchievements.minotaurSummon);
+				}
+			}
 		}
 
 		if (rand.nextInt(4) == 0 && event.lightning != null && !event.lightning.worldObj.isRemote)

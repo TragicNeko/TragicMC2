@@ -72,10 +72,10 @@ public class BiomeGenFrozenTundra extends TragicBiome {
 			this.vineGen.generate(world, rand, k, rand.nextInt(64) + 36, l);
 		}
 
-		this.permafrostGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (variant != 1) this.iceSpikeGen.generate(rand, x / 16, z / 16, world, null, null);
-		new CustomSpikesWorldGen((byte) (variant == 2 ? 8 : (variant == 0 ? 2 : 4)), Blocks.packed_ice, (byte) 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
-		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
+		this.permafrostGen.generate(rand, x / 16, z / 16, world);
+		if (variant != 1) this.iceSpikeGen.generate(rand, x / 16, z / 16, world);
+		new CustomSpikesWorldGen((byte) (variant == 2 ? 8 : (variant == 0 ? 2 : 4)), Blocks.packed_ice, (byte) 0, 0.89477735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world);
+		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world);
 	}
 
 	@Override

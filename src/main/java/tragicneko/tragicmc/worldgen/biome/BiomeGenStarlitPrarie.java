@@ -60,6 +60,6 @@ public class BiomeGenStarlitPrarie extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		if (rand.nextBoolean() && rand.nextInt(100) <= 12) this.crystalWorldGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextBoolean() && rand.nextInt(100) <= 12) this.crystalWorldGen.generate(rand, x / 16, z / 16, world);
 	}
 }

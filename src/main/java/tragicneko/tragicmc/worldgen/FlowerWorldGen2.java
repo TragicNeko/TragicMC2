@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBiome;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
@@ -17,12 +16,11 @@ import tragicneko.tragicmc.worldgen.biome.BiomeGenHallowedHills;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenScorchedWasteland;
 import tragicneko.tragicmc.worldgen.biome.BiomeGenStarlitPrarie;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class FlowerWorldGen2 implements IWorldGenerator {
+public class FlowerWorldGen2 implements IWorldGen {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 		
 		if (!TragicConfig.allowFlowerGen) return;
 		int Xcoord = (chunkX * 16);

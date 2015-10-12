@@ -1,12 +1,14 @@
 package tragicneko.tragicmc.items.food;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import cpw.mods.fml.relauncher.Side;
@@ -49,6 +51,7 @@ public class ItemEnchantedSushi extends ItemFood {
 		player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 2400, 0));
 		if (TragicConfig.allowClarity) player.addPotionEffect(new PotionEffect(TragicPotion.Clarity.id, 2400, 1));
 		if (TragicConfig.allowInvulnerability) player.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 60));
+		if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.goldenSushi);
 
 		return super.onEaten(stack, world, player);
 	}

@@ -23,12 +23,14 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
@@ -287,9 +289,9 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	}
 
 	@Override
-	public void onDeath(DamageSource par1DamageSource)
+	public void onDeath(DamageSource src)
 	{
-		super.onDeath(par1DamageSource);
+		super.onDeath(src);
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
 
 		if (!this.worldObj.isRemote)
@@ -304,6 +306,8 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 				crystal.attackEntityFrom(DamageSource.causeMobDamage(this), 10000.0F);
 			}
 		}
+		
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.enyvil);
 	}
 
 	@Override

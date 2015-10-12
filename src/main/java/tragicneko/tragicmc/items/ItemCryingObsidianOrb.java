@@ -2,7 +2,10 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
+import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -35,6 +38,8 @@ public class ItemCryingObsidianOrb extends Item {
 
 			par3EntityPlayer.setSpawnChunk(newCC, true, dim);
 			par3EntityPlayer.addChatMessage(new ChatComponentText("Spawn set to " + x + ", " + y + ", " + z + " for dimension with id of " + par2World.provider.dimensionId));
+			
+			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

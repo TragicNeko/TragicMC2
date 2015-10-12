@@ -3,6 +3,7 @@ package tragicneko.tragicmc;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -715,7 +716,11 @@ public class TragicItems {
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-				if (!world.isRaining()) world.rainingStrength = 1.0F;
+				if (!world.isRaining())
+				{
+					world.rainingStrength = 1.0F;
+					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+				}
 			}
 		}.setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman"));
 		GameRegistry.registerItem(RainDanceTalisman, "rainDanceTalisman");
@@ -729,6 +734,11 @@ public class TragicItems {
 
 				if (world.isThundering()) world.thunderingStrength = 0.0F;
 				if (world.isRaining()) world.rainingStrength = 0.0F;
+
+				if (world.isThundering() || world.isRaining())
+				{
+					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+				}
 			}
 		}).setUnlocalizedName("tragicmc.sunnyDayTalisman").setTextureName("tragicmc:SunnyDayTalisman");
 		GameRegistry.registerItem(SunnyDayTalisman, "sunnyDayTalisman");
@@ -740,7 +750,11 @@ public class TragicItems {
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-				if (!world.isThundering()) world.thunderingStrength = 1.0F;
+				if (!world.isThundering())
+				{
+					world.thunderingStrength = 1.0F;
+					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayer) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+				}
 			}
 		}).setUnlocalizedName("tragicmc.thunderstormTalisman").setTextureName("tragicmc:ThunderstormTalisman");
 		GameRegistry.registerItem(ThunderstormTalisman, "thunderstormTalisman");
@@ -754,6 +768,7 @@ public class TragicItems {
 
 				int a = flag ? -5 : 5;
 				world.setWorldTime(world.getWorldTime() + a);
+				if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayer) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 			}
 		}.setUnlocalizedName("tragicmc.timeManipulatorTalisman").setTextureName("tragicmc:TimeManipulatorTalisman"));
 		GameRegistry.registerItem(TimeManipulatorTalisman, "timeManipulatorTalisman");

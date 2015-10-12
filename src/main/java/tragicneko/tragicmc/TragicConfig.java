@@ -94,21 +94,21 @@ public class TragicConfig {
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowStin, allowStinBaby, allowKindlingSpirit, allowAbomination, allowErkel;
 	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
-	public static boolean allowFusea, allowRanmas, allowParasmite, allowAvris;
+	public static boolean allowFusea, allowRanmas, allowParasmite, allowAvris, allowPyragr, allowBlist, allowThorg;
 	public static boolean[] miniBossAllow = new boolean[32];
-	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowAegar, allowVolatileFusea;
+	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowAegar, allowVolatileFusea, allowAggro;
 	public static boolean[] bossAllow = new boolean[24];
 	public static boolean allowApis, allowSkultar, allowKitsunakuma, allowEmpariah, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
 
-	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
+	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pyragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
 	public static int pirahSC, stinSC, kindlingSpiritSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
-	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC, avrisSC, jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC;
+	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC, avrisSC, blistSC, thorgSC, jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, aggroSC;
 	public static int stinKingSC, stinQueenSC, volatileFuseaSC, apisSC, skultarSC, kitsunakumaSC, empariahSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
 
-	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
+	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pyragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, kindlingSpiritStats, abominationStats, erkelStats, sirvStats, psygoteStats;
-	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats, kurayamiStats, avrisStats;
-	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, aegarStats, volatileFuseaStats;
+	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats, kurayamiStats, avrisStats, blistStats, thorgStats;
+	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, aegarStats, volatileFuseaStats, aggroStats;
 	public static double[] apisStats, skultarStats, kitsunakumaStats, empariahStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats, overlordCombatStats, overlordCocoonStats;
 
 	public static boolean[] potionAllow = new boolean[32];
@@ -184,8 +184,8 @@ public class TragicConfig {
 		prop.comment = "Are Amulets, Amulet Modifiers, Amulet Guis and Amulet recipes allowed?";
 		allowAmulets = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "allowDimension", true);
-		prop.comment = "Are the mod-exclusive Dimensions, Biomes and WorldGen allowed?";
+		prop = config.get(cat.getName(), "allowDimensions", true);
+		prop.comment = "Are the mod-exclusive Dimensions and Biomes allowed?";
 		allowDimension = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowDoom", true);
@@ -215,8 +215,6 @@ public class TragicConfig {
 		cat = config.getCategory(CAT_ACHIEVE);
 		cat.setComment("These allow you to toggle specific Achievements, whether they can be received or not.");
 		cat.setShowInGui(true);
-
-		//TODO setup achievements in new config
 
 		cat = config.getCategory(CAT_AMULET);
 		cat.setComment("These allow you to toggle various aspects of Amulets.");
@@ -2007,6 +2005,15 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "avrisAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "pyragrAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "blistAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "thorgAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "jarraAllow", true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
@@ -2036,6 +2043,9 @@ public class TragicConfig {
 		miniBossAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "volatileFuseaAllow", true);
+		miniBossAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "aggroAllow", true);
 		miniBossAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "apisAllow", true);
@@ -2091,6 +2101,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "ragrSpawnChance", 25);
 		ragrSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "pyragrSpawnChance", 25);
+		pyragrSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "aggroSpawnChance", 5);
+		aggroSC = prop.getInt(5);
 
 		prop = config.get(cat.getName(), "pumpkinheadSpawnChance", 25);
 		pumpkinheadSC = prop.getInt(25);
@@ -2187,6 +2203,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "parasmiteSpawnChance", 25);
 		parasmiteSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "blistSpawnChance", 25);
+		blistSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "thorgSpawnChance", 25);
+		thorgSC = prop.getInt(25);
 
 		prop = config.get(cat.getName(), "apisSpawnChance", 5);
 		apisSC = prop.getInt(5);
@@ -2241,6 +2263,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "ragrStats", new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10});
 		ragrStats = verifyStat(prop.getDoubleList());
+		
+		prop = config.get(cat.getName(), "pyragrStats", new double[] {75.0, 0.380, 8.0, 32.0, 1.0, 16});
+		pyragrStats = verifyStat(prop.getDoubleList()); //TODO hide pyragr/aggro stats from config
+		
+		prop = config.get(cat.getName(), "aggroStats", new double[] {135.0, 0.380, 14.0, 16.0, 2.0, 16});
+		aggroStats = verifyStat(prop.getDoubleList());
 
 		prop = config.get(cat.getName(), "pumpkinheadStats", new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 18});
 		pumpkinheadStats = verifyStat(prop.getDoubleList());
@@ -2307,6 +2335,9 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "sirvStats", new double[] {8.0, 0.375, 14.0, 64.0, 0.5, 0});
 		sirvStats = verifyStat(prop.getDoubleList());
+		
+		prop = config.get(cat.getName(), "psygoteStats", new double[] {52.0, 0.290, 8.0, 32.0, 0.65, 10});
+		psygoteStats = verifyStat(prop.getDoubleList());
 
 		prop = config.get(cat.getName(), "lockbotStats", new double[] {22.0, 0.0, 1.0, 8.0, 100.0, 8});
 		lockbotStats = verifyStat(prop.getDoubleList());
@@ -2346,6 +2377,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "avrisStats", new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16});
 		avrisStats = verifyStat(prop.getDoubleList());
+		
+		prop = config.get(cat.getName(), "blistStats", new double[] {6.0, 0.462, 8.0, 16.0, 2.0, 0});
+		blistStats = verifyStat(prop.getDoubleList());
+		
+		prop = config.get(cat.getName(), "thorgStats", new double[] {6.0, 0.462, 8.0, 16.0, 2.0, 0});
+		thorgStats = verifyStat(prop.getDoubleList());
 
 		prop = config.get(cat.getName(), "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
 		aegarStats = verifyStat(prop.getDoubleList());
@@ -3026,11 +3063,6 @@ public class TragicConfig {
 	{
 		byte b;
 
-		if (!allowAchievements)
-		{
-			//TODO disable achievements if the blanket config is toggled off
-		}
-
 		if (!allowAmulets)
 		{
 			for (b = 0; b < amuletConfig.length; b++) amuletConfig[b] = false;
@@ -3233,6 +3265,9 @@ public class TragicConfig {
 		allowFusea = mobAllow[++m];
 		allowRanmas = mobAllow[++m];
 		allowAvris = mobAllow[++m];
+		allowPyragr = mobAllow[++m];
+		allowBlist = mobAllow[++m];
+		allowThorg = mobAllow[++m];
 
 		allowJarra = miniBossAllow[m = 0];
 		allowKragul = miniBossAllow[++m];
@@ -3244,6 +3279,7 @@ public class TragicConfig {
 		allowStinQueen = miniBossAllow[++m];
 		allowAegar = miniBossAllow[++m];
 		allowVolatileFusea = miniBossAllow[++m];
+		allowAggro = miniBossAllow[++m];
 
 		allowApis = bossAllow[m = 0];
 		allowSkultar = bossAllow[++m];

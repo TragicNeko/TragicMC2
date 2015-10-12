@@ -24,6 +24,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.items.ItemChallenge;
@@ -121,6 +122,8 @@ public class EntityAvris extends TragicMob {
 					ItemStack weapon = player.inventory.getCurrentItem();
 					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
 				}
+				
+				if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) player).triggerAchievement(TragicAchievements.avris);
 			}
 
 			int drops = 0;

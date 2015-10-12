@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -28,10 +29,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.projectile.EntityLargePumpkinbomb;
@@ -187,10 +188,13 @@ public class EntityDeathReaper extends TragicBoss {
 	}
 
 	@Override
-	public void onDeath(DamageSource par1DamageSource)
+	public void onDeath(DamageSource src)
 	{
 		if (this.getReaperType() == 1) return;
-		super.onDeath(par1DamageSource);
+		super.onDeath(src);
+		
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.skultar);
+		
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
 
 		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.boundingBox.expand(32.0, 32.0, 32.0));
@@ -262,6 +266,14 @@ public class EntityDeathReaper extends TragicBoss {
 			}
 			else
 			{
+				if (this.getAttackTarget() instanceof EntityPlayerMP && TragicConfig.allowAchievements && TragicConfig.allowImmunity && TragicConfig.allowClarity)
+				{
+					if (this.getAttackTarget().isPotionActive(TragicPotion.Immunity) && this.getAttackTarget().isPotionActive(TragicPotion.Clarity))
+					{
+						((EntityPlayerMP) this.getAttackTarget()).triggerAchievement(TragicAchievements.skultarImmune);
+					}
+				}
+
 				if (this.getAttackTarget().getHealth() <= this.getAttackTarget().getMaxHealth() / 4) this.setDemeanor(5);
 
 				int z = this.getHealth() <= this.getMaxHealth() / 2 ? 2 : 1;
@@ -599,7 +611,7 @@ public class EntityDeathReaper extends TragicBoss {
 	{
 		return null; //"tragicmc:boss.skultar.laugh";
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{

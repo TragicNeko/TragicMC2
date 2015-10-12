@@ -23,6 +23,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
@@ -30,6 +31,7 @@ import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
 public class EntityPsygote extends TragicMob {
 
 	private AttributeModifier mod = new AttributeModifier(UUID.fromString("1e8bc939-443c-46b6-8158-0d53513a47e6"), "psygoteSpeedDebuff", TragicConfig.modifier[8], 0);
+	private boolean hasTeleported = false; //keep track for achievement
 
 	public EntityPsygote(World par1World) {
 		super(par1World);
@@ -255,7 +257,7 @@ public class EntityPsygote extends TragicMob {
 		}
 
 		this.setPosition(x, y, z);
-
+		this.hasTeleported = true;
 	}
 
 	private void shootProjectiles() {
@@ -309,6 +311,7 @@ public class EntityPsygote extends TragicMob {
 		if (tag.hasKey("hurtTime")) this.setHurtTime(tag.getInteger("hurtTime"));;
 		if (tag.hasKey("firingTicks")) this.setFiringTicks(tag.getInteger("firingTicks"));
 		if (tag.hasKey("switchTicks")) this.setSwitchTicks(tag.getInteger("switchTicks"));
+		if (tag.hasKey("hasTeleported")) this.hasTeleported = tag.getBoolean("hasTeleported");
 	}
 
 	@Override
@@ -318,6 +321,7 @@ public class EntityPsygote extends TragicMob {
 		tag.setInteger("hurtTime", this.getHurtTime());
 		tag.setInteger("firingTicks", this.getFiringTicks());
 		tag.setInteger("switchTicks", this.getSwitchTicks());
+		tag.setBoolean("hasTeleported", this.hasTeleported);
 	}
 
 	@Override
@@ -359,5 +363,14 @@ public class EntityPsygote extends TragicMob {
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
 		
+	}
+	
+	@Override
+	public void onDeath(DamageSource src) {
+		super.onDeath(src);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && !this.hasTeleported)
+		{
+			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.psygote);
+		}
 	}
 }

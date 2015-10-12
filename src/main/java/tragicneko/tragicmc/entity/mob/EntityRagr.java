@@ -1,14 +1,17 @@
 package tragicneko.tragicmc.entity.mob;
 
 import static tragicneko.tragicmc.TragicConfig.ragrStats;
+import static tragicneko.tragicmc.TragicConfig.pyragrStats;
 
 import java.util.ArrayList;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -18,13 +21,17 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBow;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -33,7 +40,9 @@ import tragicneko.tragicmc.blocks.BlockDarkCobble;
 import tragicneko.tragicmc.blocks.BlockGenericGrass;
 import tragicneko.tragicmc.blocks.BlockPermafrost;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.util.WorldHelper;
+import tragicneko.tragicmc.worldgen.biome.BiomeGenPaintedForest;
 
 import com.google.common.collect.Sets;
 
@@ -50,12 +59,18 @@ public class EntityRagr extends TragicMob {
 		this.stepHeight = 1.5F;
 		this.experienceValue = 10;
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 32.0F));
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTameable.class, 0, true));
 		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
+	}
+	
+	@Override
+	public boolean isMobVariant()
+	{
+		return this.getRagrType() == 1;
 	}
 
 	@Override
@@ -63,6 +78,7 @@ public class EntityRagr extends TragicMob {
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(16, Integer.valueOf(0));
+		this.dataWatcher.addObject(17, (byte) 0);
 	}
 
 	public int getAngerTicks()
@@ -86,6 +102,22 @@ public class EntityRagr extends TragicMob {
 		int pow = this.getAngerTicks();
 		this.setAngerTicks(--pow);
 	}
+	
+	public byte getRagrType() 
+	{
+		return this.dataWatcher.getWatchableObjectByte(17);
+	}
+	
+	protected void setRagrType(byte b)
+	{
+		this.dataWatcher.updateObject(17, b);
+
+		if (b != 0)
+		{
+			this.experienceValue = 16;
+			this.isImmuneToFire = true;
+		}
+	}
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -103,11 +135,12 @@ public class EntityRagr extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(ragrStats[0]);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(ragrStats[1]);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(ragrStats[2]);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(ragrStats[3]);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(ragrStats[4]);
+		boolean flag = this.getRagrType() == 0;
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? ragrStats[0] : pyragrStats[0]);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? ragrStats[1] : pyragrStats[1]);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? ragrStats[2] : pyragrStats[2]);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(flag ? ragrStats[3] : pyragrStats[3]);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(flag ? ragrStats[4] : pyragrStats[4]);
 	}
 
 	@Override
@@ -115,6 +148,10 @@ public class EntityRagr extends TragicMob {
 	{
 		super.onLivingUpdate();
 		if (this.worldObj.isRemote) return;
+		
+		if (this.superiorForm == null && this.getRagrType() == 1) this.superiorForm = new EntityJarra(this.worldObj);
+		if (this.getRagrType() == 1 && this.ticksExisted % 5 == 0 && this.worldObj.isRaining() && this.worldObj.canBlockSeeTheSky((int) this.posX, (int) this.posY, (int) this.posZ)) this.attackEntityFrom(DamageSource.drown, 1.0F);
+		if (this.getRagrType() == 1 && this.isInsideOfMaterial(Material.water)) this.attackEntityFrom(DamageSource.drown, 1.0F);
 
 		if (this.getAttackTarget() != null)
 		{
@@ -265,7 +302,7 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isBurning() ? 0 : (int) ragrStats[5];
+		return this.isBurning() && this.getRagrType() == 0 ? 0 : (this.getRagrType() == 0 ? (int) ragrStats[5] : (int) pyragrStats[5]);
 	}
 
 	@Override
@@ -333,6 +370,11 @@ public class EntityRagr extends TragicMob {
 				par1Entity.motionZ += this.motionZ;
 				par1Entity.motionY += this.motionY;
 			}
+			
+			if (this.getRagrType() != 0)
+			{
+				par1Entity.setFire(4 + rand.nextInt(4));
+			}
 
 		}
 		return result;
@@ -340,7 +382,7 @@ public class EntityRagr extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return false;
+		return this.getRagrType() == 1 && TragicConfig.allowAggro;
 	}
 
 	@Override
@@ -382,6 +424,45 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public int getDropAmount()
 	{
-		return 3;
+		return this.getRagrType() == 0 ? 3 : 5;
+	}
+	
+	@Override
+	public void onDeath(DamageSource src) {
+		super.onDeath(src);
+		
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && this.isBurning() && this.getRagrType() == 0)
+		{
+			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.ragr);
+		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("ragrType")) this.setRagrType(tag.getByte("ragrType"));
+		if (tag.hasKey("angerTicks")) this.setAngerTicks(tag.getInteger("angerTicks"));
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setByte("ragrType", this.getRagrType());
+		tag.setInteger("angerTicks", this.getAngerTicks());
+	}
+	
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.Pyragr";
+    }
+	
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+	{
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
+		this.setRagrType(biome.temperature > 0.5F ? (byte) 1 : 0);
+		return super.onSpawnWithEgg(data);
 	}
 }

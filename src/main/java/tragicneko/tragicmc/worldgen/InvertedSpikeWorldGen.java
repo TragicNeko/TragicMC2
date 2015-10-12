@@ -5,12 +5,10 @@ import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class InvertedSpikeWorldGen implements IWorldGenerator {
+public class InvertedSpikeWorldGen implements IWorldGen {
 
 	public final byte iterations;
 	public final double radius;
@@ -28,7 +26,7 @@ public class InvertedSpikeWorldGen implements IWorldGenerator {
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		if (!TragicConfig.allowInvertedSpikeGen) return;
 		

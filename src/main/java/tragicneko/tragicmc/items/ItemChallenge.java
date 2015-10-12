@@ -18,6 +18,8 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.network.MessageSound;
@@ -120,6 +122,7 @@ public class ItemChallenge extends Item {
 				stack.stackTagCompound.setInteger("challengeID", challenge.challengeID);
 				player.addChatMessage(new ChatComponentText("Challenge accepted!"));
 				if (player instanceof EntityPlayerMP) TragicMC.net.sendTo(new MessageSound("tragicmc:random.challengestart", 1.0F, 1.0F), (EntityPlayerMP) player);
+				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.challengeScroll);
 			}
 			catch (Exception e)
 			{
@@ -203,7 +206,7 @@ public class ItemChallenge extends Item {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 	{
-		if (world.isRemote || stack.getItemDamage() == 0 || stack.getItemDamage() == 250) return;
+		if (world.isRemote || stack.getItemDamage() == 0 || stack.getItemDamage() == 250 || entity == null) return;
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
 		if (!stack.stackTagCompound.hasKey("challengeID")) stack.stackTagCompound.setInteger("challengeID", stack.getItemDamage());

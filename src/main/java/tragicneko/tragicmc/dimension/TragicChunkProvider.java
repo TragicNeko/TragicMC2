@@ -396,10 +396,10 @@ public class TragicChunkProvider implements IChunkProvider
 			(new WorldGenDimensionDungeon()).generate(this.worldObj, this.rand, l1, i2, j2);
 		}
 
-		if (TragicConfig.allowDarkStoneVariantGen) (new DimensionLayerWorldGen()).generate(this.rand, par2, par3, this.worldObj, this, this);
+		if (TragicConfig.allowDarkStoneVariantGen) (new DimensionLayerWorldGen()).generate(this.rand, par2, par3, this.worldObj);
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
-		(new DimensionOreWorldGen()).generate(this.rand, par2, par3, this.worldObj, null, null);
-		(new FlowerWorldGen2()).generate(this.rand, par2, par3, this.worldObj, null, null);
+		(new DimensionOreWorldGen()).generate(this.rand, par2, par3, this.worldObj);
+		(new FlowerWorldGen2()).generate(this.rand, par2, par3, this.worldObj);
 
 		BlockFalling.fallInstantly = false;
 	}

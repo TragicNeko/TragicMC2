@@ -12,10 +12,12 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
@@ -26,6 +28,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 public class EntityFusea extends TragicMob {
 
 	private int explosionBuffer;
+	private boolean hasDamagedEntity = false;
 
 	public EntityFusea(World par1World) {
 		super(par1World);
@@ -171,6 +174,7 @@ public class EntityFusea extends TragicMob {
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setHealth(this.getHealth() - 1F);
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
+			this.hasDamagedEntity = true;
 		}
 		return !this.worldObj.isRemote;
 	}
@@ -190,6 +194,7 @@ public class EntityFusea extends TragicMob {
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("explosionBuffer")) this.explosionBuffer = tag.getInteger("explosionBuffer");
+		if (tag.hasKey("hasDamagedEntity")) this.hasDamagedEntity = tag.getBoolean("hasDamagedEntity");
 	}
 
 	@Override
@@ -197,6 +202,7 @@ public class EntityFusea extends TragicMob {
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("explosionBuffer", this.explosionBuffer);
+		tag.setBoolean("hasDamagedEntity", this.hasDamagedEntity);
 	}
 
 	@Override
@@ -233,5 +239,12 @@ public class EntityFusea extends TragicMob {
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
 		
+	}
+	
+	@Override
+	public void onDeath(DamageSource src)
+	{
+		super.onDeath(src);
+		if (!this.hasDamagedEntity && TragicConfig.allowAchievements && src.isFireDamage() && this.getAttackTarget() instanceof EntityPlayerMP) ((EntityPlayerMP) this.getAttackTarget()).triggerAchievement(TragicAchievements.fusea);
 	}
 }

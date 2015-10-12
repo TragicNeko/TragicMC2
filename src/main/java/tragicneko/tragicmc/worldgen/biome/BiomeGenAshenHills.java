@@ -82,8 +82,8 @@ public class BiomeGenAshenHills extends TragicBiome {
 		super.decorate(world, rand, x, z);
 		if (variant == 2)
 		{
-			this.shieldGen.generate(rand, x / 16, z / 16, world, null, null);
-			this.ruggedGen.generate(rand, x / 16, z / 16, world, null, null);
+			this.shieldGen.generate(rand, x / 16, z / 16, world);
+			this.ruggedGen.generate(rand, x / 16, z / 16, world);
 		}
 	}
 }

@@ -975,6 +975,7 @@ entity.TragicMC.MegaCryse.name=Mega Cryse
 entity.TragicMC.DeathReaper.name=Skultar
 entity.TragicMC.DeathReaperClone.name=Skultar
 entity.TragicMC.Pirah.name=Pirah
+entity.TragicMC.GoldenPirah.name=Golden Pirah
 entity.TragicMC.NorVox.name=Nor-Vox
 entity.TragicMC.Kitsune.name=Kitsunakuma
 entity.TragicMC.Bangatang.name=Bangatang
@@ -988,7 +989,7 @@ entity.TragicMC.Sirv.name=Sirv
 entity.TragicMC.Unpause.name=Unpause
 entity.TragicMC.Psygote.name=Psygote
 entity.TragicMC.Stin.name=Stin
-entity.TragicMC.StinBaby.name=Stin Baby
+entity.TragicMC.StinBaby.name=Stin (Baby)
 entity.TragicMC.GreaterStin.name=Greater Stin
 entity.TragicMC.StinQueen.name=Stin Queen
 entity.TragicMC.StinKing.name=Stin King
@@ -1023,6 +1024,9 @@ entity.TragicMC.OverlordCombat.name=The Overlord (Combat)
 entity.TragicMC.OverlordCocoon.name=The Overlord (Cocoon)
 entity.TragicMC.Kurayami.name=Kurayami
 entity.TragicMC.Avris.name=Avris
+entity.TragicMC.Pyragr.name=Pyragr
+entity.TragicMC.Aggro.name=Aggro
+entity.TragicMC.Blist.name=Blist
 
 enchantment.combustion=Combustion
 enchantment.multiply=Multiply
@@ -1209,3 +1213,240 @@ tragicmc.crystal=Crystal
 tragicmc.synapse=Synapse
 tragicmc.synapseDead=Dead Sector
 tragicmc.synapseCorrupt=Corrupted Chunk
+
+achievement.tragicmc.thanks=Thank You!
+achievement.tragicmc.thanks.desc=I hope you enjoy the mod and I also hope you give feedback on it as well!
+
+achievement.tragicmc.mercury=I like me some bubblegum!
+achievement.tragicmc.mercury.desc=Mine some Red Mercury
+
+achievement.tragicmc.obsidianOrb=Wonder Orb
+achievement.tragicmc.obsidianOrb.desc=Obtain a special obsidian orb (bleeding, crying or dying)
+
+achievement.tragicmc.dimensionalKey=Are you the Keymaster?
+achievement.tragicmc.dimensionalKey.desc=Obtain a Dimensional Key (Collision)
+
+achievement.tragicmc.collision=Something's not quite right...
+achievement.tragicmc.collision.desc=Step foot in the Collision
+
+achievement.tragicmc.aeris=Beautiful Corruption
+achievement.tragicmc.aeris.desc=Fully corrupt an Aeris flower
+
+achievement.tragicmc.synapseLink=To infinity...
+achievement.tragicmc.synapseLink.desc=Obtain a Synapse Link
+
+achievement.tragicmc.synapse=And beyond!
+achievement.tragicmc.synapse.desc=Enter the Synapse
+
+achievement.tragicmc.overlord=Round 1!
+achievement.tragicmc.overlord.desc=Summon the evil being that dwells in the Digital Seas of the Synapse
+
+achievement.tragicmc.overlord2=Round 2!
+achievement.tragicmc.overlord2.desc=Crack open the shell and reveal the creature within
+
+achievement.tragicmc.overlord3=Round 3!
+achievement.tragicmc.overlord3.desc=Expose the creature's wicked core and finish it off once and for all
+
+achievement.tragicmc.overlord4=Knockout!
+achievement.tragicmc.overlord4.desc=Put an end to the vile creature's darkness and ease the spread of corruption throughout Minecraft
+
+achievement.tragicmc.tungsten=Is that Cinnamon Toast Crunch?
+achievement.tragicmc.tungsten.desc=Mine some Tungsten
+
+achievement.tragicmc.amulet=Rare Trinket of Power
+achievement.tragicmc.amulet.desc=Obtain an Amulet
+
+achievement.tragicmc.amuletEquip=Am I doing it right?
+achievement.tragicmc.amuletEquip.desc=Equip and use an Amulet
+
+achievement.tragicmc.amuletRelease=Catharsis
+achievement.tragicmc.amuletRelease.desc=Use an Amulet Release to unlock more active Amulet slots
+
+achievement.tragicmc.amuletMax=Packrat
+achievement.tragicmc.amuletMax.desc=Have an entire inventory full of Amulets (including active slots)
+
+achievement.tragicmc.amuletSpecial=Gift or Curse?
+achievement.tragicmc.amuletSpecial.desc=Obtain an Epic or Cursed Amulet
+
+achievement.tragicmc.doom=What is this mystical power?
+achievement.tragicmc.doom.desc=Completely fill your Doom bar
+
+achievement.tragicmc.doomsday=Can you feel the power?
+achievement.tragicmc.doomsday.desc=Use a weapon or armor Doomsday
+
+achievement.tragicmc.doomsdayCombo=Our powers unite!
+achievement.tragicmc.doomsdayCombo.desc=Use a Combination Doomsday
+
+achievement.tragicmc.doomCooldown=It's your Doom, use it when you need it!
+achievement.tragicmc.doomCooldown.desc=Use a Cooldown Defuse to remove global cooldown
+
+achievement.tragicmc.doomConsume=I require more...
+achievement.tragicmc.doomConsume.desc=Use a Doom Consume to increase your max Doom amount
+
+achievement.tragicmc.doomCritical=Critical Hit!
+achievement.tragicmc.doomCritical.desc=Trigger a Crucial Moment on a Doomsday
+
+achievement.tragicmc.weapon=I need to defend myself!
+achievement.tragicmc.weapon.desc=Craft a Tragic Weapon
+
+achievement.tragicmc.kill=I feel so alive...
+achievement.tragicmc.kill.desc=Kill a Tragic Mob
+
+achievement.tragicmc.killMiniBoss=For the very first time...
+achievement.tragicmc.killMiniBoss.desc=Kill a Tragic Mini-Boss
+
+achievement.tragicmc.killBoss=I can't deny you, I feel so alive!
+achievement.tragicmc.killBoss.desc=Kill a Tragic Boss
+
+achievement.tragicmc.enchant=It's super effective!
+achievement.tragicmc.enchant.desc=Do extra damage to a mob via a Weapon enchantment
+
+achievement.tragicmc.reach=Ten-foot pole!
+achievement.tragicmc.reach.desc=Hit a mob that would normally be out of range with Reach
+
+achievement.tragicmc.enchantArmor=You started it!
+achievement.tragicmc.enchantArmor.desc=Have an Armor enchantment activate on an incoming attack
+
+achievement.tragicmc.fullSuit=Every girl's crazy 'bout that sharp-dressed man!
+achievement.tragicmc.fullSuit.desc=Wear a full set of any Tragic Armor
+
+achievement.tragicmc.haxEngage=H4x 3ng4g3
+achievement.tragicmc.haxEngage.desc=Wear a full set of Alpha Armor
+
+achievement.tragicmc.jack=...of all trades...
+achievement.tragicmc.jack.desc=Obtain a Jack of any type
+
+achievement.tragicmc.luminescence=I can see clearly!
+achievement.tragicmc.luminescence.desc=Use Luminescence on a tool while you are mining
+
+achievement.tragicmc.combustion=Ores Ready to Use!
+achievement.tragicmc.combustion.desc=Use Combustion on a tool while you are mining
+
+achievement.tragicmc.veteran=Too MLG for this
+achievement.tragicmc.veteran.desc=Use Veteran on a tool while you are mining
+
+achievement.tragicmc.talisman=Do I just hold onto this?
+achievement.tragicmc.talisman.desc=Obtain a Talisman
+
+achievement.tragicmc.talismanSpecial=Look with your special eyes!
+achievement.tragicmc.talismanSpecial.desc=Obtain a specialized Talisman and have it's effects active
+
+achievement.tragicmc.talismanFull=This might not work quite right
+achievement.tragicmc.talismanFull.desc=Have every specialized Talisman equipped at once
+
+achievement.tragicmc.goldenSushi=That was delicious!
+achievement.tragicmc.goldenSushi.desc=Dine on some exotic Golden Sushi
+
+achievement.tragicmc.flight=I can touch the sky!
+achievement.tragicmc.flight.desc=Have the Flight potion effect on you
+
+achievement.tragicmc.disorientation=Steady as a rock... yeah, but I shoot with this hand
+achievement.tragicmc.disorientation.desc=Have the Disorientation potion effect on you
+
+achievement.tragicmc.mobStatue=I've got a shelf full of these!
+achievement.tragicmc.mobStatue.desc=Obtain a Mob Statue
+
+achievement.tragicmc.challengeScroll=Challenge accepted.
+achievement.tragicmc.challengeScroll.desc=Start a Challenge via a Challenge Scroll
+
+achievement.tragicmc.doomsdayScroll=Bippity-boppity boo!
+achievement.tragicmc.doomsdayScroll.desc=Use a Doomsday Scroll
+
+achievement.tragicmc.mineXP=It's ore made out of XP, how awesome is that?
+achievement.tragicmc.mineXP.desc=Mine some XP ore
+
+achievement.tragicmc.loot=Gotta go faster!
+achievement.tragicmc.loot.desc=Obtain Tragic Weapons or Armor that have a rarity of Uncommon or better
+
+achievement.tragicmc.loot2=All your loots are belong to us
+achievement.tragicmc.loot2.desc=Obtain Tragic Weapons or Armor that have a rarity of Epic
+
+achievement.tragicmc.systemCrash=BSOD
+achievement.tragicmc.systemCrash.desc=Kill a mob while the Hacked potion effect is active
+
+achievement.tragicmc.divinity=I am your overlord!
+achievement.tragicmc.divinity.desc=Kill a mob while the Divinity potion effect is active
+
+achievement.tragicmc.useOrb=Spawn shenanigans
+achievement.tragicmc.useOrb.desc=Use a special obsidian orb's ability
+
+achievement.tragicmc.tragicNeko=Are we best friends now?
+achievement.tragicmc.tragicNeko.desc=Give a Tragic Neko a present on it's birthday!
+
+achievement.tragicmc.pumpkinhead=Feeling charitable?
+achievement.tragicmc.pumpkinhead.desc=Give a Pumpkinhead a home
+
+achievement.tragicmc.norVox=That thing that you're doing, stop that.
+achievement.tragicmc.norVox.desc=Stun a Nor-Vox mid-attack
+
+achievement.tragicmc.psygote=Not this time!
+achievement.tragicmc.psygote.desc=Kill a Psygote before it can teleport you
+
+achievement.tragicmc.sirv=I'm not even breaking a sweat!
+achievement.tragicmc.sirv.desc=Kill a Sirv with over 30 damage in one hit
+
+achievement.tragicmc.ragr=That Ragr's on fire!
+achievement.tragicmc.ragr.desc=Kill a Ragr while it's on fire
+
+achievement.tragicmc.kurayami=David & Goliath
+achievement.tragicmc.kurayami.desc=Force a Kurayami to fight a Kitsunakuma
+
+achievement.tragicmc.cantTouchThis=Can't touch this!
+achievement.tragicmc.cantTouchThis.desc=Kill a Tragic Boss without being attacked by it
+
+achievement.tragicmc.rewind=Take that, rewind it back
+achievement.tragicmc.rewind.desc=Get caught up in a Time Controller's Quantum Leap
+
+achievement.tragicmc.aegar=Carefully, Precisely
+achievement.tragicmc.aegar.desc=Kill an Aegar without it entering Hypermode
+
+achievement.tragicmc.claymation2in1=Buy one, get one half off!
+achievement.tragicmc.claymation2in1.desc=Defeat a Claymation while it's transformed as another Tragic Boss
+
+achievement.tragicmc.skultarImmune=I got this!
+achievement.tragicmc.skultarImmune.desc=Face off with a Skultar while you have both Immunity and Clarity active
+
+achievement.tragicmc.minotaurSummon=I summon thee!
+achievement.tragicmc.minotaurSummon.desc=Strike a Cow with Lightning
+
+achievement.tragicmc.seeker=Didn't even see it coming...
+achievement.tragicmc.seeker.desc=Kill a Seeker without being burned by it's gaze
+
+achievement.tragicmc.harvester=Autonomous Drone
+achievement.tragicmc.harvester.desc=Kill a Harvester without being under it's debuff
+
+achievement.tragicmc.lockbot=Lockdown
+achievement.tragicmc.lockbot.desc=Kill a mob while being locked down by a Lockbot
+
+achievement.tragicmc.fusea=Kill it with fire!
+achievement.tragicmc.fusea.desc=Kill a Fusea without being hurt by it and by lighting it on fire
+
+achievement.tragicmc.ire=Fight Ire with Ire
+achievement.tragicmc.ire.desc=Kill an Ire by using an IreNet Particle Cannon
+
+achievement.tragicmc.avris=Gimme yo loots!
+achievement.tragicmc.avris.desc=Kill an Avris before it escapes
+
+achievement.tragicmc.apis=Apis of mind
+achievement.tragicmc.apis.desc=Kill an Apis
+
+achievement.tragicmc.skultar=Left at the Skultar
+achievement.tragicmc.skultar.desc=Kill a Skultar
+
+achievement.tragicmc.kitsunakuma=Location, location, location...
+achievement.tragicmc.kitsunakuma.desc=Kill a Kitsunakuma
+
+achievement.tragicmc.polaris=Release the North Star!
+achievement.tragicmc.polaris.desc=Kill a Polaris
+
+achievement.tragicmc.empariah=Not your God or your Empariah
+achievement.tragicmc.empariah.desc=Kill an Empariah
+
+achievement.tragicmc.timeController=Wibbly wobbly, timey-wimey
+achievement.tragicmc.timeController.desc=Kill a Time Controller
+
+achievement.tragicmc.enyvil=I'll do it when Enyvil to!
+achievement.tragicmc.enyvil.desc=Kill an Enyvil
+
+achievement.tragicmc.claymation=Approximation Manifestation
+achievement.tragicmc.claymation.desc=Kill a Claymation

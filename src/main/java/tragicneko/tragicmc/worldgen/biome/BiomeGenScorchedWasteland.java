@@ -118,8 +118,8 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 				}
 			}
 		}
-		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world, null, null);
-		this.fireGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (variant == 2 && rand.nextInt(100) > 3 && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextInt(8) == 0) this.pitGen.generate(rand, x / 16, z / 16, world);
+		this.fireGen.generate(rand, x / 16, z / 16, world);
+		if (variant == 2 && rand.nextInt(100) > 3 && rand.nextInt(6) != 0) this.scarGen.generate(rand, x / 16, z / 16, world);
 	}
 }

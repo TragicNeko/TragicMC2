@@ -13,8 +13,9 @@ public class EntityAdmin extends TragicBoss {
 	//Stats
 	//Health: 6000
 	//Attack (normal hit): 16
+	//Damage (normal-projectile): 4.5 armor-piercing
 	//Damage (slow-moving projectile): 8 armor-piercing
-	//Damage (annhilator beam): 1000 armor-piercing, this might make it viable to use in a mob battle against other mobs
+	//Damage (annhilator beam): 100 armor-piercing, this might make it viable to use in a mob battle against other mobs
 	//Speed: 0.223 (invulnerable mode), 0.375 (flying speed), 0.425 (ghost mode speed)
 	//knockback resistance: 0 (can be knocked away and towards things)
 	//Armor value: 24 (maximum value so that the strongest weapons are required)

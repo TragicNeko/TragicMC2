@@ -5,12 +5,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.structure.Structure;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class StringWorldGen implements IWorldGenerator {
+public class StringWorldGen implements IWorldGen {
 
 	public final Block block;
 	public final byte meta;
@@ -24,7 +22,7 @@ public class StringWorldGen implements IWorldGenerator {
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		if (!TragicConfig.allowStringLightGen) return;
 		

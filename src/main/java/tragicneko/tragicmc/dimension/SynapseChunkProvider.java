@@ -435,9 +435,9 @@ public class SynapseChunkProvider implements IChunkProvider
 		 int b;
 		 int c;
 		 
-		 this.circuitGen.generate(this.synapseRNG, x, z, this.worldObj, this, this);
+		 this.circuitGen.generate(this.synapseRNG, x, z, this.worldObj);
 		 
-		 if (TragicConfig.allowSynapseVariants && this.synapseRNG.nextInt(TragicConfig.synapseVariantChance) == 0) this.circuitVarGen.generate(this.synapseRNG, x, z, this.worldObj, this, this);
+		 if (TragicConfig.allowSynapseVariants && this.synapseRNG.nextInt(TragicConfig.synapseVariantChance) == 0) this.circuitVarGen.generate(this.synapseRNG, x, z, this.worldObj);
 
 		 for (int i = 0; i < 4; i++)
 		 {

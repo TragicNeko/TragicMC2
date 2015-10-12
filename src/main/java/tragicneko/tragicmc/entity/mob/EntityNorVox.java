@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -27,6 +28,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
@@ -292,10 +294,11 @@ public class EntityNorVox extends TragicMob {
 		{
 			this.setAttackTime(10);
 			if (this.getNodTicks() > 0) this.setNodTicks(0);
-			if (this.isFiring() && par1DamageSource.getEntity() != null && rand.nextInt(8) == 0 && this.getFiringTicks() >= 40)
+			if (this.isFiring() && par1DamageSource.getEntity() != null && rand.nextInt(4) == 0 && this.getFiringTicks() >= 40)
 			{
 				this.setFiringTicks(0);
 				if (TragicConfig.allowStun) this.addPotionEffect(new PotionEffect(TragicPotion.Stun.id, 60 + rand.nextInt(40)));
+				if (TragicConfig.allowAchievements && par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.norVox);
 			}
 		}
 
@@ -452,4 +455,10 @@ public class EntityNorVox extends TragicMob {
 	{
 		return 3;
 	}
+	
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.StarVox";
+    }
 }

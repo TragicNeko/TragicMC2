@@ -17,11 +17,13 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
@@ -98,7 +100,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					if (TragicConfig.allowHacked && ((EntityLivingBase) e).getCreatureAttribute() != TragicEntities.Synapse) ((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicPotion.Hacked.id, 40 + rand.nextInt(20), 0));
 				}
 			}
-			
+
 			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wam", 1.8F, 1.0F);
 		}
 
@@ -136,13 +138,23 @@ public class EntityOverlordCombat extends TragicBoss {
 			core.setPosition(this.posX, this.posY, this.posZ);
 			core.setStartTransform();
 			this.worldObj.spawnEntityInWorld(core);
-			
+
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 16.0, 16.0));
 			for (Entity e : list)
 			{
 				if (e instanceof EntityLivingBase && ((EntityLivingBase) e).getCreatureAttribute() == TragicEntities.Synapse && e != core)
 				{
 					e.setDead();
+				}
+			}
+
+			if (par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.overlord3);
+			List<EntityPlayerMP> list2 = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.boundingBox.expand(24.0, 24.0, 24.0));
+			if (!list2.isEmpty())
+			{
+				for (EntityPlayerMP mp : list2)
+				{
+					mp.triggerAchievement(TragicAchievements.overlord3);
 				}
 			}
 		}
@@ -468,7 +480,7 @@ public class EntityOverlordCombat extends TragicBoss {
 					}
 				}
 			}
-			
+
 			if (this.getUnstableTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 0.5F);
 
 			this.unstableBuffer = 300;
@@ -521,7 +533,7 @@ public class EntityOverlordCombat extends TragicBoss {
 						this.motionZ = Math.min(Math.abs(d3), 1.6D) == Math.abs(d3) ? d3 : 1.6D * (d3 < 0 ? -1 : 1);
 					}
 				}
-				
+
 				if (this.getChargeTicks() % 10 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.march", 1.8F, 1.0F);
 			}
 			else
@@ -552,7 +564,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				e.motionX = -d1 / f2 * d4 * 0.600000011920929D + e.motionX * 0.20000000298023224D;
 				e.motionZ = -d2 / f2 * d4 * 0.600000011920929D + e.motionZ * 0.20000000298023224D;
 				e.motionY = -d3 / f2 * d4 * 0.300000011920929D + e.motionZ * 0.10000000298023224D;
-				
+
 				if (this.getGrappleTicks() % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.phaser", 1.8F, 1.0F);
 			}
 			else
@@ -585,7 +597,7 @@ public class EntityOverlordCombat extends TragicBoss {
 				hunter.setPosition(this.posX + rand.nextDouble() - rand.nextDouble(), this.posY + rand.nextDouble(), this.posZ + rand.nextDouble() - rand.nextDouble());
 				this.worldObj.spawnEntityInWorld(hunter);
 			}
-			
+
 			if (this.getReflectionTicks() % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcombat.wow", 1.8F, 1.0F);
 		}
 		if (this.onGround && this.hasLeaped) this.hasLeaped = false;
@@ -720,7 +732,7 @@ public class EntityOverlordCombat extends TragicBoss {
 		this.playLivingSound();
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	@Override
 	public String getLivingSound()
 	{
@@ -750,7 +762,7 @@ public class EntityOverlordCombat extends TragicBoss {
 	{
 		return 0.6F;
 	}
-	
+
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{

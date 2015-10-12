@@ -61,10 +61,10 @@ public class BiomeGenHallowedHills extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		if (rand.nextBoolean()) this.stringGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (rand.nextBoolean()) this.lightGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (rand.nextInt(6) == 0) this.fragileGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (rand.nextInt(8) == 0) this.honeydropGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (rand.nextBoolean()) this.stringGen.generate(rand, x / 16, z / 16, world);
+		if (rand.nextBoolean()) this.lightGen.generate(rand, x / 16, z / 16, world);
+		if (rand.nextInt(6) == 0) this.fragileGen.generate(rand, x / 16, z / 16, world);
+		if (rand.nextInt(8) == 0) this.honeydropGen.generate(rand, x / 16, z / 16, world);
 	}
 
 }

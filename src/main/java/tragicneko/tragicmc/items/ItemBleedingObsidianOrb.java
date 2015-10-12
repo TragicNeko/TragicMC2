@@ -2,7 +2,10 @@ package tragicneko.tragicmc.items;
 
 import java.util.List;
 
+import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicConfig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -54,6 +57,7 @@ public class ItemBleedingObsidianOrb extends Item {
 				}
 			}
 
+			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

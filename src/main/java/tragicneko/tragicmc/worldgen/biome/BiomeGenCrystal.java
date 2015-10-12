@@ -38,6 +38,6 @@ public class BiomeGenCrystal extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		this.crystalGen.generate(rand, x / 16, z / 16, world, null, null);
+		this.crystalGen.generate(rand, x / 16, z / 16, world);
 	}
 }

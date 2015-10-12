@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.doomsday.Doomsday.IExtendedDoomsday;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -91,6 +92,7 @@ public class DoomsdayEffect {
 		if (this.timeBetweenUpdates == 0)
 		{
 			if (TragicConfig.allowCrucialMoments) crucMoment = rand.nextInt(100) <= TragicConfig.crucialMomentChance;
+			if (TragicConfig.allowAchievements && crucMoment) this.player.triggerAchievement(TragicAchievements.doomCritical);
 
 			try
 			{

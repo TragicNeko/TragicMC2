@@ -3,11 +3,14 @@ package tragicneko.tragicmc.items;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicConfig;
 
 public class ItemDyingObsidianOrb extends Item {
 
@@ -45,6 +48,7 @@ public class ItemDyingObsidianOrb extends Item {
 				par3EntityPlayer.addChatMessage(new ChatComponentText("Teleported to " + cc2.posX + ", " + cc2.posY + ", " + cc2.posZ));
 			}
 
+			if (par3EntityPlayer instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) par3EntityPlayer).triggerAchievement(TragicAchievements.useOrb);
 			par1ItemStack.stackSize--;
 		}
 		return par1ItemStack;

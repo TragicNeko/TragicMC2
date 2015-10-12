@@ -10,12 +10,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
@@ -25,6 +27,9 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 {
+	
+	private boolean hasDamagedEntity = false; //for achievement can't touch this, kill a boss without being hurt by it
+	
 	public TragicBoss(World par1World) {
 		super(par1World);
 		this.experienceValue = 100;
@@ -62,6 +67,13 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			{
 				ItemStack weapon = player.getCurrentEquippedItem();
 				x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
+			}
+			
+			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
+			
+			if (!this.hasDamagedEntity && TragicConfig.allowAchievements && player instanceof EntityPlayerMP)
+			{
+				player.triggerAchievement(TragicAchievements.cantTouchThis);
 			}
 		}
 
@@ -111,6 +123,19 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			if (drop != null) this.entityDropItem(drop, 0.4F);
 		}
 	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		super.readEntityFromNBT(tag);
+		if (tag.hasKey("hasDamagedEntity")) this.hasDamagedEntity = tag.getBoolean("hasDamagedEntity"); 
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		super.writeEntityToNBT(tag);
+		tag.setBoolean("hasDamagedEntity", this.hasDamagedEntity);
+	}
 
 	@Override
 	public void onLivingUpdate()
@@ -154,7 +179,11 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
-		return super.attackEntityAsMob(par1Entity);
+		
+		boolean flag = super.attackEntityAsMob(par1Entity);
+		
+		if (flag) this.hasDamagedEntity = true;
+		return flag;
 	}
 
 	@Override

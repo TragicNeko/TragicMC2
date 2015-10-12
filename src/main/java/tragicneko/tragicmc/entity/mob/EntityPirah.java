@@ -45,7 +45,7 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public boolean isMobVariant()
 	{
-		return this.getPirahType() == 1;
+		return this.getPirahType() == 1 || this.getTextureID() == 7;
 	}
 
 	@Override
@@ -341,4 +341,9 @@ public class EntityPirah extends TragicMob {
 		return false;
 	}
 
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.GoldenPirah";
+    }
 }

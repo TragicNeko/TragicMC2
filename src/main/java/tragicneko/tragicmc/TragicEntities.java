@@ -30,6 +30,7 @@ import tragicneko.tragicmc.entity.boss.EntityPolaris;
 import tragicneko.tragicmc.entity.boss.EntityTimeController;
 import tragicneko.tragicmc.entity.boss.EntityYeti;
 import tragicneko.tragicmc.entity.miniboss.EntityAegar;
+import tragicneko.tragicmc.entity.miniboss.EntityAggro;
 import tragicneko.tragicmc.entity.miniboss.EntityGreaterStin;
 import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
@@ -42,6 +43,7 @@ import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.entity.mob.EntityAvris;
+import tragicneko.tragicmc.entity.mob.EntityBlist;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
@@ -536,6 +538,12 @@ public class TragicEntities {
 			EntityRegistry.registerModEntity(EntityAvris.class, "Avris", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityAvris.class, "TragicMC.Avris", id++, 0xB81B1B, 0x761E1E);
 		}
+		
+		if (TragicConfig.allowBlist)
+		{
+			EntityRegistry.registerModEntity(EntityBlist.class, "Blist", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityBlist.class, "TragicMC.Blist", id++, 0x000000, 0x000000);
+		}
 
 		//Giant Zombie
 		TragicEntityList.addMapping(EntityGiantZombie.class, "TragicMC.GiantZombie", id++, 0x43BD98, 0x53DCBC);
@@ -653,6 +661,12 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityVolatileFusea.class, "VolatileFusea", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityVolatileFusea.class, "TragicMC.VolatileFusea", id++, 0xE7E69B, 0xB3ADE3, EnumEggType.MINIBOSS);
+		}
+		
+		if (TragicConfig.allowAggro)
+		{
+			EntityRegistry.registerModEntity(EntityAggro.class, "Aggro", listid, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityAggro.class, "TragicMC.Aggro", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
 		}
 
 		//Bosses

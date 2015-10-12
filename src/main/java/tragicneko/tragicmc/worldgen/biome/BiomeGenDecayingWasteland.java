@@ -56,8 +56,8 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	public void decorate(World world, Random rand, int x, int z)
 	{
 		super.decorate(world, rand, x, z);
-		new CustomSpikesWorldGen((byte) (variant == 3 ? 8 : 2), TragicBlocks.BoneBlock, (byte) rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world, null, null);
-		this.mixedDirtGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= 5 && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, x / 16, z / 16, world, null, null);
+		new CustomSpikesWorldGen((byte) (variant == 3 ? 8 : 2), TragicBlocks.BoneBlock, (byte) rand.nextInt(2), 0.8977735D, 0.441114525D, 1.0D, 0.35D, false, false).generate(rand, x / 16, z / 16, world);
+		this.mixedDirtGen.generate(rand, x / 16, z / 16, world);
+		if (TragicConfig.allowVoidPitGen && rand.nextInt(200) >= 5 && rand.nextInt(6) == 0) this.voidPitGen.generate(rand, x / 16, z / 16, world);
 	}
 }

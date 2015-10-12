@@ -6,16 +6,13 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
-import tragicneko.tragicmc.TragicMC;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class SynapseVariantGen implements IWorldGenerator {
+public class SynapseVariantGen implements IWorldGen {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 		if (Math.abs(chunkX) < 2 && Math.abs(chunkZ) < 2) return;
 		Chunk chk = world.getChunkFromChunkCoords(chunkX, chunkZ);
 		boolean flag = random.nextBoolean();

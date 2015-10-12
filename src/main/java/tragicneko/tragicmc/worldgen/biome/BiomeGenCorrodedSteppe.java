@@ -96,17 +96,17 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 			for (int[] coords : cands) world.setBlock(coords[0], coords[1], coords[2], TragicBlocks.ExplosiveGas, 0, 2);
 		}
 
-		this.gasGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (variant > 2) this.sludgeGen.generate(rand, x / 16, z / 16, world, null, null);
-		this.toxicCobbleGen.generate(rand, x / 16, z / 16, world, null, null);
+		this.gasGen.generate(rand, x / 16, z / 16, world);
+		if (variant > 2) this.sludgeGen.generate(rand, x / 16, z / 16, world);
+		this.toxicCobbleGen.generate(rand, x / 16, z / 16, world);
 
 		if (rand.nextInt(8) == 0)
 		{
 			boolean flag2 = rand.nextBoolean();
-			new PitWorldGen(flag2 ? TragicBlocks.Quicksand : TragicBlocks.RadiatedGas, (byte) (flag2 ? 3 : 0), (byte) 12, (byte) 6, 4.0D, 3.0D).generate(rand, x / 16, z / 16, world, null, null);
+			new PitWorldGen(flag2 ? TragicBlocks.Quicksand : TragicBlocks.RadiatedGas, (byte) (flag2 ? 3 : 0), (byte) 12, (byte) 6, 4.0D, 3.0D).generate(rand, x / 16, z / 16, world);
 		}
-		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (rand.nextInt(8) == 0) this.deathglowGen.generate(rand, x / 16, z / 16, world, null, null);
+		if (TragicConfig.allowVoidPitGen && variant == 4 && rand.nextInt(200) >= 5) this.voidPitGen.generate(rand, x / 16, z / 16, world);
+		if (rand.nextInt(8) == 0) this.deathglowGen.generate(rand, x / 16, z / 16, world);
 	}
 
 }

@@ -16,6 +16,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
@@ -180,6 +181,8 @@ public class DoomsdayManager {
 								logger.error("Combination doomsdays had a null Combination, report this!");
 								break;
 							}
+							
+							if (TragicConfig.allowAchievements) effect.player.triggerAchievement(TragicAchievements.doomsdayCombo);
 							break;
 						}
 
@@ -188,6 +191,31 @@ public class DoomsdayManager {
 							flag = true;
 							temp = effect;
 						}
+						/*
+						if (!(effect.dday instanceof IExtendedDoomsday)) // && TragicConfig.allowPartnerDoomsdays) //TODO setup partner config option
+						{
+							Iterator<UUID> it = playerMap.keySet().iterator(); //This will need to be tested to ensure that if a partner combination is done, it won't cause a crash when it goes to update
+							
+							while (it.hasNext())
+							{
+								UUID uuid = it.next();
+								ArrayList<DoomsdayEffect> effs = playerMap.get(uuid);
+								DoomsdayEffect eff;
+								
+								for (int j = 0; j < effs.size(); j++)
+								{
+									eff = effs.get(j);
+									if (eff.dday instanceof IExtendedDoomsday && eff.dday.getCombination() == effect.dday && effect.doom.getPlayer().getDistanceToEntity(eff.doom.getPlayer()) <= 12.0F) //Possibly make the distance configurable
+									{
+										list.clear();
+										reason = "Partner activated a Combination.";
+										clearPlayerFromRegistry(uuid, "Partner Combination activated.");
+										registerDoomsdayEffect(uuid, new DoomsdayEffect(effect.dday.getCombination().doomID, effect.doom, effect.isCommandActivated).inheritCooldown(eff, effect));
+										break;
+									}
+								}
+							}
+						} */
 					}
 
 					effect.onDoomsdayUpdate();

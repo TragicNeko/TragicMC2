@@ -2,18 +2,15 @@ package tragicneko.tragicmc.worldgen;
 
 import java.util.Random;
 
-import tragicneko.tragicmc.TragicBlocks;
-import tragicneko.tragicmc.TragicMC;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.common.IWorldGenerator;
+import tragicneko.tragicmc.TragicBlocks;
 
-public class CircuitWorldGen implements IWorldGenerator {
+public class CircuitWorldGen implements IWorldGen {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 		final Chunk chk = world.getChunkFromChunkCoords(chunkX, chunkZ);
 		double m;
 		byte meta;

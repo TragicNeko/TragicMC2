@@ -5,16 +5,14 @@ import static tragicneko.tragicmc.TragicBlocks.DarkStone;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.dimension.TragicChunkProvider;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class DimensionLayerWorldGen implements IWorldGenerator {
+public class DimensionLayerWorldGen implements IWorldGen {
 
 	private static final byte[] modifiers = new byte[] {-88, -61, -47, -30, -20, 0, 20, 37, 75, 95};
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		if (!(world.getChunkProvider() instanceof TragicChunkProvider)) return;
 

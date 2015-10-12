@@ -35,6 +35,7 @@ import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -44,6 +45,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
@@ -1188,6 +1190,13 @@ public class EntityClaymation extends TragicBoss {
 
 			if (this.getHealth() - MathHelper.clamp_float(damage - this.getTotalArmorValue(), 0F, TragicConfig.bossDamageCap) <= 0.0F)
 			{
+				if (this.getEntityForm() == 2 || this.getEntityForm() == 8 || this.getEntityForm() == 7) 
+				{
+					if (TragicConfig.allowAchievements && source.getEntity() instanceof EntityPlayerMP)
+					{
+						((EntityPlayerMP) source.getEntity()).triggerAchievement(TragicAchievements.claymation2in1);
+					}
+				}
 				this.setEntityForm(0);
 				return true;
 			}
@@ -1803,5 +1812,13 @@ public class EntityClaymation extends TragicBoss {
 		tag.setInteger("utility", this.getUtilityInt());
 		tag.setInteger("utility2", this.getUtilityInt2());
 		tag.setInteger("utility3", this.getUtilityInt3());
+	}
+	
+	@Override
+	public void onDeath(DamageSource src)
+	{
+		super.onDeath(src);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 15), 0.4F);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.claymation);
 	}
 }

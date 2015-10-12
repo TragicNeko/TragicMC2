@@ -20,12 +20,14 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
@@ -658,5 +660,10 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 
 		if (this.worldObj.isRemote || !this.getAllowLoot()) return;
 		this.entityDropItem(new ItemStack(TragicItems.SynapseLink, 1, 0), 0.4F);
+		
+		if (par1.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && !this.getHypermode())
+		{
+			((EntityPlayerMP) par1.getEntity()).triggerAchievement(TragicAchievements.aegar);
+		}
 	}
 }

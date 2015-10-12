@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
@@ -72,6 +73,12 @@ public class BlockSynapseCore extends Block {
 			world.notifyBlockChange(x + 1, y - 1, z, air);
 			world.notifyBlockChange(x, y - 1, z - 1, air);
 			world.notifyBlockChange(x, y - 1, z + 1, air);
+			
+			List<EntityPlayerMP> list = world.getEntitiesWithinAABB(EntityPlayerMP.class, AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0).expand(4.0, 4.0, 4.0).offset(x, y, z));
+			for (EntityPlayerMP mp : list)
+			{
+				mp.triggerAchievement(TragicAchievements.overlord);
+			}
 		}
 	}
 

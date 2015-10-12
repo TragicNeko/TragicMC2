@@ -69,8 +69,8 @@ public class BiomeGenDarkForest extends TragicBiome {
 	{
 		super.decorate(world, rand, x, z);
 
-		this.gasGen.generate(rand, x / 16, z / 16, world, null, null);
-		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world, null, null);
+		this.gasGen.generate(rand, x / 16, z / 16, world);
+		if (this.variant == 2) this.drudgeGen.generate(rand, x / 16, z / 16, world);
 	}
 
 }

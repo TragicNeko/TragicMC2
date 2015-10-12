@@ -5,12 +5,14 @@ import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.doomsday.Doomsday;
@@ -107,7 +109,6 @@ public class ItemDoomsdayScroll extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-
 		if (!TragicConfig.allowDoomsdays) return stack;
 
 		if (world.isRemote)
@@ -122,6 +123,7 @@ public class ItemDoomsdayScroll extends Item {
 				Doomsday doomsday = Doomsday.getDoomsdayFromId(stack.getItemDamage() + 1);
 				if (doomsday != null) doomsday.activateDoomsday(doom);
 				stack.stackSize--;
+				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.doomsdayScroll);
 			}
 		}
 		return stack;

@@ -14,11 +14,13 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicPotion;
 
@@ -112,6 +114,11 @@ public class EntitySirv extends TragicMob {
 					sirv = (EntitySirv) list.get(i);
 					if (sirv.getAttackTarget() != null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 				}
+			}
+			
+			if (par2 >= 30F && par1DamageSource.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+			{
+				((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.sirv);
 			}
 		}
 

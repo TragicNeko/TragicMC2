@@ -4,12 +4,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.worldgen.structure.Structure;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class SurfaceWorldGen2 implements IWorldGenerator {
+public class SurfaceWorldGen2 implements IWorldGen {
 
 	public final byte iterations;
 	public final Block block;
@@ -27,7 +25,7 @@ public class SurfaceWorldGen2 implements IWorldGenerator {
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		if (!TragicConfig.allowScatteredSurfaceGen) return;
 		

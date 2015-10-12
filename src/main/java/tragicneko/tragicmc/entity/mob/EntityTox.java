@@ -3,6 +3,7 @@ package tragicneko.tragicmc.entity.mob;
 import static tragicneko.tragicmc.TragicConfig.poxStats;
 import static tragicneko.tragicmc.TragicConfig.toxStats;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
@@ -20,6 +21,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import tragicneko.tragicmc.TragicConfig;
@@ -368,4 +370,10 @@ public class EntityTox extends TragicMob {
 	{
 		return super.getTalkInterval();
 	}
+	
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.Pox";
+    }
 }

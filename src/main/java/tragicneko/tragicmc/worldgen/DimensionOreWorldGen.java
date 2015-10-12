@@ -6,14 +6,12 @@ import static tragicneko.tragicmc.TragicBlocks.TragicOres;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class DimensionOreWorldGen implements IWorldGenerator {
+public class DimensionOreWorldGen implements IWorldGen {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		byte i;
 		int Xcoord, Ycoord, Zcoord;

@@ -10,6 +10,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
@@ -259,6 +260,7 @@ public abstract class Doomsday {
 
 		DoomsdayEffect effect = new DoomsdayEffect(this.doomID, doom);
 		DoomsdayManager.registerDoomsdayEffect(player.getUniqueID(), effect);
+		if (TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.doomsday);
 		return true;
 	}
 

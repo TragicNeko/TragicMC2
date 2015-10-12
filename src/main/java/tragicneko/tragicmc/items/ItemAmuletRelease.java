@@ -3,11 +3,13 @@ package tragicneko.tragicmc.items;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.relauncher.Side;
@@ -37,7 +39,7 @@ public class ItemAmuletRelease extends Item {
 		{
 			PropertyAmulets amulets = PropertyAmulets.get(par3EntityPlayer);
 
-			if (amulets.getSlotsOpen() < 3)
+			if (amulets.getSlotsOpen() < TragicConfig.amuletMaxSlots)
 			{
 				if (!par2World.isRemote)
 				{
@@ -48,6 +50,8 @@ public class ItemAmuletRelease extends Item {
 				{
 					par3EntityPlayer.playSound("tragicmc:random.amuletrelease", 1.0F, 1.0F);
 				}
+				
+				if (TragicConfig.allowAchievements && par3EntityPlayer instanceof EntityPlayerMP) par3EntityPlayer.triggerAchievement(TragicAchievements.amuletRelease);
 			}
 			else
 			{

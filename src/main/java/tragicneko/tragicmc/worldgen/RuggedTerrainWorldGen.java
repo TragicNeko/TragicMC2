@@ -6,13 +6,11 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.blocks.BlockGenericTallGrass;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class RuggedTerrainWorldGen implements IWorldGenerator {
+public class RuggedTerrainWorldGen implements IWorldGen {
 
 	public final Block block;
 	public final byte meta;
@@ -36,7 +34,7 @@ public class RuggedTerrainWorldGen implements IWorldGenerator {
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		if (!TragicConfig.allowScatteredSurfaceGen) return;
 		

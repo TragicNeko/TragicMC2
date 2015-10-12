@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.util.WorldHelper;
-import cpw.mods.fml.common.IWorldGenerator;
 
-public class VoidPitWorldGen implements IWorldGenerator {
+public class VoidPitWorldGen implements IWorldGen {
 
 	public final double radius;
 	public final double variation;
@@ -21,7 +19,7 @@ public class VoidPitWorldGen implements IWorldGenerator {
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world) {
 
 		if (!TragicConfig.allowVoidPitGen) return;
 		

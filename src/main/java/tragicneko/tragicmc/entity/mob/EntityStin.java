@@ -503,4 +503,10 @@ public class EntityStin extends TragicMob {
 	{
 		return 60;
 	}
+	
+	@Override
+	public String getVariantName()
+    {
+        return "TragicMC.StinBaby";
+    }
 }

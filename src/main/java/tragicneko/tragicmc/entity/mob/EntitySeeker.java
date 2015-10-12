@@ -12,10 +12,12 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
@@ -29,6 +31,7 @@ public class EntitySeeker extends TragicMob {
 	private boolean shouldRelocate;
 	private EntityOverlordCocoon owner = null;
 	private byte relocations;
+	private boolean hasDamagedEntity = false;
 
 	public EntitySeeker(World par1World) {
 		super(par1World);
@@ -146,7 +149,11 @@ public class EntitySeeker extends TragicMob {
 
 				if (this.getKillTicks() >= 300)
 				{
-					this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), Math.max(this.getAttackTarget().getMaxHealth() / 20F, 2.0F));
+					if (this.getAttackTarget().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), Math.max(this.getAttackTarget().getMaxHealth() / 20F, 2.0F)))
+					{
+						this.hasDamagedEntity = true;
+					}
+					
 				}
 
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(64.0, 64.0, 64.0));
@@ -327,5 +334,16 @@ public class EntitySeeker extends TragicMob {
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
 		
+	}
+	
+	@Override
+	public void onDeath(DamageSource src)
+	{
+		super.onDeath(src);
+		
+		if (!this.hasDamagedEntity && src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+		{
+			((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.seeker);
+		}
 	}
 }

@@ -187,42 +187,42 @@ public class AmuletHelper {
 
 		if (attr == SharedMonsterAttributes.attackDamage)
 		{
-			d0 = rand.nextInt(20);
+			d0 = 0.25 + rand.nextInt(20) * 0.25;
 			uuid = uuids[5];
 		}
 		else if (attr == SharedMonsterAttributes.knockbackResistance)
 		{
-			d0 = rand.nextInt(20) * 0.2;
+			d0 = 0.2 + rand.nextInt(20) * 0.2;
 			uuid = uuids[4];
 		}
 		else if (attr == SharedMonsterAttributes.maxHealth)
 		{
-			d0 = rand.nextInt(20);
+			d0 = 0.5 + rand.nextInt(10) * 0.5;
 			uuid = uuids[6];
 		}
 		else if (attr == SharedMonsterAttributes.movementSpeed)
 		{
-			d0 = rand.nextInt(20) * 0.02;
+			d0 = 0.02 + rand.nextInt(20) * 0.02;
 			uuid = uuids[7];
 		}
 		else if (attr == AmuletModifier.reach)
 		{
-			d0 = rand.nextInt(20) * 0.05;
+			d0 = 0.05 + rand.nextInt(20) * 0.05;
 			uuid = uuids[2];
 		}
 		else if (attr == AmuletModifier.jumpHeight)
 		{
-			d0 = rand.nextInt(10) * 0.25;
+			d0 = 0.25 + rand.nextInt(10) * 0.25;
 			uuid = uuids[0];
 		}
 		else if (attr == AmuletModifier.resistance)
 		{
-			d0 = rand.nextInt(10);
+			d0 = 1 + rand.nextInt(10);
 			uuid = uuids[3];
 		}
 		else if (attr == AmuletModifier.luck)
 		{
-			d0 = rand.nextInt(100) * 0.01;
+			d0 = 0.01 + rand.nextInt(75) * 0.01;
 			uuid = uuids[1];
 		}
 

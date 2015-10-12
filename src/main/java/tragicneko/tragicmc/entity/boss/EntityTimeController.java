@@ -30,6 +30,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
@@ -110,6 +111,10 @@ public class EntityTimeController extends TragicBoss {
 				entity.setLocationAndAngles(values[0], values[1], values[2], (float) values[3], (float) values[4]);
 				entity.playSound("mob.endermen.portal", 0.4F, 1.0F);
 				if (entity instanceof EntityLivingBase && rand.nextBoolean()) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 120));
+				if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements)
+				{
+					((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.rewind);
+				}
 			}
 		}
 
@@ -222,10 +227,11 @@ public class EntityTimeController extends TragicBoss {
 	}
 
 	@Override
-	public void onDeath(DamageSource par1DamageSource)
+	public void onDeath(DamageSource src)
 	{
-		super.onDeath(par1DamageSource);
+		super.onDeath(src);
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 3), 0.4F);
+		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.timeController);
 	}
 
 	@Override
