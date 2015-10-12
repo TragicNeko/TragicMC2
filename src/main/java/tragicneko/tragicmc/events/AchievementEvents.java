@@ -46,7 +46,7 @@ public class AchievementEvents {
 
 			for (ItemStack stack : inv.mainInventory)
 			{
-				if (stack.getItem() instanceof TragicWeapon)
+				if (stack != null && stack.getItem() instanceof TragicWeapon)
 				{
 					mp.triggerAchievement(TragicAchievements.weapon);
 				}
