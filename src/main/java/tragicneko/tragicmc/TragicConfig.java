@@ -2381,8 +2381,8 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "blistStats", new double[] {6.0, 0.462, 8.0, 16.0, 2.0, 0});
 		blistStats = verifyStat(prop.getDoubleList());
 		
-		prop = config.get(cat.getName(), "thorgStats", new double[] {6.0, 0.462, 8.0, 16.0, 2.0, 0});
-		thorgStats = verifyStat(prop.getDoubleList());
+		prop = config.get(cat.getName(), "thorgStats", new double[] {17.0, 0.428, 4.0, 32.0, 0.0, 0});
+		thorgStats = new double[] {17.0, 0.428, 4.0, 32.0, 0.0, 0}; // verifyStat(prop.getDoubleList()); //TODO change this back
 
 		prop = config.get(cat.getName(), "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
 		aegarStats = verifyStat(prop.getDoubleList());

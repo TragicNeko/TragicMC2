@@ -1027,6 +1027,9 @@ entity.TragicMC.Avris.name=Avris
 entity.TragicMC.Pyragr.name=Pyragr
 entity.TragicMC.Aggro.name=Aggro
 entity.TragicMC.Blist.name=Blist
+entity.TragicMC.Thorg.name=Thorg
+entity.TragicMC.Girsh.name=Girsh
+entity.TragicMC.Lurker.name=Lurker
 
 enchantment.combustion=Combustion
 enchantment.multiply=Multiply

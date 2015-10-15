@@ -67,6 +67,7 @@ import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
 import tragicneko.tragicmc.entity.mob.EntityStin;
+import tragicneko.tragicmc.entity.mob.EntityThorg;
 import tragicneko.tragicmc.entity.mob.EntityTox;
 import tragicneko.tragicmc.entity.mob.EntityTragicNeko;
 import tragicneko.tragicmc.entity.mob.EntityWisp;
@@ -543,6 +544,12 @@ public class TragicEntities {
 		{
 			EntityRegistry.registerModEntity(EntityBlist.class, "Blist", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityBlist.class, "TragicMC.Blist", id++, 0x000000, 0x000000);
+		}
+		
+		if (TragicConfig.allowThorg)
+		{
+			EntityRegistry.registerModEntity(EntityThorg.class, "Thorg", listid++, TragicMC.getInstance(), 80, 1, true);
+			TragicEntityList.addMapping(EntityThorg.class, "TragicMC.Thorg", id++, 0x000000, 0x000000);
 		}
 
 		//Giant Zombie
