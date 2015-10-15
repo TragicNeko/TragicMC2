@@ -4351,27 +4351,36 @@ Converted Dimension-specific WorldGen to use a simplified interface
 Variant entities should now display their proper name (Pox, Janna, Golden Pirah, Stin (Baby), etc.)
 Fixed Ragr not saving it's nbt values
 Reduced Amulet Modifier amounts to differentiate them from Talisman Modifier amounts more
+Fixed certain leaf blocks dropping the wrong sapling type
+Improved extensibility of Amulets by changing up how they are constructed, this was changed previously for ease and to make the constructor look much
+cleaner, but since I'm separating the amulet level and type, I'm going to also get rid of the IDs and use the item themselves as the identifiers for effects,
+ideally I'd like to use ItemAmulet as the superclass and create a subobject for each amulet type and add a method to use their ability rather than using them all
+from one giant event class, most Amulets should use this but some special case ones will continue using the events class for their abilities
+Fixed Undead Amulet not using any durability
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
 Added the Aggro along with the basic principle for it's Mini-Boss AI, it shoots fireballs while it jumps around and will go into a tantrum randomly to attack
 it's target on foot, slamming the ground to create explosions and hurting targets with a high knockback hit that burns them
-Working on the Blist using a modified version of the Ranmas's AI, it is supposed to be similar to a Shrieker in Super Metroid, in which it sees a target and
+Working on the Blist using a modified version of the Ranmas's AI, it is supposed to be similar to a Shriekbat in Metroid, in which it sees a target and
 launches itself at them with the intention of exploding killing them and itself
 Blists now latch onto solid blocks near them, otherwise they fall slowly to the ground
 Thorg are fast-moving aggressive mobs, they are small and weak but they fire a projectile while leaping towards their target that causes poison damage for a
-few seconds
+few seconds, they also heal when in contact with water (although they have medium health so that doesn't really matter much)
+Increased the Thorg's hitbox size so that they require a 2x2 tunnel to chase you, this is for early game so that you can actually escape from them easier
+Working on the Girsh now, it'll randomly pull entities towards it and will emit energy charges that go in random directions, on death it spawns seeker charges
+that will target a nearby entity, none of these charges will explode on impact, charges will have short lifespans and will move slowly, Girsh will have a lot
+of health and armor but do not explicitly target entities so they are more of a minor annoyance than a lockdown threat
 
 First Expansion:
-Finishing up the planning phase of the expansion, may as well work on the design/balance phase of this while I wait for recording programs to update to win10
-Going to start adding new mobs/bosses without models/sounds in order to get their ai worked out, new dimensions will not be worked on until later as that
-is a lot of blocks and stuff to add
+Working on new mob AI for the "expansion" due to recording software having driver issues with win10, hopefully these will be resolved soon but if not then
+I'll probably do a major update including the expansion next release (which will take a few months to do most likely)
 
 Mobs:
 Pyragr*
 Aggro (Mini-Boss)*
 Blist*
-Thorg
+Thorg*
 Girsh
 Lurker
 Troll
@@ -4385,6 +4394,7 @@ Lasher
 Trapper (Mini-Boss)
 Berserker
 Mawg
+Hydrawg (Mini-Boss)
 Xix
 Chaste
 Soulchaste (Mini-Boss)
@@ -4397,17 +4407,17 @@ Kitsuneko -> Kitsune
 Panda Cub -> Panda
 Bangatang -> Urilla / Baboom
 Snapshot -> Burstshot / Autoshot
-Ultho
+Ultho -> Greater Ultho -> Ultho King/Queen
 
 Bosses:
 Shina & the SheWolf
-Axiv
-Petria
+Axyr
+Petriv
 Amsheer
 Akhora
 Leviathan
 Polypus
-C1R-314
+C1R-314 (Cirela)
 Pyris, Veneera & Luex
 
 Alpha:
