@@ -12,8 +12,8 @@ import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import tragicneko.tragicmc.items.ItemAmulet;
-import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
+import tragicneko.tragicmc.items.amulet.ItemAmulet;
+import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 
 public class AmuletHelper {
 
@@ -31,7 +31,7 @@ public class AmuletHelper {
 	 * @param par3
 	 * @return
 	 */
-	public static int getAmuletWithHighestLevel(int par1, int par2, int par3)
+	public static byte getAmuletWithHighestLevel(byte par1, byte par2, byte par3)
 	{
 		if (par3 != 0)
 		{
@@ -72,7 +72,7 @@ public class AmuletHelper {
 				return par1;
 			}
 		}
-		return (par1 * par2 * par3) / 3;
+		return (byte) ((par1 * par2 * par3) / 3);
 	}
 
 	/**
@@ -81,9 +81,9 @@ public class AmuletHelper {
 	 * @param par2
 	 * @return
 	 */
-	public static int getAmuletWithHighestLevel(int par1, int par2)
+	public static byte getAmuletWithHighestLevel(byte par1, byte par2)
 	{
-		return getAmuletWithHighestLevel(par1, par2, 0);
+		return getAmuletWithHighestLevel(par1, par2, (byte) 0);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class AmuletHelper {
 		{
 			if (amu2 != null && amu3 != null)
 			{
-				if (amu2.getAmuletID() == amu3.getAmuletID())
+				if (amu2 == amu3)
 				{
 					return 23;
 				}
@@ -132,7 +132,7 @@ public class AmuletHelper {
 		{
 			if (amu1 != null && amu3 != null)
 			{
-				if (amu1.getAmuletID() == amu3.getAmuletID())
+				if (amu1 == amu3)
 				{
 					return 13;
 				}
@@ -144,7 +144,7 @@ public class AmuletHelper {
 		{
 			if (amu1 != null && amu2 != null)
 			{
-				if (amu1.getAmuletID() == amu2.getAmuletID())
+				if (amu1 == amu2)
 				{
 					return 12;
 				}
@@ -152,22 +152,22 @@ public class AmuletHelper {
 			return 0;
 		}
 
-		if (amu1.getAmuletID() == amu2.getAmuletID() && amu1.getAmuletID() == amu3.getAmuletID())
+		if (amu1 == amu2 && amu1 == amu3)
 		{
 			return 123;
 		}
 
-		if (amu1.getAmuletID() == amu2.getAmuletID() && amu1.getAmuletID() != amu3.getAmuletID())
+		if (amu1 == amu2 && amu1 != amu3)
 		{
 			return 12;
 		}
 
-		if (amu1.getAmuletID() == amu3.getAmuletID() && amu1.getAmuletID() != amu2.getAmuletID())
+		if (amu1 == amu3 && amu1 != amu2)
 		{
 			return 13;
 		}
 
-		if (amu2.getAmuletID() == amu3.getAmuletID() && amu1.getAmuletID() != amu3.getAmuletID())
+		if (amu2 == amu3 && amu1 != amu3)
 		{
 			return 23;
 		}
@@ -175,9 +175,9 @@ public class AmuletHelper {
 		return 0;
 	}
 
-	public static int getAmuletLevel(ItemStack stack)
+	public static byte getAmuletLevel(ItemStack stack)
 	{
-		return stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : 0;
+		return stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : 0;
 	}
 
 	public static AttributeModifier getRandomModifier(IAttribute attr)

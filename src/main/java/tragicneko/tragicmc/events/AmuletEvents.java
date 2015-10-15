@@ -44,12 +44,13 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
-import tragicneko.tragicmc.items.ItemAmulet;
-import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
+import tragicneko.tragicmc.items.amulet.ItemAmulet;
+import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -166,7 +167,7 @@ public class AmuletEvents {
 				}
 			}
 
-			for (int meow = 0; meow < 3; meow++)
+			for (byte meow = 0; meow < 3; meow++)
 			{
 				ItemStack stack = amu.getActiveAmuletItemStack(meow);
 				if (stack != null)
@@ -179,10 +180,10 @@ public class AmuletEvents {
 
 			if (mp.ticksExisted % 2 != 0) return;
 
-			int[] levels = new int[3];
+			byte[] levels = new byte[3];
 			ItemAmulet[] amulets = new ItemAmulet[3];
 
-			int i;
+			byte i;
 
 			for (i = 0; i < 3; i++)
 			{
@@ -191,421 +192,32 @@ public class AmuletEvents {
 			}
 
 			int same = AmuletHelper.getSameAmulets(amulets[0], amulets[1], amulets[2]);
-			int id = 0;
 
 			if (same == 0)
 			{
 				for (i = 0; i < 3; i++)
 				{
-					id = amulets[i] != null ? amulets[i].getAmuletID() : 0;
-					if (amulets[i] != null) doAmuletEffect(id, amu, amulets[i], mp, mp.worldObj, i, levels[i]);
+					if (amulets[i] != null) amulets[i].onAmuletUpdate(amu, mp, mp.worldObj, i, levels[i]);
 				}
 			}
 			else if (same == 12)
 			{
-				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
-				if (amulets[0] != null) doAmuletEffect(id, amu, amulets[0], mp, mp.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[1]));
-
-				id = amulets[2] != null ? amulets[2].getAmuletID() : 0;
-				if (amulets[2] != null) doAmuletEffect(id, amu, amulets[2], mp, mp.worldObj, i, levels[2]);
+				if (amulets[0] != null) amulets[0].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 0, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[1]));
+				if (amulets[2] != null) amulets[2].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 2, levels[2]);
 			}
 			else if (same == 13)
 			{
-				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
-				if (amulets[0] != null) doAmuletEffect(id, amu, amulets[0], mp, mp.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[2]));
-
-				id = amulets[1] != null ? amulets[1].getAmuletID() : 0;
-				if (amulets[1] != null) doAmuletEffect(id, amu, amulets[1], mp, mp.worldObj, i, levels[1]);
+				if (amulets[0] != null) amulets[0].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 0, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[2]));
+				if (amulets[1] != null) amulets[2].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 1, levels[1]);
 			}
 			else if (same == 23)
 			{
-				id = amulets[1] != null ? amulets[1].getAmuletID() : 0;
-				if (amulets[1] != null) doAmuletEffect(id, amu, amulets[1], mp, mp.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[1], levels[2]));
-
-				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
-				if (amulets[0] != null) doAmuletEffect(id, amu, amulets[0], mp, mp.worldObj, i, levels[0]);
+				if (amulets[1] != null) amulets[1].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 1, AmuletHelper.getAmuletWithHighestLevel(levels[1], levels[2]));
+				if (amulets[0] != null) amulets[0].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 0, levels[0]);
 			}
 			else if (same == 123)
 			{
-				id = amulets[0] != null ? amulets[0].getAmuletID() : 0;
-				if (amulets[0] != null) doAmuletEffect(id, amu, amulets[0], mp, mp.worldObj, i, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[1], levels[2]));
-			}
-		}
-	}
-
-	public static void doAmuletEffect(int id, PropertyAmulets amu, ItemAmulet amulet, EntityPlayer player, World world, int slot, int level)
-	{
-		if (id == 0 && TragicConfig.amuKitsune && player.ticksExisted % 60 == 0)
-		{
-			if (player.isBurning()) player.extinguish();
-			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 600, 0));
-			if (player.isPotionActive(Potion.fireResistance) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 1);
-		}
-		else if (id == 1 && TragicConfig.amuPeace && player.ticksExisted % 60 == 0)
-		{
-			double d0 = 8.0 + (level * 4.0);
-			int chance;
-
-			if (level == 2)
-			{
-				chance = 25;
-			}
-			else if (level == 3)
-			{
-				chance = 40;
-			}
-			else
-			{
-				chance = 10;
-			}
-
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
-
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (list.get(i) instanceof EntityMob && rand.nextInt(100) <= chance)
-				{
-					if (!((EntityLivingBase) list.get(i)).isPotionActive(TragicPotion.Harmony.id))
-					{
-						((EntityMob)list.get(i)).addPotionEffect(new PotionEffect(TragicPotion.Harmony.id, 120 + rand.nextInt(320)));
-						if (!world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-					}
-				}
-			}
-		}
-		else if (id == 3 && TragicConfig.amuClaymation && player.ticksExisted % 60 == 0)
-		{
-			double d0 = 4.0 + (level * 4.0);
-			int chance;
-			int goodChance;
-
-			if (level == 2)
-			{
-				chance = 40;
-				goodChance = 5;
-			}
-			else if (level == 3)
-			{
-				chance = 60;
-				goodChance = 15;
-			}
-			else
-			{
-				chance = 20;
-				goodChance = -1;
-			}
-
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(d0, d0, d0));
-
-			if (rand.nextInt(100) <= chance && list.size() > 0)
-			{
-				PotionEffect[] effects = new PotionEffect[16];
-				PotionEffect temp;
-				int a = 0;
-
-				for (int i = 0; i < Potion.potionTypes.length; i++)
-				{
-					if (list.size() == 0) break;
-
-					if (Potion.potionTypes[i] != null)
-					{
-						Potion potion = Potion.potionTypes[i];
-
-						if (player.isPotionActive(potion) && badPotions.contains(potion) && a < effects.length)
-						{
-							temp = player.getActivePotionEffect(potion);
-							effects[a++] = new PotionEffect(potion.id, temp.getDuration() * level, temp.getAmplifier() * level);
-							player.removePotionEffect(i);
-							if (!world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-						}
-					}
-				}
-
-				for (int x = 0; x < list.size(); x++)
-				{
-					if (list.get(x) instanceof EntityMob)
-					{
-						EntityMob entity = (EntityMob) list.get(x);
-
-						for (PotionEffect effect : effects) {
-							if (effect != null)
-							{
-								entity.addPotionEffect(effect);
-							}
-						}
-					}
-				}
-
-				if (rand.nextInt(100) <= goodChance)
-				{
-					switch(rand.nextInt(5))
-					{
-					case 0:
-						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0 + rand.nextInt(3)));
-						break;
-					case 1:
-						player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 0 + rand.nextInt(3)));
-						break;
-					case 2:
-						player.addPotionEffect(new PotionEffect(Potion.resistance.id, 200, 0 + rand.nextInt(3)));
-						break;
-					case 3:
-						player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 0 + rand.nextInt(3)));
-						break;
-					case 4:
-						player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 200, 0 + rand.nextInt(3)));
-						break;
-					}
-				}
-			}
-		}
-		else if (id  == 4 && TragicConfig.amuChicken && player.isPlayerFullyAsleep())
-		{
-			PropertyDoom doom = PropertyDoom.get(player);
-
-			if (level == 1)
-			{
-				player.heal(player.getMaxHealth() / 4);
-				if (doom != null) doom.increaseDoom(doom.getMaxDoom() / 4);
-			}
-			else if (level == 2)
-			{
-				player.heal(player.getMaxHealth() / 2);
-				if (doom != null) doom.increaseDoom(doom.getMaxDoom() / 2);
-			}
-			else
-			{
-				player.heal(player.getMaxHealth() * 3 / 4);
-				if (doom != null) doom.increaseDoom(doom.getMaxDoom() * 3 / 4);
-
-				for (int i = 0; i < Potion.potionTypes.length; i++)
-				{
-					if (Potion.potionTypes[i] != null)
-					{
-						Potion potion = Potion.potionTypes[i];
-
-						if (player.isPotionActive(potion) && badPotions.contains(potion))
-						{
-							player.removePotionEffect(i);
-						}
-					}
-				}
-			}
-
-			if (!world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-		}
-		else if (id == 7 && TragicConfig.amuBlacksmith)
-		{
-			boolean flag = false;
-
-			if (level == 1 && player.ticksExisted % 60 == 0)
-			{
-				flag = true;
-			}
-			else if (level == 2 && player.ticksExisted % 40 == 0)
-			{
-				flag = true;
-			}
-			else if (level == 3 && player.ticksExisted % 20 == 0)
-			{
-				flag = true;
-			}
-
-			if (flag && !world.isRemote)
-			{
-				ItemStack[] playerInv = player.inventory.mainInventory;
-
-				for (int i = 0; i < 4 * level; i++)
-				{
-					ItemStack stack = playerInv[rand.nextInt(playerInv.length)];
-
-					if (stack != null && stack.isItemDamaged() && stack.getItem().isRepairable())
-					{
-						Item item = stack.getItem();
-
-						if (item.getDamage(stack) - level <= 0)
-						{
-							item.setDamage(stack, 0);
-							break;
-						}
-
-						if (item.getDamage(stack) >= item.getMaxDamage(stack) / 8)
-						{
-							if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem() == stack) continue;
-
-							item.setDamage(stack, item.getDamage(stack) - level);
-							amu.damageStackInSlot(slot, 4 - level);
-						}
-
-						break;
-					}
-				}
-			}
-		}
-		else if (id == 9 && TragicConfig.amuCreeper && player.ticksExisted % 60 == 0)
-		{
-			player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 600, level));
-			if (player.isPotionActive(Potion.digSpeed) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-		}
-		else if (id == 12 && TragicConfig.amuSunken && player.ticksExisted % 60 == 0 && TragicConfig.allowAquaSuperiority && player.isInWater())
-		{
-			player.addPotionEffect(new PotionEffect(TragicPotion.AquaSuperiority.id, 200, level));
-			if (player.isPotionActive(TragicPotion.AquaSuperiority) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-		}
-		else if (id == 13 && TragicConfig.amuTime)
-		{
-			List<EntityItem> list = world.getEntitiesWithinAABB(EntityItem.class, player.boundingBox.expand(8.0, 8.0, 8.0));
-			Iterator ite = list.iterator();
-			EntityItem item;
-
-			while (ite.hasNext())
-			{
-				item = (EntityItem) ite.next();
-
-				double d1 = item.posX - player.posX;
-				double d2 = item.posZ - player.posZ;
-				double d3 = item.posY - player.posY + 0.82;
-				float f2 = MathHelper.sqrt_double(d1 * d1 + d2 * d2 + d3 * d3);
-				double d4 = 0.25D;
-
-				item.motionX = -d1 / f2 * d4 * 0.300000011920929D;
-				item.motionZ = -d2 / f2 * d4 * 0.300000011920929D;
-				item.motionY = -d3 / f2 * d4 * 0.300000011920929D;
-
-				if (rand.nextBoolean()) item.motionY += rand.nextDouble() * 0.4D;
-			}
-		}
-		else if (id == 15 && TragicConfig.amuSnowGolem)
-		{
-			double d = level * 16.0D + 16.0D;
-			List<EntityItem> list = world.getEntitiesWithinAABB(EntityMob.class, player.boundingBox.expand(d, d, d));
-			if (list.size() > 0 && player.ticksExisted % 10 == 0 && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-			Iterator ite = list.iterator();
-			EntityMob mob;
-
-			while (ite.hasNext())
-			{
-				mob = (EntityMob) ite.next();
-				mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, EntityPlayer.class, 0, true));
-				mob.setAttackTarget(player);
-				mob.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(d + 32.0D);
-			}
-		}
-		else if (id == 16 && TragicConfig.amuIronGolem && player.ticksExisted % 20 == 0)
-		{
-			player.addPotionEffect(new PotionEffect(Potion.resistance.id, 600, level));
-			if (player.isPotionActive(Potion.resistance) && rand.nextBoolean() && !world.isRemote) amu.damageStackInSlot(slot, 4 - level);
-		}
-		else if (id == 19 && TragicConfig.amuSpider)
-		{
-			double d0 = level == 1 ? 0.03 : (level == 2 ? 0.5 : 0.11);
-			if (player.isCollidedHorizontally)
-			{
-				if (player.isSneaking()) player.motionY = 0;
-				else player.motionY = d0;
-				player.motionX = MathHelper.clamp_double(player.motionX, -d0, d0);
-				player.motionZ = MathHelper.clamp_double(player.motionZ, -d0, d0);
-				if (player.motionY < -0.15) player.motionY = -0.15;
-			}
-
-			if (!world.isRemote)
-			{
-				List<int[]> list = WorldHelper.getBlocksInSphericalRange(world, 1.0, (int) player.posX, (int) player.posY, (int) player.posZ);
-				boolean flag = false;
-				for (int i = 0; i < list.size() && !flag; i++)
-				{
-					int[] coords = list.get(i);
-					Block block = world.getBlock(coords[0], coords[1], coords[2]);
-					if (block.isOpaqueCube() && coords[1] >= player.posY) flag = true;
-				}
-
-				if (player.motionY > 0 && (player.motionX <= d0 && player.motionX >= -d0 || player.motionZ <= d0 && player.motionZ >= -d0) && flag)
-				{
-					player.fallDistance = 0;
-					if (player.ticksExisted % 8 == 0) amu.damageStackInSlot(slot, 4 - level);
-				}
-			}
-
-			if (level >= 3 && player.ticksExisted % 20 == 0 && TragicConfig.allowImmunity) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 100, 0));
-		}
-		else if (id == 22 && TragicConfig.amuOverlord && TragicConfig.allowHacked)
-		{
-			if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id);
-		}
-		else if (id == 25 && player.ticksExisted % 400 == 0 && TragicConfig.amuSupernatural && !world.isRemote)
-		{
-			int i = level * 25;
-			int j = 100 - i;
-
-			if (rand.nextInt(level + 1) != 0)
-			{
-				if (rand.nextInt(j) > rand.nextInt(i))
-				{
-					Potion pot = Potion.potionTypes[0];
-					while (pot == null || !badPotions.contains(pot))
-					{
-						pot = Potion.potionTypes[rand.nextInt(Potion.potionTypes.length)];
-					}
-					player.addPotionEffect(new PotionEffect(pot.id, 200 + rand.nextInt(100), rand.nextInt(5 - level)));
-				}
-				else
-				{
-					Potion pot = Potion.potionTypes[0];
-					while (pot == null || badPotions.contains(pot))
-					{
-						pot = Potion.potionTypes[rand.nextInt(Potion.potionTypes.length)];
-					}
-					player.addPotionEffect(new PotionEffect(pot.id, 200 + rand.nextInt(200), rand.nextInt(level)));
-				}
-				amu.damageStackInSlot(slot, 4 - level);				
-			}
-		}
-		else if (id == 26 && TragicConfig.amuUndead && !world.isRemote)
-		{
-			if (world.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ) && world.isDaytime() && player.ticksExisted % 10 == 0)
-			{
-				player.setFire(8 + rand.nextInt(4));
-			}
-
-			if (player.isPotionActive(Potion.weakness))
-			{
-				PotionEffect effect = player.getActivePotionEffect(Potion.weakness);
-				player.removePotionEffect(Potion.weakness.id);
-				player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, effect.getDuration(), effect.getAmplifier()));
-			}
-
-			if (player.isPotionActive(Potion.poison))
-			{
-				PotionEffect effect = player.getActivePotionEffect(Potion.poison);
-				player.removePotionEffect(Potion.poison.id);
-				player.addPotionEffect(new PotionEffect(Potion.regeneration.id, effect.getDuration(), effect.getAmplifier()));
-			}
-
-			if (TragicConfig.allowCripple && player.isPotionActive(TragicPotion.Cripple))
-			{
-				PotionEffect effect = player.getActivePotionEffect(TragicPotion.Cripple);
-				player.removePotionEffect(TragicPotion.Cripple.id);
-				player.addPotionEffect(new PotionEffect(Potion.field_76434_w.id, effect.getDuration(), effect.getAmplifier()));
-			}
-		}
-		else if (id == 29 && TragicConfig.amuEnyvil)
-		{
-			List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(16.0, 16.0, 16.0));
-
-			for (Entity e : list)
-			{
-				if (e instanceof EntityLivingBase)
-				{
-					((EntityLivingBase) e).addPotionEffect(new PotionEffect(TragicConfig.allowFear ? TragicPotion.Fear.id : Potion.blindness.id, 120, 0));
-				}
-			}
-		}
-		else if (id == 30 && TragicConfig.amuLuck && player.ticksExisted % 300 == 0 && rand.nextInt(level * 2) != 0)
-		{
-			if (!world.isRemote)
-			{
-				player.addExperience(rand.nextInt(level * 10));
-				amu.damageStackInSlot(slot, 4 - level);
+				if (amulets[0] != null) amulets[0].onAmuletUpdate(amu, mp, mp.worldObj, (byte) 0, AmuletHelper.getAmuletWithHighestLevel(levels[0], levels[1], levels[2]));
 			}
 		}
 	}
@@ -632,7 +244,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuMartyr; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 5)
+				if (amulets[i] != null && amulets[i] == TragicItems.MartyrAmulet)
 				{
 					event.ammount /= 2;
 					amu.damageStackInSlot(i, MathHelper.floor_float(event.ammount));
@@ -642,7 +254,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuZombie; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 10)
+				if (amulets[i] != null && amulets[i] == TragicItems.ZombieAmulet)
 				{
 					if (event.source == DamageSource.starve && event.isCancelable()) event.setCanceled(true);
 					amu.damageStackInSlot(i, 4 - levels[i]);
@@ -652,7 +264,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuKitsune; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 0)
+				if (amulets[i] != null && amulets[i] == TragicItems.KitsuneAmulet)
 				{
 					if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && !event.source.isProjectile())
 					{
@@ -671,7 +283,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuApis; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 8)
+				if (amulets[i] != null && amulets[i] == TragicItems.ApisAmulet)
 				{
 					if (event.source.isExplosion() && event.isCancelable())
 					{
@@ -685,7 +297,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuSunken  && !event.source.isDamageAbsolute(); i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 12)
+				if (amulets[i] != null && amulets[i] == TragicItems.SunkenAmulet)
 				{
 					if (mp.isInWater()) event.ammount *= 1.535F;
 					break;
@@ -694,7 +306,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuPiercing && event.source.isMagicDamage(); i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 6)
+				if (amulets[i] != null && amulets[i] == TragicItems.PiercingAmulet)
 				{
 					event.ammount *= 2.135F;
 					break;
@@ -703,7 +315,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuIce && !event.source.isDamageAbsolute(); i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 14)
+				if (amulets[i] != null && amulets[i] == TragicItems.TimeAmulet)
 				{
 					if (mp.worldObj.getBiomeGenForCoords((int) mp.posX, (int) mp.posZ).getTempCategory() == TempCategory.COLD)
 					{
@@ -720,7 +332,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuWither; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 18)
+				if (amulets[i] != null && amulets[i] == TragicItems.WitherAmulet)
 				{
 					if (event.source == DamageSource.wither)
 					{
@@ -733,7 +345,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuPolaris && !event.source.isDamageAbsolute(); i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 21)
+				if (amulets[i] != null && amulets[i] == TragicItems.PolarisAmulet)
 				{
 					if (event.entityLiving.worldObj.isDaytime())
 					{
@@ -749,7 +361,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuOverlord && !event.source.isDamageAbsolute() && event.entityLiving.worldObj.provider.dimensionId == TragicConfig.synapseID; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 22)
+				if (amulets[i] != null && amulets[i] == TragicItems.OverlordAmulet)
 				{
 					event.ammount *= 0.65D;
 					break;
@@ -758,7 +370,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuEnderDragon && event.source == DamageSource.inWall; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 27)
+				if (amulets[i] != null && amulets[i] == TragicItems.EnderDragonAmulet)
 				{
 					int x = MathHelper.floor_double(mp.posX);
 					int y = MathHelper.floor_double(mp.posY);
@@ -774,7 +386,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuFusea; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 28)
+				if (amulets[i] != null && amulets[i] == TragicItems.FuseaAmulet)
 				{
 					mp.worldObj.createExplosion(mp, mp.posX, mp.posY, mp.posZ, levels[i] * 1.5F, false);
 					amu.damageStackInSlot(i, 4 - levels[i]);
@@ -806,7 +418,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuPiercing; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 6 && !event.source.isUnblockable())
+				if (amulets[i] != null && amulets[i] == TragicItems.PiercingAmulet && !event.source.isUnblockable())
 				{
 					event.entityLiving.attackEntityFrom(DamageHelper.causeArmorPiercingDamageToEntity(mp), event.ammount * 0.135F + 1.0F);
 					amu.damageStackInSlot(i, 1);
@@ -816,7 +428,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuStin; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 20)
+				if (amulets[i] != null && amulets[i] == TragicItems.StinAmulet)
 				{
 					double d = 0.4D * levels[i];
 					event.entity.motionX = event.entity.posX - mp.posX;
@@ -860,7 +472,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuYeti; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 2)
+				if (amulets[i] != null && amulets[i] == TragicItems.YetiAmulet)
 				{
 					if (fall > levels[i] * 1.5F)
 					{
@@ -891,7 +503,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuIronGolem; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 16 && levels[i] >= 3)
+				if (amulets[i] != null && amulets[i] == TragicItems.IronGolemAmulet && levels[i] >= 3)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					break;
@@ -922,7 +534,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 11 && rand.nextInt(16 - (levels[i] * 5)) == 0)
+				if (amulets[i] != null && amulets[i] == TragicItems.SkeletonAmulet && rand.nextInt(16 - (levels[i] * 5)) == 0)
 				{
 					event.charge += levels[i] * 5;
 					amu.damageStackInSlot(i, 4 - levels[i]);
@@ -954,7 +566,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 17)
+				if (amulets[i] != null && amulets[i] == TragicItems.EndermanAmulet)
 				{
 					mp.worldObj.setBlockToAir(event.x, event.y, event.z);
 					EntityItem item = new EntityItem(mp.worldObj, event.x, event.y, event.z, new ItemStack(event.block, 1, event.blockMetadata));
@@ -998,7 +610,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3 && TragicConfig.amuLuck; i++)
 			{
-				if (amulets[i] != null && ((ItemAmulet) amulets[i].getItem()).getAmuletID() == 30)
+				if (amulets[i] != null && ((ItemAmulet) amulets[i].getItem()) == TragicItems.LuckAmulet)
 				{
 					try
 					{
@@ -1070,7 +682,7 @@ public class AmuletEvents {
 
 			int[] levels = new int[3];
 			ItemAmulet[] amulets = new ItemAmulet[3];
-			int i;
+			byte i;
 
 			for (i = 0; i < 3; i++)
 			{
@@ -1080,7 +692,7 @@ public class AmuletEvents {
 
 			for (i = 0; i < 3; i++)
 			{
-				if (amulets[i] != null && amulets[i].getAmuletID() == 23)
+				if (amulets[i] != null && amulets[i] == TragicItems.LightningAmulet)
 				{
 					if (event.isCancelable()) event.setCanceled(true);
 					mp.getFoodStats().addStats(20, 1.0F);

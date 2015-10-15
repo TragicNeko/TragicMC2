@@ -22,7 +22,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
-import tragicneko.tragicmc.items.ItemAmulet.AmuletModifier;
+import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAttack;
 import tragicneko.tragicmc.util.WorldHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

@@ -23,8 +23,8 @@ import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.mob.EntityLockbot;
 import tragicneko.tragicmc.entity.mob.EntityPumpkinhead;
 import tragicneko.tragicmc.entity.mob.TragicMob;
-import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemTalisman;
+import tragicneko.tragicmc.items.amulet.ItemAmulet;
 import tragicneko.tragicmc.items.armor.ArmorOverlord;
 import tragicneko.tragicmc.items.armor.TragicArmor;
 import tragicneko.tragicmc.items.weapons.ItemJack;
@@ -161,7 +161,7 @@ public class AchievementEvents {
 							ItemAmulet item = amu.getActiveAmulet(b);
 							mp.triggerAchievement(TragicAchievements.amuletEquip);
 
-							if (ItemAmulet.cursedIds.contains(item.getAmuletID()) || ItemAmulet.epicIds.contains(item.getAmuletID()))
+							if (ItemAmulet.cursedAmulets.contains(item) || ItemAmulet.epicAmulets.contains(item))
 							{
 								mp.triggerAchievement(TragicAchievements.amuletSpecial);
 							}

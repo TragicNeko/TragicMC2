@@ -1,5 +1,6 @@
-package tragicneko.tragicmc.items;
+package tragicneko.tragicmc.items.amulet;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,51 +34,57 @@ public class ItemAmulet extends Item {
 
 	private IIcon[][] iconArray = new IIcon[4][2];
 
-	private int amuletID;
-
 	public static final int COLOR_WHITE = 0xFFFFFF;
 	public static final int COLOR_BLACK = 0x000000;
+	
+	public static Set<ItemAmulet> cursedAmulets = new HashSet<ItemAmulet>();
+	public static Set<ItemAmulet> epicAmulets = new HashSet<ItemAmulet>();
+	
+	private final int chainColor;
+	private final int amuletColor;
+	
+	public final EnumAmuletType amuletType;
+	public final String amuletName;
 
-	private static String[] amuletNames = new String[] {"Kitsune", "Peace", "Yeti", "Claymation", "Chicken", "Martyr", "Piercing", "Blacksmith", "Apis", "Creeper", "Zombie",
-		"Skeleton", "Sunken", "Time", "Ice", "SnowGolem", "IronGolem", "Enderman", "Wither", "Spider", "Stin", "Polaris", "Overlord", "Lightning", "Consumption", "Supernatural",
-		"Undead", "EnderDragon", "Fusea", "Enyvil", "Luck"};
-	private static int[][] amuletColors = new int[][] {{0xFFD087, 0xFF0000}, {0x9F5B86, 0xFF9ACA}, {0xFAFAFA, 0x98B4C1}, {0xFF9500, 0xFFCA02}, {0xDEDEDE, 0xFFEAA1},
-		{COLOR_BLACK, 0x454545}, {0x237878, 0x449999}, {0x949494, 0x696969}, {0xFFCD82, 0xFFFF82}, {0x27C123, 0x43E140}, {0x3A8F4A, 0x27C1C9}, {0xA0A0A0, 0xC1C1C1},
-		{0x0000FF, 0x466DB3}, {0x94FFA3, 0xEA92E9}, {0xC4EFFF, 0xA5D0E0}, {0xFFFDF1, 0xABA290}, {0xDBCDC1, 0x8B7260}, {COLOR_BLACK, 0xB547DE}, {COLOR_BLACK, 0x245238},
-		{0x555555, 0xCF5555}, {0x464646, 0x878787}, {0x565656, 0x4A00BA}, {0x212121, 0x92F9D1}, {0xFCFCFC, 0xABABAB}, {0xFF0000, 0xB53838}, {0x99DD99, 0x87CE87},
-		{0x898989, 0x777777}, {0xCC00FA, 0x1A1A1A}, {0xA0E39D, 0xE4B1E0}, {0xFF6FFF, 0x5D1543}, {0xBBBA56, 0xFFFA56}};
-
-	public static Set<Integer> cursedIds = Sets.newHashSet(0, 5, 6, 8, 12, 17, 21, 23, 24, 26, 27);
-	public static Set<Integer> epicIds = Sets.newHashSet(13, 18, 22, 29);
-
-	public ItemAmulet(int id)
+	public ItemAmulet(String name, EnumAmuletType type, int chain, int amulet)
 	{
-		this.amuletID = id;
-		this.setUnlocalizedName("tragicmc.amulet" + amuletNames[id]);
+		this.amuletName = name;
+		this.amuletType = type;
+		this.chainColor = chain;
+		this.amuletColor = amulet;
+		this.setUnlocalizedName("tragicmc.amulet" + name);
 		this.setCreativeTab(TragicMC.Survival);
 		this.setMaxStackSize(1);
+		
+		if (type == EnumAmuletType.CURSED) cursedAmulets.add(this);
+		else if (type == EnumAmuletType.EPIC) epicAmulets.add(this);
+	}
+	
+	public ItemAmulet(String name, EnumAmuletType type)
+	{
+		this(name, type, COLOR_WHITE, COLOR_BLACK);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack, int pass)
 	{
-		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") && stack.getTagCompound().getInteger("amuletLevel") > 3;
+		if (this.amuletType == EnumAmuletType.CURSED || this.amuletType == EnumAmuletType.EPIC) return true;
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") && stack.getTagCompound().getByte("amuletLevel") >= 3;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean requiresMultipleRenderPasses()
-	{
+	public boolean requiresMultipleRenderPasses() {
 		return true;
 	}
-
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int pass)
 	{
-		int i = stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : getDefaultLevels(this.amuletID);
+		byte i = stack != null && stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : getDefaultLevels(this.amuletType);
+		if (this.amuletType != EnumAmuletType.NORMAL) i = 4;
 		return this.iconArray[net.minecraft.util.MathHelper.clamp_int(i, 1, 4) - 1][pass > 0 ? 1 : 0];
 	}
 
@@ -85,7 +92,8 @@ public class ItemAmulet extends Item {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		int i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : getDefaultLevels(this.amuletID);
+		if (this.amuletType == EnumAmuletType.CURSED || this.amuletType == EnumAmuletType.EPIC) return EnumRarity.epic;
+		byte i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : getDefaultLevels(this.amuletType);
 
 		switch (i)
 		{
@@ -95,9 +103,6 @@ public class ItemAmulet extends Item {
 			return EnumRarity.uncommon;
 		case 3:
 			return EnumRarity.rare;
-		case 4:
-		case 5:
-			return EnumRarity.epic;
 		}
 		return EnumRarity.common;
 	}
@@ -105,18 +110,20 @@ public class ItemAmulet extends Item {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
-		int i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : getDefaultLevels(this.amuletID);
-		String specialName = StatCollector.translateToLocal(amuletNames[this.amuletID].toLowerCase() + i + ".special");
+		byte i = stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : getDefaultLevels(this.amuletType);
+		String specialName = StatCollector.translateToLocal(this.amuletName.toLowerCase() + i + ".special");
 		par2List.add(EnumChatFormatting.RED + specialName);
 
 		String s = "Amulet Level: ";
-		String s1 = getFormatFromLevel(i) + s + (i > 4 ? "Epic" : (i > 3 ? "Cursed" : i));
+		String s1 = getFormatFromLevel(i) + s + (this.amuletType == EnumAmuletType.EPIC ? "Epic" : (this.amuletType == EnumAmuletType.CURSED ? "Cursed" : i));
 		if (s1 != null) par2List.add(s1);
 	}
 
-	public static EnumChatFormatting getFormatFromLevel(int i)
+	public EnumChatFormatting getFormatFromLevel(final byte i)
 	{
-		return i <= 1 ? EnumChatFormatting.AQUA : (i == 2 ? EnumChatFormatting.BLUE : (i == 3 ? EnumChatFormatting.DARK_BLUE : (i == 4 ? EnumChatFormatting.DARK_RED : EnumChatFormatting.GOLD)));
+		if (this.amuletType == EnumAmuletType.CURSED) return EnumChatFormatting.DARK_RED;
+		if (this.amuletType == EnumAmuletType.EPIC) return EnumChatFormatting.GOLD; 
+		return i == 1 ? EnumChatFormatting.AQUA : (i == 2 ? EnumChatFormatting.BLUE : (i == 3 ? EnumChatFormatting.DARK_BLUE : EnumChatFormatting.WHITE));
 	}
 
 	@Override
@@ -131,11 +138,11 @@ public class ItemAmulet extends Item {
 	{
 		if (par2 == 0)
 		{
-			return amuletColors[this.amuletID][0];
+			return this.amuletColor;
 		}
 		else
 		{
-			return amuletColors[this.amuletID][1];
+			return this.chainColor;
 		}
 	}
 
@@ -143,36 +150,26 @@ public class ItemAmulet extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister regi)
 	{
-		for (int i = 0; i < 4; i++)
+		for (byte i = 0; i < 4; i++)
 		{
 			this.iconArray[i][0] = regi.registerIcon("tragicmc:Amulet" + (i + 1));
 			this.iconArray[i][1] = regi.registerIcon("tragicmc:Amulet" + (i + 1) + "_overlay");
 		}
 	}
 
-	public boolean isCursed(ItemStack stack)
+	public byte getAmuletLevel(ItemStack stack)
 	{
-		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") && stack.getTagCompound().getInteger("amuletLevel") == 4;
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getByte("amuletLevel") : 0;
 	}
 
-	public int getAmuletLevel(ItemStack stack)
+	public String getAmuletName()
 	{
-		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? stack.getTagCompound().getInteger("amuletLevel") : 0;
+		return this.amuletName;
 	}
 
-	public String getAmuletName(ItemStack stack)
+	public static byte getDefaultLevels(EnumAmuletType type)
 	{
-		return stack.hasTagCompound() && stack.getTagCompound().hasKey("amuletLevel") ? amuletNames[amuletID] : "";
-	}
-
-	public static int getDefaultLevels(int i)
-	{
-		return cursedIds.contains(i) ? 4 : (epicIds.contains(i) ? 5 : 1);
-	}
-
-	public int getAmuletID()
-	{
-		return this.amuletID;
+		return type == EnumAmuletType.CURSED || type == EnumAmuletType.EPIC ? (byte) 3 : 1;
 	}
 
 	@Override
@@ -181,8 +178,8 @@ public class ItemAmulet extends Item {
 		if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
 		if (!stack.hasTagCompound()) stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setInteger("amuletLevel", getDefaultLevels(this.amuletID));
-		if (TragicConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) this.applyModifiersToItemStack(stack);
+		if (!stack.getTagCompound().hasKey("amuletLevel")) stack.getTagCompound().setByte("amuletLevel", getDefaultLevels(this.amuletType));
+		if (TragicConfig.allowAmuletModifiers && !stack.stackTagCompound.hasKey("AttributeModifiers", 9)) applyModifiersToItemStack(stack);
 	}
 
 	@Override
@@ -204,15 +201,17 @@ public class ItemAmulet extends Item {
 		return stack;
 	}
 
-	public void applyModifiersToItemStack(ItemStack stack)
+	public static void applyModifiersToItemStack(ItemStack stack)
 	{
 		NBTTagList taglist = new NBTTagList();
 		NBTTagCompound tag;
 
 		IAttribute atr = AmuletHelper.getRandomAttribute();
 		AttributeModifier mod = AmuletHelper.getRandomModifier(atr);
+		if (stack == null || !(stack.getItem() instanceof ItemAmulet)) return;
+		ItemAmulet amulet = (ItemAmulet) stack.getItem();
 
-		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance || getDefaultLevels(this.amuletID) == 4)
+		if (itemRand.nextInt(100) <= TragicConfig.amuletModChance || amulet.amuletType == EnumAmuletType.CURSED)
 		{
 			stack.getTagCompound().setTag("AttributeModifiers", taglist);
 			return;
@@ -256,11 +255,38 @@ public class ItemAmulet extends Item {
 
 		stack.getTagCompound().setTag("AttributeModifiers", taglist);
 	}
+	
+	/**
+	 * To be used by the Amulet Events class to call each Amulet on update, may or may not be used by each Amulet
+	 * @param amu
+	 * @param player
+	 * @param world
+	 * @param slot
+	 * @param level
+	 */
+	public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level) {}
+	
+	/**
+	 * Shortcut method to damage an Amulet
+	 * @param amu
+	 * @param slot
+	 * @param level
+	 */
+	protected final void damageAmulet(final PropertyAmulets amu, final byte slot, final byte level)
+	{
+		amu.damageStackInSlot(slot, 4 - level);
+	}
 
 	public static class AmuletModifier extends SharedMonsterAttributes {
 		public static final IAttribute reach = (new RangedAttribute("tragicmc.reach", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Reach").setShouldWatch(true);
 		public static final IAttribute jumpHeight = (new RangedAttribute("tragicmc.jumpHeight", 1.4, 0.0, Double.MAX_VALUE)).setDescription("Jump Height").setShouldWatch(true);
 		public static final IAttribute resistance = (new RangedAttribute("tragicmc.resistance", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Resistance").setShouldWatch(true);
 		public static final IAttribute luck = (new RangedAttribute("tragicmc.luck", 0.0, -Double.MAX_VALUE, Double.MAX_VALUE)).setDescription("Luck").setShouldWatch(true);
+	}
+	
+	public static enum EnumAmuletType {
+		NORMAL,
+		CURSED,
+		EPIC;
 	}
 }

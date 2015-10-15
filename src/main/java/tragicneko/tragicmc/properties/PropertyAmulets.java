@@ -11,7 +11,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.inventory.ContainerAmulet;
 import tragicneko.tragicmc.inventory.InventoryAmulet;
 import tragicneko.tragicmc.inventory.SlotActiveAmulet;
-import tragicneko.tragicmc.items.ItemAmulet;
+import tragicneko.tragicmc.items.amulet.ItemAmulet;
 
 public class PropertyAmulets implements IExtendedEntityProperties {
 

@@ -12,6 +12,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyAmulets;
@@ -244,7 +245,7 @@ public abstract class Doomsday {
 
 					for (i = 0; i < 3; i++)
 					{
-						if (amu.getActiveAmulet(i) != null && amu.getActiveAmulet(i).getAmuletID() == 24)
+						if (amu.getActiveAmulet(i) != null && amu.getActiveAmulet(i) == TragicItems.ConsumptionAmulet)
 						{
 							cost = doom.getMaxDoom();
 							break;
@@ -311,7 +312,7 @@ public abstract class Doomsday {
 
 			for (i = 0; i < 3; i++)
 			{
-				if (amu.getActiveAmulet(i) != null && amu.getActiveAmulet(i).getAmuletID() == 24 && mp.worldObj.rand.nextInt(16) == 0)
+				if (amu.getActiveAmulet(i) != null && amu.getActiveAmulet(i) == TragicItems.ConsumptionAmulet && mp.worldObj.rand.nextInt(16) == 0)
 				{
 					cost *= 0.5;
 					break;

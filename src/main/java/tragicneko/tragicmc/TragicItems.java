@@ -20,7 +20,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.ArrayUtils;
 
 import tragicneko.tragicmc.doomsday.Doomsday;
-import tragicneko.tragicmc.items.ItemAmulet;
 import tragicneko.tragicmc.items.ItemAmuletRelease;
 import tragicneko.tragicmc.items.ItemBleedingObsidianOrb;
 import tragicneko.tragicmc.items.ItemBloodSacrifice;
@@ -45,6 +44,23 @@ import tragicneko.tragicmc.items.ItemSoundExtrapolator;
 import tragicneko.tragicmc.items.ItemStatue;
 import tragicneko.tragicmc.items.ItemSynthesis;
 import tragicneko.tragicmc.items.ItemTalisman;
+import tragicneko.tragicmc.items.amulet.AmuletBlacksmith;
+import tragicneko.tragicmc.items.amulet.AmuletChicken;
+import tragicneko.tragicmc.items.amulet.AmuletClaymation;
+import tragicneko.tragicmc.items.amulet.AmuletCreeper;
+import tragicneko.tragicmc.items.amulet.AmuletEnyvil;
+import tragicneko.tragicmc.items.amulet.AmuletIronGolem;
+import tragicneko.tragicmc.items.amulet.AmuletKitsune;
+import tragicneko.tragicmc.items.amulet.AmuletLuck;
+import tragicneko.tragicmc.items.amulet.AmuletPeace;
+import tragicneko.tragicmc.items.amulet.AmuletSnowGolem;
+import tragicneko.tragicmc.items.amulet.AmuletSpider;
+import tragicneko.tragicmc.items.amulet.AmuletSunken;
+import tragicneko.tragicmc.items.amulet.AmuletSupernatural;
+import tragicneko.tragicmc.items.amulet.AmuletTime;
+import tragicneko.tragicmc.items.amulet.AmuletUndead;
+import tragicneko.tragicmc.items.amulet.ItemAmulet;
+import tragicneko.tragicmc.items.amulet.ItemAmulet.EnumAmuletType;
 import tragicneko.tragicmc.items.armor.ArmorDark;
 import tragicneko.tragicmc.items.armor.ArmorHunter;
 import tragicneko.tragicmc.items.armor.ArmorLight;
@@ -93,6 +109,7 @@ import tragicneko.tragicmc.items.weapons.WeaponSwordOfJustice;
 import tragicneko.tragicmc.items.weapons.WeaponThardus;
 import tragicneko.tragicmc.items.weapons.WeaponTitan;
 import tragicneko.tragicmc.items.weapons.WeaponWitheringAxe;
+import tragicneko.tragicmc.properties.PropertyAmulets;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -788,99 +805,106 @@ public class TragicItems {
 		//Amulet Registrations
 		if (TragicConfig.allowAmulets)
 		{
-			int id = 0;
-
-			KitsuneAmulet = (new ItemAmulet(id++));
+			KitsuneAmulet = (new AmuletKitsune());
 			GameRegistry.registerItem(KitsuneAmulet, "kitsuneAmulet");
 
-			PeaceAmulet = (new ItemAmulet(id++));
+			PeaceAmulet = (new AmuletPeace());
 			GameRegistry.registerItem(PeaceAmulet, "peaceAmulet");
 
-			YetiAmulet = (new ItemAmulet(id++));
+			YetiAmulet = (new ItemAmulet("Yeti", EnumAmuletType.NORMAL, 0xFAFAFA, 0x98B4C1));
 			GameRegistry.registerItem(YetiAmulet, "yetiAmulet");
 
-			ClaymationAmulet = (new ItemAmulet(id++));
+			ClaymationAmulet = (new AmuletClaymation());
 			GameRegistry.registerItem(ClaymationAmulet, "claymationAmulet");
 
-			ChickenAmulet = (new ItemAmulet(id++));
+			ChickenAmulet = (new AmuletChicken());
 			GameRegistry.registerItem(ChickenAmulet, "chickenAmulet");
 
-			MartyrAmulet = (new ItemAmulet(id++));
+			MartyrAmulet = (new ItemAmulet("Martyr", EnumAmuletType.CURSED, ItemAmulet.COLOR_BLACK, 0x454545));
 			GameRegistry.registerItem(MartyrAmulet, "martyrAmulet");
 
-			PiercingAmulet = (new ItemAmulet(id++));
+			PiercingAmulet = (new ItemAmulet("Piercing", EnumAmuletType.CURSED, 0x237878, 0x449999));
 			GameRegistry.registerItem(PiercingAmulet, "piercingAmulet");
 
-			BlacksmithAmulet = (new ItemAmulet(id++));
+			BlacksmithAmulet = (new AmuletBlacksmith());
 			GameRegistry.registerItem(BlacksmithAmulet, "blacksmithAmulet");
 
-			ApisAmulet = (new ItemAmulet(id++));
+			ApisAmulet = (new ItemAmulet("Apis", EnumAmuletType.CURSED, 0xFFCD82, 0xFFFF82));
 			GameRegistry.registerItem(ApisAmulet, "apisAmulet");
 
-			CreeperAmulet = (new ItemAmulet(id++));
+			CreeperAmulet = (new AmuletCreeper());
 			GameRegistry.registerItem(CreeperAmulet, "creeperAmulet");
 
-			ZombieAmulet = (new ItemAmulet(id++));
+			ZombieAmulet = (new ItemAmulet("Zombie", EnumAmuletType.NORMAL, 0x3A8F4A, 0x27C1C9));
 			GameRegistry.registerItem(ZombieAmulet, "zombieAmulet");
 
-			SkeletonAmulet = (new ItemAmulet(id++));
+			SkeletonAmulet = (new ItemAmulet("Skeleton", EnumAmuletType.NORMAL, 0xA0A0A0, 0xC1C1C1));
 			GameRegistry.registerItem(SkeletonAmulet, "skeletonAmulet");
 
-			SunkenAmulet = (new ItemAmulet(id++));
+			SunkenAmulet = (new AmuletSunken());
 			GameRegistry.registerItem(SunkenAmulet, "sunkenAmulet");
 
-			TimeAmulet = (new ItemAmulet(id++));
+			TimeAmulet = (new AmuletTime());
 			GameRegistry.registerItem(TimeAmulet, "timeAmulet");
 
-			IceAmulet = (new ItemAmulet(id++));
+			IceAmulet = (new ItemAmulet("Ice", EnumAmuletType.NORMAL, 0xC4EFFF, 0xA5D0E0));
 			GameRegistry.registerItem(IceAmulet, "iceAmulet");
 
-			SnowGolemAmulet = (new ItemAmulet(id++));
+			SnowGolemAmulet = (new AmuletSnowGolem());
 			GameRegistry.registerItem(SnowGolemAmulet, "snowGolemAmulet");
 
-			IronGolemAmulet = (new ItemAmulet(id++));
+			IronGolemAmulet = (new AmuletIronGolem());
 			GameRegistry.registerItem(IronGolemAmulet, "ironGolemAmulet");
 
-			EndermanAmulet = (new ItemAmulet(id++));
+			EndermanAmulet = (new ItemAmulet("Enderman", EnumAmuletType.CURSED, ItemAmulet.COLOR_BLACK, 0xB547DE));
 			GameRegistry.registerItem(EndermanAmulet, "endermanAmulet");
 
-			WitherAmulet = (new ItemAmulet(id++));
+			WitherAmulet = (new ItemAmulet("Wither", EnumAmuletType.EPIC, ItemAmulet.COLOR_BLACK, 0x245238));
 			GameRegistry.registerItem(WitherAmulet, "witherAmulet");
 
-			SpiderAmulet = (new ItemAmulet(id++));
+			SpiderAmulet = (new AmuletSpider());
 			GameRegistry.registerItem(SpiderAmulet, "spiderAmulet");
 
-			StinAmulet = (new ItemAmulet(id++));
+			StinAmulet = (new ItemAmulet("Stin", EnumAmuletType.NORMAL, 0x464646, 0x878787));
 			GameRegistry.registerItem(StinAmulet, "stinAmulet");
 
-			PolarisAmulet = (new ItemAmulet(id++));
+			PolarisAmulet = (new ItemAmulet("Polaris", EnumAmuletType.CURSED, 0x565656, 0x4A00BA));
 			GameRegistry.registerItem(PolarisAmulet, "polarisAmulet");
 
-			OverlordAmulet = (new ItemAmulet(id++));
+			OverlordAmulet = (new ItemAmulet("Overlord", EnumAmuletType.EPIC, 0x212121, 0x92F9D1) {
+				@Override
+				public void onAmuletUpdate(final PropertyAmulets amu, final EntityPlayer player, final World world, final byte slot, final byte level)
+				{
+					if (TragicConfig.amuOverlord && TragicConfig.allowHacked)
+					{
+						if (player.isPotionActive(TragicPotion.Hacked)) player.removePotionEffect(TragicPotion.Hacked.id);
+					}
+				}
+			});
 			GameRegistry.registerItem(OverlordAmulet, "overlordAmulet");
 
-			LightningAmulet = (new ItemAmulet(id++));
+			LightningAmulet = (new ItemAmulet("Lightning", EnumAmuletType.CURSED, 0xFCFCFC, 0xABABAB));
 			GameRegistry.registerItem(LightningAmulet, "lightningAmulet");
 
-			ConsumptionAmulet = (new ItemAmulet(id++));
+			ConsumptionAmulet = (new ItemAmulet("Consumption", EnumAmuletType.CURSED, 0xFF0000, 0xB53838));
 			GameRegistry.registerItem(ConsumptionAmulet, "consumptionAmulet");
 
-			SupernaturalAmulet = (new ItemAmulet(id++));
+			SupernaturalAmulet = (new AmuletSupernatural());
 			GameRegistry.registerItem(SupernaturalAmulet, "supernaturalAmulet");
 
-			UndeadAmulet = (new ItemAmulet(id++));
+			UndeadAmulet = (new AmuletUndead());
 			GameRegistry.registerItem(UndeadAmulet, "undeadAmulet");
 
-			EnderDragonAmulet = (new ItemAmulet(id++));
+			EnderDragonAmulet = (new ItemAmulet("EnderDragon", EnumAmuletType.CURSED, 0xCC00FA, 0x1A1A1A));
 			GameRegistry.registerItem(EnderDragonAmulet, "enderDragonAmulet");
 
-			FuseaAmulet = (new ItemAmulet(id++));
+			FuseaAmulet = (new ItemAmulet("Fusea", EnumAmuletType.NORMAL, 0xA0E39D, 0xE4B1E0));
 			GameRegistry.registerItem(FuseaAmulet, "fuseaAmulet");
 
-			EnyvilAmulet = (new ItemAmulet(id++));
+			EnyvilAmulet = (new AmuletEnyvil());
 			GameRegistry.registerItem(EnyvilAmulet, "enyvilAmulet");
 
-			LuckAmulet = (new ItemAmulet(id++));
+			LuckAmulet = (new AmuletLuck());
 			GameRegistry.registerItem(LuckAmulet, "luckAmulet");
 		}
 
