@@ -22,10 +22,10 @@ public class BiomeGenSynapse extends TragicBiome {
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		if (TragicConfig.allowNanoSwarm) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNanoSwarm.class, TragicConfig.nanoSwarmSC, 0, 3));
-		if (TragicConfig.allowHunter) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHunter.class, TragicConfig.hunterSC, 3, 6));
-		if (TragicConfig.allowLockbot) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLockbot.class, TragicConfig.lockbotSC, 0, 1));
-		if (TragicConfig.allowHarvester) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.harvesterSC, 0, 1));
+		if (TragicConfig.allowNanoSwarm) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNanoSwarm.class, TragicConfig.nanoSwarmSC, TragicConfig.nanoSwarmGS[0], TragicConfig.nanoSwarmGS[1]));
+		if (TragicConfig.allowHunter) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHunter.class, TragicConfig.hunterSC, TragicConfig.hunterGS[0], TragicConfig.hunterGS[1]));
+		if (TragicConfig.allowLockbot) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityLockbot.class, TragicConfig.lockbotSC, TragicConfig.lockbotGS[0], TragicConfig.lockbotGS[1]));
+		if (TragicConfig.allowHarvester) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityHarvester.class, TragicConfig.harvesterSC, TragicConfig.harvesterGS[0], TragicConfig.harvesterGS[1]));
 		this.fillerBlock = TragicBlocks.CircuitBlock;
 		this.topBlock = TragicBlocks.CircuitBlock;
 	}

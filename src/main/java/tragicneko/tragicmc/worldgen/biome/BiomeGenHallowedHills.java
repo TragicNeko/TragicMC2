@@ -36,9 +36,9 @@ public class BiomeGenHallowedHills extends TragicBiome {
 		this.theBiomeDecorator.flowersPerChunk = variant == 0 || variant == 3 ? 1 : (variant == 2 ? 12 : 4);
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.HallowedGrass;
-		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 1));
-		if (TragicConfig.allowArchangel) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.archangelSC, 0, 1));
-		if (TragicConfig.allowIre) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.ireSC, 2, 4));
+		if (TragicConfig.allowApis) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityApis.class, TragicConfig.apisSC, 0, 0));
+		if (TragicConfig.allowArchangel) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityArchangel.class, TragicConfig.archangelSC, TragicConfig.archangelGS[0], TragicConfig.archangelGS[1]));
+		if (TragicConfig.allowIre) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityIre.class, TragicConfig.ireSC, TragicConfig.ireGS[0], TragicConfig.ireGS[1]));
 		this.stringGen = new StringWorldGen(TragicBlocks.StringLight, (byte) 0, (byte) 12);
 		this.lightGen = new SurfaceWorldGen2((byte) 6, TragicBlocks.Light, (byte) 0, (byte) 4, (byte) 4);
 		this.fragileGen = new SurfaceWorldGen2((byte) 2, TragicBlocks.FragileLight, (byte) 0, (byte) 4, (byte) 4);

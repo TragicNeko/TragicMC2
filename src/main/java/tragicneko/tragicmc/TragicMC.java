@@ -137,17 +137,6 @@ public class TragicMC
 			registerFMLEvent(new RespawnDoomEvents());
 		}
 
-		TragicEntities.load();
-
-		if (TragicConfig.allowMobs)
-		{
-			tragicneko.tragicmc.util.EntityDropHelper.fill();
-			registerEvent(new DynamicHealthScaling());
-		}
-
-		if (TragicConfig.allowChallengeScrolls && TragicConfig.allowNonMobItems) TragicItems.initializeChallengeItem();
-		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) registerEvent(new DropEvents());
-
 		if (TragicConfig.allowDimension)
 		{
 			if (TragicConfig.allowCollision)
@@ -161,7 +150,7 @@ public class TragicMC
 
 				DimensionManager.registerProviderType(TragicConfig.collisionProviderID, tragicneko.tragicmc.dimension.TragicWorldProvider.class, TragicConfig.keepCollisionLoaded);
 				DimensionManager.registerDimension(TragicConfig.collisionID, TragicConfig.collisionProviderID);
-				logInfo("The Collision was registered with an ID of " + TragicConfig.collisionID);
+				logInfo("Dimension (The Collision) was registered with an ID of " + TragicConfig.collisionID);
 			}
 
 			if (TragicConfig.allowSynapse)
@@ -175,12 +164,23 @@ public class TragicMC
 
 				DimensionManager.registerProviderType(TragicConfig.synapseProviderID, tragicneko.tragicmc.dimension.SynapseWorldProvider.class, TragicConfig.keepSynapseLoaded);
 				DimensionManager.registerDimension(TragicConfig.synapseID, TragicConfig.synapseProviderID);
-				logInfo("Synapse was registered with an ID of " + TragicConfig.synapseID);
+				logInfo("Dimension (Synapse) was registered with an ID of " + TragicConfig.synapseID);
 			}
 
 			TragicBiome.load();
 			MinecraftForge.ORE_GEN_BUS.register(new tragicneko.tragicmc.events.MiscEvents());
 		}
+		
+		TragicEntities.load();
+
+		if (TragicConfig.allowMobs)
+		{
+			tragicneko.tragicmc.util.EntityDropHelper.fill();
+			registerEvent(new DynamicHealthScaling());
+		}
+
+		if (TragicConfig.allowChallengeScrolls && TragicConfig.allowNonMobItems) TragicItems.initializeChallengeItem();
+		if (TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks) registerEvent(new DropEvents());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		if (TragicConfig.allowDoomsdays) registerFMLEvent(new DoomsdayManager());

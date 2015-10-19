@@ -45,9 +45,9 @@ public class BiomeGenCorrodedSteppe extends TragicBiome {
 		this.theBiomeDecorator.mushroomsPerChunk = 16;
 		this.fillerBlock = TragicBlocks.DarkCobblestone;
 		this.topBlock = TragicBlocks.DarkCobblestone;
-		if (TragicConfig.allowJarra) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.jarraSC, 0, 1));
-		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, 0, 1));
-		if (TragicConfig.allowFusea) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.fuseaSC, 2, 4));
+		if (TragicConfig.allowJarra) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJarra.class, TragicConfig.jarraSC, TragicConfig.jarraGS[0], TragicConfig.jarraGS[1]));
+		if (TragicConfig.allowTox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTox.class, TragicConfig.toxSC, TragicConfig.toxGS[0], TragicConfig.toxGS[1]));
+		if (TragicConfig.allowFusea) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityFusea.class, TragicConfig.fuseaSC, TragicConfig.fuseaGS[0], TragicConfig.fuseaGS[1]));
 		this.sludgeGen = new SurfaceWorldGen(3.0D, 1.5D, true, (byte) 10, TragicBlocks.Quicksand, (byte) 3, TragicBlocks.DarkCobblestone, true, true);
 		this.toxicCobbleGen = new RuggedTerrainWorldGen(TragicBlocks.DarkCobblestone, (byte) 2, TragicBlocks.DarkCobblestone, (byte) 6, 4.0D, 3.0D, false, (byte) 8);
 		this.gasGen = new SurfaceWorldGen2((byte) (variant == 0 || variant == 4 ? 14 : (variant >= 3 ? 7 : 2)), TragicBlocks.RadiatedGas, (byte) 0, (byte) 4, (byte) 8);

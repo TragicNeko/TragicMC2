@@ -30,10 +30,10 @@ public class BiomeGenScorchedWasteland extends TragicBiome {
 	public BiomeGenScorchedWasteland(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.clear();
-		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, 3, 6));
-		if (TragicConfig.allowJabba) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jabbaSC, 2, 4));
-		if (TragicConfig.allowMagmox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMagmox.class, TragicConfig.magmoxSC, 0, 1));
-		if (TragicConfig.allowKitsunakuma) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 1));
+		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1]));
+		if (TragicConfig.allowJabba) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityJabba.class, TragicConfig.jabbaSC, TragicConfig.jabbaGS[0], TragicConfig.jabbaGS[1]));
+		if (TragicConfig.allowMagmox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityMagmox.class, TragicConfig.magmoxSC, TragicConfig.magmoxGS[0], TragicConfig.magmoxGS[1]));
+		if (TragicConfig.allowKitsunakuma) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKitsune.class, TragicConfig.kitsunakumaSC, 0, 0));
 		this.enableSnow = false;
 		this.enableRain = false;
 		this.temperature = 2.0F;

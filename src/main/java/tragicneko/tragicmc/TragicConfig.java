@@ -1,5 +1,7 @@
 package tragicneko.tragicmc;
 
+import org.apache.logging.log4j.core.helpers.Integers;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -22,6 +24,7 @@ public class TragicConfig {
 	private static final String CAT_ENCHANT = "Enchantments";
 	private static final String CAT_MOBS = "Mobs";
 	private static final String CAT_MOBSTATS = "Mob Stats";
+	private static final String CAT_MOBSPAWNS = "Mob Spawns";
 	private static final String CAT_POTION = "Potions";
 	private static final String CAT_VANILLA = "Vanilla Changes";
 	private static final String CAT_WORLDGEN = "WorldGen";
@@ -93,23 +96,39 @@ public class TragicConfig {
 	public static boolean[] mobAllow = new boolean[64];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
 	public static boolean allowCryse, allowStarCryse, allowNorVox, allowStarVox, allowPirah, allowStin, allowStinBaby, allowKindlingSpirit, allowAbomination, allowErkel;
-	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowArchangel, allowIre;
+	public static boolean allowSirv, allowPsygote, allowLockbot, allowNanoSwarm, allowSnowGolem, allowHunter, allowHarvester, allowSeeker, allowArchangel, allowIre;
 	public static boolean allowFusea, allowRanmas, allowParasmite, allowAvris, allowPyragr, allowBlist, allowThorg;
 	public static boolean[] miniBossAllow = new boolean[32];
 	public static boolean allowJarra, allowKragul, allowMagmox, allowMegaCryse, allowVoxStellarum, allowGreaterStin, allowStinKing, allowStinQueen, allowAegar, allowVolatileFusea, allowAggro;
 	public static boolean[] bossAllow = new boolean[24];
 	public static boolean allowApis, allowSkultar, allowKitsunakuma, allowEmpariah, allowTimeController, allowPolaris, allowEnyvil, allowClaymation, allowOverlord;
-
-	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pyragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
-	public static int pirahSC, stinSC, kindlingSpiritSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC;
-	public static int harvesterSC, archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC, avrisSC, blistSC, thorgSC, jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, aggroSC;
-	public static int stinKingSC, stinQueenSC, volatileFuseaSC, apisSC, skultarSC, kitsunakumaSC, empariahSC, timeControllerSC, polarisSC, enyvilSC, claymationSC, overlordSC;
-
+	
 	public static double[] jabbaStats, jannaStats, plagueStats, gragulStats, minotaurStats, inklingStats, ragrStats, pyragrStats, pumpkinheadStats, tragicNekoStats, toxStats, poxStats, cryseStats;
 	public static double[] starCryseStats, norVoxStats, starVoxStats, goldenPirahStats, pirahStats, stinStats, stinBabyStats, kindlingSpiritStats, abominationStats, erkelStats, sirvStats, psygoteStats;
 	public static double[] lockbotStats, nanoSwarmStats, hunterStats, harvesterStats, seekerStats, archangelStats, ireStats, fuseaStats, ranmasStats, parasmiteStats, kurayamiStats, avrisStats, blistStats, thorgStats;
 	public static double[] jarraStats, kragulStats, magmoxStats, megaCryseStats, voxStellarumStats, greaterStinStats, stinKingStats, stinQueenStats, aegarStats, volatileFuseaStats, aggroStats;
 	public static double[] apisStats, skultarStats, kitsunakumaStats, empariahStats, timeControllerStats, polarisStats, enyvilStats, claymationStats, overlordCoreStats, overlordCombatStats, overlordCocoonStats;
+
+	public static int jabbaSC, jannaSC, plagueSC, gragulSC, minotaurSC, inklingSC, ragrSC, pyragrSC, pumpkinheadSC, tragicNekoSC, toxSC, poxSC, cryseSC, starCryseSC, norVoxSC, starVoxSC;
+	public static int pirahSC, stinSC, kindlingSpiritSC, abominationSC, erkelSC, sirvSC, psygoteSC, lockbotSC, nanoSwarmSC, snowGolemSC, hunterSC, harvesterSC, seekerSC;
+	public static int archangelSC, ireSC, fuseaSC, ranmasSC, parasmiteSC, avrisSC, blistSC, thorgSC, jarraSC, kragulSC, magmoxSC, megaCryseSC, voxStellarumSC, greaterStinSC, aegarSC, aggroSC;
+	public static int stinKingSC, stinQueenSC, volatileFuseaSC, apisSC, skultarSC, kitsunakumaSC, empariahSC, timeControllerSC, polarisSC, enyvilSC, claymationSC;
+	
+	public static int[] jabbaGS, jannaGS, plagueGS, gragulGS, minotaurGS, inklingGS, ragrGS, pyragrGS, pumpkinheadGS, tragicNekoGS, toxGS, poxGS, cryseGS, starCryseGS, norVoxGS, starVoxGS;
+	public static int[] pirahGS, stinGS, kindlingSpiritGS, abominationGS, erkelGS, sirvGS, psygoteGS, lockbotGS, nanoSwarmGS, snowGolemGS, hunterGS, harvesterGS, seekerGS;
+	public static int[] archangelGS, ireGS, fuseaGS, ranmasGS, parasmiteGS, avrisGS, blistGS, thorgGS, jarraGS, kragulGS, magmoxGS, megaCryseGS, voxStellarumGS, greaterStinGS, stinKingGS, stinQueenGS, volatileFuseaGS, aegarGS, aggroGS;
+	
+	public static boolean jabbaSOV, plagueSOV, gragulSOV, minotaurSOV, inklingSOV, ragrSOV, pumpkinheadSOV, tragicNekoSOV, toxSOV, cryseSOV, norVoxSOV;
+	public static boolean pirahSOV, stinSOV, kindlingSpiritSOV, abominationSOV, erkelSOV, sirvSOV, psygoteSOV, lockbotSOV, nanoSwarmSOV, hunterSOV, harvesterSOV, seekerSOV;
+	public static boolean archangelSOV, ireSOV, fuseaSOV, ranmasSOV, parasmiteSOV, avrisSOV, blistSOV, thorgSOV, snowGolemSOV, jarraSOV, kragulSOV, magmoxSOV, megaCryseSOV;
+	public static boolean greaterStinSOV, stinKingSOV, stinQueenSOV, voxStellarumSOV, aggroSOV, volatileFuseaSOV, aegarSOV;
+	public static boolean apisSOV, skultarSOV, kitsunakumaSOV, empariahSOV, timeControllerSOV, polarisSOV, enyvilSOV, claymationSOV;
+	
+	public static int[] jabbaSpawns, plagueSpawns, gragulSpawns, minotaurSpawns, inklingSpawns, ragrSpawns, pumpkinheadSpawns, tragicNekoSpawns, toxSpawns, cryseSpawns, norVoxSpawns;
+	public static int[] pirahSpawns, stinSpawns, kindlingSpiritSpawns, abominationSpawns, erkelSpawns, sirvSpawns, psygoteSpawns, lockbotSpawns, nanoSwarmSpawns, hunterSpawns, harvesterSpawns, seekerSpawns;
+	public static int[] archangelSpawns, ireSpawns, fuseaSpawns, ranmasSpawns, parasmiteSpawns, avrisSpawns, blistSpawns, thorgSpawns, snowGolemSpawns, jarraSpawns, kragulSpawns, magmoxSpawns, megaCryseSpawns;
+	public static int[] greaterStinSpawns, stinKingSpawns, stinQueenSpawns, voxStellarumSpawns, volatileFuseaSpawns, aegarSpawns, aggroSpawns;
+	public static int[] apisSpawns, skultarSpawns, kitsunakumaSpawns, empariahSpawns, timeControllerSpawns, polarisSpawns, enyvilSpawns, claymationSpawns;
 
 	public static boolean[] potionAllow = new boolean[32];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
@@ -1987,6 +2006,9 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "harvesterAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "seekerAllow", true);
+		mobAllow[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "archangelAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
@@ -2075,168 +2097,6 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "overlordAllow", true);
 		bossAllow[++m] = prop.getBoolean(true);
 
-		prop = config.get(cat.getName(), "jabbaSpawnChance", 75);
-		jabbaSC = prop.getInt(75);
-
-		prop = config.get(cat.getName(), "jannaSpawnChance", 50);
-		jannaSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "jarraSpawnChance", 5);
-		jarraSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "plagueSpawnChance", 50);
-		plagueSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "gragulSpawnChance", 25);
-		gragulSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "kragulSpawnChance", 5);
-		kragulSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "minotaurSpawnChance", 75);
-		minotaurSC = prop.getInt(75);
-
-		prop = config.get(cat.getName(), "inklingSpawnChance", 75);
-		inklingSC = prop.getInt(75);
-
-		prop = config.get(cat.getName(), "ragrSpawnChance", 25);
-		ragrSC = prop.getInt(25);
-		
-		prop = config.get(cat.getName(), "pyragrSpawnChance", 25);
-		pyragrSC = prop.getInt(25);
-		
-		prop = config.get(cat.getName(), "aggroSpawnChance", 5);
-		aggroSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "pumpkinheadSpawnChance", 25);
-		pumpkinheadSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "tragicNekoSpawnChance", 50);
-		tragicNekoSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "toxSpawnChance", 50);
-		toxSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "poxSpawnChance", 50);
-		poxSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "magmoxSpawnChance", 5);
-		magmoxSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "cryseSpawnChance", 75);
-		cryseSC = prop.getInt(75);
-
-		prop = config.get(cat.getName(), "starCryseSpawnChance", 75);
-		starCryseSC = prop.getInt(75);
-
-		prop = config.get(cat.getName(), "megaCryseSpawnChance", 5);
-		megaCryseSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "norVoxSpawnChance", 25);
-		norVoxSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "starVoxSpawnChance", 25);
-		starVoxSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "voxStellarumSpawnChance", 5);
-		voxStellarumSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "pirahSpawnChance", 25);
-		pirahSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "stinSpawnChance", 50);
-		stinSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "greaterStinSpawnChance", 5);
-		greaterStinSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "stinKingSpawnChance", 5);
-		stinKingSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "stinQueenSpawnChance", 5);
-		stinQueenSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "kindlingSpiritSpawnChance", 15);
-		kindlingSpiritSC = prop.getInt(15);
-
-		prop = config.get(cat.getName(), "abominationSpawnChance", 25);
-		abominationSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "erkelSpawnChance", 25);
-		erkelSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "sirvSpawnChance", 50);
-		greaterStinSC = prop.getInt(50);
-
-		prop = config.get(cat.getName(), "psygoteSpawnChance", 5);
-		psygoteSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "lockbotSpawnChance", 5);
-		lockbotSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "nanoSwarmSpawnChance", 25);
-		nanoSwarmSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "snowGolemSpawnChance", 20);
-		snowGolemSC = prop.getInt(20);
-
-		prop = config.get(cat.getName(), "hunterSpawnChance", 15);
-		hunterSC = prop.getInt(15);
-
-		prop = config.get(cat.getName(), "harvesterSpawnChance", 10);
-		harvesterSC = prop.getInt(10);
-
-		prop = config.get(cat.getName(), "archangelSpawnChance", 5);
-		archangelSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "ireSpawnChance", 45);
-		ireSC = prop.getInt(45);
-
-		prop = config.get(cat.getName(), "fuseaSpawnChance", 25);
-		fuseaSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "volatileFuseaSpawnChance", 5);
-		volatileFuseaSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "ranmasSpawnChance", 25);
-		ranmasSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "parasmiteSpawnChance", 25);
-		parasmiteSC = prop.getInt(25);
-		
-		prop = config.get(cat.getName(), "blistSpawnChance", 25);
-		blistSC = prop.getInt(25);
-		
-		prop = config.get(cat.getName(), "thorgSpawnChance", 25);
-		thorgSC = prop.getInt(25);
-
-		prop = config.get(cat.getName(), "apisSpawnChance", 5);
-		apisSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "skultarSpawnChance", 5);
-		skultarSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "kitsunakumaSpawnChance", 5);
-		kitsunakumaSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "empariahSpawnChance", 5);
-		empariahSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "timeControllerSpawnChance", 5);
-		timeControllerSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "polarisSpawnChance", 5);
-		polarisSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "enyvilSpawnChance", 5);
-		enyvilSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "claymationSpawnChance", 5);
-		claymationSC = prop.getInt(5);
-
-		prop = config.get(cat.getName(), "overlordSpawnChance", 5);
-		overlordSC = prop.getInt(5);
-
 		prop = config.get(cat.getName(), "jabbaStats", new double[] {40.0, 0.275, 5.5, 32.0, 0.0, 0});
 		jabbaStats = verifyStat(prop.getDoubleList());
 
@@ -2265,7 +2125,7 @@ public class TragicConfig {
 		ragrStats = verifyStat(prop.getDoubleList());
 		
 		prop = config.get(cat.getName(), "pyragrStats", new double[] {75.0, 0.380, 8.0, 32.0, 1.0, 16});
-		pyragrStats = verifyStat(prop.getDoubleList()); //TODO hide pyragr/aggro stats from config
+		pyragrStats = verifyStat(prop.getDoubleList()); //TODO hide new mobs from config unless they are going to be in next release
 		
 		prop = config.get(cat.getName(), "aggroStats", new double[] {135.0, 0.380, 14.0, 16.0, 2.0, 16});
 		aggroStats = verifyStat(prop.getDoubleList());
@@ -2382,7 +2242,7 @@ public class TragicConfig {
 		blistStats = verifyStat(prop.getDoubleList());
 		
 		prop = config.get(cat.getName(), "thorgStats", new double[] {17.0, 0.428, 4.0, 32.0, 0.0, 0});
-		thorgStats = new double[] {17.0, 0.428, 4.0, 32.0, 0.0, 0}; // verifyStat(prop.getDoubleList()); //TODO change this back
+		thorgStats = verifyStat(prop.getDoubleList());
 
 		prop = config.get(cat.getName(), "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
 		aegarStats = verifyStat(prop.getDoubleList());
@@ -2419,7 +2279,690 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "overlordCoreStats", new double[] {1000.0, 0.326, 24.0, 64.0, 4.5, 0});
 		overlordCoreStats = verifyStat(prop.getDoubleList());
+		
+		cat = config.getCategory(CAT_MOBSPAWNS);
+		cat.setComment("Set spawn chances and group sizes for each mob, can also override the Vanilla/Modded biome spawns.");
+		cat.setRequiresMcRestart(true);
+		
+		prop = config.get(cat.getName(), "jabbaSpawnChance", 75);
+		jabbaSC = prop.getInt(75);
 
+		prop = config.get(cat.getName(), "jannaSpawnChance", 50);
+		jannaSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "jarraSpawnChance", 5);
+		jarraSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "plagueSpawnChance", 50);
+		plagueSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "gragulSpawnChance", 25);
+		gragulSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "kragulSpawnChance", 5);
+		kragulSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "minotaurSpawnChance", 75);
+		minotaurSC = prop.getInt(75);
+
+		prop = config.get(cat.getName(), "inklingSpawnChance", 75);
+		inklingSC = prop.getInt(75);
+
+		prop = config.get(cat.getName(), "ragrSpawnChance", 25);
+		ragrSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "pyragrSpawnChance", 25);
+		pyragrSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "aggroSpawnChance", 5);
+		aggroSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "pumpkinheadSpawnChance", 25);
+		pumpkinheadSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "tragicNekoSpawnChance", 50);
+		tragicNekoSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "toxSpawnChance", 50);
+		toxSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "poxSpawnChance", 50);
+		poxSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "magmoxSpawnChance", 5);
+		magmoxSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "cryseSpawnChance", 75);
+		cryseSC = prop.getInt(75);
+
+		prop = config.get(cat.getName(), "starCryseSpawnChance", 75);
+		starCryseSC = prop.getInt(75);
+
+		prop = config.get(cat.getName(), "megaCryseSpawnChance", 5);
+		megaCryseSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "norVoxSpawnChance", 25);
+		norVoxSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "starVoxSpawnChance", 25);
+		starVoxSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "voxStellarumSpawnChance", 5);
+		voxStellarumSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "pirahSpawnChance", 25);
+		pirahSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "stinSpawnChance", 50);
+		stinSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "greaterStinSpawnChance", 5);
+		greaterStinSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "stinKingSpawnChance", 5);
+		stinKingSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "stinQueenSpawnChance", 5);
+		stinQueenSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "kindlingSpiritSpawnChance", 15);
+		kindlingSpiritSC = prop.getInt(15);
+
+		prop = config.get(cat.getName(), "abominationSpawnChance", 25);
+		abominationSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "erkelSpawnChance", 25);
+		erkelSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "sirvSpawnChance", 50);
+		sirvSC = prop.getInt(50);
+
+		prop = config.get(cat.getName(), "psygoteSpawnChance", 5);
+		psygoteSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "lockbotSpawnChance", 5);
+		lockbotSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "nanoSwarmSpawnChance", 25);
+		nanoSwarmSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "snowGolemSpawnChance", 20);
+		snowGolemSC = prop.getInt(20);
+
+		prop = config.get(cat.getName(), "hunterSpawnChance", 15);
+		hunterSC = prop.getInt(15);
+
+		prop = config.get(cat.getName(), "harvesterSpawnChance", 10);
+		harvesterSC = prop.getInt(10);
+		
+		prop = config.get(cat.getName(), "seekerSpawnChance", 5);
+		seekerSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "archangelSpawnChance", 5);
+		archangelSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "ireSpawnChance", 45);
+		ireSC = prop.getInt(45);
+
+		prop = config.get(cat.getName(), "fuseaSpawnChance", 25);
+		fuseaSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "volatileFuseaSpawnChance", 5);
+		volatileFuseaSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "ranmasSpawnChance", 25);
+		ranmasSC = prop.getInt(25);
+
+		prop = config.get(cat.getName(), "parasmiteSpawnChance", 25);
+		parasmiteSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "blistSpawnChance", 25);
+		blistSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "thorgSpawnChance", 25);
+		thorgSC = prop.getInt(25);
+		
+		prop = config.get(cat.getName(), "aegarSpawnChance", 5);
+		aegarSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "apisSpawnChance", 5);
+		apisSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "skultarSpawnChance", 5);
+		skultarSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "kitsunakumaSpawnChance", 5);
+		kitsunakumaSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "empariahSpawnChance", 5);
+		empariahSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "timeControllerSpawnChance", 5);
+		timeControllerSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "polarisSpawnChance", 5);
+		polarisSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "enyvilSpawnChance", 5);
+		enyvilSC = prop.getInt(5);
+
+		prop = config.get(cat.getName(), "claymationSpawnChance", 5);
+		claymationSC = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "jabbaGroupSize", new int[] {0, 2});
+		jabbaGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "jannaGroupSize", new int[] {0, 2});
+		jannaGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "plagueGroupSize", new int[] {2, 3});
+		plagueGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "gragulGroupSize", new int[] {0, 1});
+		gragulGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "minotaurGroupSize", new int[] {0, 1});
+		minotaurGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "inklingGroupSize", new int[] {2, 5});
+		inklingGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "ragrGroupSize", new int[] {0, 1});
+		ragrGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "pyragrGroupSize", new int[] {0, 1});
+		pyragrGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "pumpkinheadGroupSize", new int[] {2, 4});
+		pumpkinheadGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "tragicNekoGroupSize", new int[] {0, 1});
+		tragicNekoGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "toxGroupSize", new int[] {0, 1});
+		toxGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "poxGroupSize", new int[] {0, 1});
+		poxGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "cryseGroupSize", new int[] {0, 2});
+		cryseGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "starCryseGroupSize", new int[] {1, 3});
+		starCryseGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "norVoxGroupSize", new int[] {0, 1});
+		norVoxGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "starVoxGroupSize", new int[] {2, 5});
+		starVoxGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "pirahGroupSize", new int[] {4, 6});
+		pirahGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "stinGroupSize", new int[] {1, 2});
+		stinGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "kindlingSpiritGroupSize", new int[] {0, 1});
+		kindlingSpiritGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "abominationGroupSize", new int[] {2, 5});
+		abominationGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "erkelGroupSize", new int[] {1, 2});
+		erkelGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "sirvGroupSize", new int[] {4, 6});
+		sirvGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "psygoteGroupSize", new int[] {0, 1});
+		psygoteGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "lockbotGroupSize", new int[] {0, 1});
+		lockbotGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "nanoSwarmGroupSize", new int[] {2, 4});
+		nanoSwarmGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "snowGolemGroupSize", new int[] {0, 1});
+		snowGolemGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "hunterGroupSize", new int[] {4, 6});
+		hunterGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "harvesterGroupSize", new int[] {0, 2});
+		harvesterGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "seekerGroupSize", new int[] {0, 1});
+		seekerGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "archangelGroupSize", new int[] {0, 1});
+		archangelGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "ireGroupSize", new int[] {2, 4});
+		ireGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "fuseaGroupSize", new int[] {0, 2});
+		fuseaGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "ranmasGroupSize", new int[] {0, 1});
+		ranmasGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "parasmiteGroupSize", new int[] {0, 1});
+		parasmiteGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "avrisGroupSize", new int[] {0, 1});
+		avrisGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "blistGroupSize", new int[] {2, 4});
+		blistGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "thorgGroupSize", new int[] {1, 3});
+		thorgGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "jarraGroupSize", new int[] {0, 1});
+		jarraGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "kragulGroupSize", new int[] {0, 1});
+		kragulGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "magmoxGroupSize", new int[] {0, 1});
+		magmoxGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "megaCryseGroupSize", new int[] {0, 1});
+		megaCryseGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "voxStellarumGroupSize", new int[] {0, 1});
+		voxStellarumGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "greaterStinGroupSize", new int[] {0, 1});
+		greaterStinGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "stinKingGroupSize", new int[] {0, 1});
+		stinKingGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "stinQueenGroupSize", new int[] {0, 1});
+		stinQueenGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "voxStellarumGroupSize", new int[] {0, 1});
+		voxStellarumGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "volatileFuseaGroupSize", new int[] {0, 1});
+		volatileFuseaGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "aegarGroupSize", new int[] {0, 1});
+		aegarGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "aggroGroupSize", new int[] {0, 1});
+		aggroGS = verifyGS(prop.getIntList());
+		
+		prop = config.get(cat.getName(), "jabbaSpawnOverride", false);
+		jabbaSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "jabbaSpawnBiomes", new int[] {BiomeGenBase.desert.biomeID, BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesa.biomeID,
+			BiomeGenBase.hell.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID});
+		jabbaSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "plagueSpawnOverride", false);
+		plagueSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "plagueSpawnBiomes", new int[] {BiomeGenBase.beach.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID,
+			BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID, BiomeGenBase.deepOcean.biomeID, BiomeGenBase.desert.biomeID,
+			BiomeGenBase.desertHills.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID,
+			BiomeGenBase.forestHills.biomeID, BiomeGenBase.frozenOcean.biomeID, BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.hell.biomeID, BiomeGenBase.iceMountains.biomeID,
+			BiomeGenBase.icePlains.biomeID, BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID,
+			BiomeGenBase.megaTaigaHills.biomeID, BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID,
+			BiomeGenBase.mushroomIslandShore.biomeID, BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID,
+			BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID, BiomeGenBase.sky.biomeID, BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID,
+			BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		plagueSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "gragulSpawnOverride", false);
+		gragulSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "gragulSpawnBiomes", new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+			BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+			BiomeGenBase.roofedForest.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
+		gragulSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "minotaurSpawnOverride", false);
+		minotaurSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "minoturSpawnBiomes", new int[] {BiomeGenBase.plains.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+			BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.mesa.biomeID,
+			BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID,
+			BiomeGenBase.extremeHillsPlus.biomeID});
+		minotaurSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "inklingSpawnOverride", false);
+		inklingSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "inklingSpawnBiomes", new int[] {BiomeGenBase.beach.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID,
+			BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID, BiomeGenBase.deepOcean.biomeID, BiomeGenBase.desert.biomeID, 
+			BiomeGenBase.desertHills.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID,
+			BiomeGenBase.forestHills.biomeID, BiomeGenBase.frozenOcean.biomeID, BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.icePlains.biomeID,
+			BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+			BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID,
+			BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+			BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		inklingSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "ragrSpawnOverride", false);
+		ragrSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "ragrSpawnBiomes", new int[] {BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID, BiomeGenBase.coldTaiga.biomeID,
+			BiomeGenBase.coldTaigaHills.biomeID, BiomeGenBase.icePlains.biomeID, BiomeGenBase.iceMountains.biomeID});
+		ragrSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "pumpkinheadSpawnOverride", false);
+		pumpkinheadSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "pumpkinheadSpawnBiomes", new int[] {BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.forest.biomeID,
+			BiomeGenBase.forestHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID,
+			BiomeGenBase.plains.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		pumpkinheadSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "tragicNekoSpawnOverride", false);
+		tragicNekoSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "tragicNekoSpawnBiomes", new int[] {0});
+		tragicNekoSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "toxSpawnOverride", false);
+		toxSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "toxSpawnBiomes", new int[] {BiomeGenBase.roofedForest.biomeID, BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID,
+			BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleHills.biomeID});
+		toxSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "cryseSpawnOverride", false);
+		cryseSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "cryseSpawnBiomes", new int[] {BiomeGenBase.icePlains.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.coldTaiga.biomeID,
+			BiomeGenBase.coldTaigaHills.biomeID});
+		cryseSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "norVoxSpawnOverride", false);
+		norVoxSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "norVoxSpawnBiomes", new int[] {BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.deepOcean.biomeID,
+						BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID,
+						BiomeGenBase.forestHills.biomeID, BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID,
+						BiomeGenBase.megaTaigaHills.biomeID, BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+						BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID, BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID,
+						BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+						BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		norVoxSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "pirahSpawnOverride", false);
+		pirahSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "pirahSpawnBiomes", new int[] {BiomeGenBase.deepOcean.biomeID, BiomeGenBase.ocean.biomeID, BiomeGenBase.river.biomeID});
+		pirahSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "stinSpawnOverride", false);
+		stinSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "stinSpawnBiomes", new int[] {0});
+		stinSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "kindlingSpiritOverride", false);
+		kindlingSpiritSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "kindlingSpiritSpawns", new int[] {BiomeGenBase.roofedForest.biomeID, BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID,
+			BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.desert.biomeID,
+			BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesa.biomeID});
+		kindlingSpiritSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "abominationSpawnOverride", false);
+		abominationSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "abominationSpawnBiomes", new int[] {BiomeGenBase.icePlains.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.frozenOcean.biomeID,
+			BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID});
+		abominationSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "erkelSpawnOverride", false);
+		erkelSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "erkelSpawnBiomes", new int[] {0});
+		erkelSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "sirvSpawnOverride", false);
+		sirvSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "sirvSpawnBiomes", new int[] {0});
+		sirvSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "psygoteSpawnOverride", false);
+		psygoteSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "psygoteSpawnBiomes", new int[] {0});
+		psygoteSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "lockbotSpawnOverride", false);
+		lockbotSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "lockbotSpawnBiomes", new int[] {0});
+		lockbotSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "nanoSwarmSpawnOverride", false);
+		nanoSwarmSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "nanoSwarmSpawnBiomes", new int[] {0});
+		nanoSwarmSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "hunterSpawnOverride", false);
+		hunterSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "hunterSpawnBiomes", new int[] {0});
+		hunterSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "harvesterSpawnOverride", false);
+		harvesterSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "harvesterSpawnBiomes", new int[] {0});
+		harvesterSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "seekerSpawnOverride", false);
+		seekerSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "seekerSpawnBiomes", new int[] {0});
+		seekerSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "archangelSpawnOverride", false);
+		archangelSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "archangelSpawnBiomes", new int[] {0});
+		archangelSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "ireOverride", false);
+		ireSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "ireSpawnBiomes", new int[] {0});
+		ireSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "fuseaOverride", false);
+		fuseaSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "fuseaSpawnBiomes", new int[] {0});
+		fuseaSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "ranmasSpawnOverride", false);
+		ranmasSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "ranmasSpawnBiomes", new int[] {0});
+		ranmasSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "parasmiteSpawnOverride", false);
+		parasmiteSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "parasmiteSpawnBiomes", new int[] {0});
+		parasmiteSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "avrisOverride", false);
+		avrisSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "avrisSpawnBiomes", new int[] {0});
+		avrisSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "blistOverride", false);
+		blistSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "blistSpawnBiomes", new int[] {0});
+		blistSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "thorgSpawnOverride", false);
+		thorgSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "thorgSpawnBiomes", new int[] {0});
+		thorgSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "snowGolemSpawnOverride", false);
+		snowGolemSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "snowGolemSpawns", new int[] {BiomeGenBase.icePlains.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.frozenOcean.biomeID,
+			BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID});
+		snowGolemSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "jarraSpawnOverride", false);
+		jarraSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "jarraSpawnBiomes", new int[] {BiomeGenBase.hell.biomeID, BiomeGenBase.desert.biomeID, BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesa.biomeID,
+			BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID});
+		jarraSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "kragulSpawnOverride", false);
+		kragulSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "kragulSpawnBiomes", new int[] {BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID,
+			BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID, BiomeGenBase.roofedForest.biomeID,
+			BiomeGenBase.swampland.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID});
+		kragulSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "magmoxSpawnOverride", false);
+		magmoxSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "magmoxSpawnBiomes", new int[] {BiomeGenBase.hell.biomeID});
+		magmoxSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "megaCryseOverride", false);
+		megaCryseSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "megaCryseSpawnBiomes", new int[] {BiomeGenBase.icePlains.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.coldTaiga.biomeID,
+			BiomeGenBase.coldTaigaHills.biomeID});
+		megaCryseSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "greaterStinSpawnOverride", false);
+		greaterStinSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "greaterStinSpawnBiomes", new int[] {0});
+		greaterStinSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "stinKingSpawnOverride", false);
+		stinKingSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "stinKingSpawnBiomes", new int[] {0});
+		stinKingSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "stinQueenSpawnOverride", false);
+		stinQueenSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "stinQueenSpawnBiomes", new int[] {0});
+		stinQueenSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "voxStellarumSpawnOverride", false);
+		voxStellarumSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "voxStellarumSpawnBiomes", new int[] {0});
+		voxStellarumSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "volatileFuseaSpawnOverride", false);
+		volatileFuseaSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "volatileFuseaspawnBiomes", new int[] {0});
+		volatileFuseaSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "aegarSpawnOverride", false);
+		aegarSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "aegarSpawnBiomes", new int[] {0});
+		aegarSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "aggroSpawnOverride", false);
+		aggroSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "aggroSpawnBiomes", new int[] {0});
+		aggroSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "apisSpawnOverride", false);
+		apisSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "apisSpawnBiomes", new int[] {BiomeGenBase.plains.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+			BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID, BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.mesa.biomeID,
+			BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, 
+			BiomeGenBase.extremeHillsPlus.biomeID});
+		apisSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "skultarSpawnOverride", false);
+		skultarSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "skultarSpawnBiomes", new int[] {BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID, BiomeGenBase.birchForest.biomeID,
+			BiomeGenBase.birchForestHills.biomeID});
+		skultarSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "kitsunakumaSpawnOverride", false);
+		kitsunakumaSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "kitsunakumaSpawnBiomes", new int[] {BiomeGenBase.hell.biomeID});
+		kitsunakumaSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "empariahSpawnOverride", false);
+		empariahSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "empariahSpawnBiomes", new int[] {BiomeGenBase.icePlains.biomeID, BiomeGenBase.iceMountains.biomeID, BiomeGenBase.frozenOcean.biomeID,
+			BiomeGenBase.frozenRiver.biomeID, BiomeGenBase.coldBeach.biomeID, BiomeGenBase.coldTaiga.biomeID, BiomeGenBase.coldTaigaHills.biomeID});
+		empariahSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "timeControllerspawnOverride", false);
+		timeControllerSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "timeControllerSpawnBiomes", new int[] {BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.deepOcean.biomeID,
+			BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID,
+			BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+			BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID,
+			BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+			BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		timeControllerSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "polarisSpawnOverride", false);
+		polarisSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "polarisSpawnBiomes", new int[] {BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.deepOcean.biomeID,
+			BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID,
+			BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID, BiomeGenBase.mesa.biomeID,
+			BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID, BiomeGenBase.ocean.biomeID,
+			BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID, BiomeGenBase.stoneBeach.biomeID,
+			BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		polarisSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "enyvilSpawnOverride", false);
+		enyvilSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "enyvilSpawnBiomes", new int[] {BiomeGenBase.birchForest.biomeID, BiomeGenBase.birchForestHills.biomeID, BiomeGenBase.deepOcean.biomeID,
+			BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID, BiomeGenBase.extremeHillsPlus.biomeID, BiomeGenBase.forest.biomeID, BiomeGenBase.forestHills.biomeID,
+			BiomeGenBase.jungle.biomeID, BiomeGenBase.jungleEdge.biomeID, BiomeGenBase.jungleHills.biomeID, BiomeGenBase.megaTaiga.biomeID, BiomeGenBase.megaTaigaHills.biomeID,
+			BiomeGenBase.mesa.biomeID, BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID, BiomeGenBase.mushroomIsland.biomeID, BiomeGenBase.mushroomIslandShore.biomeID,
+			BiomeGenBase.ocean.biomeID, BiomeGenBase.plains.biomeID, BiomeGenBase.river.biomeID, BiomeGenBase.roofedForest.biomeID, BiomeGenBase.savanna.biomeID, BiomeGenBase.savannaPlateau.biomeID,
+			BiomeGenBase.stoneBeach.biomeID, BiomeGenBase.swampland.biomeID, BiomeGenBase.taiga.biomeID, BiomeGenBase.taigaHills.biomeID});
+		enyvilSpawns = prop.getIntList();
+		
+		prop = config.get(cat.getName(), "claymationSpawnOverride", false);
+		claymationSOV = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "claymationSpawnBiomes", new int[] {BiomeGenBase.desert.biomeID, BiomeGenBase.desertHills.biomeID, BiomeGenBase.mesa.biomeID,
+			BiomeGenBase.mesaPlateau.biomeID, BiomeGenBase.mesaPlateau_F.biomeID});
+		claymationSpawns = prop.getIntList();
+		
 		cat = config.getCategory(CAT_POTION);
 		cat.setComment("Modify various aspects of Potions.");
 		cat.setRequiresMcRestart(true);
@@ -3260,6 +3803,7 @@ public class TragicConfig {
 		allowSnowGolem = mobAllow[++m];
 		allowHunter = mobAllow[++m];
 		allowHarvester = mobAllow[++m];
+		allowSeeker = mobAllow[++m];
 		allowArchangel = mobAllow[++m];
 		allowIre = mobAllow[++m];
 		allowFusea = mobAllow[++m];
@@ -3409,7 +3953,7 @@ public class TragicConfig {
 		potionAllow[6] = false; //clarity
 
 		//remove avris, erkel and wisps
-		mobAllow[32] = false; //avris
+		mobAllow[33] = false; //avris
 		mobAllow[18] = false; //wisps
 		mobAllow[20] = false; //erkel
 
@@ -3520,6 +4064,10 @@ public class TragicConfig {
 	public static int clamp(final int value, final int min, final int max) {
 		return net.minecraft.util.MathHelper.clamp_int(value, min, max);
 	}
+	
+	private static int[] verifyGS(final int[] array) {
+		return verify(array, 2);
+	}
 
 	private static double[] verifyStat(final double[] array) {
 		return verify(array, 6);
@@ -3538,6 +4086,15 @@ public class TragicConfig {
 			{
 				throw new IllegalArgumentException("Value of " + array[i] + " was invalid.");
 			}
+		}
+		return array;
+	}
+	
+	private static int[] verify(final int[] array, final int amt)
+	{
+		if (amt != array.length)
+		{
+			throw new IllegalArgumentException("Invalid array length, required length was " + amt + ", array length was " + array.length);
 		}
 		return array;
 	}

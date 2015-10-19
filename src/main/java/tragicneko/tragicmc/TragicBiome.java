@@ -51,7 +51,7 @@ public class TragicBiome extends BiomeGenBase {
 	public static BiomeGenBase WildPlains, IriseiPlains, SeraleisSerenade;
 	public static BiomeGenBase WildForest, WildDenseForest, ImbertonForest, KlahksTrove, UpsidusVeld;
 	public static BiomeGenBase WildValley, CeresteValley, RelicanthicValley;
-	public static BiomeGenBase WildHills, WildForestHills, WildExtemeHills, KluveTerrace, ZybianHeights, TurbulentHeights, HalsydeHills;
+	public static BiomeGenBase WildHills, WildForestHills, WildExtemeHills, KluveTerrace, ZybianHeights, TurbulentHeights, HalsydeHills, IronveinHills;
 	public static BiomeGenBase WildSteppes, WildSavanna, GandreaSteppes, TombstoneFields, PrahpsPast;
 	public static BiomeGenBase WildDesert, FerrierScarlands, DesertOfAkhora, VeneriaOasis;
 	public static BiomeGenBase WildRiver, RiverOfSouls, FyxisRiver;
@@ -75,12 +75,12 @@ public class TragicBiome extends BiomeGenBase {
 		this.theBiomeDecorator.grassPerChunk = -999;
 		this.heightVariation = 0F;
 		this.rootHeight = 0F;
-		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, 1, 3));
-		if (TragicConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.tragicNekoSC, 0, 1));
-		if (TragicConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 1));
-		if (TragicConfig.allowErkel) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicConfig.erkelSC, 0, 2));
-		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, 0, 2));
-		if (TragicConfig.allowAvris) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAvris.class, TragicConfig.avrisSC, 0, 1)); 
+		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1]));
+		if (TragicConfig.allowTragicNeko) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTragicNeko.class, TragicConfig.tragicNekoSC, TragicConfig.tragicNekoGS[0], TragicConfig.tragicNekoGS[1]));
+		if (TragicConfig.allowTimeController) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityTimeController.class, TragicConfig.timeControllerSC, 0, 0));
+		if (TragicConfig.allowErkel) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityErkel.class, TragicConfig.erkelSC, TragicConfig.erkelGS[0], TragicConfig.erkelGS[1]));
+		if (TragicConfig.allowKindlingSpirit) this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWisp.class, TragicConfig.kindlingSpiritSC, TragicConfig.kindlingSpiritGS[0], TragicConfig.kindlingSpiritGS[1]));
+		if (TragicConfig.allowAvris) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityAvris.class, TragicConfig.avrisSC, TragicConfig.avrisGS[0], TragicConfig.avrisGS[1])); 
 	}
 
 	@Override

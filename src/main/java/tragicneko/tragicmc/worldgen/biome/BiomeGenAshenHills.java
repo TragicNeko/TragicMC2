@@ -30,10 +30,10 @@ public class BiomeGenAshenHills extends TragicBiome {
 	public BiomeGenAshenHills(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
-		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, 0, 2));
-		if (TragicConfig.allowGragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicConfig.gragulSC, 0, 2));
-		if (TragicConfig.allowKragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKragul.class, TragicConfig.kragulSC, 0, 1));
-		if (TragicConfig.allowNorVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.norVoxSC, 0, 2));
+		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1]));
+		if (TragicConfig.allowGragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityGragul.class, TragicConfig.gragulSC, TragicConfig.gragulGS[0], TragicConfig.gragulGS[1]));
+		if (TragicConfig.allowKragul) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityKragul.class, TragicConfig.kragulSC, TragicConfig.kragulGS[0], TragicConfig.kragulGS[1]));
+		if (TragicConfig.allowNorVox) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityNorVox.class, TragicConfig.norVoxSC, TragicConfig.norVoxGS[0], TragicConfig.norVoxGS[1]));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 1.6F;

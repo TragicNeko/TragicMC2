@@ -24,8 +24,8 @@ public class BiomeGenDecayingWasteland extends TragicBiome {
 	public BiomeGenDecayingWasteland(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 50, 3, 5));
-		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, 4, 6));
-		if (TragicConfig.allowSkultar) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 1));
+		if (TragicConfig.allowSirv) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySirv.class, TragicConfig.sirvSC, TragicConfig.sirvGS[0], TragicConfig.sirvGS[1]));
+		if (TragicConfig.allowSkultar) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityDeathReaper.class, TragicConfig.skultarSC, 0, 0));
 		this.enableRain = false;
 		this.enableSnow = false;
 		this.temperature = 0.6F;

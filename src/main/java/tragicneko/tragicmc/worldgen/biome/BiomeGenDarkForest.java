@@ -30,10 +30,10 @@ public class BiomeGenDarkForest extends TragicBiome {
 	public BiomeGenDarkForest(int par1, byte par2) {
 		super(par1, par2);
 		this.spawnableMonsterList.clear();
-		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, 1, 4));
-		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, 2, 4));
-		if (TragicConfig.allowParasmite) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityParasmite.class, TragicConfig.parasmiteSC, 2, 4));
-		if (TragicConfig.allowEnyvil) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 1));
+		if (TragicConfig.allowPlague) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityPlague.class, TragicConfig.plagueSC, TragicConfig.plagueGS[0], TragicConfig.plagueGS[1]));
+		if (TragicConfig.allowInkling) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityInkling.class, TragicConfig.inklingSC, TragicConfig.inklingGS[0], TragicConfig.inklingGS[1]));
+		if (TragicConfig.allowParasmite) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityParasmite.class, TragicConfig.parasmiteSC, TragicConfig.parasmiteGS[0], TragicConfig.parasmiteGS[1]));
+		if (TragicConfig.allowEnyvil) this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnyvil.class, TragicConfig.enyvilSC, 0, 0));
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 15, 2, 4));
 		this.fillerBlock = TragicBlocks.DeadDirt;
 		this.topBlock = TragicBlocks.DarkGrass;
