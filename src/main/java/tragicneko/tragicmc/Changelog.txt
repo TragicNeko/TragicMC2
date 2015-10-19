@@ -4357,6 +4357,13 @@ cleaner, but since I'm separating the amulet level and type, I'm going to also g
 ideally I'd like to use ItemAmulet as the superclass and create a subobject for each amulet type and add a method to use their ability rather than using them all
 from one giant event class, most Amulets should use this but some special case ones will continue using the events class for their abilities
 Fixed Undead Amulet not using any durability
+Rearranged how mobs are registered, mobs are now registered after biomes/dimensions as the spawn registries use the classes anyway
+Fixed bug where the Erkel's spawns where never set for the Overworld
+Spawn group sizes have been set for each mob now that may spawn naturally
+Spawn overrides are added to set each mob's non-Dimension spawn biomes (possibly including other mod's biomes) and to set mob's spawn biomes that normally
+do not have them outside of the Dimensions (like the Tragic Neko & Stin)
+Fixed Magmox being exempt from non-Dimensional spawn config option
+Finished up all of the new config options for mobs, this is going to make a lot more effort for each new mob I work on, oh joy
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
