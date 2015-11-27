@@ -4317,7 +4317,7 @@ Added sound for when a Tragic Neko drops a bomb on death (uses creeper fizz soun
 2.44.2776B
 Fixed Aegar not dropping Synapse Links
 
-2.45.2776++ <210> (September 3, 2015) [Completely revamp the Config, added more options and categories for it, it is easier, better, faster, stronger...]
+2.45.2818 <210> (September 3, 2015) [Completely revamp the Config, added more options and categories for it, it is easier, better, faster, stronger...]
 Fixed Apis "sliding" when using it's stomp attack
 Modified Titan's Lightning Strike ability to use the updated one from the 1.8 port
 Working on improving the config and setting up some master configs other than mobsOnly mode, hardcore mode has a lot of the easy-mode options disabled and has things scaled in a very
@@ -4358,12 +4358,54 @@ ideally I'd like to use ItemAmulet as the superclass and create a subobject for 
 from one giant event class, most Amulets should use this but some special case ones will continue using the events class for their abilities
 Fixed Undead Amulet not using any durability
 Rearranged how mobs are registered, mobs are now registered after biomes/dimensions as the spawn registries use the classes anyway
-Fixed bug where the Erkel's spawns where never set for the Overworld
+Fixed bug where the Erkel's spawns were never set for the Overworld
 Spawn group sizes have been set for each mob now that may spawn naturally
 Spawn overrides are added to set each mob's non-Dimension spawn biomes (possibly including other mod's biomes) and to set mob's spawn biomes that normally
 do not have them outside of the Dimensions (like the Tragic Neko & Stin)
 Fixed Magmox being exempt from non-Dimensional spawn config option
 Finished up all of the new config options for mobs, this is going to make a lot more effort for each new mob I work on, oh joy
+Still doing some prep-work for the expansion, working on new mob AI and new drops/weapons
+Aside from that, prepping for the new item system I'm going to be using
+Added Beacons to luxury drops for Bosses, modified epic weapons to have a lower overall chance to drop multiple in one kill (they were all combined into one
+drop, thus mathematically reducing the chance of getting one of them, whilst simultaneously making it less possible to get multiple of them in one kill)
+Removed Doom Consume and Amulet Release from most normal chests, only more difficult structures will have a chance at having them
+Started adding the new items for the new crafting system, this will involve changing a lot of previous recipes
+Added Interesting Resin to various nature-type mobs, added Catalytic Compound to more "technology"-based mobs, added Ethereal Distortion to Bosses
+Added Ectoplasm to more "supernetural"-type mobs, added Enchanted Tears to more ice/water-based mobs
+Removed crafting recipe for Ectoplasm, Bone Marrow, Elemental Orbs and Enchanted Tears
+Added Aqua Orbs to the Pirah's drops
+Removed more crafting recipes for mob drops
+Some crafting recipes will have 1 recipe requiring a boss drop and 1 requiring the catalyst items, these are different crafting branches that make the same item
+
+2.45.2818+++ <211> (October 31, 2015) [Start of more complex item crafting]
+Added mappings event to deal with some ppl upgrading from an older version, this will still reset the Dimensions because the save folder was changed during one
+of the last releases (don't remember when exactly)
+Fixed missing config options regarding the Dimensions
+Hid a bunch of config options and stuff regarding the new mobs
+Fixed too many lava pools generating in biomes that would be considered "cold" in the Collision
+Working on a new config category for mob AI and their specific griefing instances
+Modified how buffs and gear are applied when an entity joins the world, this is to prevent them from being regeared upon multiple loads and from having their
+health regenerate each time as well, this was a minor bug that's been bothering me so it's great that I can finally resolve it
+Server-side fix for Leech
+Made it so that unripe fruit/crops drop seeds now, the ability to plant them was removed from the actual fruit themselves
+Renamed Gooey Fruit to Gloopii, Sky Fruit is now just Skyfruit (so creative, I know), added recipes to convert normal fruit into their seed form
+Redid the textures on some of the actual fruit blocks (they were a bit too "checkered")
+Added more of the advanced items for crafting (along with their texture/localizations), going to start adding the new and alternative recipes soon
+Added recipes for the intermediate items
+Altered the recipe for the Guilty Thorn and Lunar Powder
+Added alternative recipe for the Withering Axe, Reaper Scythe, Mourning Star, Everlasting Light, Blinding Light, Pitch Black and Beastly Claws
+Added Chitin and Soul Excess as a new drop for some mobs
+Added a few new intermediate items to give more variety with the types of drops required for the alternative recipes
+Modified attack event in vanilla changing events to a hurt event as it was causing unintended effects for certain mobs
+Fixed bug where Pumpkinheads didn't gain increased attack damage properly when they had a home pumpkin
+Modified how drops are done by the mod, instead of just dropping new item entities during death, they are now dropped when the Vanilla ones would, in the
+capture drops event, which may be canceled by other things
+Fixed Talismans not properly removing their buffs in the case that a player drops the Talisman (same issue the beastly claws had)
+Separated the Texture and meta value of Statue items, updated statue entities to use this, this opens up more meta values for future mobs and simplifies the
+issue with having statues break every expansion update
+Fixed java math syntax for the Kurayami's summoning
+Fixed typo in network message for non-Scythe tools
+Fixed bug with Freeze (missed one instance of list that it uses), but also improved it's effects by making it apply to all possible entities around it
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
@@ -4375,24 +4417,50 @@ Blists now latch onto solid blocks near them, otherwise they fall slowly to the 
 Thorg are fast-moving aggressive mobs, they are small and weak but they fire a projectile while leaping towards their target that causes poison damage for a
 few seconds, they also heal when in contact with water (although they have medium health so that doesn't really matter much)
 Increased the Thorg's hitbox size so that they require a 2x2 tunnel to chase you, this is for early game so that you can actually escape from them easier
-Working on the Girsh now, it'll randomly pull entities towards it and will emit energy charges that go in random directions, on death it spawns seeker charges
+Added the Girsh, it'll randomly pull entities towards it and will emit energy charges that go in random directions, on death it spawns seeker charges
 that will target a nearby entity, none of these charges will explode on impact, charges will have short lifespans and will move slowly, Girsh will have a lot
 of health and armor but do not explicitly target entities so they are more of a minor annoyance than a lockdown threat
+Added Troll, made it's basic AI work (after much, much trial and error), and decided to rename it to the Slang, since it's supposed to be a Troll but they
+don't inherently have the same behavior in most mythology
+Working on the Slang Leader now, it'll basically take your weapons (it can take multiple) and will throw TNTs while running away, if you get close to it, it'll
+hit you and possibly take another item (so ranged weapons would work well against it), it'll drop your stolen items randomly after being hit a few times and
+will turn around and attack you again to steal more (it won't pick up the item entities it dropped before)
+Modified Slang AI a bit, they are now immune to explosions and the Slang Leader will steal another item if you fail to stun it on a hit (random but less often
+than you stunning it on a hit)
+Working on the Pet leveling system that I'll use, it'll use a selectable perk system which requires leveling up to unlock perk tiers and specific perks
+Originally I wanted this to be automatic and based on how you level up your pet but since you'll be forced to unlock the perks to use them, I'll make them
+selectable so a Gui will be used for that
+Started making the container and the gui that the pets will use, but I'll take a break until I actually start working on them, back to item trees and mob ai
+Working on the Warden's AI, it'll lockdown it's target then aggresively chase them down, it will not change targets once it gets one and will destroy terrain
+if necessary to get to them
+The Warden will fire a laser when it can't see it's lockdown target, so that it can "drill" to it's target
+Working on the Lasher now, it'll again use a modified version of the Archangel flight AI to move around and to attack, it'll wander around until it has a target
+(or despawns) and then will swoop down and attack their target then fly back up (if possible, otherwise stays and slashes at it's target)
+The Trapper is the Mini-Boss version, it'll use the same AI but it'll have a chance to grab it's target and slash at them continuously until it gets dazed
+or killed
 
 First Expansion:
 Working on new mob AI for the "expansion" due to recording software having driver issues with win10, hopefully these will be resolved soon but if not then
 I'll probably do a major update including the expansion next release (which will take a few months to do most likely)
+Going to work on the pet leveling system now, which will use a hybrid version of the borderlands and call of duty systems, you level up the pet, every 5 levels
+you can unlock a new ability, which will unlock a new tier, you can then level them up enough to eventually unlock all of the abilities but you can only have
+one active out of each tier
+
+Might add something like resource nodes, these would be blocks that give a certain resource and can be right-clicked to take it, after a long period of time
+they'll "regrow" the resource, these would not be moveable, this would be something exclusive to the Wilds
+The Wilds will have sub-biomes, these will generate independently from the surface biome, this will affect the entities that spawn underground as well as the
+type of blocks and terrain that generates
 
 Mobs:
 Pyragr*
 Aggro (Mini-Boss)*
 Blist*
 Thorg*
-Girsh
+Girsh*
 Lurker
-Troll
-Troll King (Mini-Boss)
-Warden (Mini-Boss)
+Slang*
+Slang Leader (Mini-Boss)*
+Warden (Mini-Boss)*
 Arbiter
 Feist
 Volyr
@@ -4410,11 +4478,11 @@ Forsh
 Gorgoth
 
 Pets:
-Kitsuneko -> Kitsune
-Panda Cub -> Panda
-Bangatang -> Urilla / Baboom
-Snapshot -> Burstshot / Autoshot
-Ultho -> Greater Ultho -> Ultho King/Queen
+Kitsuneko -> Kitsune -> Greater Kitsune
+Panda Cub -> Panda -> Panda Sentry
+Bangatang -> Urilla -> Baboom
+Snapshot -> Autoshot -> Omnishot
+Ultho -> Greater Ultho -> Ultra Ultho
 
 Bosses:
 Shina & the SheWolf
@@ -4432,7 +4500,6 @@ Admin
 
 TODO still:
 Finish recording sounds:
--Sound for when a Tragic Neko drops or throws a grenade
 -Sound for when a rocket is fired either by a Tragic Neko or by a player
 -Sounds for various projectiles, either firing them or giving them ambient sounds
 -Sound for when the Overlord Cocoon form is damaged enough or not during it's instance
