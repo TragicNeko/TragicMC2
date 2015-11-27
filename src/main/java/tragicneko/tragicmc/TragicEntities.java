@@ -38,10 +38,12 @@ import tragicneko.tragicmc.entity.miniboss.EntityJarra;
 import tragicneko.tragicmc.entity.miniboss.EntityKragul;
 import tragicneko.tragicmc.entity.miniboss.EntityMagmox;
 import tragicneko.tragicmc.entity.miniboss.EntityMegaCryse;
+import tragicneko.tragicmc.entity.miniboss.EntitySlangLeader;
 import tragicneko.tragicmc.entity.miniboss.EntityStinKing;
 import tragicneko.tragicmc.entity.miniboss.EntityStinQueen;
 import tragicneko.tragicmc.entity.miniboss.EntityVolatileFusea;
 import tragicneko.tragicmc.entity.miniboss.EntityVoxStellarum;
+import tragicneko.tragicmc.entity.miniboss.EntityWarden;
 import tragicneko.tragicmc.entity.mob.EntityAbomination;
 import tragicneko.tragicmc.entity.mob.EntityArchangel;
 import tragicneko.tragicmc.entity.mob.EntityAvris;
@@ -49,6 +51,7 @@ import tragicneko.tragicmc.entity.mob.EntityBlist;
 import tragicneko.tragicmc.entity.mob.EntityCryse;
 import tragicneko.tragicmc.entity.mob.EntityErkel;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
+import tragicneko.tragicmc.entity.mob.EntityGirsh;
 import tragicneko.tragicmc.entity.mob.EntityGragul;
 import tragicneko.tragicmc.entity.mob.EntityHarvester;
 import tragicneko.tragicmc.entity.mob.EntityHunter;
@@ -68,6 +71,7 @@ import tragicneko.tragicmc.entity.mob.EntityRagr;
 import tragicneko.tragicmc.entity.mob.EntityRanmas;
 import tragicneko.tragicmc.entity.mob.EntitySeeker;
 import tragicneko.tragicmc.entity.mob.EntitySirv;
+import tragicneko.tragicmc.entity.mob.EntitySlang;
 import tragicneko.tragicmc.entity.mob.EntityStin;
 import tragicneko.tragicmc.entity.mob.EntityThorg;
 import tragicneko.tragicmc.entity.mob.EntityTox;
@@ -78,6 +82,7 @@ import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.entity.projectile.EntityDarkEnergy;
 import tragicneko.tragicmc.entity.projectile.EntityDarkLightning;
 import tragicneko.tragicmc.entity.projectile.EntityDarkMortor;
+import tragicneko.tragicmc.entity.projectile.EntityEnergyCharge;
 import tragicneko.tragicmc.entity.projectile.EntityGuardianShield;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
 import tragicneko.tragicmc.entity.projectile.EntityIreEnergy;
@@ -1197,8 +1202,8 @@ public class TragicEntities {
 				}
 			}
 		}
-
-		if (TragicConfig.allowBlist)
+		/*
+		if (TragicConfig.allowBlist) //TODO hid the blist, thorg, girsh and slang
 		{
 			EntityRegistry.registerModEntity(EntityBlist.class, "Blist", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityBlist.class, "TragicMC.Blist", id++, 0x000000, 0x000000);
@@ -1253,6 +1258,13 @@ public class TragicEntities {
 				}
 			}
 		}
+		//TODO this is the girsh, needs config stuff and yada yada
+		EntityRegistry.registerModEntity(EntityGirsh.class, "Girsh", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityGirsh.class, "TragicMC.Girsh", id++, 0x000000, 0x000000);
+		
+		//TODO this is the troll/slang, needs config stuff
+		EntityRegistry.registerModEntity(EntitySlang.class, "Slang", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntitySlang.class, "TragicMC.Slang", id++, 0x000000, 0x000000); */
 
 		//Giant Zombie
 		TragicEntityList.addMapping(EntityGiantZombie.class, "TragicMC.GiantZombie", id++, 0x43BD98, 0x53DCBC);
@@ -1627,10 +1639,10 @@ public class TragicEntities {
 				}
 			}
 		}
-
-		if (TragicConfig.allowAggro)
+		/*
+		if (TragicConfig.allowAggro) //TODO hidden aggro, warden and slang leader
 		{
-			EntityRegistry.registerModEntity(EntityAggro.class, "Aggro", listid, TragicMC.getInstance(), 80, 1, true);
+			EntityRegistry.registerModEntity(EntityAggro.class, "Aggro", listid++, TragicMC.getInstance(), 80, 1, true);
 			TragicEntityList.addMapping(EntityAggro.class, "TragicMC.Aggro", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
 			
 			if (TragicConfig.allowNonDimensionMobSpawns && TragicConfig.aggroSOV)
@@ -1655,6 +1667,13 @@ public class TragicEntities {
 				}
 			}
 		}
+		
+		//TODO this is the Slang King, setup config stuff
+		EntityRegistry.registerModEntity(EntitySlangLeader.class, "SlangLeader", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntitySlangLeader.class, "TragicMC.SlangLeader", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS);
+		
+		EntityRegistry.registerModEntity(EntityWarden.class, "Warden", listid++, TragicMC.getInstance(), 80, 1, true);
+		TragicEntityList.addMapping(EntityWarden.class, "TragicMC.Warden", id++, 0x000000, 0x000000, EnumEggType.MINIBOSS); */
 
 		//Bosses
 
@@ -2102,5 +2121,6 @@ public class TragicEntities {
 		EntityRegistry.registerModEntity(EntityDirectedLightning.class, "DirectedLightning", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityIreEnergy.class, "IreEnergy", listid++, TragicMC.getInstance(), 80, 3, true);
 		EntityRegistry.registerModEntity(EntityNuke.class, "Nuke", listid++, TragicMC.getInstance(), 80, 3, true);
+		EntityRegistry.registerModEntity(EntityEnergyCharge.class, "EnergyCharge", listid++, TragicMC.getInstance(), 80, 3, true);
 	}
 }

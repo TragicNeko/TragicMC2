@@ -5,6 +5,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.properties.PropertyDoom;
 
@@ -22,13 +23,15 @@ public class DoomsdayBerserker extends Doomsday {
 
 		MathHelper.clamp_int(a, 1, 10);
 		if (crucMoment) a *= 2;
+		TragicMC.logInfo("Good effect is " + a);
 
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 60 * a, a));
-		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 60 * a, a));
+		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 90 * a, a));
+		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 90 * a, a));
 
 		if (crucMoment) a /= 4;
+		TragicMC.logInfo("Bad effect is " + a);
 
-		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 30 * a));
+		player.addPotionEffect(new PotionEffect(Potion.confusion.id, 70 * a));
 		if (TragicConfig.allowSubmission) player.addPotionEffect(new PotionEffect(TragicPotion.Submission.id, 60 * a, a));
 	}
 

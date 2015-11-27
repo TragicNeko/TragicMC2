@@ -7,16 +7,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
-import tragicneko.tragicmc.items.food.ItemSkyFruit;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -64,7 +61,7 @@ public class BlockFruit extends BlockCocoa {
 	@Override
 	public Item getItemDropped(int meta, Random rand, int level)
 	{
-		return meta > 0 ? TragicItems.SkyFruit : null;
+		return meta > 3 ? TragicItems.SkyFruit : TragicItems.SkyFruitSeeds;
 	}
 	
 	@Override
@@ -73,13 +70,12 @@ public class BlockFruit extends BlockCocoa {
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
 		int count = func_149987_c(metadata);
-        byte b0 = 1;
 
-        if (count >= 2) b0 = 3;
+        if (count < 1) count = 1;
+        Item item = getItemDropped(metadata, world.rand, fortune);
         
-        for(int i = 0; i < count; i++)
+        for(int i = 0; i < count + fortune; i++)
         {
-            Item item = getItemDropped(metadata, world.rand, fortune);
             if (item != null)
             {
                 ret.add(new ItemStack(item, 1, 0));

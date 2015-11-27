@@ -13,6 +13,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityLock;
 import tragicneko.tragicmc.entity.alpha.EntityOverlordCombat;
+import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.util.DamageHelper;
 
 public class EntityLockbot extends TragicMob {
@@ -55,7 +56,7 @@ public class EntityLockbot extends TragicMob {
 
 	@Override
 	protected boolean isChangeAllowed() {
-		return false;
+		return true; //TragicConfig.allowWarden; //TODO change
 	}
 
 	@Override
@@ -67,9 +68,13 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	public void onLivingUpdate()
 	{
-		this.rotationYaw = this.rotationPitch = this.rotationYawHead = 0;
-		this.motionX *= 0.1D;
-		this.motionZ *= 0.1D;
+		if (!(this instanceof TragicMiniBoss))
+		{
+			this.rotationYaw = this.rotationPitch = this.rotationYawHead = 0;
+			this.motionX *= 0.1D;
+			this.motionZ *= 0.1D;
+		}
+		
 		super.onLivingUpdate();
 
 		if (this.worldObj.isRemote) return;
@@ -80,12 +85,16 @@ public class EntityLockbot extends TragicMob {
 			this.prevTarget = this.getAttackTarget();
 		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && this.getAttackTarget().riddenByEntity == null)
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= this.getLockdownDistance() && this.getAttackTarget().riddenByEntity == null)
 		{
 			EntityLock lock = new EntityLock(this.worldObj, this, this.getAttackTarget());
 			lock.setPosition(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);
 			this.worldObj.spawnEntityInWorld(lock);
 		}
+	}
+	
+	public float getLockdownDistance() {
+		return 8.0F;
 	}
 
 	@Override
@@ -127,7 +136,7 @@ public class EntityLockbot extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		
+
 	}
 
 	@Override

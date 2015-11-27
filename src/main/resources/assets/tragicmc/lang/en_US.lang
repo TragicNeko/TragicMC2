@@ -576,6 +576,23 @@ item.tragicmc.archangelFeather.name=Archangel Feather
 item.tragicmc.wingsOfLiberation.name=Wings of Liberation
 item.tragicmc.anomalyAugment.name=Anomaly Augment
 item.tragicmc.nuke.name=Nuke
+item.tragicmc.catalyticCompound.name=Catalytic Compound
+item.tragicmc.interestingResin.name=Interesting Resin
+item.tragicmc.chitin.name=Chitin
+item.tragicmc.soulExcess.name=Soul Excess
+item.tragicmc.etherealDistortion.name=Ethereal Distortion
+
+item.tragicmc.toxicAmalgation.name=Toxic Amalgation
+item.tragicmc.paradoxicalFormula.name=Paradoxical Formula
+item.tragicmc.gloopyMixture.name=Gloopy Mixture
+item.tragicmc.radiatedInfusion.name=Radiated Infusion
+item.tragicmc.impossibleReaction.name=Impossible Reaction
+item.tragicmc.infallibleMetal.name=Infallible Metal
+item.tragicmc.complexCircuitry.name=Complex Circuitry
+item.tragicmc.nauseatingConcoction.name=Nauseating Concoction
+item.tragicmc.creepyIdol.name=Creepy Idol
+item.tragicmc.purifiedEnergy.name=Purified Energy
+item.tragicmc.shadowskin.name=Shadowskin
 
 item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
 item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
@@ -642,9 +659,11 @@ item.tragicmc.worldGen.pitGenerator.name=Pit Generator
 item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 item.tragicmc.soundExtrapolator.name=Sound Extrapolator
 
-item.tragicmc.gooeyFruit.name=Gooey Fruit
+item.tragicmc.gooeyFruit.name=Gloopii
 item.tragicmc.exoticFruit.name=Honeydrop
+item.tragicmc.honeydropSeeds.name=Honeydrop Seeds
 item.tragicmc.nastyFruit.name=Deathglow
+item.tragicmc.deathglowSeeds.name=Deathglow Seeds
 item.tragicmc.iceCream.name=Ice Cream
 item.tragicmc.rice.name=Rice
 item.tragicmc.sushi.name=Sushi
@@ -652,7 +671,8 @@ item.tragicmc.boneMarrow.name=Bone Marrow
 item.tragicmc.banana.name=Banana
 item.tragicmc.bananaSplit.name=Banana Split
 item.tragicmc.goldenSushi.name=Golden Sushi
-item.tragicmc.skyFruit.name=Sky Fruit
+item.tragicmc.skyFruit.name=Skyfruit
+item.tragicmc.skyFruitSeeds.name=Skyfruit Seeds
 item.tragicmc.tentacle.name=Tentacle
 
 item.tragicmc.talisman.name=Talisman
@@ -1024,12 +1044,24 @@ entity.TragicMC.OverlordCombat.name=The Overlord (Combat)
 entity.TragicMC.OverlordCocoon.name=The Overlord (Cocoon)
 entity.TragicMC.Kurayami.name=Kurayami
 entity.TragicMC.Avris.name=Avris
+
 entity.TragicMC.Pyragr.name=Pyragr
 entity.TragicMC.Aggro.name=Aggro
 entity.TragicMC.Blist.name=Blist
 entity.TragicMC.Thorg.name=Thorg
 entity.TragicMC.Girsh.name=Girsh
 entity.TragicMC.Lurker.name=Lurker
+entity.TragicMC.Slang.name=Slang
+entity.TragicMC.SlangLeader.name=Slang Leader
+entity.TragicMC.Warden.name=Warden
+entity.TragicMC.Arbiter.name=Arbiter
+entity.TragicMC.Feist.name=Feist
+
+entity.TragicMC.Kitsuneko.name=Kitsuneko
+entity.TragicMC.PandaCub.name=Panda Cub
+entity.TragicMC.Bangatang.name=Bangatang
+entity.TragiCMC.Ultho.name=Ultho
+entity.TragicMC.Snapshot.name=Snapshot
 
 enchantment.combustion=Combustion
 enchantment.multiply=Multiply
@@ -1277,7 +1309,7 @@ achievement.tragicmc.doom.desc=Completely fill your Doom bar
 achievement.tragicmc.doomsday=Can you feel the power?
 achievement.tragicmc.doomsday.desc=Use a weapon or armor Doomsday
 
-achievement.tragicmc.doomsdayCombo=Our powers unite!
+achievement.tragicmc.doomsdayCombo=Let our powers combine!
 achievement.tragicmc.doomsdayCombo.desc=Use a Combination Doomsday
 
 achievement.tragicmc.doomCooldown=It's your Doom, use it when you need it!

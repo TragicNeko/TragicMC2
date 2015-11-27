@@ -89,9 +89,9 @@ public class EntityCrystalMortor extends EntityProjectile {
 
 		if (this.target != null && this.ticksInAir % 5 == 0 && this.ticksInAir > 5)
 		{
-			this.motionX = (target.posX - this.posX) * 0.05D;
-			this.motionY = (target.posY - this.posY) * 0.05D;
-			this.motionZ = (target.posZ - this.posZ) * 0.05D;
+			this.motionX = (target.posX - this.posX) * 0.05;
+			this.motionY = (target.posY - this.posY) * 0.05;
+			this.motionZ = (target.posZ - this.posZ) * 0.05;
 
 			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 			this.posX -= this.motionX / f2 * 0.0000000074505806D;

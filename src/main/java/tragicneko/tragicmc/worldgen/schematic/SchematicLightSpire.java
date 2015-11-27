@@ -41,7 +41,7 @@ public class SchematicLightSpire extends Schematic {
 				int xr = x + rand.nextInt(3) - rand.nextInt(3);
 				int zr = z + rand.nextInt(3) - rand.nextInt(3);
 				world.setBlock(xr, y + y1, zr, Blocks.chest, 0, 2);
-				this.applyChestContents(world, rand, xr, y + y1, zr, TragicItems.AwesomeChestHook);
+				this.applyChestContents(world, rand, xr, y + y1, zr, TragicItems.NetherStructureHook);
 			}
 			else if (rand.nextInt(16) == 0)
 			{

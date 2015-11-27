@@ -41,10 +41,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
@@ -52,6 +52,7 @@ import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.properties.PropertyDoom;
+import tragicneko.tragicmc.properties.PropertyMisc;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class VanillaChangingEvents {
@@ -172,10 +173,15 @@ public class VanillaChangingEvents {
 	@SubscribeEvent
 	public void onEntityJoin(EntityJoinWorldEvent event)
 	{
-		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD && !event.entity.worldObj.isRemote)
+		if (event.entity.worldObj.difficultySetting == EnumDifficulty.HARD && !event.entity.worldObj.isRemote && event.entity instanceof EntityLivingBase)
 		{
-			if (TragicConfig.allowVanillaMobBuffs && event.entity.ticksExisted == 0)
+			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
+			if (misc == null) return;
+			
+			if (TragicConfig.allowVanillaMobBuffs && !misc.hasBeenBuffed())
 			{
+				misc.setBuffed(); //prevents the mob from getting it's health regenerated on each reload
+				
 				if (event.entity instanceof EntityGhast)
 				{
 					((EntityGhast)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(ghastHealthBuff);
@@ -209,8 +215,10 @@ public class VanillaChangingEvents {
 				}
 			}
 
-			if (TragicConfig.allowMobModdedArmor && !event.entity.worldObj.isRemote)
-			{
+			if (TragicConfig.allowMobModdedArmor && !misc.hasBeenGeared())
+			{				
+				misc.setGeared(); //prevents the mob from being regeared on further reloads
+				
 				if (event.entity instanceof EntityZombie || event.entity instanceof EntitySkeleton)
 				{
 					for (int i = 0; i < 4; i++)
@@ -392,7 +400,7 @@ public class VanillaChangingEvents {
 	}
 
 	@SubscribeEvent
-	public void onEntityAttack(LivingAttackEvent event)
+	public void onEntityAttack(LivingHurtEvent event)
 	{
 		if (event.entityLiving.worldObj.isRemote) return;
 

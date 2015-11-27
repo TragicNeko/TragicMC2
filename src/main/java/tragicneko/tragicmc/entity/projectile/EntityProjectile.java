@@ -223,7 +223,7 @@ public abstract class EntityProjectile extends Entity
 			this.worldObj.spawnParticle(this.getParticleString(), this.posX, this.posY + 0.25D, this.posZ, 0.0D, 0.0D, 0.0D);
 			this.setPosition(this.posX, this.posY, this.posZ);
 
-			if (this.ticksExisted > 600) this.setDead();
+			if (this.ticksExisted > this.getLifespan()) this.setDead();
 		}
 	}
 
@@ -370,5 +370,10 @@ public abstract class EntityProjectile extends Entity
 	public int getBrightnessForRender(float par1)
 	{
 		return 0xFFFFFF;
+	}
+	
+	public int getLifespan()
+	{
+		return 60;
 	}
 }

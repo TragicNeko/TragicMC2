@@ -145,7 +145,7 @@ public class Challenge {
 			new ItemStack(TragicItems.DarkLegs), new ItemStack(TragicItems.DarkBoots)
 	}).setDifficulty(3);
 	public static final Challenge findEverlastingLight = new Challenge(87, true, 1, new ItemStack(TragicItems.EverlastingLight)).setDifficulty(2);
-	public static final Challenge collectExoticFruit = new Challenge(88, true, 16, new ItemStack(TragicItems.ExoticFruit)).setDifficulty(1);
+	public static final Challenge collectExoticFruit = new Challenge(88, true, 16, new ItemStack(TragicItems.Honeydrop)).setDifficulty(1);
 	public static final Challenge collectChallengeScrolls = new Challenge(89, true, 5, new ItemStack(TragicItems.ChallengeScroll)).setDifficulty(2);
 	public static final Challenge findEnderChest = new Challenge(90, true, 1, new ItemStack(Blocks.ender_chest)).setDifficulty(2);
 	public static final Challenge killBats = new Challenge(91, false, 15, EntityBat.class, false).setDifficulty(1);

@@ -382,7 +382,7 @@ public class EntityTragicNeko extends TragicMob {
 	@Override
 	public String getHurtSound()
 	{
-		return TragicConfig.allowMobSounds && rand.nextInt(4) == 0 ? "tragicmc:mob.tragicneko.hurt" : super.getHurtSound();
+		return TragicConfig.allowMobSounds && rand.nextInt(6) == 0 ? "tragicmc:mob.tragicneko.hurt" : super.getHurtSound();
 	}
 
 	@Override

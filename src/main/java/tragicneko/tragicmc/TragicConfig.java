@@ -34,6 +34,8 @@ public class TragicConfig {
 	private static final String CAT_CLIENT = "Client-side Only Options";
 	private static final String CAT_STRUCTURE = "Structures";
 	private static final String CAT_GRIEF = "Griefing Options";
+	private static final String CAT_PETS = "Pets";
+	private static final String CAT_MOBAI = "Mob AI";
 
 	//options meant for internal use, for toggling via master configs
 	public static boolean allowNonMobItems = true, allowNonMobBlocks = true, allowNetwork = true, allowRecipes = true, allowSurvivalTab = true;
@@ -72,9 +74,9 @@ public class TragicConfig {
 	private static boolean[] doomConfig = new boolean[24];
 	public static boolean allowDoomsdays, allowInfluenceDoomsdays, allowOverflowDoomsdays, allowCrisisDoomsdays, allowWorldShaperDoomsdays, allowCombinationDoomsdays;
 	public static boolean allowNonDoomsdayAbilities, shouldDoomLimitIncrease, allowConsumeRefill, allowDoomPainRecharge, allowNaturalRecharge, allowCrucialMoments, allowBacklash;
-	public static boolean allowCooldown, allowDoomKillRecharge, allowCooldownDefuse;
+	public static boolean allowCooldown, allowDoomKillRecharge, allowCooldownDefuse, allowPartnerDoomsdays;
 	public static int maxDoomAmount, doomRechargeRate, doomConsumeRarity, cooldownDefuseRarity, consumeRefillAmount, defuseRefillAmount, backlashChance, crucialMomentChance;
-	public static int doomConsumeAmount, maxDoomStart, doomRechargeAmount;
+	public static int doomConsumeAmount, maxDoomStart, doomRechargeAmount, partnerDoomsdayDistance;
 
 	public static boolean[] doomsdayAllow = new boolean[96];
 	public static int[] doomsdayCooldown = new int[96];
@@ -489,6 +491,30 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowSynapseVariants", true);
 		prop.comment = "Can the Synapse generate with mini-Biomes?";
 		dimensionConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "collisionID", 2);
+		prop.comment = "The ID that the Collision Dimension will use.";
+		collisionID = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "collisionProviderID", 2);
+		prop.comment = "The ID that the Collision's provider will use, if you don't know what this is, keep it the same as the Collision's Dimension ID.";
+		collisionProviderID = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "synapseID", 3);
+		prop.comment = "The ID that the Synapse Dimension will use.";
+		synapseID = prop.getInt(3);
+		
+		prop = config.get(cat.getName(), "synapseProviderID", 3);
+		prop.comment = "The ID that the Synapse's provider will use, if you don't know what this is, keep it the same as the Synapse's Dimension ID.";
+		synapseProviderID = prop.getInt(3);
+		
+		prop = config.get(cat.getName(), "collisionBiomeSize", 6);
+		prop.comment = "How large the Collision's biomes generate.";
+		collisionBiomeSize = prop.getInt(6);
+		
+		prop = config.get(cat.getName(), "synapseVariantChance", 128);
+		prop.comment = "The chance that a Synapse mini-biome will generate, higher number is lower chance to generate.";
+		synapseVariantChance = prop.getInt(128);
 
 		cat = config.getCategory(CAT_BIOME);
 		cat.setComment("Set biome ids and generation weights, higher weight is greater chance to generate out of that biome group. Setting a weight to 0 effectively removes a biome from the possible biomes to generate.");
@@ -804,6 +830,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowCooldownDefuse", true);
 		prop.comment = "Can Cooldown Defuses be used to remove your Global cooldown?";
 		doomConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowPartnerDoomsdays", false);
+		prop.comment = "Can two people activate a Doomsday combination while near each other?";
+		doomConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "maxDoomAmount", 500);
 		prop.comment = "The highest Doom amount you can have.";
@@ -848,6 +878,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "doomRechargeAmount", 1);
 		prop.comment = "The amount you recharge per recharge tick, also used by the Doom kill charge.";
 		doomRechargeAmount = clampPositive(prop.getInt(1));
+		
+		prop = config.get(cat.getName(), "partnerDoomsdayDistance", 12);
+		prop.comment = "How far away you can be from someone to activate a Partner Combination Doomsday.";
+		partnerDoomsdayDistance = clampPositive(prop.getInt(1));
 
 		cat = config.getCategory(CAT_DOOMSDAYS);
 		cat.setComment("Set whether each Doomsday is allowed, as well as set their cooldown and their Doom cost.");
@@ -2027,7 +2061,7 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "avrisAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
-		
+		/*
 		prop = config.get(cat.getName(), "pyragrAllow", true);
 		mobAllow[++m] = prop.getBoolean(true);
 		
@@ -2035,7 +2069,7 @@ public class TragicConfig {
 		mobAllow[++m] = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "thorgAllow", true);
-		mobAllow[++m] = prop.getBoolean(true);
+		mobAllow[++m] = prop.getBoolean(true); */ //TODO blist, thorg and pyragr allowance
 
 		prop = config.get(cat.getName(), "jarraAllow", true);
 		miniBossAllow[m = 0] = prop.getBoolean(true);
@@ -2066,9 +2100,9 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "volatileFuseaAllow", true);
 		miniBossAllow[++m] = prop.getBoolean(true);
-		
+		/*
 		prop = config.get(cat.getName(), "aggroAllow", true);
-		miniBossAllow[++m] = prop.getBoolean(true);
+		miniBossAllow[++m] = prop.getBoolean(true); */ //TODO aggro allowance
 
 		prop = config.get(cat.getName(), "apisAllow", true);
 		bossAllow[m = 0] = prop.getBoolean(true);
@@ -2123,12 +2157,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "ragrStats", new double[] {65.0, 0.380, 7.0, 32.0, 1.0, 10});
 		ragrStats = verifyStat(prop.getDoubleList());
-		
+		/*
 		prop = config.get(cat.getName(), "pyragrStats", new double[] {75.0, 0.380, 8.0, 32.0, 1.0, 16});
 		pyragrStats = verifyStat(prop.getDoubleList()); //TODO hide new mobs from config unless they are going to be in next release
 		
 		prop = config.get(cat.getName(), "aggroStats", new double[] {135.0, 0.380, 14.0, 16.0, 2.0, 16});
-		aggroStats = verifyStat(prop.getDoubleList());
+		aggroStats = verifyStat(prop.getDoubleList()); */
 
 		prop = config.get(cat.getName(), "pumpkinheadStats", new double[] {60.0, 0.275, 6.0, 32.0, 0.0, 18});
 		pumpkinheadStats = verifyStat(prop.getDoubleList());
@@ -2237,12 +2271,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "avrisStats", new double[] {75.0, 0.312, 2.0, 64.0, 0.6, 16});
 		avrisStats = verifyStat(prop.getDoubleList());
-		
+		/*
 		prop = config.get(cat.getName(), "blistStats", new double[] {6.0, 0.462, 8.0, 16.0, 2.0, 0});
 		blistStats = verifyStat(prop.getDoubleList());
 		
 		prop = config.get(cat.getName(), "thorgStats", new double[] {17.0, 0.428, 4.0, 32.0, 0.0, 0});
-		thorgStats = verifyStat(prop.getDoubleList());
+		thorgStats = verifyStat(prop.getDoubleList()); */ //TODO blist and thorg stats
 
 		prop = config.get(cat.getName(), "aegarStats", new double[] {150.0, 0.185, 26.0, 32.0, 2.5, 24});
 		aegarStats = verifyStat(prop.getDoubleList());
@@ -2285,169 +2319,169 @@ public class TragicConfig {
 		cat.setRequiresMcRestart(true);
 		
 		prop = config.get(cat.getName(), "jabbaSpawnChance", 75);
-		jabbaSC = prop.getInt(75);
+		jabbaSC = clamp(prop.getInt(75), 1, 1000);
 
 		prop = config.get(cat.getName(), "jannaSpawnChance", 50);
-		jannaSC = prop.getInt(50);
+		jannaSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "jarraSpawnChance", 5);
-		jarraSC = prop.getInt(5);
+		jarraSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "plagueSpawnChance", 50);
-		plagueSC = prop.getInt(50);
+		plagueSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "gragulSpawnChance", 25);
-		gragulSC = prop.getInt(25);
+		gragulSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "kragulSpawnChance", 5);
-		kragulSC = prop.getInt(5);
+		kragulSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "minotaurSpawnChance", 75);
-		minotaurSC = prop.getInt(75);
+		minotaurSC = clamp(prop.getInt(75), 1, 1000);
 
 		prop = config.get(cat.getName(), "inklingSpawnChance", 75);
-		inklingSC = prop.getInt(75);
+		inklingSC = clamp(prop.getInt(75), 1, 1000);
 
 		prop = config.get(cat.getName(), "ragrSpawnChance", 25);
-		ragrSC = prop.getInt(25);
-		
+		ragrSC = clamp(prop.getInt(25), 1, 1000);
+		/*
 		prop = config.get(cat.getName(), "pyragrSpawnChance", 25);
 		pyragrSC = prop.getInt(25);
 		
 		prop = config.get(cat.getName(), "aggroSpawnChance", 5);
-		aggroSC = prop.getInt(5);
+		aggroSC = prop.getInt(5); */ //TODO pyragr and aggro spawn chance
 
 		prop = config.get(cat.getName(), "pumpkinheadSpawnChance", 25);
-		pumpkinheadSC = prop.getInt(25);
+		pumpkinheadSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "tragicNekoSpawnChance", 50);
-		tragicNekoSC = prop.getInt(50);
+		tragicNekoSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "toxSpawnChance", 50);
-		toxSC = prop.getInt(50);
+		toxSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "poxSpawnChance", 50);
-		poxSC = prop.getInt(50);
+		poxSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "magmoxSpawnChance", 5);
-		magmoxSC = prop.getInt(5);
+		magmoxSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "cryseSpawnChance", 75);
-		cryseSC = prop.getInt(75);
+		cryseSC = clamp(prop.getInt(75), 1, 1000);
 
 		prop = config.get(cat.getName(), "starCryseSpawnChance", 75);
-		starCryseSC = prop.getInt(75);
+		starCryseSC = clamp(prop.getInt(75), 1, 1000);
 
 		prop = config.get(cat.getName(), "megaCryseSpawnChance", 5);
-		megaCryseSC = prop.getInt(5);
+		megaCryseSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "norVoxSpawnChance", 25);
-		norVoxSC = prop.getInt(25);
+		norVoxSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "starVoxSpawnChance", 25);
-		starVoxSC = prop.getInt(25);
+		starVoxSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "voxStellarumSpawnChance", 5);
-		voxStellarumSC = prop.getInt(5);
+		voxStellarumSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "pirahSpawnChance", 25);
-		pirahSC = prop.getInt(25);
+		pirahSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "stinSpawnChance", 50);
-		stinSC = prop.getInt(50);
+		stinSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "greaterStinSpawnChance", 5);
-		greaterStinSC = prop.getInt(5);
+		greaterStinSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "stinKingSpawnChance", 5);
-		stinKingSC = prop.getInt(5);
+		stinKingSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "stinQueenSpawnChance", 5);
-		stinQueenSC = prop.getInt(5);
+		stinQueenSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "kindlingSpiritSpawnChance", 15);
-		kindlingSpiritSC = prop.getInt(15);
+		kindlingSpiritSC = clamp(prop.getInt(15), 1, 1000);
 
 		prop = config.get(cat.getName(), "abominationSpawnChance", 25);
-		abominationSC = prop.getInt(25);
+		abominationSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "erkelSpawnChance", 25);
-		erkelSC = prop.getInt(25);
+		erkelSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "sirvSpawnChance", 50);
-		sirvSC = prop.getInt(50);
+		sirvSC = clamp(prop.getInt(50), 1, 1000);
 
 		prop = config.get(cat.getName(), "psygoteSpawnChance", 5);
-		psygoteSC = prop.getInt(5);
+		psygoteSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "lockbotSpawnChance", 5);
-		lockbotSC = prop.getInt(5);
+		lockbotSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "nanoSwarmSpawnChance", 25);
-		nanoSwarmSC = prop.getInt(25);
+		nanoSwarmSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "snowGolemSpawnChance", 20);
-		snowGolemSC = prop.getInt(20);
+		snowGolemSC = clamp(prop.getInt(20), 1, 1000);
 
 		prop = config.get(cat.getName(), "hunterSpawnChance", 15);
-		hunterSC = prop.getInt(15);
+		hunterSC = clamp(prop.getInt(15), 1, 1000);
 
 		prop = config.get(cat.getName(), "harvesterSpawnChance", 10);
-		harvesterSC = prop.getInt(10);
+		harvesterSC = clamp(prop.getInt(10), 1, 1000);
 		
 		prop = config.get(cat.getName(), "seekerSpawnChance", 5);
-		seekerSC = prop.getInt(5);
+		seekerSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "archangelSpawnChance", 5);
-		archangelSC = prop.getInt(5);
+		archangelSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "ireSpawnChance", 45);
-		ireSC = prop.getInt(45);
+		ireSC = clamp(prop.getInt(45), 1, 1000);
 
 		prop = config.get(cat.getName(), "fuseaSpawnChance", 25);
-		fuseaSC = prop.getInt(25);
+		fuseaSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "volatileFuseaSpawnChance", 5);
-		volatileFuseaSC = prop.getInt(5);
+		volatileFuseaSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "ranmasSpawnChance", 25);
-		ranmasSC = prop.getInt(25);
+		ranmasSC = clamp(prop.getInt(25), 1, 1000);
 
 		prop = config.get(cat.getName(), "parasmiteSpawnChance", 25);
-		parasmiteSC = prop.getInt(25);
-		
+		parasmiteSC = clamp(prop.getInt(25), 1, 1000);
+		/*
 		prop = config.get(cat.getName(), "blistSpawnChance", 25);
 		blistSC = prop.getInt(25);
 		
 		prop = config.get(cat.getName(), "thorgSpawnChance", 25);
-		thorgSC = prop.getInt(25);
+		thorgSC = prop.getInt(25); */ //TODO blist and thorg spawn chance
 		
 		prop = config.get(cat.getName(), "aegarSpawnChance", 5);
-		aegarSC = prop.getInt(5);
+		aegarSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "apisSpawnChance", 5);
-		apisSC = prop.getInt(5);
+		apisSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "skultarSpawnChance", 5);
-		skultarSC = prop.getInt(5);
+		skultarSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "kitsunakumaSpawnChance", 5);
-		kitsunakumaSC = prop.getInt(5);
+		kitsunakumaSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "empariahSpawnChance", 5);
-		empariahSC = prop.getInt(5);
+		empariahSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "timeControllerSpawnChance", 5);
-		timeControllerSC = prop.getInt(5);
+		timeControllerSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "polarisSpawnChance", 5);
-		polarisSC = prop.getInt(5);
+		polarisSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "enyvilSpawnChance", 5);
-		enyvilSC = prop.getInt(5);
+		enyvilSC = clamp(prop.getInt(5), 1, 1000);
 
 		prop = config.get(cat.getName(), "claymationSpawnChance", 5);
-		claymationSC = prop.getInt(5);
+		claymationSC = clamp(prop.getInt(5), 1, 1000);
 		
 		prop = config.get(cat.getName(), "jabbaGroupSize", new int[] {0, 2});
 		jabbaGS = verifyGS(prop.getIntList());
@@ -2469,9 +2503,9 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "ragrGroupSize", new int[] {0, 1});
 		ragrGS = verifyGS(prop.getIntList());
-		
+		/*
 		prop = config.get(cat.getName(), "pyragrGroupSize", new int[] {0, 1});
-		pyragrGS = verifyGS(prop.getIntList());
+		pyragrGS = verifyGS(prop.getIntList()); */ //TODO pyragr group size
 		
 		prop = config.get(cat.getName(), "pumpkinheadGroupSize", new int[] {2, 4});
 		pumpkinheadGS = verifyGS(prop.getIntList());
@@ -2553,12 +2587,12 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "avrisGroupSize", new int[] {0, 1});
 		avrisGS = verifyGS(prop.getIntList());
-		
+		/*
 		prop = config.get(cat.getName(), "blistGroupSize", new int[] {2, 4});
 		blistGS = verifyGS(prop.getIntList());
 		
 		prop = config.get(cat.getName(), "thorgGroupSize", new int[] {1, 3});
-		thorgGS = verifyGS(prop.getIntList());
+		thorgGS = verifyGS(prop.getIntList()); */ //TODO blist and thorg group size
 		
 		prop = config.get(cat.getName(), "jarraGroupSize", new int[] {0, 1});
 		jarraGS = verifyGS(prop.getIntList());
@@ -2592,9 +2626,9 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "aegarGroupSize", new int[] {0, 1});
 		aegarGS = verifyGS(prop.getIntList());
-		
+		/*
 		prop = config.get(cat.getName(), "aggroGroupSize", new int[] {0, 1});
-		aggroGS = verifyGS(prop.getIntList());
+		aggroGS = verifyGS(prop.getIntList()); */ //TODO aggro group size
 		
 		prop = config.get(cat.getName(), "jabbaSpawnOverride", false);
 		jabbaSOV = prop.getBoolean(false);
@@ -2804,7 +2838,7 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "avrisSpawnBiomes", new int[] {0});
 		avrisSpawns = prop.getIntList();
-		
+		/*
 		prop = config.get(cat.getName(), "blistOverride", false);
 		blistSOV = prop.getBoolean(false);
 		
@@ -2815,7 +2849,7 @@ public class TragicConfig {
 		thorgSOV = prop.getBoolean(false);
 		
 		prop = config.get(cat.getName(), "thorgSpawnBiomes", new int[] {0});
-		thorgSpawns = prop.getIntList();
+		thorgSpawns = prop.getIntList(); */ //TODO blist and thorg spawn overrides
 		
 		prop = config.get(cat.getName(), "snowGolemSpawnOverride", false);
 		snowGolemSOV = prop.getBoolean(false);
@@ -2887,12 +2921,12 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "aegarSpawnBiomes", new int[] {0});
 		aegarSpawns = prop.getIntList();
-		
+		/*
 		prop = config.get(cat.getName(), "aggroSpawnOverride", false);
 		aggroSOV = prop.getBoolean(false);
 		
 		prop = config.get(cat.getName(), "aggroSpawnBiomes", new int[] {0});
-		aggroSpawns = prop.getIntList();
+		aggroSpawns = prop.getIntList(); */ //TODO aggro spawn overrides
 		
 		prop = config.get(cat.getName(), "apisSpawnOverride", false);
 		apisSOV = prop.getBoolean(false);
@@ -3446,6 +3480,49 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "allowTitanDestruction", true);
 		griefConfig[++m] = prop.getBoolean(true);
+		
+		cat = config.getCategory(CAT_MOBAI);
+		cat.setComment("Toggle aspects of each mob's AI and also set specific griefing instances.");
+		
+		//TODO add mob ai and specific grief instances here
+		prop = config.get(cat.getName(), "jabbaAnger", true);
+		prop.comment = "Should the Jabba species become angry after being in combat for a while and gain new abilities?";
+		
+		prop = config.get(cat.getName(), "jabbaProjectiles", true);
+		prop.comment = "Should the Jabba species shoot projectiles at targets when angered?";
+		
+		prop = config.get(cat.getName(), "plagueCorruption", true);
+		prop.comment = "Should Plagues corrupt entities around it?";
+		
+		prop = config.get(cat.getName(), "gragulDamageReduction", true);
+		prop.comment = "Should the Gragul species take partial health damage instead of normal damage?";
+		
+		prop = config.get(cat.getName(), "gragulPercentageDamage", true);
+		prop.comment = "Should the Gragul species inflict partial health damage instead of normal damage? (They will still do armor piercing damage)";
+		
+		prop = config.get(cat.getName(), "minotaurCharge", true);
+		prop.comment = "Should Minotaurs charge at their target?";
+		
+		prop = config.get(cat.getName(), "inklingInvisibility", true);
+		prop.comment = "Should Inklings become invisible when threatened?";
+		
+		prop = config.get(cat.getName(), "inklingTorchBreaking", true);
+		prop.comment = "Should Inklings randomly destroy torches when near them?";
+		
+		prop = config.get(cat.getName(), "ragrExplosions", true);
+		prop.comment = "Should Ragrs create explosions when landing?";
+		
+		prop = config.get(cat.getName(), "ragrBlockCrushing", true);
+		prop.comment = "Should Ragrs crush blocks when landing?";
+		
+		prop = config.get(cat.getName(), "pumpkinheadPumpkinSpawn", true);
+		prop.comment = "Should Pumpkinheads create a Home Pumpkin upon spawning?";
+		
+		prop = config.get(cat.getName(), "pumpkinheadHaste", true);
+		prop.comment = "Should Pumpkinheads gain increased stats while they have a Home Pumpkin and are being threatened?";
+		
+		prop = config.get(cat.getName(), "pumpkinheadPumpkinbombs", true);
+		prop.comment = "Should Pumpkinheads fire Pumpkinbombs when they are low on health and have a Home Pumpkin?";
 
 		cat = config.getCategory(CAT_MODIFIERS);
 		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");
@@ -3739,6 +3816,7 @@ public class TragicConfig {
 		allowCooldown = doomConfig[++m];
 		allowDoomKillRecharge = doomConfig[++m];
 		allowCooldownDefuse = doomConfig[++m];
+		allowPartnerDoomsdays = doomConfig[++m];
 		
 		allowDecay = enchantAllow[m = 0];
 		allowSlay = enchantAllow[++m];
@@ -3925,7 +4003,7 @@ public class TragicConfig {
 		allowSurvivalTab = true;
 
 		//hardcore-exclusive options
-		//disable epic amulets
+		//disable epic amulets, only one active amulet allowed, cannot obtain amulets from chests
 		amuletMaxSlots = 1;
 		amuletOverallRarity = 0;
 		amuletEffects[13] = false; //time

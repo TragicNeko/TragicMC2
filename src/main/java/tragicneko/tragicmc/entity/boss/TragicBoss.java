@@ -8,6 +8,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -27,7 +28,6 @@ import tragicneko.tragicmc.util.WorldHelper;
 
 public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 {
-	
 	private boolean hasDamagedEntity = false; //for achievement can't touch this, kill a boss without being hurt by it
 	
 	public TragicBoss(World par1World) {
@@ -40,43 +40,13 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		return true;
 	}
-
+	
 	@Override
-	public void onDeath(DamageSource par1)
+	protected void dropFewItems(boolean flag, int l)
 	{
-		super.onDeath(par1);
-
-		if (this.worldObj.isRemote || !this.getAllowLoot()) return;
-
-		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 4.0D, this.posX, this.posY, this.posZ);
-		int[] coords;
-
-		for (int i = 0; i < list.size(); i++)
-		{
-			coords= list.get(i);
-			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]).getMaterial() == Material.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
-		}
-
-		int x = 3;
-
-		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) par1.getEntity();
-
-			if (player.getCurrentEquippedItem() != null)
-			{
-				ItemStack weapon = player.getCurrentEquippedItem();
-				x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
-			}
-			
-			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
-			
-			if (!this.hasDamagedEntity && TragicConfig.allowAchievements && player instanceof EntityPlayerMP)
-			{
-				player.triggerAchievement(TragicAchievements.cantTouchThis);
-			}
-		}
-
+		super.dropFewItems(flag, l);
+		
+		int x = 3 + l;
 		int amt = 0;
 
 		if (TragicConfig.allowExtraBossLoot)
@@ -88,7 +58,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 				if (rand.nextBoolean())
 				{
 					ItemStack luxuryDrop = EntityDropHelper.getLuxuryDropForBoss();
-					if (luxuryDrop != null) this.entityDropItem(luxuryDrop, 0.4F);
+					if (luxuryDrop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, luxuryDrop));
 					amt++;
 				}
 
@@ -103,24 +73,59 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
 			{
 				ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), true);
-				if (drop != null) this.entityDropItem(drop, 0.4F);
+				if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 				total += 1;
 			}
 
-			if (this.recentlyHit > 0 && rand.nextInt(25) <= TragicConfig.rareDropRate + x)
+			if (flag && rand.nextInt(25) <= TragicConfig.rareDropRate + x)
 			{
 				ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
-				if (drop != null) this.entityDropItem(drop, 0.4F);
+				if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 				total += 1;
 			}
 
 			if (total >= x * 2.5) break;
 		}
 
-		if (this.recentlyHit > 0)
+		if (flag)
 		{
 			ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
-			if (drop != null) this.entityDropItem(drop, 0.4F);
+			if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
+			
+			if (TragicConfig.allowNonMobItems)
+			{
+				drop = new ItemStack(TragicItems.EtherealDistortion);
+				this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
+			}
+		}
+	}
+
+	@Override
+	public void onDeath(DamageSource par1)
+	{
+		super.onDeath(par1);
+
+		if (this.worldObj.isRemote) return;
+
+		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 4.0D, this.posX, this.posY, this.posZ);
+		int[] coords;
+
+		for (int i = 0; i < list.size(); i++)
+		{
+			coords= list.get(i);
+			if (this.worldObj.getBlock(coords[0], coords[1], coords[2]).getMaterial() == Material.fire) this.worldObj.setBlockToAir(coords[0], coords[1], coords[2]);
+		}
+
+		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) par1.getEntity();
+			
+			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
+			
+			if (!this.hasDamagedEntity && TragicConfig.allowAchievements && player instanceof EntityPlayerMP)
+			{
+				player.triggerAchievement(TragicAchievements.cantTouchThis);
+			}
 		}
 	}
 	

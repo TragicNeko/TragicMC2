@@ -23,6 +23,7 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.client.ClientProxy;
+import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
@@ -58,7 +59,7 @@ public class ClientEvents extends Gui {
 
 			if (ClientProxy.openAmuletGui.getIsKeyPressed() && TragicConfig.allowAmulets)
 			{
-				TragicMC.net.sendToServer(new MessageGui(TragicMC.idAmuletGui));
+				TragicMC.net.sendToServer(new MessageGui(ClientProxy.AMULET_GUI_ID));
 			}
 
 			if (ClientProxy.useSpecial.getIsKeyPressed() && TragicConfig.allowDoomsdays)

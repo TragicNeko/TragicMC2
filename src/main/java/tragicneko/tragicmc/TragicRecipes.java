@@ -151,7 +151,7 @@ public class TragicRecipes {
 				"xyx",
 				"zxz",
 				'y', TragicItems.SynapseCrystal,
-				'z', Blocks.iron_block,
+				'z', TragicItems.InfallibleMetal,
 				'x', TragicItems.NanoBots
 				);
 
@@ -729,9 +729,18 @@ public class TragicRecipes {
 				"zxy",
 				"zyz",
 				"yxz",
-				'z', TragicBlocks.CelledBlock,
-				'y', TragicItems.UnstableIsotope,
-				'x', TragicItems.IreNode
+				'z', TragicItems.InfallibleMetal,
+				'y', TragicItems.ComplexCircuitry,
+				'x', TragicItems.PurifiedEnergy
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.NekoLauncher, 1),
+				"zxy",
+				"zyz",
+				"yxz",
+				'z', TragicItems.InfallibleMetal,
+				'y', TragicItems.ComplexCircuitry,
+				'x', TragicItems.Shadowskin
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LightIngot, 1),
@@ -772,6 +781,15 @@ public class TragicRecipes {
 				'y', Items.diamond,
 				'z', TragicItems.PureLight
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BlindingLight, 1),
+				"xzx",
+				"xyx",
+				" x ",
+				'x', TragicItems.RadiatedInfusion,
+				'y', Items.diamond,
+				'z', TragicItems.PurifiedEnergy
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EverlastingLight, 1),
 				"xyx",
@@ -786,7 +804,7 @@ public class TragicRecipes {
 				"xyx",
 				"yzy",
 				"xyx",
-				'x', TragicItems.PureLight,
+				'x', TragicItems.RadiatedInfusion,
 				'y', Blocks.glass,
 				'z', Items.nether_star
 				);
@@ -842,6 +860,15 @@ public class TragicRecipes {
 				'y', TragicItems.ObsidianOrb,
 				'z', TragicItems.PureDarkness
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.PitchBlack, 1),
+				"zxz",
+				"xyx",
+				"zxz",
+				'x', TragicItems.DarkIngot,
+				'y', TragicItems.InfallibleMetal,
+				'z', TragicItems.ImpossibleReaction
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceCream, 1),
 				" x ",
@@ -854,13 +881,6 @@ public class TragicRecipes {
 				" x ",
 				"xyx",
 				'x', Items.wheat,
-				'y', Items.bowl
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BoneMarrow, 1),
-				" x ",
-				"xyx",
-				'x', new ItemStack(Items.dye, 1, 15),
 				'y', Items.bowl
 				);
 
@@ -879,47 +899,12 @@ public class TragicRecipes {
 				'y', TragicItems.Sushi
 				);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Ectoplasm, 1),
-				TragicItems.WispParticles, TragicItems.EnchantedTears
-				);
-
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.ender_chest, 1),
 				"xxx",
 				"xyx",
 				"xxx",
 				'x', Blocks.obsidian,
 				'y', TragicItems.PureDarkness
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.EnchantedTears, 3),
-				" x ",
-				"xzx",
-				'x', Items.ghast_tear,
-				'z', Items.glass_bottle
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.AquaOrb, 1),
-				" x ",
-				"xyx",
-				" x ",
-				'x', TragicItems.EnchantedTears,
-				'y', Items.glass_bottle
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.FireOrb, 1),
-				" x ",
-				"xyx",
-				" x ",
-				'x', new ItemStack(TragicItems.Projectile, 1, 1),
-				'y', Items.glass_bottle
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.IceOrb, 1),
-				" x ",
-				"xyx",
-				" x ",
-				'x', TragicItems.CrushedIce,
-				'y', Items.glass_bottle
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.ice, 3),
@@ -1057,14 +1042,16 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TragicItems.GuiltyThorn, 1),
-				"xyx",
-				"xyx",
-				"wzw",
-				'x', TragicItems.Thorns,
-				'y', "materialVine",
-				'z', TragicItems.QuicksilverIngot,
-				'w', new ItemStack(TragicItems.Projectile, 1, 11)
+				"yzy",
+				"yzy",
+				"xzx",
+				'x', TragicItems.NauseatingConcoction,
+				'y', TragicItems.ToxicAmalgation,
+				'z', TragicItems.QuicksilverIngot
 				));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CooldownDefuse),
+				TragicItems.ImpossibleReaction, TragicItems.RadiatedInfusion, TragicItems.PurifiedEnergy);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.Glowvine, 1),
 				"xyx",
@@ -1094,12 +1081,13 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.FrozenLightning, 1),
-				"xyx",
-				"zyz",
+				"vyv",
+				"xwx",
 				" x ",
+				'v', TragicItems.LightningOrb,
+				'w', TragicItems.PurifiedEnergy,
 				'x', TragicItems.IceOrb,
-				'y', TragicItems.LightningOrb,
-				'z', TragicItems.IcyFur
+				'y', TragicItems.ParadoxicalFormula
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkSandstone, 4, 0),
@@ -1511,6 +1499,15 @@ public class TragicRecipes {
 				'x', TragicItems.DarkIngot,
 				'y', Items.nether_star
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.WitheringAxe, 1),
+				"xyz",
+				" zy",
+				"y x",
+				'x', TragicItems.DarkIngot,
+				'y', TragicItems.InfallibleMetal,
+				'z', TragicItems.ImpossibleReaction
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ReaperScythe, 1),
 				"xxz",
@@ -1519,6 +1516,15 @@ public class TragicRecipes {
 				'x', TragicItems.DarkIngot,
 				'y', TragicItems.StinHorn,
 				'z', TragicItems.DeathlyHallow
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.ReaperScythe, 1),
+				"xxy",
+				" z ",
+				"z  ",
+				'x', TragicItems.InfallibleMetal,
+				'y', TragicItems.CreepyIdol,
+				'z', TragicItems.Shadowskin
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 3, 15),
@@ -1533,6 +1539,15 @@ public class TragicRecipes {
 				'y', TragicItems.DeathlyHallow,
 				'z', TragicItems.DarkIngot
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.MourningStar, 1),
+				"xxx",
+				"xyx",
+				"zxx",
+				'z', TragicItems.DarkIngot,
+				'y', TragicItems.CreepyIdol,
+				'x', TragicItems.InfallibleMetal
+				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BeastlyClaws, 1),
 				"xxx",
@@ -1542,6 +1557,14 @@ public class TragicRecipes {
 				'y', TragicItems.Tungsten,
 				'z', TragicItems.IcyFur
 				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.BeastlyClaws, 1),
+				"xxx",
+				"xyx",
+				" y ",
+				'x', TragicItems.InfallibleMetal,
+				'y', TragicItems.Quicksilver
+				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 9),
 				TragicItems.IcyFur, Items.shears
@@ -1549,15 +1572,6 @@ public class TragicRecipes {
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ToughLeather, 3),
 				TragicItems.IcyFur, TragicItems.WovenSilk, TragicItems.IcyFur
-				);
-
-		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.LunarPowder, 1),
-				"xyx",
-				"yzy",
-				"xyx",
-				'x', TragicItems.StarPieces,
-				'y', TragicItems.WispParticles,
-				'z', TragicItems.Ectoplasm
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.glowstone_dust, 16),
@@ -1590,7 +1604,7 @@ public class TragicRecipes {
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CelestialDiamond, 1),
-				TragicItems.EnchantedTears, TragicItems.LunarPowder, TragicItems.Ectoplasm, Items.diamond
+				TragicItems.LunarPowder, TragicItems.LunarPowder, TragicItems.SoulExcess, Items.diamond
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DimensionalKey),
@@ -1687,7 +1701,7 @@ public class TragicRecipes {
 				'x', new ItemStack(TragicBlocks.DarkenedQuartz, 1, 1)
 				);
 
-		for (int i = 0; i < 8; i++)
+		for (byte i = 0; i < 8; i++)
 		{
 			GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkStone, 4, i + 7),
 					"xx",
@@ -1698,10 +1712,11 @@ public class TragicRecipes {
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.GravitySpike, 1),
 				"xyx",
-				" x ",
+				"zxz",
 				" x ",
 				'x', TragicItems.DarkIngot,
-				'y', TragicItems.GravityOrb
+				'y', TragicItems.GravityOrb,
+				'z', TragicItems.RadiatedInfusion
 				);
 
 		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HarmonyBell, 1),
@@ -1710,6 +1725,14 @@ public class TragicRecipes {
 				"xxx",
 				'x', TragicItems.LightParticles,
 				'y', TragicItems.KitsuneTail
+				);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(TragicItems.HarmonyBell, 1),
+				" y ",
+				"xyx",
+				"xxx",
+				'x', TragicItems.InfallibleMetal,
+				'y', TragicItems.RadiatedInfusion
 				);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DarkParticles, 8),
@@ -1752,6 +1775,46 @@ public class TragicRecipes {
 				"xxx",
 				'x', TragicItems.NanoBots
 				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.NourishmentSacrifice),
+				TragicItems.NauseatingConcoction, TragicItems.NauseatingConcoction, TragicItems.SoulExcess, TragicItems.ParadoxicalFormula);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.BloodSacrifice),
+				TragicItems.CreepyIdol, TragicItems.CreepyIdol, TragicItems.SoulExcess, TragicItems.ParadoxicalFormula);
+		
+		//Intermediate item recipes
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.ToxicAmalgation),
+				new ItemStack(TragicItems.Projectile, 1, 10), TragicItems.Thorns, "materialVine", TragicItems.InterestingResin));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LunarPowder),
+				Items.glowstone_dust, TragicItems.SoulExcess, TragicItems.Ectoplasm, TragicItems.WispParticles, TragicItems.StarPieces);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ImpossibleReaction),
+				TragicItems.LightParticles, TragicItems.DarkParticles, TragicItems.StinHorn, TragicItems.ArchangelFeather);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.RadiatedInfusion),
+				TragicItems.Tungsten, TragicItems.UnstableIsotope, TragicItems.FireOrb, TragicItems.LightParticles);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ParadoxicalFormula),
+				TragicItems.CrushedIce, new ItemStack(TragicItems.Projectile, 1, 1), TragicItems.Ectoplasm, TragicItems.EnchantedTears);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.InfallibleMetal),
+				TragicItems.Tungsten, TragicItems.Quicksilver, Items.iron_ingot, TragicItems.Chitin);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.ComplexCircuitry),
+				TragicItems.NanoBots, TragicItems.CatalyticCompound, TragicItems.IreNode, TragicItems.LightningOrb);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.NauseatingConcoction),
+				TragicItems.Ectoplasm, TragicItems.BoneMarrow, Items.slime_ball, Items.spider_eye, TragicItems.Ash);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.CreepyIdol),
+				TragicItems.Chitin, TragicItems.Horn, TragicItems.InterestingResin, Items.clay_ball, TragicItems.SoulExcess);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.PurifiedEnergy),
+				TragicItems.EnchantedTears, TragicItems.CatalyticCompound, TragicItems.LightningOrb);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.Shadowskin),
+				TragicItems.DarkParticles, TragicItems.WovenSilk, TragicItems.Ash, TragicItems.ToughLeather);
 
 		//Cobblestone recipes
 		GameRegistry.addShapedRecipe(new ItemStack(TragicBlocks.DarkCobblestone, 8, 1),
@@ -1817,6 +1880,15 @@ public class TragicRecipes {
 				'x', TragicBlocks.LightCobblestone,
 				'y', TragicItems.LightParticles
 				);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.HoneydropSeeds),
+				TragicItems.Honeydrop);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.DeathglowSeeds),
+				TragicItems.Deathglow);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.SkyFruitSeeds),
+				TragicItems.SkyFruit);
 
 		//Flower-to-Dye recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 12),
@@ -2040,8 +2112,8 @@ public class TragicRecipes {
 					TragicItems.YetiAmulet, TragicItems.AmuletRelease
 					));
 
-			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.BlacksmithAmulet, 1),
-					TragicItems.BlacksmithAmulet, TragicItems.BlacksmithAmulet, "oreCharms"
+			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ZombieAmulet, 1),
+					TragicItems.ZombieAmulet, TragicItems.ZombieAmulet, "oreCharms"
 					));
 
 			GameRegistry.addRecipe(new RecipeAmulets(new ItemStack(TragicItems.ZombieAmulet, 1),

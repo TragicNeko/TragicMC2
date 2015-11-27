@@ -735,7 +735,7 @@ public class PotionEvents {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
 		if (target.isPotionActive(TragicPotion.Corruption) && stack != null)
 		{
-			if (stack.getItem() == TragicItems.NastyFruit)
+			if (stack.getItem() == TragicItems.Deathglow)
 			{
 				target.removePotionEffect(TragicPotion.Corruption.id);
 				if (TragicConfig.allowImmunity) target.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 6000));

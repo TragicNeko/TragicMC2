@@ -326,7 +326,7 @@ public class EntityTox extends TragicMob {
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		this.setToxType(biome instanceof BiomeGenPaintedForest ? (byte) 1 : 0);
+		this.setToxType(biome instanceof BiomeGenPaintedForest ? (byte) 1 : (byte) 0);
 		return super.onSpawnWithEgg(data);
 	}
 

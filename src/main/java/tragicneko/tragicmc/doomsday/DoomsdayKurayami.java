@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.MathHelper;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.entity.EntityKurayami;
 import tragicneko.tragicmc.entity.boss.EntityKitsune;
 import tragicneko.tragicmc.properties.PropertyDoom;
@@ -19,7 +20,8 @@ public class DoomsdayKurayami extends Doomsday {
 
 	@Override
 	public void useDoomsday(DoomsdayEffect effect, PropertyDoom doom, EntityPlayer player, boolean crucMoment) {
-		double d0 = MathHelper.clamp_double((doom.getCurrentDoom() - this.getScaledDoomRequirement(doom)) / doom.getMaxDoom(), 0.1, 2.0);
+		double d = (double) this.getScaledDoomRequirement(doom);
+		double d0 = MathHelper.clamp_double(((double) doom.getCurrentDoom() - d) / ((double) doom.getMaxDoom() - d), 0.1, 1.0);
 		EntityKurayami kurayami = new EntityKurayami(player.worldObj);
 		kurayami.setPosition(player.posX, player.posY, player.posZ);
 		kurayami.setOwner(player);

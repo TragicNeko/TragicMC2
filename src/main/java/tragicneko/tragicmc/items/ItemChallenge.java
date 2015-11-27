@@ -38,7 +38,7 @@ public class ItemChallenge extends Item {
 	public static EntityDrop[] cheapRewards = new EntityDrop[] {new EntityDrop(1, Items.diamond), new EntityDrop(1, Items.emerald), new EntityDrop(5, Items.apple), new EntityDrop(10, Items.iron_ingot),
 		new EntityDrop(5, Items.gold_ingot), new EntityDrop(15, TragicItems.Tungsten), new EntityDrop(25, TragicItems.BloodSacrifice), new EntityDrop(25, TragicItems.NourishmentSacrifice),
 		new EntityDrop(15, TragicItems.RedMercury), new EntityDrop(20, TragicItems.Quicksilver), new EntityDrop(5, TragicItems.QuicksilverIngot), new EntityDrop(5, Blocks.obsidian),
-		new EntityDrop(15, TragicItems.NastyFruit), new EntityDrop(15, TragicItems.ExoticFruit), new EntityDrop(10, TragicItems.SkyFruit), new EntityDrop(5, TragicItems.GooeyFruit),
+		new EntityDrop(15, TragicItems.Deathglow), new EntityDrop(15, TragicItems.Honeydrop), new EntityDrop(10, TragicItems.SkyFruit), new EntityDrop(5, TragicItems.Gloopii),
 		new EntityDrop(1, getSpawnEggsMiniBoss()), new EntityDrop(15, TragicItems.ChallengeScroll)};
 
 	public static EntityDrop[] rewards = new EntityDrop[] {new EntityDrop(10, Items.diamond), new EntityDrop(5, Items.emerald),
@@ -47,7 +47,7 @@ public class ItemChallenge extends Item {
 		new EntityDrop(25, TragicItems.Sapphire), new EntityDrop(5, Items.gold_ingot), new EntityDrop(20, new ItemStack(Items.golden_apple, 1, 0), new ItemStack(Items.golden_apple, 1, 1)),
 		new EntityDrop(5, TragicItems.CryingObsidianOrb), new EntityDrop(5, TragicItems.BleedingObsidianOrb), new EntityDrop(5, TragicItems.DyingObsidianOrb), new EntityDrop(5, TragicItems.ObsidianOrb),
 		new EntityDrop(15, TragicItems.GoldenSushi),  new EntityDrop(10, TragicItems.Talisman), new EntityDrop(5, TragicItems.BloodSacrifice), new EntityDrop(5, TragicItems.NourishmentSacrifice),
-		new EntityDrop(15, TragicItems.NastyFruit), new EntityDrop(35, TragicItems.ExoticFruit), new EntityDrop(20, TragicItems.SkyFruit), new EntityDrop(10, TragicItems.GooeyFruit),
+		new EntityDrop(15, TragicItems.Deathglow), new EntityDrop(35, TragicItems.Honeydrop), new EntityDrop(20, TragicItems.SkyFruit), new EntityDrop(10, TragicItems.Gloopii),
 		new EntityDrop(1, getSpawnEggsBoss()), new EntityDrop(3, getSpawnEggsMiniBoss()), new EntityDrop(3, getEpicWeapons()), new EntityDrop(3, getEpicWeapons())};
 
 	private static String[] subNames = new String[] {"inactive", "inProgress", "complete"};

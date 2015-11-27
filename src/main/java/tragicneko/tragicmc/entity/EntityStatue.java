@@ -66,15 +66,10 @@ public class EntityStatue extends Entity {
 
 		if (!this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) return true;
 
-		int id = this.getMobID();
-
-		for (int i = 0; i < this.getTextureID(); i++) id += ItemStatue.subNames.length;
-		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, id);
-		if (this.getAnimated())
-		{
-			stack.stackTagCompound = new NBTTagCompound();
-			stack.stackTagCompound.setInteger("isAnimated", this.getAnimated() ? 1 : 0);
-		}
+		ItemStack stack = new ItemStack(TragicItems.MobStatue, 1, this.getMobID());
+		stack.stackTagCompound = new NBTTagCompound();
+		stack.stackTagCompound.setInteger("textureID", this.getTextureID());
+		if (this.getAnimated()) stack.stackTagCompound.setInteger("isAnimated", this.getAnimated() ? 1 : 0);
 
 		this.entityDropItem(stack, 0.4F);
 		return true;
@@ -256,7 +251,7 @@ public class EntityStatue extends Entity {
 					((EntityLiving) entity).onSpawnWithEgg(null);
 					this.worldObj.removeEntity(this);
 					this.worldObj.spawnEntityInWorld(entity);
-					if (!player.capabilities.isCreativeMode) player.getCurrentEquippedItem().stackSize--;
+					if (!player.capabilities.isCreativeMode) item.stackSize--;
 				}
 			}
 			else
@@ -327,13 +322,11 @@ public class EntityStatue extends Entity {
 				if (item.getItem() == TragicItems.SynapseCrystal)
 				{
 					this.setAnimated(!this.getAnimated());
-					if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, null);
-				}
-
-				if (b0 == 0 && item.getItem() == Items.blaze_powder && this.getTextureID() != 0 || b0 != this.getTextureID() && b0 > 0)
+					if (!player.capabilities.isCreativeMode) item.stackSize--;
+				} else if (b0 == 0 && item.getItem() == Items.blaze_powder && this.getTextureID() != 0 || b0 != this.getTextureID() && b0 > 0)
 				{
 					this.setTextureID(b0);
-					if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, null);
+					if (!player.capabilities.isCreativeMode) item.stackSize--;
 				}
 			}
 		}

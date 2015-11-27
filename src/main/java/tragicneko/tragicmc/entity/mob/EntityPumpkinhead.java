@@ -206,16 +206,16 @@ public class EntityPumpkinhead extends TragicMob {
 
 		AttributeModifier mod = new AttributeModifier(UUID.fromString("2042ddcd-b29a-474f-acda-00ec1a2b4a2e"), "pumpkinheadHaste", this.getModValue(), 0);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
 
 		if (this.getAngerTicks() % 100 == 0 && this.isAngry() && this.hasHomePumpkin())
 		{
-			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
 			this.setModValue(this.getModValue() + 2.0F);
 		}
 
-		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0 && this.isBurning())
+		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0)
 		{
-			for (int x = 0; x < 6; x++)
+			for (byte x = 0; x < 6; x++)
 			{
 				EntityPumpkinbomb bomb = new EntityPumpkinbomb(this.worldObj, this);
 				bomb.motionX = bomb.motionZ = rand.nextDouble() - rand.nextDouble();
@@ -309,7 +309,7 @@ public class EntityPumpkinhead extends TragicMob {
 	{
 		if (!this.isPumpkinNearby())
 		{
-			if (rand.nextInt(32) == 0) this.createHomePumpkin();
+			if (rand.nextInt(32) == 0 && this.getMobGriefing()) this.createHomePumpkin();
 		}
 		else
 		{

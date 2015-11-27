@@ -191,10 +191,10 @@ public class DoomsdayManager {
 							flag = true;
 							temp = effect;
 						}
-						/*
-						if (!(effect.dday instanceof IExtendedDoomsday)) // && TragicConfig.allowPartnerDoomsdays) //TODO setup partner config option
+						
+						if (!(effect.dday instanceof IExtendedDoomsday)&& TragicConfig.allowPartnerDoomsdays) //TODO test partner doomsdays
 						{
-							Iterator<UUID> it = playerMap.keySet().iterator(); //This will need to be tested to ensure that if a partner combination is done, it won't cause a crash when it goes to update
+							Iterator<UUID> it = playerMap.keySet().iterator();
 							
 							while (it.hasNext())
 							{
@@ -205,7 +205,7 @@ public class DoomsdayManager {
 								for (int j = 0; j < effs.size(); j++)
 								{
 									eff = effs.get(j);
-									if (eff.dday instanceof IExtendedDoomsday && eff.dday.getCombination() == effect.dday && effect.doom.getPlayer().getDistanceToEntity(eff.doom.getPlayer()) <= 12.0F) //Possibly make the distance configurable
+									if (eff.dday instanceof IExtendedDoomsday && eff.dday.getCombination() == effect.dday && effect.doom.getPlayer().getDistanceToEntity(eff.doom.getPlayer()) <= TragicConfig.partnerDoomsdayDistance)
 									{
 										list.clear();
 										reason = "Partner activated a Combination.";
@@ -215,7 +215,7 @@ public class DoomsdayManager {
 									}
 								}
 							}
-						} */
+						}
 					}
 
 					effect.onDoomsdayUpdate();

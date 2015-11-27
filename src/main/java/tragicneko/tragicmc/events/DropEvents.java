@@ -10,6 +10,7 @@ import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.BlockWeb;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityMagmaCube;
@@ -26,7 +27,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
@@ -82,7 +83,7 @@ public class DropEvents {
 				switch(event.blockMetadata)
 				{
 				case 0: //Oak
-					event.drops.add(new ItemStack(TragicItems.ExoticFruit));
+					event.drops.add(new ItemStack(TragicItems.Honeydrop));
 					break;
 				case 1: //Spruce
 					break;
@@ -91,7 +92,7 @@ public class DropEvents {
 				case 3: //Jungle
 					if (event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungle || event.world.getBiomeGenForCoords(event.x, event.z) == BiomeGenBase.jungleHills)
 					{
-						event.drops.add(new ItemStack(TragicItems.ExoticFruit));
+						event.drops.add(new ItemStack(TragicItems.Honeydrop));
 					}
 					break;
 				default:
@@ -133,12 +134,12 @@ public class DropEvents {
 		else if (event.block instanceof BlockGenericLeaves && rand.nextInt(16) == 0)
 		{
 			event.drops.clear();
-			event.drops.add(new ItemStack(TragicItems.ExoticFruit));
+			event.drops.add(new ItemStack(TragicItems.Honeydrop));
 		}
 	}
 
 	@SubscribeEvent
-	public void onVanillaMobDeath(LivingDeathEvent event)
+	public void onVanillaMobDeath(LivingDropsEvent event)
 	{
 		if (event.source == null || event.entityLiving.worldObj.isRemote) return;
 
@@ -146,7 +147,8 @@ public class DropEvents {
 		{
 			if (rand.nextInt(4) == 0)
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Horn, 1 + rand.nextInt(2)), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.Horn, 1 + rand.nextInt(2))));
 			}
 		}
 
@@ -154,7 +156,8 @@ public class DropEvents {
 		{
 			if (((EntityCreeper)event.entityLiving).getDataWatcher().getWatchableObjectByte(17) == 1)
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.LightningOrb, 1 + rand.nextInt(2)), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.LightningOrb, 1 + rand.nextInt(2))));
 			}
 		}
 
@@ -162,7 +165,8 @@ public class DropEvents {
 		{
 			if (event.entityLiving.isBurning())
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ash, rand.nextInt(3)), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.Ash, rand.nextInt(3))));
 			}
 
 			int x = 8;
@@ -175,18 +179,9 @@ public class DropEvents {
 
 				if (rand.nextInt(256) == 0)
 				{
-					switch(rand.nextInt(3))
-					{
-					case 0:
-						event.entityLiving.entityDropItem(new ItemStack(TragicItems.Tungsten, 1), rand.nextFloat());
-						break;
-					case 1:
-						event.entityLiving.entityDropItem(new ItemStack(TragicItems.RedMercury, 1), rand.nextFloat());
-						break;
-					case 2:
-						event.entityLiving.entityDropItem(new ItemStack(TragicItems.Quicksilver, 1), rand.nextFloat());
-						break;
-					}
+					ItemStack stack = rand.nextBoolean() ? new ItemStack(TragicItems.Tungsten, 1) : (rand.nextBoolean() ? new ItemStack(TragicItems.RedMercury, 1) : new ItemStack(TragicItems.Quicksilver, 1));
+					event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+							stack));
 				}
 			}
 
@@ -198,7 +193,8 @@ public class DropEvents {
 
 			if (rand.nextBoolean() && rand.nextInt(x) == 0 && !(event.entityLiving instanceof EntityBat))
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.BoneMarrow, rand.nextInt(y) + 1), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.BoneMarrow, rand.nextInt(y) + 1)));
 			}
 		}
 
@@ -213,7 +209,8 @@ public class DropEvents {
 
 			if (rand.nextInt(wubwub) == 0)
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ectoplasm, rand.nextInt(3)), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.Ectoplasm, rand.nextInt(3))));
 			}
 		}
 
@@ -226,12 +223,14 @@ public class DropEvents {
 			{
 				x = 2;
 				y = 10;
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.DimensionalKeyEnd), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.DimensionalKeyEnd)));
 			}
 
 			if (rand.nextBoolean() && rand.nextInt(x) == 0)
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.DarkParticles, rand.nextInt(y) + 1), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.DarkParticles, rand.nextInt(y) + 1)));
 			}
 
 			if (event.entityLiving instanceof EntityEnderman)
@@ -242,70 +241,88 @@ public class DropEvents {
 
 			if (rand.nextInt(x * 2) == 0)
 			{
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.ObsidianOrb, rand.nextInt(y) + 1), rand.nextFloat());
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(TragicItems.ObsidianOrb, rand.nextInt(y) + 1)));
 			}
 		}
 
 		if (event.entityLiving instanceof EntityPigZombie && rand.nextInt(16) == 0)
 		{
+			ItemStack stack = null;
+
 			switch(rand.nextInt(5))
 			{
 			case 0:
 				if (rand.nextInt(100) == 0)
 				{
-					event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ruby, 1), rand.nextFloat());
+					stack = new ItemStack(TragicItems.Ruby, 1);
 				}
 				break;
 			case 1:
 				if (rand.nextInt(100) == 0)
 				{
-					event.entityLiving.entityDropItem(new ItemStack(TragicItems.Sapphire, 1), rand.nextFloat());
+					stack = new ItemStack(TragicItems.Sapphire, 1);
 				}
 				break;
 			case 2:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1), rand.nextFloat());
+				stack = new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1);
 				break;
 			case 3:
-				event.entityLiving.entityDropItem(new ItemStack(Items.bone, rand.nextInt(3) + 1), rand.nextFloat());
+				stack = new ItemStack(Items.bone, rand.nextInt(3) + 1);
 				break;
 			case 4:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1), rand.nextFloat());
+				stack = new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1);
 				break;
+			}
+
+			if (stack != null)
+			{
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						stack));
 			}
 		}
 
 		if (event.entityLiving instanceof EntityWitch && rand.nextInt(8) == 0)
 		{
+			ItemStack stack = null;
+
 			switch(rand.nextInt(6))
 			{
 			case 0:
 			case 1:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Projectile, 1, rand.nextInt(3) + 2), rand.nextFloat());
+				stack = new ItemStack(TragicItems.Projectile, 1, rand.nextInt(3) + 2);
 				break;
 			case 2:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1), rand.nextFloat());
+				stack = new ItemStack(TragicItems.Ash, rand.nextInt(3) + 1);
 				break;
 			case 3:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 10 + rand.nextInt(2)), rand.nextFloat());
+				stack = new ItemStack(TragicItems.Projectile, rand.nextInt(3) + 1, 10 + rand.nextInt(2));
 				break;
 			case 4:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1), rand.nextFloat());
+				stack = new ItemStack(TragicItems.BoneMarrow, rand.nextInt(2) + 1);
 				break;
 			case 5:
-				event.entityLiving.entityDropItem(new ItemStack(TragicItems.Ectoplasm, rand.nextInt(2) + 1), rand.nextFloat());
+				stack = new ItemStack(TragicItems.Ectoplasm, rand.nextInt(2) + 1);
 				break;
 			}
 
+			if (stack != null)
+			{
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						stack));
+			}
 		}
 
 		if (event.entityLiving instanceof EntitySpider && rand.nextInt(16) == 0)
 		{
-			event.entityLiving.entityDropItem(new ItemStack(TragicItems.WovenSilk, 1), rand.nextFloat());
+			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+					new ItemStack(TragicItems.WovenSilk, 1)));
 		}
 
 		if (event.entityLiving instanceof EntitySquid && rand.nextInt(4) == 0)
 		{
-			event.entityLiving.entityDropItem(new ItemStack(TragicItems.Tentacle, rand.nextInt(6) + 1), rand.nextFloat());
+			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+					new ItemStack(TragicItems.Tentacle, rand.nextInt(6) + 1)));
 		}
 	}
 }

@@ -2,8 +2,6 @@ package tragicneko.tragicmc.entity.mob;
 
 import java.util.List;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,6 +9,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -279,7 +278,7 @@ public abstract class TragicMob extends EntityMob
 		{
 			int i;
 
-			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot"))
+			if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.getAllowLoot())
 			{
 				i = this.getExperiencePoints(this.attackingPlayer);
 
@@ -297,31 +296,13 @@ public abstract class TragicMob extends EntityMob
 	}
 
 	@Override
-	public void onDeath(DamageSource par1DamageSource)
+	protected void dropFewItems(boolean flag, int l)
 	{
-		super.onDeath(par1DamageSource);
+		super.dropFewItems(flag, l);
 
-		if (!this.worldObj.isRemote && this.getAllowLoot())
+		if (!this.worldObj.isRemote)
 		{
-			int x = this.getDropAmount();
-
-			if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
-			{
-				EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
-
-				if (player.getCurrentEquippedItem() != null)
-				{
-					ItemStack weapon = player.inventory.getCurrentItem();
-					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
-				}
-				
-				if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) 
-				{
-					player.triggerAchievement(TragicAchievements.kill);
-					if (this instanceof TragicMiniBoss) player.triggerAchievement(TragicAchievements.killMiniBoss);
-				}
-			}
-
+			int x = this.getDropAmount() + l;
 			int drops = 0;
 
 			for (int i = 0; i < x; i++)
@@ -329,14 +310,14 @@ public abstract class TragicMob extends EntityMob
 				if (rand.nextInt(100) <= TragicConfig.commonDropRate + (x * 4))
 				{
 					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), true) : EntityDropHelper.getDropFromEntity(this.getClass(), true);
-					if (drop != null) this.entityDropItem(drop, 0.4F);
+					if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 					drops++;
 				}
 
-				if (this.recentlyHit > 0 && rand.nextInt(100) <= TragicConfig.rareDropRate + x)
+				if (flag && rand.nextInt(100) <= TragicConfig.rareDropRate + x)
 				{
 					ItemStack drop = this.isMobVariant() ? EntityDropHelper.getDropFromVariant(this.getClass(), false) : EntityDropHelper.getDropFromEntity(this.getClass(), false);
-					if (drop != null) this.entityDropItem(drop, 0.4F);
+					if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
 					drops++;
 				}
 
@@ -380,7 +361,27 @@ public abstract class TragicMob extends EntityMob
 				id = 13;
 			}
 
-			if (id != 0 && rand.nextInt(100) <= TragicConfig.mobStatueDropChance) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, id), 0.4F);
+			if (id != 0 && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && flag)
+			{
+				this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, id)));
+			}
+		}
+	}
+
+	@Override
+	public void onDeath(DamageSource par1DamageSource)
+	{
+		super.onDeath(par1DamageSource);
+
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) par1DamageSource.getEntity();
+
+			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) 
+			{
+				player.triggerAchievement(TragicAchievements.kill);
+				if (this instanceof TragicMiniBoss) player.triggerAchievement(TragicAchievements.killMiniBoss);
+			}
 		}
 	}
 
@@ -563,15 +564,15 @@ public abstract class TragicMob extends EntityMob
 			return new PotionEffect(effect.getPotionID(), effect.getDuration() * 3 / 4, effect.getAmplifier() / 2 * 3);
 		}
 	}
-	
+
 	@Override
 	public String getCommandSenderName()
-    {
-        String s = this.isMobVariant() ? this.getVariantName() : null;
-        if (s == null) return super.getCommandSenderName();
-        return StatCollector.translateToLocal("entity." + s + ".name");
-    }
-	
+	{
+		String s = this.isMobVariant() ? this.getVariantName() : null;
+		if (s == null) return super.getCommandSenderName();
+		return StatCollector.translateToLocal("entity." + s + ".name");
+	}
+
 	protected String getVariantName()
 	{
 		return EntityList.getEntityString(this);

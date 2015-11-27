@@ -18,6 +18,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -658,12 +659,18 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	{
 		super.onDeath(par1);
 
-		if (this.worldObj.isRemote || !this.getAllowLoot()) return;
-		this.entityDropItem(new ItemStack(TragicItems.SynapseLink, 1, 0), 0.4F);
+		if (this.worldObj.isRemote) return;
 		
 		if (par1.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements && !this.getHypermode())
 		{
 			((EntityPlayerMP) par1.getEntity()).triggerAchievement(TragicAchievements.aegar);
 		}
+	}
+	
+	@Override
+	public void dropFewItems(boolean flag, int l)
+	{
+		super.dropFewItems(flag, l);
+		if (flag) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.SynapseLink)));
 	}
 }

@@ -8,7 +8,7 @@ public class ItemTalisman extends Item {
 	public ItemTalisman()
 	{
 		this.setCreativeTab(TragicMC.Survival);
-		this.setMaxDamage(1000);
+		this.setMaxDamage(200);
 		this.setMaxStackSize(1);
 	}
 }

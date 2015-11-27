@@ -3,6 +3,7 @@ package tragicneko.tragicmc.events;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -19,6 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -41,6 +43,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class MiscEvents {
+
+	public static AttributeModifier synthMod = new AttributeModifier(UUID.fromString("c77b57e3-fbb3-4f31-a26e-3e614c57d7ef"), "synthesisModifier", TragicConfig.modifier[22], 0);
+	public static AttributeModifier hydraMod = new AttributeModifier(UUID.fromString("a0de9d5c-2fa2-4042-8261-f68bec735e56"), "hydrationKnockbackResistanceBuff", TragicConfig.modifier[19], 0);
+	public static AttributeModifier moonMod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicConfig.modifier[21], 0);
+	public static AttributeModifier lightMod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifier[20], 0);
 
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
@@ -225,7 +232,7 @@ public class MiscEvents {
 				if (event.entityLiving.isBurning())
 				{
 					int burn = 5;
-					
+
 					try 
 					{
 						Field f = ReflectionHelper.findField(Entity.class, "fire");
@@ -235,7 +242,7 @@ public class MiscEvents {
 					{
 						TragicMC.logError("Error caused while reflecting for burn potion effect", e);
 					}
-					
+
 					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
 				}
 				else if (event.entityLiving.isPotionActive(TragicPotion.Burned.id))
@@ -248,7 +255,7 @@ public class MiscEvents {
 			int i = 0;
 			if (!TragicConfig.allowNonMobItems) return;
 
-			for (int a = 1; a < 5; a++)
+			for (byte a = 1; a < 5; a++)
 			{
 				if (player.getEquipmentInSlot(a) != null)
 				{
@@ -263,8 +270,48 @@ public class MiscEvents {
 
 			AttributeModifier mod = new AttributeModifier(UUID.fromString("1fc1fb49-44ae-4cc2-a6d2-c3109188c9d2"), "overlordArmorHealthMod", TragicConfig.modifier[24] * i, 0);
 			IAttributeInstance ins = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
-			if (ins != null) ins.removeModifier(mod);
-			if (i > 0 && ins != null) ins.applyModifier(mod);
+
+			if (ins != null)
+			{
+				ins.removeModifier(mod);
+				if (i > 0) ins.applyModifier(mod);
+
+				ins.removeModifier(synthMod);
+				if (player.inventory.hasItem(TragicItems.SynthesisTalisman) && !player.worldObj.isRaining() && !player.worldObj.isThundering())
+				{
+					ins.applyModifier(synthMod);
+				}
+				
+				ins.removeModifier(moonMod);
+				if (player.inventory.hasItem(TragicItems.MoonlightTalisman) && !player.worldObj.isRaining() && !player.worldObj.isThundering() && !player.worldObj.isDaytime())
+				{
+					ins.applyModifier(moonMod);
+				}
+			}
+			
+			ins = player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance);
+			
+			if (ins != null)
+			{
+				ins.removeModifier(hydraMod);
+
+				if (player.inventory.hasItem(TragicItems.HydrationTalisman) && (player.worldObj.isRaining() || player.isInsideOfMaterial(Material.water)))
+				{
+					ins.applyModifier(hydraMod);
+				}
+			}
+			
+			ins = player.getEntityAttribute(SharedMonsterAttributes.attackDamage);
+			
+			if (ins != null)
+			{
+				ins.removeModifier(lightMod);
+				
+				if (player.inventory.hasItem(TragicItems.LightningRodTalisman) && player.worldObj.isThundering())
+				{
+					ins.applyModifier(lightMod);
+				}
+			}
 		}
 	}
 
@@ -292,6 +339,23 @@ public class MiscEvents {
 		{
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc != null) misc.onUpdate();
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerKill(LivingDeathEvent event)
+	{
+		if (event.source.getEntity() instanceof EntityPlayer) // && TragicConfig.allowPets
+		{
+			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.source.getEntity());
+			if (misc != null)
+			{
+				if (misc.getCurrentPet() != null)
+				{
+					misc.getCurrentPet().addExperience(event.entityLiving);
+				}
+			}
+
 		}
 	}
 }

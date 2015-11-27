@@ -45,16 +45,7 @@ public class ItemStatue extends Item {
 	@Override
 	public IIcon getIconFromDamage(int damage)
 	{
-		if (damage < this.iconArray.length) return this.iconArray[damage];
-
-		damage %= this.iconArray.length;
-
-		if (damage >= this.iconArray.length)
-		{
-			damage = this.iconArray.length - 1;
-		}
-
-		return this.iconArray[damage];
+		return damage < this.iconArray.length ? this.iconArray[damage] : this.iconArray[this.iconArray.length - 1];
 	}
 
 	@Override
@@ -69,36 +60,19 @@ public class ItemStatue extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int damage = itemstack.getItemDamage();
-
-		if (damage < subNames.length) return getUnlocalizedName() + "." + subNames[damage];
-
-		int var = damage % subNames.length;
-
-		if (var >= subNames.length)
-		{
-			var = subNames.length - 1;
-		}
-		return getUnlocalizedName() + "." + subNames[var];
+		return damage < subNames.length ? getUnlocalizedName() + "." + subNames[damage] : getUnlocalizedName() + "." + subNames[subNames.length - 1];
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
-		if (stack.getItemDamage() < subNames.length) return s;
-		return s + " " + StatCollector.translateToLocal(this.getExtraStringName(stack.getItemDamage())) + (this.getAnimated(stack) ? StatCollector.translateToLocal("tragicmc.mobTexture.animated") : "");
+		if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("textureID") && !stack.getTagCompound().hasKey("isAnimated")) return s;
+		return s + " " + StatCollector.translateToLocal(this.getExtraStringName(stack)) + (this.getAnimated(stack) ? StatCollector.translateToLocal("tragicmc.mobTexture.animated") : "");
 	}
 
-	private String getExtraStringName(int damage) {
-		int var = 0;
-
-		for (int i = 1; i < 18; i++)
-		{
-			if (damage >= subNames.length * i && damage < (i * subNames.length) + subNames.length)
-			{
-				var = i;
-			}
-		}
+	private String getExtraStringName(ItemStack stack) {
+		int var = getTextureIDFromStack(stack);
 
 		switch(var)
 		{
@@ -137,20 +111,19 @@ public class ItemStatue extends Item {
 		}
 	}
 
-	private byte getTextureIDFromDamage(int damage)
+	private int getTextureIDFromStack(ItemStack stack)
 	{
-		for (byte i = 1; i < 18; i++)
-		{
-			if (damage >= subNames.length * i && damage < (i * subNames.length) + subNames.length) return i;
-		}
-
-		return 0;
+		return stack.hasTagCompound() && stack.getTagCompound().hasKey("textureID") ? stack.getTagCompound().getInteger("textureID") : 0;
 	}
 
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
 	{
 		par2List.add(EnumChatFormatting.GOLD + "It's a statue of a mob!");
+		par2List.add("");
+		par2List.add("Can be animated with a Synapse Crystal.");
+		par2List.add("Can have it's texture changed with various blocks/items.");
+		par2List.add("Can reset it's texture with Blaze Powder.");
 	}
 
 	@Override
@@ -201,7 +174,7 @@ public class ItemStatue extends Item {
 			statue.setRotation(rotation);
 			if (!world.getCollidingBoundingBoxes(statue, statue.boundingBox).isEmpty() || world.isAnyLiquid(statue.boundingBox)) return stack;
 			statue.setMobID(stack.getItemDamage() % subNames.length);
-			statue.setTextureID(this.getTextureIDFromDamage(stack.getItemDamage()));
+			statue.setTextureID(this.getTextureIDFromStack(stack));
 			statue.setAnimated(this.getAnimated(stack));
 			world.spawnEntityInWorld(statue);
 			if (!player.capabilities.isCreativeMode) stack.stackSize--;

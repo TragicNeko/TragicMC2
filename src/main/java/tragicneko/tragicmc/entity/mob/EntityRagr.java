@@ -158,7 +158,7 @@ public class EntityRagr extends TragicMob {
 			this.incrementAngerTicks();
 			if (this.isCorrupted()) this.incrementAngerTicks();
 
-			if (this.onGround && this.rand.nextInt(16) == 0)
+			if (this.onGround && this.rand.nextInt(8) == 0)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().posZ - this.posZ;
@@ -302,7 +302,8 @@ public class EntityRagr extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return this.isBurning() && this.getRagrType() == 0 ? 0 : (this.getRagrType() == 0 ? (int) ragrStats[5] : (int) pyragrStats[5]);
+		return this.isBurning() ? 0 : (int) ragrStats[5];
+		//return this.isBurning() && this.getRagrType() == 0 ? 0 : (this.getRagrType() == 0 ? (int) ragrStats[5] : (int) pyragrStats[5]);
 	}
 
 	@Override
@@ -462,7 +463,7 @@ public class EntityRagr extends TragicMob {
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords((int) this.posX, (int) this.posZ);
-		this.setRagrType(biome.temperature > 0.5F ? (byte) 1 : 0);
+		//this.setRagrType(biome.temperature > 0.5F ? (byte) 1 : 0);
 		return super.onSpawnWithEgg(data);
 	}
 }

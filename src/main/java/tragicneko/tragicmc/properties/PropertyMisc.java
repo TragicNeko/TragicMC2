@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import tragicneko.tragicmc.TragicPotion;
+import tragicneko.tragicmc.entity.EntityPet;
 
 public class PropertyMisc implements IExtendedEntityProperties {
 
@@ -22,6 +22,11 @@ public class PropertyMisc implements IExtendedEntityProperties {
 	 * For recovering from being Corrupted
 	 */
 	public int recoveryTime;
+	
+	public EntityPet currentPet = null;
+	
+	private boolean hasBeenGeared = false;
+	private boolean hasBeenBuffed = false;
 
 	public PropertyMisc(EntityLivingBase ent)
 	{
@@ -43,6 +48,8 @@ public class PropertyMisc implements IExtendedEntityProperties {
 		NBTTagCompound tag = new NBTTagCompound();
 		tag.setInteger("bleedOut", this.bleedOutTime);
 		tag.setInteger("recoveryTime", this.recoveryTime);
+		tag.setBoolean("hasBeenGeared", this.hasBeenGeared);
+		tag.setBoolean("hasBeenBuffed", this.hasBeenBuffed);
 		compound.setTag(PropertyMisc.propertyName, tag);
 	}
 
@@ -54,6 +61,8 @@ public class PropertyMisc implements IExtendedEntityProperties {
 		{
 			this.bleedOutTime = tag.getInteger("bleedOut");
 			this.recoveryTime = tag.getInteger("recoveryTime");
+			this.hasBeenGeared = tag.getBoolean("hasBeenGeared");
+			this.hasBeenBuffed = tag.getBoolean("hasBeenBuffed");
 		}
 	}
 
@@ -74,5 +83,35 @@ public class PropertyMisc implements IExtendedEntityProperties {
 			if (this.bleedOutTime < 1200) this.bleedOutTime++; 
 		}
 		else this.bleedOutTime = 0; */
+		
+		if (this.getCurrentPet() != null && this.theEntity instanceof EntityPlayer) this.getCurrentPet().owner = (EntityPlayer) this.theEntity;
+	}
+	
+	/**
+	 * Returns the current "active" pet, may be null
+	 * @return
+	 */
+	public EntityPet getCurrentPet() {
+		return this.currentPet;
+	}
+	
+	public void setCurrentPet(EntityPet pet) {
+		this.currentPet = pet;
+	}
+	
+	public boolean hasBeenGeared() {
+		return this.hasBeenGeared;
+	}
+	
+	public void setGeared() {
+		this.hasBeenGeared = true;
+	}
+	
+	public boolean hasBeenBuffed() {
+		return this.hasBeenBuffed;
+	}
+	
+	public void setBuffed() {
+		this.hasBeenBuffed = true;
 	}
 }

@@ -371,7 +371,7 @@ public class TragicChunkProvider implements IChunkProvider
 			new WorldGenMinable(TragicBlocks.DeadDirt, 2, 8, DarkStone).generate(this.worldObj, this.rand, k1, l1, i2);
 		}
 
-		if (this.rand.nextInt(4) == 0)
+		if (this.rand.nextInt(4) == 0 && biomegenbase.getTempCategory() != BiomeGenBase.TempCategory.COLD)
 		{
 			k1 = k + this.rand.nextInt(16) + 8;
 			l1 = this.rand.nextInt(256);

@@ -15,13 +15,15 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class CommonProxy implements IGuiHandler {
+	
+	public static final int AMULET_GUI_ID = 0;
 
 	public void registerRenders(){}
 
 	@Override
 	public Object getServerGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (guiId == TragicMC.idAmuletGui)
+		if (guiId == AMULET_GUI_ID && PropertyAmulets.get(player) != null)
 		{
 			return new ContainerAmulet(player, player.inventory, PropertyAmulets.get(player).inventory);
 		}
@@ -31,7 +33,7 @@ public class CommonProxy implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (guiId == TragicMC.idAmuletGui)
+		if (guiId == AMULET_GUI_ID && PropertyAmulets.get(player) != null)
 		{
 			return new GuiAmuletInventory(player, player.inventory, PropertyAmulets.get(player).inventory);
 		}

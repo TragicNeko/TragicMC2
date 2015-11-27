@@ -177,9 +177,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
 
-	//public static final String[] multicolors = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "lightGray", "darkGray", "pink", "lime", "yellow", "lightBlue",
-	//	"magenta", "orange", "white"};
-
 	//public static final String moddir = "tragicmc:";
 
 	public static KeyBinding useSpecial = new KeyBinding("Special Use", Keyboard.KEY_R, TragicMC.MODNAME);

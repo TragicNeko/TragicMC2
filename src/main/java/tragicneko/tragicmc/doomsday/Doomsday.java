@@ -7,6 +7,7 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -147,7 +148,7 @@ public abstract class Doomsday {
 
 		if (dif == EnumDifficulty.EASY)
 		{
-			return reqDoom / 2;
+			return MathHelper.ceiling_double_int((double) reqDoom / 2);
 		}
 
 		if (dif == EnumDifficulty.HARD)
@@ -155,7 +156,7 @@ public abstract class Doomsday {
 			return reqDoom;
 		}
 
-		return reqDoom * 2 / 3;
+		return MathHelper.ceiling_double_int((double)reqDoom * 2.0 / 3.0);
 	}
 
 	public int getScaledDoomRequirement(World world)

@@ -97,7 +97,7 @@ public class ItemDimensionalKey extends Item {
 	{
 		int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
-		if (!TragicConfig.allowDimension && this.targetDimension > 2)
+		if (!TragicConfig.allowDimension && (this.targetDimension == TragicConfig.collisionID || this.targetDimension == TragicConfig.synapseID))
 		{
 			par3EntityPlayer.addChatMessage(new ChatComponentText("TragicMC Dimensions are disabled, enable in config."));
 			return;

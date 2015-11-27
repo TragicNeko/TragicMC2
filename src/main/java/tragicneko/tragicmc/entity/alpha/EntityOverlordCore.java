@@ -3,7 +3,6 @@ package tragicneko.tragicmc.entity.alpha;
 import static tragicneko.tragicmc.TragicConfig.overlordCoreStats;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -58,7 +58,7 @@ public class EntityOverlordCore extends TragicBoss {
 	public EntityOverlordCore(World par1World) {
 		super(par1World);
 		this.setSize(4.2F, 3.8F);
-		this.targetY = 50.0D;
+		this.targetY = 50.0;
 		this.noClip = true;
 		this.ignoreFrustumCheck = true;
 		this.experienceValue = 100;
@@ -476,14 +476,14 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 		else
 		{
-			this.targetX = this.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
-			this.targetY = (this.worldObj.getActualHeight() / 4) + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F);
-			this.targetZ = this.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 32.0F;
+			this.targetX = this.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+			this.targetY = (this.worldObj.getActualHeight() / 4) + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+			this.targetZ = this.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
 		}
 
 		if (this.courseChangeCooldown-- <= 0)
 		{
-			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
+			this.courseChangeCooldown += this.rand.nextInt(5) + 3;
 			d3 = MathHelper.sqrt_double(d3);
 			double d5 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
 
@@ -850,9 +850,6 @@ public class EntityOverlordCore extends TragicBoss {
 		}
 
 		super.onDeath(par1DamageSource);
-
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 17), 0.4F);
-		if (!this.worldObj.isRemote && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.Sentinel), 0.4F);
 		
 		if (par1DamageSource.getEntity() instanceof EntityPlayerMP) ((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.overlord4);
 		List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.boundingBox.expand(24.0, 24.0, 24.0));
@@ -863,6 +860,15 @@ public class EntityOverlordCore extends TragicBoss {
 				mp.triggerAchievement(TragicAchievements.overlord4);
 			}
 		}
+	}
+	
+	@Override
+	protected void dropFewItems(boolean flag, int l)
+	{
+		super.dropFewItems(flag, l);
+		
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 17)));
+		if (!this.worldObj.isRemote && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.Sentinel)));
 	}
 
 	public void setStartTransform()

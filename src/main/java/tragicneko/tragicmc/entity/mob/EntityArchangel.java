@@ -147,7 +147,7 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (this.worldObj.isRemote) par1Entity.setFire(4 + rand.nextInt(4));
+		if (!this.worldObj.isRemote) par1Entity.setFire(4 + rand.nextInt(4));
 		return super.attackEntityAsMob(par1Entity);
 	}
 

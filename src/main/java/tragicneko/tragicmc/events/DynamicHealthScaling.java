@@ -15,6 +15,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.miniboss.TragicMiniBoss;
 import tragicneko.tragicmc.entity.mob.TragicMob;
+import tragicneko.tragicmc.properties.PropertyMisc;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -27,7 +28,12 @@ public class DynamicHealthScaling {
 	@SubscribeEvent
 	public void onJoinWorld(EntityJoinWorldEvent event)
 	{
-		if (!TragicConfig.allowDynamicHealthScaling) return;
+		if (!TragicConfig.allowDynamicHealthScaling || !(event.entity instanceof EntityLivingBase)) return;
+		
+		PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
+		if (misc == null || misc.hasBeenBuffed()) return;
+		
+		misc.setBuffed(); //to prevent them from being rebuffed and regenerating health
 
 		if (event.entity.worldObj.difficultySetting == EnumDifficulty.EASY)
 		{

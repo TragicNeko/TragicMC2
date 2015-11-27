@@ -56,7 +56,7 @@ public class SchematicHackerNet extends Schematic {
 				int yr = y + rand.nextInt(14) - rand.nextInt(14);
 				int zr = z + rand.nextInt(14) - rand.nextInt(14);
 				world.setBlock(xr, yr, zr, Blocks.chest, 0, 2);
-				this.applyChestContents(world, rand, xr, yr, zr, TragicItems.AwesomeChestHook);
+				this.applyChestContents(world, rand, xr, yr, zr, TragicItems.NetherStructureHook);
 			}
 		}
 		return true;

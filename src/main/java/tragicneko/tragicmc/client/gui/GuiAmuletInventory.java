@@ -1,5 +1,7 @@
 package tragicneko.tragicmc.client.gui;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -33,7 +35,7 @@ public class GuiAmuletInventory extends GuiContainer
 	@Override
 	protected void keyTyped(char c, int keyCode) {
 		super.keyTyped(c, keyCode);
-		if (c == 1 || keyCode == ClientProxy.openAmuletGui.getKeyCode()) {
+		if (keyCode == Keyboard.KEY_ESCAPE || keyCode == Keyboard.KEY_E || keyCode == ClientProxy.openAmuletGui.getKeyCode()) {
 			mc.thePlayer.closeScreen();
 		}
 	}

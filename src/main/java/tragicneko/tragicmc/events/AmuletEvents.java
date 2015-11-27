@@ -644,7 +644,7 @@ public class AmuletEvents {
 			inv.markDirty();
 		}
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving)
+		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.allowAmuletModifiers)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
 			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
@@ -653,14 +653,14 @@ public class AmuletEvents {
 			{
 				Method m = EntityLiving.class.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
 				m.setAccessible(true);
-				int j = (Integer) m.invoke(event.entityLiving, mp);
+				int j = (Integer) m.invoke((EntityLiving) event.entityLiving, mp);
 				j *= d0;
 
 				while (j > 0)
 				{
 					int k = EntityXPOrb.getXPSplit(j);
 					j -= k;
-					mp.worldObj.spawnEntityInWorld(new EntityXPOrb(mp.worldObj, event.entity.posX, event.entity.posY, event.entity.posZ, k));
+					mp.worldObj.spawnEntityInWorld(new EntityXPOrb(mp.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, k));
 				}
 			}
 			catch (Exception e)

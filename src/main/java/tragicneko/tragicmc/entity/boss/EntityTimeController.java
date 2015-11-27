@@ -493,7 +493,7 @@ public class EntityTimeController extends TragicBoss {
 
 						entity.motionX = -d1 / f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
 						entity.motionZ = -d2 / f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
-						entity.motionY = -d3 / f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
+						entity.motionY = -d3 / f2 * d4 * 0.100000011920929D + entity.motionY * 0.30000000298023224D;
 						entity.moveEntity(entity.motionX, entity.motionY, entity.motionZ);
 					}
 				}
@@ -507,7 +507,7 @@ public class EntityTimeController extends TragicBoss {
 
 					entity.motionX = -d1 / f2 * d4 * 0.200000011920929D + entity.motionX * 0.30000000298023224D;
 					entity.motionZ = -d2 / f2 * d4 * 0.200000011920929D + entity.motionZ * 0.30000000298023224D;
-					entity.motionY = -d3 / f2 * d4 * 0.100000011920929D + entity.motionZ * 0.30000000298023224D;
+					entity.motionY = -d3 / f2 * d4 * 0.100000011920929D + entity.motionY * 0.30000000298023224D;
 				}
 			}
 		}

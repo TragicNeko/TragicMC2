@@ -27,9 +27,9 @@ public class DoomsdayFreeze extends Doomsday {
 		{
 			for (int i = 0; i < list.size(); i++)
 			{
-				if (list.get(i) instanceof EntityLivingBase && rand.nextInt(4) == 0)
+				if (list.get(i) instanceof EntityLivingBase)
 				{
-					EntityLivingBase entity = (EntityLivingBase) effect.utilityList.get(i);
+					EntityLivingBase entity = (EntityLivingBase) list.get(i);
 					if (entity instanceof EntityPlayer && !TragicConfig.allowPvP) continue;
 					entity.motionX = 0;
 					entity.motionY = 0;

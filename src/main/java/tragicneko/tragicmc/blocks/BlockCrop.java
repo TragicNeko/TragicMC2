@@ -87,7 +87,7 @@ public class BlockCrop extends BlockReed implements IGrowable {
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
 	{
-		return this == TragicBlocks.Deathglow ? TragicItems.NastyFruit : TragicItems.ExoticFruit;
+		return this == TragicBlocks.Deathglow ? TragicItems.Deathglow : TragicItems.Honeydrop;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -105,7 +105,8 @@ public class BlockCrop extends BlockReed implements IGrowable {
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune)
 	{
-		return meta < 8 ? null : (this == TragicBlocks.Deathglow ? TragicItems.NastyFruit : TragicItems.ExoticFruit);
+		boolean flag = this == TragicBlocks.Deathglow;
+		return meta < 8 ? (flag ? TragicItems.DeathglowSeeds : TragicItems.HoneydropSeeds) : (flag ? TragicItems.Deathglow : TragicItems.Honeydrop);
 	}
 
 	@Override

@@ -43,7 +43,7 @@ public class MessageHandlerUseDoomsday implements IMessageHandler<MessageUseDoom
 			}
 			else if (stack.getItem() instanceof TragicTool)
 			{
-				doomsday = ((ItemScythe)stack.getItem()).getDoomsday();
+				doomsday = ((TragicTool)stack.getItem()).getDoomsday();
 			}
 		}
 		else

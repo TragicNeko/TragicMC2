@@ -352,7 +352,7 @@ public class EnchantmentEvents {
 
 						if (food + leech <= 20)
 						{
-							player.getFoodStats().setFoodLevel(food + leech);
+							player.getFoodStats().addStats(leech, 1.0F);
 						}
 
 						if (event.entityLiving instanceof EntityPlayer)
