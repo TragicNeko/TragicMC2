@@ -1175,7 +1175,7 @@ public class TragicItems {
 			DimensionalKeySynapse = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.dimensionalKey.synapse").setMaxStackSize(1).setCreativeTab(TragicMC.Creative).setTextureName("tragicmc:DimensionalKeySynapse"));
 			GameRegistry.registerItem(DimensionalKeySynapse, "dimensionalKeySynapse");
 
-			SynapseLink = (new ItemDimensionalKey(3).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(10).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseLink"));
+			SynapseLink = (new ItemDimensionalKey(TragicConfig.synapseID).setUnlocalizedName("tragicmc.synapseLink").setMaxStackSize(1).setMaxDamage(5).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:SynapseLink"));
 			GameRegistry.registerItem(SynapseLink, "synapseLink");
 		}
 
