@@ -4407,6 +4407,7 @@ Fixed java math syntax for the Kurayami's summoning
 Fixed typo in network message for non-Scythe tools
 Fixed bug with Freeze (missed one instance of list that it uses), but also improved it's effects by making it apply to all possible entities around it
 Reduced durability of Synapse Link to 5, it can only be used 5 times now to go to and from the Synapse
+Somewhat reduced sound volume of some of the more harsh mob sounds
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
