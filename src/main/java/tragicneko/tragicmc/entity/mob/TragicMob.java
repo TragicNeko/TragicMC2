@@ -1,5 +1,6 @@
 package tragicneko.tragicmc.entity.mob;
 
+import java.util.Calendar;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -576,5 +577,17 @@ public abstract class TragicMob extends EntityMob
 	protected String getVariantName()
 	{
 		return EntityList.getEntityString(this);
+	}
+	
+	public boolean isHalloween()
+	{
+		Calendar calendar = this.worldObj.getCurrentDate();
+
+		if ((calendar.get(2) + 1 == 10 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 11 || calendar.get(5) < 3))
+		{
+			return true;
+		}
+
+		return false;
 	}
 }

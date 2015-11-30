@@ -85,6 +85,8 @@ public class DynamicHealthScaling {
 	{
 		if (event.entityLiving instanceof TragicBoss || event.entityLiving instanceof TragicMiniBoss)
 		{
+			if (event.entityLiving instanceof TragicBoss && ((TragicBoss) event.entityLiving).isHalloween()) return;
+			if (event.entityLiving instanceof TragicMob && ((TragicMob) event.entityLiving).isHalloween()) return;
 			event.maxPackSize = 1;
 			event.setResult(Result.ALLOW);
 		}

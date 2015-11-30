@@ -1,6 +1,7 @@
 package tragicneko.tragicmc.entity.boss;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
@@ -278,5 +279,17 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 			--posY;
 		}
 		return posY;
+	}
+	
+	public boolean isHalloween()
+	{
+		Calendar calendar = this.worldObj.getCurrentDate();
+
+		if ((calendar.get(2) + 1 == 10 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 11 || calendar.get(5) < 3))
+		{
+			return true;
+		}
+
+		return false;
 	}
 }
