@@ -371,7 +371,7 @@ public class EntityInkling extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.6F;
+		return 0.4F;
 	}
 
 	@Override

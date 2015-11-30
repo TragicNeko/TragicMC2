@@ -178,7 +178,7 @@ public class EntityNanoSwarm extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.4F;
+		return 0.2F;
 	}
 
 	@Override

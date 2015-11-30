@@ -275,8 +275,8 @@ public class EntityArchangel extends TragicMob {
 
 			if (this.getHoverTicks() % 15 == 0 && TragicConfig.allowMobSounds)
 			{
-				this.playSound("tragicmc:mob.archangel.low", 0.6F, 1.0F);
-				if (this.getAttackTarget() != null) this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.archangel.low", 0.6F, 1.0F);
+				this.playSound("tragicmc:mob.archangel.low", 0.4F, 1.0F);
+				if (this.getAttackTarget() != null) this.worldObj.playSoundAtEntity(this.getAttackTarget(), "tragicmc:mob.archangel.low", 0.4F, 1.0F);
 			}
 
 			if (this.getAttackTarget() == null || this.getAttackTarget().isDead || !this.canEntityBeSeen(this.getAttackTarget())) this.setHoverTicks(0);
@@ -451,7 +451,7 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.6F + rand.nextFloat() * 0.2F;
+		return 0.4F;
 	}
 
 	@Override
