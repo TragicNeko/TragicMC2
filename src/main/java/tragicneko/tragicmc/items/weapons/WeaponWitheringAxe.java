@@ -48,7 +48,7 @@ public class WeaponWitheringAxe extends TragicWeapon {
 		if (doom != null && !par2World.isRemote && getStackCooldown(par1ItemStack) == 0)
 		{
 			double d4 = vec.xCoord - par3EntityPlayer.posX;
-			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.height / 2.0F);
+			double d5 = vec.yCoord - (par3EntityPlayer.posY + par3EntityPlayer.getEyeHeight());
 			double d6 = vec.zCoord - par3EntityPlayer.posZ;
 
 			if (!par3EntityPlayer.isSneaking())
