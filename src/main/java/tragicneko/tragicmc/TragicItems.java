@@ -672,11 +672,15 @@ public class TragicItems {
 			@Override
 			public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
 			{
-				if (!world.isRemote && par5 && entity instanceof EntityPlayer && TragicConfig.allowFlight)
+				if (par5 && entity instanceof EntityPlayer && TragicConfig.allowFlight)
 				{
-					if (!entity.onGround && entity.ticksExisted % 20 == 0) itemstack.damageItem(1, (EntityPlayer) entity);
-					entity.fallDistance = 0F;
-					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 5));
+					if (itemstack.getItemDamage() < itemstack.getMaxDamage() && itemstack.stackSize > 0)
+					{
+						if (!entity.onGround && entity.ticksExisted % 20 == 0) itemstack.damageItem(1, (EntityPlayer) entity);
+
+						entity.fallDistance = 0F;
+						if (!world.isRemote) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 5));
+					}
 				}
 			}
 		}.setUnlocalizedName("tragicmc.wingsOfLiberation").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:WingsOfLiberation").setMaxDamage(500));
@@ -879,9 +883,12 @@ public class TragicItems {
 
 				if (!world.isRaining())
 				{
-					world.rainingStrength = 1.0F;
-					stack.damageItem(5, (EntityPlayer) entity);
-					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+					if (stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
+					{
+						world.rainingStrength = 1.0F;
+						stack.damageItem(5, (EntityPlayer) entity);
+						if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
+					}
 				}
 			}
 		}.setUnlocalizedName("tragicmc.rainDanceTalisman").setTextureName("tragicmc:RainDanceTalisman"));
@@ -894,14 +901,14 @@ public class TragicItems {
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-				if (world.isThundering())
+				if (world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					stack.damageItem(5, (EntityPlayer) entity);
 					world.thunderingStrength = 0.0F;
 					if (entity instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) entity).triggerAchievement(TragicAchievements.talismanSpecial);
 				}
 
-				if (world.isRaining()) 
+				if (world.isRaining() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0) 
 				{
 					stack.damageItem(5, (EntityPlayer) entity);
 					world.rainingStrength = 0.0F;
@@ -918,7 +925,7 @@ public class TragicItems {
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer)) return;
 
-				if (!world.isThundering())
+				if (!world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					world.thunderingStrength = 1.0F;
 					stack.damageItem(5, (EntityPlayer) entity);
@@ -934,7 +941,7 @@ public class TragicItems {
 			public void onUpdate(ItemStack stack, World world, Entity entity, int numb, boolean flag)
 			{
 				if (world.isRemote || !(entity instanceof EntityPlayer) || !TragicConfig.allowItemTimeAltering) return;
-
+				if (stack.getItemDamage() >= stack.getMaxDamage() || stack.stackSize <= 0) return;
 				int a = flag ? -5 : 5;
 				world.setWorldTime(world.getWorldTime() + a);
 				stack.damageItem(1, (EntityPlayer) entity);
@@ -951,7 +958,7 @@ public class TragicItems {
 
 				EntityPlayer player = (EntityPlayer) entity;
 
-				if (!world.isDaytime() && !world.isRaining() && !world.isThundering())
+				if (!world.isDaytime() && !world.isRaining() && !world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
 					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
@@ -968,7 +975,7 @@ public class TragicItems {
 
 				EntityPlayer player = (EntityPlayer) entity;
 
-				if (world.isDaytime() && !world.isRaining() && !world.isThundering())
+				if (world.isDaytime() && !world.isRaining() && !world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
 					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
@@ -985,7 +992,7 @@ public class TragicItems {
 
 				EntityPlayer player = (EntityPlayer) entity;
 
-				if (world.isRaining() || player.isInsideOfMaterial(Material.water))
+				if ((world.isRaining() || player.isInsideOfMaterial(Material.water)) && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
 					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
@@ -1002,11 +1009,13 @@ public class TragicItems {
 
 				EntityPlayer player = (EntityPlayer) entity;
 
-				if (world.isThundering())
+				if (world.isThundering() && stack.getItemDamage() < stack.getMaxDamage() && stack.stackSize > 0)
 				{
 					if (player.ticksExisted % 200 == 0) stack.damageItem(1, player);
 					if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) player.triggerAchievement(TragicAchievements.talismanSpecial);
 				}
+
+				player.inventory.markDirty();
 			}
 		}.setUnlocalizedName("tragicmc.lightningRodTalisman").setTextureName("tragicmc:LightningRodTalisman"));
 		GameRegistry.registerItem(LightningRodTalisman, "lightningRodTalisman");
