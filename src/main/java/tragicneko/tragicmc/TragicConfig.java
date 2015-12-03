@@ -3523,6 +3523,141 @@ public class TragicConfig {
 		
 		prop = config.get(cat.getName(), "pumpkinheadPumpkinbombs", true);
 		prop.comment = "Should Pumpkinheads fire Pumpkinbombs when they are low on health and have a Home Pumpkin?";
+		
+		prop = config.get(cat.getName(), "tragicNekoRockets", true);
+		prop.comment = "Should Tragic Nekos fire rockets at people's faces?";
+		
+		prop = config.get(cat.getName(), "tragicNekoStickyBombs", true);
+		prop.comment = "Should Tragic Nekos throw Sticky Bombs into people's faces?";
+		
+		prop = config.get(cat.getName(), "tragicNekoClusterBomb", true);
+		prop.comment = "Should Tragic Nekos throw Cluster Bombs at people's faces?";
+		
+		prop = config.get(cat.getName(), "tragicNekoDeathBomb", true);
+		prop.comment = "Should Tragic Nekos have a chance to drop various bombs on death?";
+		
+		prop = config.get(cat.getName(), "tragicNekoCelebration", true);
+		prop.comment = "Should Tragic Nekos celebrate their birthday?";
+		
+		prop = config.get(cat.getName(), "toxProjectiles", true);
+		prop.comment = "Should the Tox species fire projectiles? (They still attack on contact)";
+		
+		prop = config.get(cat.getName(), "cryseReflection", true);
+		prop.comment = "Should the Cryse species reflect damage?";
+		
+		prop = config.get(cat.getName(), "norVoxProjectiles" ,true);
+		prop.comment = "Should the Nor-Vox species fire projectiles?";
+		
+		prop = config.get(cat.getName(), "norVoxHealthRegen", true);
+		prop.comment = "Should the Nor-Vox species regenerate health naturally?";
+		
+		prop = config.get(cat.getName(), "pirahGolden", true);
+		prop.comment = "Should Pirah be randomly spawned as a Golden stronger version?";
+		
+		prop = config.get(cat.getName(), "stinTeleport", true);
+		prop.comment = "Should the Stin species randomly teleport you away when you attack them?";
+		
+		prop = config.get(cat.getName(), "stinWaterDamage", true);
+		prop.comment = "Should the Stin species take damage when wet?";
+		
+		prop = config.get(cat.getName(), "abominationHelpCall", true);
+		prop.comment = "Should Abominations call for help when they are attacked?";
+		
+		prop = config.get(cat.getName(), "erkelMushroomSpawning", true);
+		prop.comment = "Should Erkels randomly place Mushrooms?";
+		
+		prop = config.get(cat.getName(), "sirvHelpCall", true);
+		prop.comment = "Should Sirvs call for help when they are attacked?";
+		
+		prop = config.get(cat.getName(), "psygoteSwapTeleport", true);
+		prop.comment = "Should Psygotes attempt to swap places with their attacker to confuse them?";
+		
+		prop = config.get(cat.getName(), "psygoteProjectiles", true);
+		prop.comment = "Should Psygotes fire Dark Mortors at their attacker?";
+		
+		prop = config.get(cat.getName(), "psygoteRegeneration", true);
+		prop.comment = "Should Psygotes regenerate health naturally?";
+		
+		prop = config.get(cat.getName(), "lockbotLockdown", true);
+		prop.comment = "Should Lockbots lock down their target?";
+		
+		prop = config.get(cat.getName(), "harvesterBuffDebuffEntities", true);
+		prop.comment = "Should Harvesters buff Synapse mobs and debuff everything else?";
+		
+		prop = config.get(cat.getName(), "seekerKillbeam", true);
+		prop.comment = "Should Seekers kill you with their gaze?";
+		
+		prop = config.get(cat.getName(), "archangelHolybeam", true);
+		prop.comment = "Should Archangels kill you with their Holy Beam of death?";
+		
+		prop = config.get(cat.getName(), "ireEnergyBurst", true);
+		prop.comment = "Should Ires shoot an Ire Energy burst at their target?";
+		
+		prop = config.get(cat.getName(), "fuseaExplosiveDamage", true);
+		prop.comment = "Should the Fusea species explode when they take damage?";
+		
+		prop = config.get(cat.getName(), "fuseaExplosiveAttack", true);
+		prop.comment = "Should the Fusea species explode when they attack something?";
+		
+		prop = config.get(cat.getName(), "fuseaExplosiveLayers", true);
+		prop.comment = "Should the Fusea species only take damage when they explode?";
+		
+		prop = config.get(cat.getName(), "ranmasCharge", true);
+		prop.comment = "Should Ranmas hurl themselves at you?";
+		
+		prop = config.get(cat.getName(), "ranmasImpactExplosions", true);
+		prop.comment = "Should Ranmas create explosions if they impact something at high enough velocity";
+		
+		prop = config.get(cat.getName(), "parasmiteLeech", true);
+		prop.comment = "Should Parasmites attempt to latch onto entities to simultaneously buff and hurt them?";
+		
+		prop = config.get(cat.getName(), "avrisAnnouncements", true);
+		prop.comment = "Should Avris' announce when they spawn and when they despawn?";
+		
+		prop = config.get(cat.getName(), "avrisDespawnTime", true);
+		prop.comment = "Should Avris despawn after a preset amount of time and not despawn naturally?";
+		
+		prop = config.get(cat.getName(), "kragulSpiritCasts", true);
+		prop.comment = "Should Kraguls fire Spirit Casts at their target?";
+		
+		prop = config.get(cat.getName(), "magmoxLargeFireballs", true);
+		prop.comment = "Should Magmox fire Large Fireballs in addition to the smaller projectiles at their target?";
+		
+		prop = config.get(cat.getName(), "megaCryseShields", true);
+		prop.comment = "Should Mega Cryse have shields that block all damage (except Magic)?";
+		
+		prop = config.get(cat.getName(), "greaterStinCharge", true);
+		prop.comment = "Should Greater Stins charge towards their targets?";
+		
+		prop = config.get(cat.getName(), "stinKingMortors", true);
+		prop.comment = "Should Stin Kings fire Dark Mortors at their target?";
+		
+		prop = config.get(cat.getName(), "stinQueenWebBombs", true);
+		prop.comment = "Should Stin Queens fire Web Bombs at their target?";
+		
+		prop = config.get(cat.getName(), "stinQueenBabies", true);
+		prop.comment = "Should Stin Queens spawn in babies to attack their target?";
+		
+		prop = config.get(cat.getName(), "stinQueenWebs", true);
+		prop.comment = "Should Stin Queens trap attackers in webs?";
+		
+		prop = config.get(cat.getName(), "voxStellarumSpinAttack", true);
+		prop.comment = "Should Vox Stellarums do a spinning attack?";
+		
+		prop = config.get(cat.getName(), "voxStellarumHealing", true);
+		prop.comment = "Should Vox Stellarums go into a healing phase to regenerate their health quickly?";
+		
+		prop = config.get(cat.getName(), "aegarShockwave", true);
+		prop.comment = "Should Aegars do a ground shockwave attack?";
+		
+		prop = config.get(cat.getName(), "aegarLasers", true);
+		prop.comment = "Should Aegars fire a laser at their target?";
+		
+		prop = config.get(cat.getName(), "aegarMortors", true);
+		prop.comment = "Should Aegars fire Crystal Mortors at their target?";
+		
+		prop = config.get(cat.getName(), "volatileFuseaElementalChange", true);
+		prop.comment = "Should Volatile Fuseas change elements based on their surroundings? (they gain projectile attacks from this)";
 
 		cat = config.getCategory(CAT_MODIFIERS);
 		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");
