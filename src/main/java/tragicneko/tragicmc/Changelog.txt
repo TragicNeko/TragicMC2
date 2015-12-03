@@ -4410,6 +4410,14 @@ Reduced durability of Synapse Link to 5, it can only be used 5 times now to go t
 Somewhat reduced sound volume of some of the more harsh mob sounds
 Added utility method for getting if it is Halloween (around it anyway)
 Bosses and Mini-Bosses are no longer restricted to 1 per spawn event during Halloween, the game may now spawn multiple for them
+Some minor changes to blocks to hopefully fix some small generation bugs
+Some minor changes to the Wings of Liberation so that it's not able to be used after it's durability runs out (even though it should be broken)
+Minor fix to projectile aiming for mobs to account for players having a negative motion when on the ground (which is a stupid bug)
+
+I'm going to do this next release on 1.7.10 with the focus on bugfixes and finalizing features, as well as the config rewrite from a couple months ago and
+the new config options I'm adding now
+After I finish that I'm gonna work on porting the mod to 1.8.8, when that's done and it's stable (and all of the json block files are done) I'm going to work
+on the first expansion's content
 
 Expansion updates:
 Added Pyragr, the fire variant of the Ragr
