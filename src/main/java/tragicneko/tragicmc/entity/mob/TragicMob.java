@@ -508,7 +508,7 @@ public abstract class TragicMob extends EntityMob
 		if (this.worldObj.difficultySetting.getDifficultyId() > 2)
 		{
 			d0 += target.motionX * dist / mf;
-			d1 += target.motionY * dist / mf;
+			d1 += (target.motionY + 0.09) * dist / mf; //with a small adjustment for a player on the ground, which has a motion value of about -0.1
 			d2 += target.motionZ * dist / mf;
 		}
 

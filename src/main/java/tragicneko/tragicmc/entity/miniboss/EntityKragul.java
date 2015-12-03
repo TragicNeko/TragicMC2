@@ -92,7 +92,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 			}
 		}
 
-		if (this.getAttackTarget() != null && this.ticksExisted % 40 == 0 && rand.nextInt(16) == 0) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
+		if (this.getAttackTarget() != null && this.ticksExisted % 40 == 0 && rand.nextInt(16) == 0 && this.canEntityBeSeen(this.getAttackTarget())) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.LeadFoot.id, 120));
 	}
 
 	@Override
