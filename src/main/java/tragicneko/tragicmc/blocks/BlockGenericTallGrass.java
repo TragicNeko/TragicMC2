@@ -74,4 +74,10 @@ public class BlockGenericTallGrass extends BlockTallGrass {
 	{
 		return -1;
 	}
+	
+	@Override
+	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z)
+	{
+		return true;
+	}
 }

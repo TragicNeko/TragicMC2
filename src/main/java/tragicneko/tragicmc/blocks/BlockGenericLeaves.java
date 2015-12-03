@@ -140,4 +140,10 @@ public class BlockGenericLeaves extends BlockLeaves {
 			this.dropBlockAsItem(p_150124_1_, p_150124_2_, p_150124_3_, p_150124_4_, new ItemStack(Items.apple, 1, 0));
 		}
 	}
+	
+	@Override
+	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z)
+	{
+		return true;
+	}
 }
