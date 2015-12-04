@@ -124,7 +124,7 @@ public class EntityPlague extends TragicMob {
 				this.motionZ = rand.nextDouble() * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
 			}
 
-			if (TragicConfig.allowCorruption && this.ticksExisted % 60 == 0)
+			if (TragicConfig.allowCorruption && this.ticksExisted % 60 == 0 && TragicConfig.plagueCorruption)
 			{
 				int dif = this.worldObj.difficultySetting.getDifficultyId();
 				double d0 = dif == 2 ? 6.0 : (dif == 3 ? 16.0 : 10.0);

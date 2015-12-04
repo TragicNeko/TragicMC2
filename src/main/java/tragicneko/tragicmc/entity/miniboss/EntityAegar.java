@@ -387,12 +387,12 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 		else
 		{
 			this.setTargetID(this.getAttackTarget().getEntityId());
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(64) == 0) this.setLaserTicks(40);
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && rand.nextInt(128) == 0 && this.getHypermode()) this.setAutoTicks(100 + rand.nextInt(80));
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && rand.nextInt(64) == 0 && TragicConfig.aegarLasers) this.setLaserTicks(40);
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) >= 4.0F && rand.nextInt(128) == 0 && this.getHypermode() && TragicConfig.aegarLasers) this.setAutoTicks(100 + rand.nextInt(80));
 			if (this.getLaserTicks() == 5 && this.canEntityBeSeen(this.getAttackTarget()) || this.getAutoTicks() > 20 && this.getAutoTicks() % 5 == 0 && this.canEntityBeSeen(this.getAttackTarget())) this.fireLaser();
 			if (this.getLaserTicks() > 0 && !this.canEntityBeSeen(this.getAttackTarget())) this.setLaserTicks(0);
 
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround)
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && rand.nextInt(this.getHypermode() ? 48 : 128) == 0 && this.onGround && TragicConfig.aegarShockwave)
 			{
 				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.shockwave", 1.0F, 1.0F);
 				this.setShockwaveTicks(60);
@@ -404,13 +404,14 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 				this.attackEntitiesInList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(6.0D, 6.0D , 6.0D)));
 			}
 
-			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && this.getHypermode() && rand.nextInt(128) == 0) this.setMortorTicks(100);
+			if (this.canUseAbility() && this.getDistanceToEntity(this.getAttackTarget()) > 12.0F && this.getHypermode() && rand.nextInt(128) == 0 && TragicConfig.aegarMortors) this.setMortorTicks(100);
 			if (this.getMortorTicks() > 20 && this.getMortorTicks() % 20 == 0) this.createCrystalMortors();
 		}
 	}
 
 	private void createCrystalMortors() {
 
+		if (!TragicConfig.aegarMortors) return;
 		double d0 = this.getAttackTarget().posX - this.posX;
 		double d1 = rand.nextInt(4);
 		double d2 = this.getAttackTarget().posZ - this.posZ;
@@ -427,6 +428,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	}
 
 	private void fireLaser() {
+		if (!TragicConfig.aegarLasers) return;
 		if (TragicConfig.allowMobSounds) 
 		{
 			this.worldObj.playSoundAtEntity(this, "tragicmc:boss.aegar.laser", 1.0F, 1.0F);
@@ -436,7 +438,7 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	}
 
 	private void onCrystalDestruction() {
-		this.setHypermode(true);
+		if (TragicConfig.aegarHypermode) this.setHypermode(true);
 		super.attackEntityFrom(DamageSource.magic, 75.0F);
 		this.setStunTicks(120);
 

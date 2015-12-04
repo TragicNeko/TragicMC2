@@ -118,7 +118,7 @@ public class EntityMinotaur extends TragicMob {
 		}
 
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 1.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F
-				&& this.onGround && rand.nextInt(16) == 0 && this.onGround && !this.isCharging() && this.canEntityBeSeen(this.getAttackTarget()))
+				&& this.onGround && rand.nextInt(16) == 0 && this.onGround && !this.isCharging() && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.minotaurCharge)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().posZ - this.posZ;

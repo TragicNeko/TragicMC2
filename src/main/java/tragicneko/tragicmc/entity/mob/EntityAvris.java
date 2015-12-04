@@ -50,7 +50,7 @@ public class EntityAvris extends TragicMob {
 		this.stepHeight = 1.0F;
 		this.isImmuneToFire = true;
 	}
-	
+
 	@Override
 	public boolean isAIEnabled()
 	{
@@ -66,9 +66,9 @@ public class EntityAvris extends TragicMob {
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-		
+
 		if (this.getHealth() > 0F) this.timeAlive++;
-		
+
 		if (this.worldObj.isRemote)
 		{
 			for (int i = 0; i < 3; i++)
@@ -86,16 +86,20 @@ public class EntityAvris extends TragicMob {
 			{
 				if (e instanceof EntityLivingBase && this.canEntityBeSeen(e)) flag = false;
 			}
-			
-			if (this.timeAlive >= 3600) flag = true;
-			
-			if (flag)
+
+			if (this.timeAlive >= 3600 && TragicConfig.avrisDespawnTime) flag = true;
+
+			if (flag && TragicConfig.avrisDespawnTime)
 			{
 				this.setDead();
-				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
 
-				for (EntityPlayerMP mp : list)
-					mp.addChatMessage(new ChatComponentText("The Avris has eluded pursuers!"));
+				if (TragicConfig.avrisAnnouncements)
+				{
+					List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
+
+					for (EntityPlayerMP mp : list)
+						mp.addChatMessage(new ChatComponentText("The Avris has eluded pursuers!"));
+				}
 			}
 		}
 	}
@@ -106,11 +110,14 @@ public class EntityAvris extends TragicMob {
 		super.onDeath(src);
 		if (!this.worldObj.isRemote)
 		{
-			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
+			if (TragicConfig.avrisAnnouncements)
+			{
+				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
 
-			for (EntityPlayerMP mp : list)
-				mp.addChatMessage(new ChatComponentText("The Avris has been slain!"));
-			
+				for (EntityPlayerMP mp : list)
+					mp.addChatMessage(new ChatComponentText("The Avris has been slain!"));
+			}
+
 			int x = 7;
 
 			if (src.getEntity() != null && src.getEntity() instanceof EntityPlayer)
@@ -122,7 +129,7 @@ public class EntityAvris extends TragicMob {
 					ItemStack weapon = player.inventory.getCurrentItem();
 					x += EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
 				}
-				
+
 				if (player instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) player).triggerAchievement(TragicAchievements.avris);
 			}
 
@@ -176,25 +183,29 @@ public class EntityAvris extends TragicMob {
 		if (!this.worldObj.isRemote)
 		{
 			rarity = rand.nextInt(3) + 1;
-			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
 
-			for (EntityPlayerMP mp : list)
-				mp.addChatMessage(new ChatComponentText("An Avris has appeared nearby!"));
+			if (TragicConfig.avrisAnnouncements)
+			{
+				List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, boundingBox.expand(48.0, 48.0, 48.0));
+
+				for (EntityPlayerMP mp : list)
+					mp.addChatMessage(new ChatComponentText("An Avris has appeared nearby!"));
+			}
 		}
 		return super.onSpawnWithEgg(data);
 	}
-	
+
 	@Override
 	public boolean getCanSpawnHere()
 	{
 		return super.getCanSpawnHere() && rand.nextInt(32) == 0;
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
 		if (this.worldObj.isRemote) return false;
-		
+
 		boolean flag = super.attackEntityFrom(par1DamageSource, par2);
 		if (flag && par1DamageSource.getEntity() != null) par1DamageSource.getEntity().setFire(4 + rand.nextInt(4));
 

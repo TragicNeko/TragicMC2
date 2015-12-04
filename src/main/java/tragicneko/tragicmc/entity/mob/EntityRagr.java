@@ -215,7 +215,7 @@ public class EntityRagr extends TragicMob {
 	{
 		if (this.worldObj.isRemote) return;
 
-		boolean flag = this.getMobGriefing();
+		boolean flag = this.getMobGriefing() && TragicConfig.ragrExplosions;
 
 		if (par1 >= 8.0F)
 		{
@@ -230,7 +230,7 @@ public class EntityRagr extends TragicMob {
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F, flag);
 		}
 
-		if (!flag) return;
+		if (!flag || !TragicConfig.ragrBlockCrushing) return;
 
 		int x = (int) this.posX;
 		int y = (int) this.posY;

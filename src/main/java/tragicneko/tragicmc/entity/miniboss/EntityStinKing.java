@@ -85,7 +85,7 @@ public class EntityStinKing extends EntityGreaterStin {
 			}
 
 			if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 6.0F &&
-					rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0)
+					rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.stinKingMortors)
 			{
 				this.setFiringTicks(80);
 			}
@@ -98,7 +98,7 @@ public class EntityStinKing extends EntityGreaterStin {
 	}
 
 	private void doMortorFire() {
-
+		if (!TragicConfig.stinKingMortors) return;
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
 		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);

@@ -104,18 +104,21 @@ public class EntitySirv extends TragicMob {
 
 		if (result && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
-			EntitySirv sirv;
-
-			for (int i = 0; i < list.size(); i++)
+			if (TragicConfig.sirvHelpCall)
 			{
-				if (list.get(i) instanceof EntitySirv)
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+				EntitySirv sirv;
+
+				for (int i = 0; i < list.size(); i++)
 				{
-					sirv = (EntitySirv) list.get(i);
-					if (sirv.getAttackTarget() != null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
+					if (list.get(i) instanceof EntitySirv)
+					{
+						sirv = (EntitySirv) list.get(i);
+						if (sirv.getAttackTarget() != null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
+					}
 				}
 			}
-			
+
 			if (par2 >= 30F && par1DamageSource.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
 			{
 				((EntityPlayerMP) par1DamageSource.getEntity()).triggerAchievement(TragicAchievements.sirv);

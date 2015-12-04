@@ -200,7 +200,7 @@ public class EntityTragicNeko extends TragicMob {
 
 			if (this.getFiringTicks() == 40)
 			{
-				this.doMissleAttack();
+				if (TragicConfig.tragicNekoRockets) this.doMissleAttack();
 			}
 			else if (this.hasFired() && rand.nextInt(8) == 0 && this.getFiringTicks() % 20 == 0 && this.getAttackTime() == 0)
 			{
@@ -240,7 +240,7 @@ public class EntityTragicNeko extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.deathTime == 20 && rand.nextInt(4) == 0 && !this.isProperDate())
+		if (this.deathTime == 20 && rand.nextInt(4) == 0 && !this.isProperDate() && TragicConfig.tragicNekoDeathBomb)
 		{
 			this.worldObj.playSoundAtEntity(this, "creeper.primed", 1.0F, 1.0F);
 			int x = rand.nextInt(10) == 0 ? 1 : rand.nextInt(3) + 2;
@@ -283,18 +283,18 @@ public class EntityTragicNeko extends TragicMob {
 		switch (rand.nextInt(5))
 		{
 		case 1:
-			theProjectile = new EntityNekoStickyBomb(this.worldObj, this);
+		case 4:
+			if (TragicConfig.tragicNekoStickyBombs) theProjectile = new EntityNekoStickyBomb(this.worldObj, this);
 			break;
 		case 2:
-			theProjectile = new EntityNekoClusterBomb(this.worldObj, this);
-			break;
-		case 4:
-			theProjectile = new EntityNekoStickyBomb(this.worldObj, this);
+			if (TragicConfig.tragicNekoClusterBombs) theProjectile = new EntityNekoClusterBomb(this.worldObj, this);
 			break;
 		default:
-			theProjectile = new EntityNekoMiniBomb(this.worldObj, this);
+			if (TragicConfig.tragicNekoClusterBombs) theProjectile = new EntityNekoMiniBomb(this.worldObj, this);
 			break;
 		}
+		
+		if (theProjectile == null) return;
 
 		theProjectile.motionX = (this.getAttackTarget().posX - this.posX) * 0.335D;
 		theProjectile.motionZ = (this.getAttackTarget().posZ - this.posZ) * 0.335D;
@@ -317,6 +317,7 @@ public class EntityTragicNeko extends TragicMob {
 
 	public boolean isProperDate()
 	{
+		if (!TragicConfig.tragicNekoCelebration) return false;
 		Calendar calendar = this.worldObj.getCurrentDate();
 
 		if ((calendar.get(2) + 1 == 8 && calendar.get(5) > 29) || (calendar.get(2) + 1 == 9 || calendar.get(5) < 3))

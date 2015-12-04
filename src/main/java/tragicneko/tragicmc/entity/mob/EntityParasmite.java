@@ -95,7 +95,7 @@ public class EntityParasmite extends TragicMob {
 
 		if (this.worldObj.isRemote) return;
 
-		if (this.ridingEntity != null)
+		if (this.ridingEntity != null && TragicConfig.parasmiteLeech)
 		{
 			this.power = 1;
 			if (this.ridingEntity instanceof EntityParasmite)
@@ -143,8 +143,11 @@ public class EntityParasmite extends TragicMob {
 			this.motionY *= 0.256D;
 			this.moveFlying((float) this.motionX, (float) this.motionY, (float) this.motionZ);
 
-			EntityParasmite smite = (EntityParasmite) this.worldObj.findNearestEntityWithinAABB(EntityParasmite.class, this.boundingBox.expand(2.0, 2.0, 2.0), this);
-			if (smite != null && smite.riddenByEntity == null && this.ridingEntity == null) this.mountEntity(smite);
+			if (TragicConfig.parasmiteLeech)
+			{
+				EntityParasmite smite = (EntityParasmite) this.worldObj.findNearestEntityWithinAABB(EntityParasmite.class, this.boundingBox.expand(2.0, 2.0, 2.0), this);
+				if (smite != null && smite.riddenByEntity == null && this.ridingEntity == null) this.mountEntity(smite);
+			}
 		}
 
 
@@ -161,6 +164,8 @@ public class EntityParasmite extends TragicMob {
 	{
 		if (!this.worldObj.isRemote && par1Entity.riddenByEntity == null && this.ridingEntity == null)
 		{
+			if (!TragicConfig.parasmiteLeech) return super.attackEntityAsMob(par1Entity);
+
 			this.mountEntity(par1Entity);
 			return true;
 		}

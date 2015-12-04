@@ -175,12 +175,12 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				this.setSprinting(false);
 			}
 
-			if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring() && !this.isSpinning() && !this.isHealing() && this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0)
+			if (this.getHealth() <= this.getMaxHealth() / 2 && !this.isFiring() && !this.isSpinning() && !this.isHealing() && this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && TragicConfig.voxStellarumHealing)
 			{
 				this.setHealTicks(500);
 			}
 
-			if (!this.isHealing() && this.getFiringTicks() <= 40 && !this.isSpinning() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.getAttackTarget() != null) this.setSpinTicks(1000);
+			if (!this.isHealing() && this.getFiringTicks() <= 40 && !this.isSpinning() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.getAttackTarget() != null && TragicConfig.voxStellarumSpinAttack) this.setSpinTicks(1000);
 
 			if (this.isHealing() && this.getHealTicks() >= 100)
 			{
@@ -217,6 +217,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 	@Override
 	protected void shootProjectiles()
 	{
+		if (!TragicConfig.norVoxProjectiles) return;
 		double d0 = this.getAttackTarget().posX - this.posX;
 		double d1 = this.getAttackTarget().posY - this.posY;
 		double d2 = this.getAttackTarget().posZ - this.posZ;

@@ -73,7 +73,7 @@ public class EntityKragul extends EntityGragul implements TragicMiniBoss {
 		++this.timeSinceFiring;
 
 		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && this.getDistanceToEntity(this.getAttackTarget()) <= 16.0F && rand.nextInt(16) == 0
-				&& this.canEntityBeSeen(this.getAttackTarget()) && this.timeSinceFiring >= 60)
+				&& this.canEntityBeSeen(this.getAttackTarget()) && this.timeSinceFiring >= 60 && TragicConfig.kragulSpiritCasts)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;
 			double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);

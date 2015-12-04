@@ -229,7 +229,7 @@ public class EntityJabba extends TragicMob {
 			if (this.getWormTicks() > 0) this.decrementWormTicks();
 			if (this.getAttackTicks() > 0) this.decrementAttackTicks();
 
-			if (this.getJabbaType() == 0)
+			if (this.getJabbaType() == 0 && TragicConfig.jabbaAnger)
 			{
 				if (this.getAttackTarget() != null)
 				{
@@ -315,6 +315,7 @@ public class EntityJabba extends TragicMob {
 
 	protected void spawnProjectiles()
 	{
+		if (!TragicConfig.jabbaProjectiles) return;
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
 		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);

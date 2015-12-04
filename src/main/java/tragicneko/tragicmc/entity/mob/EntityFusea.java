@@ -156,9 +156,10 @@ public class EntityFusea extends TragicMob {
 
 		if ((src.getEntity() != null && !src.isExplosion() || src == DamageSource.onFire || src == DamageSource.inFire) && !this.worldObj.isRemote && this.explosionBuffer == 0 && !flag)
 		{
+			if (!TragicConfig.fuseaExplosiveLayers) return super.attackEntityFrom(src, dmg);
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setHealth(this.getHealth() - 1F);
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
+			if (TragicConfig.fuseaExplosiveDamage) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 			this.recentlyHit = 60;
 			if (this.getHealth() == 0F) this.onDeath(src);
 		}
@@ -171,9 +172,10 @@ public class EntityFusea extends TragicMob {
 	{
 		if (!this.worldObj.isRemote && this.explosionBuffer == 0 && this.superiorForm != null && par1Entity.getClass() != this.superiorForm.getClass())
 		{
+			if (!TragicConfig.fuseaExplosiveLayers) return super.attackEntityAsMob(par1Entity);
 			this.explosionBuffer = (int) (60 * (this.getHealth() / this.getMaxHealth()));
 			this.setHealth(this.getHealth() - 1F);
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
+			if (TragicConfig.fuseaExplosiveAttack) this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 2.0F + 1.5F, this.getMobGriefing());
 			this.hasDamagedEntity = true;
 		}
 		return !this.worldObj.isRemote;

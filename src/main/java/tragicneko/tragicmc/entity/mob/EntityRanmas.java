@@ -107,7 +107,7 @@ public class EntityRanmas extends TragicMob {
 		if (this.worldObj.isRemote) return;
 
 		if (this.chargeBuffer > 0) --this.chargeBuffer;
-		if (this.getChargeTicks() > 0)
+		if (this.getChargeTicks() > 0 && TragicConfig.ranmasCharge)
 		{
 			this.setChargeTicks(this.getChargeTicks() - 1);
 			this.chargeBuffer = 40 + (int) (60 * (this.getHealth() / this.getMaxHealth()));
@@ -122,7 +122,7 @@ public class EntityRanmas extends TragicMob {
 				this.motions = new double[] {0, 0, 0};
 
 				float f = MathHelper.sqrt_double(x * x + z * z + y * y) * 5.0F;
-				if (f >= 2.0F)
+				if (f >= 2.0F && TragicConfig.ranmasImpactExplosions)
 				{
 					if (f > 5.0F) f = 5.0F;
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (f / 2) * rand.nextFloat() + (f / 2), this.getMobGriefing());

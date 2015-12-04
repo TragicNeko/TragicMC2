@@ -114,19 +114,22 @@ public class EntityGragul extends TragicMob {
 
 		if (par1DamageSource.isProjectile() || par1DamageSource.isFireDamage()) return false;
 
-		int dif = this.worldObj.difficultySetting.getDifficultyId();
+		if (TragicConfig.gragulDamageReduction)
+		{
+			int dif = this.worldObj.difficultySetting.getDifficultyId();
 
-		if (dif == 3)
-		{
-			par2 = MathHelper.clamp_float(par2, 0.0F, 1.0F);
-		}
-		else if (dif == 2)
-		{
-			par2 = MathHelper.clamp_float(par2, 0.0F, 1.5F);
-		}
-		else
-		{
-			par2 = MathHelper.clamp_float(par2, 0.0F, 2.5F);
+			if (dif == 3)
+			{
+				par2 = MathHelper.clamp_float(par2, 0.0F, 1.0F);
+			}
+			else if (dif == 2)
+			{
+				par2 = MathHelper.clamp_float(par2, 0.0F, 1.5F);
+			}
+			else
+			{
+				par2 = MathHelper.clamp_float(par2, 0.0F, 2.5F);
+			}
 		}
 
 		boolean result = super.attackEntityFrom(par1DamageSource, par2);
@@ -150,7 +153,8 @@ public class EntityGragul extends TragicMob {
 
 		if (par1Entity instanceof EntityLivingBase || par1Entity instanceof EntityPlayer)
 		{
-			boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), Math.max(((EntityLivingBase) par1Entity).getMaxHealth() / 10F, 0.5F));
+			float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+			boolean result = par1Entity.attackEntityFrom(DamageHelper.causeSuffocationDamageFromMob(this), TragicConfig.gragulPercentageDamage ? Math.max(((EntityLivingBase) par1Entity).getMaxHealth() / 10F, 0.5F) : f);
 
 			if (result)
 			{
@@ -213,6 +217,6 @@ public class EntityGragul extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		
+
 	}
 }

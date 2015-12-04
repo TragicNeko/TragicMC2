@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.entity.EntityDirectedLightning;
 import tragicneko.tragicmc.entity.mob.EntityFusea;
 import tragicneko.tragicmc.entity.projectile.EntityIcicle;
@@ -59,31 +60,34 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 
 		if (!this.worldObj.isRemote && this.ticksExisted % 5 == 0)
 		{
-			ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.25, this.posX, this.posY, this.posZ);
-			Block block;
-
-			for (int[] coords : list)
+			if (TragicConfig.volatileFuseaElementalChange)
 			{
-				block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+				ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 5.25, this.posX, this.posY, this.posZ);
+				Block block;
 
-				if (block.getMaterial() == Material.water || block instanceof BlockIce)
+				for (int[] coords : list)
 				{
-					this.volatype = 2;
-					break;
-				}
-				else if (block.isProvidingWeakPower(this.worldObj, coords[0], coords[1], coords[2], 0) > 0 || block.isProvidingStrongPower(this.worldObj, coords[0], coords[1], coords[2], 0) > 0)
-				{
-					this.volatype = 3;
-					break;
-				}
-				else if (block.getMaterial() == Material.fire || block.getMaterial() == Material.lava)
-				{
-					this.volatype = 1;
-					break;
-				}
-				else
-				{
-					this.volatype = 0;
+					block = this.worldObj.getBlock(coords[0], coords[1], coords[2]);
+
+					if (block.getMaterial() == Material.water || block instanceof BlockIce)
+					{
+						this.volatype = 2;
+						break;
+					}
+					else if (block.isProvidingWeakPower(this.worldObj, coords[0], coords[1], coords[2], 0) > 0 || block.isProvidingStrongPower(this.worldObj, coords[0], coords[1], coords[2], 0) > 0)
+					{
+						this.volatype = 3;
+						break;
+					}
+					else if (block.getMaterial() == Material.fire || block.getMaterial() == Material.lava)
+					{
+						this.volatype = 1;
+						break;
+					}
+					else
+					{
+						this.volatype = 0;
+					}
 				}
 			}
 
@@ -171,7 +175,7 @@ public class EntityVolatileFusea extends EntityFusea implements TragicMiniBoss {
 	{
 		return 0.4F;
 	}
-	
+
 	@Override
 	public int getDropAmount()
 	{

@@ -115,7 +115,7 @@ public class EntityErkel extends TragicMob {
 		}
 		else
 		{
-			if (this.rand.nextInt(32) == 0 && this.onGround && this.getMobGriefing() && this.ticksExisted % 20 == 0)
+			if (this.rand.nextInt(32) == 0 && this.onGround && this.getMobGriefing() && this.ticksExisted % 20 == 0 && TragicConfig.erkelMushroomSpawning)
 			{
 				int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));

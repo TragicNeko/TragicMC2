@@ -237,7 +237,7 @@ public class EntityNorVox extends TragicMob {
 
 			if (this.getFiringTicks() >= 60 && this.ticksExisted % 20 == 0 && this.getAttackTarget() != null) this.shootProjectiles();
 
-			if (this.ticksExisted % 120 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(6.0F);
+			if (this.ticksExisted % 120 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.norVoxRegeneration) this.heal(6.0F);
 
 			if (!this.isFiring() && this.getAttackTarget() == null && this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0) this.setNodTicks(20);
 		}
@@ -247,6 +247,8 @@ public class EntityNorVox extends TragicMob {
 
 	protected void shootProjectiles()
 	{
+		if (!TragicConfig.norVoxProjectiles) return;
+		
 		if (this.getNorVoxType() == 0)
 		{
 			double d0 = this.getAttackTarget().posX - this.posX;

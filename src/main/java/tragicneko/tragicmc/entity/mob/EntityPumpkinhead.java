@@ -204,16 +204,19 @@ public class EntityPumpkinhead extends TragicMob {
 			this.resetModValue();
 		}
 
-		AttributeModifier mod = new AttributeModifier(UUID.fromString("2042ddcd-b29a-474f-acda-00ec1a2b4a2e"), "pumpkinheadHaste", this.getModValue(), 0);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
-
-		if (this.getAngerTicks() % 100 == 0 && this.isAngry() && this.hasHomePumpkin())
+		if (TragicConfig.pumpkinheadHaste)
 		{
-			this.setModValue(this.getModValue() + 2.0F);
+			AttributeModifier mod = new AttributeModifier(UUID.fromString("2042ddcd-b29a-474f-acda-00ec1a2b4a2e"), "pumpkinheadHaste", this.getModValue(), 0);
+			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(mod);
+			this.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(mod);
+
+			if (this.getAngerTicks() % 100 == 0 && this.isAngry() && this.hasHomePumpkin())
+			{
+				this.setModValue(this.getModValue() + 2.0F);
+			}
 		}
 
-		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0)
+		if (this.getHealth() <= this.getMaxHealth() / 4 && this.hasHomePumpkin() && rand.nextInt(4) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.pumpkinheadPumpkinbombs)
 		{
 			for (byte x = 0; x < 6; x++)
 			{
@@ -261,6 +264,7 @@ public class EntityPumpkinhead extends TragicMob {
 
 	public void createHomePumpkin()
 	{
+		if (!TragicConfig.pumpkinheadPumpkinSpawn) return;
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(worldObj, 6.0D, this.posX, this.posY, this.posZ);
 		int[] coords;
 		Block block;

@@ -160,7 +160,7 @@ public class EntityMegaCryse extends EntityCryse implements TragicMiniBoss {
 			flag = player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() == TragicItems.SwordOfJustice || player.getCurrentEquippedItem().getItem() == TragicItems.BowOfJustice);
 		}
 
-		if (this.getShields() > 0 && par2 >= 1.0F && !flag)
+		if (this.getShields() > 0 && par2 >= 1.0F && !flag && TragicConfig.megaCryseShields)
 		{
 			if (this.getShields() == 4)
 			{

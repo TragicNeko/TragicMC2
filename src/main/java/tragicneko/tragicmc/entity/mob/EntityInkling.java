@@ -113,7 +113,7 @@ public class EntityInkling extends TragicMob {
 
 		if (this.isBurning()) this.setVisibleTicks(20);
 
-		if (this.getVisibleTicks() > 0)
+		if (this.getVisibleTicks() > 0 || !TragicConfig.inklingInvisibility)
 		{
 			this.decrementVisibleTicks();
 			this.setInvisible(false);
@@ -165,12 +165,12 @@ public class EntityInkling extends TragicMob {
 
 		if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() != null
 				&& this.worldObj.getBlockLightValue((int)this.getAttackTarget().posX, (int)this.getAttackTarget().posY + 1, (int)this.getAttackTarget().posZ) <= 8 &&
-				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()))
+				this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.inklingTeleport)
 		{
 			this.teleportToEntity(this.getAttackTarget());
 		}
 
-		if (this.ticksExisted % 60 == 0 && this.getMobGriefing() && rand.nextBoolean())
+		if (this.ticksExisted % 60 == 0 && this.getMobGriefing() && rand.nextBoolean() && TragicConfig.inklingTorchBreaking)
 		{
 			int x = (int) this.posX;
 			int y = (int) this.posY;
@@ -204,7 +204,7 @@ public class EntityInkling extends TragicMob {
 	{
 		if (this.worldObj.isRemote) return false;
 
-		if (par1DamageSource.isFireDamage() && rand.nextInt(4) == 0) this.teleportRandomly();
+		if (par1DamageSource.isFireDamage() && rand.nextInt(4) == 0 && TragicConfig.inklingTeleport) this.teleportRandomly();
 		this.setVisibleTicks(10 + rand.nextInt(10));
 
 		return super.attackEntityFrom(par1DamageSource, par2);

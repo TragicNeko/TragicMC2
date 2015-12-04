@@ -85,7 +85,7 @@ public class EntityLockbot extends TragicMob {
 			this.prevTarget = this.getAttackTarget();
 		}
 
-		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= this.getLockdownDistance() && this.getAttackTarget().riddenByEntity == null)
+		if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= this.getLockdownDistance() && this.getAttackTarget().riddenByEntity == null && TragicConfig.lockbotLockdown)
 		{
 			EntityLock lock = new EntityLock(this.worldObj, this, this.getAttackTarget());
 			lock.setPosition(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ);

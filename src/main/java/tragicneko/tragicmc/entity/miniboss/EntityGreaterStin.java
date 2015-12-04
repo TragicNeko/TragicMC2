@@ -121,7 +121,7 @@ public class EntityGreaterStin extends EntityStin implements TragicMiniBoss {
 		}
 
 		if (this.getAttackTarget() != null && !this.isCharging() && !this.isGalloping() && this.getDistanceToEntity(this.getAttackTarget()) <= 12.0F &&
-				this.ticksExisted % 10 == 0 && rand.nextInt(12) == 0 && this.getAttackTarget().onGround && this.onGround && this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F)
+				this.ticksExisted % 10 == 0 && rand.nextInt(12) == 0 && this.getAttackTarget().onGround && this.onGround && this.getDistanceToEntity(this.getAttackTarget()) >= 3.0F && TragicConfig.greaterStinCharge)
 		{
 			this.setChargeTicks(200);
 		}

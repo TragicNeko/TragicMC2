@@ -131,7 +131,15 @@ public class TragicConfig {
 	public static int[] archangelSpawns, ireSpawns, fuseaSpawns, ranmasSpawns, parasmiteSpawns, avrisSpawns, blistSpawns, thorgSpawns, snowGolemSpawns, jarraSpawns, kragulSpawns, magmoxSpawns, megaCryseSpawns;
 	public static int[] greaterStinSpawns, stinKingSpawns, stinQueenSpawns, voxStellarumSpawns, volatileFuseaSpawns, aegarSpawns, aggroSpawns;
 	public static int[] apisSpawns, skultarSpawns, kitsunakumaSpawns, empariahSpawns, timeControllerSpawns, polarisSpawns, enyvilSpawns, claymationSpawns;
-
+	
+	public static boolean jabbaAnger, jabbaProjectiles, plagueCorruption, gragulDamageReduction, gragulPercentageDamage, minotaurCharge, inklingInvisibility, inklingTorchBreaking, inklingTeleport;
+	public static boolean ragrExplosions, ragrBlockCrushing, pumpkinheadPumpkinSpawn, pumpkinheadHaste, pumpkinheadPumpkinbombs, tragicNekoRockets, tragicNekoStickyBombs, tragicNekoClusterBombs;
+	public static boolean tragicNekoDeathBomb, tragicNekoCelebration, toxProjectiles, cryseReflection, norVoxProjectiles, norVoxRegeneration, pirahGolden, stinTeleport, abominationHelpCall;
+	public static boolean erkelMushroomSpawning, sirvHelpCall, psygoteSwapTeleport, psygoteProjectiles, psygoteRegeneration, lockbotLockdown, harvesterBuffDebuffEntities, harvesterNanoSwarms, seekerKillbeam;
+	public static boolean archangelHolybeam, ireEnergyBurst, fuseaExplosiveDamage, fuseaExplosiveAttack, fuseaExplosiveLayers, ranmasCharge, ranmasImpactExplosions, parasmiteLeech, avrisAnnouncements, avrisDespawnTime;
+	public static boolean kragulSpiritCasts, magmoxLargeFireballs, megaCryseShields, greaterStinCharge, stinKingMortors, stinQueenWebBombs, stinQueenBabies, stinQueenWebs, voxStellarumSpinAttack, voxStellarumHealing;
+	public static boolean aegarHypermode, aegarShockwave, aegarLasers, aegarMortors, volatileFuseaElementalChange;
+	
 	public static boolean[] potionAllow = new boolean[32];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
 	public static boolean allowCorruption, allowDisorientation, allowStun, allowFear, allowMalnourish, allowCripple, allowSubmission, allowInhibit, allowLeadFoot, allowHacked, allowBurned;
@@ -3483,181 +3491,248 @@ public class TragicConfig {
 		
 		cat = config.getCategory(CAT_MOBAI);
 		cat.setComment("Toggle aspects of each mob's AI and also set specific griefing instances.");
+		cat.setRequiresWorldRestart(false);
 		
 		//TODO add mob ai and specific grief instances here
 		prop = config.get(cat.getName(), "jabbaAnger", true);
 		prop.comment = "Should the Jabba species become angry after being in combat for a while and gain new abilities?";
+		jabbaAnger = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "jabbaProjectiles", true);
 		prop.comment = "Should the Jabba species shoot projectiles at targets when angered?";
+		jabbaProjectiles = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "plagueCorruption", true);
 		prop.comment = "Should Plagues corrupt entities around it?";
+		plagueCorruption = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "gragulDamageReduction", true);
 		prop.comment = "Should the Gragul species take partial health damage instead of normal damage?";
+		gragulDamageReduction = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "gragulPercentageDamage", true);
 		prop.comment = "Should the Gragul species inflict partial health damage instead of normal damage? (They will still do armor piercing damage)";
+		gragulPercentageDamage = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "minotaurCharge", true);
 		prop.comment = "Should Minotaurs charge at their target?";
+		minotaurCharge = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "inklingInvisibility", true);
 		prop.comment = "Should Inklings become invisible when threatened?";
+		inklingInvisibility = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "inklingTorchBreaking", true);
 		prop.comment = "Should Inklings randomly destroy torches when near them?";
+		inklingTorchBreaking = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "inklingTeleport", true);
+		prop.comment = "Should Inklings teleport?";
+		inklingTeleport = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "ragrExplosions", true);
 		prop.comment = "Should Ragrs create explosions when landing?";
+		ragrExplosions = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "ragrBlockCrushing", true);
 		prop.comment = "Should Ragrs crush blocks when landing?";
+		ragrBlockCrushing = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "pumpkinheadPumpkinSpawn", true);
 		prop.comment = "Should Pumpkinheads create a Home Pumpkin upon spawning?";
+		pumpkinheadPumpkinSpawn = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "pumpkinheadHaste", true);
 		prop.comment = "Should Pumpkinheads gain increased stats while they have a Home Pumpkin and are being threatened?";
+		pumpkinheadHaste = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "pumpkinheadPumpkinbombs", true);
 		prop.comment = "Should Pumpkinheads fire Pumpkinbombs when they are low on health and have a Home Pumpkin?";
+		pumpkinheadPumpkinbombs = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "tragicNekoRockets", true);
 		prop.comment = "Should Tragic Nekos fire rockets at people's faces?";
+		tragicNekoRockets = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "tragicNekoStickyBombs", true);
 		prop.comment = "Should Tragic Nekos throw Sticky Bombs into people's faces?";
+		tragicNekoStickyBombs = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "tragicNekoClusterBomb", true);
 		prop.comment = "Should Tragic Nekos throw Cluster Bombs at people's faces?";
+		tragicNekoClusterBombs = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "tragicNekoDeathBomb", true);
 		prop.comment = "Should Tragic Nekos have a chance to drop various bombs on death?";
+		tragicNekoDeathBomb = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "tragicNekoCelebration", true);
 		prop.comment = "Should Tragic Nekos celebrate their birthday?";
+		tragicNekoCelebration = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "toxProjectiles", true);
 		prop.comment = "Should the Tox species fire projectiles? (They still attack on contact)";
+		toxProjectiles = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "cryseReflection", true);
 		prop.comment = "Should the Cryse species reflect damage?";
+		cryseReflection = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "norVoxProjectiles" ,true);
 		prop.comment = "Should the Nor-Vox species fire projectiles?";
+		norVoxProjectiles = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "norVoxHealthRegen", true);
+		prop = config.get(cat.getName(), "norVoxRegeneration", true);
 		prop.comment = "Should the Nor-Vox species regenerate health naturally?";
+		norVoxRegeneration = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "pirahGolden", true);
 		prop.comment = "Should Pirah be randomly spawned as a Golden stronger version?";
+		pirahGolden = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "stinTeleport", true);
 		prop.comment = "Should the Stin species randomly teleport you away when you attack them?";
-		
-		prop = config.get(cat.getName(), "stinWaterDamage", true);
-		prop.comment = "Should the Stin species take damage when wet?";
+		stinTeleport = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "abominationHelpCall", true);
 		prop.comment = "Should Abominations call for help when they are attacked?";
+		abominationHelpCall = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "erkelMushroomSpawning", true);
 		prop.comment = "Should Erkels randomly place Mushrooms?";
+		erkelMushroomSpawning = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "sirvHelpCall", true);
 		prop.comment = "Should Sirvs call for help when they are attacked?";
+		sirvHelpCall = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "psygoteSwapTeleport", true);
 		prop.comment = "Should Psygotes attempt to swap places with their attacker to confuse them?";
+		psygoteSwapTeleport = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "psygoteProjectiles", true);
 		prop.comment = "Should Psygotes fire Dark Mortors at their attacker?";
+		psygoteProjectiles = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "psygoteRegeneration", true);
 		prop.comment = "Should Psygotes regenerate health naturally?";
+		psygoteRegeneration = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "lockbotLockdown", true);
 		prop.comment = "Should Lockbots lock down their target?";
+		lockbotLockdown = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "harvesterBuffDebuffEntities", true);
 		prop.comment = "Should Harvesters buff Synapse mobs and debuff everything else?";
+		harvesterBuffDebuffEntities = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "harvesterNanoSwarms", true);
+		prop.comment = "Should Harvesters spawn Nano Swarms in to defend them?";
+		harvesterNanoSwarms = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "seekerKillbeam", true);
 		prop.comment = "Should Seekers kill you with their gaze?";
+		seekerKillbeam = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "archangelHolybeam", true);
 		prop.comment = "Should Archangels kill you with their Holy Beam of death?";
+		archangelHolybeam = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "ireEnergyBurst", true);
 		prop.comment = "Should Ires shoot an Ire Energy burst at their target?";
+		ireEnergyBurst = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "fuseaExplosiveDamage", true);
 		prop.comment = "Should the Fusea species explode when they take damage?";
+		fuseaExplosiveDamage = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "fuseaExplosiveAttack", true);
 		prop.comment = "Should the Fusea species explode when they attack something?";
+		fuseaExplosiveAttack = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "fuseaExplosiveLayers", true);
 		prop.comment = "Should the Fusea species only take damage when they explode?";
+		fuseaExplosiveLayers = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "ranmasCharge", true);
 		prop.comment = "Should Ranmas hurl themselves at you?";
+		ranmasCharge = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "ranmasImpactExplosions", true);
 		prop.comment = "Should Ranmas create explosions if they impact something at high enough velocity";
+		ranmasImpactExplosions = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "parasmiteLeech", true);
 		prop.comment = "Should Parasmites attempt to latch onto entities to simultaneously buff and hurt them?";
+		parasmiteLeech = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "avrisAnnouncements", true);
-		prop.comment = "Should Avris' announce when they spawn and when they despawn?";
+		prop.comment = "Should Avris' announce when they spawn, die or elude attackers?";
+		avrisAnnouncements = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "avrisDespawnTime", true);
-		prop.comment = "Should Avris despawn after a preset amount of time and not despawn naturally?";
+		prop.comment = "Should Avris' despawn after a preset amount of time?";
+		avrisDespawnTime = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "kragulSpiritCasts", true);
 		prop.comment = "Should Kraguls fire Spirit Casts at their target?";
+		kragulSpiritCasts = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "magmoxLargeFireballs", true);
 		prop.comment = "Should Magmox fire Large Fireballs in addition to the smaller projectiles at their target?";
+		magmoxLargeFireballs = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "megaCryseShields", true);
 		prop.comment = "Should Mega Cryse have shields that block all damage (except Magic)?";
+		megaCryseShields = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "greaterStinCharge", true);
 		prop.comment = "Should Greater Stins charge towards their targets?";
+		greaterStinCharge = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "stinKingMortors", true);
 		prop.comment = "Should Stin Kings fire Dark Mortors at their target?";
+		stinKingMortors = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "stinQueenWebBombs", true);
 		prop.comment = "Should Stin Queens fire Web Bombs at their target?";
+		stinQueenWebBombs = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "stinQueenBabies", true);
 		prop.comment = "Should Stin Queens spawn in babies to attack their target?";
+		stinQueenBabies = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "stinQueenWebs", true);
 		prop.comment = "Should Stin Queens trap attackers in webs?";
+		stinQueenWebs = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "voxStellarumSpinAttack", true);
 		prop.comment = "Should Vox Stellarums do a spinning attack?";
+		voxStellarumSpinAttack = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "voxStellarumHealing", true);
 		prop.comment = "Should Vox Stellarums go into a healing phase to regenerate their health quickly?";
+		voxStellarumHealing = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "aegarHypermode", true);
+		prop.comment = "Should Aegars enter Hypermode after their crystal is damaged and gain increased stats?";
+		aegarHypermode = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "aegarShockwave", true);
 		prop.comment = "Should Aegars do a ground shockwave attack?";
+		aegarShockwave = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "aegarLasers", true);
 		prop.comment = "Should Aegars fire a laser at their target?";
+		aegarLasers = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "aegarMortors", true);
 		prop.comment = "Should Aegars fire Crystal Mortors at their target?";
+		aegarMortors = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "volatileFuseaElementalChange", true);
 		prop.comment = "Should Volatile Fuseas change elements based on their surroundings? (they gain projectile attacks from this)";
+		volatileFuseaElementalChange = prop.getBoolean(true);
 
 		cat = config.getCategory(CAT_MODIFIERS);
 		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");

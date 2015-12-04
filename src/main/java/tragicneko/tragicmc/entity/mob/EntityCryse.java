@@ -256,7 +256,7 @@ public class EntityCryse extends TragicMob {
 
 		if (result) this.setAttackTime(10);
 
-		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0)
+		if (result && par1DamageSource.getEntity() != null && this.rand.nextInt(4) == 0 && TragicConfig.cryseReflection)
 		{
 			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.deflect", 1.0F, 1.9F);
 			par1DamageSource.getEntity().attackEntityFrom(DamageHelper.causeModMagicDamageToEntity(this), par2 / 4);

@@ -20,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 
 public class EntityPirah extends TragicMob {
@@ -86,7 +87,7 @@ public class EntityPirah extends TragicMob {
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		boolean flag = this.getTextureID() == 7;
+		boolean flag = this.getTextureID() == 7 && TragicConfig.pirahGolden;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(flag ? goldenPirahStats[0] : pirahStats[0]);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(flag ? goldenPirahStats[1] : pirahStats[1]);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(flag ? goldenPirahStats[2] : pirahStats[2]);
@@ -137,7 +138,7 @@ public class EntityPirah extends TragicMob {
 		float height = 0.515F;
 		float width = 0.325F;
 
-		if (this.getTextureID() == 7)
+		if (this.getTextureID() == 7 && TragicConfig.pirahGolden)
 		{
 			height *= 1.5F;
 			width *= 1.5F;
@@ -280,7 +281,7 @@ public class EntityPirah extends TragicMob {
 	@Override
 	public int getTotalArmorValue()
 	{
-		return (int) (this.getTextureID() == 7 ? goldenPirahStats[5] : pirahStats[5]);
+		return (int) (this.getTextureID() == 7 && TragicConfig.pirahGolden ? goldenPirahStats[5] : pirahStats[5]);
 	}
 
 	protected Material getMaterial() {

@@ -186,7 +186,7 @@ public class EntityAbomination extends TragicMob {
 			}
 		}
 
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean())
+		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityLivingBase && rand.nextBoolean() && TragicConfig.abominationHelpCall)
 		{
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0, 12.0, 12.0));
 			EntityAbomination mob;

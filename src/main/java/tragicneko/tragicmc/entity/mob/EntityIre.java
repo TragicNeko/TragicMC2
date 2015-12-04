@@ -176,15 +176,18 @@ public class EntityIre extends TragicMob {
 			{
 				if (this.canEntityBeSeen(this.getAttackTarget()))
 				{
-					double d0 = this.getAttackTarget().posX - this.posX;
-					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
-					double d2 = this.getAttackTarget().posZ - this.posZ;
+					if (TragicConfig.ireEnergyBurst)
+					{
+						double d0 = this.getAttackTarget().posX - this.posX;
+						double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
+						double d2 = this.getAttackTarget().posZ - this.posZ;
 
-					EntityIreEnergy energy = new EntityIreEnergy(this.worldObj, this, d0, d1, d2);
-					energy.posX = this.posX + d0 * 0.115D;
-					energy.posY = this.posY + (this.height * 2 / 3);
-					energy.posZ = this.posZ + d2 * 0.115D;
-					this.worldObj.spawnEntityInWorld(energy);
+						EntityIreEnergy energy = new EntityIreEnergy(this.worldObj, this, d0, d1, d2);
+						energy.posX = this.posX + d0 * 0.115D;
+						energy.posY = this.posY + (this.height * 2 / 3);
+						energy.posZ = this.posZ + d2 * 0.115D;
+						this.worldObj.spawnEntityInWorld(energy);
+					}
 				}
 				else
 				{
@@ -264,7 +267,7 @@ public class EntityIre extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		
+
 	}
 
 	@Override
@@ -272,12 +275,12 @@ public class EntityIre extends TragicMob {
 	{
 		return super.getTalkInterval();
 	}
-	
+
 	@Override
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		
+
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) src.getEntity();

@@ -87,7 +87,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 		if (this.worldObj.isRemote) return;
 
-		if (TragicConfig.allowStinBaby)
+		if (TragicConfig.allowStinBaby && TragicConfig.stinQueenBabies)
 		{
 			int la = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 8;
 
@@ -117,7 +117,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 		}
 
 		if (this.getAttackTarget() != null && !this.isCharging() && !this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F &&
-				rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0)
+				rand.nextInt(12) == 0 && this.ticksExisted % 10 == 0 && TragicConfig.stinQueenWebBombs)
 		{
 			this.setFiringTicks(50);
 		}
@@ -129,7 +129,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	}
 
 	private void doMortorFire() {
-
+		if (!TragicConfig.stinQueenWebBombs) return;
 		double d0 = this.getAttackTarget().posX - this.posX + rand.nextInt(5) - rand.nextInt(5);
 		double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
 		double d2 = this.getAttackTarget().posZ - this.posZ + rand.nextInt(5) - rand.nextInt(5);
@@ -145,6 +145,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 
 	public void spawnBabies()
 	{
+		if (!TragicConfig.allowStinBaby || !TragicConfig.stinQueenBabies) return;
 		EntityStin baby = new EntityStin(this.worldObj);
 		baby.setChild();
 		baby.copyLocationAndAnglesFrom(this);
@@ -184,6 +185,7 @@ public class EntityStinQueen extends EntityGreaterStin {
 	{
 		super.teleportEnemyAway(entity, flag);
 
+		if (!TragicConfig.stinQueenWebs) return flag;
 		ArrayList<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 0.5D, entity.posX, entity.posY, entity.posZ);
 		int[] coords;
 

@@ -300,7 +300,7 @@ public class EntityStin extends TragicMob {
 
 		boolean flag = super.attackEntityFrom(par1DamageSource, par2);
 
-		if (flag)
+		if (flag && TragicConfig.stinTeleport)
 		{
 			if (this.getGallopTicks() == 0) this.setGallopTicks(15);
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(8.0, 8.0, 8.0));

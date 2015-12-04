@@ -158,7 +158,7 @@ public class EntityHarvester extends TragicMob {
 			}
 		}
 
-		if (this.ticksExisted % 20 == 0)
+		if (this.ticksExisted % 20 == 0 && TragicConfig.harvesterBuffDebuffEntities)
 		{
 			double d0 = this.getEntityAttribute(SharedMonsterAttributes.followRange).getAttributeValue();
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(d0, d0, d0));
@@ -194,7 +194,7 @@ public class EntityHarvester extends TragicMob {
 		}
 
 		if (this.getReleaseTicks() > 0) this.setReleaseTicks(this.getReleaseTicks() - 1);
-		if (this.getReleaseTicks() == 10)
+		if (this.getReleaseTicks() == 10 && TragicConfig.harvesterNanoSwarms)
 		{
 			EntityNanoSwarm swarm = new EntityNanoSwarm(this.worldObj);
 			swarm.setPosition(this.posX, this.posY, this.posZ);

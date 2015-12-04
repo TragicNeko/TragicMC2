@@ -7,6 +7,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.mob.EntityJabba;
 import tragicneko.tragicmc.entity.projectile.EntityPoisonBarb;
@@ -112,6 +113,7 @@ public class EntityJarra extends EntityJabba implements TragicMiniBoss {
 	@Override
 	protected void spawnProjectiles()
 	{
+		if (!TragicConfig.jabbaProjectiles) return;
 		EntityLivingBase entity = this.getAttackTarget();
 		double d0 = entity.posX - this.posX;
 		double d1 = entity.boundingBox.minY + entity.height / 2.0F - (this.posY + this.height / 2.0F);

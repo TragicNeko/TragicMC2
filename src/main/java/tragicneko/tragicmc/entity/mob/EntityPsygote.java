@@ -168,7 +168,7 @@ public class EntityPsygote extends TragicMob {
 			if (this.getFiringTicks() > 0) this.setFiringTicks(0);
 			if (this.getSwitchTicks() > 0) this.setSwitchTicks(0);
 
-			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0)
+			if (this.getAttackTarget() != null && this.ticksExisted % 10 == 0 && TragicConfig.psygoteProjectiles)
 			{
 				this.fireOneMortor();
 			}
@@ -186,16 +186,16 @@ public class EntityPsygote extends TragicMob {
 
 		if (this.getFiringTicks() == 0 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F && this.getFiringTicks() == 0 && this.getSwitchTicks() == 0 && rand.nextInt(48) == 0) this.setSwitchTicks(60);
 
-		if (this.getFiringTicks() >= 60 && this.ticksExisted % 5 == 0 && this.getAttackTarget() != null)
+		if (this.getFiringTicks() >= 60 && this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && TragicConfig.psygoteProjectiles)
 		{
 			this.shootProjectiles();
 		}
-		if (this.getSwitchTicks() == 2 && this.getAttackTarget() != null) this.switchPlaces();
+		if (this.getSwitchTicks() == 2 && this.getAttackTarget() != null && TragicConfig.psygoteSwapTeleport) this.switchPlaces();
 
-		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(3.0F);
+		if (this.ticksExisted % 20 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.psygoteRegeneration) this.heal(3.0F);
 
-		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicConfig.allowInhibit) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
-		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(32) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F) this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
+		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(128) == 0 && TragicConfig.allowInhibit && this.canEntityBeSeen(this.getAttackTarget())) this.getAttackTarget().addPotionEffect(new PotionEffect(TragicPotion.Inhibit.id, 120));
+		if (this.ticksExisted % 5 == 0 && this.getAttackTarget() != null && rand.nextInt(32) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && this.canEntityBeSeen(this.getAttackTarget())) this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 120));
 	}
 
 	private void switchPlaces() {
@@ -256,7 +256,7 @@ public class EntityPsygote extends TragicMob {
 			}
 
 			this.worldObj.playSoundAtEntity(this.getAttackTarget(), "mob.endermen.portal", 0.4F, 0.4F);
-			this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+			this.getAttackTarget().addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 0));
 		}
 
 		this.setPosition(x, y, z);
