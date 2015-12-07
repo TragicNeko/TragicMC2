@@ -279,9 +279,9 @@ public class EntityApis extends TragicBoss {
 			if (this.getHurtTime() > 0) this.setHurtTime(this.getHurtTime() - 1);
 
 			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 2.0F, 8.0F)
-					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()))
+					&& this.onGround && rand.nextInt(32) == 0 && this.onGround && !this.isCharging() && !this.isStomping() && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.apisChargeAttack)
 			{
-				if (rand.nextInt(3) == 0)
+				if (rand.nextInt(3) == 0 && TragicConfig.apisExplosiveCharge)
 				{
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F, false);
 				}
@@ -297,9 +297,9 @@ public class EntityApis extends TragicBoss {
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			
-			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F) && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
+			if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F) && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisChargeAttack)
 			{
-				if (rand.nextInt(3) == 0)
+				if (rand.nextInt(3) == 0 && TragicConfig.apisExplosiveCharge)
 				{
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat(), false);
 				}
@@ -315,9 +315,9 @@ public class EntityApis extends TragicBoss {
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping())
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisChargeAttack)
 			{
-				if (rand.nextInt(3) == 0)
+				if (rand.nextInt(3) == 0 && TragicConfig.apisExplosiveCharge)
 				{
 					this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 0.5F, false);
 				}
@@ -332,7 +332,7 @@ public class EntityApis extends TragicBoss {
 				this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 			}
 			
-			if (this.getAttackTarget() != null && this.ticksExisted % 3 == 0 && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F)
+			if (this.getAttackTarget() != null && this.ticksExisted % 3 == 0 && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && TragicConfig.apisSuperStomp)
 			{
 				this.setStompTicks(40);
 			}
@@ -351,7 +351,7 @@ public class EntityApis extends TragicBoss {
 				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 1.225F + 4.0F, this.getMobGriefing());
 			}
 
-			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 10.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping())
+			if (this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) >= 10.0F && rand.nextInt(8) == 0 && !this.isCharging() && !this.isStomping() && TragicConfig.apisSolarBombs)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -387,7 +387,7 @@ public class EntityApis extends TragicBoss {
 				}
 			}
 
-			if (this.getAttackTarget() != null && this.reflectionBuffer == 0 && this.ticksExisted % 20 == 0 && !this.isReflecting())
+			if (this.getAttackTarget() != null && this.reflectionBuffer == 0 && this.ticksExisted % 20 == 0 && !this.isReflecting() && TragicConfig.apisReflection)
 			{
 				this.setReflectionTicks(160);
 			}

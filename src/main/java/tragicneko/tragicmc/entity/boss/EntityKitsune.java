@@ -210,14 +210,14 @@ public class EntityKitsune extends TragicBoss {
 		if (this.getTauntTicks() > 0 && this.getHurtTime() > 0) this.setTauntTicks(0);
 		if (this.getTauntTicks() > 0) this.decrementTauntTicks();
 
-		if (this.getTauntTicks() == 1 || this.getAttackTime() == 1) this.teleportRandomly();
+		if ((this.getTauntTicks() == 1 && TragicConfig.kitsunakumaTaunt || this.getAttackTime() == 1) && TragicConfig.kitsunakumaTeleport) this.teleportRandomly();
 
 		if (this.getAttackTime() == 5 && this.getAttackTarget() != null && this.getDistanceToEntity(this.getAttackTarget()) <= 5.0F) this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue()); //double swipe
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 		if (this.isFiring() || this.getTauntTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 
-		if (this.isInWater()) this.teleportRandomly();
+		if (this.isInWater() && TragicConfig.kitsunakumaTeleport) this.teleportRandomly();
 
 		if (this.getAttackTarget() != null)
 		{
@@ -257,13 +257,13 @@ public class EntityKitsune extends TragicBoss {
 						entity.addPotionEffect(new PotionEffect(Potion.confusion.id, 300 + rand.nextInt(320), 0));
 					}
 
-					if (this.ticksExisted % 120 == 0 && this.rand.nextInt(16) == 0)
+					if (this.ticksExisted % 120 == 0 && this.rand.nextInt(16) == 0 && TragicConfig.kitsunakumaTeleport)
 					{
 						this.teleportRandomly();
 					}
 				}
 
-				if (this.getHurtTime() % 20 == 0 && this.getHurtTime() > 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F)
+				if (this.getHurtTime() % 20 == 0 && this.getHurtTime() > 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && TragicConfig.kitsunakumaFireballs)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -283,16 +283,16 @@ public class EntityKitsune extends TragicBoss {
 			{
 				if (this.rand.nextInt(56) == 0 || this.getHurtTime() > 0 && this.getHurtTime() % 20 == 0 && this.getDistanceToEntity(this.getAttackTarget()) > 4.0F || this.getDistanceToEntity(this.getAttackTarget()) >= 14.0F && rand.nextInt(4) == 0)
 				{
-					this.teleportToEntity(this.getAttackTarget());
+					if (TragicConfig.kitsunakumaTeleport) this.teleportToEntity(this.getAttackTarget());
 				}
 			}
 
-			if (this.isEntityInRange(this.getAttackTarget(), 6.0F, 16.0F) && rand.nextInt(4) == 0 && !this.isFiring() && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.ticksExisted % 5 == 0)
+			if (this.isEntityInRange(this.getAttackTarget(), 6.0F, 16.0F) && rand.nextInt(4) == 0 && !this.isFiring() && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.ticksExisted % 5 == 0 && TragicConfig.kitsunakumaFireballs)
 			{
 				this.setFiringTicks(40);
 			}
 
-			if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0)
+			if (this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && this.canEntityBeSeen(this.getAttackTarget()) && this.getTauntTicks() == 0 && this.isFiring() && this.getFiringTicks() % 25 == 0 && TragicConfig.kitsunakumaFireballs)
 			{
 				double d0 = this.getAttackTarget().posX - this.posX;
 				double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 2.0F - (this.posY + this.height / 2.0F);
@@ -303,13 +303,13 @@ public class EntityKitsune extends TragicBoss {
 				this.worldObj.spawnEntityInWorld(fireball);
 			}
 
-			if (this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(36) == 0 && !this.isFiring() && this.getTauntTicks() == 0)
+			if (this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && rand.nextInt(36) == 0 && !this.isFiring() && this.getTauntTicks() == 0 && TragicConfig.kitsunakumaTeleport)
 			{
 				boolean flag = this.teleportToEntity(this.getAttackTarget());
 				if (!flag) this.teleportRandomly();
 			}
 
-			if (!this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) > 8.0F && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && rand.nextInt(56) == 0 && this.getTauntTicks() == 0) this.setTauntTicks(40);
+			if (!this.isFiring() && this.getDistanceToEntity(this.getAttackTarget()) > 8.0F && this.getDistanceToEntity(this.getAttackTarget()) < 16.0F && rand.nextInt(56) == 0 && this.getTauntTicks() == 0 && TragicConfig.kitsunakumaTaunt) this.setTauntTicks(40);
 			if (this.getTauntTicks() == 40 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.kitsune.taunt", 1.0F, 1.0F);
 		}
 	}
@@ -331,6 +331,8 @@ public class EntityKitsune extends TragicBoss {
 		{
 			return super.attackEntityFrom(par1DamageSource, par2 * 0.145F);
 		}
+		
+		if (!TragicConfig.kitsunakumaFireballExempt) return super.attackEntityFrom(par1DamageSource, par2);
 
 		if (!par1DamageSource.getDamageType().equals("fireball") && !flag)
 		{
@@ -340,7 +342,7 @@ public class EntityKitsune extends TragicBoss {
 		{
 			if (this.getHurtTime() == 0 && !flag) this.setHurtTime(100);
 			par2 = flag ? Float.MAX_VALUE : (this.isFiring() && this.getFiringTicks() % 20 >= 15 ? 20 : 10);
-			if (!flag && par1DamageSource.getEntity() != null) this.teleportToEntity(par1DamageSource.getEntity());
+			if (!flag && par1DamageSource.getEntity() != null && TragicConfig.kitsunakumaTeleport) this.teleportToEntity(par1DamageSource.getEntity());
 		}
 
 		return super.attackEntityFrom(par1DamageSource, par2);

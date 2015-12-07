@@ -138,7 +138,9 @@ public class TragicConfig {
 	public static boolean erkelMushroomSpawning, sirvHelpCall, psygoteSwapTeleport, psygoteProjectiles, psygoteRegeneration, lockbotLockdown, harvesterBuffDebuffEntities, harvesterNanoSwarms, seekerKillbeam;
 	public static boolean archangelHolybeam, ireEnergyBurst, fuseaExplosiveDamage, fuseaExplosiveAttack, fuseaExplosiveLayers, ranmasCharge, ranmasImpactExplosions, parasmiteLeech, avrisAnnouncements, avrisDespawnTime;
 	public static boolean kragulSpiritCasts, magmoxLargeFireballs, megaCryseShields, greaterStinCharge, stinKingMortors, stinQueenWebBombs, stinQueenBabies, stinQueenWebs, voxStellarumSpinAttack, voxStellarumHealing;
-	public static boolean aegarHypermode, aegarShockwave, aegarLasers, aegarMortors, volatileFuseaElementalChange;
+	public static boolean aegarHypermode, aegarShockwave, aegarLasers, aegarMortors, volatileFuseaElementalChange, apisSolarBombs, apisChargeAttack, apisExplosiveCharge, apisSuperStomp, apisReflection;
+	public static boolean skultarDemeanor, skultarProjectiles, skultarClone, skultarWitheringGas, skultarRegeneration, kitsunakumaFireballExempt, kitsunakumaFireballs, kitsunakumaTeleport, kitsunakumaTaunt;
+	public static boolean polarisTeleport, polarisInvisibility, polarisAfterImage, polarisNighttimeSet, polarisFearGolems, polarisRegeneration;
 	
 	public static boolean[] potionAllow = new boolean[32];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
@@ -3493,7 +3495,6 @@ public class TragicConfig {
 		cat.setComment("Toggle aspects of each mob's AI and also set specific griefing instances.");
 		cat.setRequiresWorldRestart(false);
 		
-		//TODO add mob ai and specific grief instances here
 		prop = config.get(cat.getName(), "jabbaAnger", true);
 		prop.comment = "Should the Jabba species become angry after being in combat for a while and gain new abilities?";
 		jabbaAnger = prop.getBoolean(true);
@@ -3733,6 +3734,88 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "volatileFuseaElementalChange", true);
 		prop.comment = "Should Volatile Fuseas change elements based on their surroundings? (they gain projectile attacks from this)";
 		volatileFuseaElementalChange = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "apisSolarbombs", true);
+		prop.comment = "Should Apis fire Solar Bombs at it's target?";
+		apisSolarBombs = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "apisChargeAttack", true);
+		prop.comment = "Should Apis charge towards it's target?";
+		apisChargeAttack = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "apisExplosiveCharge", true);
+		prop.comment = "Should Apis create an explosion when it charges?";
+		apisExplosiveCharge = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "apisSuperStomp", true);
+		prop.comment = "Should Apis do a super stomp attack on nearby targets?";
+		apisSuperStomp = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "apisReflection", true);
+		prop.comment = "Should Apis be able to reflect attacks temporarily?";
+		apisReflection = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "skultarDemeanor", true);
+		prop.comment = "Should Skultar use demeanor to change it's attack state?";
+		skultarDemeanor = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "skultarProjectiles", true);
+		prop.comment = "Should Skultar fire projectiles at it's target?";
+		skultarProjectiles = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "skultarClone", true);
+		prop.comment = "Should Skultar create clones when it's health is low to confuse attackers?";
+		skultarClone = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "skultarWitheringGas", true);
+		prop.comment = "Should Skultar create Withering Gas when it's health is low?";
+		skultarWitheringGas = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "skultarRegeneration", true);
+		prop.comment = "Should Skultar regenerate health naturally?";
+		skultarRegeneration = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "kitsunakumaFireballExempt", true);
+		prop.comment = "Should Kitsunakuma be immune to all damage but Fireball damage?";
+		kitsunakumaFireballExempt = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "kitsunakumaFireballs", true);
+		prop.comment = "Should Kitsunakuma shoot fireballs?";
+		kitsunakumaFireballs = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "kitsunakumaTeleport", true);
+		prop.comment = "Should Kitsunakuma teleport?";
+		kitsunakumaTeleport = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "kitsunakumaTaunt", true);
+		prop.comment = "Should Kitsunakuma taunt?";
+		kitsunakumaTaunt = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "polarisTeleport", true);
+		prop.comment = "Should Polaris teleport?";
+		polarisTeleport = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "polarisInvisibility", true);
+		prop.comment = "Should Polaris go invisible?";
+		polarisInvisibility = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "polarisAfterImage", true);
+		prop.comment = "Should Polaris sometimes leave an after-image (clone) when teleporting?";
+		polarisAfterImage = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "polarisNighttimeSet", true);
+		prop.comment = "Should Polaris automatically set the world to night?";
+		polarisNighttimeSet = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "polarisFearGolems", true);
+		prop.comment = "Should Polaris run away from Golems?";
+		polarisFearGolems = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "polarisRegeneration", true);
+		prop.comment = "Should Polaris regenerate health naturally?";
+		polarisRegeneration = prop.getBoolean(true);
+		
+		//TODO boss configs
 
 		cat = config.getCategory(CAT_MODIFIERS);
 		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");

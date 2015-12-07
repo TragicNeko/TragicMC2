@@ -254,7 +254,7 @@ public class EntityDeathReaper extends TragicBoss {
 				if (this.getReaperType() == 0) this.isBomb = false;
 			}
 
-			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && this.getReaperType() == 0) this.heal(6.0F);
+			if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && this.getReaperType() == 0 && TragicConfig.skultarRegeneration) this.heal(6.0F);
 
 			if (this.ticksExisted >= 600 && this.getReaperType() == 1) this.setDead();
 
@@ -350,7 +350,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 				int x = this.getHealth() <= this.getMaxHealth() / 2 ? 4 : 2;
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0)
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 4.0F && rand.nextInt(64 / x) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && this.getAttackTime() == 0 && TragicConfig.skultarProjectiles)
 				{
 					double d0 = this.getAttackTarget().posX - this.posX;
 					double d1 = this.getAttackTarget().boundingBox.minY + this.getAttackTarget().height / 3.0F - (this.posY + this.height / 2.0F);
@@ -374,7 +374,7 @@ public class EntityDeathReaper extends TragicBoss {
 
 				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 0 && this.isBeingAggressive() && rand.nextInt(32) == 0) this.setAttackTime(20);
 
-				if (this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1)
+				if (this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 1 && TragicConfig.skultarWitheringGas)
 				{
 					List<int[]> list = WorldHelper.getBlocksInSphericalRange(this.worldObj, 3.5, this.posX, this.posY, this.posZ);
 					for (int[] coords : list)
@@ -407,7 +407,7 @@ public class EntityDeathReaper extends TragicBoss {
 		{
 			this.setHitTime(0);
 
-			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && par1DamageSource.getEntity() != null)
+			if (this.getCloneTime() > 100 && this.getHealth() <= this.getMaxHealth() / 2 && rand.nextInt(4) == 0 && par1DamageSource.getEntity() != null && TragicConfig.skultarClone)
 			{
 				int potato = this.getHealth() <= this.getMaxHealth() / 4 ? 2 : 1;
 
@@ -546,7 +546,7 @@ public class EntityDeathReaper extends TragicBoss {
 			hitType = "normal";
 		}
 
-		if (hitType == null)
+		if (hitType == null || !TragicConfig.skultarDemeanor)
 		{
 			return;
 		}
