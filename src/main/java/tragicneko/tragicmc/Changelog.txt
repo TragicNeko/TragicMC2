@@ -4414,7 +4414,8 @@ Some minor changes to blocks to hopefully fix some small generation bugs
 Some minor changes to the Wings of Liberation so that it's not able to be used after it's durability runs out (even though it should be broken)
 Minor fix to projectile aiming for mobs to account for players having a negative motion when on the ground (which is a stupid bug)
 Added in mob ai and grief configs, added all of their toggles in the actual mob AI code
-Boss AI and griefing configs will be done next, just too tired to add them now
+Added in boss ai and grief configs
+Changed Aegar to be identified as a Boss instead of a Mini-Boss
 
 I'm going to do this next release on 1.7.10 with the focus on bugfixes and finalizing features, as well as the config rewrite from a couple months ago and
 the new config options I'm adding now
@@ -4454,7 +4455,7 @@ The Trapper is the Mini-Boss version, it'll use the same AI but it'll have a cha
 or killed
 
 First Expansion:
-Working on new mob AI for the "expansion" due to recording software having driver issues with win10, hopefully these will be resolved soon
+Working on new mob AI, pets and item systems while I wait for driver updates so that I can record sounds
 Going to work on the pet leveling system now, which will use a hybrid version of the borderlands and call of duty systems, you level up the pet, every 5 levels
 you can unlock a new ability, which will unlock a new tier, you can then level them up enough to eventually unlock all of the abilities but you can only have
 one active out of each tier
