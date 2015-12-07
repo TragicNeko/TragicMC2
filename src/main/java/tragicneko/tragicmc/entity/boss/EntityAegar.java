@@ -1,4 +1,4 @@
-package tragicneko.tragicmc.entity.miniboss;
+package tragicneko.tragicmc.entity.boss;
 
 import static tragicneko.tragicmc.TragicConfig.aegarStats;
 
@@ -33,13 +33,10 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
-import tragicneko.tragicmc.entity.boss.EntityPart;
-import tragicneko.tragicmc.entity.boss.IMultiPart;
-import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.entity.projectile.EntityCrystalMortor;
 import tragicneko.tragicmc.util.DamageHelper;
 
-public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart {
+public class EntityAegar extends TragicBoss implements IMultiPart {
 
 	public EntityPart[] aegarParts;
 
@@ -468,11 +465,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	public void onStruckByLightning(EntityLightningBolt bolt) {}
 
 	@Override
-	protected boolean isChangeAllowed() {
-		return false;
-	}
-
-	@Override
 	public World getWorld() {
 		return this.worldObj;
 	}
@@ -648,12 +640,6 @@ public class EntityAegar extends TragicMob implements TragicMiniBoss, IMultiPart
 	public int getTalkInterval()
 	{
 		return 160;
-	}
-
-	@Override
-	public int getDropAmount()
-	{
-		return 5;
 	}
 	
 	@Override

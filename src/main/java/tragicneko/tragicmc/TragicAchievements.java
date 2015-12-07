@@ -57,6 +57,8 @@ public class TragicAchievements {
 	public static Achievement kill = new Achievement("tragicmc.achievement.kill", "tragicmc.kill", 2 + offsetX, 4 + offsetZ, TragicItems.Thorns, weapon).registerStat();
 	public static Achievement killMiniBoss = new Achievement("tragicmc.achievement.killMiniBoss", "tragicmc.killMiniBoss", 4 + offsetX, 4 + offsetZ, TragicItems.FrozenLightning, kill).registerStat();
 	public static Achievement killBoss = new Achievement("tragicmc.achievement.killBoss", "tragicmc.killBoss", 4 + offsetX, 6 + offsetZ, TragicItems.Thardus, killMiniBoss).registerStat();
+	//public static Achievement upgradeWeapon; //Upgrade an eligible weapon to a new tier
+	//public static Achievement killAscendent; //Kill a mob that has defense against ascendent weaponry
 	
 	//armor and basic enchantments achievements
 	public static Achievement enchant = new Achievement("tragicmc.achievement.enchant", "tragicmc.enchant", offsetX, 4 + offsetZ, TragicItems.Splinter, kill).registerStat();
@@ -110,6 +112,16 @@ public class TragicAchievements {
 	public static Achievement fusea = new Achievement("tragicmc.achievement.fusea", "tragicmc.fusea", -12 + offsetX, -8 + offsetZ, TragicItems.UnstableIsotope, null).initIndependentStat().registerStat();
 	public static Achievement ire = new Achievement("tragicmc.achievement.ire", "tragicmc.ire", -12 + offsetX, -6 + offsetZ, TragicItems.IreNetParticleCannon, null).initIndependentStat().registerStat();
 	public static Achievement avris = new Achievement("tragicmc.achievement.avris", "tragicmc.avris", -6 + offsetX, -10 + offsetZ, TragicItems.Ruby, null);
+	//public static Achievement slangLeader; //Kill a Slang Leader without it taking your item, "Beat the devil out of it!"
+	//public static Achievement archangel; //Kill an Archangel while it is using it's holy beam on you, "Angel beats"
+	//public static Achievement blist; //Kill a Blist without it suiciding, "Step away from that ledge, my friend"
+	//public static Achievement thorg; //Kill a Thorg without being hurt by it's projectiles, "Thorg-a-sborg!"
+	//public static Achievement trapper; //Kill a Trapper without it grabbing you, "Trapper no trapping!"
+	//public static Achievement berserker; //Kill a Berserker after it fully transforms, "Let's go berserk!"
+	//public static Achievement phoenix; //Kill all 3 phoenixes within a few seconds of each other, "3 birds, one very big stone"
+	//public static Achievement lonelyShina; //Kill every wolf that Shina spawns and kill it while there are none around it, "Lone Wolf"
+	//public static Achievement petrivNightmares; //Don't fail a single nightmare phase when you kill Petriv
+	//public static Achievement cirelaUntouchable; //Kill C1R-314 without being hit by it
 	
 	//boss achievements
 	public static Achievement apis = new Achievement("tragicmc.achievement.apis", "tragicmc.apis", -12 + offsetX, 2 + offsetZ, TragicItems.PureLight, null).initIndependentStat().registerStat();
@@ -120,6 +132,14 @@ public class TragicAchievements {
 	public static Achievement timeController = new Achievement("tragicmc.achievement.timeController", "tragicmc.timeController", -10 + offsetX, 4 + offsetZ, TragicItems.TimeEssence, null).initIndependentStat().registerStat();
 	public static Achievement enyvil = new Achievement("tragicmc.achievement.enyvil", "tragicmc.enyvil", -10 + offsetX, 6 + offsetZ, TragicItems.PureDarkness, null).initIndependentStat().registerStat();
 	public static Achievement claymation = new Achievement("tragicmc.achievement.claymation", "tragicmc.claymation", -10 + offsetX, 8 + offsetZ, TragicItems.LivingClay, null).initIndependentStat().registerStat();
+	//public static Achievement shinaShewolf; //"Might've Shina coming!"
+	//public static Achievement axyr; //"Axyr if she wants to dance."
+	//public static Achievement petriv; //"Nightmares and a cold sweat"
+	//public static Achievement amsheer; //"I Amsheer about it."
+	//public static Achievement akhora; //"Night of the living dragon"
+	//public static Achievement leviathan; //"Deep, blue sea"
+	//public static Achievement polypus; //"Pulp fiction"
+	//public static Achievement cirela; //"Round and round it goes"
 	
 	public static void load() {		
 		AchievementPage page = new AchievementPage(TragicMC.MODID, thanks, mercury, obsidianOrb, dimensionalKey, collision, aeris, synapseLink, synapse, overlord, overlord2, overlord3, overlord4,

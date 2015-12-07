@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import tragicneko.tragicmc.client.model.ModelAegar;
-import tragicneko.tragicmc.entity.miniboss.EntityAegar;
+import tragicneko.tragicmc.entity.boss.EntityAegar;
 
 public class RenderAegar extends RenderLiving {
 

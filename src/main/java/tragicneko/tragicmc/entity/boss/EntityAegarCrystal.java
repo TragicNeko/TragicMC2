@@ -1,9 +1,7 @@
-package tragicneko.tragicmc.entity.miniboss;
+package tragicneko.tragicmc.entity.boss;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import tragicneko.tragicmc.entity.boss.EntityPart;
-import tragicneko.tragicmc.entity.boss.IMultiPart;
 
 public class EntityAegarCrystal extends EntityPart {
 
