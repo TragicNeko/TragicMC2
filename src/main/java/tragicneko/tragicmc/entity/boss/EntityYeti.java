@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -80,8 +81,14 @@ public class EntityYeti extends TragicBoss {
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 4), 0.4F);
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.empariah);
+	}
+
+	@Override
+	protected void dropFewItems(boolean flag, int l)
+	{
+		super.dropFewItems(flag, l);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 4)));
 	}
 
 	@Override
@@ -295,7 +302,7 @@ public class EntityYeti extends TragicBoss {
 			if (this.isBeingAggressive())
 			{
 				if (this.getThrowing()) this.setThrowing(false);
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.onGround && rand.nextInt(48) == 0 && this.getFrostTicks() == 0 && this.getRoarTicks() == 0 && !this.isCharging())
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 6.0F && this.onGround && rand.nextInt(48) == 0 && this.getFrostTicks() == 0 && this.getRoarTicks() == 0 && !this.isCharging() && TragicConfig.empariahCharge)
 				{
 					double d2 = this.getAttackTarget().posY - this.posY;
 					f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1 + d2 * d2);
@@ -303,18 +310,18 @@ public class EntityYeti extends TragicBoss {
 					this.motionX = d0 / f2 * 2.15D * 0.800000011920929D + this.motionX * 0.80000000298023224D;
 					this.motionZ = d1 / f2 * 2.15D * 0.800000011920929D + this.motionZ * 0.80000000298023224D;
 					this.motionY = d2 / f2 * 1.95D * 0.400000011920929D + this.motionY * 0.80000000298023224D;
-					this.incrementDemeanor();
-					this.setChargeTicks(10);
+					if (TragicConfig.empariahDemeanor) this.incrementDemeanor();
+					this.setChargeTicks(5);
 					this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 				}
 
 				if (this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 5.0F, 14.0F) && this.onGround && rand.nextInt(128) == 0 &&
-						this.getFrostTicks() == 0 && !this.isRoaring() && !this.isCharging() && this.ticksExisted % 3 == 0 && this.canEntityBeSeen(this.getAttackTarget()))
+						this.getFrostTicks() == 0 && !this.isRoaring() && !this.isCharging() && this.ticksExisted % 3 == 0 && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.empariahFrostBreath)
 				{
 					this.setFrostTicks(100);
 				}
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 5.0F && this.onGround && rand.nextInt(256) == 0 && this.getFrostTicks() == 0 && !this.isRoaring() && this.getHealth() < this.getMaxHealth() / 2 && !this.isCharging())
+				if (this.getDistanceToEntity(this.getAttackTarget()) > 5.0F && this.onGround && rand.nextInt(256) == 0 && this.getFrostTicks() == 0 && !this.isRoaring() && this.getHealth() < this.getMaxHealth() / 2 && !this.isCharging() && TragicConfig.empariahRoar)
 				{
 					this.setRoarTicks(20);
 					this.playSound("mob.enderdragon.growl", 1.6F, 1.0F);
@@ -336,10 +343,10 @@ public class EntityYeti extends TragicBoss {
 						this.worldObj.spawnEntityInWorld(fireball);
 					}
 
-					this.incrementDemeanor();
+					if (TragicConfig.empariahDemeanor) this.incrementDemeanor();
 				}
 
-				if (rand.nextBoolean() && this.ticksExisted % 10 == 0 && (this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F || !this.canEntityBeSeen(this.getAttackTarget()))) this.decrementDemeanor();
+				if (rand.nextBoolean() && this.ticksExisted % 10 == 0 && TragicConfig.empariahDemeanor && (this.getDistanceToEntity(this.getAttackTarget()) >= 8.0F || !this.canEntityBeSeen(this.getAttackTarget()))) this.decrementDemeanor();
 
 				if (this.isRoaring() || this.getFrostTicks() > 0) this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 			}
@@ -348,7 +355,7 @@ public class EntityYeti extends TragicBoss {
 				this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(mod);
 
 				if (this.getFrostTicks() > 0) this.setFrostTicks(0);
-				if (rand.nextInt(528) == 0 || this.getAttackTarget().getHealth() <= this.getAttackTarget().getMaxHealth() / 3 || this.getDistanceToEntity(this.getAttackTarget()) <= 4.0F) this.setDemeanor(12);
+				if (TragicConfig.empariahDemeanor && (rand.nextInt(528) == 0 || this.getAttackTarget().getHealth() <= this.getAttackTarget().getMaxHealth() / 3 || this.getDistanceToEntity(this.getAttackTarget()) <= 4.0F)) this.setDemeanor(12);
 
 				if (this.getThrowing() && this.ticksExisted % 60 == 0)
 				{
@@ -368,20 +375,20 @@ public class EntityYeti extends TragicBoss {
 
 				if (this.ticksExisted % 10 == 0 && (this.getDistanceToEntity(this.getAttackTarget()) > 8.0F || !this.canEntityBeSeen(this.getAttackTarget())) && !this.isRoaring() && !this.isCharging() && rand.nextBoolean())
 				{
-					this.decrementDemeanor();
-					if (!this.getThrowing()) this.setThrowing(true);
+					if (TragicConfig.empariahDemeanor) this.decrementDemeanor();
+					if (!this.getThrowing() && TragicConfig.empariahRockThrowing) this.setThrowing(true);
 				}
 
-				if (this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.onGround && this.getFrostTicks() == 0 && !this.isRoaring() && !this.getThrowing() && !this.isCharging() && (this.getHealth() < this.getMaxHealth() / 2 && this.getDemeanor() < 0 && rand.nextInt(128) == 0 || this.hitTime >= 400 || rand.nextInt(128) == 0 && this.ticksExisted % 45 == 0))
+				if (TragicConfig.empariahRoar && this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.onGround && this.getFrostTicks() == 0 && !this.isRoaring() && !this.getThrowing() && !this.isCharging() && (this.getHealth() < this.getMaxHealth() / 2 && this.getDemeanor() < 0 && rand.nextInt(128) == 0 || this.hitTime >= 400 || rand.nextInt(128) == 0 && this.ticksExisted % 45 == 0))
 				{
 					this.setRoarTicks(20);
 					this.playSound("mob.enderdragon.growl", 1.6F, 1.0F);
 				}				
 			}
 
-			if (this.getRoarTicks() == 18)
+			if (this.getRoarTicks() == 18 && TragicConfig.empariahRoar)
 			{
-				if (TragicConfig.allowAbomination) this.attemptToSummonHelp();
+				if (TragicConfig.allowAbomination && TragicConfig.empariahSummonAbomination) this.attemptToSummonHelp();
 				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(12.0D, 12.0D, 12.0D));
 				EntityLivingBase entity;
 				for (int i = 0; i < list.size(); i++)
@@ -400,26 +407,33 @@ public class EntityYeti extends TragicBoss {
 						}
 					}
 				}
-				this.decrementDemeanor();
-				if (this.getDemeanor() < 0)
+
+				if (TragicConfig.empariahDemeanor)
 				{
-					this.setDemeanor(12);
-					this.hitTime = 200;
+					this.decrementDemeanor();
+					if (this.getDemeanor() < 0)
+					{
+						this.setDemeanor(12);
+						this.hitTime = 200;
+					}
 				}
 
-				list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
-				EntityAbomination mob;
-
-				for (int i = 0; i < list.size(); i++)
+				if (TragicConfig.empariahCallHelp && TragicConfig.allowAbomination)
 				{
-					if (list.get(i) instanceof EntityAbomination)
-					{
-						mob = (EntityAbomination) list.get(i);
+					list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
+					EntityAbomination mob;
 
-						if (mob instanceof EntityAbomination)
+					for (int i = 0; i < list.size(); i++)
+					{
+						if (list.get(i) instanceof EntityAbomination)
 						{
-							mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true));
-							mob.setTarget(this.getAttackTarget());
+							mob = (EntityAbomination) list.get(i);
+
+							if (mob instanceof EntityAbomination)
+							{
+								mob.targetTasks.addTask(3, new EntityAINearestAttackableTarget(mob, this.getAttackTarget().getClass(), 0, true));
+								mob.setTarget(this.getAttackTarget());
+							}
 						}
 					}
 				}
@@ -429,11 +443,12 @@ public class EntityYeti extends TragicBoss {
 
 	private void attemptToSummonHelp()
 	{
+		if (!TragicConfig.empariahSummonAbomination) return;
 		List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, boundingBox.expand(32.0, 32.0, 32.0));
 
 		if (list.size() >= 4 || this.getAttackTarget() == null)
 		{
-			this.decrementDemeanor();
+			if (TragicConfig.empariahDemeanor) this.decrementDemeanor();
 			return;
 		}
 
@@ -483,11 +498,11 @@ public class EntityYeti extends TragicBoss {
 			this.hitTime = 0;
 			if (this.getFrostTicks() > 0) this.setFrostTicks(0);
 			if (this.getHurtTime() == 0) this.setHurtTime(10);
-			if (par2 >= 10.0F) this.incrementDemeanor();
+			if (par2 >= 10.0F && TragicConfig.empariahDemeanor) this.incrementDemeanor();
 
-			if (!this.isBeingAggressive() && rand.nextInt(4) == 0) this.setDemeanor(12);
+			if (!this.isBeingAggressive() && rand.nextInt(4) == 0 && TragicConfig.empariahDemeanor) this.setDemeanor(12);
 
-			if (this.getAttackTarget() != null)
+			if (this.getAttackTarget() != null && TragicConfig.empariahCallHelp)
 			{
 				List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityAbomination.class, this.boundingBox.expand(32.0, 32.0, 32.0));
 				EntityAbomination mob;
@@ -527,7 +542,7 @@ public class EntityYeti extends TragicBoss {
 				par1Entity.motionY += 0.65D;
 			}
 
-			this.incrementDemeanor();
+			if (TragicConfig.empariahDemeanor) this.incrementDemeanor();
 			if (this.getAttackTime() == 0 && !this.isCharging()) this.setAttackTime(10);
 		}
 
@@ -545,6 +560,8 @@ public class EntityYeti extends TragicBoss {
 
 	private void trackHitType(String damageType)
 	{
+		if (!TragicConfig.empariahDemeanor) return;
+		
 		String hitType = null;
 		if (damageType.equals("arrow"))
 		{

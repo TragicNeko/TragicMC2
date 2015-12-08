@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -47,7 +48,7 @@ public class EntityTimeController extends TragicBoss {
 
 	private static AttributeModifier mod = new AttributeModifier(UUID.fromString("c6334c3a-6cf4-4755-8fe5-d1b713c1f375"), "timeControllerSpeedBuff", TragicConfig.modifier[2], 0);
 
-	private HashMap<Integer, double[]> tracker = new HashMap();
+	private HashMap<Integer, double[]> tracker;
 	private float storedDamage;
 	private int ticksSinceFlux;
 
@@ -65,7 +66,7 @@ public class EntityTimeController extends TragicBoss {
 		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.isImmuneToFire = true;
-		this.tracker = new HashMap();
+		this.tracker = new HashMap<Integer, double[]>();
 		this.storedDamage = 0.0F;
 	}
 
@@ -230,8 +231,14 @@ public class EntityTimeController extends TragicBoss {
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 3), 0.4F);
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.timeController);
+	}
+	
+	@Override
+	protected void dropFewItems(boolean flag, int l)
+	{
+		super.dropFewItems(flag, l);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 3)));
 	}
 
 	@Override

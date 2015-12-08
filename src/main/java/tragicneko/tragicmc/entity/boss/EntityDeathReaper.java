@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -195,13 +196,18 @@ public class EntityDeathReaper extends TragicBoss {
 		
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.skultar);
 		
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 2), 0.4F);
-
 		List<EntityDeathReaper> list = this.worldObj.getEntitiesWithinAABB(EntityDeathReaper.class, this.boundingBox.expand(32.0, 32.0, 32.0));
 		for (EntityDeathReaper reaper : list)
 		{
 			if (reaper.getReaperType() == 1) reaper.setDead();
 		}
+	}
+	
+	@Override
+	protected void dropFewItems(boolean flag, int l)
+	{
+		super.dropFewItems(flag, l);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 2)));
 	}
 
 	@Override
@@ -369,7 +375,7 @@ public class EntityDeathReaper extends TragicBoss {
 						this.worldObj.spawnEntityInWorld(skull);
 					}
 
-					if (rand.nextInt(4) == 0) this.incrementDemeanor();
+					if (rand.nextInt(4) == 0 && TragicConfig.skultarDemeanor) this.incrementDemeanor();
 				}
 
 				if (this.getDistanceToEntity(this.getAttackTarget()) <= 3.0F && this.getHealth() <= this.getMaxHealth() / 2 && this.getAttackTime() == 0 && this.isBeingAggressive() && rand.nextInt(32) == 0) this.setAttackTime(20);

@@ -140,7 +140,8 @@ public class TragicConfig {
 	public static boolean kragulSpiritCasts, magmoxLargeFireballs, megaCryseShields, greaterStinCharge, stinKingMortors, stinQueenWebBombs, stinQueenBabies, stinQueenWebs, voxStellarumSpinAttack, voxStellarumHealing;
 	public static boolean aegarHypermode, aegarShockwave, aegarLasers, aegarMortors, volatileFuseaElementalChange, apisSolarBombs, apisChargeAttack, apisExplosiveCharge, apisSuperStomp, apisReflection;
 	public static boolean skultarDemeanor, skultarProjectiles, skultarClone, skultarWitheringGas, skultarRegeneration, kitsunakumaFireballExempt, kitsunakumaFireballs, kitsunakumaTeleport, kitsunakumaTaunt;
-	public static boolean polarisTeleport, polarisInvisibility, polarisAfterImage, polarisNighttimeSet, polarisFearGolems, polarisRegeneration;
+	public static boolean polarisTeleport, polarisInvisibility, polarisAfterImage, polarisNighttimeSet, polarisFearGolems, polarisRegeneration, empariahDemeanor, empariahCharge, empariahFrostBreath;
+	public static boolean empariahRoar, empariahRockThrowing, empariahSummonAbomination, empariahCallHelp;
 	
 	public static boolean[] potionAllow = new boolean[32];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
@@ -3815,7 +3816,41 @@ public class TragicConfig {
 		prop.comment = "Should Polaris regenerate health naturally?";
 		polarisRegeneration = prop.getBoolean(true);
 		
-		//TODO boss configs
+		prop = config.get(cat.getName(), "empariahDemeanor", true);
+		prop.comment = "Should Empariah use demeanor to determine it's attack patterns?";
+		empariahDemeanor = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "empariahCharge", true);
+		prop.comment = "Should Empariah charge towards it's target?";
+		empariahCharge = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "empariahFrostBreath", true);
+		prop.comment = "Should Empariah use a Frost breath attack?";
+		empariahFrostBreath = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "empariahRoar", true);
+		prop.comment = "Should Empariah use a Roar attack?";
+		empariahRoar = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "empariahRockThrowing", true);
+		prop.comment = "Should Empariah throw rocks at it's target?";
+		empariahRockThrowing = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "empariahSummonAbomination", true);
+		prop.comment = "Should Empariah summon Abominations to help it?";
+		empariahSummonAbomination = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "empariahCallHelp", true);
+		prop.comment = "Should Empariah call for help of nearby Abominations?";
+		empariahCallHelp = prop.getBoolean(true);
+		
+		//TODO time controller boss config
+		
+		//TODO enyvil boss config
+		
+		//TODO claymation boss config
+		
+		//TODO overlord configs
 
 		cat = config.getCategory(CAT_MODIFIERS);
 		cat.setComment("Set each mob's modifier's actual amount, these can also be used to disable them by setting them to 0 in most cases.");

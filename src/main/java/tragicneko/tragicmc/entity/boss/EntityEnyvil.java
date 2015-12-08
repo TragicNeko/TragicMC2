@@ -21,6 +21,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -292,7 +293,6 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	public void onDeath(DamageSource src)
 	{
 		super.onDeath(src);
-		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.entityDropItem(new ItemStack(TragicItems.MobStatue, 1, 14), 0.4F);
 
 		if (!this.worldObj.isRemote)
 		{
@@ -308,6 +308,13 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		}
 		
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.enyvil);
+	}
+	
+	@Override
+	protected void dropFewItems(boolean flag, int l)
+	{
+		super.dropFewItems(flag, l);
+		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 14)));
 	}
 
 	@Override
