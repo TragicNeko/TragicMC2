@@ -220,7 +220,7 @@ public class EntityClaymation extends TragicBoss {
 		this.formTicks++;
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
 
-		if (this.formTicks >= 150 && this.getEntityForm() == 0)
+		if (this.formTicks >= 150 && this.getEntityForm() == 0 && TragicConfig.claymationTransformation)
 		{
 			this.updateHealth(this.getHealth());
 			if (this.getAttackTarget() != null)
@@ -314,6 +314,7 @@ public class EntityClaymation extends TragicBoss {
 			this.motionZ = d1 / f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
 			this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 			this.setUtilityInt(10);
+			this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 		}
 
 		this.reflectPotionEffects();
@@ -321,7 +322,7 @@ public class EntityClaymation extends TragicBoss {
 	}
 
 	private void reflectPotionEffects() {
-
+		if (!TragicConfig.claymationPotionReflection) return;
 		PotionEffect[] effects = new PotionEffect[16];
 		PotionEffect temp;
 		int a = 0;
@@ -373,6 +374,7 @@ public class EntityClaymation extends TragicBoss {
 			this.motionZ = d1 / f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
 			this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 			this.setUtilityInt(20);
+			this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 		}
 	}
 
@@ -409,6 +411,7 @@ public class EntityClaymation extends TragicBoss {
 			this.motionZ = d1 / f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
 			this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 			this.setUtilityInt(10);
+			this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 		}
 		else if (this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F)
 				&& this.onGround && rand.nextInt(48) == 0 && this.getUtilityInt() == 0 && this.getUtilityInt2() == 0)
@@ -426,6 +429,7 @@ public class EntityClaymation extends TragicBoss {
 			this.motionZ = d1 / f2 * 2.5D * 0.700000011920929D + this.motionZ * 0.40000000298023224D;
 			this.motionY = d1 / f2 * 1.1D * 0.200000011920929D + this.motionY * 0.20000000298023224D;
 			this.setUtilityInt(10);
+			this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 		}
 		else if (this.getDistanceToEntity(this.getAttackTarget()) >= 12.0F && this.onGround && rand.nextInt(48) == 0 && this.getUtilityInt() == 0 && this.getUtilityInt2() == 0)
 		{
@@ -441,6 +445,7 @@ public class EntityClaymation extends TragicBoss {
 			this.motionZ = d1 / f2 * 3.5D * 0.800000011920929D + this.motionZ * 0.60000000298023224D;
 			this.motionY = 0.45;
 			this.setUtilityInt(10);
+			this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
 		}
 		else if (this.onGround && rand.nextInt(48) == 0 && this.getUtilityInt() == 0 && this.getUtilityInt2() == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F)
 		{

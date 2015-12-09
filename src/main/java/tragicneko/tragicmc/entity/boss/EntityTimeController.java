@@ -95,7 +95,7 @@ public class EntityTimeController extends TragicBoss {
 	}
 
 	private void doQuantumLeap() {
-		if (tracker.isEmpty()) return;
+		if (tracker.isEmpty() || !TragicConfig.timeControllerQuantumLeap) return;
 
 		Entity entity;
 		Iterator<Integer> iterator = tracker.keySet().iterator();
@@ -119,8 +119,8 @@ public class EntityTimeController extends TragicBoss {
 			}
 		}
 
-		tracker = new HashMap();
-		this.worldObj.setWorldTime(this.worldObj.getWorldTime() - 250);
+		tracker = new HashMap<Integer, double[]>();
+		if (TragicConfig.timeControllerTimeAltering) this.worldObj.setWorldTime(this.worldObj.getWorldTime() - 250);
 	}
 
 	@Override
@@ -233,7 +233,7 @@ public class EntityTimeController extends TragicBoss {
 		super.onDeath(src);
 		if (src.getEntity() instanceof EntityPlayerMP && TragicConfig.allowAchievements) ((EntityPlayerMP) src.getEntity()).triggerAchievement(TragicAchievements.timeController);
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
@@ -320,7 +320,7 @@ public class EntityTimeController extends TragicBoss {
 		}
 
 		ticksSinceFlux++;
-		if (this.ticksExisted % 5 == 0 && this.getHealth() < this.getMaxHealth() && this.getFluxTicks() == 0) this.heal(1.0F);
+		if (this.ticksExisted % 5 == 0 && this.getHealth() < this.getMaxHealth() && this.getFluxTicks() == 0 && TragicConfig.timeControllerRegeneration) this.heal(1.0F);
 
 		if (this.getLeapTicks() > 0)
 		{
@@ -332,8 +332,8 @@ public class EntityTimeController extends TragicBoss {
 		{
 			if (this.getLeapTicks() > 0) this.setLeapTicks(0);
 			this.decrementFluxTicks();
-			this.pullEntities();
-			this.worldObj.setWorldTime(rand.nextInt(48) * 500);
+			if (TragicConfig.timeControllerFlux) this.pullEntities();
+			if (TragicConfig.timeControllerTimeAltering) this.worldObj.setWorldTime(rand.nextInt(48) * 500);
 		}
 
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(mod);
@@ -344,26 +344,26 @@ public class EntityTimeController extends TragicBoss {
 		}
 
 		if (this.getSpazTicks() > 0) this.decrementSpazTicks();
-		if (this.getFluxTicks() == 2) this.damageNearbyEntities();
+		if (this.getFluxTicks() == 2 && TragicConfig.timeControllerFlux) this.damageNearbyEntities();
 
-		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0)
+		if (rand.nextInt(1028) == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0 && TragicConfig.timeControllerQuantumLeap)
 		{
 			this.setLeapTicks(180);
 			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.leap", 1.9F, 1.0F);
 		}
-		
-		if (rand.nextInt(128) == 0 && ticksSinceFlux > 600 && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F))
+
+		if (rand.nextInt(128) == 0 && ticksSinceFlux > 600 && this.getFluxTicks() == 0 && this.getLeapTicks() == 0 && this.getPurgeTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 6.0F, 12.0F) && TragicConfig.timeControllerFlux)
 		{
 			this.storedDamage = 0.0F;
 			this.setFluxTicks(250);
 			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.timecontroller.flux", 1.9F, 1.0F);
 		}
-		if (rand.nextInt(64) == 0 && this.getPurgeTicks() == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F))
+		if (rand.nextInt(64) == 0 && this.getPurgeTicks() == 0 && this.getLeapTicks() == 0 && this.getFluxTicks() == 0 && this.getSpazTicks() == 0 && this.getAttackTarget() != null && this.isEntityInRange(this.getAttackTarget(), 4.0F, 16.0F) && TragicConfig.timeControllerPurge)
 		{
 			this.setPurgeTicks(100 + rand.nextInt(80));
 		}
 
-		if (this.getPurgeTicks() > 0 && this.ticksExisted % 20 == 0) this.damageNearbyEntities();
+		if (this.getPurgeTicks() > 0 && this.ticksExisted % 20 == 0 && TragicConfig.timeControllerPurge) this.damageNearbyEntities();
 
 		if (this.getPurgeTicks() > 0)
 		{
@@ -375,12 +375,15 @@ public class EntityTimeController extends TragicBoss {
 			this.setSprinting(false);
 		}
 
-		if (this.getSpazTicks() > 0 && this.ticksExisted % 5 == 0) this.spazOut();
+		if (this.getSpazTicks() > 0 && this.ticksExisted % 5 == 0 && TragicConfig.timeControllerSpaz) this.spazOut();
 
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		if (TragicConfig.timeControllerLuminescence)
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		}
 	}
 
 	private void weighDownEntities() {
@@ -401,6 +404,7 @@ public class EntityTimeController extends TragicBoss {
 	}
 
 	private void createTimeBombs() {
+		if (!TragicConfig.timeControllerTimeBombs) return;
 		for (int i = 0; i < 2; i++)
 		{
 			int y1 = MathHelper.getRandomIntegerInRange(this.worldObj.rand, 6, 10);
@@ -426,7 +430,7 @@ public class EntityTimeController extends TragicBoss {
 	}
 
 	private void spazOut() {
-
+		if (!TragicConfig.timeControllerSpaz) return;
 		double d0 = 16.0D;
 		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
@@ -447,7 +451,7 @@ public class EntityTimeController extends TragicBoss {
 
 	private void damageNearbyEntities() {
 		boolean flag2 = this.getPurgeTicks() > 0;
-		double d0 = flag2 ? 2.0D : 16.0D;
+		double d0 = flag2 ? 4.0D : 16.0D;
 		List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(d0, d0, d0));
 		Iterator iterator = list.iterator();
 
@@ -455,7 +459,7 @@ public class EntityTimeController extends TragicBoss {
 		{
 			EntityLivingBase entity = (EntityLivingBase) iterator.next();
 
-			if (entity.canEntityBeSeen(this) && entity != this)
+			if (this.canEntityBeSeen(entity) && entity != this)
 			{
 				if (!flag2)
 				{

@@ -141,7 +141,10 @@ public class TragicConfig {
 	public static boolean aegarHypermode, aegarShockwave, aegarLasers, aegarMortors, volatileFuseaElementalChange, apisSolarBombs, apisChargeAttack, apisExplosiveCharge, apisSuperStomp, apisReflection;
 	public static boolean skultarDemeanor, skultarProjectiles, skultarClone, skultarWitheringGas, skultarRegeneration, kitsunakumaFireballExempt, kitsunakumaFireballs, kitsunakumaTeleport, kitsunakumaTaunt;
 	public static boolean polarisTeleport, polarisInvisibility, polarisAfterImage, polarisNighttimeSet, polarisFearGolems, polarisRegeneration, empariahDemeanor, empariahCharge, empariahFrostBreath;
-	public static boolean empariahRoar, empariahRockThrowing, empariahSummonAbomination, empariahCallHelp;
+	public static boolean empariahRoar, empariahRockThrowing, empariahSummonAbomination, empariahCallHelp, empariahRegeneration, timeControllerRegeneration, timeControllerQuantumLeap, timeControllerFlux;
+	public static boolean timeControllerPurge, timeControllerSpaz, timeControllerTimeBombs, timeControllerLuminescence, timeControllerTimeAltering, enyvilDarkCrystals, enyvilDarkLightning;
+	public static boolean enyvilCrystalLaser, enyvilDarkEnergySpray, enyvilTractorBeam, enyvilThunderstorm, enyvilLightningExplosions, enyvilSlam, enyvilDestroyBlocks, enyvilRegeneration;
+	public static boolean claymationTransformation, claymationPotionReflection;
 	
 	public static boolean[] potionAllow = new boolean[32];
 	public static boolean allowFlight, allowAquaSuperiority, allowImmunity, allowResurrection, allowHarmony, allowInvulnerability, allowClarity, allowConvergence, allowDivinity;
@@ -3844,11 +3847,89 @@ public class TragicConfig {
 		prop.comment = "Should Empariah call for help of nearby Abominations?";
 		empariahCallHelp = prop.getBoolean(true);
 		
-		//TODO time controller boss config
+		prop = config.get(cat.getName(), "empariahRegeneration", true);
+		prop.comment = "Should Empariah regenerate health naturally?";
+		empariahRegeneration = prop.getBoolean(true);
 		
-		//TODO enyvil boss config
+		prop = config.get(cat.getName(), "timeControllerRegeneration", true);
+		prop.comment = "Should Time Controller generate health naturally?";
+		timeControllerRegeneration = prop.getBoolean(true);
 		
-		//TODO claymation boss config
+		prop = config.get(cat.getName(), "timeControllerQuantumLeap", true);
+		prop.comment = "Should Time Controller use a Quantum Leap attack that reverts entities to their position from a few seconds ago?";
+		timeControllerQuantumLeap = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "timeControllerFlux", true);
+		prop.comment = "Should Time Controller use a Flux attack that pulls entities towards it and absorbs damage?";
+		timeControllerFlux = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "timeControllerPurge", true);
+		prop.comment = "Should Time Controller use a Purge attack that deflects projectiles and hits entities near it?";
+		timeControllerPurge = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "timeControllerSpaz", true);
+		prop.comment = "Should Time Controller spaz out when it's health is low and teleport around?";
+		timeControllerSpaz = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "timeControllerTimeBombs", true);
+		prop.comment = "Should Time Controller spawn in Time Bombs that affect entities near them?";
+		timeControllerTimeBombs = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "timeControllerLuminescence", true);
+		prop.comment = "Should Time Controller place Light blocks to simulate entity lighting?";
+		timeControllerLuminescence = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "timeControllerTimeAltering", true);
+		prop.comment = "Should Time Controller be able to change the world time?";
+		timeControllerTimeAltering = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilDarkCrystals", true);
+		prop.comment = "Should Enyvil need Dark Crystals to use it's abilities?";
+		enyvilDarkCrystals = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilDarkLightning", true);
+		prop.comment = "Should Enyvil shoot Dark Lightning projectiles?";
+		enyvilDarkLightning = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilCrystalLaser", true);
+		prop.comment = "Should Enyvil be able to use it's Dark Crystals to fire a laser at it's target?";
+		enyvilCrystalLaser = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilDarkEnergySpray", true);
+		prop.comment = "Should Enyvil be able to fire Dark Energy at it's target?";
+		enyvilDarkEnergySpray = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilTractorBeam", true);
+		prop.comment = "Should Enyvil be able to Tractor beam far away targets to it?";
+		enyvilTractorBeam = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilThunderstorm", true);
+		prop.comment = "Should Enyvil be able to summon Lightning down around it?";
+		enyvilThunderstorm = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilLightningExplosions", true);
+		prop.comment = "Should Enyvil create explosions when it strikes something with Lightning?";
+		enyvilLightningExplosions = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilSlam", true);
+		prop.comment = "Should Enyvil have a Slam attack?";
+		enyvilSlam = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilDestroyBlocks", true);
+		prop.comment = "Should Enyvil destroy blocks if it gets stuck?";
+		enyvilDestroyBlocks = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "enyvilRegeneration", true);
+		prop.comment = "Should Enyvil regenerate health naturally while it has a Dark Crystl?";
+		enyvilRegeneration = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "claymationTransformation", true);
+		prop.comment = "Should Claymation transform into other mobs and inherit their abilities?";
+		claymationTransformation = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "claymationPotionReflection", true);
+		prop.comment = "Should Claymation reflect bad potion effects at it's target?";
+		claymationPotionReflection = prop.getBoolean(true);
 		
 		//TODO overlord configs
 

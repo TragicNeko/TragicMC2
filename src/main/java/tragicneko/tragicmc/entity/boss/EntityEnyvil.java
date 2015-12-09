@@ -232,7 +232,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 	private boolean hasCrystal()
 	{
-		return this.crystal != null && !this.crystal.isDead;
+		return this.crystal != null && !this.crystal.isDead || !TragicConfig.enyvilDarkCrystals;
 	}
 
 	public int getSlamTicks()
@@ -391,7 +391,8 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 		}
 
 		this.decrementValues();
-		this.updateCrystal();
+		
+		if (TragicConfig.enyvilDarkCrystals) this.updateCrystal();
 		this.updateTargetInfo();
 
 		if (this.getAttackTarget() == null)
@@ -408,39 +409,39 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			double d7 = this.getAttackTarget().posZ - this.posZ;
 			this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(d5, d7)) * 180.0F / (float)Math.PI;
 			
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 20.0F) && rand.nextInt(48) == 0) this.setLightningTicks(100);
-			if (this.getLightningTicks() > 0 && this.getLightningTicks() % 20 == 0) this.useDarkLightning();
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 20.0F) && rand.nextInt(48) == 0 && TragicConfig.enyvilDarkLightning) this.setLightningTicks(100);
+			if (this.getLightningTicks() > 0 && this.getLightningTicks() % 20 == 0 && TragicConfig.enyvilDarkLightning) this.useDarkLightning();
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 5.0F, 16.0F) && rand.nextInt(96) == 0)
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 5.0F, 16.0F) && rand.nextInt(96) == 0 && TragicConfig.enyvilDarkEnergySpray)
 			{
 				this.setDarkEnergyTicks(160);
-				this.playSound("tragicmc:boss.enyvil.spray", 1.8F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.spray", 1.8F, 1.0F);
 			}
-			if (this.getDarkEnergyTicks() > 0) this.useDarkEnergySpray();
+			if (this.getDarkEnergyTicks() > 0 && TragicConfig.enyvilDarkEnergySpray) this.useDarkEnergySpray();
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 12.0F, 28.0F) && rand.nextInt(128) == 0 && this.canEntityBeSeen(this.getAttackTarget()))
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 12.0F, 28.0F) && rand.nextInt(128) == 0 && this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.enyvilTractorBeam)
 			{
 				this.setTractorBeamTicks(200);
-				this.playSound("tragicmc:boss.enyvil.come", 1.8F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.come", 1.8F, 1.0F);
 			}
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 8.0F, 24.0F) && rand.nextInt(64) == 0 && !this.canEntityBeSeen(this.getAttackTarget())) this.setLaserTicks(200);
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 8.0F, 24.0F) && rand.nextInt(64) == 0 && !this.canEntityBeSeen(this.getAttackTarget()) && TragicConfig.enyvilCrystalLaser) this.setLaserTicks(200);
 
-			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 18.0F) && rand.nextInt(256) == 0)
+			if (this.canUseNewAbility() && this.isEntityInRange(this.getAttackTarget(), 6.0F, 18.0F) && rand.nextInt(256) == 0 && TragicConfig.enyvilThunderstorm)
 			{
 				this.setThunderstormTicks(120);
-				this.playSound("tragicmc:boss.enyvil.calling", 1.8F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.calling", 1.8F, 1.0F);
 			}
-			if (this.getThunderstormTicks() > 0 && this.getThunderstormTicks() % 10 == 0) this.createThunderstorm();
+			if (this.getThunderstormTicks() > 0 && this.getThunderstormTicks() % 10 == 0 && TragicConfig.enyvilThunderstorm) this.createThunderstorm();
 
-			if (this.canUseNewAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && rand.nextInt(32) == 0 && this.onGround)
+			if (this.canUseNewAbility() && this.getDistanceToEntity(this.getAttackTarget()) <= 8.0F && rand.nextInt(32) == 0 && this.onGround && TragicConfig.enyvilSlam)
 			{
 				this.setSlamTicks(40);
-				this.playSound("tragicmc:boss.enyvil.slam", 1.8F, 1.0F);
+				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.enyvil.slam", 1.8F, 1.0F);
 			}
-			if (this.getSlamTicks() == 4) this.useSlam();
+			if (this.getSlamTicks() == 4 && TragicConfig.enyvilSlam) this.useSlam();
 
-			if (this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 20.0F)
+			if (this.ticksExisted % 60 == 0 && rand.nextInt(4) == 0 && this.getDistanceToEntity(this.getAttackTarget()) <= 20.0F && TragicConfig.enyvilThunderstorm)
 			{
 				for (int meow = 0; meow < 4 + rand.nextInt(3); meow++)
 				{
@@ -453,7 +454,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			}
 		}
 
-		if (this.isCollidedHorizontally && this.getMobGriefing()) this.destroyBlocks();
+		if (this.isCollidedHorizontally && this.getMobGriefing() && TragicConfig.enyvilDestroyBlocks) this.destroyBlocks();
 	}
 
 	private void destroyBlocks() {
@@ -510,7 +511,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (this.hasCrystal())
 		{
-			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth()) this.heal(1.0F);
+			if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.enyvilRegeneration) this.heal(1.0F);
 			this.crystal.motionX = this.motionX;
 			this.crystal.motionZ = this.motionZ;
 
@@ -549,7 +550,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 	}
 
 	public void createNewCrystals() {
-		if (this.crystalBuffer > 0) return;
+		if (this.crystalBuffer > 0 || !TragicConfig.enyvilDarkCrystals) return;
 
 		List<EntityDarkCrystal> list = this.worldObj.getEntitiesWithinAABB(EntityDarkCrystal.class, this.boundingBox.expand(64.0D, 64.0D, 64.0D));
 		if (list.size() >= 5) return;
@@ -708,7 +709,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 			double d2 = this.posY - WorldHelper.getDistanceToGround(this);
 
 			this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, d0, d2, d1));
-			this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 2.0F + 0.5F, this.getMobGriefing());
+			if (TragicConfig.enyvilLightningExplosions) this.worldObj.createExplosion(this, d0, d2, d1, rand.nextFloat() * 2.0F + 0.5F, this.getMobGriefing());
 		}
 	}
 
@@ -750,7 +751,7 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 		if (source == DamageSource.inWall)
 		{
-			if (this.getMobGriefing()) this.destroyBlocks();
+			if (this.getMobGriefing() && TragicConfig.enyvilDestroyBlocks) this.destroyBlocks();
 			return false;
 		}
 

@@ -278,7 +278,7 @@ public class EntityYeti extends TragicBoss {
 			return;
 		}
 
-		if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() ) this.heal(3.0F);
+		if (this.ticksExisted % 60 == 0 && this.getHealth() < this.getMaxHealth() && TragicConfig.empariahRegeneration) this.heal(3.0F);
 
 		hitTime++;
 		if (this.getFrostTicks() > 0) this.decrementFrostTicks();
