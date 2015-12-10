@@ -29,6 +29,7 @@ public class ArmorDark extends TragicArmor {
 		{
 			Boolean flag1 = false;
 			Boolean flag2 = false;
+			Boolean flag3 = false;
 			Boolean flag4 = false;
 
 			for (int a = 1; a < 5; a++)
@@ -39,13 +40,12 @@ public class ArmorDark extends TragicArmor {
 
 					if (armor == TragicItems.DarkHelm) flag1 = true;
 					if (armor == TragicItems.DarkPlate) flag2 = true;
-					if (armor == TragicItems.DarkLegs) {
-					}
+					if (armor == TragicItems.DarkLegs) flag3 = true;
 					if (armor == TragicItems.DarkBoots) flag4 = true;
 				}
 			}
 
-			if (flag1 && flag2 && flag2 && flag4)
+			if (flag1 && flag2 && flag3 && flag4)
 			{
 				if (TragicConfig.allowImmunity && player.ticksExisted % 60 == 0) player.addPotionEffect(new PotionEffect(TragicPotion.Immunity.id, 600));
 				if (TragicConfig.allowFear && player.isPotionActive(TragicPotion.Fear)) player.removePotionEffect(TragicPotion.Fear.id);
