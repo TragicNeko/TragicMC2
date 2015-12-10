@@ -155,7 +155,7 @@ public class TragicConfig {
 	private static boolean[] vanillaConfig = new boolean[16];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmor, allowRespawnPunishment, allowExtraExplosiveEffects;
 	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowDrudgeGen, allowAnimalGolemCorruption;
-	public static boolean allowCowMinotaurCreation;
+	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown;
 	public static int rubyOreRate, sapphireOreRate, mercuryOreRate, tungstenOreRate, drudgeRate, silverfishRate, rubyOreVeinSize, sapphireOreVeinSize, mercuryOreVeinSize;
 	public static int tungstenOreVeinSize, drudgeVeinSize, silverfishVeinSize, aerisRarity;
 
@@ -3194,6 +3194,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowCowMinotaurCreation", true);
 		prop.comment = "Will striking a Cow with Lightning turn it into a Minotaur?";
 		vanillaConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowIronGolemCooldown", true);
+		prop.comment = "Should Iron Golems have an enforced hit cooldown?";
+		vanillaConfig[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "rubyOreGenRate", 10);
 		rubyOreRate = prop.getInt(10);
@@ -4357,6 +4361,7 @@ public class TragicConfig {
 		allowDrudgeGen = vanillaConfig[++m];
 		allowAnimalGolemCorruption = vanillaConfig[++m];
 		allowCowMinotaurCreation = vanillaConfig[++m];
+		allowIronGolemHitCooldown = vanillaConfig[++m];
 		
 		allowVoidPitGen = worldGenConfig[m = 0];
 		allowSpikeGen = worldGenConfig[++m];

@@ -23,6 +23,8 @@ public class PropertyMisc implements IExtendedEntityProperties {
 	 */
 	public int recoveryTime;
 	
+	public int golemTimer; //for iron golem attacking
+	
 	public EntityPet currentPet = null;
 	
 	private boolean hasBeenGeared = false;
@@ -85,6 +87,7 @@ public class PropertyMisc implements IExtendedEntityProperties {
 		else this.bleedOutTime = 0; */
 		
 		if (this.getCurrentPet() != null && this.theEntity instanceof EntityPlayer) this.getCurrentPet().owner = (EntityPlayer) this.theEntity;
+		if (this.golemTimer > 0) this.golemTimer--;
 	}
 	
 	/**

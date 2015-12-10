@@ -18,6 +18,7 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -48,6 +49,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
@@ -177,11 +179,11 @@ public class VanillaChangingEvents {
 		{
 			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.entity);
 			if (misc == null) return;
-			
+
 			if (TragicConfig.allowVanillaMobBuffs && !misc.hasBeenBuffed())
 			{
 				misc.setBuffed(); //prevents the mob from getting it's health regenerated on each reload
-				
+
 				if (event.entity instanceof EntityGhast)
 				{
 					((EntityGhast)event.entity).getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(ghastHealthBuff);
@@ -218,7 +220,7 @@ public class VanillaChangingEvents {
 			if (TragicConfig.allowMobModdedArmor && !misc.hasBeenGeared())
 			{				
 				misc.setGeared(); //prevents the mob from being regeared on further reloads
-				
+
 				if (event.entity instanceof EntityZombie || event.entity instanceof EntitySkeleton)
 				{
 					for (int i = 0; i < 4; i++)
@@ -407,6 +409,19 @@ public class VanillaChangingEvents {
 		if (event.entityLiving instanceof EntityEnderman || event.entityLiving instanceof EntityWitch)
 		{
 			if (event.source == DamageSource.magic && event.isCancelable()) event.setCanceled(true);
+		}
+
+		if (event.source.getEntity() instanceof EntityIronGolem && TragicConfig.allowIronGolemHitCooldown) //added cooldown on iron golem hits
+		{
+			PropertyMisc misc = PropertyMisc.get((EntityLivingBase) event.source.getEntity());
+			if (misc != null)
+			{
+				if (misc.golemTimer == 0)
+				{
+					misc.golemTimer = 15;
+				}
+				else if (event.isCancelable()) event.setCanceled(true);
+			}
 		}
 
 		if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase && !event.source.isMagicDamage()
@@ -599,9 +614,9 @@ public class VanillaChangingEvents {
 			event.entity.worldObj.removeEntity(event.entity);
 			event.entity.worldObj.spawnEntityInWorld(mob);
 			if (TragicConfig.allowInvulnerability) mob.addPotionEffect(new PotionEffect(TragicPotion.Invulnerability.id, 80));
-			
+
 			List<EntityPlayerMP> list = mob.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, mob.boundingBox.expand(16.0, 16.0, 16.0));
-			
+
 			if (!list.isEmpty() && TragicConfig.allowAchievements)
 			{
 				for (EntityPlayerMP mp : list)
