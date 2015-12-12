@@ -642,33 +642,20 @@ public class PotionEvents {
 	{
 		if (TragicConfig.allowSubmission && event.entityLiving.isPotionActive(TragicPotion.Submission))
 		{
-			double x = (event.entityLiving.getActivePotionEffect(TragicPotion.Submission).getAmplifier() + 2) / 3;
+			int x = event.entityLiving.getActivePotionEffect(TragicPotion.Submission).getAmplifier() + 1; //+1 because base amplifier is 0
+			//for (int m = 0; m < x; m++) event.ammount *= 1.5F; //exponential
+			event.ammount += event.ammount * 0.5 * x; //linear
 
-			if (x <= 0)
-			{
-				x = 0.1;
-			}
-			if (x > 3.0)
-			{
-				x = 3.0;
-			}
-
-			float f = (float) (event.ammount * x);
-			event.ammount += f;
-
-			event.entityLiving.motionX *= 1 + x;
-			event.entityLiving.motionZ *= 1 + x;
-			event.entityLiving.motionY *= 1 + x;
+			event.entityLiving.motionX *= 1 + 0.15 * x;
+			event.entityLiving.motionZ *= 1 + 0.15 * x;
+			event.entityLiving.motionY *= 1 + 0.15 * x;
 		}
 
-		if (!(event.entityLiving instanceof EntityPlayer))
+		if (event.entityLiving.isPotionActive(Potion.confusion) || event.entityLiving.isPotionActive(Potion.blindness)
+				|| TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation)
+				|| TragicConfig.allowFear && event.entityLiving.isPotionActive(TragicPotion.Fear))
 		{
-			if (event.entityLiving.isPotionActive(Potion.confusion) || event.entityLiving.isPotionActive(Potion.blindness)
-					|| TragicConfig.allowDisorientation && event.entityLiving.isPotionActive(TragicPotion.Disorientation)
-					|| TragicConfig.allowFear && event.entityLiving.isPotionActive(TragicPotion.Fear))
-			{
-				event.ammount *= 1.05;
-			}
+			event.ammount *= 1.15;
 		}
 	}
 
