@@ -549,9 +549,9 @@ public class PotionEvents {
 				float percent = (amp + 1) / 4;
 				player.setHealth((player.getMaxHealth() * percent));
 
-				for (int i = 0; i < 50; i++)
+				for (int i = 0; i < Potion.potionTypes.length; i++)
 				{
-					if (player.isPotionActive(i))
+					if (Potion.potionTypes[i] != null && player.isPotionActive(i))
 					{
 						player.removePotionEffect(i);
 					}
@@ -567,9 +567,9 @@ public class PotionEvents {
 		{
 			int amp = event.entityPlayer.getActivePotionEffect(TragicPotion.Malnourish).getAmplifier() * 2;
 
-			if (amp > 20)
+			if (amp > event.entityPlayer.getMaxHealth())
 			{
-				amp = 20;
+				amp = (int) event.entityPlayer.getMaxHealth();
 			}
 
 			if (amp <= 0)
