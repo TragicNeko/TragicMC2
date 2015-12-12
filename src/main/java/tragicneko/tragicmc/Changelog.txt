@@ -4420,6 +4420,9 @@ Fixed derp where I missed all of the Boss trophies being put into the capture dr
 Added in more of the boss ai and grief configs
 Added in a cooldown for Iron Golem attacks, this is a vanilla changing config option
 Fixed weird bug with Dark Armor's set bonus not being applied
+Rebalanced Submission, moved it to a more linear amplifier amount and reduced knockback multipliers for it as well, increased damage bonus when hurting a
+debuffed entity with it active as well
+Some more small potion effect changes were done
 
 I'm going to do this next release on 1.7.10 with the focus on bugfixes and finalizing features, as well as the config rewrite from a couple months ago and
 the new config options I'm adding now
