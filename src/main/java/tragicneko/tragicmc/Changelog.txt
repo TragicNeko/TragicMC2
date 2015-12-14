@@ -4377,7 +4377,7 @@ Added Aqua Orbs to the Pirah's drops
 Removed more crafting recipes for mob drops
 Some crafting recipes will have 1 recipe requiring a boss drop and 1 requiring the catalyst items, these are different crafting branches that make the same item
 
-2.45.2818+++ <211> (October 31, 2015) [Start of more complex item crafting]
+2.46.2858 <211> (October 31, 2015) [Start of more complex item crafting, added configurability of certain mob ai aspects]
 Added mappings event to deal with some ppl upgrading from an older version, this will still reset the Dimensions because the save folder was changed during one
 of the last releases (don't remember when exactly)
 Fixed missing config options regarding the Dimensions
@@ -4423,10 +4423,13 @@ Fixed weird bug with Dark Armor's set bonus not being applied
 Rebalanced Submission, moved it to a more linear amplifier amount and reduced knockback multipliers for it as well, increased damage bonus when hurting a
 debuffed entity with it active as well
 Some more small potion effect changes were done
+Added in optional vanilla changing things to potion effects
+Tested a Frozen potion effect, which requires the player to spam inputs to break out, otherwise they must wait until they "thaw"
+Bumping version number for a release now
+Fixed Aegar not displaying it's health (boss status)
 
-I'm going to do this next release on 1.7.10 with the focus on bugfixes and finalizing features, as well as the config rewrite from a couple months ago and
-the new config options I'm adding now
-After I finish that I'm gonna work on porting the mod to 1.8.8, when that's done and it's stable (and all of the json block files are done) I'm going to work
+Post 1.7.10:
+I'm gonna work on porting the mod to 1.8.8 and when that's done and it's stable (and all of the json block files are done, ugh) I'm going to work
 on the first expansion's content
 
 Expansion updates:
