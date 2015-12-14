@@ -6,7 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityPet;
+import tragicneko.tragicmc.network.MessageFrozenInput;
 
 public class PropertyMisc implements IExtendedEntityProperties {
 
@@ -16,17 +19,20 @@ public class PropertyMisc implements IExtendedEntityProperties {
 	/**
 	 * For the Bleed potion effect
 	 */
-	public int bleedOutTime;
+	public int bleedOutTime = 0;
 
 	/**
 	 * For recovering from being Corrupted
 	 */
-	public int recoveryTime;
-	
-	public int golemTimer; //for iron golem attacking
-	
+	public int recoveryTime = 0;
+
+	public int golemTimer = 0; //for iron golem attacking
+
+	public int frozenInputs = 0; //for the frozen potion effect, to "break" out of being frozen
+	public boolean isFrozen = false; //if the player was frozen before
+
 	public EntityPet currentPet = null;
-	
+
 	private boolean hasBeenGeared = false;
 	private boolean hasBeenBuffed = false;
 
@@ -52,6 +58,8 @@ public class PropertyMisc implements IExtendedEntityProperties {
 		tag.setInteger("recoveryTime", this.recoveryTime);
 		tag.setBoolean("hasBeenGeared", this.hasBeenGeared);
 		tag.setBoolean("hasBeenBuffed", this.hasBeenBuffed);
+		tag.setBoolean("isFrozen", this.isFrozen);
+		tag.setInteger("frozenInputs", this.frozenInputs);
 		compound.setTag(PropertyMisc.propertyName, tag);
 	}
 
@@ -65,6 +73,8 @@ public class PropertyMisc implements IExtendedEntityProperties {
 			this.recoveryTime = tag.getInteger("recoveryTime");
 			this.hasBeenGeared = tag.getBoolean("hasBeenGeared");
 			this.hasBeenBuffed = tag.getBoolean("hasBeenBuffed");
+			this.isFrozen = tag.getBoolean("isFrozen");
+			this.frozenInputs = tag.getInteger("frozenInputs");
 		}
 	}
 
@@ -85,11 +95,22 @@ public class PropertyMisc implements IExtendedEntityProperties {
 			if (this.bleedOutTime < 1200) this.bleedOutTime++; 
 		}
 		else this.bleedOutTime = 0; */
-		
+
 		if (this.getCurrentPet() != null && this.theEntity instanceof EntityPlayer) this.getCurrentPet().owner = (EntityPlayer) this.theEntity;
 		if (this.golemTimer > 0) this.golemTimer--;
+		/*
+		if (!this.isFrozen && this.theEntity.isPotionActive(TragicPotion.Frozen.id))
+		{
+			this.isFrozen = true;
+			this.frozenInputs = 30 + (20 * this.theEntity.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
+		}
+		else if (this.isFrozen && !this.theEntity.isPotionActive(TragicPotion.Frozen.id))
+		{
+			this.isFrozen = false;
+			this.frozenInputs = 0;
+		} */
 	}
-	
+
 	/**
 	 * Returns the current "active" pet, may be null
 	 * @return
@@ -97,23 +118,23 @@ public class PropertyMisc implements IExtendedEntityProperties {
 	public EntityPet getCurrentPet() {
 		return this.currentPet;
 	}
-	
+
 	public void setCurrentPet(EntityPet pet) {
 		this.currentPet = pet;
 	}
-	
+
 	public boolean hasBeenGeared() {
 		return this.hasBeenGeared;
 	}
-	
+
 	public void setGeared() {
 		this.hasBeenGeared = true;
 	}
-	
+
 	public boolean hasBeenBuffed() {
 		return this.hasBeenBuffed;
 	}
-	
+
 	public void setBuffed() {
 		this.hasBeenBuffed = true;
 	}

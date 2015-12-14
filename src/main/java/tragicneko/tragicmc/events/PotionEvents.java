@@ -6,10 +6,12 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityPortalFX;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -41,10 +43,12 @@ import net.minecraftforge.event.entity.player.PlayerUseItemEvent.Start;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent.Tick;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
+import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageFlight;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
@@ -499,7 +503,7 @@ public class PotionEvents {
 			flag2 = event.entityLiving.isPotionActive(TragicPotion.Cripple.id);
 		}
 
-		if (flag1)
+		if (flag1) // || event.entityLiving.isPotionActive(TragicPotion.Frozen.id))
 		{
 			event.entityLiving.motionY = 0.0;
 			event.entityLiving.motionZ = 0.0;
@@ -584,7 +588,7 @@ public class PotionEvents {
 		}
 
 		if (TragicConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
-				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
+				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked)) // || event.entityPlayer.isPotionActive(TragicPotion.Frozen))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -594,7 +598,7 @@ public class PotionEvents {
 	public void whileUsingItem(Tick event)
 	{
 		if (TragicConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
-				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
+				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked)) // || event.entityPlayer.isPotionActive(TragicPotion.Frozen))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -604,7 +608,7 @@ public class PotionEvents {
 	public void onDig(BreakEvent event)
 	{
 		if (event.getPlayer() != null && TragicConfig.allowStun && event.getPlayer().isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Fear) ||
-				TragicConfig.allowHacked && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Hacked))
+				TragicConfig.allowHacked && event.getPlayer() != null && event.getPlayer().isPotionActive(TragicPotion.Hacked)) // || event.getPlayer().isPotionActive(TragicPotion.Frozen))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -614,7 +618,7 @@ public class PotionEvents {
 	public void onBreaking(BreakSpeed event)
 	{
 		if (TragicConfig.allowStun && event.entityPlayer.isPotionActive(TragicPotion.Stun) || TragicConfig.allowFear && event.entityPlayer.isPotionActive(TragicPotion.Fear) ||
-				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked))
+				TragicConfig.allowHacked && event.entityPlayer.isPotionActive(TragicPotion.Hacked)) // || event.entityPlayer.isPotionActive(TragicPotion.Frozen))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}
@@ -633,6 +637,28 @@ public class PotionEvents {
 			if (TragicConfig.allowStun && ((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotion.Stun))
 			{
 				if (event.isCancelable()) event.setCanceled(true);
+			}
+			/*
+			if (((EntityLivingBase) event.source.getEntity()).isPotionActive(TragicPotion.Frozen))
+			{
+				if (event.isCancelable()) event.setCanceled(true);
+			} */
+
+			if (((EntityLivingBase) event.source.getEntity()).isPotionActive(Potion.confusion) && TragicConfig.allowNauseaRandomMiss && rand.nextInt(100) <= TragicConfig.nauseaMissChance && !event.source.isProjectile() && !event.source.isMagicDamage() && !event.source.isUnblockable() && !event.source.isExplosion())
+			{
+				if (event.isCancelable()) event.setCanceled(true);
+			}
+
+			if (((EntityLivingBase) event.source.getEntity()).isPotionActive(Potion.blindness) && TragicConfig.allowBlindnessReachDebuff && !event.source.isProjectile() && !event.source.isExplosion() && !event.source.isMagicDamage())
+			{
+				int a = ((EntityLivingBase) event.source.getEntity()).getActivePotionEffect(Potion.blindness).getAmplifier();
+				double r = -TragicConfig.blindnessReachDebuffAmount * (double) a;
+
+				IAttributeInstance ins = ((EntityLivingBase)event.source.getEntity()).getEntityAttribute(AmuletModifier.reach);
+				double d = ins != null ? ins.getAttributeValue() : 0.0;
+				double d2 = TragicConfig.allowReach && ((EntityLivingBase) event.source.getEntity()).getHeldItem() != null ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, ((EntityLivingBase) event.source.getEntity()).getHeldItem()) : 0;
+				double c = event.source.getEntity() instanceof EntityPlayer && ((EntityPlayer)event.source.getEntity()).capabilities.isCreativeMode ? 2.5 : 1.5;
+				if (event.entityLiving.getDistanceToEntity(event.source.getEntity()) - event.entityLiving.width > c + r + d + d2 && event.isCancelable()) event.setCanceled(true);
 			}
 		}
 	}
@@ -673,7 +699,7 @@ public class PotionEvents {
 	@SubscribeEvent
 	public void renderHandWhileStunned(RenderHandEvent event)
 	{
-		if (TragicConfig.allowStun && Minecraft.getMinecraft().thePlayer.isPotionActive(TragicPotion.Stun))
+		if (TragicConfig.allowStun && Minecraft.getMinecraft().thePlayer.isPotionActive(TragicPotion.Stun)) // || Minecraft.getMinecraft().thePlayer.isPotionActive(TragicPotion.Frozen))
 		{
 			if (event.isCancelable()) event.setCanceled(true);
 		}

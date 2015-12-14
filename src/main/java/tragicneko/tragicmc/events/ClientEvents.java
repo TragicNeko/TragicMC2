@@ -23,12 +23,14 @@ import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.blocks.BlockGenericLeaves;
 import tragicneko.tragicmc.client.ClientProxy;
-import tragicneko.tragicmc.client.CommonProxy;
 import tragicneko.tragicmc.items.amulet.ItemAmulet;
+import tragicneko.tragicmc.network.MessageFrozenInput;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageUseDoomsday;
 import tragicneko.tragicmc.properties.PropertyAmulets;
+import tragicneko.tragicmc.properties.PropertyMisc;
 import tragicneko.tragicmc.util.AmuletHelper;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 
@@ -67,6 +69,38 @@ public class ClientEvents extends Gui {
 				TragicMC.net.sendToServer(new MessageUseDoomsday(player.getCurrentEquippedItem()));
 			}
 		}
+	}
+
+	@SubscribeEvent(priority=EventPriority.HIGHEST)
+	public void onFrozenInput(KeyInputEvent event)
+	{
+		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+		if (player == null) return;
+		/*
+		if (player.isPotionActive(TragicPotion.Frozen))
+		{
+			PropertyMisc misc = PropertyMisc.get(player);
+			if (misc == null) return;
+			
+			TragicMC.logInfo("Frozen input received.");
+
+			if (misc.isFrozen)
+			{
+				misc.frozenInputs--;
+				boolean flag = misc.frozenInputs <= 0 && misc.isFrozen;
+				TragicMC.net.sendToServer(new MessageFrozenInput(flag));
+				misc.isFrozen = !flag;
+			}
+			else
+			{
+				misc.isFrozen = true;
+				misc.frozenInputs = 30 + (20 * player.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
+			}
+			
+			TragicMC.logInfo("Frozen input left is " + misc.frozenInputs);
+			
+			if (event.isCancelable()) event.setCanceled(true);
+		} */
 	}
 
 	@SubscribeEvent
@@ -218,8 +252,9 @@ public class ClientEvents extends Gui {
 		boolean flag2 = TragicConfig.allowDivinity && mc.thePlayer.isPotionActive(TragicPotion.Divinity);
 		boolean flag3 = TragicConfig.allowConvergence && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
 		boolean flag4 = false; //mc.thePlayer.isPotionActive(TragicPotion.Nightmare);
+		boolean flag5 = false; //mc.thePlayer.isPotionActive(TragicPotion.Frozen);
 
-		if (!flag && !flag2 && !flag3 && !flag4) return;
+		if (!flag && !flag2 && !flag3 && !flag4 && !flag5) return;
 
 		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
 
@@ -233,16 +268,23 @@ public class ClientEvents extends Gui {
 		float r = rgb[color][0];
 		float g = flag3 ? 0F : rgb[color][1];
 		float b = flag3 ? 0F : rgb[color][2];
-		
+
 		if (flag4)
 		{
 			GL11.glColor4f(0.1F, 0.1F, 0.1F, 0.7F);
 		}
-		else
+		else if (!flag5)
 		{
 			GL11.glColor4f(r, g, b, trans);
 		}
-		
+		else if (flag5)
+		{/*
+			int a = 30 + (20 * mc.thePlayer.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
+			PropertyMisc misc = PropertyMisc.get(mc.thePlayer);
+			int t = misc != null && misc.isFrozen ? misc.frozenInputs : 0;
+			GL11.glColor4f(0.848F, 0.888F, 0.995F, (float) t / (float) a); */
+		}
+
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 
 		drawTexturedModalRect(0, 0, 0, 0, mc.displayWidth, mc.displayHeight);

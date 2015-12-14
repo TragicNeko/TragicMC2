@@ -51,11 +51,13 @@ import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.network.MessageAttack;
 import tragicneko.tragicmc.network.MessageDoom;
 import tragicneko.tragicmc.network.MessageFlight;
+import tragicneko.tragicmc.network.MessageFrozenInput;
 import tragicneko.tragicmc.network.MessageGui;
 import tragicneko.tragicmc.network.MessageHandlerAmulet;
 import tragicneko.tragicmc.network.MessageHandlerAttack;
 import tragicneko.tragicmc.network.MessageHandlerDoom;
 import tragicneko.tragicmc.network.MessageHandlerFlight;
+import tragicneko.tragicmc.network.MessageHandlerFrozenInput;
 import tragicneko.tragicmc.network.MessageHandlerGui;
 import tragicneko.tragicmc.network.MessageHandlerPlaySound;
 import tragicneko.tragicmc.network.MessageHandlerSpawnParticle;
@@ -71,7 +73,6 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent.Action;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -250,7 +251,8 @@ public class TragicMC
 			net.registerMessage(MessageHandlerFlight.class, MessageFlight.class, 4, Side.CLIENT);
 			net.registerMessage(MessageHandlerAttack.class, MessageAttack.class, 5, Side.SERVER);
 			net.registerMessage(MessageHandlerSpawnParticle.class, MessageParticle.class, 6, Side.CLIENT);
-			net.registerMessage(MessageHandlerPlaySound.class,MessageSound.class, 7, Side.CLIENT);
+			net.registerMessage(MessageHandlerPlaySound.class, MessageSound.class, 7, Side.CLIENT);
+			net.registerMessage(MessageHandlerFrozenInput.class, MessageFrozenInput.class, 8, Side.SERVER);
 		}
 
 		if (TragicConfig.allowAchievements && TragicConfig.allowNonMobItems && TragicConfig.allowNonMobBlocks && TragicConfig.allowChallengeScrolls && TragicConfig.allowAmulets && TragicConfig.allowDoom && TragicConfig.allowDoomsdays && TragicConfig.allowDimension) //register achievements after everything else is processed

@@ -152,12 +152,13 @@ public class TragicConfig {
 	public static int idFlight, idAquaSuperiority, idImmunity, idResurrection, idHarmony, idInvulnerability, idClarity, idConvergence, idDivinity;
 	public static int idCorruption, idDisorientation, idStun, idFear, idMalnourish, idCripple, idSubmission, idInhibit, idLeadFoot, idHacked, idBurned;
 
-	private static boolean[] vanillaConfig = new boolean[16];
+	private static boolean[] vanillaConfig = new boolean[24];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmor, allowRespawnPunishment, allowExtraExplosiveEffects;
 	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowDrudgeGen, allowAnimalGolemCorruption;
-	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown;
+	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown, allowNauseaRandomMiss, allowBlindnessReachDebuff;
 	public static int rubyOreRate, sapphireOreRate, mercuryOreRate, tungstenOreRate, drudgeRate, silverfishRate, rubyOreVeinSize, sapphireOreVeinSize, mercuryOreVeinSize;
-	public static int tungstenOreVeinSize, drudgeVeinSize, silverfishVeinSize, aerisRarity;
+	public static int tungstenOreVeinSize, drudgeVeinSize, silverfishVeinSize, aerisRarity, nauseaMissChance;
+	public static double blindnessReachDebuffAmount;
 
 	private static boolean[] worldGenConfig = new boolean[16];
 	public static boolean allowVoidPitGen, allowSpikeGen, allowScatteredSurfaceGen, allowStringLightGen, allowDarkStoneVariantGen, allowStructureGen, allowInvertedSpikeGen;
@@ -846,7 +847,7 @@ public class TragicConfig {
 		doomConfig[++m] = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "allowPartnerDoomsdays", false);
-		prop.comment = "Can two people activate a Doomsday combination while near each other?";
+		prop.comment = "Can two people activate a Doomsday combination while near each other? (This hasn't been tested and you should report your results from use)";
 		doomConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "maxDoomAmount", 500);
@@ -3198,6 +3199,14 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowIronGolemCooldown", true);
 		prop.comment = "Should Iron Golems have an enforced hit cooldown?";
 		vanillaConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowNauseaRandomMiss", false);
+		prop.comment = "Should Nausea (Confusion) have a random chance to make you miss a non-projectile, non-magic hit?";
+		vanillaConfig[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "allowBlindnessReachDebuff", false);
+		prop.comment = "Should Blindness debuff your Reach?";
+		vanillaConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "rubyOreGenRate", 10);
 		rubyOreRate = prop.getInt(10);
@@ -3237,6 +3246,12 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "aerisRarity", 5);
 		aerisRarity = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "nauseaMissChance", 8);
+		nauseaMissChance = clamp(prop.getInt(8), 1, 100);
+		
+		prop = config.get(cat.getName(), "blindnessReachDebuffAmount", 0.25);
+		blindnessReachDebuffAmount = prop.getDouble(0.25);
 
 		cat = config.getCategory(CAT_WORLDGEN);
 		cat.setComment("Change things related to the mod-exclusive Dimensional World Generation.");
@@ -4362,6 +4377,8 @@ public class TragicConfig {
 		allowAnimalGolemCorruption = vanillaConfig[++m];
 		allowCowMinotaurCreation = vanillaConfig[++m];
 		allowIronGolemHitCooldown = vanillaConfig[++m];
+		allowNauseaRandomMiss = vanillaConfig[++m];
+		allowBlindnessReachDebuff = vanillaConfig[++m];
 		
 		allowVoidPitGen = worldGenConfig[m = 0];
 		allowSpikeGen = worldGenConfig[++m];

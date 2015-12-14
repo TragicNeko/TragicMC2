@@ -21,10 +21,14 @@ import net.minecraftforge.client.event.MouseEvent;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEnchantments;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.IMultiPart;
 import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAttack;
+import tragicneko.tragicmc.network.MessageFrozenInput;
+import tragicneko.tragicmc.properties.PropertyMisc;
 import tragicneko.tragicmc.util.WorldHelper;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class MouseEvents {
@@ -107,7 +111,38 @@ public class MouseEvents {
 				}
 
 			}
-
 		}
+	}
+	
+	@SubscribeEvent(priority=EventPriority.HIGHEST)
+	public void onFrozenInput(MouseEvent event)
+	{
+		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+		if (player == null) return;
+		/*
+		if (player.isPotionActive(TragicPotion.Frozen) && event.buttonstate)
+		{
+			PropertyMisc misc = PropertyMisc.get(player);
+			if (misc == null) return;
+			
+			TragicMC.logInfo("Frozen input received.");
+
+			if (misc.isFrozen)
+			{
+				misc.frozenInputs--;
+				boolean flag = misc.frozenInputs <= 0 && misc.isFrozen;
+				TragicMC.net.sendToServer(new MessageFrozenInput(flag));
+				misc.isFrozen = !flag;
+			}
+			else
+			{
+				misc.isFrozen = true;
+				misc.frozenInputs = 30 + (20 * player.getActivePotionEffect(TragicPotion.Frozen).getAmplifier());
+			}
+			
+			TragicMC.logInfo("Frozen input left is " + misc.frozenInputs);
+			
+			if (event.isCancelable()) event.setCanceled(true);
+		} */
 	}
 }

@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class TragicPotion extends Potion {
 
-	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked, Burned; //, Deafening, Nightmare, Exasperate, EvilPresence, Bleed;
+	public static Potion Corruption, Disorientation, Stun, Fear, Cripple, Malnourish, Submission, Inhibit, LeadFoot, Hacked, Burned; //Frozen, Deafening, Nightmare, Exasperate, EvilPresence, Bleed;
 	public static Potion Flight, AquaSuperiority, Immunity, Resurrection, Harmony, Invulnerability, Clarity, Convergence, Divinity;
 
 	private ItemStack stackIcon;
@@ -52,6 +52,7 @@ public class TragicPotion extends Potion {
 		//Nightmare = new TragicPotion(TragicConfig.idHacked + 2, true, 0x000000).setPotionName("potion.nightmare");
 		//Exasperate = new TragicPotion(TragicConfig.idHacked + 3, true, 0x000000).setPotionName("potion.exasperate");
 		//EvilPresence = new TragicPotion(TragicConfig.idHacked + 4, true, 0x000000).setPotionName("potion.evilPresence");
+		//Frozen = new TragicPotion(72, true, 0x000000).setPotionName("potion.frozen").func_111184_a(SharedMonsterAttributes.movementSpeed, "d35fe2b0-2aca-4d5e-b3e3-3fe041dbaf15", -3.0D, 2);
 		/*Bleed = new TragicPotion(TragicConfig.idHacked + 5, true, 0x000000) {
 		@Override
 		public void performEffect(EntityLivingBase entity, int amp)
@@ -100,6 +101,7 @@ public class TragicPotion extends Potion {
 		//((TragicPotion) Exasperate).setIcon(new ItemStack(TragicItems.EnchantedTears));
 		//((TragicPotion) EvilPresence).setIcon(new ItemStack(TragicItems.PureDarkness));
 		//((TragicPotion) Bleed).setIcon(new ItemStack(TragicItems.BloodSacrifice));
+		//if (Frozen != null) ((TragicPotion) Frozen).setIcon(new ItemStack(TragicItems.IceOrb));
 
 		if (Flight != null) ((TragicPotion) Flight).setIcon(new ItemStack(Items.feather));
 		if (AquaSuperiority != null) ((TragicPotion) AquaSuperiority).setIcon(new ItemStack(TragicItems.EnchantedTears));
