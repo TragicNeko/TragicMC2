@@ -1784,7 +1784,7 @@ public class TragicRecipes {
 		
 		//Intermediate item recipes
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TragicItems.ToxicAmalgation),
-				new ItemStack(TragicItems.Projectile, 1, 10), TragicItems.Thorns, "materialVine", TragicItems.InterestingResin));
+				new ItemStack(TragicItems.Projectile, 1, 11), TragicItems.Thorns, "materialVine", TragicItems.InterestingResin));
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(TragicItems.LunarPowder),
 				Items.glowstone_dust, TragicItems.SoulExcess, TragicItems.Ectoplasm, TragicItems.WispParticles, TragicItems.StarPieces);
