@@ -9,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicBlocks;
+import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
 import tragicneko.tragicmc.util.WorldHelper;
@@ -127,6 +128,8 @@ public class EntityOverlordMortor extends EntityProjectile {
 			this.posY -= this.motionY / f2 * 0.00000000074505806D;
 			this.posZ -= this.motionZ / f2 * 0.0000000074505806D;
 		}
+		
+		if (this.ticksExisted % 20 == 0 && TragicConfig.allowMobSounds && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);
 	}
 
 	@Override

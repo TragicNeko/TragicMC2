@@ -153,12 +153,37 @@
 		"sounds": [
 			"boss/kitsune/taunt"]
     },
-	"boss.overlordcore.hurt":
+	"boss.overlordcore.heartbeat":
     {
 		"category": "hostile",
 		"sounds": [
-			"boss/overlordcore/hurt", "boss/overlordcore/hurt2",
-			"boss/overlordcore/hurt3"]
+			"boss/overlordcore/heartbeat", "boss/overlordcore/heartbeat2",
+			"boss/overlordcore/heartbeat3", "boss/overlordcore/heartbeat4"]
+    },
+    "boss.overlordcore.hit":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcore/hit", "boss/overlordcore/hit2",
+            "boss/overlordcore/hit3", "boss/overlordcore/hit4"]
+    },
+    "boss.overlordcore.vulnerable":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcore/vulnerable", "boss/overlordcore/vulnerable2",
+            "boss/overlordcore/vulnerable3", "boss/overlordcore/vulnerable4",
+            "boss/overlordcore/vulernable5", "boss/overlordcore/vunerable6"]
+    },
+     "boss.overlordcore.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcore/living", "boss/overlordcore/living2",
+            "boss/overlordcore/living3", "boss/overlordcore/living4",
+            "boss/overlordcore/living5", "boss/overlordcore/living6",
+            "boss/overlordcore/living7", "boss/overlordcore/living8",
+            "boss/overlordcore/living9"]
     },
 	"boss.overlordcore.expose":
     {
@@ -166,37 +191,23 @@
 		"sounds": [
 			"boss/overlordcore/expose"]
     },
-	"boss.overlordcore.living":
+    "boss.overlordcore.appearance":
     {
-		"category": "hostile",
-		"sounds": [
-			"boss/overlordcore/living", "boss/overlordcore/living2",
-			"boss/overlordcore/living3"]
+        "category": "hostile",
+        "sounds": [
+            "boss/overlordcore/appearance"]
     },
 	"boss.overlordcore.death":
     {
 		"category": "hostile",
 		"sounds": [
-			"boss/overlordcore/roar"]
-    },
-	"boss.overlordcore.roar":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/overlordcore/roar"]
+			"boss/overlordcore/death"]
     },
 	"boss.overlordcore.negate":
     {
 		"category": "hostile",
 		"sounds": [
 			"boss/overlordcore/negate"]
-    },
-	"boss.overlordcore.whine":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/overlordcore/whine", "boss/overlordcore/whine2",
-			"boss/overlordcore/whine3", "boss/overlordcore/whine4"]
     },
 	"boss.overlordcombat.hurt":
     {
@@ -294,50 +305,6 @@
 		"category": "hostile",
 		"sounds": [
 			"boss/polaris/death"]
-    },
-	"boss.skultar.angry":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/skultar/angry", "boss/skultar/angry2",
-			"boss/skultar/angry3"]
-    },
-	"boss.skultar.hurt":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/skultar/hurt", "boss/skultar/hurt2",
-			"boss/skultar/hurt3", "boss/skultar/hurt4",
-			"boss/skultar/hurt5"]
-    },
-	"boss.skultar.laugh":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/skultar/laugh", "boss/skultar/laugh2",
-			"boss/skultar/laugh3", "boss/skultar/laugh4",
-			"boss/skultar/laugh5"]
-    },
-	"boss.skultar.living":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/skultar/living", "boss/skultar/living2",
-			"boss/skultar/living3", "boss/skultar/living4",
-			"boss/skultar/living5", "boss/skultar/living6",
-			"boss/skultar/living7", "boss/skultar/living8",
-			"boss/skultar/living9", "boss/skultar/living10",
-			"boss/skultar/living11", "boss/skultar/living12",
-			"boss/skultar/living13", "boss/skultar/living14",
-			"boss/skultar/living15", "boss/skultar/living16",
-			"boss/skultar/living17", "boss/skultar/living18"]
-    },
-	"boss.skultar.passive":
-    {
-		"category": "hostile",
-		"sounds": [
-			"boss/skultar/passive", "boss/skultar/passive2",
-			"boss/skultar/passive3", "boss/skultar/passive4"]
     },
 	"boss.skultar.slice":
     {

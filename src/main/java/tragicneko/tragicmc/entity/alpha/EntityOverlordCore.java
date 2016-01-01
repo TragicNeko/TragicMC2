@@ -412,7 +412,7 @@ public class EntityOverlordCore extends TragicBoss {
 			this.setNearTarget(false);
 			this.setDropTicks(0);
 
-			//if (this.getTransformationTicks() == 60 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.roar", 1.0F, 1.0F);
+			if (this.getTransformationTicks() == 199 && TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.overlordcore.appearance", 1.0F, 1.0F);
 
 			List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(16.0, 12.0, 16.0));
 			for (Entity e : list) this.applyEntityCollision(e);
@@ -539,6 +539,7 @@ public class EntityOverlordCore extends TragicBoss {
 
 			if (this.getHoverTicks() == 0) this.hoverBuffer = 200;
 			this.aggregate = 0;
+			if (this.ticksExisted % 20 == 0 && TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);
 		}
 
 		if (this.getDropTicks() > 0)
@@ -607,6 +608,8 @@ public class EntityOverlordCore extends TragicBoss {
 		this.motionX *= 0.98D;
 		this.motionY *= 0.98D;
 		this.motionZ *= 0.98D;
+		
+		if (TragicConfig.allowMobSounds && this.ticksExisted % 20 == 0) this.playSound("tragicmc:boss.overlordcore.heartbeat", 0.3F, 1.0F);
 	}
 
 	private boolean destroyBlocksInAABB(AxisAlignedBB bb)
@@ -965,19 +968,19 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public String getLivingSound()
 	{
-		return null;// this.getTransformationTicks() > 0 ? null : (this.getVulnerableTicks() > 0 ? "tragicmc:boss.overlordcore.whine" : "tragicmc:boss.overlordcore.living");
+		return this.getTransformationTicks() > 0 ? null : (this.getVulnerableTicks() > 0 ? null : "tragicmc:boss.overlordcore.living");
 	}
 
 	@Override
 	public String getHurtSound()
 	{
-		return super.getHurtSound(); //this.getTransformationTicks() > 0 ? null : "tragicmc:boss.overlordcore.hurt";
+		return this.getTransformationTicks() > 0 || this.getVulnerableTicks() == 0 ? null : "tragicmc:boss.overlordcore.hit";
 	}
 
 	@Override
 	public String getDeathSound()
 	{
-		return null; //"tragicmc:boss.overlordcore.roar";
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.overlordcore.death" : null;
 	}
 
 	@Override
@@ -989,7 +992,7 @@ public class EntityOverlordCore extends TragicBoss {
 	@Override
 	public float getSoundVolume()
 	{
-		return 0.6F;
+		return 1.8F;
 	}
 
 	@Override
