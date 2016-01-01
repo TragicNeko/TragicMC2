@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -19,6 +20,7 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
@@ -803,7 +805,8 @@ public class EntityEnyvil extends TragicBoss implements IMultiPart {
 
 			if (entity instanceof EntityLivingBase)
 			{
-				entity.attackEntityFrom(DamageSource.causeMobDamage(this), 12.0F);
+				float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+				entity.attackEntityFrom(DamageSource.causeMobDamage(this), f / 2.0F);
 				if (TragicConfig.allowFear) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Fear.id, 60 + rand.nextInt(160), 1));
 
 				entity.motionX *= 3.225D;
