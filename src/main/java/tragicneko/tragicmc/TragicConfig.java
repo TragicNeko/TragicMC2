@@ -90,10 +90,12 @@ public class TragicConfig {
 	public static boolean allowRuneWalker, allowLuminescence;
 	public static int idDecay, idSlay, idAbsolve, idVampirism, idLeech, idConsume, idDistract, idMultiply, idCombustion, idRuneBreak, idReach, idUnbreakable, idRust, idVeteran;
 	public static int idDeathTouch, idIgnition, idToxicity, idParalysis, idElasticity, idAgility, idRuneWalker, idLuminescence;
+	public static int wDecay, wSlay, wAbsolve, wVampirism, wLeech, wConsume, wDistract, wMultiply, wCombustion, wRuneBreak, wReach, wUnbreakable, wRust, wVeteran;
+	public static int wDeathTouch, wIgnition, wToxicity, wParalysis, wElasticity, wAgility, wRuneWalker, wLuminescence;
 
 	public static boolean[] mobConfig = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowMobTransformation;
-	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds;
+	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds, bossesDenyFlight;
 	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap, groupBuffChance;
 	public static boolean[] mobAllow = new boolean[64];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
@@ -1902,6 +1904,72 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "luminescenceID", findEnchantID(idRuneWalker + 1));
 		idLuminescence = prop.getInt(findEnchantID(idRuneWalker + 1));
+		
+		prop = config.get(cat.getName(), "decayWeight", 5);
+		wDecay = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "slayWeight", 5);
+		wSlay = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "absolveWeight", 5);
+		wAbsolve = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "vampirismWeight", 1);
+		wVampirism = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "leechWeight", 1);
+		wLeech = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "consumeWeight", 1);
+		wConsume = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "distractWeight", 1);
+		wDistract = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "multiplyWeight", 1);
+		wMultiply = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "combustionWeight", 1);
+		wCombustion = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "runeBreakWeight", 5);
+		wRuneBreak = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "reachWeight", 5);
+		wReach = prop.getInt(5);
+		
+		prop = config.get(cat.getName(), "unbreakableWeight", 1);
+		wUnbreakable = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "rustWeight", 1);
+		wRust = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "veteranWeight", 1);
+		wVeteran = prop.getInt(1);
+		
+		prop = config.get(cat.getName(), "deathTouchWeight", 2);
+		wDeathTouch = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "ignitionWeight", 2);
+		wIgnition = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "toxicityWeight", 2);
+		wToxicity = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "paralysisWeight", 2);
+		wParalysis = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "elasticityWeight", 4);
+		wElasticity = prop.getInt(4);
+		
+		prop = config.get(cat.getName(), "agilityWeight", 1);
+		wAgility = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "runeWalkerWeight", 2);
+		wRuneWalker = prop.getInt(2);
+		
+		prop = config.get(cat.getName(), "luminescenceWeight", 1);
+		wLuminescence = prop.getInt(1);
 
 		cat = config.getCategory(CAT_MOBS);
 		cat.setComment("Set various aspects of Mobs.");
@@ -1949,6 +2017,10 @@ public class TragicConfig {
 
 		prop = config.get(cat.getName(), "allowCustomMobSounds", true);
 		prop.comment = "Can the mod-exclusive mobs make their custom sounds? (they will still play the Vanilla sounds if disabled)";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "bossesDenyFlight", false);
+		prop.comment = "When being near Bosses, do they cancel Flight for the player?";
 		mobConfig[++m] = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "commonMobDropChance", 25);
@@ -4280,6 +4352,7 @@ public class TragicConfig {
 		allowGroupBuffs = mobConfig[++m];
 		allowEasyBosses = mobConfig[++m];
 		allowMobSounds = mobConfig[++m];
+		bossesDenyFlight = mobConfig[++m];
 
 		allowJabba = mobAllow[m = 0];
 		allowJanna = mobAllow[++m];

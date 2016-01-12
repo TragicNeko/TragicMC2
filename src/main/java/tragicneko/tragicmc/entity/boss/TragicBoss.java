@@ -2,10 +2,9 @@ package tragicneko.tragicmc.entity.boss;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
@@ -30,7 +29,7 @@ import tragicneko.tragicmc.util.WorldHelper;
 public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 {
 	private boolean hasDamagedEntity = false; //for achievement can't touch this, kill a boss without being hurt by it
-	
+
 	public TragicBoss(World par1World) {
 		super(par1World);
 		this.experienceValue = 100;
@@ -41,12 +40,12 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	{
 		return true;
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean flag, int l)
 	{
 		super.dropFewItems(flag, l);
-		
+
 		int x = 3 + l;
 		int amt = 0;
 
@@ -92,7 +91,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		{
 			ItemStack drop = EntityDropHelper.getDropFromEntity(this.getClass(), false);
 			if (drop != null) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, drop));
-			
+
 			if (TragicConfig.allowNonMobItems)
 			{
 				drop = new ItemStack(TragicItems.EtherealDistortion);
@@ -120,16 +119,16 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		if (par1.getEntity() != null && par1.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) par1.getEntity();
-			
+
 			if (TragicConfig.allowAchievements && player instanceof EntityPlayerMP) player.triggerAchievement(TragicAchievements.killBoss);
-			
+
 			if (!this.hasDamagedEntity && TragicConfig.allowAchievements && player instanceof EntityPlayerMP)
 			{
 				player.triggerAchievement(TragicAchievements.cantTouchThis);
 			}
 		}
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag) {
 		super.readEntityFromNBT(tag);
@@ -150,6 +149,21 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
+
+		if (!this.worldObj.isRemote && TragicConfig.bossesDenyFlight)
+		{
+			List<EntityPlayerMP> list = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, this.boundingBox.expand(64.0, 64.0, 64.0));
+
+			for (EntityPlayerMP mp : list)
+			{
+				if (!mp.capabilities.isCreativeMode)
+				{
+					mp.capabilities.allowFlying = false;
+					mp.capabilities.isFlying = false;
+				}
+				if (TragicConfig.allowFlight && mp.isPotionActive(TragicPotion.Flight)) mp.removePotionEffect(TragicPotion.Flight.id);
+			}
+		}
 	}
 
 	@Override
@@ -185,9 +199,9 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun)) return false;
-		
+
 		boolean flag = super.attackEntityAsMob(par1Entity);
-		
+
 		if (flag) this.hasDamagedEntity = true;
 		return flag;
 	}
@@ -280,7 +294,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		}
 		return posY;
 	}
-	
+
 	public boolean isHalloween()
 	{
 		Calendar calendar = this.worldObj.getCurrentDate();
