@@ -4434,14 +4434,17 @@ Recording last of the sounds now that I got that issue resolved
 Added more Overlord Core sounds, added sounds for the Overlord Mortors
 Fixed Enyvil not using it's attack attribute for damage
 Added Enchantment weights and Bosses denying Flight config options from 1.8 version
+Added Rocket Launcher sounds and an ambient sound for Ire Energy
+Added a beeping sound for the Aegar Mortors when they are "homing" in on their target
+Added sound for Spirit Casts, Dark Mortors, Dark Energy and Icicles
+Added sound for Pumpkinbombs when they bounce
+Added new sounds for Skultar, laughing sound for when it gets hurt/dies and a heartbeat ambient sound, it'll use the vanilla skeleton sound for it's random living sound
+
 
 TODO still:
 Finish recording sounds:
--Sound for when a rocket is fired either by a Tragic Neko or by a player
--Sounds for various projectiles, either firing them or giving them ambient sounds
 -Sound for when the Overlord Cocoon form is damaged enough or not during it's instance
--Rerecord Skultar sounds, didn't like the first attempts
 -Apis sounds: Mad bull sounds
 -Yeti sounds: Deep beastly sounds
 -Claymation sounds: soppy, clay sounds
--Avris sounds: oohs and ahhs and snickers... mmm snickers
+-Avris sounds: struggling breathing sounds
