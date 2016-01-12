@@ -318,7 +318,7 @@
         "sounds": [
             "boss/skultar/laugh", "boss/skultar/laugh2",
             "boss/skultar/laugh3", "boss/skultar/laugh4",
-            "boss/skultr/laugh5", "boss/skultar/laugh6"]
+            "boss/skultar/laugh5", "boss/skultar/laugh6"]
     },
     "boss.skultar.heartbeat":
     {
