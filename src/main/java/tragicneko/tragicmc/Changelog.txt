@@ -4433,6 +4433,7 @@ Fixed derp on Toxic Amalgation recipe
 Recording last of the sounds now that I got that issue resolved
 Added more Overlord Core sounds, added sounds for the Overlord Mortors
 Fixed Enyvil not using it's attack attribute for damage
+Added Enchantment weights and Bosses denying Flight config options from 1.8 version
 
 TODO still:
 Finish recording sounds:
