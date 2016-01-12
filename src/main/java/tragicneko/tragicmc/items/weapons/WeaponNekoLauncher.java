@@ -33,7 +33,11 @@ public class WeaponNekoLauncher extends TragicWeapon {
 		rocket.posY = par3EntityPlayer.posY + 0.55;
 		rocket.posX += d4 * 0.215;
 		rocket.posZ += d6 * 0.215;
-		if (!par2World.isRemote) par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+		if (!par2World.isRemote)
+		{
+			par3EntityPlayer.worldObj.spawnEntityInWorld(rocket);
+			par2World.playSoundAtEntity(par3EntityPlayer, "tragicmc:random.rocketflying", 1.0F, 1.0F);
+		}
 
 		par1ItemStack.damageItem(1, par3EntityPlayer);
 		if (!par3EntityPlayer.capabilities.isCreativeMode) doom.increaseDoom(-5);

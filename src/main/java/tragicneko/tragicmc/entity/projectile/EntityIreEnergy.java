@@ -53,5 +53,10 @@ public class EntityIreEnergy extends EntityProjectile {
 	{
 		super.onUpdate();
 		if (this.ticksExisted >= 60) this.setDead();
+		
+		if (!this.worldObj.isRemote && this.ticksExisted % 10 == 1)
+		{
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.energyambient", 0.2F, 1.0F);
+		}
 	}
 }

@@ -312,6 +312,20 @@
 		"sounds": [
 			"boss/skultar/slice"]
     },
+    "boss.skultar.laugh":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/skultar/laugh", "boss/skultar/laugh2",
+            "boss/skultar/laugh3", "boss/skultar/laugh4",
+            "boss/skultr/laugh5", "boss/skultar/laugh6"]
+    },
+    "boss.skultar.heartbeat":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/skultar/heartbeat"]
+    },
 	"boss.timecontroller.flux":
     {
 		"category": "hostile",
@@ -1015,6 +1029,31 @@
 		"category": "ambient",
 		"sounds": [
 			"random/truncatedbeep"]
+    },
+    "random.rocketlaunch":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/dinkshh"]
+    },
+    "random.rocketflying":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/shew"]
+    },
+    "random.energyambient":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/wowow"]
+    },
+    "random.pumpkinsnicker":
+    {
+        "category": "ambient",
+        "sounds": [
+            "random/snicker",
+            "random/snicker2"]
     },
 	"random.change":
     {

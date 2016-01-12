@@ -69,6 +69,7 @@ public class EntityDarkMortor extends EntityProjectile {
 			}
 
 			if (!this.worldObj.isRemote) this.setDead();
+			if (!this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 1.0F, 0.2F);
 		}
 	}
 

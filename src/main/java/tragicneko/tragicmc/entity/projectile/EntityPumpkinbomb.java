@@ -97,6 +97,7 @@ public class EntityPumpkinbomb extends EntityThrowable {
 				else
 				{
 					this.bounces++;
+					if (!this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:random.pumpkinsnicker", 0.6F, 1.0F);
 				}
 			}
 

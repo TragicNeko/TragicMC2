@@ -48,6 +48,11 @@ public class EntityDarkEnergy extends EntityProjectile {
 		super.onUpdate();
 
 		if (!this.worldObj.isRemote && this.ticksExisted >= 80) this.setDead();
+		
+		if (!this.worldObj.isRemote && this.ticksExisted % 18 == 1)
+		{
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.4F, 1.85F);
+		}
 	}
 
 	@Override

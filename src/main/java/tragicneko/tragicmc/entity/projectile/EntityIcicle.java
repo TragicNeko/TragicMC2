@@ -47,7 +47,8 @@ public class EntityIcicle extends EntityProjectile {
 			}
 		}
 
-		if (mop != null) this.setDead();
+		this.setDead();
+		if (!this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:mob.cryse.break", 0.05F, 1.9F);
 	}
 
 	@Override

@@ -274,6 +274,8 @@ public class EntityTragicNeko extends TragicMob {
 		rocket.posX = this.posX - (Math.sin(this.rotationYaw * (float)Math.PI / 180.0F) * 0.025D);
 		rocket.posZ = this.posZ - (Math.cos(this.rotationYaw * (float)Math.PI / 180.0F) * 0.025D);
 		this.worldObj.spawnEntityInWorld(rocket);
+		this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketlaunch", 1.0F, 1.0F);
+		this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 1.0F, 1.0F);
 	}
 
 	private void throwRandomProjectile()

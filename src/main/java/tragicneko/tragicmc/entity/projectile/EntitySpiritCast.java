@@ -41,6 +41,11 @@ public class EntitySpiritCast extends EntityProjectile {
 		super.onUpdate();
 
 		if (this.ticksExisted >= 60) this.setDead();
+		
+		if (!this.worldObj.isRemote && this.ticksExisted % 5 == 1)
+		{
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 1.0F, 1.7F);
+		}
 	}
 
 	@Override

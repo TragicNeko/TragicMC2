@@ -98,6 +98,18 @@ public class EntityCrystalMortor extends EntityProjectile {
 			this.posY -= this.motionY / f2 * 0.00000000074505806D;
 			this.posZ -= this.motionZ / f2 * 0.0000000074505806D;
 		}
+		
+		if (this.target != null && !this.worldObj.isRemote)
+		{
+			float f = this.getDistanceToEntity(this.target);
+			int i = 1600;
+			
+			if (f > 15) i = 40;
+			else if (f > 5) i = 20;
+			else if (f > 2) i = 5;
+			
+			if (this.ticksExisted % i == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:random.beep", 0.1F, 1.9F);
+		}
 	}
 
 	@Override

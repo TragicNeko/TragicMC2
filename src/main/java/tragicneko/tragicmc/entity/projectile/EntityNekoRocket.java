@@ -104,6 +104,13 @@ public class EntityNekoRocket extends EntityProjectile {
 				this.setDead();
 			}
 		}
+		else
+		{
+			if (!this.worldObj.isRemote && this.ticksExisted % 15 == 0)
+			{
+				this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.6F, 1.0F);
+			}
+		}
 	}
 
 }
