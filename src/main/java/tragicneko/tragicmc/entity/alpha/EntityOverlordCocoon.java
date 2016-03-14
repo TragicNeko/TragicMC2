@@ -13,7 +13,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,6 +24,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.boss.TragicBoss;
 import tragicneko.tragicmc.entity.mob.EntityNanoSwarm;
@@ -205,6 +205,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 						if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
 					}
 				}
+				
+				if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.phasecomplete", 1.8F, 1.0F);
 			}
 			else
 			{
@@ -258,6 +260,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 							if (e instanceof EntityLivingBase && ((EntityLivingBase) e).isPotionActive(TragicPotion.Divinity)) ((EntityLivingBase) e).removePotionEffect(TragicPotion.Divinity.id);
 						}
 					}
+					
+					if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.phasefail", 1.8F, 1.0F);
 				}
 				
 				if (TragicConfig.allowMobSounds && this.getPhaseTicks() % 10 == 0) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcocoon.wah", 1.4F, 1.0F);
@@ -328,7 +332,8 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			if (rand.nextInt(4) == 0 && this.getAttackTarget() != entity && entity.getCreatureAttribute() != TragicEntities.Synapse) this.setAttackTarget(entity);
 
-			if (flag && this.hurtResistantTime == 0 || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0)
+			if (flag && this.hurtResistantTime == 0 || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse && this.hurtResistantTime == 0 ||
+					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())
 			{
 				this.phaseDamage += MathHelper.clamp_float(dmg - this.getTotalArmorValue(), 0F, TragicConfig.bossDamageCap);
 
@@ -394,14 +399,14 @@ public class EntityOverlordCocoon extends TragicBoss {
 
 			for (int[] coord: lst)
 			{
-				if (this.posY >= coord[1]) this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
+				if (this.posY > coord[1] + 1) this.worldObj.setBlockToAir(coord[0], coord[1], coord[2]);
 			}
 
-			lst = WorldHelper.getBlocksInCircularRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
+			lst = WorldHelper.getBlocksInSphericalRange(this.worldObj, 10.0, this.posX, this.posY - 1, this.posZ);
 
 			for (int[] coords : lst)
 			{
-				if (EntityOverlordCore.replaceableBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2]))) this.worldObj.setBlock(coords[0], coords[1], coords[2], !TragicConfig.allowNonMobBlocks ? Blocks.obsidian : TragicBlocks.CelledBlock);
+				if (this.posY >= coords[1] + 1 && (!EntityOverlordCore.ignoredBlocks.contains(this.worldObj.getBlock(coords[0], coords[1], coords[2])) && this.worldObj.getBlock(coords[0], coords[1], coords[2]).getBlockHardness(this.worldObj, coords[0], coords[1], coords[2]) > 0F || this.worldObj.getBlock(coords[0], coords[1], coords[2]) == Blocks.air)) this.worldObj.setBlock(coords[0], coords[1], coords[2], !TragicConfig.allowNonMobBlocks ? Blocks.obsidian : TragicBlocks.CelledBlock);
 			}
 
 			this.spawnSeekers();

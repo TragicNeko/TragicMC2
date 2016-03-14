@@ -25,6 +25,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
@@ -47,6 +48,9 @@ import tragicneko.tragicmc.util.EntityDropHelper;
 public abstract class TragicMob extends EntityMob
 {
 	protected TragicMiniBoss superiorForm;
+	
+	private int supportID = -1; //the potion id for the support buff applied to others
+	private int supportAmp = 1; //the potion amplifier for the support buff
 
 	public TragicMob(World par1World) {
 		super(par1World);
@@ -66,6 +70,7 @@ public abstract class TragicMob extends EntityMob
 	protected void entityInit()
 	{
 		super.entityInit();
+		this.dataWatcher.addObject(13, Byte.valueOf((byte)0));
 		this.dataWatcher.addObject(14, Byte.valueOf((byte) 0));
 		this.dataWatcher.addObject(15, Integer.valueOf(0));
 	}
@@ -90,6 +95,14 @@ public abstract class TragicMob extends EntityMob
 	{
 		return this.dataWatcher.getWatchableObjectByte(14) == 1;
 	}
+	
+	public boolean isSupport() {
+		return this.dataWatcher.getWatchableObjectByte(13) == 1;
+	}
+	
+	public void setSupport(boolean flag) {
+		this.dataWatcher.updateObject(13, flag ? (byte) 1 : 0);
+	}
 
 	@Override
 	public void onLivingUpdate()
@@ -102,6 +115,45 @@ public abstract class TragicMob extends EntityMob
 			{
 				this.spawnExplosionParticle();
 			}
+			
+			if (this.isSupport() && this.worldObj.difficultySetting == EnumDifficulty.HARD)
+			{
+				double d = 0.35D;
+				double d2 = 0.35D;
+
+				for (byte i = 0; i < 3; i++)
+				{
+					this.worldObj.spawnParticle("smoke",
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							(this.rand.nextDouble() - 0.6D) * 0.1D, this.rand.nextDouble() * 0.1D, (this.rand.nextDouble() - 0.6D) * 0.1D);
+
+					this.worldObj.spawnParticle("redstone",
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							0.6D, 0.2D, 0.6D);
+
+					this.worldObj.spawnParticle("redstone",
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
+
+					this.worldObj.spawnParticle("redstone",
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
+
+					this.worldObj.spawnParticle("redstone",
+							this.posX + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							this.posY + this.rand.nextDouble() * this.height,
+							this.posZ + (this.rand.nextDouble() - rand.nextDouble()) * this.width * 1.25D,
+							rand.nextDouble() * d + d2, rand.nextDouble() * d + d2, rand.nextDouble() * d + d2);
+				}
+			}
 			return;
 		}
 
@@ -110,8 +162,31 @@ public abstract class TragicMob extends EntityMob
 			this.change();
 			return;
 		}
+		
+		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.HARD && this.isSupport() && this.ticksExisted % 30 == 0)
+		{
+			if (this.supportID < 0)
+			{
+				this.supportID = this.getRandomPotionID();
+				this.supportAmp = rand.nextInt(2);
+			}
+
+			if (Potion.potionTypes[this.supportID] != null)
+			{
+				PotionEffect effect = new PotionEffect(this.supportID, 300, this.supportAmp);
+				this.addPotionEffect(effect);
+
+				List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0, 32.0, 32.0));
+
+				for (Entity e : list)
+				{
+					if (e instanceof EntityMob && this.canEntityBeSeen(e) && ((EntityMob) e).getAttackTarget() != this) ((EntityMob) e).addPotionEffect(effect);
+				}
+			}
+		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
+		if (this.getAttackTarget() != null && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
 		{
@@ -135,7 +210,7 @@ public abstract class TragicMob extends EntityMob
 					{
 						if (!(entity instanceof EntityWither) && !(entity instanceof EntityDragon) && !(entity instanceof TragicBoss) && entity.getClass() != this.getClass())
 						{
-							if (entity instanceof TragicMob)
+							if (entity instanceof TragicMob && TragicConfig.allowMobInfighting)
 							{
 								if (this.superiorForm != null && entity != this.superiorForm && entity.getClass() != this.getLesserForm())
 								{
@@ -250,6 +325,9 @@ public abstract class TragicMob extends EntityMob
 		super.readEntityFromNBT(tag);
 		if (tag.hasKey("corruptionTicks")) this.setCorruptionTicks(tag.getInteger("corruptionTicks"));
 		if (tag.hasKey("changeState")) this.dataWatcher.updateObject(14, tag.getByte("changeState"));
+		if (tag.hasKey("support")) this.setSupport(tag.getByte("support") == 1);
+		if (tag.hasKey("supportID")) this.supportID = tag.getInteger("supportID");
+		if (tag.hasKey("supportAmp")) this.supportAmp = tag.getInteger("supportAmp");
 	}
 
 	@Override
@@ -258,6 +336,9 @@ public abstract class TragicMob extends EntityMob
 		super.writeEntityToNBT(tag);
 		tag.setInteger("corruptionTicks", this.getCorruptionTicks());
 		tag.setByte("changeState", this.dataWatcher.getWatchableObjectByte(14));
+		tag.setByte("support", this.isSupport() ? (byte) 1 : (byte) 0);
+		tag.setInteger("supportID", this.supportID);
+		tag.setInteger("supportAmp", this.supportAmp);
 	}
 
 	public boolean getMobGriefing()
@@ -416,49 +497,13 @@ public abstract class TragicMob extends EntityMob
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
 	{
+		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.HARD && TragicConfig.allowRandomSupportMob) this.setSupport(rand.nextInt(100) == 0);
 		if (!TragicConfig.allowGroupBuffs) return super.onSpawnWithEgg(data);
 		if (data == null)
 		{
 			if (rand.nextInt(200) <= TragicConfig.groupBuffChance)
 			{
-				int id = Potion.damageBoost.id;
-				switch(rand.nextInt(12))
-				{
-				case 0:
-				default:
-					break;
-				case 1:
-					id = Potion.moveSpeed.id;
-					break;
-				case 2:
-					id = Potion.invisibility.id;
-					break;
-				case 3:
-					id = this.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD ? Potion.poison.id : Potion.regeneration.id;
-					break;
-				case 4:
-					id = Potion.fireResistance.id;
-					break;
-				case 5:
-					id = Potion.resistance.id;
-					break;
-				case 6:
-					id = Potion.jump.id;
-					break;
-				case 7:
-					id = TragicConfig.allowImmunity ? TragicPotion.Immunity.id : Potion.digSpeed.id;
-					break;
-				case 8:
-					id = TragicConfig.allowClarity ? TragicPotion.Clarity.id : Potion.resistance.id;
-					break;
-				case 9:
-					id = TragicConfig.allowResurrection ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
-					break;
-				case 10:
-					id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
-					break;
-				}
-
+				int id = this.getRandomPotionID();
 				PotionEffect effect = new PotionEffect(id, 99999, rand.nextInt(2));
 				this.addPotionEffect(effect);
 				return new GroupBuff(effect);
@@ -470,6 +515,48 @@ public abstract class TragicMob extends EntityMob
 			return super.onSpawnWithEgg(data);
 		}
 		return super.onSpawnWithEgg(data);
+	}
+	
+	private int getRandomPotionID() {
+		int id = Potion.damageBoost.id;
+		switch(rand.nextInt(12))
+		{
+		case 0:
+		default:
+			break;
+		case 1:
+			id = Potion.moveSpeed.id;
+			break;
+		case 2:
+			id = Potion.invisibility.id;
+			break;
+		case 3:
+			id = this.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD ? Potion.poison.id : Potion.regeneration.id;
+			break;
+		case 4:
+			id = Potion.fireResistance.id;
+			break;
+		case 5:
+			id = Potion.resistance.id;
+			break;
+		case 6:
+			id = Potion.jump.id;
+			break;
+		case 7:
+			id = TragicConfig.allowImmunity ? TragicPotion.Immunity.id : Potion.digSpeed.id;
+			break;
+		case 8:
+			id = TragicConfig.allowClarity ? TragicPotion.Clarity.id : Potion.resistance.id;
+			break;
+		case 9:
+			id = TragicConfig.allowResurrection ? TragicPotion.Resurrection.id : Potion.digSpeed.id;
+			break;
+		case 10:
+			id = TragicConfig.allowAquaSuperiority ? TragicPotion.AquaSuperiority.id : Potion.jump.id;
+			break;
+		}
+
+		return id;
 	}
 
 	/**

@@ -6,6 +6,7 @@ import static tragicneko.tragicmc.TragicMC.rand;
 import java.util.List;
 import java.util.UUID;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -49,13 +50,11 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
-import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.mob.EntityMinotaur;
 import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.properties.PropertyMisc;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class VanillaChangingEvents {
 
@@ -629,6 +628,15 @@ public class VanillaChangingEvents {
 		if (rand.nextInt(4) == 0 && event.lightning != null && !event.lightning.worldObj.isRemote)
 		{
 			event.lightning.entityDropItem(new ItemStack(TragicItems.LightningOrb, 1), rand.nextFloat() - rand.nextFloat());
+		}
+	}
+	
+	@SubscribeEvent
+	public void onFall(LivingHurtEvent event)
+	{
+		if (event.source == DamageSource.fall && TragicConfig.allowCripple && TragicConfig.allowCripplingFall && !event.entityLiving.worldObj.isRemote && event.ammount > 1.5F)
+		{
+			event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Cripple.id, 1500, 0));
 		}
 	}
 }

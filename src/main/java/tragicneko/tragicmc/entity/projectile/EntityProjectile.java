@@ -220,7 +220,7 @@ public abstract class EntityProjectile extends Entity
 			this.motionX *= f2;
 			this.motionY *= f2;
 			this.motionZ *= f2;
-			this.worldObj.spawnParticle(this.getParticleString(), this.posX, this.posY + 0.25D, this.posZ, 0.0D, 0.0D, 0.0D);
+			this.worldObj.spawnParticle(this.getParticleString(), this.posX, this.posY + this.height / 4, this.posZ, 0.0D, 0.0D, 0.0D);
 			this.setPosition(this.posX, this.posY, this.posZ);
 
 			if (this.ticksExisted > this.getLifespan()) this.setDead();

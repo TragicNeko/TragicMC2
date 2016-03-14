@@ -786,7 +786,8 @@ public class EntityOverlordCore extends TragicBoss {
 			EntityLivingBase entity = (EntityLivingBase) src.getEntity();
 			boolean flag = TragicConfig.allowDivinity && entity.isPotionActive(TragicPotion.Divinity);
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse ||
+					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
 				{

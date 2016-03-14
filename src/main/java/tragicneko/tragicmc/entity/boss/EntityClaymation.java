@@ -1833,4 +1833,40 @@ public class EntityClaymation extends TragicBoss {
 		super.dropFewItems(flag, l);
 		if (!this.worldObj.isRemote && TragicConfig.allowMobStatueDrops && rand.nextInt(100) <= TragicConfig.mobStatueDropChance && this.getAllowLoot()) this.capturedDrops.add(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(TragicItems.MobStatue, 1, 15)));
 	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.allowMobSounds ? (this.getEntityForm() == 0 ? "tragicmc:boss.claymation.line" : "tragicmc:boss.claymation.sop") : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.claymation.sop" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.claymation.sop" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 120;
+	}
 }

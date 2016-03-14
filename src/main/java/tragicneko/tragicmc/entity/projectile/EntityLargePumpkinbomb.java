@@ -67,7 +67,7 @@ public class EntityLargePumpkinbomb extends EntityThrowable {
 				}
 
 				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 2.5F, flag);
 			}
 
 			this.setDead();

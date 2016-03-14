@@ -56,7 +56,7 @@ public class EntityIreEnergy extends EntityProjectile {
 		
 		if (!this.worldObj.isRemote && this.ticksExisted % 10 == 1)
 		{
-			this.worldObj.playSoundAtEntity(this, "tragicmc:random.energyambient", 0.2F, 1.0F);
+			this.worldObj.playSoundAtEntity(this, "tragicmc:random.energyambient", 0.05F, 1.0F);
 		}
 	}
 }

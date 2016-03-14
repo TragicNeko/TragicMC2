@@ -628,6 +628,7 @@ public class AmuletEvents {
 					catch (Exception e)
 					{
 						TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck Amulet effect", e);
+						break;
 					}
 					break;
 				}

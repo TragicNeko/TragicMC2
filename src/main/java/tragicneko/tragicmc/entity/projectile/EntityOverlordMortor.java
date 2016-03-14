@@ -49,7 +49,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity), 10.0F);
 
 				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-				this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() * 3.0F + 2.0F, flag);
+				this.worldObj.createExplosion(this.shootingEntity != null ? this.shootingEntity : this, this.posX, this.posY, this.posZ, rand.nextFloat() + 4.0F, flag);
 			}
 		}
 		else
@@ -90,7 +90,7 @@ public class EntityOverlordMortor extends EntityProjectile {
 			this.ticksWithTarget++;
 		}
 
-		if (this.ticksWithTarget > 60 && !this.worldObj.isRemote)
+		if ((this.ticksWithTarget > 60 || this.ticksInAir > 120) && !this.worldObj.isRemote)
 		{
 			if (rand.nextInt(4) == 0 && this.worldObj.getEntitiesWithinAABB(EntityDimensionalAnomaly.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 8)
 			{
@@ -118,16 +118,27 @@ public class EntityOverlordMortor extends EntityProjectile {
 			}
 		}
 
-		if (this.target != null && this.ticksInAir % 5 == 0 && this.ticksInAir > 5)
+		if (this.target != null && this.ticksInAir > 6 && this.ticksExisted % 5 == 0)
 		{
-			this.motionX = (target.posX - this.posX) * 0.08;
-			this.motionY = (target.posY - this.posY) * 0.08;
-			this.motionZ = (target.posZ - this.posZ) * 0.08;
+			boolean flag = true;
+			float f = this.getDistanceToEntity(this.target);
+			if ((this.ticksWithTarget > 30 || this.ticksWithTarget > f * 10) && f > 3.0) flag = false;
 
-			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-			this.posX -= this.motionX / f2 * 0.0000000074505806D;
-			this.posY -= this.motionY / f2 * 0.00000000074505806D;
-			this.posZ -= this.motionZ / f2 * 0.0000000074505806D;
+			if (flag)
+			{
+				double limit = 0.23;
+				double mx = (target.posX - this.posX) * 0.068;
+				boolean mxf = Math.abs(mx) > 0 && Math.abs(mx) > limit;
+				this.motionX += mxf ? (mx > 0 ? limit : -limit) : mx;
+
+				double my = (target.posY - this.posY + (target.height * 2 / 3)) * 0.068;
+				boolean myf = Math.abs(my) > 0 && Math.abs(my) > limit;
+				this.motionY += myf ? (my > 0 ? limit : -limit) : my;
+
+				double mz = (target.posZ - this.posZ) * 0.068;
+				boolean mzf = Math.abs(mz) > 0 && Math.abs(mz) > limit;
+				this.motionZ += mzf ? (mz > 0 ? limit : -limit) : mz;
+			}
 		}
 		
 		if (this.ticksExisted % 10 == 1 && TragicConfig.allowMobSounds && !this.worldObj.isRemote) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.overlordcore.vulnerable", 1.8F, 1.0F);

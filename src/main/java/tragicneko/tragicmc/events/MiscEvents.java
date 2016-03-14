@@ -49,6 +49,8 @@ public class MiscEvents {
 	public static AttributeModifier moonMod = new AttributeModifier(UUID.fromString("7913bbbe-8b78-4e5f-8a7e-1d429e0ef1b6"), "moonlightModifier", TragicConfig.modifier[21], 0);
 	public static AttributeModifier lightMod = new AttributeModifier(UUID.fromString("7611c3b7-5bb8-4597-849b-c75788f8cc9b"), "lightningRodAttackBuff", TragicConfig.modifier[20], 0);
 
+	public static boolean DO_FIRE_REFLECT = true;
+
 	@SubscribeEvent
 	public void quicksandJumping(LivingJumpEvent event)
 	{
@@ -221,7 +223,7 @@ public class MiscEvents {
 	}
 
 	@SubscribeEvent
-	public void onOverlordArmorUpdate(LivingUpdateEvent event)
+	public void onUpdate(LivingUpdateEvent event)
 	{
 		if (event.entityLiving.worldObj.isRemote) return;
 
@@ -233,14 +235,19 @@ public class MiscEvents {
 				{
 					int burn = 5;
 
-					try 
+					if (DO_FIRE_REFLECT)
 					{
-						Field f = ReflectionHelper.findField(Entity.class, "fire");
-						burn = f.getInt(event.entityLiving);
-					}
-					catch (Exception e)
-					{
-						TragicMC.logError("Error caused while reflecting for burn potion effect", e);
+						try 
+						{
+							Field f = ReflectionHelper.findField(Entity.class, "fire");
+							burn = f.getInt(event.entityLiving);
+						}
+						catch (Exception e)
+						{
+							TragicMC.logError("Error caused while reflecting for burn potion effect", e);
+							event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
+							DO_FIRE_REFLECT = false;
+						}
 					}
 
 					event.entityLiving.addPotionEffect(new PotionEffect(TragicPotion.Burned.id, burn, 0));
@@ -281,16 +288,16 @@ public class MiscEvents {
 				{
 					ins.applyModifier(synthMod);
 				}
-				
+
 				ins.removeModifier(moonMod);
 				if (player.inventory.hasItem(TragicItems.MoonlightTalisman) && !player.worldObj.isRaining() && !player.worldObj.isThundering() && !player.worldObj.isDaytime())
 				{
 					ins.applyModifier(moonMod);
 				}
 			}
-			
+
 			ins = player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance);
-			
+
 			if (ins != null)
 			{
 				ins.removeModifier(hydraMod);
@@ -300,13 +307,13 @@ public class MiscEvents {
 					ins.applyModifier(hydraMod);
 				}
 			}
-			
+
 			ins = player.getEntityAttribute(SharedMonsterAttributes.attackDamage);
-			
+
 			if (ins != null)
 			{
 				ins.removeModifier(lightMod);
-				
+
 				if (player.inventory.hasItem(TragicItems.LightningRodTalisman) && player.worldObj.isThundering())
 				{
 					ins.applyModifier(lightMod);
@@ -341,7 +348,7 @@ public class MiscEvents {
 			if (misc != null) misc.onUpdate();
 		}
 	}
-
+/*
 	@SubscribeEvent
 	public void onPlayerKill(LivingDeathEvent event)
 	{
@@ -357,5 +364,5 @@ public class MiscEvents {
 			}
 
 		}
-	}
+	} */
 }

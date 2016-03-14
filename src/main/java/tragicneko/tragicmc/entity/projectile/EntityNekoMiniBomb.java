@@ -61,7 +61,7 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 			}
 		}
 
-		if (this.ticksExisted >= 40)
+		if (this.ticksExisted >= 40 && rand.nextInt(4) == 0)
 		{
 			if (this.worldObj.isRemote)
 			{
@@ -70,7 +70,7 @@ public class EntityNekoMiniBomb extends EntityThrowable {
 			else
 			{
 				boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+				this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 1.0F, flag);
 
 				this.setDead();
 			}

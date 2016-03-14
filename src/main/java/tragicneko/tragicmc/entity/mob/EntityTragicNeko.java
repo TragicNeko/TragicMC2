@@ -198,7 +198,7 @@ public class EntityTragicNeko extends TragicMob {
 		{
 			if (this.getFlickTime() > 0) this.setFlickTime(0);
 
-			if (this.getFiringTicks() == 40)
+			if (this.getFiringTicks() == 40 && this.canEntityBeSeen(this.getAttackTarget()))
 			{
 				if (TragicConfig.tragicNekoRockets) this.doMissleAttack();
 			}

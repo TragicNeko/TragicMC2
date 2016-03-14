@@ -41,7 +41,7 @@ public class EntityNekoRocket extends EntityProjectile {
 		}
 
 		boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+		this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 2.5F, flag);
 
 		this.setDead();
 	}
@@ -52,42 +52,54 @@ public class EntityNekoRocket extends EntityProjectile {
 		if (this.target != null && (this.target.getHealth() == 0 || this.target.isDead)) this.target = null;
 		if (this.target != null && this.ticksInAir > 2) this.ticksWithTarget++;
 
-		if (this.ticksWithTarget > 60 || this.ticksInAir > 80 || this.target != null && this.getDistanceToEntity(this.target) <= 2.0)
+		if (this.ticksWithTarget > 70 || this.ticksInAir > 100 || this.target != null && this.getDistanceToEntity(this.target) <= 2.5)
 		{
 			boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 
 			if (!this.worldObj.isRemote)
 			{
-				this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() + 2.0F, flag);
+				this.worldObj.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, rand.nextFloat() * 0.5F + 2.5F, flag);
 				this.setDead();
 			}
 		}
 
 		super.onUpdate();
 
-		if (this.target == null && this.ticksInAir > 2)
+		if (this.target == null && this.ticksInAir > 3)
 		{
-			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(8.0, 8.0, 8.0));
+			List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(16.0, 16.0, 16.0));
 
 			for (int i = 0; i < list.size(); i++)
 			{
 				if (list.get(i) != this.shootingEntity && list.get(i) instanceof EntityLivingBase && this.shootingEntity != null && this.shootingEntity.canEntityBeSeen(list.get(i)))
 				{
+					if (!((EntityLivingBase) list.get(i)).canEntityBeSeen(this)) continue;
 					if (this.target == null || this.getDistanceToEntity(list.get(i)) < this.getDistanceToEntity(this.target)) this.target = (EntityLivingBase) list.get(i);
 				}
 			}
 		}
 
-		if (this.target != null && this.ticksInAir % 5 == 0 && this.ticksInAir > 5)
+		if (this.target != null && this.ticksInAir > 8 && this.ticksExisted % 2 == 0)
 		{
-			this.motionX = (target.posX - this.posX) * this.getMotionFactor();
-			this.motionY = (target.posY - this.posY) * this.getMotionFactor();
-			this.motionZ = (target.posZ - this.posZ) * this.getMotionFactor();
+			boolean flag = true;
+			float f = this.getDistanceToEntity(this.target);
+			if ((this.ticksWithTarget > 30 || this.ticksWithTarget > f * 10) && f > 3.0) flag = false;
 
-			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-			this.posX -= this.motionX / f2 * 0.0000000074505806D;
-			this.posY -= this.motionY / f2 * 0.00000000074505806D;
-			this.posZ -= this.motionZ / f2 * 0.0000000074505806D;
+			if (flag)
+			{
+				double limit = 0.23;
+				double mx = (target.posX - this.posX) * 0.068;
+				boolean mxf = Math.abs(mx) > 0 && Math.abs(mx) > limit;
+				this.motionX += mxf ? (mx > 0 ? limit : -limit) : mx;
+
+				double my = (target.posY - this.posY + (target.height * 2 / 3)) * 0.068;
+				boolean myf = Math.abs(my) > 0 && Math.abs(my) > limit;
+				this.motionY += myf ? (my > 0 ? limit : -limit) : my;
+
+				double mz = (target.posZ - this.posZ) * 0.068;
+				boolean mzf = Math.abs(mz) > 0 && Math.abs(mz) > limit;
+				this.motionZ += mzf ? (mz > 0 ? limit : -limit) : mz;
+			}
 		}
 
 		if (this.isInWater())
@@ -97,7 +109,7 @@ public class EntityNekoRocket extends EntityProjectile {
 				for (int l = 0; l < 5; ++l) {
 					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
-				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);
+				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.3F, 0.4F);
 			}
 			else
 			{
@@ -106,9 +118,9 @@ public class EntityNekoRocket extends EntityProjectile {
 		}
 		else
 		{
-			if (!this.worldObj.isRemote && this.ticksExisted % 15 == 0)
+			if (!this.worldObj.isRemote && this.ticksExisted % 5 == 0)
 			{
-				this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.6F, 1.0F);
+				this.worldObj.playSoundAtEntity(this, "tragicmc:random.rocketflying", 0.8F, 1.6F);
 			}
 		}
 	}

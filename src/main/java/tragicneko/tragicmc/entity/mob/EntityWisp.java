@@ -206,12 +206,15 @@ public class EntityWisp extends TragicMob {
 		{
 			if (this.getIdleTicks() > 0) this.decrementIdleTicks();
 
-			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
-			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
+			if (TragicConfig.allowMobIllumination)
 			{
-				this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+				int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+				int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
+				int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+				if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z)))
+				{
+					this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+				}
 			}
 
 			if (this.ticksExisted % 20 == 0 && rand.nextInt(8) == 0 && this.getAttackTarget() == null && this.getIdleTicks() == 0)
@@ -269,7 +272,7 @@ public class EntityWisp extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		
+
 	}
 
 	@Override

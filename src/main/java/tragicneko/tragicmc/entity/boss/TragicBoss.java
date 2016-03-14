@@ -23,6 +23,7 @@ import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.dimension.TragicWorldProvider;
+import tragicneko.tragicmc.entity.mob.TragicMob;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.WorldHelper;
 
@@ -148,6 +149,7 @@ public abstract class TragicBoss extends EntityMob implements IBossDisplayData
 		if (TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption)) this.removePotionEffect(TragicPotion.Corruption.id);
 		super.onLivingUpdate();
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
+		if (this.getAttackTarget() != null && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
 		if (this.worldObj.difficultySetting == EnumDifficulty.EASY && !TragicConfig.allowEasyBosses || this.posY <= -30 || this.posY > 280) this.setDead();
 
 		if (!this.worldObj.isRemote && TragicConfig.bossesDenyFlight)

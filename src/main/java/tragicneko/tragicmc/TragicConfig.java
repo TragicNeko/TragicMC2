@@ -96,6 +96,7 @@ public class TragicConfig {
 	public static boolean[] mobConfig = new boolean[16];
 	public static boolean allowNormalMobs, allowMiniBosses, allowBosses, allowBossOverworldSpawns, allowExtraBossLoot, allowMobTransformation;
 	public static boolean allowDynamicHealthScaling, allowNonDimensionMobSpawns, allowGroupBuffs, allowEasyBosses, allowMobSounds, bossesDenyFlight;
+	public static boolean allowMobInfighting, allowMobIllumination, allowRandomSupportMob;
 	public static int commonDropRate, rareDropRate, mobTransformationChance, bossDamageCap, groupBuffChance;
 	public static boolean[] mobAllow = new boolean[64];
 	public static boolean allowJabba, allowJanna, allowPlague, allowGragul, allowMinotaur, allowInkling, allowRagr, allowPumpkinhead, allowTragicNeko, allowTox, allowPox;
@@ -157,7 +158,7 @@ public class TragicConfig {
 	private static boolean[] vanillaConfig = new boolean[24];
 	public static boolean allowVanillaMobBuffs, allowExtraMobEffects, allowAnimalRetribution, allowMobModdedArmor, allowRespawnPunishment, allowExtraExplosiveEffects;
 	public static boolean allowMobBlindnessDebuff, allowExtraOverworldFlowers, allowOverworldSilverfishGen, allowNetherOreGen, allowOverworldOreGen, allowDrudgeGen, allowAnimalGolemCorruption;
-	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown, allowNauseaRandomMiss, allowBlindnessReachDebuff;
+	public static boolean allowCowMinotaurCreation, allowIronGolemHitCooldown, allowNauseaRandomMiss, allowBlindnessReachDebuff, allowCripplingFall;
 	public static int rubyOreRate, sapphireOreRate, mercuryOreRate, tungstenOreRate, drudgeRate, silverfishRate, rubyOreVeinSize, sapphireOreVeinSize, mercuryOreVeinSize;
 	public static int tungstenOreVeinSize, drudgeVeinSize, silverfishVeinSize, aerisRarity, nauseaMissChance;
 	public static double blindnessReachDebuffAmount;
@@ -173,7 +174,7 @@ public class TragicConfig {
 	public static boolean allowPvP, allowDefaultLores, allowCorruptionTransfer;
 	public static int challengeScrollDropChance, mobStatueDropChance;
 
-	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui, allowDimensionalMusic;
+	public static boolean allowAnimatedGui, allowArmorModels, allowWeaponModels, allowDivinityColorChange, showDoomGui, showAmuletStatusGui, allowDimensionalMusic, allowPotionEffectOverlays;
 	public static int guiTransparency, guiTexture, guiX, guiY;
 
 	public static boolean[] griefConfig = new boolean[12];
@@ -2022,6 +2023,18 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "bossesDenyFlight", false);
 		prop.comment = "When being near Bosses, do they cancel Flight for the player?";
 		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowMobInfighting", true);
+		prop.comment = "Can mobs from the mod target other mobs from the mod?";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowMobIllumination", true);
+		prop.comment = "Can mobs glow via a Luminescence block?";
+		mobConfig[++m] = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowRandomSupportMob", false);
+		prop.comment = "Can Support mobs sometimes spawn and continuously buff other nearby mobs?";
+		mobConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "commonMobDropChance", 25);
 		prop.comment = "Affects the chances of getting common mob drops from the looting amount you killed mobs with, only affects mod-exclusive entities.";
@@ -3279,6 +3292,10 @@ public class TragicConfig {
 		prop = config.get(cat.getName(), "allowBlindnessReachDebuff", false);
 		prop.comment = "Should Blindness debuff your Reach?";
 		vanillaConfig[++m] = prop.getBoolean(false);
+		
+		prop = config.get(cat.getName(), "allowCripplingFall", false);
+		prop.comment = "Should a fall that damages you inflict Cripple?";
+		vanillaConfig[++m] = prop.getBoolean(false);
 
 		prop = config.get(cat.getName(), "rubyOreGenRate", 10);
 		rubyOreRate = prop.getInt(10);
@@ -3536,25 +3553,36 @@ public class TragicConfig {
 		cat.setShowInGui(true);
 
 		prop = config.get(cat.getName(), "allowAnimatedGui", true);
+		prop.comment = "Whether or not the Doom GUI is animated.";
 		allowAnimatedGui = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowArmorModels", true);
+		prop.comment = "Whether or not custom armor models are rendered for armor that has it";
 		allowArmorModels = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowWeaponModels", true);
+		prop.comment = "Whether or not custom weapon models are used for weapons that have it";
 		allowWeaponModels = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "allowDivinityColorChange", true);
+		prop.comment = "Whether the Divinity potion effect has a rainbow-like render overlay";
 		allowDivinityColorChange = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "showDoomGui", true);
+		prop.comment = "Whether the Doom GUI is rendered";
 		showDoomGui = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "showAmuletStatusGui", true);
+		prop.comment = "Whether the Amulet Status GUI is rendered";
 		showAmuletStatusGui = prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "allowDimensionalMusic", true);
+		prop.comment = "Whether Dimension-specific music is played";
 		allowDimensionalMusic = prop.getBoolean(true);
+		
+		prop = config.get(cat.getName(), "allowPotionEffectOverlays", true);
+		prop.comment = "Whether certain potion effects have an overlay rendered while they are active";
+		allowPotionEffectOverlays = prop.getBoolean(true);
 
 		prop = config.get(cat.getName(), "guiTransparency", 100);
 		guiTransparency = clamp(prop.getInt(100), 1, 100);
@@ -4353,6 +4381,9 @@ public class TragicConfig {
 		allowEasyBosses = mobConfig[++m];
 		allowMobSounds = mobConfig[++m];
 		bossesDenyFlight = mobConfig[++m];
+		allowMobInfighting = mobConfig[++m];
+		allowMobIllumination = mobConfig[++m];
+		allowRandomSupportMob = mobConfig[++m];
 
 		allowJabba = mobAllow[m = 0];
 		allowJanna = mobAllow[++m];
@@ -4452,6 +4483,7 @@ public class TragicConfig {
 		allowIronGolemHitCooldown = vanillaConfig[++m];
 		allowNauseaRandomMiss = vanillaConfig[++m];
 		allowBlindnessReachDebuff = vanillaConfig[++m];
+		allowCripplingFall = vanillaConfig[++m];
 		
 		allowVoidPitGen = worldGenConfig[m = 0];
 		allowSpikeGen = worldGenConfig[++m];
@@ -4545,6 +4577,9 @@ public class TragicConfig {
 		//do not respawn in either dimension
 		dimensionConfig[2] = false;
 		dimensionConfig[3] = false;
+		
+		mobConfig[11] = true; //bosses negate flight to make it more difficult to fight them
+		mobConfig[12] = false; //disables mob infighting
 	}
 
 	private static void setupLightweightMode()

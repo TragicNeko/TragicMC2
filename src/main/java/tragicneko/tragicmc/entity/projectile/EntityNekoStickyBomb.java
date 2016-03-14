@@ -74,7 +74,7 @@ public class EntityNekoStickyBomb extends EntityThrowable {
 		{
 			if (this.worldObj.isRemote)
 			{
-				for (int l = 0; l < 5; ++l) {
+				for (byte l = 0; l < 5; ++l) {
 					worldObj.spawnParticle("smoke", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 				}
 				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 0.4F);

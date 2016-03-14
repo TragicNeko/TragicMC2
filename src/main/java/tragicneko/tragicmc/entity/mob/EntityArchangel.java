@@ -295,10 +295,13 @@ public class EntityArchangel extends TragicMob {
 			this.setTargetId(0);
 		}
 
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		if (TragicConfig.allowMobIllumination)
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		}
 	}
 
 	private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_)
@@ -457,6 +460,6 @@ public class EntityArchangel extends TragicMob {
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block block)
 	{
-		
+
 	}
 }

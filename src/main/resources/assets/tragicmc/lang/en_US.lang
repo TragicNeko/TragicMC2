@@ -31,6 +31,8 @@ tile.tragicmc.candle.name=Candle
 tile.tragicmc.potatoBlock.name=Giant Potato
 tile.tragicmc.carrotBlock.name=Giant Carrot
 
+tile.tragicmc.spike.name=Spike Block
+
 tile.tragicmc.summonBlock.apis.name=Summon Apis
 tile.tragicmc.summonBlock.wither.name=Summon Wither
 tile.tragicmc.summonBlock.enderDragon.name=Summon Ender Dragon
@@ -269,8 +271,7 @@ tile.tragicmc.celledLamp.lightBlue.name=Celled Lamp (Light Blue)
 tile.tragicmc.synapseCore.name=Synapse Core
 tile.tragicmc.overlordBarrier.name=Overlord Barrier
 
-tile.tragicmc.digitalSea.active.name=Digital Sea (Active)
-tile.tragicmc.digitalSea.inactive.name=Digital Sea
+tile.tragicmc.digitalSea.name=Digital Sea
 
 tile.tragicmc.darkSandstone.smooth.name=Smooth Dark Sandstone
 tile.tragicmc.darkSandstone.gridded.name=Gridded Dark Sandstone
@@ -287,7 +288,7 @@ tile.tragicmc.aeris.pureAeris.name=Aeris (Pure)
 tile.tragicmc.aeris.partiallyCorruptedAeris.name=Aeris (Partially Corrupted)
 tile.tragicmc.aeris.corruptedAeris.name=Aeris (Corrupted)
 
-tile.tragicmc.geyserNormal.name=Geyser
+tile.tragicmc.geyser.name=Geyser
 tile.tragicmc.steamVent.name=Steam Vent
 tile.tragicmc.moltenRock.name=Molten Rock
 tile.tragicmc.scorchedRock.name=Scorched Rock
@@ -598,6 +599,7 @@ item.tragicmc.dimensionalKey.collision.name=Dimensional Key (The Collision)
 item.tragicmc.dimensionalKey.end.name=Dimensional Key (The End)
 item.tragicmc.dimensionalKey.nether.name=Dimensional Key (Nether)
 item.tragicmc.dimensionalKey.synapse.name=Dimensional Key (Synapse)
+item.tragicmc.dimensionalKey.wilds.name=Dimensional Key (The Wilds)
 
 item.tragicmc.synapseLink.name=Synapse Link
 item.tragicmc.synapseCrystal.name=Synapse Crystal
@@ -658,6 +660,41 @@ item.tragicmc.worldGen.pitGenerator.name=Pit Generator
 
 item.tragicmc.nekoNekoWand.name=Neko Neko Wand
 item.tragicmc.soundExtrapolator.name=Sound Extrapolator
+item.tragicmc.nekoMindControlDevice.name=Neko Mind Control Device
+item.tragicmc.recaptureSiphon.name=Recapture Siphon
+
+item.tragicmc.starstruck.name=S001F001 Starstruck
+item.record.starstruck.name=Set001 - File001 - Starstruck
+item.record.starstruck.desc=Hard Rock set - Rock riff with electro-industrial sections and an amazing solo
+item.tragicmc.faultless.name=S001F002 Faultless
+item.record.faultless.name=Set001 - File002 - Faultless
+item.record.faultless.desc=Hard Rock set - Rock riff with symbolic synthy lead over top
+item.tragicmc.transmissions.name=S001F003 Transmissions
+item.record.transmissions.name=Set001 - File003 - Transmissions
+item.record.transmissions.desc=Hard Rock set - Simple riff leading into a soaring outro section, with synthesized choir throughout
+
+item.tragicmc.atrophy.name=S002F001 Atrophy
+item.record.atrophy.name=Set002 - File001 - Atrophy
+item.record.atrophy.desc=Progressive set - Multiple hard rock sections with tempo changes and shredding solos
+item.tragicmc.archaic.name=S002F006 Archaic
+item.record.archaic.name=Set002 - File006 - Archaic
+item.record.archaic.desc=Progressive set - Synth-laden hard rock with psychedelic and blues inspired sections
+item.tragicmc.system.name=S002F004 System
+item.record.system.name=Set002 - File004 - System
+item.record.system.desc=Progressive set - Complex and fluctuating time signatures with a hard rock aesthetic
+
+item.tragicmc.mirrors.name=S003F004 Mirrors
+item.record.mirrors.name=Set003 - File004 - Mirrors
+item.record.mirrors.desc=Fragment set - Distorted drum beat with synthesized strings and a heavily delayed guitar
+item.tragicmc.untitled.name=S003F001 Unknown
+item.record.untitled.name=Set003 - File001 - Unknown
+item.record.untitled.desc=Fragment set - MALFORMED SESSION ID - ATTEMPT RECONNECT? Y/N
+item.tragicmc.untitled2.name=S003F002 Unknown
+item.record.untitled2.name=Set003 - File002 - Unknown
+item.record.untitled2.desc=Fragment set - UNAUTHORIZED ACCESS - PLEASE CHECK PASSWORD AND TRY AGAIN
+item.tragicmc.untitled3.name=S003F003 Unknown
+item.record.untitled3.name=Set003 - File003 - Unknown
+item.record.untitled3.desc=Fragment set - ATTEMPTING RECONNECT 1... 2... 3... 4... 5... ACCESS GRANTED
 
 item.tragicmc.gooeyFruit.name=Gloopii
 item.tragicmc.exoticFruit.name=Honeydrop
@@ -1461,6 +1498,24 @@ achievement.tragicmc.ire.desc=Kill an Ire by using an IreNet Particle Cannon
 
 achievement.tragicmc.avris=Gimme yo loots!
 achievement.tragicmc.avris.desc=Kill an Avris before it escapes
+
+achievement.tragicmc.tragicNekoDevice=What's this?
+achievement.tragicmc.tragicNekoDevice.desc=Obtain a special drop from the Tragic Neko
+
+achievement.tragicmc.tragicNekoRelease=Good Samaritan
+achievement.tragicmc.tragicNekoRelease.desc=Release a Tragic Neko from it's torture, you good person, you!
+
+achievement.tragicmc.tragicNekoRecapture=This looks like a job for... Reverse Engineer!
+achievement.tragicmc.tragicNekoRecapture.desc=Use a Recapture Siphon to create a device to take you to the Neko Homeworld!
+
+achievement.tragicmc.tragicNekoFile=No files match that search query!
+achievement.tragicmc.tragicNekoFile.desc=Obtain a Music file by releasing a Neko
+
+achievement.tragicmc.tragicNekoEmitter=Healing Feelings
+achievement.tragicmc.tragicNekoEmitter.desc=Obtain an HF Emitter to free Nekos automatically as they approach you
+
+achievement.tragicmc.tragicNekoLauncher=Explosive Personality
+achievement.tragicmc.tragicNekoLauncher.desc=Obtain a Neko Launcher
 
 achievement.tragicmc.apis=Apis of mind
 achievement.tragicmc.apis.desc=Kill an Apis

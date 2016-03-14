@@ -48,7 +48,7 @@ public class AchievementEvents {
 
 			InventoryPlayer inv = mp.inventory;
 
-			if (inv.hasItem(TragicItems.CryingObsidianOrb) || inv.hasItem(TragicItems.DyingObsidianOrb) || inv.hasItem(TragicItems.CryingObsidianOrb))
+			if (inv.hasItem(TragicItems.CryingObsidianOrb) || inv.hasItem(TragicItems.DyingObsidianOrb) || inv.hasItem(TragicItems.BleedingObsidianOrb))
 			{
 				mp.triggerAchievement(TragicAchievements.obsidianOrb);
 			}

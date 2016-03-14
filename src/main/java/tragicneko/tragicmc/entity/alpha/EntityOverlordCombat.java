@@ -27,6 +27,7 @@ import tragicneko.tragicmc.TragicAchievements;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicEntities;
+import tragicneko.tragicmc.TragicItems;
 import tragicneko.tragicmc.TragicPotion;
 import tragicneko.tragicmc.entity.EntityAIWatchTarget;
 import tragicneko.tragicmc.entity.EntityDimensionalAnomaly;
@@ -614,10 +615,13 @@ public class EntityOverlordCombat extends TragicBoss {
 			}
 		}
 
-		int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
-		int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
-		int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
-		if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		if (TragicConfig.allowMobIllumination)
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
+		}
 	}
 
 	@Override
@@ -636,7 +640,8 @@ public class EntityOverlordCombat extends TragicBoss {
 				return false;
 			}
 
-			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse)// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
+			if (flag || !TragicConfig.allowDivinity && entity.getCreatureAttribute() != TragicEntities.Synapse ||
+					entity.getHeldItem() != null && entity.getHeldItem().getItem() == TragicItems.SwordOfJustice || src.canHarmInCreative())// || this.getVulnerableTicks() > 0 && entity.getCreatureAttribute() != TragicEntities.Synapse)
 			{
 				if (rand.nextBoolean() && this.worldObj.getEntitiesWithinAABB(EntityNanoSwarm.class, this.boundingBox.expand(64.0, 64.0, 64.0D)).size() < 16)
 				{

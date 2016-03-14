@@ -37,7 +37,7 @@ import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 public class ClientEvents extends Gui {
 
 	private static ResourceLocation hackedTexture = new ResourceLocation("tragicmc:textures/environment/collisionSky.png");
-	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity.png");
+	private static ResourceLocation divinityTexture = new ResourceLocation("tragicmc:textures/environment/divinity2.png");
 
 	private static final float[][] rgb = new float[][] {{1F, 1F, 1F}, {1F, 0.3F, 0.3F}, {0.3F, 0.9F, 0.9F}, {0.1F, 0.8F, 0.1F}, {1F, 0.3F, 1F}, {0.8F, 0.1F, 0.1F}, {0F, 0.1F, 0.8F},
 		{0.8F, 0.3F, 0.5F}, {0.6F, 0.3F, 0.9F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.9F}, {0.1F, 0.1F, 0.1F}};
@@ -49,6 +49,8 @@ public class ClientEvents extends Gui {
 		"mob.skeleton.hurt", "random.bow", "random.explode", "random.chestopen", "mob.wither.hurt", "mob.wither.idle", "random.door_open",
 		"game.hostile.hurt", "creeper.primed", "random.break", "random.wood_click", "mob.endermen.scream", "mob.endermen.stare",
 		"tragicmc:mob.psygote.cry", "tragicmc:mob.inkling.giggle", "tragicmc:mob.stin.teleport"};
+	
+	private static boolean RECREATE_MI = false;
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
@@ -141,9 +143,10 @@ public class ClientEvents extends Gui {
 			if (rand.nextInt(4) == 0) input.moveStrafe = rand.nextFloat() * 1.4F - rand.nextFloat() * 1.4F;
 			if (rand.nextInt(32) == 0) input.sneak = true;
 			player.movementInput = input;
+			RECREATE_MI = true;
 		}
 
-		if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked)) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
+		if (player != null && !(player.movementInput instanceof MovementInputFromOptions) && TragicConfig.allowHacked && !player.isPotionActive(TragicPotion.Hacked) && RECREATE_MI) player.movementInput = new MovementInputFromOptions(mc.gameSettings);
 
 		if (player != null && TragicConfig.allowDisorientation && player.isPotionActive(TragicPotion.Disorientation))
 		{
@@ -243,7 +246,7 @@ public class ClientEvents extends Gui {
 	@SubscribeEvent
 	public void renderHackedEffects(RenderGameOverlayEvent event)
 	{
-		if (event.type != ElementType.PORTAL) return;
+		if (event.type != ElementType.HOTBAR || !TragicConfig.allowPotionEffectOverlays) return;
 
 		Minecraft mc = Minecraft.getMinecraft();
 		if (mc.thePlayer == null) return;
@@ -253,8 +256,9 @@ public class ClientEvents extends Gui {
 		boolean flag3 = TragicConfig.allowConvergence && mc.thePlayer.isPotionActive(TragicPotion.Convergence);
 		boolean flag4 = false; //mc.thePlayer.isPotionActive(TragicPotion.Nightmare);
 		boolean flag5 = false; //mc.thePlayer.isPotionActive(TragicPotion.Frozen);
+		boolean flag6 = TragicConfig.allowCorruption && mc.thePlayer.isPotionActive(TragicPotion.Corruption);
 
-		if (!flag && !flag2 && !flag3 && !flag4 && !flag5) return;
+		if (!flag && !flag2 && !flag3 && !flag4 && !flag5 && !flag6) return;
 
 		mc.renderEngine.bindTexture(flag ? hackedTexture : divinityTexture);
 
@@ -263,15 +267,19 @@ public class ClientEvents extends Gui {
 		GL11.glDepthMask(false);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		float f = 2.25F;
-		float trans = flag ? MathHelper.cos(event.partialTicks / f) * 2.625F - f : 0.0725F;
+		float f1 = flag4 ? 0.525F : 0.325F;
+		float f2 = flag6 ? 0.265F : 0.225F;;
+		float trans = flag || flag4 || flag6 ? f1 - MathHelper.cos(mc.thePlayer.ticksExisted / f) * f2 : 0.1375F;
 
-		float r = rgb[color][0];
+		float r = flag3 ? 1F : rgb[color][0];
 		float g = flag3 ? 0F : rgb[color][1];
 		float b = flag3 ? 0F : rgb[color][2];
+		
+		if (flag6) r = g = b = 0F;
 
 		if (flag4)
 		{
-			GL11.glColor4f(0.1F, 0.1F, 0.1F, 0.7F);
+			GL11.glColor4f(0.1F, 0.1F, 0.1F, trans);
 		}
 		else if (!flag5)
 		{

@@ -324,7 +324,7 @@ public class EntityYeti extends TragicBoss {
 				if (this.getDistanceToEntity(this.getAttackTarget()) > 5.0F && this.onGround && rand.nextInt(256) == 0 && this.getFrostTicks() == 0 && !this.isRoaring() && this.getHealth() < this.getMaxHealth() / 2 && !this.isCharging() && TragicConfig.empariahRoar)
 				{
 					this.setRoarTicks(20);
-					this.playSound("mob.enderdragon.growl", 1.6F, 1.0F);
+					if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.empariah.roar", 1.6F, 1.0F);
 				}
 
 				if (this.getFrostTicks() > 5 && !this.isCharging())
@@ -334,7 +334,7 @@ public class EntityYeti extends TragicBoss {
 					double d2 = this.getAttackTarget().posZ - this.posZ;
 					float f1 = MathHelper.sqrt_float(this.getDistanceToEntity(this.getAttackTarget())) * 0.265F;
 
-					for (int i = 0; i < 2; i++)
+					for (byte i = 0; i < 2; i++)
 					{
 						EntityIcicle fireball = new EntityIcicle(this.worldObj, this, d0 + this.rand.nextGaussian() * f1, d1, d2 + this.rand.nextGaussian() * f1);
 						fireball.posY = this.posY + (this.height * 2 / 3);
@@ -343,6 +343,7 @@ public class EntityYeti extends TragicBoss {
 						this.worldObj.spawnEntityInWorld(fireball);
 					}
 
+					if (TragicConfig.allowMobSounds && this.ticksExisted % 5 == 0) this.playSound("tragicmc:boss.empariah.frost", 1.0F, 1.0F);
 					if (TragicConfig.empariahDemeanor) this.incrementDemeanor();
 				}
 
@@ -382,7 +383,7 @@ public class EntityYeti extends TragicBoss {
 				if (TragicConfig.empariahRoar && this.getDistanceToEntity(this.getAttackTarget()) > 3.0F && this.onGround && this.getFrostTicks() == 0 && !this.isRoaring() && !this.getThrowing() && !this.isCharging() && (this.getHealth() < this.getMaxHealth() / 2 && this.getDemeanor() < 0 && rand.nextInt(128) == 0 || this.hitTime >= 400 || rand.nextInt(128) == 0 && this.ticksExisted % 45 == 0))
 				{
 					this.setRoarTicks(20);
-					this.playSound("mob.enderdragon.growl", 1.6F, 1.0F);
+					if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.empariah.roar", 1.6F, 1.0F);
 				}				
 			}
 
@@ -544,6 +545,7 @@ public class EntityYeti extends TragicBoss {
 
 			if (TragicConfig.empariahDemeanor) this.incrementDemeanor();
 			if (this.getAttackTime() == 0 && !this.isCharging()) this.setAttackTime(10);
+			if (TragicConfig.allowMobSounds) this.worldObj.playSoundAtEntity(this, "tragicmc:boss.empariah.scratch", 1.8F, 1.9F);
 		}
 
 		return flag;
@@ -621,5 +623,41 @@ public class EntityYeti extends TragicBoss {
 		tag.setInteger("hurtTime", this.getHurtTime());
 		tag.setInteger("attackTime", this.getAttackTime());
 		tag.setInteger("chargeTicks", this.getChargeTicks());
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.empariah.living" : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.empariah.hurt" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.empariah.roar" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 0.6F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 240;
 	}
 }

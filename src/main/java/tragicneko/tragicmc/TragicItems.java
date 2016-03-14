@@ -293,7 +293,7 @@ public class TragicItems {
 	private static final ToolMaterial toolHarmony = EnumHelper.addToolMaterial("HARMONY", 0, 330, 0F, -4F, 5);
 	private static final ToolMaterial toolLauncher = EnumHelper.addToolMaterial("LAUNCHER", 0, 330, 0F, 0F, 1);
 	private static final ToolMaterial toolHunter = EnumHelper.addToolMaterial("HUNTER", 1, 160, 1F, 1F, 4);
-	private static final ToolMaterial toolMercury = EnumHelper.addToolMaterial("MERCURY", 2, 170, 1.5F, 1.5F, 12);
+	private static final ToolMaterial toolMercury = EnumHelper.addToolMaterial("MERCURY", 2, 160, 3.0F, 3.0F, 12);
 	private static final ToolMaterial toolClaws = EnumHelper.addToolMaterial("CLAWS", 2, 350, 4.0F, 4.0F, 2);
 	private static final ToolMaterial toolThorn = EnumHelper.addToolMaterial("THORN", 1, 330, 6.0F, 6.0F, 4);
 	private static final ToolMaterial toolFrozen = EnumHelper.addToolMaterial("FROZEN", 2, 400, 6.0F, 6.0F, 3);
@@ -534,13 +534,13 @@ public class TragicItems {
 		EverlastingLight = (new ItemEverlastingLight().setUnlocalizedName("tragicmc.everlastingLight").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:EverlastingLight" ));
 		GameRegistry.registerItem(EverlastingLight, "everlastingLight");
 
-		Jack = (new ItemJack(toolBasic, null).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BasicJack"));
+		Jack = (new ItemJack(toolBasic, null, 1).setUnlocalizedName("tragicmc.jack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BasicJack"));
 		GameRegistry.registerItem(Jack, "jack");
 
-		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TungstenJack"));
+		TungstenJack = (new ItemJack(toolJack, Doomsday.MinerSkills, 2) {}.setUnlocalizedName("tragicmc.tungstenJack").setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:TungstenJack"));
 		GameRegistry.registerItem(TungstenJack, "tungstenJack");
 
-		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter) {}.setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack"));
+		CelestialJack = (new ItemJack(toolCelesJack, Doomsday.RealityAlter, 3) {}.setUnlocalizedName("tragicmc.celestialJack").setTextureName("tragicmc:CelestialJack"));
 		GameRegistry.registerItem(CelestialJack, "celestialJack");
 
 		//Normal Item Registrations
@@ -680,6 +680,7 @@ public class TragicItems {
 
 						entity.fallDistance = 0F;
 						if (!world.isRemote) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(TragicPotion.Flight.id, 5));
+						else world.spawnParticle("crit", entity.posX + world.rand.nextDouble() - world.rand.nextDouble(), entity.posY + 1.0 + world.rand.nextDouble() - world.rand.nextDouble(), entity.posZ + world.rand.nextDouble() - world.rand.nextDouble(), 0, 0, 0);
 					}
 				}
 			}
@@ -1124,6 +1125,9 @@ public class TragicItems {
 
 			LuckAmulet = (new AmuletLuck());
 			GameRegistry.registerItem(LuckAmulet, "luckAmulet");
+			
+			AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AmuletRelease"));
+			GameRegistry.registerItem(AmuletRelease, "amuletRelease");
 		}
 
 		//Armor and Tool materials
@@ -1143,8 +1147,6 @@ public class TragicItems {
 		toolCelesJack.setRepairItem(new ItemStack(CelestialSteel));
 
 		//Special item registrations
-		MobStatue = (new ItemStatue());
-		GameRegistry.registerItem(MobStatue, "mobStatue");
 
 		if (TragicConfig.allowDoom)
 		{
@@ -1153,22 +1155,16 @@ public class TragicItems {
 
 			CooldownDefuse = (new ItemCooldownDefuse().setUnlocalizedName("tragicmc.cooldownDefuse").setMaxStackSize(16).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:CooldownDefuse"));
 			GameRegistry.registerItem(CooldownDefuse, "cooldownDefuse");
-		}
-
-		if (TragicConfig.allowAmulets)
-		{
-			AmuletRelease = (new ItemAmuletRelease().setUnlocalizedName("tragicmc.amuletRelease").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:AmuletRelease"));
-			GameRegistry.registerItem(AmuletRelease, "amuletRelease");
-		}
-
-		if (TragicConfig.allowDoom)
-		{
+		
 			BloodSacrifice = (new ItemBloodSacrifice().setUnlocalizedName("tragicmc.bloodSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:BloodSacrifice"));
 			GameRegistry.registerItem(BloodSacrifice, "bloodSacrifice");
 
 			NourishmentSacrifice = (new ItemNourishmentSacrifice().setUnlocalizedName("tragicmc.nourishmentSacrifice").setMaxStackSize(1).setCreativeTab(TragicMC.Survival).setTextureName("tragicmc:NourishmentSacrifice"));
 			GameRegistry.registerItem(NourishmentSacrifice, "nourishmentSacrifice");
 		}
+		
+		MobStatue = (new ItemStatue());
+		GameRegistry.registerItem(MobStatue, "mobStatue");
 
 		if (TragicConfig.allowDimension)
 		{

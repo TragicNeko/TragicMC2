@@ -377,7 +377,7 @@ public class EntityTimeController extends TragicBoss {
 
 		if (this.getSpazTicks() > 0 && this.ticksExisted % 5 == 0 && TragicConfig.timeControllerSpaz) this.spazOut();
 
-		if (TragicConfig.timeControllerLuminescence)
+		if (TragicConfig.timeControllerLuminescence && TragicConfig.allowMobIllumination)
 		{
 			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
 			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2));
