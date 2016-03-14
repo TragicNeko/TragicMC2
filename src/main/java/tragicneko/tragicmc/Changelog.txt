@@ -4428,7 +4428,7 @@ Tested a Frozen potion effect, which requires the player to spam inputs to break
 Bumping version number for a release now
 Fixed Aegar not displaying it's health (boss status)
 
-2.46.2858++
+2.46.2870
 Fixed derp on Toxic Amalgation recipe
 Recording last of the sounds now that I got that issue resolved
 Added more Overlord Core sounds, added sounds for the Overlord Mortors
@@ -4439,12 +4439,9 @@ Added a beeping sound for the Aegar Mortors when they are "homing" in on their t
 Added sound for Spirit Casts, Dark Mortors, Dark Energy and Icicles
 Added sound for Pumpkinbombs when they bounce
 Added new sounds for Skultar, laughing sound for when it gets hurt/dies and a heartbeat ambient sound, it'll use the vanilla skeleton sound for it's random living sound
-
+Did multiple fixes/changes/additions from the 1.8 port
 
 TODO still:
 Finish recording sounds:
--Sound for when the Overlord Cocoon form is damaged enough or not during it's instance
 -Apis sounds: Mad bull sounds
--Yeti sounds: Deep beastly sounds
--Claymation sounds: soppy, clay sounds
 -Avris sounds: struggling breathing sounds
