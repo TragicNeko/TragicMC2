@@ -341,6 +341,7 @@ public class EntityApis extends TragicBoss {
 			
 			if (this.getAttackTarget() != null && this.ticksExisted % 3 == 0 && this.onGround && rand.nextInt(48) == 0 && !this.isCharging() && !this.isStomping() && this.getDistanceToEntity(this.getAttackTarget()) <= 6.0F && TragicConfig.apisSuperStomp)
 			{
+				if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.apis.roar", 1.8F, 1.0F);
 				this.setStompTicks(40);
 			}
 
@@ -409,6 +410,7 @@ public class EntityApis extends TragicBoss {
 		if (this.isReflecting() && par1DamageSource.getEntity() != null && !(par1DamageSource.getEntity() instanceof EntityApis))
 		{
 			if (par2 > 3.0F) par1DamageSource.getEntity().attackEntityFrom(par1DamageSource, par2 / 2.0F + 1.0F);
+			if (TragicConfig.allowMobSounds) this.playSound("tragicmc:boss.apis.reflect", 1.0F, 1.0F);
 			return true;
 		}
 
@@ -508,5 +510,41 @@ public class EntityApis extends TragicBoss {
 		tag.setInteger("reflectionTicks", this.getReflectionTicks());
 		tag.setInteger("stompTicks", this.getStompTicks());
 		tag.setInteger("attackTime", this.getAttackTime());
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.apis.living" : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return !this.isReflecting() ? super.getHurtSound() : null;
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:boss.apis.death" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 120;
 	}
 }

@@ -25,8 +25,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import tragicneko.tragicmc.TragicAchievements;
+import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
 import tragicneko.tragicmc.TragicMC;
+import tragicneko.tragicmc.entity.alpha.EntityOverlordCore;
 import tragicneko.tragicmc.items.ItemChallenge;
 import tragicneko.tragicmc.util.EntityDropHelper;
 import tragicneko.tragicmc.util.EntityDropHelper.EntityDrop;
@@ -76,9 +78,11 @@ public class EntityAvris extends TragicMob {
 				this.worldObj.spawnParticle("flame", this.posX + ((rand.nextDouble() - rand.nextDouble()) * this.width), this.posY + rand.nextDouble() * this.height,
 						this.posZ + ((rand.nextDouble() - rand.nextDouble()) * this.width), 0.0F, 0.155F * this.rand.nextFloat(), 0.0F);
 			}
+			
+			return;
 		}
 
-		if (!this.worldObj.isRemote && this.ticksExisted % 4 == 0 && this.timeAlive >= 2400 - this.rarity * 400 && this.getHealth() > 0F)
+		if (this.ticksExisted % 4 == 0 && this.timeAlive >= 2400 - this.rarity * 400 && this.getHealth() > 0F)
 		{
 			List<Entity> entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(64.0, 64.0, 64.0));
 			boolean flag = true;
@@ -101,6 +105,14 @@ public class EntityAvris extends TragicMob {
 						mp.addChatMessage(new ChatComponentText("The Avris has eluded pursuers!"));
 				}
 			}
+		}
+		
+		if (TragicConfig.allowMobIllumination)
+		{
+			int x = (int) (this.posX + rand.nextInt(2) - rand.nextInt(2));
+			int y = (int) (this.posY + rand.nextInt(2) - rand.nextInt(2)) + ((int) this.height * 2 / 3);
+			int z = (int) (this.posZ + rand.nextInt(2) - rand.nextInt(2));
+			if (EntityOverlordCore.replaceableBlocks.contains(worldObj.getBlock(x, y, z))) this.worldObj.setBlock(x, y, z, TragicBlocks.Luminescence);
 		}
 	}
 
@@ -210,5 +222,35 @@ public class EntityAvris extends TragicMob {
 		if (flag && par1DamageSource.getEntity() != null) par1DamageSource.getEntity().setFire(4 + rand.nextInt(4));
 
 		return flag;
+	}
+	
+	@Override
+	public String getLivingSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.laugh" : null;
+	}
+
+	@Override
+	public String getHurtSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.hurt" : super.getHurtSound();
+	}
+
+	@Override
+	public String getDeathSound()
+	{
+		return TragicConfig.allowMobSounds ? "tragicmc:mob.avris.death" : null;
+	}
+
+	@Override
+	public float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public float getSoundVolume()
+	{
+		return 1.0F;
 	}
 }

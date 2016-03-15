@@ -109,6 +109,32 @@
 		"sounds": [
 			"boss/aegar/shockwave"]
     },
+    "boss.apis.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/apis/death", "boss/apis/death2"]
+    },
+    "boss.apis.living":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/apis/living", "boss/apis/living2",
+            "boss/apis/living3", "boss/apis/living4"]
+    },
+    "boss.apis.reflect":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/apis/reflect", "boss/apis/reflect2",
+            "boss/apis/reflect3"]
+    },
+    "boss.apis.roar":
+    {
+        "category": "hostile",
+        "sounds": [
+            "boss/apis/roar"]
+    },
     "boss.claymation.line":
     {
         "category": "hostile",
@@ -541,6 +567,28 @@
 		"category": "hostile",
 		"sounds": [
 			"mob/archangel/low"]
+    },
+    "mob.avris.laugh":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/avris/laugh", "mob/avris/laugh2",
+            "mob/avris/laugh3", "mob/avris/laugh4",
+            "mob/avris/laugh5"]
+    },
+    "mob.avris.hurt":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/avris/hurt", "mob/avris/hurt2",
+            "mob/avris/hurt3", "mob/avris/hurt4"]
+    },
+    "mob.avris.death":
+    {
+        "category": "hostile",
+        "sounds": [
+            "mob/avris/death", "mob/avris/death2",
+            "mob/avris/death3"]
     },
 	"mob.cryse.hit":
     {
