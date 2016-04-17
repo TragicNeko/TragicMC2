@@ -3576,9 +3576,9 @@ public class TragicConfig {
 		prop.comment = "Whether the Amulet Status GUI is rendered";
 		showAmuletStatusGui = prop.getBoolean(true);
 		
-		prop = config.get(cat.getName(), "allowDimensionalMusic", true);
+		prop = config.get(cat.getName(), "allowDimensionalMusic", false);
 		prop.comment = "Whether Dimension-specific music is played";
-		allowDimensionalMusic = prop.getBoolean(true);
+		allowDimensionalMusic = false; //prop.getBoolean(true);
 		
 		prop = config.get(cat.getName(), "allowPotionEffectOverlays", true);
 		prop.comment = "Whether certain potion effects have an overlay rendered while they are active";

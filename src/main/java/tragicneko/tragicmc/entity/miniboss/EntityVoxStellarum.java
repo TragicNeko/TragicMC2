@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -29,6 +30,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 		super(par1World);
 		this.stepHeight = 2.0F;
 		this.experienceValue = 22;
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0D, true));
 	}
 
 	@Override
@@ -159,7 +161,6 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 			if (this.isHealing()) this.decrementHealingTicks();
 			if (TragicConfig.allowStun && this.isPotionActive(TragicPotion.Stun.id) || this.getAttackTarget() == null) this.setSpinTicks(0);
 
-
 			double modifier = (Math.sin((2.115D / (Math.PI * 2)) * (this.getSpinTicks() / 100.0D) - 0.125D)) * 0.235D;
 			AttributeModifier mod2 = new AttributeModifier(UUID.fromString("e20a064f-7022-4c64-99A2-181d3ac9eb17"), "voxStellarumSpinning", modifier, 0);
 
@@ -180,7 +181,7 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 				this.setHealTicks(500);
 			}
 
-			if (!this.isHealing() && this.getFiringTicks() <= 40 && !this.isSpinning() && this.ticksExisted % 20 == 0 && rand.nextInt(32) == 0 && this.getAttackTarget() != null && TragicConfig.voxStellarumSpinAttack) this.setSpinTicks(1000);
+			if (!this.isHealing() && !this.isFiring() && !this.isSpinning() && this.ticksExisted % 20 == 0 && rand.nextInt(16) == 0 && this.getAttackTarget() != null && TragicConfig.voxStellarumSpinAttack) this.setSpinTicks(1000);
 
 			if (this.isHealing() && this.getHealTicks() >= 100)
 			{
@@ -269,8 +270,8 @@ public class EntityVoxStellarum extends EntityNorVox implements TragicMiniBoss {
 			{
 				((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, rand.nextInt(60) + 120));
 
-				par1Entity.motionX *= 2.75D;
-				par1Entity.motionZ *= 2.75D;
+				par1Entity.motionX += this.motionX;
+				par1Entity.motionZ += this.motionZ;
 				par1Entity.motionY += 0.35D;
 			}
 		}

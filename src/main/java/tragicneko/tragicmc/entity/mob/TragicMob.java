@@ -186,7 +186,7 @@ public abstract class TragicMob extends EntityMob
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) this.setAttackTarget(null);
-		if (this.getAttackTarget() != null && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
+		if (!TragicConfig.allowMobInfighting && this.getAttackTarget() != null && (this.getAttackTarget() instanceof TragicMob || this.getAttackTarget() instanceof TragicBoss)) this.setAttackTarget(null);
 
 		if (this.getAttackTarget() == null && this.canCorrupt() && TragicConfig.allowCorruption && this.isPotionActive(TragicPotion.Corruption.id))
 		{

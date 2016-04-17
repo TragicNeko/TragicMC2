@@ -66,7 +66,7 @@ public class MouseEvents {
 			float f7 = f4 * f5;
 			float f8 = f3 * f5;
 			double limit = player.capabilities.isCreativeMode ? 2.5D : 1.5D;
-			double enchantLimit = limit + (TragicConfig.allowReach ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) : 0);
+			double enchantLimit = limit + (TragicConfig.allowReach && stack != null ? EnchantmentHelper.getEnchantmentLevel(TragicEnchantments.Reach.effectId, stack) : 0);
 
 			IAttributeInstance ins = player.getEntityAttribute(AmuletModifier.reach);
 			double d3 = ins == null ? 0.0 : ins.getAttributeValue();

@@ -114,7 +114,7 @@ public class EntitySirv extends TragicMob {
 					if (list.get(i) instanceof EntitySirv)
 					{
 						sirv = (EntitySirv) list.get(i);
-						if (sirv.getAttackTarget() != null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
+						if (sirv.getAttackTarget() == null) sirv.setAttackTarget((EntityLivingBase) par1DamageSource.getEntity());
 					}
 				}
 			}

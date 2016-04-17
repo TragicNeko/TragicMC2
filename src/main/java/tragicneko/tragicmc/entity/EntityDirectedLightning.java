@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.EntityWeatherEffect;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -110,7 +111,11 @@ public class EntityDirectedLightning extends EntityWeatherEffect
 				for (int l = 0; l < list.size(); ++l)
 				{
 					Entity entity = (Entity)list.get(l);
-					if (this.user != entity && !net.minecraftforge.event.ForgeEventFactory.onEntityStruckByLightning(entity, null)) entity.onStruckByLightning(null);
+					if (this.user != entity && !entity.isImmuneToFire())
+					{
+						entity.attackEntityFrom(DamageSource.inFire, 5.0F);
+						entity.setFire(8);
+					}
 				}
 			}
 		}
