@@ -4442,3 +4442,11 @@ Added new sounds for Skultar, laughing sound for when it gets hurt/dies and a he
 Did multiple fixes/changes/additions from the 1.8 port
 Added new sounds for Apis and Avris, added illumination to Avris
 This will be the last 1.7.10 version of the mod, so long and thanks for all the fish!
+
+2.46.2876
+Hotfix: Fixed Directed Lightning causing game crashes with certain mods
+Hotfix: Disabled Dimensional music, permanently
+Hotfix: Fixed possible game crash due to Reach checking with an empty itemstack
+Hotfix: Fixed Sirv not telling other Sirv about their attacks
+Hotfix: Fixed Vox Stellarum not properly attacking on contact
+Hotfix: Fixed my mobs not being able to target other mobs
