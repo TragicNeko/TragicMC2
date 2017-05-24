@@ -88,7 +88,7 @@ public class TragicMC
 {
 	public static final String MODNAME = "TragicMC 2";
 	public static final String MODID = "TragicMC";
-	public static final String VERSION = "2.46.2876";
+	public static final String VERSION = "2.46.2879";
 	public static final String ACCEPTED_VERSION = "[1.7.10]";
 
 	@Instance(TragicMC.MODID)

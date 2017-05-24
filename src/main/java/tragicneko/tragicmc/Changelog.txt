@@ -4450,3 +4450,10 @@ Hotfix: Fixed possible game crash due to Reach checking with an empty itemstack
 Hotfix: Fixed Sirv not telling other Sirv about their attacks
 Hotfix: Fixed Vox Stellarum not properly attacking on contact
 Hotfix: Fixed my mobs not being able to target other mobs
+
+2.46.2878
+Hotfix: Fixed logger spam due to a missed reflection in the AmuletEvents, also fixed improper reflection variables
+Hotfix: Fixed randomization of structure generation since I missed it last hotfix
+
+2.46.2879
+Hotfix: Fixed crash related to mob transformations

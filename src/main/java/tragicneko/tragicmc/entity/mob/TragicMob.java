@@ -260,7 +260,7 @@ public abstract class TragicMob extends EntityMob
 
 	protected void change()
 	{
-		if (this.isChangeAllowed())
+		if (this.isChangeAllowed() && this.getSuperiorForm() != null)
 		{
 			TragicMob boss = (TragicMob) this.getSuperiorForm();
 			boss.copyDataFrom(this, true);

@@ -3,6 +3,8 @@ package tragicneko.tragicmc.worldgen.structure;
 import java.util.Random;
 import java.util.Set;
 
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.StatCollector;
@@ -10,9 +12,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import tragicneko.tragicmc.TragicBlocks;
 import tragicneko.tragicmc.TragicConfig;
+import tragicneko.tragicmc.TragicMC;
 import tragicneko.tragicmc.worldgen.schematic.Schematic;
-
-import com.google.common.collect.Sets;
 
 public class Structure extends WorldGenerator {
 
@@ -150,7 +151,7 @@ public class Structure extends WorldGenerator {
 	 */
 	public boolean getRarity(final int compare)
 	{
-		return compare <= TragicConfig.structureRarity[this.structureId];
+		return TragicMC.rand.nextInt(compare) <= TragicConfig.structureRarity[this.structureId];
 	}
 
 	public int getHeight()

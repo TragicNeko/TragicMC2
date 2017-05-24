@@ -3,34 +3,33 @@ package tragicneko.tragicmc.events;
 import static tragicneko.tragicmc.TragicMC.rand;
 
 import java.lang.reflect.Method;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase.TempCategory;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -53,15 +52,8 @@ import tragicneko.tragicmc.items.amulet.ItemAmulet;
 import tragicneko.tragicmc.items.amulet.ItemAmulet.AmuletModifier;
 import tragicneko.tragicmc.network.MessageAmulet;
 import tragicneko.tragicmc.properties.PropertyAmulets;
-import tragicneko.tragicmc.properties.PropertyDoom;
 import tragicneko.tragicmc.util.AmuletHelper;
 import tragicneko.tragicmc.util.DamageHelper;
-import tragicneko.tragicmc.util.WorldHelper;
-
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class AmuletEvents {
 
@@ -577,6 +569,8 @@ public class AmuletEvents {
 			}
 		}
 	}
+	
+	public static boolean DO_REFLECTION = true;
 
 	@SubscribeEvent
 	public void doomRechargeDeath(LivingDeathEvent event)
@@ -608,13 +602,13 @@ public class AmuletEvents {
 				}
 			}
 
-			for (i = 0; i < 3 && TragicConfig.amuLuck; i++)
+			for (i = 0; i < 3 && TragicConfig.amuLuck && event.entityLiving instanceof EntityLiving; i++)
 			{
-				if (amulets[i] != null && ((ItemAmulet) amulets[i].getItem()) == TragicItems.LuckAmulet)
+				if (amulets[i] != null && ((ItemAmulet) amulets[i].getItem()) == TragicItems.LuckAmulet && DO_REFLECTION)
 				{
 					try
 					{
-						Method m = EntityLiving.class.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
+						Method m = ReflectionHelper.findMethod(EntityLiving.class, (EntityLiving) event.entityLiving, new String[] {"getExperiencePoints", "func_70693_a"}, EntityPlayer.class);
 						m.setAccessible(true);
 						int j = (Integer) m.invoke(event.entityLiving, player);
 
@@ -627,6 +621,7 @@ public class AmuletEvents {
 					}
 					catch (Exception e)
 					{
+						DO_REFLECTION = false;
 						TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck Amulet effect", e);
 						break;
 					}
@@ -645,14 +640,14 @@ public class AmuletEvents {
 			inv.markDirty();
 		}
 
-		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.allowAmuletModifiers)
+		if (event.source.getEntity() instanceof EntityPlayerMP && event.entityLiving instanceof EntityLiving && TragicConfig.allowAmuletModifiers && DO_REFLECTION)
 		{
 			EntityPlayerMP mp = (EntityPlayerMP) event.source.getEntity();
 			IAttributeInstance ins = mp.getEntityAttribute(AmuletModifier.luck);
 			double d0 = ins == null ? 0.0 : ins.getAttributeValue();
 			try
 			{
-				Method m = EntityLiving.class.getDeclaredMethod("getExperiencePoints", EntityPlayer.class);
+				Method m = ReflectionHelper.findMethod(EntityLiving.class, (EntityLiving) event.entityLiving, new String[] {"getExperiencePoints", "func_70693_a"}, EntityPlayer.class);
 				m.setAccessible(true);
 				int j = (Integer) m.invoke((EntityLiving) event.entityLiving, mp);
 				j *= d0;
@@ -666,6 +661,7 @@ public class AmuletEvents {
 			}
 			catch (Exception e)
 			{
+				DO_REFLECTION = false;
 				TragicMC.logError("Error caught while reflecting experience value from a mob for the Luck attribute.", e);
 			}
 		}
